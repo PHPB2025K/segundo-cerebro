@@ -18,12 +18,12 @@
 
 | Nome | Função | Modelo | Notas |
 |------|--------|--------|-------|
-| Kobe | Agente principal OpenClaw | GPT 5.4 | Orquestração, estratégia, comunicação |
-| Trader | Marketplace (ML, Shopee, Amazon) | GPT 5.4 | Preços, fees, listings |
-| Spark | ADS (ML, Amazon, Meta, Google) | GPT 5.4 | Campanhas, ROI |
-| Builder | Dev, MicroSaaS, APIs | GPT 5.4 | Código, deploy |
-| Fisco | Faturamento, NF-e, distribuição fiscal | GPT 5.4 | Bling ERP integrado |
-| RH | Ponto, salários, compliance | GPT 5.1-mini | Custo otimizado |
+| Kobe | Agente principal OpenClaw | openai-codex/gpt-5.4 | Orquestração, estratégia, comunicação |
+| Trader | Marketplace (ML, Shopee, Amazon) | openai-codex/gpt-5.4 | Preços, fees, listings. Migrado 06/04 |
+| Spark | ADS (ML, Amazon, Meta, Google) | openai-codex/gpt-5.4 | Campanhas, ROI. Migrado 06/04 |
+| Builder | Dev, MicroSaaS, APIs | openai-codex/gpt-5.4 | Código, deploy. Migrado 06/04 |
+| Fisco | Faturamento, NF-e, distribuição fiscal | openai-codex/gpt-5.4 | Bling ERP integrado. Migrado 06/04 |
+| RH | Ponto, salários, compliance | openai-codex/gpt-5.1-mini | Custo otimizado. Migrado 06/04 |
 | Ana | Atendimento WhatsApp clientes | — | Via N8N + Evolution API |
 
 ---

@@ -11,7 +11,7 @@
 | Projeto | Status | Métrica-chave | Arquivo |
 |---------|--------|---------------|---------|
 | GB Importadora/Budamix | 🟢 Operação | 44 SKUs ativos, 4 canais | budamix.md |
-| OpenClaw/Kobe | 🟢 Produção | 6 agentes, 22 crons, 16 integrações | openclaw.md |
+| OpenClaw/Kobe | 🟢 Produção | 6 agentes GPT 5.4, v2026.4.5, 22 crons | openclaw.md |
 | Canggu | 🟢 Produção | Dashboard + busca vetorial + WhatsApp | canggu.md |
 | Jornal da Manhã | 🟢 Produção | Digest diário | jornal-da-manha.md |
 
@@ -48,7 +48,7 @@
 
 - [06/04] Canggu — Reestruturação completa: 3 camadas (base_products → products → listings) + pgvector + context-builder vetorial
 - [06/04] Canggu — Bug envio WhatsApp humano corrigido
-- [06/04] OpenClaw — Decisão de migrar para GPT 5.4 + GPT 5.1-mini
+- [06/04] OpenClaw — Migração completa: 6 agentes em GPT 5.4 / GPT 5.1-mini + update v2026.4.5
 - [06/04] Segundo Cérebro — Setup inicial configurado
 
 ---

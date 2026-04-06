@@ -14,7 +14,7 @@
 
 ## 🟡 Importantes (não bloqueiam mas precisam de ação)
 
-- [06/04] OpenClaw — migração de modelos para GPT 5.4 / GPT 5.1-mini. Prompt enviado ao Kobe, aguardando execução.
+- [06/04] ~~OpenClaw — migração de modelos para GPT 5.4 / GPT 5.1-mini.~~ → Movido para ✅
 - [06/04] Canggu — Fase 4 cleanup pendente: remover campos antigos (marketplace_links, available_kits, price_marketplace) e dropar tabela marketplace_product_mapping. Só executar quando tudo estiver estável nas tabelas novas.
 - [06/04] Canggu — ~14 Session Extractors do OpenClaw desabilitados (timeout 120s insuficiente para Opus 4.6). Precisam de 300s+. Reavaliar após migração GPT 5.4.
 - [06/04] Canggu — Analistas devem preencher campos ricos (descrição completa, sugestões de uso, diferenciais, tags) dos 44 produtos ativos. Guia entregue. Top 10 primeiro.
@@ -43,6 +43,8 @@
 - [06/04] ✅ Canggu — Links de marketplace adicionados ao formulário de produto
 - [06/04] ✅ Canggu — Guia de preenchimento para analistas criado e entregue
 - [06/04] ✅ Segundo Cérebro — Setup inicial configurado
+- [06/04] ✅ OpenClaw — Migração completa dos 5 sub-agentes para GPT 5.4 / GPT 5.1-mini
+- [06/04] ✅ OpenClaw — Atualizado de v2026.4.2 para v2026.4.5
 
 ---
 

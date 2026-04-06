@@ -79,7 +79,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 | Componente | Status | Detalhes |
 |------------|--------|----------|
-| OpenClaw/Kobe | 🟢 Produção | VPS Hostinger, v2026.4.2, GPT 5.4 |
+| OpenClaw/Kobe | 🟢 Produção | VPS Hostinger, v2026.4.5, GPT 5.4 (todos os agentes migrados) |
 | Ana (atendimento) | 🟢 Produção | N8N + Evolution API + Supabase |
 | Canggu | 🟢 Produção | Lovable + Supabase + pgvector |
 | Claude Code | 🟢 Uso diário | VS Code + MCPs |
@@ -93,7 +93,8 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 - [06/04] Context-builder da Ana com pipeline vetorial 3 camadas (5/5 testes)
 - [06/04] Bug crítico de envio WhatsApp humano→cliente corrigido no Canggu
 - [06/04] Guia de preenchimento de produtos criado para analistas
-- [06/04] Decisão: migração de modelos para GPT 5.4 + GPT 5.1-mini
+- [06/04] Migração completa: 6/6 agentes em GPT 5.4 / GPT 5.1-mini (RH)
+- [06/04] OpenClaw atualizado de v2026.4.2 para v2026.4.5
 
 ---
 

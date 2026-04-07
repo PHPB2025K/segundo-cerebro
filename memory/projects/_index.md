@@ -46,10 +46,11 @@
 
 ## Mudanças Recentes
 
+- [07/04] Amazon BR — Listing PCM001 ACCEPTED via SP-API (DRINK_COASTER, FBA, ASIN pendente)
+- [07/04] Amazon BR — Skill amazon-listing-creator criada (7 arquivos, formatos exatos documentados)
 - [07/04] ML — Novo anúncio Kit 6 Porta-Copos MDF Budamix (MLB6583127234, R$39,90, SKU PCM001)
-- [07/04] Shopee — Anúncio replicado em 3 lojas (448649947, 860803675, 442066454)
+- [07/04] Shopee — Anúncio replicado em 3 lojas com atributos completos
 - [07/04] Shopee — Skill shopee-listing-creator criada para padronizar anúncios futuros
-- [07/04] Shopee — Análise completa de taxas e concorrência (shopee-porta-copos-analise.md)
 - [07/04] OpenClaw — Fix fallback cascata (anthropic/claude-haiku-4-5), gateway reiniciado
 - [07/04] Bright Data — Zona web_unlocker1 criada, API key nova
 - [06/04] Canggu — Reestruturação completa: 3 camadas + pgvector + context-builder vetorial

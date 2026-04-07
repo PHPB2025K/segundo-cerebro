@@ -90,11 +90,10 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ## Resultados Recentes
 
-- [07/04] Novo SKU: Kit 6 Porta-Copos MDF Design Solaris (PCM001) — primeiro produto de fabricação própria com corte laser
-- [07/04] Anúncio ML criado: MLB6583127234, R$39,90, gold_special (Clássico 11%), 50 unidades
-- [07/04] Anúncio Shopee em 3 lojas: budamix-store, budamix-store2, budamix-shop — R$39,90
-- [07/04] Skill shopee-listing-creator criada para padronizar anúncios Shopee (checklist, template, validação)
-- [07/04] Análise completa Shopee: taxas 2026, concorrência (16 players mapeados), regras de imagem
+- [07/04] Kit Porta-Copos PCM001 publicado em 3 plataformas: ML + Shopee (3 lojas) + Amazon BR (FBA)
+- [07/04] Amazon BR: listing ACCEPTED via SP-API, ASIN pendente, DRINK_COASTER, FBA, GTIN exemption
+- [07/04] Skills de criação de anúncios: shopee-listing-creator + amazon-listing-creator no workspace Kobe
+- [07/04] Comparação de margens: Amazon (57,3%) > Shopee (55,3%) > ML (41,4% c/ frete)
 - [07/04] Fix OpenClaw: fallback cascata corrigido (anthropic/claude-haiku-4-5), crons restaurados
 - [07/04] Bright Data: zona web_unlocker1 criada (API key nova)
 - [06/04] Reestruturação dados Canggu (5 fases), pipeline vetorial Ana, migração GPT 5.4

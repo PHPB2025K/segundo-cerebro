@@ -26,7 +26,8 @@
 - [06/04] Segurança — Tailscale/WireGuard não implementado. Recomendado.
 - [07/04] Shopee — 3 anúncios Kit Porta-Copos precisam preencher campos no Seller Center (GTIN, NCM, Cor, Garantia) para diagnóstico verde. Checklist enviado ao Kobe.
 - [07/04] Bright Data — API key do web_unlocker1 (e0f949a4-2599-4a02-a0a2-1063ed8fe364) precisa ser salva no 1Password do Kobe (substituir a antiga bc468a8b...). Zona criada 07/04.
-- [07/04] OpenClaw — Skill shopee-listing-creator precisa ser importada pelo Kobe (openclaw skills import).
+- [07/04] OpenClaw — Skills shopee-listing-creator e amazon-listing-creator precisam ser importadas pelo Kobe (openclaw skills import).
+- [07/04] Amazon BR — ASIN do PCM001 pendente (ACCEPTED com 0 erros, processando). Verificar amanhã. Após ASIN: upload de fotos via Seller Central + registrar no Supabase.
 
 ## ⚪ Backlog (sem urgência imediata)
 
@@ -56,6 +57,10 @@
 - [07/04] ✅ Shopee — Skill shopee-listing-creator criada no workspace do Kobe
 - [07/04] ✅ Shopee — Análise completa de taxas + concorrência salva em memory/projects/shopee-porta-copos-analise.md
 - [07/04] ✅ Bright Data — Zona web_unlocker1 criada e testada (API key: e0f949a4...)
+- [07/04] ✅ Amazon BR — Listing PCM001 ACCEPTED via SP-API (0 erros, ASIN pendente)
+- [07/04] ✅ Amazon BR — Skill amazon-listing-creator criada e deployada na VPS
+- [07/04] ✅ Shopee — Anúncio atualizado com 6 atributos + descrição formatada (budamix-store)
+- [07/04] ✅ Shopee — Replicado para budamix-store2 (48508383354) e budamix-shop (41429832718)
 
 ---
 

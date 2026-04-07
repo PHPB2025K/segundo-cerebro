@@ -46,11 +46,16 @@
 
 ## Mudanças Recentes
 
-- [06/04] Canggu — Reestruturação completa: 3 camadas (base_products → products → listings) + pgvector + context-builder vetorial
-- [06/04] Canggu — Bug envio WhatsApp humano corrigido
+- [07/04] ML — Novo anúncio Kit 6 Porta-Copos MDF Budamix (MLB6583127234, R$39,90, SKU PCM001)
+- [07/04] Shopee — Anúncio replicado em 3 lojas (448649947, 860803675, 442066454)
+- [07/04] Shopee — Skill shopee-listing-creator criada para padronizar anúncios futuros
+- [07/04] Shopee — Análise completa de taxas e concorrência (shopee-porta-copos-analise.md)
+- [07/04] OpenClaw — Fix fallback cascata (anthropic/claude-haiku-4-5), gateway reiniciado
+- [07/04] Bright Data — Zona web_unlocker1 criada, API key nova
+- [06/04] Canggu — Reestruturação completa: 3 camadas + pgvector + context-builder vetorial
 - [06/04] OpenClaw — Migração completa: 6 agentes em GPT 5.4 / GPT 5.1-mini + update v2026.4.5
 - [06/04] Segundo Cérebro — Setup inicial configurado
 
 ---
 
-*Atualizado: 06/04/2026*
+*Atualizado: 07/04/2026*

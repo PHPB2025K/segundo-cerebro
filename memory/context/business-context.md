@@ -56,10 +56,11 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ## Foco Atual (Abril 2026)
 
-1. Migração OpenClaw para GPT 5.4 / GPT 5.1-mini (economia de custos)
+1. Expansão de SKUs nos marketplaces (Kit Porta-Copos MDF publicado em ML + 3 lojas Shopee)
 2. Enriquecimento de dados de produtos no Canggu (analistas preenchendo, embeddings vetoriais)
 3. FinanceFlow — automação fiscal para 6 CNPJs
 4. Estabilização do Canggu (WhatsApp, busca vetorial, context-builder)
+5. Padronização de anúncios Shopee via skill shopee-listing-creator
 
 ---
 
@@ -89,13 +90,15 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ## Resultados Recentes
 
-- [06/04] Reestruturação completa de dados de produtos no Canggu (5 fases, busca vetorial)
-- [06/04] Context-builder da Ana com pipeline vetorial 3 camadas (5/5 testes)
-- [06/04] Bug crítico de envio WhatsApp humano→cliente corrigido no Canggu
-- [06/04] Guia de preenchimento de produtos criado para analistas
-- [06/04] Migração completa: 6/6 agentes em GPT 5.4 / GPT 5.1-mini (RH)
-- [06/04] OpenClaw atualizado de v2026.4.2 para v2026.4.5
+- [07/04] Novo SKU: Kit 6 Porta-Copos MDF Design Solaris (PCM001) — primeiro produto de fabricação própria com corte laser
+- [07/04] Anúncio ML criado: MLB6583127234, R$39,90, gold_special (Clássico 11%), 50 unidades
+- [07/04] Anúncio Shopee em 3 lojas: budamix-store, budamix-store2, budamix-shop — R$39,90
+- [07/04] Skill shopee-listing-creator criada para padronizar anúncios Shopee (checklist, template, validação)
+- [07/04] Análise completa Shopee: taxas 2026, concorrência (16 players mapeados), regras de imagem
+- [07/04] Fix OpenClaw: fallback cascata corrigido (anthropic/claude-haiku-4-5), crons restaurados
+- [07/04] Bright Data: zona web_unlocker1 criada (API key nova)
+- [06/04] Reestruturação dados Canggu (5 fases), pipeline vetorial Ana, migração GPT 5.4
 
 ---
 
-*Última atualização: 06/04/2026*
+*Última atualização: 07/04/2026*

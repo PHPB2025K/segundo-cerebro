@@ -46,17 +46,16 @@
 
 ## Mudanças Recentes
 
+- [08/04] GB Import Hub — Migração completa para Supabase externo + deploy VPS + SSL
+- [08/04] Skill spreadsheet-pricing criada (mapeamento 4 abas, proteção de 40 fórmulas)
+- [08/04] PCM001 inserido na planilha de estoque, preço ajustado R$19,90, custo R$1,04
+- [08/04] GB Import Hub — Schema extraído (12 tabelas, 17 Edge Functions, 27 migrations consolidadas)
 - [07/04] Amazon BR — Listing PCM001 ACCEPTED via SP-API (DRINK_COASTER, FBA, ASIN pendente)
-- [07/04] Amazon BR — Skill amazon-listing-creator criada (7 arquivos, formatos exatos documentados)
-- [07/04] ML — Novo anúncio Kit 6 Porta-Copos MDF Budamix (MLB6583127234, R$39,90, SKU PCM001)
-- [07/04] Shopee — Anúncio replicado em 3 lojas com atributos completos
-- [07/04] Shopee — Skill shopee-listing-creator criada para padronizar anúncios futuros
-- [07/04] OpenClaw — Fix fallback cascata (anthropic/claude-haiku-4-5), gateway reiniciado
-- [07/04] Bright Data — Zona web_unlocker1 criada, API key nova
-- [06/04] Canggu — Reestruturação completa: 3 camadas + pgvector + context-builder vetorial
-- [06/04] OpenClaw — Migração completa: 6 agentes em GPT 5.4 / GPT 5.1-mini + update v2026.4.5
-- [06/04] Segundo Cérebro — Setup inicial configurado
+- [07/04] ML + Shopee — Anúncios criados para Kit Porta-Copos PCM001
+- [07/04] Skills: amazon-listing-creator, shopee-listing-creator
+- [07/04] OpenClaw — Fix fallback cascata (anthropic/claude-haiku-4-5)
+- [06/04] Canggu — Reestruturação + pipeline vetorial Ana + migração GPT 5.4
 
 ---
 
-*Atualizado: 07/04/2026*
+*Atualizado: 08/04/2026*

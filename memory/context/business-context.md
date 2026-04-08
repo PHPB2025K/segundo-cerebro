@@ -90,13 +90,14 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ## Resultados Recentes
 
-- [07/04] Kit Porta-Copos PCM001 publicado em 3 plataformas: ML + Shopee (3 lojas) + Amazon BR (FBA)
-- [07/04] Amazon BR: listing ACCEPTED via SP-API, ASIN pendente, DRINK_COASTER, FBA, GTIN exemption
-- [07/04] Skills de criação de anúncios: shopee-listing-creator + amazon-listing-creator no workspace Kobe
-- [07/04] Comparação de margens: Amazon (57,3%) > Shopee (55,3%) > ML (41,4% c/ frete)
-- [07/04] Fix OpenClaw: fallback cascata corrigido (anthropic/claude-haiku-4-5), crons restaurados
-- [07/04] Bright Data: zona web_unlocker1 criada (API key nova)
-- [06/04] Reestruturação dados Canggu (5 fases), pipeline vetorial Ana, migração GPT 5.4
+- [08/04] GB Import Hub migrado para Supabase externo — online em https://import.budamix.com.br
+- [08/04] Migração completa: 12 tabelas, 4.530 rows, 17 Edge Functions, 27 docs, SSL Let's Encrypt
+- [08/04] Skill spreadsheet-pricing criada (mapeamento de 4 abas, 40 fórmulas protegidas)
+- [08/04] PCM001 na planilha: preço R$19,90, custo R$1,04
+- [07/04] PCM001 publicado em ML + Shopee (3 lojas) + Amazon BR (FBA, ASIN pendente)
+- [07/04] Skills: shopee-listing-creator, amazon-listing-creator, spreadsheet-pricing
+- [07/04] Fix OpenClaw: fallback cascata corrigido
+- [06/04] Reestruturação Canggu + pipeline vetorial Ana + migração GPT 5.4
 
 ---
 

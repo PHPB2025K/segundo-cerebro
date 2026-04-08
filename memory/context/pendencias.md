@@ -27,7 +27,10 @@
 - [07/04] Shopee — 3 anúncios Kit Porta-Copos precisam preencher campos no Seller Center (GTIN, NCM, Cor, Garantia) para diagnóstico verde. Checklist enviado ao Kobe.
 - [07/04] Bright Data — API key do web_unlocker1 (e0f949a4-2599-4a02-a0a2-1063ed8fe364) precisa ser salva no 1Password do Kobe (substituir a antiga bc468a8b...). Zona criada 07/04.
 - [07/04] OpenClaw — Skills shopee-listing-creator e amazon-listing-creator precisam ser importadas pelo Kobe (openclaw skills import).
-- [07/04] Amazon BR — ASIN do PCM001 pendente (ACCEPTED com 0 erros, processando). Verificar amanhã. Após ASIN: upload de fotos via Seller Central + registrar no Supabase.
+- [07/04] Amazon BR — ASIN do PCM001 pendente (ACCEPTED com 0 erros, processando). Verificar. Após ASIN: upload de fotos via Seller Central + registrar no Supabase.
+- [08/04] GB Import Hub — Frontend no Lovable ainda aponta pro Supabase antigo. Precisa atualizar env vars no painel do Lovable OU usar somente deploy VPS (import.budamix.com.br).
+- [08/04] GB Import Hub — MarineTraffic API key não configurada (fetch-vessel-position retorna dados vazios). Não bloqueante — tracking funciona via Terminal49.
+- [08/04] PCM001 — Preço alterado na planilha (R$19,90) mas NÃO alterado nos marketplaces (ML, Shopee, Amazon ainda com R$39,90). Sincronizar se intencional.
 
 ## ⚪ Backlog (sem urgência imediata)
 
@@ -61,7 +64,16 @@
 - [07/04] ✅ Amazon BR — Skill amazon-listing-creator criada e deployada na VPS
 - [07/04] ✅ Shopee — Anúncio atualizado com 6 atributos + descrição formatada (budamix-store)
 - [07/04] ✅ Shopee — Replicado para budamix-store2 (48508383354) e budamix-shop (41429832718)
+- [08/04] ✅ GB Import Hub — Migração completa para Supabase externo (schema + dados + functions + storage + SSL)
+- [08/04] ✅ GB Import Hub — 17 Edge Functions deployadas, 10 secrets configurados
+- [08/04] ✅ GB Import Hub — Webhook Terminal49 atualizado para novo endpoint
+- [08/04] ✅ GB Import Hub — 27 documentos do storage migrados com URLs atualizadas
+- [08/04] ✅ GB Import Hub — Frontend online em https://import.budamix.com.br (SSL Let's Encrypt)
+- [08/04] ✅ GB Import Hub — Login criado (pehpbroglio@gmail.com)
+- [08/04] ✅ GB Import Hub — Mapbox token fix (get-mapbox-token deployada com --no-verify-jwt)
+- [08/04] ✅ Skill spreadsheet-pricing criada e deployada (mapeamento 4 abas, 40 fórmulas protegidas)
+- [08/04] ✅ PCM001 inserido na planilha de estoque (4 abas: MELI, SHOPEE, AMAZON, ESTOQUE)
 
 ---
 
-*Atualizado: 07/04/2026*
+*Atualizado: 08/04/2026*

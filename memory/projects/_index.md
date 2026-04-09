@@ -12,7 +12,7 @@
 |---------|--------|---------------|---------|
 | GB Importadora/Budamix | 🟢 Operação | 44 SKUs ativos, 4 canais | budamix.md |
 | OpenClaw/Kobe | 🟢 Produção | 6 agentes GPT 5.4, v2026.4.5, 22 crons | openclaw.md |
-| Canggu | 🟢 Produção | Dashboard + busca vetorial + WhatsApp | canggu.md |
+| Canggu | 🟢 Produção | Dashboard + busca vetorial + WhatsApp + roles | canggu.md |
 | Jornal da Manhã | 🟢 Produção | Digest diário | jornal-da-manha.md |
 
 ---
@@ -46,6 +46,7 @@
 
 ## Mudanças Recentes
 
+- [09/04] Budamix Central — Role-based access (admin/viewer), login Simone, domínio central.budamix.com.br
 - [09/04] Zero Anthropic concluído — 43 refs removidas, fallback chain opção C, doctor warnings corrigidos
 - [09/04] RH v2 — Auditoria + deploy (SOUL, AGENTS, comunicacao skill) + cron semanal + tabela comunicacoes_rh
 - [09/04] Amazon Request Review — Fix completo (batch, persistência, timing handling)
@@ -62,4 +63,4 @@
 
 ---
 
-*Atualizado: 08/04/2026*
+*Atualizado: 09/04/2026*

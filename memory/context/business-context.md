@@ -72,6 +72,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 | Shopee | 🟢 Ativo | 3 contas OAuth, sync cada 2min |
 | Mercado Livre | 🟢 Ativo | 3 apps, sync cada 2min |
 | budamix.com.br | 🟢 Ativo | E-commerce próprio |
+| Budamix Central | 🟢 Ativo | central.budamix.com.br (role-based: admin/viewer) |
 | TikTok Shop | ⏸️ Exploração | Outreach MCN/afiliados |
 
 ---
@@ -82,7 +83,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 |------------|--------|----------|
 | OpenClaw/Kobe | 🟢 Produção | VPS Hostinger, v2026.4.5, GPT 5.4 (todos os agentes migrados) |
 | Ana (atendimento) | 🟢 Produção | N8N + Evolution API + Supabase |
-| Canggu | 🟢 Produção | Lovable + Supabase + pgvector |
+| Canggu | 🟢 Produção | Lovable + Supabase + pgvector, role-based access (admin/viewer) |
 | Claude Code | 🟢 Uso diário | VS Code + MCPs |
 | Segundo Cérebro | 🟢 Configurado | ~/segundo-cerebro |
 
@@ -90,6 +91,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ## Resultados Recentes
 
+- [09/04] Budamix Central: role-based access (admin/viewer), login Simone, domínio central.budamix.com.br
 - [08/04] GB Import Hub migrado para Supabase externo — online em https://import.budamix.com.br
 - [08/04] Migração completa: 12 tabelas, 4.530 rows, 17 Edge Functions, 27 docs, SSL Let's Encrypt
 - [08/04] Skill spreadsheet-pricing criada (mapeamento de 4 abas, 40 fórmulas protegidas)
@@ -101,4 +103,4 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ---
 
-*Última atualização: 07/04/2026*
+*Última atualização: 09/04/2026*

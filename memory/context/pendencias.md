@@ -29,6 +29,7 @@
 - [07/04] OpenClaw — Skills shopee-listing-creator e amazon-listing-creator precisam ser importadas pelo Kobe (openclaw skills import).
 - [07/04] Amazon BR — ASIN do PCM001 pendente (ACCEPTED com 0 erros, processando). Verificar. Após ASIN: upload de fotos via Seller Central + registrar no Supabase.
 - [08/04] GB Import Hub — Frontend no Lovable ainda aponta pro Supabase antigo. Precisa atualizar env vars no painel do Lovable OU usar somente deploy VPS (import.budamix.com.br).
+- [09/04] Budamix Central — Domínio antigo `central.gbformulario.com` desativado. Considerar redirect para `central.budamix.com.br` se alguém ainda usa o link antigo.
 - [08/04] GB Import Hub — MarineTraffic API key não configurada (fetch-vessel-position retorna dados vazios). Não bloqueante — tracking funciona via Terminal49.
 - [08/04] PCM001 — Preço alterado na planilha (R$19,90) mas NÃO alterado nos marketplaces (ML, Shopee, Amazon ainda com R$39,90). Sincronizar se intencional.
 - [08/04] GB25009 — 70% balanço R$72.232 PENDENTE, vencimento 16/04. Container já finished. **Pagar.**
@@ -95,6 +96,10 @@
 - [09/04] ✅ RH — Migração Ponto Certo confirmada (10 tabelas, 855 registros, config updated)
 - [09/04] ✅ Amazon Request Review — Fix: batch 35, timeout 420s, persistência review_requested_at, tratamento timing
 - [09/04] ✅ Amazon Request Review — Migration SQL: coluna review_requested_at + index
+- [09/04] ✅ Budamix Central — Login Simone criado (simoneperon@uol.com.br, role viewer)
+- [09/04] ✅ Budamix Central — Role-based access implementado (admin/viewer, middleware + API)
+- [09/04] ✅ Budamix Central — Domínio migrado para central.budamix.com.br (SSL Let's Encrypt)
+- [09/04] ✅ Budamix Central — Report enviado no Thread 13 Telegram
 
 ---
 

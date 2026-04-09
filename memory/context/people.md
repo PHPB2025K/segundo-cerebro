@@ -40,6 +40,14 @@
 
 ---
 
+## Colaboradores / Acessos
+
+| Nome | Email | Acesso | Role | Notas |
+|------|-------|--------|------|-------|
+| Simone Peron | simoneperon@uol.com.br | Budamix Central | viewer | Login criado 09/04, somente leitura |
+
+---
+
 ## Leads e Oportunidades
 
 | Nome | Contexto | Status | Deadline |

@@ -81,7 +81,12 @@
 - [08/04] ✅ Skill gb-import-hub v2 — regras de negócio (ciclos independentes, status derivado, alertas financeiros)
 - [08/04] ✅ Sync unidirecional Segundo Cérebro → Kobe configurado (cron 06:45 BRT, git pull read-only)
 - [08/04] ✅ AGENTS.md do Kobe atualizado com instrução de boot para ler segundo-cerebro
+- [08/04] ✅ Live Sales — Gráfico dual axis (Pedidos Hoje/Ontem + Faturamento R$)
+- [08/04] ✅ Live Sales — Thumbnails no ranking (11 SKUs populados via ML API, 100% cobertura)
+- [08/04] ✅ Live Sales — Estoque com alertas visuais (<10 warning, <3 danger)
+- [08/04] ✅ Live Sales — Indicador pulsante vermelho (CSS animation)
+- [08/04] ✅ Live Sales — API route expandida (dados ontem, thumbnails, estoque)
 
 ---
 
-*Atualizado: 08/04/2026*
+*Atualizado: 09/04/2026*

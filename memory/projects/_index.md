@@ -46,6 +46,7 @@
 
 ## Mudanças Recentes
 
+- [08/04] Budamix Central Live Sales — Redesign: gráfico dual axis, thumbnails, estoque, pulsante
 - [08/04] GB Import Hub — Migração completa para Supabase externo + deploy VPS + SSL
 - [08/04] Skill spreadsheet-pricing criada (mapeamento 4 abas, proteção de 40 fórmulas)
 - [08/04] PCM001 inserido na planilha de estoque, preço ajustado R$19,90, custo R$1,04

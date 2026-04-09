@@ -86,6 +86,15 @@
 - [08/04] ✅ Live Sales — Estoque com alertas visuais (<10 warning, <3 danger)
 - [08/04] ✅ Live Sales — Indicador pulsante vermelho (CSS animation)
 - [08/04] ✅ Live Sales — API route expandida (dados ontem, thumbnails, estoque)
+- [09/04] ✅ Zero Anthropic — Limpeza completa: AGENTS.md (18), IDENTITY.md (5), MEMORY.md (5), SOUL.md (4), Builder (2), handler.ts (1), RH workspace (8). Total: 43 refs removidas
+- [09/04] ✅ Fallback chain — Opção C: gpt-5.1-mini → haiku (todos 6 agentes + defaults)
+- [09/04] ✅ Doctor warnings — chmod 600, 108 orphans arquivados, WhatsApp OK
+- [09/04] ✅ RH — Auditoria completa + deploy v2 (SOUL, AGENTS, SKILL comunicacao)
+- [09/04] ✅ RH — Cron Monitor Ponto Semanal criado (segunda 10h BRT)
+- [09/04] ✅ RH — Tabela comunicacoes_rh criada no Supabase Ponto Certo
+- [09/04] ✅ RH — Migração Ponto Certo confirmada (10 tabelas, 855 registros, config updated)
+- [09/04] ✅ Amazon Request Review — Fix: batch 35, timeout 420s, persistência review_requested_at, tratamento timing
+- [09/04] ✅ Amazon Request Review — Migration SQL: coluna review_requested_at + index
 
 ---
 

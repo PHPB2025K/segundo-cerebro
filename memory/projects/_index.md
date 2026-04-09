@@ -46,6 +46,9 @@
 
 ## Mudanças Recentes
 
+- [09/04] Zero Anthropic concluído — 43 refs removidas, fallback chain opção C, doctor warnings corrigidos
+- [09/04] RH v2 — Auditoria + deploy (SOUL, AGENTS, comunicacao skill) + cron semanal + tabela comunicacoes_rh
+- [09/04] Amazon Request Review — Fix completo (batch, persistência, timing handling)
 - [08/04] Budamix Central Live Sales — Redesign: gráfico dual axis, thumbnails, estoque, pulsante
 - [08/04] GB Import Hub — Migração completa para Supabase externo + deploy VPS + SSL
 - [08/04] Skill spreadsheet-pricing criada (mapeamento 4 abas, proteção de 40 fórmulas)

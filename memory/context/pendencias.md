@@ -38,6 +38,10 @@
 - [08/04] GB26002 — Numerário e 70% sem valores registrados no sistema.
 - [08/04] Skill gb-import-hub instalado e validado (14/15 testes OK). terminal49-fetch-shipment com bug (HTTP 500).
 
+- [09/04] MELI — 22 SKUs com margem negativa após correção com dados reais. Piores: CNCOL-80 PCS (-22%), KIT2YW320 (-21%), SPC011 (-19%), EMB01T (-19%). **Ação necessária: revisar preços ou descontinuar.**
+- [09/04] MELI — Coluna R (FRETE) tem 5-6 células com formatação texto (ex: `08.01`, `09.01`) em vez de moeda. Não afeta cálculo mas visual incorreto.
+- [09/04] Skill update-ml-return-rates — validada mas Telegram report ainda não testado (usou --no-telegram). Testar na próxima execução.
+
 ## ⚪ Backlog (sem urgência imediata)
 
 - Antidumping cerâmicas chinesas — pesquisar Vietnam e Índia como alternativas de sourcing

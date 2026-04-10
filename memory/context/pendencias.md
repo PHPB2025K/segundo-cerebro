@@ -41,6 +41,8 @@
 - [09/04] MELI — 22 SKUs com margem negativa após correção com dados reais. Piores: CNCOL-80 PCS (-22%), KIT2YW320 (-21%), SPC011 (-19%), EMB01T (-19%). **Ação necessária: revisar preços ou descontinuar.**
 - [09/04] MELI — Coluna R (FRETE) tem 5-6 células com formatação texto (ex: `08.01`, `09.01`) em vez de moeda. Não afeta cálculo mas visual incorreto.
 - [09/04] Skill update-ml-return-rates — validada mas Telegram report ainda não testado (usou --no-telegram). Testar na próxima execução.
+- [10/04] MELI — Custos Full extraídos (57 SKUs, 2866 pedidos). Pendente: atualizar Col N (FULL) da planilha com valores reais por SKU. Dados em `/tmp/ml-full-costs-by-sku.json` na VPS.
+- [10/04] MELI — API do ML não separa manuseio/armazenagem. O `shp_fulfillment` do MP é o custo único. Documentar na skill ml-fees-rules.
 
 ## ⚪ Backlog (sem urgência imediata)
 

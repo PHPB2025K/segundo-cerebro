@@ -44,6 +44,8 @@
 - [10/04] MELI — Custos Full extraídos (57 SKUs, 2866 pedidos). Pendente: atualizar Col N (FULL) da planilha com valores reais por SKU. → [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]]
 - [10/04] MELI — API do ML não separa manuseio/armazenagem. O `shp_fulfillment` do MP é o custo único. Documentar na skill [[skills/marketplace/ml-fees-rules/SKILL|ml-fees-rules]].
 
+- [10/04] DPM001 — Plano de cadastro ML pronto. Aguardando: preço, quantidade, EAN/GTIN. SKU DPM001, categoria MLB272115, Full, Clássico.
+
 ## ⚪ Backlog (sem urgência imediata)
 
 - Antidumping cerâmicas chinesas — pesquisar Vietnam e Índia como alternativas de sourcing

@@ -44,7 +44,11 @@
 - [10/04] MELI — Custos Full extraídos (57 SKUs, 2866 pedidos). Pendente: atualizar Col N (FULL) da planilha com valores reais por SKU. → [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]]
 - [10/04] MELI — API do ML não separa manuseio/armazenagem. O `shp_fulfillment` do MP é o custo único. Documentar na skill [[skills/marketplace/ml-fees-rules/SKILL|ml-fees-rules]].
 
-- [10/04] DPM001 — Plano de cadastro ML pronto. Aguardando: preço, quantidade, EAN/GTIN. SKU DPM001, categoria MLB272115, Full, Clássico.
+- [10/04] ✅ ~~DPM001 ML — Cadastrado: MLB6600435126, R$29,90, 150 un, Clássico, Full~~
+- [10/04] ✅ ~~DPM001 Shopee — Cadastrado nas 3 lojas (R$39,90, marca Budamix brand_id=5014011)~~
+- [10/04] DPM001 — Inserir na planilha de estoque (abas MELI + SHOPEE) via gog
+- [10/04] DPM001 — Cadastrar na Amazon BR via SP-API (pendente)
+- [10/04] DPM001 ML — Título auto-gerado "Budamix Redondo Quebra-cabeça Modular Bege" — avaliar se ajusta
 
 ## ⚪ Backlog (sem urgência imediata)
 

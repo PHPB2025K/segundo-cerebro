@@ -62,6 +62,12 @@ Ordem de publicacao (sempre nesta sequencia):
 | 2 | budamix-store2 | 860803675 | .shopee-tokens-budamix-store2.json | Budamix Oficial |
 | 3 | budamix-shop | 442066454 | .shopee-tokens-budamix-shop.json | Budamix Shop |
 
+**Marca Budamix:** `brand_id = 5014011`. Usar SEMPRE no payload:
+```json
+"brand": {"brand_id": 5014011, "original_brand_name": "Budamix"}
+```
+NUNCA usar `brand_id: 0` (fica como "NoBrand").
+
 Tokens OAuth em: `/root/.openclaw/workspace/integrations/shopee/`
 OAuth auto-refresh a cada 3h30 via `shopee_oauth.py`
 

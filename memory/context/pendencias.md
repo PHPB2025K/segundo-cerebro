@@ -16,33 +16,33 @@
 ## 🟡 Importantes (não bloqueiam mas precisam de ação)
 
 - [06/04] ~~OpenClaw — migração de modelos para GPT 5.4 / GPT 5.1-mini.~~ → Movido para ✅
-- [06/04] Canggu — Fase 4 cleanup pendente: remover campos antigos (marketplace_links, available_kits, price_marketplace) e dropar tabela marketplace_product_mapping. Só executar quando tudo estiver estável nas tabelas novas.
-- [06/04] Canggu — ~14 Session Extractors do OpenClaw desabilitados (timeout 120s insuficiente para Opus 4.6). Precisam de 300s+. Reavaliar após migração GPT 5.4.
-- [06/04] Canggu — Analistas devem preencher campos ricos (descrição completa, sugestões de uso, diferenciais, tags) dos 44 produtos ativos. Guia entregue. Top 10 primeiro.
-- [06/04] OpenClaw — 3 crons com timeouts: job-monitor (30s), Contingency Guard (30s), Organização Noturna (180s). Todos precisam de aumento.
-- [06/04] OpenClaw — Amazon Request Review overloaded. Haiku 3.5 possivelmente depreciado → migrar para modelo atualizado.
-- [06/04] OpenClaw — GitHub Backup com timeouts. Aumentar de 120s para 300s.
+- [06/04] Canggu — Fase 4 cleanup pendente: remover campos antigos (marketplace_links, available_kits, price_marketplace) e dropar tabela marketplace_product_mapping. Só executar quando tudo estiver estável nas tabelas novas. → [[agents/builder/IDENTITY|Builder]]
+- [06/04] Canggu — ~14 Session Extractors do [[agents/kobe/AGENTS|OpenClaw]] desabilitados (timeout 120s insuficiente para Opus 4.6). Precisam de 300s+. Reavaliar após migração GPT 5.4.
+- [06/04] Canggu — Analistas devem preencher campos ricos (descrição completa, sugestões de uso, diferenciais, tags) dos 44 produtos ativos. Guia entregue. Top 10 primeiro. → [[memory/context/people|People]]
+- [06/04] [[agents/kobe/AGENTS|OpenClaw]] — 3 crons com timeouts: job-monitor (30s), Contingency Guard (30s), Organização Noturna (180s). Todos precisam de aumento.
+- [06/04] [[agents/kobe/AGENTS|OpenClaw]] — Amazon Request Review overloaded. Haiku 3.5 possivelmente depreciado → migrar para modelo atualizado.
+- [06/04] [[agents/kobe/AGENTS|OpenClaw]] — GitHub Backup com timeouts. Aumentar de 120s para 300s.
 - [06/04] Segurança — Porta 8084 (Evolution API?) aberta na UFW. Verificar necessidade.
 - [06/04] Segurança — Tailscale/WireGuard não implementado. Recomendado.
-- [07/04] Shopee — 3 anúncios Kit Porta-Copos precisam preencher campos no Seller Center (GTIN, NCM, Cor, Garantia) para diagnóstico verde. Checklist enviado ao Kobe.
-- [07/04] Bright Data — API key do web_unlocker1 (e0f949a4-2599-4a02-a0a2-1063ed8fe364) precisa ser salva no 1Password do Kobe (substituir a antiga bc468a8b...). Zona criada 07/04.
-- [07/04] OpenClaw — Skills shopee-listing-creator e amazon-listing-creator precisam ser importadas pelo Kobe (openclaw skills import).
-- [07/04] Amazon BR — ASIN do PCM001 pendente (ACCEPTED com 0 erros, processando). Verificar. Após ASIN: upload de fotos via Seller Central + registrar no Supabase.
-- [08/04] GB Import Hub — Frontend no Lovable ainda aponta pro Supabase antigo. Precisa atualizar env vars no painel do Lovable OU usar somente deploy VPS (import.budamix.com.br).
+- [07/04] Shopee — 3 anúncios Kit Porta-Copos precisam preencher campos no Seller Center (GTIN, NCM, Cor, Garantia) para diagnóstico verde. Checklist enviado ao [[agents/kobe/IDENTITY|Kobe]]. → [[skills/shopee-listing-creator/SKILL|shopee-listing-creator]]
+- [07/04] Bright Data — API key do web_unlocker1 (e0f949a4-2599-4a02-a0a2-1063ed8fe364) precisa ser salva no 1Password do [[agents/kobe/IDENTITY|Kobe]] (substituir a antiga bc468a8b...). Zona criada 07/04.
+- [07/04] [[agents/kobe/AGENTS|OpenClaw]] — Skills [[skills/shopee-listing-creator/SKILL|shopee-listing-creator]] e [[skills/amazon-listing-creator/SKILL|amazon-listing-creator]] precisam ser importadas pelo Kobe (openclaw skills import).
+- [07/04] Amazon BR — ASIN do PCM001 pendente (ACCEPTED com 0 erros, processando). Verificar. Após ASIN: upload de fotos via Seller Central + registrar no Supabase. → [[skills/amazon-listing-creator/SKILL|amazon-listing-creator]]
+- [08/04] [[memory/projects/gb-import-hub-schema|GB Import Hub]] — Frontend no Lovable ainda aponta pro Supabase antigo. Precisa atualizar env vars no painel do Lovable OU usar somente deploy VPS (import.budamix.com.br).
 - [09/04] Budamix Central — Domínio antigo `central.gbformulario.com` desativado. Considerar redirect para `central.budamix.com.br` se alguém ainda usa o link antigo.
-- [08/04] GB Import Hub — MarineTraffic API key não configurada (fetch-vessel-position retorna dados vazios). Não bloqueante — tracking funciona via Terminal49.
-- [08/04] PCM001 — Preço alterado na planilha (R$19,90) mas NÃO alterado nos marketplaces (ML, Shopee, Amazon ainda com R$39,90). Sincronizar se intencional.
+- [08/04] [[memory/projects/gb-import-hub-schema|GB Import Hub]] — MarineTraffic API key não configurada (fetch-vessel-position retorna dados vazios). Não bloqueante — tracking funciona via Terminal49.
+- [08/04] PCM001 — Preço alterado na planilha (R$19,90) mas NÃO alterado nos marketplaces (ML, Shopee, Amazon ainda com R$39,90). Sincronizar se intencional. → [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]]
 - [08/04] GB25009 — 70% balanço R$72.232 PENDENTE, vencimento 16/04. Container já finished. **Pagar.**
 - [08/04] GB25011 — Numerário R$60.000 vence 11/04 (ETA do container). Container em trânsito.
 - [08/04] GB26001/GB26002 — Numerário e 70% sem datas de vencimento definidas no sistema.
 - [08/04] GB26002 — Numerário e 70% sem valores registrados no sistema.
-- [08/04] Skill gb-import-hub instalado e validado (14/15 testes OK). terminal49-fetch-shipment com bug (HTTP 500).
+- [08/04] Skill [[skills/gb-import-hub/SKILL|gb-import-hub]] instalado e validado (14/15 testes OK). terminal49-fetch-shipment com bug (HTTP 500).
 
-- [09/04] MELI — 22 SKUs com margem negativa após correção com dados reais. Piores: CNCOL-80 PCS (-22%), KIT2YW320 (-21%), SPC011 (-19%), EMB01T (-19%). **Ação necessária: revisar preços ou descontinuar.**
-- [09/04] MELI — Coluna R (FRETE) tem 5-6 células com formatação texto (ex: `08.01`, `09.01`) em vez de moeda. Não afeta cálculo mas visual incorreto.
-- [09/04] Skill update-ml-return-rates — validada mas Telegram report ainda não testado (usou --no-telegram). Testar na próxima execução.
-- [10/04] MELI — Custos Full extraídos (57 SKUs, 2866 pedidos). Pendente: atualizar Col N (FULL) da planilha com valores reais por SKU. Dados em `/tmp/ml-full-costs-by-sku.json` na VPS.
-- [10/04] MELI — API do ML não separa manuseio/armazenagem. O `shp_fulfillment` do MP é o custo único. Documentar na skill ml-fees-rules.
+- [09/04] MELI — 22 SKUs com margem negativa após correção com dados reais. Piores: CNCOL-80 PCS (-22%), KIT2YW320 (-21%), SPC011 (-19%), EMB01T (-19%). **Ação necessária: revisar preços ou descontinuar.** → [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]] [[skills/marketplace/ml-fees-rules/SKILL|ml-fees-rules]]
+- [09/04] MELI — Coluna R (FRETE) tem 5-6 células com formatação texto (ex: `08.01`, `09.01`) em vez de moeda. Não afeta cálculo mas visual incorreto. → [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]]
+- [09/04] Skill [[skills/update-ml-return-rates/SKILL|update-ml-return-rates]] — validada mas Telegram report ainda não testado (usou --no-telegram). Testar na próxima execução. → [[agents/trader/AGENTS|Trader]]
+- [10/04] MELI — Custos Full extraídos (57 SKUs, 2866 pedidos). Pendente: atualizar Col N (FULL) da planilha com valores reais por SKU. → [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]]
+- [10/04] MELI — API do ML não separa manuseio/armazenagem. O `shp_fulfillment` do MP é o custo único. Documentar na skill [[skills/marketplace/ml-fees-rules/SKILL|ml-fees-rules]].
 
 ## ⚪ Backlog (sem urgência imediata)
 

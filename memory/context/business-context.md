@@ -34,11 +34,11 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 | Nome | Status | Métricas-chave |
 |------|--------|----------------|
 | GB Importadora/Budamix | 🟢 Ativo | 44 SKUs ativos, 4 canais de venda |
-| OpenClaw/Kobe | 🟢 Ativo | 6 agentes, 22 crons, 16 integrações |
-| Canggu | 🟢 Ativo | Dashboard interno, busca vetorial, 27 base_products |
+| [[agents/kobe/AGENTS|OpenClaw/Kobe]] | 🟢 Ativo | 6 agentes, 22 crons, 16 integrações |
+| [[agents/builder/memory/projects/canguu|Canggu]] | 🟢 Ativo | Dashboard interno, busca vetorial, 27 base_products |
 | FinanceFlow | 🔨 Em construção | Automação fiscal 6 CNPJs |
-| SimulaImport | 🔨 Em construção | MicroSaaS simulação importação |
-| Atlas Finance | 🔨 Em construção | DFC com Lovable/Supabase |
+| [[agents/builder/memory/projects/simulimport|SimulaImport]] | 🔨 Em construção | MicroSaaS simulação importação |
+| [[agents/builder/memory/projects/atlas-finance|Atlas Finance]] | 🔨 Em construção | DFC com Lovable/Supabase |
 | Jornal da Manhã | 🟢 Ativo | Digest diário Perplexity + Claude |
 
 ---
@@ -48,8 +48,8 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 | Nome | Função | Notas |
 |------|--------|-------|
 | Pedro Broglio | CEO, dev, estratégia | Faz tudo |
-| 2 analistas | Operação, cadastro, marketplaces | Preenchendo dados de produtos no Canggu |
-| Kobe (AI) | Agente principal OpenClaw | GPT 5.4, 6 sub-agentes |
+| 2 analistas | Operação, cadastro, marketplaces | Preenchendo dados de produtos no Canggu → [[memory/context/people|detalhes]] |
+| [[agents/kobe/IDENTITY|Kobe]] (AI) | Agente principal OpenClaw | GPT 5.4, 6 sub-agentes: [[agents/trader/IDENTITY|Trader]], [[agents/spark/IDENTITY|Spark]], [[agents/builder/IDENTITY|Builder]], [[agents/fisco/IDENTITY|Fisco]], [[agents/rh/IDENTITY|RH]] |
 | Ana (AI) | Atendimento WhatsApp | IA conversacional via N8N + Evolution API |
 
 ---
@@ -81,7 +81,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 | Componente | Status | Detalhes |
 |------------|--------|----------|
-| OpenClaw/Kobe | 🟢 Produção | VPS Hostinger, v2026.4.5, GPT 5.4 (todos os agentes migrados) |
+| [[agents/kobe/AGENTS|OpenClaw/Kobe]] | 🟢 Produção | VPS Hostinger, v2026.4.5, GPT 5.4 (todos os agentes migrados) |
 | Ana (atendimento) | 🟢 Produção | N8N + Evolution API + Supabase |
 | Canggu | 🟢 Produção | Lovable + Supabase + pgvector, role-based access (admin/viewer) |
 | Claude Code | 🟢 Uso diário | VS Code + MCPs |
@@ -97,8 +97,8 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 - [08/04] Skill spreadsheet-pricing criada (mapeamento de 4 abas, 40 fórmulas protegidas)
 - [08/04] PCM001 na planilha: preço R$19,90, custo R$1,04
 - [07/04] PCM001 publicado em ML + Shopee (3 lojas) + Amazon BR (FBA, ASIN pendente)
-- [07/04] Skills: shopee-listing-creator, amazon-listing-creator, spreadsheet-pricing
-- [07/04] Fix OpenClaw: fallback cascata corrigido
+- [07/04] Skills: [[skills/shopee-listing-creator/SKILL|shopee-listing-creator]], [[skills/amazon-listing-creator/SKILL|amazon-listing-creator]], [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]]
+- [07/04] Fix [[agents/kobe/AGENTS|OpenClaw]]: fallback cascata corrigido
 - [06/04] Reestruturação Canggu + pipeline vetorial Ana + migração GPT 5.4
 
 ---

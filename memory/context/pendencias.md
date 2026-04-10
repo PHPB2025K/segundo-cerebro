@@ -46,11 +46,14 @@
 
 - [10/04] ✅ ~~DPM001 ML — Cadastrado: MLB6600435126, R$29,90, 150 un, Clássico, Full~~
 - [10/04] ✅ ~~DPM001 Shopee — Cadastrado nas 3 lojas (R$39,90, marca Budamix brand_id=5014011)~~
-- [10/04] ✅ ~~DPM001 Amazon — ACCEPTED (submission 4067a64292b841b7acdba6b943a02fa8), ASIN pendente~~
-- [10/04] DPM001 Amazon — Verificar ASIN (deve ser atribuído em breve)
-- [10/04] DPM001 — Inserir na planilha de estoque (abas MELI + SHOPEE + AMAZON) via gog
+- [10/04] ✅ ~~DPM001 Amazon — ACCEPTED, ASIN B0GWS1151L, DISCOVERABLE~~
+- [10/04] ✅ ~~DPM001 — Inserido na planilha nova (4 abas)~~
+- [10/04] ✅ ~~Planilha migrada: sync-costs.py atualizado para novo SSID `1dUoZtrvrqI6TiX3E_UzGuzglJFj6OVDZuYcgJyBfuRU`~~
+- [10/04] DPM001 Amazon — Enviar estoque ao CD FBA (inbound shipment via Seller Central). Produto não aparece sem estoque físico.
 - [10/04] DPM001 ML — Título auto-gerado "Budamix Redondo Quebra-cabeça Modular Bege" — avaliar se ajusta
-- [10/04] Documentar product type TRIVET na skill [[skills/amazon-listing-creator/SKILL|amazon-listing-creator]] (browse node 17124852011, 7 campos obrigatórios, schema)
+- [10/04] Excluir planilha antiga do Drive (`1u74aCdH8VrQ2eK01YUQ8fUMwwb6ZPZXvrTTHoexWtnI`) — **Pedro manualmente** (agente sem permissão)
+- [10/04] Documentar product type TRIVET na skill [[skills/amazon-listing-creator/SKILL|amazon-listing-creator]]
+- [10/04] Atualizar skill [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]] com novo SSID da planilha
 
 ## ⚪ Backlog (sem urgência imediata)
 

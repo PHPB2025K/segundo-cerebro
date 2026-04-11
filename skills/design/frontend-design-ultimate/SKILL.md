@@ -385,3 +385,11 @@ Most used for landing pages:
 ## Ver também
 
 - [[skills/design/lovable-quality/SKILL|Lovable Quality — Padrão de Qualidade Visual]]
+
+---
+## Referências
+- [[skills/design/frontend-design-ultimate/references/design-philosophy|Design Philosophy]]
+- [[skills/design/frontend-design-ultimate/references/mobile-patterns|Mobile Patterns]]
+- [[skills/design/frontend-design-ultimate/references/shadcn-components|shadcn Components]]
+- [[skills/design/frontend-design-ultimate/README|README]]
+- [[skills/design/frontend-design-ultimate/REVIEW|Review]]

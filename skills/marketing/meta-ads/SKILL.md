@@ -220,3 +220,12 @@ pip3 install facebook-business requests tabulate
 ⚠️ **Budget changes:** Aumentar máx 20% de uma vez. Acima disso reseta Learning Phase.
 
 ⚠️ **API v21.0:** Checar sunset dates. Meta deprecia versões a cada ~2 anos.
+
+---
+## Referências
+- [[skills/marketing/meta-ads/references/api-reference|API Reference]]
+- [[skills/marketing/meta-ads/references/audience-targeting|Audience Targeting]]
+- [[skills/marketing/meta-ads/references/campaign-guide|Campaign Guide]]
+- [[skills/marketing/meta-ads/references/creative-specs|Creative Specs]]
+- [[skills/marketing/meta-ads/references/ecommerce-strategy|E-commerce Strategy]]
+- [[skills/marketing/meta-ads/references/optimization-guide|Optimization Guide]]

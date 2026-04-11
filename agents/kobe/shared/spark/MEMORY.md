@@ -6,6 +6,34 @@ _Último update: 2026-03-20. Não duplica conteúdo — aponta pra onde está ca
 
 ---
 
+## Índice de arquivos
+
+- [[agents/kobe/shared/spark/SOUL|SOUL]]
+- [[agents/kobe/shared/spark/IDENTITY|IDENTITY]]
+- [[agents/kobe/shared/spark/memory/accounts|Contas]]
+- [[agents/kobe/shared/spark/memory/campaigns/active|Campanhas Ativas]]
+- [[agents/kobe/shared/spark/memory/campaigns/history|Histórico de Campanhas]]
+- [[agents/kobe/shared/spark/memory/context/business|Contexto de Negócio]]
+- [[agents/kobe/shared/spark/memory/context/decisions|Decisões]]
+- [[agents/kobe/shared/spark/memory/pending|Pendências]]
+- [[agents/kobe/shared/spark/memory/playbook|Playbook]]
+
+### Sessões
+- [[agents/kobe/shared/spark/memory/sessions/2026-03-21|Sessão 2026-03-21]]
+- [[agents/kobe/shared/spark/memory/sessions/2026-03-22|Sessão 2026-03-22]]
+- [[agents/kobe/shared/spark/memory/sessions/2026-03-23|Sessão 2026-03-23]]
+- [[agents/kobe/shared/spark/memory/sessions/2026-03-24|Sessão 2026-03-24]]
+- [[agents/kobe/shared/spark/memory/sessions/2026-03-26|Sessão 2026-03-26]]
+- [[agents/kobe/shared/spark/memory/sessions/2026-03-27|Sessão 2026-03-27]]
+- [[agents/kobe/shared/spark/memory/sessions/2026-04-05|Sessão 2026-04-05]]
+- [[agents/kobe/shared/spark/memory/sessions/2026-04-06|Sessão 2026-04-06]]
+- [[agents/kobe/shared/spark/memory/sessions/2026-04-07|Sessão 2026-04-07]]
+- [[agents/kobe/shared/spark/memory/sessions/2026-04-08|Sessão 2026-04-08]]
+- [[agents/kobe/shared/spark/memory/sessions/2026-04-09|Sessão 2026-04-09]]
+- [[agents/kobe/shared/spark/memory/sessions/TEMPLATE|Template de Sessão]]
+
+---
+
 ## Estrutura
 
 ```

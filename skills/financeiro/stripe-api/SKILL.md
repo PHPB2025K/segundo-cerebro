@@ -104,3 +104,15 @@ Detalhes completos de cada módulo: ver `references/`
 - rk_test_: restricted key — acesso limitado, não é a secret key completa
 - Sempre verificar prefixo antes de operar
 <!-- /MELHORIA -->
+
+---
+## Referências
+- [[skills/financeiro/stripe-api/references/m01-pagamentos|M01 Pagamentos]]
+- [[skills/financeiro/stripe-api/references/m02-clientes|M02 Clientes]]
+- [[skills/financeiro/stripe-api/references/m03-produtos-precos|M03 Produtos e Preços]]
+- [[skills/financeiro/stripe-api/references/m04-assinaturas|M04 Assinaturas]]
+- [[skills/financeiro/stripe-api/references/m05-faturas|M05 Faturas]]
+- [[skills/financeiro/stripe-api/references/m06-financeiro|M06 Financeiro]]
+- [[skills/financeiro/stripe-api/references/m07-webhooks|M07 Webhooks]]
+- [[skills/financeiro/stripe-api/references/m08-paginacao|M08 Paginação]]
+- [[skills/financeiro/stripe-api/references/m09-erros|M09 Erros]]

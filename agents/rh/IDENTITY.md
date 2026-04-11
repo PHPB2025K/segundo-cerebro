@@ -73,3 +73,16 @@
 ---
 
 _5º agente do time Kobe._
+
+---
+## Ver também
+
+- [[agents/kobe/shared/rh-agent-briefing|Briefing Completo]]
+
+---
+## Arquivos do agente
+- [[agents/rh/SOUL|SOUL]]
+- [[agents/rh/AGENTS|Protocolos]]
+- [[agents/rh/TOOLS|Ferramentas]]
+- [[agents/rh/USER|Perfil Pedro]]
+- [[agents/rh/HEARTBEAT|Heartbeat]]

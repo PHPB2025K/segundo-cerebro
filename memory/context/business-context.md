@@ -31,6 +31,8 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ## Projetos / Negócios
 
+> Ver índice completo: [[memory/projects/_index|Índice de Projetos]]
+
 | Nome | Status | Métricas-chave |
 |------|--------|----------------|
 | GB Importadora/Budamix | 🟢 Ativo | 44 SKUs ativos, 4 canais de venda |

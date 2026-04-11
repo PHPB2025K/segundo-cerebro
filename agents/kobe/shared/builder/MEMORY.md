@@ -6,6 +6,27 @@ _Último update: 2026-03-24._
 
 ---
 
+## Índice de arquivos
+
+- [[agents/kobe/shared/builder/SOUL|SOUL]]
+- [[agents/kobe/shared/builder/memory/decisions|Decisões]]
+- [[agents/kobe/shared/builder/memory/lessons|Lições]]
+- [[agents/kobe/shared/builder/memory/pending|Pendências]]
+
+### Sessões
+- [[agents/kobe/shared/builder/memory/sessions/2026-03-24|Sessão 2026-03-24]]
+- [[agents/kobe/shared/builder/memory/sessions/2026-03-26|Sessão 2026-03-26]]
+- [[agents/kobe/shared/builder/memory/sessions/2026-03-27|Sessão 2026-03-27]]
+- [[agents/kobe/shared/builder/memory/sessions/2026-03-29|Sessão 2026-03-29]]
+- [[agents/kobe/shared/builder/memory/sessions/2026-03-30|Sessão 2026-03-30]]
+- [[agents/kobe/shared/builder/memory/sessions/2026-04-05|Sessão 2026-04-05]]
+- [[agents/kobe/shared/builder/memory/sessions/2026-04-06|Sessão 2026-04-06]]
+- [[agents/kobe/shared/builder/memory/sessions/2026-04-07|Sessão 2026-04-07]]
+- [[agents/kobe/shared/builder/memory/sessions/2026-04-08|Sessão 2026-04-08]]
+- [[agents/kobe/shared/builder/memory/sessions/2026-04-09|Sessão 2026-04-09]]
+
+---
+
 ## Estrutura
 
 ```

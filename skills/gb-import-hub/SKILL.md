@@ -295,3 +295,7 @@ Aplicar logica de derivacao da secao "REGRAS DE NEGOCIO" para classificar cada c
 - Fluxo de pagamento: 30% sinal (antes embarque) -> Numerario (despesas nacionalizacao) -> 70% balanco (apos desembaraco)
 - Ciclos independentes: logistico (production->finished) e financeiro (3 pagamentos pending->paid). Processo so encerra quando AMBOS completos.
 - Containers ativos: GB25007 a GB26002 (7 no sistema)
+
+---
+## Referências
+- [[skills/gb-import-hub/references/schema-tables|Schema de Tabelas]]

@@ -107,5 +107,17 @@ Filosofia: "Não existe tamanho mínimo para importar ou usar AI." Autonomia sob
 
 ---
 
+## Skills pessoais
+
+- [[skills/coaching-corrida/SKILL|Coaching Corrida]]
+
+---
+
+## Ver também
+
+- [[PROPAGATION|Protocolo de Propagação]]
+
+---
+
 *Criado: 06/04/2026*
 *Atualizar: sempre que contexto mudar*

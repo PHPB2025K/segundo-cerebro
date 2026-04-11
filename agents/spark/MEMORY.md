@@ -316,3 +316,10 @@ Arquivo: `memory/feedback/reviews.json`
 5. **Performance de campanha é perecível.** Dados de ontem são mais relevantes que de 30 dias atrás.
 6. **Memória de creative é ouro.** Qual creative funcionou, por quanto tempo, com qual público → registrar sempre.
 7. **Se o dado contradiz a memória, investigar.** ROAS que era 12x agora é 4x? Algo mudou — encontrar o quê.
+
+---
+## Contexto
+- [[agents/spark/memory/context/accounts|Contas de Ads]]
+- [[agents/spark/memory/context/decisions|Decisões]]
+- [[agents/spark/memory/context/lessons|Lições]]
+- [[agents/spark/memory/pending|Pendências]]

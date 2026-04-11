@@ -362,6 +362,10 @@ Never fix bugs without a test.
 
 - Relacionado: [[skills/superpowers/writing-skills/SKILL|writing-skills]] (TDD aplicado a documentação)
 
+---
+## Referências
+- [[skills/superpowers/test-driven-development/testing-anti-patterns|Testing Anti-Patterns]]
+
 ## Testing Anti-Patterns
 
 When adding mocks or test utilities, read @testing-anti-patterns.md to avoid common pitfalls:

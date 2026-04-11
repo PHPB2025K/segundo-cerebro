@@ -332,3 +332,10 @@ A cada 10 sessões:
 5. **Dívida técnica é documentada.** Atalho sem registro é bomba-relógio.
 6. **Memória não é backup — é inteligência.** Não é pra guardar cada commit — é pra guardar o que muda decisões.
 7. **Se o codebase contradiz a memória, investigar.** Pode ser que o código evoluiu ou que a memória está desatualizada.
+
+---
+## Contexto
+- [[agents/builder/memory/context/decisions|Decisões]]
+- [[agents/builder/memory/context/lessons|Lições]]
+- [[agents/builder/memory/context/stack|Stack]]
+- [[agents/builder/memory/pending|Pendências]]

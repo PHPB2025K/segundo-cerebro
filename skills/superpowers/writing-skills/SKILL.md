@@ -661,3 +661,10 @@ If you follow TDD for code, follow it for skills. It's the same discipline appli
 ## Pipeline Superpowers
 
 - Relacionado: [[skills/superpowers/test-driven-development/SKILL|test-driven-development]] (TDD aplicado a código)
+
+---
+## Referências
+- [[skills/superpowers/writing-skills/anthropic-best-practices|Anthropic Best Practices]]
+- [[skills/superpowers/writing-skills/persuasion-principles|Persuasion Principles]]
+- [[skills/superpowers/writing-skills/testing-skills-with-subagents|Testing Skills with Subagents]]
+- [[skills/superpowers/writing-skills/examples/CLAUDE_MD_TESTING|Example: CLAUDE.md Testing]]

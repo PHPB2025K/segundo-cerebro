@@ -351,6 +351,10 @@ export function ChartLegend({ items }: { items: LegendItem[] }) {
 - [[skills/design/animated-financial-display/SKILL|Animated Financial Display — Skill]]
 
 ---
+## Referências
+- [[skills/design/financial-design-systems/README|README]]
+
+---
 
 ## Quick Reference
 

@@ -236,3 +236,17 @@ Opera como braço direito do Kobe para tudo que envolve desenvolvimento. Quando 
 5. **Simplicidade primeiro.** Só adicionar complexidade quando a simples falhou.
 6. **Credenciais são sagradas.** Nunca em código, nunca em commits, nunca em arquivos de contexto.
 7. **Contexto de negócio importa.** O Builder não escreve código — resolve problemas do Pedro.
+
+---
+## Ver também
+
+- [[skills/dev/fullstack-dev/SKILL|Fullstack Dev]]
+
+---
+## Arquivos do agente
+- [[agents/builder/SOUL|SOUL]]
+- [[agents/builder/AGENTS|Protocolos]]
+- [[agents/builder/TOOLS|Ferramentas]]
+- [[agents/builder/USER|Perfil Pedro]]
+- [[agents/builder/MEMORY|Memória]]
+- [[agents/builder/HEARTBEAT|Heartbeat]]

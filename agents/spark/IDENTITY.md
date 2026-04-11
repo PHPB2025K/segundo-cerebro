@@ -77,6 +77,17 @@ Opera como braço direito do [[agents/kobe/IDENTITY|Kobe]] para tudo que envolve
 - **Creative analysis:** lifecycle de creative, A/B testing, fadiga, refresh timing
 - **Reporting:** relatórios de performance com contexto de negócio e recomendações
 
+### 3.4 Skills operacionais
+
+| Skill | Escopo |
+|-------|--------|
+| [[skills/marketing/anomaly-detector/SKILL|Anomaly Detector]] | Detecção de anomalias em campanhas (CPA spike, burn rate, conversões) |
+| [[skills/marketing/budget-optimizer/SKILL|Budget Optimizer]] | Alocação e otimização de budget cross-platform |
+| [[skills/marketing/google-ads/SKILL|Google Ads]] | Campanhas Search, Shopping, Performance Max, Display |
+| [[skills/marketing/meta-ads/SKILL|Meta Ads]] | Facebook + Instagram Ads, ASC, Pixel, CAPI |
+| [[skills/marketing/ml-ads/SKILL|ML Product Ads]] | Anúncios patrocinados no Mercado Livre |
+| [[skills/integracao/instagram/SKILL|Instagram API]] | Integração com Instagram Graph API |
+
 ---
 
 ## 4. Contexto Operacional — GB Importadora
@@ -250,3 +261,12 @@ Opera como braço direito do [[agents/kobe/IDENTITY|Kobe]] para tudo que envolve
 ## Ver também
 
 - [[agents/builder/memory/projects/bidspark|Bidspark — Automação do que o Spark faz manualmente]]
+
+---
+## Arquivos do agente
+- [[agents/spark/SOUL|SOUL]]
+- [[agents/spark/AGENTS|Protocolos]]
+- [[agents/spark/TOOLS|Ferramentas]]
+- [[agents/spark/USER|Perfil Pedro]]
+- [[agents/spark/MEMORY|Memória]]
+- [[agents/spark/HEARTBEAT|Heartbeat]]

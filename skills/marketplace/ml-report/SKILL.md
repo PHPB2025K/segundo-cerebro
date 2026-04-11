@@ -94,3 +94,9 @@ PDF A4, ~9 páginas, com:
 - Tabelas profissionais com zebra-striping
 - Boxes de insight destacados
 - Rodapé: "Budamix · Relatório ML · {periodo} · Página X/Y"
+
+---
+## Referências
+- [[skills/marketplace/ml-report/DEPRECATED|DEPRECATED]]
+- [[skills/marketplace/ml-report/references/estrutura-relatorio|Estrutura do Relatório]]
+- [[skills/marketplace/ml-report/references/paleta-cores|Paleta de Cores]]

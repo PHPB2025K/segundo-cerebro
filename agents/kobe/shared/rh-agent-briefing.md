@@ -1,5 +1,7 @@
 # BRIEFING COMPLETO — Agente RH
 
+> Agente: [[agents/rh/IDENTITY|Agente RH]]
+
 ## Seções 4-10 (continuação do que o Kobe já recebeu até seção 3)
 
 ---

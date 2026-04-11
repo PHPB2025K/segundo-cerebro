@@ -384,3 +384,12 @@ Depende do tamanho e peso. Para itens pequenos/leves (~200g, 25x16x5cm):
 
 - [[skills/shopee-listing-creator/SKILL|Shopee Listing Creator]]
 - [[skills/spreadsheet-pricing/SKILL|Planilha de Precificação]]
+
+---
+## Referências
+- [[skills/amazon-listing-creator/reference/known-product-types|Product Types Conhecidos]]
+- [[skills/amazon-listing-creator/rules/field-formats|Formatos de Campo]]
+- [[skills/amazon-listing-creator/rules/validation-rules|Regras de Validação]]
+- [[skills/amazon-listing-creator/templates/bullet-points-template|Template Bullet Points]]
+- [[skills/amazon-listing-creator/templates/checklist|Checklist]]
+- [[skills/amazon-listing-creator/templates/description-template|Template Descrição]]

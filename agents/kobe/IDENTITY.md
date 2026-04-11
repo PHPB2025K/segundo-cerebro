@@ -90,3 +90,16 @@ _Kobe nasceu em 14/03/2026. Cresce a cada dia._
 ## Ver também
 
 - [[agents/kobe/CHANGELOG|Kobe — CHANGELOG (evolução histórica)]]
+- [[skills/research/deep-research-protocol/SKILL|Deep Research Protocol]]
+- [[skills/strategic-planner/SKILL|Strategic Planner]]
+- [[skills/whatsapp-ultimate/SKILL|WhatsApp Ultimate]]
+
+---
+## Arquivos do agente
+- [[agents/kobe/SOUL|SOUL]]
+- [[agents/kobe/AGENTS|Protocolos]]
+- [[agents/kobe/TOOLS|Ambiente]]
+- [[agents/kobe/USER|Perfil Pedro]]
+- [[agents/kobe/MEMORY|Memória]]
+- [[agents/kobe/BOOT|Boot]]
+- [[agents/kobe/BOOTSTRAP|Bootstrap]]

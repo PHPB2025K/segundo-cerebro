@@ -23,6 +23,7 @@
 - [[skills/update-ml-return-rates/SKILL|update-ml-return-rates]] — atualiza Col O (devolucoes) da aba MELI
 - [[skills/marketplace/marketplace-optimization/SKILL|marketplace-optimization]] — usa taxas para calcular ROI de otimizacoes
 - [[skills/marketplace/consolidado-financeiro/SKILL|consolidado-financeiro]] — usa taxas para validar extratos
+- [[skills/operations/inventory-management/SKILL|Gestão de Estoque]] — controle de estoque e reposição integrado com precificação
 
 ## Armadilhas documentadas
 

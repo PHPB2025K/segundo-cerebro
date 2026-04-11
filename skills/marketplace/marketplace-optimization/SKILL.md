@@ -144,3 +144,11 @@ Qual é o problema?
 | Analisando Amazon, A10, Buy Box, FBA, keywords, A+ | `references/amazon-ranking.md` |
 | Comparando plataformas, decidindo onde focar, erros cruzados | `references/cross-platform-matrix.md` |
 | Playbook completo, checklists detalhados, KPIs, precificação | `references/optimization-playbook.md` |
+
+---
+## Referências
+- [[skills/marketplace/marketplace-optimization/references/amazon-ranking|Amazon Ranking]]
+- [[skills/marketplace/marketplace-optimization/references/cross-platform-matrix|Cross-Platform Matrix]]
+- [[skills/marketplace/marketplace-optimization/references/ml-ranking|ML Ranking]]
+- [[skills/marketplace/marketplace-optimization/references/optimization-playbook|Optimization Playbook]]
+- [[skills/marketplace/marketplace-optimization/references/shopee-ranking|Shopee Ranking]]

@@ -213,3 +213,15 @@ Ler conforme necessidade:
 Assets em `assets/nextjs-starter/` — package.json, tsconfig, tailwind config, next.config, .env.example, estrutura inicial.
 
 Copiar como base: `cp -r assets/nextjs-starter/ ~/projects/meu-projeto`
+
+---
+## Referências
+- [[skills/dev/fullstack-dev/references/ai-integration|AI Integration]]
+- [[skills/dev/fullstack-dev/references/auth-security|Auth & Security]]
+- [[skills/dev/fullstack-dev/references/backend|Backend]]
+- [[skills/dev/fullstack-dev/references/database|Database]]
+- [[skills/dev/fullstack-dev/references/frontend|Frontend]]
+- [[skills/dev/fullstack-dev/references/infrastructure|Infrastructure]]
+- [[skills/dev/fullstack-dev/references/saas-patterns|SaaS Patterns]]
+- [[skills/dev/fullstack-dev/references/testing|Testing]]
+- [[skills/dev/fullstack-dev/references/typescript-patterns|TypeScript Patterns]]

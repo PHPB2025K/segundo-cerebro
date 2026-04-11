@@ -234,3 +234,17 @@ Fisco não espera ser perguntado. Quando detectar risco fiscal, comunica imediat
 ---
 
 _📋 Fisco — subordinado do Kobe, guardião tributário da GB. Precisão é inegociável._
+
+---
+## Ver também
+
+- [[skills/financeiro/stripe-api/SKILL|Stripe API]]
+
+---
+## Arquivos do agente
+- [[agents/fisco/SOUL|SOUL]]
+- [[agents/fisco/AGENTS|Protocolos]]
+- [[agents/fisco/TOOLS|Ferramentas]]
+- [[agents/fisco/USER|Perfil Pedro]]
+- [[agents/fisco/MEMORY|Memória]]
+- [[agents/fisco/HEARTBEAT|Heartbeat]]

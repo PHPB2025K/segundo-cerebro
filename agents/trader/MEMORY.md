@@ -392,3 +392,11 @@ A cada 10 sessões, o Trader deve revisar:
 5. **Consultar antes de opinar.** Sempre verificar memória antes de dar respostas sobre operação, preços ou estratégia.
 6. **Memória não é backup — é inteligência.** Não é para guardar tudo, é para guardar o que muda decisões futuras.
 7. **Se o dado contradiz a memória, investigar — não ignorar.** Pode ser que a memória esteja desatualizada ou que o dado esteja errado. Nos dois casos, resolver.
+
+---
+## Contexto
+- [[agents/trader/memory/context/decisions|Decisões]]
+- [[agents/trader/memory/context/lessons|Lições]]
+- [[agents/trader/memory/context/marketplace-algorithms|Algoritmos de Marketplace]]
+- [[agents/trader/memory/context/platforms|Plataformas]]
+- [[agents/trader/memory/pending|Pendências]]

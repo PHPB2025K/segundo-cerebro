@@ -51,7 +51,7 @@
 
 - **PCM001** (Kit 6 Porta-Copos MDF): ML + Shopee + Amazon — [[memory/sessions/2026-04-07|sessao 07/04]]
 - **DPM001** (Descanso de Panela Modular): ML + Shopee + Amazon — [[memory/sessions/2026-04-10|sessao 10/04]]
-- **Analise Shopee Porta-Cocos**: [[memory/projects/shopee-porta-cocos-analise|analise mercado]]
+- **Analise Shopee Porta-Copos**: [[memory/projects/shopee-porta-copos-analise|analise mercado]]
 
 ---
 

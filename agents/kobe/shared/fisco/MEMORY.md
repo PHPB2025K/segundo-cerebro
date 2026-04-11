@@ -6,6 +6,24 @@ _Último update: 2026-03-29. Não duplica conteúdo — aponta pra onde está ca
 
 ---
 
+## Índice de arquivos
+
+- [[agents/kobe/shared/fisco/IDENTITY|IDENTITY]]
+- [[agents/kobe/shared/fisco/memory/accounts|Contas]]
+- [[agents/kobe/shared/fisco/memory/context/business|Contexto de Negócio]]
+- [[agents/kobe/shared/fisco/memory/context/decisions|Decisões]]
+- [[agents/kobe/shared/fisco/memory/decisions|Decisões (alt)]]
+- [[agents/kobe/shared/fisco/memory/lessons|Lições]]
+- [[agents/kobe/shared/fisco/memory/nfe-log|Log de NF-e]]
+- [[agents/kobe/shared/fisco/memory/pending|Pendências]]
+- [[agents/kobe/shared/fisco/memory/playbook|Playbook]]
+- [[agents/kobe/shared/fisco/memory/sessions/TEMPLATE|Template de Sessão]]
+- [[agents/kobe/shared/fisco/reference/session-nf-planning-20260331|Sessão NF Planning 31/03]]
+- [[agents/kobe/shared/fisco/templates/distribution-report|Template Distribuição]]
+- [[agents/kobe/shared/fisco/templates/reconciliation-report|Template Conciliação]]
+
+---
+
 ## Estrutura
 
 ```

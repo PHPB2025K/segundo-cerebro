@@ -136,3 +136,7 @@ Padrão: Dark mode profissional com:
 - [[skills/marketplace/amazon-extrato/SKILL|Extrato Amazon]]
 - [[skills/marketplace/shopee-extrato/SKILL|Extrato Shopee]]
 - [[skills/marketplace/consolidado-financeiro/SKILL|Consolidado Financeiro]]
+
+---
+## Referências
+- [[skills/marketplace/ml-extrato/references/colunas|Colunas]]

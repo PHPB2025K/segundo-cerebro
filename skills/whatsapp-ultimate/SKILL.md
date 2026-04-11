@@ -444,3 +444,7 @@ MIT — Part of OpenClaw
 - OpenClaw: https://github.com/openclaw/openclaw
 - Baileys: https://github.com/WhiskeySockets/Baileys
 - ClawHub: https://clawhub.com
+
+---
+## Referências
+- [[skills/whatsapp-ultimate/description|Description]]

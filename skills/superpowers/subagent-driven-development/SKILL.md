@@ -285,3 +285,9 @@ Done!
 - Anterior: [[skills/superpowers/writing-plans/SKILL|writing-plans]]
 - Próximo: [[skills/superpowers/requesting-code-review/SKILL|requesting-code-review]]
 - Relacionado: [[skills/superpowers/dispatching-parallel-agents/SKILL|dispatching-parallel-agents]]
+
+---
+## Referências
+- [[skills/superpowers/subagent-driven-development/code-quality-reviewer-prompt|Code Quality Reviewer]]
+- [[skills/superpowers/subagent-driven-development/implementer-prompt|Implementer Prompt]]
+- [[skills/superpowers/subagent-driven-development/spec-reviewer-prompt|Spec Reviewer Prompt]]

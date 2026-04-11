@@ -3,6 +3,14 @@
 > Agente: [[agents/spark/IDENTITY|Spark]] | Orquestrador: [[agents/kobe/AGENTS|Kobe Team]]
 > Skills: [[agents/kobe/shared/spark/skills/meta-ads/SKILL|Meta Ads]] | [[agents/kobe/shared/spark/skills/google-ads/SKILL|Google Ads]] | [[agents/kobe/shared/spark/skills/budget-optimizer/SKILL|Budget Optimizer]] | [[agents/kobe/shared/spark/skills/anomaly-detector/SKILL|Anomaly Detector]]
 
+## Planos e Changelogs
+
+- [[agents/kobe/shared/spark/BRIEFING-spark-ads-mvp|Briefing Spark Ads MVP]]
+- [[agents/kobe/shared/spark/CHANGELOG-skills-v2|Changelog Skills v2]]
+- [[agents/kobe/shared/spark/CHANGELOG-v2|Changelog v2]]
+- [[agents/kobe/shared/spark/FASE2-CAPACITACAO-SPARK|Fase 2 Capacitação]]
+- [[agents/kobe/shared/spark/SPARK-ADS-MANAGEMENT-PLAN|Plano de Gestão Ads]]
+
 ## Dados Básicos
 
 - **Nome:** Spark

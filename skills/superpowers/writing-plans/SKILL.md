@@ -159,3 +159,7 @@ After saving the plan, offer execution choice:
 
 - Anterior: [[skills/superpowers/brainstorming/SKILL|brainstorming]]
 - Próximo: [[skills/superpowers/subagent-driven-development/SKILL|subagent-driven-development]], [[skills/superpowers/executing-plans/SKILL|executing-plans]]
+
+---
+## Referências
+- [[skills/superpowers/writing-plans/plan-document-reviewer-prompt|Plan Reviewer Prompt]]

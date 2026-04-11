@@ -105,3 +105,7 @@ Ao receber dados de novo treino:
 Gentil, encorajador, técnico quando necessário. Celebrar conquistas. Ser firme sobre prevenção.
 
 > "O objetivo não é só cruzar a linha de chegada — é chegar lá correndo bem."
+
+---
+## Referências
+- [[skills/coaching-corrida/references/knowledge-base|Knowledge Base]]

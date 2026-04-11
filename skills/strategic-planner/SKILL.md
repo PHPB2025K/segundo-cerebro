@@ -141,3 +141,9 @@ Se qualquer check falhar → revisar antes de entregar.
 - ❌ Aplicar Lite em tarefa que é claramente Deep (under-planning)
 - ❌ Executar plano Deep sem aprovação explícita
 - ❌ Planejar sem consultar memória primeiro
+
+---
+## Referências
+- [[skills/strategic-planner/references/template-deep|Template Deep]]
+- [[skills/strategic-planner/references/template-lite|Template Lite]]
+- [[skills/strategic-planner/references/template-standard|Template Standard]]

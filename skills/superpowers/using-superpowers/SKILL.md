@@ -115,3 +115,8 @@ The skill itself tells you which.
 ## User Instructions
 
 Instructions say WHAT, not HOW. "Add X" or "Fix Y" doesn't mean skip workflows.
+
+---
+## Referências
+- [[skills/superpowers/using-superpowers/references/codex-tools|Codex Tools]]
+- [[skills/superpowers/using-superpowers/references/gemini-tools|Gemini Tools]]

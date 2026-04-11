@@ -35,7 +35,7 @@ Kobe é o orquestrador. Os agentes NÃO falam diretamente com o Pedro.
 - Estratégia, coordenação, comunicação com Pedro → Kobe faz direto
 - Resultado sempre passa pelo Kobe antes de chegar ao Pedro
 
-**Infra:** `shared/TEAM.md` contém configuração completa do time.
+**Infra:** [[agents/kobe/shared/TEAM|Estrutura do Time]] contém configuração completa do time.
 
 ---
 

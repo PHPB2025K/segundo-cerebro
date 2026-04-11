@@ -302,3 +302,14 @@ From debugging sessions:
 ## Pipeline Superpowers
 
 - Relacionado: [[skills/superpowers/verification-before-completion/SKILL|verification-before-completion]]
+
+---
+## Referências
+- [[skills/superpowers/systematic-debugging/CREATION-LOG|Creation Log]]
+- [[skills/superpowers/systematic-debugging/condition-based-waiting|Condition-Based Waiting]]
+- [[skills/superpowers/systematic-debugging/defense-in-depth|Defense in Depth]]
+- [[skills/superpowers/systematic-debugging/root-cause-tracing|Root Cause Tracing]]
+- [[skills/superpowers/systematic-debugging/test-academic|Test Academic]]
+- [[skills/superpowers/systematic-debugging/test-pressure-1|Test Pressure 1]]
+- [[skills/superpowers/systematic-debugging/test-pressure-2|Test Pressure 2]]
+- [[skills/superpowers/systematic-debugging/test-pressure-3|Test Pressure 3]]

@@ -112,3 +112,7 @@ See template at: requesting-code-review/code-reviewer.md
 
 - Anterior: [[skills/superpowers/subagent-driven-development/SKILL|subagent-driven-development]], [[skills/superpowers/executing-plans/SKILL|executing-plans]]
 - Próximo: [[skills/superpowers/receiving-code-review/SKILL|receiving-code-review]]
+
+---
+## Referências
+- [[skills/superpowers/requesting-code-review/code-reviewer|Code Reviewer Prompt]]

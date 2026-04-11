@@ -354,3 +354,7 @@ export function MetricCard({
 ## Ver também
 
 - [[skills/design/financial-design-systems/SKILL|Financial Design Systems — Skill]]
+
+---
+## Referências
+- [[skills/design/animated-financial-display/README|README]]

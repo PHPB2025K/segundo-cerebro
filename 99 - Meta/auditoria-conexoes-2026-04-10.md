@@ -309,3 +309,20 @@ agents/kobe/shared/fisco/memory/nfe-log (NFs reais: R$29.355,85 em março)
 
 *Auditoria realizada em 10/04/2026 via Claude Code*
 *347 notas lidas | 4 agentes paralelos | ~50 conexões descobertas*
+
+---
+
+## MOCs criados nesta auditoria
+
+- [[99 - Meta/MOC - Token Management|Token Management]]
+- [[99 - Meta/MOC - Extratos Financeiros|Extratos Financeiros]]
+- [[99 - Meta/MOC - Superpowers Pipeline|Superpowers Pipeline]]
+- [[99 - Meta/MOC - Taxas e Precificacao|Taxas e Precificação]]
+- [[99 - Meta/MOC - Design Systems Budamix|Design Systems]]
+- [[99 - Meta/MOC - Supabase Ecosystem|Supabase Ecosystem]]
+- [[99 - Meta/MOC - Governanca OpenClaw|Governança OpenClaw]]
+- [[99 - Meta/MOC - Listing Pipeline|Listing Pipeline]]
+
+## Skills de manutenção do vault
+
+- [[skills/obsidian-vault-manager/SKILL|Obsidian Vault Manager]]

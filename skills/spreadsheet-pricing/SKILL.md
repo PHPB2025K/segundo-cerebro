@@ -243,3 +243,12 @@ Para inserir um novo SKU, o Pedro precisa fornecer:
 - [[skills/marketplace/amazon-fees-rules/SKILL|Taxas Amazon]]
 - [[skills/marketplace/ml-fees-rules/SKILL|Taxas ML]]
 - [[skills/marketplace/shopee-fees-rules/SKILL|Taxas Shopee]]
+
+---
+## Referências
+- [[skills/spreadsheet-pricing/maps/amazon-columns|Mapa Amazon]]
+- [[skills/spreadsheet-pricing/maps/estoque-columns|Mapa Estoque]]
+- [[skills/spreadsheet-pricing/maps/meli-columns|Mapa MELI]]
+- [[skills/spreadsheet-pricing/maps/shopee-columns|Mapa Shopee]]
+- [[skills/spreadsheet-pricing/rules/format-rules|Regras de Formato]]
+- [[skills/spreadsheet-pricing/rules/formula-protection|Proteção de Fórmulas]]

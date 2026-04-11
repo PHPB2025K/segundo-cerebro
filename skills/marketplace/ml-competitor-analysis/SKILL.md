@@ -458,3 +458,7 @@ A lógica correta é:
 ### Script de parsing
 
 Ver `scripts/parse_ml_search.py` para a implementação do parser HTML.
+
+---
+## Referências
+- [[skills/marketplace/ml-competitor-analysis/cases/pote-1520ml-kit2-2026-03-18|Case: Pote 1520ml Kit2]]

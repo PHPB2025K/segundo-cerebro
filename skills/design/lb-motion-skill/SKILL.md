@@ -99,3 +99,8 @@ Use this skill when:
 - Official site: https://motion.dev
 - GitHub: https://github.com/motiondivision/motion
 - Examples: https://motion.dev/examples
+
+---
+## Referências
+- [[skills/design/lb-motion-skill/docs/quick-start|Quick Start]]
+- [[skills/design/lb-motion-skill/README|README]]

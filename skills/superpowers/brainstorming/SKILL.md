@@ -170,3 +170,8 @@ If they agree to the companion, read the detailed guide before proceeding:
 ## Pipeline Superpowers
 
 - Próximo: [[skills/superpowers/writing-plans/SKILL|writing-plans]]
+
+---
+## Referências
+- [[skills/superpowers/brainstorming/spec-document-reviewer-prompt|Spec Reviewer Prompt]]
+- [[skills/superpowers/brainstorming/visual-companion|Visual Companion]]

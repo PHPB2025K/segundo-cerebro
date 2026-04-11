@@ -153,3 +153,19 @@ skills/
 ---
 
 _Próximas ações: (1) fechar março com ads + consolidado + DRE semanal, (2) validar zero Anthropic de ponta a ponta, (3) fechar links Amazon da base Ana, (4) destravar os pendentes finais do PCM001._
+
+---
+## Contexto
+- [[agents/kobe/memory/context/decisions|Decisões]]
+- [[agents/kobe/memory/context/lessons|Lições]]
+- [[agents/kobe/memory/context/people|Pessoas]]
+- [[agents/kobe/memory/context/business-context|Contexto do Negócio]]
+- [[agents/kobe/memory/projects/gb-importadora|GB Importadora]]
+- [[agents/kobe/memory/integrations/tools-map|Ferramentas e Integrações]]
+- [[agents/kobe/memory/integrations/telegram-map|Telegram — Kobe Hub]]
+- [[agents/kobe/memory/pending|Pendências]]
+
+## Outputs dos Agentes
+- [[agents/kobe/shared/outputs/trader-platforms|Output Trader Platforms]]
+- [[agents/kobe/shared/outputs/trader-IDENTITY|Output Trader IDENTITY]]
+- [[agents/kobe/shared/outputs/trader-SOUL|Output Trader SOUL]]

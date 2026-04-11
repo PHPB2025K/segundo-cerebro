@@ -2,6 +2,26 @@
 
 _Último update: 2026-03-23_
 
+---
+
+## Índice de arquivos
+
+- [[agents/kobe/shared/trader/SOUL|SOUL]]
+- [[agents/kobe/shared/trader/memory/context/decisions|Decisões]]
+- [[agents/kobe/shared/trader/memory/pending|Pendências]]
+
+### Sessões
+- [[agents/kobe/shared/trader/memory/sessions/2026-03-24|Sessão 2026-03-24]]
+- [[agents/kobe/shared/trader/memory/sessions/2026-03-26|Sessão 2026-03-26]]
+- [[agents/kobe/shared/trader/memory/sessions/2026-03-27|Sessão 2026-03-27]]
+- [[agents/kobe/shared/trader/memory/sessions/2026-04-05|Sessão 2026-04-05]]
+- [[agents/kobe/shared/trader/memory/sessions/2026-04-06|Sessão 2026-04-06]]
+- [[agents/kobe/shared/trader/memory/sessions/2026-04-07|Sessão 2026-04-07]]
+- [[agents/kobe/shared/trader/memory/sessions/2026-04-08|Sessão 2026-04-08]]
+- [[agents/kobe/shared/trader/memory/sessions/2026-04-09|Sessão 2026-04-09]]
+
+---
+
 ## Quem sou
 
 Especialista sênior de marketplaces da GB Importadora. Opero ML, Amazon BR e Shopee. Coordenado pelo Kobe. Nível L1 (Observer) — todo output revisado.

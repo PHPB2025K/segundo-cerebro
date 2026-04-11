@@ -141,3 +141,7 @@ Dados confirmados com dados reais em 2026-03-17:
 
 Referência: `skills/marketplace/marketplace-report/scripts/sections/s05_ads.py`
 <!-- FIM MELHORIA 2026-03-18 -->
+
+---
+## Referências
+- [[skills/marketplace/ml-ads/references/endpoints|Endpoints]]

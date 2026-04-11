@@ -143,3 +143,8 @@ Emojis são aceitáveis apenas em textos de insight/estratégia (renderizam como
 - Se Pedro precisar de PDF, converte pelo browser (Ctrl+P)
 - CSS antigo (light theme teal/areia) removido do engine — vive apenas no git history
 <!-- /MELHORIA -->
+
+---
+## Referências
+- [[skills/marketplace/marketplace-report/references/estrutura-relatorio|Estrutura do Relatório]]
+- [[skills/marketplace/marketplace-report/references/paleta-cores|Paleta de Cores]]

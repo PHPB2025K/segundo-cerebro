@@ -355,3 +355,9 @@ Payload deve conter:
 
 - [[skills/amazon-listing-creator/SKILL|Amazon Listing Creator]]
 - [[skills/spreadsheet-pricing/SKILL|Planilha de Precificação]]
+
+---
+## Referências
+- [[skills/shopee-listing-creator/rules/validation-rules|Regras de Validação]]
+- [[skills/shopee-listing-creator/templates/checklist|Checklist]]
+- [[skills/shopee-listing-creator/templates/description-template|Template Descrição]]

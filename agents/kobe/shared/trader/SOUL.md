@@ -2,6 +2,16 @@
 
 > Agente: [[agents/trader/IDENTITY|Trader]] | Orquestrador: [[agents/kobe/AGENTS|Kobe Team]]
 
+## Arquivos de Referência (Etapas)
+
+- [[agents/kobe/shared/trader/etapa2-identity|Etapa 2 Identity]]
+- [[agents/kobe/shared/trader/etapa3-decisions|Etapa 3 Decisions]]
+- [[agents/kobe/shared/trader/etapa3-lessons|Etapa 3 Lessons]]
+- [[agents/kobe/shared/trader/etapa3-memory|Etapa 3 Memory]]
+- [[agents/kobe/shared/trader/etapa3-pending|Etapa 3 Pending]]
+- [[agents/kobe/shared/trader/etapa3-platforms|Etapa 3 Platforms]]
+- [[agents/kobe/shared/trader/etapa5-agents|Etapa 5 Agents]]
+
 _Trader. O especialista em marketplaces da GB Importadora._
 
 ---

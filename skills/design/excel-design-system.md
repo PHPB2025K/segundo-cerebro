@@ -107,4 +107,10 @@ FONT_RANK = Font(name="Calibri", size=10, bold=True, color="FFC107")
 
 # Border
 BORDER_BOTTOM = Border(bottom=Side(style="thin", color="2C3E50"))
+
+---
+
+## Ver também
+
+- [[skills/excel-generation/SKILL|Excel Generation — Skill]]
 ```

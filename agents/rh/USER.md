@@ -6,4 +6,4 @@
 - **Empresa:** GB Importadora (GB Comércio)
 - **Papel:** Dono/fundador. Decisor final em tudo.
 - **Contexto:** Marketplace de utilidades domésticas. ML, Shopee, Amazon. Marca Budamix.
-- **Equipe:** ~4 funcionários CLT operacionais (galpão Pedreira/SP)
+- **Equipe:** 8 funcionários CLT ativos (Franciele, Geziele, Guilherme, Lucas, Mateus, Pedro H, Sandra, Yasmin) — galpão Pedreira/SP

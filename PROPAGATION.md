@@ -79,3 +79,9 @@
 ---
 
 *Criado: 06/04/2026*
+
+---
+
+## Ver também
+
+- [[CLAUDE|CLAUDE — Perfil do Pedro (fonte que este protocolo propaga)]]

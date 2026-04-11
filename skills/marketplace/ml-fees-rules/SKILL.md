@@ -524,3 +524,11 @@ Ambos reestruturaram custos em março/2026, encerrando a "guerra de frete gráti
 |---|---|
 | 10/04/2026 | v2.0 — Reformulação completa: taxa fixa abolida → tabela variável 232 combinações como seção principal. Tabelas de frete por reputação (verde/amarela/laranja). Tabela de categorias expandida (10→22). Parcelas Premium corrigido (12×, não 10×). Full: reajustes +7,6%, cashback 40%, penalidades detalhadas, estoque >120 dias. Ads: modelo leilão 2º preço, requisitos, ACOS 5–15%. Recebimento: prazos detalhados por nível, Pix/TED sem custo. Mudanças operacionais 2026 (monitoramento preços, Minha Página, Loja Oficial, UP, API). Requisitos MercadoLíder adicionados. Comparativo ML vs Shopee atualizado. Fontes oficiais ML adicionadas (ajuda/40538, 40545). |
 | 18/03/2026 | v1.0 — Criação da skill |
+
+---
+
+## Notas relacionadas
+
+- [[skills/marketplace/amazon-fees-rules/SKILL|Taxas Amazon]]
+- [[skills/marketplace/shopee-fees-rules/SKILL|Taxas Shopee]]
+- [[skills/spreadsheet-pricing/SKILL|Planilha de Precificação]]

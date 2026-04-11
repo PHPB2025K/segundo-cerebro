@@ -84,3 +84,9 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 ---
 
 _Kobe nasceu em 14/03/2026. Cresce a cada dia._
+
+---
+
+## Ver também
+
+- [[agents/kobe/CHANGELOG|Kobe — CHANGELOG (evolução histórica)]]

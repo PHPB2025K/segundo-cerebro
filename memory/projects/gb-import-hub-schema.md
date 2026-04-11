@@ -506,3 +506,10 @@ Precisam ser migrados do Lovable Cloud para o Supabase externo:
 ---
 
 *Extraido em 08/04/2026 por Kobe via Claude Code*
+
+---
+
+## Ver também
+
+- [[memory/projects/gb-import-hub-edge-functions-map|GB Import Hub — Edge Functions Map]]
+- [[memory/projects/gb-import-hub-reconnection-plan|GB Import Hub — Plano de Reconexão do Frontend]]

@@ -123,3 +123,10 @@
 ---
 
 *Atualizado: 09/04/2026*
+
+---
+
+## Ver também
+
+- [[memory/context/deadlines|Deadlines — Prazos relevantes]]
+- [[memory/context/decisoes/2026-04|Decisões — Abril 2026]]

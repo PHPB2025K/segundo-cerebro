@@ -356,6 +356,12 @@ Bug found? Write failing test reproducing it. Follow TDD cycle. Test proves fix 
 
 Never fix bugs without a test.
 
+---
+
+## Pipeline Superpowers
+
+- Relacionado: [[skills/superpowers/writing-skills/SKILL|writing-skills]] (TDD aplicado a documentação)
+
 ## Testing Anti-Patterns
 
 When adding mocks or test utilities, read @testing-anti-patterns.md to avoid common pitfalls:

@@ -379,3 +379,9 @@ Most used for landing pages:
 ---
 
 *Based on Anthropic's frontend-design, web-artifacts-builder, and community frontend-design-v2 skills.*
+
+---
+
+## Ver também
+
+- [[skills/design/lovable-quality/SKILL|Lovable Quality — Padrão de Qualidade Visual]]

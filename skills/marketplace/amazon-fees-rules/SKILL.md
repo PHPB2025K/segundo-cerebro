@@ -572,3 +572,11 @@ Se precificar a R$ 100:
 | Data | Alteração |
 |---|---|
 | 10/04/2026 | v1.0 — Criação da skill do zero. Tabela completa de comissões (35+ categorias). 4 modelos logísticos (FBA/DBA/FBA Onsite/FBM). Tarifas FBA completas (peso × preço). Promoção FBA+ vigente. Armazenagem e remoção. Amazon Ads (3 formatos + benchmarks). Buy Box (critérios e importância). Saúde da conta (AHR + métricas). Recebimento (ciclo 14 dias). Programas especiais (Vine, Programe e Poupe, Lightning Deals). Fórmula de precificação com exemplos. Comparativo Amazon vs ML vs Shopee. Mudanças 2026. |
+
+---
+
+## Notas relacionadas
+
+- [[skills/marketplace/ml-fees-rules/SKILL|Taxas ML]]
+- [[skills/marketplace/shopee-fees-rules/SKILL|Taxas Shopee]]
+- [[skills/spreadsheet-pricing/SKILL|Planilha de Precificação]]

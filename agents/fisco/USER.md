@@ -6,5 +6,5 @@
 - **Empresa:** GB Importadora (GB Comércio), CNPJ 07.194.128/0001-82
 - **Marca própria:** Budamix
 - **Contadora:** FOUR Contabilidade (Suellen)
-- **Regime:** Simples Nacional
+- **Regime:** Lucro Presumido (Matriz/Filial) + Simples Nacional (3 CNPJs B2C: GB Comércio, Trades, Broglio)
 - **Canais:** ML, Shopee, Amazon BR

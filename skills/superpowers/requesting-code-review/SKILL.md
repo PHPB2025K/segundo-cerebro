@@ -105,3 +105,10 @@ You: [Fix progress indicators]
 - Request clarification
 
 See template at: requesting-code-review/code-reviewer.md
+
+---
+
+## Pipeline Superpowers
+
+- Anterior: [[skills/superpowers/subagent-driven-development/SKILL|subagent-driven-development]], [[skills/superpowers/executing-plans/SKILL|executing-plans]]
+- Próximo: [[skills/superpowers/receiving-code-review/SKILL|receiving-code-review]]

@@ -235,3 +235,9 @@ Usar em conjunto com:
 - `skills/design/superdesign/SKILL.md` — workflow de design (layout → tema → animação → implementação)
 - `skills/design/frontend-design-ultimate/SKILL.md` — estéticas anti-genéricas, tons ousados
 - `skills/design/shadcn-ui/SKILL.md` — patterns avançados shadcn
+
+---
+
+## Ver também
+
+- [[skills/design/frontend-design-ultimate/SKILL|Frontend Design Ultimate — Skill]]

@@ -412,3 +412,11 @@ Fontes a verificar semanalmente pelo cron `Shopee Fees Monitor`:
 |---|---|
 | 10/04/2026 | v2.0 — Correção: taxa transação (~2%) embutida na comissão (não somar separado). Faixa 1 taxa fixa = R$0. Simulações recalculadas. Fórmula corrigida. Adicionada coparticipação frete API. Afiliados corrigido (3–30%, não ~10%). Removida seção CPF. Adicionada simulação Faixa 5. Fontes auditadas (removida OQueSobra desatualizada, adicionada XP Investimentos e Calcularte Extrato). |
 | 08/04/2026 | v1.0 — Criação inicial |
+
+---
+
+## Notas relacionadas
+
+- [[skills/marketplace/amazon-fees-rules/SKILL|Taxas Amazon]]
+- [[skills/marketplace/ml-fees-rules/SKILL|Taxas ML]]
+- [[skills/spreadsheet-pricing/SKILL|Planilha de Precificação]]

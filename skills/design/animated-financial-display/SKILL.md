@@ -348,3 +348,9 @@ export function MetricCard({
   font-weight: 500;
 }
 ```
+
+---
+
+## Ver também
+
+- [[skills/design/financial-design-systems/SKILL|Financial Design Systems — Skill]]

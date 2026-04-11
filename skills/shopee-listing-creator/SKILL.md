@@ -348,3 +348,10 @@ Payload deve conter:
 | 2026-04-07 | Criacao da skill com dados reais da primeira publicacao (Kit Porta-Copos PCM001) |
 | 2026-04-07 | Mapeamento de atributos validos para categoria 101247 via teste iterativo |
 | 2026-04-07 | Regras de precificacao importadas da skill [[skills/marketplace/shopee-fees-rules/SKILL|shopee-fees-rules]] |
+
+---
+
+## Notas relacionadas
+
+- [[skills/amazon-listing-creator/SKILL|Amazon Listing Creator]]
+- [[skills/spreadsheet-pricing/SKILL|Planilha de Precificação]]

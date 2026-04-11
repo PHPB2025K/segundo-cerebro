@@ -18,7 +18,7 @@ Consulta e análise do inventário físico da GB Importadora via Planilha de Est
 ## Fonte de Dados
 
 **Planilha:** PLANILHA DE ESTOQUE
-**Google Sheets ID:** `1u74aCdH8VrQ2eK01YUQ8fUMwwb6ZPZXvrTTHoexWtnI`
+**Google Sheets ID:** `1dUoZtrvrqI6TiX3E_UzGuzglJFj6OVDZuYcgJyBfuRU`
 **Conta:** `gb.ai.agent@gbimportadora.com`
 
 ### Abas disponíveis
@@ -83,7 +83,7 @@ Quando Pedro perguntar sobre estoque total, SEMPRE avisar que o número é só d
 export GOG_KEYRING_PASSWORD=$(cat /root/.openclaw/.gog-keyring-pass)
 
 # 2. Ler dados da planilha
-gog sheets get "1u74aCdH8VrQ2eK01YUQ8fUMwwb6ZPZXvrTTHoexWtnI" "ESTOQUE!A9:J432" --json --account gb.ai.agent@gbimportadora.com
+gog sheets get "1dUoZtrvrqI6TiX3E_UzGuzglJFj6OVDZuYcgJyBfuRU" "ESTOQUE!A9:J432" --json --account gb.ai.agent@gbimportadora.com
 
 # 3. Parsear e filtrar por SKU/nome/EAN
 # 4. Apresentar resultado formatado

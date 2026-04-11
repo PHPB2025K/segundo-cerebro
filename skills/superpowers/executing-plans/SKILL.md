@@ -70,3 +70,11 @@ After all tasks complete and verified:
 - **superpowers:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
 - **superpowers:writing-plans** - Creates the plan this skill executes
 - **superpowers:finishing-a-development-branch** - Complete development after all tasks
+
+---
+
+## Pipeline Superpowers
+
+- Anterior: [[skills/superpowers/writing-plans/SKILL|writing-plans]]
+- Próximo: [[skills/superpowers/requesting-code-review/SKILL|requesting-code-review]]
+- Alternativo: [[skills/superpowers/subagent-driven-development/SKILL|subagent-driven-development]]

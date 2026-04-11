@@ -200,3 +200,9 @@ git worktree remove <worktree-path>
 
 **Pairs with:**
 - **using-git-worktrees** - Cleans up worktree created by that skill
+
+---
+
+## Pipeline Superpowers
+
+- Anterior: [[skills/superpowers/receiving-code-review/SKILL|receiving-code-review]]

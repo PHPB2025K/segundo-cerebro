@@ -213,3 +213,10 @@ When replying to inline review comments on GitHub, reply in the comment thread (
 Verify. Question. Then implement.
 
 No performative agreement. Technical rigor always.
+
+---
+
+## Pipeline Superpowers
+
+- Anterior: [[skills/superpowers/requesting-code-review/SKILL|requesting-code-review]]
+- Próximo: [[skills/superpowers/finishing-a-development-branch/SKILL|finishing-a-development-branch]]

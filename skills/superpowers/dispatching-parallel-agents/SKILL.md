@@ -182,3 +182,9 @@ From debugging session (2025-10-03):
 - All investigations completed concurrently
 - All fixes integrated successfully
 - Zero conflicts between agent changes
+
+---
+
+## Pipeline Superpowers
+
+- Relacionado: [[skills/superpowers/subagent-driven-development/SKILL|subagent-driven-development]]

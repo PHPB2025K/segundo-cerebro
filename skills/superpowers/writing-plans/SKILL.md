@@ -152,3 +152,10 @@ After saving the plan, offer execution choice:
 **If Inline Execution chosen:**
 - **REQUIRED SUB-SKILL:** Use superpowers:executing-plans
 - Batch execution with checkpoints for review
+
+---
+
+## Pipeline Superpowers
+
+- Anterior: [[skills/superpowers/brainstorming/SKILL|brainstorming]]
+- Próximo: [[skills/superpowers/subagent-driven-development/SKILL|subagent-driven-development]], [[skills/superpowers/executing-plans/SKILL|executing-plans]]

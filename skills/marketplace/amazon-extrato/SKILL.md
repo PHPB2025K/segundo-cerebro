@@ -121,3 +121,11 @@ Padrão: Dark mode profissional com:
 - Emojis como identificadores visuais
 - Gráficos quando aplicável (openpyxl.chart)
 - Nenhuma célula branca — tudo dark
+
+---
+
+## Notas relacionadas
+
+- [[skills/marketplace/ml-extrato/SKILL|Extrato ML]]
+- [[skills/marketplace/shopee-extrato/SKILL|Extrato Shopee]]
+- [[skills/marketplace/consolidado-financeiro/SKILL|Consolidado Financeiro]]

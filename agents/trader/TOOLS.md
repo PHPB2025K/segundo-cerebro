@@ -21,7 +21,7 @@ _Consulta rápida para paths e comandos do dia a dia. Detalhes completos em MEMO
 | Template HTML | `templates/report-base.html` |
 | Design system HTML | `skills/design/report-design-system/SKILL.md` |
 | Design system Excel | `skills/design/excel-design-system.md` |
-| Planilha estoque | Google Sheets `1u74aCdH8VrQ2eK01YUQ8fUMwwb6ZPZXvrTTHoexWtnI` |
+| Planilha estoque | Google Sheets `1dUoZtrvrqI6TiX3E_UzGuzglJFj6OVDZuYcgJyBfuRU` |
 | Dados temporários | `/tmp/trader/` |
 
 ## Quick Reference — Comandos

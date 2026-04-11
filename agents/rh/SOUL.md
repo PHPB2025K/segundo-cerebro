@@ -138,3 +138,9 @@ Recebo tarefas do Kobe. Reporto pro Kobe. Nunca falo direto com o Pedro — tudo
 ---
 
 _RH existe pra o Pedro nunca ser pego de surpresa com um problema trabalhista._
+
+---
+
+## Ver também
+
+- [[agents/kobe/shared/rh/knowledge/regras-ponto-certo|Ponto Certo — Regras do sistema que o RH opera]]

@@ -235,3 +235,11 @@ Para inserir um novo SKU, o Pedro precisa fornecer:
 | 2026-04-08 | Criacao da skill com mapeamento corrigido pelo Pedro (16 correcoes vs mapeamento original) |
 | 2026-04-08 | Documentacao de formulas reais por coluna em cada aba |
 | 2026-04-08 | Regras de cascata VLOOKUP (ESTOQUE -> marketplaces) |
+
+---
+
+## Notas relacionadas
+
+- [[skills/marketplace/amazon-fees-rules/SKILL|Taxas Amazon]]
+- [[skills/marketplace/ml-fees-rules/SKILL|Taxas ML]]
+- [[skills/marketplace/shopee-fees-rules/SKILL|Taxas Shopee]]

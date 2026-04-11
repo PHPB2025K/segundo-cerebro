@@ -655,3 +655,9 @@ Same cycle: RED (baseline) → GREEN (write skill) → REFACTOR (close loopholes
 Same benefits: Better quality, fewer surprises, bulletproof results.
 
 If you follow TDD for code, follow it for skills. It's the same discipline applied to documentation.
+
+---
+
+## Pipeline Superpowers
+
+- Relacionado: [[skills/superpowers/test-driven-development/SKILL|test-driven-development]] (TDD aplicado a código)

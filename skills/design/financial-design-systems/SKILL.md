@@ -346,6 +346,12 @@ export function ChartLegend({ items }: { items: LegendItem[] }) {
 
 ---
 
+## Ver também
+
+- [[skills/design/animated-financial-display/SKILL|Animated Financial Display — Skill]]
+
+---
+
 ## Quick Reference
 
 ```tsx

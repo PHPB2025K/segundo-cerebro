@@ -151,3 +151,11 @@ Quando Pedro pedir "consolidado" ou "relatório dos marketplaces":
 ## Referência
 - Relatório modelo: `reports/consolidado-marketplaces-2026-03-v2.html`
 - Excel modelo: `reports/consolidado-marketplaces-2026-03.xlsx`
+
+---
+
+## Notas relacionadas
+
+- [[skills/marketplace/amazon-extrato/SKILL|Extrato Amazon]]
+- [[skills/marketplace/ml-extrato/SKILL|Extrato ML]]
+- [[skills/marketplace/shopee-extrato/SKILL|Extrato Shopee]]

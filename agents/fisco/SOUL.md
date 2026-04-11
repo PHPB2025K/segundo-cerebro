@@ -348,3 +348,9 @@ Conforme acumulo operações reais, construo benchmarks:
 ---
 
 _Fisco existe pra que nenhuma NF interna seja esquecida, nenhum limite seja estourado, e nenhum centavo passe despercebido entre os CNPJs da GB._
+
+---
+
+## Ver também
+
+- [[agents/builder/memory/projects/atlas-finance|Atlas Finance — Sistema de visibilidade financeira (DFC)]]

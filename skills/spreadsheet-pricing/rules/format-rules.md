@@ -22,6 +22,8 @@ O Google Sheets BR converte ponto para virgula na exibicao automaticamente.
 | Marca | `BUDAMIX` ou `Budamix` | `budamix` |
 | NCM com pontos | `4411.12.10` | `44111210` |
 
+> ⚠️ **ATENCAO:** Amazon SP-API exige NCM SEM pontos (`44111210`). Ao copiar NCM da planilha para Amazon, remover os pontos. Ver [[skills/amazon-listing-creator/SKILL|amazon-listing-creator]].
+
 ## EAN
 
 | Regra | Motivo |

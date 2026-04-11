@@ -8,6 +8,8 @@
 | Prazo | Entrega | Status | Nota |
 |-------|---------|--------|------|
 | 15/05/2026 | Meta Ads Token Renewal | ⏳ Pendente | One-shot systemEvent no OpenClaw |
+| 11/04/2026 | GB25011 — Numerário R$60.000 | 🔴 URGENTE | Container em trânsito, ETA 11/04 |
+| 16/04/2026 | GB25009 — 70% balanço R$72.232 | 🔴 CRÍTICO | Container finished, pagar |
 | ~15/04/2026 | Analistas concluírem Top 10 produtos | ⏳ Pendente | Guia entregue 06/04, ~3min por produto |
 | ~30/04/2026 | Analistas concluírem todos os 44 produtos | ⏳ Pendente | Depende do Top 10 |
 | Contínuo | Atualizar OpenClaw diariamente | 🔄 Recorrente | Manter v2026.4.x+ |
@@ -30,3 +32,9 @@
 ---
 
 *Atualizado: 06/04/2026*
+
+---
+
+## Ver também
+
+- [[memory/context/pendencias|Pendências Ativas]]

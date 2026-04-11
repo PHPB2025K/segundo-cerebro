@@ -277,3 +277,11 @@ Done!
 
 **Alternative workflow:**
 - **superpowers:executing-plans** - Use for parallel session instead of same-session execution
+
+---
+
+## Pipeline Superpowers
+
+- Anterior: [[skills/superpowers/writing-plans/SKILL|writing-plans]]
+- Próximo: [[skills/superpowers/requesting-code-review/SKILL|requesting-code-review]]
+- Relacionado: [[skills/superpowers/dispatching-parallel-agents/SKILL|dispatching-parallel-agents]]

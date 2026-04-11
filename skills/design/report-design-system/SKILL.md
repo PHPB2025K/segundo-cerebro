@@ -871,3 +871,9 @@ Antes de entregar qualquer relatório HTML, verificar:
 - [ ] Border-top colorido nos cards de feature
 - [ ] Code inline com fundo sutil e cor cyan
 - [ ] Footer com créditos centralizados
+
+---
+
+## Ver também
+
+- [[skills/marketplace/consolidado-financeiro/SKILL|Consolidado Financeiro — Skill]]

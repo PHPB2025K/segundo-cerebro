@@ -346,3 +346,9 @@ def calcular_tributos(ano, ncm, uf_destino, valor_aduaneiro, ...):
 **Fontes base**: EC 132/2023 (texto promulgado em 20/12/2023, publicado no DOU); LC 214/2025 (sancionada em 16/01/2025); Notas Técnicas da RFB; análises publicadas por Machado Meyer, Mattos Filho, TozziniFreire, Pinheiro Neto; publicações JOTA e Valor Econômico sobre regulamentação da reforma tributária.
 
 **Ressalva**: alíquotas de referência são estimativas baseadas nos parâmetros da LC 214/2025 e projeções do Ministério da Fazenda. Os valores definitivos serão fixados por Resolução do Senado (CBS) e pelo Comitê Gestor do IBS (IBS) com base na arrecadação observada em 2026. Recomenda-se parametrizar o simulador para aceitar ajustes nas alíquotas conforme forem oficialmente publicadas.
+
+---
+
+## Ver também
+
+- [[agents/kobe/shared/fisco/SOUL|Fisco — SOUL (TTD 409 e modelo fiscal GB)]]

@@ -66,3 +66,10 @@ supabase functions deploy --all
 ```
 
 Antes do deploy, configurar todos os secrets no dashboard.
+
+---
+
+## Ver também
+
+- [[memory/projects/gb-import-hub-schema|GB Import Hub — Schema Completo do Banco de Dados]]
+- [[memory/projects/gb-import-hub-reconnection-plan|GB Import Hub — Plano de Reconexão do Frontend]]

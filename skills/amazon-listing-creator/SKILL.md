@@ -377,3 +377,10 @@ Depende do tamanho e peso. Para itens pequenos/leves (~200g, 25x16x5cm):
 | 2026-04-07 | Criacao da skill baseada no cadastro real do PCM001 (DRINK_COASTER) |
 | 2026-04-07 | Documentados 9 erros da 1a tentativa e solucoes que funcionaram |
 | 2026-04-07 | Mapeamento completo de campos para DRINK_COASTER (26 campos) |
+
+---
+
+## Notas relacionadas
+
+- [[skills/shopee-listing-creator/SKILL|Shopee Listing Creator]]
+- [[skills/spreadsheet-pricing/SKILL|Planilha de Precificação]]

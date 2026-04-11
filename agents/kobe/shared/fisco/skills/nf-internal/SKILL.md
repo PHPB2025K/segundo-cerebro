@@ -1,4 +1,4 @@
-# Skill: NFs Venda Interna Filial→Simples (Módulo C)
+# Skill: NFs Venda Interna Filial→Simples (Módulo C) — [[agents/fisco/IDENTITY|Fisco]]
 
 _Emite NFs de venda interna da Filial para os CNPJs do Simples Nacional._
 

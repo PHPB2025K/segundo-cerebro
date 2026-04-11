@@ -13,6 +13,8 @@ description: >
 
 # Meta Ads — Skill de Operação Profissional
 
+> Usado por [[agents/spark/IDENTITY|Spark]]
+
 Skill de gestão e automação de Meta Ads via Marketing API v21.0.
 Contexto: GB Importadora (Budamix), vendas em marketplace.
 

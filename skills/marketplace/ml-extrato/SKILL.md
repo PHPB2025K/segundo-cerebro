@@ -5,6 +5,8 @@ description: Gerar extratos financeiros completos do Mercado Livre/Mercado Pago 
 
 # Extrato Financeiro — Mercado Livre / Mercado Pago
 
+> Usado por [[agents/trader/IDENTITY|Trader]]
+
 Gera extratos financeiros completos a partir da API do Mercado Pago, no formato padrão aprovado pelo Pedro.
 
 ## Autenticação

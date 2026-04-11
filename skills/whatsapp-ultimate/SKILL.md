@@ -11,6 +11,8 @@ metadata:
 
 # WhatsApp Ultimate
 
+> Usado por [[agents/kobe/IDENTITY|Kobe]]
+
 **Everything you can do in WhatsApp, your AI agent can do too.**
 
 This skill documents all WhatsApp capabilities available through OpenClaw's native channel integration. No external Docker services, no CLI wrappers — just direct WhatsApp Web protocol via Baileys.

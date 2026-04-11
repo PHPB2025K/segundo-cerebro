@@ -10,6 +10,8 @@ description: >
 
 # Lovable-Quality — Padrão de Qualidade Visual
 
+> Usado por [[agents/builder/IDENTITY|Builder]]
+
 ## REGRA ABSOLUTA: Design System First
 
 Antes de criar QUALQUER componente, o Builder DEVE:

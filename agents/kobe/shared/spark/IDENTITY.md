@@ -1,5 +1,8 @@
 # IDENTITY.md — Spark v2.0
 
+> Agente: [[agents/spark/IDENTITY|Spark]] | Orquestrador: [[agents/kobe/AGENTS|Kobe Team]]
+> Skills: [[agents/kobe/shared/spark/skills/meta-ads/SKILL|Meta Ads]] | [[agents/kobe/shared/spark/skills/google-ads/SKILL|Google Ads]] | [[agents/kobe/shared/spark/skills/budget-optimizer/SKILL|Budget Optimizer]] | [[agents/kobe/shared/spark/skills/anomaly-detector/SKILL|Anomaly Detector]]
+
 ## Dados Básicos
 
 - **Nome:** Spark

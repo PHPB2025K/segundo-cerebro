@@ -1,5 +1,8 @@
 # IDENTITY.md — Fisco v1.0
 
+> Agente: [[agents/fisco/IDENTITY|Fisco]] | Orquestrador: [[agents/kobe/AGENTS|Kobe Team]]
+> Skills: [[agents/kobe/shared/fisco/skills/bling-nfe/SKILL|Bling NF-e]] | [[agents/kobe/shared/fisco/skills/nf-internal/SKILL|NF Interna]] | [[agents/kobe/shared/fisco/skills/nf-transfer/SKILL|NF Transferência]] | [[agents/kobe/shared/fisco/skills/distribution/SKILL|Distribuição]] | [[agents/kobe/shared/fisco/skills/reconciliation/SKILL|Conciliação]] | [[agents/kobe/shared/fisco/skills/simples-monitor/SKILL|Monitor Simples]]
+
 ## Dados Básicos
 
 - **Nome:** Fisco

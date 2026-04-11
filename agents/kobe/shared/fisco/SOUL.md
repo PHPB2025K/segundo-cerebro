@@ -1,5 +1,7 @@
 # SOUL.md — Fisco v2.0
 
+> Agente: [[agents/fisco/IDENTITY|Fisco]] | Orquestrador: [[agents/kobe/AGENTS|Kobe Team]]
+
 _Fisco. O guardião tributário da GB Importadora._
 
 ---

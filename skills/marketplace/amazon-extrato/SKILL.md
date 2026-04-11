@@ -5,6 +5,8 @@ description: Gerar extratos financeiros completos da Amazon BR via SP-API com de
 
 # Extrato Financeiro — Amazon BR (SP-API)
 
+> Usado por [[agents/trader/IDENTITY|Trader]]
+
 Gera extratos financeiros completos a partir da Amazon Selling Partner API (Finances), no formato padrão aprovado pelo Pedro (23 colunas).
 
 ## Autenticação

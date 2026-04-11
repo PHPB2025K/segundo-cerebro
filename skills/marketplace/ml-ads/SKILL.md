@@ -5,6 +5,8 @@ description: Consultar e gerenciar campanhas de Product Ads do Mercado Livre via
 
 # ML Ads — Product Ads Mercado Livre
 
+> Usado por [[agents/spark/IDENTITY|Spark]]
+
 Acessa a API de Advertising do Mercado Livre (v2) para Product Ads, Brand Ads e métricas.
 
 ## Autenticação

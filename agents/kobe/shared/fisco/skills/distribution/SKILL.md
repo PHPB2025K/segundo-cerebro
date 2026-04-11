@@ -1,4 +1,4 @@
-# Skill: Motor de Distribuição (Módulo A)
+# Skill: Motor de Distribuição (Módulo A) — [[agents/fisco/IDENTITY|Fisco]]
 
 _Calcula a distribuição proporcional de estoque importado entre os CNPJs da GB._
 

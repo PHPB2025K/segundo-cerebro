@@ -11,6 +11,8 @@ description: >
 
 # Budget Optimizer — Skill de Otimização de Verba
 
+> Usado por [[agents/spark/IDENTITY|Spark]]
+
 Otimização inteligente de alocação de budget entre campanhas e plataformas de ads.
 Cross-platform: Meta Ads + Google Ads.
 Contexto: GB Importadora (Budamix), ROAS mínimo 10x, ticket R$100-300, margem ~70%.

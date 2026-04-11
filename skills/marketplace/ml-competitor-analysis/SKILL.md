@@ -24,6 +24,8 @@ metadata:
 
 # Análise de Concorrência — Mercado Livre
 
+> Usado por [[agents/trader/IDENTITY|Trader]]
+
 ## Objetivo
 
 Protocolo completo e reutilizável para análise de concorrência no ML. Funciona para **qualquer produto**. Coleta dados reais via Bright Data Web Unlocker + ML API, classifica concorrentes por similaridade visual e gera relatório acionável.

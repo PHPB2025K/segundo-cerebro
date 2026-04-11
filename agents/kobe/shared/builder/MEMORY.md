@@ -1,5 +1,7 @@
 # MEMORY.md — Índice de Memória do Builder
 
+> Agente: [[agents/builder/IDENTITY|Builder]] | Orquestrador: [[agents/kobe/AGENTS|Kobe Team]]
+
 _Último update: 2026-03-24._
 
 ---

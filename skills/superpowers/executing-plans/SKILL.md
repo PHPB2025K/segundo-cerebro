@@ -5,6 +5,8 @@ description: Use when you have a written implementation plan to execute in a sep
 
 # Executing Plans
 
+> Usado por [[agents/kobe/IDENTITY|Kobe]]
+
 ## Overview
 
 Load plan, review critically, execute all tasks, report when complete.

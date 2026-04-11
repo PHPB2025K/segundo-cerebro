@@ -39,6 +39,8 @@ Skills use Claude Code tool names. Non-CC platforms: see `references/codex-tools
 
 # Using Skills
 
+> Usado por [[agents/kobe/IDENTITY|Kobe]]
+
 ## The Rule
 
 **Invoke relevant or requested skills BEFORE any response or action.** Even a 1% chance a skill might apply means that you should invoke the skill to check. If an invoked skill turns out to be wrong for the situation, you don't need to use it.

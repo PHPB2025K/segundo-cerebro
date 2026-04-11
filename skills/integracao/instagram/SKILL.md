@@ -5,6 +5,8 @@ description: Consulta perfis públicos e posts do Instagram via RapidAPI (instag
 
 # Instagram — Consulta de Perfis e Posts
 
+> Usado por [[agents/spark/IDENTITY|Spark]]
+
 ## Descrição
 
 Acessa dados públicos de qualquer perfil do Instagram via API RapidAPI (instagram120). Retorna informações de perfil (seguidores, bio, posts) e posts recentes com métricas de engajamento (likes, comentários).

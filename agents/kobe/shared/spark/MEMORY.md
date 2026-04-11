@@ -1,5 +1,7 @@
 # MEMORY.md — Índice de Memória do Spark v2.0
 
+> Agente: [[agents/spark/IDENTITY|Spark]] | Orquestrador: [[agents/kobe/AGENTS|Kobe Team]]
+
 _Último update: 2026-03-20. Não duplica conteúdo — aponta pra onde está cada coisa._
 
 ---

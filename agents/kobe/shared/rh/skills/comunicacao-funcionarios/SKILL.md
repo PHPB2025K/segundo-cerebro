@@ -1,4 +1,4 @@
-# SKILL — Comunicação Humanizada com Funcionários (Módulo C)
+# SKILL — Comunicação Humanizada com Funcionários (Módulo C) — [[agents/rh/IDENTITY|RH]]
 
 ## Objetivo
 

@@ -1,4 +1,4 @@
-# Decisões — Trader
+# Decisões — [[agents/trader/IDENTITY|Trader]]
 
 ### Margem SEMPRE ponderada por volume e plataforma
 - Nunca média simples. Consolidada real: 13,7%.

@@ -1,4 +1,4 @@
-# Skill: NF Transferência Matriz→Filial (Módulo B)
+# Skill: NF Transferência Matriz→Filial (Módulo B) — [[agents/fisco/IDENTITY|Fisco]]
 
 _Emite NF de transferência interestadual de 90% do estoque importado._
 

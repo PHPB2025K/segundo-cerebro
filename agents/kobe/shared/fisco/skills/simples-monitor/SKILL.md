@@ -1,4 +1,4 @@
-# Skill: Monitor de Limites Simples Nacional (Módulo E)
+# Skill: Monitor de Limites Simples Nacional (Módulo E) — [[agents/fisco/IDENTITY|Fisco]]
 
 _Acompanha faturamento acumulado por CNPJ e alerta antes de estourar o teto._
 

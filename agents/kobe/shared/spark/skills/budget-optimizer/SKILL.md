@@ -1,4 +1,4 @@
-# Skill: Budget Optimizer — Spark v2.0
+# Skill: Budget Optimizer — [[agents/spark/IDENTITY|Spark]] v2.0
 
 _Alocação e redistribuição de budget entre Meta Ads e Google Ads baseada em performance._
 

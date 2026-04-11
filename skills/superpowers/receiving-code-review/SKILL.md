@@ -5,6 +5,8 @@ description: Use when receiving code review feedback, before implementing sugges
 
 # Code Review Reception
 
+> Usado por [[agents/builder/IDENTITY|Builder]]
+
 ## Overview
 
 Code review requires technical evaluation, not emotional performance.

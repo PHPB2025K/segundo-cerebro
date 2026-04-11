@@ -1,4 +1,4 @@
-# Lições Aprendidas — Trader
+# Lições Aprendidas — [[agents/trader/IDENTITY|Trader]]
 
 _Erros e aprendizados. [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias._
 

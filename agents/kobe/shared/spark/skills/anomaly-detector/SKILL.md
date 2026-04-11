@@ -1,4 +1,4 @@
-# Skill: Anomaly Detector — Spark v2.0
+# Skill: Anomaly Detector — [[agents/spark/IDENTITY|Spark]] v2.0
 
 _Monitoramento contínuo de métricas-chave com detecção de anomalias e alertas automáticos._
 

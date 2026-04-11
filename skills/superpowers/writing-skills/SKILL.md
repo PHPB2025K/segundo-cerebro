@@ -5,6 +5,8 @@ description: Use when creating new skills, editing existing skills, or verifying
 
 # Writing Skills
 
+> Usado por [[agents/kobe/IDENTITY|Kobe]]
+
 ## Overview
 
 **Writing skills IS Test-Driven Development applied to process documentation.**

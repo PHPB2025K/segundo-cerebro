@@ -16,6 +16,8 @@ metadata:
 
 # Deep Research Protocol — Skill de Pesquisa Profunda
 
+> Usado por [[agents/kobe/IDENTITY|Kobe]]
+
 ## O que é
 
 Protocolo estruturado para pesquisa profunda. Combina múltiplas fontes, sintetiza findings, e entrega relatório acionável.

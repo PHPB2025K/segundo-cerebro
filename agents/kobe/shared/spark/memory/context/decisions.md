@@ -1,4 +1,4 @@
-# Decisões Permanentes — Spark v2.0
+# Decisões Permanentes — [[agents/spark/IDENTITY|Spark]] v2.0
 
 _Decisões do Pedro/Kobe que não mudam. Consultar SEMPRE antes de agir._
 _Só o Pedro (via Kobe) pode adicionar, alterar ou revogar decisões aqui._

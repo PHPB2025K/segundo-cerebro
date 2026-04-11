@@ -12,6 +12,8 @@ description: >
 
 # Anomaly Detector — Skill de Detecção de Anomalias em Ads
 
+> Usado por [[agents/spark/IDENTITY|Spark]]
+
 Monitoramento, detecção e diagnóstico de anomalias em campanhas de ads.
 Cross-platform: Meta Ads + Google Ads.
 Contexto: GB Importadora (Budamix), ROAS mínimo 10x.

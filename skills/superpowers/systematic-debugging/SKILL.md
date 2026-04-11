@@ -5,6 +5,8 @@ description: Use when encountering any bug, test failure, or unexpected behavior
 
 # Systematic Debugging
 
+> Usado por [[agents/builder/IDENTITY|Builder]]
+
 ## Overview
 
 Random fixes waste time and create new bugs. Quick patches mask underlying issues.

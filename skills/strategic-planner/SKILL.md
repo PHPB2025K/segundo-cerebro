@@ -1,5 +1,7 @@
 # Skill: Strategic Planner
 
+> Usado por [[agents/kobe/IDENTITY|Kobe]]
+
 ## Metadata
 - **Name:** strategic-planner
 - **Version:** 1.0

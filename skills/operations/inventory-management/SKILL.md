@@ -9,6 +9,8 @@ description: >
 
 # Gestão de Estoque — GB Importadora
 
+> Usado por [[agents/kobe/IDENTITY|Kobe]]
+
 ## Descrição
 
 Consulta e análise do inventário físico da GB Importadora via Planilha de Estoque no Google Drive. Fonte única e oficial de dados de estoque do armazém.

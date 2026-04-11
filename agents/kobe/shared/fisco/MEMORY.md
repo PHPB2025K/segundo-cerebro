@@ -1,5 +1,7 @@
 # MEMORY.md — Índice de Memória do Fisco v1.0
 
+> Agente: [[agents/fisco/IDENTITY|Fisco]] | Orquestrador: [[agents/kobe/AGENTS|Kobe Team]]
+
 _Último update: 2026-03-29. Não duplica conteúdo — aponta pra onde está cada coisa._
 
 ---

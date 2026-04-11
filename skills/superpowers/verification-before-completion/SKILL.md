@@ -5,6 +5,8 @@ description: Use when about to claim work is complete, fixed, or passing, before
 
 # Verification Before Completion
 
+> Usado por [[agents/kobe/IDENTITY|Kobe]]
+
 ## Overview
 
 Claiming work is complete without verification is dishonesty, not efficiency.

@@ -1,4 +1,4 @@
-# Lições Aprendidas — Builder
+# Lições Aprendidas — [[agents/builder/IDENTITY|Builder]]
 
 _Erros e aprendizados. [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias._
 

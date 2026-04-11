@@ -1,4 +1,4 @@
-# Skill: Google Ads — Spark v2.0
+# Skill: Google Ads — [[agents/spark/IDENTITY|Spark]] v2.0
 
 _Análise, diagnóstico, otimização e relatórios de Google Ads (Search, Display, YouTube, Performance Max)._
 

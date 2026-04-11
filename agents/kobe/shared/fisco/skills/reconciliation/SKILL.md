@@ -1,4 +1,4 @@
-# Skill: Conciliação Fisco (Módulo D)
+# Skill: Conciliação Fisco (Módulo D) — [[agents/fisco/IDENTITY|Fisco]]
 
 _Cruza NF-e emitidas com pedidos dos marketplaces para identificar inconsistências._
 

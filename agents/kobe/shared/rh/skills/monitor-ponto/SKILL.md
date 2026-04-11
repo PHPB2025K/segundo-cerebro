@@ -1,4 +1,4 @@
-# SKILL — Monitor de Ponto (Módulo A)
+# SKILL — Monitor de Ponto (Módulo A) — [[agents/rh/IDENTITY|RH]]
 
 ## Objetivo
 Monitorar diariamente as marcações de ponto de todos os funcionários da GB Importadora via Ponto Certo (Supabase), identificar irregularidades, enviar mensagens *personalizadas* via WhatsApp e *processar as respostas dos funcionários* até resolução completa.

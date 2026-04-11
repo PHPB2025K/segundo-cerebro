@@ -5,6 +5,8 @@ description: Gerar relatório consolidado financeiro de todos os marketplaces (S
 
 # Consolidado Financeiro — Marketplaces
 
+> Usado por [[agents/trader/IDENTITY|Trader]]
+
 Gera relatório HTML profissional (dark mode) + Excel consolidando dados financeiros de Shopee, Mercado Livre e Amazon.
 
 ## Uso

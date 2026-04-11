@@ -11,6 +11,8 @@ metadata:
 
 # Frontend Design Ultimate
 
+> Usado por [[agents/builder/IDENTITY|Builder]]
+
 Create distinctive, production-grade static sites from text requirements alone. No mockups, no Figma — just describe what you want and get bold, memorable designs.
 
 **Stack**: React 18 + TypeScript + Tailwind CSS + shadcn/ui + Framer Motion  

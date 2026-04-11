@@ -1,4 +1,4 @@
-# Lições Aprendidas — Spark v2.0
+# Lições Aprendidas — [[agents/spark/IDENTITY|Spark]] v2.0
 
 _Erros e aprendizados. Consultar ANTES de recomendar qualquer mudança._
 _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_

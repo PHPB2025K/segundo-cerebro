@@ -1,4 +1,4 @@
-# Skill: Meta Ads — Spark v2.0
+# Skill: Meta Ads — [[agents/spark/IDENTITY|Spark]] v2.0
 
 _Análise, diagnóstico, otimização e relatórios de Meta Ads (Facebook + Instagram)._
 

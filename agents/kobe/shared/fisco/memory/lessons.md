@@ -1,4 +1,4 @@
-# Lições — Fisco
+# Lições — [[agents/fisco/IDENTITY|Fisco]]
 
 ## 2026-03-31 — NFs Venda Interna Março/2026
 

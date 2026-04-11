@@ -1,4 +1,4 @@
-# Lições — Agente RH
+# Lições — Agente [[agents/rh/IDENTITY|RH]]
 
 _Aprendizados operacionais. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 

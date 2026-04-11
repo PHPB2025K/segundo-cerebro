@@ -1,4 +1,4 @@
-# SKILL — Emissão de NF-e via Bling API v3
+# SKILL — Emissão de NF-e via Bling API v3 — [[agents/fisco/IDENTITY|Fisco]]
 
 ## Objetivo
 Criar, validar e emitir Notas Fiscais Eletrônicas (NF-e) via API v3 do Bling. Suporta NF de transferência (Módulo B), NF de venda interna (Módulo C), NF de entrada (importação) e NF de remessa.

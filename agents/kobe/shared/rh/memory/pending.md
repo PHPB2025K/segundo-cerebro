@@ -1,4 +1,4 @@
-# Pendências — Agente RH
+# Pendências — Agente [[agents/rh/IDENTITY|RH]]
 
 ## ✅ Resolvido pelo Pedro
 1. [x] **Supabase do Ponto Certo** — Configurado em config/ponto-certo.json (status 200)

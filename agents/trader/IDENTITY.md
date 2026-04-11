@@ -267,3 +267,7 @@ Quando apresentar dados quantitativos, usar tabelas:
 - [[agents/trader/USER|Perfil Pedro]]
 - [[agents/trader/MEMORY|Memória]]
 - [[agents/trader/HEARTBEAT|Heartbeat]]
+
+## Skills do Trader
+- [[skills/marketplace/ml-ads/SKILL|ML Ads (Product Ads)]]
+- [[skills/marketplace/ml-report/SKILL|ML Report (deprecado → marketplace-report)]]

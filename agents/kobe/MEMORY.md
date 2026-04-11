@@ -168,4 +168,17 @@ _Próximas ações: (1) fechar março com ads + consolidado + DRE semanal, (2) v
 ## Outputs dos Agentes
 - [[agents/kobe/shared/outputs/trader-platforms|Output Trader Platforms]]
 - [[agents/kobe/shared/outputs/trader-IDENTITY|Output Trader IDENTITY]]
+- [[agents/kobe/shared/outputs/trader-IDENTITY-v2|Output Trader IDENTITY v2]]
 - [[agents/kobe/shared/outputs/trader-SOUL|Output Trader SOUL]]
+- [[agents/kobe/shared/outputs/trader-AGENTS|Output Trader AGENTS]]
+- [[agents/kobe/shared/outputs/trader-MEMORY|Output Trader MEMORY]]
+- [[agents/kobe/shared/outputs/trader-decisions|Output Trader Decisions]]
+- [[agents/kobe/shared/outputs/trader-lessons|Output Trader Lessons]]
+- [[agents/kobe/shared/outputs/trader-pending|Output Trader Pending]]
+
+## Workspaces dos Agentes
+- [[agents/kobe/shared/builder/MEMORY|Builder Workspace]]
+- [[agents/kobe/shared/fisco/MEMORY|Fisco Workspace]]
+- [[agents/kobe/shared/spark/MEMORY|Spark Workspace]]
+- [[agents/kobe/shared/rh/SOUL|RH Workspace]]
+- [[agents/kobe/shared/simulimport/reforma-tributaria-importacao|Reforma Tributária (SimulImport)]]

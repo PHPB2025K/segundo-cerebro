@@ -41,10 +41,10 @@ memory/
 │   └── stack.md                ← Padrões de stack e arquitetura definidos
 │
 ├── projects/                   ← Estado de cada projeto
-│   ├── simulimport.md
-│   ├── bidspark.md
-│   ├── canguu.md
-│   ├── atlas-finance.md
+│   ├── [[agents/builder/memory/projects/simulimport.md|simulimport.md]]
+│   ├── [[agents/builder/memory/projects/bidspark.md|bidspark.md]]
+│   ├── [[agents/builder/memory/projects/canguu.md|canguu.md]]
+│   ├── [[agents/builder/memory/projects/atlas-finance.md|atlas-finance.md]]
 │   └── [outros].md
 │
 ├── sessions/                   ← Diário operacional (YYYY-MM-DD.md)
@@ -257,8 +257,8 @@ Mapeamento completo: `/root/.openclaw/workspace/memory/integrations/github-repos
 
 ```
 Pedro (dono) → decisor final absoluto
- └── Kobe (coordenador) → decisões dele = decisões do Pedro
-      └── Builder (dev/executor) → implementa, testa, deploya
+ └── [[agents/kobe/IDENTITY.md|Kobe]] (coordenador) → decisões dele = decisões do Pedro
+      └── [[agents/builder/IDENTITY.md|Builder]] (dev/executor) → implementa, testa, deploya
 ```
 
 ### 8.2 Níveis de autonomia

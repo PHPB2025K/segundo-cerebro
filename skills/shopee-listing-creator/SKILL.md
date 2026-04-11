@@ -323,7 +323,7 @@ Payload deve conter:
 | sync-shopee-prices.py | /root/.openclaw/workspace/scripts/ | Sync precos -> Supabase |
 | sync-shopee-orders.py | /root/.openclaw/workspace/scripts/ | Sync pedidos -> Supabase |
 | sync-inventory-shopee.py | /root/.openclaw/workspace/scripts/ | Sync estoque -> Supabase |
-| shopee-fees-rules | /root/.openclaw/workspace/skills/marketplace/ | Regras de taxas |
+| [[skills/marketplace/shopee-fees-rules/SKILL|shopee-fees-rules]] | /root/.openclaw/workspace/skills/marketplace/ | Regras de taxas |
 | shopee-ranking | /root/.openclaw/workspace/skills/marketplace/marketplace-optimization/references/ | Fatores de ranking |
 | Supabase | sqbkoprcmnznmzbwdrmf.supabase.co | Budamix Central |
 
@@ -347,4 +347,4 @@ Payload deve conter:
 |------|---------|
 | 2026-04-07 | Criacao da skill com dados reais da primeira publicacao (Kit Porta-Copos PCM001) |
 | 2026-04-07 | Mapeamento de atributos validos para categoria 101247 via teste iterativo |
-| 2026-04-07 | Regras de precificacao importadas da skill shopee-fees-rules |
+| 2026-04-07 | Regras de precificacao importadas da skill [[skills/marketplace/shopee-fees-rules/SKILL|shopee-fees-rules]] |

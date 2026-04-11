@@ -509,7 +509,7 @@ Se precificar a R$ 100:
 
 ---
 
-## 13. COMPARATIVO AMAZON vs ML vs SHOPEE (abril 2026)
+## 13. COMPARATIVO AMAZON vs [[skills/marketplace/ml-fees-rules/SKILL|ML]] vs [[skills/marketplace/shopee-fees-rules/SKILL|SHOPEE]] (abril 2026)
 
 | Aspecto | Amazon Brasil | Mercado Livre | Shopee |
 |---|---|---|---|

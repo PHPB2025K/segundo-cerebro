@@ -1,14 +1,14 @@
 # Skill: update-ml-return-rates
 
-Atualiza a coluna DEVOLUÇÕES (Col O) da aba MELI na planilha de estoque Budamix com taxas reais de devolução por SKU.
+Atualiza a coluna DEVOLUÇÕES (Col O) da aba MELI na [[skills/spreadsheet-pricing/SKILL|planilha de estoque]] Budamix com taxas reais de devolução por SKU.
 
 ## Quem usa
-- **Kobe** (agente principal)
-- **Trader** (sub-agente marketplace)
+- **[[agents/kobe|Kobe]]** (agente principal)
+- **[[agents/trader|Trader]]** (sub-agente marketplace)
 
 ## Quando usar
 - Quando receber um arquivo xlsx/json com taxas de devolução reais dos anúncios MLB
-- Periodicamente (sugestão: quinzenal) para manter a precificação atualizada
+- Periodicamente (sugestão: quinzenal) para manter a [[skills/spreadsheet-pricing/SKILL|precificação]] atualizada
 - Após mudanças significativas em logística ou embalagem que afetem devoluções
 
 ## Input

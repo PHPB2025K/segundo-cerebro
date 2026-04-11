@@ -190,7 +190,7 @@ Para vendedores que usam integração de frete via API (ex: Intelipost):
 - Shopee cobre **75%** (cupom máximo de R$ 40)
 - Proporção melhorou significativamente vs modelo anterior (era 63%/37%)
 
-### 4.4 Comparação com Mercado Livre
+### 4.4 Comparação com [[skills/marketplace/ml-fees-rules/SKILL|Mercado Livre]]
 - **ML:** frete grátis geralmente sai do bolso do vendedor (via tabela de frete competitivo)
 - **Shopee:** frete grátis subsidiado pela plataforma (até os limites acima)
 - **Na prática:** Shopee é mais vantajosa em frete, mas cobra mais em comissão (20% vs 11-16% ML)

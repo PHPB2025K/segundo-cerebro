@@ -91,15 +91,15 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ## Resultados Recentes
 
-- [09/04] Budamix Central: role-based access (admin/viewer), login Simone, domínio central.budamix.com.br
-- [08/04] GB Import Hub migrado para Supabase externo — online em https://import.budamix.com.br
+- [09/04] Budamix Central: role-based access (admin/viewer), login Simone, domínio central.budamix.com.br → [[memory/context/decisoes/2026-04|decisões]]
+- [08/04] [[memory/projects/gb-import-hub-schema|GB Import Hub]] migrado para Supabase externo — online em https://import.budamix.com.br
 - [08/04] Migração completa: 12 tabelas, 4.530 rows, 17 Edge Functions, 27 docs, SSL Let's Encrypt
-- [08/04] Skill spreadsheet-pricing criada (mapeamento de 4 abas, 40 fórmulas protegidas)
+- [08/04] Skill [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]] criada (mapeamento de 4 abas, 40 fórmulas protegidas)
 - [08/04] PCM001 na planilha: preço R$19,90, custo R$1,04
 - [07/04] PCM001 publicado em ML + Shopee (3 lojas) + Amazon BR (FBA, ASIN pendente)
 - [07/04] Skills: [[skills/shopee-listing-creator/SKILL|shopee-listing-creator]], [[skills/amazon-listing-creator/SKILL|amazon-listing-creator]], [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]]
 - [07/04] Fix [[agents/kobe/AGENTS|OpenClaw]]: fallback cascata corrigido
-- [06/04] Reestruturação Canggu + pipeline vetorial Ana + migração GPT 5.4
+- [06/04] Reestruturação [[agents/builder/memory/projects/canguu|Canggu]] + pipeline vetorial Ana + migração GPT 5.4
 
 ---
 

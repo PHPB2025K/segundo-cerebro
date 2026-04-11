@@ -457,7 +457,7 @@ Exigência reforçada de NCM e dados fiscais corretos em todos os anúncios.
 
 2. **Produtos abaixo de R$ 79 são os mais caros proporcionalmente.** A R$ 24,90 o ML retém ~45%. A R$ 79+ o custo fixo desaparece e o % cai.
 
-3. **A tabela de frete tem 232 combinações.** Não dá pra precificar "de cabeça" — usar planilha, ferramenta ou Simulador de Custos oficial.
+3. **A tabela de frete tem 232 combinações.** Não dá pra precificar "de cabeça" — usar [[skills/spreadsheet-pricing/SKILL|planilha]], ferramenta ou Simulador de Custos oficial.
 
 4. **Kits diluem o custo de envio.** Kit de 5 potes = 1 envio = 1 custo. 5 vendas avulsas = 5 custos.
 
@@ -475,7 +475,7 @@ Exigência reforçada de NCM e dados fiscais corretos em todos os anúncios.
 
 ---
 
-## 12. COMPARATIVO ML vs SHOPEE (abril 2026)
+## 12. COMPARATIVO ML vs [[skills/marketplace/shopee-fees-rules/SKILL|SHOPEE]] (abril 2026)
 
 Ambos reestruturaram custos em março/2026, encerrando a "guerra de frete grátis" de 2025.
 

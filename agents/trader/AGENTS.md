@@ -15,7 +15,7 @@ Se IDENTITY.md é o caráter e MEMORY.md é o cérebro, AGENTS.md é a disciplin
 
 ## 2. Protocolo de Recebimento de Tarefa
 
-Quando o [[agents/kobe/IDENTITY.md|Kobe]] delega uma tarefa, o Trader segue este fluxo antes de iniciar:
+Quando o [[agents/kobe/IDENTITY|Kobe]] delega uma tarefa, o Trader segue este fluxo antes de iniciar:
 
 ### 2.1 Triagem (antes de executar qualquer coisa)
 
@@ -62,7 +62,7 @@ Nunca pular direto para execução. Mesmo em tarefas simples, a etapa de valida�
 
 ### 3.3 Ao gerar relatórios
 
-1. Ler [[skills/design/report-design-system/SKILL.md|report-design-system]] antes de gerar qualquer HTML
+1. Ler [[skills/design/report-design-system/SKILL|report-design-system]] antes de gerar qualquer HTML
 2. Ler `skills/design/excel-design-system.md` antes de formatar qualquer planilha
 3. Usar `templates/report-base.html` como base (CSS nunca inline no Python)
 4. Container HTML: 1120px. Tabelas: font 0.76rem, compactas
@@ -255,7 +255,7 @@ analise-concorrencia-potes-1520ml-2026-03-23.xlsx
 
 ### 9.2 Com outros agentes
 
-- **Nunca** se comunicar diretamente com [[agents/spark/IDENTITY.md|Spark]] ou [[agents/builder/IDENTITY.md|Builder]]
+- **Nunca** se comunicar diretamente com [[agents/spark/IDENTITY|Spark]] ou [[agents/builder/IDENTITY|Builder]]
 - **Nunca** falar diretamente com Pedro
 - Se precisar de dado de outro agente → pedir ao Kobe
 - Se outro agente precisar de dado do Trader → Kobe media a troca
@@ -295,7 +295,7 @@ analise-concorrencia-potes-1520ml-2026-03-23.xlsx
 
 | Skill | Path | Uso |
 |-------|------|-----|
-| [[skills/update-ml-return-rates/SKILL.md|update-ml-return-rates]] | `skills/update-ml-return-rates/` | Atualiza Col O (DEVOLUÇÕES) da aba MELI com taxas reais. Input: xlsx ou json com dados de devolução por SKU. |
-| [[skills/spreadsheet-pricing/SKILL.md|spreadsheet-pricing]] | `skills/spreadsheet-pricing/` | Mapeamento de colunas INPUT vs FORMULA da planilha de estoque (4 abas). |
-| [[skills/shopee-listing-creator/SKILL.md|shopee-listing-creator]] | `skills/shopee-listing-creator/` | Criação de anúncios na Shopee (3 lojas). |
-| [[skills/amazon-listing-creator/SKILL.md|amazon-listing-creator]] | `skills/amazon-listing-creator/` | Criação de listings Amazon via SP-API. |
+| [[skills/update-ml-return-rates/SKILL|update-ml-return-rates]] | `skills/update-ml-return-rates/` | Atualiza Col O (DEVOLUÇÕES) da aba MELI com taxas reais. Input: xlsx ou json com dados de devolução por SKU. |
+| [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]] | `skills/spreadsheet-pricing/` | Mapeamento de colunas INPUT vs FORMULA da planilha de estoque (4 abas). |
+| [[skills/shopee-listing-creator/SKILL|shopee-listing-creator]] | `skills/shopee-listing-creator/` | Criação de anúncios na Shopee (3 lojas). |
+| [[skills/amazon-listing-creator/SKILL|amazon-listing-creator]] | `skills/amazon-listing-creator/` | Criação de listings Amazon via SP-API. |

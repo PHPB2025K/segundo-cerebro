@@ -22,16 +22,16 @@ Kobe é o orquestrador. Os agentes NÃO falam diretamente com o Pedro.
 
 | Agente | Especialidade | Modelo | Memória |
 |--------|--------------|--------|---------|
-| **[[agents/trader/IDENTITY.md|Trader]]** | Marketplace (ML, Shopee, Amazon) — relatórios, extratos, concorrência, SKUs, pricing | GPT 5.4 | `shared/trader/` |
-| **[[agents/spark/IDENTITY.md|Spark]]** | ADS (ML Ads, Amazon Ads, Meta Ads, Google Ads) — campanhas, ROAS, budget, anomalias | GPT 5.4 | `shared/spark/` |
-| **[[agents/builder/IDENTITY.md|Builder]]** | Dev (MicroSaaS, APIs, automações, integrações, frontend) | GPT 5.4 | `shared/builder/` |
-| **[[agents/fisco/IDENTITY.md|Fisco]]** | Faturamento — NF-e internas, distribuição de estoque entre CNPJs, conciliação fiscal, limites Simples | GPT 5.4 | `shared/fisco/` |
+| **[[agents/trader/IDENTITY|Trader]]** | Marketplace (ML, Shopee, Amazon) — relatórios, extratos, concorrência, SKUs, pricing | GPT 5.4 | `shared/trader/` |
+| **[[agents/spark/IDENTITY|Spark]]** | ADS (ML Ads, Amazon Ads, Meta Ads, Google Ads) — campanhas, ROAS, budget, anomalias | GPT 5.4 | `shared/spark/` |
+| **[[agents/builder/IDENTITY|Builder]]** | Dev (MicroSaaS, APIs, automações, integrações, frontend) | GPT 5.4 | `shared/builder/` |
+| **[[agents/fisco/IDENTITY|Fisco]]** | Faturamento — NF-e internas, distribuição de estoque entre CNPJs, conciliação fiscal, limites Simples | GPT 5.4 | `shared/fisco/` |
 
 **Regras de delegação:**
-- Tarefas operacionais de marketplace → delegar pro [[agents/trader/IDENTITY.md|Trader]]
-- Análise de ADS e campanhas → delegar pro [[agents/spark/IDENTITY.md|Spark]]
-- Código, integrações, bugs, frontend → delegar pro [[agents/builder/IDENTITY.md|Builder]] (briefings de frontend DEVEM usar templates/BRIEFING-TEMPLATE.md + referenciar 4 skills de design)
-- Faturamento, NF-e internas, distribuição de estoque, conciliação fiscal → delegar pro [[agents/fisco/IDENTITY.md|Fisco]]
+- Tarefas operacionais de marketplace → delegar pro [[agents/trader/IDENTITY|Trader]]
+- Análise de ADS e campanhas → delegar pro [[agents/spark/IDENTITY|Spark]]
+- Código, integrações, bugs, frontend → delegar pro [[agents/builder/IDENTITY|Builder]] (briefings de frontend DEVEM usar templates/BRIEFING-TEMPLATE.md + referenciar 4 skills de design)
+- Faturamento, NF-e internas, distribuição de estoque, conciliação fiscal → delegar pro [[agents/fisco/IDENTITY|Fisco]]
 - Estratégia, coordenação, comunicação com Pedro → Kobe faz direto
 - Resultado sempre passa pelo Kobe antes de chegar ao Pedro
 
@@ -216,7 +216,7 @@ Quando uma sessão precisa ser compactada:
 - Criar e atualizar arquivos de memória
 - Fazer commits no repositório Git (backup do workspace)
 - Rascunhos de análises, textos e documentos
-- Delegar tarefas pros agentes ([[agents/trader/IDENTITY.md|Trader]], [[agents/spark/IDENTITY.md|Spark]], [[agents/builder/IDENTITY.md|Builder]])
+- Delegar tarefas pros agentes ([[agents/trader/IDENTITY|Trader]], [[agents/spark/IDENTITY|Spark]], [[agents/builder/IDENTITY|Builder]])
 - Ler mensagens do WhatsApp em grupos/contatos da allowlist (READ)
 
 **Perguntar antes:**
@@ -310,9 +310,9 @@ Quando o Pedro pedir análise de marketplace, não entregar análise júnior. Es
 - HTML = versão de leitura/apresentação (principal)
 - Excel = source of truth / dados brutos (complementar)
 - Sempre enviar ambos juntos
-- Design system: dark theme, [[skills/design/report-design-system/SKILL.md|report-design-system]]
-- Atualização taxas devolução ML: [[skills/update-ml-return-rates/SKILL.md|update-ml-return-rates]]
-- Precificação planilha estoque: [[skills/spreadsheet-pricing/SKILL.md|spreadsheet-pricing]]
+- Design system: dark theme, [[skills/design/report-design-system/SKILL|report-design-system]]
+- Atualização taxas devolução ML: [[skills/update-ml-return-rates/SKILL|update-ml-return-rates]]
+- Precificação planilha estoque: [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]]
 - Container 1280px, font 0.76rem para tabelas
 - Nunca incluir seções "em breve" ou placeholders
 

@@ -8,12 +8,12 @@ _Atualizado: 2026-03-26_
 
 | Agente | Papel | Nível | Modelo | Status | Capacitado | Criado |
 |--------|-------|-------|--------|--------|------------|--------|
-| **[[agents/kobe/IDENTITY.md|Kobe]]** | Hub / COO | L4 | Opus 4.6 | ✅ Ativo | ✅ Completo | 2026-03-14 |
-| **[[agents/spark/IDENTITY.md|Spark]]** | Tráfego Pago (Meta + Google Ads) | L1 | Opus 4.6 | ✅ Ativo | ✅ Completo | 2026-03-19 |
-| **[[agents/trader/IDENTITY.md|Trader]]** | Marketplace (ML + Amazon + Shopee) | L1 | Opus 4.6 | ✅ Ativo | ✅ Completo | 2026-03-19 |
-| **[[agents/builder/IDENTITY.md|Builder]]** | Dev (SaaS + Sistemas) | L2 ⬆️ | Opus 4.6 | ✅ Ativo | ✅ Completo | 2026-03-19 |
-| **[[agents/fisco/IDENTITY.md|Fisco]]** | Faturamento (NF-e, distribuição, fiscal) | L1 | Opus 4.6 | 🔴 Construção | Fase 1 | 2026-03-28 |
-| **[[agents/rh/IDENTITY.md|RH]]** | Recursos Humanos (ponto, férias, CLT) | L1 | Opus 4.6 | 🟡 Fase 1 | Estrutura criada | 2026-03-30 |
+| **[[agents/kobe/IDENTITY|Kobe]]** | Hub / COO | L4 | Opus 4.6 | ✅ Ativo | ✅ Completo | 2026-03-14 |
+| **[[agents/spark/IDENTITY|Spark]]** | Tráfego Pago (Meta + Google Ads) | L1 | Opus 4.6 | ✅ Ativo | ✅ Completo | 2026-03-19 |
+| **[[agents/trader/IDENTITY|Trader]]** | Marketplace (ML + Amazon + Shopee) | L1 | Opus 4.6 | ✅ Ativo | ✅ Completo | 2026-03-19 |
+| **[[agents/builder/IDENTITY|Builder]]** | Dev (SaaS + Sistemas) | L2 ⬆️ | Opus 4.6 | ✅ Ativo | ✅ Completo | 2026-03-19 |
+| **[[agents/fisco/IDENTITY|Fisco]]** | Faturamento (NF-e, distribuição, fiscal) | L1 | Opus 4.6 | 🔴 Construção | Fase 1 | 2026-03-28 |
+| **[[agents/rh/IDENTITY|RH]]** | Recursos Humanos (ponto, férias, CLT) | L1 | Opus 4.6 | 🟡 Fase 1 | Estrutura criada | 2026-03-30 |
 
 ---
 
@@ -21,12 +21,12 @@ _Atualizado: 2026-03-26_
 
 ```
 Pedro (decisor final — humano)
- └── [[agents/kobe/IDENTITY.md|Kobe]] (L4 Trusted — agente mestre / COO)
-      ├── [[agents/spark/IDENTITY.md|Spark]] (L1 Observer — tráfego pago)
-      ├── [[agents/trader/IDENTITY.md|Trader]] (L1 Observer — marketplaces)
-      ├── [[agents/builder/IDENTITY.md|Builder]] (L1 Observer — dev/SaaS)
-      ├── [[agents/fisco/IDENTITY.md|Fisco]] (L1 Observer — faturamento/fiscal)
-      └── [[agents/rh/IDENTITY.md|RH]] (L1 Observer — recursos humanos/ponto/CLT)
+ └── [[agents/kobe/IDENTITY|Kobe]] (L4 Trusted — agente mestre / COO)
+      ├── [[agents/spark/IDENTITY|Spark]] (L1 Observer — tráfego pago)
+      ├── [[agents/trader/IDENTITY|Trader]] (L1 Observer — marketplaces)
+      ├── [[agents/builder/IDENTITY|Builder]] (L1 Observer — dev/SaaS)
+      ├── [[agents/fisco/IDENTITY|Fisco]] (L1 Observer — faturamento/fiscal)
+      └── [[agents/rh/IDENTITY|RH]] (L1 Observer — recursos humanos/ponto/CLT)
 ```
 
 **Regra absoluta:** Nenhum agente subordinado fala diretamente com Pedro. Tudo passa pelo Kobe.
@@ -56,13 +56,13 @@ Pedro (decisor final — humano)
 ### Fluxo de comunicação
 
 ```
-Pedro ←→ [[agents/kobe/IDENTITY.md|Kobe]] ←→ [[agents/spark/IDENTITY.md|Spark]] / [[agents/trader/IDENTITY.md|Trader]] / [[agents/builder/IDENTITY.md|Builder]]
+Pedro ←→ [[agents/kobe/IDENTITY|Kobe]] ←→ [[agents/spark/IDENTITY|Spark]] / [[agents/trader/IDENTITY|Trader]] / [[agents/builder/IDENTITY|Builder]]
           ↑                    ↑
     (único canal)       (nunca direto com Pedro)
 ```
 
 - **Pedro fala APENAS com Kobe** (hub)
-- [[agents/kobe/IDENTITY.md|Kobe]] delega pra [[agents/spark/IDENTITY.md|Spark]]/[[agents/trader/IDENTITY.md|Trader]]/[[agents/builder/IDENTITY.md|Builder]] via `sessions_spawn`
+- [[agents/kobe/IDENTITY|Kobe]] delega pra [[agents/spark/IDENTITY|Spark]]/[[agents/trader/IDENTITY|Trader]]/[[agents/builder/IDENTITY|Builder]] via `sessions_spawn`
 - Agentes secundários não têm binding Telegram
 - Resultados voltam pro Kobe que filtra, valida e entrega ao Pedro
 
@@ -90,7 +90,7 @@ Toda entrega do agente ao Kobe segue formato padronizado (definido no IDENTITY.m
 ### Comunicação entre agentes
 
 - Agentes NÃO se comunicam entre si diretamente
-- Se [[agents/spark/IDENTITY.md|Spark]] precisa de dado do [[agents/trader/IDENTITY.md|Trader]] → Spark pede ao [[agents/kobe/IDENTITY.md|Kobe]] → Kobe pede ao Trader → Kobe repassa ao Spark
+- Se [[agents/spark/IDENTITY|Spark]] precisa de dado do [[agents/trader/IDENTITY|Trader]] → Spark pede ao [[agents/kobe/IDENTITY|Kobe]] → Kobe pede ao Trader → Kobe repassa ao Spark
 - Exceção: Kobe pode autorizar comunicação direta entre agentes para tarefas específicas (documentar quando fizer)
 
 ---
@@ -113,10 +113,10 @@ Toda entrega do agente ao Kobe segue formato padronizado (definido no IDENTITY.m
 | memory/campaigns/history.md | ✅ | v1.0 |
 | memory/sessions/TEMPLATE.md | ✅ | v1.0 |
 | memory/feedback/reviews.json | ✅ | v2.0 |
-| [[agents/kobe/shared/spark/skills/meta-ads/SKILL.md|skills/meta-ads/SKILL.md]] | ✅ | v2.0 |
-| [[agents/kobe/shared/spark/skills/google-ads/SKILL.md|skills/google-ads/SKILL.md]] | ✅ | v2.0 |
-| [[agents/kobe/shared/spark/skills/budget-optimizer/SKILL.md|skills/budget-optimizer/SKILL.md]] | ✅ | v2.0 |
-| [[agents/kobe/shared/spark/skills/anomaly-detector/SKILL.md|skills/anomaly-detector/SKILL.md]] | ✅ | v2.0 |
+| [[agents/kobe/shared/spark/skills/meta-ads/SKILL|skills/meta-ads/SKILL.md]] | ✅ | v2.0 |
+| [[agents/kobe/shared/spark/skills/google-ads/SKILL|skills/google-ads/SKILL.md]] | ✅ | v2.0 |
+| [[agents/kobe/shared/spark/skills/budget-optimizer/SKILL|skills/budget-optimizer/SKILL.md]] | ✅ | v2.0 |
+| [[agents/kobe/shared/spark/skills/anomaly-detector/SKILL|skills/anomaly-detector/SKILL.md]] | ✅ | v2.0 |
 
 ### 📊 Trader (Marketplaces) — ✅ COMPLETO
 

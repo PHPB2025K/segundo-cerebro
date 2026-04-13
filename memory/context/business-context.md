@@ -63,6 +63,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 3. FinanceFlow — automação fiscal para 6 CNPJs
 4. Estabilização do Canggu (WhatsApp, busca vetorial, context-builder)
 5. Padronização de anúncios Shopee via skill shopee-listing-creator
+6. Estoque Budamix — controle de entrada/saída armazém via Google Sheets (https://estoque.budamix.com.br)
 
 ---
 

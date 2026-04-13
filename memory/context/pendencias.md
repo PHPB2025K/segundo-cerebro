@@ -58,6 +58,8 @@
 - [10/04] Obsidian — Auditoria profunda de conexões semânticas pendente. Prompt recebido, executar em sessão dedicada.
 - [13/04] Amazon Request Review — Monitorar taxa de sucesso pós-fix por 7 dias. Meta: >70% sucesso. Verificar logs diários até 20/04. Backfill de ~4866 pedidos em execução.
 - [13/04] Budamix Central Live Sales — Validar layout TV na TV física do escritório. Confirmar legibilidade a 3m.
+- [13/04] Estoque Budamix — Conectar com planilha real e testar fluxo completo (upload PDF → preview → confirmar → atualizar planilha). Deploy em https://estoque.budamix.com.br
+- [13/04] Estoque Budamix — Validar layout mobile (equipe usa celular no armazém)
 
 ## ⚪ Backlog (sem urgência imediata)
 

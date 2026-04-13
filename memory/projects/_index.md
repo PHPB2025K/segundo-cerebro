@@ -14,6 +14,7 @@
 | OpenClaw/Kobe | 🟢 Produção | 6 agentes GPT 5.4, v2026.4.5, 22 crons | [[agents/kobe/AGENTS|Kobe AGENTS]] |
 | Canggu | 🟢 Produção | Dashboard + busca vetorial + WhatsApp + roles | [[agents/builder/memory/projects/canguu|canggu]] |
 | Jornal da Manhã | 🟢 Produção | Digest diário | — |
+| Estoque Budamix | 🟢 Produção | Controle entrada/saída armazém via Google Sheets | [[memory/projects/estoque-budamix\|estoque-budamix]] |
 
 ---
 
@@ -46,6 +47,7 @@
 
 ## Mudanças Recentes
 
+- [13/04] Estoque Budamix — Sistema completo criado e deployado: Next.js + Supabase + Google Sheets API + N8N (PDF parser) → [[memory/context/decisoes/2026-04|decisões]]
 - [13/04] Amazon Request Review — Fix definitivo: campo delivered_at + modelo Opus 4.6 + timeout 600s + alertas + backfill 4866 pedidos → [[memory/context/decisoes/2026-04|decisões]]
 - [13/04] Budamix Central Live Sales — Layout TV zero-scroll (1920×1080) + fix mobile regression → [[memory/context/decisoes/2026-04|decisões]]
 - [09/04] Budamix Central — Role-based access (admin/viewer), login Simone, domínio central.budamix.com.br → [[memory/context/decisoes/2026-04|decisões]]

@@ -30,6 +30,7 @@ Sistema web para controle de entrada e saída de produtos do armazém GB Importa
 | 13/04/2026 | Migração SQLite/Prisma → Supabase Postgres |
 | 13/04/2026 | Design system Budamix aplicado (teal/areia/terracotta) |
 | 13/04/2026 | Upload PDF via N8N webhook (Cloudfy) implementado |
+| 13/04/2026 | Fix parseInt milhar BR + fix col_brand + reprocessamento 4 ops |
 
 ## Decisões Tomadas
 - [13/04] Supabase em vez de SQLite — mesmo projeto do Budamix Central com prefixo `estoque_`
@@ -37,11 +38,18 @@ Sistema web para controle de entrada e saída de produtos do armazém GB Importa
 - [13/04] PDF parsing no N8N (Cloudfy) em vez de Next.js — pdfjs-dist não funciona em SSR
 - [13/04] Traefik para reverse proxy (não Nginx) — VPS usa Traefik nas portas 80/443
 - [13/04] Design system próprio: Plus Jakarta Sans + DM Sans + JetBrains Mono, paleta Budamix
+- [13/04] Fix parseInt: números BR com separador de milhar (ponto) devem ser tratados com `.replace(/\./g, "")` antes de `parseInt`
+- [13/04] Fix col_brand: coluna G (MARCA) em vez de H (CUSTO ESTOQUE TOTAL)
 
 ## Pendências
-- [ ] Conectar com a planilha de estoque real (credenciais da service account já configuradas)
-- [ ] Testar fluxo completo: upload PDF → preview → confirmar entrada → atualizar planilha
+- [x] Conectar com a planilha de estoque real (credenciais da service account já configuradas)
+- [x] Testar fluxo completo: upload PDF → preview → confirmar entrada → atualizar planilha
 - [ ] Validar layout em mobile (equipe usa celular no armazém)
+
+## Bugs Resolvidos
+- [13/04] `parseInt("3.377")` → 3 (ponto = milhar BR, JS interpreta como decimal). 6 de 113 SKUs afetados. Fix: `replace(/\./g, "")` antes de parseInt
+- [13/04] `col_brand = 'H'` apontava para "Custo Estoque Total" em vez de "Marca". Fix: PATCH Supabase `col_brand = 'G'`
+- [13/04] 4 operações "Baixa 13.04" com status "erro" reprocessadas após fix (IMB501C_T, IMB501P_T, IMB501V_T, SPC011)
 
 ---
 *Criado: 13/04/2026*

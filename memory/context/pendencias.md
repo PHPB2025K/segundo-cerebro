@@ -60,6 +60,8 @@
 - [13/04] Budamix Central Live Sales — Validar layout TV na TV física do escritório. Confirmar legibilidade a 3m.
 - [13/04] Estoque Budamix — Conectar com planilha real e testar fluxo completo (upload PDF → preview → confirmar → atualizar planilha). Deploy em https://estoque.budamix.com.br
 - [13/04] Estoque Budamix — Validar layout mobile (equipe usa celular no armazém)
+- [13/04] DPM001 ML — Dois listings ativos: MLB6600435126 (R$29,90 Clássico) e MLB6611643028 (R$34,90 Premium). Avaliar: pausar o antigo, ou manter ambos (teste A/B de preço/listing type)?
+- [13/04] DPM001 ML (MLB6611643028) — Registrar no Supabase (item_id, SKU, categoria, preço, data). Aguardando aprovação Pedro.
 
 ## ⚪ Backlog (sem urgência imediata)
 

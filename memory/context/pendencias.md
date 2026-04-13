@@ -20,7 +20,7 @@
 - [06/04] Canggu — ~14 Session Extractors do [[agents/kobe/AGENTS|OpenClaw]] desabilitados (timeout 120s insuficiente para Opus 4.6). Precisam de 300s+. Reavaliar após migração GPT 5.4.
 - [06/04] Canggu — Analistas devem preencher campos ricos (descrição completa, sugestões de uso, diferenciais, tags) dos 44 produtos ativos. Guia entregue. Top 10 primeiro. → [[memory/context/people|People]]
 - [06/04] [[agents/kobe/AGENTS|OpenClaw]] — 3 crons com timeouts: job-monitor (30s), Contingency Guard (30s), Organização Noturna (180s). Todos precisam de aumento.
-- [06/04] [[agents/kobe/AGENTS|OpenClaw]] — Amazon Request Review overloaded. Haiku 3.5 possivelmente depreciado → migrar para modelo atualizado.
+- [06/04] ~~OpenClaw — Amazon Request Review overloaded. Haiku 3.5 possivelmente depreciado.~~ → ✅ Resolvido 13/04: migrado para Opus 4.6, fix delivered_at, backfill executado
 - [06/04] [[agents/kobe/AGENTS|OpenClaw]] — GitHub Backup com timeouts. Aumentar de 120s para 300s.
 - [06/04] Segurança — Porta 8084 (Evolution API?) aberta na UFW. Verificar necessidade.
 - [06/04] Segurança — Tailscale/WireGuard não implementado. Recomendado.
@@ -56,6 +56,8 @@
 - [10/04] Atualizar skill [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]] com novo SSID da planilha
 - [10/04] Amazon — SKUs duplicados: IMB501*_T e IMB501T-{cor} apontam para os mesmos ASINs. Investigar e consolidar.
 - [10/04] Obsidian — Auditoria profunda de conexões semânticas pendente. Prompt recebido, executar em sessão dedicada.
+- [13/04] Amazon Request Review — Monitorar taxa de sucesso pós-fix por 7 dias. Meta: >70% sucesso. Verificar logs diários até 20/04. Backfill de ~4866 pedidos em execução.
+- [13/04] Budamix Central Live Sales — Validar layout TV na TV física do escritório. Confirmar legibilidade a 3m.
 
 ## ⚪ Backlog (sem urgência imediata)
 
@@ -115,6 +117,9 @@
 - [09/04] ✅ RH — Migração Ponto Certo confirmada (10 tabelas, 855 registros, config updated)
 - [09/04] ✅ Amazon Request Review — Fix: batch 35, timeout 420s, persistência review_requested_at, tratamento timing
 - [09/04] ✅ Amazon Request Review — Migration SQL: coluna review_requested_at + index
+- [13/04] ✅ Amazon Request Review — Fix definitivo: delivered_at + Opus 4.6 + timeout 600s + alertas + backfill
+- [13/04] ✅ Budamix Central Live Sales — Layout TV zero-scroll (h-screen + overflow-hidden + flex)
+- [13/04] ✅ Budamix Central Live Sales — Fix mobile regression (classes condicionais lg:)
 - [09/04] ✅ Budamix Central — Login Simone criado (simoneperon@uol.com.br, role viewer)
 - [09/04] ✅ Budamix Central — Role-based access implementado (admin/viewer, middleware + API)
 - [09/04] ✅ Budamix Central — Domínio migrado para central.budamix.com.br (SSL Let's Encrypt)
@@ -122,7 +127,7 @@
 
 ---
 
-*Atualizado: 09/04/2026*
+*Atualizado: 13/04/2026*
 
 ---
 

@@ -46,6 +46,8 @@
 
 ## Mudanças Recentes
 
+- [13/04] Amazon Request Review — Fix definitivo: campo delivered_at + modelo Opus 4.6 + timeout 600s + alertas + backfill 4866 pedidos → [[memory/context/decisoes/2026-04|decisões]]
+- [13/04] Budamix Central Live Sales — Layout TV zero-scroll (1920×1080) + fix mobile regression → [[memory/context/decisoes/2026-04|decisões]]
 - [09/04] Budamix Central — Role-based access (admin/viewer), login Simone, domínio central.budamix.com.br → [[memory/context/decisoes/2026-04|decisões]]
 - [09/04] Zero Anthropic concluído — 43 refs removidas, fallback chain opção C, doctor warnings corrigidos → [[memory/context/decisoes/2026-04|decisões abril]]
 - [09/04] RH v2 — Auditoria + deploy ([[agents/rh/SOUL|SOUL]], [[agents/rh/AGENTS|AGENTS]], [[agents/kobe/shared/rh/skills/comunicacao-funcionarios/SKILL|comunicacao skill]]) + cron semanal + tabela comunicacoes_rh
@@ -63,4 +65,4 @@
 
 ---
 
-*Atualizado: 09/04/2026*
+*Atualizado: 13/04/2026*

@@ -119,5 +119,17 @@ Filosofia: "Não existe tamanho mínimo para importar ou usar AI." Autonomia sob
 
 ---
 
+## Regra de Sessão — OBRIGATÓRIO
+
+Antes de qualquer operação neste repositório, LEIA o arquivo
+`_VAULT_MAP.md` na raiz. Ele contém o mapeamento completo de todos
+os arquivos e pastas. Use-o para localizar arquivos diretamente
+em vez de rodar find/glob/grep exploratórios.
+
+Após qualquer operação que crie, mova, renomeie ou delete arquivos,
+ATUALIZE o `_VAULT_MAP.md` para refletir o estado atual do repositório.
+
+---
+
 *Criado: 06/04/2026*
 *Atualizar: sempre que contexto mudar*

@@ -134,3 +134,29 @@ done
 - **Stack:** Next.js, Python, N8N, Supabase, Vercel
 - **VPS:** 187.77.237.231 — roda OpenClaw (sistema multi-agente)
 - **Background:** Ex-Trades Up (assessoria importação), experiência com sourcing Alibaba
+
+## Knowledge Graph
+
+Plugin de busca semântica e análise de grafo instalado.
+
+### Operações disponíveis (via MCP ou CLI)
+
+| Comando | O que faz |
+|---------|-----------|
+| `kg_search` | Busca semântica por significado (embeddings 384d) |
+| `kg_node` | Lookup de nota com metadata + conexões |
+| `kg_paths` | Caminhos entre duas notas no grafo |
+| `kg_common` | Conexões compartilhadas entre duas notas |
+| `kg_neighbors` | Vizinhança N-hops de uma nota |
+| `kg_subgraph` | Extrair subgrafo local |
+| `kg_communities` | Detectar clusters temáticos (Louvain) |
+| `kg_bridges` | Nós ponte entre clusters (betweenness centrality) |
+| `kg_central` | Nós mais centrais (PageRank) |
+
+### Quando usar
+
+- **Buscar por significado:** `kg_search("importação China custo")` — encontra notas relacionadas mesmo sem keyword match
+- **Descobrir conexões:** `kg_paths("nota-A", "nota-B")` — como duas notas se conectam
+- **Encontrar clusters:** `kg_communities` — quais grupos temáticos existem
+- **Identificar hubs:** `kg_central` — notas mais importantes do grafo
+- **Reindexar:** Após mudanças grandes, rodar `kg-index` no terminal

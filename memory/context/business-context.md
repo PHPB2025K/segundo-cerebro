@@ -14,6 +14,7 @@ tags:
 > Em caso de conflito, as fontes individuais prevalecem (ver PROPAGATION.md).
 > Fontes: projects/_index.md (projetos), people.md (equipe), decisoes/ (decisões)
 > Índices: [[business/importacao/_index|Importação]], [[business/marketplaces/_index|Marketplaces]], [[business/financeiro/_index|Financeiro]], [[business/empresa/_index|Empresa]], [[business/marketing/_index|Marketing]]
+> Mapeamento local: [[memory/context/dev-projects-local]]
 > Last updated by: /salve — 06/04/2026
 
 ---

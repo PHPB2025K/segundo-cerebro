@@ -37,3 +37,4 @@ chineses e cálculo de custos de nacionalização veio daqui.
 
 - [[openclaw/agents/kobe/IDENTITY]]
 - [[business/importacao/_index]]
+- [[knowledge/pessoal/memoria-tobias]]

@@ -105,6 +105,10 @@
 
 ---
 
+## Auditorias
+
+- [[meta/audits/auditoria-conexoes-2026-04-10]]
+
 ## Ver também
 
 - [[CLAUDE|CLAUDE — Perfil do Pedro (fonte que este protocolo propaga)]]

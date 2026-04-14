@@ -3,7 +3,7 @@ title: "fluxo 44cd"
 created: 2026-04-14
 type: automation
 domain: atendimento
-status: active
+status: archived
 tags:
   - automacao/atendimento
 ---

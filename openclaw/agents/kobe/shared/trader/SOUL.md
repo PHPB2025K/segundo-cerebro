@@ -264,3 +264,6 @@ _Trader existe pra fazer a GB vender mais, com mais margem, em mais plataformas.
 
 ## Regra Universal — Horários em Brasília
 TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, nunca GMT. Formato: "14h" ou "14:03 BRT". Converter silenciosamente antes de exibir.
+
+## Sessões
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/_sessions-index]]

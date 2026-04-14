@@ -1,135 +1,136 @@
-# Pedro Broglio — Contexto para o Claude Code
+# segundo-cerebro — Vault Obsidian Unificado
 
-## Fontes de Contexto
+Vault centralizado do Pedro Broglio. Contém: infraestrutura do sistema multi-agente OpenClaw, skills do Claude Code, referências de negócios (Budamix/GB Importadora), projetos de código, automações, e conhecimento pessoal.
 
-| Fonte | Path | O que tem |
-|-------|------|-----------|
-| **Segundo Cérebro** | `~/segundo-cerebro/` | Contexto operacional: pendências, decisões, projetos |
-| **Este arquivo** | `~/.claude/CLAUDE.md` | Perfil, diretrizes gerais |
-| **OpenClaw (Kobe)** | VPS 187.77.237.231 | Agente AI principal, crons, integrações, memória operacional |
+## Mapa do Vault
 
-> **Regra:** antes de criar algo novo, consultar o segundo cérebro. Contexto operacional vive lá, não aqui.
+```
+segundo-cerebro/
+├── openclaw/              ← Sistema multi-agente OpenClaw
+│   ├── agents/            ← 6 agentes: kobe, builder, trader, spark, fisco, rh
+│   │   └── */IDENTITY.md  ← Quem é, personalidade, regras
+│   │   └── */SKILL.md     ← Skills específicas do agente
+│   │   └── */memory/      ← Sessões e contexto do agente
+│   └── system/            ← Briefings de sistema, configs globais
+├── skills/                ← TODAS as skills do Claude Code
+│   ├── marketplace/       ← ML, Amazon, Shopee (fees, listing, precificação)
+│   ├── financeiro/        ← Stripe, extratos, gestão financeira
+│   ├── design/            ← Design system, identidade visual
+│   ├── dev/               ← Fullstack, debugging, código
+│   ├── superpowers/       ← Skills avançadas (systematic-debugging, etc)
+│   ├── marketing/         ← Conteúdo, anúncios, tráfego
+│   ├── n8n/               ← 🔗 symlinks → ~/.claude/skills/n8n-*
+│   ├── lovable/           ← 🔗 symlinks → ~/.claude/skills/lovable-*
+│   ├── pessoal/           ← 🔗 symlinks → ~/.claude/skills/cerebro, salve
+│   └── [projeto]/         ← 🔗 symlinks → skills de cada projeto
+├── business/              ← Referências operacionais (notas-índice)
+│   ├── importacao/        ← 471 arqs em ~/Documents/01-Importacao/
+│   ├── marketplaces/      ← 56 arqs em ~/Documents/02-Marketplaces/
+│   ├── financeiro/        ← 112 arqs em ~/Documents/03-Financeiro/
+│   ├── empresa/           ← 124 arqs em ~/Documents/04-Empresa/
+│   └── marketing/         ← 20 arqs em ~/Documents/07-Conteudo-Marketing/
+├── projects/              ← Fichas de projeto (1 nota por projeto)
+├── memory/                ← Contexto operacional
+│   ├── context/           ← Pendências, decisões mensais, pessoas
+│   ├── sessions/          ← Logs de sessão
+│   └── people/            ← Notas de pessoas
+├── knowledge/             ← Conhecimento pessoal e referências
+│   ├── pessoal/           ← História, memórias (Trades Up, Tobias)
+│   ├── concepts/          ← Conceitos e aprendizados
+│   └── corrida/           ← Coaching de corrida
+├── automacoes/            ← Prompts e fluxos automatizados
+│   ├── atendimento/       ← System prompts de atendimento WhatsApp
+│   ├── n8n-workflows/     ← Referências de workflows N8N
+│   └── system-prompts/    ← Prompts de sistema
+└── meta/                  ← Infraestrutura do vault
+    ├── mocs/              ← Maps of Content (índices temáticos)
+    ├── templates/         ← Templates de notas
+    ├── audits/            ← Auditorias de saúde do vault
+    └── scripts/           ← Scripts de manutenção
+```
 
----
+## Como Achar Coisas
 
-## Quem sou eu
+### Por tipo de conteúdo
+```bash
+# Agente específico
+find openclaw/agents/kobe/ -name "*.md"
 
-Pedro Broglio. Empresário, importador, builder de automações com AI. Founder da GB Importadora (marca Budamix) — importação de utensílios domésticos em vidro, cerâmica e porcelana, sourcing primário em Yiwu (China). Ex-IBM, ex-Tetra Pak, ex-Page Personnel. Empreendedor desde que foi demitido por "pensar fora da caixa". Inglês fluente (exchange na Austrália).
+# Todas as skills de um domínio
+find skills/marketplace/ -name "*.md"
 
-Filosofia: "Não existe tamanho mínimo para importar ou usar AI." Autonomia sobre estabilidade. Executa antes de estar 100% pronto. Se posiciona como tradutor de complexidade para quem acha que não é pra eles.
+# Skills de um projeto específico
+find skills/[nome-projeto]/ -name "*.md"
 
----
+# Decisões
+find memory/context/decisoes/ -name "*.md"
 
-## Negócio Principal — GB Importadora / Budamix
+# Sessões de um agente
+find openclaw/agents/*/memory/sessions/ -name "*.md"
 
-- Importação de utensílios domésticos (vidro, cerâmica, porcelana)
-- Sourcing: Yiwu, China (2 viagens, Canton Fair)
-- 6 CNPJs operacionais
-- Facilidades: Pedreira-SP (operação) e Itajaí-SC (TTD 409, benefício fiscal ICMS)
-- Portos: Itajaí e Itapoá | Trading: Open Trade | ICMS 4%
-- Marca INPI registrada: Budamix
-- Visual Identity: Deep Teal #004D4D | Graphite #132525 | Sage #7EADAD | Amber Gold #C7A35A | Terracota #C56A4A
+# MOCs
+find meta/mocs/ -name "*.md"
 
-### Canais de Venda
-- **Amazon BR**: FBA, SP-API + Amazon Ads integrados
-- **Shopee**: 3 contas OAuth, auto-refresh 3h30
-- **Mercado Livre**: 3 apps (Vendas, Financeiro, Métricas), anúncios com variações
-- **budamix.com.br**: e-commerce próprio
-- **TikTok Shop**: exploração (outreach MCN/afiliados)
+# Fichas de projeto
+find projects/ -name "*.md"
+```
 
-### SKUs Ativos
-- PMR (Porta Modem Roteador): próximo SKU PMR014
-- XCP (Xícara Paris 170ml): próximo SKU XCP023
-- SPC (Suporte Porta Controle Gamer): próximo SKU SPC016
-- CTL (Caneca Tulipa 250ml): CTL001-CTL010
+### Por conteúdo (grep)
+```bash
+# Buscar por conceito em todo o vault
+grep -rli "precificação\|pricing" --include="*.md" .
 
----
+# Buscar por tag no frontmatter
+grep -rl "tags:" --include="*.md" . | xargs grep "business/importacao"
 
-## Projetos e Automações
+# Buscar por tipo de nota
+grep -rl "type: skill" --include="*.md" .
 
-| Projeto | O que é | Status |
-|---------|---------|--------|
-| **OpenClaw/Kobe** | Agente AI principal, 6 sub-agentes, 22 crons, 16 integrações | 🟢 Produção |
-| **Canggu** | Dashboard interno Budamix (produtos, conversas, analytics) | 🟢 Produção |
-| **FinanceFlow** | Automação Word→Excel via Claude + Supabase para 6 CNPJs | 🔨 Em construção |
-| **SimulaImport** | MicroSaaS simulação custos importação (NCM, cascata tributária) | 🔨 Em construção |
-| **Atlas Finance** | DFC (fluxo de caixa) com Lovable/Supabase | 🔨 Em construção |
-| **Módulo Conferências** | Validação custos importação (Simulação/PNI/DI vs Referência) | 🔨 Em construção |
-| **Jornal da Manhã** | Digest diário via Perplexity API + Claude + React | 🟢 Produção |
+# Buscar por domínio
+grep -rl "domain: marketplace" --include="*.md" .
 
----
+# Buscar por agente
+grep -rl "agent: trader" --include="*.md" .
 
-## Infraestrutura AI — OpenClaw (Kobe)
+# Notas sem backlinks (órfãs)
+for f in $(find . -name "*.md" -not -path "./.obsidian/*" -not -type l); do
+  bn="$(basename "${f%.md}")"; 
+  [ "$(grep -rli "\[\[$bn" --include="*.md" . | grep -v "$f" | wc -l)" -eq 0 ] && echo "$f"
+done
+```
 
-- **VPS**: Hostinger Ubuntu 24.04, IP 187.77.237.231
-- **OpenClaw**: v2026.4.2, Gateway 127.0.0.1:18789 (loopback only)
-- **Agentes**: Kobe (main), Trader, Spark, Builder, Fisco, RH
-- **Modelo**: migrando para GPT 5.4 (default) + GPT 5.1-mini (crons)
-- **WhatsApp**: dual mode — Baileys (leitura passiva) + Evolution API (envio)
-- **Telegram**: canal principal, bot @TOBIAS_USER_BOT, Kobe Hub 11 tópicos
-- **Custo**: ~$120/mês Anthropic (em migração para OpenAI)
+## Aliases e Referências Rápidas
 
----
+| Referência | Path |
+|------------|------|
+| Kobe / orquestrador | `openclaw/agents/kobe/IDENTITY.md` |
+| Builder | `openclaw/agents/builder/IDENTITY.md` |
+| Trader | `openclaw/agents/trader/IDENTITY.md` |
+| Spark | `openclaw/agents/spark/IDENTITY.md` |
+| Fisco | `openclaw/agents/fisco/IDENTITY.md` |
+| RH | `openclaw/agents/rh/IDENTITY.md` |
+| GB Importadora | `business/importacao/_index.md` |
+| Budamix | `business/empresa/_index.md` |
+| Precificação | `skills/marketplace/` (ML, Amazon, Shopee) |
+| Pendências | `memory/context/pendencias.md` |
+| Decisões do mês | `memory/context/decisoes/2026-04.md` |
+| MOCs | `meta/mocs/` |
 
-## Stack Técnico
+## Convenções
 
-- **Backend**: Node.js 22, Python, Bash
-- **Banco**: Supabase (PostgreSQL + pgvector + Realtime + Edge Functions)
-- **Frontend**: React (Lovable), Tailwind
-- **AI/LLM**: OpenClaw (GPT 5.4/5.1-mini), Claude Code, Claude API
-- **Integrações**: Evolution API, Bling ERP, Amazon SP-API, Shopee API, ML API, Brave Search, 1Password CLI, GitHub CLI, gog CLI
-- **DevTools**: VS Code com MCPs (Supabase, Context7, Playwright, Frontend Design), Claude Code
+- **Wikilinks:** Sempre `[[wikilink]]`, nunca `[text](url)` para links internos
+- **Frontmatter:** YAML obrigatório em toda nota. Campos: title, created, type, status, tags
+- **Tags:** Hierárquicas com `/` — `#agent/kobe`, `#skill/marketplace`, `#business/importacao`
+- **Naming:** kebab-case para notas, UPPERCASE para arquivos de identidade (IDENTITY, SKILL, SOUL)
+- **Notas-índice:** Arquivos `_index.md` são índices de referência que apontam para ~/Documents/
+- **Symlinks:** Pastas em `skills/n8n/`, `skills/lovable/`, `skills/pessoal/`, `skills/[projeto]/` são symlinks
+- **Business:** Vault guarda referências (notas MD), não arquivos brutos (PDFs, planilhas ficam em ~/Documents/)
+- **Projetos:** Código fica em `~/Documents/05-Projetos-Codigo/`. Vault tem fichas em `projects/`
 
----
+## Contexto do Pedro
 
-## Como prefiro trabalhar
-
-- Resposta direta, sem preâmbulo. Sou técnico avançado — CLI, Docker, SSH, Git no dia a dia
-- Código pronto para executar, não sugestões vagas
-- Sempre verificar o segundo cérebro antes de criar algo novo
-- Quando houver trade-offs, apresente opções com prós/contras e recomende uma
-- Sinalize riscos de segurança proativamente
-- Considere a stack existente — evite sugerir ferramentas que dupliquem o que já funciona
-- Português brasileiro. Termos técnicos em inglês
-
----
-
-## Segundo Cérebro
-
-| Estou buscando... | Onde ir |
-|-------------------|---------|
-| O que está em aberto | `$SECOND_BRAIN_PATH/memory/context/pendencias.md` |
-| Prazos | `$SECOND_BRAIN_PATH/memory/context/deadlines.md` |
-| Decisões recentes | `$SECOND_BRAIN_PATH/memory/context/decisoes/YYYY-MM.md` |
-| Status dos projetos | `$SECOND_BRAIN_PATH/memory/projects/_index.md` |
-| Equipe e contatos | `$SECOND_BRAIN_PATH/memory/context/people.md` |
-| Contexto geral | `$SECOND_BRAIN_PATH/memory/context/business-context.md` |
-
----
-
-## Skills pessoais
-
-- [[skills/coaching-corrida/SKILL|Coaching Corrida]]
-
----
-
-## Ver também
-
-- [[PROPAGATION|Protocolo de Propagação]]
-
----
-
-## Regra de Sessão — OBRIGATÓRIO
-
-Antes de qualquer operação neste repositório, LEIA o arquivo
-`_VAULT_MAP.md` na raiz. Ele contém o mapeamento completo de todos
-os arquivos e pastas. Use-o para localizar arquivos diretamente
-em vez de rodar find/glob/grep exploratórios.
-
-Após qualquer operação que crie, mova, renomeie ou delete arquivos,
-ATUALIZE o `_VAULT_MAP.md` para refletir o estado atual do repositório.
-
----
-
-*Criado: 06/04/2026*
-*Atualizar: sempre que contexto mudar*
+- **Empresas:** Budamix (produtos para casa/decoração) + GB Importadora (importação China)
+- **Marketplaces:** Mercado Livre, Amazon, Shopee — venda direta e B2B
+- **Stack:** Next.js, Python, N8N, Supabase, Vercel
+- **VPS:** 187.77.237.231 — roda OpenClaw (sistema multi-agente)
+- **Background:** Ex-Trades Up (assessoria importação), experiência com sourcing Alibaba

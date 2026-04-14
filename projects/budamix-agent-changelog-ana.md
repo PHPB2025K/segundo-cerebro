@@ -65,3 +65,7 @@ tags:
 - Verificar anti-loop: 2+ "[Mensagem sem texto]" → auto-escalação
 - Verificar áudio: arquivo .ogg deve ser transcrito via Groq
 - **Próxima auditoria: 19/abr/2026** — meta: taxa de erro < 20%
+
+## Notas relacionadas
+
+- [[projects/budamix-ai-agent]]

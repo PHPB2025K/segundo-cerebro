@@ -144,3 +144,7 @@ curl -s -X POST "https://api.supabase.com/v1/projects/jpacmloqsfiebvagfomt/datab
 - API Key: secret `WHATSAPP_API_KEY`
 - Webhook event: `MESSAGES_UPSERT` (uppercase — normalizado para case-insensitive)
 - Suporta: @s.whatsapp.net, @g.us, @lid (WhatsApp moderno)
+
+## Notas relacionadas
+
+- [[projects/budamix-ai-agent]]

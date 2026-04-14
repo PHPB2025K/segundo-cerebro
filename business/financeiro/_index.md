@@ -43,6 +43,9 @@ tags:
 - Orçamentos 2025 e 2026 na subpasta PILARES-FINANCAS
 
 ## Notas relacionadas no vault
+- [[projects/estoque-budamix]]
+- [[openclaw/agents/kobe/IDENTITY]]
+- [[meta/mocs/MOC - Taxas e Precificacao]]
 
 - [[skills/financeiro/SKILL]]
 - [[meta/mocs/MOC - Extratos Financeiros]]

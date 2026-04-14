@@ -4880,3 +4880,10 @@ def format_specialist_actions_for_strategist(role: str, output: dict) -> str:
    - funnel_health deveria ser HEALTHY em > 50% dos ciclos após estabilização
    - Se é CRITICAL frequente → problemas estruturais não resolvidos
    - Se é sempre HEALTHY mas ACoS está alto → avaliação pode estar falha
+
+## Notas relacionadas
+
+- [[projects/amazon-ads-automation]]
+- [[projects/ml-ads-automation]]
+- [[openclaw/agents/spark/IDENTITY]]
+- [[openclaw/agents/builder/IDENTITY]]

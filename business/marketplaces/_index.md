@@ -45,6 +45,11 @@ tags:
 - Assets de novos anúncios contêm fotos e textos por SKU
 
 ## Notas relacionadas no vault
+- [[projects/amazon-ads-automation]]
+- [[projects/ml-ads-automation]]
+- [[projects/budamix-ai-agent]]
+- [[openclaw/agents/spark/IDENTITY]]
+- [[meta/mocs/MOC - Extratos Financeiros]]
 
 - [[skills/marketplace/SKILL]]
 - [[skills/amazon-listing-creator/SKILL]]

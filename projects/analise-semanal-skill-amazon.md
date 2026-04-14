@@ -529,3 +529,8 @@ Budget Utilization = (Avg Daily Spend / Daily Budget) × 100
 | 10/Abr/2026 | 3.0 | Metodologia descritiva completa, infraestrutura de dados documentada, 3 novas coletas, pipeline N8N expandido |
 | 10/Abr/2026 | 3.1 | Análise semanal completa (9 grupos, 178 ações). Padrão PHRASE legacy documentado. 5 lições aprendidas |
 | 10/Abr/2026 | 3.2 | Novo grupo "Potes Redondos Vidro" criado (4 campanhas, 45 keywords). Correção material vidro vs plástico. Total 13 grupos (12 ativos) |
+
+## Notas relacionadas
+
+- [[projects/amazon-ads-automation]]
+- [[openclaw/agents/spark/IDENTITY]]

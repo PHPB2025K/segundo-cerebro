@@ -47,7 +47,7 @@ tags:
 | [[skills/superpowers/systematic-debugging/SKILL|systematic-debugging]] | Bug encontrado durante implementacao |
 | [[skills/superpowers/verification-before-completion/SKILL|verification-before-completion]] | Antes de declarar qualquer tarefa completa |
 | [[skills/superpowers/test-driven-development/SKILL|test-driven-development]] | Durante implementacao (Red-Green-Refactor) |
-| [[skills/superpowers/dispatching-parallelopenclaw/agents/SKILL|dispatching-parallel-agents]] | Problemas independentes paralelizaveis |
+| [[skills/superpowers/dispatching-parallel-agents/SKILL|dispatching-parallel-agents]] | Problemas independentes paralelizaveis |
 | [[skills/superpowers/using-git-worktrees/SKILL|using-git-worktrees]] | Antes de iniciar implementacao isolada |
 
 ## Meta-skills

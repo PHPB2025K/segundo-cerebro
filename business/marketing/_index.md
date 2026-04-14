@@ -38,6 +38,8 @@ tags:
 - DNA visual é referência-chave para identidade Budamix em criações
 
 ## Notas relacionadas no vault
+- [[projects/carousel-factory]]
+- [[openclaw/agents/spark/IDENTITY]]
 
 - [[skills/marketing/SKILL]]
 - [[meta/mocs/MOC - Design Systems Budamix]]

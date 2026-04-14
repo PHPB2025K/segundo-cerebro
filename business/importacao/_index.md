@@ -42,6 +42,9 @@ tags:
 - Fornecedores prospectados: potes de vidro, lotion pumps, tapetes de banheiro, panos de microfibra, fitas adesivas, lavanda artificial, abraçadeiras, resina PP, batedor de ovos
 
 ## Notas relacionadas no vault
+- [[projects/simulimpor]]
+- [[openclaw/agents/trader/IDENTITY]]
+- [[meta/mocs/MOC - Taxas e Precificacao]]
 
 - [[knowledge/pessoal/historia-trades-up]]
 - [[openclaw/agents/kobe/shared/simulimport/reforma-tributaria-importacao]]

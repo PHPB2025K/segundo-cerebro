@@ -43,6 +43,10 @@ tags:
 - Manuais guiam operação diária (fiscal, marketplace, expedição)
 
 ## Notas relacionadas no vault
+- [[projects/estoque-budamix]]
+- [[projects/openclaw-vps]]
+- [[openclaw/agents/kobe/IDENTITY]]
+- [[openclaw/agents/rh/IDENTITY]]
 
 - [[memory/context/business-context]]
 - [[openclaw/agents/fisco/IDENTITY]]

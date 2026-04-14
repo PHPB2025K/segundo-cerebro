@@ -54,7 +54,7 @@ Definido em [[openclaw/agents/kobe/shared/TEAM|TEAM]]:
 - [[openclaw/agents/kobe/AGENTS|Kobe AGENTS]] — hierarquia de memoria, gate de encerramento, QA financeiro
 - [[openclaw/agents/kobe/BOOT|Kobe BOOT]] — checklist de startup
 - [[openclaw/agents/kobe/BOOTSTRAP|Kobe BOOTSTRAP]] — recuperacao de contexto degradado
-- [[openclaw/agents/kobe/shared/lessons/shared-lessons|Licoes compartilhadas]] — regras cross-agent
+- [[openclaw/agents/kobe/shared/lessons/reviews/builder-2026-03-26|Lições compartilhadas (ver reviews)]] — regras cross-agent
 
 ## Fallback chain
 

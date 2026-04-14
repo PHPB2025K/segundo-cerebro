@@ -284,3 +284,8 @@ Confirme que a mensagem chegou no número 5511940457862 com o relatório formata
 - Verifique se a instância Evolution API está online e conectada.
 - Execute: `python scripts/create_evolution_instance.py` para verificar/criar a instância.
 - Confirme que `WHATSAPP_RECIPIENT` tem o formato correto (DDI+DDD+número, sem +).
+
+## Notas relacionadas
+
+- [[projects/ml-ads-automation]]
+- [[openclaw/agents/trader/IDENTITY]]

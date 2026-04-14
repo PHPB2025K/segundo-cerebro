@@ -28,6 +28,10 @@ tags:
 - [[projects/budamix-agent-changelog-ana]] — Changelog da Ana
 - [[projects/whatsapp-api]] — Config WhatsApp API (Baileys + Evolution)
 
+## E-commerce
+
+- [[projects/budamix-ecommerce]] — E-commerce Budamix (React + Supabase + Mercado Pago)
+
 ## Operação e Estoque
 
 - [[projects/estoque-budamix]] — Estoque Budamix (Next.js + Supabase)

@@ -77,14 +77,17 @@ tags:
 - [13/04] ~~Estoque Budamix — Conectar com planilha real e testar fluxo completo.~~ → ✅ Resolvido 13/04: planilha conectada, fix parseInt milhar, fix col_brand, 4 operações reprocessadas
 - [13/04] Estoque Budamix — Validar layout mobile (equipe usa celular no armazém)
 - [13/04] DPM002 ML (MLB6611643028, R$34,90 Premium) — Registrar no Supabase (item_id, SKU, categoria, preço, data). Aguardando aprovação Pedro.
+- [14/04] ✅ ~~DPM002 Amazon — ACCEPTED, ASIN B0GX7RN9FS, DISCOVERABLE~~
+- [14/04] ✅ ~~DPM002 Amazon — 8 fotos uploadadas (Supabase Storage → Amazon CDN, todas processadas)~~
+- [14/04] DPM002 Amazon — Enviar estoque ao CD FBA (inbound shipment via Seller Central). Produto não aparece sem estoque físico.
 
 ## ⚪ Backlog (sem urgência imediata)
 
 - Antidumping cerâmicas chinesas — pesquisar Vietnam e Índia como alternativas de sourcing
 - TikTok Shop — definir estratégia de outreach MCN/afiliados
-- Stripe — ativar modo produção (está em teste)
+- ~~Stripe — ativar modo produção (está em teste)~~ → ✅ Stripe removido, migrado para Mercado Pago (14/04)
 - Container isolation — OpenClaw roda direto no host, considerar Docker
-- E-commerce budamix.com.br — monitoramento, carrinho abandonado, sync preços
+- E-commerce budamix.com.br — deploy MP pendente (migration SQL + Edge Functions + secrets + teste sandbox). Depois: monitoramento, carrinho abandonado, sync preços. → [[projects/budamix-ecommerce]]
 - Fornecedores China — triagem emails Yiwu automatizada
 - Kit duplo porta-copos (12 peças + 2 suportes) a R$69,90-79,90 para Shopee — diluir taxa fixa
 

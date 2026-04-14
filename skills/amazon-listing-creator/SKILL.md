@@ -82,8 +82,19 @@ Usar a referencia de formatos exatos (secao 5). NUNCA chutar formato — sempre 
 - Foto 1: fundo branco puro, produto ocupa 85%+ do frame, sem texto, sem logo overlay
 - Todas >= 1000px no lado maior (ideal 1200x1200 ou 2000x2000)
 - Formato: JPEG ou PNG
-- Upload via Seller Central ou SP-API (Images API)
-- Imagens sao referenciadas por URL no listing (main_product_image_locator, other_product_image_locator_1..8)
+- **Metodo de upload validado (DPM002, 14/04/2026):**
+  1. Upload das imagens para Supabase Storage (bucket `product-images`, pasta `{SKU}/`)
+  2. PATCH no listing via SP-API com URLs publicas do Supabase
+  3. Amazon baixa as imagens e re-hospeda no CDN (m.media-amazon.com) automaticamente
+  4. Campos: `main_product_image_locator` (principal) + `other_product_image_locator_1..8` (secundarias)
+- **Formato do PATCH:**
+  ```json
+  {"productType": "...", "patches": [
+    {"op": "replace", "path": "/attributes/main_product_image_locator",
+     "value": [{"media_location": "https://...url-publica...", "marketplace_id": "A2Q3Y263D00KWC"}]}
+  ]}
+  ```
+- SP-API NAO aceita upload direto de arquivos locais. Precisa de URL publica acessivel.
 
 ### Fase 7 — Validar contra checklist
 Rodar checklist completo (templates/checklist.md) ANTES de submeter.
@@ -367,6 +378,9 @@ Depende do tamanho e peso. Para itens pequenos/leves (~200g, 25x16x5cm):
 10. NCM deve ser enviado SEM pontos (ex: "44111210" nao "4411.12.10").
 11. `list_price` e obrigatorio alem de `purchasable_offer` — sao campos diferentes.
 12. SPC013 (ITEM_STAND) tem 35 atributos — usar como referencia de estrutura para novos product types.
+13. Upload de imagens via SP-API: hospedar em URL publica (Supabase Storage bucket `product-images`) → PATCH listing com `main_product_image_locator` + `other_product_image_locator_N` → Amazon baixa e re-hospeda no CDN.
+14. Product type TRIVET (Descanso de Panela): browse node `17124852011`, aceita GTIN exemption, `item_length_width_thickness` em vez de `item_length_width`. Campos iguais ao DRINK_COASTER.
+15. Para variantes do mesmo produto (ex: DPM001 redondo, DPM002 quadrado): copiar listing e alterar SKU, model_number, part_number, dimensoes, titulo, bullets, descricao, keywords. NAO usar `merchant_suggested_asin` (cada variante ganha ASIN proprio).
 
 ---
 
@@ -374,6 +388,9 @@ Depende do tamanho e peso. Para itens pequenos/leves (~200g, 25x16x5cm):
 
 | Data | Mudanca |
 |------|---------|
+| 2026-04-14 | DPM002 (TRIVET quadrado) criado: ACCEPTED 0 erros, ASIN B0GX7RN9FS, 8 imagens via Supabase→PATCH |
+| 2026-04-14 | Documentado metodo de upload de imagens via Supabase Storage + PATCH listing |
+| 2026-04-14 | Documentado product type TRIVET (browse node, campos) |
 | 2026-04-07 | Criacao da skill baseada no cadastro real do PCM001 (DRINK_COASTER) |
 | 2026-04-07 | Documentados 9 erros da 1a tentativa e solucoes que funcionaram |
 | 2026-04-07 | Mapeamento completo de campos para DRINK_COASTER (26 campos) |

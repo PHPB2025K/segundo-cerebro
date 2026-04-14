@@ -1,6 +1,17 @@
+---
+title: "Propagação de Dados — Protocolo Único"
+created: 2026-04-06
+modified: 2026-04-14
+type: meta
+status: active
+tags:
+  - meta
+  - protocolo
+---
+
 # Propagação de Dados — Protocolo Único
 
-> Este arquivo é a fonte de verdade sobre o que atualizar quando algo muda.
+> Fonte de verdade sobre o que atualizar quando algo muda no vault.
 > Lido pelo Claude Code durante sessões e pelo /salve no fim de cada sessão.
 > Quando a regra mudar, mude AQUI.
 
@@ -21,15 +32,22 @@
 | | `memory/context/business-context.md` | SE mudou deal, equipe ou foco |
 | **Pessoa nova ou role mudou** | `memory/context/people.md` | Adicionar ou atualizar entry |
 | | `memory/context/business-context.md` | SE é equipe principal |
-| **Projeto novo** | `memory/projects/{nome}.md` | Criar com template |
-| | `memory/projects/_index.md` | Adicionar na seção correta |
+| **Projeto novo** | `projects/{nome}.md` | Criar com template (ver abaixo) |
+| | `projects/_index.md` | Adicionar na tabela |
 | | `memory/context/business-context.md` | SE é negócio principal |
-| **Projeto mudou de status** | `memory/projects/{nome}.md` | Atualizar status |
-| | `memory/projects/_index.md` | Atualizar status na tabela |
-| **Métrica atualizada** | `memory/projects/{nome}.md` | Atualizar tabela de métricas |
+| **Projeto mudou de status** | `projects/{nome}.md` | Atualizar status no frontmatter + corpo |
+| | `projects/_index.md` | Atualizar status na tabela |
+| **Métrica atualizada** | `projects/{nome}.md` | Atualizar tabela de métricas |
 | | `memory/context/business-context.md` | SE é métrica-chave |
 | **Deadline novo ou concluído** | `memory/context/deadlines.md` | Adicionar ou mover pra concluídos |
-| **Ideia registrada** | arquivo de ideias (crie onde fizer sentido) | Adicionar com data |
+| **Skill criada ou alterada** | `skills/[domínio]/[nome]/SKILL.md` | Atualizar conteúdo |
+| | CLAUDE.md do projeto (se aplicável) | Referenciar a skill |
+| **Mudança em agente OpenClaw** | `openclaw/agents/[agente]/IDENTITY.md` | Atualizar config/regras |
+| | `memory/context/business-context.md` | SE mudou infra AI |
+| **Arquivo de Documents/ mudou** | `business/[área]/_index.md` | Atualizar tabela de arquivos-chave |
+| **Nota de conhecimento criada** | `knowledge/[subpasta]/[nota].md` | Criar com frontmatter |
+| **Automação criada ou alterada** | `automacoes/[subpasta]/[nota].md` | Atualizar conteúdo |
+| **Ideia registrada** | arquivo adequado (knowledge/, memory/) | Adicionar com data |
 
 ---
 
@@ -37,53 +55,63 @@
 
 | Dado | Fonte principal | Cache/overview |
 |------|-----------------|----------------|
-| Status de projeto | `memory/projects/{nome}.md` | `_index.md`, `business-context.md` |
+| Status de projeto | `projects/{nome}.md` | `projects/_index.md`, `business-context.md` |
 | Decisões | `memory/context/decisoes/YYYY-MM.md` | `business-context.md` |
 | Pessoas/equipe | `memory/context/people.md` | `business-context.md` |
 | Pendências | `memory/context/pendencias.md` | — |
 | Deadlines | `memory/context/deadlines.md` | — |
-| Panorama geral | `memory/context/business-context.md` | (é o próprio overview compilado) |
+| Skills | `skills/[domínio]/[nome]/SKILL.md` | CLAUDE.md (mapa geral) |
+| Agentes OpenClaw | `openclaw/agents/[agente]/IDENTITY.md` | CLAUDE.md (aliases) |
+| Arquivos Documents/ | `business/[área]/_index.md` | — |
+| Panorama geral | `memory/context/business-context.md` | (cache compilado) |
 
 `business-context.md` é um **cache compilado**. Em caso de conflito, as fontes individuais prevalecem.
 
 ---
 
-## Template — Novo Project File
+## Template — Nova Ficha de Projeto
 
 ```markdown
+---
+title: "[Nome do Projeto]"
+created: YYYY-MM-DD
+type: project
+status: active
+path: "~/Documents/05-Projetos-Codigo/[nome]/"
+tags:
+  - project
+  - dev
+---
+
 # [Nome do Projeto]
 
-> Status: [emoji + status]
+**Path:** `~/Documents/05-Projetos-Codigo/[nome]/`
+**Branch:** main
+**Stack:** [Next.js/Python/etc]
+**Deploy:** [Vercel/VPS/etc]
 
 ## O que é
+
 [1-2 frases]
 
-## Responsáveis
-- **[Nome]:** [role]
+## Decisões-chave
 
-## Timeline
-| Data | Evento |
-|------|--------|
-| [data] | Projeto criado |
-
-## Decisões Tomadas
-- [DD/MM/YYYY] [decisão]
+- [YYYY-MM-DD] [decisão]
 
 ## Pendências
+
 - [ ] [próxima ação]
 
----
-*Criado: DD/MM/YYYY*
+## Notas relacionadas
+
+- [[links relevantes]]
 ```
 
 ---
 
-*Criado: 06/04/2026*
+## Índices do Vault
 
----
-
-## MOCs (Maps of Content)
-
+### MOCs (Maps of Content)
 - [[meta/mocs/MOC - Token Management|Token Management]]
 - [[meta/mocs/MOC - Extratos Financeiros|Extratos Financeiros]]
 - [[meta/mocs/MOC - Superpowers Pipeline|Superpowers Pipeline]]
@@ -93,22 +121,19 @@
 - [[meta/mocs/MOC - Governanca OpenClaw|Governança OpenClaw]]
 - [[meta/mocs/MOC - Listing Pipeline|Listing Pipeline]]
 
----
+### Índices de Negócio (Documents/)
+- [[business/importacao/_index|Importação]] — 471 arquivos
+- [[business/marketplaces/_index|Marketplaces]] — 56 arquivos
+- [[business/financeiro/_index|Financeiro]] — 112 arquivos
+- [[business/empresa/_index|Empresa]] — 124 arquivos
+- [[business/marketing/_index|Marketing]] — 20 arquivos
 
-## Índices de Negócio (Documents/)
+### Projetos
+- [[projects/_index|Índice de Projetos]] — todas as fichas
 
-- [[business/importacao/_index|Importação]] — 471 arquivos (fornecedores, DIs, BLs, simulações)
-- [[business/marketplaces/_index|Marketplaces]] — 56 arquivos (experts, anúncios, fechamentos)
-- [[business/financeiro/_index|Financeiro]] — 112 arquivos (planejamentos, precificação, faturamentos)
-- [[business/empresa/_index|Empresa]] — 124 arquivos (contratos, manuais, picking lists)
-- [[business/marketing/_index|Marketing]] — 20 arquivos (reels, cronograma, DNA visual)
-
----
-
-## Auditorias
-
+### Auditorias
 - [[meta/audits/auditoria-conexoes-2026-04-10]]
 
-## Ver também
+---
 
-- [[CLAUDE|CLAUDE — Perfil do Pedro (fonte que este protocolo propaga)]]
+*Atualizado: 2026-04-14*

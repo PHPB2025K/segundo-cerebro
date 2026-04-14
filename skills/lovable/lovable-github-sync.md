@@ -1,0 +1,1 @@
+/Users/pedrobroglio/.claude/skills/lovable-github-sync.md

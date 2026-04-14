@@ -18,7 +18,8 @@ tags:
 | Prazo | Entrega | Status | Nota |
 |-------|---------|--------|------|
 | 15/05/2026 | Meta Ads Token Renewal | ⏳ Pendente | One-shot systemEvent no OpenClaw |
-| 11/04/2026 | GB25011 — Numerário R$60.000 | 🔴 URGENTE | Container em trânsito, ETA 11/04 |
+| 11/04/2026 | GB25011 — Numerário R$60.000 | ✅ Pago 11/04 | Próximo: 70% R$71.419 vence 24/05 |
+| 24/05/2026 | GB25011 — 70% balanço R$71.419 | ⏳ Pendente | Numerário pago, container em trânsito |
 | 16/04/2026 | GB25009 — 70% balanço R$72.232 | 🔴 CRÍTICO | Container finished, pagar |
 | ~15/04/2026 | Analistas concluírem Top 10 produtos | ⏳ Pendente | Guia entregue 06/04, ~3min por produto |
 | ~30/04/2026 | Analistas concluírem todos os 44 produtos | ⏳ Pendente | Depende do Top 10 |

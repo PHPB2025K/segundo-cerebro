@@ -43,7 +43,7 @@ tags:
 - [08/04] [[memory/projects/gb-import-hub-schema|GB Import Hub]] — MarineTraffic API key não configurada (fetch-vessel-position retorna dados vazios). Não bloqueante — tracking funciona via Terminal49.
 - [08/04] PCM001 — Preço alterado na planilha (R$19,90) mas NÃO alterado nos marketplaces (ML, Shopee, Amazon ainda com R$39,90). Sincronizar se intencional. → [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]]
 - [08/04] GB25009 — 70% balanço R$72.232 PENDENTE, vencimento 16/04. Container já finished. **Pagar.**
-- [08/04] GB25011 — Numerário R$60.000 vence 11/04 (ETA do container). Container em trânsito.
+- [08/04] ~~GB25011 — Numerário R$60.000 vence 11/04~~ → ✅ Pago 11/04. Próximo: 70% balanço R$71.419 vence 24/05.
 - [08/04] GB26001/GB26002 — Numerário e 70% sem datas de vencimento definidas no sistema.
 - [08/04] GB26002 — Numerário e 70% sem valores registrados no sistema.
 - [08/04] Skill [[skills/gb-import-hub/SKILL|gb-import-hub]] instalado e validado (14/15 testes OK). terminal49-fetch-shipment com bug (HTTP 500).

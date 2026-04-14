@@ -29,7 +29,7 @@ _Registro de decisões permanentes. NUNCA contradizer._
 - Output de relatórios é HTML (não mais PDF)
 - Sempre ler skill report-design-system antes de gerar relatório
 - CSS nunca fica inline no Python — sempre no template
-- Paleta: dark theme (purple/cyan/green sobre fundo #0a0b10)
+- Paleta: dark theme (purple/cyan/green sobre fundo `#0a0`10)
 
 ### Excel Design System (2026-03-20)
 - Planilhas Excel seguem paleta dark mode definida em `skills/design/excel-design-system.md`

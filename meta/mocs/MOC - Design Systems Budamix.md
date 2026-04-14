@@ -17,8 +17,8 @@ tags:
 
 | Contexto | Skill | Paleta | Uso principal |
 |----------|-------|--------|--------------|
-| Relatorios HTML | [[skills/design/report-design-system/SKILL|report-design-system]] | Dark (#0a0b10), 9 accents | Relatorios OpenClaw, consolidado financeiro |
-| Planilhas Excel | [[skills/design/excel-design-system|excel-design-system]] | Dark (#1B2838), zebra | Extratos, relatorios de dados |
+| Relatorios HTML | [[skills/design/report-design-system/SKILL|report-design-system]] | Dark (`#0a0b10`), 9 accents | Relatorios OpenClaw, consolidado financeiro |
+| Planilhas Excel | [[skills/design/excel-design-system|excel-design-system]] | Dark (`#1B2838`), zebra | Extratos, relatorios de dados |
 | Frontend React | [[skills/design/lovable-quality/SKILL|lovable-quality]] | HSL tokens, 40+ vars | Dashboards, MicroSaaS |
 
 ## Skills de visualizacao
@@ -42,9 +42,9 @@ tags:
 
 | Plataforma | Cor |
 |-----------|-----|
-| Shopee | Verde #4CAF50 |
-| Mercado Livre | Azul #42A5F5 |
-| Amazon | Roxo #AB47BC |
+| Shopee | Verde `#4CAF50` |
+| Mercado Livre | Azul `#42A5F5` |
+| Amazon | Roxo `#AB47BC` |
 
 ## Consumidores dos design systems
 

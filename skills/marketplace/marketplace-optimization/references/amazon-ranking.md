@@ -11,7 +11,7 @@ tags:
 # Amazon Brasil — Algoritmo A10, Buy Box e Estratégias
 
 ## SUMÁRIO
-1. [Algoritmo A10 vs. A9 — o que mudou](#a10)
+1. [Algoritmo A10 vs. A9 — o que mudou](`#a10`)
 2. [Buy Box — conceito crítico](#buybox)
 3. [Os 8 fatores de ranking](#fatores)
 4. [Penalizações e riscos](#penalizacoes)

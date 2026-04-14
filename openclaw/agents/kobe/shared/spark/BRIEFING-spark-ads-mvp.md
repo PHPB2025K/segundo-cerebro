@@ -33,8 +33,8 @@ Construir o **Spark Ads** — webapp de gestão de tráfego pago da GB Importado
 - **Design:** Moderno, profissional, dark mode (design system da GB)
 - **Separação visual clara** entre Google Ads e Meta Ads:
   - Cada plataforma com seu branding (cores, ícones)
-  - Google Ads: azul/verde (#4285F4, #34A853)
-  - Meta Ads: azul Meta (#0668E1)
+  - Google Ads: azul/verde (`#4285F4`, `#34A853`)
+  - Meta Ads: azul Meta (`#0668E1`)
   - Cards/seções claramente identificáveis por plataforma
 - **KPIs consolidados** (topo):
   - Total Spend, Total Revenue, ROAS geral, CPA médio
@@ -216,13 +216,13 @@ CREATE POLICY "Authenticated users can read settings" ON settings
 - **Responsivo** — funciona no laptop com 2 telas do Pedro
 - **Sidebar** com navegação: Dashboard, Campaigns, (futuro: Budget, Reports, Settings)
 - **Paleta:**
-  - Background: #0a0a0a / #111111
-  - Cards: #1a1a1a com border #2a2a2a
-  - Google Ads: #4285F4 (accent)
-  - Meta Ads: #0668E1 (accent)
-  - Positive: #22c55e
-  - Negative: #ef4444
-  - Neutral text: #a1a1aa
+  - Background: `#0a0a0a` / #111111
+  - Cards: `#1a1a1a` com border `#2a2a2a`
+  - Google Ads: `#4285F4` (accent)
+  - Meta Ads: `#0668E1` (accent)
+  - Positive: `#22c55e`
+  - Negative: `#ef4444`
+  - Neutral text: `#a1a1aa`
 
 ---
 

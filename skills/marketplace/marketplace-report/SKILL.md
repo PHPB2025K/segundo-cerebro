@@ -138,7 +138,7 @@ Emojis são aceitáveis apenas em textos de insight/estratégia (renderizam como
 ### Output: HTML puro (sem wkhtmltopdf)
 - report-engine.py refatorado: output direto em HTML, removida dependência de wkhtmltopdf
 - CSS agora vem do template `templates/report-base.html` (não inline no Python)
-- Design system dark mode (purple/cyan/green sobre fundo #0a0b10)
+- Design system dark mode (purple/cyan/green sobre fundo `#0a0`10)
 - Fontes: Inter (texto) + JetBrains Mono (código/dados)
 - Se Pedro precisar de PDF, converte pelo browser (Ctrl+P)
 - CSS antigo (light theme teal/areia) removido do engine — vive apenas no git history

@@ -42,7 +42,7 @@ Before coding, sketch the layout in ASCII format:
 ### 2. Theme Guidelines
 
 **Color Rules:**
-- NEVER use generic bootstrap-style blue (#007bff) — it looks dated
+- NEVER use generic bootstrap-style blue (`#007bff`) — it looks dated
 - Prefer oklch() for modern color definitions
 - Use semantic color variables (--primary, --secondary, --muted, etc.)
 - Consider both light and dark mode from the start

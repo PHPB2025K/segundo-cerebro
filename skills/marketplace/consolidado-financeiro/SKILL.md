@@ -35,7 +35,7 @@ Após gerar os 3 extratos, consolidar os dados e gerar:
 Usar obrigatoriamente: `templates/report-base.html` (CSS) + `skills/design/report-design-system/SKILL.md`
 - Dark mode editorial, max-width: 1120px
 - Fonte: Inter + JetBrains Mono (Google Fonts)
-- Paleta: --bg-page #0a0b10, --bg-card #12131a, accents green/yellow/red/purple/cyan
+- Paleta: --bg-page `#0a0`10, --bg-card #12131a, accents green/yellow/red/purple/cyan
 
 ### Seções (nesta ordem):
 

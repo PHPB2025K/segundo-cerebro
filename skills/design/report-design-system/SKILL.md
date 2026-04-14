@@ -27,11 +27,11 @@ Dark mode editorial. Estética de dashboard premium, não de blog. Cada seção 
 ```css
 :root {
   /* ── Backgrounds ── */
-  --bg-page:          #0a0b10;       /* fundo principal da página */
+  --bg-page:          `#0a0`10;       /* fundo principal da página */
   --bg-card:          #12131a;       /* fundo dos cards/seções */
-  --bg-card-elevated: #1a1b25;       /* cards com hover ou destaque */
+  --bg-card-elevated: `#1a1`25;       /* cards com hover ou destaque */
   --bg-code:          #0d0e14;       /* blocos de código */
-  --bg-hero:          linear-gradient(135deg, #0a0b10 0%, #151628 50%, #0a0b10 100%);
+  --bg-hero:          linear-gradient(135deg, `#0a0`10 0%, #151628 50%, `#0a0`10 100%);
 
   /* ── Bordas ── */
   --border-default:   #1e2030;       /* bordas sutis de cards */

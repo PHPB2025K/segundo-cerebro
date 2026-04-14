@@ -67,10 +67,10 @@ Inclui totais por classificação, quantidades, taxas, e saldo líquido final.
 Cada linha tem: valor absoluto + porcentagem do bruto total + descrição explicativa.
 
 Cores do resumo:
-- 🟢 Verde (#E8F5E9): entradas positivas (vendas, recebido)
-- 🔴 Vermelho (#FFEBEE): saídas (devoluções, disputas, taxas)
-- 🟡 Amarelo (#FFF8E1): neutro/parcial (frete, pendente)
-- 🔵 Azul (#E3F2FD): saldo líquido final
+- 🟢 Verde (`#E8F5E9`): entradas positivas (vendas, recebido)
+- 🔴 Vermelho (`#FFEBEE`): saídas (devoluções, disputas, taxas)
+- 🟡 Amarelo (`#FFF8E1`): neutro/parcial (frete, pendente)
+- 🔵 Azul (`#E3F2FD`): saldo líquido final
 
 ## Apps e credenciais
 
@@ -124,7 +124,7 @@ Seguir obrigatoriamente o design system: `skills/design/excel-design-system.md`
 Padrão: Dark mode profissional com:
 - Background #1B2838, zebra striping
 - Cabeçalho #174C4C (GB green)
-- Accent colors: verde (#4CAF50), vermelho (#EF5350), azul (#42A5F5), amarelo (#FFC107)
+- Accent colors: verde (`#4CAF50`), vermelho (`#EF5350`), azul (`#42A5F5`), amarelo (`#FFC107`)
 - Emojis como identificadores visuais
 - Gráficos quando aplicável (openpyxl.chart)
 - Nenhuma célula branca — tudo dark

@@ -156,7 +156,7 @@ Seguir obrigatoriamente o design system: `skills/design/excel-design-system.md`
 Padrão: Dark mode profissional com:
 - Background #1B2838, zebra striping
 - Cabeçalho #174C4C (GB green)
-- Accent colors: verde (#4CAF50), vermelho (#EF5350), azul (#42A5F5), amarelo (#FFC107)
+- Accent colors: verde (`#4CAF50`), vermelho (`#EF5350`), azul (`#42A5F5`), amarelo (`#FFC107`)
 - Emojis como identificadores visuais
 - Gráficos quando aplicável (openpyxl.chart)
 - Nenhuma célula branca — tudo dark

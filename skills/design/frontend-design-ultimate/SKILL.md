@@ -91,7 +91,7 @@ What's the ONE thing someone will remember? A hero animation? Typography treatme
   --bg-secondary: #141414;
   --text-primary: #fafafa;
   --text-secondary: #a1a1a1;
-  --accent: #ff6b35;
+  --accent: `#ff6`35;
   --accent-hover: #ff8555;
 }
 ```
@@ -370,7 +370,7 @@ Most used for landing pages:
 **Design Decisions**:
 - Tone: Editorial/Magazine
 - Typography: Cormorant Garamond (display) + Inter... wait, banned. Plus Jakarta Sans (body)
-- Color: Near-black bg (#0c0c0c), warm white text (#f5f5f0), copper accent (#b87333)
+- Color: Near-black bg (`#0c0c0c`), warm white text (`#f5f5f0`), copper accent (`#b87333`)
 - Unforgettable: Full-bleed hero image with text overlay that reveals on scroll
 - Motion: Gallery images fade in staggered on scroll
 

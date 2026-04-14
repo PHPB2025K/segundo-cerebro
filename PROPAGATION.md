@@ -95,6 +95,16 @@
 
 ---
 
+## Índices de Negócio (Documents/)
+
+- [[business/importacao/_index|Importação]] — 471 arquivos (fornecedores, DIs, BLs, simulações)
+- [[business/marketplaces/_index|Marketplaces]] — 56 arquivos (experts, anúncios, fechamentos)
+- [[business/financeiro/_index|Financeiro]] — 112 arquivos (planejamentos, precificação, faturamentos)
+- [[business/empresa/_index|Empresa]] — 124 arquivos (contratos, manuais, picking lists)
+- [[business/marketing/_index|Marketing]] — 20 arquivos (reels, cronograma, DNA visual)
+
+---
+
 ## Ver também
 
 - [[CLAUDE|CLAUDE — Perfil do Pedro (fonte que este protocolo propaga)]]

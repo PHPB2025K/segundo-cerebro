@@ -137,7 +137,7 @@ Color isn't about "what looks nice" — it's about what the design FEELS.
 
 /* Light, Warm, Approachable */
 :root {
-  --bg-primary: #fffbf5;
+  --bg-primary: `#fff`f5;
   --bg-secondary: #fff7ed;
   --bg-tertiary: #ffedd5;
   --text-primary: #1c1917;

@@ -1,3 +1,13 @@
+---
+title: "session nf planning 20260331"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Session: 2026-04-01 00:19:22 UTC
 
 - **Session Key**: agent:main:telegram:group:-1003730816228:topic:13

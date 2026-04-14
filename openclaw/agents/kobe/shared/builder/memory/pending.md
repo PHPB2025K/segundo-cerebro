@@ -1,3 +1,13 @@
+---
+title: "pending"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Pendências — Builder
 
 _Atualizado: 2026-04-09 23:30 BRT_

@@ -1,3 +1,13 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Skill: Motor de Distribuição (Módulo A) — [[openclaw/agents/fisco/IDENTITY|Fisco]]
 
 _Calcula a distribuição proporcional de estoque importado entre os CNPJs da GB._

@@ -1,3 +1,13 @@
+---
+title: "system prompt atendimento"
+created: 2026-04-14
+type: automation
+domain: atendimento
+status: active
+tags:
+  - automacao/atendimento
+---
+
 **🧠 SYSTEM PROMPT --- Agente de Orçamentos \| GB Importadora**
 
 **🧠 INTENÇÃO**

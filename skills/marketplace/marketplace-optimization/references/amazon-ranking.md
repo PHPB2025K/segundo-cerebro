@@ -1,3 +1,13 @@
+---
+title: "amazon ranking"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+---
+
 # Amazon Brasil — Algoritmo A10, Buy Box e Estratégias
 
 ## SUMÁRIO

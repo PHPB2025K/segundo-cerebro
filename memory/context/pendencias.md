@@ -1,3 +1,13 @@
+---
+title: "pendencias"
+created: 2026-04-14
+type: tracker
+status: active
+tags:
+  - memory
+  - context
+---
+
 # Pendências Ativas
 
 > Formato: `[DATA] Aguardando [QUEM] sobre [O QUÊ]`

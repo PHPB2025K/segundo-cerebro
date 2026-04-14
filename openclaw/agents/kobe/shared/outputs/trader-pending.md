@@ -1,3 +1,13 @@
+---
+title: "trader pending"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Pendências — Trader
 
 _Atualizado: 2026-03-23_

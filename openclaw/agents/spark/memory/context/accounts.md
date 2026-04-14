@@ -1,3 +1,13 @@
+---
+title: "accounts"
+created: 2026-04-14
+type: agent
+agent: spark
+status: active
+tags:
+  - agent/spark
+---
+
 # Contas de Anúncio — Spark
 
 _Status e detalhes de cada conta de anúncio._

@@ -1,3 +1,13 @@
+---
+title: "decisions"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Decisões Permanentes — [[openclaw/agents/spark/IDENTITY|Spark]] v2.0
 
 _Decisões do Pedro/Kobe que não mudam. Consultar SEMPRE antes de agir._

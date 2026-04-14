@@ -1,3 +1,12 @@
+---
+title: "MOC   Design Systems Budamix"
+created: 2026-04-14
+type: moc
+status: active
+tags:
+  - moc
+---
+
 # MOC — Design Systems Budamix
 
 > Hub dos 3 design systems (HTML, Excel, Frontend) + skills de visualizacao.

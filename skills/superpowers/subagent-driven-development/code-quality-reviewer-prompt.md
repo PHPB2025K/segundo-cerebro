@@ -1,3 +1,13 @@
+---
+title: "code quality reviewer prompt"
+created: 2026-04-14
+type: skill
+domain: superpowers
+status: active
+tags:
+  - skill/superpowers
+---
+
 # Code Quality Reviewer Prompt Template
 
 Use this template when dispatching a code quality reviewer subagent.

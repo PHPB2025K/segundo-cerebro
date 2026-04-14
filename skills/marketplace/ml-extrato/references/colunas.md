@@ -1,3 +1,13 @@
+---
+title: "colunas"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+---
+
 # Referência de Colunas — Extrato ML
 
 ## Colunas do extrato (23 colunas)

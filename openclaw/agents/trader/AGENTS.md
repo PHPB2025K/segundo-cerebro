@@ -1,3 +1,13 @@
+---
+title: "AGENTS"
+created: 2026-04-14
+type: team-config
+agent: trader
+status: active
+tags:
+  - agent/trader
+---
+
 # AGENTS.md — Trader
 
 _Regras operacionais. Como o Trader executa._

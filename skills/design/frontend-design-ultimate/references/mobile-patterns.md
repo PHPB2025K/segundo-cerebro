@@ -1,3 +1,13 @@
+---
+title: "mobile patterns"
+created: 2026-04-14
+type: skill
+domain: design
+status: active
+tags:
+  - skill/design
+---
+
 # Mobile-First Patterns
 
 Comprehensive responsive CSS patterns learned from real-world implementation failures.

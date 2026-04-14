@@ -1,3 +1,13 @@
+---
+title: "gb import hub schema"
+created: 2026-04-14
+type: project-index
+status: active
+tags:
+  - memory
+  - project
+---
+
 # GB Import Hub — Schema Completo do Banco de Dados
 
 > Extraido de: repo PHPB2025K/gb-import-hub (27 migrations + types.ts)

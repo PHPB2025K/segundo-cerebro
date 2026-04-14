@@ -1,3 +1,13 @@
+---
+title: "lessons"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Lições Aprendidas — [[openclaw/agents/spark/IDENTITY|Spark]] v2.0
 
 _Erros e aprendizados. Consultar ANTES de recomendar qualquer mudança._

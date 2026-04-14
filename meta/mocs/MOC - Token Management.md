@@ -1,3 +1,12 @@
+---
+title: "MOC   Token Management"
+created: 2026-04-14
+type: moc
+status: active
+tags:
+  - moc
+---
+
 # MOC — Token Management
 
 > Gestao centralizada de tokens OAuth cross-agent. Fragilidade sistemica identificada na auditoria 10/04/2026.

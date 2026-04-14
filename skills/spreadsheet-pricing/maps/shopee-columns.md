@@ -1,3 +1,14 @@
+---
+title: "shopee columns"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+  - pricing
+---
+
 # Mapeamento de Colunas — ABA SHOPEE
 
 > Headers: row 6 | Dados: row 7+

@@ -1,3 +1,13 @@
+---
+title: "TOOLS"
+created: 2026-04-14
+type: tools-config
+agent: spark
+status: active
+tags:
+  - agent/spark
+---
+
 # TOOLS.md — Cheat Sheet Rápido
 
 _Consulta rápida para IDs, tokens e comandos. Detalhes completos em MEMORY.md._

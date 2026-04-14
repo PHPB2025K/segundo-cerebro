@@ -1,3 +1,13 @@
+---
+title: "paleta cores"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+---
+
 # Paleta de Cores — Budamix / GB Importadora
 
 Identidade visual do relatório ML. Baseada na assinatura visual da GB Importadora.

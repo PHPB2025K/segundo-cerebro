@@ -1,3 +1,13 @@
+---
+title: "classificacoes"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+---
+
 # Classificações de Transação — Extrato Shopee
 
 ## Mapeamento Status → Classificação

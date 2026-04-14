@@ -1,3 +1,13 @@
+---
+title: "lessons"
+created: 2026-04-14
+type: agent
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # Lições — Builder
 
 _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._

@@ -1,3 +1,13 @@
+---
+title: "accounts"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Contas de Anúncio — Spark v2.0
 
 _Atualizado: 2026-03-20_

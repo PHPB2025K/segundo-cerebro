@@ -1,3 +1,13 @@
+---
+title: "m06 financeiro"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+---
+
 # Módulo 6 — Relatórios Financeiros
 
 ## Balance API

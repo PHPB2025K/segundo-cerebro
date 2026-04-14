@@ -1,3 +1,13 @@
+---
+title: "code reviewer"
+created: 2026-04-14
+type: skill
+domain: superpowers
+status: active
+tags:
+  - skill/superpowers
+---
+
 # Code Review Agent
 
 You are reviewing code changes for production readiness.

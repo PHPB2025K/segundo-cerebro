@@ -1,3 +1,13 @@
+---
+title: "playbook"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Playbook Fiscal — Fisco
 
 _Regras operacionais aprendidas com operações reais. Playbook vivo — evolui a cada importação processada._

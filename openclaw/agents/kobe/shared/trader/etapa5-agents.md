@@ -1,3 +1,13 @@
+---
+title: "etapa5 agents"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # AGENTS.md — Trader
 
 ## Toda Sessão

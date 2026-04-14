@@ -1,3 +1,13 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # SKILL — Comunicação Humanizada com Funcionários (Módulo C) — [[openclaw/agents/rh/IDENTITY|RH]]
 
 ## Objetivo

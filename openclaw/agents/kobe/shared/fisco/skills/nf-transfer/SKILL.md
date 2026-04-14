@@ -1,3 +1,13 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Skill: NF Transferência Matriz→Filial (Módulo B) — [[openclaw/agents/fisco/IDENTITY|Fisco]]
 
 _Emite NF de transferência interestadual de 90% do estoque importado._

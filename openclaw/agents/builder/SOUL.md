@@ -1,3 +1,13 @@
+---
+title: "SOUL"
+created: 2026-04-14
+type: soul
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # SOUL.md — Builder
 
 _A essência do que move o Builder. Não o que ele faz — por que ele faz._

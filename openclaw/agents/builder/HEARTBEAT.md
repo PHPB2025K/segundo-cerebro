@@ -1,3 +1,13 @@
+---
+title: "HEARTBEAT"
+created: 2026-04-14
+type: heartbeat
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # HEARTBEAT.md — Builder
 
 _Verificações periódicas quando ativado em modo heartbeat._

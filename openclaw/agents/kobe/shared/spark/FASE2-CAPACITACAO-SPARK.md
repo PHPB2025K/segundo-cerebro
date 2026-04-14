@@ -1,3 +1,13 @@
+---
+title: "Fase2 Capacitacao Spark"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Fase 2 — Capacitação do Agente Spark
 
 _De: Kobe | Data: 2026-03-24 | Status: Aguardando Fase 1 concluída_

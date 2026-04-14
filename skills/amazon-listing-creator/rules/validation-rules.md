@@ -1,3 +1,14 @@
+---
+title: "validation rules"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+  - amazon
+---
+
 # Regras de Validacao — Amazon Listing Creator
 
 > Verificar ANTES de submeter. Se qualquer regra falhar, corrigir primeiro.

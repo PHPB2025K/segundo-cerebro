@@ -1,3 +1,13 @@
+---
+title: "nfe log"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Log de Auditoria Fiscal — NF-e
 
 _Append-only. Nunca deletar entradas._

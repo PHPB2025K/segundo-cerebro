@@ -1,3 +1,14 @@
+---
+title: "description template"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+  - shopee
+---
+
 # Template de Descricao Shopee — Budamix
 
 > Limite: 3.000 chars. Objetivo: 500-800 chars.

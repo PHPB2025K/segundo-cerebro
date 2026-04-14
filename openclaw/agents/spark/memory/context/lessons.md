@@ -1,3 +1,13 @@
+---
+title: "lessons"
+created: 2026-04-14
+type: agent
+agent: spark
+status: active
+tags:
+  - agent/spark
+---
+
 # Lições — Spark
 
 _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._

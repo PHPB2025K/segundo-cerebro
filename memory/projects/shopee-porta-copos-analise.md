@@ -1,3 +1,13 @@
+---
+title: "shopee porta copos analise"
+created: 2026-04-14
+type: project-index
+status: active
+tags:
+  - memory
+  - project
+---
+
 # Análise Shopee — Kit 6 Porta-Copos MDF Design Solaris Budamix
 ## Data: 07/04/2026
 

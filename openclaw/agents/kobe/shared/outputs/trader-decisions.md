@@ -1,3 +1,13 @@
+---
+title: "trader decisions"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Decisões — Trader
 
 _Registro de decisões permanentes. NUNCA contradizer._

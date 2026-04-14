@@ -1,3 +1,13 @@
+---
+title: "persuasion principles"
+created: 2026-04-14
+type: skill
+domain: superpowers
+status: active
+tags:
+  - skill/superpowers
+---
+
 # Persuasion Principles for Skill Design
 
 ## Overview

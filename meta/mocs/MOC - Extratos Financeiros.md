@@ -1,3 +1,12 @@
+---
+title: "MOC   Extratos Financeiros"
+created: 2026-04-14
+type: moc
+status: active
+tags:
+  - moc
+---
+
 # MOC — Extratos Financeiros
 
 > Hub dos 3 extratos de marketplace + consolidado. Formato unificado de 23 colunas.

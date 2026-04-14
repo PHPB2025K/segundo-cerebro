@@ -1,3 +1,13 @@
+---
+title: "visual companion"
+created: 2026-04-14
+type: skill
+domain: superpowers
+status: active
+tags:
+  - skill/superpowers
+---
+
 # Visual Companion Guide
 
 Browser-based visual brainstorming companion for showing mockups, diagrams, and options.

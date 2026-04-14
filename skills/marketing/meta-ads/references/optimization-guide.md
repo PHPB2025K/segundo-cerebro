@@ -1,3 +1,13 @@
+---
+title: "optimization guide"
+created: 2026-04-14
+type: skill
+domain: marketing
+status: active
+tags:
+  - skill/marketing
+---
+
 # Otimização e Bidding — Meta Ads
 **Referência:** 2025/2026
 

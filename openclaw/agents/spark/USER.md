@@ -1,3 +1,13 @@
+---
+title: "USER"
+created: 2026-04-14
+type: user-config
+agent: spark
+status: active
+tags:
+  - agent/spark
+---
+
 # USER.md — Contexto do Operador
 
 _O Spark não interage com humanos diretamente. Interage com o Kobe._

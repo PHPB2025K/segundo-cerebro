@@ -1,3 +1,13 @@
+---
+title: "user briefing openclaw v2"
+created: 2026-04-14
+type: system
+status: active
+tags:
+  - openclaw
+  - system
+---
+
 1\. O que você faz pra viver? Me conta o negócio, o modelo, o que você
 vende, pra quem. Não \"sou empreendedor\" --- o que exatamente você
 faz?\

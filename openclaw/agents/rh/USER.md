@@ -1,3 +1,13 @@
+---
+title: "USER"
+created: 2026-04-14
+type: user-config
+agent: rh
+status: active
+tags:
+  - agent/rh
+---
+
 # USER.md — Pedro Broglio
 
 - **Nome:** Pedro Broglio

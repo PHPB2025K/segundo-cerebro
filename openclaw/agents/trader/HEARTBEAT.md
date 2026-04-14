@@ -1,3 +1,13 @@
+---
+title: "HEARTBEAT"
+created: 2026-04-14
+type: heartbeat
+agent: trader
+status: active
+tags:
+  - agent/trader
+---
+
 # HEARTBEAT.md — Trader
 
 _Verificações periódicas quando ativado em modo heartbeat._

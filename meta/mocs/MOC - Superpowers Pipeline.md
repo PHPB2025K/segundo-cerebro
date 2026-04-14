@@ -1,3 +1,12 @@
+---
+title: "MOC   Superpowers Pipeline"
+created: 2026-04-14
+type: moc
+status: active
+tags:
+  - moc
+---
+
 # MOC — Superpowers Pipeline
 
 > Mapa das 14 skills de desenvolvimento que formam um pipeline linear completo.

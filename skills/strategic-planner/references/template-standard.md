@@ -1,3 +1,13 @@
+---
+title: "template standard"
+created: 2026-04-14
+type: skill
+domain: strategy
+status: active
+tags:
+  - skill/strategy
+---
+
 # Template Standard — Planejamento Estruturado
 
 ## 🎯 Objetivo Principal

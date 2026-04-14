@@ -1,3 +1,13 @@
+---
+title: "IDENTITY"
+created: 2026-04-14
+type: identity
+agent: rh
+status: active
+tags:
+  - agent/rh
+---
+
 # IDENTITY.md — Agente RH
 
 - **Nome:** RH

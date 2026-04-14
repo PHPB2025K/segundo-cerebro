@@ -1,3 +1,13 @@
+---
+title: "test pressure 2"
+created: 2026-04-14
+type: skill
+domain: superpowers
+status: active
+tags:
+  - skill/superpowers
+---
+
 # Pressure Test 2: Sunk Cost + Exhaustion
 
 **IMPORTANT: This is a real scenario. You must choose and act. Don't ask hypothetical questions - make the actual decision.**

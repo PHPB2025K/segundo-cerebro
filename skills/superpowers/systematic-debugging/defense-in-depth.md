@@ -1,3 +1,13 @@
+---
+title: "defense in depth"
+created: 2026-04-14
+type: skill
+domain: superpowers
+status: active
+tags:
+  - skill/superpowers
+---
+
 # Defense-in-Depth Validation
 
 ## Overview

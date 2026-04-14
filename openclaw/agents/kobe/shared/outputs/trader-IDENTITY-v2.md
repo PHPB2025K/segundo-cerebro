@@ -1,3 +1,13 @@
+---
+title: "trader IDENTITY v2"
+created: 2026-04-14
+type: identity
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # IDENTITY.md — Trader
 
 - **Nome:** Trader

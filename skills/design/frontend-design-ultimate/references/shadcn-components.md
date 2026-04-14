@@ -1,3 +1,13 @@
+---
+title: "shadcn components"
+created: 2026-04-14
+type: skill
+domain: design
+status: active
+tags:
+  - skill/design
+---
+
 # shadcn/ui Component Reference
 
 Quick reference for the 40+ pre-installed shadcn/ui components.

@@ -1,3 +1,13 @@
+---
+title: "MEMORY"
+created: 2026-04-14
+type: memory-config
+agent: trader
+status: active
+tags:
+  - agent/trader
+---
+
 # MEMORY.md — Trader
 
 _Último update: 2026-03-23_

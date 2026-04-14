@@ -1,3 +1,13 @@
+---
+title: "m03 produtos precos"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+---
+
 # Módulo 3 — Produtos e Preços
 
 ## Products API

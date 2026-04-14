@@ -1,3 +1,13 @@
+---
+title: "decisions"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Decisões — [[openclaw/agents/fisco/IDENTITY|Fisco]]
 
 ## 2026-03-31 — Emissão NFs Venda Interna Março/2026

@@ -1,3 +1,13 @@
+---
+title: "testing"
+created: 2026-04-14
+type: skill
+domain: dev
+status: active
+tags:
+  - skill/dev
+---
+
 # Testing Reference — Vitest, Playwright, E2E, Mocking
 
 ## Índice

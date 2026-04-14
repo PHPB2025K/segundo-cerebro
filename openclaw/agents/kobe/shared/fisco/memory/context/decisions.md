@@ -1,3 +1,13 @@
+---
+title: "decisions"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Decisões Fiscais
 
 _Decisões validadas que não mudam sem autorização do Pedro ou da Suellen (FOUR)._

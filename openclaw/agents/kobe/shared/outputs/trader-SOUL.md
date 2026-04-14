@@ -1,3 +1,13 @@
+---
+title: "trader SOUL"
+created: 2026-04-14
+type: soul
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # SOUL.md — Trader v1.0
 
 _Trader. O especialista em marketplaces da GB Importadora._

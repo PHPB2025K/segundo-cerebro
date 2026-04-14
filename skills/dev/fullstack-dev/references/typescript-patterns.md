@@ -1,3 +1,13 @@
+---
+title: "typescript patterns"
+created: 2026-04-14
+type: skill
+domain: dev
+status: active
+tags:
+  - skill/dev
+---
+
 # TypeScript Patterns — Avançado, Generics, Zod, Strict Mode
 
 ## Índice

@@ -1,3 +1,13 @@
+---
+title: "canguu"
+created: 2026-04-14
+type: agent
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # Projeto: Canguu
 
 ## Status: ⏸️ Em pausa (mexe quando dá)

@@ -1,3 +1,13 @@
+---
+title: "CHANGELOG"
+created: 2026-04-14
+type: changelog
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # CHANGELOG — Evolução Contínua do Kobe
 
 _Registro cronológico de todas as melhorias aplicadas nas skills, aprendizados capturados e evolução de competência._

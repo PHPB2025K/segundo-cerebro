@@ -1,3 +1,13 @@
+---
+title: "SOUL"
+created: 2026-04-14
+type: soul
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # SOUL.md — Spark v2.0
 
 > Agente: [[openclaw/agents/spark/IDENTITY|Spark]] | Orquestrador: [[openclaw/agents/kobe/AGENTS|Kobe Team]]

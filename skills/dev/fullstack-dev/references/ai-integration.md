@@ -1,3 +1,13 @@
+---
+title: "ai integration"
+created: 2026-04-14
+type: skill
+domain: dev
+status: active
+tags:
+  - skill/dev
+---
+
 # AI Integration Reference — OpenAI, Claude, Streaming, RAG, pgvector
 
 ## Índice

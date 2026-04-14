@@ -1,3 +1,12 @@
+---
+title: "MOC   Governanca OpenClaw"
+created: 2026-04-14
+type: moc
+status: active
+tags:
+  - moc
+---
+
 # MOC — Governanca OpenClaw
 
 > Hub de leveling, reviews, heartbeats e protocolos dos 6 agentes.

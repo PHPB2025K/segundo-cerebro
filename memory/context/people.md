@@ -1,3 +1,13 @@
+---
+title: "people"
+created: 2026-04-14
+type: context
+status: active
+tags:
+  - memory
+  - context
+---
+
 # Pessoas — Equipe e Contatos
 
 > Registrar: pessoas com quem trabalho, clientes, parceiros relevantes.

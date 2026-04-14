@@ -1,3 +1,13 @@
+---
+title: "SOUL"
+created: 2026-04-14
+type: soul
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # SOUL.md — Trader v1.0
 
 > Agente: [[openclaw/agents/trader/IDENTITY|Trader]] | Orquestrador: [[openclaw/agents/kobe/AGENTS|Kobe Team]]

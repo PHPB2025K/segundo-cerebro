@@ -1,3 +1,13 @@
+---
+title: "ml ranking"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+---
+
 # Mercado Livre — Algoritmo, Fatores e Estratégias
 
 ## SUMÁRIO

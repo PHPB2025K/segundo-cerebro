@@ -1,3 +1,13 @@
+---
+title: "implementer prompt"
+created: 2026-04-14
+type: skill
+domain: superpowers
+status: active
+tags:
+  - skill/superpowers
+---
+
 # Implementer Subagent Prompt Template
 
 Use this template when dispatching an implementer subagent.

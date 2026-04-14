@@ -1,3 +1,13 @@
+---
+title: "TOOLS"
+created: 2026-04-14
+type: tools-config
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # TOOLS.md — Infraestrutura e Dispositivos
 
 _Notas específicas do setup do Pedro/Kobe. Skills definem como as ferramentas funcionam; este arquivo registra o que é único deste ambiente._

@@ -1,3 +1,14 @@
+---
+title: "format rules"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+  - pricing
+---
+
 # Regras de Formato — Spreadsheet Pricing
 
 ## Numeros

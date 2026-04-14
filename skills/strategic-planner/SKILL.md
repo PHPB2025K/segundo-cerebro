@@ -1,3 +1,13 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+domain: strategy
+status: active
+tags:
+  - skill/strategy
+---
+
 # Skill: Strategic Planner
 
 > Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]

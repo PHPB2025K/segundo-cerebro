@@ -1,3 +1,13 @@
+---
+title: "IDENTITY"
+created: 2026-04-14
+type: identity
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # IDENTITY.md — Builder
 
 - **Nome:** Builder

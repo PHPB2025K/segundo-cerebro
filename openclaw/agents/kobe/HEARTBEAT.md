@@ -1,3 +1,13 @@
+---
+title: "HEARTBEAT"
+created: 2026-04-14
+type: heartbeat
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # HEARTBEAT — Checklist Proativo do Kobe
 
 _Atualizado: 2026-03-23_

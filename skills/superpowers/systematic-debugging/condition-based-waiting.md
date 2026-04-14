@@ -1,3 +1,13 @@
+---
+title: "condition based waiting"
+created: 2026-04-14
+type: skill
+domain: superpowers
+status: active
+tags:
+  - skill/superpowers
+---
+
 # Condition-Based Waiting
 
 ## Overview

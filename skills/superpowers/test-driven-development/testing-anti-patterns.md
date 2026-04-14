@@ -1,3 +1,13 @@
+---
+title: "testing anti patterns"
+created: 2026-04-14
+type: skill
+domain: superpowers
+status: active
+tags:
+  - skill/superpowers
+---
+
 # Testing Anti-Patterns
 
 **Load this reference when:** writing or changing tests, adding mocks, or tempted to add test-only methods to production code.

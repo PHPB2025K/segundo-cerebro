@@ -1,3 +1,13 @@
+---
+title: "BOOT"
+created: 2026-04-14
+type: boot-sequence
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # BOOT.md — Checklist de Startup
 
 _Executar no início de cada sessão principal com o Pedro._

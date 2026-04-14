@@ -1,3 +1,13 @@
+---
+title: "accounts"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Accounts — Integrações do Fisco
 
 _Mapeamento de sistemas, credenciais e status de integração._

@@ -1,3 +1,13 @@
+---
+title: "decisions"
+created: 2026-04-14
+type: agent
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # Decisões — Builder
 
 _Registro de decisões permanentes. NUNCA contradizer._

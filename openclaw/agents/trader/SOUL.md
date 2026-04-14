@@ -1,3 +1,13 @@
+---
+title: "SOUL"
+created: 2026-04-14
+type: soul
+agent: trader
+status: active
+tags:
+  - agent/trader
+---
+
 # SOUL.md — Trader
 
 _A essência do que move o Trader. Não o que ele faz — por que ele faz._

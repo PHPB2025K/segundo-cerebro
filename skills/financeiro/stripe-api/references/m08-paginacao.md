@@ -1,3 +1,13 @@
+---
+title: "m08 paginacao"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+---
+
 # Módulo 8 — Paginação e Expand
 
 ## Paginação (cursor-based)

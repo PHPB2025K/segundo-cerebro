@@ -1,3 +1,13 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Skill: NFs Venda Interna Filial→Simples (Módulo C) — [[openclaw/agents/fisco/IDENTITY|Fisco]]
 
 _Emite NFs de venda interna da Filial para os CNPJs do Simples Nacional._

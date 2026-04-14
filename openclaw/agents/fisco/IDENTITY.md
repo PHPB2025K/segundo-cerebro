@@ -1,3 +1,13 @@
+---
+title: "IDENTITY"
+created: 2026-04-14
+type: identity
+agent: fisco
+status: active
+tags:
+  - agent/fisco
+---
+
 # IDENTITY.md — Fisco v1.0
 
 ## Dados Básicos

@@ -1,3 +1,14 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+  - mercado-livre
+---
+
 # Skill: update-ml-return-rates
 
 Atualiza a coluna DEVOLUÇÕES (Col O) da aba MELI na [[skills/spreadsheet-pricing/SKILL|planilha de estoque]] Budamix com taxas reais de devolução por SKU.

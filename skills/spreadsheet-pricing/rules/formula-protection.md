@@ -1,3 +1,14 @@
+---
+title: "formula protection"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+  - pricing
+---
+
 # Protecao de Formulas — Spreadsheet Pricing
 
 > REGRA ABSOLUTA: colunas listadas abaixo NUNCA podem ser escritas pelo skill.

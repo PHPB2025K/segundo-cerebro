@@ -1,3 +1,13 @@
+---
+title: "m07 webhooks"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+---
+
 # Módulo 7 — Webhooks
 
 ## Criar endpoint

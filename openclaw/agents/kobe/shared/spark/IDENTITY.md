@@ -1,3 +1,13 @@
+---
+title: "IDENTITY"
+created: 2026-04-14
+type: identity
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # IDENTITY.md — Spark v2.0
 
 > Agente: [[openclaw/agents/spark/IDENTITY|Spark]] | Orquestrador: [[openclaw/agents/kobe/AGENTS|Kobe Team]]

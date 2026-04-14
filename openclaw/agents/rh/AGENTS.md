@@ -1,3 +1,13 @@
+---
+title: "AGENTS"
+created: 2026-04-14
+type: team-config
+agent: rh
+status: active
+tags:
+  - agent/rh
+---
+
 # AGENTS.md — Agente RH (GB Importadora / Budamix)
 
 ## Função

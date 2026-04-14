@@ -1,3 +1,13 @@
+---
+title: "deadlines"
+created: 2026-04-14
+type: context
+status: active
+tags:
+  - memory
+  - context
+---
+
 # Deadlines — Fonte de Verdade
 
 > Todo prazo relevante entra aqui.

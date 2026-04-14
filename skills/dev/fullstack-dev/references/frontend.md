@@ -1,3 +1,13 @@
+---
+title: "frontend"
+created: 2026-04-14
+type: skill
+domain: dev
+status: active
+tags:
+  - skill/dev
+---
+
 # Frontend Reference — React 19, Next.js 15, shadcn/ui, State
 
 ## Índice

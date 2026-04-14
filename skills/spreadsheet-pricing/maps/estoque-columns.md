@@ -1,3 +1,14 @@
+---
+title: "estoque columns"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+  - pricing
+---
+
 # Mapeamento de Colunas — ABA ESTOQUE
 
 > Headers: row 8 | Dados: row 9+

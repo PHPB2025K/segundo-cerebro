@@ -1,3 +1,13 @@
+---
+title: "relatorio mensal contador"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Relatório Mensal — {MES}/{ANO}
 ## Para: Contador (FOUR / Suellen)
 

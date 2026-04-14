@@ -1,3 +1,13 @@
+---
+title: "dev projects local"
+created: 2026-04-14
+type: context
+status: active
+tags:
+  - memory
+  - context
+---
+
 # Projetos de Código — Máquina Local
 
 > Path base: `~/Documents/05-Projetos-Codigo/`

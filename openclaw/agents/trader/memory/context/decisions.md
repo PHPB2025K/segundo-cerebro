@@ -1,3 +1,13 @@
+---
+title: "decisions"
+created: 2026-04-14
+type: agent
+agent: trader
+status: active
+tags:
+  - agent/trader
+---
+
 # Decisões — Trader
 
 _Registro de decisões permanentes. NUNCA contradizer._

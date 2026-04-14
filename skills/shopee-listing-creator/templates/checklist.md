@@ -1,3 +1,14 @@
+---
+title: "checklist"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+  - shopee
+---
+
 # Checklist Pre-Publicacao Shopee — Budamix
 
 > Verificar TODOS os itens antes de chamar add_item.

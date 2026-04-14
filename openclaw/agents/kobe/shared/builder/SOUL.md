@@ -1,3 +1,13 @@
+---
+title: "SOUL"
+created: 2026-04-14
+type: soul
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # SOUL.md — Builder v1.0
 
 > Agente: [[openclaw/agents/builder/IDENTITY|Builder]] | Orquestrador: [[openclaw/agents/kobe/AGENTS|Kobe Team]]

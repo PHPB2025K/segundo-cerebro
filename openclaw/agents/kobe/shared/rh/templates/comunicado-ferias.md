@@ -1,3 +1,13 @@
+---
+title: "comunicado ferias"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Comunicado de Férias
 
 **Empresa:** GB Comércio — CNPJ: 07.194.128/0001-82

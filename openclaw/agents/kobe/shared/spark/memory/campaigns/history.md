@@ -1,3 +1,13 @@
+---
+title: "history"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Histórico de Campanhas — Spark
 
 _Campanhas encerradas com aprendizados extraídos._

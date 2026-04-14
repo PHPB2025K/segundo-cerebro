@@ -1,3 +1,13 @@
+---
+title: "reforma tributaria importacao"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Reforma Tributária Brasileira (EC 132/2023 + LC 214/2025) — Impacto na Importação
 
 Pesquisa consolidada com base na legislação promulgada e nas análises técnicas disponíveis até maio/2025.

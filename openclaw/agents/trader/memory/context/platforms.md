@@ -1,3 +1,13 @@
+---
+title: "platforms"
+created: 2026-04-14
+type: agent
+agent: trader
+status: active
+tags:
+  - agent/trader
+---
+
 # Plataformas — Contexto Operacional
 
 _Status e detalhes de cada plataforma da GB Importadora._

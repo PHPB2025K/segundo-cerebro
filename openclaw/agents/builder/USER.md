@@ -1,3 +1,13 @@
+---
+title: "USER"
+created: 2026-04-14
+type: user-config
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # USER.md — Contexto do Operador
 
 _O Builder não interage com humanos diretamente. Interage com o Kobe._

@@ -1,3 +1,12 @@
+---
+title: "bidspark multiagente completo"
+created: 2026-04-14
+type: project
+status: active
+tags:
+  - project
+---
+
 # ══════════════════════════════════════════════════════════════════
 # BIDSPARK — ARQUITETURA MULTI-AGENTE COMPLETA
 # Briefing Master v5 + 6 Prompts de Agentes

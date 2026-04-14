@@ -1,3 +1,13 @@
+---
+title: "relatorio semanal"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # 📊 Relatório Semanal de Banco de Horas — Semana {SEMANA}
 
 ## Saldo por funcionário

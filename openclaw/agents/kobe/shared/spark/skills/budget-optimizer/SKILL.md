@@ -1,3 +1,13 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Skill: Budget Optimizer — [[openclaw/agents/spark/IDENTITY|Spark]] v2.0
 
 _Alocação e redistribuição de budget entre Meta Ads e Google Ads baseada em performance._

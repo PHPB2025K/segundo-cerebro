@@ -1,3 +1,13 @@
+---
+title: "IDENTITY"
+created: 2026-04-14
+type: identity
+agent: spark
+status: active
+tags:
+  - agent/spark
+---
+
 # IDENTITY.md — Spark
 
 - **Nome:** Spark

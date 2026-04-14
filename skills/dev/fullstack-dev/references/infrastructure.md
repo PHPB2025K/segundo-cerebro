@@ -1,3 +1,13 @@
+---
+title: "infrastructure"
+created: 2026-04-14
+type: skill
+domain: dev
+status: active
+tags:
+  - skill/dev
+---
+
 # Infrastructure Reference — Docker, Nginx, PM2, Vercel, CI/CD
 
 ## Índice

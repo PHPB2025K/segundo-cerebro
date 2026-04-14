@@ -1,3 +1,13 @@
+---
+title: "nomenclatura unificada"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+---
+
 # Nomenclatura Unificada — Mercado Livre ↔ Shopee
 
 Mapeamento de termos entre as APIs do Mercado Livre e Shopee para padronização dos extratos financeiros da GB Importadora.

@@ -1,3 +1,13 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Skill: Anomaly Detector — [[openclaw/agents/spark/IDENTITY|Spark]] v2.0
 
 _Monitoramento contínuo de métricas-chave com detecção de anomalias e alertas automáticos._

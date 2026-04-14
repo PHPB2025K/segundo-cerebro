@@ -1,3 +1,12 @@
+---
+title: "MOC   Supabase Ecosystem"
+created: 2026-04-14
+type: moc
+status: active
+tags:
+  - moc
+---
+
 # MOC — Supabase Ecosystem
 
 > Mapa de todos os projetos Supabase e quais agentes/sistemas usam cada um.

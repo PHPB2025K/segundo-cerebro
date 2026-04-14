@@ -1,3 +1,13 @@
+---
+title: "README"
+created: 2026-04-14
+type: skill
+domain: design
+status: active
+tags:
+  - skill/design
+---
+
 # Motion.dev Documentation Skill
 
 Complete documentation for Motion.dev (formerly Framer Motion) - a modern animation library for React, JavaScript, and Vue.

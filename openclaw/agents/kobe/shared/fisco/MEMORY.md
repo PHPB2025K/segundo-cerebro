@@ -1,3 +1,13 @@
+---
+title: "MEMORY"
+created: 2026-04-14
+type: memory-config
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # MEMORY.md — Índice de Memória do Fisco v1.0
 
 > Agente: [[openclaw/agents/fisco/IDENTITY|Fisco]] | Orquestrador: [[openclaw/agents/kobe/AGENTS|Kobe Team]]

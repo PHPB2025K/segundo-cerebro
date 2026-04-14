@@ -1,3 +1,13 @@
+---
+title: "quick start"
+created: 2026-04-14
+type: skill
+domain: design
+status: active
+tags:
+  - skill/design
+---
+
 # Get started with Motion
 
 Motion is an animation library that's easy to start and fun to master.

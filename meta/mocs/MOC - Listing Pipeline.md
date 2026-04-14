@@ -1,3 +1,12 @@
+---
+title: "MOC   Listing Pipeline"
+created: 2026-04-14
+type: moc
+status: active
+tags:
+  - moc
+---
+
 # MOC — Listing Pipeline
 
 > Fluxo completo: pesquisa de mercado → criacao de listing → planilha → monitoramento.

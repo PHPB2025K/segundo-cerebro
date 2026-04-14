@@ -1,3 +1,13 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Skill: Meta Ads — [[openclaw/agents/spark/IDENTITY|Spark]] v2.0
 
 _Análise, diagnóstico, otimização e relatórios de Meta Ads (Facebook + Instagram)._

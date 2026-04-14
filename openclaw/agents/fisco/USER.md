@@ -1,3 +1,13 @@
+---
+title: "USER"
+created: 2026-04-14
+type: user-config
+agent: fisco
+status: active
+tags:
+  - agent/fisco
+---
+
 # USER.md — Pedro Broglio
 
 - **Nome:** Pedro Broglio

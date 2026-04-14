@@ -1,3 +1,13 @@
+---
+title: "decisions"
+created: 2026-04-14
+type: agent
+agent: spark
+status: active
+tags:
+  - agent/spark
+---
+
 # Decisões — Spark
 
 _Registro de decisões permanentes. NUNCA contradizer._

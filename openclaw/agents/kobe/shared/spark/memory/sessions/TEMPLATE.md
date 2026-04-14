@@ -1,3 +1,13 @@
+---
+title: "TEMPLATE"
+created: 2026-04-14
+type: template
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Sessão — YYYY-MM-DD
 
 _Template. Copiar para cada novo dia de operação._

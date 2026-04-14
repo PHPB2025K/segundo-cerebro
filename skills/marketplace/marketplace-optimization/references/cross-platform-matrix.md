@@ -1,3 +1,13 @@
+---
+title: "cross platform matrix"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+---
+
 # Análise Cruzada — Matriz Comparativa e Estratégia Multi-Plataforma
 
 ## SUMÁRIO

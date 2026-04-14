@@ -1,3 +1,13 @@
+---
+title: "CHANGELOG v2"
+created: 2026-04-14
+type: changelog
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # CHANGELOG — Spark Memory Pack v1.0 → v2.0
 
 _Auditoria e melhorias realizadas em 2026-03-20_

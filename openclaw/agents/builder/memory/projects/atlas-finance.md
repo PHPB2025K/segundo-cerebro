@@ -1,3 +1,13 @@
+---
+title: "atlas finance"
+created: 2026-04-14
+type: agent
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # Projeto: Atlas Finance Suite
 
 ## Status: ⏸️ Em pausa (funcional parcial)

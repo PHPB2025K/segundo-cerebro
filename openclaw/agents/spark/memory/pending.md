@@ -1,3 +1,13 @@
+---
+title: "pending"
+created: 2026-04-14
+type: agent
+agent: spark
+status: active
+tags:
+  - agent/spark
+---
+
 # Pendências — Spark
 
 _Atualizado: 2026-04-06_

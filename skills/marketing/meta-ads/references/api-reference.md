@@ -1,3 +1,13 @@
+---
+title: "api reference"
+created: 2026-04-14
+type: skill
+domain: marketing
+status: active
+tags:
+  - skill/marketing
+---
+
 # Meta Marketing API — Referência Completa
 **Versão:** v21.0 | **Conta:** act_323534883953033
 

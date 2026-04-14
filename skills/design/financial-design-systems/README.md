@@ -1,3 +1,13 @@
+---
+title: "README"
+created: 2026-04-14
+type: skill
+domain: design
+status: active
+tags:
+  - skill/design
+---
+
 # Financial Data Visualization
 
 Patterns for building dark-themed financial charts and data visualizations. Covers chart theming, color scales for gains/losses, and real-time data display for trading dashboards and financial analytics.

@@ -1,3 +1,13 @@
+---
+title: "schema tables"
+created: 2026-04-14
+type: skill
+domain: importacao
+status: active
+tags:
+  - skill/importacao
+---
+
 # GB Import Hub — Schema Completo do Banco de Dados
 
 > Extraido de: repo PHPB2025K/gb-import-hub (27 migrations + types.ts)

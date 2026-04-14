@@ -1,3 +1,13 @@
+---
+title: "reconciliation report"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Relatório de Conciliação Fisco
 
 _Gerado pelo Fisco — Módulo D_

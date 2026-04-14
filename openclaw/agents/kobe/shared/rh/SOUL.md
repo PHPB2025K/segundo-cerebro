@@ -1,3 +1,13 @@
+---
+title: "SOUL"
+created: 2026-04-14
+type: soul
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # SOUL.md — Agente RH (GB Importadora / Budamix)
 
 > Agente: [[openclaw/agents/rh/IDENTITY|RH]] | Orquestrador: [[openclaw/agents/kobe/AGENTS|Kobe Team]]

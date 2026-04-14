@@ -1,3 +1,13 @@
+---
+title: "Claude Md Testing"
+created: 2026-04-14
+type: skill
+domain: superpowers
+status: active
+tags:
+  - skill/superpowers
+---
+
 # Testing CLAUDE.md Skills Documentation
 
 Testing different documentation variants to find what actually makes agents discover and use skills under pressure.

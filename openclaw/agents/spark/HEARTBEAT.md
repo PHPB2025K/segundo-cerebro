@@ -1,3 +1,13 @@
+---
+title: "HEARTBEAT"
+created: 2026-04-14
+type: heartbeat
+agent: spark
+status: active
+tags:
+  - agent/spark
+---
+
 # HEARTBEAT.md — Spark
 
 _Verificações periódicas quando ativado em modo heartbeat._

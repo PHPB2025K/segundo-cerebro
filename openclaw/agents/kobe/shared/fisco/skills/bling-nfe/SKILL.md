@@ -1,3 +1,13 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # SKILL — Emissão de NF-e via Bling API v3 — [[openclaw/agents/fisco/IDENTITY|Fisco]]
 
 ## Objetivo

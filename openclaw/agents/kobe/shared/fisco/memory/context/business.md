@@ -1,3 +1,13 @@
+---
+title: "business"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Contexto Fiscal do Negócio — GB Importadora
 
 _Contexto que o Fisco precisa ter carregado pra operar com precisão._

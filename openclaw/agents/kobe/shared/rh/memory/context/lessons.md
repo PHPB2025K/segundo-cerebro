@@ -1,3 +1,13 @@
+---
+title: "lessons"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Lições — Agente [[openclaw/agents/rh/IDENTITY|RH]]
 
 _Aprendizados operacionais. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._

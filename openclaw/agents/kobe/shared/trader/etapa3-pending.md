@@ -1,3 +1,13 @@
+---
+title: "etapa3 pending"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Pendências — Trader
 
 _Atualizado: 2026-04-08 23:30 BRT_

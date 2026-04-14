@@ -1,3 +1,14 @@
+---
+title: "validation rules"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+  - shopee
+---
+
 # Regras de Validacao — Shopee Listing Creator
 
 > Verificar ANTES de publicar. Se qualquer regra falhar, corrigir e re-validar.

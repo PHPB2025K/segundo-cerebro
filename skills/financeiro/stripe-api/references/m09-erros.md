@@ -1,3 +1,13 @@
+---
+title: "m09 erros"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+---
+
 # Módulo 9 — Tratamento de Erros
 
 ## Códigos HTTP

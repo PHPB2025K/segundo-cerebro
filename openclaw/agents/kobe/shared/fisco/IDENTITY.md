@@ -1,3 +1,13 @@
+---
+title: "IDENTITY"
+created: 2026-04-14
+type: identity
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # IDENTITY.md — Fisco v1.0
 
 > Agente: [[openclaw/agents/fisco/IDENTITY|Fisco]] | Orquestrador: [[openclaw/agents/kobe/AGENTS|Kobe Team]]

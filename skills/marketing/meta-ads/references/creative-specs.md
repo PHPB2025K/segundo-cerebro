@@ -1,3 +1,13 @@
+---
+title: "creative specs"
+created: 2026-04-14
+type: skill
+domain: marketing
+status: active
+tags:
+  - skill/marketing
+---
+
 # Especificações de Criativos — Meta Ads
 **Referência:** 2025/2026
 

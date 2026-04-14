@@ -1,3 +1,13 @@
+---
+title: "template deep"
+created: 2026-04-14
+type: skill
+domain: strategy
+status: active
+tags:
+  - skill/strategy
+---
+
 # Template Deep — Planejamento Estratégico Completo
 
 ⚠️ **GATE DE APROVAÇÃO: Este plano requer aprovação explícita do Pedro antes de qualquer execução.**

@@ -1,3 +1,13 @@
+---
+title: "TOOLS"
+created: 2026-04-14
+type: tools-config
+agent: fisco
+status: active
+tags:
+  - agent/fisco
+---
+
 # TOOLS.md — Agente Fisco
 
 ## Integrações

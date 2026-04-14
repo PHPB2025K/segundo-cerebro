@@ -1,3 +1,13 @@
+---
+title: "m01 pagamentos"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+---
+
 # Módulo 1 — Cobranças e Pagamentos
 
 ## PaymentIntents API

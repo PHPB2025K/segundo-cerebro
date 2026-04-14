@@ -1,3 +1,13 @@
+---
+title: "simulimport"
+created: 2026-04-14
+type: agent
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # Projeto: SimulImport
 
 ## Status: ⏸️ Em pausa (mexe quando dá)

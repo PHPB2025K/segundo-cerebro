@@ -1,3 +1,13 @@
+---
+title: "backend"
+created: 2026-04-14
+type: skill
+domain: dev
+status: active
+tags:
+  - skill/dev
+---
+
 # Backend Reference — Node/Fastify, FastAPI, APIs
 
 ## Índice

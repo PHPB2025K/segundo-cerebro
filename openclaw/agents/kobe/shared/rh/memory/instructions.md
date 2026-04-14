@@ -1,3 +1,13 @@
+---
+title: "instructions"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Instruções Operacionais — Agente RH
 
 ## Restrições de contato com funcionários

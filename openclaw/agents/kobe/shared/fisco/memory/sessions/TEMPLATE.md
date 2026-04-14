@@ -1,3 +1,13 @@
+---
+title: "TEMPLATE"
+created: 2026-04-14
+type: template
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Operação Fiscal — YYYY-MM-DD
 
 ## Módulo(s) Executado(s)

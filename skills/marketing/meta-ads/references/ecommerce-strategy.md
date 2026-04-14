@@ -1,3 +1,13 @@
+---
+title: "ecommerce strategy"
+created: 2026-04-14
+type: skill
+domain: marketing
+status: active
+tags:
+  - skill/marketing
+---
+
 # Meta Ads para E-commerce — Estratégia GB Importadora
 **Contexto:** GB Importadora, marca Budamix, marketplace-first (ML + Shopee + Amazon)
 

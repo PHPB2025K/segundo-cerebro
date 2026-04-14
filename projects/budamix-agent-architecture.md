@@ -1,3 +1,12 @@
+---
+title: "budamix agent architecture"
+created: 2026-04-14
+type: project
+status: active
+tags:
+  - project
+---
+
 # Architecture — Budamix AI Agent
 
 ## Pipeline de Mensagem (fluxo completo)

@@ -1,3 +1,13 @@
+---
+title: "USER"
+created: 2026-04-14
+type: user-config
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # USER.md — Pedro Broglio
 
 _Perfil completo. Atualizado em 2026-03-23._

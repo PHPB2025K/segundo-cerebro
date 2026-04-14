@@ -1,3 +1,14 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+domain: dev
+status: active
+tags:
+  - skill/dev
+  - excel
+---
+
 # Skill: Programmatic Excel Generation (Professional/Corporate Grade)
 
 > Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]

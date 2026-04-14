@@ -1,3 +1,13 @@
+---
+title: "people"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Funcionários GB Importadora
 
 _Fonte de verdade: Ponto Certo (Supabase). Este arquivo é referência rápida._

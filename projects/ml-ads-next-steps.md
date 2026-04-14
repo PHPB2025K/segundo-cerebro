@@ -1,3 +1,12 @@
+---
+title: "ml ads next steps"
+created: 2026-04-14
+type: project
+status: active
+tags:
+  - project
+---
+
 # Próximos Passos — ML Ads Automation
 
 ## Correções aplicadas

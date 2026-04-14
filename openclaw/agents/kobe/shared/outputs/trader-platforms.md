@@ -1,3 +1,13 @@
+---
+title: "trader platforms"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Plataformas — Contexto Operacional
 
 _Status e detalhes de cada plataforma da GB Importadora._

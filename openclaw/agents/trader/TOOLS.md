@@ -1,3 +1,13 @@
+---
+title: "TOOLS"
+created: 2026-04-14
+type: tools-config
+agent: trader
+status: active
+tags:
+  - agent/trader
+---
+
 # TOOLS.md — Cheat Sheet Rápido
 
 _Consulta rápida para paths e comandos do dia a dia. Detalhes completos em MEMORY.md._

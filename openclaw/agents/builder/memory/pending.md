@@ -1,3 +1,13 @@
+---
+title: "pending"
+created: 2026-04-14
+type: agent
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # Pendências — Builder
 
 _Atualizado: 2026-04-06_

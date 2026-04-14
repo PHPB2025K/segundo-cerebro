@@ -1,3 +1,13 @@
+---
+title: " index"
+created: 2026-04-14
+type: index
+status: active
+tags:
+  - memory
+  - project
+---
+
 # Projetos — Índice Geral
 
 > Fonte de verdade para status de todos os projetos.

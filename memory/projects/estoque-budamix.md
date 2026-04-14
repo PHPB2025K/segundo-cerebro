@@ -1,3 +1,13 @@
+---
+title: "estoque budamix"
+created: 2026-04-14
+type: project-index
+status: active
+tags:
+  - memory
+  - project
+---
+
 # Estoque Budamix
 
 > Status: 🟢 Produção

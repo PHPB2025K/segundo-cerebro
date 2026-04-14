@@ -1,3 +1,13 @@
+---
+title: "excel design system"
+created: 2026-04-14
+type: skill
+domain: design
+status: active
+tags:
+  - skill/design
+---
+
 # Excel Design System — GB Importadora
 
 _Padrão visual obrigatório para todos os relatórios e extratos Excel._

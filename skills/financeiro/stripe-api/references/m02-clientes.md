@@ -1,3 +1,13 @@
+---
+title: "m02 clientes"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+---
+
 # Módulo 2 — Gestão de Clientes
 
 IDs: `cus_`. Stripe não impõe unicidade de email.

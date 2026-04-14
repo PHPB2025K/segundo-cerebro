@@ -1,3 +1,13 @@
+---
+title: "IDENTITY"
+created: 2026-04-14
+type: identity
+agent: trader
+status: active
+tags:
+  - agent/trader
+---
+
 # IDENTITY.md — Trader
 
 - **Nome:** Trader

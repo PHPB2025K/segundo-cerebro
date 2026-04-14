@@ -1,3 +1,13 @@
+---
+title: "REVIEW"
+created: 2026-04-14
+type: skill
+domain: design
+status: active
+tags:
+  - skill/design
+---
+
 # Skill Review: frontend-design-ultimate
 
 Review Date: 2026-02-01

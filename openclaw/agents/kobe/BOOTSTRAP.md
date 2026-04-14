@@ -1,3 +1,13 @@
+---
+title: "BOOTSTRAP"
+created: 2026-04-14
+type: boot-sequence
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # BOOTSTRAP.md — Bootstrap Operacional + Recuperação de Contexto
 
 _Arquivo de bootstrap para sessões do Kobe._

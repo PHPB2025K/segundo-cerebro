@@ -1,3 +1,13 @@
+---
+title: "saas patterns"
+created: 2026-04-14
+type: skill
+domain: dev
+status: active
+tags:
+  - skill/dev
+---
+
 # SaaS Patterns — Stripe, Multi-Tenancy, Feature Flags, Onboarding
 
 ## Índice

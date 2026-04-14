@@ -1,3 +1,13 @@
+---
+title: "active"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Campanhas Ativas — Spark
 
 _Atualizado: 2026-03-20_

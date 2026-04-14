@@ -1,3 +1,13 @@
+---
+title: "playbook"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Playbook Operacional — Spark v2.0
 
 _Regras vivas aprendidas com a operação da GB. Atualizado conforme padrões são descobertos._

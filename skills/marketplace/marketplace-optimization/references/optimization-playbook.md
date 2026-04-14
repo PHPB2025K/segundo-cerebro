@@ -1,3 +1,13 @@
+---
+title: "optimization playbook"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+---
+
 # Optimization Playbook — Framework Unificado GB Importadora
 
 ## SUMÁRIO

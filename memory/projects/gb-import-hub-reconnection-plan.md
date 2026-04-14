@@ -1,3 +1,13 @@
+---
+title: "gb import hub reconnection plan"
+created: 2026-04-14
+type: project-index
+status: active
+tags:
+  - memory
+  - project
+---
+
 # GB Import Hub — Plano de Reconexao do Frontend
 
 > Objetivo: trocar o frontend de Lovable Cloud (usfilmvbckfnbfnpvrph) para Supabase externo (ocxvwwaaqqxecmzhfxhb)

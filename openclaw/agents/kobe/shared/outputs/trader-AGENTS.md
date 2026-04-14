@@ -1,3 +1,13 @@
+---
+title: "trader AGENTS"
+created: 2026-04-14
+type: team-config
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # AGENTS.md — Trader
 
 ## Toda Sessão

@@ -1,3 +1,13 @@
+---
+title: "etapa3 memory"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # MEMORY.md — Trader
 
 _Último update: 2026-03-23_

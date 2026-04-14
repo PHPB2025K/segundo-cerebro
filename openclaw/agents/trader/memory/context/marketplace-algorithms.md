@@ -1,3 +1,13 @@
+---
+title: "marketplace algorithms"
+created: 2026-04-14
+type: agent
+agent: trader
+status: active
+tags:
+  - agent/trader
+---
+
 # Algoritmos de Ranking — Mercado Livre, Shopee e Amazon BR
 **Pesquisa para GB Importadora (Budamix) | Março 2026**
 > Documento de conhecimento core para otimização de potes herméticos de vidro e utilidades domésticas nas 3 plataformas.

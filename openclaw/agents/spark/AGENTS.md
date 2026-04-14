@@ -1,3 +1,13 @@
+---
+title: "AGENTS"
+created: 2026-04-14
+type: team-config
+agent: spark
+status: active
+tags:
+  - agent/spark
+---
+
 # AGENTS.md — Spark
 
 _Regras operacionais. Como o Spark executa._

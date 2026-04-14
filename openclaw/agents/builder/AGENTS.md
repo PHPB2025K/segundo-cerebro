@@ -1,3 +1,13 @@
+---
+title: "AGENTS"
+created: 2026-04-14
+type: team-config
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # AGENTS.md — Builder
 
 _Regras operacionais. Como o Builder executa._

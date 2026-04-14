@@ -1,3 +1,13 @@
+---
+title: "BRIEFING spark ads mvp"
+created: 2026-04-14
+type: briefing
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # BRIEFING: Spark Ads — MVP (Fase 1)
 
 _Para: Builder | De: Kobe | Data: 2026-03-23_

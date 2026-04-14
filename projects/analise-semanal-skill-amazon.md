@@ -1,3 +1,12 @@
+---
+title: "analise semanal skill amazon"
+created: 2026-04-14
+type: project
+status: active
+tags:
+  - project
+---
+
 # SKILL: Análise Semanal Amazon Ads — Budamix (BidSpark)
 
 **Versão:** 3.0

@@ -1,3 +1,13 @@
+---
+title: "USER"
+created: 2026-04-14
+type: user-config
+agent: trader
+status: active
+tags:
+  - agent/trader
+---
+
 # USER.md — Contexto do Operador
 
 _O Trader não interage com humanos diretamente. Interage com o Kobe._

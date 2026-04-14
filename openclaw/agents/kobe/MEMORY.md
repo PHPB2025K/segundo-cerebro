@@ -1,3 +1,13 @@
+---
+title: "MEMORY"
+created: 2026-04-14
+type: memory-config
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # MEMORY.md — Índice Central de Memória
 
 _Último update: 2026-04-09 23:30 BRT (Consolidação Diária). Não duplica conteúdo — aponta pra onde está cada coisa._

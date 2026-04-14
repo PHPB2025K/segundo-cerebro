@@ -1,3 +1,13 @@
+---
+title: "regras ponto certo"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Knowledge File — Regras do Sistema Ponto Certo
 
 ## 1. Controle de Ponto

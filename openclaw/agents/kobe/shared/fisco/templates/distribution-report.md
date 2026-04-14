@@ -1,3 +1,13 @@
+---
+title: "distribution report"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Relatório de Distribuição de Estoque
 
 _Gerado pelo Fisco — Módulo A_

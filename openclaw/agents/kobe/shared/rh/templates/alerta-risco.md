@@ -1,3 +1,13 @@
+---
+title: "alerta risco"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # 🔴 ALERTA DE RISCO TRABALHISTA
 
 **Tipo:** {TIPO_RISCO}

@@ -1,3 +1,14 @@
+---
+title: "amazon columns"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+  - pricing
+---
+
 # Mapeamento de Colunas — ABA AMAZON
 
 > Headers: row 6 | Dados: row 7+

@@ -1,3 +1,13 @@
+---
+title: "Spark Ads Management Plan"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Spark Ads Management System — Plano Completo
 
 _De: Kobe | Data: 2026-03-24 | Status: Aguardando aprovação Pedro_

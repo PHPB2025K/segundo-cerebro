@@ -1,3 +1,13 @@
+---
+title: "endpoints"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+---
+
 # Endpoints — ML Ads API v2
 
 Base URL: `https://api.mercadolibre.com`

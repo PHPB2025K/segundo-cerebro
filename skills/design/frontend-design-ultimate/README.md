@@ -1,3 +1,13 @@
+---
+title: "README"
+created: 2026-04-14
+type: skill
+domain: design
+status: active
+tags:
+  - skill/design
+---
+
 # Frontend Design Ultimate
 
 🎨 Create distinctive, production-grade static sites with React, Tailwind CSS, and shadcn/ui — no mockups needed.

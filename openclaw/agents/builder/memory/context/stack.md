@@ -1,3 +1,13 @@
+---
+title: "stack"
+created: 2026-04-14
+type: agent
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # Stack & Padrões — Builder
 
 _Padrões de tecnologia definidos para os projetos da GB._

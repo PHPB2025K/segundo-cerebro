@@ -1,3 +1,13 @@
+---
+title: "m04 assinaturas"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+---
+
 # Módulo 4 — Assinaturas Recorrentes
 
 ## Status do ciclo de vida

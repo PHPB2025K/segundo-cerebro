@@ -1,3 +1,13 @@
+---
+title: "pending"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Pendências — Agente [[openclaw/agents/rh/IDENTITY|RH]]
 
 ## ✅ Resolvido pelo Pedro

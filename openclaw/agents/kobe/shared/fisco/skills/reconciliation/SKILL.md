@@ -1,3 +1,13 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Skill: Conciliação Fisco (Módulo D) — [[openclaw/agents/fisco/IDENTITY|Fisco]]
 
 _Cruza NF-e emitidas com pedidos dos marketplaces para identificar inconsistências._

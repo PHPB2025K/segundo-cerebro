@@ -1,3 +1,13 @@
+---
+title: "gb import hub edge functions map"
+created: 2026-04-14
+type: project-index
+status: active
+tags:
+  - memory
+  - project
+---
+
 # GB Import Hub — Edge Functions Map
 
 > 17 Edge Functions extraidas do repo PHPB2025K/gb-import-hub

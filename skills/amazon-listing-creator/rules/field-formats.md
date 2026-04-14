@@ -1,3 +1,14 @@
+---
+title: "field formats"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+  - amazon
+---
+
 # Formatos Exatos de Campos SP-API — Amazon BR
 
 > Referencia rapida dos formatos que FUNCIONAM.

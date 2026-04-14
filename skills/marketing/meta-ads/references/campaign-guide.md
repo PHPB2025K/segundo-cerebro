@@ -1,3 +1,13 @@
+---
+title: "campaign guide"
+created: 2026-04-14
+type: skill
+domain: marketing
+status: active
+tags:
+  - skill/marketing
+---
+
 # Guia de Criação de Campanhas — Meta Ads
 **Conta:** act_323534883953033 (GB Distribuição)
 

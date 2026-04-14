@@ -1,3 +1,13 @@
+---
+title: "TEAM"
+created: 2026-04-14
+type: team-config
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # TEAM.md — Time Kobe
 
 _Atualizado: 2026-03-26_

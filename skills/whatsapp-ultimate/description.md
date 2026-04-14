@@ -1,3 +1,13 @@
+---
+title: "description"
+created: 2026-04-14
+type: skill
+domain: whatsapp
+status: active
+tags:
+  - skill/whatsapp
+---
+
 You put 5 agents in a WhatsApp group. They all respond at once. Your API bill does a backflip.
 
 Protocol v2 fixes that. Exponential Courtesy Protocol — like Ethernet collision detection, but for AI agents who won't stop talking. Quadratic backoff, jitter, backpressure for over-talkers. Conversations that detect when they're going in circles, steer themselves to new ground, and close when the objective is met.

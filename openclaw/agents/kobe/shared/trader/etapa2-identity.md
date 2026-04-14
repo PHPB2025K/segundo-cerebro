@@ -1,3 +1,13 @@
+---
+title: "etapa2 identity"
+created: 2026-04-14
+type: agent
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # IDENTITY.md — Trader
 
 - **Nome:** Trader

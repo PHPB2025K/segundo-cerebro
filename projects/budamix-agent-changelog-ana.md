@@ -1,3 +1,12 @@
+---
+title: "budamix agent changelog ana"
+created: 2026-04-14
+type: project
+status: active
+tags:
+  - project
+---
+
 # CHANGELOG — Agente Ana (WhatsApp)
 
 ## 2026-04-12 — Sprint Auditoria 7d (5 correções sistêmicas)

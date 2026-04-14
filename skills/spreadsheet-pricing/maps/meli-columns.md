@@ -1,3 +1,14 @@
+---
+title: "meli columns"
+created: 2026-04-14
+type: skill
+domain: financeiro
+status: active
+tags:
+  - skill/financeiro
+  - pricing
+---
+
 # Mapeamento de Colunas — ABA MELI
 
 > Headers: row 6 | Dados: row 7+

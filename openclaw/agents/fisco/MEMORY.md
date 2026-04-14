@@ -1,3 +1,13 @@
+---
+title: "MEMORY"
+created: 2026-04-14
+type: memory-config
+agent: fisco
+status: active
+tags:
+  - agent/fisco
+---
+
 # MEMORY.md - Long-Term Memory
 
 ## 2026-03-31

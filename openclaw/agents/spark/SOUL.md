@@ -1,3 +1,13 @@
+---
+title: "SOUL"
+created: 2026-04-14
+type: soul
+agent: spark
+status: active
+tags:
+  - agent/spark
+---
+
 # SOUL.md — Spark
 
 _A essência do que move o Spark. Não o que ele faz — por que ele faz._

@@ -1,3 +1,13 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+domain: design
+status: active
+tags:
+  - skill/design
+---
+
 # Design System — Relatórios OpenClaw (Curso)
 
 > Usado por [[openclaw/agents/trader/IDENTITY|Trader]]

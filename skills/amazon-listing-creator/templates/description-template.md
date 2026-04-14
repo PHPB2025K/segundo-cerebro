@@ -1,3 +1,14 @@
+---
+title: "description template"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+  - amazon
+---
+
 # Template de Descricao Amazon BR — Budamix
 
 > HTML basico permitido: <br>, <b>, <ul>, <li>

@@ -1,3 +1,13 @@
+---
+title: "AGENTS"
+created: 2026-04-14
+type: team-config
+agent: fisco
+status: active
+tags:
+  - agent/fisco
+---
+
 # AGENT.md — Arquitetura Técnica do Agente Fisco
 
 ---

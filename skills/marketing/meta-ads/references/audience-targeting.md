@@ -1,3 +1,13 @@
+---
+title: "audience targeting"
+created: 2026-04-14
+type: skill
+domain: marketing
+status: active
+tags:
+  - skill/marketing
+---
+
 # Segmentação e Públicos — Meta Ads
 **Conta:** act_323534883953033 | **Mercado:** Brasil
 

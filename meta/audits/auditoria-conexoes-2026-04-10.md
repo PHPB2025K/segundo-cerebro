@@ -1,3 +1,12 @@
+---
+title: "auditoria conexoes 2026 04 10"
+created: 2026-04-14
+type: audit
+status: active
+tags:
+  - meta/audit
+---
+
 # Auditoria de Conexões do Vault — 10/04/2026
 
 > Auditoria exaustiva de 347 notas do segundo cérebro.

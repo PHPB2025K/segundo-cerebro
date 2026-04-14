@@ -1,3 +1,13 @@
+---
+title: "user briefing openclaw v1"
+created: 2026-04-14
+type: system
+status: active
+tags:
+  - openclaw
+  - system
+---
+
 **PERFIL PESSOAL E EMPRESARIAL**
 
 Pedro Broglio

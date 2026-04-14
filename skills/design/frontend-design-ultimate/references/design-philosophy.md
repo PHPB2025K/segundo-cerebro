@@ -1,3 +1,13 @@
+---
+title: "design philosophy"
+created: 2026-04-14
+type: skill
+domain: design
+status: active
+tags:
+  - skill/design
+---
+
 # Design Philosophy — Anti-AI-Slop Manifesto
 
 This reference extends the core SKILL.md with deeper guidance on creating distinctive designs.

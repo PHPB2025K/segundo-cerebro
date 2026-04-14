@@ -1,3 +1,14 @@
+---
+title: "known product types"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+  - amazon
+---
+
 # Product Types Conhecidos — Amazon BR
 
 > Atualizar sempre que cadastrar produto em categoria nova.

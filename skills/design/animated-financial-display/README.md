@@ -1,3 +1,13 @@
+---
+title: "README"
+created: 2026-04-14
+type: skill
+domain: design
+status: active
+tags:
+  - skill/design
+---
+
 # Animated Financial Display
 
 Patterns for animating financial numbers with spring physics, formatting, and visual feedback. Covers animated counters, price tickers, percentage changes, and value flash effects for trading dashboards and financial UIs.

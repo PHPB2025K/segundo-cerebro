@@ -1,3 +1,13 @@
+---
+title: "MEMORY"
+created: 2026-04-14
+type: memory-config
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # MEMORY.md — Builder
 
 _Último update: 2026-03-23_

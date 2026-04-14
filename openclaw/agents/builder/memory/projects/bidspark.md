@@ -1,3 +1,13 @@
+---
+title: "bidspark"
+created: 2026-04-14
+type: agent
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # Projeto: Bidspark
 
 ## Status: ⏸️ Em pausa (mexe quando dá)

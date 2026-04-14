@@ -1,3 +1,14 @@
+---
+title: "knowledge base"
+created: 2026-04-14
+type: skill
+domain: pessoal
+status: active
+tags:
+  - skill/pessoal
+  - corrida
+---
+
 # Expert em Coaching de Corrida — Knowledge File
 
 ## 1. DEFINIÇÃO DE FUNÇÃO E IDENTIDADE

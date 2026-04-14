@@ -1,3 +1,12 @@
+---
+title: "memoria tobias"
+created: 2026-04-14
+type: note
+status: active
+tags:
+  - knowledge/pessoal
+---
+
 **Tobias, preciso que você faça uma análise profunda e honesta. Leia
 tudo com atenção antes de responder.**
 

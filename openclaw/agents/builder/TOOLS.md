@@ -1,3 +1,13 @@
+---
+title: "TOOLS"
+created: 2026-04-14
+type: tools-config
+agent: builder
+status: active
+tags:
+  - agent/builder
+---
+
 # TOOLS.md — Cheat Sheet Rápido
 
 _Consulta rápida para paths, comandos e versões. Detalhes completos em MEMORY.md._

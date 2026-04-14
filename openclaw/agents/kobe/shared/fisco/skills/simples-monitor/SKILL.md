@@ -1,3 +1,13 @@
+---
+title: "SKILL"
+created: 2026-04-14
+type: skill-definition
+agent: kobe
+status: active
+tags:
+  - agent/kobe
+---
+
 # Skill: Monitor de Limites Simples Nacional (Módulo E) — [[openclaw/agents/fisco/IDENTITY|Fisco]]
 
 _Acompanha faturamento acumulado por CNPJ e alerta antes de estourar o teto._

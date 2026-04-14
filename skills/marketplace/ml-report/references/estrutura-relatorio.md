@@ -1,3 +1,13 @@
+---
+title: "estrutura relatorio"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+---
+
 # Estrutura do Relatório — 9 Seções
 
 Documentação detalhada de cada seção do relatório de performance ML.

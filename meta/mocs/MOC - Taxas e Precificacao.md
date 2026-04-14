@@ -1,3 +1,12 @@
+---
+title: "MOC   Taxas e Precificacao"
+created: 2026-04-14
+type: moc
+status: active
+tags:
+  - moc
+---
+
 # MOC — Taxas e Precificacao
 
 > Hub comparativo de taxas das 3 plataformas + planilha de precificacao.

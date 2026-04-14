@@ -1,3 +1,13 @@
+---
+title: "business context"
+created: 2026-04-14
+type: context
+status: active
+tags:
+  - memory
+  - context
+---
+
 # Contexto Geral — Pedro Broglio
 
 > **CACHE COMPILADO** — visão panorâmica para boot rápido do /cerebro.

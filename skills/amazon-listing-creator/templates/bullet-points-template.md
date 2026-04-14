@@ -1,3 +1,14 @@
+---
+title: "bullet points template"
+created: 2026-04-14
+type: skill
+domain: marketplace
+status: active
+tags:
+  - skill/marketplace
+  - amazon
+---
+
 # Template de Bullet Points Amazon BR — Budamix
 
 > 5 bullets obrigatorios. Cada um ate 500 chars.

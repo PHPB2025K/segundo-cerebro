@@ -1,3 +1,13 @@
+---
+title: "root cause tracing"
+created: 2026-04-14
+type: skill
+domain: superpowers
+status: active
+tags:
+  - skill/superpowers
+---
+
 # Root Cause Tracing
 
 ## Overview

@@ -1,3 +1,13 @@
+---
+title: "test pressure 3"
+created: 2026-04-14
+type: skill
+domain: superpowers
+status: active
+tags:
+  - skill/superpowers
+---
+
 # Pressure Test 3: Authority + Social Pressure
 
 **IMPORTANT: This is a real scenario. You must choose and act. Don't ask hypothetical questions - make the actual decision.**

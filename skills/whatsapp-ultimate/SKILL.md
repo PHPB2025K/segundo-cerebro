@@ -11,7 +11,7 @@ metadata:
 
 # WhatsApp Ultimate
 
-> Usado por [[agents/kobe/IDENTITY|Kobe]]
+> Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]
 
 **Everything you can do in WhatsApp, your AI agent can do too.**
 
@@ -274,7 +274,7 @@ Agent personalities live in the workspace:
 ```
 workspace/
 ├── SOUL.md                  # main agent
-├── agents/
+├──openclaw/agents/
 │   ├── luna/SOUL.md         # Luna's personality
 │   └── rex/SOUL.md          # Rex's personality
 ```

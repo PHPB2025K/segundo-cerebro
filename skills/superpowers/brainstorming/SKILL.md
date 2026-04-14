@@ -5,7 +5,7 @@ description: "You MUST use this before any creative work - creating features, bu
 
 # Brainstorming Ideas Into Designs
 
-> Usado por [[agents/kobe/IDENTITY|Kobe]]
+> Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]
 
 Help turn ideas into fully formed designs and specs through natural collaborative dialogue.
 

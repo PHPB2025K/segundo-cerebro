@@ -5,7 +5,7 @@ description: Use when executing implementation plans with independent tasks in t
 
 # Subagent-Driven Development
 
-> Usado por [[agents/kobe/IDENTITY|Kobe]]
+> Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]
 
 Execute plan by dispatching fresh subagent per task, with two-stage review after each: spec compliance review first, then code quality review.
 
@@ -284,7 +284,7 @@ Done!
 
 - Anterior: [[skills/superpowers/writing-plans/SKILL|writing-plans]]
 - Próximo: [[skills/superpowers/requesting-code-review/SKILL|requesting-code-review]]
-- Relacionado: [[skills/superpowers/dispatching-parallel-agents/SKILL|dispatching-parallel-agents]]
+- Relacionado: [[skills/superpowers/dispatching-parallelopenclaw/agents/SKILL|dispatching-parallel-agents]]
 
 ---
 ## Referências

@@ -26,7 +26,7 @@ read_when:
 
 # Motion.dev Documentation
 
-> Usado por [[agents/builder/IDENTITY|Builder]]
+> Usado por [[openclaw/agents/builder/IDENTITY|Builder]]
 
 Motion is a modern animation library for React, JavaScript, and Vue. It's the evolution of Framer Motion, offering:
 

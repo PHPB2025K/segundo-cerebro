@@ -1,6 +1,6 @@
 # Skill: Strategic Planner
 
-> Usado por [[agents/kobe/IDENTITY|Kobe]]
+> Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]
 
 ## Metadata
 - **Name:** strategic-planner

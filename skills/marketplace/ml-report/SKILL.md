@@ -5,7 +5,7 @@ description: Gerar relatórios profissionais de performance do Mercado Livre com
 
 # ml-report — Relatório de Performance ML
 
-> Usado por [[agents/trader/IDENTITY|Trader]]
+> Usado por [[openclaw/agents/trader/IDENTITY|Trader]]
 
 Gera relatórios PDF profissionais da conta GB Importadora / Budamix no Mercado Livre.  
 Visual premium, dados reais da API, exportação direta para PDF via wkhtmltopdf.

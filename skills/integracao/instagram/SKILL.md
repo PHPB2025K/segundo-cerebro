@@ -5,7 +5,7 @@ description: Consulta perfis públicos e posts do Instagram via RapidAPI (instag
 
 # Instagram — Consulta de Perfis e Posts
 
-> Usado por [[agents/spark/IDENTITY|Spark]]
+> Usado por [[openclaw/agents/spark/IDENTITY|Spark]]
 
 ## Descrição
 

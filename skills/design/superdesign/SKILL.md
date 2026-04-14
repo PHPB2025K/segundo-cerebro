@@ -6,7 +6,7 @@ metadata: {"clawdbot":{"emoji":"🎨"}}
 
 # Frontend Design Skill
 
-> Usado por [[agents/builder/IDENTITY|Builder]]
+> Usado por [[openclaw/agents/builder/IDENTITY|Builder]]
 
 Use this skill when creating UI components, landing pages, dashboards, or any frontend design work.
 

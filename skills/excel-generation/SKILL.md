@@ -1,6 +1,6 @@
 # Skill: Programmatic Excel Generation (Professional/Corporate Grade)
 
-> Usado por [[agents/kobe/IDENTITY|Kobe]]
+> Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]
 
 > Reference document for AI agents generating .xlsx files via Python (openpyxl) or Node.js (ExcelJS).
 > Last updated: 2026-03-30

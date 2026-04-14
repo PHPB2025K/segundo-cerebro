@@ -84,14 +84,14 @@
 
 ## MOCs (Maps of Content)
 
-- [[99 - Meta/MOC - Token Management|Token Management]]
-- [[99 - Meta/MOC - Extratos Financeiros|Extratos Financeiros]]
-- [[99 - Meta/MOC - Superpowers Pipeline|Superpowers Pipeline]]
-- [[99 - Meta/MOC - Taxas e Precificacao|Taxas e Precificação]]
-- [[99 - Meta/MOC - Design Systems Budamix|Design Systems]]
-- [[99 - Meta/MOC - Supabase Ecosystem|Supabase Ecosystem]]
-- [[99 - Meta/MOC - Governanca OpenClaw|Governança OpenClaw]]
-- [[99 - Meta/MOC - Listing Pipeline|Listing Pipeline]]
+- [[meta/mocs/MOC - Token Management|Token Management]]
+- [[meta/mocs/MOC - Extratos Financeiros|Extratos Financeiros]]
+- [[meta/mocs/MOC - Superpowers Pipeline|Superpowers Pipeline]]
+- [[meta/mocs/MOC - Taxas e Precificacao|Taxas e Precificação]]
+- [[meta/mocs/MOC - Design Systems Budamix|Design Systems]]
+- [[meta/mocs/MOC - Supabase Ecosystem|Supabase Ecosystem]]
+- [[meta/mocs/MOC - Governanca OpenClaw|Governança OpenClaw]]
+- [[meta/mocs/MOC - Listing Pipeline|Listing Pipeline]]
 
 ---
 

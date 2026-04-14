@@ -5,7 +5,7 @@ description: "Otimização de rankings, algoritmos e posicionamento em marketpla
 
 # Marketplace Optimization — Playbook Operacional GB Importadora
 
-> Usado por [[agents/trader/IDENTITY|Trader]]
+> Usado por [[openclaw/agents/trader/IDENTITY|Trader]]
 
 Baseado em pesquisa de algoritmos ML, Shopee e Amazon BR (março 2026).
 Produto central: potes herméticos de vidro Budamix.

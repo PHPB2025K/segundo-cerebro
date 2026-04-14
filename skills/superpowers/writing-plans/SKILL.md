@@ -5,7 +5,7 @@ description: Use when you have a spec or requirements for a multi-step task, bef
 
 # Writing Plans
 
-> Usado por [[agents/kobe/IDENTITY|Kobe]]
+> Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]
 
 ## Overview
 

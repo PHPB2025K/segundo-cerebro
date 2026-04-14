@@ -15,7 +15,7 @@ description: >
 
 # Fullstack Dev — Stack & Workflows
 
-> Usado por [[agents/builder/IDENTITY|Builder]]
+> Usado por [[openclaw/agents/builder/IDENTITY|Builder]]
 
 ## Stack Padrão (Pedro / GB Importadora)
 

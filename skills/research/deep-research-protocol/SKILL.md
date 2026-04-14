@@ -16,7 +16,7 @@ metadata:
 
 # Deep Research Protocol — Skill de Pesquisa Profunda
 
-> Usado por [[agents/kobe/IDENTITY|Kobe]]
+> Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]
 
 ## O que é
 

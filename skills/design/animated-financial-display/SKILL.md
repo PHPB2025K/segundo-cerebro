@@ -6,7 +6,7 @@ description: Patterns for animating financial numbers with spring physics, forma
 
 # Animated Financial Display
 
-> Usado por [[agents/builder/IDENTITY|Builder]]
+> Usado por [[openclaw/agents/builder/IDENTITY|Builder]]
 
 Create engaging financial number displays with smooth animations, proper formatting, and visual feedback on value changes.
 

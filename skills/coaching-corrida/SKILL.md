@@ -5,7 +5,7 @@ description: Coach de corrida pessoal do Pedro Broglio. Usar quando Pedro enviar
 
 # Coach de Corrida — Skill do Kobe
 
-> Usado por [[agents/kobe/IDENTITY|Kobe]]
+> Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]
 
 ## Identidade neste contexto
 

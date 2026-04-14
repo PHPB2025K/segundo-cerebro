@@ -5,7 +5,7 @@ description: Gerar relatórios profissionais de performance de marketplace com v
 
 # Relatório de Performance — Marketplaces
 
-> Usado por [[agents/trader/IDENTITY|Trader]]
+> Usado por [[openclaw/agents/trader/IDENTITY|Trader]]
 
 Gera relatórios PDF profissionais para Mercado Livre, Amazon e Shopee.
 Arquitetura modular: seções genéricas + connectors por plataforma.

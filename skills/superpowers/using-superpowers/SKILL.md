@@ -39,7 +39,7 @@ Skills use Claude Code tool names. Non-CC platforms: see `references/codex-tools
 
 # Using Skills
 
-> Usado por [[agents/kobe/IDENTITY|Kobe]]
+> Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]
 
 ## The Rule
 

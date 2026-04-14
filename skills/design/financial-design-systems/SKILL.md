@@ -6,7 +6,7 @@ description: Patterns for building dark-themed financial charts and data visuali
 
 # Financial Data Visualization
 
-> Usado por [[agents/builder/IDENTITY|Builder]]
+> Usado por [[openclaw/agents/builder/IDENTITY|Builder]]
 
 Build dark-themed financial charts and visualizations that are readable, beautiful, and consistent with modern trading UIs.
 

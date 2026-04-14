@@ -3,8 +3,8 @@
 Atualiza a coluna DEVOLUÇÕES (Col O) da aba MELI na [[skills/spreadsheet-pricing/SKILL|planilha de estoque]] Budamix com taxas reais de devolução por SKU.
 
 ## Quem usa
-- **[[agents/kobe/IDENTITY|Kobe]]** (agente principal)
-- **[[agents/trader/IDENTITY|Trader]]** (sub-agente marketplace)
+- **[[openclaw/agents/kobe/IDENTITY|Kobe]]** (agente principal)
+- **[[openclaw/agents/trader/IDENTITY|Trader]]** (sub-agente marketplace)
 
 ## Quando usar
 - Quando receber um arquivo xlsx/json com taxas de devolução reais dos anúncios MLB

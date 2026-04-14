@@ -11,7 +11,7 @@ description: >
 
 # Budget Optimizer — Skill de Otimização de Verba
 
-> Usado por [[agents/spark/IDENTITY|Spark]]
+> Usado por [[openclaw/agents/spark/IDENTITY|Spark]]
 
 Otimização inteligente de alocação de budget entre campanhas e plataformas de ads.
 Cross-platform: Meta Ads + Google Ads.

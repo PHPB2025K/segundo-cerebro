@@ -9,7 +9,7 @@ description: >
 
 # Gestão de Estoque — GB Importadora
 
-> Usado por [[agents/kobe/IDENTITY|Kobe]]
+> Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]
 
 ## Descrição
 

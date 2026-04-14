@@ -5,7 +5,7 @@ description: Gerar extratos financeiros completos da Shopee com detalhamento de 
 
 # Extrato Financeiro — Shopee / Budamix (Multi-Conta)
 
-> Usado por [[agents/trader/IDENTITY|Trader]]
+> Usado por [[openclaw/agents/trader/IDENTITY|Trader]]
 
 Gera extratos financeiros completos a partir da API Shopee v2, no formato padrão aprovado pelo Pedro (mesmo formato do extrato ML — 23 colunas). Suporta 3 contas com consolidação automática.
 

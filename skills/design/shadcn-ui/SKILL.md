@@ -26,7 +26,7 @@ output-format: code
 
 # shadcn/ui Expert
 
-> Usado por [[agents/builder/IDENTITY|Builder]]
+> Usado por [[openclaw/agents/builder/IDENTITY|Builder]]
 
 Comprehensive guide for building production UIs with shadcn/ui, Tailwind CSS, react-hook-form, and zod.
 

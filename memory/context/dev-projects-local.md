@@ -9,13 +9,13 @@
 
 | Pasta | Projeto | Relação no Cérebro |
 |-------|---------|-------------------|
-| `budamix-ai-agent` | Agente AI principal Budamix (OpenClaw/Kobe local) | [[agents/kobe/AGENTS]] |
+| `budamix-ai-agent` | Agente AI principal Budamix (OpenClaw/Kobe local) | [[openclaw/agents/kobe/AGENTS]] |
 | `amazon-ads-automation` | Automação Amazon Ads (SP-API + campanhas) | — |
 | `ml-ads-automation` | Automação Mercado Livre Ads | — |
 | `GMAIL-ORGANIZER` | Organizador Gmail via API | — |
 | `N8N-BUILDER` | Configs e workflows N8N | — |
-| `OpenClaw-VPS` | Deploy/config OpenClaw na VPS | [[agents/kobe/AGENTS]] |
-| `OPENCLAW-CONFIG` | Configurações OpenClaw | [[agents/kobe/AGENTS]] |
+| `OpenClaw-VPS` | Deploy/config OpenClaw na VPS | [[openclaw/agents/kobe/AGENTS]] |
+| `OPENCLAW-CONFIG` | Configurações OpenClaw | [[openclaw/agents/kobe/AGENTS]] |
 | `carousel-factory` | Backend gerador de carrosséis | — |
 | `carousel-factory-frontend` | Frontend gerador de carrosséis | — |
 | `google-calendar-config` | Config Google Calendar API | — |

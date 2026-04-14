@@ -10,7 +10,7 @@ description: >
 
 # Lovable-Quality — Padrão de Qualidade Visual
 
-> Usado por [[agents/builder/IDENTITY|Builder]]
+> Usado por [[openclaw/agents/builder/IDENTITY|Builder]]
 
 ## REGRA ABSOLUTA: Design System First
 

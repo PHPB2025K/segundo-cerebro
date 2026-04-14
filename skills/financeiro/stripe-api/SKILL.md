@@ -5,7 +5,7 @@ description: Interface completa com a API REST do Stripe via curl. Cobranças (P
 
 # Stripe API — Operador Completo
 
-> Usado por [[agents/fisco/IDENTITY|Fisco]]
+> Usado por [[openclaw/agents/fisco/IDENTITY|Fisco]]
 
 Interface direta com a API REST do Stripe via curl. Cobre 100% das operações do dia a dia: cobranças, clientes, produtos, assinaturas, faturas, saldo, reembolsos, disputas e webhooks.
 

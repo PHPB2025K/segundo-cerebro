@@ -32,7 +32,7 @@ from built-in roles (`default`, `explorer`, `worker`).
 
 When a skill says to dispatch a named agent type:
 
-1. Find the agent's prompt file (e.g., `agents/code-reviewer.md` or the skill's
+1. Find the agent's prompt file (e.g., openclaw/agents/code-reviewer.md` or the skill's
    local prompt template like `code-quality-reviewer-prompt.md`)
 2. Read the prompt content
 3. Fill any template placeholders (`{BASE_SHA}`, `{WHAT_WAS_IMPLEMENTED}`, etc.)
@@ -67,7 +67,7 @@ specified in the instructions above.
 
 This approach compensates for Codex's plugin system not yet supporting an `agents`
 field in `plugin.json`. When `RawPluginManifest` gains an `agents` field, the
-plugin can symlink to `agents/` (mirroring the existing `skills/` symlink) and
+plugin can symlink to openclaw/agents/` (mirroring the existing `skills/` symlink) and
 skills can dispatch named agent types directly.
 
 ## Environment Detection

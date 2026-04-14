@@ -24,7 +24,7 @@ metadata:
 
 # Análise de Concorrência — Mercado Livre
 
-> Usado por [[agents/trader/IDENTITY|Trader]]
+> Usado por [[openclaw/agents/trader/IDENTITY|Trader]]
 
 ## Objetivo
 

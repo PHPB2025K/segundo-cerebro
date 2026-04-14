@@ -12,7 +12,7 @@ description: >
 
 # Google Ads — Skill de Operação Profissional
 
-> Usado por [[agents/spark/IDENTITY|Spark]]
+> Usado por [[openclaw/agents/spark/IDENTITY|Spark]]
 
 Gestão e automação de Google Ads via API (REST/gRPC). API v23.
 Contexto: GB Importadora (Budamix), vendas em marketplace + e-commerce próprio.

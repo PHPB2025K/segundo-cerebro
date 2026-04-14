@@ -1,6 +1,6 @@
 # Design System — Relatórios OpenClaw (Curso)
 
-> Usado por [[agents/trader/IDENTITY|Trader]]
+> Usado por [[openclaw/agents/trader/IDENTITY|Trader]]
 
 > Extraído minuciosamente dos materiais: Módulo 4 (Memória) e Módulo 5 (Web Search)
 > Para uso como referência na geração de relatórios HTML pelo agente Tobias.

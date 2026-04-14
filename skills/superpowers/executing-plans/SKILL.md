@@ -5,7 +5,7 @@ description: Use when you have a written implementation plan to execute in a sep
 
 # Executing Plans
 
-> Usado por [[agents/kobe/IDENTITY|Kobe]]
+> Usado por [[openclaw/agents/kobe/IDENTITY|Kobe]]
 
 ## Overview
 

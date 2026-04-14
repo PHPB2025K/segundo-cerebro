@@ -32,8 +32,8 @@ segundo-cerebro/
 │       └── -Users-pedrobroglio-segundo-cerebro/
 │           └── memory/
 ├── .playwright-mcp/
-├── 99 - Meta/
-├── agents/
+├── meta/mocs/
+├──openclaw/agents/
 │   ├── builder/
 │   │   └── memory/
 │   │       ├── context/
@@ -206,7 +206,7 @@ segundo-cerebro/
     ├── superpowers/
     │   ├── brainstorming/
     │   │   └── scripts/
-    │   ├── dispatching-parallel-agents/
+    │   ├── dispatching-parallelopenclaw/agents/
     │   ├── executing-plans/
     │   ├── finishing-a-development-branch/
     │   ├── receiving-code-review/
@@ -243,7 +243,7 @@ segundo-cerebro/
 - page-2026-04-07T19-54-54-534Z.yml — (page state Playwright)
 - page-2026-04-07T19-55-27-870Z.yml — (page state Playwright)
 
-### 📁 /99 - Meta/
+### 📁 /meta/mocs/
 - MOC - Design Systems Budamix.md — MOC — Design Systems Budamix
 - MOC - Extratos Financeiros.md — MOC — Extratos Financeiros
 - MOC - Governanca OpenClaw.md — MOC — Governanca OpenClaw
@@ -950,7 +950,7 @@ segundo-cerebro/
 - start-server.sh — (start server script)
 - stop-server.sh — (stop server script)
 
-### 📁 /skills/superpowers/dispatching-parallel-agents/
+### 📁 /skills/superpowers/dispatching-parallelopenclaw/agents/
 - SKILL.md — Dispatching Parallel Agents
 
 ### 📁 /skills/superpowers/executing-plans/
@@ -1041,195 +1041,195 @@ segundo-cerebro/
 ### Markdown (.md)
 - _VAULT_MAP.md
 - .claude/projects/-Users-pedrobroglio-segundo-cerebro/memory/feedback_shopee_brand.md
-- 99 - Meta/MOC - Design Systems Budamix.md
-- 99 - Meta/MOC - Extratos Financeiros.md
-- 99 - Meta/MOC - Governanca OpenClaw.md
-- 99 - Meta/MOC - Listing Pipeline.md
-- 99 - Meta/MOC - Supabase Ecosystem.md
-- 99 - Meta/MOC - Superpowers Pipeline.md
-- 99 - Meta/MOC - Taxas e Precificacao.md
-- 99 - Meta/MOC - Token Management.md
-- 99 - Meta/auditoria-conexoes-2026-04-10.md
+- meta/mocs/MOC - Design Systems Budamix.md
+- meta/mocs/MOC - Extratos Financeiros.md
+- meta/mocs/MOC - Governanca OpenClaw.md
+- meta/mocs/MOC - Listing Pipeline.md
+- meta/mocs/MOC - Supabase Ecosystem.md
+- meta/mocs/MOC - Superpowers Pipeline.md
+- meta/mocs/MOC - Taxas e Precificacao.md
+- meta/mocs/MOC - Token Management.md
+- meta/mocs/auditoria-conexoes-2026-04-10.md
 - CLAUDE.md
 - PROPAGATION.md
-- agents/builder/AGENTS.md
-- agents/builder/HEARTBEAT.md
-- agents/builder/IDENTITY.md
-- agents/builder/MEMORY.md
-- agents/builder/SOUL.md
-- agents/builder/TOOLS.md
-- agents/builder/USER.md
-- agents/builder/memory/context/decisions.md
-- agents/builder/memory/context/lessons.md
-- agents/builder/memory/context/stack.md
-- agents/builder/memory/pending.md
-- agents/builder/memory/projects/atlas-finance.md
-- agents/builder/memory/projects/bidspark.md
-- agents/builder/memory/projects/canguu.md
-- agents/builder/memory/projects/simulimport.md
-- agents/fisco/AGENTS.md
-- agents/fisco/HEARTBEAT.md
-- agents/fisco/IDENTITY.md
-- agents/fisco/MEMORY.md
-- agents/fisco/SOUL.md
-- agents/fisco/TOOLS.md
-- agents/fisco/USER.md
-- agents/kobe/AGENTS.md
-- agents/kobe/BOOT.md
-- agents/kobe/BOOTSTRAP.md
-- agents/kobe/CHANGELOG.md
-- agents/kobe/HEARTBEAT.md
-- agents/kobe/IDENTITY.md
-- agents/kobe/MEMORY.md
-- agents/kobe/SOUL.md
-- agents/kobe/TOOLS.md
-- agents/kobe/USER.md
-- agents/kobe/shared/TEAM.md
-- agents/kobe/shared/builder/MEMORY.md
-- agents/kobe/shared/builder/SOUL.md
-- agents/kobe/shared/builder/memory/decisions.md
-- agents/kobe/shared/builder/memory/lessons.md
-- agents/kobe/shared/builder/memory/pending.md
-- agents/kobe/shared/builder/memory/sessions/2026-03-24.md
-- agents/kobe/shared/builder/memory/sessions/2026-03-26.md
-- agents/kobe/shared/builder/memory/sessions/2026-03-27.md
-- agents/kobe/shared/builder/memory/sessions/2026-03-29.md
-- agents/kobe/shared/builder/memory/sessions/2026-03-30.md
-- agents/kobe/shared/builder/memory/sessions/2026-04-05.md
-- agents/kobe/shared/builder/memory/sessions/2026-04-06.md
-- agents/kobe/shared/builder/memory/sessions/2026-04-07.md
-- agents/kobe/shared/builder/memory/sessions/2026-04-08.md
-- agents/kobe/shared/builder/memory/sessions/2026-04-09.md
-- agents/kobe/shared/fisco/IDENTITY.md
-- agents/kobe/shared/fisco/MEMORY.md
-- agents/kobe/shared/fisco/SOUL.md
-- agents/kobe/shared/fisco/memory/accounts.md
-- agents/kobe/shared/fisco/memory/context/business.md
-- agents/kobe/shared/fisco/memory/context/decisions.md
-- agents/kobe/shared/fisco/memory/context/lessons.md
-- agents/kobe/shared/fisco/memory/decisions.md
-- agents/kobe/shared/fisco/memory/lessons.md
-- agents/kobe/shared/fisco/memory/nfe-log.md
-- agents/kobe/shared/fisco/memory/pending.md
-- agents/kobe/shared/fisco/memory/playbook.md
-- agents/kobe/shared/fisco/memory/sessions/TEMPLATE.md
-- agents/kobe/shared/fisco/reference/session-nf-planning-20260331.md
-- agents/kobe/shared/fisco/skills/bling-nfe/SKILL.md
-- agents/kobe/shared/fisco/skills/distribution/SKILL.md
-- agents/kobe/shared/fisco/skills/nf-internal/SKILL.md
-- agents/kobe/shared/fisco/skills/nf-transfer/SKILL.md
-- agents/kobe/shared/fisco/skills/reconciliation/SKILL.md
-- agents/kobe/shared/fisco/skills/simples-monitor/SKILL.md
-- agents/kobe/shared/fisco/templates/distribution-report.md
-- agents/kobe/shared/fisco/templates/reconciliation-report.md
-- agents/kobe/shared/lessons/reviews/builder-2026-03-26.md
-- agents/kobe/shared/lessons/reviews/spark-2026-03-26.md
-- agents/kobe/shared/lessons/reviews/trader-2026-03-26.md
-- agents/kobe/shared/outputs/trader-AGENTS.md
-- agents/kobe/shared/outputs/trader-IDENTITY-v2.md
-- agents/kobe/shared/outputs/trader-IDENTITY.md
-- agents/kobe/shared/outputs/trader-MEMORY.md
-- agents/kobe/shared/outputs/trader-SOUL.md
-- agents/kobe/shared/outputs/trader-decisions.md
-- agents/kobe/shared/outputs/trader-lessons.md
-- agents/kobe/shared/outputs/trader-pending.md
-- agents/kobe/shared/outputs/trader-platforms.md
-- agents/kobe/shared/rh-agent-briefing.md
-- agents/kobe/shared/rh/SOUL.md
-- agents/kobe/shared/rh/knowledge/regras-ponto-certo.md
-- agents/kobe/shared/rh/memory/context/decisions.md
-- agents/kobe/shared/rh/memory/context/lessons.md
-- agents/kobe/shared/rh/memory/instructions.md
-- agents/kobe/shared/rh/memory/pending.md
-- agents/kobe/shared/rh/memory/people.md
-- agents/kobe/shared/rh/skills/comunicacao-funcionarios/SKILL.md
-- agents/kobe/shared/rh/skills/monitor-ponto/SKILL.md
-- agents/kobe/shared/rh/templates/alerta-risco.md
-- agents/kobe/shared/rh/templates/comunicado-ferias.md
-- agents/kobe/shared/rh/templates/relatorio-diario.md
-- agents/kobe/shared/rh/templates/relatorio-mensal-contador.md
-- agents/kobe/shared/rh/templates/relatorio-semanal.md
-- agents/kobe/shared/simulimport/reforma-tributaria-importacao.md
-- agents/kobe/shared/spark/BRIEFING-spark-ads-mvp.md
-- agents/kobe/shared/spark/CHANGELOG-skills-v2.md
-- agents/kobe/shared/spark/CHANGELOG-v2.md
-- agents/kobe/shared/spark/FASE2-CAPACITACAO-SPARK.md
-- agents/kobe/shared/spark/IDENTITY.md
-- agents/kobe/shared/spark/MEMORY.md
-- agents/kobe/shared/spark/SOUL.md
-- agents/kobe/shared/spark/SPARK-ADS-MANAGEMENT-PLAN.md
-- agents/kobe/shared/spark/memory/accounts.md
-- agents/kobe/shared/spark/memory/campaigns/active.md
-- agents/kobe/shared/spark/memory/campaigns/history.md
-- agents/kobe/shared/spark/memory/context/business.md
-- agents/kobe/shared/spark/memory/context/decisions.md
-- agents/kobe/shared/spark/memory/context/lessons.md
-- agents/kobe/shared/spark/memory/pending.md
-- agents/kobe/shared/spark/memory/playbook.md
-- agents/kobe/shared/spark/memory/sessions/2026-03-21.md
-- agents/kobe/shared/spark/memory/sessions/2026-03-22.md
-- agents/kobe/shared/spark/memory/sessions/2026-03-23.md
-- agents/kobe/shared/spark/memory/sessions/2026-03-24.md
-- agents/kobe/shared/spark/memory/sessions/2026-03-26.md
-- agents/kobe/shared/spark/memory/sessions/2026-03-27.md
-- agents/kobe/shared/spark/memory/sessions/2026-04-05.md
-- agents/kobe/shared/spark/memory/sessions/2026-04-06.md
-- agents/kobe/shared/spark/memory/sessions/2026-04-07.md
-- agents/kobe/shared/spark/memory/sessions/2026-04-08.md
-- agents/kobe/shared/spark/memory/sessions/2026-04-09.md
-- agents/kobe/shared/spark/memory/sessions/TEMPLATE.md
-- agents/kobe/shared/spark/skills/anomaly-detector/SKILL.md
-- agents/kobe/shared/spark/skills/budget-optimizer/SKILL.md
-- agents/kobe/shared/spark/skills/google-ads/SKILL.md
-- agents/kobe/shared/spark/skills/meta-ads/SKILL.md
-- agents/kobe/shared/trader/SOUL.md
-- agents/kobe/shared/trader/etapa2-identity.md
-- agents/kobe/shared/trader/etapa3-decisions.md
-- agents/kobe/shared/trader/etapa3-lessons.md
-- agents/kobe/shared/trader/etapa3-memory.md
-- agents/kobe/shared/trader/etapa3-pending.md
-- agents/kobe/shared/trader/etapa3-platforms.md
-- agents/kobe/shared/trader/etapa5-agents.md
-- agents/kobe/shared/trader/memory/context/decisions.md
-- agents/kobe/shared/trader/memory/context/lessons.md
-- agents/kobe/shared/trader/memory/pending.md
-- agents/kobe/shared/trader/memory/sessions/2026-03-24.md
-- agents/kobe/shared/trader/memory/sessions/2026-03-26.md
-- agents/kobe/shared/trader/memory/sessions/2026-03-27.md
-- agents/kobe/shared/trader/memory/sessions/2026-04-05.md
-- agents/kobe/shared/trader/memory/sessions/2026-04-06.md
-- agents/kobe/shared/trader/memory/sessions/2026-04-07.md
-- agents/kobe/shared/trader/memory/sessions/2026-04-08.md
-- agents/kobe/shared/trader/memory/sessions/2026-04-09.md
-- agents/rh/AGENTS.md
-- agents/rh/HEARTBEAT.md
-- agents/rh/IDENTITY.md
-- agents/rh/SOUL.md
-- agents/rh/TOOLS.md
-- agents/rh/USER.md
-- agents/spark/AGENTS.md
-- agents/spark/HEARTBEAT.md
-- agents/spark/IDENTITY.md
-- agents/spark/MEMORY.md
-- agents/spark/SOUL.md
-- agents/spark/TOOLS.md
-- agents/spark/USER.md
-- agents/spark/memory/context/accounts.md
-- agents/spark/memory/context/decisions.md
-- agents/spark/memory/context/lessons.md
-- agents/spark/memory/pending.md
-- agents/trader/AGENTS.md
-- agents/trader/HEARTBEAT.md
-- agents/trader/IDENTITY.md
-- agents/trader/MEMORY.md
-- agents/trader/SOUL.md
-- agents/trader/TOOLS.md
-- agents/trader/USER.md
-- agents/trader/memory/context/decisions.md
-- agents/trader/memory/context/lessons.md
-- agents/trader/memory/context/marketplace-algorithms.md
-- agents/trader/memory/context/platforms.md
-- agents/trader/memory/pending.md
+-openclaw/agents/builder/AGENTS.md
+-openclaw/agents/builder/HEARTBEAT.md
+-openclaw/agents/builder/IDENTITY.md
+-openclaw/agents/builder/MEMORY.md
+-openclaw/agents/builder/SOUL.md
+-openclaw/agents/builder/TOOLS.md
+-openclaw/agents/builder/USER.md
+-openclaw/agents/builder/memory/context/decisions.md
+-openclaw/agents/builder/memory/context/lessons.md
+-openclaw/agents/builder/memory/context/stack.md
+-openclaw/agents/builder/memory/pending.md
+-openclaw/agents/builder/memory/projects/atlas-finance.md
+-openclaw/agents/builder/memory/projects/bidspark.md
+-openclaw/agents/builder/memory/projects/canguu.md
+-openclaw/agents/builder/memory/projects/simulimport.md
+-openclaw/agents/fisco/AGENTS.md
+-openclaw/agents/fisco/HEARTBEAT.md
+-openclaw/agents/fisco/IDENTITY.md
+-openclaw/agents/fisco/MEMORY.md
+-openclaw/agents/fisco/SOUL.md
+-openclaw/agents/fisco/TOOLS.md
+-openclaw/agents/fisco/USER.md
+-openclaw/agents/kobe/AGENTS.md
+-openclaw/agents/kobe/BOOT.md
+-openclaw/agents/kobe/BOOTSTRAP.md
+-openclaw/agents/kobe/CHANGELOG.md
+-openclaw/agents/kobe/HEARTBEAT.md
+-openclaw/agents/kobe/IDENTITY.md
+-openclaw/agents/kobe/MEMORY.md
+-openclaw/agents/kobe/SOUL.md
+-openclaw/agents/kobe/TOOLS.md
+-openclaw/agents/kobe/USER.md
+-openclaw/agents/kobe/shared/TEAM.md
+-openclaw/agents/kobe/shared/builder/MEMORY.md
+-openclaw/agents/kobe/shared/builder/SOUL.md
+-openclaw/agents/kobe/shared/builder/memory/decisions.md
+-openclaw/agents/kobe/shared/builder/memory/lessons.md
+-openclaw/agents/kobe/shared/builder/memory/pending.md
+-openclaw/agents/kobe/shared/builder/memory/sessions/2026-03-24.md
+-openclaw/agents/kobe/shared/builder/memory/sessions/2026-03-26.md
+-openclaw/agents/kobe/shared/builder/memory/sessions/2026-03-27.md
+-openclaw/agents/kobe/shared/builder/memory/sessions/2026-03-29.md
+-openclaw/agents/kobe/shared/builder/memory/sessions/2026-03-30.md
+-openclaw/agents/kobe/shared/builder/memory/sessions/2026-04-05.md
+-openclaw/agents/kobe/shared/builder/memory/sessions/2026-04-06.md
+-openclaw/agents/kobe/shared/builder/memory/sessions/2026-04-07.md
+-openclaw/agents/kobe/shared/builder/memory/sessions/2026-04-08.md
+-openclaw/agents/kobe/shared/builder/memory/sessions/2026-04-09.md
+-openclaw/agents/kobe/shared/fisco/IDENTITY.md
+-openclaw/agents/kobe/shared/fisco/MEMORY.md
+-openclaw/agents/kobe/shared/fisco/SOUL.md
+-openclaw/agents/kobe/shared/fisco/memory/accounts.md
+-openclaw/agents/kobe/shared/fisco/memory/context/business.md
+-openclaw/agents/kobe/shared/fisco/memory/context/decisions.md
+-openclaw/agents/kobe/shared/fisco/memory/context/lessons.md
+-openclaw/agents/kobe/shared/fisco/memory/decisions.md
+-openclaw/agents/kobe/shared/fisco/memory/lessons.md
+-openclaw/agents/kobe/shared/fisco/memory/nfe-log.md
+-openclaw/agents/kobe/shared/fisco/memory/pending.md
+-openclaw/agents/kobe/shared/fisco/memory/playbook.md
+-openclaw/agents/kobe/shared/fisco/memory/sessions/TEMPLATE.md
+-openclaw/agents/kobe/shared/fisco/reference/session-nf-planning-20260331.md
+-openclaw/agents/kobe/shared/fisco/skills/bling-nfe/SKILL.md
+-openclaw/agents/kobe/shared/fisco/skills/distribution/SKILL.md
+-openclaw/agents/kobe/shared/fisco/skills/nf-internal/SKILL.md
+-openclaw/agents/kobe/shared/fisco/skills/nf-transfer/SKILL.md
+-openclaw/agents/kobe/shared/fisco/skills/reconciliation/SKILL.md
+-openclaw/agents/kobe/shared/fisco/skills/simples-monitor/SKILL.md
+-openclaw/agents/kobe/shared/fisco/templates/distribution-report.md
+-openclaw/agents/kobe/shared/fisco/templates/reconciliation-report.md
+-openclaw/agents/kobe/shared/lessons/reviews/builder-2026-03-26.md
+-openclaw/agents/kobe/shared/lessons/reviews/spark-2026-03-26.md
+-openclaw/agents/kobe/shared/lessons/reviews/trader-2026-03-26.md
+-openclaw/agents/kobe/shared/outputs/trader-AGENTS.md
+-openclaw/agents/kobe/shared/outputs/trader-IDENTITY-v2.md
+-openclaw/agents/kobe/shared/outputs/trader-IDENTITY.md
+-openclaw/agents/kobe/shared/outputs/trader-MEMORY.md
+-openclaw/agents/kobe/shared/outputs/trader-SOUL.md
+-openclaw/agents/kobe/shared/outputs/trader-decisions.md
+-openclaw/agents/kobe/shared/outputs/trader-lessons.md
+-openclaw/agents/kobe/shared/outputs/trader-pending.md
+-openclaw/agents/kobe/shared/outputs/trader-platforms.md
+-openclaw/agents/kobe/shared/rh-agent-briefing.md
+-openclaw/agents/kobe/shared/rh/SOUL.md
+-openclaw/agents/kobe/shared/rh/knowledge/regras-ponto-certo.md
+-openclaw/agents/kobe/shared/rh/memory/context/decisions.md
+-openclaw/agents/kobe/shared/rh/memory/context/lessons.md
+-openclaw/agents/kobe/shared/rh/memory/instructions.md
+-openclaw/agents/kobe/shared/rh/memory/pending.md
+-openclaw/agents/kobe/shared/rh/memory/people.md
+-openclaw/agents/kobe/shared/rh/skills/comunicacao-funcionarios/SKILL.md
+-openclaw/agents/kobe/shared/rh/skills/monitor-ponto/SKILL.md
+-openclaw/agents/kobe/shared/rh/templates/alerta-risco.md
+-openclaw/agents/kobe/shared/rh/templates/comunicado-ferias.md
+-openclaw/agents/kobe/shared/rh/templates/relatorio-diario.md
+-openclaw/agents/kobe/shared/rh/templates/relatorio-mensal-contador.md
+-openclaw/agents/kobe/shared/rh/templates/relatorio-semanal.md
+-openclaw/agents/kobe/shared/simulimport/reforma-tributaria-importacao.md
+-openclaw/agents/kobe/shared/spark/BRIEFING-spark-ads-mvp.md
+-openclaw/agents/kobe/shared/spark/CHANGELOG-skills-v2.md
+-openclaw/agents/kobe/shared/spark/CHANGELOG-v2.md
+-openclaw/agents/kobe/shared/spark/FASE2-CAPACITACAO-SPARK.md
+-openclaw/agents/kobe/shared/spark/IDENTITY.md
+-openclaw/agents/kobe/shared/spark/MEMORY.md
+-openclaw/agents/kobe/shared/spark/SOUL.md
+-openclaw/agents/kobe/shared/spark/SPARK-ADS-MANAGEMENT-PLAN.md
+-openclaw/agents/kobe/shared/spark/memory/accounts.md
+-openclaw/agents/kobe/shared/spark/memory/campaigns/active.md
+-openclaw/agents/kobe/shared/spark/memory/campaigns/history.md
+-openclaw/agents/kobe/shared/spark/memory/context/business.md
+-openclaw/agents/kobe/shared/spark/memory/context/decisions.md
+-openclaw/agents/kobe/shared/spark/memory/context/lessons.md
+-openclaw/agents/kobe/shared/spark/memory/pending.md
+-openclaw/agents/kobe/shared/spark/memory/playbook.md
+-openclaw/agents/kobe/shared/spark/memory/sessions/2026-03-21.md
+-openclaw/agents/kobe/shared/spark/memory/sessions/2026-03-22.md
+-openclaw/agents/kobe/shared/spark/memory/sessions/2026-03-23.md
+-openclaw/agents/kobe/shared/spark/memory/sessions/2026-03-24.md
+-openclaw/agents/kobe/shared/spark/memory/sessions/2026-03-26.md
+-openclaw/agents/kobe/shared/spark/memory/sessions/2026-03-27.md
+-openclaw/agents/kobe/shared/spark/memory/sessions/2026-04-05.md
+-openclaw/agents/kobe/shared/spark/memory/sessions/2026-04-06.md
+-openclaw/agents/kobe/shared/spark/memory/sessions/2026-04-07.md
+-openclaw/agents/kobe/shared/spark/memory/sessions/2026-04-08.md
+-openclaw/agents/kobe/shared/spark/memory/sessions/2026-04-09.md
+-openclaw/agents/kobe/shared/spark/memory/sessions/TEMPLATE.md
+-openclaw/agents/kobe/shared/spark/skills/anomaly-detector/SKILL.md
+-openclaw/agents/kobe/shared/spark/skills/budget-optimizer/SKILL.md
+-openclaw/agents/kobe/shared/spark/skills/google-ads/SKILL.md
+-openclaw/agents/kobe/shared/spark/skills/meta-ads/SKILL.md
+-openclaw/agents/kobe/shared/trader/SOUL.md
+-openclaw/agents/kobe/shared/trader/etapa2-identity.md
+-openclaw/agents/kobe/shared/trader/etapa3-decisions.md
+-openclaw/agents/kobe/shared/trader/etapa3-lessons.md
+-openclaw/agents/kobe/shared/trader/etapa3-memory.md
+-openclaw/agents/kobe/shared/trader/etapa3-pending.md
+-openclaw/agents/kobe/shared/trader/etapa3-platforms.md
+-openclaw/agents/kobe/shared/trader/etapa5-agents.md
+-openclaw/agents/kobe/shared/trader/memory/context/decisions.md
+-openclaw/agents/kobe/shared/trader/memory/context/lessons.md
+-openclaw/agents/kobe/shared/trader/memory/pending.md
+-openclaw/agents/kobe/shared/trader/memory/sessions/2026-03-24.md
+-openclaw/agents/kobe/shared/trader/memory/sessions/2026-03-26.md
+-openclaw/agents/kobe/shared/trader/memory/sessions/2026-03-27.md
+-openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-05.md
+-openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-06.md
+-openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-07.md
+-openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-08.md
+-openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-09.md
+-openclaw/agents/rh/AGENTS.md
+-openclaw/agents/rh/HEARTBEAT.md
+-openclaw/agents/rh/IDENTITY.md
+-openclaw/agents/rh/SOUL.md
+-openclaw/agents/rh/TOOLS.md
+-openclaw/agents/rh/USER.md
+-openclaw/agents/spark/AGENTS.md
+-openclaw/agents/spark/HEARTBEAT.md
+-openclaw/agents/spark/IDENTITY.md
+-openclaw/agents/spark/MEMORY.md
+-openclaw/agents/spark/SOUL.md
+-openclaw/agents/spark/TOOLS.md
+-openclaw/agents/spark/USER.md
+-openclaw/agents/spark/memory/context/accounts.md
+-openclaw/agents/spark/memory/context/decisions.md
+-openclaw/agents/spark/memory/context/lessons.md
+-openclaw/agents/spark/memory/pending.md
+-openclaw/agents/trader/AGENTS.md
+-openclaw/agents/trader/HEARTBEAT.md
+-openclaw/agents/trader/IDENTITY.md
+-openclaw/agents/trader/MEMORY.md
+-openclaw/agents/trader/SOUL.md
+-openclaw/agents/trader/TOOLS.md
+-openclaw/agents/trader/USER.md
+-openclaw/agents/trader/memory/context/decisions.md
+-openclaw/agents/trader/memory/context/lessons.md
+-openclaw/agents/trader/memory/context/marketplace-algorithms.md
+-openclaw/agents/trader/memory/context/platforms.md
+-openclaw/agents/trader/memory/pending.md
 - memory/context/business-context.md
 - memory/context/deadlines.md
 - memory/context/dev-projects-local.md
@@ -1360,7 +1360,7 @@ segundo-cerebro/
 - skills/superpowers/brainstorming/SKILL.md
 - skills/superpowers/brainstorming/spec-document-reviewer-prompt.md
 - skills/superpowers/brainstorming/visual-companion.md
-- skills/superpowers/dispatching-parallel-agents/SKILL.md
+- skills/superpowers/dispatching-parallelopenclaw/agents/SKILL.md
 - skills/superpowers/executing-plans/SKILL.md
 - skills/superpowers/finishing-a-development-branch/SKILL.md
 - skills/superpowers/receiving-code-review/SKILL.md

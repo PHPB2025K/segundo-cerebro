@@ -6,7 +6,7 @@ allowed-tools: Bash(infsh *)
 
 # Data Visualization
 
-> Usado por [[agents/builder/IDENTITY|Builder]]
+> Usado por [[openclaw/agents/builder/IDENTITY|Builder]]
 
 Create clear, effective data visualizations via [inference.sh](https://inference.sh) CLI.
 

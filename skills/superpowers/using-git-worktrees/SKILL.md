@@ -5,7 +5,7 @@ description: Use when starting feature work that needs isolation from current wo
 
 # Using Git Worktrees
 
-> Usado por [[agents/builder/IDENTITY|Builder]]
+> Usado por [[openclaw/agents/builder/IDENTITY|Builder]]
 
 ## Overview
 

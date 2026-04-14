@@ -87,7 +87,7 @@ tags:
 - TikTok Shop — definir estratégia de outreach MCN/afiliados
 - ~~Stripe — ativar modo produção (está em teste)~~ → ✅ Stripe removido, migrado para Mercado Pago (14/04)
 - Container isolation — OpenClaw roda direto no host, considerar Docker
-- E-commerce budamix.com.br — deploy MP pendente (migration SQL + Edge Functions + secrets + teste sandbox). Depois: monitoramento, carrinho abandonado, sync preços. → [[projects/budamix-ecommerce]]
+- E-commerce budamix.com.br — Migrado para Vercel + Supabase próprio. **Pendente DNS:** A record budamix.com.br → 76.76.21.21 no Registro.br. Testar pagamento MP sandbox. → [[projects/budamix-ecommerce]]
 - Fornecedores China — triagem emails Yiwu automatizada
 - Kit duplo porta-copos (12 peças + 2 suportes) a R$69,90-79,90 para Shopee — diluir taxa fixa
 

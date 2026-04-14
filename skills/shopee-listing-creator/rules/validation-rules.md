@@ -20,7 +20,7 @@
 | 9 fotos | `len(images) == 9` | Adicionar fotos faltantes |
 | Todas 1:1 | `width == height` para cada imagem | Redimensionar/cropar |
 | Todas < 2MB | `file_size < 2097152` | Comprimir: `sips -s format jpeg -s formatOptions 85` |
-| Foto 1 fundo limpo | verificacao visual | Trocar por hero shot adequado |
+| Foto 1 lifestyle | verificacao visual: cenario real, produto em uso | NUNCA fundo branco na capa Shopee — trocar por lifestyle |
 | Formato JPG/PNG | extensao .jpg ou .png | Converter |
 
 ## 3. Preco
@@ -63,10 +63,13 @@ Se preco >= 500:
 |-------|-----------|----------------|
 | Max 3.000 chars | `len(desc) <= 3000` | Encurtar secoes menos importantes |
 | Min 500 chars | `len(desc) >= 500` | Expandir com mais detalhes |
+| Objetivo 500-800 chars | `500 <= len(desc) <= 800` | Sussinto e focado em conversao |
 | Sem HTML | Sem `<`, `>`, `&amp;` | Remover tags |
 | Sem markdown | Sem `**`, `##`, `[]()` | Converter para texto puro |
-| Contem dimensoes | verificar | Adicionar secao DIMENSOES |
-| Contem pecas | verificar | Adicionar secao O QUE VEM NO KIT |
+| Usa → para secoes | Sem ◾ | Trocar ◾ por → |
+| Usa ▪ para sub-itens | Apenas em specs | Manter |
+| Contem dimensoes | verificar | Adicionar secao ESPECIFICACOES |
+| Sem secoes redundantes | Nao repetir info | Condensar em menos blocos |
 
 ## 6. Tags
 

@@ -56,6 +56,11 @@
 - [10/04] Atualizar skill [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]] com novo SSID da planilha
 - [10/04] Amazon — SKUs duplicados: IMB501*_T e IMB501T-{cor} apontam para os mesmos ASINs. Investigar e consolidar.
 - [10/04] Obsidian — Auditoria profunda de conexões semânticas pendente. Prompt recebido, executar em sessão dedicada.
+- [14/04] Vault — Implementar estrutura proposta para centralização: criar pastas business/ (importacao, marketplaces, financeiro, empresa, marketing), automacoes/, pessoal/, assets/. Briefing completo gerado.
+- [14/04] Máquina — Limpar duplicatas de projetos: `simulimpor` ↔ `SIMULIMPORT` (mesmos 5.6MB), `amazon-ads-automation` (raiz 109MB vs Documents 1.7MB), `ML-ads-automation` (raiz 78MB vs Documents 115MB). Consolidar em `~/Documents/05-Projetos-Codigo/`.
+- [14/04] Vault — Migrar vault antigo `~/Documents/08-Pessoal/OBSIDIAN/Second Brain/` (37 notas) para segundo-cerebro/pessoal/
+- [14/04] Vault — Converter Word docs relevantes para Markdown: system prompts (06-Automacoes/), USER BRIEFING OpenClaw, memoria tobias.docx
+- [14/04] Downloads — Limpeza necessária (31 GB acumulados: 1723 PDFs, 1400+ planilhas, 5000+ imagens, 469 vídeos). Maioria são históricos que podem ser arquivados ou deletados.
 - [13/04] Amazon Request Review — Monitorar taxa de sucesso pós-fix por 7 dias. Meta: >70% sucesso. Verificar logs diários até 20/04. Backfill de ~4866 pedidos em execução.
 - [13/04] ~~Budamix Central Live Sales — Validar layout TV na TV física do escritório.~~ → ✅ Resolvido 13/04: fix dvh viewport (desconta chrome browser), compressão seções desktop, min-h gráfico
 - [13/04] ~~Estoque Budamix — Conectar com planilha real e testar fluxo completo.~~ → ✅ Resolvido 13/04: planilha conectada, fix parseInt milhar, fix col_brand, 4 operações reprocessadas
@@ -130,7 +135,7 @@
 
 ---
 
-*Atualizado: 13/04/2026*
+*Atualizado: 14/04/2026*
 
 ---
 

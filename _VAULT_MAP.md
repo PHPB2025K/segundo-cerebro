@@ -16,12 +16,12 @@ type: meta
 > diretamente ao arquivo correto sem gastar tokens com find, glob
 > ou grep exploratórios.
 >
-> **Última atualização:** 2026-04-13 18:00
+> **Última atualização:** 2026-04-14
 
 ## Estatísticas
-- Total de arquivos: 458
+- Total de arquivos: 460
 - Total de pastas: 201 (excluindo raiz)
-- Breakdown por extensão: .md (357), .py (41), .json (17), .sh (14), .ts (6), .png (4), .yml (2), .pdf (2), .log (2), .js (2), .xlsx (1), .tsx (1), .mjs (1), .lock (1), .html (1), .gitignore (1), .example (1), .dot (1), .cjs (1), .canvas (1), .bak (1)
+- Breakdown por extensão: .md (359), .py (41), .json (17), .sh (14), .ts (6), .png (4), .yml (2), .pdf (2), .log (2), .js (2), .xlsx (1), .tsx (1), .mjs (1), .lock (1), .html (1), .gitignore (1), .example (1), .dot (1), .cjs (1), .canvas (1), .bak (1)
 
 ## Estrutura de Pastas
 
@@ -539,6 +539,7 @@ segundo-cerebro/
 ### 📁 /memory/context/
 - business-context.md — Contexto Geral — Pedro Broglio
 - deadlines.md — Deadlines — Fonte de Verdade
+- dev-projects-local.md — Projetos de Código — Máquina Local (~/Documents/05-Projetos-Codigo/)
 - pendencias.md — Pendências Ativas
 - people.md — Pessoas — Equipe e Contatos
 
@@ -559,6 +560,7 @@ segundo-cerebro/
 - 2026-04-09.md — Sessão — 2026-04-09
 - 2026-04-10.md — Sessão — 2026-04-10
 - 2026-04-13.md — Sessão — 2026-04-13
+- 2026-04-14.md — Sessão — 2026-04-14
 
 ### 📁 /scripts/
 - brain-boot.sh — (script de boot do segundo cérebro)
@@ -1230,6 +1232,7 @@ segundo-cerebro/
 - agents/trader/memory/pending.md
 - memory/context/business-context.md
 - memory/context/deadlines.md
+- memory/context/dev-projects-local.md
 - memory/context/decisoes/2026-04.md
 - memory/context/pendencias.md
 - memory/context/people.md

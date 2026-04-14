@@ -47,6 +47,7 @@
 
 ## Mudanças Recentes
 
+- [14/04] Vault — Mapeamento projetos locais (dev-projects-local.md) + reconhecimento máquina + proposta vault unificado → [[memory/context/decisoes/2026-04|decisões]]
 - [13/04] Estoque Budamix — Fix parseInt milhar BR + col_brand + reprocessamento 4 operações erro → [[memory/context/decisoes/2026-04|decisões]]
 - [13/04] Budamix Central Live Sales — Fix viewport dvh (browser chrome vs fullscreen) → [[memory/context/decisoes/2026-04|decisões]]
 - [13/04] Estoque Budamix — Sistema completo criado e deployado: Next.js + Supabase + Google Sheets API + N8N (PDF parser) → [[memory/context/decisoes/2026-04|decisões]]
@@ -69,4 +70,4 @@
 
 ---
 
-*Atualizado: 13/04/2026*
+*Atualizado: 14/04/2026*

@@ -159,48 +159,34 @@ Margem = Lucro / Preco * 100
 
 ## 5. TEMPLATE DE DESCRICAO BUDAMIX
 
-Limite: 3.000 chars. Objetivo: ~1.200-1.500 chars (ninguem le mais).
-Formato: texto puro, sem HTML/markdown. Usar ◾ e ▪ para estrutura.
+Limite: 3.000 chars. Objetivo: 500-800 chars (sussinto, escaneavel, focado em conversao).
+Formato: texto puro, sem HTML/markdown. Usar → para secoes e ▪ para sub-itens de specs.
+Eliminar redundancias — cada informacao aparece UMA vez.
 
 ```
-[Nome do Produto] | Budamix
-[Linha/Design] - [Conceito em 1 frase]
+[Nome do Produto] [Material] [Quantidade] [Diferencial] | Budamix
 
-[Frase de abertura - 1 linha, beneficio principal]
+[1-2 frases: o que e + diferencial principal. Direto ao ponto.]
 
-◾ O QUE VEM NO KIT
-  ▪ [item 1 com spec]
-  ▪ [item 2 com spec]
-  ▪ Total: [N] pecas
+→ [BENEFICIO PRINCIPAL / USO]
+[Como funciona / versatilidade. 1-3 linhas.]
 
-◾ DIFERENCIAIS
-  ▪ [diferencial 1]
-  ▪ [diferencial 2]
-  ▪ [diferencial 3]
+→ ESPECIFICACOES
+  ▪ Material: [material + espessura]
+  ▪ [Dimensao]: [valor]
+  ▪ Peso: [peso]
+  ▪ [Caracteristica tecnica]
 
-◾ FABRICACAO
-  ▪ [metodo de fabricacao]
-  ▪ [acabamento]
-  ▪ Fabricacao propria em Pedreira-SP
-  ▪ Controle de qualidade individual
+→ IDEAL PARA
+[Lista corrida em 1 linha, separada por virgulas.]
 
-◾ IDEAL PARA
-  ▪ [uso 1]
-  ▪ [uso 2]
-  ▪ [uso 3]
-  ▪ Presente funcional e decorativo
+→ GARANTIA
+90 dias contra defeito de fabricacao.
 
-◾ DIMENSOES
-  ▪ [dimensao produto principal]
-  ▪ [dimensao acessorio]
-  ▪ Peso: [peso]g
-
-◾ GARANTIA
-  ▪ 90 dias contra defeito de fabricacao
-
-◾ BUDAMIX
-Marca brasileira de Pedreira-SP especializada em utilidades domesticas de design com tecnologia de corte a laser.
+Budamix — Utilidades domesticas que combinam com voce. Fabricacao propria em Pedreira-SP.
 ```
+
+Template completo com exemplo real: [[skills/shopee-listing-creator/templates/description-template|description-template]]
 
 ---
 
@@ -214,7 +200,7 @@ Marca brasileira de Pedreira-SP especializada em utilidades domesticas de design
 | Formatos | JPG, PNG |
 | Tamanho maximo | **2.0 MB** |
 | Quantidade | **9 imagens** (usar todas) |
-| Foto 1 (capa) | Fundo limpo, produto centralizado, sem texto |
+| Foto 1 (capa) | **Lifestyle**: produto em uso, cenario real, destaque visual. NAO usar fundo branco (regra Shopee diferente do ML) |
 | Video | 1 por listing, 10-60s, max 30MB, MP4 |
 
 ### Compressao automatica (quando > 2MB)
@@ -223,16 +209,18 @@ sips -s format jpeg -s formatOptions 85 input.png --out output.jpg
 ```
 Verificar pos-compressao: `stat -f%z output.jpg` deve ser < 2097152 bytes.
 
-### Ordem das fotos (padrao Budamix)
-1. Hero shot (fundo limpo)
-2. Lifestyle (produto em uso)
+### Ordem das fotos (padrao Budamix Shopee)
+1. **Lifestyle** (produto em uso, cenario real — NUNCA fundo branco na capa Shopee)
+2. Infografico features
 3. Dimensoes/escala
-4. Design/conceito
-5. Infografico features
-6. Cenario aspiracional
-7. Produto em contexto
-8. Comparativo/beneficio
-9. Flat lay (kit completo)
+4. Comparativo/beneficio (antes x depois)
+5. Lifestyle contexto 2
+6. Lifestyle contexto 3
+7. Lifestyle contexto 4
+8. Design/conceito
+9. Hero shot fundo limpo (referencia, nao capa)
+
+> **REGRA SHOPEE:** A foto de capa (posicao 1) DEVE ser lifestyle — produto em uso num cenario real que destaque o produto. Fundo branco fica para ML/Amazon. Na Shopee, lifestyle converte mais.
 
 ---
 

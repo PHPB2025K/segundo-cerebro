@@ -27,5 +27,9 @@ Sistema de automação de publicidade Amazon Ads para a GB Importadora. Coleta m
 ## Notas relacionadas
 
 - [[projects/ml-ads-automation]]
+- [[projects/bidspark-multiagente-completo]]
 - [[openclaw/agents/spark/IDENTITY]]
+- [[openclaw/agents/trader/IDENTITY]]
+- [[business/marketplaces/_index]]
 - [[meta/mocs/MOC - Superpowers Pipeline]]
+- [[meta/mocs/MOC - Taxas e Precificacao]]

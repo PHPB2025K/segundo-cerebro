@@ -27,3 +27,4 @@ Configuração e documentação da integração WhatsApp (Baileys + Evolution AP
 
 - [[openclaw/agents/kobe/IDENTITY]]
 - [[skills/whatsapp-ultimate/SKILL]]
+- [[projects/budamix-ai-agent]]

@@ -26,4 +26,8 @@ Sistema de gestão de estoque para a Budamix. Next.js frontend, Supabase backend
 ## Notas relacionadas
 
 - [[openclaw/agents/builder/memory/projects/canguu]]
+- [[openclaw/agents/builder/IDENTITY]]
 - [[openclaw/agents/kobe/IDENTITY]]
+- [[openclaw/agents/fisco/IDENTITY]]
+- [[business/empresa/_index]]
+- [[meta/mocs/MOC - Supabase Ecosystem]]

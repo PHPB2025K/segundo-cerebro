@@ -26,3 +26,4 @@ Automação de organização de Gmail com workflows N8N. Categorização de emai
 ## Notas relacionadas
 
 - [[projects/n8n-builder]]
+- [[skills/n8n/n8n-mcp-tools-expert]]

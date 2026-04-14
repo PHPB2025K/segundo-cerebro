@@ -27,5 +27,9 @@ Sistema de automação de publicidade Mercado Livre Product Ads para a GB Import
 ## Notas relacionadas
 
 - [[projects/amazon-ads-automation]]
+- [[projects/ml-ads-next-steps]]
 - [[openclaw/agents/spark/IDENTITY]]
 - [[openclaw/agents/trader/IDENTITY]]
+- [[business/marketplaces/_index]]
+- [[meta/mocs/MOC - Taxas e Precificacao]]
+- [[meta/mocs/MOC - Listing Pipeline]]

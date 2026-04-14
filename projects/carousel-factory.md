@@ -26,3 +26,6 @@ Fábrica de carrosséis para marketplaces e redes sociais. Backend com documenta
 ## Notas relacionadas
 
 - [[business/marketing/_index]]
+- [[openclaw/agents/builder/IDENTITY]]
+- [[meta/mocs/MOC - Design Systems Budamix]]
+- [[meta/mocs/MOC - Supabase Ecosystem]]

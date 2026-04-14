@@ -27,5 +27,8 @@ MicroSaaS de simulação de custos de importação. Calcula cascata tributária 
 ## Notas relacionadas
 
 - [[openclaw/agents/builder/memory/projects/simulimport]]
+- [[openclaw/agents/builder/IDENTITY]]
+- [[openclaw/agents/fisco/IDENTITY]]
 - [[openclaw/agents/kobe/shared/simulimport/reforma-tributaria-importacao]]
 - [[business/importacao/_index]]
+- [[meta/mocs/MOC - Taxas e Precificacao]]

@@ -27,5 +27,9 @@ Configuração e deploy do OpenClaw em VPS da Hostinger. Scripts de setup, confi
 
 - [[openclaw/agents/kobe/IDENTITY]]
 - [[openclaw/agents/kobe/AGENTS]]
+- [[openclaw/agents/kobe/BOOT]]
+- [[openclaw/system/user-briefing-openclaw-v1]]
 - [[openclaw/system/user-briefing-openclaw-v2]]
+- [[projects/openclaw-config]]
 - [[meta/mocs/MOC - Governanca OpenClaw]]
+- [[meta/mocs/MOC - Token Management]]

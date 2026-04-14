@@ -26,4 +26,6 @@ Coach de corrida automatizado via N8N workflows. Usa mesma infra do N8N Builder.
 ## Notas relacionadas
 
 - [[skills/coaching-corrida/SKILL]]
+- [[skills/coaching-corrida/references/knowledge-base]]
 - [[projects/n8n-builder]]
+- [[skills/n8n/n8n-mcp-tools-expert]]

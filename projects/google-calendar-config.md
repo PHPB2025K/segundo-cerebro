@@ -25,3 +25,4 @@ Configuração de integração com Google Calendar. Provavelmente configs de OAu
 ## Notas relacionadas
 
 - [[openclaw/agents/kobe/IDENTITY]]
+- [[projects/openclaw-vps]]

@@ -27,3 +27,10 @@ Projeto-base para design e construção de workflows N8N via Claude Code. Claude
 
 - [[projects/gmail-organizer]]
 - [[projects/running-coach-ai]]
+- [[skills/n8n/n8n-code-javascript]]
+- [[skills/n8n/n8n-code-python]]
+- [[skills/n8n/n8n-expression-syntax]]
+- [[skills/n8n/n8n-mcp-tools-expert]]
+- [[skills/n8n/n8n-workflow-patterns]]
+- [[skills/n8n/n8n-validation-expert]]
+- [[skills/n8n/n8n-node-configuration]]

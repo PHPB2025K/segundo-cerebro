@@ -28,4 +28,8 @@ Agente de atendimento ao cliente via WhatsApp (estilo SDR) para a marca Budamix.
 
 - [[automacoes/atendimento/system-prompt-atendimento]]
 - [[automacoes/atendimento/prompt-pre-vendas]]
+- [[projects/budamix-agent-architecture]]
+- [[projects/budamix-agent-changelog-ana]]
 - [[openclaw/agents/kobe/IDENTITY]]
+- [[skills/whatsapp-ultimate/SKILL]]
+- [[business/marketplaces/_index]]

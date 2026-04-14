@@ -27,3 +27,5 @@ Documentos de configuração do OpenClaw. Contém os USER BRIEFINGs originais (v
 - [[openclaw/system/user-briefing-openclaw-v1]]
 - [[openclaw/system/user-briefing-openclaw-v2]]
 - [[projects/openclaw-vps]]
+- [[openclaw/agents/kobe/IDENTITY]]
+- [[meta/mocs/MOC - Governanca OpenClaw]]

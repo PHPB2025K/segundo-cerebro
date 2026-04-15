@@ -118,11 +118,15 @@ WHERE container_id = 'GB25011';
 | GB25009 | 70% balanço | R$72.232 | 16/04 | 🔴 CRÍTICO |
 | GB25011 | Numerário | R$60.000 | 11/04 | ✅ Pago |
 | GB25011 | 70% balanço | R$71.419 | 24/05 | ⏳ Pendente |
-| GB26001 | Numerário | A PREENCHER | A PREENCHER | ⏳ Sem datas no sistema |
-| GB26002 | Numerário | A PREENCHER | A PREENCHER | ⏳ Sem datas nem valores no sistema |
+| GB26001 | Sinal 30% | — | — | ✅ Pago (valor exato a confirmar) |
+| GB26001 | Numerário | — | — | ⏳ Pendente |
+| GB26001 | 70% balanço | — | — | ⏳ Pendente |
+| GB26002 | Sinal 30% | — | — | ✅ Pago (valor exato a confirmar) |
+| GB26002 | Numerário | — | — | ⏳ Pendente |
+| GB26002 | 70% balanço | — | — | ⏳ Pendente |
 
-> [!question] Pedro: preencher valores e datas
-> GB26001 e GB26002 não têm numerário, 70% balanço, datas de vencimento nem valores registrados no Import Hub. Preencher manualmente no Supabase (`ocxvwwaaqqxecmzhfxhb`) ou informar aqui.
+> [!info] Valores pendentes
+> Sinal 30% já foi pago para ambos. Valores exatos do sinal, numerário e balanço 70% serão preenchidos pelo Pedro quando disponíveis. Registrar no Supabase (`ocxvwwaaqqxecmzhfxhb`) tabela `finance_pagamentos`.
 
 ---
 

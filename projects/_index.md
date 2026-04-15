@@ -55,4 +55,3 @@ tags:
 - [[projects/n8n-builder]] — N8N Builder (workflow architect)
 - [[projects/gmail-organizer]] — Gmail Organizer (N8N)
 - [[projects/running-coach-ai]] — Running Coach AI (N8N)
-- [[projects/google-calendar-config]] — Google Calendar Config

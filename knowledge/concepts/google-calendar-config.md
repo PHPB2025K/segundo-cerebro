@@ -2,11 +2,11 @@
 title: "Google Calendar Config"
 created: 2026-04-14
 updated: 2026-04-15
-type: project
+type: reference
 status: active
 path: "~/Documents/05-Projetos-Codigo/google-calendar-config/"
 tags:
-  - project
+  - knowledge
   - config
   - calendar
   - oauth

@@ -82,6 +82,9 @@ tags:
 - [14/04] ✅ ~~DPM002 Amazon — ACCEPTED, ASIN B0GX7RN9FS, DISCOVERABLE~~
 - [14/04] ✅ ~~DPM002 Amazon — 8 fotos uploadadas (Supabase Storage → Amazon CDN, todas processadas)~~
 - [14/04] DPM002 Amazon — Enviar estoque ao CD FBA (inbound shipment via Seller Central). Produto não aparece sem estoque físico.
+- [15/04] ✅ ~~Ponto Certo — Timer Android não funciona (não aparece ou não atualiza)~~ → Fix: loading error path + startTime race condition + visibilitychange. Deploy VPS via SCP
+- [15/04] Ponto Certo — Token GitHub na VPS inválido (`gh auth` expired). `git pull` falha em `/var/www/ponto-certo`. Deploy feito via SCP como workaround. Reautenticar: `ssh root@187.77.237.231 "gh auth login -h github.com"`
+- [15/04] Ponto Certo — Projeto copiado de `/tmp/` para `~/Documents/05-Projetos-Codigo/ponto-certo/` (repositório persistente)
 
 ## ⚪ Backlog (sem urgência imediata)
 

@@ -32,6 +32,7 @@ tags:
 
 - [[projects/budamix-central]] — Budamix Central / Canggu (dashboard interno, Live Sales, pgvector)
 - [[projects/gb-import-hub]] — GB Import Hub (gestão importações, containers, tracking)
+- [[projects/ponto-certo]] — Ponto Certo (ponto eletrônico funcionários, GPS, QR Code, banco de horas)
 - [[projects/atlas-finance]] — Atlas Finance (contas a pagar/receber, DFC — pausado)
 
 ## E-commerce

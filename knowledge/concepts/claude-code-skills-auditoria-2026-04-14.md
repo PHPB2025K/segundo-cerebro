@@ -100,5 +100,5 @@ Skill para integração Stripe (Checkout Sessions, Payment Intents, subscription
 
 ## Links Relacionados
 
-- [[claude-code-skills-inventario]]
-- [[claude-code-skills-guia-uso]]
+- [[knowledge/concepts/claude-code-skills-inventario]]
+- [[knowledge/concepts/claude-code-skills-guia-uso]]

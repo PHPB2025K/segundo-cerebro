@@ -55,5 +55,5 @@ Próxima auditoria: **2026-05-14**
 
 ## Links Relacionados
 
-- [[claude-code-skills-auditoria-2026-04-14]]
-- [[claude-code-skills-guia-uso]]
+- [[knowledge/concepts/claude-code-skills-auditoria-2026-04-14]]
+- [[knowledge/concepts/claude-code-skills-guia-uso]]

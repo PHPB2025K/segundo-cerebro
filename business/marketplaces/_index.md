@@ -51,7 +51,7 @@ tags:
 - [[openclaw/agents/spark/IDENTITY]]
 - [[meta/mocs/MOC - Extratos Financeiros]]
 
-- [[skills/marketplace/SKILL]]
+- Skills de marketplace (ver inventário em [[knowledge/concepts/claude-code-skills-inventario]])
 - [[skills/amazon-listing-creator/SKILL]]
 - [[skills/shopee-listing-creator/SKILL]]
 - [[openclaw/agents/trader/IDENTITY]]

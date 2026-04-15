@@ -47,6 +47,6 @@ tags:
 - [[openclaw/agents/kobe/IDENTITY]]
 - [[meta/mocs/MOC - Taxas e Precificacao]]
 
-- [[skills/financeiro/SKILL]]
+- Skills financeiras (ver inventário em [[knowledge/concepts/claude-code-skills-inventario]])
 - [[meta/mocs/MOC - Extratos Financeiros]]
 - [[openclaw/agents/fisco/IDENTITY]]

@@ -83,5 +83,5 @@ Consultar skills especializadas em áreas específicas: color theory, typography
 
 ## Links Relacionados
 
-- [[claude-code-skills-inventario]]
-- [[claude-code-skills-auditoria-2026-04-14]]
+- [[knowledge/concepts/claude-code-skills-inventario]]
+- [[knowledge/concepts/claude-code-skills-auditoria-2026-04-14]]

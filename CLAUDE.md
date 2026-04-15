@@ -40,9 +40,10 @@ segundo-cerebro/
 │   └── corrida/           ← Coaching de corrida
 ├── automacoes/            ← Prompts e fluxos automatizados
 │   ├── atendimento/       ← System prompts de atendimento WhatsApp
-│   ├── sops/              ← Standard Operating Procedures (deploy, listing, pagamento, senha)
+│   ├── sops/              ← SOPs (deploy, listing Amazon/Shopee, pagamento, senha, importação, OpenClaw agent)
+│   ├── workflows/         ← Fichas detalhadas de workflows N8N (Gmail, Running Coach, Ana, Estoque)
 │   ├── crons-index.md     ← Índice de todos os crons OpenClaw
-│   ├── n8n-workflows/     ← Referências de workflows N8N
+│   ├── n8n-workflows/     ← Referências de workflows N8N (legado)
 │   └── system-prompts/    ← Prompts de sistema
 └── meta/                  ← Infraestrutura do vault
     ├── mocs/              ← Maps of Content (índices temáticos)

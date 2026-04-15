@@ -41,6 +41,6 @@ tags:
 - [[projects/carousel-factory]]
 - [[openclaw/agents/spark/IDENTITY]]
 
-- [[skills/marketing/SKILL]]
+- Skills de marketing (ver inventário em [[knowledge/concepts/claude-code-skills-inventario]])
 - [[meta/mocs/MOC - Design Systems Budamix]]
 - [[openclaw/agents/kobe/shared/spark/IDENTITY]]

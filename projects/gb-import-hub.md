@@ -51,8 +51,8 @@ Inclui: `extract-import-document`, `calculate-tax-references`, `fetch-vessel-pos
 | GB25007 | finished | A PREENCHER |
 | GB25009 | finished | 🔴 70% R$72.232 vence 16/04 |
 | GB25011 | em trânsito | Numerário pago, 70% R$71.419 vence 24/05 |
-| GB26001 | A PREENCHER | A PREENCHER |
-| GB26002 | A PREENCHER | A PREENCHER |
+| GB26001 | A PREENCHER | Sem datas/valores no sistema |
+| GB26002 | A PREENCHER | Sem datas/valores no sistema |
 
 ## Decisões-chave
 

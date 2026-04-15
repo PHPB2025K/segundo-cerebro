@@ -36,10 +36,12 @@ segundo-cerebro/
 │   └── people/            ← Notas de pessoas
 ├── knowledge/             ← Conhecimento pessoal e referências
 │   ├── pessoal/           ← História, memórias (Trades Up, Tobias)
-│   ├── concepts/          ← Conceitos e aprendizados
+│   ├── concepts/          ← Conceitos, stack técnico, credenciais
 │   └── corrida/           ← Coaching de corrida
 ├── automacoes/            ← Prompts e fluxos automatizados
 │   ├── atendimento/       ← System prompts de atendimento WhatsApp
+│   ├── sops/              ← Standard Operating Procedures (deploy, listing, pagamento, senha)
+│   ├── crons-index.md     ← Índice de todos os crons OpenClaw
 │   ├── n8n-workflows/     ← Referências de workflows N8N
 │   └── system-prompts/    ← Prompts de sistema
 └── meta/                  ← Infraestrutura do vault

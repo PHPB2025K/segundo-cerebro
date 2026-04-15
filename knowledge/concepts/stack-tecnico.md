@@ -23,7 +23,7 @@ tags:
 | Componente | Detalhes |
 |------------|----------|
 | **VPS** | Hostinger Ubuntu 24.04, IP 187.77.237.231 |
-| **Supabase** | 5 projetos (ver tabela abaixo) |
+| **Supabase** | 10 projetos (ver tabela abaixo) |
 | **Vercel** | budamix-ecommerce (prj_wMl99f4aixldKCwBiJv9xDedL7AR) |
 | **GitHub** | Org PHPB2025K (23 repos ativos, 7 arquivados) |
 | **1Password** | Vault OpenClaw, Service Account: agent.assistant.openclaw |
@@ -31,13 +31,19 @@ tags:
 
 ### Projetos Supabase
 
-| Project Ref | Projeto | Região | Uso |
-|-------------|---------|--------|-----|
-| `ioujfkrqvporfbvdqyus` | Budamix E-commerce | sa-east-1 | Auth, DB, Storage, Edge Functions, checkout MP |
-| `iriqmqxuppfyrnselswk` | Budamix Central / OpenClaw | — | Produtos, orders, analytics, storage buckets |
-| `dgldsmhbeosjgfrbegyv` | Ponto Certo | — | RH, ponto, salários, compliance |
-| `nvramnisawnwrbvadcmg` | Staging / N8N | — | Testes, workflows N8N |
-| A PREENCHER | GB Import Hub | — | Importações, containers, documentos |
+| Project Ref | Projeto | Uso |
+|-------------|---------|-----|
+| `ioujfkrqvporfbvdqyus` | Budamix E-commerce | Auth, DB, Storage, Edge Functions, checkout MP |
+| `iriqmqxuppfyrnselswk` | Budamix Central / OpenClaw | Produtos, orders, analytics, storage buckets |
+| `ocxvwwaaqqxecmzhfxhb` | GB Import Hub | Importações, containers, documentos, 17 Edge Functions |
+| `dgldsmhbeosjgfrbegyv` | Ponto Certo | RH, ponto, salários, compliance |
+| `sqbkoprcmnznmzbwdrmf` | Estoque Budamix | Estoque, entrada/saída armazém |
+| `skntaotevvxblxhpccuy` | Amazon Ads / BudaAds | Campanhas Amazon, auth unificada ML Ads |
+| `cckfkvqblvundnyphole` | ML Ads Automation | Campanhas ML, métricas |
+| `wzhmrpskiscassbixurr` | Spark Ads | Cache Meta/Google Ads |
+| `xxbsjbgipmtzojhtsrve` | Running Coach / Carousel Factory | Atividades Strava, coach memory, carousels |
+| `jpacmloqsfiebvagfomt` | Budamix AI Agent (Ana) | Conversas WhatsApp, pipeline vetorial |
+| `nvramnisawnwrbvadcmg` | Staging / N8N | Testes, workflows N8N |
 
 ---
 

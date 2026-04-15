@@ -118,8 +118,11 @@ WHERE container_id = 'GB25011';
 | GB25009 | 70% balanço | R$72.232 | 16/04 | 🔴 CRÍTICO |
 | GB25011 | Numerário | R$60.000 | 11/04 | ✅ Pago |
 | GB25011 | 70% balanço | R$71.419 | 24/05 | ⏳ Pendente |
-| GB26001 | A PREENCHER | A PREENCHER | A PREENCHER | ⏳ |
-| GB26002 | A PREENCHER | A PREENCHER | A PREENCHER | ⏳ |
+| GB26001 | Numerário | A PREENCHER | A PREENCHER | ⏳ Sem datas no sistema |
+| GB26002 | Numerário | A PREENCHER | A PREENCHER | ⏳ Sem datas nem valores no sistema |
+
+> [!question] Pedro: preencher valores e datas
+> GB26001 e GB26002 não têm numerário, 70% balanço, datas de vencimento nem valores registrados no Import Hub. Preencher manualmente no Supabase (`ocxvwwaaqqxecmzhfxhb`) ou informar aqui.
 
 ---
 

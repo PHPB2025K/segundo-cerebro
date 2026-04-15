@@ -43,7 +43,7 @@ op item get "Nome do Item" --vault "OpenClaw" --fields label=password
 | Supabase - Budamix Ecommerce - Service Role | API_CREDENTIAL | `ioujfkrqvporfbvdqyus` | Edge Functions, admin ops |
 | Supabase - Budamix Ecommerce - DB Password | API_CREDENTIAL | `ioujfkrqvporfbvdqyus` | Direct DB connection |
 | Supabase - Budamix Central | LOGIN | `iriqmqxuppfyrnselswk` | Dashboard, analytics |
-| Supabase - Spark Ads | API_CREDENTIAL | A PREENCHER | Spark agent ads data |
+| Supabase - Spark Ads | API_CREDENTIAL | `wzhmrpskiscassbixurr` | Cache Meta/Google Ads ([[openclaw/agents/spark/IDENTITY\|Spark]]) |
 
 ---
 
@@ -162,9 +162,9 @@ op item get "Nome do Item" --vault "OpenClaw" --fields label=password
 |----------------|------|----------|
 | GitHub PAT - PHPB2025K | PASSWORD | Git push, GitHub CLI |
 | Service Account Auth Token: agent.assistant.openclaw | API_CREDENTIAL | 1Password CLI (OP_SERVICE_ACCOUNT_TOKEN) |
-| Mission Control - Kobe | LOGIN | A PREENCHER |
+| Mission Control - Kobe | LOGIN | TenacitOS — dashboard de monitoramento OpenClaw, roda como PM2 na VPS, coleta usage data (cron hourly) |
 | RapidAPI - Tobias Agent | LOGIN | Instagram API (instagram120) |
-| Upseller ERP | LOGIN | A PREENCHER |
+| Upseller ERP | LOGIN | Hub multi-marketplace, gestão de SKUs armazém (apelidos), exports para [[openclaw/agents/fisco/IDENTITY\|Fisco]] |
 | Google Workspace - Tobias Agent | LOGIN | Calendar, Gmail integrations |
 | Apify - API Token | PASSWORD | Web scraping (Apify) |
 

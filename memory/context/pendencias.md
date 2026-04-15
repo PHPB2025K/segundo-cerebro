@@ -87,7 +87,9 @@ tags:
 - TikTok Shop — definir estratégia de outreach MCN/afiliados
 - ~~Stripe — ativar modo produção (está em teste)~~ → ✅ Stripe removido, migrado para Mercado Pago (14/04)
 - Container isolation — OpenClaw roda direto no host, considerar Docker
-- E-commerce budamix.com.br — Migrado para Vercel + Supabase próprio. **Pendente DNS:** A record budamix.com.br → 76.76.21.21 no Registro.br. Testar pagamento MP sandbox. → [[projects/budamix-ecommerce]]
+- ~~E-commerce budamix.com.br — Migrado para Vercel + Supabase próprio.~~ → ✅ DNS propagado, MP produção ativo, checkout testado (Pix + Cartão + Débito). **Pendente:** configurar webhook MP manualmente no painel Developers. → [[projects/budamix-ecommerce]]
+- [14/04] E-commerce — Configurar webhook URL `https://ioujfkrqvporfbvdqyus.supabase.co/functions/v1/mp-webhook` no painel MP Developers. **Pedro manualmente.**
+- [14/04] E-commerce — Testar pagamento Pix real (valor baixo) para validar QR code + webhook + order no Supabase
 - Fornecedores China — triagem emails Yiwu automatizada
 - Kit duplo porta-copos (12 peças + 2 suportes) a R$69,90-79,90 para Shopee — diluir taxa fixa
 
@@ -146,10 +148,21 @@ tags:
 - [09/04] ✅ Budamix Central — Role-based access implementado (admin/viewer, middleware + API)
 - [09/04] ✅ Budamix Central — Domínio migrado para central.budamix.com.br (SSL Let's Encrypt)
 - [09/04] ✅ Budamix Central — Report enviado no Thread 13 Telegram
+- [14/04] ✅ E-commerce budamix.com.br — DNS propagado (76.76.21.21), HTTP 200, Vercel GRU
+- [14/04] ✅ E-commerce — MP credenciais produção ativadas (Supabase secrets + Vercel env vars)
+- [14/04] ✅ E-commerce — .env removido do git tracking + adicionado ao .gitignore (segurança)
+- [14/04] ✅ E-commerce — Fix public key whitespace (SDK MP rejeitava)
+- [14/04] ✅ E-commerce — SPA routing corrigido (vercel.json com rewrites)
+- [14/04] ✅ E-commerce — Pix habilitado no Payment Brick (bankTransfer: 'all')
+- [14/04] ✅ E-commerce — Checkout testado: Pix (formulário + e-mail), Cartão (iframe MP), Débito Virtual CAIXA
+- [14/04] ✅ Skills frontend/e-commerce — 105 skills auditadas e instaladas (63 designer, 29 designpowers, 4 ui-skills, 3 Vercel, 1 Medusa, 1 Stripe, 4 custom)
+- [14/04] ✅ Skills — 4 custom skills criadas (ecommerce-design-system, product-page, checkout, seo)
+- [14/04] ✅ Skills — Documentação no Obsidian (inventário + auditoria + guia de uso)
+- [14/04] ✅ CLAUDE.md global atualizado com pipeline de skills frontend/e-commerce
 
 ---
 
-*Atualizado: 14/04/2026*
+*Atualizado: 15/04/2026*
 
 ---
 

@@ -16,8 +16,8 @@ tags:
 **Repo:** https://github.com/PHPB2025K/budamix-ecommerce
 **Branch:** main
 **Stack:** React 18 + Vite 5 + TypeScript + Tailwind + shadcn/ui + Supabase
-**Deploy:** Vercel (budamix-ecommerce.vercel.app)
-**Domínio:** https://budamix.com.br (DNS pendente → A record 76.76.21.21)
+**Deploy:** Vercel (`vercel --prod`)
+**Domínio:** https://budamix.com.br (DNS ativo, Vercel GRU)
 **Supabase:** projeto `ioujfkrqvporfbvdqyus` (org GB Importadora, sa-east-1)
 **Vercel Project:** prj_wMl99f4aixldKCwBiJv9xDedL7AR
 
@@ -55,8 +55,17 @@ products, product_variants, product_images, product_videos, collections, carts, 
 - Storage: 101 imagens + 16 vídeos migrados (URLs atualizadas)
 - 3 produtos placeholder (inativos no Supabase antigo, sem service role key)
 
+## Design System (15/04)
+
+- **Fontes:** Bricolage Grotesque (headings), Satoshi (body), JetBrains Mono (preços)
+- **Paleta:** Teal #004D4D, Terracotta #C56A4A, Gold #C7A35A, Sage #7EADAD, Areia #F7F4EF, Grafite #132525
+- **Referências visuais:** Granado + Great Jones
+- **Componentes novos:** AnnouncementBar, FreeShippingBar, TrustBadges, StickyAddToCart
+- **Multi-agent pipeline:** `.claude/agents/` com 5 agentes reutilizáveis
+
 ## Decisões-chave
 
+- [2026-04-15] Redesign completo com identidade Budamix (Granado + Great Jones). 5 agentes multi-agent. → [[memory/context/decisoes/2026-04|decisões]]
 - [2026-04-14] Migração Stripe → Mercado Pago (9 commits). Stripe nunca foi funcional.
 - [2026-04-14] Payment Brick (não Checkout Pro) — controle total da UX.
 - [2026-04-14] Migração Lovable → Vercel + Supabase próprio (org GB Importadora).
@@ -64,12 +73,13 @@ products, product_variants, product_images, product_videos, collections, carts, 
 
 ## Pendências
 
-- [ ] Configurar DNS: A record budamix.com.br → 76.76.21.21 (Registro.br)
-- [ ] Configurar DNS: A record www.budamix.com.br → 76.76.21.21
-- [ ] Testar pagamento sandbox (Pix + Cartão) — produtos agora têm estoque
-- [ ] Trocar credenciais MP para produção
-- [ ] Configurar webhook URL no painel MP Developers
-- [ ] 3 produtos placeholder precisam de dados reais (nomes, descrições, imagens)
+- [x] ~~Configurar DNS~~ → ✅ Ativo (76.76.21.21)
+- [x] ~~Trocar credenciais MP para produção~~ → ✅ Ativo
+- [ ] Configurar webhook URL no painel MP Developers — **Pedro manualmente**
+- [ ] Testar pagamento Pix real (valor baixo) para validar QR code + webhook
+- [ ] 3 produtos placeholder precisam de dados reais
+- [ ] Testar redesign no mobile real (StickyAddToCart, fontes, AnnouncementBar)
+- [ ] Code-splitting: chunk JS 895KB (considerar dynamic import)
 
 ## 1Password (vault OpenClaw)
 

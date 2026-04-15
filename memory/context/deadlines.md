@@ -26,6 +26,8 @@ tags:
 | 31/07/2026 | Promoção FBA+ expira — trocar flag planilha + criar lookup tarifas | ⏳ Pendente | Produtos <R$40 ficam inviáveis no FBA |
 | A PREENCHER | E-commerce — webhook MP no painel Developers | ⏳ Pendente | Pedro manualmente |
 | A PREENCHER | E-commerce — testar pagamento Pix real | ⏳ Pendente | Validar QR code + webhook + order |
+| 29/04/2026 | Amazon Ads — revisão ações 1-3 (Canequinhas/negativas/Bambu) | ⏳ Pendente | Meta ACOS ≤19%. 83 ações executadas 15/04 |
+| 15/06/2026 | Amazon Ads — reavaliar Abraçadeiras e Redinha (Ação 4) | ⏳ Pendente | Pausados por zero vendas 60d |
 | Contínuo | Atualizar OpenClaw diariamente | 🔄 Recorrente | Manter v2026.4.x+ |
 | Contínuo | VPS disco <80% | 🔄 Monitorar | Atualmente 63.4% |
 
@@ -49,7 +51,7 @@ tags:
 
 ---
 
-*Atualizado: 15/04/2026*
+*Atualizado: 15/04/2026 — sessão 7*
 
 ---
 

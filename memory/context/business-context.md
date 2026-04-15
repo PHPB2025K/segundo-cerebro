@@ -106,6 +106,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ## Resultados Recentes
 
+- [15/04] Amazon Ads otimização cirúrgica: mapeamento 139 campanhas, 4 ações executadas (83 logadas), 48→39 ativas, ACOS 22,9%→meta 19%. Revisão 29/04 → [[memory/context/decisoes/2026-04|decisões]]
 - [15/04] Auditoria completa de margens Shopee: 72 SKUs, 4 correções aplicadas direto no Google Sheets via API (comissão escalonada, afiliado real, margens unificadas) → [[memory/context/decisoes/2026-04|decisões]]
 - [15/04] Google Sheets OAuth configurado: Claude Code agora edita planilha de precificação diretamente no Drive
 - [15/04] Skill [[skills/planilha-precificacao/SKILL|planilha-precificacao]] criada + SOP upload Drive
@@ -117,4 +118,4 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ---
 
-*Última atualização: 15/04/2026*
+*Última atualização: 15/04/2026 — sessão 7*

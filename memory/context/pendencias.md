@@ -104,6 +104,20 @@ tags:
 - [15/04] Amazon — Linha 28 (KIT2WX11975_) sem preço de venda. Preencher ou remover. Marcada com fundo amarelo na planilha.
 - [15/04] Amazon — Quando promoção FBA+ expirar (jul/2026): trocar flag I1 para PADRAO e criar tabela de lookup com tarifas FBA padrão por peso×preço. Produtos <R$40 ficam inviáveis no FBA sem promoção.
 
+- [15/04] Amazon Ads — Mapeamento completo: 139 campanhas (48 ativas, 91 pausadas), 12 grupos × 4 camps, ACOS geral 22,9%, R$4.884 gasto 60d, R$21.317 vendas 60d. Relatório: `investigacao_estrategia_150426.json`
+- [15/04] ✅ ~~Amazon Ads — Otimização cirúrgica 4 ações executadas:~~
+  - ✅ AÇÃO 1: Canequinhas Café bids reduzidos (58 keywords: Descoberta -50%, Alcance -50%, Exact -40%)
+  - ✅ AÇÃO 2: 16 negativas campaign-level adicionadas (caneca, xicara, xícara, marmita, marmita de vidro) em 8 campanhas. Override G1 autorizado (termos protegidos com R$270 gasto zero vendas)
+  - ✅ AÇÃO 3: Potes Tampa Bambu Alcance PAUSADA (ACOS 62,8%)
+  - ✅ AÇÃO 4: Abraçadeiras Nylon (4 camps) + Redinha Frutas (4 camps) PAUSADAS (zero vendas/tráfego 60d)
+  - 83 ações logadas no Supabase `amazon_ads_actions_log`
+  - Campanhas ativas: 48→39. Budget diário: R$315→~R$274
+- [15/04] Amazon Ads — **Revisão 29/04/2026**: Medir impacto das ações 1-3 (meta ACOS ≤19%)
+- [15/04] Amazon Ads — **Revisão 15/06/2026**: Reavaliar Abraçadeiras e Redinha (Ação 4)
+- [15/04] Amazon Ads — Canequinhas Café ACOS 45,5% — monitorar queda pós-bid reduction (meta ≤25% em 14d)
+- [15/04] Amazon Ads — 91 campanhas pausadas são lixo histórico (Era 1: 2022-2025). Considerar arquivar
+- [15/04] Amazon Ads — 157 keywords PHRASE ainda existem — possível resquício legacy problem
+
 ## ⚪ Backlog (sem urgência imediata)
 
 - Antidumping cerâmicas chinesas — pesquisar Vietnam e Índia como alternativas de sourcing
@@ -196,7 +210,7 @@ tags:
 
 ---
 
-*Atualizado: 15/04/2026*
+*Atualizado: 15/04/2026 — sessão 7 (Amazon Ads otimização)*
 
 ---
 

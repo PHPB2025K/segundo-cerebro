@@ -48,7 +48,14 @@ tags:
 - [08/04] GB26002 — Numerário e 70% sem valores registrados no sistema.
 - [08/04] Skill [[skills/gb-import-hub/SKILL|gb-import-hub]] instalado e validado (14/15 testes OK). terminal49-fetch-shipment com bug (HTTP 500).
 
-- [09/04] MELI — 22 SKUs com margem negativa após correção com dados reais. Piores: CNCOL-80 PCS (-22%), KIT2YW320 (-21%), SPC011 (-19%), EMB01T (-19%). **Ação necessária: revisar preços ou descontinuar.** → [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]] [[skills/marketplace/ml-fees-rules/SKILL|ml-fees-rules]]
+- [09/04] ~~MELI — 22 SKUs com margem negativa após correção com dados reais.~~ → ✅ Superado pela atualização de Ads ACOS real (15/04). Margens recalculadas com dados reais.
+- [15/04] Ads ACOS real — 12 SKUs NOVOS negativos após atualização: MELI (4: Kit3Potes, 914A_B, XCP002, SPC013), Amazon (5: 914C_BB, K6CAN250, KIT2CK4742_B, KIT4YW520SQ, KIT4YW800SQ), Shopee (3: KIT2YW320, CNCOL48, CNCOL24/LIVCOL1). **Ação: revisar preços ou pausar Ads desses SKUs.**
+- [15/04] Amazon — 26 de 46 SKUs sem ASIN preenchido na planilha. Preencher para poder diferenciar SKUs com/sem Ads corretamente.
+- [15/04] ML Ads — 34 de 37 items anunciando SEM buy box. Desperdício potencial de R$8.625/60d. Revisar estratégia Ads com Spark.
+- [15/04] ML Ads — 17 items com gasto mas ZERO receita em 60 dias. Pausar ou revisar.
+- [15/04] Amazon Ads — KIT2YW520SQ com ACOS 64,8% (R$244 gasto, 7 vendas em 60d). **Pausar urgente.**
+- [15/04] ml-ads-automation — Projeto pronto (FastAPI + Supabase `cckfkvqblvundnyphole`) mas nunca deployado. Deploy no Railway + cron N8N pendente.
+- [15/04] Shopee Ads — API de Ads inacessível (sem scope "Marketing" no app partner_id 2031533). Solicitar no Shopee Open Platform ou usar export manual CSV.
 - [09/04] MELI — Coluna R (FRETE) tem 5-6 células com formatação texto (ex: `08.01`, `09.01`) em vez de moeda. Não afeta cálculo mas visual incorreto. → [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]]
 - [09/04] Skill [[skills/update-ml-return-rates/SKILL|update-ml-return-rates]] — validada mas Telegram report ainda não testado (usou --no-telegram). Testar na próxima execução. → [[openclaw/agents/trader/AGENTS|Trader]]
 - [10/04] MELI — Custos Full extraídos (57 SKUs, 2866 pedidos). Pendente: atualizar Col N (FULL) da planilha com valores reais por SKU. → [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]]
@@ -113,6 +120,9 @@ tags:
 
 ## ✅ Resolvidas (Abril 2026)
 
+- [15/04] ✅ Investigação ACOS real por SKU — 3 plataformas auditadas. ML Ads API funcional (345 ads, ACOS 11,4%), Amazon Ads API funcional (47 ASINs, ACOS 20,4%), Shopee sem acesso API Ads.
+- [15/04] ✅ Ads flats atualizados nas 3 abas — MELI Col Q 6%→11%/0%, AMAZON Col N 8,9%→20%/0%, SHOPEE Col O 5%→7%. Backups criados. Skill planilha-precificacao atualizada.
+- [15/04] ✅ Auditoria MELI — 43 SKUs auditados, Col J 11,5%/13%, Col R 3 zerados, Col U padronizada (43 linhas), Col R formatação corrigida.
 - [15/04] ✅ Auditoria Amazon — 46 SKUs auditados, 7 correções aplicadas no Google Sheets via API: Col H 12% (23 de 20%→12%, 2 de 14%→12%, 10 hardcoded→fórmula), Col N ads corrigido (6 #REF!, 24 refs fantasma, 9 refs cruzadas), Col O devoluções padronizado, Col P parcelamento criada (1,5% ≥R$40), Col I flag promo FBA+ (IF ≥100→0, <100→5), backup AMAZON_BACKUP_150426
 - [15/04] ✅ Skill planilha-precificacao atualizada com estrutura aba AMAZON + regras de negócio Amazon 2026
 - [15/04] ✅ Auditoria Shopee — 72 SKUs auditados, 4 correções aplicadas direto no Google Sheets via API (Col H escalonada, Col I zerada, Col S taxas reais, Col U unificada com afiliado)

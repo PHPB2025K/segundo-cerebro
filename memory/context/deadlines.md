@@ -23,6 +23,7 @@ tags:
 | 15/05/2026 | Meta Ads Token Renewal | ⏳ Pendente | One-shot systemEvent no OpenClaw |
 | ~15/04/2026 | Analistas concluírem Top 10 produtos | ⏳ Pendente | Guia entregue 06/04, ~3min por produto |
 | ~30/04/2026 | Analistas concluírem todos os 44 produtos | ⏳ Pendente | Depende do Top 10 |
+| 31/07/2026 | Promoção FBA+ expira — trocar flag planilha + criar lookup tarifas | ⏳ Pendente | Produtos <R$40 ficam inviáveis no FBA |
 | A PREENCHER | E-commerce — webhook MP no painel Developers | ⏳ Pendente | Pedro manualmente |
 | A PREENCHER | E-commerce — testar pagamento Pix real | ⏳ Pendente | Validar QR code + webhook + order |
 | Contínuo | Atualizar OpenClaw diariamente | 🔄 Recorrente | Manter v2026.4.x+ |

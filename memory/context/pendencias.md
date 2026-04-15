@@ -86,6 +86,17 @@ tags:
 - [15/04] Ponto Certo — Token GitHub na VPS inválido (`gh auth` expired). `git pull` falha em `/var/www/ponto-certo`. Deploy feito via SCP como workaround. Reautenticar: `ssh root@187.77.237.231 "gh auth login -h github.com"`
 - [15/04] Ponto Certo — Projeto copiado de `/tmp/` para `~/Documents/05-Projetos-Codigo/ponto-certo/` (repositório persistente)
 
+- [15/04] ✅ ~~Amazon — Custos suspeitamente baixos em 4 SKUs~~ → PCM001 (R$1,04) e DPM001 (R$2,39) confirmados corretos (MDF). KIT4YW520SQ e KIT4YW800SQ corrigidos.
+- [15/04] ✅ ~~Amazon — Verificação custos AMAZON vs ESTOQUE~~ → 11 custos corrigidos na Col F. TL250x confirmados como kits de 6 (R$22,80 correto).
+- [15/04] Amazon — **3 SKUs com MARGEM NEGATIVA após correção de custos.** Decisão pendente do Pedro:
+  - KIT4YW520SQ: custo R$21,70, venda R$39,90, lucro **-R$1,00 (-3%)**
+  - KIT4YW800SQ: custo R$27,11, venda R$39,90, lucro **-R$6,41 (-16%)**
+  - KIT4YW1520: custo R$44,39, venda R$64,90, lucro **-R$7,64 (-12%)**
+  Opções: aumentar preço, reduzir kit, migrar pra DBA/FBM, ou descontinuar FBA.
+- [15/04] Amazon — 914C_BB com margem 6% (custo corrigido R$0→R$18,48). Avaliar preço.
+- [15/04] Amazon — Linha 28 (KIT2WX11975_) sem preço de venda. Preencher ou remover. Marcada com fundo amarelo na planilha.
+- [15/04] Amazon — Quando promoção FBA+ expirar (jul/2026): trocar flag I1 para PADRAO e criar tabela de lookup com tarifas FBA padrão por peso×preço. Produtos <R$40 ficam inviáveis no FBA sem promoção.
+
 ## ⚪ Backlog (sem urgência imediata)
 
 - Antidumping cerâmicas chinesas — pesquisar Vietnam e Índia como alternativas de sourcing
@@ -102,6 +113,8 @@ tags:
 
 ## ✅ Resolvidas (Abril 2026)
 
+- [15/04] ✅ Auditoria Amazon — 46 SKUs auditados, 7 correções aplicadas no Google Sheets via API: Col H 12% (23 de 20%→12%, 2 de 14%→12%, 10 hardcoded→fórmula), Col N ads corrigido (6 #REF!, 24 refs fantasma, 9 refs cruzadas), Col O devoluções padronizado, Col P parcelamento criada (1,5% ≥R$40), Col I flag promo FBA+ (IF ≥100→0, <100→5), backup AMAZON_BACKUP_150426
+- [15/04] ✅ Skill planilha-precificacao atualizada com estrutura aba AMAZON + regras de negócio Amazon 2026
 - [15/04] ✅ Auditoria Shopee — 72 SKUs auditados, 4 correções aplicadas direto no Google Sheets via API (Col H escalonada, Col I zerada, Col S taxas reais, Col U unificada com afiliado)
 - [15/04] ✅ Google Sheets OAuth — Acesso de escrita configurado, token persistente em ~/.config/google-sheets-claude/token.json
 - [15/04] ✅ Skill planilha-precificacao criada (~/.claude/skills/planilha-precificacao/SKILL.md)

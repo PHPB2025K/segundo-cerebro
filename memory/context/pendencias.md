@@ -99,6 +99,10 @@ tags:
 
 ## ✅ Resolvidas (Abril 2026)
 
+- [15/04] ✅ Auditoria Shopee — 72 SKUs auditados, 4 correções aplicadas direto no Google Sheets via API (Col H escalonada, Col I zerada, Col S taxas reais, Col U unificada com afiliado)
+- [15/04] ✅ Google Sheets OAuth — Acesso de escrita configurado, token persistente em ~/.config/google-sheets-claude/token.json
+- [15/04] ✅ Skill planilha-precificacao criada (~/.claude/skills/planilha-precificacao/SKILL.md)
+- [15/04] ✅ SOP upload Drive documentado (segundo-cerebro/automacoes/sops/upload-planilha-drive.md)
 - [15/04] ✅ E-commerce budamix.com.br — Redesign completo com identidade Budamix (Granado + Great Jones inspired). 5 agentes, 39 arquivos, deploy Vercel produção. → [[projects/budamix-ecommerce]]
 - [15/04] ✅ Skills frontend/e-commerce — 5 agentes multi-agent criados (.claude/agents/) para redesign pipeline reutilizável
 - [06/04] ✅ Canggu — Reestruturação dados produtos completa (5 fases)

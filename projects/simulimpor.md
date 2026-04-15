@@ -24,6 +24,10 @@ tags:
 
 MicroSaaS de simulação de custos de importação. Calcula cascata tributária completa (NCM, ICMS, IPI, PIS, COFINS, AFRMM, etc.) para importadores brasileiros. Fase inicial — commit do template Lovable.
 
+## Status
+
+🔨 **Fase inicial.** Consolidado em 05-Projetos-Codigo/ em 14/04 (duplicata ~/SIMULIMPORT deletada). Template Lovable commitado, sprint 1 concluído anteriormente. Retomar quando houver capacidade.
+
 ## Notas relacionadas
 
 - [[openclaw/agents/builder/memory/projects/simulimport]]

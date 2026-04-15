@@ -21,7 +21,19 @@ tags:
 
 ## O que é
 
-Sistema de gestão de estoque para a Budamix. Next.js frontend, Supabase backend, N8N para parsing automático de PDFs de entrada de mercadoria. Deploy na VPS.
+Sistema de gestão de estoque para a Budamix. Next.js frontend, Supabase backend, N8N para parsing automático de PDFs de entrada de mercadoria. Deploy na VPS (estoque.budamix.com.br). Design system Budamix aplicado (3 iterações). URL: https://estoque.budamix.com.br
+
+## Decisões-chave
+
+- [13/04] Supabase em vez de SQLite para persistência
+- [13/04] N8N para PDF parsing (workflow ID: WyxKDxwIkuuL8BdH)
+- [13/04] Traefik reverse proxy (não Nginx direto)
+- [13/04] Fix parseInt milhar brasileiro + fix col_brand — 4 operações reprocessadas, zero erros
+
+## Pendências
+
+- [ ] Validar layout mobile (equipe usa celular no armazém)
+- [ ] Conectar com planilha real de estoque (Google Sheets)
 
 ## Notas relacionadas
 

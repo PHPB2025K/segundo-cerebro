@@ -24,6 +24,12 @@ tags:
 
 Sistema de automação de publicidade Mercado Livre Product Ads para a GB Importadora. Mesma arquitetura do Amazon Ads Automation: coleta métricas diárias, análise com IA, recomendações via WhatsApp. Inclui endpoints autenticados para dashboard BudaAds.
 
+4 tabelas Supabase: ml_tokens, ml_campaigns_daily, ml_ads_daily, ml_optimization_reports. Endpoints: refresh, status, collect/campaigns, collect/ads, analyze, notify.
+
+## Status
+
+⚠️ **Inativo há 6 semanas.** Sistema pronto para deployment — necessita apenas cron N8N configurado. Considerar reativação.
+
 ## Notas relacionadas
 
 - [[projects/amazon-ads-automation]]

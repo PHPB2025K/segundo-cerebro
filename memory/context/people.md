@@ -18,9 +18,21 @@ tags:
 
 | Nome | Função | Contato | Notas |
 |------|--------|---------|-------|
-| Pedro Broglio | CEO, dev, estratégia | pehpbroglio@gmail.com | Faz tudo |
-| Analista 1 | Operação, cadastro, marketplaces | — | Preenchendo dados de produtos no Canggu |
-| Analista 2 | Operação, cadastro, marketplaces | — | Preenchendo dados de produtos no Canggu |
+| Pedro Broglio | CEO, dev, estratégia | pehpbroglio@gmail.com | Faz tudo → [[knowledge/pessoal/perfil-pedro-broglio]] |
+
+## Funcionários (Ponto Certo)
+
+| Nome | Função | Sistema |
+|------|--------|---------|
+| Franciele Carolina de Souza Aguiar (Fran) | Operação | Ponto Certo |
+| Geziele Batista da Silva | Operação | Ponto Certo |
+| Guilherme Higashi | Operação | Ponto Certo |
+| Lucas Gabriel Laurentino | Operação | Ponto Certo |
+| Mateus Eduardo Lisboa Santos | Operação | Ponto Certo |
+| Sandra Peron | Operação | Ponto Certo |
+| Yasmin Oscarlino | Operação | Ponto Certo |
+
+> Detalhes: sistema [[automacoes/sops/resetar-senha-funcionario|Ponto Certo]] (Supabase `dgldsmhbeosjgfrbegyv`)
 
 ---
 
@@ -66,4 +78,4 @@ tags:
 
 ---
 
-*Atualizado: 06/04/2026*
+*Atualizado: 15/04/2026*

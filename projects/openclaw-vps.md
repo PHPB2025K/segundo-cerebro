@@ -21,7 +21,32 @@ tags:
 
 ## O que é
 
-Configuração e deploy do OpenClaw em VPS da Hostinger. Scripts de setup, configurações SSH, e referências de deploy. Acesso via terminal SSH a partir do macOS local.
+Infraestrutura crítica. VPS Hostinger (Ubuntu 24.04) rodando OpenClaw (6 agentes, 12+ crons), estoque.budamix.com.br, import.budamix.com.br, e Budamix Central Live Sales. Acesso via SSH.
+
+## Status Infraestrutura
+
+| Recurso | Estado |
+|---------|--------|
+| Disco | 63.4% de 47GB — monitorar ⚠️ |
+| Memória | 80% + swap 52% — processo zombie ⚠️ |
+| OpenClaw | v2026.4.5, GPT 5.4 |
+| Sync | Cron 06:45 BRT (git pull + rsync segundo-cerebro) |
+
+## Serviços Rodando
+
+- OpenClaw Gateway (127.0.0.1:18789) — 6 agentes
+- estoque.budamix.com.br — Traefik + SSL
+- import.budamix.com.br — Nginx + SSL
+- Budamix Central backend / Live Sales
+
+## Pendências
+
+- [ ] VPS disco — limpeza de logs, backups, Chrome cache
+- [ ] VPS memória — investigar processo zombie
+- [ ] Porta 8084 (Evolution API?) aberta na UFW — verificar necessidade
+- [ ] Tailscale/WireGuard não implementado (recomendado)
+- [ ] 3 crons com timeout insuficiente (job-monitor, Contingency Guard, Organização Noturna)
+- [ ] GitHub Backup timeout 120s → 300s
 
 ## Notas relacionadas
 

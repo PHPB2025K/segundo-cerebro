@@ -28,9 +28,19 @@ tags:
 - [[projects/budamix-agent-changelog-ana]] — Changelog da Ana
 - [[projects/whatsapp-api]] — Config WhatsApp API (Baileys + Evolution)
 
+## Dashboards e Sistemas Internos
+
+- [[projects/budamix-central]] — Budamix Central / Canggu (dashboard interno, Live Sales, pgvector)
+- [[projects/gb-import-hub]] — GB Import Hub (gestão importações, containers, tracking)
+- [[projects/atlas-finance]] — Atlas Finance (contas a pagar/receber, DFC — pausado)
+
 ## E-commerce
 
 - [[projects/budamix-ecommerce]] — E-commerce Budamix (React + Supabase + Mercado Pago)
+
+## Fiscal e Financeiro
+
+- [[projects/financeflow]] — FinanceFlow (automação fiscal 6 CNPJs, agente Fisco)
 
 ## Operação e Estoque
 

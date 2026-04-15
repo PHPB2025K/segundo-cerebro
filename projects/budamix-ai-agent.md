@@ -22,7 +22,17 @@ tags:
 
 ## O que é
 
-Agente de atendimento ao cliente via WhatsApp (estilo SDR) para a marca Budamix. Assistente virtual "Ana" (renomeada de Giovana em 2026-04-02). Frontend em React para configuração e monitoramento.
+Agente de atendimento ao cliente via WhatsApp (estilo SDR) para a marca Budamix. Assistente virtual "Ana" (renomeada de Giovana em 2026-04-02). Frontend em React para configuração e monitoramento. Arquitetura híbrida: N8N + Supabase Edge Functions (4 workflows, 4 Edge Functions, 9 tabelas).
+
+## Decisões-chave
+
+- [06/04] Pipeline vetorial: embedding pergunta → busca vetorial (pgvector) → SQL → contexto enriquecido
+- [06/04] Bug envio WhatsApp humano→cliente CORRIGIDO
+
+## Pendências
+
+- [ ] Fase 4 cleanup: remover campos antigos (marketplace_links, available_kits, price_marketplace)
+- [ ] ~14 Session Extractors desabilitados (timeout 120s insuficiente, precisam 300s+)
 
 ## Notas relacionadas
 

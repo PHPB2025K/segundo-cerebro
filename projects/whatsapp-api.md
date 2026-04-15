@@ -21,7 +21,13 @@ tags:
 
 ## O que é
 
-Configuração e documentação da integração WhatsApp (Baileys + Evolution API). Dual mode: Baileys para leitura passiva, Evolution API para envio.
+Infraestrutura compartilhada de integração WhatsApp. Dual mode: Baileys para leitura passiva, Evolution API para envio ativo. Instância Evolution: trottingtuna-n8n.cloudfy.live. Não é projeto independente — é config/documentação.
+
+## Projetos Dependentes
+
+- [[projects/budamix-ai-agent]] — Ana/Giovana (atendimento)
+- [[projects/amazon-ads-automation]] — notificações via WhatsApp
+- [[openclaw/agents/rh/IDENTITY]] — Monitor Ponto (WhatsApp para funcionários)
 
 ## Notas relacionadas
 

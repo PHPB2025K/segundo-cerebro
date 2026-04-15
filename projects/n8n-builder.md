@@ -21,7 +21,14 @@ tags:
 
 ## O que é
 
-Projeto-base para design e construção de workflows N8N via Claude Code. Claude atua como arquiteto de workflows: entende requisitos, busca templates, projeta estrutura, e cria/atualiza workflows via MCP tools do n8n-mcp.
+Infraestrutura compartilhada para design e construção de workflows N8N via Claude Code. Claude atua como arquiteto de workflows: entende requisitos, busca templates, projeta estrutura, e cria/atualiza workflows via MCP tools do n8n-mcp.
+
+## Projetos Dependentes
+
+- [[projects/gmail-organizer]] — categorização emails
+- [[projects/running-coach-ai]] — coaching corrida
+- [[projects/estoque-budamix]] — PDF parser estoque
+- [[projects/budamix-ai-agent]] — fluxo WhatsApp Ana
 
 ## Notas relacionadas
 

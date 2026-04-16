@@ -93,6 +93,7 @@ products, product_variants, product_images, product_videos, collections, carts, 
 
 ## Decisões-chave
 
+- [2026-04-16] PDP + Cart + Checkout reescritos, code-splitting aplicado, sitemap dinâmico, site_settings populado. Detalhes na sessão 5 do dia.
 - [2026-04-16] Design system alinhado com spec + mockups Paper Design. Plus Jakarta Sans trocou Satoshi (@fontsource local). Paper MCP como fonte visual. 8 componentes reescritos. → [[memory/context/decisoes/2026-04|decisões]]
 - [2026-04-15] Redesign completo com identidade Budamix (Granado + Great Jones). 5 agentes multi-agent. → [[memory/context/decisoes/2026-04|decisões]]
 - [2026-04-14] Migração Stripe → Mercado Pago (9 commits). Stripe nunca foi funcional.
@@ -108,10 +109,11 @@ products, product_variants, product_images, product_videos, collections, carts, 
 - [ ] Testar pagamento Pix real (valor baixo) para validar QR code + webhook
 - [ ] 3 produtos placeholder precisam de dados reais
 - [ ] Testar redesign no mobile real (StickyAddToCart, fontes, AnnouncementBar)
-- [ ] Code-splitting: chunk JS 895KB (considerar dynamic import)
-- [ ] Push dos 8 commits locais de 16/04 para `origin/main` (aguardando validação visual)
-- [ ] Migrar `ProductDetail.tsx` e `Cart.tsx` para usar `<QuantitySelector />` novo
+- [x] ~~Code-splitting: chunk JS 895KB~~ → ✅ 16/04 React.lazy em 12 rotas, 255KB→195KB gzip, commit `ebfebc1`
+- [ ] Push dos commits locais de 16/04 para `origin/main` (11 novos commits acumulados — aguardando validação visual)
+- [ ] Migrar `ProductDetail.tsx` para usar `<QuantitySelector />` novo (Cart.tsx já usa)
 - [ ] Criar rotas futuras: `/loja`, `/sobre`, `/blog`, `/faq`, `/contato`, `/trocas-e-devolucoes`, `/termos`
+- [ ] Gerar sitemap em build pipeline (hoje é manual via `npm run generate:sitemap`)
 
 ## 1Password (vault OpenClaw)
 

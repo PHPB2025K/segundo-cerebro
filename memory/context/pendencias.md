@@ -79,7 +79,7 @@ tags:
 - [14/04] ✅ ~~Vault — Converter Word docs~~ → 6 docs convertidos via pandoc (3 atendimento, 2 OpenClaw briefings, 1 memoria tobias)
 - [14/04] Downloads — Limpeza necessária (31 GB acumulados: 1723 PDFs, 1400+ planilhas, 5000+ imagens, 469 vídeos). Maioria são históricos que podem ser arquivados ou deletados.
 - [15/04] E-commerce — Testar redesign no mobile real (celular físico). Verificar StickyAddToCart, AnnouncementBar dismiss, fontes Satoshi/Bricolage carregando.
-- [15/04] E-commerce — Code-splitting: chunk JS 895KB (warning Vite). Considerar dynamic import() nas páginas admin e checkout.
+- [15/04] ~~E-commerce — Code-splitting: chunk JS 895KB.~~ → ✅ Resolvido 16/04: React.lazy em 12 rotas (admin, checkout, auth, account, search, tracking). Chunk principal 255KB → 195KB gzip (meta <300KB batida). Commit `ebfebc1`
 - [14/04] Vault — Análise semântica profunda (subfase 5.3): ler todos os batches de notas e encontrar conexões ocultas. Adiada para sessão futura.
 - [13/04] Amazon Request Review — Monitorar taxa de sucesso pós-fix por 7 dias. Meta: >70% sucesso. Verificar logs diários até 20/04. Backfill de ~4866 pedidos em execução.
 - [13/04] ~~Budamix Central Live Sales — Validar layout TV na TV física do escritório.~~ → ✅ Resolvido 13/04: fix dvh viewport (desconta chrome browser), compressão seções desktop, min-h gráfico

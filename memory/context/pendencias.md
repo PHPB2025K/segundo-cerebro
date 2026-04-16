@@ -117,6 +117,10 @@ tags:
 - [15/04] Amazon Ads — Canequinhas Café ACOS 45,5% — monitorar queda pós-bid reduction (meta ≤25% em 14d)
 - [15/04] Amazon Ads — 91 campanhas pausadas são lixo histórico (Era 1: 2022-2025). Considerar arquivar
 - [15/04] Amazon Ads — 157 keywords PHRASE ainda existem — possível resquício legacy problem
+- [16/04] Amazon Ads — **BidSpark-3 Piloto** rodando no grupo Suporte Controle Gamer. Revisão formal 30/04. Metas: ACOS <15%, 0 bleeders, funil normalizado, budget utilization >30%
+- [16/04] Amazon Ads — Fase 1 Escalação executada: 3 bids subidos (suporte para controle ps5 R$0,55→R$0,80, suporte controle R$0,35→R$0,45, porta controle R$0,35→R$0,45). Monitorar: utilização Performance >80% → subir budget pra R$35. ACOS >17% 3d → revisar
+- [16/04] Amazon Ads — SPC013 (B0GTQXRDTM, ASIN novo cru) adicionado às 3 campanhas, mesmo ad group que SPC002. Product ad duplicata PAUSED no Alcance (sem impacto)
+- [16/04] Amazon Ads — Coleta diária falhando em 2 dias (12/04, 15/04). Investigar cron N8N
 
 ## ⚪ Backlog (sem urgência imediata)
 

@@ -49,7 +49,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 |------|--------|----------------|
 | GB Importadora/Budamix | 🟢 Ativo | 44 SKUs ativos, 4 canais de venda |
 | [[openclaw/agents/kobe/AGENTS|OpenClaw/Kobe]] | 🟢 Ativo | 6 agentes, 22 crons, 16 integrações |
-| [[openclaw/agents/builder/memory/projects/canguu|Canggu]] | 🟢 Ativo | Dashboard interno, busca vetorial, 27 base_products |
+| [[projects/budamix-central|Canggu]] | 🟢 Ativo | Dashboard interno (Next.js 16, VPS pm2+Traefik), busca vetorial, 27 base_products |
 | FinanceFlow | 🔨 Em construção | Automação fiscal 6 CNPJs |
 | [[openclaw/agents/builder/memory/projects/simulimport|SimulaImport]] | 🔨 Em construção | MicroSaaS simulação importação |
 | [[openclaw/agents/builder/memory/projects/atlas-finance|Atlas Finance]] | 🔨 Em construção | DFC com Lovable/Supabase |
@@ -87,7 +87,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 | Shopee | 🟢 Ativo | 3 contas OAuth, sync cada 2min |
 | Mercado Livre | 🟢 Ativo | 3 apps, sync cada 2min |
 | budamix.com.br | 🟢 Ativo | E-commerce próprio |
-| Budamix Central | 🟢 Ativo | central.budamix.com.br (role-based: admin/viewer) |
+| Budamix Central | 🟢 Ativo | central.budamix.com.br (VPS pm2+Traefik, role-based: admin/viewer) |
 | TikTok Shop | ⏸️ Exploração | Outreach MCN/afiliados |
 
 ---
@@ -98,7 +98,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 |------------|--------|----------|
 | [[openclaw/agents/kobe/AGENTS|OpenClaw/Kobe]] | 🟢 Produção | VPS Hostinger, v2026.4.5, GPT 5.4 (todos os agentes migrados) |
 | Ana (atendimento) | 🟢 Produção | N8N + Evolution API + Supabase |
-| Canggu | 🟢 Produção | Lovable + Supabase + pgvector, role-based access (admin/viewer) |
+| Canggu | 🟢 Produção | Next.js 16 + Supabase + pgvector, VPS (pm2 porta 3000 + Traefik SSL), role-based access (admin/viewer) |
 | Claude Code | 🟢 Uso diário | VS Code + MCPs |
 | Segundo Cérebro | 🟢 Configurado | ~/segundo-cerebro |
 

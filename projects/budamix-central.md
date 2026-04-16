@@ -3,7 +3,7 @@ title: "Budamix Central (Canggu)"
 created: 2026-04-15
 type: project
 status: active
-path: "Lovable project (prj_wMl99f4aixldKCwBiJv9xDedL7AR)"
+path: "/var/www/budamix-central (VPS 187.77.237.231)"
 tags:
   - project
   - dev
@@ -15,13 +15,38 @@ tags:
 
 **URL:** https://central.budamix.com.br
 **Branch:** main
-**Stack:** React + Vite + shadcn/ui + Supabase + pgvector + Lovable
-**Deploy:** Vercel (via Lovable)
+**Stack:** Next.js 16 + React 19 + Tailwind + shadcn/ui + Supabase + pgvector + Drizzle ORM + Zustand + Recharts + Framer Motion
+**Deploy:** VPS Hostinger (187.77.237.231) — pm2 + Traefik (SSL Let's Encrypt)
+**Path VPS:** `/var/www/budamix-central`
+**Porta:** 3000 (Next.js via pm2, proxy reverso Traefik)
+**Traefik config:** `/docker/traefik/dynamic/budamix-central.yml`
 **Supabase:** `sqbkoprcmnznmzbwdrmf`
+**Package manager:** pnpm
 
 ## O que é
 
 Dashboard interno da Budamix. Centraliza vendas em tempo real (Live Sales), gestão de produtos, chat WhatsApp com clientes (Ana/Giovana), e busca vetorial semântica via pgvector. Acesso role-based (admin/viewer).
+
+## Estrutura do App (Next.js 16 App Router)
+
+```
+src/app/
+├── (auth)/          ← Login, registro
+├── (dashboard)/     ← Páginas autenticadas (módulos principais)
+├── api/             ← API routes (dados ML, Shopee, Amazon, sheets)
+├── live/            ← Live Sales (TV mode)
+├── layout.tsx
+├── globals.css
+└── providers.tsx
+
+src/
+├── components/      ← UI components (shadcn/ui)
+├── hooks/           ← Custom React hooks
+├── lib/             ← Utilitários, clients
+├── data/            ← Data fetching
+├── types/           ← TypeScript types
+└── middleware.ts    ← Auth middleware
+```
 
 ## Módulos
 

@@ -55,16 +55,45 @@ products, product_variants, product_images, product_videos, collections, carts, 
 - Storage: 101 imagens + 16 vídeos migrados (URLs atualizadas)
 - 3 produtos placeholder (inativos no Supabase antigo, sem service role key)
 
-## Design System (15/04)
+## Design System
 
-- **Fontes:** Bricolage Grotesque (headings), Satoshi (body), JetBrains Mono (preços)
-- **Paleta:** Teal #004D4D, Terracotta #C56A4A, Gold #C7A35A, Sage #7EADAD, Areia #F7F4EF, Grafite #132525
+### Atualização 16/04 — spec + mockups Paper
+
+- **Fontes:** Bricolage Grotesque 800 (headings), Plus Jakarta Sans 400/500/600 via `@fontsource-variable/plus-jakarta-sans` (body — trocou Satoshi), JetBrains Mono 700 (preços)
+- **Paleta:** Teal #004D4D, Terracotta #C56A4A, Gold #C7A35A, Sage #7EADAD, Areia #F7F4EF, Grafite #132525, Porcelain #D9E6E6, Muted #EDE8E0, Border #C2D1D1, Card #FFFFFF
+- **Mockup referência:** Paper Design file `01KP8R1XYH6D1PQV14R4RJ04BT` (10 artboards: Homepage/PDP/Carrinho/Checkout em Desktop + Mobile)
+- **Fonte de verdade:** `src/design/DESIGN-TOKENS.md` (v1.1) + `src/index.css` tokens HSL
+
+### Componentes reescritos (16/04) — 8 commits
+
+| Componente | Arquivo | Nota |
+|---|---|---|
+| AnnouncementBar | `src/components/layout/AnnouncementBar.tsx` | Terracotta h-8/h-9, texto responsivo, dismiss via useState |
+| Header (desktop) | `src/components/layout/Header.tsx` | Teal 64px, logo PNG branco, NavLinks LOJA/COLEÇÕES/SOBRE/BLOG, busca+conta+SACOLA(N) |
+| HeaderMobile | `src/components/layout/HeaderMobile.tsx` (novo) | Teal 56px, hamburger+logo+SACOLA |
+| MobileMenu | `src/components/layout/MobileMenu.tsx` (novo) | Sheet slide L→R, Radix Dialog (Escape, backdrop, scroll lock) |
+| Footer (desktop) | `src/components/layout/Footer.tsx` | Grafite bg, 4 colunas, marketplaces row, bottom bar |
+| FooterMobile | `src/components/layout/FooterMobile.tsx` (novo) | Logo+tagline+social center, 3 accordions Radix |
+| ProductCard | `src/components/products/ProductCard.tsx` | Radius 12, img 1:1 bg muted, title uppercase, mono prices, hover scale |
+| ProductBadge | `src/components/products/ProductBadge.tsx` (novo) | 4 variantes: discount/bestseller/new/sold_out |
+| NavArrow | `src/components/shared/NavArrow.tsx` (novo) | Circle teal, chevron branca, desktop-only |
+| QuantitySelector | `src/components/shared/QuantitySelector.tsx` (novo) | 2 variantes: default pill (PDP) + cart circular teal |
+| Layout | `src/components/layout/Layout.tsx` | Compõe AnnouncementBar + HeaderMobile + Header + FooterMobile + Footer |
+
+### Rotas referenciadas mas inexistentes (404 até criar)
+- `/loja`, `/sobre`, `/blog`, `/faq`, `/contato`, `/trocas-e-devolucoes`, `/termos`
+
+### Componentes antigos ainda não migrados
+- [ ] `src/pages/ProductDetail.tsx` — usa quantity inline, migrar para `<QuantitySelector variant="default" />`
+- [ ] `src/pages/Cart.tsx` — usa quantity inline, migrar para `<QuantitySelector variant="cart" />`
+
+### Infra 15/04 mantida
 - **Referências visuais:** Granado + Great Jones
-- **Componentes novos:** AnnouncementBar, FreeShippingBar, TrustBadges, StickyAddToCart
 - **Multi-agent pipeline:** `.claude/agents/` com 5 agentes reutilizáveis
 
 ## Decisões-chave
 
+- [2026-04-16] Design system alinhado com spec + mockups Paper Design. Plus Jakarta Sans trocou Satoshi (@fontsource local). Paper MCP como fonte visual. 8 componentes reescritos. → [[memory/context/decisoes/2026-04|decisões]]
 - [2026-04-15] Redesign completo com identidade Budamix (Granado + Great Jones). 5 agentes multi-agent. → [[memory/context/decisoes/2026-04|decisões]]
 - [2026-04-14] Migração Stripe → Mercado Pago (9 commits). Stripe nunca foi funcional.
 - [2026-04-14] Payment Brick (não Checkout Pro) — controle total da UX.
@@ -80,6 +109,9 @@ products, product_variants, product_images, product_videos, collections, carts, 
 - [ ] 3 produtos placeholder precisam de dados reais
 - [ ] Testar redesign no mobile real (StickyAddToCart, fontes, AnnouncementBar)
 - [ ] Code-splitting: chunk JS 895KB (considerar dynamic import)
+- [ ] Push dos 8 commits locais de 16/04 para `origin/main` (aguardando validação visual)
+- [ ] Migrar `ProductDetail.tsx` e `Cart.tsx` para usar `<QuantitySelector />` novo
+- [ ] Criar rotas futuras: `/loja`, `/sobre`, `/blog`, `/faq`, `/contato`, `/trocas-e-devolucoes`, `/termos`
 
 ## 1Password (vault OpenClaw)
 

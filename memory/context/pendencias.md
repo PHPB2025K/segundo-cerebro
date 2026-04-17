@@ -18,6 +18,8 @@ tags:
 
 ## 🔴 Críticas (bloqueiam progresso)
 
+- [17/04] [[projects/budamix-ecommerce|Budamix Ecommerce]] — **55 commits locais à frente de `origin/main`**, Vercel ainda não recebeu nenhuma das reescritas de 16/04 + ajustes de 17/04 (header/footer/hero/PDP/cart/checkout/collections/páginas novas/marquee/favicon). Preview só no localhost. Push pendente, aguardando OK do Pedro.
+
 - [06/04] VPS disco 63.4% usado de 47GB — monitorar crescimento. Logs de memory, backups e Chrome cache podem encher. Limpeza necessária em breve.
 - [06/04] VPS memória 80% + swap 52% — processo zombie detectado. Requer investigação.
 - [06/04] Aguardando **Pedro** publicar Canggu no Lovable (destacques visuais campos IA, envio WhatsApp corrigido)

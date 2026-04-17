@@ -80,8 +80,11 @@ products, product_variants, product_images, product_videos, collections, carts, 
 | QuantitySelector | `src/components/shared/QuantitySelector.tsx` (novo) | 2 variantes: default pill (PDP) + cart circular teal |
 | Layout | `src/components/layout/Layout.tsx` | Compõe AnnouncementBar + HeaderMobile + Header + FooterMobile + Footer |
 
-### Rotas referenciadas mas inexistentes (404 até criar)
-- `/loja`, `/sobre`, `/blog`, `/faq`, `/contato`, `/trocas-e-devolucoes`, `/termos`
+### Rotas referenciadas mas inexistentes
+- ✅ `/loja` (Shop.tsx — grid 2/3/4 cols de produtos ativos)
+- ✅ `/sobre` (About.tsx — institucional com CTA → /loja)
+- ✅ `/blog` (Blog.tsx — placeholder "em breve" com CTA → /loja)
+- ❌ `/faq`, `/contato`, `/trocas-e-devolucoes`, `/termos` — ainda 404
 
 ### Componentes antigos ainda não migrados
 - [ ] `src/pages/ProductDetail.tsx` — usa quantity inline, migrar para `<QuantitySelector variant="default" />`
@@ -93,6 +96,11 @@ products, product_variants, product_images, product_videos, collections, carts, 
 
 ## Decisões-chave
 
+- [2026-04-17] Fix PDP branco — Rules of Hooks violation (useEffect após early return). Móvidos os 3 effects pra antes dos returns, guards no callback. → [[knowledge/concepts/react-hooks-order-early-return]]
+- [2026-04-17] Criadas páginas `/loja`, `/sobre`, `/blog` (placeholder) com React.lazy. Faltam `/faq`, `/contato`, `/trocas-e-devolucoes`, `/termos`.
+- [2026-04-17] MarqueeStrip texto focado em conversão: FRETE GRÁTIS ★ 6X SEM JUROS ★ RASTREIE SEU PEDIDO ★ COMPRA SEGURA ★ ENVIO EM 24H ★ (substituiu branding genérico).
+- [2026-04-17] Favicon casinha Budamix — PNG oficial multi-size via sips + npx png-to-ico (16/32/48/64 .ico + 32/64 PNG + 180px apple-touch).
+- [2026-04-17] CategoryBar usa 3 coleções reais (Vidro, MDF, Porcelana) em vez de categorias fictícias.
 - [2026-04-16] PDP + Cart + Checkout reescritos, code-splitting aplicado, sitemap dinâmico, site_settings populado. Detalhes na sessão 5 do dia.
 - [2026-04-16] Design system alinhado com spec + mockups Paper Design. Plus Jakarta Sans trocou Satoshi (@fontsource local). Paper MCP como fonte visual. 8 componentes reescritos. → [[memory/context/decisoes/2026-04|decisões]]
 - [2026-04-15] Redesign completo com identidade Budamix (Granado + Great Jones). 5 agentes multi-agent. → [[memory/context/decisoes/2026-04|decisões]]
@@ -110,9 +118,11 @@ products, product_variants, product_images, product_videos, collections, carts, 
 - [ ] 3 produtos placeholder precisam de dados reais
 - [ ] Testar redesign no mobile real (StickyAddToCart, fontes, AnnouncementBar)
 - [x] ~~Code-splitting: chunk JS 895KB~~ → ✅ 16/04 React.lazy em 12 rotas, 255KB→195KB gzip, commit `ebfebc1`
-- [ ] Push dos commits locais de 16/04 para `origin/main` (11 novos commits acumulados — aguardando validação visual)
+- [ ] Push dos commits locais para `origin/main` — **55 commits acumulados** (16/04 + 17/04), aguardando validação visual e confirmação do Pedro para disparar Vercel deploy
 - [ ] Migrar `ProductDetail.tsx` para usar `<QuantitySelector />` novo (Cart.tsx já usa)
-- [ ] Criar rotas futuras: `/loja`, `/sobre`, `/blog`, `/faq`, `/contato`, `/trocas-e-devolucoes`, `/termos`
+- [x] ~~Criar rotas `/loja`, `/sobre`, `/blog`~~ → ✅ 17/04 (commit `13f99ca`)
+- [ ] Criar rotas faltantes: `/faq`, `/contato`, `/trocas-e-devolucoes`, `/termos`
+- [ ] Corrigir warning pré-existente `fetchPriority` vs `fetchpriority` no img do HeroBanner (cosmético)
 - [ ] Gerar sitemap em build pipeline (hoje é manual via `npm run generate:sitemap`)
 
 ## 1Password (vault OpenClaw)

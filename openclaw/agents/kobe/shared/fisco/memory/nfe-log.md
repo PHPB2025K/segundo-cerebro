@@ -80,18 +80,18 @@ _Append-only. Nunca deletar entradas._
 
 ## 2026-04-17 — GB25011 container Itajaí→Pedreira via Qualilog (Módulo B 90/10)
 
-### Rascunhos criados via API Bling Matriz ✅ (aguardando aprovação Pedro para /enviar)
+### NFs AUTORIZADAS pela SEFAZ-SC ✅ (emitidas em produção tpAmb=1)
 
-| NF# | Tipo | Destinatário | CFOP item | Valor | Situação | ID Bling | Obs |
-|-----|------|-------------|-----------|-------|----------|----------|-----|
-| 000648 | Entrada | Open Trade (07.104.810/0001-37) | 1949 | R$ 76.222,43 | 1 (rascunho) | 25595124221 | Registra NF 580012 da OT (chave 42260407104810000137550010005800121011014742). Natureza "Compra de mercadoria" (15106994869) como **fallback** — não existe natureza específica de entrada por importação por conta e ordem cadastrada. |
-| 000649 | Saída | Filial SP (58.151.616/0002-24) | 6152 | R$ 68.192,51 | 1 (rascunho) | 25595135504 | 21 itens × 90% (floor), preço unit = v.unit NF 580012. Retenção Matriz: 123 cx (10%). Natureza 15107242313 "TRANSFERÊNCIA DE MERCADORIA". Transportador Qualilog id 17617371612. 1044 cx / 15.136,07 kg bruto. |
+| NF# | Tipo | Destinatário | CFOP item | Valor | Situação | ID Bling | Chave SEFAZ | Protocolo SEFAZ | Obs |
+|-----|------|-------------|-----------|-------|----------|----------|-------------|-----------------|-----|
+| 000648 | Entrada | Open Trade (07.104.810/0001-37) | 1949 | R$ 76.222,43 | 6 (Autorizada) | 25595124221 | `42260458151616000143550010000006481951242213` | `242260173883165` — 2026-04-17 18:28:59 BRT | Registra NF 580012 da OT (chave 42260407104810000137550010005800121011014742). Natureza "Compra de mercadoria" (15106994869) como fallback. cStat=100 "Autorizado o uso da NF-e". |
+| 000649 | Saída | Filial SP (58.151.616/0002-24) | 6152 | R$ 68.192,51 | 6 (Autorizada) | 25595135504 | `42260458151616000143550010000006491951355040` | `242260173883924` — 2026-04-17 18:30:01 BRT | 21 itens × 90% (floor), preço unit = v.unit NF 580012. Retenção Matriz: 123 cx (10%). Natureza 15107242313. Transportador Qualilog id 17617371612. 1044 cx / 15.136,07 kg bruto. cStat=100. |
 
 **Artefatos:** `~/Documents/01-Importacao/GB25011-NF-TRANSFERENCIA/` (build_payloads.py + dois JSONs). Na VPS: `/tmp/GB25011-NF-TRANSFERENCIA/`.
 
-**Ordem obrigatória para emissão SEFAZ:**
-1. Aprovar e enviar a entrada 000648 primeiro — sem ela, 2 SKUs (KIT9S098 saldo 17 / pedido 90, KIT6S100 saldo 25 / pedido 45) ficam com estoque negativo.
-2. Depois aprovar e enviar a transferência 000649.
+**Sequência de autorização executada pelo Fisco (2026-04-17):**
+1. 18:28:59 BRT — `POST /nfe/25595124221/enviar` → SEFAZ-SC cStat=100, protocolo 242260173883165, chave 42260458151616000143550010000006481951242213
+2. 18:30:01 BRT — `POST /nfe/25595135504/enviar` → SEFAZ-SC cStat=100, protocolo 242260173883924, chave 42260458151616000143550010000006491951355040
 
 **Pendências decorrentes (não bloqueantes para esta operação):**
 - NCM e origem dos 21 SKUs estão vazios no cadastro Bling → PATCH /produtos preenchendo NCM=70134900 origem=2.
@@ -99,3 +99,5 @@ _Append-only. Nunca deletar entradas._
 - Criar natureza de operação específica "Entrada por importação por conta e ordem" (CFOP 1949) no painel Bling — Suellen valida depois, mas evita reuso de "Compra de mercadoria" como fallback em próximas importações.
 - Qualilog está cadastrada como "QUALILOG TRANSPORTES LTDA EM RECUPERACAO JUDICIAL" — informativo.
 - Bug Bling API v3: GET /nfe/{id} e GET /naturezas-operacoes/{id} retornam null/404 mesmo para IDs válidos. Listagem com filtros funciona.
+- Delay de propagação de estoque do Bling: mesmo após SEFAZ autorizar a entrada 000648, saldos dos SKUs KIT9S098 e KIT6S100 não subiram imediatamente via API. Saldo fica temporariamente negativo no Bling até a reindexação interna. Não há impacto fiscal (SEFAZ autorizou ambas) nem operacional (mercadoria física transita segunda-feira).
+- DANFE/XML: endpoints `GET /nfe/{id}/pdf` e `/nfe/{id}/xml` retornam 404 — Pedro baixa pelo painel web Bling (Matriz → NFe → Emitidas → 000648/000649).

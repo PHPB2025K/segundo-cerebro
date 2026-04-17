@@ -27,6 +27,7 @@ tags:
 - [06/04] Aguardando **Pedro** publicar Canggu no Lovable (destacques visuais campos IA, envio WhatsApp corrigido)
 - [17/04] [[projects/budamix-ai-agent|Ana]] — Opção B de credentials pendente: extrair os 7 Code nodes do workflow `KE7YVXayl5ntjwQk` para uma Edge Function `ana-pipeline-step` que usa `Deno.env.get`, tirando a chave 100% do JSON do workflow. Opção A (Setup Credentials + guards + credential no HTTP node) aplicada hoje reduziu SRK de 9→1 ocorrência mas não elimina. Refactor ~4-6h. → [[openclaw/agents/builder/IDENTITY|Builder]]
 - [17/04] [[projects/gb-import-hub|GB Import Hub]] — **GB25010 numerário R$64.136,40 vence 20/04** (3 dias). Container já descarregado em Itapoá 16/04, aguarda desembaraço. PNI oficial registrada no sistema (22 itens). Pagar à Open Trade antes do prazo pra não travar nacionalização.
+- [17/04] [[openclaw/agents/fisco/IDENTITY|Fisco]] — **CC-e da NF 000649** (transferência GB25011) a ser colada manualmente no painel Bling web pelo Pedro. Texto pronto (680 chars) corrige volumes zerados (1.044 cx / 15.136,07 kg bruto / 13.279,29 kg líq). Bling v3 API não expõe endpoint CC-e. → imprimir e enviar com Qualilog na segunda.
 - [07/04] ~~OpenClaw — rate limit cascata: todos os crons falhando por fallback = mesmo provider.~~ → Movido para ✅
 
 ## 🟡 Importantes (não bloqueiam mas precisam de ação)
@@ -77,6 +78,11 @@ tags:
 - [10/04] Excluir planilha antiga do Drive (`1u74aCdH8VrQ2eK01YUQ8fUMwwb6ZPZXvrTTHoexWtnI`) — **Pedro manualmente** (agente sem permissão)
 - [10/04] Documentar product type TRIVET na skill [[skills/amazon-listing-creator/SKILL|amazon-listing-creator]]
 - [10/04] Atualizar skill [[skills/spreadsheet-pricing/SKILL|spreadsheet-pricing]] com novo SSID da planilha
+- [17/04] [[openclaw/agents/fisco/IDENTITY|Fisco]] — Atualizar `~/.claude/skills/planilha-precificacao/SKILL.md` com SSID correto (`1dUoZ...`), conta `gb.ai.agent@gbimportadora.com`, nota sobre `gog` na VPS e scope insuficiente do token local. 2 Edits rejeitados em 17/04 pelo sistema de permissões do harness — retomar na próxima sessão.
+- [17/04] [[openclaw/agents/fisco/IDENTITY|Fisco]] — Bling Matriz: criar natureza de operação "Entrada por importação por conta e ordem" (CFOP 1949) no painel web. Hoje só há "Compra de mercadoria" — usei como fallback para NF 000648. Evita ambiguidade fiscal em próximas importações.
+- [17/04] [[openclaw/agents/fisco/IDENTITY|Fisco]] — PATCH /produtos nos 21 SKUs do Bling Matriz (IMB501[CVP] + 18 KITs) preenchendo `classificacaoFiscal: 70134900` e `origem: 2`. Hoje estão vazios no cadastro — o payload da NF injetou no item, mas próximas NFs automáticas falhariam sem esses dados.
+- [17/04] [[openclaw/agents/fisco/IDENTITY|Fisco]] — Preencher `/root/.openclaw/workspace/shared/fisco/config/product-packaging.json` na VPS com peso bruto/líquido por SKU. Arquivo está todo `null`. Bloqueador explícito da skill `bling-nfe` em emissões automáticas futuras.
+- [17/04] Bling v3 API — bugs conhecidos a reportar/contornar: `GET /nfe/{id}` e `/naturezas-operacoes/{id}` retornam null mesmo para IDs válidos (listagem com filtros funciona); API **não expõe** CC-e nem cancelamento (só pelo painel web); `POST /nfe` descartou bloco `transporte.volumes[]` do payload (DANFE 000649 saiu com volumes zerados, corrigir por CC-e).
 - [10/04] Amazon — SKUs duplicados: IMB501*_T e IMB501T-{cor} apontam para os mesmos ASINs. Investigar e consolidar.
 - [10/04] Obsidian — Auditoria profunda de conexões semânticas pendente. Prompt recebido, executar em sessão dedicada.
 - [14/04] ✅ ~~Vault — Implementar estrutura proposta para centralização~~ → Executado: 5 fases completas (reestruturação, migração, frontmatter, taxonomia, conexões)
@@ -159,6 +165,9 @@ tags:
 
 ## ✅ Resolvidas (Abril 2026)
 
+- [17/04] ✅ Estratégia fiscal v2.0 (90/10) instalada como fonte de verdade — PDF oficial atualizado + nota-índice `business/importacao/estrategia-fiscal-gb.md` + propagado em CLAUDE.md vault/global e Fisco IDENTITY/skills. Commit `c124771`.
+- [17/04] ✅ NF Transferência GB25011 Matriz→Filial emitida — 000648 (entrada 580012) + 000649 (transferência 90/10, CFOP 6152) autorizadas SEFAZ-SC cStat=100. DANFE PDF + XML em `~/Documents/01-Importacao/GB25011-NF-TRANSFERENCIA/`. Log em `openclaw/agents/kobe/shared/fisco/memory/nfe-log.md` (commits `3779898`, `226469f`).
+- [17/04] ✅ Planilha oficial de estoque atualizada com GB25011 — 21 SKUs (+9.984 un). Fonte de verdade confirmada: SSID `1dUoZ...` "PLANILHA DE ESTOQUE / PREÇO", acesso via `gb.ai.agent@gbimportadora.com` + `gog` na VPS. Guardrail aplicado: validação de SKU real na col B antes de writes evitou corromper saldo (Pedro havia passado linhas com offset +14).
 - [15/04] ✅ Investigação ACOS real por SKU — 3 plataformas auditadas. ML Ads API funcional (345 ads, ACOS 11,4%), Amazon Ads API funcional (47 ASINs, ACOS 20,4%), Shopee sem acesso API Ads.
 - [15/04] ✅ Ads flats atualizados nas 3 abas — MELI Col Q 6%→11%/0%, AMAZON Col N 8,9%→20%/0%, SHOPEE Col O 5%→7%. Backups criados. Skill planilha-precificacao atualizada.
 - [15/04] ✅ Auditoria MELI — 43 SKUs auditados, Col J 11,5%/13%, Col R 3 zerados, Col U padronizada (43 linhas), Col R formatação corrigida.

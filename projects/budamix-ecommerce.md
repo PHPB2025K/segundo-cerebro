@@ -96,6 +96,13 @@ products, product_variants, product_images, product_videos, collections, carts, 
 
 ## Decisões-chave
 
+- [2026-04-17] **Checkout + MP hardening #MP01-04** em prod: validação de estoque (400 com details), decremento idempotente via RPC `decrement_stock`, validação server-side de frete (lê `site_settings.free_shipping_threshold`), HMAC do webhook mandatório. Edge Functions `create-mp-payment` v5 + `mp-webhook` v6 (com `--no-verify-jwt` — MP não envia JWT). Secrets do MP confirmados.
+- [2026-04-17] **SKU remapping em prod** — 19 variants renomeadas (ex: `CONJUNTO_DE_5_POTES_` → `IMB501V_T`, `POTE_HERMETICO_QUADR` → `YW320SQ`). Tulipa splitada em 6 cores (TL250V/P/Z/R/A/B). 3 produtos "Migrado" deletados. Estado final: 25 variants / 25 SKUs únicos / 0 truncados. Doc: `docs/sku-remapping-2026-04-17.md`.
+- [2026-04-17] **Stock sync em prod** — 19 UPDATEs aplicando `product_variants.stock` a partir da coluna Quantidade da planilha ESTOQUE. Estado: 8 unidades totais (6 Tulipa=1, CK4742_B=1, YW1520RC=2, resto 0).
+- [2026-04-17] **Apps Script real-time Sheets → Supabase** — `onEdit` trigger em `scripts/google-apps-script-stock-sync.js`. Pedro instala manualmente. → [[knowledge/concepts/apps-script-onedit-supabase-sync]]
+- [2026-04-17] **Confetes canvas-confetti** ao atingir frete grátis no drawer/cart/checkout. Paleta Budamix, 3 explosões em cascata, origem calculada do `getBoundingClientRect()` de elemento-alvo. Guard `prefers-reduced-motion`.
+- [2026-04-17] **Frete grátis server-side automático** — quando `subtotal >= 19900`, `create-mp-payment` força `shipping_cents=0`; Checkout + Cart mostram banner + "Grátis" Teal; `canPay` libera checkout sem CEP.
+- [2026-04-17] `verify_jwt=false` obrigatório para Edge Functions chamadas por webhook externo (MP não envia JWT). Proteção vira responsabilidade do HMAC no código. → [[knowledge/concepts/supabase-edge-function-verify-jwt-webhooks]]
 - [2026-04-17] Fix PDP branco — Rules of Hooks violation (useEffect após early return). Móvidos os 3 effects pra antes dos returns, guards no callback. → [[knowledge/concepts/react-hooks-order-early-return]]
 - [2026-04-17] Criadas páginas `/loja`, `/sobre`, `/blog` (placeholder) com React.lazy. Faltam `/faq`, `/contato`, `/trocas-e-devolucoes`, `/termos`.
 - [2026-04-17] MarqueeStrip texto focado em conversão: FRETE GRÁTIS ★ 6X SEM JUROS ★ RASTREIE SEU PEDIDO ★ COMPRA SEGURA ★ ENVIO EM 24H ★ (substituiu branding genérico).
@@ -118,7 +125,9 @@ products, product_variants, product_images, product_videos, collections, carts, 
 - [ ] 3 produtos placeholder precisam de dados reais
 - [ ] Testar redesign no mobile real (StickyAddToCart, fontes, AnnouncementBar)
 - [x] ~~Code-splitting: chunk JS 895KB~~ → ✅ 16/04 React.lazy em 12 rotas, 255KB→195KB gzip, commit `ebfebc1`
-- [ ] Push dos commits locais para `origin/main` — **55 commits acumulados** (16/04 + 17/04), aguardando validação visual e confirmação do Pedro para disparar Vercel deploy
+- [ ] Push dos commits locais para `origin/main` — **~75 commits acumulados** (16/04 + 17/04 manhã + 17/04 noite), aguardando validação visual e confirmação do Pedro para disparar Vercel deploy
+- [ ] Instalar Apps Script na planilha ESTOQUE — Pedro manual, setup em `docs/SETUP-STOCK-SYNC.md`
+- [ ] Testes manuais de pagamento MP real (suite completa em `AUDITORIA-CHECKOUT-MP.md` §5)
 - [ ] Migrar `ProductDetail.tsx` para usar `<QuantitySelector />` novo (Cart.tsx já usa)
 - [x] ~~Criar rotas `/loja`, `/sobre`, `/blog`~~ → ✅ 17/04 (commit `13f99ca`)
 - [ ] Criar rotas faltantes: `/faq`, `/contato`, `/trocas-e-devolucoes`, `/termos`

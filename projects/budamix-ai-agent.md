@@ -35,12 +35,15 @@ Agente de atendimento ao cliente via WhatsApp (estilo SDR) para a marca Budamix.
 - [17/04] Health Check refatorado com 4 checks reais (Supabase auth, Ana responsividade, Evolution state, erros do principal <30min). Alerta via WhatsApp para 5519993040768 (pessoal, não o da Ana).
 - [17/04] N8N Credentials Opção A no workflow principal — `Process Message (AI)` usa credential httpHeaderAuth; 7 Code nodes + Send WhatsApp Response leem chaves de um único `Setup Credentials` node com guard clauses. SRK 9→1 ocorrências, WAK 2→1 no JSON.
 - [17/04] `linkPreview: false` no Send WhatsApp Response — elimina bolha de loading que aparecia em msgs com URL.
+- [17/04] **Auditoria 48 threads / 151 respostas** concluída — 60% ✅ / 18% ⚠️ / 18% ❌ / 4% 🔄. 4/5 padrões top já corrigidos pelos fixes de 04/04 + 12/04. Único residual: loop de qualificação de canal (Rec 4.1). Artefato: `auditoria-ana-whatsapp-abril2026.md` na raiz do projeto.
 
 ## Pendências
 
 - [ ] Fase 4 cleanup: remover campos antigos (marketplace_links, available_kits, price_marketplace)
 - [ ] ~14 Session Extractors desabilitados (timeout 120s insuficiente, precisam 300s+)
 - [ ] Opção B das Credentials: extrair os 7 Code nodes para uma Edge Function `ana-pipeline-step` que usa `Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')`. Elimina chave 100% do JSON do workflow. ~4-6h de refactor.
+- [ ] Aplicar **Rec 4.1** da auditoria — regra ANTI-LOOP DE CANAL no Passo 4a do BLOCO 4 do `system_prompt` (bloqueia repetir pergunta "site/ML/Shopee?" quando cliente já respondeu).
+- [ ] Próxima auditoria: **19/04** (meta erro <20%).
 
 ## Notas relacionadas
 

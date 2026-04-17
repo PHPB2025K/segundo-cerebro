@@ -51,7 +51,7 @@ Inclui: `extract-import-document`, `calculate-tax-references`, `fetch-vessel-pos
 | GB25007 | finished | A PREENCHER |
 | GB25009 | finished | 🔴 70% R$72.232 vence 16/04 |
 | GB25010 | **customs** (descarregado BRIOA 16/04) | 30% pago, **numerário R$64.136,40 vence 20/04**, 70% R$81.750 vence 10/05 |
-| GB25011 | em trânsito | Numerário pago, 70% R$71.419 vence 24/05 |
+| GB25011 | **road** (saindo SC→SP 20/04, Qualilog retira em Itajaí) | Numerário pago, 70% R$71.419 vence 24/05 |
 | GB26001 | A PREENCHER | Sem datas/valores no sistema |
 | GB26002 | A PREENCHER | Sem datas/valores no sistema |
 
@@ -63,6 +63,7 @@ Inclui: `extract-import-document`, `calculate-tax-references`, `fetch-vessel-pos
 - [17/04] GB25010 — PNI registrada: 22 itens em `finance_numerario_itens` somando R$64.136,40 (bate exato). `payment_numerario_value` atualizado de R$72.305,25 (estimativa) para R$64.136,40 (PNI oficial), USD $12.876,64 × câmbio 4,9806. Mapeamento de categorias: ISS→SERVICOS_TRADING, IPI/ICMS LP/LR→IMPOSTOS_FEDERAIS com observacao, frete marítimo→OUTROS_CUSTOS.
 - [17/04] GB25010 — Status `maritime`→`customs` após poll Terminal49 confirmar: `vessel_arrived` 15/04 12:30 UTC + `vessel_discharged` 16/04 11:57 UTC em BRIOA (Itapoá).
 - [17/04] Credencial 1Password — skill precisa atualizar comando: `--fields credential` (não `password`) para itens do tipo API Credential (ex: `gb-import-hub-supabase-service-role`).
+- [17/04] GB25011 — 5 docs novos anexados (tabela `documents` + bucket Storage `container-documents`): **NF Transferência** NF-000649, **CC-e NF Transferência** 000649, **Nota Fiscal** NFS 580012 Open Trade, **Invoice** INVOICE&PL-GB25011.xls, **Packing List** PACKING LIST-GB25011.xlsx (13.7 MB). HBL já existia. Status container movido `maritime`→`road` para saída SC→SP segunda 20/04.
 
 ## Pendências
 

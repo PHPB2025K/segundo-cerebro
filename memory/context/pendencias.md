@@ -124,6 +124,15 @@ tags:
 - [16/04] Amazon Ads — Fase 1 Escalação executada: 3 bids subidos (suporte para controle ps5 R$0,55→R$0,80, suporte controle R$0,35→R$0,45, porta controle R$0,35→R$0,45). Monitorar: utilização Performance >80% → subir budget pra R$35. ACOS >17% 3d → revisar
 - [16/04] Amazon Ads — SPC013 (B0GTQXRDTM, ASIN novo cru) adicionado às 3 campanhas, mesmo ad group que SPC002. Product ad duplicata PAUSED no Alcance (sem impacto)
 - [16/04] Amazon Ads — Coleta diária falhando em 2 dias (12/04, 15/04). Investigar cron N8N
+- [17/04] Budamix E-commerce — Sync estoque planilha → Supabase: script Apps Script criado mas falta instalar na planilha. Pedro precisa colar a service_role key e rodar installTrigger(). Doc em docs/SETUP-STOCK-SYNC.md. → [[projects/budamix-ecommerce]]
+- [17/04] Budamix E-commerce — Testes de pagamento real pendentes: cartão aprovado, cartão recusado, PIX, estoque insuficiente, frete zerado via DevTools, webhook spoofing. Checklist completo em AUDITORIA-CHECKOUT-MP.md seção 5. → [[projects/budamix-ecommerce]]
+- [17/04] Budamix E-commerce — Reviews reais dos marketplaces: criar tabela product_reviews + review_photos no Supabase, popular com avaliações reais (Pedro vai enviar prints), componente na Home + modal detalhes + reviews na PDP. → [[projects/budamix-ecommerce]]
+- [17/04] Budamix E-commerce — Fase 7 páginas pendentes: /loja (catálogo, 🟡 bloqueia tráfego pago), /termos e /trocas (🟡 legal/gateway), /sobre, /faq, /contato, busca melhorada, dark mode. Issues detalhadas em budamix-issues-fase7.md. → [[projects/budamix-ecommerce]]
+- [17/04] Budamix E-commerce — variant.name ainda é 'Padrão' em 19 variants. Se frontend usar pra seletor de cor/volume na PDP, precisa sincronizar nomes descritivos. → [[projects/budamix-ecommerce]]
+- [17/04] Budamix E-commerce — Stock placeholder (=100) em 19 variants. Sync inicial da planilha vai zerar os sem quantidade. Confirmar que planilha está atualizada antes de rodar. → [[projects/budamix-ecommerce]]
+- [17/04] Budamix E-commerce — Push pendente: ~80 commits locais à frente de origin/main. Fazer push + deploy no Vercel quando pronto pra produção. → [[projects/budamix-ecommerce]]
+- [17/04] Budamix E-commerce — FREE_SHIPPING_THRESHOLD hard-coded em 4 lugares do frontend (19900). Deveria ler do site_settings. Hook useSiteSettings pendente. → [[projects/budamix-ecommerce]]
+- [17/04] Budamix E-commerce — Reversão de estoque em cancelamento/reembolso não implementada. Se order muda pra refunded/cancelled após paid, stock não volta. → [[projects/budamix-ecommerce]]
 
 ## ⚪ Backlog (sem urgência imediata)
 

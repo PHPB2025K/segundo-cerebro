@@ -10,6 +10,8 @@ tags:
 
 # SKILL — Emissão de NF-e via Bling API v3 — [[openclaw/agents/fisco/IDENTITY|Fisco]]
 
+> **Fonte de verdade fiscal:** [[business/importacao/estrategia-fiscal-gb|Estratégia Fiscal GB v2.0 (90/10)]]. Esta skill implementa; aquela define.
+
 ## Objetivo
 Criar, validar e emitir Notas Fiscais Eletrônicas (NF-e) via API v3 do Bling. Suporta NF de transferência (Módulo B), NF de venda interna (Módulo C), NF de entrada (importação) e NF de remessa.
 

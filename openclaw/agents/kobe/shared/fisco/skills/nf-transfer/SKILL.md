@@ -12,6 +12,8 @@ tags:
 
 _Emite NF de transferência interestadual de 90% do estoque importado._
 
+> **Fonte de verdade:** [[business/importacao/estrategia-fiscal-gb|Estratégia Fiscal GB v2.0 (90/10)]] + PDF anexo. Se o modelo mudar, atualizar lá primeiro e só depois ajustar esta skill.
+
 ---
 
 ## Trigger

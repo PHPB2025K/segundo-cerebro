@@ -113,11 +113,25 @@ done
 | Fisco | `openclaw/agents/fisco/IDENTITY.md` |
 | RH | `openclaw/agents/rh/IDENTITY.md` |
 | GB Importadora | `business/importacao/_index.md` |
+| **Estratégia fiscal GB (v2.0 — 90/10)** | **`business/importacao/estrategia-fiscal-gb.md`** |
 | Budamix | `business/empresa/_index.md` |
 | Precificação | `skills/marketplace/` (ML, Amazon, Shopee) |
 | Pendências | `memory/context/pendencias.md` |
 | Decisões do mês | `memory/context/decisoes/2026-04.md` |
 | MOCs | `meta/mocs/` |
+
+## Regra fiscal — GB Importadora (modelo 90/10)
+
+Fonte única da verdade fiscal da GB: [[business/importacao/estrategia-fiscal-gb]].
+
+- Transferência Matriz(SC)→Filial(SP) = **90% fixo** (CFOP 6.152)
+- 10% retido contábil na Matriz SC → B2B com TTD 409 (ICMS efetivo 2,6%)
+- Estoque físico 100% em Pedreira-SP
+- Margem interna fixa = 5% (preço = custo × 1,05)
+- Proporções entre os 3 CNPJs Simples (GB Comércio, Trades, Broglio) são dinâmicas, recalculadas a cada importação com base nos últimos 3 meses
+- PDF oficial assinável: `business/importacao/estrategia-fiscal-gb-v2.0.pdf`
+
+Vigente desde 29/03/2026 (decisão validada com Suellen/FOUR). Substitui o modelo anterior (transferência 100%).
 
 ## Convenções
 

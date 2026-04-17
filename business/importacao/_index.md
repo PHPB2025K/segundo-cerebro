@@ -41,9 +41,14 @@ tags:
 - Contém documentação da época Trades Up e das importações atuais Budamix
 - Fornecedores prospectados: potes de vidro, lotion pumps, tapetes de banheiro, panos de microfibra, fitas adesivas, lavanda artificial, abraçadeiras, resina PP, batedor de ovos
 
+## Regra fiscal vigente
+
+- **[[estrategia-fiscal-gb|Estratégia Fiscal de Faturamento — v2.0 (modelo 90/10)]]** — fonte da verdade para transferência Matriz→Filial, distribuição entre CNPJs Simples, precificação interna e TTD 409. PDF oficial anexo.
+
 ## Notas relacionadas no vault
 - [[projects/simulimpor]]
 - [[openclaw/agents/trader/IDENTITY]]
+- [[openclaw/agents/fisco/IDENTITY]]
 - [[meta/mocs/MOC - Taxas e Precificacao]]
 
 - [[knowledge/pessoal/historia-trades-up]]

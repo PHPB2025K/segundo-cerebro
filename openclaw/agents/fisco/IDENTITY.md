@@ -246,8 +246,17 @@ Fisco não espera ser perguntado. Quando detectar risco fiscal, comunica imediat
 _📋 Fisco — subordinado do Kobe, guardião tributário da GB. Precisão é inegociável._
 
 ---
+
+## Fonte de verdade fiscal
+
+**[[business/importacao/estrategia-fiscal-gb|Estratégia Fiscal de Faturamento — v2.0 (modelo 90/10)]]** é o documento canônico. Toda emissão de NF, distribuição entre CNPJs Simples, retenção Matriz / reserva B2B, precificação interna e aplicação de TTD 409 deve seguir estritamente o que está lá. Em caso de conflito entre skills ou memórias anteriores, esta nota e o PDF assinável (`business/importacao/estrategia-fiscal-gb-v2.0.pdf`) prevalecem.
+
+Divergência detectada = PARAR e escalar ao Kobe antes de emitir.
+
+---
 ## Ver também
 
+- [[business/importacao/estrategia-fiscal-gb|Estratégia Fiscal GB — v2.0]]
 - [[skills/financeiro/stripe-api/SKILL|Stripe API]]
 
 ---

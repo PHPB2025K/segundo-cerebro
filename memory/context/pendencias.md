@@ -24,6 +24,7 @@ tags:
 - [06/04] VPS memória 80% + swap 52% — processo zombie detectado. Requer investigação.
 - [06/04] Aguardando **Pedro** publicar Canggu no Lovable (destacques visuais campos IA, envio WhatsApp corrigido)
 - [17/04] [[projects/budamix-ai-agent|Ana]] — Opção B de credentials pendente: extrair os 7 Code nodes do workflow `KE7YVXayl5ntjwQk` para uma Edge Function `ana-pipeline-step` que usa `Deno.env.get`, tirando a chave 100% do JSON do workflow. Opção A (Setup Credentials + guards + credential no HTTP node) aplicada hoje reduziu SRK de 9→1 ocorrência mas não elimina. Refactor ~4-6h. → [[openclaw/agents/builder/IDENTITY|Builder]]
+- [17/04] [[projects/gb-import-hub|GB Import Hub]] — **GB25010 numerário R$64.136,40 vence 20/04** (3 dias). Container já descarregado em Itapoá 16/04, aguarda desembaraço. PNI oficial registrada no sistema (22 itens). Pagar à Open Trade antes do prazo pra não travar nacionalização.
 - [07/04] ~~OpenClaw — rate limit cascata: todos os crons falhando por fallback = mesmo provider.~~ → Movido para ✅
 
 ## 🟡 Importantes (não bloqueiam mas precisam de ação)
@@ -124,6 +125,8 @@ tags:
 - [16/04] Amazon Ads — Fase 1 Escalação executada: 3 bids subidos (suporte para controle ps5 R$0,55→R$0,80, suporte controle R$0,35→R$0,45, porta controle R$0,35→R$0,45). Monitorar: utilização Performance >80% → subir budget pra R$35. ACOS >17% 3d → revisar
 - [16/04] Amazon Ads — SPC013 (B0GTQXRDTM, ASIN novo cru) adicionado às 3 campanhas, mesmo ad group que SPC002. Product ad duplicata PAUSED no Alcance (sem impacto)
 - [16/04] Amazon Ads — Coleta diária falhando em 2 dias (12/04, 15/04). Investigar cron N8N
+- [17/04] [[projects/gb-import-hub|GB Import Hub]] — Edge Function `poll-terminal49` não atualiza `vessel_tracking.pod_ata` quando recebe milestone `vessel_arrived` e não bumpa `last_api_call`. Milestones são gravados OK, só os campos derivados ficam stale. Descoberto ao rodar poll no GB25010 (17/04 15:35 UTC). Não bloqueia operação, mas confunde dashboards que leem `pod_ata` como sinal de chegada.
+- [17/04] [[projects/gb-import-hub|GB Import Hub]] — Skill `skills/gb-import-hub/SKILL.md` tem comando errado para extrair credencial do 1Password (`--fields password` retorna vazio em itens tipo "API Credential"). Corrigir para `--fields credential`. Descoberto ao rodar PNI do GB25010.
 - [17/04] Budamix E-commerce — Sync estoque planilha → Supabase: script Apps Script criado mas falta instalar na planilha. Pedro precisa colar a service_role key e rodar installTrigger(). Doc em docs/SETUP-STOCK-SYNC.md. → [[projects/budamix-ecommerce]]
 - [17/04] Budamix E-commerce — Testes de pagamento real pendentes: cartão aprovado, cartão recusado, PIX, estoque insuficiente, frete zerado via DevTools, webhook spoofing. Checklist completo em AUDITORIA-CHECKOUT-MP.md seção 5. → [[projects/budamix-ecommerce]]
 - [17/04] Budamix E-commerce — Reviews reais dos marketplaces: criar tabela product_reviews + review_photos no Supabase, popular com avaliações reais (Pedro vai enviar prints), componente na Home + modal detalhes + reviews na PDP. → [[projects/budamix-ecommerce]]
@@ -234,7 +237,12 @@ tags:
 
 ---
 
-*Atualizado: 17/04/2026 — sessão de incident response da Ana (8d downtime) + feedback loop + credentials refactor*
+- [17/04] ✅ GB25010 PNI registrada — 22 itens inseridos em `finance_numerario_itens` somando R$64.136,40 (bate exato com total geral). `finance_pagamentos` atualizado (value 72.305,25→64.136,40; USD 13.515,00→12.876,64; rate 5,35→4,9806). Mapeamento categórico validado. Próximo: pagar 20/04.
+- [17/04] ✅ GB25010 status atualizado `maritime`→`customs` após poll Terminal49 confirmar `vessel_arrived` 15/04 12:30 UTC + `vessel_discharged` 16/04 11:57 UTC em BRIOA (Itapoá). Container em zona primária, aguardando desembaraço.
+
+---
+
+*Atualizado: 17/04/2026 — sessão tarde (PNI GB25010 + status customs)*
 
 ---
 

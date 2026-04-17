@@ -18,8 +18,9 @@ description: "Skill para acessar, consultar e gerenciar o sistema GB Import Hub 
 ### Como conectar
 
 ```bash
-SERVICE_KEY=$(op item get "gb-import-hub-supabase-service-role" --vault "OpenClaw" --fields password --reveal)
-ANON_KEY=$(op item get "gb-import-hub-supabase-anon" --vault "OpenClaw" --fields password --reveal)
+# Itens sao do tipo "API Credential" no 1Password — use --fields credential (nao password)
+SERVICE_KEY=$(op item get "gb-import-hub-supabase-service-role" --vault "OpenClaw" --fields credential --reveal)
+ANON_KEY=$(op item get "gb-import-hub-supabase-anon" --vault "OpenClaw" --fields credential --reveal)
 URL="https://ocxvwwaaqqxecmzhfxhb.supabase.co"
 ```
 

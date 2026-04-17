@@ -18,6 +18,8 @@ tags:
 | Prazo | Entrega | Status | Nota |
 |-------|---------|--------|------|
 | 16/04/2026 | GB25009 — 70% balanço R$72.232 | 🔴 CRÍTICO | Container finished, pagar AMANHÃ |
+| 20/04/2026 | **GB25010 — Numerário R$64.136,40** | 🔴 CRÍTICO | Container descarregado 16/04 em Itapoá, em customs. PNI registrada no sistema (22 itens). USD $12.876,64 × câmbio 4,9806. Pagar em 3 dias. |
+| 10/05/2026 | GB25010 — 70% balanço R$81.750 | ⏳ Pendente | USD $15.000 × 5,45 |
 | 20/04/2026 | Amazon Request Review — monitorar taxa sucesso | ⏳ Pendente | Meta >70% sucesso. Fix deployed 13/04 |
 | 24/05/2026 | GB25011 — 70% balanço R$71.419 | ⏳ Pendente | Numerário pago 11/04, container em trânsito |
 | 15/05/2026 | Meta Ads Token Renewal | ⏳ Pendente | One-shot systemEvent no OpenClaw |

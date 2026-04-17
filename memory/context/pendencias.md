@@ -19,7 +19,7 @@ tags:
 ## 🔴 Críticas (bloqueiam progresso)
 
 - [17/04] [[projects/budamix-ecommerce|Budamix Ecommerce]] — **~75 commits locais à frente de `origin/main`**, Vercel ainda não recebeu nenhuma das reescritas de 16/04 + ajustes de 17/04 (header/footer/hero/PDP/cart/checkout/páginas novas/marquee/favicon/confetes/frete grátis auto/audit MP/SKU remap/stock sync). Preview só no localhost. Push pendente.
-- [17/04] [[projects/budamix-ecommerce|Budamix Ecommerce]] — **Instalar Apps Script na planilha de estoque** (Pedro manual): colar `scripts/google-apps-script-stock-sync.js`, substituir placeholder pela service_role, rodar `installTrigger()` + `syncAllStock()` uma vez. Setup em `docs/SETUP-STOCK-SYNC.md`.
+- [17/04] ✅ ~~Instalar Apps Script na planilha de estoque~~ → **Substituído por cron VPS `*/5 * * * *` em `/opt/budamix-stock-sync/sync.py`** (187.77.237.231). Primeiro run: 25 variants atualizados, 0 erros. Scripts em `scripts/stock-sync-cron.{py,sh}`.
 - [17/04] [[projects/budamix-ecommerce|Budamix Ecommerce]] — **Testes manuais de pagamento MP real** pendentes: cartão aprovado/recusado, PIX completo, simulador webhook MP Developers, estoque insuficiente, frete zerado via DevTools. Suite em `AUDITORIA-CHECKOUT-MP.md` §5.
 
 - [06/04] VPS disco 63.4% usado de 47GB — monitorar crescimento. Logs de memory, backups e Chrome cache podem encher. Limpeza necessária em breve.

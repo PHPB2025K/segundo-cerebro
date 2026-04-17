@@ -151,6 +151,7 @@ tags:
 - [17/04] Budamix E-commerce — FREE_SHIPPING_THRESHOLD hard-coded em 4 lugares do frontend (19900). Deveria ler do site_settings. Hook useSiteSettings pendente. → [[projects/budamix-ecommerce]]
 - [17/04] Budamix E-commerce — Reversão de estoque em cancelamento/reembolso não implementada. Se order muda pra refunded/cancelled após paid, stock não volta. → [[projects/budamix-ecommerce]]
 - [17/04] Budamix E-commerce — Fluxo de avaliação pós-entrega: e-mail automático após entrega com link pra avaliar cada produto (estrelas + texto + upload fotos), token sem login, moderação no admin (active=false→true). Implementar após lançamento. → [[projects/budamix-ecommerce]]
+- [17/04] [[projects/budamix-ai-agent|Ana]] — `supabase/seed.sql` do repo `budamix-ai-agent` está stale: nome "Giovana", ~7727 chars. Fonte de verdade (banco `jpacmloqsfiebvagfomt` agent_config.system_prompt) tem "Ana" e 19454 chars após aplicação das 3 recomendações da auditoria 17/04. Sincronizar seed pra evitar regressão se alguém rodar `supabase db reset` local.
 
 ## ⚪ Backlog (sem urgência imediata)
 

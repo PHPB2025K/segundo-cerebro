@@ -49,10 +49,11 @@ tags:
 | 14/04/2026 | E-commerce budamix.com.br live | ✅ DNS + MP produção + checkout |
 | 14/04/2026 | Skills frontend/e-commerce instaladas | ✅ 105 skills auditadas |
 | 14/04/2026 | Vault centralização completa | ✅ 5 fases |
+| 19/04/2026 | Auditoria Ana 7d (meta erro <20%) | ✅ Antecipada — sessão 17/04 fechou 9 itens: placeholders workflow principal, ML Questions idem, health check refatorado, feedback loop integrado no WhatsApp, trigger re-embedding base_products, linkPreview off, credentials Opção A |
 
 ---
 
-*Atualizado: 15/04/2026 — sessão 7*
+*Atualizado: 17/04/2026 — sessão 8 (Ana incident response + feedback loop + credentials)*
 
 ---
 

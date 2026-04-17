@@ -23,6 +23,7 @@ tags:
 - [06/04] VPS disco 63.4% usado de 47GB — monitorar crescimento. Logs de memory, backups e Chrome cache podem encher. Limpeza necessária em breve.
 - [06/04] VPS memória 80% + swap 52% — processo zombie detectado. Requer investigação.
 - [06/04] Aguardando **Pedro** publicar Canggu no Lovable (destacques visuais campos IA, envio WhatsApp corrigido)
+- [17/04] [[projects/budamix-ai-agent|Ana]] — Opção B de credentials pendente: extrair os 7 Code nodes do workflow `KE7YVXayl5ntjwQk` para uma Edge Function `ana-pipeline-step` que usa `Deno.env.get`, tirando a chave 100% do JSON do workflow. Opção A (Setup Credentials + guards + credential no HTTP node) aplicada hoje reduziu SRK de 9→1 ocorrência mas não elimina. Refactor ~4-6h. → [[openclaw/agents/builder/IDENTITY|Builder]]
 - [07/04] ~~OpenClaw — rate limit cascata: todos os crons falhando por fallback = mesmo provider.~~ → Movido para ✅
 
 ## 🟡 Importantes (não bloqueiam mas precisam de ação)
@@ -213,10 +214,18 @@ tags:
 - [14/04] ✅ Skills — 4 custom skills criadas (ecommerce-design-system, product-page, checkout, seo)
 - [14/04] ✅ Skills — Documentação no Obsidian (inventário + auditoria + guia de uso)
 - [14/04] ✅ CLAUDE.md global atualizado com pipeline de skills frontend/e-commerce
+- [17/04] ✅ Ana restaurada após 8 dias de downtime — 9 placeholders `SUPABASE_SERVICE_ROLE_KEY_PLACEHOLDER` / `WHATSAPP_API_KEY_PLACEHOLDER` hardcoded nos 8 Code nodes do workflow `KE7YVXayl5ntjwQk` foram substituídos por chaves reais. Última msg antes: 09/04 19:31. Execução 93145 em 17/04 09:49 UTC confirmou recuperação (Ana respondeu em 9.2s, 12.586 tokens). Evolution Cloudfly + Supabase Cloud + Anthropic/Groq todos saudáveis — problema era só de placeholders nunca substituídos no deploy de 12-13/04.
+- [17/04] ✅ ML Questions workflow `g4JxNpC2sP9K8c71` restaurado — 8 placeholders (`YOUR_SUPABASE_SERVICE_ROLE_KEY` x4, `YOUR_ML_APP_ID` x2, `YOUR_ML_CLIENT_SECRET` x2) substituídos por valores reais do workflow irmão `sg2yU46R9EQq3a2v` (ML Messages). O 401 "token ML expirado" era na verdade Supabase 401 por placeholder. Execução 93166 success em 17/04 10:02 UTC. Polling 2min voltou a funcionar; refresh OAuth automático via `marketplace_tokens` intacto.
+- [17/04] ✅ Ana `linkPreview: true` → `false` nos 2 `axios.post('/message/sendText/...')` do node Send WhatsApp Response. Elimina a bolha de loading que aparecia quando msg da Ana contém URL (preview OG atrasava renderização).
+- [17/04] ✅ Health Check `DEjLkJcllQEmrcLF` refatorado de 11 nodes → 2 (Schedule 15min + Run Health Checks). 4 checks concretos agora: Supabase auth (upsert probe), Ana sem responder há 2h+, Evolution state, erros do workflow principal <30min. Alerta via **WhatsApp** (5519993040768, pessoal do Pedro, NÃO o da Ana 5519992979490). Dedup 30min. Validado happy path (exec 93174 success silencioso) + failure simulada (exec 93178 com `alert_sent=true`).
+- [17/04] ✅ Ana — RPC `search_corrections(vector, float, int)` criada no Supabase via migration `20260417120100`. Antes chamada por `process-ml-question` retornava 404; agora retorna matches. 9 correções cadastradas e 100% com embedding.
+- [17/04] ✅ Ana — Feedback loop integrado no pipeline WhatsApp. `_shared/embeddings.ts` ganhou `searchCorrections()`. `_shared/context-builder.ts` chama threshold 0.85. `_shared/response-generator.ts` injeta bloco "CORREÇÕES APRENDIDAS". Deploy confirmado: pergunta "Voces tem o pote 1050ml na cor branca?" → Ana responde exatamente com o conteúdo da correção cadastrada ("disponível apenas na tampa azul-petróleo").
+- [17/04] ✅ Ana — Trigger `trg_base_product_embedding_sync` (pg_net) criado via migration `20260417120000`. Antes re-embedding de `base_products` só acontecia quando analista salvava pelo Canggu UI. Agora UPDATE de qualquer origem (SQL, seed, API) dispara `sync-base-product-embedding` (extendida para aceitar `{baseProductId}` além do batch). Validado: hash do embedding muda em 3s após PATCH em `description_short`.
+- [17/04] ✅ Ana — Opção A da migração N8N Credentials aplicada no workflow `KE7YVXayl5ntjwQk`. Credential `Budamix Supabase (Ana)` (httpHeaderAuth, id `Yc25vX9mtZ8oM018`) criada via API. Novo node "Setup Credentials" lê as 5 chaves; 7 Code nodes + Send WhatsApp Response leem via `$('Setup Credentials').item.json.*` com guard clause `[GUARD]`. `Process Message (AI)` HTTP node usa credential (chave sai 100% desse node). SRK ocorrências no JSON: 9→1, WAK: 2→1. Backup em `~/budamix-wf-pre-credentials-20260417-0837.json`.
 
 ---
 
-*Atualizado: 15/04/2026 — sessão 7 (Amazon Ads otimização)*
+*Atualizado: 17/04/2026 — sessão de incident response da Ana (8d downtime) + feedback loop + credentials refactor*
 
 ---
 

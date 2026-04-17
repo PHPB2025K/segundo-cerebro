@@ -44,16 +44,19 @@ Cliente envia msg WhatsApp
        13. Atualiza conversation (category, sentiment)
 ```
 
-## Edge Functions (6 deployadas)
+## Edge Functions (deployadas)
 
 | Function | Rota | JWT | Descrição |
 |----------|------|-----|-----------|
-| webhook-whatsapp | POST /functions/v1/webhook-whatsapp | no-verify | Entrada de msgs WhatsApp |
-| process-message | POST /functions/v1/process-message | no-verify | Pipeline IA completo |
-| send-whatsapp | POST /functions/v1/send-whatsapp | no-verify | Envio via Evolution API |
-| send-human-message | POST /functions/v1/send-human-message | no-verify | Msgs do dashboard |
+| webhook-whatsapp | POST /functions/v1/webhook-whatsapp | no-verify | Entrada de msgs WhatsApp (legado, N8N substitui) |
+| process-message | POST /functions/v1/process-message | no-verify | Pipeline IA completo (consulta correções desde 17/04) |
+| send-whatsapp | POST /functions/v1/send-whatsapp | no-verify | Envio via Evolution API (legado) |
+| send-human-message | POST /functions/v1/send-human-message | no-verify | Msgs do dashboard Canggu |
 | escalate | POST /functions/v1/escalate | no-verify | Escalação para humano |
-| sync-product-embedding | POST /functions/v1/sync-product-embedding | no-verify | Gera embeddings |
+| sync-product-embedding | POST /functions/v1/sync-product-embedding | no-verify | Re-embedding de `products` (legado, disparado por trigger) |
+| sync-base-product-embedding | POST /functions/v1/sync-base-product-embedding | no-verify | Re-embedding de `base_products` — aceita `{baseProductId}` targeted (desde 17/04) OU batch `embedding IS NULL` |
+| process-correction-embedding | POST /functions/v1/process-correction-embedding | no-verify | Gera embedding para `response_corrections` após insert |
+| process-ml-question | POST /functions/v1/process-ml-question | no-verify | Pipeline IA p/ perguntas ML (consulta correções) |
 
 ## Shared Modules (12 arquivos em _shared/)
 
@@ -113,8 +116,15 @@ Cliente envia msg WhatsApp
 
 ### Extensões
 - pgvector 0.8.0 (busca semântica)
-- Colunas extras em products: `embedding` (vector 1536), `search_text` (text)
-- Função SQL: `match_products(query_embedding, match_threshold, match_count)`
+- pg_net (HTTP calls from triggers)
+- Colunas extras em products/base_products/response_corrections: `embedding` (vector 1536)
+- Funções SQL:
+  - `match_products(query_embedding, match_threshold, match_count)` — busca em `products`
+  - `search_products_semantic(query_embedding, match_threshold, match_count)` — busca em `base_products` (Fase 5)
+  - `search_corrections(query_embedding, match_threshold, match_count)` — busca em `response_corrections` (criada 17/04 via migration `20260417120100`)
+- Triggers pg_net:
+  - `trg_product_embedding_sync` — `products` UPDATE dispara `sync-product-embedding`
+  - `trg_base_product_embedding_sync` — `base_products` UPDATE dispara `sync-base-product-embedding` com `{baseProductId}` (criado 17/04 via migration `20260417120000`)
 
 ## Deployment
 
@@ -144,6 +154,38 @@ curl -s -X POST "https://api.supabase.com/v1/projects/jpacmloqsfiebvagfomt/datab
 - API Key: secret `WHATSAPP_API_KEY`
 - Webhook event: `MESSAGES_UPSERT` (uppercase — normalizado para case-insensitive)
 - Suporta: @s.whatsapp.net, @g.us, @lid (WhatsApp moderno)
+
+## N8N Workflows
+
+| Workflow | ID | Status | Descrição |
+|----------|----|--------|-----------|
+| Budamix WhatsApp Agent (Principal) | `KE7YVXayl5ntjwQk` | active | Pipeline WhatsApp. 17 nodes (pós-refactor 17/04). Credential `Budamix Supabase (Ana)` no HTTP node `Process Message (AI)`. Setup Credentials + guard clauses nos 7 Code nodes. |
+| Budamix WhatsApp Health Check (15min) | `DEjLkJcllQEmrcLF` | active | 4 checks reais desde 17/04 (Supabase auth, Ana responsividade, Evolution state, erros <30min). Alerta WhatsApp para 5519993040768 (pessoal). |
+| Budamix ML Questions (Polling 2min) | `g4JxNpC2sP9K8c71` | active | Restaurado em 17/04 após fix de placeholders. |
+| Budamix ML Messages (Polling 1min) | `sg2yU46R9EQq3a2v` | active | Fonte canônica de credenciais OAuth ML (client_id, client_secret). |
+| Budamix Relatório Diário | `g7HBVeBRGPA29goW` | inactive | Cron 21h (desativado). |
+
+### Padrão "Setup Credentials" (desde 17/04)
+Primeiro Code node do workflow (`Setup Credentials`) exporta constantes via `$json`:
+```js
+const SUPABASE_URL = 'https://jpacmloqsfiebvagfomt.supabase.co';
+const SRK          = '<service_role_key>';
+const EVO_URL      = 'https://trottingtuna-evolution.cloudfy.live';
+const EVO_KEY      = '<evolution_api_key>';
+const INSTANCE     = 'BUDAMIX AI AGENT';
+return [{ json: { ...$input.first().json, SUPABASE_URL, SRK, EVO_URL, EVO_KEY, INSTANCE } }];
+```
+
+Downstream Code nodes consomem via `$('Setup Credentials').item.json.*` com guard clause obrigatório:
+```js
+const cfg = $('Setup Credentials').item.json;
+const serviceKey = cfg.SRK;
+if (!serviceKey || /PLACEHOLDER|YOUR_|FAKE/i.test(serviceKey)) {
+  throw new Error('[GUARD] SRK inválida — verificar Setup Credentials');
+}
+```
+
+**Motivação:** evitar nova cascata como os 8 dias de downtime 09-17/04 onde placeholders re-importados derrubaram todo o workflow silenciosamente.
 
 ## Notas relacionadas
 

@@ -138,6 +138,7 @@ tags:
 - [17/04] Budamix E-commerce — Push pendente: ~80 commits locais à frente de origin/main. Fazer push + deploy no Vercel quando pronto pra produção. → [[projects/budamix-ecommerce]]
 - [17/04] Budamix E-commerce — FREE_SHIPPING_THRESHOLD hard-coded em 4 lugares do frontend (19900). Deveria ler do site_settings. Hook useSiteSettings pendente. → [[projects/budamix-ecommerce]]
 - [17/04] Budamix E-commerce — Reversão de estoque em cancelamento/reembolso não implementada. Se order muda pra refunded/cancelled após paid, stock não volta. → [[projects/budamix-ecommerce]]
+- [17/04] Budamix E-commerce — Fluxo de avaliação pós-entrega: e-mail automático após entrega com link pra avaliar cada produto (estrelas + texto + upload fotos), token sem login, moderação no admin (active=false→true). Implementar após lançamento. → [[projects/budamix-ecommerce]]
 
 ## ⚪ Backlog (sem urgência imediata)
 

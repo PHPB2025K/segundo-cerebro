@@ -129,6 +129,9 @@ tags:
 - [16/04] Amazon Ads — Coleta diária falhando em 2 dias (12/04, 15/04). Investigar cron N8N
 - [17/04] [[projects/gb-import-hub|GB Import Hub]] — Edge Function `poll-terminal49` não atualiza `vessel_tracking.pod_ata` quando recebe milestone `vessel_arrived` e não bumpa `last_api_call`. Milestones são gravados OK, só os campos derivados ficam stale. Descoberto ao rodar poll no GB25010 (17/04 15:35 UTC). Não bloqueia operação, mas confunde dashboards que leem `pod_ata` como sinal de chegada.
 - [17/04] [[projects/gb-import-hub|GB Import Hub]] — Skill `skills/gb-import-hub/SKILL.md` tem comando errado para extrair credencial do 1Password (`--fields password` retorna vazio em itens tipo "API Credential"). Corrigir para `--fields credential`. Descoberto ao rodar PNI do GB25010.
+- [17/04] [[projects/budamix-ai-agent|Ana]] — Tarefa 4 pendente: sync `product_listings` ↔ ML. 13 MLBs stale no banco (ML desativou mas `is_active=true` no DB) + 44 MLBs ativos no ML sem entry no banco. Inclui os 7 MLBs da família Canelada 250ml (CAC250) que agora tem base_product no banco. Script precisa fazer de-para título→product_id + UPSERT. ~30-60min.
+- [17/04] [[projects/budamix-ai-agent|Ana]] — Cadastrar 12 SKUs individuais por cor que só existem na planilha, não em `products`: CAR200 (B,P,VD,AZ,AM,R) e TL250 (V,P,Z,R,A,B). Sem cadastro, impossível criar `color_variant` relations para essas 2 famílias. Hoje a cor para a Ana vem só via `base_products.color` (texto), não dá pra recomendar SKU específico. ~15min.
+- [17/04] [[projects/budamix-ai-agent|Ana]] — Criar trigger pg_net para `response_corrections` análogo ao `trg_base_product_embedding_sync` (criado 17/04). Hoje re-embedding das correções só dispara via chamada manual à Edge Function `process-correction-embedding`. Risco: correção editada via SQL fica stale. ~10min.
 - [17/04] Budamix E-commerce — Sync estoque planilha → Supabase: script Apps Script criado mas falta instalar na planilha. Pedro precisa colar a service_role key e rodar installTrigger(). Doc em docs/SETUP-STOCK-SYNC.md. → [[projects/budamix-ecommerce]]
 - [17/04] Budamix E-commerce — Testes de pagamento real pendentes: cartão aprovado, cartão recusado, PIX, estoque insuficiente, frete zerado via DevTools, webhook spoofing. Checklist completo em AUDITORIA-CHECKOUT-MP.md seção 5. → [[projects/budamix-ecommerce]]
 - [17/04] Budamix E-commerce — Reviews reais dos marketplaces: criar tabela product_reviews + review_photos no Supabase, popular com avaliações reais (Pedro vai enviar prints), componente na Home + modal detalhes + reviews na PDP. → [[projects/budamix-ecommerce]]
@@ -242,10 +245,16 @@ tags:
 
 - [17/04] ✅ GB25010 PNI registrada — 22 itens inseridos em `finance_numerario_itens` somando R$64.136,40 (bate exato com total geral). `finance_pagamentos` atualizado (value 72.305,25→64.136,40; USD 13.515,00→12.876,64; rate 5,35→4,9806). Mapeamento categórico validado. Próximo: pagar 20/04.
 - [17/04] ✅ GB25010 status atualizado `maritime`→`customs` após poll Terminal49 confirmar `vessel_arrived` 15/04 12:30 UTC + `vessel_discharged` 16/04 11:57 UTC em BRIOA (Itapoá). Container em zona primária, aguardando desembaraço.
+- [17/04] ✅ Ana — 2 correções canequinha 100ml azul **reescritas** após descoberta de que azul não existe para essa família (confirmado via ML API em MLB3343832496: `variations=0`, attr COLOR=Amarelo + planilha oficial: só B/BAB/BAV/BAP). Novo conteúdo redireciona para Tulipa 250ml Azul ou Canelada 250ml Azul (ambas têm estoque). Risco de Ana prometer produto inexistente neutralizado.
+- [17/04] ✅ Ana — Mapeamento ML completo: 52 anúncios ativos, só 5 usam `variations[]` internas (Palmeira Yucca, Bambu, Jogo Potes 5 Claro, Suporte Gamer, Livro Colorir); padrão dominante é anúncios separados por cor. 13 MLBs stale no banco e 44 MLBs no ML sem entry no DB — pendência de sync criada.
+- [17/04] ✅ Ana — Cores populadas em 5 base_products (`color` + tag "múltiplas cores" + linha em description_short). BP_CAN100 com 4 cores (sem azul, conforme planilha), BP_CAR200/TL250 com 6 cada, BP_SPC com 3. Hash do embedding mudou em todos os 5 = re-embedding disparado automaticamente pelo trigger criado hoje.
+- [17/04] ✅ Ana — `BP_CAC250` (Canelada Porcelana 250ml) criado do zero — não existia como base_product desde a Fase 2 da reestruturação (06/04). 7 products linkados (K6CAN250 kit + 6 cores individuais CAC250 B/P/R/AZ/VD/AM reativados de inativos). Embedding gerado (hash fda34a19b0).
+- [17/04] ✅ Ana — 3 products 914C reativados (BAB/BAV/BAP, estoque 4/10/2 un na planilha) + linkados a BP_CAN100 (base_product_id estava NULL).
+- [17/04] ✅ Ana — 8 relations `color_variant` criadas em `product_relations`: BP_CAN100 pivô=914C_B (3 relations) + BP_CAC250 pivô=CAC250B (5 relations). Total color_variant no banco: 8 → 16.
 
 ---
 
-*Atualizado: 17/04/2026 — sessão tarde (PNI GB25010 + status customs)*
+*Atualizado: 17/04/2026 — sessão noite (correções canequinha + mapeamento ML + cores base_products + relations)*
 
 ---
 

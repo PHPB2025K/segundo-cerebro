@@ -43,6 +43,10 @@ tags:
 
 - [[projects/financeflow]] — FinanceFlow (automação fiscal 6 CNPJs, agente Fisco)
 
+## Estratégia e Planejamento
+
+- [[projects/planejamento-importacao-2026]] — Dimensionamento da cadência de importação (tese do flywheel, lotes de 4 × GB25011), 4 fases, método essencialista
+
 ## Operação e Estoque
 
 - [[projects/estoque-budamix]] — Estoque Budamix (Next.js + Supabase)

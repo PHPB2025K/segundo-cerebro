@@ -18,6 +18,7 @@ tags:
 
 ## 🔴 Críticas (bloqueiam progresso)
 
+- [20/04 6h BRT] [[projects/amazon-ads-automation|Amazon Ads]] — **Validar N8N Ciclo Diário rodou limpo** após fix `continueOnFail` no node `Send Health Alert WhatsApp` aplicado em 19/04 22h. Workflow `U8MCTTkNEJnD75aV`. Primeiro teste real do fix é amanhã 6h. Se falhar, PARAR migração BidSpark-3 nos 5 grupos restantes e diagnosticar. Comando: `curl -s -H "X-N8N-API-KEY: $KEY" "$URL/api/v1/executions?workflowId=U8MCTTkNEJnD75aV&limit=3"`
 - [17/04] [[projects/budamix-ecommerce|Budamix Ecommerce]] — **~75 commits locais à frente de `origin/main`**, Vercel ainda não recebeu nenhuma das reescritas de 16/04 + ajustes de 17/04 (header/footer/hero/PDP/cart/checkout/páginas novas/marquee/favicon/confetes/frete grátis auto/audit MP/SKU remap/stock sync). Preview só no localhost. Push pendente.
 - [17/04] ✅ ~~Instalar Apps Script na planilha de estoque~~ → **Substituído por cron VPS `*/5 * * * *` em `/opt/budamix-stock-sync/sync.py`** (187.77.237.231). Primeiro run: 25 variants atualizados, 0 erros. Scripts em `scripts/stock-sync-cron.{py,sh}`.
 - [17/04] [[projects/budamix-ecommerce|Budamix Ecommerce]] — **Testes manuais de pagamento MP real** pendentes: cartão aprovado/recusado, PIX completo, simulador webhook MP Developers, estoque insuficiente, frete zerado via DevTools. Suite em `AUDITORIA-CHECKOUT-MP.md` §5.
@@ -32,6 +33,10 @@ tags:
 
 ## 🟡 Importantes (não bloqueiam mas precisam de ação)
 
+- [19/04] [[projects/amazon-ads-automation|Amazon Ads]] — **Migração BidSpark-3 pendente em 5 grupos** (4/8 feitos hoje: Bambu, Vidro, Paris, Tulipa). Restantes na ordem: Canequinhas Café → Potes Redondos Plástico → Kits Microfibra Carro (edge: órfã) → Canecas Canelada (edge: split 81/10/8) → Jarra Medidora (edge: Defesa-ASIN). Um por dia. Amanhã: Canequinhas (hipótese criado 01/03 pode ter escapado do legado destrutivo).
+- [19/04] [[projects/amazon-ads-automation|Amazon Ads]] — **Investigação de listing Tampa Bambu** (Pedro manual no Seller Central). 7 ASINs: B0F2GHQHRN, B0F2GKSHYW, B0F2GQNT81, B0F2GKZZ43, B0F2GM9HMW, B0FN4PGK4M, B0FN4PW4SS. Pergunta: por que buscas "bambu" específico (`potes hermeticos bambu`, `pote hermetico bambu`, `potes de vidro com tampa de bambu`, `porta temperos bambu`) geram clique mas zero venda? Verificar: preço vs concorrentes, Buy Box, ranking orgânico, fotos, reviews, título contém "bambu"?, estoque. Destrava reativação do Alcance + M2 pleno do grupo.
+- [19/04] [[projects/amazon-ads-automation|Amazon Ads]] — **Revisitar Canecas Porcelana Tulipa em ~03/05** (14d após Bloco 3 de 19/04 que removeu 39 NEG_PHRASE destrutivas). Medir: (a) Descoberta voltou a converter (30d atual: R$38 / 0 vendas); (b) ACoS consolidado caiu abaixo de 20% target; (c) novos winners emergiram para Bloco 2 que ficou vazio.
+- [19/04] [[projects/amazon-ads-automation|Amazon Ads]] — **4 commits locais pendentes de push** em `main`: `19a6638` (skill v4.0), `5489ae0` (skill v4.1 + tickets), `e1d56cd` (Ticket 3), `c7b95d9` (skill v4.2). Push fica pra o final da migração dos 8 grupos.
 - [06/04] ~~OpenClaw — migração de modelos para GPT 5.4 / GPT 5.1-mini.~~ → Movido para ✅
 - [06/04] Canggu — Fase 4 cleanup pendente: remover campos antigos (marketplace_links, available_kits, price_marketplace) e dropar tabela marketplace_product_mapping. Só executar quando tudo estiver estável nas tabelas novas. → [[openclaw/agents/builder/IDENTITY|Builder]]
 - [06/04] Canggu — ~14 Session Extractors do [[openclaw/agents/kobe/AGENTS|OpenClaw]] desabilitados (timeout 120s insuficiente para Opus 4.6). Precisam de 300s+. Reavaliar após migração GPT 5.4.

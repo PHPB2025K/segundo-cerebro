@@ -18,13 +18,17 @@ tags:
 **Stack:** Python (FastAPI) + Docker
 **Deploy:** Docker (Railway)
 **CLAUDE.md:** sim
-**Último commit:** 4 days ago — fix: add missing start_negative_snapshot function
+**Último commit:** 19/04/2026 — `c7b95d9` docs: skill v4.2 lições Paris
+**Skill operacional:** `ANALISE_SEMANAL_SKILL.md` **v4.2** (BidSpark-3 consolidado — 3 campanhas, sem Defesa)
+**Migração BidSpark-3:** 4/8 grupos concluídos em 19/04 (Tampa Bambu, Potes Vidro, Paris, Tulipa) + piloto Gamer 16/04. Pendentes: Canequinhas, Redondos, Microfibra, Canelada, Jarra.
 
 ## O que é
 
-Sistema de automação de publicidade Amazon Ads para a GB Importadora. Coleta métricas diárias via Amazon SP-API, analisa performance com IA (Claude), e envia recomendações via WhatsApp. Backend FastAPI hospedado no Railway, dados no Supabase.
+Sistema de automação de publicidade Amazon Ads para a GB Importadora. Coleta métricas diárias via Amazon SP-API e alimenta análise manual via Claude Code com skill BidSpark-3. Backend FastAPI hospedado no Railway, dados no Supabase, orquestração N8N.
 
 Inclui também o cron de Amazon Request Review (review requests pós-venda).
+
+**Modelo operacional atualizado (19/04):** N8N é usado APENAS para coletas diárias (campaigns, keywords, search_terms, snapshots, compute-results). Análise e otimização de campanhas são feitas manualmente via Claude Code com `ANALISE_SEMANAL_SKILL.md`. Modelo original "N8N → Claude API automática → ações" foi abandonado em favor de supervisão humana.
 
 ## Decisões-chave
 
@@ -32,11 +36,21 @@ Inclui também o cron de Amazon Request Review (review requests pós-venda).
 - [13/04] Campo `delivered_at` adicionado à tabela `orders` — filtra por data de entrega real
 - [13/04] Timeout aumentado de 420s para 600s, batch size 35 orders/run
 - [13/04] Backfill de ~4866 pedidos executado
+- [16/04] BidSpark-4 → BidSpark-3 — Defesa removida como role; 3 campanhas (Descoberta/Alcance/Performance)
+- [19/04] Budget split nominal 15/30/55 obrigatório em migração; multiplicadores ×1.5/×1.2/×0.72
+- [19/04] N8N apenas para coletas (análise é manual); compute-results fix com `continueOnFail` no WhatsApp Alert
+- [19/04] Grupos antigos (pré-01/03/2026) têm legado destrutivo Fev/Mar — inspeção de NEG_PHRASE obrigatória na análise
 
 ## Pendências
 
 - [ ] Monitorar taxa de sucesso Request Review até 20/04 (meta >70%)
 - [ ] SKUs duplicados: IMB501*_T e IMB501T-{cor} apontam para mesmos ASINs — investigar
+- [ ] [20/04 6h BRT] Validar N8N Ciclo Diário rodou limpo após fix `continueOnFail`
+- [ ] Migração BidSpark-3: 5 grupos restantes (Canequinhas → Redondos → Microfibra → Canelada → Jarra)
+- [ ] Investigação listing Tampa Bambu (7 ASINs — task Pedro manual no Seller Central)
+- [ ] Revisitar Tulipa ~03/05 pra medir impacto Bloco 3 (39 PHRASE destrutivas removidas)
+- [ ] Push dos 4 commits local-only em `main` (`19a6638`, `5489ae0`, `e1d56cd`, `c7b95d9`)
+- [ ] Tickets em `docs/TICKETS.md`: refactor Ciclo Diário N8N, compute-results zombies ENTITY_STALE, Potes Vidro expandir ASINs Alcance
 
 ## Notas relacionadas
 

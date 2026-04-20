@@ -30,6 +30,8 @@ tags:
 | A PREENCHER | E-commerce — testar pagamento Pix real | ⏳ Pendente | Validar QR code + webhook + order |
 | 29/04/2026 | Amazon Ads — revisão ações 1-3 (Canequinhas/negativas/Bambu) | ⏳ Pendente | Meta ACOS ≤19%. 83 ações executadas 15/04 |
 | 30/04/2026 | **BidSpark-3 Piloto** — revisão formal Suporte Controle Gamer | ⏳ Pendente | Metas: ACOS <15%, 0 bleeders, funil normalizado, utilização >30%. Se OK → replicar 12 grupos |
+| 20/04/2026 | **N8N Ciclo Diário** — validar rodou limpo 6h BRT após fix `continueOnFail` (19/04) | 🔴 AMANHÃ | Primeiro teste real do fix `continueOnFail` no node WhatsApp. Se falhar, parar migração BidSpark-3 e diagnosticar. |
+| ~03/05/2026 | **Revisitar Canecas Porcelana Tulipa** — medir impacto Bloco 3 | ⏳ Pendente | 14d após remoção de 39 NEG_PHRASE destrutivas (19/04). Verificar se Descoberta voltou a converter (30d antes: R$38 / 0 vendas) e ACoS consolidado caiu <20%. |
 | 15/06/2026 | Amazon Ads — reavaliar Abraçadeiras e Redinha (Ação 4) | ⏳ Pendente | Pausados por zero vendas 60d |
 | Contínuo | Atualizar OpenClaw diariamente | 🔄 Recorrente | Manter v2026.4.x+ |
 | Contínuo | VPS disco <80% | 🔄 Monitorar | Atualmente 63.4% |

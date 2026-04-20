@@ -29,7 +29,9 @@ Projeto estratégico para **dimensionar a cadência ótima de importação** sob
 | Fase | Output | Status |
 |------|--------|--------|
 | 1 — Diagnóstico do Presente | `01-estado-atual.md` | ✅ Concluída 20/04 |
-| 2 — Dupla Fundação (custo + venda + flywheel) | `02-economia-unitaria.md` | 🟡 Pausada (subagentes cancelados) |
+| 2.1 — Parsing PNIs | `data/pnis-extraidos.csv` | ✅ Concluída 20/04 (86 rubricas, totais validados) |
+| 2.2 — Custo do lote de 4 | `02-custo-lote.md` + `data/rubricas-classificadas.csv` | ✅ Concluída 20/04 (modelo corrigido após auditoria) |
+| 2.3 — Venda + flywheel (parte B) | a definir | ⏳ Aguarda prompt |
 | 3 — Modelagem do Flywheel (8 meses, simulação) | `03-flywheel.xlsx` + `03-interpretacao.md` | ⏳ Aguarda Fase 2 |
 | 4 — Decisão | `04-plano.md` (1 página) | ⏳ Aguarda Fase 3 |
 
@@ -66,10 +68,27 @@ Projeto estratégico para **dimensionar a cadência ótima de importação** sob
 - `scripts/download-pnis.py` — reutilizável para GB26001/02 quando PNIs saírem
 - `scripts/.venv/` — Python venv isolado (google-api-python-client, pdfplumber quando 2A rodar)
 
+## Números canônicos (Fase 2.2, 20/04 noite)
+
+- **Custo 1 container (GB25011 baseline):** R$ 175.846,92 = FOB R$ 114.649,99 + PNI R$ 61.196,92
+- **Custo lote de 4 (escala linear):** R$ 703.387,68
+- **Timeline lote:** D+0 sinal R$ 125.321,08 | D+85 PNI R$ 244.787,68 | D+100 balanço R$ 285.676,60 | Total R$ 655.785,36
+- **Gap timeline vs custo:** R$ 47.602,32 (6,8%) — USD 3.974,82 não capturados em `finance_pagamentos` (flag Open Trade)
+
+## Regra canônica de custo (decisão 20/04 noite)
+
+```
+Custo 1 container = FOB (banco) + PNI total
+```
+
+FOB e PNI são universos separados — somam-se, nunca se escalam. O "FOB USD" no header do PDF do PNI é referência declarativa do aduaneiro usado pela Open Trade na DI, não indica que o PNI é parcial. Ver [[memory/context/decisoes/2026-04#[20/04 noite] Importação 2026 — modelo canônico de custo de container|decisão completa]].
+
 ## Em aberto
 
-- Fase 2 pausada — subagentes 2A (custo lote 4) e 2B (flywheel) foram cancelados pelo Pedro na hora do disparo. Retomar com prompts já redigidos no histórico da sessão.
-- GB25010 numerário R$64.136,40 — vence hoje (condicional para Pedro pagar antes da retomada da Fase 2).
+- Fase 2.3 — aguardando prompt do Pedro após validar 2.2.
+- **Perguntas para Open Trade (Sérgio):** (a) gap USD 3.974,82 — existe pagamento adicional fora de `finance_pagamentos`? (b) desconto em lote de 4 processos simultâneos? (despachante + frete marítimo)
+- DI/DUIMP do GB25011 não anexada em `documents` (só GB25008 tem) — não bloqueia modelo mas útil para auditoria futura.
+- GB25010 numerário R$64.136,40 — due 20/04, pagamento pendente de confirmação.
 
 ## Ver também
 

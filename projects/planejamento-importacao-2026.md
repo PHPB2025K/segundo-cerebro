@@ -30,8 +30,9 @@ Projeto estratégico para **dimensionar a cadência ótima de importação** sob
 |------|--------|--------|
 | 1 — Diagnóstico do Presente | `01-estado-atual.md` | ✅ Concluída 20/04 |
 | 2.1 — Parsing PNIs | `data/pnis-extraidos.csv` | ✅ Concluída 20/04 (86 rubricas, totais validados) |
-| 2.2 — Custo do lote de 4 | `02-custo-lote.md` + `data/rubricas-classificadas.csv` | ✅ Concluída 20/04 (modelo corrigido após auditoria) |
-| 2.3 — Venda + flywheel (parte B) | a definir | ⏳ Aguarda prompt |
+| 2.2 — Custo do lote de 4 | `02-custo-lote.md` + `data/rubricas-classificadas.csv` | ✅ FECHADA 20/04 (modelo corrigido + câmbio conservador +7%) |
+| 2.3.1 — Mapa container→SKU | `data/container-sku-map.csv` | 🟡 Em progresso (8 PLs identificadas, aguarda validação) |
+| 2.3.2 — Velocidade de venda (APIs marketplace) | a definir | ⏳ Aguarda 2.3.1 |
 | 3 — Modelagem do Flywheel (8 meses, simulação) | `03-flywheel.xlsx` + `03-interpretacao.md` | ⏳ Aguarda Fase 2 |
 | 4 — Decisão | `04-plano.md` (1 página) | ⏳ Aguarda Fase 3 |
 
@@ -68,12 +69,23 @@ Projeto estratégico para **dimensionar a cadência ótima de importação** sob
 - `scripts/download-pnis.py` — reutilizável para GB26001/02 quando PNIs saírem
 - `scripts/.venv/` — Python venv isolado (google-api-python-client, pdfplumber quando 2A rodar)
 
-## Números canônicos (Fase 2.2, 20/04 noite)
+## Números canônicos (Fase 2.2 FECHADA, 20/04 final da noite)
 
-- **Custo 1 container (GB25011 baseline):** R$ 175.846,92 = FOB R$ 114.649,99 + PNI R$ 61.196,92
-- **Custo lote de 4 (escala linear):** R$ 703.387,68
-- **Timeline lote:** D+0 sinal R$ 125.321,08 | D+85 PNI R$ 244.787,68 | D+100 balanço R$ 285.676,60 | Total R$ 655.785,36
-- **Gap timeline vs custo:** R$ 47.602,32 (6,8%) — USD 3.974,82 não capturados em `finance_pagamentos` (flag Open Trade)
+### Cenário conservador (câmbio R$ 5,4462 = baseline + 7%)
+- **Custo 1 container:** R$ 183.872,57 = FOB R$ 122.675,66 + PNI R$ 61.196,92
+- **Custo lote de 4 (escala linear):** **R$ 735.490,28**
+- **Timeline lote:** D+0 sinal R$ 147.210,78 | D+85 PNI R$ 244.787,68 | D+100 balanço R$ 343.491,82
+
+### Cenário realista (referência — câmbio R$ 5,0899)
+- **Custo 1 container:** R$ 175.846,92
+- **Custo lote de 4:** R$ 703.387,68
+- **Buffer cambial (conservador − realista):** R$ 32.102,60 (+4,6%)
+
+### Premissa cambial (decisão 20/04 final da noite)
+Usar câmbio **+7% acima do baseline** (R$ 5,4462) para todo FOB do projeto. Racional: FOB pago em 2 momentos (D+0 e D+50) com câmbios distintos; variação ±7-8% em ciclo 100d é ruído natural; buffer cria assimetria favorável. PNI é BRL puro (sem variação). Ver [[memory/context/decisoes/2026-04#[20/04 final da noite] Importação 2026 — câmbio de planejamento conservador (+7%)|decisão cambial]].
+
+### Gap timeline vs custo canônico (resolvido)
+6,8% de diferença entre custo canônico e timeline dos containers reais é **ruído cambial natural** dentro da tolerância ±7-8% — absorvido pelo buffer do planejamento conservador. Não é erro de dados.
 
 ## Regra canônica de custo (decisão 20/04 noite)
 

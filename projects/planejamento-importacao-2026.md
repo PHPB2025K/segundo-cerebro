@@ -31,8 +31,10 @@ Projeto estratégico para **dimensionar a cadência ótima de importação** sob
 | 1 — Diagnóstico do Presente | `01-estado-atual.md` | ✅ Concluída 20/04 |
 | 2.1 — Parsing PNIs | `data/pnis-extraidos.csv` | ✅ Concluída 20/04 (86 rubricas, totais validados) |
 | 2.2 — Custo do lote de 4 | `02-custo-lote.md` + `data/rubricas-classificadas.csv` | ✅ FECHADA 20/04 (modelo corrigido + câmbio conservador +7%) |
-| 2.3.1 — Mapa container→SKU | `data/container-sku-map.csv` | 🟡 Em progresso (8 PLs identificadas, aguarda validação) |
-| 2.3.2 — Velocidade de venda (APIs marketplace) | a definir | ⏳ Aguarda 2.3.1 |
+| 2.3.1 — Mapa container→SKU | `data/container-sku-map.csv` | ✅ FECHADA 21/04 (76 linhas, 46 SKUs únicos, 5 PLs parseadas) |
+| 2.3.2 — ML vendas | `data/vendas-ml.csv` + `data/mini-analise-flywheel-imb501.md` | ✅ ML concluído 21/04 (19 SKUs, 717 linhas, 7 meses, flywheel IMB501 VALIDADO) |
+| 2.3.2 — Amazon SP-API | a definir | ⏳ Aguarda OAuth Amazon |
+| 2.3.2 — Shopee OpenAPI | a definir | ⏳ Aguarda descoberta das 3 contas OAuth |
 | 3 — Modelagem do Flywheel (8 meses, simulação) | `03-flywheel.xlsx` + `03-interpretacao.md` | ⏳ Aguarda Fase 2 |
 | 4 — Decisão | `04-plano.md` (1 página) | ⏳ Aguarda Fase 3 |
 
@@ -95,10 +97,33 @@ Custo 1 container = FOB (banco) + PNI total
 
 FOB e PNI são universos separados — somam-se, nunca se escalam. O "FOB USD" no header do PDF do PNI é referência declarativa do aduaneiro usado pela Open Trade na DI, não indica que o PNI é parcial. Ver [[memory/context/decisoes/2026-04#[20/04 noite] Importação 2026 — modelo canônico de custo de container|decisão completa]].
 
+## Descobertas empíricas da Fase 2.3 (21/04)
+
+### MLB mestre IMB501: MLB3288536143
+- Criado 2023-04-14, active, 4 variações de cor (Preto/Sortido/Rosa/Vermelho)
+- sold_quantity histórico: 4.473 unidades
+- `seller_sku` vazio nas variações (razão da busca inicial não achar)
+- Mapping decidido: Preto=IMB501P | Vermelho=IMB501V | Sortido=IMB501C | Rosa=IMB501R
+
+### Ciclo observado abr/25 → abr/26 (só ML)
+- Aquecimento (4 meses): 365 un
+- **Pico ago/25: 687 un (22,2 un/dia)**
+- **Ruptura out/25-fev/26: ZERO em 5 meses** (custo ~3.330 un perdidas, ~R$ 99k)
+- Recuperação mar-abr/26: 60 → 686 un (projetado ~980 un até 30/04, supera pico)
+- **Tempo de recuperação = 2× mais rápido que aquecimento inicial**
+
+### 6 MLBs IMB501 novos criados 17/03/26
+- 3 principais (R$ 24,90, IMB501C/V/P_T): ativos, responsáveis por 56% das vendas abr/26
+- 3 secundários (R$ 29,88, KITIMB501*_T): zombies, 0 vendas em 35 dias — candidatos para higiene
+
 ## Em aberto
 
-- Fase 2.3 — aguardando prompt do Pedro após validar 2.2.
-- **Perguntas para Open Trade (Sérgio):** (a) gap USD 3.974,82 — existe pagamento adicional fora de `finance_pagamentos`? (b) desconto em lote de 4 processos simultâneos? (despachante + frete marítimo)
+- Fase 2.3.2 Amazon SP-API: credencial 1P identificada (`Amazon SP-API - Tobias`), OAuth pendente
+- Fase 2.3.2 Shopee: 1 conta encontrada no 1P, Pedro disse 3 — investigar se usa mesmo partner_id com múltiplos shop_ids ou se estão em outro lugar
+- 2 kits sem MLB no ML: `KIT2YW800SQ` e `KIT9S098` (criar anúncio ou descontinuar)
+- 3 MLBs novos zombies (R$ 29,88): desligar ou manter como reserva?
+- Gap operacional: pré-configurar listings novos ANTES da chegada do container (GB25009 ficou 3 semanas sem anúncio ativo)
+- **Perguntas para Open Trade (Sérgio):** desconto em lote de 4 processos simultâneos? (despachante + frete marítimo). Gap USD 3.974,82 foi reinterpretado como ruído cambial em 20/04 — não mais pendente.
 - DI/DUIMP do GB25011 não anexada em `documents` (só GB25008 tem) — não bloqueia modelo mas útil para auditoria futura.
 - GB25010 numerário R$64.136,40 — due 20/04, pagamento pendente de confirmação.
 

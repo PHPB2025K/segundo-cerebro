@@ -32,9 +32,10 @@ Projeto estratégico para **dimensionar a cadência ótima de importação** sob
 | 2.1 — Parsing PNIs | `data/pnis-extraidos.csv` | ✅ Concluída 20/04 (86 rubricas, totais validados) |
 | 2.2 — Custo do lote de 4 | `02-custo-lote.md` + `data/rubricas-classificadas.csv` | ✅ FECHADA 20/04 (modelo corrigido + câmbio conservador +7%) |
 | 2.3.1 — Mapa container→SKU | `data/container-sku-map.csv` | ✅ FECHADA 21/04 (76 linhas, 46 SKUs únicos, 5 PLs parseadas) |
-| 2.3.2 — ML vendas | `data/vendas-ml.csv` + `data/mini-analise-flywheel-imb501.md` | ✅ ML concluído 21/04 (19 SKUs, 717 linhas, 7 meses, flywheel IMB501 VALIDADO) |
-| 2.3.2 — Amazon SP-API | a definir | ⏳ Aguarda OAuth Amazon |
-| 2.3.2 — Shopee OpenAPI | a definir | ⏳ Aguarda descoberta das 3 contas OAuth |
+| 2.3.2 — ML vendas | `data/vendas-ml.csv` + `data/mini-analise-flywheel-imb501.md` | ✅ 21/04 (19 SKUs, 717 linhas, 7 meses, flywheel IMB501 VALIDADO) |
+| 2.3.2 — Amazon SP-API | `data/vendas-amazon.csv` + `data/amazon-sku-mapping-discovery.csv` | ✅ 22/04 (6 SKUs alvo, 120 un — Amazon portfólio diferente do ML) |
+| 2.3.2 — Shopee OpenAPI | `data/vendas-shopee.csv` | 🔴 BLOQUEADO — 3 contas localizadas na VPS, aguarda autorização Pedro |
+| 2.3.3 — Análise consolidada 3 canais | a definir | ⏳ Aguarda Shopee |
 | 3 — Modelagem do Flywheel (8 meses, simulação) | `03-flywheel.xlsx` + `03-interpretacao.md` | ⏳ Aguarda Fase 2 |
 | 4 — Decisão | `04-plano.md` (1 página) | ⏳ Aguarda Fase 3 |
 
@@ -116,16 +117,53 @@ FOB e PNI são universos separados — somam-se, nunca se escalam. O "FOB USD" n
 - 3 principais (R$ 24,90, IMB501C/V/P_T): ativos, responsáveis por 56% das vendas abr/26
 - 3 secundários (R$ 29,88, KITIMB501*_T): zombies, 0 vendas em 35 dias — candidatos para higiene
 
+## Descobertas adicionais (22/04)
+
+### Amazon: portfólio complementar, não substituível ao ML
+- 21 SKUs alvo na Amazon: 120 un / R$ 3.676 em 7 meses (3% do volume ML)
+- 108 outros SKUs Amazon vendem **R$ 137.274** no mesmo período
+- Top Amazon: CK4742_BB (Jarra, 1.433 un), 914C_BB (Canequinhas), Pano Microfibra, Tapete, Suporte Gamer
+- **Anomalia crítica**: IMB501P Amazon tem listing (B0DCP9TBTM) mas 0 vendas em 7 meses (ML: 491 un)
+- 7 SKUs alvo com listing mas 0 vendas; 8 sem listing sequer
+
+### Algoritmo Amazon menos tolerante a ruptura que ML
+- IMB501V Amazon rompeu dez/25 e **não recuperou em 5 meses**
+- IMB501V ML rompeu out/25 e **recuperou em 2 meses**
+- Ranking Amazon exige reativação manual (Ads + FBA + BuyBox)
+- Implicação: estoque contínuo é ainda mais crítico na Amazon
+
+### Shopee localizada na VPS (não no 1P)
+- 3 contas ativas com auto-refresh rodando há 12 dias
+- Partner ID produção **2031533** (o 1228462 do 1P é test-mode)
+- shop_ids: 448649947 (store default), 860803675 (store2 Oficial), 442066454 (shop)
+- IP whitelist Shopee obriga coleta NA VPS
+
+## Handoff file disponível
+
+`data/HANDOFF-IA-PARALELA.md` (14 KB, 13 seções) — state completo para continuidade por outra instância Claude Code sem retrabalho.
+
 ## Em aberto
 
-- Fase 2.3.2 Amazon SP-API: credencial 1P identificada (`Amazon SP-API - Tobias`), OAuth pendente
-- Fase 2.3.2 Shopee: 1 conta encontrada no 1P, Pedro disse 3 — investigar se usa mesmo partner_id com múltiplos shop_ids ou se estão em outro lugar
-- 2 kits sem MLB no ML: `KIT2YW800SQ` e `KIT9S098` (criar anúncio ou descontinuar)
-- 3 MLBs novos zombies (R$ 29,88): desligar ou manter como reserva?
-- Gap operacional: pré-configurar listings novos ANTES da chegada do container (GB25009 ficou 3 semanas sem anúncio ativo)
-- **Perguntas para Open Trade (Sérgio):** desconto em lote de 4 processos simultâneos? (despachante + frete marítimo). Gap USD 3.974,82 foi reinterpretado como ruído cambial em 20/04 — não mais pendente.
-- DI/DUIMP do GB25011 não anexada em `documents` (só GB25008 tem) — não bloqueia modelo mas útil para auditoria futura.
-- GB25010 numerário R$64.136,40 — due 20/04, pagamento pendente de confirmação.
+### Bloqueio imediato
+- 🔴 **Shopee 2.3.2**: Pedro autorizar diretório na VPS (A-tmp vs A-workspace) para executar coleta
+
+### Pendências técnicas
+- 🟡 **Anomalia IMB501P Amazon**: investigar BuyBox/FBA stock/listing quality manualmente no Seller Central
+- 🟡 **8 kits alvo sem listing Amazon**: cadastrar ou aceitar lacuna
+- 🟡 **7 kits com listing mas 0 vendas Amazon**: diagnosticar
+- 🟡 2 kits sem MLB no ML (KIT2YW800SQ, KIT9S098): criar ou descontinuar
+- 🟡 3 MLBs novos zombies ML (R$ 29,88 sufixo _T): desligar?
+- 🟡 Gap operacional: pré-configurar listings ANTES da chegada do container (GB25009 ficou 3 semanas sem anúncio ativo ML)
+
+### Próximas fases
+- ⏭️ **2.3.3** — análise consolidada ML + Amazon + Shopee após Shopee concluído
+- ⏭️ **Fase 3** — simulação flywheel 8 meses → `03-flywheel.xlsx` + `03-interpretacao.md`
+- ⏭️ **Fase 4** — plano de decisão 1 página → `04-plano.md`
+
+### Pendências externas
+- 🟡 Pergunta Open Trade (Sérgio): desconto em lote de 4 processos simultâneos?
+- 🟡 DI/DUIMP do GB25011 não anexada em `documents` — útil para auditoria futura
+- 🟡 GB25010 numerário R$64.136,40 — pagamento pendente de confirmação
 
 ## Ver também
 

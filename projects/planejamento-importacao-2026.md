@@ -34,8 +34,9 @@ Projeto estratégico para **dimensionar a cadência ótima de importação** sob
 | 2.3.1 — Mapa container→SKU | `data/container-sku-map.csv` | ✅ FECHADA 21/04 (76 linhas, 46 SKUs únicos, 5 PLs parseadas) |
 | 2.3.2 — ML vendas | `data/vendas-ml.csv` + `data/mini-analise-flywheel-imb501.md` | ✅ 21/04 (19 SKUs, 717 linhas, 7 meses, flywheel IMB501 VALIDADO) |
 | 2.3.2 — Amazon SP-API | `data/vendas-amazon.csv` + `data/amazon-sku-mapping-discovery.csv` | ✅ 22/04 (6 SKUs alvo, 120 un — Amazon portfólio diferente do ML) |
-| 2.3.2 — Shopee OpenAPI | `data/vendas-shopee.csv` | 🔴 BLOQUEADO — 3 contas localizadas na VPS, aguarda autorização Pedro |
-| 2.3.3 — Análise consolidada 3 canais | a definir | ⏳ Aguarda Shopee |
+| 2.3.2 — Shopee OpenAPI | `data/vendas-shopee.csv` | ✅ 22/04 (989 linhas v2, 5.479 un / R$ 221.316 — pós-correção bug model_sku) |
+| 2.3.3 — Análise consolidada 3 canais | `data/analise-3-canais.md` | ✅ 22/04 (6 seções A-F, 1 página) |
+| **Fase 3 — Simulação flywheel 8 meses** | `03-flywheel.xlsx` + `03-interpretacao.md` | ⏳ **PRÓXIMO** (aguarda 4 decisões binárias Pedro) |
 | 3 — Modelagem do Flywheel (8 meses, simulação) | `03-flywheel.xlsx` + `03-interpretacao.md` | ⏳ Aguarda Fase 2 |
 | 4 — Decisão | `04-plano.md` (1 página) | ⏳ Aguarda Fase 3 |
 

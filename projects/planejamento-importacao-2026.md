@@ -36,9 +36,8 @@ Projeto estratégico para **dimensionar a cadência ótima de importação** sob
 | 2.3.2 — Amazon SP-API | `data/vendas-amazon.csv` + `data/amazon-sku-mapping-discovery.csv` | ✅ 22/04 (6 SKUs alvo, 120 un — Amazon portfólio diferente do ML) |
 | 2.3.2 — Shopee OpenAPI | `data/vendas-shopee.csv` | ✅ 22/04 (989 linhas v2, 5.479 un / R$ 221.316 — pós-correção bug model_sku) |
 | 2.3.3 — Análise consolidada 3 canais | `data/analise-3-canais.md` | ✅ 22/04 (6 seções A-F, 1 página) |
-| **Fase 3 — Simulação flywheel 8 meses** | `03-flywheel.xlsx` + `03-interpretacao.md` | ⏳ **PRÓXIMO** (aguarda 4 decisões binárias Pedro) |
-| 3 — Modelagem do Flywheel (8 meses, simulação) | `03-flywheel.xlsx` + `03-interpretacao.md` | ⏳ Aguarda Fase 2 |
-| 4 — Decisão | `04-plano.md` (1 página) | ⏳ Aguarda Fase 3 |
+| 3 — Simulação flywheel 8 meses (6 cenários) | `data/03-flywheel.xlsx` + `data/03-interpretacao.md` | ✅ 22/04 noite (vencedor: **C-Trimestral-Rebal**; receita R$ 667k / caixa final −R$ 151k / ruptura 1.072 SKU·dia) |
+| **Fase 4 — Plano de decisão** | `04-plano.md` (1 página) | ⏳ **PRÓXIMO** (aguarda 2 perguntas binárias Pedro: caixa ≥ R$ 800k + acesso a capital de giro R$ 400k) |
 
 ## Decisões-chave (validadas 20/04)
 

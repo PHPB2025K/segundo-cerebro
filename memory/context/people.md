@@ -28,10 +28,10 @@ tags:
 | Geziele Batista da Silva | Operação | Ponto Certo |
 | Guilherme Higashi | Operação | Ponto Certo |
 | Leonardo | **Focal point Amazon** (operação) — role confirmada 22/04 | Ponto Certo (presumido) |
-| Lucas Gabriel Laurentino | Operação | Ponto Certo |
+| Lucas Gabriel Laurentino | **Focal point Shopee** (operação) — role confirmada 22/04 via reuniões semanais | Ponto Certo |
 | Mateus Eduardo Lisboa Santos | Operação | Ponto Certo |
 | Sandra Peron | Operação | Ponto Certo |
-| Yasmin Oscarlino | Operação | Ponto Certo |
+| Yasmin Oscarlino | **Focal point Mercado Livre** (operação) — role confirmada 22/04 via reuniões semanais | Ponto Certo |
 
 > Detalhes: sistema [[automacoes/sops/resetar-senha-funcionario|Ponto Certo]] (Supabase `dgldsmhbeosjgfrbegyv`)
 

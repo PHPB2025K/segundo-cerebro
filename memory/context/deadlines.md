@@ -17,6 +17,9 @@ tags:
 
 | Prazo | Entrega | Status | Nota |
 |-------|---------|--------|------|
+| 22/04/2026 14:30 | **Reunião Semanal Amazon — Leonardo** | 🟢 HOJE | Presencial Escritório Pedreira-SP, convidado marketplace@gbimportadora.com |
+| 23/04/2026 14:30 | **Reunião Semanal Shopee — Lucas** | ⏳ Pendente | Presencial Escritório Pedreira-SP, mesmo convidado |
+| 24/04/2026 14:30 | **Reunião Semanal Mercado Livre — Yasmin** | ⏳ Pendente | Presencial Escritório Pedreira-SP, mesmo convidado |
 | 16/04/2026 | GB25009 — 70% balanço R$72.232 | 🔴 CRÍTICO | Container finished, pagar AMANHÃ |
 | 20/04/2026 | **GB25010 — Numerário R$64.136,40** | 🔴 CRÍTICO | Container descarregado 16/04 em Itapoá, em customs. PNI registrada no sistema (22 itens). USD $12.876,64 × câmbio 4,9806. Pagar em 3 dias. |
 | 10/05/2026 | GB25010 — 70% balanço R$81.750 | ⏳ Pendente | USD $15.000 × 5,45 |

@@ -1,10 +1,12 @@
 ---
-title: "Canggu"
+title: "Canggu — Histórico pré-auditoria"
 created: 2026-04-22
 updated: 2026-04-22
 type: project
 status: active
 path: "~/Documents/05-Projetos-Codigo/budamix-ai-agent/"
+substituido-por: "[[canggu]]"
+data-congelamento: 2026-04-22
 tags:
   - project
   - dev
@@ -12,7 +14,14 @@ tags:
   - whatsapp
   - atendimento
   - canggu
+  - historico
 ---
+
+> [!INFO] Nota arquivada
+> Este arquivo é o histórico operacional do Canggu até 22/04/2026. Foi
+> substituído como MOC pelo novo [[canggu]], gerado a partir da auditoria
+> forense [[auditorias/2026-04-22-forense]]. O conteúdo abaixo permanece
+> íntegra e é referenciado por diversas notas do vault.
 
 # Canggu
 

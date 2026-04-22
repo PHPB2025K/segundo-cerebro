@@ -23,9 +23,8 @@ tags:
 
 ## Atendimento e WhatsApp
 
-- [[projects/canggu]] — Agente Ana (SDR WhatsApp)
-- [[projects/canggu]] — Arquitetura do agente Ana
-- [[projects/budamix-agent-changelog-ana]] — Changelog da Ana
+- [[projects/canggu/canggu|Canggu]] — MicroSaaS atendimento WhatsApp (agente "Ana"). Stack: Vite + React 19 + Supabase Edge Functions + N8N + Evolution API + Anthropic/OpenAI/Groq. Auditoria forense 2026-04-22, roadmap de refatoração em 6 blocos. Subpasta com 12 notas (MOC + arquitetura + edge functions + N8N + frontend + débitos + ADRs + histórico).
+- [[projects/budamix-agent-changelog-ana]] — Changelog da Ana (pré-auditoria 22/04)
 - [[projects/whatsapp-api]] — Config WhatsApp API (Baileys + Evolution)
 
 ## Dashboards e Sistemas Internos

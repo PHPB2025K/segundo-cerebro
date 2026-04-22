@@ -283,7 +283,13 @@ tags:
 
 ---
 
-*Atualizado: 17/04/2026 — sessão noite (correções canequinha + mapeamento ML + cores base_products + relations)*
+*Atualizado: 22/04/2026 — sessão tarde 2 (Fase 1 INVESTIGAR B0GWG2HL56 Porta-Copos MDF)*
+
+---
+
+## 🟡 Importantes — adicionados 22/04 tarde 2
+
+- [22/04] [[projects/amazon-ads-automation|Amazon Ads]] — **BidSpark-3 novo grupo "Porta-Copos MDF" (ASIN B0GWG2HL56)** pausado na Fase 1→2. Produto: kit 6 porta-copos + suporte MDF, R$19.90 (de R$39.90) no site Budamix. Bloqueadores pendentes com Pedro antes de Fase 2 PLANEJAR: (a) **Listing ACTIVE + estoque ≥30 FBA/FBM** na Seller Central — forte suspeita de inativo (ausente tanto em `amazon_ads_catalog` quanto em Central `products` apesar de Central ter sync contínuo); (b) **SKU interno real + margin_pct real** da planilha de precificação — tabela `products` do budamix-ecommerce não tem colunas sku/asin, Central tampouco tem listing Amazon desse produto. Decisões de budget/seed do Pedro (20/04 tarde 2): budget R$30/d (não R$20), seed broad 8-12 keywords obrigatória (sem seed queima 2-3 semanas), ACoS target 20% default, nome grupo `Porta-Copos MDF`. Sem (a) e (b), criar campanha é desperdício. Seed sugerida: porta copo mdf, descanso copo madeira, porta copo decorativo, porta copos mesa, porta copo madeira, base copo mdf, suporte copo decorativo, porta copo artesanal.
 
 ---
 

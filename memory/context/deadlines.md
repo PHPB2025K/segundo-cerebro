@@ -20,6 +20,22 @@ tags:
 | 22/04/2026 14:30 | **Reunião Semanal Amazon — Leonardo** | 🟢 HOJE | Presencial Escritório Pedreira-SP, convidado marketplace@gbimportadora.com |
 | 23/04/2026 14:30 | **Reunião Semanal Shopee — Lucas** | ⏳ Pendente | Presencial Escritório Pedreira-SP, mesmo convidado |
 | 24/04/2026 14:30 | **Reunião Semanal Mercado Livre — Yasmin** | ⏳ Pendente | Presencial Escritório Pedreira-SP, mesmo convidado |
+| **28/04/2026** | **Importação 2026 — confirmar caixa R$ 450k + overdraft R$ 400k @ ≤3% a.m.** | 🔴 BLOQUEIA L1 | Pré-requisito do Cenário E. Sem confirmação, L1 não dispara em 01/05. |
+| **29/04/2026** | **Importação 2026 — conferir composição L1 rebalanceado (Pedro+Open Trade)** | 🟡 Pré-pedido | Mix proporcional vel_rec, zumbis 0 |
+| **30/04/2026** | **Importação 2026 — descontinuar KIT9S098 + KIT3S096 nos 3 canais** | 🟡 Pré-pedido | Pedro + gestor marketplaces. Libera capacidade do lote |
+| **30/04/2026** | **Importação 2026 — verificar IMB501V_T Shopee 3 contas (Lucas)** | 🟡 Pré-pedido | Listing ativo + estoque |
+| **01/05/2026** | **Importação 2026 — pedido L1 + sinal R$ 147.211** | 🟢 Início Ato 1 | Cenário E, plano `data/04-plano.md` |
+| 25/07/2026 | Importação 2026 — pagar PNI L1 R$ 244.788 | ⏳ Cronograma L1 | D+85 |
+| 09/08/2026 | Importação 2026 — pagar balanço L1 R$ 343.492 + chegada L1 | ⏳ Cronograma L1 | D+100, container vendável |
+| **01/09/2026** | **Importação 2026 — pedido L2 + sinal R$ 147.211** | ⏳ Cronograma fixo | Independe de checkpoints |
+| 25/11/2026 | Importação 2026 — pagar PNI L2 R$ 244.788 | ⏳ Cronograma L2 | D+85 |
+| 10/12/2026 | Importação 2026 — pagar balanço L2 R$ 343.492 + chegada L2 | ⏳ Cronograma L2 | D+100 |
+| **30/06/2026** | **Importação 2026 — checkpoint receita Ato 1 vs R$ 91k esperado** | ⏳ Monitor | Se < R$ 65k: revisar premissa taxa líquida 80% |
+| **30/09/2026** | **Importação 2026 — checkpoint receita Ato 1 vs R$ 365k esperado** | ⏳ Monitor | Se < R$ 280k: validar flywheel inter-ciclo na prática |
+| **31/12/2026** | **Importação 2026 — checkpoint inventário pós-L2 + receita dez/26 ≥ R$ 140k** | ⏳ Monitor | Se < R$ 100k: ativar revisão antes de abr/27 |
+| **30/04/2027** | **Importação 2026 — GO/NO-GO L3 (3 critérios)** | ⏳ Decisão | 3/3 → L3 28/05/27. 2/3 → adiar 60d. ≤1/3 → plano D (encerrar 2 lotes) |
+| 28/05/2027 | Importação 2026 — pedido L3 (se gatilho 3/3) + sinal R$ 147.211 | ⏳ Condicional | Início Ato 2 |
+| 05/09/2027 | Importação 2026 — chegada L3 (se disparado) | ⏳ Condicional | D+100 |
 | 16/04/2026 | GB25009 — 70% balanço R$72.232 | 🔴 CRÍTICO | Container finished, pagar AMANHÃ |
 | 20/04/2026 | **GB25010 — Numerário R$64.136,40** | 🔴 CRÍTICO | Container descarregado 16/04 em Itapoá, em customs. PNI registrada no sistema (22 itens). USD $12.876,64 × câmbio 4,9806. Pagar em 3 dias. |
 | 10/05/2026 | GB25010 — 70% balanço R$81.750 | ⏳ Pendente | USD $15.000 × 5,45 |
@@ -60,7 +76,7 @@ tags:
 
 ---
 
-*Atualizado: 17/04/2026 — sessão 8 (Ana incident response + feedback loop + credentials)*
+*Atualizado: 22/04/2026 — Fase 4 Importação 2026 concluída; cronograma Ato 1 + checkpoints + GO/NO-GO L3 calendarizados*
 
 ---
 

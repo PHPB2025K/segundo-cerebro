@@ -1,8 +1,9 @@
 ---
 title: "Planejamento Importação 2026"
 created: 2026-04-20
+modified: 2026-04-22
 type: project
-status: active
+status: concluido
 path: "~/Documents/05-Projetos-Codigo/planejamento-importacao-2026/"
 tags:
   - project
@@ -10,6 +11,8 @@ tags:
   - importacao
   - essencialismo
 ---
+
+> **STATUS 22/04/2026:** Projeto CONCLUÍDO. Plano final em `data/04-plano.md`. Vencedor: **Cenário E** (3 lotes em 2 atos adaptativos, mai/26 → out/27). Próxima ação operacional: pedido L1 em **01/05/2026**.
 
 # Planejamento Importação 2026 — GB Importadora
 
@@ -36,8 +39,9 @@ Projeto estratégico para **dimensionar a cadência ótima de importação** sob
 | 2.3.2 — Amazon SP-API | `data/vendas-amazon.csv` + `data/amazon-sku-mapping-discovery.csv` | ✅ 22/04 (6 SKUs alvo, 120 un — Amazon portfólio diferente do ML) |
 | 2.3.2 — Shopee OpenAPI | `data/vendas-shopee.csv` | ✅ 22/04 (989 linhas v2, 5.479 un / R$ 221.316 — pós-correção bug model_sku) |
 | 2.3.3 — Análise consolidada 3 canais | `data/analise-3-canais.md` | ✅ 22/04 (6 seções A-F, 1 página) |
-| 3 — Simulação flywheel 8 meses (6 cenários) | `data/03-flywheel.xlsx` + `data/03-interpretacao.md` | ✅ 22/04 noite (vencedor: **C-Trimestral-Rebal**; receita R$ 667k / caixa final −R$ 151k / ruptura 1.072 SKU·dia) |
-| **Fase 4 — Plano de decisão** | `04-plano.md` (1 página) | ⏳ **PRÓXIMO** (aguarda 2 perguntas binárias Pedro: caixa ≥ R$ 800k + acesso a capital de giro R$ 400k) |
+| 3 v1 — Simulação flywheel 8 meses (6 cenários) | `data/03-flywheel-v1-baseline.xlsx` + `data/03-interpretacao-v1-baseline.md` | ❌ DESCARTADA 22/04 (todos cenários inviáveis com caixa real <R$ 500k) |
+| **3.1 — Simulação flywheel 18 meses (4 cenários, OD R$ 400k)** | `data/03-flywheel.xlsx` + `data/03-interpretacao.md` | ✅ 22/04 noite (vencedor: **E-2Atos-Adaptativo**; receita R$ 2.634k / caixa final R$ 866k / OD máx R$ 231k / ruptura 1.254 SKU·dia) |
+| **4 — Plano de decisão** | `data/04-plano.md` (1 página A4) | ✅ 22/04 noite (273 palavras fora tabelas; apresentável a Pedro/contador/banco) |
 
 ## Decisões-chave (validadas 20/04)
 
@@ -142,28 +146,34 @@ FOB e PNI são universos separados — somam-se, nunca se escalam. O "FOB USD" n
 
 `data/HANDOFF-IA-PARALELA.md` (14 KB, 13 seções) — state completo para continuidade por outra instância Claude Code sem retrabalho.
 
-## Em aberto
+## Resultado final (Fase 3.1 + Fase 4)
 
-### Bloqueio imediato
-- 🔴 **Shopee 2.3.2**: Pedro autorizar diretório na VPS (A-tmp vs A-workspace) para executar coleta
+**Cenário vencedor:** E — 3 lotes em 2 atos adaptativos.
+- **Ato 1 (TÁTICO):** L1 pedido 01/05/2026 (chega 09/08), L2 pedido 01/09/2026 (chega 10/12). Receita Ato 1: R$ 547k. Pico OD: R$ 231k (saldado out/26).
+- **Ato 2 (ESTRATÉGICO):** Avaliar 3 critérios em 30/04/2027 → 3/3 dispara L3 em 28/05/2027 (chega set/27). Caixa final 31/10/2027: R$ 866k.
+- **Premissas críticas:** flywheel ≥+10%/ciclo (modelo: +20%) | taxa líq ≥75% (modelo: 80%) | caixa R$ 450k + OD R$ 400k @ ≤3% a.m.
 
-### Pendências técnicas
-- 🟡 **Anomalia IMB501P Amazon**: investigar BuyBox/FBA stock/listing quality manualmente no Seller Central
-- 🟡 **8 kits alvo sem listing Amazon**: cadastrar ou aceitar lacuna
-- 🟡 **7 kits com listing mas 0 vendas Amazon**: diagnosticar
-- 🟡 2 kits sem MLB no ML (KIT2YW800SQ, KIT9S098): criar ou descontinuar
-- 🟡 3 MLBs novos zombies ML (R$ 29,88 sufixo _T): desligar?
-- 🟡 Gap operacional: pré-configurar listings ANTES da chegada do container (GB25009 ficou 3 semanas sem anúncio ativo ML)
+## Em aberto — execução do Ato 1
 
-### Próximas fases
-- ⏭️ **2.3.3** — análise consolidada ML + Amazon + Shopee após Shopee concluído
-- ⏭️ **Fase 3** — simulação flywheel 8 meses → `03-flywheel.xlsx` + `03-interpretacao.md`
-- ⏭️ **Fase 4** — plano de decisão 1 página → `04-plano.md`
+### Ações imediatas (até 30/04/2026)
+- 🔴 Pedro: confirmar saldo R$ 450k em conta operacional 01/05 (até 28/04)
+- 🔴 Pedro: confirmar overdraft R$ 400k contratado, taxa ≤3% a.m. (até 28/04)
+- 🟡 Pedro + Open Trade: conferir composição L1 rebalanceado (até 29/04)
+- 🟡 Pedro + gestor marketplaces: descontinuar KIT9S098 + KIT3S096 nos 3 canais (até 30/04)
+- 🟡 Lucas (Shopee): verificar listing IMB501V_T ativo + estoque nas 3 contas (até 30/04)
+- 🟡 Leonardo: auditar BuyBox+FBA IMB501P Amazon (B0DCP9TBTM) — fora de escopo, registrar
 
-### Pendências externas
+### Checkpoints calendarizados
+- 30/06/2026: receita Ato 1 vs R$ 91k esperado
+- 30/09/2026: receita Ato 1 vs R$ 365k esperado
+- 31/12/2026: inventário pós-L2 + receita dez/26 ≥ R$ 140k
+- **30/04/2027: GO/NO-GO L3** (3 critérios em `04-plano.md`)
+
+### Pendências externas (legado fase 2.3, não bloqueiam Ato 1)
+- 🟡 2 kits sem MLB no ML (KIT2YW800SQ, KIT9S098): descontinuar (decisão Fase 3.1)
+- 🟡 3 MLBs novos zombies ML (R$ 29,88 sufixo _T): desligar
 - 🟡 Pergunta Open Trade (Sérgio): desconto em lote de 4 processos simultâneos?
-- 🟡 DI/DUIMP do GB25011 não anexada em `documents` — útil para auditoria futura
-- 🟡 GB25010 numerário R$64.136,40 — pagamento pendente de confirmação
+- 🟡 DI/DUIMP do GB25011 não anexada em `documents`
 
 ## Ver também
 

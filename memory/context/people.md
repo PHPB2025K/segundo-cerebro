@@ -27,6 +27,7 @@ tags:
 | Franciele Carolina de Souza Aguiar (Fran) | Operação | Ponto Certo |
 | Geziele Batista da Silva | Operação | Ponto Certo |
 | Guilherme Higashi | Operação | Ponto Certo |
+| Leonardo | **Focal point Amazon** (operação) — role confirmada 22/04 | Ponto Certo (presumido) |
 | Lucas Gabriel Laurentino | Operação | Ponto Certo |
 | Mateus Eduardo Lisboa Santos | Operação | Ponto Certo |
 | Sandra Peron | Operação | Ponto Certo |
@@ -78,4 +79,4 @@ tags:
 
 ---
 
-*Atualizado: 15/04/2026*
+*Atualizado: 22/04/2026 — Leonardo adicionado como focal point Amazon.*

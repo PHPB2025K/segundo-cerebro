@@ -31,19 +31,26 @@ tags:
 
 ### Projetos Supabase
 
-| Project Ref | Projeto | Uso |
-|-------------|---------|-----|
-| `ioujfkrqvporfbvdqyus` | Budamix E-commerce | Auth, DB, Storage, Edge Functions, checkout MP |
-| `iriqmqxuppfyrnselswk` | Budamix Central / OpenClaw | Produtos, orders, analytics, storage buckets |
-| `ocxvwwaaqqxecmzhfxhb` | GB Import Hub | Importações, containers, documentos, 17 Edge Functions |
-| `dgldsmhbeosjgfrbegyv` | Ponto Certo | RH, ponto, salários, compliance |
-| `sqbkoprcmnznmzbwdrmf` | Estoque Budamix | Estoque, entrada/saída armazém |
-| `skntaotevvxblxhpccuy` | Amazon Ads / BudaAds | Campanhas Amazon, auth unificada ML Ads |
-| `cckfkvqblvundnyphole` | ML Ads Automation | Campanhas ML, métricas |
-| `wzhmrpskiscassbixurr` | Spark Ads | Cache Meta/Google Ads |
-| `xxbsjbgipmtzojhtsrve` | Running Coach / Carousel Factory | Atividades Strava, coach memory, carousels |
-| `jpacmloqsfiebvagfomt` | Budamix AI Agent (Ana) | Conversas WhatsApp, pipeline vetorial |
-| `nvramnisawnwrbvadcmg` | Staging / N8N | Testes, workflows N8N |
+> Fonte: Supabase Management API (22/04/2026). Nomes oficiais no dashboard.
+
+| Project Ref | Nome oficial | Uso |
+|-------------|--------------|-----|
+| `sqbkoprcmnznmzbwdrmf` | Budamix Central | Dashboard interno, produtos, Live Sales, pgvector, atendimento dashboard |
+| `jpacmloqsfiebvagfomt` | budamix-ai-agent | Canggu (instância Ana GB): conversas WhatsApp, agent_config, pipeline vetorial |
+| `ioujfkrqvporfbvdqyus` | budamix-ecommerce | Auth, DB, Storage, Edge Functions, checkout MP |
+| `ocxvwwaaqqxecmzhfxhb` | GESTÃO-IMPORTAÇÕES | GB Import Hub: containers, documentos, 17 Edge Functions |
+| `dgldsmhbeosjgfrbegyv` | PONTO-CERTO-APP | RH, ponto, salários, compliance |
+| `skntaotevvxblxhpccuy` | amazon-ads-automation | Campanhas Amazon, auth unificada ML Ads |
+| `cckfkvqblvundnyphole` | ml-ads-automation | Campanhas ML, métricas |
+| `wzhmrpskiscassbixurr` | SPARK ADS | Cache Meta/Google Ads |
+| `nnqeovjgcihiuyblswez` | LANDING PAGE GB | Landing page |
+| `xxbsjbgipmtzojhtsrve` | INSTAGRAM CREATOR | Carousels / criação de conteúdo |
+
+> Estoque Budamix usa o mesmo projeto `sqbkoprcmnznmzbwdrmf` do Budamix Central com tabelas prefixadas `estoque_`.
+
+**Projetos descontinuados (22/04/2026):**
+- `iriqmqxuppfyrnselswk` (FLUXO N8N - Atendimento GB) — deletado pelo Pedro
+- `nsrgynqqkroqsfbsfded` (canggu-demo) — deletado via API
 
 ---
 

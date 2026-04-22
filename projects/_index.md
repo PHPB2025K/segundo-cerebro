@@ -23,14 +23,14 @@ tags:
 
 ## Atendimento e WhatsApp
 
-- [[projects/budamix-ai-agent]] — Agente Ana (SDR WhatsApp)
-- [[projects/budamix-agent-architecture]] — Arquitetura do agente Ana
+- [[projects/canggu]] — Agente Ana (SDR WhatsApp)
+- [[projects/canggu]] — Arquitetura do agente Ana
 - [[projects/budamix-agent-changelog-ana]] — Changelog da Ana
 - [[projects/whatsapp-api]] — Config WhatsApp API (Baileys + Evolution)
 
 ## Dashboards e Sistemas Internos
 
-- [[projects/budamix-central]] — Budamix Central / Canggu (dashboard interno, Live Sales, pgvector)
+- [[projects/budamix-central]] — Budamix Central (dashboard interno, Live Sales, pgvector)
 - [[projects/gb-import-hub]] — GB Import Hub (gestão importações, containers, tracking)
 - [[projects/ponto-certo]] — Ponto Certo (ponto eletrônico funcionários, GPS, QR Code, banco de horas)
 - [[projects/atlas-finance]] — Atlas Finance (contas a pagar/receber, DFC — pausado)

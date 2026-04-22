@@ -1,5 +1,5 @@
 ---
-title: "Budamix Central (Canggu)"
+title: "Budamix Central"
 created: 2026-04-15
 type: project
 status: active
@@ -11,7 +11,7 @@ tags:
   - canggu
 ---
 
-# Budamix Central (Canggu)
+# Budamix Central
 
 **URL:** https://central.budamix.com.br
 **Branch:** main

@@ -42,7 +42,7 @@ op item get "Nome do Item" --vault "OpenClaw" --fields label=password
 | Supabase - Budamix Ecommerce - Anon Key | API_CREDENTIAL | `ioujfkrqvporfbvdqyus` | Frontend checkout |
 | Supabase - Budamix Ecommerce - Service Role | API_CREDENTIAL | `ioujfkrqvporfbvdqyus` | Edge Functions, admin ops |
 | Supabase - Budamix Ecommerce - DB Password | API_CREDENTIAL | `ioujfkrqvporfbvdqyus` | Direct DB connection |
-| Supabase - Budamix Central | LOGIN | `iriqmqxuppfyrnselswk` | Dashboard, analytics |
+| Supabase - Budamix Central | LOGIN | `sqbkoprcmnznmzbwdrmf` | Dashboard, analytics, produtos, pgvector |
 | Supabase - Spark Ads | API_CREDENTIAL | `wzhmrpskiscassbixurr` | Cache Meta/Google Ads ([[openclaw/agents/spark/IDENTITY\|Spark]]) |
 
 ---

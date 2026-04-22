@@ -47,7 +47,7 @@ tags:
 ## Notas relacionadas no vault
 - [[projects/amazon-ads-automation]]
 - [[projects/ml-ads-automation]]
-- [[projects/budamix-ai-agent]]
+- [[projects/canggu]]
 - [[openclaw/agents/spark/IDENTITY]]
 - [[meta/mocs/MOC - Extratos Financeiros]]
 

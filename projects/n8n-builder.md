@@ -28,7 +28,7 @@ Infraestrutura compartilhada para design e construção de workflows N8N via Cla
 - [[projects/gmail-organizer]] — categorização emails
 - [[projects/running-coach-ai]] — coaching corrida
 - [[projects/estoque-budamix]] — PDF parser estoque
-- [[projects/budamix-ai-agent]] — fluxo WhatsApp Ana
+- [[projects/canggu]] — fluxo WhatsApp Ana
 
 ## Notas relacionadas
 

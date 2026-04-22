@@ -18,7 +18,7 @@ tags:
 | Projeto | ID | Usado por | Proposito |
 |---------|-----|----------|----------|
 | GB Import Hub | `ocxvwwaaqqxecmzhfxhb` | [[openclaw/agents/kobe/IDENTITY|Kobe]] | Controle de importacoes, containers, tracking |
-| Budamix Central (Canggu) | — | [[openclaw/agents/builder/IDENTITY|Builder]], Ana | Dashboard interno, produtos, atendimento |
+| Budamix Central | — | [[openclaw/agents/builder/IDENTITY|Builder]], Ana | Dashboard interno, produtos, atendimento |
 | Ponto Certo | — | [[openclaw/agents/rh/IDENTITY|RH]], [[openclaw/agents/builder/IDENTITY|Builder]] | Ponto eletronico, banco de horas |
 | Spark Ads | `wzhmrpskiscassbixurr` | [[openclaw/agents/spark/IDENTITY|Spark]] | Cache de dados Meta/Google Ads |
 

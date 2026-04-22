@@ -108,4 +108,4 @@ Deploy de 12/04 22:03 BRT (Sprint Auditoria 7d) re-importou o workflow `KE7YVXay
 
 ## Notas relacionadas
 
-- [[projects/budamix-ai-agent]]
+- [[projects/canggu]]

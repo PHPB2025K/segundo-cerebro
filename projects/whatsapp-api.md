@@ -25,7 +25,7 @@ Infraestrutura compartilhada de integração WhatsApp. Dual mode: Baileys para l
 
 ## Projetos Dependentes
 
-- [[projects/budamix-ai-agent]] — Ana/Giovana (atendimento)
+- [[projects/canggu]] — Ana/Giovana (atendimento)
 - [[projects/amazon-ads-automation]] — notificações via WhatsApp
 - [[openclaw/agents/rh/IDENTITY]] — Monitor Ponto (WhatsApp para funcionários)
 
@@ -33,4 +33,4 @@ Infraestrutura compartilhada de integração WhatsApp. Dual mode: Baileys para l
 
 - [[openclaw/agents/kobe/IDENTITY]]
 - [[skills/whatsapp-ultimate/SKILL]]
-- [[projects/budamix-ai-agent]]
+- [[projects/canggu]]

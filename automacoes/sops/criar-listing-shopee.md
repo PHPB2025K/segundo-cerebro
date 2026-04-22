@@ -165,7 +165,7 @@ Repetir criação para budamix-store2 e budamix-shop com mesmos dados.
 
 ### Fase 10 — Registrar e confirmar
 
-- Registrar no Supabase (`iriqmqxuppfyrnselswk`) com platform=shopee
+- Registrar no Supabase Budamix Central (`sqbkoprcmnznmzbwdrmf`) com platform=shopee
 - Confirmar que `sync-shopee-prices.py` captura o novo item
 - Notificar via Telegram
 

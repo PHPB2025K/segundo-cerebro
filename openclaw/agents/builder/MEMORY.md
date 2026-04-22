@@ -53,7 +53,7 @@ memory/
 ├── projects/                   ← Estado de cada projeto
 │   ├── [[openclaw/agents/builder/memory/projects/simulimport|simulimport.md]]
 │   ├── [[openclaw/agents/builder/memory/projects/bidspark|bidspark.md]]
-│   ├── [[openclaw/agents/builder/memory/projects/canguu|canguu.md]]
+│   ├── [[projects/canggu|canguu.md]]
 │   ├── [[openclaw/agents/builder/memory/projects/atlas-finance|atlas-finance.md]]
 │   └── [outros].md
 │

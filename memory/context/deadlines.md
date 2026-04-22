@@ -46,7 +46,7 @@ tags:
 
 | Prazo | Entrega | Resultado |
 |-------|---------|-----------|
-| 06/04/2026 | Reestruturação dados Canggu | ✅ 5 fases completas |
+| 06/04/2026 | Reestruturação dados Budamix Central | ✅ 5 fases completas |
 | 06/04/2026 | Pipeline vetorial Ana | ✅ 5/5 testes aprovados |
 | 06/04/2026 | Segundo Cérebro setup | ✅ Configurado |
 | 11/04/2026 | GB25011 — Numerário R$60.000 | ✅ Pago 11/04 |

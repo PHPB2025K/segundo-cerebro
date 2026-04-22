@@ -22,7 +22,7 @@ tags:
 |---------|--------|---------------|---------|
 | GB Importadora/Budamix | 🟢 Operação | 44 SKUs ativos, 4 canais | [[memory/context/business-context|business-context]] |
 | OpenClaw/Kobe | 🟢 Produção | 6 agentes GPT 5.4, v2026.4.5, 22 crons | [[openclaw/agents/kobe/AGENTS|Kobe AGENTS]] |
-| Canggu | 🟢 Produção | Dashboard + busca vetorial + WhatsApp + roles | [[openclaw/agents/builder/memory/projects/canguu|canggu]] |
+| Budamix Central | 🟢 Produção | Dashboard + busca vetorial + WhatsApp + roles | [[projects/canggu|canggu]] |
 | Jornal da Manhã | 🟢 Produção | Digest diário | — |
 | Estoque Budamix | 🟢 Produção | Controle entrada/saída armazém via Google Sheets | [[memory/projects/estoque-budamix\|estoque-budamix]] |
 
@@ -51,7 +51,7 @@ tags:
 
 | Projeto | Resultado | Data |
 |---------|-----------|------|
-| Reestruturação Dados Canggu | 5 fases completas, busca vetorial ativa | 06/04/2026 |
+| Reestruturação Dados Budamix Central | 5 fases completas, busca vetorial ativa | 06/04/2026 |
 
 ---
 
@@ -76,7 +76,7 @@ tags:
 - [07/04] ML + Shopee — Anúncios criados para Kit Porta-Copos PCM001
 - [07/04] Skills: [[skills/amazon-listing-creator/SKILL|amazon-listing-creator]], [[skills/shopee-listing-creator/SKILL|shopee-listing-creator]]
 - [07/04] [[openclaw/agents/kobe/AGENTS|OpenClaw]] — Fix fallback cascata (anthropic/claude-haiku-4-5)
-- [06/04] [[openclaw/agents/builder/memory/projects/canguu|Canggu]] — Reestruturação + pipeline vetorial Ana + migração GPT 5.4 → [[memory/sessions/2026-04-06|sessão 06/04]]
+- [06/04] [[projects/canggu|Budamix Central]] — Reestruturação + pipeline vetorial Ana + migração GPT 5.4 → [[memory/sessions/2026-04-06|sessão 06/04]]
 
 ---
 

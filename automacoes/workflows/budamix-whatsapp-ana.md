@@ -60,5 +60,5 @@ Agente de atendimento WhatsApp "Ana" para a marca Budamix. Recebe mensagens via 
 
 ## Notas relacionadas
 
-- [[projects/budamix-ai-agent]] — ficha do projeto
+- [[projects/canggu]] — ficha do projeto
 - [[projects/whatsapp-api]] — infraestrutura WhatsApp

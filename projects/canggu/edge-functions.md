@@ -21,19 +21,19 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 | Function | Estado | LOC | Invocada por | verify_jwt (hoje) | ADR/Achado |
 |---|---|---:|---|:-:|---|
 | `webhook-whatsapp` | ⏳ Em depreciação após ADR-007 | 490 | Evolution Cloudfly (ou N8N — ver [[arquitetura]]) | false | [[decisoes#ADR-007]] |
-| `process-message` | ✅ Ativa (core) | 630 | N8N + webhook-whatsapp | false | — |
+| `process-message` | ✅ Ativa (core) | 630 | [[n8n-workflows\|N8N]] + webhook-whatsapp | false | — |
 | `send-whatsapp` | ✅ Ativa (interna) | 139 | process-message, escalate | false | — |
-| `send-human-message` | ✅ Ativa | 126 | Frontend `src/lib/api.ts:238` via fetch | false | [[debitos-tecnicos]] #14 |
+| `send-human-message` | ✅ Ativa | 126 | [[frontend#Chamadas a edge functions (apenas 2 lugares)\|Frontend]] `src/lib/api.ts:238` via fetch | false | [[debitos-tecnicos]] #14 |
 | `escalate` | ✅ Ativa (interna) | 278 | process-message (via classifier) | false | — |
 | `ml-webhook` | ✅ Ativa (externa) | 502 | Mercado Livre webhook | false | — |
 | `ml-oauth` | ✅ Ativa (externa) | 276 | OAuth callback ML | false | — |
-| `process-ml-question` | ✅ Ativa | 328 | ml-webhook; N8N `workflow-ml-questions` | false | [[decisoes#ADR-006]] (pendente) |
-| `process-ml-message` | ✅ Ativa | 325 | N8N `workflow-ml-messages` | false | — |
+| `process-ml-question` | ✅ Ativa | 328 | ml-webhook; N8N [[n8n-workflows#ML Questions (g4JxNpC2sP9K8c71)\|workflow-ml-questions]] | false | [[decisoes#ADR-006]] (pendente) |
+| `process-ml-message` | ✅ Ativa | 325 | N8N [[n8n-workflows#ML Messages (sg2yU46R9EQq3a2v)\|workflow-ml-messages]] | false | — |
 | `sync-product-embedding` | ✅ Ativa (trigger) | 175 | trigger `trg_product_embedding_sync` via pg_net | false | [[decisoes#ADR-001]] |
 | `sync-base-product-embedding` | ✅ Ativa (trigger) | 114 | trigger `trg_base_product_embedding_sync` via pg_net | false | [[decisoes#ADR-001]] |
-| `process-correction-embedding` | ✅ Ativa (trigger) | 65 | trigger em response_corrections (inferido) | false | — |
+| `process-correction-embedding` | ✅ Ativa (trigger) | 65 | trigger em [[supabase-canggu#Correções semânticas (feature em andamento)\|response_corrections]] (inferido) | false | — |
 | `test-semantic-search` | 🔒 Manter com JWT | 28 | — (debug manual) | false → **true após B6** | [[decisoes#ADR-003]] |
-| `test-search` | 🗑️ **GHOST — deletar em B1** | ? | — (sem chamador) | false | [[auditorias/2026-04-22-forense#Achado-2]] |
+| `test-search` | 🗑️ **GHOST — deletar em B1** | ? | — (sem chamador) | false | [[auditorias/2026-04-22-forense#Achado 2 — Ghost function test-search\|Achado 2 (ghost test-search)]] |
 
 ## Classificação por público-alvo
 

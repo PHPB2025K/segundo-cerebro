@@ -101,11 +101,11 @@ Legenda: `[svc]` = usa service_role | `[noJWT]` = verify_jwt=false | `[CORS*]` =
 9. → consolidateMessages (agrega pending)
 10. → chama `/functions/v1/process-message` [svc]
 11. → `process-message:142` classifyIntent() via Claude Haiku
-12. → `process-message:181` buildContext() → embeddings.ts → searchProductsEnriched → OpenAI + RPC search_products_semantic em `base_products`
+12. → [[edge-functions#Tabela de referência|process-message]]:181 buildContext() → embeddings.ts → searchProductsEnriched → OpenAI + RPC search_products_semantic em `base_products`
 13. → `process-message:248` checkEscalation
 14. → [se não escala] generateResponse() via Claude Sonnet [silencio — sem catch interno]
 15. → INSERT messages sender=agent [svc]
-16. → send-whatsapp → Evolution sendText
+16. → [[edge-functions|send-whatsapp]] → Evolution sendText
 17. → Cliente
 
 **Hoje** (antes de ADR-007 executado): existe branch paralelo em N8N workflow `KE7YVXayl5ntjwQk` (17 nodes live) que implementa o mesmo fluxo. Ver [[n8n-workflows]].
@@ -129,7 +129,7 @@ Legenda: `[svc]` = usa service_role | `[noJWT]` = verify_jwt=false | `[CORS*]` =
 1. INSERT/UPDATE em `products` (ou `base_products`)
 2. → trigger `trg_product_embedding_sync` (ou `trg_base_product_embedding_sync`)
 3. → `notify_product_embedding()` (ou `notify_base_product_embedding()`) — SECURITY DEFINER
-4. → `pg_net.http_post` [svc HARDCODED — ADR-001] [noJWT] → `/functions/v1/sync-product-embedding` (ou `-base-product-embedding`)
+4. → `pg_net.http_post` [svc HARDCODED — ADR-001] [noJWT] → /functions/v1/[[edge-functions|sync-product-embedding]] (ou [[edge-functions|sync-base-product-embedding]])
 5. → sync-*-embedding recebe `{productId}` (ou `{baseProductId}`)
 6. → SELECT produto [svc]
 7. → OpenAI `text-embedding-3-small`

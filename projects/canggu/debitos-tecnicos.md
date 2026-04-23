@@ -75,7 +75,7 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 **Passos principais:**
 1. Redesenhar Health Check N8N (11 nodes originais → nova versão com Slack webhook)
 2. Cron job `SELECT count(*) FROM products WHERE embedding IS NULL AND created_at > now() - interval '7 days'` + alert Slack se >0
-3. ALTER TABLE messages ADD COLUMN needs_review boolean DEFAULT false
+3. ALTER TABLE [[supabase-canggu|messages]] ADD COLUMN needs_review boolean DEFAULT false
 4. webhook-whatsapp: ao falhar transcrição áudio → marcar needs_review=true + Slack alert
 5. Rota `/operations` no frontend com 3 widgets
 6. Runbooks em `docs/runbooks/on-alert-*.md` (5 runbooks curtos)
@@ -96,7 +96,7 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 2. Se falha final, process-message retorna success:false + N8N/webhook-whatsapp envia fallback textual ("Recebi sua mensagem! Tive um problema técnico, volto em instantes.")
 3. Query de detecção duplicatas: `SELECT whatsapp_message_id, count(*) FROM messages GROUP BY 1 HAVING count(*)>1`
 4. Migration: cleanup duplicatas + `CREATE UNIQUE INDEX CONCURRENTLY idx_messages_wa_unique ON messages(whatsapp_message_id) WHERE whatsapp_message_id IS NOT NULL`
-5. `webhook-whatsapp` e N8N node "Save Message" → `INSERT ... ON CONFLICT DO NOTHING`
+5. [[edge-functions|webhook-whatsapp]] e N8N node "Save Message" → `INSERT ... ON CONFLICT DO NOTHING`
 6. `send-human-message` retorna `{success:false, error:'evolution_send_failed'}` quando Evolution falha; frontend mostra toast
 
 **DoD:**
@@ -117,7 +117,7 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 3. Staging: duplicar project em feature branch, apontar Evolution de staging pra webhook-whatsapp → testes manuais
 4. Cutover produção: trocar Evolution webhook URL pra `/functions/v1/webhook-whatsapp`; manter N8N em "catch-fallback" 24h
 5. Desabilitar workflow N8N Principal após 24h sem issues
-6. [Se ADR-006 = portar]: editar `process-ml-question/index.ts` pra usar `searchProductsEnriched` em vez de `searchProducts`
+6. [Se ADR-006 = portar]: editar [[edge-functions|process-ml-question]]/index.ts pra usar `searchProductsEnriched` em vez de `searchProducts`
 7. Unificar `buildSearchText` em `_shared/embeddings.ts` (achado #13)
 
 **DoD:**

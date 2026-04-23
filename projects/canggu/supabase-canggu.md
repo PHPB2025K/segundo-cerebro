@@ -70,7 +70,7 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 - `marketplace_questions`, `marketplace_answers` — perguntas ML
 
 ### Health
-- `whatsapp_health_checks` (1.620 rows, 640 kB — maior tabela) — populada pelo workflow `DEjLkJcllQEmrcLF`
+- `whatsapp_health_checks` (1.620 rows, 640 kB — maior tabela) — populada pelo [[n8n-workflows#Health Check (DEjLkJcllQEmrcLF)|workflow DEjLkJcllQEmrcLF]]
 
 ### Correções semânticas (feature em andamento)
 - `response_corrections` — feedback loop para aprendizado (migration untracked `20260407000000`)
@@ -127,7 +127,7 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 
 ## Edge secrets (14)
 
-Ver [[edge-functions#secrets]] e [[decisoes#ADR-002]].
+Ver [[edge-functions#Secrets em uso]] e [[decisoes#ADR-002]].
 
 Críticos: `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`.
 ML: `ML_APP_ID`, `ML_CLIENT_SECRET`, `ML_REDIRECT_URI`.

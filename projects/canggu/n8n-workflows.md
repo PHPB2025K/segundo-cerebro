@@ -32,9 +32,9 @@ Cobertura live↔local: 100% por nome (zero workflows órfãos ou com drift de n
 ## Propósito de cada workflow
 
 ### Principal (KE7YVXayl5ntjwQk)
-Pipeline WhatsApp completo: webhook Evolution → parse → upsert customer/conversation → INSERT message → debounce 12s → consolidate → `/functions/v1/process-message` (com service_role Bearer hardcoded no node 12 — [[decisoes#ADR-001]]) → send WhatsApp response.
+Pipeline WhatsApp completo: webhook Evolution → parse → upsert customer/conversation → INSERT message → debounce 12s → consolidate → /functions/v1/[[edge-functions|process-message]] (com service_role Bearer hardcoded no node 12 — [[decisoes#ADR-001]]) → send WhatsApp response.
 
-**Status pós-ADR-007:** em depreciação. Evolution será redirecionada para a edge function `webhook-whatsapp` (canônico). Plano em [[debitos-tecnicos#B4]].
+**Status pós-ADR-007:** em depreciação. Evolution será redirecionada para a edge function [[edge-functions|webhook-whatsapp]] (canônico). Plano em [[debitos-tecnicos#B4]].
 
 ### Health Check (DEjLkJcllQEmrcLF)
 Schedule 15min. Verifica: Supabase auth, Ana responsividade, Evolution connection state, erros do principal <30min. Alerta via WhatsApp para número pessoal (5519993040768).
@@ -42,7 +42,7 @@ Schedule 15min. Verifica: Supabase auth, Ana responsividade, Evolution connectio
 **Drift:** 11 nodes local → 2 nodes live. Lógica SMTP de alerting removida no live sem commit. Em B2 será restaurado em nova versão com canal Slack ([[decisoes#ADR-005]]).
 
 ### ML Questions (g4JxNpC2sP9K8c71)
-Polling 2min. Puxa perguntas novas do Mercado Livre → chama `/functions/v1/process-ml-question` → posta resposta via ML API. Restaurado em 17/04 após fix de placeholders `YOUR_*` (ver DP-04 em [[decisoes]]).
+Polling 2min. Puxa perguntas novas do Mercado Livre → chama /functions/v1/[[edge-functions|process-ml-question]] → posta resposta via ML API. Restaurado em 17/04 após fix de placeholders `YOUR_*` (ver DP-04 em [[decisoes]]).
 
 ### ML Messages (sg2yU46R9EQq3a2v)
 Polling 1min. Processa mensagens do chat ML. Fonte canônica de credenciais OAuth ML.

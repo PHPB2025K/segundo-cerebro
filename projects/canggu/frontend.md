@@ -82,9 +82,9 @@ Nenhum `.rpc()` chamado do frontend.
 | Função | Método | Onde |
 |---|---|---|
 | `send-human-message` | fetch `POST /functions/v1/send-human-message` | `src/lib/api.ts:238` |
-| `sync-product-embedding` | `supabase.functions.invoke()` | `src/lib/api.ts:328` |
+| [[edge-functions\|sync-product-embedding]] | `supabase.functions.invoke()` | `src/lib/api.ts:328` |
 
-⚠️ Bug confirmado em [[debitos-tecnicos]] achado #14: `send-human-message` retorna `{success: true, sent: false}` quando Evolution falha — frontend não mostra toast de erro.
+⚠️ Bug confirmado em [[debitos-tecnicos]] achado #14: [[edge-functions|send-human-message]] retorna `{success: true, sent: false}` quando Evolution falha — frontend não mostra toast de erro.
 
 ## Qualidade
 

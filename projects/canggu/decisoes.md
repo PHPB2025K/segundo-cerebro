@@ -53,12 +53,12 @@ Check + padrões de credentials.
 ### DP-01
 **Data:** 06/04/2026
 **Decisão:** Pipeline vetorial: embedding pergunta → busca vetorial (pgvector) → SQL → contexto enriquecido.
-**Impacto atual:** arquitetura ainda vigente; ver [[supabase-canggu#Triggers-críticos]] e [[edge-functions]] (sync-*-embedding functions).
+**Impacto atual:** arquitetura ainda vigente; ver [[supabase-canggu#Triggers críticos]] e [[edge-functions]] (sync-*-embedding functions).
 
 ### DP-02
 **Data:** 06/04/2026
 **Decisão:** Bug envio WhatsApp humano→cliente CORRIGIDO (feature do dashboard Budamix Central).
-**Impacto atual:** [[edge-functions]] — `send-human-message`. Achado novo #14 na auditoria (retorna `success:true, sent:false` sob falha) é um refinamento desse caso, endereçado em [[debitos-tecnicos#B3]].
+**Impacto atual:** [[edge-functions#Tabela de referência]] — `send-human-message`. Achado novo #14 na auditoria (retorna `success:true, sent:false` sob falha) é um refinamento desse caso, endereçado em [[debitos-tecnicos#B3]].
 
 ### DP-03
 **Data:** 17/04/2026
@@ -74,12 +74,12 @@ Check + padrões de credentials.
 ### DP-05
 **Data:** 17/04/2026
 **Decisão:** Feedback loop ativo no WhatsApp — `search_corrections` RPC criada no Supabase, `process-message` integrado com as correções via `searchCorrections()` (threshold 0.85, bloco "CORREÇÕES APRENDIDAS" no prompt).
-**Impacto atual:** [[supabase-canggu#Functions-PL-pgSQL-críticas]] e feature em dirty working copy (working copy tem +237 LOC em `process-message`). Ver [[debitos-tecnicos#B5]] achado #21.
+**Impacto atual:** [[supabase-canggu#Functions PL/pgSQL críticas (schema public, 7 total)]] e feature em dirty working copy (working copy tem +237 LOC em `process-message`). Ver [[debitos-tecnicos#B5]] achado #21.
 
 ### DP-06
 **Data:** 17/04/2026
 **Decisão:** Trigger pg_net `trg_base_product_embedding_sync` criado — re-embedding automático de `base_products` para qualquer origem de UPDATE (não só UI do Budamix Central).
-**Impacto atual:** [[supabase-canggu#Triggers-críticos]]. A migration criadora (`20260417120000_auto_embed_trigger_base_products.sql`) está **UNTRACKED** no working copy — commit pendente em B5.
+**Impacto atual:** [[supabase-canggu#Triggers críticos]]. A migration criadora (`20260417120000_auto_embed_trigger_base_products.sql`) está **UNTRACKED** no working copy — commit pendente em B5.
 
 ### DP-07
 **Data:** 17/04/2026
@@ -90,7 +90,7 @@ Check + padrões de credentials.
 **Data:** 17/04/2026
 **Decisão:** N8N Credentials Opção A no workflow principal — `Process Message (AI)` usa credential httpHeaderAuth; 7 Code nodes + Send WhatsApp Response leem chaves de um único `Setup Credentials` node com guard clauses. SRK: 9→1 ocorrências, WAK: 2→1 no JSON.
 **Motivação:** evitar nova cascata como os 8 dias de downtime (DP-03). Guard clauses detectam placeholders acidentais em tempo de execução.
-**Impacto atual:** [[n8n-workflows#Padrão-de-credenciais-Setup-Credentials-Opção-A]] documenta o padrão completo. O workflow principal é depreciado em [[#ADR-007]] — padrão segue relevante para os demais workflows N8N ativos.
+**Impacto atual:** [[n8n-workflows#Padrão de credenciais (Setup Credentials, Opção A)]] documenta o padrão completo. O workflow principal é depreciado em [[#ADR-007]] — padrão segue relevante para os demais workflows N8N ativos.
 
 ### DP-09
 **Data:** 17/04/2026
@@ -199,7 +199,7 @@ A Fase 2 da auditoria classificou essas tabelas como "sem migration criadora" po
 **Regra adicionada para auditorias futuras:** ao auditar "objetos sem migration criadora", grep combinado por `CREATE TABLE <nome>` **E** `ALTER TABLE <nome>` — se só aparecer ALTER, é provável que a criação original veio fora do git (Lovable, dashboard manual, psql direto). Nesses casos, migration retroativa restaura a disciplina.
 
 #### Auditoria de escopo derivada
-Outras tabelas classificadas na Fase 2 como "sem migration criadora" podem estar no mesmo cenário. Antes de B6 executar, re-auditar aquela lista aplicando a regra acima — tarefa virou [[debitos-tecnicos#B6-passo-0]]. Fonte: seção "Objetos órfãos" em `~/audit-canggu-forensics/RAW/C_analysis/23_migrations_vs_state.md`.
+Outras tabelas classificadas na Fase 2 como "sem migration criadora" podem estar no mesmo cenário. Antes de B6 executar, re-auditar aquela lista aplicando a regra acima — tarefa virou [[debitos-tecnicos#B6 passo 0 (novo): Re-auditar "objetos sem migration criadora"]]. Fonte: seção "Objetos órfãos" em `~/audit-canggu-forensics/RAW/C_analysis/23_migrations_vs_state.md`.
 
 ### ADR-005
 **Título:** Canal de alerting do Health Check
@@ -212,7 +212,7 @@ Outras tabelas classificadas na Fase 2 como "sem migration criadora" podem estar
 ### ADR-006
 **Título:** Portar pipeline ML (`process-ml-question`) pra `searchProductsEnriched` em B4
 **Status:** ⏳ **Pendente** — Pedro decide antes de iniciar B4
-**Contexto:** Pipeline WhatsApp usa `searchProductsEnriched` (base_products phase1). Pipeline ML usa `searchProducts` legacy (products). Divergência de qualidade entre canais.
+**Contexto:** Pipeline WhatsApp usa `searchProductsEnriched` ([[supabase-canggu|base_products]]). Pipeline ML usa `searchProducts` legacy ([[supabase-canggu|products]]). Divergência de qualidade entre canais.
 **Decisão:** não tomada. Default se não decidir até início de B4 = **não portar** (adiar como dívida conhecida).
 **Implementação:** [[debitos-tecnicos#B4]] passo 6 (condicional).
 

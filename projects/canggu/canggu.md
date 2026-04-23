@@ -64,8 +64,8 @@ Refatoração viável em 6 blocos ao longo de 6–10 semanas.
 
 - Roadmap de refatoração: [[debitos-tecnicos#Blocos]]
 - Próxima ação imediata: [[perguntas-abertas#Pendentes]] + executar B1 passos 1–2
-- Risco mais crítico hoje: service_role JWT exposto em 3 arquivos tracked — ver [[decisoes#ADR-001]] e [[auditorias/2026-04-22-forense#Achado-1]]
-- Ghost function `test-search` deployed sem código no repo — ver [[auditorias/2026-04-22-forense#Achado-2]]
+- Risco mais crítico hoje: service_role JWT exposto em 3 arquivos tracked — ver [[decisoes#ADR-001]] e [[auditorias/2026-04-22-forense#Achado 1 — Service role JWT exposto]]
+- Ghost function `test-search` deployed sem código no repo — ver [[auditorias/2026-04-22-forense#Achado 2 — Ghost function test-search|Achado 2 (ghost test-search)]]
 
 ## Histórico pré-auditoria
 

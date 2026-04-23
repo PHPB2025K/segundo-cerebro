@@ -18,6 +18,7 @@ tags:
 | Prazo | Entrega | Status | Nota |
 |-------|---------|--------|------|
 | 22/04/2026 14:30 | **Reunião Semanal Amazon — Leonardo** | 🟢 HOJE | Presencial Escritório Pedreira-SP, convidado marketplace@gbimportadora.com |
+| **23/04/2026 manhã** | **Canggu — Retomar B1 (rotação service_role)** | 🔴 Primeira tarefa | Iniciado e pausado 22/04 ~21:30 por confusão conceitual. Tag defensiva `b1-pre-rotation-20260422-211653`. Plano completo em [[projects/canggu/perguntas-abertas#Execução em andamento (pausada)]]. JWT continua exposto em 3 arquivos + no transcript da sessão CC de ontem. |
 | 23/04/2026 14:30 | **Reunião Semanal Shopee — Lucas** | ⏳ Pendente | Presencial Escritório Pedreira-SP, mesmo convidado |
 | 24/04/2026 14:30 | **Reunião Semanal Mercado Livre — Yasmin** | ⏳ Pendente | Presencial Escritório Pedreira-SP, mesmo convidado |
 | **28/04/2026** | **Importação 2026 — confirmar caixa R$ 450k + overdraft R$ 400k @ ≤3% a.m.** | 🔴 BLOQUEIA L1 | Pré-requisito do Cenário E. Sem confirmação, L1 não dispara em 01/05. |

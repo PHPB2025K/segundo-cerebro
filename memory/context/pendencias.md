@@ -40,6 +40,7 @@ tags:
 
 ## 🟡 Importantes (não bloqueiam mas precisam de ação)
 
+- [22/04 ~21:45] [[projects/canggu|Canggu]] — **Backlog de 3 features pedidas para Ana** registrado em [[projects/canggu/backlog-features]]. F1 (humanização e não-repetição), F2 (multimodal/imagens), F3 (histórico completo após hiato). Priorização preliminar sugerida F3 → F1 → F2, mas decisão de encaixe no roadmap B1-B6 fica para sessão pós-B1. Cada feature traz paths concretos que toca + dependências técnicas + esforço S/M/L.
 - [19/04] ✅ ~~**Migração BidSpark-3 pendente em 5 grupos**~~ → **Fila fechada 22/04.** 5 grupos executados em 20-21/04 (Canequinhas 20+DEFERRED, Potes Redondos 5+DEFERRED, Kits Microfibra 3+DEFERRED, Canelada 10+DEFERRED, Jarra 12+DEFERRED). Total 50 EXECUTED + 24 DEFERRED. Próxima revisão D+7 em **27/04**.
 - [19/04] [[projects/amazon-ads-automation|Amazon Ads]] — **Investigação de listing Tampa Bambu** (delegada a **Leonardo** em 22/04 — focal point Amazon). 7 ASINs: B0F2GHQHRN, B0F2GKSHYW, B0F2GQNT81, B0F2GKZZ43, B0F2GM9HMW, B0FN4PGK4M, B0FN4PW4SS. Pergunta: por que buscas "bambu" específico geram clique mas zero venda? Confirmar com Pedro se já foi feita antes de re-delegar. Destrava reativação do Alcance + M2 pleno do grupo.
 - [22/04] [[projects/amazon-ads-automation|Amazon Ads]] — **Ticket 7 — Investigação listing Performance Canequinhas Café** (delegada a **Leonardo**). Performance 143 clicks / 1 pedido 30d (conv 0,7%). Mesma keyword EXACT vende 2× na Alcance, 0× na Perf. Hipótese: ASIN divergente ou listing degradado. Deadline 27/04. Bloqueia B2-P4/P5/B2-B4.

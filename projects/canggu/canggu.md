@@ -47,6 +47,7 @@ Refatoração viável em 6 blocos ao longo de 6–10 semanas.
 
 - [[debitos-tecnicos]] — matriz de 24 achados + 6 blocos priorizados
 - [[perguntas-abertas]] — decisões pendentes (ADR-004, ADR-006)
+- [[backlog-features]] — features da Ana pedidas, aguardam encaixe no roadmap
 - [[decisoes]] — ADRs cronológicos (decisões pré-auditoria + ADR-001 a ADR-007)
 - [[auditorias/2026-04-22-forense]] — relatório completo da auditoria
 - [[auditorias/2026-04-22-canggu-in-bc]] — auditoria anterior (resultado nulo)

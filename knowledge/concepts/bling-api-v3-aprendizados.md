@@ -136,6 +136,39 @@ Exemplo: YW1520RC clonado a partir de YW1050RC (mesma linha YW, categoria 110538
 
 ---
 
+## 9. CST 90 (ICMS sem fato gerador) + CST 55 (IPI suspenso) em transferência
+
+A partir de 24/04/2026, a NF de transferência Matriz→Filial da GB não destaca mais ICMS nem IPI. Fundamento:
+
+| Tributo | CST | BC/Valor | Fundamento |
+|---------|:---:|:--------:|------------|
+| ICMS | **90** | 0 / 0 | LC 87/1996 art. 12 §4º (redação LC 204/2023) — não ocorre fato gerador entre estabelecimentos de mesma titularidade. Convênio ICMS 109/2024 + Ajuste SINIEF 33/2024 |
+| IPI | **55** | 0 / 0 | RIPI/2010 (Decreto 7.212/2010) art. 9º III (Filial equiparada a industrial) + art. 43 X (suspensão na transferência) |
+
+**Configuração no Bling (painel web, não via API):**
+- Natureza de Operação → aba ICMS: CST 90, BC 0, Alíq 0%, Valor 0
+- Natureza de Operação → aba IPI: CST 55, Alíq 0%, Valor 0
+- Descrição da Natureza: "Transferência de Mercadoria - Estabelecimentos mesmo titular"
+
+**Impacto na API:** mesmo enviando campos `impostos.icms.*` no payload, o Bling ignora e pega tudo da Natureza (Regra Crítica n.2 deste documento). O rascunho vem com `baseIcms: None`, `valorIcms: None` em GET — é **normal em rascunho**; os valores só materializam na autorização SEFAZ.
+
+**Alerta contábil (Suellen 24/04/2026):** sem débito de ICMS na transferência → sem crédito na Filial. Na venda Filial→Simples (ICMS 18% interno SP), paga-se cheio sem compensar. Monitorar DFC antes de ajustar margem interna 5%.
+
+## 10. Origem do produto: 1 na Matriz, 2 na Filial
+
+Cadastro Bling — `tributacao.origem`:
+
+| Estabelecimento | Origem | Significado |
+|-----------------|:------:|-------------|
+| **Matriz** (58.151.616/0001-43) | **1** | Estrangeira — Importação direta |
+| **Filial** (58.151.616/0002-24) | **2** | Estrangeira — adquirida no mercado interno |
+
+**Ajuste em massa via API (24/04/2026):** 91 produtos da Matriz trocados de origem 2→1 via PUT /produtos/{id} loopado (GET full payload + alteração do campo + PUT). Rate limit 0,4s entre calls. Resultado: 91/91 sucessos, 0 falhas, 2m24s de execução.
+
+Dica: ao criar produto novo na Matriz (como `POST /produtos` para YW1520RC), já enviar `tributacao.origem: 1` no payload inicial — evita ajuste posterior.
+
+---
+
 ## Referências
 - Doc oficial: https://developer.bling.com.br/referencia
 - Skill detalhada: `~/.openclaw/workspace/shared/fisco/skills/bling-nfe/SKILL.md` (VPS)

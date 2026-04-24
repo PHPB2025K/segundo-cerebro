@@ -1,13 +1,15 @@
 ---
 title: "Estratégia Fiscal de Faturamento — GB Importadora"
 created: 2026-04-17
+updated: 2026-04-24
 type: reference
 status: active
 domain: importacao
-version: 2.0
+version: 2.1
 official_date: 2026-03-18
 vault_decision_date: 2026-03-29
 pdf_updated_at: 2026-04-17
+v2_1_update_date: 2026-04-24
 tags:
   - business/fiscal
   - business/importacao
@@ -19,16 +21,34 @@ tags:
 
 > Fonte da verdade para o modelo fiscal da GB. Toda emissão de NF, transferência entre estabelecimentos, distribuição entre CNPJs Simples, precificação interna e declaração contábil deve seguir o que está aqui.
 >
-> PDF oficial assinável: [estrategia-fiscal-gb-v2.0.pdf](estrategia-fiscal-gb-v2.0.pdf) (Manual de Procedimentos Fiscais v2.0, atualizado 17/04/2026 para refletir decisão de 2026-03-29 validada com Suellen/FOUR).
+> PDF oficial assinável: [estrategia-fiscal-gb-v2.0.pdf](estrategia-fiscal-gb-v2.0.pdf) (Manual de Procedimentos Fiscais v2.0, atualizado 17/04/2026).
+>
+> **v2.1 (24/04/2026):** Transferência Matriz→Filial passa a ser **sem destaque de ICMS** (LC 87/96 §4º + LC 204/2023 + Conv. ICMS 109/2024 + Ajuste SINIEF 33/2024) e **IPI suspenso** (art. 43 X RIPI/2010). TTD 409 continua válido apenas em B2B direto Matriz. Origem produtos Matriz = 1 (Importação direta). Orientação Suellen/FOUR por e-mail em 24/04/2026.
 
-## Regra central — Modelo 90/10
+## Regra central — Modelo 90/10 (v2.1)
 
-1. **Transferência Matriz→Filial = 90% fixo** (CFOP 6.152, interestadual SC→SP, mercadoria importada)
-2. **10% permanece retido contabilmente na Matriz (SC)** — usado para faturamento B2B com benefício TTD 409 (ICMS efetivo 2,6% na Fase 1 até 01/2029, depois 1,0%)
+1. **Transferência Matriz→Filial = 90% fixo** (CFOP 6.152, interestadual SC→SP, mercadoria importada) — **SEM destaque de ICMS** (CST 90, fora do fato gerador conforme LC 204/2023) e **IPI suspenso** (CST 55, art. 43 X RIPI/2010)
+2. **10% permanece retido contabilmente na Matriz (SC)** — usado para faturamento B2B direto com benefício TTD 409 (ICMS efetivo 2,6% na Fase 1 até 01/2029, depois 1,0%). **TTD 409 só aplica aqui** — não se aplica mais à transferência.
 3. **Estoque físico 100% vai para Pedreira-SP** — os 10% são contábeis, não físicos. Divergência contábil × físico na Matriz é risco declarado e aceito
 4. **Reserva B2B residual da Filial (~4%)** é dinâmica (% B2B últimos 3 meses) — se não houver demanda B2B, redistribui pros CNPJs Simples
 5. **Proporções dos CNPJs Simples** são dinâmicas (% de cada CNPJ nos últimos 3 meses de faturamento real)
-6. **Margem interna fixa 5%** — preço Filial→Simples = custo nacionalizado × 1,05
+6. **Margem interna fixa 5%** — preço Filial→Simples = custo nacionalizado × 1,05. **Alerta (24/04/2026):** sem crédito ICMS da transferência, Filial paga ICMS cheio (18% interno SP) na venda aos Simples. Monitorar DFC 60-90 dias e revisar margem se necessário.
+
+## Fundamento legal — v2.1
+
+| Tema | Dispositivo | O que diz |
+|------|-------------|-----------|
+| ICMS sem destaque na transferência | LC 87/1996 art. 12 §4º (redação LC 204/2023) | Transferência entre estabelecimentos de mesma titularidade NÃO configura fato gerador do ICMS |
+| Procedimento autorizado | Convênio ICMS 109/2024 + Ajuste SINIEF 33/2024 | Formaliza o tratamento uniforme na emissão de NF-e de transferência |
+| IPI suspenso | RIPI/2010 art. 9º III + art. 43 X (Decreto 7.212/2010) | Filial equiparada a industrial (comércio atacadista) + suspensão permitida na transferência matriz-filial |
+| TTD 409 (B2B Matriz) | TTD 125000001558420 / SC | Crédito presumido que reduz ICMS efetivo a 2,6% (Fase 1, até 01/2029) em B2B direto da Matriz |
+
+## Origem dos produtos (cadastro Bling)
+
+| Estabelecimento | Origem | Significado | Status cadastro |
+|-----------------|:------:|-------------|-----------------|
+| GB Matriz | **1** | Estrangeira — Importação direta | ✅ Corrigido em massa 24/04/2026 (91 produtos) |
+| GB Filial | **2** | Estrangeira — adquirida no mercado interno (veio da transferência Matriz) | A validar no cadastro Bling Filial |
 
 ## Estrutura societária
 
@@ -83,15 +103,19 @@ Quantidade retida Matriz  = Quantidade total × 0,10
 | **Preço interno** | **R$ 124,16** |
 | ICMS 18% (interna SP) | R$ 22,35 |
 
-## NFs emitidas — resumo
+## NFs emitidas — resumo (v2.1, pós 24/04/2026)
 
-| NF | Emitente | Destinatário | CFOP | ICMS | Quando |
-|---|---|---|---|---|---|
-| Transferência | GB Matriz (SC) | GB Filial (SP) | **6.152** | 4% destacado / 2,6% efetivo TTD 409 | A cada container nacionalizado |
-| B2B Matriz | GB Matriz (SC) | Cliente B2B | 6.102 | 4% destacado / TTD 409 | Sob demanda, dentro dos 10% retidos |
-| Venda interna Filial | GB Filial (SP) | GB Comércio / Trades / Broglio | **5.102** | 18% (interna SP) | Mensal, proporcional ao faturamento |
-| Venda interestadual Filial | GB Filial (SP) | Cliente B2B fora de SP | 6.102 | 4% (Res. Senado 13/2012 — importado) | Sob demanda |
-| Venda consumidor | 3 CNPJs Simples | Consumidor final | — | Simples Nacional | A cada pedido marketplace |
+| NF | Emitente | Destinatário | CFOP | ICMS | IPI | CST ICMS/IPI | Quando |
+|---|---|---|---|---|---|---|---|
+| Transferência | GB Matriz (SC) | GB Filial (SP) | **6.152** | **0%** (sem fato gerador, LC 204/2023) | **Suspenso** (RIPI art. 43 X) | **90 / 55** | A cada container nacionalizado |
+| B2B Matriz | GB Matriz (SC) | Cliente B2B | 6.102 | 4% destacado / 2,6% efetivo TTD 409 | Conforme NCM | (regime antigo mantido) | Sob demanda, dentro dos 10% retidos |
+| Venda interna Filial | GB Filial (SP) | GB Comércio / Trades / Broglio | **5.102** | 18% (interna SP) — **sem crédito de transferência** | Conforme NCM | 00 | Mensal, proporcional ao faturamento |
+| Venda interestadual Filial | GB Filial (SP) | Cliente B2B fora de SP | 6.102 | 4% (Res. Senado 13/2012 — importado) | Conforme NCM | 00 | Sob demanda |
+| Venda consumidor | 3 CNPJs Simples | Consumidor final | — | Simples Nacional | — | — | A cada pedido marketplace |
+
+### Informações Complementares padrão — Transferência (CFOP 6152)
+
+> Transferência interestadual de mercadoria entre estabelecimentos de mesma titularidade. Não ocorrência do fato gerador do ICMS, conforme art. 12, §4º, da LC nº 87/1996, com redação dada pela LC nº 204/2023. Sem destaque de ICMS próprio. Procedimento autorizado conforme Convênio ICMS nº 109/2024 e Ajuste SINIEF nº 33/2024. IPI suspenso conforme art. 43, X, do RIPI/2010 — Decreto nº 7.212/2010.
 
 ## Checklist operacional — a cada nova importação
 
@@ -116,6 +140,7 @@ Conforme Declaração de Responsabilidade (PDF v2.0, seção 9), Pedro assinou e
 3. Glosa de créditos de ICMS
 4. Autuações por inconsistências de estoque (10% Matriz contábil, 0 físico)
 5. Mudanças na legislação afetando TTD 409 ou Simples Nacional
+6. **(v2.1, 24/04/2026)** Ausência de crédito ICMS na Filial por conta da transferência sem destaque (LC 204/2023) — ICMS 18% pago cheio na venda Filial→Simples pode aumentar o custo fiscal efetivo. Risco calculado: antes a Filial recebia ~4% de crédito; agora zera. Monitorar 60-90 dias antes de revisar margem interna 5%.
 
 **Limite crítico:** estourar Simples Nacional (R$ 4,8M/ano) em qualquer CNPJ inviabiliza TODO o modelo. Headroom total = R$ 14,4M/ano (3 CNPJs × R$ 4,8M). O agente Fisco monitora isso (Módulo E).
 
@@ -126,6 +151,7 @@ Conforme Declaração de Responsabilidade (PDF v2.0, seção 9), Pedro assinou e
 | 2026-03-18 | PDF v2.0 inicial criado — modelo 100% |
 | 2026-03-29 | Decisão 90/10 validada com Suellen — registrada em [[openclaw/agents/kobe/shared/fisco/memory/context/decisions]] |
 | 2026-04-17 | PDF v2.0 atualizado para refletir modelo 90/10 (consistente com vault) |
+| **2026-04-24** | **v2.1 — Transferência sem destaque ICMS (LC 204/2023) + IPI suspenso (RIPI art. 43 X). Orientação Suellen/FOUR por e-mail. Origem produtos Matriz corrigida em massa para 1 em 91 produtos. TTD 409 restrito a B2B direto Matriz.** |
 
 ## Fontes vinculadas
 

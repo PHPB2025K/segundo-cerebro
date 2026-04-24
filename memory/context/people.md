@@ -60,6 +60,7 @@ tags:
 | Alexandre Novaes | Fornecedor | — | Incidente WhatsApp 25/03 — Kobe respondeu sem autorização |
 | Hostinger | Hosting | VPS Ubuntu 24.04 | IP 187.77.237.231 |
 | Cloudfy | SaaS | Evolution API WhatsApp | trottingtuna-n8n.cloudfy.live |
+| **Suellen** | **FOUR Contabilidade** | Contadora responsável — assina e valida modelo fiscal GB (90/10, TTD 409, v2.1 LC 204/2023 + RIPI art. 43 X). Orientações por e-mail. Referência: [[business/importacao/estrategia-fiscal-gb]] | — |
 
 ---
 

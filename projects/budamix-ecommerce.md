@@ -96,6 +96,7 @@ products, product_variants, product_images, product_videos, collections, carts, 
 
 ## Decisões-chave
 
+- [2026-04-23 noite] **Push dos 111 commits represados + SoonBadge + 4 rotas stub** — sessão longa em 3 blocos. Bloco 1: 5 fases (backup branch, 6 commits lógicos do WIP, `git merge -s ours origin/main` dos 2 "behind" redundantes, push direto `135570e..9ab138a` em 4s, descoberta de que webhook GitHub→Vercel NÃO EXISTE → deploy `vercel --prod --yes` manual `dpl_3Gaz38ULNsddwhawDsZCQvEKypov` em 32s). Bloco 2: remover slide 2 "potes-vidro" do HeroBanner (`a2c525b`, asset preservado). Bloco 3: SoonBadge + ComingSoon + 4 rotas stub `/faq` `/contato` `/trocas-e-devolucoes` `/termos` (`5a1837b`, deploy `dpl_HH6A5NtEbcWLwkke4KDNs2NwT6V3`). Estratégia `merge -s ours` validada para cenário "remoto é snapshot antigo preservado por cherry-pick". HEAD válido é suficiente para Vercel Hobby — `111/118` commits com author `.local` passaram. Bundle 708.21 kB (gzip 206.70). 3 deploys bem-sucedidos mesmo dia. Backup `backup-pre-push-20260423-200452` preservada. → [[memory/context/decisoes/2026-04|decisões]]
 - [2026-04-20 noite] **HeroBanner virou carousel real com 2 slides** — refactor em `src/components/home/HeroBanner.tsx`: array `SLIDES`, dots com ARIA e foco por teclado, auto-advance 7s (pausa em mouseenter, respeita `prefers-reduced-motion`). Slide 2: fundo Graphite `#132525`, imagem 3:2 (`w-[560px] h-[374px]`), título "Conservação que dura mais", CTA mantida. Imagem `/images/hero-potes-vidro.png` (1536×1024) veio do ChatGPT do Pedro com fundo graphite já embutido — Nano Banana descartado porque Gemini não gera PNG com alpha real (→ [[knowledge/concepts/nano-banana-no-alpha-channel]]). WIP em `main` local (não committed).
 - [2026-04-20 noite] **Admin ganhou drag-and-drop de imagens** — `@dnd-kit/core` + `@dnd-kit/sortable` + `@dnd-kit/utilities`. Novo `SortableImageItem` envolve thumb em `DndContext` + `SortableContext`. `handleImagesDragEnd` usa `arrayMove` + reatribuição de `sort_order`. Persistência já existia (`uploadProductMedia` fazia UPDATE). Acessível via pointer/touch/keyboard. Função legacy `moveImage` (setinhas) removida.
 - [2026-04-20 noite] **Admin — botão "Ver na loja"** na listagem: ícone `ExternalLink` abre `/produto/{slug}` em nova aba. + **fix ordering `product_images` no embed** da listagem (`.order('sort_order', { foreignTable: 'product_images' })`) — mesmo bug de 19/04 (`4ad4937`), agora resolvido também no admin.
@@ -132,12 +133,15 @@ products, product_variants, product_images, product_videos, collections, carts, 
 - [ ] 3 produtos placeholder precisam de dados reais
 - [ ] Testar redesign no mobile real (StickyAddToCart, fontes, AnnouncementBar)
 - [x] ~~Code-splitting: chunk JS 895KB~~ → ✅ 16/04 React.lazy em 12 rotas, 255KB→195KB gzip, commit `ebfebc1`
-- [ ] Push dos commits locais para `origin/main` — **~75 commits acumulados** (16/04 + 17/04 manhã + 17/04 noite), aguardando validação visual e confirmação do Pedro para disparar Vercel deploy
+- [x] ~~Push dos commits locais para `origin/main`~~ → ✅ **23/04 noite** — 113 commits totais em prod na sessão (111 do push inicial `9ab138a` + 2 ajustes `a2c525b` e `5a1837b`). Estratégia `merge -s ours` para os 2 "behind" redundantes; deploy manual obrigatório (webhook GitHub→Vercel inexiste)
 - [ ] Instalar Apps Script na planilha ESTOQUE — Pedro manual, setup em `docs/SETUP-STOCK-SYNC.md`
 - [ ] Testes manuais de pagamento MP real (suite completa em `AUDITORIA-CHECKOUT-MP.md` §5)
 - [ ] Migrar `ProductDetail.tsx` para usar `<QuantitySelector />` novo (Cart.tsx já usa)
 - [x] ~~Criar rotas `/loja`, `/sobre`, `/blog`~~ → ✅ 17/04 (commit `13f99ca`)
-- [ ] Criar rotas faltantes: `/faq`, `/contato`, `/trocas-e-devolucoes`, `/termos`
+- [x] ~~Criar rotas faltantes: `/faq`, `/contato`, `/trocas-e-devolucoes`, `/termos`~~ → ✅ **23/04 noite** — stubs `<ComingSoon>` com `noindex,nofollow` (`5a1837b`). Conteúdo real segue pendente (🟡 bloqueia Meta Ads)
+- [ ] **Escrever conteúdo real das 4 páginas stub** e migrar cada uma para página dedicada (remover `setNoIndex()`)
+- [ ] Integração GitHub→Vercel — hoje deploy é `vercel --prod --yes` manual. Conectar via Vercel Dashboard → Settings → Git (~15 min OAuth)
+- [ ] Newsletter form não persiste email — hoje é `console.log` + toast fake em `NewsletterSection.tsx`. Hook para supabase/Resend/ConvertKit pendente
 - [ ] Corrigir warning pré-existente `fetchPriority` vs `fetchpriority` no img do HeroBanner (cosmético)
 - [ ] Gerar sitemap em build pipeline (hoje é manual via `npm run generate:sitemap`)
 

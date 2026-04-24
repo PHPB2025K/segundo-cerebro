@@ -65,6 +65,11 @@ src/
 |---------|-------|------|
 | Pedro | pehpbroglio@gmail.com | admin |
 | Simone Peron | simoneperon@uol.com.br | viewer |
+| Yasmin Oscarlino | yasminoscarlino2@gmail.com | viewer |
+| Lucas G. Laurentino | lucasgabriellaurentino130220@gmail.com | viewer |
+| Leonardo | leonardoctparticular@gmail.com | viewer |
+
+> Criação via Supabase Admin API (service_role_key do `.env` da VPS). Role gravada em `app_metadata.role`. Yasmin e Lucas tinham conta desde 14/04 sem role — role `viewer` aplicada retroativamente em 23/04. Leonardo criado em 23/04.
 
 ## Decisões-chave
 

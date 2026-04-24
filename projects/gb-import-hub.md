@@ -74,9 +74,14 @@ Inclui: `extract-import-document`, `calculate-tax-references`, `fetch-vessel-pos
 - [ ] Edge Function `poll-terminal49` — não atualiza `vessel_tracking.pod_ata` quando chega milestone `vessel_arrived`, e não bumpa `last_api_call`. Milestones são gravados OK, só os campos derivados ficam stale. Cosmético mas pode confundir health checks/dashboards.
 - [ ] Atualizar skill `skills/gb-import-hub/SKILL.md` — comando `op item get --fields password` está errado para itens do tipo API Credential. Usar `--fields credential`.
 
+## Fornecedores
+
+- **Yiwu Lotus (apelido: Skiway)** — entidade contratual e bancária real. O campo `containers.supplier` está gravado como "Skiway" (nome comercial), mas Sales Contract e TTs vão para YIWU LOTUS IMP. AND EXP. CO., LIMITED. Dados bancários TT, fluxo 30/70, beneficiários oficial/não oficial e plataformas: [[memory/context/fornecedores/yiwu-lotus]].
+
 ## Notas relacionadas
 
 - [[business/importacao/_index]] — índice importação
 - [[automacoes/sops/atualizar-pagamento-importacao]] — SOP pagamentos
 - [[knowledge/concepts/credenciais-map]] — credenciais (7 items GB Import Hub)
 - [[memory/context/deadlines]] — prazos financeiros
+- [[memory/context/fornecedores/yiwu-lotus]] — Yiwu Lotus/Skiway (contatos, dados TT, containers pagos)

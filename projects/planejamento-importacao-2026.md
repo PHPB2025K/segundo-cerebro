@@ -1,9 +1,9 @@
 ---
 title: "Planejamento Importação 2026"
 created: 2026-04-20
-modified: 2026-04-22
+modified: 2026-04-25
 type: project
-status: concluido
+status: em-recalibracao
 path: "~/Documents/05-Projetos-Codigo/planejamento-importacao-2026/"
 tags:
   - project
@@ -12,7 +12,7 @@ tags:
   - essencialismo
 ---
 
-> **STATUS 22/04/2026:** Projeto CONCLUÍDO. Plano final em `data/04-plano.md`. Vencedor: **Cenário E** (3 lotes em 2 atos adaptativos, mai/26 → out/27). Próxima ação operacional: pedido L1 em **01/05/2026**.
+> **STATUS 25/04/2026:** Plano em RECALIBRAÇÃO. Pedro corrigiu o pressuposto do modelo: pipeline real é **lotes de 2 containers a cada ~40-45 dias com 3 lotes vivos simultâneos** (não lotes de 4). Cenário E (entregue 22/04 noite) fica como baseline preservado em `data/03-flywheel.xlsx` + `data/04-plano.md`. Refazer simulação Fase 3.1 com nova cadência. Ações pré-pedido até 30/04 permanecem válidas. Pedido L1 segue 01/05/2026.
 
 # Planejamento Importação 2026 — GB Importadora
 

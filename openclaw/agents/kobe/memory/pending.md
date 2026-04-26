@@ -10,7 +10,7 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-04-26 13:34 BRT — 1Password restaurado e GitHub backup/push normalizado_
+_Atualizado: 2026-04-26 15:34 BRT — Bling Matriz validado após rotação; Filial segue bloqueada_
 
 ## 🚨 URGENTE — Infraestrutura e saúde do sistema
 
@@ -23,7 +23,7 @@ _Atualizado: 2026-04-26 13:34 BRT — 1Password restaurado e GitHub backup/push 
 ### Saúde de crons recorrentes críticos
 - [ ] **Monitor Ponto Semanal** — 3 falhas consecutivas por timeout (300083ms cada). Bloqueado sem execução até revisão de escopo/timeout.
 - [ ] **RH Monitor Ponto Saída** — última falha relevante foi por fallback inválido/model not found. Cadeia de fallback precisa corrigir antes de próxima execução.
-- [ ] **Bling Token Refresh** — última execução verificada em 26/04 01:14 BRT retornou HEARTBEAT_FAIL com HTTP 503 em Matriz e Filial. Histórico recente também mantém Filial com HTTP 403 "empresa inativa". Precisa validação operacional do Bling/Filial e retry controlado.
+- [ ] **Bling Token Refresh / Filial** — 26/04 15:32 BRT: Client Secrets rotacionados no 1Password e scripts ajustados para ler secrets via 1Password em runtime. Matriz refresh OK, Supabase sync OK e API `/produtos?limite=1` HTTP 200. Filial refresh segue HTTP 403 `Empresa inativa`; token antigo já expirou e teste API retorna HTTP 401. Pendência agora é reativar/validar empresa Filial no painel Bling e reautorizar OAuth se necessário.
 
 ## 🔥 PRIORIDADE IMEDIATA — Financeiro
 - [ ] **Ads spend março** — levantar gasto real com publicidade por plataforma (ML, Amazon via integração, Shopee manual). Sem este dado, consolidado de março é inválido.
@@ -86,4 +86,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 ---
 
-_Última organização: 2026-04-26 13:40 BRT. Próxima revisão: Consolidação Profunda/Diária conforme cron._
+_Última organização: 2026-04-26 15:34 BRT. Próxima revisão: Consolidação Profunda/Diária conforme cron._

@@ -1,3 +1,13 @@
+---
+title: "TEMPLATE"
+created: 2026-04-26
+type: session
+agent: fisco
+status: active
+tags:
+ - agent/fisco
+ - session
+---
 # Operação Fiscal — YYYY-MM-DD
 
 ## Módulo(s) Executado(s)

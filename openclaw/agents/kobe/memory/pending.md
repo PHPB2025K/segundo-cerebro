@@ -1,3 +1,13 @@
+---
+title: "pending"
+created: 2026-04-26
+type: memory
+agent: kobe
+status: active
+tags:
+ - agent/kobe
+ - memory
+---
 # Pendências — Aguardando Input/Ação
 
 _Atualizado: 2026-04-26 13:34 BRT — 1Password restaurado e GitHub backup/push normalizado_

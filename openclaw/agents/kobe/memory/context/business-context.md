@@ -1,3 +1,13 @@
+---
+title: "business-context"
+created: 2026-04-26
+type: memory-context
+agent: kobe
+status: active
+tags:
+ - agent/kobe
+ - memory-context
+---
 # Contexto de Negócio — GB Importadora
 
 ## Vocabulário Técnico

@@ -1,3 +1,13 @@
+---
+title: "people"
+created: 2026-04-26
+type: memory-context
+agent: kobe
+status: active
+tags:
+ - agent/kobe
+ - memory-context
+---
 # Contatos Importantes
 
 ## Família / Sócios

@@ -1,3 +1,13 @@
+---
+title: "decisions"
+created: 2026-04-26
+type: memory-context
+agent: kobe
+status: active
+tags:
+ - agent/kobe
+ - memory-context
+---
 # Decisões Permanentes
 
 _Decisões do Pedro que não mudam. Consultar antes de sugerir algo que contradiga._

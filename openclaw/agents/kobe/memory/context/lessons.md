@@ -1,3 +1,13 @@
+---
+title: "lessons"
+created: 2026-04-26
+type: memory-context
+agent: kobe
+status: active
+tags:
+ - agent/kobe
+ - memory-context
+---
 # Lições Aprendidas
 
 _Erros e aprendizados. Consultar antes de repetir algo que já deu errado._

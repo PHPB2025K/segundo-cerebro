@@ -61,9 +61,17 @@ Chama API REST diretamente via curl. Útil quando MCP não está conectado.
 
 ## Requisitos
 
-- `GEMINI_API_KEY` com **billing ativo** (free tier tem quota 0 para imagem)
+- `GEMINI_API_KEY` com **billing ativo** (free tier tem quota 0 para imagem) — token gerenciado conforme [[knowledge/concepts/credenciais-map]]
 - `npm install --production` executado em `~/.claude/mcp-bins/nano-banana/`
 
 ## 6 tools disponíveis
 
 `generate_image`, `edit_image`, `continue_editing`, `get_last_image_info`, `configure_gemini_token`, `get_configuration_status`
+
+## Ver também
+
+- [[knowledge/concepts/credenciais-map]] — mapa de tokens/credenciais (Gemini, Anthropic, OpenAI)
+- [[knowledge/concepts/stack-tecnico]] — stack geral, MCPs ativos
+- [[knowledge/concepts/claude-code-skills-inventario]] — inventário de skills e MCPs do Claude Code
+- [[meta/mocs/MOC - Token Management]] — governança de tokens API/MCP
+- [[knowledge/concepts/nano-banana-no-alpha-channel]] — limitação conhecida do Gemini imagem (sem canal alfa)

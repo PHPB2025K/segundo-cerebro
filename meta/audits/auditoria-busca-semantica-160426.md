@@ -486,3 +486,12 @@ Pedro pergunta "briefing sobre X"
 
 *Auditoria concluída: 16/04/2026*
 *Zero alterações realizadas no vault, skills, memória ou qualquer arquivo (exceto este relatório)*
+
+## Ver também
+
+- [[CLAUDE.md]] — estratégia de busca híbrida (kg_search vs Grep) que esta auditoria fundamentou
+- [[memory/sessions/2026-04-16]] — sessão do dia da auditoria
+- [[knowledge/concepts/credenciais-map]] — credenciais MCP/API usadas pelo KG e search tools
+- [[knowledge/concepts/claude-code-skills-inventario]] — skills/MCPs ativos no Claude Code
+- [[knowledge/concepts/stack-tecnico]] — stack que sustenta busca + memória
+- [[meta/mocs/MOC - Token Management]] — gestão de tokens MCP/API

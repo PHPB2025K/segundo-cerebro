@@ -1,9 +1,25 @@
+---
+title: "Sessão — 2026-04-15 — Auditoria de Margens Shopee Budamix"
+created: 2026-04-15
+type: session
+status: done
+tags:
+  - memory
+  - session
+  - shopee
+  - budamix
+  - audit
+  - precificacao
+---
+
 # RELATÓRIO FINAL — AUDITORIA DE MARGENS SHOPEE BUDAMIX
 
 **Data:** 15/04/2026  
 **Auditor:** Claude Code  
 **Fonte de dados:** Planilha PRECIFICAÇÃO.xlsx (aba SHOPEE, 72 SKUs) + Shopee Open Platform API v2 (partner_id 2031533, 3 lojas)  
 **Período da promoção ativa:** 30/11/2025 — 20-21/04/2026
+
+> Contextualização: ver [[business/marketplaces/_index]], [[meta/mocs/MOC - Taxas e Precificacao]], [[memory/projects/shopee-porta-copos-analise]] e [[projects/budamix-central]]. Focal point Shopee na operação: Lucas — ver [[memory/context/people]].
 
 ---
 
@@ -342,3 +358,13 @@ Margem:        1,98 / 44,89 × 100 = 4,4%
 *Relatório gerado em 15/04/2026 — Auditoria consolidada Shopee Budamix*  
 *Fontes: PLANILHA DE ESTOQUE _ PRECIFICAÇÃO.xlsx (aba SHOPEE) + Shopee Open Platform API v2*  
 *Auditor: Claude Code*
+
+## Ver também
+
+- [[business/marketplaces/_index]] — visão geral marketplaces
+- [[meta/mocs/MOC - Taxas e Precificacao]] — MOC tributação e margens
+- [[memory/projects/shopee-porta-copos-analise]] — análise específica de SKU Shopee
+- [[projects/budamix-central]] — dashboard interno (live sales + SKU analytics)
+- [[memory/context/people]] — Lucas (focal Shopee)
+- [[memory/context/decisoes/2026-04]] — decisões de abril relacionadas a marketplaces
+- [[business/importacao/estrategia-fiscal-gb]] — modelo fiscal que impacta o preço final

@@ -6,7 +6,11 @@ agent: kobe
 status: active
 tags:
   - agent/kobe
+  - tool/gog
+  - integration/google
 ---
+
+> **Nota:** este README é da ferramenta **gogcli** que o Kobe usa pra interagir com Google Workspace (Gmail, Calendar, Drive, Sheets, Chat, Classroom). Conexões diretas: [[knowledge/concepts/gog-calendar-vps|gog Calendar via VPS]] · [[knowledge/concepts/google-calendar-config|Google Calendar config]] · [[openclaw/agents/kobe/IDENTITY|Kobe IDENTITY]] · [[openclaw/agents/kobe/AGENTS|Kobe AGENTS]] · [[knowledge/concepts/credenciais-map|credenciais map]].
 
 # 🧭 gogcli — Google in your terminal.
 
@@ -1721,3 +1725,14 @@ This project is inspired by Mario Zechner's original CLIs:
 - [gmcli](https://github.com/badlogic/gmcli)
 - [gccli](https://github.com/badlogic/gccli)
 - [gdcli](https://github.com/badlogic/gdcli)
+
+## Ver também (vault)
+
+- [[knowledge/concepts/gog-calendar-vps]] — uso do gog no VPS pelo Kobe (criar eventos no Calendar do Pedro)
+- [[knowledge/concepts/google-calendar-config]] — config Google Calendar
+- [[openclaw/agents/kobe/IDENTITY]] — identidade e responsabilidades do Kobe
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[openclaw/agents/kobe/SOUL]] — princípios e tom
+- [[knowledge/concepts/credenciais-map]] — credenciais Google Workspace e tokens
+- [[meta/mocs/MOC - Token Management]] — governança de tokens API/OAuth
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma OpenClaw

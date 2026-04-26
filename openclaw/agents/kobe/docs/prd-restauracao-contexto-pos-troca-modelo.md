@@ -100,3 +100,12 @@ O playbook é considerado bem-sucedido se:
 - revisar boot dos arquivos-base
 - reforçar GitHub como fonte de verdade
 - reforçar flush antes da compactação
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — identidade do Kobe (modelo atual, escopo, responsabilidades)
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis que persistem entre modelos
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[memory/context/decisoes/2026-04]] — decisões de migração GPT 5.4 / 5.1-mini
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[memory/context/business-context]] — visão geral da operação

@@ -242,3 +242,13 @@ Antes de executar:
 ---
 
 _PRD gerado em 30/03/2026 22:56 UTC pelo Kobe._
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — identidade do Kobe
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes (Trader, Spark, Builder, Fisco, RH)
+- [[openclaw/agents/kobe/SOUL]] — princípios e tom de comunicação
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma OpenClaw
+- [[projects/budamix-central]] — outro dashboard interno (referência arquitetural)
+- [[knowledge/concepts/stack-tecnico]] — stack VPS + Traefik + pm2
+- [[memory/context/business-context]] — visão geral da operação que esse painel deve refletir

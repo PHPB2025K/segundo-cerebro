@@ -86,10 +86,13 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 01/04/2026 | Consolidação Profunda quinzenal. 7 lições promovidas TÁTICA→ESTRATÉGICA. Bling OAuth restaurado (bug Filial corrigido). Curva ABC + preços + crons auditados BRT. |
 | 02/04/2026 | Request Review Amazon automatizado (455/552 OK + cron diário 20:30 BRT). Extrato DUIMP GB25008. cBenef diagnosticado e fechado. Budamix Central: bug unit_price Amazon corrigido (634 orders), Shopee sync restaurado, preços tempo real ≤2min (3 plataformas), 9 crons VPS, 6/6 módulos operacionais. |
 | 03/04/2026 | OpenClaw atualizado de 2026.3.13 → 2026.4.2 com backup triplo e CloudMax preservado. Extratos de março 5/5 validados. QA financeiro endurecido com 5 regras invioláveis. |
-| 04/04/2026 | Trader e Spark promovidos para GPT 5.4. Catálogo da Ana consolidado em CSV com 62 SKUs após limpeza de 9 SKUs sem preço. Budamix Central conferido com 87/87 embeddings OK. |
+| 04/04/2026 | Trader e Spark promovidos para GPT 5.4. Catálogo da Ana consolidado em CSV com 62 SKUs após limpeza de 9 SKUs sem preço. Canggu conferido com 87/87 embeddings OK. |
 | 06/04/2026 | Dia de operação fina: planilha Excel de composição de kits entregue no Telegram, arquivo `PRE PACKING LIST - GB25008.xlsx` localizado no Gmail e enviado, base Ana avançada para 25/61 links ML + 51/61 Shopee, seção Vibe incorporada no SOUL e HIGH aplicado como default persistido nos agentes/chats novos. |
 | 07/04/2026 | PCM001 lançado em Mercado Livre, 3 lojas Shopee e Amazon BR com submission aceita e ASIN pendente. Playbook de restauração de contexto pós-troca de modelo reforçado. Kit de segundo cérebro avaliado como sólido para Claude Code local e ainda incompleto para a camada OpenClaw/VPS. |
 | 08/04/2026 | Dia silencioso de operação nova, com consolidação de memória, limpeza real do pending e atualização da skill `shopee-fees-rules` com clarificações de abril/2026 para sustentar pricing e análise de margem Shopee. |
+| 15/04/2026 | Consolidação profunda + diária alinhou MEMORY principal e workspaces de Trader, Spark e Builder ao estado real de abril, com limpeza conservadora do pending e backlog estagnado explícito. |
+| 17/04/2026 | Consolidação diária silenciosa preservou o estado real do sistema, limpou o pending principal com corte conservador de itens estagnados e registrou explicitamente a ausência de atividade nova de Trader, Spark e Builder. |
+| 25/04/2026 | Pedro formalizou diretriz de migração total do time e crons para GPT-5.5 via ChatGPT Pro, com backup, validação completa e rollback obrigatório em caso de falha. Lição registrada: não inferir conteúdo de áudio falho nem afirmar configuração/incidente sem validação real. |
 
 ---
 

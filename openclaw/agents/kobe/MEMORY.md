@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-04-09 23:30 BRT (Consolidação Diária). Não duplica conteúdo — aponta pra onde está cada coisa._
+_Último update: 2026-04-25 23:30 BRT (Consolidação Diária). Não duplica conteúdo — aponta pra onde está cada coisa._
 
 ---
 
@@ -121,7 +121,7 @@ skills/
 ## Agentes
 
 | Agente | Especialidade | Workspace | Status |
-|--------|--------------|-----------|--------|
+|---|---|---|---|
 | **main (Kobe)** | Orquestração, análise, memória | ~/.openclaw/workspace | ✅ L3 Estratégico |
 | **Trader** | Marketplace — ML, Shopee, Amazon | shared/trader | ✅ Operacional |
 | **Spark** | ADS — ML, Amazon, Meta | shared/spark | ✅ Operacional |
@@ -129,40 +129,51 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (09/04/2026 23:30 BRT — Consolidação Diária)
+## Status do Sistema (25/04/2026 23:30 BRT — Consolidação Diária)
 
 ### 🚨 Crítico
-- **Fechamento março continua aberto:** faltam ads spend, consolidado novo e mapeamento semanal do DRE.
-- **Validação ponta a ponta de zero Anthropic segue pendente:** a migração/limpeza avançou, mas a checagem final ainda está aberta no pending.
-- **Links Amazon da base Ana seguem em aberto:** continuam como prioridade crítica do catálogo.
+- **Migração GPT-5.5 formalizada por Pedro:** agora é prioridade de infraestrutura, não backlog. Exige backup, autenticação Codex CLI, provider `openai-via-codex`, migração de todos os agentes/crons, validação completa e rollback se qualquer etapa falhar.
+- **GitHub backup/push do workspace segue bloqueado por autenticação:** commit local pode funcionar, mas push remoto continua degradado até corrigir credencial.
+- **Google `gog` degradado:** Sheets, Calendar e Gmail seguem com falhas de autenticação/token, afetando sync-costs, briefing e inbox cleanup.
+- **Fechamento março continua aberto:** seguem pendentes ads spend, consolidado novo e mapeamento semanal do DRE.
 
 ### ⚠️ Importante
-- **Claude Contingency Guard** e **RH Monitor Ponto Saída** permanecem como os dois alertas técnicos reais mais relevantes.
-- **Bling Token Refresh** continua com falha operacional da Filial e precisa validação real no Bling.
-- **PCM001** continua dependendo de ASIN, peso final embalado, foto 9 e custos refinados para fechar o ciclo.
+- **Monitor Ponto Semanal** continua degradado por timeout.
+- **RH Monitor Ponto Saída** precisa correção de fallback/modelo.
+- **Bling Token Refresh** continua exigindo validação operacional da Filial.
+- **Links Amazon da base Ana** e pendências finais do PCM001 seguem abertas.
 
 ### ✅ Operacional
-- O dia foi majoritariamente silencioso em execução nova dos agentes.
-- Consolidação do dia reafirmou ausência de atividade operacional nova de Trader, Spark e Builder.
-- Não houve job novo do Builder, nem nova sessão autônoma relevante dos agentes especializados.
+- O dia 25/04 teve manutenção noturna, criação da sessão diária e consolidação da diretriz GPT-5.5.
+- Não houve atividade operacional relevante nova de Trader, Spark ou Builder no recorte do dia.
+- Não houve job novo do Builder nem `RESULT.md` novo para consolidar em 25/04.
+- `pending.md` principal foi relido integralmente e limpo: itens concluídos foram removidos, e a migração GPT-5.5 foi reposicionada como prioridade atual.
+- Decisão GPT-5.5 e lição sobre não inferir áudio falho estão registradas nos arquivos core de memória.
 
-## Qualidade da Memória (Consolidação Diária 09/04)
-- **sessions/2026-04-09.md:** agora registra explicitamente a manutenção silenciosa do dia e a ausência de atividade nova dos agentes.
-- **pending.md:** mantido fiel ao estado real, com timestamp novo e sem reabrir item já resolvido artificialmente.
-- **shared/trader, shared/spark e shared/builder:** receberam sessões de 09/04 e pending atualizado para refletir dia sem operação nova.
-- **decisions.md / lessons.md:** sem nova decisão permanente ou lição crítica adicional no dia.
-- **feedbacks:** sem novo registro relevante do Pedro no dia.
+## Qualidade da Memória (Consolidação Diária 25/04)
+- **sessions/2026-04-25.md:** registra manutenção noturna, diretriz GPT-5.5, pendências abertas e consolidação diária final.
+- **pending.md:** relido por completo, limpo de itens concluídos e corrigido para manter GPT-5.5 em prioridade imediata.
+- **decisions.md:** decisão de migração total para GPT-5.5 já registrada com condição de rollback.
+- **lessons.md:** lição tática registrada para não inferir conteúdo de áudio falho nem afirmar incidente/configuração sem validação real.
+- **shared/trader, shared/spark e shared/builder:** sessões de 25/04 criadas explicitamente e pendings revalidados com timestamp novo.
+- **feedbacks:** sem novo feedback formal a registrar em `memory/feedback/`.
 
 ## Timeline Recente
-- **2026-04-04:** Trader e Spark promovidos para GPT 5.4. Catálogo da Ana consolidado em CSV com 62 SKUs. Budamix Central conferido com 87/87 embeddings OK.
+- **2026-04-25:** Pedro formalizou a diretriz de migração total para GPT-5.5 via ChatGPT Pro, com guardrails de backup, validação e rollback. Consolidação diária limpou o pending, reposicionou GPT-5.5 como prioridade atual e registrou ausência de atividade nova de Trader, Spark e Builder.
+- **2026-04-23:** Consolidação diária silenciosa com revalidação integral do pending principal, registro explícito de ausência de atividade nova dos agentes e manutenção fiel do estado operacional do sistema.
+- **2026-04-20:** Consolidação diária silenciosa com revalidação integral do pending principal, registro explícito de ausência de atividade nova dos agentes e manutenção do índice central sem mudanças estruturais artificiais.
+- **2026-04-17:** Consolidação diária silenciosa com limpeza conservadora do pending principal, registro explícito de ausência de atividade nova dos agentes e manutenção do índice central sem mudanças estruturais artificiais.
+- **2026-04-15:** Consolidação profunda quinzenal seguida de consolidação diária silenciosa. Pending principal foi limpo de forma conservadora, com itens antigos sem movimentação migrados para backlog estagnado. Trader, Spark e Builder fecharam o dia sem atividade nova e com sessões explícitas registradas.
+- **2026-04-04:** Trader e Spark promovidos para GPT 5.4. Catálogo da Ana consolidado em CSV com 62 SKUs. Canggu conferido com 87/87 embeddings OK.
 - **2026-04-06:** Planilha Excel de composição de kits entregue, arquivo `PRE PACKING LIST - GB25008.xlsx` recuperado do Gmail, base Ana avançada, seção Vibe incorporada ao SOUL e HIGH aplicado como default persistido para agentes/chats novos.
 - **2026-04-07:** PCM001 lançado no Mercado Livre, nas 3 lojas Shopee e na Amazon BR com submission aceita e ASIN pendente. Playbook de restauração de contexto pós-troca de modelo reforçado. Kit de segundo cérebro avaliado como sólido para Claude Code local e incompleto para a camada OpenClaw/VPS.
 - **2026-04-08:** Dia de baixa atividade operacional nova. Pending foi limpo de itens resolvidos já marcados, a skill `shopee-fees-rules` recebeu clarificações de abril/2026, e os alertas técnicos reais foram mantidos enxutos.
 - **2026-04-09:** Dia de manutenção silenciosa. Sem execução nova relevante de Trader, Spark ou Builder. A consolidação reforçou o estado real das pendências e preservou a memória sem criar falsos avanços.
+- **2026-04-14:** Nova manutenção silenciosa consolidada, com revalidação do pending principal, confirmação de ausência de atividade nova dos agentes especializados e permanência do bloqueio de autenticação GitHub para push/backup.
 
 ---
 
-_Próximas ações: (1) fechar março com ads + consolidado + DRE semanal, (2) validar zero Anthropic de ponta a ponta, (3) fechar links Amazon da base Ana, (4) destravar os pendentes finais do PCM001._
+_Próximas ações: (1) executar migração GPT-5.5 com guardrails, (2) normalizar auth do GitHub e `gog`, (3) fechar março com ads + consolidado + DRE semanal, (4) fechar links Amazon da base Ana, (5) fechar pendentes finais do PCM001._
 
 ---
 ## Contexto

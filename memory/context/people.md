@@ -27,11 +27,11 @@ tags:
 | Franciele Carolina de Souza Aguiar (Fran) | Operação | Ponto Certo |
 | Geziele Batista da Silva | Operação | Ponto Certo |
 | Guilherme Higashi | Operação | Ponto Certo |
-| Leonardo | **Focal point Amazon** (operação) — role confirmada 22/04 | Ponto Certo (presumido) |
-| Lucas Gabriel Laurentino | **Focal point Shopee** (operação) — role confirmada 22/04 via reuniões semanais | Ponto Certo |
+| Leonardo | **Focal point Amazon** (operação) — role confirmada 22/04 | Ponto Certo (presumido) + Budamix Central viewer (acesso criado 25/04, email `leonardoctparticular@gmail.com`) |
+| Lucas Gabriel Laurentino | **Focal point Shopee** (operação) — role confirmada 22/04 via reuniões semanais | Ponto Certo + Budamix Central viewer (`lucasgabriellaurentino130220@gmail.com`) |
 | Mateus Eduardo Lisboa Santos | Operação | Ponto Certo |
 | Sandra Peron | Operação | Ponto Certo |
-| Yasmin Oscarlino | **Focal point Mercado Livre** (operação) — role confirmada 22/04 via reuniões semanais | Ponto Certo |
+| Yasmin Oscarlino | **Focal point Mercado Livre** (operação) — role confirmada 22/04 via reuniões semanais | Ponto Certo + Budamix Central viewer (`yasminoscarlino2@gmail.com`) |
 
 > Detalhes: sistema [[automacoes/sops/resetar-senha-funcionario|Ponto Certo]] (Supabase `dgldsmhbeosjgfrbegyv`)
 

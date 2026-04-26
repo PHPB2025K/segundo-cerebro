@@ -1,0 +1,70 @@
+{
+  "_comment": "DRAFT — NF de Transferência Matriz (SC) → Filial (SP). REGIME FISCAL NOVO (pós 2026-04-24): sem destaque de ICMS (LC 204/2023) + IPI suspenso (RIPI art. 43 X). NÃO EMITIR sem validação do Pedro/Suellen.",
+  "_updated": "2026-04-24",
+  "_reference_old_regime": "NF #000649 (04/03/2026) — regime antigo com ICMS 4% / TTD 409. Não usar como referência pra novos payloads.",
+  "_cfop": "6152 = Transferência de mercadoria adquirida ou recebida de terceiros (interestadual)",
+  "_natureza_operacao_id": 15107242313,
+  "_natureza_operacao_nome": "Transferência de Mercadoria - Estabelecimentos mesmo titular",
+  "_contato_filial_id": 17300144824,
+
+  "tipo": 1,
+  "naturezaOperacao": {
+    "id": 15107242313
+  },
+  "contato": {
+    "id": 17300144824,
+    "_nome": "GB IMPORTADORA E COMERCIO LTDA",
+    "_cnpj": "58.151.616/0002-24",
+    "_ie": "519129848113",
+    "_uf": "SP"
+  },
+  "dataOperacao": "YYYY-MM-DD HH:MM:SS",
+  "serie": 1,
+  "loja": {
+    "id": 0
+  },
+  "transporte": {
+    "fretePorConta": 1,
+    "transportador": {
+      "_comment": "QualiLog (container) ou Rodonaves — depende do embarque",
+      "nome": "QUALILOG TRANSPORTES LTDA",
+      "numeroDocumento": "20822118000102"
+    },
+    "volumes": [
+      {
+        "_comment": "quantidade = total de CX transferidas (90% do lote). pesoBruto e pesoLiquido = rateio do peso total por valor, OU somatória dos pesos unitários do product-packaging.json.",
+        "quantidade": 1548,
+        "especie": "CAIXA",
+        "pesoBruto": 18540.00,
+        "pesoLiquido": 17358.00
+      }
+    ]
+  },
+  "itens": [
+    {
+      "_comment": "Exemplo — replicar para cada SKU. NÃO enviar bloco 'impostos' nem 'cfop' — Bling pega da Natureza de Operação (CST 90 ICMS + CST 55 IPI configurados no painel).",
+      "produto": {"id": 16403982984},
+      "codigo": "IMB501C",
+      "descricao": "Conjunto de 5 Potes, Tampa Cinza",
+      "unidade": "CX",
+      "quantidade": 334,
+      "valor": 64.42,
+      "tipo": "P",
+      "pesoBruto": 14.54,
+      "pesoLiquido": 13.62,
+      "classificacaoFiscal": "70134900",
+      "origem": 1
+    }
+  ],
+  "informacoesAdicionais": "Transferência interestadual de mercadoria entre estabelecimentos de mesma titularidade. Não ocorrência do fato gerador do ICMS, conforme art. 12, §4º, da LC nº 87/1996, com redação dada pela LC nº 204/2023. Sem destaque de ICMS próprio. Procedimento autorizado conforme Convênio ICMS nº 109/2024 e Ajuste SINIEF nº 33/2024. IPI suspenso conforme art. 43, X, do RIPI/2010 — Decreto nº 7.212/2010. DI/DUIMP: [preencher]. Container: [preencher]. NF de entrada: [preencher].",
+  "_notas_implementacao": {
+    "regime_fiscal": "Transferência SEM fato gerador de ICMS (LC 204/2023). Destaque ICMS zero: CST 90 + base 0 + aliq 0 + valor 0. IPI suspenso: CST 55 + aliq 0 + valor 0.",
+    "origem_produto": "Cadastro Matriz deve ter origem=1 (Importação direta). Corrigido em massa em 24/04/2026 (91 produtos). Filial deve ter origem=2.",
+    "campos_nao_enviar": "NÃO enviar 'cfop' no item nem bloco 'impostos.icms/ipi/pis/cofins' — Bling preenche via Natureza de Operação (ID 15107242313).",
+    "valor_item": "Preço de CUSTO nacionalizado da DI (cost_price do Supabase fulfillment_inventory ou planilha). Sem margem — margem 5% só entra em NF venda interna (Módulo C).",
+    "pesos": "Ideal: usar product-packaging.json com pesos unitários por SKU. Fallback: rateio proporcional ao valor do item (ratio kg/R$ da DANFE de entrada).",
+    "transportadora": "QualiLog Transportes LTDA (CNPJ 20.822.118/0001-02) é a padrão dos containers GB. Rodonaves pra outros embarques.",
+    "fluxo_emissao": "1) POST /nfe cria rascunho (situacao=1). 2) GET valida CST 90/55 vieram da Natureza. 3) Pedro aprova no painel Bling. 4) POST /nfe/{id}/enviar transmite SEFAZ. 5) Registrar chave + protocolo em nfe-log.md.",
+    "regra_inviolavel": "NUNCA chamar /nfe/{id}/enviar sem aprovação explícita do Pedro após validação visual no painel Bling. Rascunho é seguro (deletável). Emissão é irreversível."
+  }
+}

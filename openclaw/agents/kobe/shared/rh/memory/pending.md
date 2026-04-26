@@ -1,14 +1,4 @@
----
-title: "pending"
-created: 2026-04-14
-type: agent
-agent: kobe
-status: active
-tags:
-  - agent/kobe
----
-
-# Pendências — Agente [[openclaw/agents/rh/IDENTITY|RH]]
+# Pendências — Agente [[agents/rh/IDENTITY|RH]]
 
 ## ✅ Resolvido pelo Pedro
 1. [x] **Supabase do Ponto Certo** — Configurado em config/ponto-certo.json (status 200)

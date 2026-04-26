@@ -1,14 +1,4 @@
----
-title: "pending"
-created: 2026-04-14
-type: agent
-agent: kobe
-status: active
-tags:
-  - agent/kobe
----
-
-# Pendências — [[openclaw/agents/fisco/IDENTITY|Fisco]]
+# Pendências — [[agents/fisco/IDENTITY|Fisco]]
 
 _Atualizado: 2026-04-01_
 

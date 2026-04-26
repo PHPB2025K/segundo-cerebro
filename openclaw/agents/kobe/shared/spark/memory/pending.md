@@ -1,27 +1,33 @@
----
-title: "pending"
-created: 2026-04-14
-type: agent
-agent: kobe
-status: active
-tags:
-  - agent/kobe
----
-
 # Pendências — Spark
 
-_Atualizado: 2026-04-09 23:30 BRT_
+_Atualizado: 2026-04-06_
 
-## Sem pendência operacional nova
-- Nenhuma campanha ativa nova.
-- Nenhuma métrica crítica nova para escalonamento.
-- Nenhuma ação autônoma aberta no dia.
+## 🔴 Prioridade Alta
 
-## Em espera
-- [ ] **Spark Ads Fase 1** — aguarda repriorização prática depois da estabilização do Budamix e das frentes mais urgentes do Kobe.
-- [ ] **Repo `spark-ads` no GitHub** — ainda não aberto.
-- [ ] **Mapeamento de Ads Shopee** — segue como oportunidade futura, sem movimentação recente.
+### Google Ads — Integração
+- [ ] **Pedro solicitar Developer Token** — sem isso, nenhuma operação Google Ads via API
+- [ ] Configurar OAuth 2.0 (Client ID, Secret, Refresh Token)
+- [ ] Armazenar credenciais no 1Password (vault OpenClaw)
 
-## Backlog Estagnado
-- [ ] **Integração Google Ads** — Developer Token ainda não solicitado.
-- [ ] **Playbook de campanhas reais da GB** — depende de operação prática do Spark em campanhas vivas.
+### Meta Ads — Token
+- [ ] **Renovar token antes de ~2026-05-18** — cron agendado, verificar se está funcional
+
+## 🟡 Prioridade Média
+
+### Meta Ads — Mapeamento
+- [ ] Mapear campanhas das contas Budamix, Broglio Brinquedos e Trades Up
+- [ ] Documentar histórico de performance quando disponível
+- [ ] Identificar quais campanhas podem ser reativadas primeiro
+
+### Bidspark — Webapp
+- [ ] Pedro aprovar plano do webapp (Supabase + GitHub + Next.js)
+- [ ] Pedro criar projeto Supabase "spark-ads"
+
+## 🟢 Backlog
+
+### Quando campanhas reativarem
+- [ ] Configurar monitoramento contínuo (anomaly detection)
+- [ ] Implementar regras de escala automática (budget optimizer)
+- [ ] Estabelecer benchmarks de CPA/ROAS por produto/categoria
+- [ ] Criar dashboard de performance (demanda para Builder via Kobe)
+- [ ] Análise cross-platform quando Google Ads estiver integrado

@@ -1,14 +1,3 @@
----
-title: "Sessão Kobe — 2026-04-02-budamix-central-report"
-created: 2026-04-26
-type: session
-agent: kobe
-status: done
-tags:
-  - agent/kobe
-  - session
-  - memory
----
 # Budamix Central — Relatório de Sessão 02/04/2026
 
 ## 1. Correções de Dados

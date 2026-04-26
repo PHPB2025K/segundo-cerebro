@@ -1,26 +1,44 @@
----
-title: "pending"
-created: 2026-04-14
-type: agent
-agent: kobe
-status: active
-tags:
-  - agent/kobe
----
-
 # Pendências — Builder
 
-_Atualizado: 2026-04-09 23:30 BRT_
+_Atualizado: 2026-04-06_
 
-## Sem pendência operacional nova
-- Nenhum job novo concluído.
-- Nenhum job novo falho.
-- Nenhum briefing novo despachado no dia.
+## 🔴 Prioridade Alta
 
-## Em espera
-- [ ] **Kit Segundo Cérebro — módulo VPS/OpenClaw** — ainda não virou briefing de implementação.
-- [ ] **Spark Ads Fase 1** — depende de repriorização do Kobe/Pedro.
-- [ ] **Limpezas estruturais futuras em Budamix Central** — seguem fora da fila imediata desta consolidação.
+### Bidspark — Segurança
+- [ ] **Remover credenciais do CLAUDE.md** — Client ID + Secret em plain text no Amazon Ads. Pedro precisa remover urgente
+- [ ] **Trocar ambiente para produção** — `AMAZON_ADS_ENVIRONMENT=production` no `.env` antes de ativar otimizações reais
 
-## Backlog Estagnado
-- [ ] **Padronização de novos briefings complexos** — depende de novas frentes Builder.
+### Bidspark — Testes
+- [ ] **Suite mínima de testes** — zero testes atualmente. Implementar testes nos caminhos que mexem com dinheiro (bids, budgets, guardrails)
+
+## 🟡 Prioridade Média
+
+### Atlas Finance — Relatórios
+- [ ] Relatório de fluxo de caixa — quebrado, Pedro precisa
+- [ ] DRE (Demonstração de Resultado) — quebrado
+- [ ] Balanço — quebrado
+- [ ] Retomar quando Pedro priorizar
+
+### SimulImport
+- [ ] Testes extensivos
+- [ ] Melhorias de UX
+- [ ] Production ready para primeiros test users
+
+### Infra
+- [ ] Nginx — instalar quando necessário para reverse proxy no VPS
+
+### Execução técnica
+- [ ] Em automações longas via gateway, usar scripts curtos gravados por arquivo. Evitar heredocs grandes que disparam `obfuscation-detected`
+
+## 🟢 Backlog
+
+### Bidspark — Evolução
+- [ ] Validar eficácia com dados reais (Amazon Ads) antes de abrir pra test users
+- [ ] ML Ads automation — completar desenvolvimento
+
+### Canguu
+- [ ] Retomar desenvolvimento quando Pedro abrir janela
+- [ ] Definir stack do módulo de atendimento
+
+### Sistemas Internos
+- [ ] Revisar repos "a classificar" (gb-link-hub, leadflow-crm-sync, morning-brief, etc.)

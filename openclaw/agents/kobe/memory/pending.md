@@ -96,3 +96,5 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 ---
 
 _Última organização: 2026-04-27 02:00 BRT. Próxima revisão: Consolidação Profunda/Diária conforme cron._
+
+- [ ] Futuro — Budamix Blog: ativar postagem automática no Pinterest via Pinterest API/OAuth quando o padrão de artigos e imagens estiver validado. Decisão 2026-04-27: por enquanto pins ficam apenas como assets no Admin.

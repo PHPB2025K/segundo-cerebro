@@ -99,3 +99,13 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 ---
 
 _Última organização: 2026-04-27 02:00 BRT. Próxima revisão: Consolidação Profunda/Diária conforme cron._
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/bidspark-multiagente-completo]] — referência canônica detectada no conteúdo
+- [[projects/canggu/canggu]] — referência canônica detectada no conteúdo

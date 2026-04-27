@@ -42,7 +42,6 @@ _Atualizado: 2026-04-27 07:55 BRT — push Budamix Ecommerce destravado; estagna
 
 ## 🔥 PRIORIDADE IMEDIATA — Budamix E-commerce / Blog
 - [ ] **Supabase Budamix Ecommerce REST keys** — anon/service role keys salvas no 1Password retornaram 401 via REST; corrigir/rotacionar antes de workflows N8N dependerem delas.
-- [ ] **Revisar primeiro lote de 5 pautas Perplexity** — decidir quais viram draft real, quais rejeitar e quais arquivar.
 
 ## 🔥 PRIORIDADE IMEDIATA — SimulImport
 - [ ] **Validar cenários reais** — Pedro testar com importações dele.

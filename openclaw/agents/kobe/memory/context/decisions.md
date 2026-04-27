@@ -17,6 +17,19 @@ _Decisões do Pedro que não mudam. Consultar antes de sugerir algo que contradi
 - **Marca própria:** Budamix. Registrada no INPI. Usar em tudo que for produto próprio.
 - **Verticalização MDF:** Comprou máquina laser para fabricação própria. Decisão tomada, não precisa validar de novo.
 
+
+## Blog Budamix — Diretriz Editorial Permanente (2026-04-27)
+- O Blog Budamix é um canal consultivo sobre **vida doméstica prática**, não um catálogo de produtos disfarçado.
+- Posicionamento: **blog de casa prática, bonita e bem cuidada**. A Budamix aparece como marca curadora; venda é consequência da confiança, não objetivo do artigo.
+- Público principal: mulheres 25–45 anos, classe B/C, urbanas, muitas em apartamento, buscando praticidade, custo-benefício e soluções acessíveis para casa/cozinha/rotina familiar.
+- Produto Budamix só aparece quando for natural e relevante. `related_products` é opcional e pode ficar vazio.
+- Meta editorial: no máximo **30–40%** dos artigos publicados mencionam produto/categoria diretamente; o restante deve ser 100% consultivo.
+- Cozinha é centro de gravidade (~55%), mas casa geral também é território (~45%).
+- Pilares oficiais: (1) Cozinha prática do dia a dia, (2) Conservação/aproveitamento de alimentos, (3) Marmita/lancheira/comida fora, (4) Organização de espaços, (5) Limpeza/manutenção do lar, (6) Casa pequena/apartamento, (7) Rotina familiar/crianças/pets, (8) Receber em casa/momentos especiais, (9) Consumo consciente/economia doméstica, (10) Datas sazonais/presentes úteis.
+- Regras WF0: cada rodada deve cobrir pelo menos 3 pilares diferentes; no máximo 1 pauta por rodada sobre potes/despensa/organização direta de cozinha; remover qualquer instrução de “priorize produtos Budamix”.
+- Tom: consultivo, útil, humano, direto, sem publieditorial disfarçado. CTA leve: “Conheça mais ideias para sua casa na Budamix”, sem empurrar SKU.
+- Documento completo: `memory/projects/budamix-blog-editorial.md`.
+
 ## Importação
 - **Trading China:** Skiway (Yiwu). Relação consolidada. Não sugerir trocar sem motivo forte.
 - **Trading Brasil:** Open Trade (Itajaí). Relação consolidada (~2 anos).

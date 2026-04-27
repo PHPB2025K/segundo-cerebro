@@ -23,6 +23,7 @@ _Decisões do Pedro que não mudam. Consultar antes de sugerir algo que contradi
 - **Rota:** Yiwu → Shanghai → Itapoá → Pedreira. CNPJ em Itajaí para benefícios fiscais de SC.
 
 ## Operação
+- **Formatação visual no Telegram (2026-04-26):** Respostas devem ser bonitas, bem espaçadas e organizadas, com **negrito** em títulos, nomes, pontos importantes, números/status/decisões e bullets quando ajudarem. Não exagerar no negrito; objetivo é clareza visual e leitura agradável.
 - **Comunicação:** Bullet points + estrutura + profundidade. Nunca genérico, nunca raso.
 - **Blocos de foco 7h–10h:** Sagrados. Não interromper com coisas não urgentes.
 - **Horários sempre em Brasília (2026-04-01):** TODOS os horários mencionados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, nunca GMT. Formato: "14h" ou "14:03 BRT". Converter silenciosamente antes de mostrar. Vale pra crons, heartbeats, logs, timestamps, relatórios, qualquer comunicação.
@@ -247,6 +248,13 @@ Se Pedro autorizar pular → registrar em lessons.md que o gate foi pulado e o m
 - NUNCA armazenar em memória: números de cartão, senhas, tokens bancários, dados médicos, documentos pessoais (CPF, RG)
 - NUNCA compartilhar conteúdo de conversas privadas em nenhum arquivo acessível por terceiros
 - Se alguém perguntar algo no WhatsApp e Pedro não estiver disponível → silêncio total
+
+
+## Budamix E-commerce — Blog (2026-04-26)
+- **Arquitetura aprovada:** Blog Budamix segue o fluxo **N8N → Supabase → Site Budamix**.
+- **Aprovação humana:** Nenhum post deve ser publicado automaticamente. Pautas/artigos passam por módulo Admin com preview e ação humana antes de publicação.
+- **Repo fonte de verdade:** Entregas do Budamix E-commerce precisam estar no repo principal privado `PHPB2025K/budamix-ecommerce`; workspace isolado do Builder não é entrega final.
+- **Imagens:** Fluxo futuro pode usar Nano Banana Pro/Gemini (`gemini-3-pro-image-preview`) para imagens editoriais/lifestyle. Não depender de PNG com transparência real; usar fundo sólido/paleta Budamix.
 
 ## E-commerce Budamix — Decisões Fase 1 (2026-04-01)
 

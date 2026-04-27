@@ -10,26 +10,27 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-04-26 15:34 BRT — Bling Matriz validado após rotação; Filial segue bloqueada_
+_Atualizado: 2026-04-26 23:34 BRT — delta blog SEO/retrofit incorporado_
 
 ## 🚨 URGENTE — Infraestrutura e saúde do sistema
 
-### Autenticações críticas bloqueadas
-- [ ] **Google Sheets (gog) para sync-costs** — falha de autenticação bloqueou sincronização de custos. 0 SKUs atualizados. Mesmo erro para ESTOQUE, MELI, SHOPEE, AMAZON.
+### Autenticações críticas bloqueadas/degradadas
 - [ ] **Google Ads API - Spark** — credenciais existem no 1Password, mas validação OAuth em 26/04 13:40 BRT retornou `invalid_grant`; refresh token precisa ser reautorizado/gerado novamente para a conta Google Ads.
-- [ ] **Google Calendar (gog) para Daily Briefing** — falha de autenticação. Agenda indisponível no briefing matinal.
-- [ ] **Gmail (gog) para Inbox Cleanup** — falha de descriptografia de token em keyring. Nenhum email processado.
+- [ ] **Google Calendar (gog) para Daily Briefing** — falha de autenticação ainda não foi revalidada após Sheets funcionar; agenda pode seguir indisponível no briefing matinal.
+- [ ] **Gmail (gog) para Inbox Cleanup** — falha de descriptografia/token ainda precisa validação própria; nenhum email deve ser assumido como processável até teste real.
+- [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password, mas rotação é medida de higiene.
 
 ### Saúde de crons recorrentes críticos
-- [ ] **Monitor Ponto Semanal** — 3 falhas consecutivas por timeout (300083ms cada). Bloqueado sem execução até revisão de escopo/timeout.
+- [ ] **Watchdog - Monitor de Crons** — falhou por timeout de 3min em 26/04; revisar escopo/timeout para não confundir com falha do job-monitor.
+- [ ] **Monitor Ponto Semanal** — falhas consecutivas por timeout de 300s. Bloqueado sem execução confiável até revisão de escopo/timeout.
 - [ ] **RH Monitor Ponto Saída** — última falha relevante foi por fallback inválido/model not found. Cadeia de fallback precisa corrigir antes de próxima execução.
-- [ ] **Bling Token Refresh / Filial** — 26/04 15:32 BRT: Client Secrets rotacionados no 1Password e scripts ajustados para ler secrets via 1Password em runtime. Matriz refresh OK, Supabase sync OK e API `/produtos?limite=1` HTTP 200. Filial refresh segue HTTP 403 `Empresa inativa`; token antigo já expirou e teste API retorna HTTP 401. Pendência agora é reativar/validar empresa Filial no painel Bling e reautorizar OAuth se necessário.
+- [ ] **Bling Token Refresh / Filial** — 26/04 15:32 BRT: Client Secrets rotacionados no 1Password e scripts ajustados para ler secrets via 1Password em runtime. Matriz refresh OK, Supabase sync OK e API `/produtos?limite=1` HTTP 200. Filial refresh segue HTTP 403 `Empresa inativa`; token antigo já expirou e teste API retorna HTTP 401. Pendência é reativar/validar empresa Filial no painel Bling e reautorizar OAuth se necessário.
 
 ## 🔥 PRIORIDADE IMEDIATA — Financeiro
 - [ ] **Ads spend março** — levantar gasto real com publicidade por plataforma (ML, Amazon via integração, Shopee manual). Sem este dado, consolidado de março é inválido.
 - [ ] **Refazer fechamento de março** — gerar consolidado novo (DRE operacional + planilha + HTML) com os 5 extratos validados completos + ads spend correto.
 - [ ] **Mapeamento semanal DRE** — separar março por semanas (01-07, 08-14, 15-21, 22-31) nas linhas da DRE para análise de evolução.
-- [ ] **OAuth rotation 3 contas Shopee** — garantir refresh automático também para `budamix-shop` e `budamix-store2` (hoje apenas budamix-store tem refresh garantido).
+- [ ] **OAuth rotation 3 contas Shopee** — garantir refresh automático também para `budamix-shop` e `budamix-store2`.
 
 ## 🔥 PRIORIDADE IMEDIATA — Budamix Central / PCM001
 - [ ] **PCM001 Amazon** — ASIN ainda pendente desde lançamento 07/04. Verificar status na Amazon BR.
@@ -38,6 +39,15 @@ _Atualizado: 2026-04-26 15:34 BRT — Bling Matriz validado após rotação; Fil
 - [ ] **PCM001 custos refinados** — substituir estimativas de embalagem e mão de obra por custo real.
 - [ ] **57 SKUs sem cost_price** na `fulfillment_inventory` — falta de preço de custo na base.
 - [ ] **9 Amazon SKUs sem preço** — 8 com estoque, precisam investigação.
+
+## 🔥 PRIORIDADE IMEDIATA — Budamix E-commerce / Blog
+- [ ] **Supabase Budamix Ecommerce REST keys** — anon/service role keys salvas no 1Password retornaram 401 via REST; corrigir/rotacionar antes de workflows N8N dependerem delas.
+- [ ] **Budamix Ecommerce push GitHub SEO** — commit local `0e76d1e feat: add technical SEO for blog` deployado na Vercel, mas `git push origin main` retornou HTTP 403/write access not granted; repo local ficou ahead. Regularizar no GitHub/repo principal.
+- [ ] **N8N Cloudfy API Key** — Pedro informou que salvou o token, mas Kobe não encontrou item visível no vault OpenClaw; localizar nome/vault correto ou aguardar sync do 1Password.
+- [ ] **Blog WF1/WF2 com IA real** — evoluir workflow N8N de draft generator para gerar artigo real a partir de pauta aprovada, mantendo status `draft/review` e aprovação humana.
+- [ ] **Blog WF3 imagens Gemini/Nano Banana** — implementar geração de imagem editorial/lifestyle, salvar em Supabase Storage e preencher `cover_image_url`/metadados sem hardcode de secrets.
+- [ ] **Blog WF4 aprovação/publicação** — conectar fluxo final ao Admin Blog mantendo publicação manual/humana.
+- [ ] **Revisar primeiro lote de 5 pautas Perplexity** — decidir quais viram draft real, quais rejeitar e quais arquivar.
 
 ## 🔥 PRIORIDADE IMEDIATA — SimulImport
 - [ ] **Validar cenários reais** — Pedro testar com importações dele.
@@ -75,7 +85,6 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Verificar deploy novo do Canguu no VPS** — se virar prioridade, fazer checagem operacional.
 - [ ] **Security Audit semanal** — truncar mensagem longa no Telegram.
 - [ ] **Bidspark CLAUDE.md** — remover Client ID + Secret em texto puro.
-- [ ] **E-commerce budamix.com.br** — retomar quando Pedro puxar.
 - [ ] **Webhooks marketplaces** — Fase 3, não prioritário.
 - [ ] **Kit Segundo Cérebro — módulo VPS/OpenClaw** — se a promessa comercial for Claude Code + OpenClaw, criar scripts/docs/contrato de sync.
 - [ ] **Session Extractors antigos** — desabilitados com timeout recorrente. Revisar estratégia ou limpar.
@@ -86,4 +95,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 ---
 
-_Última organização: 2026-04-26 15:34 BRT. Próxima revisão: Consolidação Profunda/Diária conforme cron._
+_Última organização: 2026-04-26 23:34 BRT. Próxima revisão: Consolidação Profunda/Diária conforme cron._

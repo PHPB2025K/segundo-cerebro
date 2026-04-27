@@ -18,6 +18,14 @@ _Última Consolidação Profunda: 2026-04-15_
 
 ## Lições Estratégicas (Permanentes)
 
+### [ESTRATÉGICA] Budamix E-commerce: entrega final só vale no repo principal privado (2026-04-26)
+**Contexto:** Builder job do blog criou arquivos em workspace isolado porque o clone anônimo falhou no repo privado `PHPB2025K/budamix-ecommerce`.
+**Lição:** Para Budamix E-commerce, nunca tratar workspace isolado/artefato Builder como entrega final. Validar remote do repo principal, credencial correta do 1Password, build, commit e push no GitHub antes de anunciar conclusão.
+
+### [ESTRATÉGICA] Deploy frontend: validar experiência visível, não só build/rota principal (2026-04-26)
+**Contexto:** `/blog` estava funcionando com posts reais, mas a seção de blog da home ainda mostrava “Em breve”.
+**Lição:** Após deploy de frontend, fazer smoke test renderizado da rota afetada e também das seções relacionadas da home/header/footer/CTAs. Build OK + rota OK não garante que a experiência pública refletiu a mudança.
+
 ### [ESTRATÉGICA] Consolidado financeiro com dados parciais apresentados como completos (2026-04-03)
 - **Erro:** Entreguei consolidado de março usando extrato Shopee budamix-store de 01-20/03 (gerado em 20/03) como se fosse mês completo. Diferença: R$3.224 e 100+ pedidos.
 - **Causa raiz:** Reusei arquivo antigo sem validar que o período não cobria o mês inteiro. Não havia carimbo de período real no arquivo.
@@ -176,6 +184,14 @@ _Última Consolidação Profunda: 2026-04-15_
 ---
 
 ## Lições Táticas (Expiram em 30 dias)
+
+### [TÁTICA] Google/gog: diagnosticar pelo fluxo real, não por caminho quebrado de keyring (2026-04-26)
+**Lição:** Se um teste de autenticação Google falhar por caminho específico de keyring, validar também pelo comando real/ambiente atual antes de concluir que Sheets/Gmail/Calendar estão indisponíveis. Em 26/04, Sheets funcionava nas contas do agente e do Pedro apesar de um diagnóstico inicial ruim.
+**Expira:** 2026-05-26
+
+### [TÁTICA] N8N + Supabase REST: insert seguro exige apikey + Authorization Bearer (2026-04-26)
+**Lição:** Para workflows N8N que inserem no Supabase via REST, enviar `apikey` e `Authorization: Bearer <service_role>`. Service role deve ficar em credential/env seguro do N8N/1Password, nunca hardcoded no JSON do workflow.
+**Expira:** 2026-05-26
 
 ### [TÁTICA] Não inferir conteúdo de áudio falho nem inventar incidente/configuração (2026-04-25)
 **Lição:** Se a transcrição de áudio falhar, ficar incompleta ou ambígua, NUNCA preencher lacunas com inferência e muito menos afirmar que um incidente/configuração já foi verificado ou corrigido sem validação real. Primeiro transcrever corretamente ou pedir clarificação.
@@ -348,6 +364,15 @@ _Última Consolidação Profunda: 2026-04-15_
 **Expira:** 2026-05-06
 
 ---
+
+
+### [TÁTICA] Supabase/N8N: validar keys REST reais antes de assumir que a credencial serve (2026-04-26)
+**Lição:** No Budamix Ecommerce, as anon/service role keys salvas no 1Password retornaram 401 via REST, enquanto a conexão direta PostgreSQL funcionou. Antes de montar workflow N8N ou diagnóstico de RLS, testar `apikey` + `Authorization` contra endpoint real do Supabase. Se REST falhar, corrigir/rotacionar as keys no 1Password antes de automatizar.
+**Expira:** 2026-05-26
+
+### [TÁTICA] Deploy feito com código não pushado cria dívida invisível (2026-04-26)
+**Lição:** No SEO técnico do Blog Budamix, o deploy Vercel foi validado, mas `git push origin main` retornou HTTP 403 e o repo local ficou ahead. Deploy em produção não substitui commit/push no repo principal; sempre validar `git status` e upstream limpo antes de encerrar.
+**Expira:** 2026-05-26
 
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 

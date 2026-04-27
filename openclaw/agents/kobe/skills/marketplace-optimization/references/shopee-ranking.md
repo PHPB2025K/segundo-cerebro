@@ -293,3 +293,13 @@ kit organização
 - [ ] Planejar Shopee Live para demonstração de produto
 - [ ] Verificar elegibilidade Full Shopee
 - [ ] Monitorar pontos de penalidade semanalmente
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Taxas e Precificacao]] — referência canônica detectada no conteúdo

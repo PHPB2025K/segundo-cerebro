@@ -36,3 +36,11 @@ Sistema financeiro da GB Importadora. Aplicação web própria.
 ## Notas
 - É sistema interno da GB, não um produto pra vender
 - Relatórios financeiros são críticos pra gestão — quando resolver, Pedro ganha visibilidade real do negócio
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
+- [[memory/context/business-context]] — contexto operacional
+- [[meta/mocs/MOC - Extratos Financeiros]] — referência canônica detectada no conteúdo

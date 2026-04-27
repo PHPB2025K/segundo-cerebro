@@ -259,3 +259,11 @@ Meta pode automaticamente modificar seus criativos:
 - Leu em 3 segundos? Tem que parar o scroll.
 - Tem benefício concreto (não vago)?
 - CTA é inequívoco?
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma

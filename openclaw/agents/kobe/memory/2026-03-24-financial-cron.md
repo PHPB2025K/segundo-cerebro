@@ -341,3 +341,15 @@ assistant: Já terminou, mas não deu certo. Foram duas tentativas:
 O problema é que o Claude Code roda como root no VPS e não aceita skip de permissões nesse modo. Preciso ajustar o builder-dispatch pra rodar como um usuário não-root, ou usar outra abordagem.
 
 Amanhã eu investigo a solução e te passo. Nada que mude o escopo — é só ajuste de infra no script de dispatch. Vai dormir que eu resolvo isso. 🤙
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-03]] — decisões do mês
+- [[memory/sessions/2026-03-24]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/amazon-ads-automation]] — referência canônica detectada no conteúdo
+- [[projects/ml-ads-automation]] — referência canônica detectada no conteúdo

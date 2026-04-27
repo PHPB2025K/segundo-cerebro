@@ -266,3 +266,11 @@ Exemplos:
 ⚠️ **Status PAUSED por padrão:** Sempre criar pausado. Ativar somente após revisão completa.
 
 ⚠️ **Orçamento em centavos:** API usa centavos. R$150/dia = 15000 na API.
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma

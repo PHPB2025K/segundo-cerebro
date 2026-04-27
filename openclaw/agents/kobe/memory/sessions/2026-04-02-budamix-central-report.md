@@ -228,3 +228,13 @@ tags:
 | Sync Orders (ML+Shopee) | ✅ Operacional (≤2 min) |
 | Sync Orders (Amazon) | ✅ Operacional (≤5 min) |
 | Crontab (9 jobs) | ✅ Ativo |
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/budamix-central]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo

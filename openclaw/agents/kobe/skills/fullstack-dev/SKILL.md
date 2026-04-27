@@ -211,3 +211,14 @@ Ler conforme necessidade:
 Assets em `assets/nextjs-starter/` — package.json, tsconfig, tailwind config, next.config, .env.example, estrutura inicial.
 
 Copiar como base: `cp -r assets/nextjs-starter/ ~/projects/meu-projeto`
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[projects/bidspark-multiagente-completo]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo
+- [[memory/context/decisoes/2026-04]] — referência canônica detectada no conteúdo

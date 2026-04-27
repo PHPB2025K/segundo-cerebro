@@ -64,3 +64,15 @@ Lembrete que você pediu ontem sobre o plano dos relatórios:
 Lembrando que hoje é sábado — você trabalha até 13h. Se quiser focar só no item 1 e deixar o resto pra segunda, faz sentido também.
 
 Tô aqui quando precisar. 🤙
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-03]] — decisões do mês
+- [[memory/sessions/2026-03-23]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Extratos Financeiros]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Taxas e Precificacao]] — referência canônica detectada no conteúdo

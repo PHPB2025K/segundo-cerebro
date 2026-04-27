@@ -498,3 +498,13 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 ❌ revalidatePath('/') para um dado específico → usar revalidateTag
 ❌ Passar função de Server para Client Component → usar Server Actions
 ```
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Design Systems Budamix]] — referência canônica detectada no conteúdo

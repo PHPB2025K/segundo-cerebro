@@ -49,3 +49,15 @@ Kobe, status dos syncs do Budamix Central: 4.186 orders, 950 products,
  ainda mostrar mock, investiga o que falta pra conectar o frontend ao
  Supabase.
 assistant: Vou verificar o status da Amazon e testar o dashboard agora.
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-03]] — decisões do mês
+- [[memory/sessions/2026-03-25]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/budamix-central]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo

@@ -410,3 +410,14 @@ const worker = new Worker('email', async (job) => {
 
 worker.on('failed', (job, err) => logger.error({ jobId: job?.id, err }, 'Job failed'))
 ```
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/bidspark-multiagente-completo]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo

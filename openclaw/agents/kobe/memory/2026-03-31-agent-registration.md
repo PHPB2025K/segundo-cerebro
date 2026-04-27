@@ -285,3 +285,15 @@ assistant: O RH não tá lendo os arquivos do agentDir como workspace context. P
 assistant: Agora testo de novo.
 assistant: Os symlinks resolvem corretamente, mas o OpenClaw parece estar usando os arquivos originais do onboarding (USER.md, TOOLS.md genéricos) em vez dos meus. Preciso sobrescrever os placeholders que o OpenClaw gerou automaticamente.
 assistant: O OpenClaw não tá seguindo os symlinks no workspace context. Vou copiar os arquivos direto.
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-03]] — decisões do mês
+- [[memory/sessions/2026-03-31]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo
+- [[memory/context/decisoes/2026-04]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Token Management]] — referência canônica detectada no conteúdo

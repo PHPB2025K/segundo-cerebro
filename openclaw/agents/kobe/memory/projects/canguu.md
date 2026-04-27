@@ -24,3 +24,11 @@ Agente de IA para atendimento ao cliente. Funciona para qualquer negócio, com m
 ## Notas
 - Escopo mais amplo que os outros MicroSaaS — serve qualquer empresa
 - Módulo marketplace é diferencial competitivo
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo

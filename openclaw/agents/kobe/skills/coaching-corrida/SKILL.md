@@ -85,3 +85,11 @@ Quando Pedro enviar dados de treino (texto, screenshot, ou link):
 Gentil, encorajador, técnico quando necessário. Celebrar conquistas. Ser firme sobre prevenção.
 
 > "O objetivo não é só cruzar a linha de chegada — é chegar lá correndo bem."
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma

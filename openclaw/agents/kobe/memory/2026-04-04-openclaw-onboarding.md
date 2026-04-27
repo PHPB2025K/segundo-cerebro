@@ -1367,3 +1367,15 @@ assistant: Tenho os links. Vou pesquisar os top 15 via web\_fetch nos listings d
 assistant: ML bloqueando com verificação de conta. Vou tentar Shopee e usar a API do ML como alternativa.
 assistant: Excelente, API do ML entregou os dados técnicos. Agora vou buscar os que faltam (IMB501P_T, TL6250, XCP001, KIT2YW1520 — só têm link Shopee) e os sem link.
 assistant: Ótimo, dados técnicos reais de 12 dos 15 produtos. Agora vou gerar o CSV final com tudo aplicado.
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-04]] — decisões do mês
+- [[memory/sessions/2026-04-04]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/amazon-ads-automation]] — referência canônica detectada no conteúdo
+- [[projects/ml-ads-automation]] — referência canônica detectada no conteúdo

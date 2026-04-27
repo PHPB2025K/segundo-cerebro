@@ -105,3 +105,13 @@ A arquitetura do banco e motor de cálculo deve estar PREPARADA pra receber essa
 - Lovable project ID nunca registrado (README tem placeholder)
 - Reforma tributária é diferencial competitivo ENORME — nenhum simulador no mercado faz comparativo temporal
 - Documento técnico completo da reforma: `shared/simulimport/reforma-tributaria-importacao.md` (348 linhas — cronograma, fórmulas, tabelas, regras de negócio)
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
+- [[memory/context/business-context]] — contexto operacional
+- [[business/importacao/estrategia-fiscal-gb]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Design Systems Budamix]] — referência canônica detectada no conteúdo

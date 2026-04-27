@@ -77,3 +77,13 @@ Dashboard operacional da GB Importadora. Consolida dados de vendas, estoque, pre
 - 26/03: 10 entregas (sync Shopee, Amazon paginação, SKU mapping, Envios v2, Preços v2)
 - 27/03: 11 entregas (Preços cross-channel, cache, Curva ABC sub-abas, React keys fix)
 - 30/03: Auditoria completa Pedro (média 7.3/10, 6 críticos, 9 médios)
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/budamix-central]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo

@@ -971,3 +971,15 @@ assistant: A tabela `products` do Canguu tem uma coluna `embedding` e uma coluna
 assistant: Pedro, todos os 87 produtos no Canguu já têm embedding — incluindo os 25 novos. Provavelmente o cadastro que rolou hoje já gerou os embeddings automaticamente (via trigger ou no próprio insert).
 
 Nenhum produto está sem embedding. ✅
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-04]] — decisões do mês
+- [[memory/sessions/2026-04-04]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/canggu/canggu]] — referência canônica detectada no conteúdo
+- [[projects/budamix-ecommerce]] — referência canônica detectada no conteúdo

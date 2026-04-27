@@ -50,3 +50,12 @@ Quarto agente do time Kobe. Automatiza o fluxo fiscal interno da GB Importadora:
 | 2 - Motor de Distribuição | 🔴 | Depende do Trader fornecer dados |
 | 3 - Emissão de NFs | 🔴 | Modo draft primeiro |
 | 4 - Conciliação + Monitor | 🔴 | Últimos módulos |
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
+- [[memory/context/business-context]] — contexto operacional
+- [[business/importacao/estrategia-fiscal-gb]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Token Management]] — referência canônica detectada no conteúdo

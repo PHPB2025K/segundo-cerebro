@@ -461,3 +461,12 @@ assistant: Perfeito. Fica tranquilo que tá tudo registrado aqui — os 3 pontos
 Quando tu tiver a resposta da Neve, me manda que eu cruzo na hora e confirmo se fechou.
 
 Boa sorte com eles. 💪
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-03]] — decisões do mês
+- [[memory/sessions/2026-03-23]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional

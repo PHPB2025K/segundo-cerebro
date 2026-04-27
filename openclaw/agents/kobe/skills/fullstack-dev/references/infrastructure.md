@@ -480,3 +480,14 @@ logger.info({ userId, orderId }, 'Order created')
 logger.error({ err: error, userId }, 'Payment failed')
 logger.warn({ requestId, attempts }, 'Retry attempt')
 ```
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[projects/bidspark-multiagente-completo]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo
+- [[knowledge/concepts/stack-tecnico]] — referência canônica detectada no conteúdo

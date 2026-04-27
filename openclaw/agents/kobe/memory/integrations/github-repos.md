@@ -83,3 +83,13 @@ _Atualizado: 2026-03-20_
 - Conta GitHub: `PHPB2025K`
 - Acesso: CLI `gh` autenticado com PAT (1Password)
 - Repos "a classificar" são candidatos a archive futuro (confirmar com Pedro)
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
+- [[memory/context/business-context]] — contexto operacional
+- [[projects/amazon-ads-automation]] — referência canônica detectada no conteúdo
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/bidspark-multiagente-completo]] — referência canônica detectada no conteúdo

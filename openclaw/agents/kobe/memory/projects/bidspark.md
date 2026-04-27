@@ -33,3 +33,13 @@ Automação de gestão de ADS para Amazon e Mercado Livre. Substituiria as agên
 ## Notas
 - ROI direto: elimina R$ 9k/mês em agências
 - Pedro conhece profundamente o workflow de ADS — produto vem de dor própria
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/amazon-ads-automation]] — referência canônica detectada no conteúdo
+- [[projects/ml-ads-automation]] — referência canônica detectada no conteúdo

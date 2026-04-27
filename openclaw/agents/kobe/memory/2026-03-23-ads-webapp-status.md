@@ -74,3 +74,14 @@ Sender (untrusted metadata):
 
 Não tem nada a haver com o Bidspark, ele estava desenvolvendo a interface web da gestão de ads via meta e google , ficou de me retornar quando temrinar e até agora você não conseguiu me enviar o status
 assistant: Entendi, Pedro. Vou verificar agora o que tem registrado sobre essa tarefa do Builder.
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-03]] — decisões do mês
+- [[memory/sessions/2026-03-23]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[projects/bidspark-multiagente-completo]] — referência canônica detectada no conteúdo
+- [[memory/context/decisoes/2026-04]] — referência canônica detectada no conteúdo

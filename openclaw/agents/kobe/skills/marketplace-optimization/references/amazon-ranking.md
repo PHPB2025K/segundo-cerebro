@@ -310,3 +310,14 @@ pote hermetico vidro vasilha vidro frasco vidro recipiente vidro glass jar herme
 - [ ] Solicitar Amazon Vine para SKUs novos
 - [ ] ODR monitorado — manter abaixo de 1% (risco de suspensão acima disso)
 - [ ] Estratégia de tráfego externo: Instagram/TikTok com link Amazon
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/amazon-ads-automation]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Taxas e Precificacao]] — referência canônica detectada no conteúdo

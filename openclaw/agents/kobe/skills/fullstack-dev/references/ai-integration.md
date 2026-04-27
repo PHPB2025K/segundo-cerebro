@@ -660,3 +660,14 @@ const worker = new Worker('canguu-messages', async (job) => {
   await sendReplyToMarketplace(ctx.marketplace, ctx.conversationId, reply)
 }, { connection, concurrency: 10 })
 ```
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/ml-ads-automation]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo

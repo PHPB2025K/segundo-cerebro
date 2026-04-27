@@ -1589,3 +1589,15 @@ System: [2026-04-04 15:50:29 UTC] Exec completed (rapid-sh, code 0) :: Capturada
 Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.
 When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do not read docs/heartbeat.md.
 Current time: Saturday, April 4th, 2026 — 3:53 PM (UTC) / 2026-04-04 15:53 UTC
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-04]] — decisões do mês
+- [[memory/sessions/2026-04-04]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/ml-ads-automation]] — referência canônica detectada no conteúdo
+- [[projects/bidspark-multiagente-completo]] — referência canônica detectada no conteúdo

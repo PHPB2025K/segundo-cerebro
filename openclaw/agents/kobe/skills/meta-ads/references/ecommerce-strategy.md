@@ -278,3 +278,14 @@ Exceção: aceitar como custo de branding/lançamento.
 - [ ] ASC para automação máxima
 - [ ] Integração CRM → Custom Audiences
 - [ ] Dashboard de atribuição (Meta vs. GA vs. vendas reais)
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/ml-ads-automation]] — referência canônica detectada no conteúdo
+- [[projects/budamix-ecommerce]] — referência canônica detectada no conteúdo

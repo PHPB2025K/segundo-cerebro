@@ -1321,3 +1321,15 @@ assistant: ✅ Feito. Dois crons atualizados de 5min → 15min:
 Economia estimada: ~$78/mês (de 576 chamadas/dia pra 192). Funcionalidade mantida — Builder jobs e rate limits ainda são detectados, só com até 10min a mais de delay.
 
 Agora vai descansar de verdade, Pedro — 22:41 em Pedreira! 😄
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-03]] — decisões do mês
+- [[memory/sessions/2026-03-30]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/budamix-central]] — referência canônica detectada no conteúdo
+- [[business/importacao/estrategia-fiscal-gb]] — referência canônica detectada no conteúdo

@@ -218,3 +218,14 @@ Prioridade:
 - Localizar o scraping da Amazon.
 - Recompor o que falta se não achar os arquivos.
 </think>
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-04]] — decisões do mês
+- [[memory/sessions/2026-04-04]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[memory/context/decisoes/2026-04]] — referência canônica detectada no conteúdo

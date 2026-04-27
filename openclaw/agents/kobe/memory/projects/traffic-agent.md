@@ -122,3 +122,12 @@ Agente autônomo de gestão de tráfego pago da GB. Opera como gestor sênior de
 - [ ] Dashboard como webapp ou relatórios pelo Telegram (ou ambos)?
 - [ ] Valores exatos de CPA alvo por fase (Pedro precisa definir R$X)
 - [ ] Google Ads: Pedro tem conta ativa? Precisa configurar?
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
+- [[memory/context/business-context]] — contexto operacional
+- [[meta/mocs/MOC - Token Management]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Taxas e Precificacao]] — referência canônica detectada no conteúdo

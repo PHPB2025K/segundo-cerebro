@@ -142,3 +142,14 @@ Qual é o problema?
 | Analisando Amazon, A10, Buy Box, FBA, keywords, A+ | `references/amazon-ranking.md` |
 | Comparando plataformas, decidindo onde focar, erros cruzados | `references/cross-platform-matrix.md` |
 | Playbook completo, checklists detalhados, KPIs, precificação | `references/optimization-playbook.md` |
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/amazon-ads-automation]] — referência canônica detectada no conteúdo
+- [[projects/ml-ads-automation]] — referência canônica detectada no conteúdo

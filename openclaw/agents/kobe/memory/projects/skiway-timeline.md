@@ -555,3 +555,12 @@ _Extraído dos prints do Pedro em 2026-03-20. Contato principal: Neve._
 ---
 
 _Fonte: prints WeChat enviados por Pedro em 2026-03-20_
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
+- [[memory/context/business-context]] — contexto operacional
+- [[projects/gb-import-hub]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Extratos Financeiros]] — referência canônica detectada no conteúdo

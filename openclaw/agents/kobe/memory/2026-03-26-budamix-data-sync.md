@@ -936,3 +936,15 @@ Sender (untrusted metadata):
 
 Kobe, briefing revisado e aprovado. Dispara pro Builder. Timeout 120min.
 assistant: Disparado. Builder trabalhando no *Live Sales*. Timeout: 120min. Briefing aprovado com 8 skills de design. Você será notificado quando terminar.
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-03]] — decisões do mês
+- [[memory/sessions/2026-03-26]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/budamix-central]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo

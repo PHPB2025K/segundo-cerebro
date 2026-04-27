@@ -80,3 +80,15 @@ assistant: ✅ Registrado tudo. E já adicionei a EVOLUTION_API_KEY no .env.loca
 Resultado final: 9/10 serviços UP. Só o Traefik fica "degraded" (dashboard em porta diferente, mas funciona normal).
 
 Belo trabalho nos fixes — a separação subscription vs external no pricing ficou bem pensada.
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-03]] — decisões do mês
+- [[memory/sessions/2026-03-31]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo
+- [[projects/whatsapp-api]] — referência canônica detectada no conteúdo
+- [[memory/context/decisoes/2026-04]] — referência canônica detectada no conteúdo

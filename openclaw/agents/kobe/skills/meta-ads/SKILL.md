@@ -218,3 +218,14 @@ pip3 install facebook-business requests tabulate
 ⚠️ **Budget changes:** Aumentar máx 20% de uma vez. Acima disso reseta Learning Phase.
 
 ⚠️ **API v21.0:** Checar sunset dates. Meta deprecia versões a cada ~2 anos.
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[projects/ml-ads-automation]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Token Management]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Taxas e Precificacao]] — referência canônica detectada no conteúdo

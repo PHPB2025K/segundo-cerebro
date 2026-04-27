@@ -79,3 +79,11 @@ _Atualizado: 2026-03-25_
 6. Dados sensíveis NUNCA armazenados em memória
 7. No número do Kobe: identidade = Kobe/Assistente do Pedro, NUNCA se passar pelo Pedro
 8. No número do Pedro: identidade = Pedro, NUNCA se identificar como Kobe/IA
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
+- [[memory/context/business-context]] — contexto operacional
+- [[projects/whatsapp-api]] — referência canônica detectada no conteúdo

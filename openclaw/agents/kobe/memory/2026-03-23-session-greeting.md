@@ -22,3 +22,13 @@ Current time: Monday, March 23rd, 2026 — 3:21 PM (UTC) / 2026-03-23 15:21 UTC
 assistant: Fala, pessoal do Kobe Hub! 👊
 
 Kobe online, segunda-feira 12h21 SP. Tô por aqui se precisarem de algo.
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[memory/context/decisoes/2026-03]] — decisões do mês
+- [[memory/sessions/2026-03-23]] — sessão correspondente do vault humano
+- [[memory/context/business-context]] — contexto operacional
+- [[memory/context/decisoes/2026-04]] — referência canônica detectada no conteúdo

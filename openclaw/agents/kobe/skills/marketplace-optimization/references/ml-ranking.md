@@ -270,3 +270,13 @@ Kit Potes Herméticos Vidro Organização Despensa Budamix 3 Tamanhos
 - [ ] Criar kits para subir ticket médio e fugir da concorrência direta
 - [ ] Nunca pausar anúncios de bom desempenho
 - [ ] Monitorar MercadoLíder — manter status ou avançar de nível
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[projects/ml-ads-automation]] — referência canônica detectada no conteúdo
+- [[meta/mocs/MOC - Taxas e Precificacao]] — referência canônica detectada no conteúdo

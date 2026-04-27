@@ -322,3 +322,14 @@ Preço foi aumentado? → Verificar impacto em conversão
 - Janeiro (organização pós-réveillon): alta demanda por organizadores
 - Outubro-novembro (Black Friday): aumentar estoque e preparar campanhas
 - Meses de campanha Shopee (8.8, 9.9, 10.10, 11.11, 12.12): preparar estoque e ADS
+
+
+## Ver também
+
+- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta skill
+- [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
+- [[openclaw/agents/kobe/AGENTS]] — orquestração com sub-agentes
+- [[meta/mocs/MOC - Governanca OpenClaw]] — governança da plataforma
+- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
+- [[projects/amazon-ads-automation]] — referência canônica detectada no conteúdo
+- [[projects/ml-ads-automation]] — referência canônica detectada no conteúdo

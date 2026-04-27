@@ -256,6 +256,12 @@ Se Pedro autorizar pular → registrar em lessons.md que o gate foi pulado e o m
 - **Repo fonte de verdade:** Entregas do Budamix E-commerce precisam estar no repo principal privado `PHPB2025K/budamix-ecommerce`; workspace isolado do Builder não é entrega final.
 - **Imagens:** Fluxo futuro pode usar Nano Banana Pro/Gemini (`gemini-3-pro-image-preview`) para imagens editoriais/lifestyle. Não depender de PNG com transparência real; usar fundo sólido/paleta Budamix.
 
+### 2026-04-27 — Blog WF4 automatiza até `ready_to_publish`; publicação segue manual
+- **Decisão:** O fluxo do blog Budamix deve deixar de ser manual por etapa. Depois que a pauta estiver aprovada, o **WF4 — Blog Orchestrator** gera o artigo, dispara todas as imagens exigidas e finaliza em `ready_to_publish` sem cliques intermediários.
+- **Publicação:** continua manual/humana no Admin. O workflow automatiza preparo, não a publicação final.
+- **Motivo:** eliminar a operação manual de “gerar artigo” e “gerar imagem” por etapa sem abrir mão da aprovação humana antes de publicar.
+- **Pedro aprovou:** Sim ("ótimo, pode seguir com o WF4 - BLOG ORCHESTRATOR").
+
 ## E-commerce Budamix — Decisões Fase 1 (2026-04-01)
 
 - **Gateway de pagamento:** Mercado Pago Checkout Transparente com Bricks. Pix (QR inline) + Cartão (até 3x sem juros) + Boleto. Stripe descartado (público brasileiro, Pix nativo obrigatório).

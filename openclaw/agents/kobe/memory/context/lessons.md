@@ -374,6 +374,12 @@ _Última Consolidação Profunda: 2026-04-15_
 **Lição:** No SEO técnico do Blog Budamix, o deploy Vercel foi validado, mas `git push origin main` retornou HTTP 403 e o repo local ficou ahead. Deploy em produção não substitui commit/push no repo principal; sempre validar `git status` e upstream limpo antes de encerrar.
 **Expira:** 2026-05-26
 
+
+
+### [TÁTICA] N8N Cloudfy: Code node não tem `fetch`; webhooks encadeados pedem parse tolerante (2026-04-27)
+**Lição:** No N8N Cloudfy, o Code node não expõe `fetch` global, e workflows chamados por webhook podem responder `200` com corpo vazio/timeout mesmo concluindo o trabalho. Para orquestrar WF2/WF3, usar helper HTTP do próprio N8N ou HTTP Request com resposta tratada como texto, e validar o sucesso pelo estado final no banco/workflow — não só pelo corpo JSON da chamada.
+**Expira:** 2026-05-27
+
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 
 ### Duplicatas removidas nesta consolidação:

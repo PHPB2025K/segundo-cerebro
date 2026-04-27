@@ -10,7 +10,7 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-04-26 23:34 BRT — delta blog SEO/retrofit incorporado_
+_Atualizado: 2026-04-27 02:00 BRT — organização noturna silenciosa; estagnados >7 dias anotados para briefing_
 
 ## 🚨 URGENTE — Infraestrutura e saúde do sistema
 
@@ -33,7 +33,7 @@ _Atualizado: 2026-04-26 23:34 BRT — delta blog SEO/retrofit incorporado_
 - [ ] **OAuth rotation 3 contas Shopee** — garantir refresh automático também para `budamix-shop` e `budamix-store2`.
 
 ## 🔥 PRIORIDADE IMEDIATA — Budamix Central / PCM001
-- [ ] **PCM001 Amazon** — ASIN ainda pendente desde lançamento 07/04. Verificar status na Amazon BR.
+- [ ] **PCM001 Amazon** — ASIN ainda pendente desde lançamento 07/04. Verificar status na Amazon BR. **Estagnado >7 dias: puxar no briefing matinal se nada mudou.**
 - [ ] **PCM001 peso embalado** — Pedro precisa informar peso final do kit embalado para NF-e.
 - [ ] **PCM001 foto 9** — Pedro precisa enviar hero image de encerramento.
 - [ ] **PCM001 custos refinados** — substituir estimativas de embalagem e mão de obra por custo real.
@@ -51,6 +51,12 @@ _Atualizado: 2026-04-26 23:34 BRT — delta blog SEO/retrofit incorporado_
 
 ## 🔥 PRIORIDADE IMEDIATA — SimulImport
 - [ ] **Validar cenários reais** — Pedro testar com importações dele.
+
+## 🟡 Para briefing matinal — estagnados >7 dias
+_Anotação da organização noturna de 27/04 02:00 BRT._
+
+- **PCM001 Amazon** — pendente desde 07/04, ainda em prioridade imediata.
+- **Já classificados no Backlog Estagnado (>14 dias):** Links Amazon da base Ana, revisão manual dos campos [VERIFICAR] do catálogo da Ana, sync Amazon de `platform_item_id/links`, 3 SKUs ML sem mapeamento automático e teste do motor SimulImport com NCMs corrigidos.
 
 ## Backlog Estagnado
 _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
@@ -95,4 +101,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 ---
 
-_Última organização: 2026-04-26 23:34 BRT. Próxima revisão: Consolidação Profunda/Diária conforme cron._
+_Última organização: 2026-04-27 02:00 BRT. Próxima revisão: Consolidação Profunda/Diária conforme cron._

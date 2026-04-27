@@ -686,3 +686,9 @@ Número dedicado: 5519992997273 (separado do Kobe). RH responde direto aos funci
   4. Sanity check antes de entregar (vendas vs histórico, período completo, dados frescos, totais batendo)
   5. Aplica-se a Kobe + Trader, todo extrato/relatório financeiro, permanente
 - **Registrado em:** AGENTS.md (Kobe), etapa5-agents.md (Trader), MEMORY.md (Kobe), etapa3-memory.md (Trader)
+
+### 2026-04-27 — Amazon Request Review diário com janela conservadora 7–12 dias
+- **Decisão:** Cron diário de Request Review Amazon deve usar janela de pedidos entregues há 7 a 12 dias, não 5 a 7.
+- **Motivo:** Auditoria confirmou que os envios via SP-API funcionam, mas muitos pedidos filtrados por `delivered_at` local ainda são rejeitados pela Amazon por timing. A janela 7–12 reduz rejeições e mantém folga dentro do limite Amazon 5–30 dias.
+- **Cron:** `Amazon Request Review Diário` atualizado para executar `scripts/amazon-request-reviews.py --min-days 7 --max-days 12`.
+- **Regra:** Não voltar para 5–7 sem nova evidência de que o campo de entrega local está perfeitamente alinhado à janela real da Amazon.

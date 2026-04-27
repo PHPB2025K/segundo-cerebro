@@ -711,3 +711,12 @@ Número dedicado: 5519992997273 (separado do Kobe). RH responde direto aos funci
 - **Motivo:** Auditoria confirmou que os envios via SP-API funcionam, mas muitos pedidos filtrados por `delivered_at` local ainda são rejeitados pela Amazon por timing. A janela 7–12 reduz rejeições e mantém folga dentro do limite Amazon 5–30 dias.
 - **Cron:** `Amazon Request Review Diário` atualizado para executar `scripts/amazon-request-reviews.py --min-days 7 --max-days 12`.
 - **Regra:** Não voltar para 5–7 sem nova evidência de que o campo de entrega local está perfeitamente alinhado à janela real da Amazon.
+
+## Budamix Blog — DNA Visual aprovado (2026-04-27)
+- DNA visual aprovado por Pedro: **casa possível + bom gosto + organização bonita + produtos em uso real**.
+- Público: classe B brasileira com bom gosto; nunca luxo, showroom, render, casa de influencer americana ou casa popular improvisada.
+- Estética: reforma simples bonita, crível e copiável; ambientes compactos/reais, com pequenas imperfeições controladas.
+- Paleta: base neutra brasileira (`off-white`, branco, bege claro, cinza claro, madeira mel/carvalho claro). **Não usar armários verdes como base**; verde fica em plantas ou acentos pequenos.
+- Objetos: priorizar objetos de uso que são bonitos (cafeteira real, caneca simpática, pote Budamix em uso, fruta solta, pano de prato natural, geladeira visível, escorredor discreto, planta pequena). Evitar props cenográficos.
+- Pessoa na capa: rosto visível, brasileira, bem cuidada, casual arrumada, com bom gosto; sem parecer modelo, elegante/formal demais, nem simples/largada demais.
+- Luz: janela brasileira real com persiana/cortina simples e sombras naturais; evitar golden hour perfeita, glow editorial ou stock photo.

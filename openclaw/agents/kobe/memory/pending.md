@@ -10,7 +10,7 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-04-27 02:00 BRT — organização noturna silenciosa; estagnados >7 dias anotados para briefing_
+_Atualizado: 2026-04-27 07:55 BRT — push Budamix Ecommerce destravado; estagnados >7 dias anotados para briefing_
 
 ## 🚨 URGENTE — Infraestrutura e saúde do sistema
 
@@ -42,8 +42,6 @@ _Atualizado: 2026-04-27 02:00 BRT — organização noturna silenciosa; estagnad
 
 ## 🔥 PRIORIDADE IMEDIATA — Budamix E-commerce / Blog
 - [ ] **Supabase Budamix Ecommerce REST keys** — anon/service role keys salvas no 1Password retornaram 401 via REST; corrigir/rotacionar antes de workflows N8N dependerem delas.
-- [ ] **Budamix Ecommerce push GitHub (SEO + WF4 Blog)** — commits locais do blog/WF4 ficaram ahead, mas `git push origin main` retornou HTTP 403/write access not granted. Regularizar credencial/PAT do repo principal e subir tudo antes de considerar a automação fechada.
-- [ ] **Admin Blog em produção — botão/status do WF4** — validar em produção o acionamento de `Preparar com IA` e a exibição do status `ready_to_publish` no Admin depois que o push/deploy do repo principal for destravado.
 - [ ] **Revisar primeiro lote de 5 pautas Perplexity** — decidir quais viram draft real, quais rejeitar e quais arquivar.
 
 ## 🔥 PRIORIDADE IMEDIATA — SimulImport
@@ -99,13 +97,3 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 ---
 
 _Última organização: 2026-04-27 02:00 BRT. Próxima revisão: Consolidação Profunda/Diária conforme cron._
-
-
-## Ver também
-
-- [[openclaw/agents/kobe/IDENTITY]] — agente proprietário
-- [[openclaw/agents/kobe/SOUL]] — princípios estáveis
-- [[memory/context/business-context]] — contexto operacional
-- [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
-- [[projects/bidspark-multiagente-completo]] — referência canônica detectada no conteúdo
-- [[projects/canggu/canggu]] — referência canônica detectada no conteúdo

@@ -18,6 +18,10 @@ _Última Consolidação Profunda: 2026-04-15_
 
 ## Lições Estratégicas (Permanentes)
 
+### [ESTRATÉGICA] 1Password/GitHub: token válido pode estar nas Observações, não no password (2026-04-27)
+**Contexto:** Push do `PHPB2025K/budamix-ecommerce` falhou porque o primeiro teste leu apenas o campo `password` do item `GitHub PAT - Budamix Ecommerce`, que continha valor inválido. Pedro confirmou que costuma guardar PAT nas Observações do item.
+**Lição:** Ao usar PATs do GitHub no 1Password, testar candidatos nesta ordem: campos `Observações`/`notesPlain` dentro de `fields`, nota top-level e só depois `password`/`token`. Nunca concluir que o token está inválido sem verificar Observações.
+
 ### [ESTRATÉGICA] Budamix E-commerce: entrega final só vale no repo principal privado (2026-04-26)
 **Contexto:** Builder job do blog criou arquivos em workspace isolado porque o clone anônimo falhou no repo privado `PHPB2025K/budamix-ecommerce`.
 **Lição:** Para Budamix E-commerce, nunca tratar workspace isolado/artefato Builder como entrega final. Validar remote do repo principal, credencial correta do 1Password, build, commit e push no GitHub antes de anunciar conclusão.

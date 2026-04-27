@@ -58,8 +58,6 @@ Você será notificado automaticamente quando terminar. 🚀
 
 - [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
 - [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
-- [[memory/context/decisoes/2026-03]] — decisões do mês
-- [[memory/sessions/2026-03-24]] — sessão correspondente do vault humano
 - [[memory/context/business-context]] — contexto operacional
 - [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo
 - [[memory/context/decisoes/2026-04]] — referência canônica detectada no conteúdo

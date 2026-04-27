@@ -159,8 +159,6 @@ Kobe, Shopee e ML sincronizados. Agora roda o sync da Amazon (orders +
 
 - [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
 - [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
-- [[memory/context/decisoes/2026-03]] — decisões do mês
-- [[memory/sessions/2026-03-25]] — sessão correspondente do vault humano
 - [[memory/context/business-context]] — contexto operacional
 - [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
 - [[memory/context/decisoes/2026-04]] — referência canônica detectada no conteúdo

@@ -70,8 +70,6 @@ Tô aqui quando precisar. 🤙
 
 - [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
 - [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
-- [[memory/context/decisoes/2026-03]] — decisões do mês
-- [[memory/sessions/2026-03-23]] — sessão correspondente do vault humano
 - [[memory/context/business-context]] — contexto operacional
 - [[business/marketplaces/_index]] — referência canônica detectada no conteúdo
 - [[meta/mocs/MOC - Extratos Financeiros]] — referência canônica detectada no conteúdo

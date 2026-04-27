@@ -86,8 +86,6 @@ Belo trabalho nos fixes — a separação subscription vs external no pricing fi
 
 - [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
 - [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
-- [[memory/context/decisoes/2026-03]] — decisões do mês
-- [[memory/sessions/2026-03-31]] — sessão correspondente do vault humano
 - [[memory/context/business-context]] — contexto operacional
 - [[meta/mocs/MOC - Supabase Ecosystem]] — referência canônica detectada no conteúdo
 - [[projects/whatsapp-api]] — referência canônica detectada no conteúdo

@@ -228,8 +228,6 @@ assistant: ✅ Tudo pronto! Resumo:
 
 - [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
 - [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
-- [[memory/context/decisoes/2026-03]] — decisões do mês
-- [[memory/sessions/2026-03-25]] — sessão correspondente do vault humano
 - [[memory/context/business-context]] — contexto operacional
 - [[projects/whatsapp-api]] — referência canônica detectada no conteúdo
 - [[meta/mocs/MOC - Token Management]] — referência canônica detectada no conteúdo

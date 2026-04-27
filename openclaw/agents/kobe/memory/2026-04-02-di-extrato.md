@@ -539,5 +539,4 @@ assistant: Tô aqui! O email já foi enviado pro suporte da Remessa Online com t
 - [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
 - [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
 - [[memory/context/decisoes/2026-04]] — decisões do mês
-- [[memory/sessions/2026-04-02]] — sessão correspondente do vault humano
 - [[memory/context/business-context]] — contexto operacional

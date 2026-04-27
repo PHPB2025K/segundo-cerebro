@@ -108,7 +108,5 @@ assistant: Deixa eu vasculhar mais a fundo — sessão de hoje, projetos e hist�
 
 - [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
 - [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
-- [[memory/context/decisoes/2026-03]] — decisões do mês
-- [[memory/sessions/2026-03-23]] — sessão correspondente do vault humano
 - [[memory/context/business-context]] — contexto operacional
 - [[memory/context/decisoes/2026-04]] — referência canônica detectada no conteúdo

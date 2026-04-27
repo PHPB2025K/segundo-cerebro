@@ -27,6 +27,5 @@ assistant: Fala Pedro! Abril começou — e amanhã cedo tem o Relatório Financ
 - [[openclaw/agents/kobe/IDENTITY]] — agente proprietário desta memória
 - [[openclaw/agents/kobe/SOUL]] — princípios estáveis do agente
 - [[memory/context/decisoes/2026-04]] — decisões do mês
-- [[memory/sessions/2026-04-01]] — sessão correspondente do vault humano
 - [[memory/context/business-context]] — contexto operacional
 - [[memory/context/decisoes/2026-04]] — referência canônica detectada no conteúdo

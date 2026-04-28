@@ -2,7 +2,7 @@
 title: "SOP — Deploy E-commerce Budamix"
 type: sop
 created: 2026-04-15
-updated: 2026-04-15
+updated: 2026-04-28
 status: active
 tags:
   - sop
@@ -63,11 +63,27 @@ Output: `dist/`. Se falhar, corrigir antes de prosseguir.
 
 ### 4. Deploy para Vercel
 
+**Padrão atual (28/04/2026):** deploy pelo Mac do Pedro até Kobe rodar 1–2 ciclos sem incidente. Quando Kobe precisar deployar pela VPS, pegar o token em runtime no 1Password — **não** hardcodar em arquivo.
+
+O item 1Password `Vercel Token - Budamix Ecommerce` guarda o token nas **anotações / `notesPlain`**, não no campo `password` (que fica vazio).
+
 ```bash
-vercel --prod
+VERCEL_TOKEN=$(op item get "Vercel Token - Budamix Ecommerce" \
+  --vault OpenClaw --field notesPlain --reveal \
+  | grep -oE 'vercel_[A-Za-z0-9]+' | head -1)
+
+# Fallback se Pedro salvar como "token: XXX" ou token solto.
+[ -z "$VERCEL_TOKEN" ] && VERCEL_TOKEN=$(op item get "Vercel Token - Budamix Ecommerce" \
+  --vault OpenClaw --field notesPlain --reveal \
+  | grep -oE '[A-Za-z0-9]{24,}' | head -1)
+
+echo "Token length: ${#VERCEL_TOKEN}"
+vercel --prod --yes --token "$VERCEL_TOKEN"
 ```
 
-Ou via push para `main` (auto-deploy configurado).
+Regra: secrets via 1Password em runtime, nunca hardcoded. Mesmo padrão usado para Bling Client Secret e daily-vault-backup Supabase service_role.
+
+Ou via push para `main` quando GitHub→Vercel estiver conectado/validado.
 
 ### 5. Verificar deploy
 

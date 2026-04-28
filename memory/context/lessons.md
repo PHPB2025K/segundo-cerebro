@@ -191,6 +191,10 @@ _Última Consolidação Profunda: 2026-04-15_
 
 ## Lições Táticas (Expiram em 30 dias)
 
+### [TÁTICA] Bootstrap: nunca declarar 100% completo quando arquivos esperados não existem (2026-04-28)
+**Lição:** Em bootstrap pendente, validar o que foi de fato restaurado e tratar ausência real de nota do dia/arquivo de pendências como bloqueio explícito. Melhor reportar "quase completo" do que fingir contexto carregado.
+**Expira:** 2026-05-28
+
 ### [TÁTICA] Google/gog: diagnosticar pelo fluxo real, não por caminho quebrado de keyring (2026-04-26)
 **Lição:** Se um teste de autenticação Google falhar por caminho específico de keyring, validar também pelo comando real/ambiente atual antes de concluir que Sheets/Gmail/Calendar estão indisponíveis. Em 26/04, Sheets funcionava nas contas do agente e do Pedro apesar de um diagnóstico inicial ruim.
 **Expira:** 2026-05-26

@@ -1,0 +1,1 @@
+openclaw/agents/kobe/IDENTITY.md

@@ -19,9 +19,9 @@ triggers:
 metadata:
   openclaw:
     emoji: 💰
-    last_updated: "2026-04-10"
-    next_review: "2026-04-16"
-    cron: "ML Fees Monitor — quarta 10h SP"
+    last_updated: "2026-04-27"
+    next_review: "2026-05-04"
+    cron: "ML Fees Monitor — segunda 10h BRT"
     sources:
       - url: "https://www.mercadolivre.com.br/ajuda/quanto-custa-vender-um-produto_1338"
         status: "✅ Oficial — custos gerais"
@@ -47,10 +47,10 @@ metadata:
 
 # Regras de Comissões, Taxas e Custos — Mercado Livre 2026 (CNPJ)
 
-> ⚠️ **Última atualização:** 10/04/2026
+> ⚠️ **Última atualização:** 27/04/2026
 > **Mudança estrutural em 02/03/2026:** ML substituiu taxa fixa por tabela variável de 232 combinações (peso × preço), encerrou subsídio de frete grátis, reajustou Full, criou tabelas de frete por reputação.
-> **Nenhuma mudança adicional entre março e abril de 2026.**
-> **Cron de verificação:** Quarta-feira 10h SP (ML Fees Monitor)
+> **Verificação oficial 27/04/2026:** páginas oficiais mantêm a tabela de frete e custos Full, mas corrigem 3 pontos documentais: Premium até 10x sem juros; desconto de frete verde/ML/sem reputação até 50%; desconto de reputação amarela até 40%.
+> **Cron de verificação:** Segunda-feira 10h BRT (ML Fees Monitor)
 
 ---
 
@@ -63,15 +63,17 @@ metadata:
 | Comissão | 0% | 10–14% | 15–19% |
 | Exposição | Baixa | Alta | Máxima |
 | Duração | 60 dias | Ilimitada | Ilimitada |
-| Parcelas s/juros | Não | Não | Até 12× (até 18× em valores altos) |
+| Parcelas s/juros | Não | Não | Até 10×* |
 | Limite vendas | 5 novos / 20 usados por ano | Sem limite | Sem limite |
 | Anúncios simultâneos | Máx. 10 (1 un. cada) | Sem limite | Sem limite |
 | Uso ideal | Teste de demanda | Margem apertada | Escala / alto giro |
 
 ### Notas:
+\* A quantidade de parcelas no Premium depende do valor do produto e do meio de pagamento do comprador.
+
 - **Grátis:** Indisponível para MercadoLíder ou Profissional do Mercado Pago. Apenas para teste.
 - **Clássico:** Não oferece parcelamento sem juros. Defesa de rentabilidade.
-- **Premium:** Prioridade no algoritmo + parcelamento. A diferença vs Clássico é sempre **5 pontos percentuais** em qualquer categoria.
+- **Premium:** Prioridade no algoritmo + parcelamento de até 10× sem juros, dependendo do valor do produto e do meio de pagamento do comprador. A diferença vs Clássico é sempre **5 pontos percentuais** em qualquer categoria.
 - **Regra prática:** Premium custa ~R$ 2–3 a mais por venda na faixa R$ 25–50. Se parcelamento + exposição gerarem ≥1 venda extra a cada 10, compensa.
 
 ---
@@ -129,7 +131,7 @@ O custo depende de 3 variáveis: **preço do produto**, **peso** (real ou cubado
 
 ### 3.2 Tabela de custos de envio — MercadoLíder / Reputação Verde / Sem Reputação
 
-Fonte: Página oficial ML (`ajuda/40538`). Válido para Full, Coleta e Agências. **Desconto de até 70% já embutido.**
+Fonte: Página oficial ML (`ajuda/40538`). Válido para Full, Coleta e Agências. **Desconto de até 50% já embutido.**
 
 | Peso | R$0-18,99 | R$19-48,99 | R$49-78,99 | R$79-99,99 | R$100-119,99 | R$120-149,99 | R$150-199,99 | R$200+ |
 |---|---|---|---|---|---|---|---|---|
@@ -152,9 +154,9 @@ Desde março/2026, existem **tabelas diferenciadas por reputação**:
 
 | Reputação | Desconto embutido | Faixa de custo (total) | Tabela oficial |
 |---|---|---|---|
-| Verde / ML / Sem reputação | Até 70% | R$ 5,65 — R$ 261,95 | `ajuda/40538` |
-| Amarela | ~60% | R$ 6,46 — R$ 314,34 | `ajuda/40545` |
-| Laranja / Vermelha | 0% | **R$ 8,07 — R$ 523,90** | — |
+| Verde / ML / Sem reputação | Até 50% | R$ 5,65 — R$ 261,95 | `ajuda/40538` |
+| Amarela | Até 40% | R$ 6,46 — R$ 314,34 | `ajuda/40545` |
+| Laranja / Vermelha | 0% | **R$ 8,07 — R$ 523,90** | `ajuda/40547` |
 
 **⚠️ Reputação ruim pode DOBRAR o custo de frete. Manter verde é questão de sobrevivência financeira.**
 
@@ -514,7 +516,7 @@ Ambos reestruturaram custos em março/2026, encerrando a "guerra de frete gráti
 1. Acessar fontes oficiais ML (1–5) → comparar com dados desta skill
 2. Cruzar com fontes secundárias (6–9)
 3. Se divergência → fonte oficial ML prevalece
-4. Se confirmada mudança → atualizar skill + notificar Pedro no tópico 📊 Marketplaces
+4. Se confirmada mudança → atualizar skill + notificar Pedro no tópico operacional configurado no cron
 
 ---
 
@@ -522,7 +524,8 @@ Ambos reestruturaram custos em março/2026, encerrando a "guerra de frete gráti
 
 | Data | Alteração |
 |---|---|
-| 10/04/2026 | v2.0 — Reformulação completa: taxa fixa abolida → tabela variável 232 combinações como seção principal. Tabelas de frete por reputação (verde/amarela/laranja). Tabela de categorias expandida (10→22). Parcelas Premium corrigido (12×, não 10×). Full: reajustes +7,6%, cashback 40%, penalidades detalhadas, estoque >120 dias. Ads: modelo leilão 2º preço, requisitos, ACOS 5–15%. Recebimento: prazos detalhados por nível, Pix/TED sem custo. Mudanças operacionais 2026 (monitoramento preços, Minha Página, Loja Oficial, UP, API). Requisitos MercadoLíder adicionados. Comparativo ML vs Shopee atualizado. Fontes oficiais ML adicionadas (ajuda/40538, 40545). |
+| 27/04/2026 | v2.1 — Verificação semanal em fontes oficiais ML. Corrigido Premium para até 10× sem juros; desconto de frete verde/MercadoLíder/sem reputação de 70% → 50%; reputação amarela de ~60% → até 40%. Tabelas de frete e custos Full conferidos sem alteração de valores. |
+| 10/04/2026 | v2.0 — Reformulação completa: taxa fixa abolida → tabela variável 232 combinações como seção principal. Tabelas de frete por reputação (verde/amarela/laranja). Tabela de categorias expandida (10→22). Parcelas Premium registrado como 12×; corrigido na v2.1 para 10× conforme fonte oficial. Full: reajustes +7,6%, cashback 40%, penalidades detalhadas, estoque >120 dias. Ads: modelo leilão 2º preço, requisitos, ACOS 5–15%. Recebimento: prazos detalhados por nível, Pix/TED sem custo. Mudanças operacionais 2026 (monitoramento preços, Minha Página, Loja Oficial, UP, API). Requisitos MercadoLíder adicionados. Comparativo ML vs Shopee atualizado. Fontes oficiais ML adicionadas (ajuda/40538, 40545). |
 | 18/03/2026 | v1.0 — Criação da skill |
 
 ---

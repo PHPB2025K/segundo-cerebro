@@ -70,8 +70,9 @@ O item 1Password `Vercel Token - Budamix Ecommerce` guarda o token nas **anotaç
 ```bash
 VERCEL_TOKEN=$(op item get "Vercel Token - Budamix Ecommerce" \
   --vault OpenClaw --field notesPlain --reveal \
-  | grep -oE 'vercel_[A-Za-z0-9]+' | head -1)
+  | grep -oE '(vcp_|vercel_)[A-Za-z0-9]+' | head -1)
 
+# Tokens Vercel atuais podem começar com vcp_ (formato novo) ou vercel_ (formato antigo).
 # Fallback se Pedro salvar como "token: XXX" ou token solto.
 [ -z "$VERCEL_TOKEN" ] && VERCEL_TOKEN=$(op item get "Vercel Token - Budamix Ecommerce" \
   --vault OpenClaw --field notesPlain --reveal \

@@ -158,11 +158,11 @@ products, product_variants, product_images, product_videos, collections, carts, 
 
 ## Como deployar
 
-**Nota Kobe/VPS (28/04/2026):** por enquanto Pedro faz o deploy pelo Mac até Kobe rodar 1–2 ciclos sem incidente. Quando Kobe precisar deployar pela VPS, ler o token da Vercel do item 1Password `Vercel Token - Budamix Ecommerce` em `notesPlain`; o campo `password` fica vazio. Nunca hardcodar token.
+**Nota Kobe/VPS (28/04/2026):** quando Kobe precisar deployar pela VPS, ler o token da Vercel do item 1Password `Vercel Token - Budamix Ecommerce` em `notesPlain`; o campo `password` fica vazio. Tokens Vercel podem começar com `vcp_` (formato novo) ou `vercel_` (formato antigo). Nunca hardcodar token.
 
 ```bash
 cd ~/Documents/05-Projetos-Codigo/budamix-ecommerce
-VERCEL_TOKEN=$(op item get "Vercel Token - Budamix Ecommerce" --vault OpenClaw --field notesPlain --reveal | grep -oE 'vercel_[A-Za-z0-9]+' | head -1)
+VERCEL_TOKEN=$(op item get "Vercel Token - Budamix Ecommerce" --vault OpenClaw --field notesPlain --reveal | grep -oE '(vcp_|vercel_)[A-Za-z0-9]+' | head -1)
 [ -z "$VERCEL_TOKEN" ] && VERCEL_TOKEN=$(op item get "Vercel Token - Budamix Ecommerce" --vault OpenClaw --field notesPlain --reveal | grep -oE '[A-Za-z0-9]{24,}' | head -1)
 vercel --prod --yes --token "$VERCEL_TOKEN"
 ```

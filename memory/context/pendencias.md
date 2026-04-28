@@ -18,6 +18,43 @@ tags:
 
 ## 🔴 Críticas (bloqueiam progresso)
 
+## 🔴 Delta Kobe/OpenClaw — importado em 28/04/2026
+
+> Bloco conservador importado de `openclaw/agents/kobe/memory/pending.md` durante a Fase 3 da unificação. Resolver/deduplicar item a item nas próximas consolidações; não sobrescrever pendências históricas do vault.
+
+### Infraestrutura e saúde do sistema
+
+- [27/04] [[openclaw/agents/spark/IDENTITY|Spark]] — **Google Ads API**: OAuth retornou `invalid_grant`; refresh token precisa ser reautorizado/gerado novamente.
+- [27/04] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token exposto em screenshot; integração operacional usa user token read-only no 1Password.
+- [27/04] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; reativar exige QR Code. Evolution API/histórico segue funcional.
+- [27/04] **Watchdog - Monitor de Crons** — revisar escopo/timeout após falha por timeout de 3min.
+- [27/04] **Monitor Ponto Semanal** — falhas consecutivas por timeout de 300s; revisar escopo/timeout.
+- [27/04] **RH Monitor Ponto Saída** — corrigir fallback/model not found antes da próxima execução.
+- [27/04] **Bling Token Refresh / Filial** — Matriz OK; Filial segue com empresa inativa/401/403; validar painel Bling e reautorizar se necessário.
+
+### Financeiro e marketplaces
+
+- [27/04] **Ads spend março** — levantar gasto real por plataforma antes de fechar consolidado.
+- [27/04] **Refazer fechamento de março** — DRE operacional + planilha + HTML com 5 extratos completos e ads spend correto.
+- [27/04] **Mapeamento semanal DRE março** — separar semanas 01-07, 08-14, 15-21, 22-31.
+- [27/04] **OAuth rotation 3 contas Shopee** — garantir refresh automático para `budamix-shop` e `budamix-store2`.
+
+### Budamix Central / PCM001 / Blog
+
+- [27/04] **PCM001 Amazon** — ASIN pendente desde 07/04; verificar status na Amazon BR.
+- [27/04] **PCM001 peso embalado** — Pedro precisa informar peso final do kit embalado para NF-e.
+- [27/04] **PCM001 foto 9** — Pedro precisa enviar hero image de encerramento.
+- [27/04] **PCM001 custos refinados** — substituir estimativas por custo real.
+- [27/04] **57 SKUs sem cost_price** em `fulfillment_inventory` e **9 Amazon SKUs sem preço** — investigar.
+- [27/04] [[projects/budamix-ecommerce|Budamix E-commerce]] — **Supabase REST keys** salvas no 1Password retornaram 401; corrigir/rotacionar antes de workflows N8N dependerem delas.
+- [27/04] **Budamix Blog — Pinterest API/OAuth** — futuro aprovado; ativar quando padrão de artigos/imagens estiver validado.
+
+### SimulImport e backlog estagnado
+
+- [27/04] [[projects/simulimport|SimulImport]] — Pedro validar cenários reais com importações dele.
+- [27/04] **Backlog estagnado >14d** — links Amazon da base Ana, revisão `[VERIFICAR]`, sync Amazon de links/platform IDs, 3 SKUs ML sem mapeamento, teste motor SimulImport, NFs teste, product-packaging, B2B março, WhatsApp RH, Mission Control DNS, Canggu/Railway, Bidspark CLAUDE.md e webhooks marketplaces.
+
+
 - [26/04 noite] [[projects/budamix-ecommerce|Bling]] — **Filial CNPJ 58.151.616/0002-24 retorna HTTP 403 "empresa inativa"** mesmo após rotação do Client Secret 26/04. Confirmado: NÃO é problema de credencial. **Pedro precisa investigar no painel Bling**: plano Mercúrio cobre Filial? CNPJ secundário ativado/suspenso? Pode ser financeiro/contratual. Sem isso, NF-e da Filial e operações fiscais via API ficam bloqueadas. → [[memory/context/decisoes/2026-04#[26/04]]]
 - [26/04 noite] **Vault como single source of truth — Fase 2B-FULL pendente** após validação 48h da 2B-LITE (alvo ~28/04). Mudará `openclaw.json` pra Kobe escrever direto em `/root/segundo-cerebro/openclaw/agents/kobe/...` em vez de `/root/.openclaw/workspace/`. Elimina dupla escrita. Janela calma necessária. Plano detalhado em [[knowledge/concepts/disaster-recovery-vault]].
 - [22/04] **Reuniões semanais presenciais marketplace** — 22/04 Leonardo (Amazon) HOJE 14:30, 23/04 Lucas (Shopee) 14:30, 24/04 Yasmin (Mercado Livre) 14:30. Local: Escritório Budamix Pedreira-SP. Convidado `marketplace@gbimportadora.com`. Criados no calendar Trabalho via `gog` do VPS.

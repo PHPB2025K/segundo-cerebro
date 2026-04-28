@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-04-25 23:30 BRT (Consolidação Diária). Não duplica conteúdo — aponta pra onde está cada coisa._
+_Último update: 2026-04-27 23:30 BRT (Consolidação Diária). Não duplica conteúdo — aponta pra onde está cada coisa._
 
 ---
 
@@ -84,7 +84,10 @@ memory/
 | Bright Data | ⚠️ Instável / billing suspende intermitentemente | API key no 1Password |
 | Evolution API Cloudfy | ✅ WhatsApp Pedro + WhatsApp Kobe | API Key em 1Password |
 | Bling ERP | ✅ Plano Mercúrio (Matriz + Filial) | OAuth tokens refresh automático |
-| Supabase | ✅ Projeto Budamix Central | Service role key via env |
+| Supabase | ✅ Projeto Budamix Central + Budamix E-commerce | Service role key via env/credencial N8N |
+| Slack | ✅ Read-only workspace GB Importadora | User token no 1Password |
+| N8N Cloudfy | ✅ Workflows Blog Budamix; ⚠️ API key nova ainda não localizada no 1Password | Credentials internas no N8N + pendência de item `N8N Cloudfy API Key` |
+| Perplexity API | ✅ Radar de pautas Blog Budamix | Credential N8N via 1Password |
 
 ## Skills
 
@@ -129,36 +132,36 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (25/04/2026 23:30 BRT — Consolidação Diária)
+## Status do Sistema (27/04/2026 23:30 BRT — Consolidação Diária)
 
 ### 🚨 Crítico
-- **Migração GPT-5.5 formalizada por Pedro:** agora é prioridade de infraestrutura, não backlog. Exige backup, autenticação Codex CLI, provider `openai-via-codex`, migração de todos os agentes/crons, validação completa e rollback se qualquer etapa falhar.
-- **GitHub backup/push do workspace segue bloqueado por autenticação:** commit local pode funcionar, mas push remoto continua degradado até corrigir credencial.
-- **Google `gog` degradado:** Sheets, Calendar e Gmail seguem com falhas de autenticação/token, afetando sync-costs, briefing e inbox cleanup.
-- **Fechamento março continua aberto:** seguem pendentes ads spend, consolidado novo e mapeamento semanal do DRE.
+- **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
+- **Bling Token Refresh / Filial segue bloqueado:** Matriz OK; Filial precisa validação no painel Bling + possível reautorização.
+- **Google Ads OAuth do Spark** segue com `invalid_grant` e precisa novo refresh token.
 
 ### ⚠️ Importante
-- **Monitor Ponto Semanal** continua degradado por timeout.
-- **RH Monitor Ponto Saída** precisa correção de fallback/modelo.
-- **Bling Token Refresh** continua exigindo validação operacional da Filial.
-- **Links Amazon da base Ana** e pendências finais do PCM001 seguem abertas.
+- **Supabase Budamix Ecommerce REST keys** retornam 401 no 1Password; corrigir/rotacionar antes de N8N depender delas.
+- **WhatsApp Baileys/OpenClaw** está desconectado/not linked para leitura passiva em tempo real; Evolution API/histórico segue separado.
+- **Watchdog - Monitor de Crons** e **Monitor Ponto Semanal** ainda precisam revisão de timeout/escopo.
 
 ### ✅ Operacional
-- O dia 25/04 teve manutenção noturna, criação da sessão diária e consolidação da diretriz GPT-5.5.
-- Não houve atividade operacional relevante nova de Trader, Spark ou Builder no recorte do dia.
-- Não houve job novo do Builder nem `RESULT.md` novo para consolidar em 25/04.
-- `pending.md` principal foi relido integralmente e limpo: itens concluídos foram removidos, e a migração GPT-5.5 foi reposicionada como prioridade atual.
-- Decisão GPT-5.5 e lição sobre não inferir áudio falho estão registradas nos arquivos core de memória.
+- **Blog Budamix/Admin v2** estabilizado em fluxo Pautas → Rascunhos → Preview → Publicados/Arquivados, com WF0/WF2/WF4 ajustados à SPEC v2.0.
+- **Repo Budamix E-commerce** voltou a aceitar push usando PAT das Observações/notesPlain do 1Password.
+- **DNA editorial/visual do Blog Budamix** aprovado e registrado: consultivo, casa brasileira real/bonita, produto opcional, realismo positivo.
+- **Amazon Request Review** ajustado para janela diária 7–12 dias.
 
-## Qualidade da Memória (Consolidação Diária 25/04)
-- **sessions/2026-04-25.md:** registra manutenção noturna, diretriz GPT-5.5, pendências abertas e consolidação diária final.
-- **pending.md:** relido por completo, limpo de itens concluídos e corrigido para manter GPT-5.5 em prioridade imediata.
-- **decisions.md:** decisão de migração total para GPT-5.5 já registrada com condição de rollback.
-- **lessons.md:** lição tática registrada para não inferir conteúdo de áudio falho nem afirmar incidente/configuração sem validação real.
-- **shared/trader, shared/spark e shared/builder:** sessões de 25/04 criadas explicitamente e pendings revalidados com timestamp novo.
-- **feedbacks:** sem novo feedback formal a registrar em `memory/feedback/`.
+## Qualidade da Memória (Consolidação Diária 27/04)
+- **sessions/2026-04-27.md:** deduplicado e consolidado com WF4, Admin Blog v2, diretriz editorial, DNA visual/emocional, Amazon Request Review e heartbeats.
+- **pending.md:** limpo; pendências resolvidas do Blog/N8N/GitHub removidas; REST keys Supabase, WhatsApp Baileys e Pinterest futuro mantidos no lugar correto.
+- **decisions.md:** atualizado para refletir SPEC v2.0 (`em_edicao`/`preview`) e remover ambiguidade de `ready_to_publish` como estado final.
+- **lessons.md:** novas lições sobre N8N validador rígido, admin async, feedback UX e design system.
+- **shared/builder:** sessão 27/04 criada com os dois briefings Blog Admin e pendências finais.
+- **shared/trader e shared/spark:** sessões 27/04 registradas como sem atividade delegada.
+- **feedbacks:** registrados aprovações/rejeições de diretriz editorial, DNA visual e tipografia do blog.
 
 ## Timeline Recente
+- **2026-04-27:** Blog Budamix/Admin v2 virou a frente principal: WF4 Orchestrator, Admin Blog SPEC v2.0, WF0/WF2/WF4 corrigidos, fluxo final `gerando` → `em_edicao` → `preview` → `publicado`, UX de preview/editor, reset de pipeline, DNA editorial/visual/emocional aprovado, template de artigos encurtado e Amazon Request Review ajustado para 7–12 dias. GitHub do ecommerce destravado via PAT nas Observações do 1Password.
+- **2026-04-26:** Integração Slack read-only criada, Google Sheets e WhatsApp histórico validados, e Blog Budamix avançou de placeholder para fundação no repo principal + N8N Draft Generator + WF0 Perplexity + Admin Blog Review em produção. No delta pós-consolidação, houve retrofit dos 3 artigos legados e SEO técnico deployado, com pendência de push GitHub/keys REST Supabase/N8N API key. Lições críticas registradas: Builder em repo privado precisa validar repo principal e deploy frontend exige smoke test renderizado amplo.
 - **2026-04-25:** Pedro formalizou a diretriz de migração total para GPT-5.5 via ChatGPT Pro, com guardrails de backup, validação e rollback. Consolidação diária limpou o pending, reposicionou GPT-5.5 como prioridade atual e registrou ausência de atividade nova de Trader, Spark e Builder.
 - **2026-04-23:** Consolidação diária silenciosa com revalidação integral do pending principal, registro explícito de ausência de atividade nova dos agentes e manutenção fiel do estado operacional do sistema.
 - **2026-04-20:** Consolidação diária silenciosa com revalidação integral do pending principal, registro explícito de ausência de atividade nova dos agentes e manutenção do índice central sem mudanças estruturais artificiais.
@@ -173,7 +176,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) executar migração GPT-5.5 com guardrails, (2) normalizar auth do GitHub e `gog`, (3) fechar março com ads + consolidado + DRE semanal, (4) fechar links Amazon da base Ana, (5) fechar pendentes finais do PCM001._
+_Próximas ações: (1) fechar março com ads + consolidado + DRE semanal, (2) normalizar Google Calendar/Gmail e Google Ads OAuth, (3) resolver Bling Filial, (4) evoluir pipeline Blog Budamix com IA/imagens/aprovação, (5) revisar Watchdog/Monitor Ponto por timeout._
 
 ---
 ## Contexto

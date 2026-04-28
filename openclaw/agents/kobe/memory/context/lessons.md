@@ -384,6 +384,23 @@ _Última Consolidação Profunda: 2026-04-15_
 **Lição:** No N8N Cloudfy, o Code node não expõe `fetch` global, e workflows chamados por webhook podem responder `200` com corpo vazio/timeout mesmo concluindo o trabalho. Para orquestrar WF2/WF3, usar helper HTTP do próprio N8N ou HTTP Request com resposta tratada como texto, e validar o sucesso pelo estado final no banco/workflow — não só pelo corpo JSON da chamada.
 **Expira:** 2026-05-27
 
+
+### [TÁTICA] N8N/WF2: validador rígido demais vira loading infinito no Admin (2026-04-27)
+**Lição:** Validações de brand/DNA em workflow de geração devem corrigir automaticamente pequenos desvios seguros quando possível (ex.: completar “no text/no logos”, aceitar acento verde/teal discreto sem exigir hex fixo). Só devem falhar em violação crítica real. Validador rígido demais parece bug de frontend e deixa artigo preso em `gerando`.
+**Expira:** 2026-05-27
+
+### [TÁTICA] Admin async: criar rascunho imediatamente e rodar orquestrador em background (2026-04-27)
+**Lição:** Em fluxo longo N8N, não prender a UI em loading global aguardando webhook terminar. Criar o registro `gerando`, mover o admin para Rascunhos imediatamente, limpar loading da pauta clicada e acompanhar por polling silencioso.
+**Expira:** 2026-05-27
+
+### [TÁTICA] Feedback UX: modal/card separado ≠ expandir inline; ícones discretos ≠ CTAs textuais (2026-04-27)
+**Lição:** Quando Pedro pedir “abrir em card/modal” ou “discreto”, interpretar literalmente. No Admin Blog, expandir texto dentro da lateral e botões textuais grandes foram corrigidos para modal separado e ícones discretos.
+**Expira:** 2026-05-27
+
+### [TÁTICA] Blog público deve usar tokens do design system, não hex/fontFamily hardcoded (2026-04-27)
+**Lição:** Componentes públicos do Blog Budamix devem usar tokens/classes do design system (`bg-background`, `text-foreground`, `font-display`, `font-body`, `primary`, `accent`, etc.). Hex hardcoded e `style fontFamily` criam drift visual com o site.
+**Expira:** 2026-05-27
+
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 
 ### Duplicatas removidas nesta consolidação:

@@ -269,11 +269,12 @@ Se Pedro autorizar pular → registrar em lessons.md que o gate foi pulado e o m
 - **Repo fonte de verdade:** Entregas do Budamix E-commerce precisam estar no repo principal privado `PHPB2025K/budamix-ecommerce`; workspace isolado do Builder não é entrega final.
 - **Imagens:** Fluxo futuro pode usar Nano Banana Pro/Gemini (`gemini-3-pro-image-preview`) para imagens editoriais/lifestyle. Não depender de PNG com transparência real; usar fundo sólido/paleta Budamix.
 
-### 2026-04-27 — Blog WF4 automatiza até `ready_to_publish`; publicação segue manual
-- **Decisão:** O fluxo do blog Budamix deve deixar de ser manual por etapa. Depois que a pauta estiver aprovada, o **WF4 — Blog Orchestrator** gera o artigo, dispara todas as imagens exigidas e finaliza em `ready_to_publish` sem cliques intermediários.
-- **Publicação:** continua manual/humana no Admin. O workflow automatiza preparo, não a publicação final.
+### 2026-04-27 — Admin Blog v2: automação até edição/preview; publicação segue manual
+- **Decisão:** O fluxo do Blog Budamix deve deixar de ser manual por etapa, mas respeitando a SPEC v2.0: pauta `nova` → artigo `gerando` → `em_edicao` → `preview` → `publicado`.
+- **Regra:** O WF4 gera artigo e imagens em background e finaliza o artigo em `em_edicao`. `ready_to_publish` foi usado na primeira fase, mas ficou obsoleto para o fluxo final.
+- **Publicação:** continua manual/humana no Admin e só acontece na aba Preview. O workflow automatiza preparo, não a publicação final.
 - **Motivo:** eliminar a operação manual de “gerar artigo” e “gerar imagem” por etapa sem abrir mão da aprovação humana antes de publicar.
-- **Pedro aprovou:** Sim ("ótimo, pode seguir com o WF4 - BLOG ORCHESTRATOR").
+- **Pedro aprovou:** Sim ("ótimo, pode seguir com o WF4 - BLOG ORCHESTRATOR") e depois refinou a SPEC v2.0.
 
 ## E-commerce Budamix — Decisões Fase 1 (2026-04-01)
 
@@ -720,3 +721,19 @@ Número dedicado: 5519992997273 (separado do Kobe). RH responde direto aos funci
 - Objetos: priorizar objetos de uso que são bonitos (cafeteira real, caneca simpática, pote Budamix em uso, fruta solta, pano de prato natural, geladeira visível, escorredor discreto, planta pequena). Evitar props cenográficos.
 - Pessoa na capa: rosto visível, brasileira, bem cuidada, casual arrumada, com bom gosto; sem parecer modelo, elegante/formal demais, nem simples/largada demais.
 - Luz: janela brasileira real com persiana/cortina simples e sombras naturais; evitar golden hour perfeita, glow editorial ou stock photo.
+
+### 2026-04-27 — Blog Budamix: pins Pinterest são assets por enquanto
+- **Decisão:** Pins Pinterest gerados pelo pipeline ficam como assets reaproveitáveis no Admin Blog, sem postagem automática por enquanto.
+- **Futuro:** Ativar Pinterest API/OAuth só depois que o padrão de artigos, imagens e operação do blog estiver validado.
+- **Pedro aprovou:** Sim, após perguntar a utilidade dos pins sem integração de postagem.
+
+### 2026-04-27 — Blog Budamix: artigos mais curtos e fluídos
+- **Decisão:** Artigos do Blog Budamix devem ser menores, fáceis e prazerosos de ler, sem perder qualidade.
+- **Regra editorial:** Padrão 550–750 palavras; máximo normal 900–950 quando necessário. Parágrafos de 2–4 linhas, frases diretas, subtítulos claros, listas curtas e sem encher linguiça para SEO.
+- **Pedro aprovou:** Sim, pediu explicitamente leitura mais fluida e menos cansativa.
+
+### 2026-04-27 — Blog Budamix: DNA emocional positivo das imagens
+- **Decisão:** Realismo sim, baixo astral não. Pessoas nas imagens, especialmente capas, devem parecer normais, brasileiras, críveis, bem cuidadas, simpáticas e comercialmente agradáveis.
+- **Evitar:** expressão triste, cansada, preocupada, melancólica, abatida, largada, sofrida ou visual comercialmente fraco.
+- **Desejado:** alegria calma, satisfação, acolhimento, orgulho da casa, alívio positivo e prazer em cozinhar/organizar/receber.
+- **Pedro aprovou:** Sim, refinou e aprovou essa direção como regra permanente do DNA visual.

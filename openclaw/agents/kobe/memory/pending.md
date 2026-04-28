@@ -10,21 +10,20 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-04-27 07:55 BRT — push Budamix Ecommerce destravado; estagnados >7 dias anotados para briefing_
+_Atualizado: 2026-04-27 23:30 BRT — consolidação diária após estabilização do Blog Budamix v2_
 
 ## 🚨 URGENTE — Infraestrutura e saúde do sistema
 
 ### Autenticações críticas bloqueadas/degradadas
 - [ ] **Google Ads API - Spark** — credenciais existem no 1Password, mas validação OAuth em 26/04 13:40 BRT retornou `invalid_grant`; refresh token precisa ser reautorizado/gerado novamente para a conta Google Ads.
-- [ ] **Google Calendar (gog) para Daily Briefing** — falha de autenticação ainda não foi revalidada após Sheets funcionar; agenda pode seguir indisponível no briefing matinal.
-- [ ] **Gmail (gog) para Inbox Cleanup** — falha de descriptografia/token ainda precisa validação própria; nenhum email deve ser assumido como processável até teste real.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password, mas rotação é medida de higiene.
+- [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.
 
 ### Saúde de crons recorrentes críticos
 - [ ] **Watchdog - Monitor de Crons** — falhou por timeout de 3min em 26/04; revisar escopo/timeout para não confundir com falha do job-monitor.
 - [ ] **Monitor Ponto Semanal** — falhas consecutivas por timeout de 300s. Bloqueado sem execução confiável até revisão de escopo/timeout.
 - [ ] **RH Monitor Ponto Saída** — última falha relevante foi por fallback inválido/model not found. Cadeia de fallback precisa corrigir antes de próxima execução.
-- [ ] **Bling Token Refresh / Filial** — 26/04 15:32 BRT: Client Secrets rotacionados no 1Password e scripts ajustados para ler secrets via 1Password em runtime. Matriz refresh OK, Supabase sync OK e API `/produtos?limite=1` HTTP 200. Filial refresh segue HTTP 403 `Empresa inativa`; token antigo já expirou e teste API retorna HTTP 401. Pendência é reativar/validar empresa Filial no painel Bling e reautorizar OAuth se necessário.
+- [ ] **Bling Token Refresh / Filial** — Matriz OK, mas Filial segue com bloqueio de empresa inativa/401; validar empresa Filial no painel Bling e reautorizar OAuth se necessário.
 
 ## 🔥 PRIORIDADE IMEDIATA — Financeiro
 - [ ] **Ads spend março** — levantar gasto real com publicidade por plataforma (ML, Amazon via integração, Shopee manual). Sem este dado, consolidado de março é inválido.
@@ -46,8 +45,11 @@ _Atualizado: 2026-04-27 07:55 BRT — push Budamix Ecommerce destravado; estagna
 ## 🔥 PRIORIDADE IMEDIATA — SimulImport
 - [ ] **Validar cenários reais** — Pedro testar com importações dele.
 
+## 🟡 Futuro aprovado / não imediato
+- [ ] **Budamix Blog — Pinterest API/OAuth** — ativar postagem automática no Pinterest quando padrão de artigos e imagens estiver validado. Por enquanto pins ficam apenas como assets no Admin.
+
 ## 🟡 Para briefing matinal — estagnados >7 dias
-_Anotação da organização noturna de 27/04 02:00 BRT._
+_Anotação da organização noturna de 27/04 23:30 BRT._
 
 - **PCM001 Amazon** — pendente desde 07/04, ainda em prioridade imediata.
 - **Já classificados no Backlog Estagnado (>14 dias):** Links Amazon da base Ana, revisão manual dos campos [VERIFICAR] do catálogo da Ana, sync Amazon de `platform_item_id/links`, 3 SKUs ML sem mapeamento automático e teste do motor SimulImport com NCMs corrigidos.
@@ -95,6 +97,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 ---
 
-_Última organização: 2026-04-27 02:00 BRT. Próxima revisão: Consolidação Profunda/Diária conforme cron._
-
-- [ ] Futuro — Budamix Blog: ativar postagem automática no Pinterest via Pinterest API/OAuth quando o padrão de artigos e imagens estiver validado. Decisão 2026-04-27: por enquanto pins ficam apenas como assets no Admin.
+_Última organização: 2026-04-27 23:30 BRT. Próxima revisão: Consolidação Profunda/Diária conforme cron._

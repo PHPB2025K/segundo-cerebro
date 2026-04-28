@@ -429,3 +429,11 @@ _Última Consolidação Profunda: 2026-04-15_
 - Próxima expiração natural: 2026-04-17 (Bidspark sandbox e seção 5 de ML Ads).
 
 _Consolidação Profunda executada em 2026-04-04 08:19 BRT._
+
+### [TÁTICA] Vercel token do Budamix pode usar prefixo `vcp_`, não só `vercel_` (2026-04-28)
+**Lição:** Ao extrair token da Vercel do 1Password, aceitar os formatos `vcp_...` (novo) e `vercel_...` (legado). Regex limitada a `vercel_` gera falso diagnóstico de token inválido/incompleto mesmo com credencial válida em `notesPlain`.
+**Expira:** 2026-05-28
+
+### [TÁTICA] Blog Budamix: status editorial só libera após validar texto + slots obrigatórios no banco (2026-04-28)
+**Lição:** No fluxo do Blog Budamix, `em_edicao`/rascunho não pode depender só do término aparente do workflow. Validar no Supabase se `cover`, `support_1`, `support_2` e `pinterest_1` têm `image_url` e status `generated`; caso contrário, manter `gerando` ou marcar erro.
+**Expira:** 2026-05-28

@@ -737,3 +737,36 @@ Número dedicado: 5519992997273 (separado do Kobe). RH responde direto aos funci
 - **Evitar:** expressão triste, cansada, preocupada, melancólica, abatida, largada, sofrida ou visual comercialmente fraco.
 - **Desejado:** alegria calma, satisfação, acolhimento, orgulho da casa, alívio positivo e prazer em cozinhar/organizar/receber.
 - **Pedro aprovou:** Sim, refinou e aprovou essa direção como regra permanente do DNA visual.
+
+### 2026-04-28 — Vault como SSoT operacional
+- **Decisão:** `/root/segundo-cerebro` passa a ser a fonte única de verdade do Kobe/OpenClaw. `/root/.openclaw/workspace` fica como runtime/sandbox para integrações e projetos ainda não migrados.
+- **Validação:** Smoke test Kobe 8/8 OK; sync Mac↔GitHub↔VPS validado; cron legado comentado; core files antigos arquivados.
+- **Rollback:** Tag `pre-vault-cleanup-20260428` preservada.
+
+### 2026-04-28 — Blog Budamix: `em_edicao` só após texto + 4 imagens consistentes
+- **Decisão:** Artigo do Blog Budamix não pode aparecer como rascunho/editável antes de texto e slots `cover`, `support_1`, `support_2`, `pinterest_1` estarem consistentes no Supabase com URL e `image_status=generated`.
+- **Impacto:** Admin separa **Em geração** de **Rascunhos**; WF4 é o ponto de liberação final.
+
+### 2026-04-28 — Blog/Admin: estado persistido vence resposta HTTP
+- **Decisão:** O Admin não deve decidir sucesso/erro de geração longa pela resposta do webhook. N8N/Supabase são donos do status persistido; Admin acompanha/reconcilia.
+- **Motivo:** Evitar falso erro quando HTTP expira mas processamento conclui.
+
+### 2026-04-28 — Blog Budamix: sem legendas visíveis em imagens internas
+- **Decisão:** Imagens internas do artigo não exibem legenda/figcaption visível. Manter alt text interno para acessibilidade/SEO.
+- **Regra adicional:** WF2 deve bloquear/sanitizar subtítulos com parênteses explicativos como `(de forma simples)`.
+
+### 2026-04-28 — Budamix E-commerce: token Vercel em notesPlain e prefixo `vcp_`
+- **Decisão:** Token Vercel do Budamix E-commerce fica em `notesPlain` do item 1Password `Vercel Token - Budamix Ecommerce`, não em `password`, e pode usar formato `vcp_...` além de `vercel_...`.
+- **Regra:** Extrair em runtime; nunca hardcodar.
+
+### 2026-04-28 — Push do Kobe em repo privado via Deploy Key dedicada
+- **Decisão:** Para repo privado em que Kobe precisa push, preferir Deploy Key SSH dedicada por repo com write access, em vez de PAT solto no `gh`/HTTPS.
+- **Aplicado em:** `PHPB2025K/budamix-ecommerce`.
+
+### 2026-04-28 — Social Studio separado do Blog
+- **Decisão:** Social Studio é módulo separado do Blog, mas conectado a ele por origem de conteúdo. Blog = SEO/conteúdo longo; Social Studio = conteúdo curto/visual para Instagram, carrosséis, calendário e publicação futura.
+- **Origens aprovadas:** do zero, de produto, do Blog.
+
+### 2026-04-28 — Supabase migration remota controlada quando histórico está desalinhado
+- **Decisão:** Quando o histórico remoto de migrations não estiver marcado, não usar `supabase db push`; aplicar a migration específica com backup e validação.
+- **Aplicado em:** Social Studio Fase 2 no projeto `ioujfkrqvporfbvdqyus`.

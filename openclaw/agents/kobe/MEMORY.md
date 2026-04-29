@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-04-27 23:30 BRT (Consolidação Diária). Não duplica conteúdo — aponta pra onde está cada coisa._
+_Último update: 2026-04-28 23:30 BRT (Consolidação Diária)._
 
 ---
 
@@ -132,34 +132,37 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (27/04/2026 23:30 BRT — Consolidação Diária)
+## Status do Sistema (28/04/2026 23:30 BRT — Consolidação Diária)
 
 ### 🚨 Crítico
 - **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
-- **Bling Token Refresh / Filial segue bloqueado:** Matriz OK; Filial precisa validação no painel Bling + possível reautorização.
+- **Bling Filial** segue bloqueado/degradado; Matriz OK.
 - **Google Ads OAuth do Spark** segue com `invalid_grant` e precisa novo refresh token.
 
 ### ⚠️ Importante
-- **Supabase Budamix Ecommerce REST keys** retornam 401 no 1Password; corrigir/rotacionar antes de N8N depender delas.
-- **WhatsApp Baileys/OpenClaw** está desconectado/not linked para leitura passiva em tempo real; Evolution API/histórico segue separado.
-- **Watchdog - Monitor de Crons** e **Monitor Ponto Semanal** ainda precisam revisão de timeout/escopo.
+- **Blog Budamix/Admin** precisa QA real pós-correções: novo artigo deve sair de **Em geração** para `em_edicao` só após texto + 4 imagens obrigatórias consistentes.
+- **WF4 Blog/N8N** ainda precisa remover service role hardcoded e migrar segredo para credential/env.
+- **Social Studio** está em preview/branch `feat/social-studio-phase2`; precisa QA autenticado e decisão de merge/deploy produção.
+- **Vercel Preview** precisa envs públicas Supabase configuradas no ambiente Preview ou passadas explicitamente pela CLI.
+- **Vault-as-SSoT** em observação 48–72h após smoke 8/8 OK.
 
 ### ✅ Operacional
-- **Blog Budamix/Admin v2** estabilizado em fluxo Pautas → Rascunhos → Preview → Publicados/Arquivados, com WF0/WF2/WF4 ajustados à SPEC v2.0.
-- **Repo Budamix E-commerce** voltou a aceitar push usando PAT das Observações/notesPlain do 1Password.
-- **DNA editorial/visual do Blog Budamix** aprovado e registrado: consultivo, casa brasileira real/bonita, produto opcional, realismo positivo.
-- **Amazon Request Review** ajustado para janela diária 7–12 dias.
+- **Vault como SSoT** validado: OpenClaw aponta para `/root/segundo-cerebro`, sync Mac↔GitHub↔VPS funcionando, workspace antigo deprecado.
+- **Blog Budamix/Admin** em produção com separação Em geração/Rascunhos, recuperação de falso erro e deploy VPS via Vercel token `vcp_...` em `notesPlain`.
+- **Budamix E-commerce GitHub** destravado via Deploy Key SSH dedicada.
+- **Social Studio** implementado até preview com persistência Supabase, UI real, geração de copy, editor manual e render PNG.
 
-## Qualidade da Memória (Consolidação Diária 27/04)
-- **sessions/2026-04-27.md:** deduplicado e consolidado com WF4, Admin Blog v2, diretriz editorial, DNA visual/emocional, Amazon Request Review e heartbeats.
-- **pending.md:** limpo; pendências resolvidas do Blog/N8N/GitHub removidas; REST keys Supabase, WhatsApp Baileys e Pinterest futuro mantidos no lugar correto.
-- **decisions.md:** atualizado para refletir SPEC v2.0 (`em_edicao`/`preview`) e remover ambiguidade de `ready_to_publish` como estado final.
-- **lessons.md:** novas lições sobre N8N validador rígido, admin async, feedback UX e design system.
-- **shared/builder:** sessão 27/04 criada com os dois briefings Blog Admin e pendências finais.
-- **shared/trader e shared/spark:** sessões 27/04 registradas como sem atividade delegada.
-- **feedbacks:** registrados aprovações/rejeições de diretriz editorial, DNA visual e tipografia do blog.
+## Qualidade da Memória (Consolidação Diária 28/04)
+- **sessions/2026-04-28.md:** consolidado com Vault-as-SSoT, Blog/Admin, N8N, Vercel, Social Studio e jobs Builder.
+- **pending.md:** limpo; Supabase REST keys removida como pendência antiga após uso/validação REST controlada; novas pendências Blog/Social Studio/Vercel adicionadas; itens PCM001/SimulImport antigos movidos para Backlog Estagnado.
+- **decisions.md:** atualizado com decisões de Vault SSoT, Blog assíncrono, Deploy Key, token Vercel `vcp_...`, Social Studio e Supabase migration controlada.
+- **lessons.md:** atualizado com lições sobre HTTP síncrono, estado persistido, Vercel preview envs, Supabase migrations e secrets hardcoded no N8N.
+- **shared/trader e shared/spark:** sessões 28/04 registradas como sem atividade delegada; pendências revalidadas.
+- **shared/builder:** sessão 28/04 criada com entregas técnicas diretas no repo/N8N/Supabase e pendências atuais.
+- **feedbacks:** registrados aprovações/rejeições de conteúdo/editorial/arquitetura do Blog e Social Studio.
 
 ## Timeline Recente
+- **2026-04-28:** Vault-as-SSoT validado 8/8 e workspace antigo deprecado; Blog Budamix/Admin corrigiu falso erro de geração, separou Em geração/Rascunhos, endureceu WF4 por estado real no Supabase e deployou via VPS/Vercel; Social Studio nasceu com SPEC, persistência Supabase, preview Vercel, geração de copy, editor manual, render PNG e wizard. Trader/Spark sem execução delegada; Builder sem RESULT.md novo.
 - **2026-04-27:** Blog Budamix/Admin v2 virou a frente principal: WF4 Orchestrator, Admin Blog SPEC v2.0, WF0/WF2/WF4 corrigidos, fluxo final `gerando` → `em_edicao` → `preview` → `publicado`, UX de preview/editor, reset de pipeline, DNA editorial/visual/emocional aprovado, template de artigos encurtado e Amazon Request Review ajustado para 7–12 dias. GitHub do ecommerce destravado via PAT nas Observações do 1Password.
 - **2026-04-26:** Integração Slack read-only criada, Google Sheets e WhatsApp histórico validados, e Blog Budamix avançou de placeholder para fundação no repo principal + N8N Draft Generator + WF0 Perplexity + Admin Blog Review em produção. No delta pós-consolidação, houve retrofit dos 3 artigos legados e SEO técnico deployado, com pendência de push GitHub/keys REST Supabase/N8N API key. Lições críticas registradas: Builder em repo privado precisa validar repo principal e deploy frontend exige smoke test renderizado amplo.
 - **2026-04-25:** Pedro formalizou a diretriz de migração total para GPT-5.5 via ChatGPT Pro, com guardrails de backup, validação e rollback. Consolidação diária limpou o pending, reposicionou GPT-5.5 como prioridade atual e registrou ausência de atividade nova de Trader, Spark e Builder.
@@ -176,7 +179,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) fechar março com ads + consolidado + DRE semanal, (2) normalizar Google Calendar/Gmail e Google Ads OAuth, (3) resolver Bling Filial, (4) evoluir pipeline Blog Budamix com IA/imagens/aprovação, (5) revisar Watchdog/Monitor Ponto por timeout._
+_Próximas ações: (1) fechar março com ads + consolidado + DRE semanal, (2) QA real Blog Budamix em produção, (3) QA/merge/deploy Social Studio, (4) remover service role hardcoded do WF4, (5) normalizar Google Ads OAuth e Bling Filial._
 
 ---
 ## Contexto

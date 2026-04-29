@@ -423,3 +423,23 @@ _Última Consolidação Profunda: 2026-04-15_
 - Próxima expiração natural: 2026-04-17 (Bidspark sandbox e seção 5 de ML Ads).
 
 _Consolidação Profunda executada em 2026-04-04 08:19 BRT._
+
+### [ESTRATÉGICA] Geração longa não pode depender de resposta HTTP síncrona (2026-04-28)
+**Contexto:** Admin Blog marcou erro falso porque o webhook/N8N perdeu ou estourou resposta enquanto o backend continuou processando e concluiu o artigo no Supabase.
+**Lição:** Para processos longos, o Admin deve criar job/receber ACK rápido e acompanhar estado persistido no banco. Sucesso/erro vem de `generation_status`/Supabase, não de resposta HTTP final.
+
+### [ESTRATÉGICA] Estado persistido no Supabase é fonte de verdade do Blog Budamix (2026-04-28)
+**Contexto:** Artigos podiam parecer prontos no frontend antes de todas as imagens obrigatórias fecharem, ou parecer falhos mesmo já completos.
+**Lição:** Blog só libera `em_edicao` depois de texto + slots `cover`, `support_1`, `support_2`, `pinterest_1` com URL e `image_status=generated`. Admin deve reconciliar UI com banco antes de exibir erro final.
+
+### [TÁTICA] Vercel CLI preview do Budamix precisa envs públicas explícitas (2026-04-28; expira 2026-05-28)
+**Contexto:** Preview do Social Studio retornava 200 mas ficava tela branca porque o bundle foi buildado sem `VITE_SUPABASE_URL`/`VITE_SUPABASE_PUBLISHABLE_KEY`.
+**Lição:** Ao gerar preview pela CLI, passar envs públicas de build extraídas do 1Password ou configurar Preview Environment no dashboard Vercel. Smoke test precisa verificar bundle inicial, não só HTTP 200.
+
+### [ESTRATÉGICA] Supabase remoto com histórico de migrations não marcado: não usar db push (2026-04-28)
+**Contexto:** Social Studio precisava migration remota, mas `supabase db push` empurraria várias migrations antigas porque o histórico remoto não estava marcado.
+**Lição:** Em projeto Supabase com histórico desalinhado, aplicar migration específica de forma controlada e fazer backup/smoke REST. Nunca rodar `db push` amplo no impulso.
+
+### [ESTRATÉGICA] Secrets de N8N não podem viver hardcoded em Code nodes (2026-04-28)
+**Contexto:** WF4 do Blog tinha service role hardcoded em Code nodes.
+**Lição:** Migrar service role/API keys para credentials/env do N8N e referenciar em runtime. Segredo em workflow exportável vira risco operacional e de auditoria.

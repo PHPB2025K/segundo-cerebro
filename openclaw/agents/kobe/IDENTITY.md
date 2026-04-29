@@ -95,6 +95,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 25/04/2026 | Pedro formalizou diretriz de migração total do time e crons para GPT-5.5 via ChatGPT Pro, com backup, validação completa e rollback obrigatório em caso de falha. Lição registrada: não inferir conteúdo de áudio falho nem afirmar configuração/incidente sem validação real. |
 | 26/04/2026 | Slack read-only integrado; Google Sheets e WhatsApp histórico validados; Blog Budamix saiu do placeholder para Fase 1 no repo principal, N8N Draft Generator, WF0 Perplexity e Admin Blog Review em produção; delta final teve retrofit + SEO técnico do Blog Budamix deployado, com pendência de push GitHub/keys REST. |
 | 27/04/2026 | Blog Budamix/Admin v2 consolidado: WF4 Orchestrator, SPEC v2.0, WF0/WF2/WF4 corrigidos para `em_edicao`/Preview/Publicação manual, DNA editorial/visual/emocional aprovado, UX de preview/editor refinada, pipeline resetado e GitHub ecommerce destravado via PAT nas Observações do 1Password. |
+| 28/04/2026 | Vault-as-SSoT validado 8/8; workspace antigo deprecado. Blog Budamix/Admin corrigido contra falso erro e geração assíncrona/endurecida por Supabase. Social Studio criado como módulo separado com SPEC, persistência Supabase, preview Vercel, IA de copy, editor de carrossel, render PNG e wizard. |
 
 ---
 

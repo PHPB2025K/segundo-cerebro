@@ -39,3 +39,13 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 di
 ---
 
 _Atualizado na Consolidação Profunda 2026-04-04._
+
+### [ESTRATÉGICA] UI longa deve acompanhar job/status persistido, não webhook síncrono (2026-04-28)
+**Lição:** Para Admin Blog/Social Studio e qualquer geração assíncrona, criar job, persistir status e reconciliar pelo banco. Timeout HTTP não é prova de falha.
+
+### [TÁTICA] Preview Vercel CLI precisa envs públicas explícitas (2026-04-28)
+**Lição:** Deploy preview do Budamix E-commerce pela CLI pode buildar sem `VITE_SUPABASE_URL`/`VITE_SUPABASE_PUBLISHABLE_KEY`; passar envs ou configurar Preview Environment.
+**Expira:** 2026-05-28
+
+### [ESTRATÉGICA] Supabase db push amplo é perigoso com histórico remoto desalinhado (2026-04-28)
+**Lição:** Aplicar migrations específicas com backup/smoke quando o histórico remoto não está marcado; não empurrar migrations antigas sem auditoria.

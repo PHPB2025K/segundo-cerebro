@@ -457,3 +457,7 @@ _Consolidação Profunda executada em 2026-04-04 08:19 BRT._
 ### [ESTRATÉGICA] Secrets de N8N não podem viver hardcoded em Code nodes (2026-04-28)
 **Contexto:** WF4 do Blog tinha service role hardcoded em Code nodes.
 **Lição:** Migrar service role/API keys para credentials/env do N8N e referenciar em runtime. Segredo em workflow exportável vira risco operacional e de auditoria.
+
+### [TÁTICA] Social Studio: fluxo de criação precisa ser wizard guiado, não dashboard técnico (2026-04-29)
+**Lição:** Para criação de posts/carrosséis, não empilhar pipeline, editor, slides, render e preview na mesma tela. A UX correta é step-by-step em tela cheia, com uma decisão principal por etapa, complexidade técnica escondida e progressão guiada por dados reais do conteúdo.
+**Expira:** 2026-05-29

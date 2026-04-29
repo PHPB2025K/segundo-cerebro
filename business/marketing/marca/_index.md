@@ -37,6 +37,7 @@ tags:
 | [[business/marketing/marca/mapa-editorial\|Mapa Editorial]] | Framework Schwartz (5 Níveis de Consciência) + Inimigo Comum aplicado ao calendário |
 | [[business/marketing/marca/calendario-semana-04-a-10-maio-2026\|Calendário Semanal — 04 a 10/05]] | Posts da semana (3/sem), prioridade Vendas > Autoridade > Crescimento |
 | [[business/marketing/marca/recomendacao-carrosseis\|Recomendação de Carrosséis]] | Análise SIMON — 7 formatos de carrossel aplicados à Budamix |
+| [[business/marketing/marca/recomendacao-stories\|Recomendação de Stories]] | Análise SIMON — 6 formatos de stories + regra dos 4 blocos diários |
 | [[business/marketing/marca/planejamento-comunidade-vip\|Comunidade VIP — Maio 2026]] | Plano editorial do grupo WhatsApp Budamix VIP (01 a 30/05) |
 
 ## Notas relacionadas

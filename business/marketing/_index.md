@@ -11,10 +11,16 @@ tags:
 
 # Conteúdo e Marketing
 
-> Índice de referência para arquivos em `~/Documents/07-Conteudo-Marketing/`
-> Estes arquivos NÃO estão no vault — esta nota aponta para eles.
+> Índice geral. Material vivo de marca/branding/conteúdo está em [[business/marketing/marca/_index|business/marketing/marca/]].
+> Pasta externa `~/Documents/07-Conteudo-Marketing/` ainda guarda mídia bruta (vídeos, PDFs) e é apenas referenciada aqui.
 
-## Estrutura
+## Subpastas no vault
+
+| Pasta | O que contém |
+|-------|-------------|
+| [[business/marketing/marca/_index\|marca/]] | **Núcleo de branding** — proposta de valor, mapas (nicho/público), design system, mapa editorial, calendário de conteúdo, comunidade VIP |
+
+## Pastas externas (mídia bruta — fora do vault)
 
 | Subpasta | O que contém |
 |----------|-------------|

@@ -39,6 +39,7 @@ tags:
 | [[business/marketing/marca/recomendacao-carrosseis\|Recomendação de Carrosséis]] | Análise SIMON — 7 formatos de carrossel aplicados à Budamix |
 | [[business/marketing/marca/recomendacao-stories\|Recomendação de Stories]] | Análise SIMON — 6 formatos de stories + regra dos 4 blocos diários |
 | [[business/marketing/marca/recomendacao-legendas\|Recomendação de Legendas]] | Análise SIMON — 3 tipos de legenda (Storytelling 60% / SEO 30% / Vendas 10%) |
+| [[business/marketing/marca/manual-hashtags\|Manual de Hashtags]] | Fórmula em 4 camadas (Volume / Nicho / Cauda Longa / Marca) — 8-10 hashtags por post |
 | [[business/marketing/marca/planejamento-comunidade-vip\|Comunidade VIP — Maio 2026]] | Plano editorial do grupo WhatsApp Budamix VIP (01 a 30/05) |
 
 ## Notas relacionadas

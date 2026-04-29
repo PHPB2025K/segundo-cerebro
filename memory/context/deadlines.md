@@ -25,6 +25,8 @@ tags:
 | **29/04/2026** | **Importação 2026 — conferir composição L1 rebalanceado (Pedro+Open Trade)** | 🟡 Pré-pedido | Mix proporcional vel_rec, zumbis 0 |
 | **30/04/2026** | **Importação 2026 — descontinuar KIT9S098 + KIT3S096 nos 3 canais** | 🟡 Pré-pedido | Pedro + gestor marketplaces. Libera capacidade do lote |
 | **30/04/2026** | **Importação 2026 — verificar IMB501V_T Shopee 3 contas (Lucas)** | 🟡 Pré-pedido | Listing ativo + estoque |
+| **30/04/2026 manhã** | **Refactor Full — analistas cadastrarem custos na planilha** | 🟡 Aguardando | Lucas (11 SKUs Shopee), Leonardo (11 SKUs Amazon), Yasmin (4 SKUs ML). Após confirmação: Kobe roda sync-costs e valida KPI |
+| **30/04/2026 tarde** | **Refactor Full — Etapa 2D (sku_mapping) + 1E (monitoramento)** | 🟡 Pendente | Após cadastro analistas. Cobre +8 SKUs mapeados. Validação cruzada ML/Amazon também pendente |
 | **01/05/2026** | **Importação 2026 — pedido L1 + sinal R$ 147.211** | 🟢 Início Ato 1 | Cenário E, plano `data/04-plano.md` |
 | 25/07/2026 | Importação 2026 — pagar PNI L1 R$ 244.788 | ⏳ Cronograma L1 | D+85 |
 | 09/08/2026 | Importação 2026 — pagar balanço L1 R$ 343.492 + chegada L1 | ⏳ Cronograma L1 | D+100, container vendável |

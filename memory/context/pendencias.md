@@ -18,6 +18,9 @@ tags:
 
 ## 🔴 Críticas (bloqueiam progresso)
 
+- [29/04] [[projects/budamix-ecommerce|Budamix E-commerce]] — **Push 21 commits VPS Kobe → origin/main + deploy Vercel `/admin/social`.** Schema Social Studio Phase 2 já está em produção (`ioujfkrqvporfbvdqyus`), mas frontend não. 21 commits ahead na VPS: 18 do branch `dev/blog-fix-from-kobe` (fixes blog) + 3 do Social Studio (`feat: add Social Studio admin shell`, `docs: add Social Studio spec`, `feat: persist Social Studio pipeline`). Decidir caminho: PR `dev/blog-fix-from-kobe` → main + rebase Social Studio em cima, OU push direto + deploy Vercel manual (`vercel --prod --yes`, webhook GitHub→Vercel inexistente). Recomendação: schema-first (já feito) → push → deploy. → [[memory/context/decisoes/2026-04#[29/04] Social Studio Phase 2]]
+- [29/04] [[projects/budamix-ecommerce|Budamix E-commerce]] — **Refactor `/admin/social` em wizard guiado step-by-step.** Briefing reescrito entregue ao Pedro (CC local) pra mandar pro Kobe. 7 etapas (Início → Ideia → Briefing → Copy → Slides → Visual → Revisão), persistência de step na URL, mapeamento por dados (não por status enum), regras por formato (carrossel completo / single_image+story sem slides / reel sem visual), estrutura de arquivos obrigatória (`src/pages/admin/social/{SocialStudioPage,SocialStudioWizard,steps/*,components/*}.tsx`), acessibilidade básica (teclado + confirmação de descarte). Aguardando Kobe executar.
+
 ## 🔴 Delta Kobe/OpenClaw — importado em 28/04/2026
 
 > Bloco conservador importado de `openclaw/agents/kobe/memory/pending.md` durante a Fase 3 da unificação. Resolver/deduplicar item a item nas próximas consolidações; não sobrescrever pendências históricas do vault.

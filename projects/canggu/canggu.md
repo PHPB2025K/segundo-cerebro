@@ -43,6 +43,12 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 - `customers.source = NULL` por padrão; só preenche quando cliente responde a enquete.
 - Repo `budamix-ai-agent` deletado (era cópia paralela). Backup mirror em `~/Documents/_backups/budamix-ai-agent-mirror-20260430.git`.
 
+**Fix urgente 30/04 noite — Hard-block contra "entre em contato conosco" no ML** ([[memory/context/decisoes/2026-04#[30/04 noite] Canggu — hard-block determinístico contra "entre em contato conosco" no ML]]):
+- Threshold `search_corrections` baixado de 0.85 → 0.65 (perguntas variam demais em forma).
+- `_shared/ml-response-validator.ts` ganhou `detectForbiddenContactRequest()` com 10 padrões regex que rejeitam frases tipo "entre em contato", "fale conosco", "estamos à disposição", "para mais detalhes ... contat".
+- `process-ml-question` substitui em cadeia: correção aprovada → fallback técnico → last-resort hardcoded. Garantia determinística contra resposta evasiva no Mercado Livre.
+- Equivalente WhatsApp **não tem** o guard (Ana É o canal de contato lá).
+
 **Última auditoria forense:** 2026-04-22 ([[auditorias/2026-04-22-forense]])
 **Veredito original:** 🟡 Sólido tecnicamente, comprometido por dívida operacional.
 **Status pós-30/04:** B4 (arquitetura — cutover) ✅ feito. B3 (resiliência) parcial (Gemini retry pronto, falta retry classify/generate + dedup). B1/B2/B5/B6 ainda intocados.

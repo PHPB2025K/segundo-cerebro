@@ -24,7 +24,7 @@ _Fonte de verdade: Ponto Certo (Supabase). Este arquivo é referência rápida._
 | 6 | Mateus Eduardo Lisboa Santos | mateus@gbimportadora.com | 5519997752572 | Mateus — **jornada reduzida 08:30-17:00** (Tiro de Guerra, a partir de 04/05/2026) — ver [[openclaw/agents/kobe/shared/rh/knowledge/jornadas-individuais]] |
 | 7 | Pedro H P Broglio | pehpbroglio@gmail.com | 5519993040768 | Admin/dono |
 | 8 | Sandra Peron | sandra.peron180@hotmail.com | 5519996333961 | Sandra |
-| 9 | Yasmin Oscarlino | yasminoscarlino2@gmail.com | 5519998604847 | Yasmin |
+| 9 | Yasmin Oscarlino | yasminoscarlino2@gmail.com | 5519998604847 | Yasmin — **+19h49min de saldo positivo válido** reconhecido em 30/04 (horas extras reais do mês de abril) |
 
 ## Teste
 | — | Funcionario Teste | gerencial@gbimportadora.com | — | Admin teste |

@@ -30,8 +30,9 @@ tags:
 - [27/04] [[openclaw/agents/spark/IDENTITY|Spark]] — **Google Ads API**: OAuth retornou `invalid_grant`; refresh token precisa ser reautorizado/gerado novamente.
 - [27/04] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token exposto em screenshot; integração operacional usa user token read-only no 1Password.
 - [27/04] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; reativar exige QR Code. Evolution API/histórico segue funcional.
+- ✅ [30/04] ~~**WhatsApp do agente RH (instância "RECURSOS HUMANOS GB", +5519992997273)**~~ — caiu por logout (reasonCode 401) em 30/04 às 10:58 UTC, **reconectou 23s depois às 10:59 UTC**. Estado atual: `connectionStatus: open`, `state: open`. Canal usado pelo RH para Monitor Ponto Semanal e respostas dos funcionários voltou a operar. Confirmado via `connectionState` da Evolution API.
 - [27/04] **Watchdog - Monitor de Crons** — revisar escopo/timeout após falha por timeout de 3min.
-- [27/04] **Monitor Ponto Semanal** — falhas consecutivas por timeout de 300s; revisar escopo/timeout.
+- [27/04] **Monitor Ponto Semanal** — falhas consecutivas por timeout de 300s; revisar escopo/timeout. (⚠️ Pode ter relação com a queda do WhatsApp RH em 30/04 — reavaliar antes da próxima 2ª-feira 10h BRT)
 - [27/04] **RH Monitor Ponto Saída** — corrigir fallback/model not found antes da próxima execução.
 - [27/04] **Bling Token Refresh / Filial** — Matriz OK; Filial segue com empresa inativa/401/403; validar painel Bling e reautorizar se necessário.
 
@@ -55,7 +56,7 @@ tags:
 ### SimulImport e backlog estagnado
 
 - [27/04] [[projects/simulimport|SimulImport]] — Pedro validar cenários reais com importações dele.
-- [27/04] **Backlog estagnado >14d** — links Amazon da base Ana, revisão `[VERIFICAR]`, sync Amazon de links/platform IDs, 3 SKUs ML sem mapeamento, teste motor SimulImport, NFs teste, product-packaging, B2B março, WhatsApp RH, Mission Control DNS, Canggu/Railway, Bidspark CLAUDE.md e webhooks marketplaces.
+- [27/04] **Backlog estagnado >14d** — links Amazon da base Ana, revisão `[VERIFICAR]`, sync Amazon de links/platform IDs, 3 SKUs ML sem mapeamento, teste motor SimulImport, NFs teste, product-packaging, B2B março, ~~WhatsApp RH~~ (resolvido 30/04), Mission Control DNS, Canggu/Railway, Bidspark CLAUDE.md e webhooks marketplaces.
 
 
 - [26/04 noite] [[projects/budamix-ecommerce|Bling]] — **Filial CNPJ 58.151.616/0002-24 retorna HTTP 403 "empresa inativa"** mesmo após rotação do Client Secret 26/04. Confirmado: NÃO é problema de credencial. **Pedro precisa investigar no painel Bling**: plano Mercúrio cobre Filial? CNPJ secundário ativado/suspenso? Pode ser financeiro/contratual. Sem isso, NF-e da Filial e operações fiscais via API ficam bloqueadas. → [[memory/context/decisoes/2026-04#[26/04]]]

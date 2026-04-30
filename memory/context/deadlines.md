@@ -26,7 +26,7 @@ tags:
 | **30/04/2026** | **Importação 2026 — descontinuar KIT9S098 + KIT3S096 nos 3 canais** | 🟡 Pré-pedido | Pedro + gestor marketplaces. Libera capacidade do lote |
 | **30/04/2026** | **Importação 2026 — verificar IMB501V_T Shopee 3 contas (Lucas)** | 🟡 Pré-pedido | Listing ativo + estoque |
 | 30/04/2026 | Refactor Full Budamix Central — encerrado 100% | ✅ Concluído | 202 registros, 0 zerados, custo R$ 158.820, venda R$ 486.566. sync-costs apontando pra planilha oficial; filtro fantasma no sync-inventory-amazon |
-| 01/05/2026 | Refactor Full — atualizar docs (skill `planilha-precificacao`, projects/budamix-central, business/marketing) | ⏳ Pendente | Trocar SPREADSHEET_ID nas refs |
+| 30/04/2026 | Refactor Full — docs atualizadas (skill `planilha-precificacao` + trader/TOOLS + upload-planilha-drive) | ✅ Concluído | SPREADSHEET_ID correto, mapeamento ANUNCIO→BASE→CUSTO documentado |
 | 02/05/2026 | Refactor Full — validação cruzada ML/Amazon (1D estendida) + monitoramento Shopee (1E) | ⏳ Pendente | Não bloqueia KPI, só aumenta confiança defensiva |
 | **01/05/2026** | **Importação 2026 — pedido L1 + sinal R$ 147.211** | 🟢 Início Ato 1 | Cenário E, plano `data/04-plano.md` |
 | 25/07/2026 | Importação 2026 — pagar PNI L1 R$ 244.788 | ⏳ Cronograma L1 | D+85 |

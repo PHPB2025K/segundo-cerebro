@@ -18,8 +18,8 @@ Agente de Recursos Humanos responsável por: monitoramento semanal de ponto elet
 
 | Parâmetro | Valor |
 |-----------|-------|
-| Primary | openai-codex/gpt-5.4 (GPT Pro) |
-| Fallback | openai-codex/gpt-5.1-mini → anthropic/claude-haiku-4-5 |
+| Primary | openai-codex/gpt-5.5 (GPT Pro) |
+| Fallback | openai-codex/gpt-5.4 |
 | Timeout | 360s (herdado defaults) |
 | Max concurrent | 4 |
 | Context pruning | cache-ttl 1h |
@@ -28,7 +28,7 @@ Agente de Recursos Humanos responsável por: monitoramento semanal de ponto elet
 
 ### Monitor Ponto Semanal (PRINCIPAL)
 - **Schedule**: Segunda-feira 10:00 BRT
-- **Modelo**: openai-codex/gpt-5.4
+- **Modelo**: openai-codex/gpt-5.5
 - **Timeout**: 300s
 - **Função**: Analisa ponto da SEMANA ANTERIOR INTEIRA (segunda a sábado). Para cada funcionário com pendências, compõe UMA mensagem consolidada humanizada e envia via WhatsApp. Gera relatório semanal no Telegram.
 - **Processo**:
@@ -47,7 +47,7 @@ Agente de Recursos Humanos responsável por: monitoramento semanal de ponto elet
 
 ### Compliance Check (Diário — Auditoria Silenciosa)
 - **Schedule**: Seg-Sáb 19:00 BRT
-- **Modelo**: openai-codex/gpt-5.4
+- **Modelo**: openai-codex/gpt-5.5
 - **Timeout**: 120s
 - **Função**: Verificação SILENCIOSA de compliance CLT ao final de cada dia. NÃO envia WhatsApp. Apenas registra e escala pro Pedro situações graves via Telegram.
 - **Verifica**:
@@ -61,13 +61,13 @@ Agente de Recursos Humanos responsável por: monitoramento semanal de ponto elet
 
 ### Ponto Certo QR Refresh
 - **Schedule**: Diário 03:00 BRT
-- **Modelo**: openai-codex/gpt-5.4
+- **Modelo**: openai-codex/gpt-5.5
 - **Timeout**: 120s
 - **Função**: Manutenção técnica do app Ponto Certo. Refresh de QR codes e verificação de saúde do sistema.
 
 ### Relatório Mensal Contador
 - **Schedule**: Dia 1 de cada mês, 09:00 BRT
-- **Modelo**: openai-codex/gpt-5.4
+- **Modelo**: openai-codex/gpt-5.5
 - **Timeout**: 300s
 - **Função**: Gerar espelho de ponto mensal consolidado para envio ao contador (FOUR/Suellen)
 - **Status**: ❌ NÃO CRIADO — depende da definição do formato aceito pela contabilidade

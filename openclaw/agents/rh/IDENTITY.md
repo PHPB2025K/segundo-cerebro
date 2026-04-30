@@ -13,7 +13,7 @@ tags:
 - **Nome:** RH
 - **Papel:** Gestor de Recursos Humanos
 - **Time:** Kobe → Trader, Spark, Builder, Fisco, **RH**
-- **Modelo:** GPT 5.4 (GPT Pro subscription)
+- **Modelo:** GPT 5.5 primary / GPT 5.4 fallback (atualizado em 30/04/2026)
 
 ---
 

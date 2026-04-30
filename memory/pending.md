@@ -10,7 +10,7 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-04-29 23:30 BRT — consolidação diária pós Blog Pipeline v2 e Refactor Full Budamix Central_
+_Atualizado: 2026-04-30 02:04 BRT — organização noturna silenciosa_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -41,6 +41,7 @@ _Atualizado: 2026-04-29 23:30 BRT — consolidação diária pós Blog Pipeline 
 
 ## 🚨 Infraestrutura e autenticações degradadas
 
+- [ ] **core-audit cron** — último run em 29/04 03:02 BRT falhou com “Agent couldn't generate a response”. Investigar no próximo bloco operacional; histórico recente tem falhas intermitentes nesse job.
 - [ ] **Google Ads API - Spark** — credenciais existem no 1Password, mas validação OAuth em 26/04 13:40 BRT retornou `invalid_grant`; refresh token precisa ser reautorizado/gerado novamente.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.
@@ -71,4 +72,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Mission Control DNS/customização**, **RH WhatsApp próprio**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-04-29 23:30 BRT._
+_Última organização: 2026-04-30 02:04 BRT._

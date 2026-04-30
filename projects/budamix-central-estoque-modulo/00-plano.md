@@ -328,13 +328,14 @@ Depois das Fases 1-3 estabilizadas e analista validar fluxo manual. Sem urgênci
 
 ---
 
-## Pendências dependentes
+## Decisões finais (30/04 noite)
 
-Antes de iniciar a Fase 2, precisamos confirmar:
-
-- **Quem registra movimentação?** Pedro (admin) e/ou os analistas (Lucas/Yasmin/Leonardo são `viewer` hoje — promover pra `admin` ou criar role intermediária `operator`)?
-- **Auditoria:** todo movimento precisa registrar usuário (já contemplado no schema, só precisa frontend mandar `user_email` + `user_id`)
-- **Política de exclusão:** admin pode deletar movimento? Ou só "estornar" criando contramovimento?
+1. **Role `operator`** — criar role intermediária entre `viewer` e `admin`. Lucas/Yasmin/Leonardo permanecem `viewer` por enquanto; quando começarem a registrar movimentação no app, Pedro promove pra `operator`. Permissões:
+   - `viewer`: só lê
+   - `operator`: lê + registra movimentações
+   - `admin`: tudo + estornar movimentações + gerenciar usuários
+2. **Sem DELETE de movimento** — admin estorna criando contramovimento (preserva histórico). Schema NÃO tem policy de DELETE em `physical_movements`.
+3. **Cron sync app→planilha: 2 minutos** (não 5). Mais responsivo. Job lê movimentos com `applied_to_sheet=false` e atualiza col A da planilha via `gspread`.
 
 ## Próximo passo
 

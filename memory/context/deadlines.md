@@ -57,6 +57,7 @@ tags:
 | 15/06/2026 | Amazon Ads — reavaliar Abraçadeiras e Redinha (Ação 4) | ⏳ Pendente | Pausados por zero vendas 60d |
 | Contínuo | Atualizar OpenClaw diariamente | 🔄 Recorrente | Manter v2026.4.x+ |
 | Contínuo | VPS disco <80% | 🔄 Monitorar | Atualmente 63.4% |
+| 31/05/2026 | **Override mensal Mateus (Ponto Certo)** — rodar antes de 01/06 00:00 BRT | 🔄 Recorrente mensal | Compensa déficit estrutural jornada 08:30-17:00 (Tiro de Guerra). Script: `python3 ~/segundo-cerebro/automacoes/scripts/mateus-override-mensal.py 2026-05`. Repetir todo dia 31 enquanto Mateus estiver no regime — ver [[automacoes/sops/mateus-override-mensal-sop]] |
 
 ## Viagens / Eventos
 

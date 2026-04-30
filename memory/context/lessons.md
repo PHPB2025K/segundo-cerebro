@@ -461,3 +461,21 @@ _Consolidação Profunda executada em 2026-04-04 08:19 BRT._
 ### [TÁTICA] Social Studio: fluxo de criação precisa ser wizard guiado, não dashboard técnico (2026-04-29)
 **Lição:** Para criação de posts/carrosséis, não empilhar pipeline, editor, slides, render e preview na mesma tela. A UX correta é step-by-step em tela cheia, com uma decisão principal por etapa, complexidade técnica escondida e progressão guiada por dados reais do conteúdo.
 **Expira:** 2026-05-29
+
+### [ESTRATÉGICA] App de produção sem Git antes de refactor = risco operacional alto (2026-04-29)
+**Contexto:** `/var/www/budamix-central` estava fora de Git antes do refactor do módulo Full.
+**Lição:** Antes de qualquer refactor sério em app de produção, criar snapshot tar, `.gitignore` defensivo, commit baseline, repo privado, Deploy Key dedicada e tag de rollback. Sem isso, qualquer patch vira “editar e rezar”.
+
+### [ESTRATÉGICA] KPI diário comparável deve usar a mesma fonte canônica (2026-04-29)
+**Contexto:** Live Sales calculava Fat. Ontem direto de `orders`, enquanto Home usava `v_daily_sales`, gerando divergência real.
+**Lição:** KPIs diários exibidos em telas diferentes precisam ler a mesma fonte canônica. Pedidos brutos podem servir para leitura operacional/hora a hora, mas comparação diária deve usar view consolidada.
+
+### [TÁTICA] Shopee multi-conta: timeout global mata contas posteriores sem parecer erro de token (2026-04-29)
+**Contexto:** Sync Full da Shopee rodava 3 contas em sequência com `timeout 300`; cada conta levava ~190–202s, então só a primeira persistia. A hipótese inicial de refresh token expirado era falsa.
+**Lição:** Em sync multi-conta lento, executar uma conta por processo com timeout próprio e log por `shop_id`. Não diagnosticar token expirado só porque a defasagem bate com janela de expiração.
+**Expira:** 2026-05-29
+
+### [TÁTICA] Datas `YYYY-MM-DD` no frontend: não usar `new Date()` quando o label é BRT/local (2026-04-29)
+**Contexto:** Home do Budamix Central mostrava tooltip de dia deslocado porque `new Date('YYYY-MM-DD')` interpretava UTC e o browser em BRT exibia o dia anterior.
+**Lição:** Para labels de data sem horário, parsear manualmente `YYYY-MM-DD` ou usar helper BRT explícito. `new Date()` em string date-only cria bug visual silencioso.
+**Expira:** 2026-05-29

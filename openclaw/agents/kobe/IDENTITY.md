@@ -96,6 +96,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 26/04/2026 | Slack read-only integrado; Google Sheets e WhatsApp histórico validados; Blog Budamix saiu do placeholder para Fase 1 no repo principal, N8N Draft Generator, WF0 Perplexity e Admin Blog Review em produção; delta final teve retrofit + SEO técnico do Blog Budamix deployado, com pendência de push GitHub/keys REST. |
 | 27/04/2026 | Blog Budamix/Admin v2 consolidado: WF4 Orchestrator, SPEC v2.0, WF0/WF2/WF4 corrigidos para `em_edicao`/Preview/Publicação manual, DNA editorial/visual/emocional aprovado, UX de preview/editor refinada, pipeline resetado e GitHub ecommerce destravado via PAT nas Observações do 1Password. |
 | 28/04/2026 | Vault-as-SSoT validado 8/8; workspace antigo deprecado. Blog Budamix/Admin corrigido contra falso erro e geração assíncrona/endurecida por Supabase. Social Studio criado como módulo separado com SPEC, persistência Supabase, preview Vercel, IA de copy, editor de carrossel, render PNG e wizard. |
+| 29/04/2026 | Blog Budamix Pipeline v2 concluído em produção (blog_pillars, WF0/WF2/WF3/WF4, Sonnet 4.6 como diretor de arte criativo, Admin com pilares/pins manuais). Budamix Central ganhou repo GitHub/tag rollback e refactor Full com 3 Shopees sincronizando, custos corrigidos e KPI Custo por filtro. |
 
 ---
 

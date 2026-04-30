@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-04-28 23:30 BRT (Consolidação Diária)._
+_Último update: 2026-04-29 23:30 BRT (Consolidação Diária)._
 
 ---
 
@@ -132,25 +132,26 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (28/04/2026 23:30 BRT — Consolidação Diária)
+## Status do Sistema (29/04/2026 23:30 BRT — Consolidação Diária)
 
 ### 🚨 Crítico
 - **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
+- **Budamix Central Full:** analistas precisam cadastrar custos zerados em 30/04; depois rodar `sync-costs.py` e validar cobertura real.
 - **Bling Filial** segue bloqueado/degradado; Matriz OK.
 - **Google Ads OAuth do Spark** segue com `invalid_grant` e precisa novo refresh token.
 
 ### ⚠️ Importante
-- **Blog Budamix/Admin** precisa QA real pós-correções: novo artigo deve sair de **Em geração** para `em_edicao` só após texto + 4 imagens obrigatórias consistentes.
-- **WF4 Blog/N8N** ainda precisa remover service role hardcoded e migrar segredo para credential/env.
-- **Social Studio** está em preview/branch `feat/social-studio-phase2`; precisa QA autenticado e decisão de merge/deploy produção.
+- **Social Studio** está em preview/branch `feat/social-studio-phase2` avançado até Fase 5; precisa QA autenticado e decisão de merge/deploy produção.
+- **Blog Budamix Pipeline v2** está em produção; resta inspeção visual humana do post de teste e cleanup.
+- **Budamix Central Full:** Etapa 2D `sku_mapping`, monitoramento Shopee e validação ML/Amazon seguem para 30/04.
 - **Vercel Preview** precisa envs públicas Supabase configuradas no ambiente Preview ou passadas explicitamente pela CLI.
-- **Vault-as-SSoT** em observação 48–72h após smoke 8/8 OK.
+- **Vault-as-SSoT** segue em observação 48–72h após migração.
 
 ### ✅ Operacional
 - **Vault como SSoT** validado: OpenClaw aponta para `/root/segundo-cerebro`, sync Mac↔GitHub↔VPS funcionando, workspace antigo deprecado.
-- **Blog Budamix/Admin** em produção com separação Em geração/Rascunhos, recuperação de falso erro e deploy VPS via Vercel token `vcp_...` em `notesPlain`.
-- **Budamix E-commerce GitHub** destravado via Deploy Key SSH dedicada.
-- **Social Studio** implementado até preview com persistência Supabase, UI real, geração de copy, editor manual e render PNG.
+- **Blog Budamix/Admin Pipeline v2** concluído em 7 fases e deployado em produção com `blog_pillars`, WF0/WF2/WF3/WF4 atualizados, LLM como diretor de arte criativo e Admin com pilares/pins manuais.
+- **Budamix Central** agora tem repo GitHub privado e baseline/tag de rollback; módulo Full teve Shopee 3 contas restaurado e KPI Custo corrigido por filtro.
+- **Social Studio** implementado em preview com persistência Supabase, UI real, geração de copy, editor manual e render PNG.
 
 ## Qualidade da Memória (Consolidação Diária 28/04)
 - **sessions/2026-04-28.md:** consolidado com Vault-as-SSoT, Blog/Admin, N8N, Vercel, Social Studio e jobs Builder.
@@ -162,6 +163,7 @@ skills/
 - **feedbacks:** registrados aprovações/rejeições de conteúdo/editorial/arquitetura do Blog e Social Studio.
 
 ## Timeline Recente
+- **2026-04-29:** Blog Budamix Pipeline v2 fechado em produção (7 fases: `blog_pillars`, WF0 Perplexity, WF2 Sonnet 4.6 como diretor de arte, WF3 aspect ratio, WF4 validações, Admin com PillarSelect/AddPinManualDialog e validação E2E 6/6). Budamix Central ganhou baseline GitHub/tag rollback e refactor Full: Shopee 3 contas sincronizando, `sync-costs.py` corrigido, KPI Custo filtrável, Live Sales alinhado à Home por `v_daily_sales`. Social Studio seguiu em preview até render PNG, ainda sem merge produção.
 - **2026-04-28:** Vault-as-SSoT validado 8/8 e workspace antigo deprecado; Blog Budamix/Admin corrigiu falso erro de geração, separou Em geração/Rascunhos, endureceu WF4 por estado real no Supabase e deployou via VPS/Vercel; Social Studio nasceu com SPEC, persistência Supabase, preview Vercel, geração de copy, editor manual, render PNG e wizard. Trader/Spark sem execução delegada; Builder sem RESULT.md novo.
 - **2026-04-27:** Blog Budamix/Admin v2 virou a frente principal: WF4 Orchestrator, Admin Blog SPEC v2.0, WF0/WF2/WF4 corrigidos, fluxo final `gerando` → `em_edicao` → `preview` → `publicado`, UX de preview/editor, reset de pipeline, DNA editorial/visual/emocional aprovado, template de artigos encurtado e Amazon Request Review ajustado para 7–12 dias. GitHub do ecommerce destravado via PAT nas Observações do 1Password.
 - **2026-04-26:** Integração Slack read-only criada, Google Sheets e WhatsApp histórico validados, e Blog Budamix avançou de placeholder para fundação no repo principal + N8N Draft Generator + WF0 Perplexity + Admin Blog Review em produção. No delta pós-consolidação, houve retrofit dos 3 artigos legados e SEO técnico deployado, com pendência de push GitHub/keys REST Supabase/N8N API key. Lições críticas registradas: Builder em repo privado precisa validar repo principal e deploy frontend exige smoke test renderizado amplo.

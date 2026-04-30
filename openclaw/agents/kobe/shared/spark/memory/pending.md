@@ -1,6 +1,6 @@
 # Pendências — Spark
 
-_Atualizado: 2026-04-28_
+_Atualizado: 2026-04-29_
 
 ## 🔴 Prioridade Alta
 
@@ -15,7 +15,7 @@ _Atualizado: 2026-04-28_
 ## 🟡 Prioridade Média
 
 ### Amazon Ads / BidSpark
-- [ ] Revisão 29/04/2026: medir impacto das ações 1–3 de Amazon Ads, meta ACOS ≤19%.
+- [ ] Revisão 29/04/2026: medir impacto das ações 1–3 de Amazon Ads, meta ACOS ≤19% (se ainda não executada no fluxo local).
 - [ ] Revisão 30/04/2026: avaliar BidSpark-3 Piloto no grupo Suporte Controle Gamer.
 - [ ] Revisão 15/06/2026: reavaliar Abraçadeiras e Redinha.
 

@@ -6,22 +6,46 @@ tags:
   - canggu
   - moc
 criado: 2026-04-22
-atualizado: 2026-04-22
+atualizado: 2026-04-30
 fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 ---
 
 # Canggu — Map of Content
 
 > MicroSaaS de atendimento WhatsApp automatizado da Budamix, operando sob
-> a identidade **"Ana"**. Pipeline distribuído: WhatsApp → Evolution Cloudfly
-> → edge functions + N8N → LLMs (Anthropic + OpenAI + Groq) → Supabase
-> pgvector → resposta.
+> a identidade **"Ana"**. Pipeline canônico: WhatsApp → Evolution Cloudfly
+> → edge function `webhook-whatsapp` (Supabase) → process-message → LLMs
+> (Anthropic Claude + Google Gemini + Groq) → Supabase pgvector → resposta
+> via dispatcher inline. N8N standby pra rollback de 1 chamada.
+
+## Onde vive (atualizado 2026-04-30)
+
+| Camada | Local | Notas |
+|---|---|---|
+| **Repo (single source of truth)** | `PHPB2025K/canguu` | Frontend + 13 edge functions consolidadas em `supabase/functions/` |
+| **Frontend admin** | `https://canguu-sigma.vercel.app` | Vercel próprio, GitHub auto-deploy |
+| **Backend** | Supabase project `jpacmloqsfiebvagfomt` | Edge functions, Storage `chat-attachments` (público), pgvector |
+| **Webhook entrada** | `jpacmloqsfiebvagfomt.supabase.co/functions/v1/webhook-whatsapp` | Apontado pelo Evolution v2 desde cutover 30/04 |
+| **N8N (standby)** | `trottingtuna-n8n.cloudfy.live` | Rollback de 1 chamada se necessário |
 
 ## Estado atual
 
-**Última auditoria:** 2026-04-22 ([[auditorias/2026-04-22-forense]])
-**Veredito:** 🟡 Sólido tecnicamente, comprometido por dívida operacional.
-Refatoração viável em 6 blocos ao longo de 6–10 semanas.
+**Última grande sessão:** 2026-04-30 (maratona ~7-8h) — ver [[memory/sessions/2026-04-30]] seção "Maratona Canggu" + [[memory/context/decisoes/2026-04#[30/04 tarde/noite] Canggu — pipeline edge function canônico + mídia visível + repo único]].
+
+**O que mudou em 30/04:**
+- Cutover do pipeline: edge function `webhook-whatsapp` agora é o webhook canônico do Evolution. N8N Principal vira standby.
+- Cobertura completa de tipos WhatsApp (sticker, location, contact, video, button replies, ephemeral/viewOnce wrappers; protocol/edited descartados).
+- Vídeo + imagem com Gemini Vision/Video em background. Descrição em `metadata.ai_description` (Ana lê), arquivo no Storage `chat-attachments` (admin vê).
+- Áudio também sobe pro Storage com player HTML5 inline.
+- MediaLightbox flutuante no admin (zoom 1×-5×, pan, atalhos teclado).
+- Origin poll via texto numerado (listMessage e poll nativo do WhatsApp falharam silenciosamente via Baileys — ver [[knowledge/concepts/evolution-baileys-protocol-quirks]]).
+- Filtro de plataforma no admin + SourceBadge condicional.
+- `customers.source = NULL` por padrão; só preenche quando cliente responde a enquete.
+- Repo `budamix-ai-agent` deletado (era cópia paralela). Backup mirror em `~/Documents/_backups/budamix-ai-agent-mirror-20260430.git`.
+
+**Última auditoria forense:** 2026-04-22 ([[auditorias/2026-04-22-forense]])
+**Veredito original:** 🟡 Sólido tecnicamente, comprometido por dívida operacional.
+**Status pós-30/04:** B4 (arquitetura — cutover) ✅ feito. B3 (resiliência) parcial (Gemini retry pronto, falta retry classify/generate + dedup). B1/B2/B5/B6 ainda intocados.
 
 ## Métricas baseline (snapshot 2026-04-22)
 

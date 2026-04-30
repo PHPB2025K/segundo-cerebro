@@ -21,8 +21,8 @@ tags:
 
 | Planilha | Google Sheets ID | Uso |
 |----------|-----------------|-----|
-| **Precificação** | `1u74aCdH8VrQ2eK01YUQ8fUMwwb6ZPZXvrTTHoexWtnI` | Abas MELI, SHOPEE, AMAZON, ESTOQUE — preços, margens, custos |
-| **Estoque Operacional** | `1dUoZtrvrqI6TiX3E_UzGuzglJFj6OVDZuYcgJyBfuRU` | Controle entrada/saída armazém, sync-costs.py |
+| **Precificação** | `1u74aCdH8VrQ2eK01YUQ8fUMwwb6ZPZXvrTTHoexWtnI` | Abas ESTOQUE, SHOPEE, MELI, AMAZON, MIMO STYLE — preços, margens, custos. **Lida pelo `sync-costs.py`** (corrigido em 30/04/2026 — antes apontava errado para a outra planilha). |
+| **Estoque Operacional** | `1dUoZtrvrqI6TiX3E_UzGuzglJFj6OVDZuYcgJyBfuRU` | Controle entrada/saída do armazém Pedreira-SP. NÃO usada pelo sync-costs.py. |
 
 ---
 

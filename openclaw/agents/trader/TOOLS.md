@@ -31,7 +31,8 @@ _Consulta rápida para paths e comandos do dia a dia. Detalhes completos em MEMO
 | Template HTML | `templates/report-base.html` |
 | Design system HTML | `skills/design/report-design-system/SKILL.md` |
 | Design system Excel | `skills/design/excel-design-system.md` |
-| Planilha estoque | Google Sheets `1dUoZtrvrqI6TiX3E_UzGuzglJFj6OVDZuYcgJyBfuRU` |
+| Planilha de Precificação (custos) | Google Sheets `1u74aCdH8VrQ2eK01YUQ8fUMwwb6ZPZXvrTTHoexWtnI` — abas ESTOQUE / SHOPEE / MELI / AMAZON / MIMO STYLE — fonte de verdade de custos, lida pelo `sync-costs.py` |
+| Planilha de Estoque Operacional | Google Sheets `1dUoZtrvrqI6TiX3E_UzGuzglJFj6OVDZuYcgJyBfuRU` — controle entrada/saída do armazém Pedreira-SP |
 | Dados temporários | `/tmp/trader/` |
 
 ## Quick Reference — Comandos

@@ -27,6 +27,13 @@ tags:
 | **30/04/2026** | **Importação 2026 — verificar IMB501V_T Shopee 3 contas (Lucas)** | 🟡 Pré-pedido | Listing ativo + estoque |
 | 30/04/2026 | Refactor Full Budamix Central — encerrado 100% | ✅ Concluído | 202 registros, 0 zerados, custo R$ 158.820, venda R$ 486.566. sync-costs apontando pra planilha oficial; filtro fantasma no sync-inventory-amazon |
 | 30/04/2026 | Refactor Full — docs atualizadas (skill `planilha-precificacao` + trader/TOOLS + upload-planilha-drive) | ✅ Concluído | SPREADSHEET_ID correto, mapeamento ANUNCIO→BASE→CUSTO documentado |
+| 30/04/2026 | Card inventário FULL+FÍSICO+TOTAL na dashboard | ✅ Movido para /estoque/consolidado | Bug parser BR corrigido, defesas alert-only ativas |
+| 30/04/2026 | Módulo Estoque Fase 1 (3 abas: full/fisico/consolidado) | ✅ Concluído | Tag `v-estoque-modulo-fase1-20260430` |
+| 30/04/2026 | Módulo Estoque Fase 1.5 (refinamento visual com lovable-quality + animated + financial) | ✅ Deployado, aguarda validação Pedro | Tag `v-estoque-fase1-5-20260430` |
+| **01/05/2026** | **Validar visualmente Fase 1.5** + Fase 2 (movimentações) | 🟡 Pendente | Form manual + tabela movements + role operator + sync 2min |
+| 02/05/2026 | Estoque Fase 3 (import CSV/XLSX template) | ⏳ Pendente | Após Fase 2 |
+| Backlog | Estoque Fase 4 (import PDF via Claude Vision) | ⏳ Sem urgência | ~R$ 1/mês de custo API |
+| Backlog | SKU duplicado na planilha ESTOQUE (1 SKU repetido) | ⏳ Investigar | Diff R$ 24 entre summary e items |
 | 02/05/2026 | Refactor Full — validação cruzada ML/Amazon (1D estendida) + monitoramento Shopee (1E) | ⏳ Pendente | Não bloqueia KPI, só aumenta confiança defensiva |
 | **01/05/2026** | **Importação 2026 — pedido L1 + sinal R$ 147.211** | 🟢 Início Ato 1 | Cenário E, plano `data/04-plano.md` |
 | 25/07/2026 | Importação 2026 — pagar PNI L1 R$ 244.788 | ⏳ Cronograma L1 | D+85 |

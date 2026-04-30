@@ -10,15 +10,15 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-04-30 02:04 BRT — organização noturna silenciosa_
+_Atualizado: 2026-04-30 11:18 BRT — sync-costs v2 aplicado_
 
 ## 🚨 URGENTE — Operação / Dados
 
-- [ ] **Budamix Central Full — analistas preencherem custos zerados na planilha de precificação** em 30/04:
-  - Lucas: Shopee — 11 SKUs únicos
-  - Leonardo: Amazon — 11 SKUs únicos
-  - Yasmin: Mercado Livre — 4 SKUs únicos
-  Após cadastro, Kobe deve rodar `sync-costs.py` manualmente e validar: `zero_cost < 25` e custo real ≥ R$145k.
+- [ ] **Budamix Central Full — Etapa B: analistas preencherem `SKU BASE` nas abas de marketplace**:
+  - Lucas: SHOPEE — mappings praticamente vazios; preencher SKU_ANUNCIO → SKU_BASE
+  - Leonardo: AMAZON — mappings praticamente vazios; preencher SKU_ANUNCIO → SKU_BASE
+  - MELI: já tem 47 mappings históricos preenchidos
+  Depois disso, Kobe deve rodar `sync-costs.py` novamente e validar redução adicional de `zero_cost` e aumento de `custo_real`.
 - [ ] **Budamix Central Full — Etapa 2D `sku_mapping` fallback** para 8 SKUs já mapeados: 098→KIT9S098, IMB501T-cores→IMB501C/V/P_T, 096→KIT3S096, CTL002→TL6250, KIT2YW1520AZ→KIT2YW1520. Cuidado com `quantity_multiplier`.
 - [ ] **Budamix Central Full — Etapa 1E monitoramento Shopee**: criar healthcheck/alerta Telegram se alguma das 3 contas Shopee passar de 6h sem sync.
 - [ ] **Budamix Central Full — validação cruzada ML Full e Amazon FBA** equivalente à validação Shopee 1D. Confiança atual média; Amazon tem 22 rupturas concentradas.
@@ -72,4 +72,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Mission Control DNS/customização**, **RH WhatsApp próprio**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-04-30 02:04 BRT._
+_Última organização: 2026-04-30 11:18 BRT._

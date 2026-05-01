@@ -10,7 +10,7 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-04-30 23:30 BRT — consolidação diária final_
+_Atualizado: 2026-05-01 10:55 BRT — flush financeiro/DRE_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -40,6 +40,7 @@ _Atualizado: 2026-04-30 23:30 BRT — consolidação diária final_
 
 ## 🔥 PRIORIDADE IMEDIATA — Financeiro
 
+- [ ] **DRE Abril/2026 — completar planilha padrão com dados faltantes**: Pedro vai usar Claude com a planilha `02_DRE_GB_PROCESSADO.xlsx` para preencher coluna `U` (Total Mês de Abril) com valores já validados. Ainda faltam coletar/confirmar: atacado, impostos sobre vendas, devoluções/cancelamentos contábeis, descontos, despesas administrativas, D&A, resultado financeiro e IRPJ/CSLL.
 - [ ] **Ads spend março** — levantar gasto real com publicidade por plataforma (ML, Amazon via integração, Shopee manual). Sem este dado, consolidado de março é inválido.
 - [ ] **Refazer fechamento de março** — gerar consolidado novo (DRE operacional + planilha + HTML) com os 5 extratos validados completos + ads spend correto.
 - [ ] **Mapeamento semanal DRE** — separar março por semanas (01-07, 08-14, 15-21, 22-31) nas linhas da DRE para análise de evolução.

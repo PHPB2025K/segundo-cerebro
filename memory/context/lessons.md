@@ -431,3 +431,12 @@ _Consolidação Profunda executada em 2026-04-04 08:19 BRT._
 - Não houve nova promoção necessária: os padrões recorrentes relevantes dos últimos 15 dias já estavam registrados como estratégicos (fonte canônica antes de diagnosticar dados; validação determinística pós-geração; geração longa por estado persistido; repo/deploy real antes de corrigir UI).
 
 _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
+
+### [ESTRATÉGICA] DRE profissional precisa seguir estrutura clássica completa, não só apuração marketplace (2026-05-01)
+**Contexto:** Pedro rejeitou DREs v3/v4 de abril/2026 apesar dos dados corretos, porque pareciam apuração gerencial simplificada e não DRE profissional. Pedro anexou `02_DRE_GB_PROCESSADO.xlsx` como referência.
+**Lição:** Para qualquer DRE/P&L/fechamento mensal da GB, usar estrutura clássica completa: Receita Operacional Bruta → Deduções → Receita Operacional Líquida → CMV → Lucro Bruto → Margem Bruta → Despesas Operacionais → EBITDA → Margem EBITDA → Depreciação/Amortização → EBIT → Margem Operacional → Resultado Financeiro → LAIR → Provisões Tributárias → Lucro Líquido → Margem Líquida. Se dados faltarem, manter a linha e marcar lacuna; não remover a seção.
+**Ação:** Skill `skills/financeiro/dre-profissional-marketplace` atualizada; Trader deve usá-la sempre para DRE.
+
+### [TÁTICA] Telegram MEDIA em resposta normal pode não anexar; usar envio explícito como documento + reply-to (2026-05-01)
+**Contexto:** Arquivos XLSX/HTML/ZIP enviados via linhas `MEDIA:` não chegavam no Telegram mobile. Logs mostravam apenas `sendMessage ok`, sem `sendDocument`. Envio manual com `thread-id` lógico também falhou; o método que funcionou foi `openclaw message send --channel telegram --target ... --reply-to <mensagem> --media <arquivo> --force-document`.
+**Lição:** Para arquivos em tópicos do Telegram Hub, preferir envio explícito como documento respondendo à mensagem do Pedro. Não confiar em `MEDIA:` quando a entrega precisa ser garantida.

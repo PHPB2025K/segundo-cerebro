@@ -738,3 +738,10 @@ Número dedicado: 5519992997273 (separado do Kobe). RH responde direto aos funci
 - **Evitar:** expressão triste, cansada, preocupada, melancólica, abatida, largada, sofrida ou visual comercialmente fraco.
 - **Desejado:** alegria calma, satisfação, acolhimento, orgulho da casa, alívio positivo e prazer em cozinhar/organizar/receber.
 - **Pedro aprovou:** Sim, refinou e aprovou essa direção como regra permanente do DNA visual.
+
+## DRE / Fechamento Financeiro — Estrutura Profissional Obrigatória (2026-05-01)
+- DRE da GB não pode ser entregue como simples apuração de marketplace, mesmo com números corretos.
+- Estrutura obrigatória: Receita Operacional Bruta → Deduções → Receita Operacional Líquida → CMV → Lucro Bruto → Margem Bruta → Despesas Operacionais → EBITDA → Margem EBITDA → Depreciação/Amortização → EBIT → Margem Operacional → Resultado Financeiro → LAIR → Provisões Tributárias → Lucro Líquido → Margem Líquida.
+- Se algum dado contábil não estiver disponível, manter a linha e marcar como lacuna/pendência; não excluir a seção para “simplificar”.
+- Para Abril/2026, dados seguros até agora: faturamento marketplace R$ 405.839,65; settlement R$ 354.992,67; CMV R$ 180.604,12; taxas marketplace R$ 117.670,43; Ads R$ 17.380,39; Himmel R$ 9.000; resultado operacional conhecido R$ 81.184,71.
+- Skill obrigatória para Trader: `skills/financeiro/dre-profissional-marketplace/SKILL.md`.

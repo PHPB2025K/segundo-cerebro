@@ -25,23 +25,59 @@ Se o contexto estiver apertado, leia primeiro esta skill + `excel-generation`; c
 
 ## Estrutura mínima da DRE
 
-### Consolidada
+### Estrutura clássica obrigatória
+
+A DRE precisa seguir estrutura profissional completa, mesmo quando parte dos dados estiver indisponível. Não pular seções; marcar lacunas explicitamente.
 
 Obrigatório conter, nesta ordem:
 
-1. Receita bruta comercial / pedidos válidos
-2. Receita liquidada em extrato / settlement — somente como reconciliação, não como faturamento
-3. Diferença comercial × settlement
-4. (-) CMV
-5. Lucro bruto
-6. Margem bruta
-7. (-) Taxas marketplace
-8. (-) Ads reais
-9. (-) Gestão/agência Ads, se aplicável
-10. Resultado operacional conhecido
-11. Margem operacional
-12. Resultado líquido gerencial
-13. Margem líquida gerencial
+1. **Receita Operacional Bruta**
+   - Vendas de Marketplace
+   - Vendas de Atacado, se houver
+   - Outras Receitas Operacionais
+   - Total Receita Bruta
+2. **Deduções da Receita Bruta**
+   - Impostos sobre vendas
+   - Devoluções e cancelamentos
+   - Descontos concedidos
+   - Total Deduções
+3. **Receita Operacional Líquida**
+4. **CMV — Custo das Mercadorias Vendidas**
+   - Custo das Mercadorias
+   - Custo de Importação
+   - Fretes e Seguros
+   - Outros Custos Diretos
+   - Total CMV
+5. **Lucro Bruto**
+6. **Margem Bruta (%)**
+7. **Despesas Operacionais**
+   - Despesas Administrativas
+   - Despesas Comerciais
+   - Total Despesas Operacionais
+8. **EBITDA**
+9. **Margem EBITDA (%)**
+10. **Depreciação e Amortização**
+11. **Lucro Operacional (EBIT)**
+12. **Margem Operacional (%)**
+13. **Resultado Financeiro**
+   - Receitas Financeiras
+   - Despesas Financeiras
+   - Resultado Financeiro Líquido
+14. **LAIR — Lucro Antes do IR/CSLL**
+15. **Provisões Tributárias**
+16. **Lucro Líquido**
+17. **Margem Líquida (%)**
+
+### Reconciliação marketplace obrigatória
+
+Além da estrutura clássica, incluir a visão de marketplace:
+
+- Receita comercial válida
+- Receita liquidada em extrato / settlement — somente como reconciliação, não como faturamento
+- Diferença comercial × settlement
+- Taxas/fees marketplace
+- Ads reais
+- Gestão/agência Ads, se aplicável
 
 ### Por marketplace
 

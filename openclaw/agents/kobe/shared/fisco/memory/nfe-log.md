@@ -101,3 +101,26 @@ _Append-only. Nunca deletar entradas._
 - Bug Bling API v3: GET /nfe/{id} e GET /naturezas-operacoes/{id} retornam null/404 mesmo para IDs válidos. Listagem com filtros funciona.
 - Delay de propagação de estoque do Bling: mesmo após SEFAZ autorizar a entrada 000648, saldos dos SKUs KIT9S098 e KIT6S100 não subiram imediatamente via API. Saldo fica temporariamente negativo no Bling até a reindexação interna. Não há impacto fiscal (SEFAZ autorizou ambas) nem operacional (mercadoria física transita segunda-feira).
 - DANFE/XML: endpoints `GET /nfe/{id}/pdf` e `/nfe/{id}/xml` retornam 404 — Pedro baixa pelo painel web Bling (Matriz → NFe → Emitidas → 000648/000649).
+
+---
+
+## 2026-05-01 — Venda Interna Abril/2026 ✅ AUTORIZADAS
+
+### FILIAL (58.151.616/0002-24) → CNPJs Simples | CFOP 5102 | ICMS 18% | IPI 6,5% NCM 7013.49.00
+
+| NF# | Destinatário | CNPJ | Valor | Status | Chave | Protocolo |
+|-----|-------------|------|-------|--------|-------|-----------|
+| 000031 | GB Comércio | 07.194.128/0001-82 | R$ 55.662,33 | ✅ Autorizada SEFAZ (cStat 100) | 35260558151616000224550010000000311000323351 | 135261659587086 |
+| 000032 | Trades | 45.200.547/0001-79 | R$ 11.123,04 | ✅ Autorizada SEFAZ (cStat 100) | 35260558151616000224550010000000321000324649 | 135261659609549 |
+| 000033 | Broglio | 63.922.116/0001-06 | R$ 10.279,72 | ✅ Autorizada SEFAZ (cStat 100) | 35260558151616000224550010000000331000327408 | 135261659610279 |
+
+**Total venda interna Abril/2026: R$ 77.065,09**
+
+**Observações:**
+- Emissão autorizada explicitamente pelo Pedro em 2026-05-01.
+- Natureza Bling Filial: Venda de mercadoria (ID 15107403191).
+- IPI aplicado conforme decisão fiscal confirmada: suspensão só na transferência Matriz→Filial; venda interna Filial→Simples usa IPI conforme NCM.
+- CK4742/Jarra Clink excluído do escopo por decisão Pedro: não é importação própria GB.
+- Ressalva separada: inconsistência histórica YW1520 na Matriz permanece pendente, sem bloquear abril.
+- Processo mensal novo: antes de usar saldo Matriz como excedente, consultar e abater NFs B2B/atacado emitidas pela Matriz no período.
+

@@ -437,6 +437,15 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 **Lição:** Para qualquer DRE/P&L/fechamento mensal da GB, usar estrutura clássica completa: Receita Operacional Bruta → Deduções → Receita Operacional Líquida → CMV → Lucro Bruto → Margem Bruta → Despesas Operacionais → EBITDA → Margem EBITDA → Depreciação/Amortização → EBIT → Margem Operacional → Resultado Financeiro → LAIR → Provisões Tributárias → Lucro Líquido → Margem Líquida. Se dados faltarem, manter a linha e marcar lacuna; não remover a seção.
 **Ação:** Skill `skills/financeiro/dre-profissional-marketplace` atualizada; Trader deve usá-la sempre para DRE.
 
+### [ESTRATÉGICA] NF interna de importados exige reconciliação fiscal por SKU/componente antes de emitir (2026-05-01)
+**Contexto:** Na emissão das NFs internas de abril/2026, o rateio por CNPJ parecia correto, mas a prévia ficou errada porque misturava SKU comercial, SKU fiscal, kits, caixas e saldo histórico de Matriz/Filial.
+**Lição:** Para NF interna de produtos importados, nunca emitir só com base em vendas do mês. Primeiro reconciliar estoque fiscal inicial da Matriz/Filial, entradas por container, mapeamento SKU fiscal ↔ SKU comercial, decomposição de kits e fator de conversão de caixas/conjuntos. Só depois calcular a NF por CNPJ.
+
+### [TÁTICA] Bling Filial pode ter SKU por caixa/alias enquanto a NF precisa unidade (2026-05-01)
+**Contexto:** Os rascunhos no Bling travaram porque `YW1520`, `YW320SQ` e `YW520SQ` não existiam exatamente na Filial, embora houvesse aliases/cadastros por caixa como `CXYW1520RC` e variantes `_T`/`RC`.
+**Lição:** Antes de cadastrar SKU unitário novo no Bling Filial, procurar aliases por caixa, sufixos (`RC`, `RCC`, `SQC`, `_T`, `AZ`) e descrições de caixa/conjunto. Se o item existir por caixa, refazer o mapeamento e decidir conscientemente entre converter quantidade ou cadastrar o código unitário.
+**Expira:** 2026-05-31
+
 ### [TÁTICA] Telegram MEDIA em resposta normal pode não anexar; usar envio explícito como documento + reply-to (2026-05-01)
 **Contexto:** Arquivos XLSX/HTML/ZIP enviados via linhas `MEDIA:` não chegavam no Telegram mobile. Logs mostravam apenas `sendMessage ok`, sem `sendDocument`. Envio manual com `thread-id` lógico também falhou; o método que funcionou foi `openclaw message send --channel telegram --target ... --reply-to <mensagem> --media <arquivo> --force-document`.
 **Lição:** Para arquivos em tópicos do Telegram Hub, preferir envio explícito como documento respondendo à mensagem do Pedro. Não confiar em `MEDIA:` quando a entrega precisa ser garantida.

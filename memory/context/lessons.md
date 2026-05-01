@@ -479,3 +479,25 @@ _Consolidação Profunda executada em 2026-04-04 08:19 BRT._
 **Contexto:** Home do Budamix Central mostrava tooltip de dia deslocado porque `new Date('YYYY-MM-DD')` interpretava UTC e o browser em BRT exibia o dia anterior.
 **Lição:** Para labels de data sem horário, parsear manualmente `YYYY-MM-DD` ou usar helper BRT explícito. `new Date()` em string date-only cria bug visual silencioso.
 **Expira:** 2026-05-29
+
+### [ESTRATÉGICA] Validar fonte canônica antes de diagnosticar dados (2026-04-30)
+**Contexto:** O diagnóstico inicial de custos do Budamix Central Full foi feito por semanas contra a planilha errada (`1dUoZ...`) enquanto a fonte oficial de precificação era `1u74a...`. Isso gerou hipóteses falsas sobre SKUs sem custo e trabalho desnecessário com analistas.
+**Lição:** Antes de investigar inconsistência de dados, validar o ID/nome/owner da fonte canônica com o Pedro ou com integração viva. Uma planilha, repo ou projeto Supabase “parecido” não é evidência suficiente.
+
+### [ESTRATÉGICA] Prompt forte não substitui validação determinística em risco operacional (2026-04-30)
+**Contexto:** A Ana/Canggu podia ignorar correções aprovadas e responder “entre em contato conosco” em perguntas do Mercado Livre. Baixar threshold e reforçar prompt reduzia probabilidade, mas não garantia.
+**Lição:** Quando existe regra proibitiva clara (compliance marketplace, vazamento, resposta operacional indesejada), usar validador pós-geração determinístico + fallback seguro. LLM decide estilo; guardrail decide se a resposta pode sair.
+
+### [TÁTICA] Evolution/Baileys interactive messages falham silenciosamente em produção (2026-04-30)
+**Lição:** `listMessage` e `pollCreationMessageV3` podem retornar 201 na Evolution e ainda não renderizar no WhatsApp do cliente. Para escolha simples de origem/canal, texto numerado é mais robusto que mensagem interativa.
+**Expira:** 2026-05-30
+
+### [TÁTICA] Parser numérico BR: ponto pode ser separador de milhar, não decimal (2026-04-30)
+**Contexto:** O sync de estoque físico interpretou `3.918` como 3,918 unidades em vez de 3.918 unidades, subestimando o capital físico em ~2,5x.
+**Lição:** Em planilhas brasileiras, tratar ponto como milhar e vírgula como decimal salvo evidência contrária; validar somatórios contra colunas calculadas da planilha antes de confiar no parse.
+**Expira:** 2026-05-30
+
+### [TÁTICA] Single source of truth de repo antes de editar frontend/admin (2026-04-30)
+**Contexto:** Em Canggu, alterações foram feitas por horas no repo `budamix-ai-agent`, mas o admin visível da Yasmin vinha do repo `canguu`.
+**Lição:** Antes de corrigir bug visual em produção, confirmar repo→deploy→domínio por evidência real (Vercel project, git remote, commit servido). Dois repos paralelos do mesmo produto geram trabalho invisível.
+**Expira:** 2026-05-30

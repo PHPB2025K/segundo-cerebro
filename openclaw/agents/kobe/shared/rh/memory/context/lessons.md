@@ -36,3 +36,12 @@ _Aprendizados operacionais. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 d
 ### 2026-03-30 — Modo supervisão obrigatório para mensagens a funcionários [ESTRATÉGICA]
 **Contexto:** Pedro ativou modo supervisão — toda mensagem enviada a funcionário gera notificação no Telegram (tópico RH).
 **Lição:** Enquanto modo supervisão ativo, NUNCA enviar mensagem a funcionário sem gerar notificação no Telegram. Pedro decide quando desativar.
+
+### 2026-04-30 — Evolution webhook não é garantia de entrega [ESTRATÉGICA]
+**Contexto:** Lucas e Sandra enviaram mensagens reais; Evolution recebeu, mas webhook não disparou.
+**Lição:** Para comunicação RH com funcionários, webhook precisa de rede de segurança por polling e detector de stuck. Não assumir que ausência de webhook = ausência de mensagem.
+
+### 2026-04-30 — Teste manual com número real pode confundir funcionário [TÁTICA]
+**Contexto:** Um teste manual simulando o número do Lucas gerou resposta que caiu na conversa real dele, parecendo mensagem desconexa.
+**Lição:** Nunca testar pipeline de funcionário usando número real sem isolar conversa/tag de teste. Preferir contato controlado ou dry-run que não envia outbound.
+**Expira:** 2026-05-30

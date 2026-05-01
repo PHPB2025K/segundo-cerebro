@@ -49,3 +49,10 @@ _Atualizado na Consolidação Profunda 2026-04-04._
 
 ### [ESTRATÉGICA] Supabase db push amplo é perigoso com histórico remoto desalinhado (2026-04-28)
 **Lição:** Aplicar migrations específicas com backup/smoke quando o histórico remoto não está marcado; não empurrar migrations antigas sem auditoria.
+
+### [ESTRATÉGICA] Confirmar repo/deploy real antes de corrigir UI (2026-04-30)
+**Lição:** Antes de corrigir bug visual/admin, confirmar qual repo está ligado ao domínio/projeto Vercel/Lovable real. Em Canggu, editar `budamix-ai-agent` não alterava o admin visto pela Yasmin porque o deploy real vinha de `canguu`.
+
+### [TÁTICA] Parser BR em sync financeiro/estoque exige validação de somatório (2026-04-30)
+**Lição:** Em planilhas brasileiras, ponto costuma ser milhar. Validar parse contra colunas calculadas antes de publicar KPI financeiro.
+**Expira:** 2026-05-30

@@ -1,6 +1,6 @@
 # Pendências — Trader
 
-_Atualizado: 2026-04-29_
+_Atualizado: 2026-04-30_
 
 ## 🔴 Prioridade Alta
 
@@ -8,12 +8,12 @@ _Atualizado: 2026-04-29_
 - [ ] Ads spend março por plataforma (ML, Amazon, Shopee manual) para validar consolidado.
 - [ ] Refazer consolidado financeiro de março com extratos completos e ads spend real.
 - [ ] DRE semanal março (01-07, 08-14, 15-21, 22-31).
-- [ ] Margem por produto — cruzar curva ABC com preço de custo da planilha.
+- [ ] Margem por produto — cruzar curva ABC com preço de custo da planilha oficial.
 
-### Budamix Central Full — Custos / Estoque
-- [ ] Acompanhar cadastro dos 43 SKUs sem custo pelos analistas (Shopee/Amazon/ML).
-- [ ] Após sync-costs pós-cadastro, validar cobertura de custo e impacto por canal.
-- [ ] Acompanhar Etapa 2D `sku_mapping` para 8 SKUs mapeados, evitando cadastro duplicado.
+### Budamix Central Full — Estoque / Validação
+- [ ] Validar ML Full e Amazon FBA com profundidade equivalente à validação Shopee 1D.
+- [ ] Acompanhar monitoramento Shopee 1E quando implementado.
+- [ ] Monitorar se fantasmas Amazon FBA com `unit_price=0` voltam a aparecer.
 
 ### Relatório de Performance — Connectors Faltantes
 - [ ] Connector Amazon completo (SP-API: orders, items, seller metrics).

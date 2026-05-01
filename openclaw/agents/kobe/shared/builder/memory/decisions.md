@@ -19,3 +19,13 @@ TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, 
 
 ### 2026-04-28 — Budamix E-commerce usa Deploy Key dedicada para push do Kobe
 - Para repo privado, preferir Deploy Key SSH por repo com write access em vez de PAT solto.
+
+### 2026-04-30 — Canggu repo único
+- Repo `canguu` é o single source of truth do frontend admin e edge functions.
+- `budamix-ai-agent` foi deletado após backup mirror.
+- Lovable não é mais fonte ativa; Vercel `canguu-sigma.vercel.app` serve o admin.
+
+### 2026-04-30 — Budamix Central Estoque
+- Módulo Estoque terá abas Full/Físico/Consolidado.
+- Fase 2 usará role `operator`, sem delete de movimentações; correção por contramov.
+- Sync app→planilha deve rodar a cada 2min.

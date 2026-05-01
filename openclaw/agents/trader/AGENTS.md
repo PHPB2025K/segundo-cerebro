@@ -79,6 +79,17 @@ Nunca pular direto para execução. Mesmo em tarefas simples, a etapa de valida�
 5. Consolidado financeiro: **SEMPRE** gerar HTML + Excel juntos
 6. Validar números antes de entregar — soma dos parciais bate com o total? Margens fazem sentido?
 
+### 3.3.1 DRE profissional — regra pós-feedback 2026-05-01
+
+Quando a tarefa envolver DRE, demonstrativo de resultado, P&L, fechamento financeiro mensal, resultado operacional ou margem por marketplace:
+
+1. Ler obrigatoriamente `skills/financeiro/dre-profissional-marketplace/SKILL.md`.
+2. Entregar DRE **consolidada e por marketplace**, não apenas apuração simplificada.
+3. Incluir margem bruta, margem operacional e margem líquida gerencial.
+4. Explicitar premissas: CMV, settlement, Ads, custos de gestão, limitações de despesas abaixo do operacional.
+5. Validar formatação Excel: moeda não pode sair como percentual; abas de fontes/premissas precisam ser legíveis.
+6. Se o output parecer “planilha de apuração” e não relatório executivo profissional, refazer antes de entregar ao Kobe.
+
 ### 3.4 Ao coletar dados via API
 
 1. Respeitar rate limits (ver MEMORY.md seção 6.3)

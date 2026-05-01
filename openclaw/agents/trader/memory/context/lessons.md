@@ -46,3 +46,13 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 ### 2026-03-21 — SKU Amazon é imutável [ESTRATÉGICA]
 **Contexto:** Tentativa de padronizar SKUs cross-platform.
 **Lição:** Amazon SKU NÃO pode ser renomeado — perde listing, histórico e ranking. Usar Apelido do SKU no Upseller como alternativa.
+
+## [ESTRATÉGICA] 2026-05-01 — DRE correto nos dados não basta; precisa estrutura executiva profissional
+
+Pedro rejeitou parcialmente o DRE v3 de abril/2026: os dados estavam corretos, mas o relatório parecia uma planilha de apuração incompleta, sem estrutura/formatação padrão de DRE moderno e profissional.
+
+Regra permanente para o Trader:
+- Para qualquer DRE/P&L/fechamento mensal, usar `skills/financeiro/dre-profissional-marketplace/SKILL.md`.
+- Entregar consolidado + marketplace com margem bruta, margem operacional e margem líquida gerencial.
+- Explicitar CMV, settlement, Ads, premissas e limitações.
+- Excel/HTML precisam parecer entregável executivo; visual dark sozinho não é qualidade.

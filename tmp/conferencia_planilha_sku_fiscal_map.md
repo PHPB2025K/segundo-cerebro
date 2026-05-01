@@ -1,0 +1,294 @@
+# Conferência planilha Precificação/Estoque — SKUs média/baixa confiança
+
+## média
+
+### IMB501C → fiscal `IMB501C` → base `IMB501C` fator `1`
+- ESTOQUE!16: 10.351 | IMB501C_T | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | 7898972482954 | 7013.49.00 | GB IMPORTADORA | R$ 80.944,82
+- MELI!4: 10.351 | IMB501C_T | MLB3288536143 | IMB501C_T | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | R$ 29,88 | Classico
+- SHOPEE!6: 10.351 | IMB501C_T | Sh1: 22393168887 / Sh2: 23593154831 / Sh3: 23698553207 | IMB501C_T | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | R$ 26,90 | R$ 5,38
+- AMAZON!6: 8.007 | IMB501C_T | B0GSWRMDRG | IMB501T-cinza | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | R$ 25,90 | R$ 3,11
+
+### IMB501CT → fiscal `IMB501C` → base `IMB501C` fator `1`
+- ESTOQUE!16: 10.351 | IMB501C_T | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | 7898972482954 | 7013.49.00 | GB IMPORTADORA | R$ 80.944,82
+- MELI!4: 10.351 | IMB501C_T | MLB3288536143 | IMB501C_T | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | R$ 29,88 | Classico
+- SHOPEE!6: 10.351 | IMB501C_T | Sh1: 22393168887 / Sh2: 23593154831 / Sh3: 23698553207 | IMB501C_T | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | R$ 26,90 | R$ 5,38
+- AMAZON!6: 8.007 | IMB501C_T | B0GSWRMDRG | IMB501T-cinza | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | R$ 25,90 | R$ 3,11
+
+### IMB501C_T → fiscal `IMB501C` → base `IMB501C` fator `1`
+- ESTOQUE!16: 10.351 | IMB501C_T | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | 7898972482954 | 7013.49.00 | GB IMPORTADORA | R$ 80.944,82
+- MELI!4: 10.351 | IMB501C_T | MLB3288536143 | IMB501C_T | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | R$ 29,88 | Classico
+- SHOPEE!6: 10.351 | IMB501C_T | Sh1: 22393168887 / Sh2: 23593154831 / Sh3: 23698553207 | IMB501C_T | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | R$ 26,90 | R$ 5,38
+- AMAZON!6: 8.007 | IMB501C_T | B0GSWRMDRG | IMB501T-cinza | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | R$ 25,90 | R$ 3,11
+- ESTOQUE!16: 10.351 | IMB501C_T | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | 7898972482954 | 7013.49.00 | GB IMPORTADORA | R$ 80.944,82
+- MELI!4: 10.351 | IMB501C_T | MLB3288536143 | IMB501C_T | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | R$ 29,88 | Classico
+- SHOPEE!6: 10.351 | IMB501C_T | Sh1: 22393168887 / Sh2: 23593154831 / Sh3: 23698553207 | IMB501C_T | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | R$ 26,90 | R$ 5,38
+- AMAZON!6: 8.007 | IMB501C_T | B0GSWRMDRG | IMB501T-cinza | Conjunto de 5 Potes, Tampa Cinza | R$ 7,82 | R$ 25,90 | R$ 3,11
+
+### IMB501P → fiscal `IMB501P` → base `IMB501P` fator `1`
+- ESTOQUE!15: 8.007 | IMB501P_T | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | 7898972482947 | 7013.49.00 | GB IMPORTADORA | R$ 62.614,74
+- MELI!5: 8.007 | IMB501P_T | MLB3288536143 | IMB501P_T | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | R$ 29,88 | Classico
+- SHOPEE!7: 8.007 | IMB501P_T | Sh1: 22393168887 / Sh2: 23593154831 / Sh3: 23698553207 | IMB501P_T | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | R$ 26,90 | R$ 5,38
+- AMAZON!5: 10.351 | IMB501P_T | B0GSWJ91JM | IMB501T-preto | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | R$ 25,90 | R$ 3,11
+
+### IMB501PT → fiscal `IMB501P` → base `IMB501P` fator `1`
+- ESTOQUE!15: 8.007 | IMB501P_T | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | 7898972482947 | 7013.49.00 | GB IMPORTADORA | R$ 62.614,74
+- MELI!5: 8.007 | IMB501P_T | MLB3288536143 | IMB501P_T | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | R$ 29,88 | Classico
+- SHOPEE!7: 8.007 | IMB501P_T | Sh1: 22393168887 / Sh2: 23593154831 / Sh3: 23698553207 | IMB501P_T | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | R$ 26,90 | R$ 5,38
+- AMAZON!5: 10.351 | IMB501P_T | B0GSWJ91JM | IMB501T-preto | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | R$ 25,90 | R$ 3,11
+
+### IMB501P_T → fiscal `IMB501P` → base `IMB501P` fator `1`
+- ESTOQUE!15: 8.007 | IMB501P_T | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | 7898972482947 | 7013.49.00 | GB IMPORTADORA | R$ 62.614,74
+- MELI!5: 8.007 | IMB501P_T | MLB3288536143 | IMB501P_T | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | R$ 29,88 | Classico
+- SHOPEE!7: 8.007 | IMB501P_T | Sh1: 22393168887 / Sh2: 23593154831 / Sh3: 23698553207 | IMB501P_T | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | R$ 26,90 | R$ 5,38
+- AMAZON!5: 10.351 | IMB501P_T | B0GSWJ91JM | IMB501T-preto | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | R$ 25,90 | R$ 3,11
+- ESTOQUE!15: 8.007 | IMB501P_T | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | 7898972482947 | 7013.49.00 | GB IMPORTADORA | R$ 62.614,74
+- MELI!5: 8.007 | IMB501P_T | MLB3288536143 | IMB501P_T | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | R$ 29,88 | Classico
+- SHOPEE!7: 8.007 | IMB501P_T | Sh1: 22393168887 / Sh2: 23593154831 / Sh3: 23698553207 | IMB501P_T | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | R$ 26,90 | R$ 5,38
+- AMAZON!5: 10.351 | IMB501P_T | B0GSWJ91JM | IMB501T-preto | Conjunto de 5 Potes, Tampa Preta | R$ 7,82 | R$ 25,90 | R$ 3,11
+
+### IMB501V → fiscal `IMB501V` → base `IMB501V` fator `1`
+- ESTOQUE!14: 10.314 | IMB501V_T | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | 7898972482930 | 7013.49.00 | GB IMPORTADORA | R$ 80.655,48
+- MELI!6: 10.314 | IMB501V_T | MLB3288536143 | IMB501V_T | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | R$ 29,88 | Classico
+- SHOPEE!8: 10.314 | IMB501V_T | Sh1: 22393168887 / Sh2: 23593154831 / Sh3: 23698553207 | IMB501V_T | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | R$ 26,90 | R$ 5,38
+- AMAZON!4: 10.314 | IMB501V_T | B0GSWLK5F3 | IMB501T-vermelho | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | R$ 25,90 | R$ 3,11
+
+### IMB501VT → fiscal `IMB501V` → base `IMB501V` fator `1`
+- ESTOQUE!14: 10.314 | IMB501V_T | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | 7898972482930 | 7013.49.00 | GB IMPORTADORA | R$ 80.655,48
+- MELI!6: 10.314 | IMB501V_T | MLB3288536143 | IMB501V_T | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | R$ 29,88 | Classico
+- SHOPEE!8: 10.314 | IMB501V_T | Sh1: 22393168887 / Sh2: 23593154831 / Sh3: 23698553207 | IMB501V_T | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | R$ 26,90 | R$ 5,38
+- AMAZON!4: 10.314 | IMB501V_T | B0GSWLK5F3 | IMB501T-vermelho | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | R$ 25,90 | R$ 3,11
+
+### IMB501V_T → fiscal `IMB501V` → base `IMB501V` fator `1`
+- ESTOQUE!14: 10.314 | IMB501V_T | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | 7898972482930 | 7013.49.00 | GB IMPORTADORA | R$ 80.655,48
+- MELI!6: 10.314 | IMB501V_T | MLB3288536143 | IMB501V_T | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | R$ 29,88 | Classico
+- SHOPEE!8: 10.314 | IMB501V_T | Sh1: 22393168887 / Sh2: 23593154831 / Sh3: 23698553207 | IMB501V_T | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | R$ 26,90 | R$ 5,38
+- AMAZON!4: 10.314 | IMB501V_T | B0GSWLK5F3 | IMB501T-vermelho | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | R$ 25,90 | R$ 3,11
+- ESTOQUE!14: 10.314 | IMB501V_T | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | 7898972482930 | 7013.49.00 | GB IMPORTADORA | R$ 80.655,48
+- MELI!6: 10.314 | IMB501V_T | MLB3288536143 | IMB501V_T | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | R$ 29,88 | Classico
+- SHOPEE!8: 10.314 | IMB501V_T | Sh1: 22393168887 / Sh2: 23593154831 / Sh3: 23698553207 | IMB501V_T | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | R$ 26,90 | R$ 5,38
+- AMAZON!4: 10.314 | IMB501V_T | B0GSWLK5F3 | IMB501T-vermelho | Conjunto de 5 Potes, Tampa Vermelha | R$ 7,82 | R$ 25,90 | R$ 3,11
+
+### YW1050RC → fiscal `YW1050RC` → base `YW1050` fator `1`
+- ESTOQUE!95: 2.355 | YW1050RC | Pote Hermético Retangular 1050ml | R$ 7,59 | 7013.49.00 | GB IMPORTADORA | R$ 17.874,45
+- ESTOQUE!95: 2.355 | YW1050RC | Pote Hermético Retangular 1050ml | R$ 7,59 | 7013.49.00 | GB IMPORTADORA | R$ 17.874,45
+- ESTOQUE!112: 184 | KIT2YW1050 | Kit 2pç 1050ml Retangular | R$ 17,10 | 7013.49.00 | GB IMPORTADORA | R$ 3.146,40
+- ESTOQUE!113: 67 | KIT4YW1050 | Kit 4pç 1050ml Retangular | R$ 32,90 | 7013.49.00 | GB IMPORTADORA | R$ 2.204,30
+- MELI!17: 1.177 | YW1050 | MLB5402263146 /MLB6518176572 | KIT2YW1050 | 2 Pote de Vidro Hermético 1050ml RETANGULAR | R$ 17,10 | R$ 42,37 | Classico
+- MELI!18: 588 | YW1050 | MLB4073003575 | KIT4YW1050 | 4 Pote de Vidro Hermético 1050ml RETANGULAR | R$ 32,90 | R$ 78,90 | Classico
+
+### YW1520RC → fiscal `YW1520RC` → base `YW1520` fator `1`
+- ESTOQUE!96: 345 | YW1520RC | Pote Hermético Retangular 1520ml | R$ 10,05 | 7013.49.00 | GB IMPORTADORA | R$ 3.467,25
+- ESTOQUE!96: 345 | YW1520RC | Pote Hermético Retangular 1520ml | R$ 10,05 | 7013.49.00 | GB IMPORTADORA | R$ 3.467,25
+- ESTOQUE!114: 0 | KIT2YW1520 | Kit 2pç 1520ml Retangular | R$ 22,70 | 7013.49.00 | GB IMPORTADORA | R$ 0,00
+- ESTOQUE!115: 40 | KIT4YW1520 | Kit 4pç 1520ml Retangular | R$ 44,39 | 7898972482961 | 7013.49.00 | GB IMPORTADORA | R$ 1.775,60
+- MELI!19: 172 | YW1520AZ | MLB5322494954 | KIT2YW1520 | 2 Potes de Vidro Hermético 1520ml Retangular | R$ 22,70 | R$ 55,90 | Classico
+- MELI!20: 86 | YW1520AZ | MLB5322470722 | KIT4YW1520 | 4 Potes de Vidro Hermético 1520ml Retangular | R$ 44,39 | R$ 116,91 | Classico
+
+### YW1520RCC → fiscal `YW1520RCC` → base `YW1520` fator `12`
+- ESTOQUE!96: 345 | YW1520RC | Pote Hermético Retangular 1520ml | R$ 10,05 | 7013.49.00 | GB IMPORTADORA | R$ 3.467,25
+- ESTOQUE!114: 0 | KIT2YW1520 | Kit 2pç 1520ml Retangular | R$ 22,70 | 7013.49.00 | GB IMPORTADORA | R$ 0,00
+- ESTOQUE!115: 40 | KIT4YW1520 | Kit 4pç 1520ml Retangular | R$ 44,39 | 7898972482961 | 7013.49.00 | GB IMPORTADORA | R$ 1.775,60
+- MELI!19: 172 | YW1520AZ | MLB5322494954 | KIT2YW1520 | 2 Potes de Vidro Hermético 1520ml Retangular | R$ 22,70 | R$ 55,90 | Classico
+- MELI!20: 86 | YW1520AZ | MLB5322470722 | KIT4YW1520 | 4 Potes de Vidro Hermético 1520ml Retangular | R$ 44,39 | R$ 116,91 | Classico
+
+### YW320SQC → fiscal `YW320SQC` → base `YW320SQ` fator `24`
+- ESTOQUE!97: 3600 | YW320SQ | Pote Hermético Quadrado 320ml | R$ 3,80 | 7013.49.00 | GB IMPORTADORA | R$ 13.680,00
+
+### YW520SQC → fiscal `YW520SQC` → base `YW520SQ` fator `24`
+- ESTOQUE!92: 2.304 | YW520SQ | Pote de Vidro Hermético 520ml QUADRADO 14x14x7 | R$ 4,70 | 7898975019058 | 7013.49.00 | GB IMPORTADORA | R$ 10.828,80
+- ESTOQUE!103: 203 | KIT2YW520SQ | Kit 2pç 520ml Quadrado | R$ 11,23 | 7013.49.00 | GB IMPORTADORA | R$ 2.279,69
+- ESTOQUE!104: 184 | KIT4YW520SQ | Kit 4pç 520ml Quadrado | R$ 21,70 | 7013.49.00 | GB IMPORTADORA | R$ 3.992,80
+- MELI!11: 1.152 | YW520SQ | MLB5322490518 | KIT2YW520SQ | 2 Pote de Vidro Hermético 520ml QUADRADO | R$ 9,40 | R$ 31,25 | Classico
+- MELI!12: 576 | YW520SQ | MLB5322607410 | KIT4YW520SQ | 4 Pote de Vidro Hermético 520ml QUADRADO | R$ 16,35 | R$ 44,54 | Classico
+
+### YW640RC → fiscal `YW640RC` → base `YW640` fator `1`
+- ESTOQUE!94: 3.059 | YW640RC | Pote Hermético Retangular 640ml | R$ 5,28 | 7013.49.00 | GB IMPORTADORA | R$ 16.151,52
+- ESTOQUE!94: 3.059 | YW640RC | Pote Hermético Retangular 640ml | R$ 5,28 | 7013.49.00 | GB IMPORTADORA | R$ 16.151,52
+- ESTOQUE!110: 154 | KIT2YW640 | Kit 2pç 640ml Retangular | R$ 12,64 | 7013.49.00 | GB IMPORTADORA | R$ 1.946,56
+- ESTOQUE!111: 86 | KIT4YW640 | Kit 4pç 640ml Retangular | R$ 24,25 | 7013.49.00 | GB IMPORTADORA | R$ 2.085,50
+- MELI!15: 1.529 | YW640 | MLB4072875267  /MLB6442455602 | KIT2YW640 | 2 Pote de Vidro Hermético 640ml RETANGULAR | R$ 11,91 | R$ 39,88 | Classico
+- MELI!16: 764 | YW640 | MLB5402326666 | KIT4YW640 | 4 Pote de Vidro Hermético 640ml RETANGULAR | R$ 23,82 | R$ 55,88 | Classico
+
+### YW800SQC → fiscal `YW800SQC` → base `YW800SQ` fator `12`
+- ESTOQUE!93: 2.342 | YW800SQ_T | Pote de Vidro Hermético 800ml QUADRADO 16x16x7 | R$ 6,11 | 7898972482978 | 7013.49.00 | GB IMPORTADORA | R$ 14.309,62
+- ESTOQUE!105: 140 | KIT2YW800SQ | Kit 2pç 800ml Quadrado | R$ 14,18 | 7013.49.00 | GB IMPORTADORA | R$ 1.985,20
+- ESTOQUE!106: 143 | KIT4YW800SQ | Kit 4pç 800ml Quadrado | R$ 27,11 | 7013.49.00 | GB IMPORTADORA | R$ 3.876,73
+- MELI!13: 1.171 | YW800SQ_T | MLB3918271667 /MLB3789548299 | KIT2YW800SQ | Kit 2 Potes de Vidro Hermético 800ml Quadrado | R$ 13,73 | R$ 39,90 | Classico
+- MELI!14: 585 | YW800SQ_T | MLB4931700052 | KIT4YW800SQ | Kit 4 Potes de Vidro Hermético 800ml Quadrado | R$ 24,44 | R$ 69,88 | Classico
+
+## baixa
+
+### CJT2TP → fiscal `CJT2TP` → base `CJT2TP` fator `1`
+- ESTOQUE!4: 6 | CJT2TP | Conjunto 3 Potes tampa de Bambu quadrado c/ Colher | R$ 16,44 | 7898975019140 | 7013.42.90 | GB IMPORTADORA | R$ 98,64
+
+### CK4742 → fiscal `CK4742` → base `CK4742` fator `1`
+- ESTOQUE!21: 0 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | 7899850336642 | 7013.49.00 | CLINK | R$ 0,00
+- MELI!8: 3.272 | CK4742_B | MLB4213061331 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | R$ 25,88 | Classico
+- MELI!45: CK4742_B / YW520SQ | MLB4597683007 | ------- | Kit Vidro: Pote Hermético Tampa Verde-escuro 520ml + Jarra Medidora Com Alça 500ml | R$ 16,01 | R$ 55,53 | Classico | R$ 6,58
+- SHOPEE!4: 0 | CK4742_B | Sh1: 23993264258 / Sh2: 21699846840 / Sh3: 19599773292 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | R$ 25,90 | R$ 5,18
+- SHOPEE!5: 0 | CK4742_B | Sh1: 23993264258 / Sh2: 21699846840 / Sh3: 19599773292 | KIT2CK4742_B | Kit 2 Jarra Medidora Vidro 500ml, Clink | R$ 13,22 | R$ 34,90 | R$ 6,98
+
+### CK4742_B → fiscal `CK4742` → base `CK4742` fator `1`
+- ESTOQUE!21: 0 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | 7899850336642 | 7013.49.00 | CLINK | R$ 0,00
+- MELI!8: 3.272 | CK4742_B | MLB4213061331 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | R$ 25,88 | Classico
+- MELI!45: CK4742_B / YW520SQ | MLB4597683007 | ------- | Kit Vidro: Pote Hermético Tampa Verde-escuro 520ml + Jarra Medidora Com Alça 500ml | R$ 16,01 | R$ 55,53 | Classico | R$ 6,58
+- SHOPEE!4: 0 | CK4742_B | Sh1: 23993264258 / Sh2: 21699846840 / Sh3: 19599773292 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | R$ 25,90 | R$ 5,18
+- SHOPEE!5: 0 | CK4742_B | Sh1: 23993264258 / Sh2: 21699846840 / Sh3: 19599773292 | KIT2CK4742_B | Kit 2 Jarra Medidora Vidro 500ml, Clink | R$ 13,22 | R$ 34,90 | R$ 6,98
+- ESTOQUE!21: 0 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | 7899850336642 | 7013.49.00 | CLINK | R$ 0,00
+- MELI!8: 3.272 | CK4742_B | MLB4213061331 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | R$ 25,88 | Classico
+- MELI!45: CK4742_B / YW520SQ | MLB4597683007 | ------- | Kit Vidro: Pote Hermético Tampa Verde-escuro 520ml + Jarra Medidora Com Alça 500ml | R$ 16,01 | R$ 55,53 | Classico | R$ 6,58
+
+### CK4742_B2 → fiscal `CK4742` → base `CK4742` fator `1`
+- ESTOQUE!21: 0 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | 7899850336642 | 7013.49.00 | CLINK | R$ 0,00
+- MELI!8: 3.272 | CK4742_B | MLB4213061331 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | R$ 25,88 | Classico
+- MELI!45: CK4742_B / YW520SQ | MLB4597683007 | ------- | Kit Vidro: Pote Hermético Tampa Verde-escuro 520ml + Jarra Medidora Com Alça 500ml | R$ 16,01 | R$ 55,53 | Classico | R$ 6,58
+- SHOPEE!4: 0 | CK4742_B | Sh1: 23993264258 / Sh2: 21699846840 / Sh3: 19599773292 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | R$ 25,90 | R$ 5,18
+- SHOPEE!5: 0 | CK4742_B | Sh1: 23993264258 / Sh2: 21699846840 / Sh3: 19599773292 | KIT2CK4742_B | Kit 2 Jarra Medidora Vidro 500ml, Clink | R$ 13,22 | R$ 34,90 | R$ 6,98
+
+### CK4742_BB → fiscal `CK4742` → base `CK4742` fator `1`
+- AMAZON!55: 0 | CK4742_B | B0G2CWWMGK | CK4742_BB | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | R$ 28,90 | R$ 3,47
+- ESTOQUE!21: 0 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | 7899850336642 | 7013.49.00 | CLINK | R$ 0,00
+- MELI!8: 3.272 | CK4742_B | MLB4213061331 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | R$ 25,88 | Classico
+- MELI!45: CK4742_B / YW520SQ | MLB4597683007 | ------- | Kit Vidro: Pote Hermético Tampa Verde-escuro 520ml + Jarra Medidora Com Alça 500ml | R$ 16,01 | R$ 55,53 | Classico | R$ 6,58
+- SHOPEE!4: 0 | CK4742_B | Sh1: 23993264258 / Sh2: 21699846840 / Sh3: 19599773292 | CK4742_B | Jarra Medidora Vidro 500ml, Clink | R$ 6,61 | R$ 25,90 | R$ 5,18
+- SHOPEE!5: 0 | CK4742_B | Sh1: 23993264258 / Sh2: 21699846840 / Sh3: 19599773292 | KIT2CK4742_B | Kit 2 Jarra Medidora Vidro 500ml, Clink | R$ 13,22 | R$ 34,90 | R$ 6,98
+
+### KIT2YW320 → fiscal `KIT2YW320` → base `YW320` fator `2`
+- ESTOQUE!101: 159 | KIT2YW320 | Kit 2pç 320ml Quadrado | R$ 9,19 | 7013.49.00 | GB IMPORTADORA | R$ 1.461,21
+- MELI!9: 1.800 | YW320 | MLB5402264802 | KIT2YW320 | 2 Pote de Vidro Hermético 320ml QUADRADO | R$ 7,47 | R$ 32,45 | Classico
+- SHOPEE!19: 1.959 | KIT2YW320 | Sh1: 23198699647 / Sh2: 23094187601 / Sh3: 22298562359 | KIT2YW320 | Kit 2pç 320ml Quadrado | R$ 9,19 | R$ 25,90 | R$ 5,18
+- AMAZON!17: 1.959 | KIT2YW320 | B0FB17CGD5 | KIT2YW320 | Kit 2pç 320ml Quadrado | R$ 9,19 | R$ 29,90 | R$ 3,59
+- ESTOQUE!17: 6 | YW320 | Pote de Vidro Hermético 320ml QUADRADO 12,1x12,1x7,6 | R$ 3,74 | 7898975019089 | 7013.49.00 | GB IMPORTADORA | R$ 22,44
+- ESTOQUE!97: 3600 | YW320SQ | Pote Hermético Quadrado 320ml | R$ 3,80 | 7013.49.00 | GB IMPORTADORA | R$ 13.680,00
+- ESTOQUE!101: 159 | KIT2YW320 | Kit 2pç 320ml Quadrado | R$ 9,19 | 7013.49.00 | GB IMPORTADORA | R$ 1.461,21
+- ESTOQUE!102: 77 | KIT4YW320 | Kit 4pç 320ml Quadrado | R$ 17,55 | 7013.49.00 | GB IMPORTADORA | R$ 1.351,35
+
+### KIT2YW520SQ → fiscal `KIT2YW520SQ` → base `YW520SQ` fator `2`
+- ESTOQUE!103: 203 | KIT2YW520SQ | Kit 2pç 520ml Quadrado | R$ 11,23 | 7013.49.00 | GB IMPORTADORA | R$ 2.279,69
+- MELI!11: 1.152 | YW520SQ | MLB5322490518 | KIT2YW520SQ | 2 Pote de Vidro Hermético 520ml QUADRADO | R$ 9,40 | R$ 31,25 | Classico
+- SHOPEE!18: 1.355 | KIT2YW520SQ | Sh1: 21598077573 / Sh2: 23398676206 / Sh3: 23398676224 | KIT2YW520SQ | Kit 2pç 520ml Quadrado | R$ 11,23 | R$ 37,90 | R$ 7,58
+- AMAZON!19: 1.355 | KIT2YW520SQ | B0F3JWX7X2 | KIT2YW520SQ | Kit 2pç 520ml Quadrado | R$ 11,23 | R$ 47,90 | R$ 5,75
+- ESTOQUE!92: 2.304 | YW520SQ | Pote de Vidro Hermético 520ml QUADRADO 14x14x7 | R$ 4,70 | 7898975019058 | 7013.49.00 | GB IMPORTADORA | R$ 10.828,80
+- ESTOQUE!103: 203 | KIT2YW520SQ | Kit 2pç 520ml Quadrado | R$ 11,23 | 7013.49.00 | GB IMPORTADORA | R$ 2.279,69
+- ESTOQUE!104: 184 | KIT4YW520SQ | Kit 4pç 520ml Quadrado | R$ 21,70 | 7013.49.00 | GB IMPORTADORA | R$ 3.992,80
+- MELI!11: 1.152 | YW520SQ | MLB5322490518 | KIT2YW520SQ | 2 Pote de Vidro Hermético 520ml QUADRADO | R$ 9,40 | R$ 31,25 | Classico
+
+### KIT2YW800SQ → fiscal `KIT2YW800SQ` → base `YW800SQ` fator `2`
+- ESTOQUE!105: 140 | KIT2YW800SQ | Kit 2pç 800ml Quadrado | R$ 14,18 | 7013.49.00 | GB IMPORTADORA | R$ 1.985,20
+- MELI!13: 1.171 | YW800SQ_T | MLB3918271667 /MLB3789548299 | KIT2YW800SQ | Kit 2 Potes de Vidro Hermético 800ml Quadrado | R$ 13,73 | R$ 39,90 | Classico
+- SHOPEE!14: 1.311 | KIT2YW800SQ | Sh1: 22593169868 / Sh2: 23098681121 / Sh3: 23298676159 | KIT2YW800SQ_T | Kit 2pç 800ml Quadrado | R$ 14,18 | R$ 40,90 | R$ 8,18
+- AMAZON!23: 1.311 | KIT2YW800SQ | B0FFTRH3DM / B0DCQ5DNRZ | KIT2YW800SQ_T_ / KIT2YW800SQ_T | Kit 2pç 800ml Quadrado | R$ 14,18 | R$ 49,90 | R$ 5,99
+- ESTOQUE!93: 2.342 | YW800SQ_T | Pote de Vidro Hermético 800ml QUADRADO 16x16x7 | R$ 6,11 | 7898972482978 | 7013.49.00 | GB IMPORTADORA | R$ 14.309,62
+- ESTOQUE!105: 140 | KIT2YW800SQ | Kit 2pç 800ml Quadrado | R$ 14,18 | 7013.49.00 | GB IMPORTADORA | R$ 1.985,20
+- ESTOQUE!106: 143 | KIT4YW800SQ | Kit 4pç 800ml Quadrado | R$ 27,11 | 7013.49.00 | GB IMPORTADORA | R$ 3.876,73
+- MELI!13: 1.171 | YW800SQ_T | MLB3918271667 /MLB3789548299 | KIT2YW800SQ | Kit 2 Potes de Vidro Hermético 800ml Quadrado | R$ 13,73 | R$ 39,90 | Classico
+
+### KIT2YW800SQ_T → fiscal `KIT2YW800SQ` → base `YW800SQ` fator `2`
+- SHOPEE!14: 1.311 | KIT2YW800SQ | Sh1: 22593169868 / Sh2: 23098681121 / Sh3: 23298676159 | KIT2YW800SQ_T | Kit 2pç 800ml Quadrado | R$ 14,18 | R$ 40,90 | R$ 8,18
+- AMAZON!23: 1.311 | KIT2YW800SQ | B0FFTRH3DM / B0DCQ5DNRZ | KIT2YW800SQ_T_ / KIT2YW800SQ_T | Kit 2pç 800ml Quadrado | R$ 14,18 | R$ 49,90 | R$ 5,99
+- ESTOQUE!105: 140 | KIT2YW800SQ | Kit 2pç 800ml Quadrado | R$ 14,18 | 7013.49.00 | GB IMPORTADORA | R$ 1.985,20
+- MELI!13: 1.171 | YW800SQ_T | MLB3918271667 /MLB3789548299 | KIT2YW800SQ | Kit 2 Potes de Vidro Hermético 800ml Quadrado | R$ 13,73 | R$ 39,90 | Classico
+- SHOPEE!14: 1.311 | KIT2YW800SQ | Sh1: 22593169868 / Sh2: 23098681121 / Sh3: 23298676159 | KIT2YW800SQ_T | Kit 2pç 800ml Quadrado | R$ 14,18 | R$ 40,90 | R$ 8,18
+- AMAZON!23: 1.311 | KIT2YW800SQ | B0FFTRH3DM / B0DCQ5DNRZ | KIT2YW800SQ_T_ / KIT2YW800SQ_T | Kit 2pç 800ml Quadrado | R$ 14,18 | R$ 49,90 | R$ 5,99
+- ESTOQUE!93: 2.342 | YW800SQ_T | Pote de Vidro Hermético 800ml QUADRADO 16x16x7 | R$ 6,11 | 7898972482978 | 7013.49.00 | GB IMPORTADORA | R$ 14.309,62
+- ESTOQUE!105: 140 | KIT2YW800SQ | Kit 2pç 800ml Quadrado | R$ 14,18 | 7013.49.00 | GB IMPORTADORA | R$ 1.985,20
+
+### KIT3S096 → fiscal `KIT3S096` → base `S096` fator `3`
+- ESTOQUE!98: 126 | KIT3S096 | Kit 3pç (320+520+800ml) Quadrado | R$ 17,69 | 7013.49.00 | GB IMPORTADORA | R$ 2.228,94
+- MELI!21: 2.304 | YW320/YW520SQ/YW800SQ_T | MLB5405589402 | KIT3S096 | Pote de Vidro 4 Travas 1un 320ml 1un 520ml 1un 800ml | R$ 16,74 | R$ 48,40 | Classico
+- SHOPEE!21: 2.430 | KIT3S096 | Sh1: 22698699648 / Sh2: 22894198354 / Sh3: 22494052928 | 096 | Kit 3pç (320+520+800ml) Quadrado | R$ 17,69 | R$ 46,90 | R$ 9,38
+- AMAZON!11: 2.430 | KIT3S096 | B0FB124QTV | 096 | Kit 3pç (320+520+800ml) Quadrado | R$ 17,69 | R$ 49,90 | R$ 5,99
+- ESTOQUE!98: 126 | KIT3S096 | Kit 3pç (320+520+800ml) Quadrado | R$ 17,69 | 7013.49.00 | GB IMPORTADORA | R$ 2.228,94
+- MELI!21: 2.304 | YW320/YW520SQ/YW800SQ_T | MLB5405589402 | KIT3S096 | Pote de Vidro 4 Travas 1un 320ml 1un 520ml 1un 800ml | R$ 16,74 | R$ 48,40 | Classico
+- SHOPEE!21: 2.430 | KIT3S096 | Sh1: 22698699648 / Sh2: 22894198354 / Sh3: 22494052928 | 096 | Kit 3pç (320+520+800ml) Quadrado | R$ 17,69 | R$ 46,90 | R$ 9,38
+- AMAZON!11: 2.430 | KIT3S096 | B0FB124QTV | 096 | Kit 3pç (320+520+800ml) Quadrado | R$ 17,69 | R$ 49,90 | R$ 5,99
+
+### KIT3S099 → fiscal `KIT3S099` → base `S099` fator `3`
+- ESTOQUE!107: 59 | KIT3S099 | Kit 3pç (640+1050+1520ml) Retangular | R$ 27,43 | 7013.49.00 | GB IMPORTADORA | R$ 1.618,37
+- MELI!24: 345 | YW640/YW1050/YW1520AZ | MLB4076957145 | KIT3S099 | Pote de Vidro 4 Travas 1un 640ml 1un 1050ml 1un 1520ml | R$ 25,33 | R$ 58,40 | Classico
+- SHOPEE!24: 404 | KIT3S099 | Sh1: 22998699523 / Sh2: 23394198027 / Sh3: 23094048438 | KIT3S099 | Kit 3pç (640+1050+1520ml) Retangular | R$ 27,43 | R$ 59,90 | R$ 11,98
+- AMAZON!14: 404 | KIT3S099 | B0F9ZTX88N | 099 | Kit 3pç (640+1050+1520ml) Retangular | R$ 27,43 | R$ 57,90 | R$ 6,95
+- ESTOQUE!107: 59 | KIT3S099 | Kit 3pç (640+1050+1520ml) Retangular | R$ 27,43 | 7013.49.00 | GB IMPORTADORA | R$ 1.618,37
+- MELI!24: 345 | YW640/YW1050/YW1520AZ | MLB4076957145 | KIT3S099 | Pote de Vidro 4 Travas 1un 640ml 1un 1050ml 1un 1520ml | R$ 25,33 | R$ 58,40 | Classico
+- SHOPEE!24: 404 | KIT3S099 | Sh1: 22998699523 / Sh2: 23394198027 / Sh3: 23094048438 | KIT3S099 | Kit 3pç (640+1050+1520ml) Retangular | R$ 27,43 | R$ 59,90 | R$ 11,98
+- AMAZON!14: 404 | KIT3S099 | B0F9ZTX88N | 099 | Kit 3pç (640+1050+1520ml) Retangular | R$ 27,43 | R$ 57,90 | R$ 6,95
+
+### KIT4YW320 → fiscal `KIT4YW320` → base `YW320` fator `4`
+- ESTOQUE!102: 77 | KIT4YW320 | Kit 4pç 320ml Quadrado | R$ 17,55 | 7013.49.00 | GB IMPORTADORA | R$ 1.351,35
+- MELI!10: 900 | YW320 | MLB4073064873 | KIT4YW320 | 4 Pote de Vidro Hermético 320ml QUADRADO | R$ 14,94 | R$ 46,50 | Classico
+- SHOPEE!20: 977 | KIT4YW320 | Sh1: 23594198022 / Sh2: 23298699608 / Sh3: 22194067835 | KIT4YW320 | Kit 4pç 320ml Quadrado | R$ 17,55 | R$ 41,90 | R$ 8,38
+- AMAZON!18: 977 | KIT4YW320 | B0FB4RSKJY | KIT4YW320 | Kit 4pç 320ml Quadrado | R$ 17,55 | R$ 48,90 | R$ 5,87
+- ESTOQUE!17: 6 | YW320 | Pote de Vidro Hermético 320ml QUADRADO 12,1x12,1x7,6 | R$ 3,74 | 7898975019089 | 7013.49.00 | GB IMPORTADORA | R$ 22,44
+- ESTOQUE!97: 3600 | YW320SQ | Pote Hermético Quadrado 320ml | R$ 3,80 | 7013.49.00 | GB IMPORTADORA | R$ 13.680,00
+- ESTOQUE!101: 159 | KIT2YW320 | Kit 2pç 320ml Quadrado | R$ 9,19 | 7013.49.00 | GB IMPORTADORA | R$ 1.461,21
+- ESTOQUE!102: 77 | KIT4YW320 | Kit 4pç 320ml Quadrado | R$ 17,55 | 7013.49.00 | GB IMPORTADORA | R$ 1.351,35
+
+### KIT4YW520SQ → fiscal `KIT4YW520SQ` → base `YW520SQ` fator `4`
+- ESTOQUE!104: 184 | KIT4YW520SQ | Kit 4pç 520ml Quadrado | R$ 21,70 | 7013.49.00 | GB IMPORTADORA | R$ 3.992,80
+- MELI!12: 576 | YW520SQ | MLB5322607410 | KIT4YW520SQ | 4 Pote de Vidro Hermético 520ml QUADRADO | R$ 16,35 | R$ 44,54 | Classico
+- SHOPEE!17: 760 | KIT4YW520SQ | Sh1: 21899650905 / Sh2: 19998199913 / Sh3: 23198681121 | KIT4YW520SQ | Kit 4pç 520ml Quadrado | R$ 21,70 | R$ 57,90 | R$ 11,58
+- AMAZON!20: 760 | KIT4YW520SQ | B0F3JYHXYJ | KIT4YW520SQ | Kit 4pç 520ml Quadrado | R$ 21,70 | R$ 82,90 | R$ 9,95
+- ESTOQUE!92: 2.304 | YW520SQ | Pote de Vidro Hermético 520ml QUADRADO 14x14x7 | R$ 4,70 | 7898975019058 | 7013.49.00 | GB IMPORTADORA | R$ 10.828,80
+- ESTOQUE!103: 203 | KIT2YW520SQ | Kit 2pç 520ml Quadrado | R$ 11,23 | 7013.49.00 | GB IMPORTADORA | R$ 2.279,69
+- ESTOQUE!104: 184 | KIT4YW520SQ | Kit 4pç 520ml Quadrado | R$ 21,70 | 7013.49.00 | GB IMPORTADORA | R$ 3.992,80
+- MELI!11: 1.152 | YW520SQ | MLB5322490518 | KIT2YW520SQ | 2 Pote de Vidro Hermético 520ml QUADRADO | R$ 9,40 | R$ 31,25 | Classico
+
+### KIT4YW800SQ → fiscal `KIT4YW800SQ` → base `YW800SQ` fator `4`
+- ESTOQUE!106: 143 | KIT4YW800SQ | Kit 4pç 800ml Quadrado | R$ 27,11 | 7013.49.00 | GB IMPORTADORA | R$ 3.876,73
+- MELI!14: 585 | YW800SQ_T | MLB4931700052 | KIT4YW800SQ | Kit 4 Potes de Vidro Hermético 800ml Quadrado | R$ 24,44 | R$ 69,88 | Classico
+- SHOPEE!13: 729 | KIT4YW800SQ | Sh1: 19197734236 / Sh2: 22097667091 / Sh3: 22398704811 | KIT4YW800SQ_T | Kit 4pç 800ml Quadrado | R$ 27,11 | R$ 69,90 | R$ 13,98
+- AMAZON!24: 729 | KIT4YW800SQ | B0FB48RR1T /B0DCQH14RC | KIT4YW800SQ / KIT4YW800SQ_T_ | Kit 4pç 800ml Quadrado | R$ 27,11 | R$ 129,90 | R$ 15,59
+- ESTOQUE!93: 2.342 | YW800SQ_T | Pote de Vidro Hermético 800ml QUADRADO 16x16x7 | R$ 6,11 | 7898972482978 | 7013.49.00 | GB IMPORTADORA | R$ 14.309,62
+- ESTOQUE!105: 140 | KIT2YW800SQ | Kit 2pç 800ml Quadrado | R$ 14,18 | 7013.49.00 | GB IMPORTADORA | R$ 1.985,20
+- ESTOQUE!106: 143 | KIT4YW800SQ | Kit 4pç 800ml Quadrado | R$ 27,11 | 7013.49.00 | GB IMPORTADORA | R$ 3.876,73
+- MELI!13: 1.171 | YW800SQ_T | MLB3918271667 /MLB3789548299 | KIT2YW800SQ | Kit 2 Potes de Vidro Hermético 800ml Quadrado | R$ 13,73 | R$ 39,90 | Classico
+
+### KIT4YW800SQ_T → fiscal `KIT4YW800SQ` → base `YW800SQ` fator `4`
+- SHOPEE!13: 729 | KIT4YW800SQ | Sh1: 19197734236 / Sh2: 22097667091 / Sh3: 22398704811 | KIT4YW800SQ_T | Kit 4pç 800ml Quadrado | R$ 27,11 | R$ 69,90 | R$ 13,98
+- AMAZON!24: 729 | KIT4YW800SQ | B0FB48RR1T /B0DCQH14RC | KIT4YW800SQ / KIT4YW800SQ_T_ | Kit 4pç 800ml Quadrado | R$ 27,11 | R$ 129,90 | R$ 15,59
+- ESTOQUE!106: 143 | KIT4YW800SQ | Kit 4pç 800ml Quadrado | R$ 27,11 | 7013.49.00 | GB IMPORTADORA | R$ 3.876,73
+- MELI!14: 585 | YW800SQ_T | MLB4931700052 | KIT4YW800SQ | Kit 4 Potes de Vidro Hermético 800ml Quadrado | R$ 24,44 | R$ 69,88 | Classico
+- SHOPEE!13: 729 | KIT4YW800SQ | Sh1: 19197734236 / Sh2: 22097667091 / Sh3: 22398704811 | KIT4YW800SQ_T | Kit 4pç 800ml Quadrado | R$ 27,11 | R$ 69,90 | R$ 13,98
+- AMAZON!24: 729 | KIT4YW800SQ | B0FB48RR1T /B0DCQH14RC | KIT4YW800SQ / KIT4YW800SQ_T_ | Kit 4pç 800ml Quadrado | R$ 27,11 | R$ 129,90 | R$ 15,59
+- ESTOQUE!93: 2.342 | YW800SQ_T | Pote de Vidro Hermético 800ml QUADRADO 16x16x7 | R$ 6,11 | 7898972482978 | 7013.49.00 | GB IMPORTADORA | R$ 14.309,62
+- ESTOQUE!105: 140 | KIT2YW800SQ | Kit 2pç 800ml Quadrado | R$ 14,18 | 7013.49.00 | GB IMPORTADORA | R$ 1.985,20
+
+### KIT6S097 → fiscal `KIT6S097` → base `S097` fator `6`
+- ESTOQUE!99: 179 | KIT6S097 | Kit 6pç (2x320+2x520+2x800ml) Quad. | R$ 33,58 | 7013.49.00 | GB IMPORTADORA | R$ 6.010,82
+- MELI!22: 1.152 | YW320/YW520SQ/YW800SQ_T | MLB4076101737 /MLB6437847224 | KIT6S097 | Pote de Vidro 4 Travas 2un 320ml  2un 520ml 2un 800ml  | R$ 33,48 | R$ 62,32 | Classico
+- SHOPEE!22: 1.331 | KIT6S097 | Sh1: 23094203124 / Sh2: 23094203035 / Sh3: 22798544923 | KIT6S097 | Kit 6pç (2x320+2x520+2x800ml) Quad. | R$ 33,58 | R$ 74,90 | R$ 14,98
+- AMAZON!12: 1.331 | KIT6S097 | B0FB113GML | 097 | Kit 6pç (2x320+2x520+2x800ml) Quad. | R$ 33,58 | R$ 84,90 | R$ 10,19
+- ESTOQUE!99: 179 | KIT6S097 | Kit 6pç (2x320+2x520+2x800ml) Quad. | R$ 33,58 | 7013.49.00 | GB IMPORTADORA | R$ 6.010,82
+- MELI!22: 1.152 | YW320/YW520SQ/YW800SQ_T | MLB4076101737 /MLB6437847224 | KIT6S097 | Pote de Vidro 4 Travas 2un 320ml  2un 520ml 2un 800ml  | R$ 33,48 | R$ 62,32 | Classico
+- SHOPEE!22: 1.331 | KIT6S097 | Sh1: 23094203124 / Sh2: 23094203035 / Sh3: 22798544923 | KIT6S097 | Kit 6pç (2x320+2x520+2x800ml) Quad. | R$ 33,58 | R$ 74,90 | R$ 14,98
+- AMAZON!12: 1.331 | KIT6S097 | B0FB113GML | 097 | Kit 6pç (2x320+2x520+2x800ml) Quad. | R$ 33,58 | R$ 84,90 | R$ 10,19
+
+### KIT6S100 → fiscal `KIT6S100` → base `S100` fator `6`
+- ESTOQUE!108: 292 | KIT6S100 | Kit 6pç (2x640+2x1050+2x1520ml) Ret. | R$ 52,16 | 7013.49.00 | GB IMPORTADORA | R$ 15.230,72
+- MELI!25: 172 | YW640/YW1050/YW1520AZ | MLB5406503442 | KIT6S100 | Pote de Vidro 4 Travas 2un 640ml 2un 1050ml 2un 1520ml | R$ 50,66 | R$ 115,67 | Classico
+- SHOPEE!25: 465 | KIT6S100 | Sh1: 48107034518 / Sh2: 23294198341 / Sh3: 23294048241 | KIT6S100 | Kit 6pç (2x640+2x1050+2x1520ml) Ret. | R$ 52,16 | R$ 129,90 | R$ 18,19
+- AMAZON!15: 465 | KIT6S100 | B0FB12NYS1 | 101 | Kit 6pç (2x640+2x1050+2x1520ml) Ret. | R$ 52,16 | R$ 131,70 | R$ 15,80
+- ESTOQUE!108: 292 | KIT6S100 | Kit 6pç (2x640+2x1050+2x1520ml) Ret. | R$ 52,16 | 7013.49.00 | GB IMPORTADORA | R$ 15.230,72
+- MELI!25: 172 | YW640/YW1050/YW1520AZ | MLB5406503442 | KIT6S100 | Pote de Vidro 4 Travas 2un 640ml 2un 1050ml 2un 1520ml | R$ 50,66 | R$ 115,67 | Classico
+- SHOPEE!25: 465 | KIT6S100 | Sh1: 48107034518 / Sh2: 23294198341 / Sh3: 23294048241 | KIT6S100 | Kit 6pç (2x640+2x1050+2x1520ml) Ret. | R$ 52,16 | R$ 129,90 | R$ 18,19
+- AMAZON!15: 465 | KIT6S100 | B0FB12NYS1 | 101 | Kit 6pç (2x640+2x1050+2x1520ml) Ret. | R$ 52,16 | R$ 131,70 | R$ 15,80
+
+### KIT9S098 → fiscal `KIT9S098` → base `S098` fator `9`
+- ESTOQUE!100: 200 | KIT9S098 | Kit 9pç (3x320+3x520+3x800ml) Quad. | R$ 50,73 | 7013.49.00 | GB IMPORTADORA | R$ 10.146,00
+- MELI!23: 768 | YW320/YW520SQ/YW800SQ_T | MLB5406462474 | KIT9S098 | Pote de Vidro 4 Travas 3un 320ml 3un 520ml 3un 800ml | R$ 50,22 | R$ 128,91 | Classico
+- SHOPEE!23: 968 | KIT9S098 | Sh1: 23194198304 / Sh2: 23198542584 / Sh3: 23198542526 | 098 | Kit 9pç (3x320+3x520+3x800ml) Quad. | R$ 50,73 | R$ 125,90 | R$ 17,63
+- AMAZON!13: 968 | KIT9S098 | B0FB15JQJS | 098 | Kit 9pç (3x320+3x520+3x800ml) Quad. | R$ 50,73 | R$ 99,90 | R$ 11,99
+- ESTOQUE!100: 200 | KIT9S098 | Kit 9pç (3x320+3x520+3x800ml) Quad. | R$ 50,73 | 7013.49.00 | GB IMPORTADORA | R$ 10.146,00
+- MELI!23: 768 | YW320/YW520SQ/YW800SQ_T | MLB5406462474 | KIT9S098 | Pote de Vidro 4 Travas 3un 320ml 3un 520ml 3un 800ml | R$ 50,22 | R$ 128,91 | Classico
+- SHOPEE!23: 968 | KIT9S098 | Sh1: 23194198304 / Sh2: 23198542584 / Sh3: 23198542526 | 098 | Kit 9pç (3x320+3x520+3x800ml) Quad. | R$ 50,73 | R$ 125,90 | R$ 17,63
+- AMAZON!13: 968 | KIT9S098 | B0FB15JQJS | 098 | Kit 9pç (3x320+3x520+3x800ml) Quad. | R$ 50,73 | R$ 99,90 | R$ 11,99
+
+### KIT9S101 → fiscal `KIT9S101` → base `S101` fator `9`
+- ESTOQUE!109: 179 | KIT9S101 | Kit 9pç (3x640+3x1050+3x1520ml) Ret. | R$ 77,19 | 7013.49.00 | GB IMPORTADORA | R$ 13.817,01
+- MELI!26: 115 | YW640/YW1050/YW1520AZ | MLB4076958265 | KIT9S101 | Pote de Vidro 4 Travas 3un 640ml 3un 1050ml 3un 1520 | R$ 75,99 | R$ 157,90 | Classico
+- SHOPEE!26: 294 | KIT9S101 | Sh1: 22998694839 / Sh2: 23194198370 / Sh3: 23698542574 | KIT9S101 | Kit 9pç (3x640+3x1050+3x1520ml) Ret. | R$ 77,19 | R$ 173,90 | R$ 24,35
+- AMAZON!16: 294 | KIT9S101 | B0F9ZTWK8G | 102 | Kit 9pç (3x640+3x1050+3x1520ml) Ret. | R$ 77,19 | R$ 144,90 | R$ 17,39
+- ESTOQUE!109: 179 | KIT9S101 | Kit 9pç (3x640+3x1050+3x1520ml) Ret. | R$ 77,19 | 7013.49.00 | GB IMPORTADORA | R$ 13.817,01
+- MELI!26: 115 | YW640/YW1050/YW1520AZ | MLB4076958265 | KIT9S101 | Pote de Vidro 4 Travas 3un 640ml 3un 1050ml 3un 1520 | R$ 75,99 | R$ 157,90 | Classico
+- SHOPEE!26: 294 | KIT9S101 | Sh1: 22998694839 / Sh2: 23194198370 / Sh3: 23698542574 | KIT9S101 | Kit 9pç (3x640+3x1050+3x1520ml) Ret. | R$ 77,19 | R$ 173,90 | R$ 24,35
+- AMAZON!16: 294 | KIT9S101 | B0F9ZTWK8G | 102 | Kit 9pç (3x640+3x1050+3x1520ml) Ret. | R$ 77,19 | R$ 144,90 | R$ 17,39

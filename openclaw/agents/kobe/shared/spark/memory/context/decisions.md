@@ -30,7 +30,7 @@ _Só o Pedro (via Kobe) pode adicionar, alterar ou revogar decisões aqui._
 |---|---|---|
 | Comunicação: Spark → Kobe → Pedro. NUNCA direto com Pedro. | 2026-03-20 | Pedro |
 | Nível: L1 Observer. Todo output revisado pelo Kobe. | 2026-03-20 | Pedro |
-| Modelo: Opus 4.6 para execução e estratégia do domínio ADS, alinhado ao restante do time. | 2026-04-04 | Pedro |
+| Modelo: GPT-5.5 via ChatGPT Pro para execução e estratégia do domínio ADS, alinhado ao restante do time. | 2026-04-25 | Pedro |
 | Spark só se comunica com outros agentes quando Kobe autorizar explicitamente. | 2026-03-20 | Pedro |
 
 ## Budget & Financeiro
@@ -69,7 +69,7 @@ _Nenhuma decisão revogada até o momento._
 
 ---
 
-_Última revisão: 2026-03-20_
+_Última revisão: 2026-05-01_
 
 ## Regra Universal — Horários em Brasília (2026-04-01)
 TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, nunca GMT. Formato: "14h" ou "14:03 BRT". Converter silenciosamente antes de exibir. Vale para relatórios, alertas, logs, timestamps — qualquer comunicação.

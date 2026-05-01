@@ -14,7 +14,7 @@ tags:
 
 _Erros e aprendizados. Consultar antes de repetir algo que já deu errado._
 _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
-_Última Consolidação Profunda: 2026-04-15_
+_Última Consolidação Profunda: 2026-05-01_
 
 ---
 
@@ -231,10 +231,6 @@ _Última Consolidação Profunda: 2026-04-15_
 **Lição:** Em catálogos de atendimento, só inferir com segurança descrições curtas, sugestões de uso, diferenciais genéricos e cuidados amplos da categoria. Material exato, compatibilidades, dimensões, peso, embalagem específica e capacidade só entram como valor real se a fonte confirmar; caso contrário, usar [VERIFICAR].
 **Expira:** 2026-05-04
 
-### [TÁTICA] Shopee multi-store OAuth: servidor só gerencia 1 de 3 contas (2026-04-01)
-**Lição:** Todo token OAuth com refresh automático precisa cobrir TODAS as contas. Token morto = relatório incompleto sem aviso.
-**Expira:** 2026-05-01
-
 ### [TÁTICA] Amazon Request Review: janela de elegibilidade usa data de ENTREGA (2026-04-02)
 **Lição:** A Amazon calcula a janela 5-30 dias pela data de entrega ao cliente, não pela data de compra.
 **Expira:** 2026-05-02
@@ -243,33 +239,6 @@ _Última Consolidação Profunda: 2026-04-15_
 **Lição:** Antes de concluir que faltou scope/role no app, validar o path exato da Solicitations API. O path correto que funcionou foi `productReviewAndSellerFeedback`; o uso de `productReview` gerou falso diagnóstico de permissão.
 **Expira:** 2026-05-10
 
-### [TÁTICA] Ponto Certo pós-migração VPS: problemas são de adoção, não de sistema (2026-04-01)
-**Lição:** Na transição de sistema, checar primeiro se é adoção (falta de uso) antes de assumir bug técnico.
-**Expira:** 2026-05-01
-
-### [TÁTICA] SKU mapping cross-platform: resolver sku_child → sku_parent antes de agregar (2026-04-01)
-**Expira:** 2026-05-01
-
-### [TÁTICA] React key com índice causa unmount+remount ao reordenar (2026-04-01)
-**Lição:** Key sem índice (${sku}-${platform}) permite React mover componente sem recriar.
-**Expira:** 2026-05-01
-
-### [TÁTICA] Timeout 300s nos scripts de sync (2026-04-01)
-**Lição:** Todos os 6 scripts de sync (orders + inventory) precisam de timeout 300s. sync-shopee-prices.py adicionado ao crontab (:25/:55).
-**Expira:** 2026-05-01
-
-### [TÁTICA] Excedente de vendas sobre estoque transferido → fatura pela Matriz (2026-03-31)
-**Lição:** CFOP 6102, ICMS 4%. Kits devem ser decompostos em unidades antes de cruzar com estoque.
-**Expira:** 2026-04-30
-
-### [TÁTICA] Bling NF-e: destinatário precisa de todos os campos preenchidos (2026-03-30)
-**Lição:** API aceita criar NF sem dados completos, mas NF fica inválida para emissão. SEMPRE preencher nome, IE, tipoPessoa, endereço.
-**Expira:** 2026-04-30
-
-### [TÁTICA] 4 Builder jobs simultâneos estouram memória — máximo 2 (2026-03-30)
-**Lição:** VPS tem 3.8GB RAM. Máximo 2 Builder jobs simultâneos. Disparar em lotes de 2.
-**Expira:** 2026-04-30
-
 ### [TÁTICA] Tolerância desatualizada frontend vs backend (2026-03-30)
 **Lição:** Ao migrar sistema, conferir constantes hardcoded no frontend que podem ter ficado defasadas.
 
@@ -277,86 +246,6 @@ _Última Consolidação Profunda: 2026-04-15_
 **Contexto:** `sync-shopee-prices.py` falhava com HTTP 409/400 há 8 dias (desde 25/03). `supabase_upsert` sem `on_conflict` para `products` (409 em duplicatas), e com `on_conflict` errado para `price_history` (400 em tabela sem constraint).
 **Lição:** `products` usa `on_conflict=platform,platform_item_id`. `price_history` NÃO usa on_conflict (tabela de log append-only). Tornar on_conflict parâmetro opcional na função de upsert genérica.
 **Expira:** 2026-05-02
-
-### [TÁTICA] Builder falha em bugs complexos de estado React + animação (2026-03-27)
-**Lição:** Bugs que envolvem estado React complexo (TanStack Query cache + animações + sort) → resolver direto no Claude Code interativo.
-**Expira:** 2026-04-27
-
-### [TÁTICA] getBRTDayRange: converter UTC→BRT antes de calcular range do dia (2026-03-25)
-**Lição:** Em qualquer cálculo de "range do dia" em BRT, PRIMEIRO converter a data atual para BRT.
-**Expira:** 2026-04-25
-
-### [TÁTICA] Next.js build falha silenciosamente com pouca RAM — usar NODE_OPTIONS (2026-03-25)
-**Lição:** Sempre usar `NODE_OPTIONS="--max-old-space-size=2048"` antes de build no VPS.
-**Expira:** 2026-04-25
-
-### [TÁTICA] Bot do Kobe só lê grupos Telegram onde está adicionado (2026-03-25)
-**Expira:** 2026-04-25
-
-### [TÁTICA] Budamix Central: schema real ≠ nomes de colunas nas rotas da API (2026-03-25)
-**Lição:** Validar nomes de colunas contra schema real. Builder gera nomes plausíveis mas incorretos.
-**Expira:** 2026-04-25
-
-### [TÁTICA] Supabase Edge Functions usam IPs variáveis da AWS (2026-03-25)
-**Lição:** Para APIs que exigem IP whitelist (Shopee), migrar sync para VPS com IP fixo.
-**Expira:** 2026-04-25
-
-### [TÁTICA] Shopee API limita range de datas a 15 dias máximo (2026-03-25)
-**Expira:** 2026-04-25
-
-### [TÁTICA] Amazon SP-API rate limit brutal para backfill (2026-03-25)
-**Lição:** getOrderItems muito restritivo. Backfill = processo longo em background. Sync incremental (1 dia) = viável a cada 30min.
-**Expira:** 2026-04-25
-
-### [TÁTICA] Builder job "failed" pode ter entregado — verificar RESULT.md (2026-03-24)
-**Expira:** 2026-04-24
-
-### [TÁTICA] Supabase CLI requer access token pessoal (sbp_) (2026-03-24)
-**Expira:** 2026-04-24
-
-### [TÁTICA] Traefik ocupa 80/443 — usar file provider, não Nginx (2026-03-24)
-**Expira:** 2026-04-24
-
-### [TÁTICA] Upseller ERP: CAPTCHA + SPA = automação inviável (2026-03-21)
-**Expira:** 2026-04-21
-
-### [TÁTICA] budamix-store Shopee: refresh_token pode expirar (2026-03-21)
-**Expira:** 2026-04-21
-
-### [TÁTICA] Hostinger bloqueia Let's Encrypt em domínios custom (2026-03-20)
-**Expira:** 2026-04-20
-
-### [TÁTICA] Shopee access_token expira em 4h (2026-03-20)
-**Expira:** 2026-04-20
-
-### [TÁTICA] Shopee extrato multi-conta: ~13 min para 3.300 pedidos (2026-03-20)
-**Expira:** 2026-04-20
-
-### [TÁTICA] Meta Ads: system user limitado por Business Manager (2026-03-19)
-**Lição:** Usar Long-lived token (60 dias) com cron de renovação. Lembrete em 15/05.
-**Expira:** 2026-04-19
-
-### [TÁTICA] OAuth Google: app em Produção evita expiração 7 dias (2026-03-19)
-**Expira:** 2026-04-19
-
-### [TÁTICA] Shopee é SPA — scraping limitado (2026-03-19)
-**Expira:** 2026-04-19
-
-### [TÁTICA] Bright Data Premium Domains — propagação (2026-03-19)
-**Expira:** 2026-04-19
-
-### [TÁTICA] Bright Data + ML Scraping (2026-03-18)
-**Lição:** URLs ML com `_Desde_49`, `_NoIndex_True` bloqueadas. Usar `?page=N`.
-**Expira:** 2026-04-18
-
-### [TÁTICA] ML Ads: seção 5 do marketplace-report funciona com dados reais (2026-03-17)
-**Expira:** 2026-04-17
-
-### [TÁTICA] Bidspark: Amazon Ads ainda em sandbox (2026-03-17)
-**Expira:** 2026-04-17
-
-### [TÁTICA] ML API: MLB IDs ≠ seller SKUs, mapear via attributes (2026-03-26)
-**Expira:** 2026-04-26
 
 ### [TÁTICA] Gateway bloqueia heredocs grandes como obfuscação — usar Write + scripts curtos (2026-04-06)
 **Contexto:** Na coleta de links dos marketplaces para a base da Ana, duas execuções aprovadas expiraram com `approval-timeout (obfuscation-detected)` porque o comando tentava criar scripts longos via heredoc.
@@ -501,3 +390,44 @@ _Consolidação Profunda executada em 2026-04-04 08:19 BRT._
 **Contexto:** Em Canggu, alterações foram feitas por horas no repo `budamix-ai-agent`, mas o admin visível da Yasmin vinha do repo `canguu`.
 **Lição:** Antes de corrigir bug visual em produção, confirmar repo→deploy→domínio por evidência real (Vercel project, git remote, commit servido). Dois repos paralelos do mesmo produto geram trabalho invisível.
 **Expira:** 2026-05-30
+
+## Auditoria de Qualidade — Consolidação Profunda 2026-05-01
+
+### Lições táticas expiradas removidas nesta consolidação
+- ### [TÁTICA] Shopee multi-store OAuth: servidor só gerencia 1 de 3 contas (2026-04-01) — expirava em 2026-05-01.
+- ### [TÁTICA] Ponto Certo pós-migração VPS: problemas são de adoção, não de sistema (2026-04-01) — expirava em 2026-05-01.
+- ### [TÁTICA] SKU mapping cross-platform: resolver sku_child → sku_parent antes de agregar (2026-04-01) — expirava em 2026-05-01.
+- ### [TÁTICA] React key com índice causa unmount+remount ao reordenar (2026-04-01) — expirava em 2026-05-01.
+- ### [TÁTICA] Timeout 300s nos scripts de sync (2026-04-01) — expirava em 2026-05-01.
+- ### [TÁTICA] Excedente de vendas sobre estoque transferido → fatura pela Matriz (2026-03-31) — expirava em 2026-04-30.
+- ### [TÁTICA] Bling NF-e: destinatário precisa de todos os campos preenchidos (2026-03-30) — expirava em 2026-04-30.
+- ### [TÁTICA] 4 Builder jobs simultâneos estouram memória — máximo 2 (2026-03-30) — expirava em 2026-04-30.
+- ### [TÁTICA] Builder falha em bugs complexos de estado React + animação (2026-03-27) — expirava em 2026-04-27.
+- ### [TÁTICA] getBRTDayRange: converter UTC→BRT antes de calcular range do dia (2026-03-25) — expirava em 2026-04-25.
+- ### [TÁTICA] Next.js build falha silenciosamente com pouca RAM — usar NODE_OPTIONS (2026-03-25) — expirava em 2026-04-25.
+- ### [TÁTICA] Bot do Kobe só lê grupos Telegram onde está adicionado (2026-03-25) — expirava em 2026-04-25.
+- ### [TÁTICA] Budamix Central: schema real ≠ nomes de colunas nas rotas da API (2026-03-25) — expirava em 2026-04-25.
+- ### [TÁTICA] Supabase Edge Functions usam IPs variáveis da AWS (2026-03-25) — expirava em 2026-04-25.
+- ### [TÁTICA] Shopee API limita range de datas a 15 dias máximo (2026-03-25) — expirava em 2026-04-25.
+- ### [TÁTICA] Amazon SP-API rate limit brutal para backfill (2026-03-25) — expirava em 2026-04-25.
+- ### [TÁTICA] Builder job "failed" pode ter entregado — verificar RESULT.md (2026-03-24) — expirava em 2026-04-24.
+- ### [TÁTICA] Supabase CLI requer access token pessoal (sbp_) (2026-03-24) — expirava em 2026-04-24.
+- ### [TÁTICA] Traefik ocupa 80/443 — usar file provider, não Nginx (2026-03-24) — expirava em 2026-04-24.
+- ### [TÁTICA] Upseller ERP: CAPTCHA + SPA = automação inviável (2026-03-21) — expirava em 2026-04-21.
+- ### [TÁTICA] budamix-store Shopee: refresh_token pode expirar (2026-03-21) — expirava em 2026-04-21.
+- ### [TÁTICA] Hostinger bloqueia Let's Encrypt em domínios custom (2026-03-20) — expirava em 2026-04-20.
+- ### [TÁTICA] Shopee access_token expira em 4h (2026-03-20) — expirava em 2026-04-20.
+- ### [TÁTICA] Shopee extrato multi-conta: ~13 min para 3.300 pedidos (2026-03-20) — expirava em 2026-04-20.
+- ### [TÁTICA] Meta Ads: system user limitado por Business Manager (2026-03-19) — expirava em 2026-04-19.
+- ### [TÁTICA] OAuth Google: app em Produção evita expiração 7 dias (2026-03-19) — expirava em 2026-04-19.
+- ### [TÁTICA] Shopee é SPA — scraping limitado (2026-03-19) — expirava em 2026-04-19.
+- ### [TÁTICA] Bright Data Premium Domains — propagação (2026-03-19) — expirava em 2026-04-19.
+- ### [TÁTICA] Bright Data + ML Scraping (2026-03-18) — expirava em 2026-04-18.
+- ### [TÁTICA] ML Ads: seção 5 do marketplace-report funciona com dados reais (2026-03-17) — expirava em 2026-04-17.
+- ### [TÁTICA] Bidspark: Amazon Ads ainda em sandbox (2026-03-17) — expirava em 2026-04-17.
+- ### [TÁTICA] ML API: MLB IDs ≠ seller SKUs, mapear via attributes (2026-03-26) — expirava em 2026-04-26.
+
+### Promoções / recorrência
+- Não houve nova promoção necessária: os padrões recorrentes relevantes dos últimos 15 dias já estavam registrados como estratégicos (fonte canônica antes de diagnosticar dados; validação determinística pós-geração; geração longa por estado persistido; repo/deploy real antes de corrigir UI).
+
+_Consolidação Profunda executada em 2026-05-01 04:00 BRT._

@@ -33,17 +33,16 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 di
 ### [ESTRATÉGICA] Cron de relatório financeiro: validar tokens ANTES de executar (2026-04-01)
 **Lição:** Se qualquer token falhar (ML, Shopee 3 contas, Amazon), abortar e notificar — não executar parcialmente.
 
-### [TÁTICA] Shopee extrato multi-conta: ~13 min para 3.300 pedidos (2026-03-20)
-**Expira:** 2026-04-20
-
-### [TÁTICA] ML API: MLB IDs ≠ seller SKUs (2026-03-26)
-**Lição:** Mapeamento via `attributes.SELLER_SKU`. 7/10 auto, 3 manuais.
-**Expira:** 2026-04-26
-
 ### [TÁTICA] Shopee sync on_conflict: parâmetro condicional por tabela (2026-04-02)
 **Lição:** `products` usa `on_conflict=platform,platform_item_id`. `price_history` NÃO usa on_conflict (tabela de log).
 **Expira:** 2026-05-02
 
+### [ESTRATÉGICA] Validar fonte canônica de planilha antes de diagnosticar custo (2026-04-30)
+**Lição:** Antes de concluir que SKU está sem custo ou pedir cadastro aos analistas, validar se o script lê a planilha oficial de precificação. A planilha correta de custos/anúncios é `1u74a...`; `1dUoZ...` é legado/operacional.
+
+### [ESTRATÉGICA] FBA unit_price=0 pode ser fantasma de catálogo (2026-04-30)
+**Lição:** Em Amazon FBA, SKU com `unit_price=0` e baixa quantidade pode ser listing órfão/não-Budamix. Filtrar no sync e validar antes de somar ao estoque/margem.
+
 ---
 
-_Atualizado na Consolidação Profunda 2026-04-04._
+_Atualizado na Consolidação Profunda 2026-05-01._

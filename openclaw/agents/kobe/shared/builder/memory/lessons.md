@@ -32,13 +32,9 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 di
 ### [ESTRATÉGICA] Supabase upsert on_conflict: parâmetro condicional por tabela (2026-04-02)
 **Lição:** Tabelas com unique constraints (`products`) precisam de `on_conflict`. Tabelas de log (`price_history`) NÃO usam on_conflict. Tornar parâmetro opcional em funções genéricas de upsert.
 
-### [TÁTICA] NODE_OPTIONS obrigatório para Next.js build no VPS (2026-03-25)
-**Lição:** Sempre usar `NODE_OPTIONS="--max-old-space-size=2048"` antes de build.
-**Expira:** 2026-04-25
-
 ---
 
-_Atualizado na Consolidação Profunda 2026-04-04._
+_Atualizado na Consolidação Profunda 2026-05-01._
 
 ### [ESTRATÉGICA] UI longa deve acompanhar job/status persistido, não webhook síncrono (2026-04-28)
 **Lição:** Para Admin Blog/Social Studio e qualquer geração assíncrona, criar job, persistir status e reconciliar pelo banco. Timeout HTTP não é prova de falha.
@@ -56,3 +52,6 @@ _Atualizado na Consolidação Profunda 2026-04-04._
 ### [TÁTICA] Parser BR em sync financeiro/estoque exige validação de somatório (2026-04-30)
 **Lição:** Em planilhas brasileiras, ponto costuma ser milhar. Validar parse contra colunas calculadas antes de publicar KPI financeiro.
 **Expira:** 2026-05-30
+
+### [ESTRATÉGICA] App de produção sem Git antes de refactor = risco alto (2026-04-29)
+**Lição:** Antes de refactor sério em produção, criar snapshot, baseline git, remote privado e tag de rollback.

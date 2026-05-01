@@ -6,112 +6,81 @@ agent: trader
 status: active
 tags:
   - agent/trader
-  - agent/trader
 ---
 # MEMORY.md — Trader
 
-_Último update: 2026-04-23 23:30 BRT (Consolidação Diária)._
+_Último update: 2026-05-01 04:00 BRT (Consolidação Profunda)._
 
 ---
 
 ## Índice de arquivos
 
-- [[agents/kobe/shared/trader/SOUL|SOUL]]
-- [[agents/kobe/shared/trader/memory/context/decisions|Decisões]]
-- [[agents/kobe/shared/trader/memory/context/lessons|Lições]]
-- [[agents/kobe/shared/trader/memory/pending|Pendências]]
+- [[openclaw/agents/kobe/shared/trader/SOUL|SOUL]]
+- [[openclaw/agents/kobe/shared/trader/IDENTITY|IDENTITY]]
+- [[openclaw/agents/kobe/shared/trader/memory/context/decisions|Decisões]]
+- [[openclaw/agents/kobe/shared/trader/memory/context/lessons|Lições]]
+- [[openclaw/agents/kobe/shared/trader/memory/pending|Pendências]]
 
-### Sessões
-- [[agents/kobe/shared/trader/memory/sessions/2026-03-24|Sessão 2026-03-24]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-03-26|Sessão 2026-03-26]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-03-27|Sessão 2026-03-27]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-05|Sessão 2026-04-05]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-06|Sessão 2026-04-06]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-07|Sessão 2026-04-07]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-08|Sessão 2026-04-08]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-09|Sessão 2026-04-09]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-10|Sessão 2026-04-10]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-11|Sessão 2026-04-11]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-12|Sessão 2026-04-12]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-13|Sessão 2026-04-13]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-14|Sessão 2026-04-14]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-15|Sessão 2026-04-15]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-16|Sessão 2026-04-16]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-17|Sessão 2026-04-17]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-18|Sessão 2026-04-18]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-19|Sessão 2026-04-19]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-20|Sessão 2026-04-20]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-22|Sessão 2026-04-22]]
-- [[agents/kobe/shared/trader/memory/sessions/2026-04-23|Sessão 2026-04-23]]
+### Sessões preservadas
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-05|Sessão 2026-04-05]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-06|Sessão 2026-04-06]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-07|Sessão 2026-04-07]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-08|Sessão 2026-04-08]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-09|Sessão 2026-04-09]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-10|Sessão 2026-04-10]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-11|Sessão 2026-04-11]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-12|Sessão 2026-04-12]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-13|Sessão 2026-04-13]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-14|Sessão 2026-04-14]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-15|Sessão 2026-04-15]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-16|Sessão 2026-04-16]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-17|Sessão 2026-04-17]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-18|Sessão 2026-04-18]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-19|Sessão 2026-04-19]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-20|Sessão 2026-04-20]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-22|Sessão 2026-04-22]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-23|Sessão 2026-04-23]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-24|Sessão 2026-04-24]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-25|Sessão 2026-04-25]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-26|Sessão 2026-04-26]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-27|Sessão 2026-04-27]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-28|Sessão 2026-04-28]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-29|Sessão 2026-04-29]]
+- [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-30|Sessão 2026-04-30]]
 
 ---
 
 ## Quem sou
 
-Especialista sênior de marketplaces da GB Importadora. Opero ML, Amazon BR e Shopee. Coordenado pelo Kobe. Nível operacional com revisão do Kobe quando necessário.
+Especialista sênior de marketplaces da GB Importadora. Opero Mercado Livre, Amazon BR e Shopee. Coordenado pelo Kobe; resultado sempre passa pelo Kobe antes do Pedro.
 
-## Estrutura de memória
+## Regras invioláveis
 
-```
-memory/
-├── context/
-│   ├── decisions.md       ← Decisões permanentes (NUNCA contradizer)
-│   └── lessons.md         ← Erros e aprendizados [ESTRATÉGICA|TÁTICA]
-├── sessions/              ← Notas diárias (YYYY-MM-DD.md)
-└── pending.md             ← Tarefas pendentes
-```
+- **QA financeiro:** extrato parcial nunca entra como fechamento completo.
+- **Horários:** tudo em BRT.
+- **Custo/margem:** sempre validar fonte canônica antes de recomendar preço, margem ou fechamento.
+- **Plataformas:** ML + Amazon + Shopee 3 contas; CNPJ×marketplace segue decisão permanente.
 
-## Regras de memória
+## Estado real — Consolidação Profunda 2026-05-01
 
-- **Decisão do Pedro ou Kobe?** → `memory/context/decisions.md`
-- **Lição aprendida?** → `memory/context/lessons.md` (tag [ESTRATÉGICA] permanente, [TÁTICA] expira 30 dias)
-- **Se importa, escreve.** O que não tá escrito, não existe.
-- **Antes de compactar sessão:** extrair lições → decisões → pendências → SÓ DEPOIS compactar
-- **QA financeiro é inviolável.** Extrato parcial nunca entra como fechamento completo.
-
-## Integrações
-
-| Plataforma | API | Status | Tokens/Config |
-|---|---|---|---|
-| **Mercado Livre** | REST API (3 apps: Vendas, Financeiro, Métricas) | ✅ Ativa | `/root/.openclaw/.ml-tokens*.json` |
-| **Amazon BR** | SP-API (marketplace A2Q3Y263D00KWC) | ✅ Ativa | 1Password vault "OpenClaw" |
-| **Amazon Ads** | Advertising API (endpoint NA) | ✅ Ativa | Via Supabase Bidspark |
-| **Shopee** | Open Platform (3 contas) | ✅ Ativa | Tokens por conta em `/root/.openclaw/` |
-| **Bright Data** | Web Unlocker | ✅/⚠️ Uso pontual | 1Password vault "OpenClaw" |
-
-## Conhecimento operacional vigente
-
-- **QA Financeiro, 5 regras invioláveis** já incorporado em `decisions.md` e `lessons.md`.
-- **Request Review Amazon** usa Supabase como fonte de pedidos e `productReviewAndSellerFeedback` como endpoint correto.
-- **PCM001** consolidou 3 regras práticas de cadastro/preço cross-channel: `gold_special` no ML perto de R$39,90, cuidado com degrau de R$80 na Shopee e `DRINK_COASTER` com GTIN exemption validado na Amazon BR.
-- **Fechamento de março** continua aberto por falta de ads spend e consolidado final sob as novas regras de QA.
-- **Base Ana** segue com prioridade em cobertura Amazon, ML e Shopee avançaram, mas a parte Amazon continua incompleta.
-
-## Estado real desta consolidação
-
-### O que mudou nos últimos 15 dias
-- 07/04 trouxe regras operacionais novas para cadastro e pricing do PCM001.
-- 10/04 consolidou o fluxo correto do Amazon Request Review dentro do domínio Trader.
-- 11/04 a 23/04 foram dias majoritariamente silenciosos, sem nova execução própria do Trader.
+### Mudanças materiais dos últimos 15 dias
+- Importação 2026 validou que Shopee é canal dominante em vários SKUs e que ruptura/ranking precisam ser analisados por canal, não só consolidado.
+- Budamix Central Full fechou `zero_cost=0` após corrigir fonte da planilha de precificação, matching multi-fonte e remoção/filtro de fantasmas Amazon.
+- Planilha oficial de precificação passou a ser `1u74a...`; planilha `1dUoZ...` é legado/operacional e não deve ser usada para custo de anúncio.
+- Módulo Estoque passou a expor Full/Físico/Consolidado; total de estoque ficou em torno de R$ 709k após parser BR corrigido.
 
 ### O que NÃO mudou
-- Não houve novo extrato financeiro completo.
-- Não houve nova análise profunda de concorrência.
-- Não houve nova entrega operacional autônoma além da consolidação do fluxo Request Review.
+- Fechamento financeiro de março segue aberto por ads spend real.
+- Validação defensiva ML Full/Amazon FBA e monitoramento Shopee 1E seguem pendentes.
+- Links Amazon/base Ana e PCM001 seguem em backlog estagnado.
 
 ## Pendências prioritárias
 
-- Fechar março com ads spend e novo consolidado.
-- Cruzar margem por produto com custo real da planilha.
-- Montar fluxo de caixa por liquidação real por plataforma.
-- Fechar links Amazon da base Ana.
-
-## Hierarquia
-
-- **Pedro** — dono, decisor final
-- **Kobe** — coordenador direto, decisões dele = decisões do Pedro
-- **Trader** — executa, analisa, reporta ao Kobe
+1. Ads spend março por plataforma.
+2. Refazer fechamento março com extratos completos + ads spend correto.
+3. Validar ML Full/Amazon FBA com profundidade equivalente à Shopee.
+4. Implementar healthcheck de sync Shopee 1E.
+5. Manter margem por produto ligada ao custo real da planilha oficial.
 
 ---
-
-_Consolidação Diária 2026-04-23: MEMORY revalidado sem inflar atividade inexistente._
+_Consolidação Profunda 2026-05-01: sessões brutas de março removidas por já estarem consolidadas; índice reflete estado real pós-30/04._

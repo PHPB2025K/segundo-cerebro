@@ -43,13 +43,6 @@ _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
 
 ### Herdadas do Kobe (pré-ativação)
 
-### 2026-03-19 — Meta Ads: system user limitado por Business Manager [TÁTICA]
-**Contexto:** Kobe tentou criar System User pra token permanente, mas BM da GB já atingiu limite.
-**Erro/Problema:** Limite de System Users no BM impossibilita token permanente.
-**Lição:** Usar Long-lived token (60 dias) com monitoramento de expiração.
-**Ação concreta:** Verificar token semanalmente no health check. Alertar Kobe 7 dias antes da expiração. Token atual expira ~15/05.
-**Cross-ref:** `accounts.md` → Protocolo de Token Meta
-**Expira:** 2026-04-19
 
 ### 2026-03-17 — Meta Ads API v21.0: checar sunset dates [TÁTICA]
 **Contexto:** Meta deprecia versões da API a cada ~2 anos.
@@ -65,7 +58,14 @@ _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
 
 _Lições TÁTICAS removidas após expiração. Mantidas aqui apenas para referência histórica._
 
-_Nenhuma lição expirada ainda._
+### 2026-03-19 — Meta Ads: system user limitado por Business Manager [TÁTICA]
+**Contexto:** Kobe tentou criar System User pra token permanente, mas BM da GB já atingiu limite.
+**Erro/Problema:** Limite de System Users no BM impossibilita token permanente.
+**Lição:** Usar Long-lived token (60 dias) com monitoramento de expiração.
+**Ação concreta:** Verificar token semanalmente no health check. Alertar Kobe 7 dias antes da expiração. Token atual expira ~15/05.
+**Cross-ref:** `accounts.md` → Protocolo de Token Meta
+**Expira:** 2026-04-19
+
 
 ---
 

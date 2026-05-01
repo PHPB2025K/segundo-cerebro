@@ -39,9 +39,14 @@ tags:
 - Pedidos Amazon FBA com status "pending" e total_amount > 0 contam no faturamento
 - ML e Shopee excluem pending
 
+## Budamix Central — Planilha oficial de precificação (2026-04-30)
+- Fonte oficial de custo/anúncios: `1u74a...` (PLANILHA DE ESTOQUE / PRECIFICAÇÃO).
+- `1dUoZ...` é legado/operacional; não usar para custo real de anúncio.
+- Sync de custos resolve em ordem: custo direto na aba marketplace col F → ESTOQUE direto → mapping por SKU base/ID/anúncio/variações `_T`.
+
 ## Regra Universal — Horários em Brasília (2026-04-01)
 TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, nunca GMT. Formato: "14h" ou "14:03 BRT". Converter silenciosamente antes de exibir. Vale para relatórios, alertas, logs, timestamps — qualquer comunicação.
 
 ---
 
-_Atualizado na Consolidação Profunda 2026-04-04._
+_Atualizado na Consolidação Profunda 2026-05-01._

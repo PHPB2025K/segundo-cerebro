@@ -12,143 +12,73 @@ tags:
 
 _Regras operacionais aprendidas com operações reais. Playbook vivo — evolui a cada importação processada._
 
----
-
 ## Benchmarks de Distribuição
 
-_Seção atualizada conforme operações reais acontecem._
+### Distribuição Histórica por CNPJ — NFs internas
 
-### Distribuição Histórica por CNPJ
-| Período | GB Comércio | Trades | Broglio | Reserva B2B (Filial) |
-|---------|------------|--------|---------|---------------------|
-| _Sem dados_ | — | — | — | — |
+| Período | Emitente | GB Comércio | Trades | Broglio | Total |
+|---------|----------|------------:|-------:|--------:|------:|
+| Março/2026 | Filial + Matriz | R$ 18.928,84 | R$ 4.443,53 | R$ 5.983,48 | R$ 29.355,85 |
+| Abril/2026 | Filial | R$ 55.662,33 | R$ 11.123,04 | R$ 10.279,72 | R$ 77.065,09 |
 
 ### Tempo Médio de Processamento por Módulo
-| Módulo | Tempo Médio | Amostras |
-|--------|-------------|----------|
-| A — Distribuição | _Sem dados_ | 0 |
-| B — NF Transferência | _Sem dados_ | 0 |
-| C — NFs Internas | _Sem dados_ | 0 |
-| D — Conciliação | _Sem dados_ | 0 |
-| E — Monitor Simples | _Sem dados_ | 0 |
 
----
-
-## Padrões de Exceção
-
-_Exceções recorrentes encontradas na conciliação — padrões que se repetem._
-
-### Exceções Comuns
-| Tipo | Padrão | Frequência | Causa Raiz | Resolução Padrão |
-|------|--------|-----------|------------|-----------------|
-| _Sem dados_ | — | — | — | — |
-
----
+| Módulo | Tempo Médio | Amostras | Observação |
+|--------|-------------|----------|------------|
+| B — NF Transferência | _A mapear_ | 2 | 000649 e 000653 já emitidas antes do regime v2.1 |
+| C — NFs Internas | 1 dia operacional | 2 meses | Março e abril exigiram reconciliação manual |
 
 ## Regras Operacionais Aprendidas
 
-_Regras derivadas de experiência prática. Cada regra precisa de mínimo 2 ocorrências pra entrar aqui._
+### [REGRA-001] — NF interna exige reconciliação fiscal por componente
+**Padrão:** Vendas marketplace usam SKUs comerciais/kits; NFs de entrada/transferência usam SKUs fiscais, caixas e conjuntos.
+**Dados:** Abril/2026 travou em `YW1520`, `YW800SQ`, `YW1050` até corrigir fatores de conversão das NFs fiscais.
+**Regra:** Antes de gerar prévia, montar `sku_fiscal_map` com SKU comercial, SKU fiscal, componente base, fator, NCM, origem, unidade e fonte. Baixa confiança bloqueia emissão.
+**Confiança:** Alta.
 
-### Formato
-```
-[REGRA-XXX] — Título
-Padrão: O que foi observado
-Dados: Evidência que sustenta (datas, valores, operações)
-Regra: O que fazer quando esse padrão aparecer
-Confiança: Alta / Média / Baixa
-```
+### [REGRA-002] — Escopo de importação própria vence NCM/origem quando houver conflito
+**Padrão:** Produto pode ter NCM/origem parecidos com importados próprios, mas pertencer a linha de terceiro/nacional.
+**Dados:** CK4742/Jarra Clink apareceu como vidro/NCM compatível, mas Pedro confirmou que não é importação própria GB; foi excluído da NF abril/2026.
+**Regra:** NF interna de importados próprios só inclui produtos próprios GB. Excluir terceiros, nacionais, pseudo-itens e itens sem SKU mesmo que cadastro fiscal pareça compatível.
+**Confiança:** Alta.
 
-_Nenhuma regra registrada ainda — agente em Fase 1._
+### [REGRA-003] — Saldo Matriz só pode ser usado após abater B2B/atacado da Matriz
+**Padrão:** Pedro às vezes emite vendas de atacado direto pela Matriz, consumindo estoque fiscal retido.
+**Dados:** Divergência histórica `YW1520` na Matriz pode decorrer de consumo em março acima da retenção ou de saídas não consideradas.
+**Regra:** Antes de usar saldo Matriz como excedente para NF interna, consultar NFs B2B/atacado da Matriz do período e abater por SKU/componente.
+**Confiança:** Média-alta.
 
----
+### [REGRA-004] — Venda interna Filial→Simples mantém tributação própria
+**Padrão:** Orientação Suellen de ICMS/IPI suspenso/sem destaque se aplica à transferência Matriz→Filial, não à venda interna posterior.
+**Dados:** Bling aplicou IPI 6,5% nas NFs internas abril/2026; Pedro autorizou após confirmar que a suspensão vale apenas na transferência.
+**Regra:** Separar sempre operação de transferência (CFOP 6.152, CST 90/55) da operação de venda interna (CFOP 5.102, ICMS 18%, IPI conforme NCM).
+**Confiança:** Alta.
 
-## Sazonalidade de Faturamento
+## Checklist Operacional — NF interna mensal de importados próprios
 
-_Padrões de variação mensal de faturamento por CNPJ — impacta diretamente no cálculo de limites Simples._
+1. Travar premissas fiscais vigentes com decisões/Suellen.
+2. Levantar vendas válidas do mês por CNPJ e SKU comercial.
+3. Filtrar somente importados próprios GB.
+4. Excluir nacionais/MDF/cerâmica/livros/fita/pseudo-itens/SEM_SKU/terceiros/Jarra Clink.
+5. Levantar estoque fiscal inicial Matriz/Filial pós-mês anterior.
+6. Levantar entradas/transferências do mês por container e NF.
+7. Montar/atualizar `sku_fiscal_map` com fatores de conversão.
+8. Decompor kits em componentes fiscais.
+9. Abater vendas B2B/atacado Matriz antes de usar saldo Matriz.
+10. Validar cobertura por estabelecimento.
+11. Gerar prévia por CNPJ.
+12. Pedro aprova prévia.
+13. Criar rascunhos Bling.
+14. Validar divergência de valor/imposto/natureza.
+15. Pedro autoriza SEFAZ explicitamente.
+16. Baixar DANFE/XML e enviar ao Pedro/contabilidade.
 
-| Mês | Tendência | Impacto nos Limites |
-|-----|-----------|-------------------|
-| Jan-Fev | _A mapear_ | — |
-| Mar-Abr | _A mapear_ | — |
-| Mai-Jun | _A mapear_ | — |
-| Jul (pico histórico) | Alta — R$1M/mês (jul/2025) | Monitorar limites de perto |
-| Ago-Set | _A mapear_ | — |
-| Out-Nov | _A mapear_ | — |
-| Dez | _A mapear_ (Black Friday / Natal) | — |
+## Histórico de Containers / NFs relevantes
 
----
-
-## Checklist Operacional (Referência — documento fiscal v2.0)
-
-A cada nova importação, executar nesta ordem:
-
-**Módulos A→C (trigger: container nacionalizado)**
-- [ ] 1. Pedro confirma container nacionalizado em Itajaí
-- [ ] 2. Puxar faturamento dos últimos 3 meses via Trader (ML + Shopee + Amazon, por CNPJ)
-- [ ] 3. Calcular retenção Matriz: total × 10%
-- [ ] 4. Calcular transferência Filial: total × 90%
-- [ ] 5. Calcular reserva B2B residual Filial (% B2B do faturamento)
-- [ ] 6. Calcular proporção de cada CNPJ Simples no varejo
-- [ ] 7. Calcular quantidade para cada CNPJ (arredondar pra inteiro)
-- [ ] 8. Validar: soma(Matriz + B2B Filial + GB Comércio + Trades + Broglio) = total importado
-- [ ] 9. Calcular preço interno: custo nacionalizado × 1,05
-- [ ] 10. Emitir NF transferência Matriz→Filial (90%, CFOP 6.152) — Módulo B
-- [ ] 11. Emitir 3 NFs venda interna Filial→Simples — Módulo C
-- [ ] 12. Gerar reconciliação estoque contábil × físico por estabelecimento
-- [ ] 13. Atualizar controles de estoque no Bling
-
-**Faturamento corrente (rotina)**
-- [ ] Varejo B2C: NF emitida pelo CNPJ Simples correspondente (via UpSeller)
-- [ ] B2B Filial: NF emitida pela Filial
-- [ ] B2B Matriz: NF emitida pela Matriz (com TTD 409 — fora do escopo direto do Fisco)
-- [ ] Baixar estoque do estabelecimento emissor
-
----
-
-## Caso Canônico de Validação (documento fiscal v2.0)
-
-_Usar para validar se os algoritmos do Fisco estão corretos._
-
-**Parâmetros:**
-- Importação: 10.000 unidades, R$50,00/un (custo nacionalizado)
-- Faturamento 3 meses: B2B R$36k (4%) / Varejo R$864k (96%) / Total R$900k
-- Varejo breakdown: GB Comércio 50% / Trades 30% / Broglio 20%
-
-**Resultado esperado:**
-
-| Destino | Cálculo | Qtd Esperada | Valor Esperado |
-|---------|---------|-------------|----------------|
-| Retenção Matriz | 10.000 × 10% | 1.000 | R$ 50.000 |
-| Transferência Filial (NF B) | 10.000 × 90% | 9.000 | R$ 450.000 |
-| Reserva B2B Filial | 9.000 × 4% | 360 | — |
-| Pool varejo | 9.000 - 360 | 8.640 | — |
-| GB Comércio (NF C-1) | 8.640 × 50% | 4.320 | R$ 226.800 |
-| Trades (NF C-2) | 8.640 × 30% | 2.592 | R$ 136.080 |
-| Broglio (NF C-3) | 8.640 × 20% | 1.728 | R$ 90.720 |
-| **TOTAL** | | **10.000** ✅ | |
-
-NFs Filial→Simples: preço unitário R$52,50 (R$50 × 1,05), ICMS R$9,45/un
-
-**Reconciliação pós-operação esperada:**
-
-| Estabelecimento | Contábil | Físico |
-|----------------|----------|--------|
-| GB Matriz | 1.000 | 0 |
-| GB Filial (B2B) | 360 | — |
-| GB Comércio | 4.320 | 4.320 |
-| Trades | 2.592 | 2.592 |
-| Broglio | 1.728 | 1.728 |
-| **Total** | **10.000** | — |
-
----
-
-## Histórico de Containers
-
-_Cada importação processada pelo Fisco gera uma entrada aqui._
-
-| # | Data | Referência | SKUs | Qtd Total | Distribuição Aprovada |
-|---|------|-----------|------|-----------|----------------------|
-| _Sem dados_ | — | — | — | — | — |
+| # | Data | Referência | NFs | Observação |
+|---|------|-----------|-----|------------|
+| GB25011 | 2026-04 | Entrada 580012 / Transferência 000649 | `42260458151616000143550010000006491951355040` | Transferência emitida antes da orientação v2.1; enviada à FOUR em 01/05. |
+| GB25010 | 2026-04 | Entrada 580119 / Transferência 000653 | `42260458151616000143550010000006531440066894` | Transferência emitida antes da orientação v2.1; enviada à FOUR em 01/05. |
 
 ---
 

@@ -2,57 +2,53 @@
 title: "lessons"
 created: 2026-04-14
 type: agent
-agent: trader
+agent: kobe
 status: active
 tags:
-  - agent/trader
+  - agent/kobe
 ---
 
-# Lições — Trader
+# Lições Aprendidas — [[openclaw/agents/trader/IDENTITY|Trader]]
 
-_Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
+_Erros e aprendizados. [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias._
 
-### 2026-03-16 — Amazon Ads API: Brasil usa endpoint NA [TÁTICA]
-**Contexto:** Tentei endpoint `advertising-api-sa.amazon.com`.
-**Erro:** DNS não resolve — endpoint SA não existe.
-**Lição:** Brasil = endpoint NA: `advertising-api.amazon.com`.
-**Expira:** 2026-04-15
+---
 
-### 2026-03-16 — wkhtmltopdf não suporta CSS Grid [TÁTICA]
-**Contexto:** Cards KPI empilhados verticalmente em vez de lado a lado no PDF.
-**Lição:** Usar `display: table` + `table-cell` para layouts em PDFs via wkhtmltopdf. Mas output agora é HTML — less relevant.
-**Expira:** 2026-04-15
+### [ESTRATÉGICA] Consolidado financeiro com dados parciais = relatório inválido (2026-04-03)
+**Contexto:** Consolidado de março entregue com extrato Shopee de 01-20/03, apresentado como mês completo.
+**Lição:** NUNCA entregar relatório financeiro sem validar que TODOS os extratos cobrem o período completo. Dado parcial ≠ dado completo. 5 regras de QA financeiro implementadas — seguir sem exceção.
 
-### 2026-03-17 — ML Ads: seção 5 do marketplace-report funciona [TÁTICA]
-**Contexto:** Implementei seção 5 com dados reais (ROAS 8.76x, 21 campanhas).
-**Lição:** Skill ml-ads + s05_ads.py prontos. Auth via ml-refresh-token.sh vendas. Header: Api-Version: 2.
-**Expira:** 2026-04-17
+### [ESTRATÉGICA] Margem consolidada SEMPRE ponderada por volume (2026-03-21)
+**Lição:** Margem média simples mascara problemas. SEMPRE ponderar por volume E plataforma.
 
-### 2026-03-19 — Shopee é SPA — scraping limitado [TÁTICA]
-**Contexto:** Tentei scraping Shopee via Bright Data Web Unlocker.
-**Problema:** HTML sem dados de produto (SPA). APIs internas bloqueadas ("low SR").
-**Lição:** JSON-LD tem 10 primeiros resultados (nome + URL + imagem, sem preço). Screenshot + extração visual funciona pra preço. API oficial é o melhor caminho.
-**Expira:** 2026-04-19
+### [ESTRATÉGICA] Sync custos: puxar das 4 abas da planilha (2026-03-26)
+**Lição:** Planilha tem SKUs distribuídos em 4 abas (ESTOQUE > MELI > SHOPEE > AMAZON). SEMPRE mapear todas.
 
-### 2026-03-19 — Bright Data Premium Domains — propagação [TÁTICA]
-**Contexto:** Ativamos Premium Domains pra Shopee.
-**Lição:** Após ativar no painel, pode demorar pra propagar. Verificar via API: `ub_premium: 1` no response de `/zone?zone=web_unlocker1`.
-**Expira:** 2026-04-19
+### [ESTRATÉGICA] Amazon pending = venda real no Live Sales (2026-03-27)
+**Lição:** Amazon FBA pending com total_amount > 0 → cliente já pagou. Contar no faturamento. ML e Shopee excluem pending.
 
-### 2026-03-20 — Consolidado financeiro: HTML + Excel SEMPRE juntos [ESTRATÉGICA]
-**Contexto:** Pedro quer os dois formatos em toda entrega financeira.
-**Lição:** Nunca entregar só HTML ou só Excel. Os dois são complementares.
+### [ESTRATÉGICA] Amazon SP-API ItemPrice.Amount é total do line item (2026-04-01)
+**Lição:** Sempre dividir ItemPrice.Amount pela quantidade para obter preço unitário.
 
-### 2026-03-21 — SKU Amazon é imutável [ESTRATÉGICA]
-**Contexto:** Tentativa de padronizar SKUs cross-platform.
-**Lição:** Amazon SKU NÃO pode ser renomeado — perde listing, histórico e ranking. Usar Apelido do SKU no Upseller como alternativa.
+### [ESTRATÉGICA] Cron de relatório financeiro: validar tokens ANTES de executar (2026-04-01)
+**Lição:** Se qualquer token falhar (ML, Shopee 3 contas, Amazon), abortar e notificar — não executar parcialmente.
 
-## [ESTRATÉGICA] 2026-05-01 — DRE correto nos dados não basta; precisa estrutura executiva profissional
+### [TÁTICA] Shopee sync on_conflict: parâmetro condicional por tabela (2026-04-02)
+**Lição:** `products` usa `on_conflict=platform,platform_item_id`. `price_history` NÃO usa on_conflict (tabela de log).
+**Expira:** 2026-05-02
 
-Pedro rejeitou parcialmente o DRE v3 de abril/2026: os dados estavam corretos, mas o relatório parecia uma planilha de apuração incompleta, sem estrutura/formatação padrão de DRE moderno e profissional.
+### [ESTRATÉGICA] Validar fonte canônica de planilha antes de diagnosticar custo (2026-04-30)
+**Lição:** Antes de concluir que SKU está sem custo ou pedir cadastro aos analistas, validar se o script lê a planilha oficial de precificação. A planilha correta de custos/anúncios é `1u74a...`; `1dUoZ...` é legado/operacional.
 
-Regra permanente para o Trader:
-- Para qualquer DRE/P&L/fechamento mensal, usar `skills/financeiro/dre-profissional-marketplace/SKILL.md`.
-- Entregar consolidado + marketplace com margem bruta, margem operacional e margem líquida gerencial.
-- Explicitar CMV, settlement, Ads, premissas e limitações.
-- Excel/HTML precisam parecer entregável executivo; visual dark sozinho não é qualidade.
+### [ESTRATÉGICA] FBA unit_price=0 pode ser fantasma de catálogo (2026-04-30)
+**Lição:** Em Amazon FBA, SKU com `unit_price=0` e baixa quantidade pode ser listing órfão/não-Budamix. Filtrar no sync e validar antes de somar ao estoque/margem.
+
+### [ESTRATÉGICA] Settlement não é faturamento comercial (2026-05-01)
+**Lição:** Extrato financeiro mede liquidação/repasse, não necessariamente competência comercial do mês. Sempre separar pedidos válidos/faturamento comercial de settlement.
+
+### [ESTRATÉGICA] DRE profissional precisa de estrutura clássica completa (2026-05-01)
+**Lição:** DRE não pode virar relatório de marketplace com receita/taxas/ads/resultado. Usar estrutura contábil/gerencial completa e marcar lacunas.
+
+---
+
+_Atualizado na Consolidação Profunda 2026-05-01._

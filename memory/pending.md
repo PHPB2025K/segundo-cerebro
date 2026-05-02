@@ -10,7 +10,7 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-05-01 10:55 BRT — flush financeiro/DRE_
+_Atualizado: 2026-05-01 23:30 BRT — consolidação diária_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -62,7 +62,9 @@ _Atualizado: 2026-05-01 10:55 BRT — flush financeiro/DRE_
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.
 - [ ] **Fisco / OpenClaw** — diagnosticar o bloqueio do `sessions_spawn` com `agentId=fisco` retornando `allowed: none` e restaurar o roteamento direto do agente.
-- [ ] **FOUR Contabilidade** — revisar e enviar do Gmail pessoal o rascunho com PDFs/XML das NFs 000031, 000032 e 000033 para `four.fiscal@gmail.com` após autorização final do Pedro.
+- [ ] **Fisco — ajuste histórico YW1520 Matriz**: investigar/registrar a divergência histórica de -315 un na Matriz após março; não bloqueia abril, mas precisa ficar claro para próximas reconciliações.
+- [ ] **Fisco — processo mensal de abatimento Matriz**: antes de usar saldo Matriz como excedente, consultar NFs B2B/atacado emitidas pela Matriz no período e abater por SKU/componente.
+
 
 ## 🟡 Observação / estabilidade
 

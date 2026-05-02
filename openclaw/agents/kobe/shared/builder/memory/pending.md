@@ -1,6 +1,6 @@
 # Pendências — Builder
 
-_Atualizado: 2026-04-30_
+_Atualizado: 2026-05-01_
 
 ## 🔴 Prioridade Alta
 
@@ -34,6 +34,10 @@ _Atualizado: 2026-04-30_
 - [ ] Remover credenciais do CLAUDE.md — Client ID + Secret em plain text no Amazon Ads.
 - [ ] Trocar ambiente para produção — `AMAZON_ADS_ENVIRONMENT=production` no `.env` antes de ativar otimizações reais.
 - [ ] Suite mínima de testes — zero testes atualmente. Implementar testes nos caminhos que mexem com dinheiro.
+
+
+### Infra OpenClaw / Agentes
+- [ ] Fisco/OpenClaw — diagnosticar bloqueio de sessions_spawn com `agentId=fisco` retornando `allowed: none`; validar policy/runtime/gateway e restaurar roteamento direto.
 
 ## 🟡 Prioridade Média
 

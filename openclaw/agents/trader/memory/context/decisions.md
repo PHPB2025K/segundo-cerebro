@@ -2,63 +2,59 @@
 title: "decisions"
 created: 2026-04-14
 type: agent
-agent: trader
+agent: kobe
 status: active
 tags:
-  - agent/trader
+  - agent/kobe
 ---
 
-# Decisões — Trader
+# Decisões — [[openclaw/agents/trader/IDENTITY|Trader]]
 
-_Registro de decisões permanentes. NUNCA contradizer._
+### Margem SEMPRE ponderada por volume e plataforma
+- Nunca média simples. Consolidada real: 13,7%.
 
-## Plataformas
+### Curva ABC é global (todas plataformas), não por plataforma
+- Quando filtra por plataforma, mantém classificação global.
 
-### SKUs — Padronização (2026-03-21)
-- **Shopee:** SKUs atualizados via API (budamix-store2 + budamix-shop). budamix-store pendente (token expirado na época)
-- **Mercado Livre:** 14 anúncios com seller_custom_field atribuído (antes vazio). 5 kits não encontrados ativos
-- **Amazon:** SKU é imutável — NÃO tentar renomear (perde histórico/ranking). Usar Apelido do SKU no Upseller
-- **Upseller:** SKU do armazém é imutável — usar campo "Apelido do SKU" nos Produtos do Armazém
+### Formato: HTML (leitura) + Excel (source of truth)
+- Sempre enviar ambos juntos.
 
-### Amazon Ads — Endpoint (2026-03-16)
-- Brasil usa endpoint NA: `advertising-api.amazon.com` (endpoint SA não existe)
+### Largura HTML relatórios: 1280px container, font 0.76rem tabelas
 
-## Relatórios
+### Mapeamento CNPJ × Marketplace (DEFINITIVO)
+| CNPJ | Empresa | Marketplaces |
+|------|---------|-------------|
+| 07.194.128/0001-82 | GB Comércio | ML + Amazon + Shopee 448649947 |
+| 45.200.547/0001-79 | Trades | Shopee 860803675 |
+| 63.922.116/0001-06 | Broglio | Shopee 442066454 |
 
-### Design System (2026-03-16)
-- Output de relatórios é HTML (não mais PDF)
-- Sempre ler skill report-design-system antes de gerar relatório
-- CSS nunca fica inline no Python — sempre no template
-- Paleta: dark theme (purple/cyan/green sobre fundo `#0a0`10)
+### QA Financeiro — 5 Regras INVIOLÁVEIS (2026-04-03)
+1. Validação de período obrigatória (primeiro pedido >= dia 1, último >= dia 28+; se incompleto → PARA)
+2. Nunca reutilizar extratos antigos sem validar período
+3. Carimbo obrigatório em todo extrato (data/hora extração, período real, totais por status)
+4. Sanity check antes de entregar (vendas vs histórico, período completo, dados frescos, totais batendo)
+5. Aplica-se a Kobe + Trader — todo relatório financeiro, permanente
 
-### Excel Design System (2026-03-20)
-- Planilhas Excel seguem paleta dark mode definida em `skills/design/excel-design-system.md`
+### Amazon pending = venda real no Live Sales (2026-03-27)
+- Pedidos Amazon FBA com status "pending" e total_amount > 0 contam no faturamento
+- ML e Shopee excluem pending
 
-### Separação Financeiro vs Performance (2026-03-20)
-- **Financeiro** = dinheiro (receita, custos, margens, fluxo de caixa) → skill consolidado-financeiro
-- **Performance** = operação (vendas, conversão, ranking, ads, reputação) → skill marketplace-report
-- Complementares, sem sobreposição
-- Divergência de datas: financeiro usa data de liquidação, performance usa data de venda
+## Budamix Central — Planilha oficial de precificação (2026-04-30)
+- Fonte oficial de custo/anúncios: `1u74a...` (PLANILHA DE ESTOQUE / PRECIFICAÇÃO).
+- `1dUoZ...` é legado/operacional; não usar para custo real de anúncio.
+- Sync de custos resolve em ordem: custo direto na aba marketplace col F → ESTOQUE direto → mapping por SKU base/ID/anúncio/variações `_T`.
 
-### Formato de entrega (2026-03-20)
-- Consolidado financeiro: SEMPRE gerar HTML + Excel juntos
-- HTML para visualização rápida, Excel para análise detalhada
-- Container HTML: 1120px (não 860px) para tabelas caberem
-- Tabelas: font 0.76rem, compactas (v2.1+)
+### Fechamento financeiro: faturamento comercial ≠ settlement (2026-05-01)
+- Nunca chamar `SETTLEMENT`/extrato financeiro de faturamento bruto sem qualificador.
+- Relatórios mensais devem separar faturamento bruto comercial/pedidos válidos e receita liquidada em extrato.
 
-### Consolidado — Margem (2026-03-20)
-- Cada aba (SHOPEE, MELI, AMAZON) já considera TODOS os custos individuais
-- Margem consolidada = média ponderada por VOLUME de venda
-- Se não tem dado de volume, usar plataforma indicada no relatório como 100%
+### DRE profissional obrigatória (2026-05-01)
+- DRE da GB deve seguir estrutura clássica completa, não apuração simplificada de marketplace.
+- Se dados contábeis faltarem, manter a linha e marcar lacuna.
 
-### Curva ABC (2026-03-20)
-- Remover Top 10 Shopee do consolidado
-- Substituir por Curva ABC consolidada (3 plataformas)
-- Posicionar após detalhamento das 3 plataformas, antes de Insights
+## Regra Universal — Horários em Brasília (2026-04-01)
+TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, nunca GMT. Formato: "14h" ou "14:03 BRT". Converter silenciosamente antes de exibir. Vale para relatórios, alertas, logs, timestamps — qualquer comunicação.
 
-## Operacional
+---
 
-### Team Agents (2026-03-19)
-- Trader é agente especializado ML/Shopee/Amazon
-- Coordenado pelo Kobe — nunca fala direto com Pedro
-- Resultados sempre entregues ao Kobe para validação
+_Atualizado na Consolidação Profunda 2026-05-01._

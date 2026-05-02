@@ -44,6 +44,14 @@ tags:
 - `1dUoZ...` é legado/operacional; não usar para custo real de anúncio.
 - Sync de custos resolve em ordem: custo direto na aba marketplace col F → ESTOQUE direto → mapping por SKU base/ID/anúncio/variações `_T`.
 
+### Fechamento financeiro: faturamento comercial ≠ settlement (2026-05-01)
+- Nunca chamar `SETTLEMENT`/extrato financeiro de faturamento bruto sem qualificador.
+- Relatórios mensais devem separar faturamento bruto comercial/pedidos válidos e receita liquidada em extrato.
+
+### DRE profissional obrigatória (2026-05-01)
+- DRE da GB deve seguir estrutura clássica completa, não apuração simplificada de marketplace.
+- Se dados contábeis faltarem, manter a linha e marcar lacuna.
+
 ## Regra Universal — Horários em Brasília (2026-04-01)
 TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, nunca GMT. Formato: "14h" ou "14:03 BRT". Converter silenciosamente antes de exibir. Vale para relatórios, alertas, logs, timestamps — qualquer comunicação.
 

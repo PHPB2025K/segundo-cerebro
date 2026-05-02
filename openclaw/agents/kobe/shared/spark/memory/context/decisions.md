@@ -59,6 +59,13 @@ _Só o Pedro (via Kobe) pode adicionar, alterar ou revogar decisões aqui._
 
 ---
 
+## Marketplace Ads — Fechamento financeiro
+
+| Decisão | Data | Origem |
+|---|---|---|
+| Shopee Ads oficial para DRE deve vir da plataforma Shopee Ads; Wallet API serve só para conciliação/alerta de recarga/débito. | 2026-05-01 | Pedro/Kobe |
+| Amazon Ads Sponsored Products mensal via API é fonte oficial quando o report conclui com dados. | 2026-05-01 | Kobe |
+
 ## Decisões Revogadas
 
 _Nenhuma decisão revogada até o momento._

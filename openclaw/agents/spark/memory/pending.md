@@ -1,43 +1,33 @@
----
-title: "pending"
-created: 2026-04-14
-type: agent
-agent: spark
-status: active
-tags:
-  - agent/spark
----
-
 # Pendências — Spark
 
-_Atualizado: 2026-04-06_
+_Atualizado: 2026-05-01_
 
 ## 🔴 Prioridade Alta
 
 ### Google Ads — Integração
-- [ ] **Pedro solicitar Developer Token** — sem isso, nenhuma operação Google Ads via API
-- [ ] Configurar OAuth 2.0 (Client ID, Secret, Refresh Token)
-- [ ] Armazenar credenciais no 1Password (vault OpenClaw)
+- [ ] Reautorizar OAuth/refresh token: validação em 26/04 retornou `invalid_grant`.
+- [ ] Confirmar Developer Token e acesso à conta Google Ads antes de qualquer automação.
+- [ ] Armazenar credenciais finais no 1Password (vault OpenClaw) e validar via chamada real.
 
 ### Meta Ads — Token
-- [ ] **Renovar token antes de ~2026-05-18** — cron agendado, verificar se está funcional
+- [ ] Renovar token antes de ~2026-05-18 — cron agendado, verificar se está funcional.
 
 ## 🟡 Prioridade Média
 
-### Meta Ads — Mapeamento
-- [ ] Mapear campanhas das contas Budamix, Broglio Brinquedos e Trades Up
-- [ ] Documentar histórico de performance quando disponível
-- [ ] Identificar quais campanhas podem ser reativadas primeiro
+### Shopee Ads
+- [ ] Shopee Ads API — solicitar escopo Marketing ou definir rotina oficial de export/manual para campanhas; API atual retorna 404 nas 3 lojas.
 
-### Bidspark — Webapp
-- [ ] Pedro aprovar plano do webapp (Supabase + GitHub + Next.js)
-- [ ] Pedro criar projeto Supabase "spark-ads"
+
+### Amazon Ads / BidSpark
+- [ ] Revisão 29/04/2026: medir impacto das ações 1–3 de Amazon Ads, meta ACOS ≤19% (se ainda não executada no fluxo local).
+- [ ] Revisão 30/04/2026: avaliar BidSpark-3 Piloto no grupo Suporte Controle Gamer.
+- [ ] Revisão 15/06/2026: reavaliar Abraçadeiras e Redinha.
+
+### Meta Ads — Mapeamento
+- [ ] Mapear campanhas das contas Budamix, Broglio Brinquedos e Trades Up.
+- [ ] Documentar histórico de performance quando disponível.
 
 ## 🟢 Backlog
-
-### Quando campanhas reativarem
-- [ ] Configurar monitoramento contínuo (anomaly detection)
-- [ ] Implementar regras de escala automática (budget optimizer)
-- [ ] Estabelecer benchmarks de CPA/ROAS por produto/categoria
-- [ ] Criar dashboard de performance (demanda para Builder via Kobe)
-- [ ] Análise cross-platform quando Google Ads estiver integrado
+- [ ] Configurar monitoramento contínuo quando campanhas reativarem.
+- [ ] Implementar regras de escala automática.
+- [ ] Dashboard de performance quando houver demanda Builder via Kobe.

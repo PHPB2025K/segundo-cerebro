@@ -10,7 +10,7 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-04-06_
+_Atualizado: 2026-05-01_
 
 ## 🔴 Prioridade Alta
 
@@ -20,6 +20,10 @@ _Atualizado: 2026-04-06_
 
 ### Bidspark — Testes
 - [ ] **Suite mínima de testes** — zero testes atualmente. Implementar testes nos caminhos que mexem com dinheiro (bids, budgets, guardrails)
+
+
+### Infra OpenClaw / Agentes
+- [ ] Fisco/OpenClaw — diagnosticar bloqueio de sessions_spawn com `agentId=fisco` retornando `allowed: none`; validar policy/runtime/gateway e restaurar roteamento direto.
 
 ## 🟡 Prioridade Média
 

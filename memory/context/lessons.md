@@ -296,6 +296,22 @@ _Última Consolidação Profunda: 2026-05-01_
 **Lição:** Componentes públicos do Blog Budamix devem usar tokens/classes do design system (`bg-background`, `text-foreground`, `font-display`, `font-body`, `primary`, `accent`, etc.). Hex hardcoded e `style fontFamily` criam drift visual com o site.
 **Expira:** 2026-05-27
 
+
+### [ESTRATÉGICA] Faturamento comercial e settlement não são a mesma coisa (2026-05-01)
+**Contexto:** O relatório financeiro inicial de abril/2026 usou `SETTLEMENT`/extrato financeiro como se fosse faturamento bruto, gerando faturamento aparente baixo e comparação distorcida.
+**Lição:** Relatórios financeiros devem separar faturamento comercial por competência (pedidos válidos do mês) de receita liquidada em extrato. `SETTLEMENT` nunca deve ser chamado de faturamento bruto sem qualificador.
+**Ação:** Em relatórios mensais, exibir pelo menos duas linhas/fonte: faturamento bruto comercial e receita liquidada em extrato, com diferença explicada por plataforma.
+
+### [ESTRATÉGICA] NF interna de importados exige escopo fiscal estrito de importação própria (2026-05-01)
+**Contexto:** A primeira prévia das NFs internas de abril/2026 misturou produtos fora do escopo, como Jarra Clink, MDF/nacionais, pseudo-itens e SEM_SKU.
+**Lição:** Em NF interna de importados próprios, o escopo vem da natureza fiscal/fornecedor/linha própria, não só de NCM/origem no cadastro. CK4742/Jarra Clink deve sair mesmo que cadastros indiquem NCM de vidro.
+**Ação:** Antes do cálculo fiscal, aplicar filtro explícito de importação própria GB e registrar exclusões. Dúvida de escopo bloqueia a NF até validação.
+
+### [TÁTICA] Envio de anexos no Telegram Hub: `MEDIA:` pode virar texto (2026-05-01)
+**Contexto:** Ao entregar DANFEs/XMLs das NFs internas, linhas `MEDIA:` não anexaram arquivos no Telegram; Pedro não recebeu os documentos. O envio funcionou apenas com ferramenta nativa de mensagem/documento.
+**Lição:** Para anexos críticos no Telegram Hub, não confiar em `MEDIA:` no corpo da resposta. Usar envio explícito como documento/anexo pelo canal Telegram e validar retorno de `sendDocument`/messageId.
+**Expira:** 2026-05-31
+
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 
 ### Duplicatas removidas nesta consolidação:

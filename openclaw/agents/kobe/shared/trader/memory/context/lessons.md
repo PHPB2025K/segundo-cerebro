@@ -43,6 +43,12 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 di
 ### [ESTRATÉGICA] FBA unit_price=0 pode ser fantasma de catálogo (2026-04-30)
 **Lição:** Em Amazon FBA, SKU com `unit_price=0` e baixa quantidade pode ser listing órfão/não-Budamix. Filtrar no sync e validar antes de somar ao estoque/margem.
 
+### [ESTRATÉGICA] Settlement não é faturamento comercial (2026-05-01)
+**Lição:** Extrato financeiro mede liquidação/repasse, não necessariamente competência comercial do mês. Sempre separar pedidos válidos/faturamento comercial de settlement.
+
+### [ESTRATÉGICA] DRE profissional precisa de estrutura clássica completa (2026-05-01)
+**Lição:** DRE não pode virar relatório de marketplace com receita/taxas/ads/resultado. Usar estrutura contábil/gerencial completa e marcar lacunas.
+
 ---
 
 _Atualizado na Consolidação Profunda 2026-05-01._

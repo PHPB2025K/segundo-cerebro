@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-04-30 23:30 BRT (Consolidação Diária)._
+_Último update: 2026-05-01 23:30 BRT (Consolidação Diária)._
 
 ---
 
@@ -132,12 +132,13 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (30/04/2026 23:30 BRT — Consolidação Diária)
+## Status do Sistema (01/05/2026 23:30 BRT — Consolidação Diária)
 
 ### 🚨 Crítico
 - **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
+- **DRE abril:** números comerciais/Ads/CMV validados, mas faltam dados contábeis para completar a planilha padrão.
 - **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2 de movimentações.
-- **Bling Filial** segue bloqueado/degradado; Matriz OK.
+- **Fisco abril:** NFs internas 000031–000033 autorizadas e enviadas à FOUR/financeiro; NFs transferência 000649/000653 também enviadas. Restam ajuste histórico YW1520 Matriz e diagnóstico do roteamento `agentId=fisco`.
 - **Google Ads OAuth do Spark** segue com `invalid_grant` e precisa novo refresh token.
 
 ### ⚠️ Importante
@@ -162,6 +163,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-01:** Fechamento financeiro abril revisado: faturamento comercial R$405,8k separado de settlement R$355,0k; Ads reais validados (ML R$5.441,44, Shopee R$9.460, Amazon R$2.478,95) e DRE profissional clássica definida como padrão obrigatório. Fisco emitiu NFs internas abril Filial→Simples 000031–000033 (R$77.065,09) após reconciliação fiscal por SKU/componente, exclusão CK4742/Jarra Clink e validação IPI; PDFs/XMLs enviados à FOUR e financeiro. NFs de transferência 000649/000653 também enviadas à FOUR com ressalva sobre orientação Suellen v2.1.
 - **2026-04-30:** Budamix Central Full fechado com `zero_cost=0` após planilha oficial, matching multi-fonte e filtro de fantasmas Amazon; módulo Estoque criado/refinado com capital total ~R$709k; Canggu consolidado em repo único/edge pipeline + mídia visível + guard ML; RH entrou em operação com mensagens inaugurais, polling anti-webhook-fail e Conversas RH; GitHub→Vercel auto-deploy ativado.
 - **2026-04-29:** Blog Budamix Pipeline v2 fechado em produção (7 fases: `blog_pillars`, WF0 Perplexity, WF2 Sonnet 4.6 como diretor de arte, WF3 aspect ratio, WF4 validações, Admin com PillarSelect/AddPinManualDialog e validação E2E 6/6). Budamix Central ganhou baseline GitHub/tag rollback e refactor Full: Shopee 3 contas sincronizando, `sync-costs.py` corrigido, KPI Custo filtrável, Live Sales alinhado à Home por `v_daily_sales`. Social Studio seguiu em preview até render PNG, ainda sem merge produção.
 - **2026-04-28:** Vault-as-SSoT validado 8/8 e workspace antigo deprecado; Blog Budamix/Admin corrigiu falso erro de geração, separou Em geração/Rascunhos, endureceu WF4 por estado real no Supabase e deployou via VPS/Vercel; Social Studio nasceu com SPEC, persistência Supabase, preview Vercel, geração de copy, editor manual, render PNG e wizard. Trader/Spark sem execução delegada; Builder sem RESULT.md novo.

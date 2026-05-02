@@ -1,6 +1,6 @@
 # Pendências — Spark
 
-_Atualizado: 2026-04-30_
+_Atualizado: 2026-05-01_
 
 ## 🔴 Prioridade Alta
 
@@ -13,6 +13,10 @@ _Atualizado: 2026-04-30_
 - [ ] Renovar token antes de ~2026-05-18 — cron agendado, verificar se está funcional.
 
 ## 🟡 Prioridade Média
+
+### Shopee Ads
+- [ ] Shopee Ads API — solicitar escopo Marketing ou definir rotina oficial de export/manual para campanhas; API atual retorna 404 nas 3 lojas.
+
 
 ### Amazon Ads / BidSpark
 - [ ] Revisão 29/04/2026: medir impacto das ações 1–3 de Amazon Ads, meta ACOS ≤19% (se ainda não executada no fluxo local).

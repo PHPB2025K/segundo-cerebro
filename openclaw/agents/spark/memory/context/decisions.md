@@ -2,46 +2,82 @@
 title: "decisions"
 created: 2026-04-14
 type: agent
-agent: spark
+agent: kobe
 status: active
 tags:
-  - agent/spark
+  - agent/kobe
 ---
 
-# Decisões — Spark
+# Decisões Permanentes — [[openclaw/agents/spark/IDENTITY|Spark]] v2.0
 
-_Registro de decisões permanentes. NUNCA contradizer._
+_Decisões do Pedro/Kobe que não mudam. Consultar SEMPRE antes de agir._
+_Só o Pedro (via Kobe) pode adicionar, alterar ou revogar decisões aqui._
 
-## Metas de Performance
+---
 
-### ROAS mínimo: 10x (2026-03-19)
-- Decisão do Pedro. Não negociável
-- Qualquer campanha com ROAS < 10x por mais de 7 dias → investigar e otimizar ou pausar
-- ROAS calculado: Revenue / Ad Spend (last click ou data-driven attribution)
+## Como usar este arquivo
 
-### CPA máximo: ~R$100 (2026-03-19)
-- Derivado de: Ticket médio R$200 × (Margem 70% - Margem mínima 20%) = R$100
-- Campanha com CPA > R$100 está consumindo margem excessiva
+1. **ANTES de qualquer ação:** verificar se existe decisão relevante aqui
+2. **Se uma decisão aqui contradiz algo no playbook.md:** a decisão vence
+3. **Para adicionar decisão:** apenas Kobe pode escrever. Spark pode sugerir, Kobe registra.
+4. **Para revogar decisão:** Kobe registra como `[REVOGADA em DATA]` — não apaga.
 
-## Estrutura
+---
 
-### Meta Ads — Conta principal: GB Distribuição (2026-03-19)
-- Account ID: `act_323534883953033`
-- 16 campanhas mapeadas, todas pausadas em Mar/2026
-- Gasto histórico: R$27.432,69
+## Arquitetura & Hierarquia
 
-### Google Ads — Integração pendente (2026-03-19)
-- Developer Token não solicitado ainda
-- Nenhuma operação via API possível até integração
+| Decisão | Data | Origem |
+|---|---|---|
+| Comunicação: Spark → Kobe → Pedro. NUNCA direto com Pedro. | 2026-03-20 | Pedro |
+| Nível: L1 Observer. Todo output revisado pelo Kobe. | 2026-03-20 | Pedro |
+| Modelo: GPT-5.5 via ChatGPT Pro para execução e estratégia do domínio ADS, alinhado ao restante do time. | 2026-04-25 | Pedro |
+| Spark só se comunica com outros agentes quando Kobe autorizar explicitamente. | 2026-03-20 | Pedro |
+
+## Budget & Financeiro
+
+| Decisão | Data | Origem |
+|---|---|---|
+| Budget inicial: R$1.500/mês. | 2026-03-20 | Pedro |
+| Limite de decisão autônoma: R$500. Acima disso, precisa aprovação. | 2026-03-20 | Pedro |
+| Plataformas autorizadas: Meta Ads + Google Ads. | 2026-03-20 | Pedro |
 
 ## Operacional
 
-### Team Agents (2026-03-19)
-- Spark é agente especializado em tráfego pago (Meta + Google)
-- Coordenado pelo Kobe — nunca fala direto com Pedro
-- Resultados sempre entregues ao Kobe para validação
+| Decisão | Data | Origem |
+|---|---|---|
+| Execução de mudanças: NUNCA sem aprovação explícita do Kobe. | 2026-03-20 | Pedro |
+| Learning Phase: Não mexer por 7-14 dias. Exceção: CPA >3x meta OU budget esgotando em <4h. | 2026-03-20 | Kobe |
+| Scaling: Máximo 20% de aumento por vez, a cada 3-5 dias. | 2026-03-20 | Kobe |
+| Naming convention: `[Plataforma]_[Objetivo]_[Público]_[Fase-Funil]_[Data]` | 2026-03-20 | Kobe |
 
-### Agências de ADS (2026-03-19)
-- GB paga R$9k/mês com agências (Amazon + ML)
-- Objetivo de médio prazo: internalizar com Bidspark + Spark
-- Até lá, agências continuam operando
+## Relatórios & Comunicação
+
+| Decisão | Data | Origem |
+|---|---|---|
+| Todos os relatórios entregues ao Kobe — nunca diretamente ao Pedro. | 2026-03-20 | Pedro |
+| Duas versões quando para Pedro: técnica (registro) + negócio (repasse). | 2026-03-20 | Kobe |
+
+---
+
+## Marketplace Ads — Fechamento financeiro
+
+| Decisão | Data | Origem |
+|---|---|---|
+| Shopee Ads oficial para DRE deve vir da plataforma Shopee Ads; Wallet API serve só para conciliação/alerta de recarga/débito. | 2026-05-01 | Pedro/Kobe |
+| Amazon Ads Sponsored Products mensal via API é fonte oficial quando o report conclui com dados. | 2026-05-01 | Kobe |
+
+## Decisões Revogadas
+
+_Nenhuma decisão revogada até o momento._
+
+<!-- Template para revogação:
+| [Decisão original] | [Data original] | [REVOGADA em DATA] — Motivo: [motivo]. Substituída por: [nova decisão] |
+-->
+
+---
+
+_Última revisão: 2026-05-01_
+
+## Regra Universal — Horários em Brasília (2026-04-01)
+TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, nunca GMT. Formato: "14h" ou "14:03 BRT". Converter silenciosamente antes de exibir. Vale para relatórios, alertas, logs, timestamps — qualquer comunicação.
+

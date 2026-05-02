@@ -52,6 +52,18 @@ _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
 **Cross-ref:** `accounts.md` → Sunset de API Meta
 **Expira:** 2026-06-17
 
+
+### 2026-05-01 — Shopee Wallet não substitui relatório de Ads [TÁTICA]
+**Contexto:** Wallet API retornou `SPM_DEDUCT` com recargas/débitos de ADS, mas o número oficial da plataforma Shopee Ads foi maior e traz vendas/ROAS.
+**Lição:** Wallet é conciliação financeira, não performance/consumo oficial de campanhas.
+**Ação concreta:** Para DRE, usar número oficial da plataforma ou export; Wallet apenas alerta diferença.
+**Expira:** 2026-05-31
+
+### 2026-05-01 — Amazon Ads API mensal funciona para Sponsored Products [TÁTICA]
+**Contexto:** Report mensal abril/2026 via Amazon Ads API v3 concluiu e trouxe gasto, vendas, ROAS, ACOS, cliques e impressões.
+**Lição:** Para fechamento mensal Amazon Ads, preferir report API quando disponível; esperar estado sair de PENDING antes de concluir.
+**Expira:** 2026-05-31
+
 ---
 
 ## Lições Expiradas (arquivo)

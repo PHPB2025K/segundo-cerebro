@@ -8,7 +8,7 @@ tags: [knowledge, tools, claude-code]
 
 # Claude Code Skills — Inventário Completo
 
-Total instalado: **106 skills** (101 de repositórios + 4 custom + 1 Paper)
+Total instalado: **107 skills** (101 de repositórios + 4 custom + 1 Paper + 1 video-use)
 Próxima auditoria: **2026-05-14**
 
 ---
@@ -35,6 +35,7 @@ Próxima auditoria: **2026-05-14**
 | frontend-design | pré-instalada | SEGURO | `~/.claude/skills/frontend-design/` | Pre-existing |
 | ui-ux-pro-max | pré-instalada | SEGURO | `~/.claude/skills/ui-ux-pro-max/` | Pre-existing |
 | epic-paper | custom (anexada) | SEGURO | `~/.claude/skills/epic-paper/` | Paper.design — usa MCP `paper` |
+| video-use | browser-use/video-use | SEGURO | `~/.claude/skills/video-use/` → `~/Developer/video-use/` | Editor de vídeo conversacional. Venv + ElevenLabs Scribe. Doc: [[skills/video/video-use]] |
 
 ---
 
@@ -51,7 +52,8 @@ Próxima auditoria: **2026-05-14**
 | Custom | criadas por nós | 4 | SEGURO |
 | Pre-existing | pré-instaladas | 2 | SEGURO |
 | Paper | custom (anexada) | 1 | SEGURO |
-| **Total** | | **108** | |
+| video-use | browser-use | 1 | SEGURO |
+| **Total** | | **109** | |
 
 ---
 

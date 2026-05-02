@@ -465,3 +465,9 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 ### [TÁTICA] Telegram MEDIA em resposta normal pode não anexar; usar envio explícito como documento + reply-to (2026-05-01)
 **Contexto:** Arquivos XLSX/HTML/ZIP enviados via linhas `MEDIA:` não chegavam no Telegram mobile. Logs mostravam apenas `sendMessage ok`, sem `sendDocument`. Envio manual com `thread-id` lógico também falhou; o método que funcionou foi `openclaw message send --channel telegram --target ... --reply-to <mensagem> --media <arquivo> --force-document`.
 **Lição:** Para arquivos em tópicos do Telegram Hub, preferir envio explícito como documento respondendo à mensagem do Pedro. Não confiar em `MEDIA:` quando a entrega precisa ser garantida.
+
+
+### [ESTRATÉGICA] Distrato SaaS pós-vigência: ancorar em aviso prévio e proteger a negociação com 'sem reconhecimento de dívida' (2026-05-02)
+**Contexto:** Na disputa contratual com a Guarani Sistemas, a cobrança veio ancorada em valor consolidado de R$ 21,5 mil e proposta informal de ~R$ 15 mil, apesar de os contratos principais já terem superado os 12 meses iniciais.
+**Lição:** Em contratos SaaS/serviço já fora da vigência inicial, a leitura-base deve partir de rescisão sem multa com aviso prévio contratual — não de mensalidades futuras integrais. Em qualquer proposta de acordo, explicitar por escrito que ela é feita **sem reconhecimento de dívida** e condicionada a quitação total, baixa dos títulos e não protesto.
+**Ação:** Em disputas parecidas, exigir memória de cálculo aberta por contrato/competência/cláusula antes de aceitar valor consolidado.

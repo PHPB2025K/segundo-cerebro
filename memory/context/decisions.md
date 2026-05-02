@@ -33,6 +33,11 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - NFs internas abril/2026 autorizadas: 000031, 000032, 000033, total R$ 77.065,09.
 - NFs de transferência abril/2026 000649 e 000653 foram enviadas à FOUR/financeiro em 01/05/2026 com observação de que saíram antes da orientação fiscal atualizada.
 
+
+## 2026-05-02 — Guarani Sistemas / distrato contratual
+
+- Guarani Sistemas: estratégia aprovada para contestar a cobrança integral, exigir suspensão de protesto e memória de cálculo aberta, e negociar distrato **sem reconhecimento de dívida** com âncora/teto técnico inicial de **R$ 7.002,30**, condicionado a quitação total, baixa dos boletos/NFs 2384–2390 e inexistência de saldo remanescente.
+
 ## Ver também
 
 - `memory/context/decisoes/kobe-permanentes.md`

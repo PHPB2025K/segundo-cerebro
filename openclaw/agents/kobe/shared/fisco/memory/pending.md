@@ -7,6 +7,9 @@ _Atualizado: 2026-05-01 23:30 BRT_
 - [ ] **Roteamento direto do Fisco no OpenClaw** — `sessions_spawn agentId=fisco` retornou `allowed: none` em 01/05, apesar de Fisco estar cadastrado. Diagnosticar policy/runtime e restaurar delegação direta.
 - [ ] **Ajuste histórico YW1520 na Matriz** — abril/2026 ficou coberto pela Filial, mas a Matriz aparece com inconsistência histórica de -315 un após março. Investigar saldo anterior, vendas B2B/atacado ou regra extraordinária.
 
+- [ ] **Guarani Sistemas — acompanhar distrato/contestação**: enviar email formal sem reconhecimento de dívida, pedir suspensão de protesto e memória de cálculo dos boletos/NFs 2384–2390.
+- [ ] **Guarani Sistemas — localizar prova de congelamento/prorrogação com o Junior** para reforçar a defesa contratual e reduzir exposição financeira.
+
 ## 🟡 MÉDIO PRAZO
 
 - [ ] **Processo mensal de abatimento Matriz** — antes de usar saldo Matriz como excedente, consultar NFs B2B/atacado emitidas pela Matriz no período e abater estoque fiscal por SKU/componente.

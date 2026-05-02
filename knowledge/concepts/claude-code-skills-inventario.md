@@ -8,7 +8,7 @@ tags: [knowledge, tools, claude-code]
 
 # Claude Code Skills — Inventário Completo
 
-Total instalado: **105 skills** (101 de repositórios + 4 custom)
+Total instalado: **106 skills** (101 de repositórios + 4 custom + 1 Paper)
 Próxima auditoria: **2026-05-14**
 
 ---
@@ -34,6 +34,7 @@ Próxima auditoria: **2026-05-14**
 | ecommerce-seo | custom (nós) | SEGURO | `~/.claude/skills/ecommerce-seo/` | Custom |
 | frontend-design | pré-instalada | SEGURO | `~/.claude/skills/frontend-design/` | Pre-existing |
 | ui-ux-pro-max | pré-instalada | SEGURO | `~/.claude/skills/ui-ux-pro-max/` | Pre-existing |
+| epic-paper | custom (anexada) | SEGURO | `~/.claude/skills/epic-paper/` | Paper.design — usa MCP `paper` |
 
 ---
 
@@ -49,7 +50,8 @@ Próxima auditoria: **2026-05-14**
 | Tier 5 | jezweb/claude-skills | 1 | SEGURO |
 | Custom | criadas por nós | 4 | SEGURO |
 | Pre-existing | pré-instaladas | 2 | SEGURO |
-| **Total** | | **107** | |
+| Paper | custom (anexada) | 1 | SEGURO |
+| **Total** | | **108** | |
 
 ---
 

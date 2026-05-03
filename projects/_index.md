@@ -37,6 +37,7 @@ tags:
 ## E-commerce
 
 - [[projects/budamix-ecommerce]] — E-commerce Budamix (React + Supabase + Mercado Pago)
+- [[projects/social-studio-carrossel]] — Módulo de Carrossel do Social Studio (5 templates × 3 paletas, IA copy + imagem, publicação IG) — em Fase 0
 
 ## Fiscal e Financeiro
 

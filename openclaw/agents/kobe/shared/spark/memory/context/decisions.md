@@ -66,6 +66,16 @@ _Só o Pedro (via Kobe) pode adicionar, alterar ou revogar decisões aqui._
 | Shopee Ads oficial para DRE deve vir da plataforma Shopee Ads; Wallet API serve só para conciliação/alerta de recarga/débito. | 2026-05-01 | Pedro/Kobe |
 | Amazon Ads Sponsored Products mensal via API é fonte oficial quando o report conclui com dados. | 2026-05-01 | Kobe |
 
+
+## Amazon Ads — Otimização abril/2026
+
+| Decisão | Data | Origem |
+|---|---|---|
+| Rodadas de otimização Amazon Ads de 02/05 usam abril fechado (01/04–30/04) como baseline; não misturar últimos 30 dias móveis ou maio parcial. | 2026-05-02 | Pedro/Kobe |
+| Mudanças em campanhas/keywords/targets Amazon Ads exigem aprovação explícita por grupo antes da execução. | 2026-05-02 | Pedro/Kobe |
+| Para `Potes Redondos Plástico`, termos de vidro são core porque o produto é pote redondo de vidro com tampa plástica. | 2026-05-02 | Pedro |
+| Todo pacote executado em 02/05 precisa revisão D+7 antes de nova camada de otimização por impacto. | 2026-05-02 | Kobe |
+
 ## Decisões Revogadas
 
 _Nenhuma decisão revogada até o momento._

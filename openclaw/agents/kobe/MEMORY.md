@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-01 23:30 BRT (Consolidação Diária)._
+_Último update: 2026-05-02 23:30 BRT (Consolidação Diária)._
 
 ---
 
@@ -132,7 +132,7 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (01/05/2026 23:30 BRT — Consolidação Diária)
+## Status do Sistema (02/05/2026 23:30 BRT — Consolidação Diária)
 
 ### 🚨 Crítico
 - **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
@@ -142,6 +142,7 @@ skills/
 - **Google Ads OAuth do Spark** segue com `invalid_grant` e precisa novo refresh token.
 
 ### ⚠️ Importante
+- **Amazon Ads:** rodada pesada de otimização em 02/05 executada em 9 grupos; D+7 obrigatório antes da próxima camada.
 - **Social Studio** está em preview/branch `feat/social-studio-phase2` avançado até Fase 5; precisa QA autenticado e decisão de merge/deploy produção.
 - **Blog Budamix Pipeline v2** está em produção; resta inspeção visual humana do post de teste e cleanup.
 - **Budamix Central Full:** fechado com `zero_cost=0`; restam monitoramento Shopee 1E e validação defensiva ML/Amazon.
@@ -163,6 +164,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-02:** Budamix Central/Live Sales teve meta diária alterada para R$20k em produção. Amazon Ads virou frente principal do dia: abril fechado usado como baseline, com cortes/harvesting/escala em 9 grupos (Potes Vidro, Canequinhas, Bambu, Canelada, Tulipa, Paris, Suporte Gamer, Jarra Medidora e Potes Redondos), D+7 pendente e Kits Microfibra aguardando aprovação. CC local instalou `epic-paper` e `video-use`, primeiro carrossel Profundo Budamix ficou 5/7 cards, e Guarani Sistemas teve estratégia de contestação/distrato com teto técnico R$7.002,30 sem reconhecimento de dívida.
 - **2026-05-01:** Fechamento financeiro abril revisado: faturamento comercial R$405,8k separado de settlement R$355,0k; Ads reais validados (ML R$5.441,44, Shopee R$9.460, Amazon R$2.478,95) e DRE profissional clássica definida como padrão obrigatório. Fisco emitiu NFs internas abril Filial→Simples 000031–000033 (R$77.065,09) após reconciliação fiscal por SKU/componente, exclusão CK4742/Jarra Clink e validação IPI; PDFs/XMLs enviados à FOUR e financeiro. NFs de transferência 000649/000653 também enviadas à FOUR com ressalva sobre orientação Suellen v2.1.
 - **2026-04-30:** Budamix Central Full fechado com `zero_cost=0` após planilha oficial, matching multi-fonte e filtro de fantasmas Amazon; módulo Estoque criado/refinado com capital total ~R$709k; Canggu consolidado em repo único/edge pipeline + mídia visível + guard ML; RH entrou em operação com mensagens inaugurais, polling anti-webhook-fail e Conversas RH; GitHub→Vercel auto-deploy ativado.
 - **2026-04-29:** Blog Budamix Pipeline v2 fechado em produção (7 fases: `blog_pillars`, WF0 Perplexity, WF2 Sonnet 4.6 como diretor de arte, WF3 aspect ratio, WF4 validações, Admin com PillarSelect/AddPinManualDialog e validação E2E 6/6). Budamix Central ganhou baseline GitHub/tag rollback e refactor Full: Shopee 3 contas sincronizando, `sync-costs.py` corrigido, KPI Custo filtrável, Live Sales alinhado à Home por `v_daily_sales`. Social Studio seguiu em preview até render PNG, ainda sem merge produção.
@@ -183,7 +185,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) fechar março com ads + consolidado + DRE semanal, (2) QA real Blog Budamix em produção, (3) QA/merge/deploy Social Studio, (4) remover service role hardcoded do WF4, (5) normalizar Google Ads OAuth e Bling Filial._
+_Próximas ações: (1) medir D+7 Amazon Ads da rodada 02/05, (2) fechar março com ads + consolidado + DRE semanal, (3) QA real Blog Budamix em produção, (4) QA/merge/deploy Social Studio, (5) normalizar Google Ads OAuth e Bling Filial._
 
 ---
 ## Contexto

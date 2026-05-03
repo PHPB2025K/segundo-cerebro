@@ -99,6 +99,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 29/04/2026 | Blog Budamix Pipeline v2 concluído em produção (blog_pillars, WF0/WF2/WF3/WF4, Sonnet 4.6 como diretor de arte criativo, Admin com pilares/pins manuais). Budamix Central ganhou repo GitHub/tag rollback e refactor Full com 3 Shopees sincronizando, custos corrigidos e KPI Custo por filtro. |
 | 30/04/2026 | Budamix Central Full fechado 100% (`zero_cost=0`) + módulo Estoque dedicado/visual; Canggu consolidado em repo único com edge pipeline e guard ML; RH operacional com mensagens inaugurais, polling anti-falha e Conversas RH; GitHub→Vercel auto-deploy ativado. |
 | 01/05/2026 | Fechamento financeiro abril corrigido separando faturamento comercial de settlement; Ads abril validados nas 3 plataformas; DRE profissional clássica virou padrão obrigatório; Fisco emitiu NFs internas abril 000031–000033 (R$77.065,09) e enviou NFs internas + transferências 000649/000653 à FOUR/financeiro. |
+| 02/05/2026 | Amazon Ads abril/2026 teve rodada operacional extensa com 9 grupos otimizados e D+7 pendente; Budamix Central Live Sales mudou meta para R$20k; skills locais `epic-paper`/`video-use` instaladas; primeiro carrossel Profundo Budamix avançou 5/7 cards; Guarani Sistemas teve estratégia de contestação definida. |
 
 ---
 

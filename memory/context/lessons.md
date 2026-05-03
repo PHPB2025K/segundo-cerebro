@@ -312,6 +312,43 @@ _Última Consolidação Profunda: 2026-05-01_
 **Lição:** Para anexos críticos no Telegram Hub, não confiar em `MEDIA:` no corpo da resposta. Usar envio explícito como documento/anexo pelo canal Telegram e validar retorno de `sendDocument`/messageId.
 **Expira:** 2026-05-31
 
+
+### [TÁTICA] Amazon Ads: buscar IDs live antes de executar ações de snapshot (2026-05-02)
+**Contexto:** Na otimização de Potes Herméticos Tampa Bambu, a primeira tentativa usou IDs de snapshot divergentes e a Amazon Ads API retornou `ENTITY_NOT_FOUND` para keywords que existiam na análise, mas não naquele identificador live.
+**Lição:** Antes de aplicar bid/negative/create em lote, refazer lookup live de campaign/ad group/keyword/target e registrar falhas antigas como FAILED, não tentar insistir no snapshot.
+**Ação:** Em otimizações Amazon Ads, separar etapa de análise da etapa de execução com resolução live de IDs imediatamente antes do PATCH/POST.
+**Expira:** 2026-06-01
+
+### [TÁTICA] Amazon Ads: action_type precisa refletir match/origem real (2026-05-02)
+**Contexto:** Na escala de Canecas Porcelana Tulipa, o log usou `ESCALAR_WINNER_EXACT` embora 4/6 winners fossem de Alcance/Broad.
+**Lição:** Logs de Ads precisam diferenciar escala de Exact, Broad/Phrase, Auto target e Product Targeting. Nome genérico errado atrapalha auditoria D+7 e aprendizado de funil.
+**Ação:** Próximos logs devem usar action_type específico (`SCALE_EXACT_WINNER`, `SCALE_BROAD_WINNER`, `SCALE_AUTO_TARGET`, etc.) ou descrição textual clara.
+**Expira:** 2026-06-01
+
+### [TÁTICA] Nome interno de grupo/produto pode induzir diagnóstico errado em Ads (2026-05-02)
+**Contexto:** O grupo `Potes Redondos Plástico` parecia semanticamente conflitante com keywords de vidro, mas Pedro corrigiu: o produto é pote redondo de vidro com tampa plástica.
+**Lição:** Antes de cortar keyword por “conflito semântico”, validar composição real do produto/anúncio. Nome interno resumido pode destacar só um componente e esconder o core da busca.
+**Ação:** Em grupos com nome ambíguo, checar anúncio/SKU/título antes de classificar termo como irrelevante.
+**Expira:** 2026-06-01
+
+### [TÁTICA] Paper Design não suporta rich text inline em Text (2026-05-02)
+**Contexto:** No primeiro uso real da skill `epic-paper`, `<span style="color">` dentro de Text não funcionou para headlines com palavras de cores diferentes.
+**Lição:** No Paper, criar palavras/grupos coloridos como elementos separados em flex row/wrap, não como rich text inline.
+**Ação:** Briefings Paper devem instruir criação de headlines com containers e divs separados quando houver ênfase cromática.
+**Expira:** 2026-06-01
+
+### [TÁTICA] Python Homebrew + PEP 668: skills externas devem usar venv/uv (2026-05-02)
+**Contexto:** Instalação do `video-use` falhou com `pip install -e .` global por PEP 668 no Python Homebrew.
+**Lição:** Em macOS/Homebrew, não instalar dependências de skill no Python global. Usar `uv sync` ou venv local e invocar helpers pelo Python da venv.
+**Ação:** Documentar path da venv na memória da skill e evitar `python` do sistema para helpers.
+**Expira:** 2026-06-01
+
+### [TÁTICA] Keys coladas em chat devem virar rotação explícita, mesmo se a última estiver restrita (2026-05-02)
+**Contexto:** Durante instalação do `video-use`, três chaves/tokens ElevenLabs circularam em texto claro no transcript; apenas a terceira ficou válida e em uso.
+**Lição:** Credencial que apareceu em transcript deve ser tratada como exposta: deletar versões antigas, restringir a ativa e agendar rotação. Preferir `op read` para passar secrets sem colar no chat.
+**Ação:** Registrar pendência de revogação/rotação e orientar sessões futuras a usar 1Password CLI.
+**Expira:** 2026-06-01
+
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 
 ### Duplicatas removidas nesta consolidação:

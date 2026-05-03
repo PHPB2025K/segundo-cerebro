@@ -1,8 +1,15 @@
 # Pendências — Spark
 
-_Atualizado: 2026-05-01_
+_Atualizado: 2026-05-02_
 
 ## 🔴 Prioridade Alta
+
+### Amazon Ads — Rodada 02/05/2026
+- [ ] Medir D+7 dos grupos executados em 02/05: Potes Herméticos Vidro, Jogo Canequinhas Café, Potes Herméticos Tampa Bambu, Canecas Canelada, Canecas Porcelana Tulipa, Kit Xícaras Porcelana Paris, Suporte Controle Gamer, Jarra Medidora e Potes Redondos Plástico.
+- [ ] Kits Microfibra Carro — aguardar aprovação para criar/promover `pano microfibra`, subir Auto `substitutes`/`close-match` e não promover `vonixx` como keyword genérica.
+- [ ] Potes Herméticos Vidro — validar qual ASIN recebe tráfego de `pote hermetico vidro` e investigar preço/Buy Box/imagem/título/variação.
+- [ ] Revisar logs/action_type da rodada: separar escala Exact, Broad/Alcance, Auto e Product Targeting.
+- [ ] Continuar grupos finais de baixo gasto/inativos (Abraçadeiras Nylon, Redinha Frutas, Kit Jardinagem) apenas se houver materialidade.
 
 ### Google Ads — Integração
 - [ ] Reautorizar OAuth/refresh token: validação em 26/04 retornou `invalid_grant`.
@@ -16,12 +23,6 @@ _Atualizado: 2026-05-01_
 
 ### Shopee Ads
 - [ ] Shopee Ads API — solicitar escopo Marketing ou definir rotina oficial de export/manual para campanhas; API atual retorna 404 nas 3 lojas.
-
-
-### Amazon Ads / BidSpark
-- [ ] Revisão 29/04/2026: medir impacto das ações 1–3 de Amazon Ads, meta ACOS ≤19% (se ainda não executada no fluxo local).
-- [ ] Revisão 30/04/2026: avaliar BidSpark-3 Piloto no grupo Suporte Controle Gamer.
-- [ ] Revisão 15/06/2026: reavaliar Abraçadeiras e Redinha.
 
 ### Meta Ads — Mapeamento
 - [ ] Mapear campanhas das contas Budamix, Broglio Brinquedos e Trades Up.

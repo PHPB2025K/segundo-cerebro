@@ -38,6 +38,21 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 
 - Guarani Sistemas: estratégia aprovada para contestar a cobrança integral, exigir suspensão de protesto e memória de cálculo aberta, e negociar distrato **sem reconhecimento de dívida** com âncora/teto técnico inicial de **R$ 7.002,30**, condicionado a quitação total, baixa dos boletos/NFs 2384–2390 e inexistência de saldo remanescente.
 
+## 2026-05-02 — Budamix Central / Live Sales
+
+- Meta diária exibida no Budamix Central/Live Sales passa de **R$ 12.000** para **R$ 20.000**. Configuração aplicada em produção e fallback do endpoint atualizado.
+
+## 2026-05-02 — Amazon Ads / otimização abril fechado
+
+- Rodada de otimização Amazon Ads deve usar **abril/2026 fechado (01/04 a 30/04)** como baseline; não misturar últimos 30 dias móveis nem dados parciais de maio.
+- Mudanças de campanha/keyword/target continuam exigindo aprovação explícita por grupo antes de execução.
+- Para o grupo **Potes Redondos Plástico**, considerar o produto como potes redondos de vidro com tampa plástica; termos de vidro são core/aderentes, não conflito semântico.
+- Acompanhamento obrigatório D+7 para todos os grupos executados em 02/05/2026 antes de nova rodada de cortes/escala baseada em impacto.
+
+## 2026-05-02 — Skills locais / ElevenLabs
+
+- Para `video-use`, a API key ElevenLabs deve ser restrita ao mínimo necessário: apenas **Speech to Text**. Sanity check seguro: `POST /v1/speech-to-text` sem payload esperando HTTP 422 como prova de auth OK; não usar `/v1/user` porque exige permissão administrativa.
+
 ## Ver também
 
 - `memory/context/decisoes/kobe-permanentes.md`

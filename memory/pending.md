@@ -10,7 +10,7 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-05-01 23:30 BRT — consolidação diária_
+_Atualizado: 2026-05-02 23:30 BRT — consolidação diária_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -20,6 +20,14 @@ _Atualizado: 2026-05-01 23:30 BRT — consolidação diária_
 - [ ] **Budamix Central — investigar SKU duplicado na aba ESTOQUE**: `physical_inventory_summary` ficou R$ 552.191,35 vs `physical_inventory_items` R$ 552.167,57 por deduplicação SKU-level.
 - [ ] **Budamix Central Full — Etapa 1E monitoramento Shopee**: criar healthcheck/alerta Telegram se alguma das 3 contas Shopee passar de 6h sem sync.
 - [ ] **Budamix Central Full — validação cruzada ML Full e Amazon FBA** equivalente à validação Shopee 1D. Confiança atual média; Amazon teve fantasmas removidos e precisa validação defensiva.
+
+## 🚨 Amazon Ads / BidSpark
+
+- [ ] **Amazon Ads — D+7 da rodada 02/05/2026**: medir impacto dos ajustes em Potes Herméticos Vidro, Jogo Canequinhas Café, Potes Herméticos Tampa Bambu, Canecas Canelada, Canecas Porcelana Tulipa, Kit Xícaras Porcelana Paris, Suporte Controle Gamer, Jarra Medidora e Potes Redondos Plástico.
+- [ ] **Amazon Ads — Kits Microfibra Carro**: aguardar aprovação do Pedro para criar/promover `pano microfibra`, subir Auto `substitutes`/`close-match` e não promover `vonixx` como keyword genérica.
+- [ ] **Amazon Ads — Potes Herméticos Vidro**: validar no Seller Central qual ASIN recebe tráfego de `pote hermetico vidro` e investigar preço, Buy Box, imagem, título ou variação.
+- [ ] **Amazon Ads — grupos finais abril/2026**: revisar Abraçadeiras Nylon, Redinha Frutas e Kit Jardinagem apenas se fizer sentido; gasto/venda atual irrelevante ou inativo.
+- [ ] **Amazon Ads/BidSpark — revisar logs de action_type**: diferenciar escala Exact vs Broad/Alcance/Auto/Product Targeting para auditoria D+7.
 
 ## 🚨 Canggu / Ana
 
@@ -55,6 +63,12 @@ _Atualizado: 2026-05-01 23:30 BRT — consolidação diária_
 - [ ] **Vercel Token - Budamix Ecommerce** — item no 1Password `notesPlain` ainda incompleto; GitHub→Vercel auto-deploy já reduz bloqueio, mas token ainda é útil para rollback/hotfix CLI.
 - [ ] **Vercel Preview Env** — configurar `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` no ambiente Preview do Vercel ou padronizar deploy preview via CLI com envs explícitas.
 
+## 🎨 Design / Skills locais
+
+- [ ] **Paper Design — carrossel Profundo Budamix**: terminar Cards 6 e 7 no Paper (`Scratchpad`, page `1-0`) usando o briefing salvo na sessão CC local.
+- [ ] **Budamix Marca — documentar template Profundo** em nota dedicada após validação visual completa dos 7 cards.
+- [ ] **ElevenLabs / video-use — higiene de keys**: deletar/revogar as duas keys antigas que circularam no transcript, manter key válida restrita a Speech to Text e rotacioná-la nas próximas semanas.
+
 ## 🚨 Infraestrutura e autenticações degradadas
 
 - [ ] **core-audit cron** — último run em 29/04 03:02 BRT falhou com “Agent couldn't generate a response”. Investigar no próximo bloco operacional; histórico recente tem falhas intermitentes nesse job.
@@ -64,7 +78,6 @@ _Atualizado: 2026-05-01 23:30 BRT — consolidação diária_
 - [ ] **Fisco / OpenClaw** — diagnosticar o bloqueio do `sessions_spawn` com `agentId=fisco` retornando `allowed: none` e restaurar o roteamento direto do agente.
 - [ ] **Fisco — ajuste histórico YW1520 Matriz**: investigar/registrar a divergência histórica de -315 un na Matriz após março; não bloqueia abril, mas precisa ficar claro para próximas reconciliações.
 - [ ] **Fisco — processo mensal de abatimento Matriz**: antes de usar saldo Matriz como excedente, consultar NFs B2B/atacado emitidas pela Matriz no período e abater por SKU/componente.
-
 
 ## 🟡 Observação / estabilidade
 
@@ -91,8 +104,7 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Links Amazon da base Ana + campos [VERIFICAR]** — pendência estrutural sem avanço material desde 06/04.
 - [ ] **Canggu/Ana B2/B5/B6** — blocos não urgentes de observabilidade, governança e cleanup seguem aguardando repriorização.
 - [ ] **Fisco** — product-packaging.json, limpeza de produtos origem=0, CC-e/NFs antigas e validações Bling Filial seguem abertas.
-- [ ] **Amazon Ads/BidSpark** — revisões D+7, tickets Leonardo, TargetsV3, compute-results blind spots e groups follow-up seguem aguardando janela.
 - [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-04-30 23:30 BRT._
+_Última organização: 2026-05-02 23:30 BRT._

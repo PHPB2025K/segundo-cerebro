@@ -9,7 +9,7 @@ tags:
 ---
 # MEMORY.md — Índice de Memória do Spark
 
-_Último update: 2026-05-01 04:00 BRT (Consolidação Profunda)._
+_Último update: 2026-05-02 23:30 BRT (Consolidação Diária)._
 
 ---
 
@@ -52,13 +52,14 @@ _Último update: 2026-05-01 04:00 BRT (Consolidação Profunda)._
 - [[openclaw/agents/kobe/shared/spark/memory/sessions/2026-04-28|Sessão 2026-04-28]]
 - [[openclaw/agents/kobe/shared/spark/memory/sessions/2026-04-29|Sessão 2026-04-29]]
 - [[openclaw/agents/kobe/shared/spark/memory/sessions/2026-04-30|Sessão 2026-04-30]]
+- [[openclaw/agents/kobe/shared/spark/memory/sessions/2026-05-02|Sessão 2026-05-02]]
 
 ---
 
 ## Estado real — Consolidação Profunda 2026-05-01
 
 ### Mudanças materiais dos últimos 15 dias
-- Spark não teve execução delegada operacional relevante.
+- Em 02/05 houve execução material de Amazon Ads: análise/harvesting/cortes/escala em 9 grupos e pendência de D+7.
 - Google Ads OAuth segue degradado com `invalid_grant`; qualquer automação Google Ads precisa reautorização antes.
 - Meta Ads token continua ponto de atenção para renovação antes de meados de maio.
 - Revisões Amazon Ads/BidSpark seguem no backlog; frente principal do período foi Blog/Canggu/Budamix Central/RH, não Ads.
@@ -72,7 +73,7 @@ _Último update: 2026-05-01 04:00 BRT (Consolidação Profunda)._
 
 - Google Ads: 🔴 refresh token inválido; reautorizar.
 - Meta Ads: 🟡 monitorar expiração/renovação.
-- Amazon Ads/BidSpark: 🟡 backlog aguardando janela operacional.
+- Amazon Ads: 🟢 rodada 02/05 executada em 9 grupos; D+7 pendente. BidSpark: 🟡 backlog técnico aguardando janela.
 - Sessions: sessões brutas de março removidas por já estarem consolidadas; abril preservado.
 
 ---

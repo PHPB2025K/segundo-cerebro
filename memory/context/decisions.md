@@ -49,6 +49,12 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Para o grupo **Potes Redondos Plástico**, considerar o produto como potes redondos de vidro com tampa plástica; termos de vidro são core/aderentes, não conflito semântico.
 - Acompanhamento obrigatório D+7 para todos os grupos executados em 02/05/2026 antes de nova rodada de cortes/escala baseada em impacto.
 
+## 2026-05-03 — Amazon Ads / framework de revisão por grupo
+
+- Pedro aprovou que a revisão de cada grupo de Amazon Ads deve seguir sempre 3 blocos: **cortar desperdício**, **promover winners validados de Auto/Broad para Exact com negativa na origem quando fizer sentido**, e **escalar winners Exact comprovadas** para aumentar vendas sem perder controle de ACoS/ROAS.
+- Keywords recém-promovidas para Exact **não devem ser escaladas no mesmo momento**; precisam primeiro acumular histórico próprio na Performance antes de receber aumento de bid.
+- Próximo grupo na fila após as execuções de 02/05 ficou **Suporte Controle Gamer**; a análise está pronta e a execução depende de aprovação do Pedro.
+
 ## 2026-05-02 — Skills locais / ElevenLabs
 
 - Para `video-use`, a API key ElevenLabs deve ser restrita ao mínimo necessário: apenas **Speech to Text**. Sanity check seguro: `POST /v1/speech-to-text` sem payload esperando HTTP 422 como prova de auth OK; não usar `/v1/user` porque exige permissão administrativa.

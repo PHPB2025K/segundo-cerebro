@@ -26,6 +26,7 @@ _Atualizado: 2026-05-03 02:00 BRT — organização noturna silenciosa_
 - [ ] **Amazon Ads — D+7 da rodada 02/05/2026**: medir impacto dos ajustes em Potes Herméticos Vidro, Jogo Canequinhas Café, Potes Herméticos Tampa Bambu, Canecas Canelada, Canecas Porcelana Tulipa, Kit Xícaras Porcelana Paris, Suporte Controle Gamer, Jarra Medidora e Potes Redondos Plástico.
 - [ ] **Amazon Ads — Kits Microfibra Carro**: aguardar aprovação do Pedro para criar/promover `pano microfibra`, subir Auto `substitutes`/`close-match` e não promover `vonixx` como keyword genérica.
 - [ ] **Amazon Ads — Potes Herméticos Vidro**: validar no Seller Central qual ASIN recebe tráfego de `pote hermetico vidro` e investigar preço, Buy Box, imagem, título ou variação.
+- [ ] **Amazon Ads — Suporte Controle Gamer**: análise de abril/2026 já pronta; aguarda aprovação do Pedro para executar cortes em PS5/Xbox/termos caros, promover winners para Exact e escalar `suporte headset`.
 - [ ] **Amazon Ads — grupos finais abril/2026**: revisar Abraçadeiras Nylon, Redinha Frutas e Kit Jardinagem apenas se fizer sentido; gasto/venda atual irrelevante ou inativo.
 - [ ] **Amazon Ads/BidSpark — revisar logs de action_type**: diferenciar escala Exact vs Broad/Alcance/Auto/Product Targeting para auditoria D+7.
 

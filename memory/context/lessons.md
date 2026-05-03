@@ -349,6 +349,18 @@ _Última Consolidação Profunda: 2026-05-01_
 **Ação:** Registrar pendência de revogação/rotação e orientar sessões futuras a usar 1Password CLI.
 **Expira:** 2026-06-01
 
+### [TÁTICA] Amazon Ads: otimização por grupo precisa ter 3 blocos obrigatórios (2026-05-03)
+**Contexto:** Na rodada de abril/2026, a primeira análise focou mais em corte de desperdício e só depois Pedro cobrou explicitamente a camada de escala de vendas.
+**Lição:** Em Amazon Ads, a análise completa por grupo deve sempre cobrir 3 blocos: (1) cortar bleeders para reduzir ACoS, (2) promover winners validados de Auto/Broad para Exact com negativa na origem quando fizer sentido, e (3) escalar winners comprovadas subindo bid para capturar mais vendas.
+**Ação:** Estruturar toda revisão de grupo nesse formato antes de pedir aprovação.
+**Expira:** 2026-06-02
+
+### [TÁTICA] Amazon Ads: Exact recém-promovida não deve ser escalada sem histórico próprio (2026-05-03)
+**Contexto:** Em grupos como Canecas Canelada e Tulipa surgiram harvests promovidos no mesmo dia; subir bid imediatamente pareceria ação, mas seria chute.
+**Lição:** Keyword recém-criada em Performance Exact precisa de 3-7 dias de histórico próprio antes de entrar no bloco de escala. Winner da origem não vira automaticamente winner de Exact no mesmo minuto.
+**Ação:** Separar promoção e escala em rodadas diferentes quando a Exact ainda não tem dados suficientes.
+**Expira:** 2026-06-02
+
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 
 ### Duplicatas removidas nesta consolidação:

@@ -10,7 +10,7 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-05-02 23:30 BRT — consolidação diária_
+_Atualizado: 2026-05-03 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -71,7 +71,7 @@ _Atualizado: 2026-05-02 23:30 BRT — consolidação diária_
 
 ## 🚨 Infraestrutura e autenticações degradadas
 
-- [ ] **core-audit cron** — último run em 29/04 03:02 BRT falhou com “Agent couldn't generate a response”. Investigar no próximo bloco operacional; histórico recente tem falhas intermitentes nesse job.
+- [ ] **core-audit cron** — último status segue `error` na varredura de 03/05 02:00 BRT; run anterior registrado em 02/05 03h BRT falhou e o histórico recente tem falhas intermitentes nesse job.
 - [ ] **Google Ads API - Spark** — credenciais existem no 1Password, mas validação OAuth em 26/04 13:40 BRT retornou `invalid_grant`; refresh token precisa ser reautorizado/gerado novamente.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.
@@ -81,8 +81,12 @@ _Atualizado: 2026-05-02 23:30 BRT — consolidação diária_
 
 ## 🟡 Observação / estabilidade
 
-- [ ] **Vault-as-SSoT — observar 48–72h**: confirmar sem conflitos git, sem dupla escrita e cron/autosave limpo.
+- [x] **Vault-as-SSoT — observar 48–72h**: janela concluída em 03/05 02:00 BRT sem conflito git ou dupla escrita detectável na organização noturna; workspace ativo `/root/segundo-cerebro` segue limpo.
 - [ ] **Watchdog/Monitor Ponto/RH crons** — revisar timeouts/fallbacks em jobs com histórico de falha por timeout/model not found.
+
+## 🟡 Para briefing matinal — estagnados >7 dias
+
+- [ ] **Repriorizar pendências sem movimentação >7 dias**: Google Ads OAuth Spark (`invalid_grant` desde 26/04), Slack token exposto em screenshot (26/04), WhatsApp Baileys passivo desconectado, PCM001 Amazon pendente desde 07/04, SimulImport cenários reais, Links Amazon da base Ana e blocos antigos de Fisco/Canggu. Se não entrarem na semana, arquivar como backlog assumido.
 
 ## 🟡 Futuro aprovado / não imediato
 
@@ -107,4 +111,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-05-02 23:30 BRT._
+_Última organização: 2026-05-03 02:00 BRT._

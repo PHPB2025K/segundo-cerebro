@@ -29,6 +29,7 @@ tags:
 | Arquivo | O que é |
 |---------|---------|
 | [[business/marketing/marca/design-system\|Design System v1.2]] | Tokens de marca, paleta, tipografia, componentes — consolidado 28/04/2026 |
+| [[business/marketing/marca/templates-carrossel-paper\|Templates Carrossel Paper.design]] | 96 artboards prontos (5 templates × 3 versões CLARA/NORMAL/ESCURA) — link do arquivo Paper, paths dos logos, instruções de reuso |
 
 ## Conteúdo Editorial
 

@@ -52,3 +52,8 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 di
 ---
 
 _Atualizado na Consolidação Profunda 2026-05-01._
+
+### [TÁTICA] Cron "OK" não substitui validação dos entregáveis finais (2026-05-04)
+**Contexto:** O cron das 06h BRT do relatório mensal marcou `ok`, mas não fechou os 3 entregáveis finais; a etapa Shopee travou por caminho errado e a execução não saiu como Trader direto.
+**Lição:** Antes de anunciar relatório mensal como concluído, validar artefatos finais, agente executor real e entrega no tópico do Pedro. Scheduler `ok` sozinho não basta.
+**Expira:** 2026-06-03

@@ -16,6 +16,7 @@ _Atualizado: 2026-05-01_
 - [ ] Monitorar se fantasmas Amazon FBA com `unit_price=0` voltam a aparecer.
 
 ### Relatório de Performance — Connectors Faltantes
+- [ ] Validar no próximo ciclo mensal que o relatório direto roda como Trader (não `main`) e que a etapa Shopee usa o caminho correto antes de anunciar conclusão.
 - [ ] Connector Amazon completo (SP-API: orders, items, seller metrics).
 - [ ] Connector Shopee 3 contas (orders, items, shop metrics).
 - [ ] HTML no mesmo design system do financeiro.

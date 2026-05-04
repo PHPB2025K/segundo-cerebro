@@ -58,3 +58,6 @@ TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, 
 ---
 
 _Atualizado na Consolidação Profunda 2026-05-01._
+
+### Relatório mensal direto = job do Trader + aviso no tópico Marketplaces (2026-05-04)
+- Quando Pedro pedir acompanhamento de geração mensal, rodar como Trader direto (não `main` delegando) e avisar conclusão/falha no mesmo tópico do pedido.

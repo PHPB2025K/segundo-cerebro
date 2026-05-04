@@ -532,3 +532,8 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 **Contexto:** Na disputa contratual com a Guarani Sistemas, a cobrança veio ancorada em valor consolidado de R$ 21,5 mil e proposta informal de ~R$ 15 mil, apesar de os contratos principais já terem superado os 12 meses iniciais.
 **Lição:** Em contratos SaaS/serviço já fora da vigência inicial, a leitura-base deve partir de rescisão sem multa com aviso prévio contratual — não de mensalidades futuras integrais. Em qualquer proposta de acordo, explicitar por escrito que ela é feita **sem reconhecimento de dívida** e condicionada a quitação total, baixa dos títulos e não protesto.
 **Ação:** Em disputas parecidas, exigir memória de cálculo aberta por contrato/competência/cláusula antes de aceitar valor consolidado.
+
+### [TÁTICA] Cron "OK" não substitui validação dos entregáveis finais nem da rota de delegação (2026-05-04)
+**Contexto:** Ao revisar a geração direta do relatório mensal do Trader, o scheduler marcou o cron das 06h BRT como `ok`, mas o run não produziu os 3 entregáveis finais; a etapa da Shopee travou por caminho errado e a execução saiu como `main` delegando, não como Trader direto.
+**Lição:** Em jobs críticos com agente delegado, validar antes de anunciar sucesso: artefatos finais gerados, agente correto executado e aviso entregue no tópico esperado. Status `ok` do scheduler sozinho não prova conclusão real.
+**Expira:** 2026-06-03

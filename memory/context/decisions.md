@@ -76,3 +76,8 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - `memory/context/decisoes/kobe-permanentes.md`
 - `memory/context/decisoes/2026-04.md`
 - `memory/context/decisoes/2026-05.md`
+
+## 2026-05-04 — Relatório mensal Trader / rota de execução e notificação
+
+- Geração direta do relatório mensal deve rodar como job realmente direcionado ao **Trader**, não como `main` tentando delegar via cron.
+- Conclusão ou falha desse job deve ser avisada no mesmo tópico **Marketplaces** do Telegram onde o Pedro pediu o acompanhamento.

@@ -10,7 +10,7 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-05-03 23:30 BRT — consolidação diária_
+_Atualizado: 2026-05-04 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -74,7 +74,8 @@ _Atualizado: 2026-05-03 23:30 BRT — consolidação diária_
 
 ## 🚨 Infraestrutura e autenticações degradadas
 
-- [ ] **core-audit cron** — último status segue `error` na varredura de 03/05 02:00 BRT; run anterior registrado em 02/05 03h BRT falhou e o histórico recente tem falhas intermitentes nesse job.
+- [x] **core-audit cron** — resolvido na verificação de 04/05 02:00 BRT: último run conhecido em 03/05 03h BRT voltou `ok` após falha anterior.
+- [ ] **Security Audit - Semanal** — último run conhecido em 03/05 06h BRT falhou com timeout/status `error`; investigar no próximo bloco operacional.
 - [ ] **Google Ads API - Spark** — credenciais existem no 1Password, mas validação OAuth em 26/04 13:40 BRT retornou `invalid_grant`; refresh token precisa ser reautorizado/gerado novamente.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.
@@ -113,4 +114,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-05-03 23:30 BRT._
+_Última organização: 2026-05-04 02:00 BRT._

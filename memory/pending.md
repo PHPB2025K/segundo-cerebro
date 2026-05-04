@@ -10,7 +10,9 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-05-04 02:00 BRT — organização noturna silenciosa_
+> Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
+
+_Atualizado: 2026-05-04 10:18 BRT — reset operacional pós-refatoração_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -26,8 +28,6 @@ _Atualizado: 2026-05-04 02:00 BRT — organização noturna silenciosa_
 - [ ] **Amazon Ads — D+7 da rodada 02/05/2026**: medir impacto dos ajustes em Potes Herméticos Vidro, Jogo Canequinhas Café, Potes Herméticos Tampa Bambu, Canecas Canelada, Canecas Porcelana Tulipa, Kit Xícaras Porcelana Paris, Suporte Controle Gamer, Jarra Medidora e Potes Redondos Plástico.
 - [ ] **Amazon Ads — D+7 dos experimentos 03/05/2026**: medir Kits Microfibra Carro (ACoS base 7,6%, gasto R$3,62, vendas R$47,70, 3 pedidos) e Abraçadeiras Nylon (experimento de tração com ASIN ativo `KIT200BR10P`/`B0CN9PPC17`, 24 un FBA).
 - [ ] **Amazon Ads — Abraçadeiras Nylon**: no D+7 medir impressões, CTR, CPC, cliques, vendas, Buy Box e estoque FBA; objetivo é diagnóstico de tração, não otimização de ACoS ainda.
-- [ ] **Amazon Ads — Redinha Frutas**: antes de qualquer bid, validar product ads + estoque/FBA + listing ativo + Buy Box. Abril/15d/7d ficaram zerados mesmo com campaigns mapeadas como ativas.
-- [ ] **Amazon Ads — Kit Jardinagem**: decidir se reativa o produto; `product_group.active=false` e campanhas tiveram só entrega residual em abril. Não aumentar bid sem validação de estoque/listing/Buy Box.
 - [ ] **Amazon Ads — Potes Herméticos Vidro**: validar no Seller Central qual ASIN recebe tráfego de `pote hermetico vidro` e investigar preço, Buy Box, imagem, título ou variação.
 - [ ] **Amazon Ads/BidSpark — revisar logs de action_type**: diferenciar escala Exact vs Broad/Alcance/Auto/Product Targeting para auditoria D+7.
 
@@ -50,7 +50,6 @@ _Atualizado: 2026-05-04 02:00 BRT — organização noturna silenciosa_
 
 ## 🔥 PRIORIDADE IMEDIATA — Financeiro
 
-- [ ] **DRE Abril/2026 — completar planilha padrão com dados faltantes**: Pedro vai usar Claude com a planilha `02_DRE_GB_PROCESSADO.xlsx` para preencher coluna `U` (Total Mês de Abril) com valores já validados. Ainda faltam coletar/confirmar: atacado, impostos sobre vendas, devoluções/cancelamentos contábeis, descontos, despesas administrativas, D&A, resultado financeiro e IRPJ/CSLL.
 - [ ] **Ads spend março** — levantar gasto real com publicidade por plataforma (ML, Amazon via integração, Shopee manual). Sem este dado, consolidado de março é inválido.
 - [ ] **Refazer fechamento de março** — gerar consolidado novo (DRE operacional + planilha + HTML) com os 5 extratos validados completos + ads spend correto.
 - [ ] **Mapeamento semanal DRE** — separar março por semanas (01-07, 08-14, 15-21, 22-31) nas linhas da DRE para análise de evolução.
@@ -76,11 +75,9 @@ _Atualizado: 2026-05-04 02:00 BRT — organização noturna silenciosa_
 
 - [x] **core-audit cron** — resolvido na verificação de 04/05 02:00 BRT: último run conhecido em 03/05 03h BRT voltou `ok` após falha anterior.
 - [ ] **Security Audit - Semanal** — último run conhecido em 03/05 06h BRT falhou com timeout/status `error`; investigar no próximo bloco operacional.
-- [ ] **Google Ads API - Spark** — credenciais existem no 1Password, mas validação OAuth em 26/04 13:40 BRT retornou `invalid_grant`; refresh token precisa ser reautorizado/gerado novamente.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.
 - [ ] **Fisco / OpenClaw** — diagnosticar o bloqueio do `sessions_spawn` com `agentId=fisco` retornando `allowed: none` e restaurar o roteamento direto do agente.
-- [ ] **Fisco — ajuste histórico YW1520 Matriz**: investigar/registrar a divergência histórica de -315 un na Matriz após março; não bloqueia abril, mas precisa ficar claro para próximas reconciliações.
 - [ ] **Fisco — processo mensal de abatimento Matriz**: antes de usar saldo Matriz como excedente, consultar NFs B2B/atacado emitidas pela Matriz no período e abater por SKU/componente.
 
 ## 🟡 Observação / estabilidade
@@ -89,7 +86,6 @@ _Atualizado: 2026-05-04 02:00 BRT — organização noturna silenciosa_
 
 ## 🟡 Para briefing matinal — estagnados >7 dias
 
-- [ ] **Repriorizar pendências sem movimentação >7 dias**: Google Ads OAuth Spark (`invalid_grant` desde 26/04), Slack token exposto em screenshot (26/04), WhatsApp Baileys passivo desconectado, PCM001 Amazon pendente desde 07/04, SimulImport cenários reais, Links Amazon da base Ana e blocos antigos de Fisco/Canggu. Se não entrarem na semana, arquivar como backlog assumido.
 
 ## 🟡 Futuro aprovado / não imediato
 
@@ -105,10 +101,8 @@ _Atualizado: 2026-05-04 02:00 BRT — organização noturna silenciosa_
 ## Backlog Estagnado
 _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
-- [ ] **PCM001 Amazon** — ASIN pendente desde lançamento 07/04. Verificar status na Amazon BR quando voltar para frente de catálogo.
 - [ ] **PCM001 peso embalado / foto 9 / custos refinados** — dados finais ainda pendentes.
 - [ ] **SimulImport — validar cenários reais** — Pedro testar com importações dele.
-- [ ] **Links Amazon da base Ana + campos [VERIFICAR]** — pendência estrutural sem avanço material desde 06/04.
 - [ ] **Canggu/Ana B2/B5/B6** — blocos não urgentes de observabilidade, governança e cleanup seguem aguardando repriorização.
 - [ ] **Fisco** — product-packaging.json, limpeza de produtos origem=0, CC-e/NFs antigas e validações Bling Filial seguem abertas.
 - [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.

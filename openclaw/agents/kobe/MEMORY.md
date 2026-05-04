@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-03 23:30 BRT (Consolidação Diária)._
+_Último update: 2026-05-04 10:18 BRT (reset operacional pós-refatoração)._
 
 ---
 
@@ -132,17 +132,16 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (03/05/2026 23:30 BRT — Consolidação Diária)
+## Status do Sistema (04/05/2026 10:18 BRT — reset operacional pós-refatoração)
 
 ### 🚨 Crítico
 - **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
-- **DRE abril:** números comerciais/Ads/CMV validados, mas faltam dados contábeis para completar a planilha padrão.
 - **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2 de movimentações.
-- **Fisco abril:** NFs internas 000031–000033 autorizadas e enviadas à FOUR/financeiro; NFs transferência 000649/000653 também enviadas. Restam ajuste histórico YW1520 Matriz e diagnóstico do roteamento `agentId=fisco`.
+- **Marco 04/05 pós-refatoração:** pendências/inconformidades de abril removidas da fila ativa; Pedro vai regularizar abril diretamente. A partir daqui, só entram pendências novas ou recorrências materializadas após 04/05.
 - **Google Ads OAuth do Spark** segue com `invalid_grant` e precisa novo refresh token.
 
 ### ⚠️ Importante
-- **Amazon Ads:** rodada abril/2026 cobriu os 13 grupos; 9 grupos principais entraram no D+7 de 02/05, Kits Microfibra e Abraçadeiras tiveram experimento em 03/05, e Redinha/Kit Jardinagem exigem validação estrutural antes de bid.
+- **Amazon Ads:** após reset de 04/05, acompanhar apenas novos sinais/experimentos materializados de maio; abril fica como baseline histórico, não pendência ativa.
 - **Social Studio** está em preview/branch `feat/social-studio-phase2` avançado até Fase 5; precisa QA autenticado e decisão de merge/deploy produção.
 - **Blog Budamix Pipeline v2** está em produção; resta inspeção visual humana do post de teste e cleanup.
 - **Budamix Central Full:** fechado com `zero_cost=0`; restam monitoramento Shopee 1E e validação defensiva ML/Amazon.
@@ -186,7 +185,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) medir D+7 Amazon Ads das rodadas 02/05 e 03/05, (2) validar estrutura Redinha/Kit Jardinagem antes de qualquer bid, (3) retomar Social Studio Carrossel Fase 0 com Paper MCP, (4) fechar março com ads + consolidado + DRE semanal, (5) QA real Blog Budamix e normalizar Google Ads OAuth/Bling Filial._
+_Próximas ações: (1) operar a partir do marco 04/05 sem carregar abril como pendência ativa, (2) retomar Social Studio Carrossel Fase 0 com Paper MCP, (3) fechar março com ads + consolidado + DRE semanal, (4) QA real Blog Budamix e normalizar autenticações/rotas que ainda quebrarem após 04/05._
 
 ---
 ## Contexto

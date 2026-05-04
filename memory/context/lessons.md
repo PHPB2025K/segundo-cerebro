@@ -361,6 +361,18 @@ _Última Consolidação Profunda: 2026-05-01_
 **Ação:** Separar promoção e escala em rodadas diferentes quando a Exact ainda não tem dados suficientes.
 **Expira:** 2026-06-02
 
+### [TÁTICA] Amazon Ads: grupo sem entrega exige diagnóstico estrutural antes de bid (2026-05-03)
+**Contexto:** Redinha Frutas ficou com 0 impressões/cliques/gasto/venda em abril, 15d e 7d apesar de campanhas mapeadas como ativas; Kit Jardinagem tinha `product_group.active=false` e entrega residual antiga.
+**Lição:** Quando um grupo não entrega, não há otimização de ACoS a fazer. Antes de subir bid, validar product ads, estoque/FBA, listing ativo, categoria, Buy Box e decisão real de ativação. Aumento de bid sem estrutura ativa só gera ruído.
+**Ação:** Separar relatório em “otimização por performance” vs “experimento de tração/diagnóstico” e pedir aprovação com confidence explícita.
+**Expira:** 2026-06-02
+
+### [TÁTICA] Paper.design: assets e estilos precisam ser explícitos via MCP (2026-05-03)
+**Contexto:** Nos 96 templates Budamix, logo com `width: auto`, CSS variables e custom elements/CSS desconhecidos falharam ou foram rasterizados silenciosamente no Paper.
+**Lição:** Via MCP, usar dimensões explícitas para imagens (`width` e `height`), valores literais de estilo e elementos HTML/CSS simples. Paper rasteriza o que não entende sem alertar; validar visualmente cada padrão novo.
+**Ação:** Em templates Paper, pré-processar logos para alpha/crop real, declarar aspect ratio manualmente e evitar dependência de shaders/custom elements.
+**Expira:** 2026-06-02
+
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 
 ### Duplicatas removidas nesta consolidação:

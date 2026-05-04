@@ -64,6 +64,12 @@ _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
 **Lição:** Para fechamento mensal Amazon Ads, preferir report API quando disponível; esperar estado sair de PENDING antes de concluir.
 **Expira:** 2026-05-31
 
+### 2026-05-03 — Amazon Ads sem entrega exige diagnóstico estrutural [TÁTICA]
+**Contexto:** Redinha Frutas ficou 0/0/0 em abril/15d/7d; Kit Jardinagem estava inactive com entrega residual antiga.
+**Lição:** Sem impressões/cliques não existe otimização de ACoS. Validar product ads, estoque/FBA, listing, categoria e Buy Box antes de mexer em bid.
+**Ação concreta:** Classificar como experimento de tração/diagnóstico com confidence explícita e D+7 definido.
+**Expira:** 2026-06-02
+
 ---
 
 ## Lições Expiradas (arquivo)

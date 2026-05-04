@@ -10,7 +10,7 @@ tags:
 ---
 # Pendências — Aguardando Input/Ação
 
-_Atualizado: 2026-05-03 02:00 BRT — organização noturna silenciosa_
+_Atualizado: 2026-05-03 23:30 BRT — consolidação diária_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -24,10 +24,11 @@ _Atualizado: 2026-05-03 02:00 BRT — organização noturna silenciosa_
 ## 🚨 Amazon Ads / BidSpark
 
 - [ ] **Amazon Ads — D+7 da rodada 02/05/2026**: medir impacto dos ajustes em Potes Herméticos Vidro, Jogo Canequinhas Café, Potes Herméticos Tampa Bambu, Canecas Canelada, Canecas Porcelana Tulipa, Kit Xícaras Porcelana Paris, Suporte Controle Gamer, Jarra Medidora e Potes Redondos Plástico.
-- [ ] **Amazon Ads — Kits Microfibra Carro**: aguardar aprovação do Pedro para criar/promover `pano microfibra`, subir Auto `substitutes`/`close-match` e não promover `vonixx` como keyword genérica.
+- [ ] **Amazon Ads — D+7 dos experimentos 03/05/2026**: medir Kits Microfibra Carro (ACoS base 7,6%, gasto R$3,62, vendas R$47,70, 3 pedidos) e Abraçadeiras Nylon (experimento de tração com ASIN ativo `KIT200BR10P`/`B0CN9PPC17`, 24 un FBA).
+- [ ] **Amazon Ads — Abraçadeiras Nylon**: no D+7 medir impressões, CTR, CPC, cliques, vendas, Buy Box e estoque FBA; objetivo é diagnóstico de tração, não otimização de ACoS ainda.
+- [ ] **Amazon Ads — Redinha Frutas**: antes de qualquer bid, validar product ads + estoque/FBA + listing ativo + Buy Box. Abril/15d/7d ficaram zerados mesmo com campaigns mapeadas como ativas.
+- [ ] **Amazon Ads — Kit Jardinagem**: decidir se reativa o produto; `product_group.active=false` e campanhas tiveram só entrega residual em abril. Não aumentar bid sem validação de estoque/listing/Buy Box.
 - [ ] **Amazon Ads — Potes Herméticos Vidro**: validar no Seller Central qual ASIN recebe tráfego de `pote hermetico vidro` e investigar preço, Buy Box, imagem, título ou variação.
-- [ ] **Amazon Ads — Suporte Controle Gamer**: análise de abril/2026 já pronta; aguarda aprovação do Pedro para executar cortes em PS5/Xbox/termos caros, promover winners para Exact e escalar `suporte headset`.
-- [ ] **Amazon Ads — grupos finais abril/2026**: revisar Abraçadeiras Nylon, Redinha Frutas e Kit Jardinagem apenas se fizer sentido; gasto/venda atual irrelevante ou inativo.
 - [ ] **Amazon Ads/BidSpark — revisar logs de action_type**: diferenciar escala Exact vs Broad/Alcance/Auto/Product Targeting para auditoria D+7.
 
 ## 🚨 Canggu / Ana
@@ -58,16 +59,17 @@ _Atualizado: 2026-05-03 02:00 BRT — organização noturna silenciosa_
 
 - [ ] **Blog Budamix — inspeção visual manual do post de teste** id `35873e72-a3ff-4ad9-9ea4-1216c05ecec0` (pilar `receber-visitas`) no `/admin/blog`; após Pedro inspecionar cover/supports/pins, deletar o post de teste.
 - [ ] **Blog WF0 — polir payload de resposta**: hoje retorna `pillar_focus=null` no response mesmo quando o foco foi aplicado internamente. Cosmético; funcional OK.
-- [ ] **Social Studio — QA autenticado do preview**: testar fluxo completo até Fase 5 (criar ideia, gerar copy, editar carrossel, adicionar slides, renderizar PNGs).
-- [ ] **Social Studio — decidir merge/deploy produção** da branch `feat/social-studio-phase2`/estado atual após QA do Pedro.
-- [ ] **Social Studio — refactor wizard step-by-step**: briefing já existe para transformar `/admin/social` em fluxo guiado (Início → Ideia → Briefing → Copy → Slides → Visual → Revisão).
+- [ ] **Social Studio Carrossel — retomar Fase 0 após reiniciar sessão Claude Code**: Paper MCP precisa carregar; capturar 96 baselines do arquivo `01KQMVPNGXW4ZWQPVE1KDPMBN3`, arquivar wizard antigo Kobe e draftar system prompt da IA copy.
+- [ ] **Social Studio Carrossel — Pedro identificar app Meta existente da Budamix e gerar long-lived token IG**; Kobe coloca no Supabase Vault quando recebido.
+- [ ] **Social Studio — QA autenticado do preview atual**: testar fluxo completo até Fase 5 (criar ideia, gerar copy, editar carrossel, adicionar slides, renderizar PNGs) apenas se ainda fizer sentido antes do novo módulo de Carrossel.
+- [ ] **Social Studio — decidir merge/deploy produção** após QA e/ou após iniciar módulo de Carrossel; evitar empurrar wizard antigo se for descartado.
 - [ ] **Vercel Token - Budamix Ecommerce** — item no 1Password `notesPlain` ainda incompleto; GitHub→Vercel auto-deploy já reduz bloqueio, mas token ainda é útil para rollback/hotfix CLI.
 - [ ] **Vercel Preview Env** — configurar `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` no ambiente Preview do Vercel ou padronizar deploy preview via CLI com envs explícitas.
 
 ## 🎨 Design / Skills locais
 
-- [ ] **Paper Design — carrossel Profundo Budamix**: terminar Cards 6 e 7 no Paper (`Scratchpad`, page `1-0`) usando o briefing salvo na sessão CC local.
-- [ ] **Budamix Marca — documentar template Profundo** em nota dedicada após validação visual completa dos 7 cards.
+- [ ] **Paper Design — carrossel Profundo Budamix**: terminar Cards 6 e 7 no Paper (`Scratchpad`, page `1-0`) usando o briefing salvo na sessão CC local de 02/05. Não confundir com os 96 templates oficiais concluídos em 03/05.
+- [ ] **Budamix Marca — validar uso dos 96 templates oficiais** em projeto real e manter nota `business/marketing/marca/templates-carrossel-paper.md` como referência canônica.
 - [ ] **ElevenLabs / video-use — higiene de keys**: deletar/revogar as duas keys antigas que circularam no transcript, manter key válida restrita a Speech to Text e rotacioná-la nas próximas semanas.
 
 ## 🚨 Infraestrutura e autenticações degradadas
@@ -82,7 +84,6 @@ _Atualizado: 2026-05-03 02:00 BRT — organização noturna silenciosa_
 
 ## 🟡 Observação / estabilidade
 
-- [x] **Vault-as-SSoT — observar 48–72h**: janela concluída em 03/05 02:00 BRT sem conflito git ou dupla escrita detectável na organização noturna; workspace ativo `/root/segundo-cerebro` segue limpo.
 - [ ] **Watchdog/Monitor Ponto/RH crons** — revisar timeouts/fallbacks em jobs com histórico de falha por timeout/model not found.
 
 ## 🟡 Para briefing matinal — estagnados >7 dias
@@ -112,4 +113,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-05-03 02:00 BRT._
+_Última organização: 2026-05-03 23:30 BRT._

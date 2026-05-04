@@ -66,6 +66,15 @@ _Só o Pedro (via Kobe) pode adicionar, alterar ou revogar decisões aqui._
 | Shopee Ads oficial para DRE deve vir da plataforma Shopee Ads; Wallet API serve só para conciliação/alerta de recarga/débito. | 2026-05-01 | Pedro/Kobe |
 | Amazon Ads Sponsored Products mensal via API é fonte oficial quando o report conclui com dados. | 2026-05-01 | Kobe |
 
+
+## Amazon Ads / BidSpark
+
+| Decisão | Data | Origem |
+|---|---|---|
+| Amazon Ads: revisão por grupo em 3 blocos obrigatórios — cortar desperdício, promover winners para Exact e escalar apenas winners comprovadas. | 2026-05-03 | Pedro/Kobe |
+| Keywords recém-promovidas para Exact não devem ser escaladas imediatamente; aguardar 3–7 dias de histórico próprio. | 2026-05-03 | Pedro/Kobe |
+| Grupos sem entrega/venda suficiente devem ser tratados como experimento de tração/diagnóstico, não otimização de ACoS. | 2026-05-03 | Kobe |
+
 ## Decisões Revogadas
 
 _Nenhuma decisão revogada até o momento._
@@ -76,8 +85,7 @@ _Nenhuma decisão revogada até o momento._
 
 ---
 
-_Última revisão: 2026-05-01_
+_Última revisão: 2026-05-03_
 
 ## Regra Universal — Horários em Brasília (2026-04-01)
 TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, nunca GMT. Formato: "14h" ou "14:03 BRT". Converter silenciosamente antes de exibir. Vale para relatórios, alertas, logs, timestamps — qualquer comunicação.
-

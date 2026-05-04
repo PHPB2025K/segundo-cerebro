@@ -55,6 +55,18 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Keywords recém-promovidas para Exact **não devem ser escaladas no mesmo momento**; precisam primeiro acumular histórico próprio na Performance antes de receber aumento de bid.
 - Próximo grupo na fila após as execuções de 02/05 ficou **Suporte Controle Gamer**; a análise está pronta e a execução depende de aprovação do Pedro.
 
+## 2026-05-03 — Amazon Ads / grupos finais e experimentos de tração
+
+- Para grupos sem entrega ou sem vendas suficientes (**Abraçadeiras Nylon**, **Redinha Frutas**, **Kit Jardinagem**), diferenciar otimização de ACoS de experimento de tração. Sem dados, o objetivo é diagnosticar entrega/relevância/listing/Buy Box, não prometer melhora de ACoS.
+- **Abraçadeiras Nylon** teve experimento de tração aprovado após confirmação de estoque FBA no ASIN ativo `KIT200BR10P` / `B0CN9PPC17`. Medição obrigatória em D+7: impressões, CTR, CPC, cliques, vendas, Buy Box e estoque FBA.
+- **Redinha Frutas** e **Kit Jardinagem** não devem receber aumento de bid antes de validar product ads, estoque/FBA, listing ativo e Buy Box; se não houver estrutura ativa, manter/assumir inativo.
+
+## 2026-05-03 — Paper.design / Templates Carrossel Budamix
+
+- Templates oficiais de carrossel Budamix no Paper.design ficam organizados em 5 famílias × 3 versões cromáticas (CLARA/NORMAL/ESCURA), totalizando 96 artboards 1080×1080 no arquivo `01KQMVPNGXW4ZWQPVE1KDPMBN3`.
+- Versão CLARA usa fundo areia e títulos teal `#004D4D`; não usar grafite para títulos principais em fundo claro porque fica lavado.
+- Paper Shaders não são acionáveis via MCP; qualquer uso de Mesh Gradient/Grain/Liquid Metal exige aplicação manual pela UI do Paper Desktop.
+
 ## 2026-05-02 — Skills locais / ElevenLabs
 
 - Para `video-use`, a API key ElevenLabs deve ser restrita ao mínimo necessário: apenas **Speech to Text**. Sanity check seguro: `POST /v1/speech-to-text` sem payload esperando HTTP 422 como prova de auth OK; não usar `/v1/user` porque exige permissão administrativa.

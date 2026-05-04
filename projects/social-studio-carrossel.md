@@ -118,21 +118,67 @@ QA visual diff em CI (3% tolerância) + rate limiting + quota mensal $50 + audit
 - 16 carrosséis/mês ≈ **$7/mês em IA**
 - Limite duro mensal: $50/workspace
 
-## Estado atual (03/05/2026 noite)
+## Estado atual (04/05/2026)
 
-⏸ **Pausado em Fase 0**, aguardando ações:
+✅ **FASE 1 FECHADA E EM PRODUÇÃO** — pipeline E2E funcionando:
 
-1. **Pedro reiniciar sessão Claude Code** — Paper MCP está adicionado globalmente (`claude mcp list` confirma `paper: ✓ Connected`) mas a sessão atual não carregou as tools `mcp__paper__*`. Reiniciar resolve.
-2. Após reinício: CC retoma com `/cerebro` → lê esta ficha → continua Fase 0 (capturar baselines + draft system prompt).
+| Etapa | Owner | Commit | Métrica chave |
+|---|---|---|---|
+| A · Schema v3 | Kobe | `ff79ee5` | 5 templates · 3 paletas · 5 views · RLS OK |
+| B · IA Copy | Kobe | `4ff9f0a` | $0.045/carrossel · gancho 11 palavras · 3 caveats |
+| C · IA Imagem | Kobe | `ae7ff43` | $0.04/img · 7.7s p50 · Nano Banana |
+| D · Render Puppeteer | Kobe | `071a277` | hot 1.31s · cold 18.6s (backlog F5) |
+| E · Export PNG/PDF | Kobe | `8ab45da` | 2.1s ZIP · 2.4s PDF · JPG 400 controlado |
+| Frontend (CC) | CC | `0670608`+iters | 3 telas + 9 componentes render + rota Puppeteer |
+
+**Custo real validado:** ~$0.31 por carrossel completo (alinhado com spec).
+**Tempo total briefing→pronto:** ~28-35s (cold) / ~10s (hot cache).
+
+### Iterações de polish após Fase 1 fechada (04/05/2026 tarde-noite)
+
+8 iterações de smoke E2E e ajustes visuais com Pedro:
+
+- iter 1: `getCarouselFull` refatorado em 4 queries (PostgREST embedding multi-nível bug) — `c32929c`
+- iter 2: signed URLs batch pra imagens privadas do bucket `social-assets` — `46a7ee0`
+- iter 3: auto-shrink fontSize quando texto excede confortável + R10 prompt + max_chars 42 (Kobe `60fdb00`) — `fa9e40a`
+- iter 4: logos PNG `/public/logos/*.png` (eram 404) — `558a3ef`
+- iter 5: SwipeIndicator implementado e iterado (cápsula → seta+barra → removido completo) — `97848e3`
+- iter 6: brand header (cover/cta) + footer URL + fontes Variable correção crítica — `65d7ed2`
+- iter 7: header em todos slides + remove logo + seta discreta — `0f21c90`
+- iter 8: trocar lados URL e seta — `433bc7f`
+
+### Decisões adicionais (04/05/2026)
+
+| ID | Decisão | Razão |
+|---|---|---|
+| D11 | Trocar key Anthropic legacy `sk-ant-...` por `sk-ant-api03-...` | API antiga revogada — 401 invalid x-api-key |
+| D12 | Billing Google AI Studio ativado no projeto SOCIAL STUDIO | Sem billing, Imagen/Nano Banana não disponíveis |
+| D13 | render-bot user dedicado pra Puppeteer (uuid `585f0ac3-...`) | Service_role no client é inseguro; magic JWT user-scoped + role admin é o caminho |
+| D14 | Cold start Puppeteer 18.6s aceito como Fase 1 | Cache hot 1.31s cobre 90% casos. Refactor pra container warm = backlog F5 |
+| D15 | JPG bundle FORMAT_UNAVAILABLE controlado | Encoder JPG em Edge Function instável; PNG ZIP + PDF cobrem uso real |
+| D16 | Imagem AI ocupa 60% top + gradient fade pra paleta | Visual mais limpo que full-bleed; texto não compete com imagem |
+| D17 | Auto-shrink fontSize + R10 prompt | Defesa em profundidade: IA respeita max_chars + frontend protege overflow |
+| D18 | Header brand `BUDAMIX | OUTONO · NN / TT` em todos slides | Identidade institucional sutil; usa palette.eyebrow ou highlight |
+| D19 | Logo PNG removido, substituído por seta `→` discreta canto inferior esquerdo | Pedro pediu — minimalismo + indicador de swipe |
+| D20 | URL `BUDAMIX.COM.BR` canto inferior direito | Reforça canal sem ser CTA agressivo |
+| D21 | Fontes Variable obrigatórias (`'Bricolage Grotesque Variable'`, etc) | Sem isso, Puppeteer caía em fallback Helvetica genérica — quebrava fidelidade visual |
+
+### O que foi pulado (não vai virar Fase 2)
+
+- **Editor inline** (Fase 2 original): Pedro decidiu pular — confia que IA gera bem com R10 + max_chars apertados + auto-shrink. Reavaliar se precisar editar fora do refresh
+- **Template panorama** (Fase 6): descartado por agora — complexidade alta sem caso de uso comprovado
+
+### Próximas decisões pendentes
+
+- Fase 4 publish IG (1 sem) OU Fase 5 hardening (1 sem) — Pedro decide ordem
+- Backlog F5 priorizado: cold start render → container warm; JPG encoder; QA visual diff CI; rate limiting + audit log
 
 ## Como retomar (próxima sessão)
 
 1. `/cerebro` no terminal
-2. Ler esta ficha: `cat ~/segundo-cerebro/projects/social-studio-carrossel.md`
-3. Verificar Paper MCP carregado: `ToolSearch query "paper write_html"` deve achar tools
-4. Se OK: capturar 96 baselines → batch via Paper MCP `get_basic_info` + `get_screenshot`
-5. Em paralelo: draftar `docs/social-studio-carrossel-prompt-copy.md`
-6. Pedro identifica app Meta existente em paralelo
+2. Pedro decide: Fase 4 (publish IG) ou Fase 5 (hardening)?
+3. Se Fase 4: Pedro identifica app Meta existente da Budamix + gera long-lived token IG → Vault. Kobe implementa `social-publish-instagram` + cron refresh
+4. Se Fase 5: priorizar cold start render (container warm via Builder agent VPS) + rate limiting
 
 ## Referências cruzadas
 

@@ -537,3 +537,6 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 **Contexto:** Ao revisar a geração direta do relatório mensal do Trader, o scheduler marcou o cron das 06h BRT como `ok`, mas o run não produziu os 3 entregáveis finais; a etapa da Shopee travou por caminho errado e a execução saiu como `main` delegando, não como Trader direto.
 **Lição:** Em jobs críticos com agente delegado, validar antes de anunciar sucesso: artefatos finais gerados, agente correto executado e aviso entregue no tópico esperado. Status `ok` do scheduler sozinho não prova conclusão real.
 **Expira:** 2026-06-03
+### [TÁTICA] WhatsApp RH: texto puro + linkPreview false (2026-05-04)
+Print da Yasmin mostrou bolhas “Aguardando mensagem” no lugar de mensagens do agente RH. Mesmo `sendText` pode acionar renderização problemática no cliente quando há preview/formato rico. Wrapper central `scripts/send-whatsapp.py` deve enviar texto puro com `linkPreview: false`; evitar interativos/listas/polls/previews via Evolution/Baileys.
+

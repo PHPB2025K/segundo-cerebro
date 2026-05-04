@@ -41,6 +41,7 @@ _Atualizado: 2026-05-04 10:18 BRT — reset operacional pós-refatoração_
 
 ## 🚨 RH / Ponto Certo
 
+- [ ] **RH — WhatsApp funcionários bloqueado em 04/05**: não enviar nenhuma mensagem hoje. Reativar amanhã só após remover o guard temporário e reiniciar serviços RH, se rotina normal estiver liberada.
 - [ ] **Ponto Certo — deploy produção do módulo Conversas RH** se ainda estiver apenas local: build, publicar na VPS e reiniciar PM2 `ponto-certo`.
 - [ ] **RH — acompanhar feedback da Yasmin** sobre recebimento correto dos 2 chunks da mensagem inaugural.
 - [ ] **RH — acompanhar primeiras respostas dos funcionários** às mensagens inaugurais; `rh-poller` e `rh-stuck-detector` devem capturar falhas silenciosas.

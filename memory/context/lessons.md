@@ -567,3 +567,8 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 **Lição:** Mesmo `sendText` pode acionar renderização problemática no cliente quando há preview/formato rico. Wrapper central `scripts/send-whatsapp.py` deve enviar texto puro com `linkPreview: false`; evitar interativos/listas/polls/previews via Evolution/Baileys.
 **Expira:** 2026-06-03
 
+### [TÁTICA] DRE marketplace: settlement de fees precisa passar por sanity check antes de virar plano de contas (2026-05-05)
+**Contexto:** A U44 de abril/2026 consolidava taxas de marketplace, mas o ML trazia R$ 2.138,75 de vendas pendentes como despesa e ainda misturava disputas/cancelamentos e taxas de reembolso dentro da mesma linha.
+**Lição:** Antes de evoluir plano de contas a partir de extrato/settlement, validar natureza por tipo/status e rodar sanity check por marketplace. “Bater com o total” não basta se a linha estiver contaminada.
+**Ação:** Para U44/U15 e linhas comerciais similares, separar timing de caixa, reembolso, disputa/cancelamento e fee operacional antes de consolidar DRE gerencial.
+**Expira:** 2026-06-05

@@ -105,3 +105,14 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - O template `lancamento` passa a tratar `product_name` do slide de revelação com limite mais apertado: **42 chars** e orientação explícita de nome curto, sem qualificadores extensos, preferencialmente em até 6 palavras.
 - A regra geral de copy do Social Studio ganha a diretriz **R10**: headlines, `product_name` e `cta_headline` devem priorizar formas curtas; detalhes longos vão para `positioning`/`body`, não para o título principal.
 - O frontend pode continuar usando auto-shrink como defesa visual, mas a qualidade deve ser corrigida na origem via schema + prompt.
+
+## 2026-05-05 — DRE abril/2026 / U44 v4 limpa
+
+- Pedro confirmou que a U44 anterior estava contaminada por R$ 2.138,75 de vendas pendentes ML; DRE abril foi corrigida de R$ 117.670,43 para **R$ 115.531,68**, elevando EBITDA e LL gerencial em R$ 2.138,75 sem mudança operacional real.
+- Refatoração **v4 limpa da U44** aprovada para abril/2026, mas entra **depois da apuração U15 — Descontos Concedidos**.
+- Estrutura aprovada: **U44 — Taxas de Marketplace limpa** deve conter só comissão + taxa fixa/service/transaction/FBA + frete líquido seller quando aplicável.
+- Criar linha abaixo de U44 para **Outras Taxas Marketplace**: disputas, cancelamentos, taxas de reembolso, antecipação de recebíveis, programas pagos e multas.
+- Shopee: não criar linha separada para “Frete Shopee”; o “Frete Líquido Shopee” de R$ 10.321,74 é subsídio/reembolso da Shopee, não despesa do seller. O custo efetivo de frete grátis já está embutido na regra de comissão/faixa Shopee; para DRE manter Shopee em U44 como comissão R$ 32.094,27 + taxa fixa R$ 28.038,07 = R$ 60.132,34.
+- ML: retirar de U44 e mover para Outras Taxas Marketplace **R$ 6.156,26** = disputas/cancelamentos R$ 3.769,11 + taxas de reembolso/devolução R$ 2.387,15. EBITDA não deve mudar nessa reorganização.
+- Amazon: reconciliar residual aproximado de R$ 120–258 e, se confirmado como fee acessório, classificar em Outras Taxas Marketplace.
+- Reconciliação obrigatória da v4: U44 limpa + Outras Taxas Marketplace = **R$ 115.531,68** com tolerância máxima ±R$ 100; EBITDA não pode mudar na refatoração v4.

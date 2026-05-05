@@ -51,6 +51,8 @@ _Atualizado: 2026-05-05 02:00 BRT — organização noturna silenciosa_
 
 ## 🔥 PRIORIDADE IMEDIATA — Financeiro
 
+- [ ] **DRE Abril/2026 — U15 Descontos Concedidos PRIMEIRO**: concluir apuração de U15 com Shopee/Amazon em batch antes de mexer na v4 da U44. Prioridade definida pelo Pedro em 05/05.
+- [ ] **DRE Abril/2026 — U44 v4 limpa DEPOIS do U15**: refatorar U44 atual R$ 115.531,68 em duas linhas: U44 limpa (comissão + taxa fixa + frete líquido seller quando aplicável) e nova “Outras Taxas Marketplace”. Regras: mover ML R$ 6.156,26 (disputas/cancelamentos R$ 3.769,11 + taxas reembolso R$ 2.387,15) para Outras; manter Shopee R$ 60.132,34 em U44 sem linha separada de frete; reconciliar residual Amazon (~R$120–258); soma das duas linhas deve bater R$ 115.531,68 ±R$100 e EBITDA não pode mudar.
 - [ ] **Ads spend março** — levantar gasto real com publicidade por plataforma (ML, Amazon via integração, Shopee manual). Sem este dado, consolidado de março é inválido.
 - [ ] **Refazer fechamento de março** — gerar consolidado novo (DRE operacional + planilha + HTML) com os 5 extratos validados completos + ads spend correto.
 - [ ] **Mapeamento semanal DRE** — separar março por semanas (01-07, 08-14, 15-21, 22-31) nas linhas da DRE para análise de evolução.

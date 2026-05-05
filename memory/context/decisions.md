@@ -99,3 +99,9 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 
 - Em 04/05, mensagens proativas/alinhamentos de RH ficaram bloqueados; agente RH deve continuar em produção para responder inbound espontâneo.
 - Wrapper central de WhatsApp RH deve usar texto puro com `linkPreview: false`; formatos ricos/previews/interativos devem ser evitados.
+
+## 2026-05-05 — Social Studio / copy IA do template `lancamento`
+
+- O template `lancamento` passa a tratar `product_name` do slide de revelação com limite mais apertado: **42 chars** e orientação explícita de nome curto, sem qualificadores extensos, preferencialmente em até 6 palavras.
+- A regra geral de copy do Social Studio ganha a diretriz **R10**: headlines, `product_name` e `cta_headline` devem priorizar formas curtas; detalhes longos vão para `positioning`/`body`, não para o título principal.
+- O frontend pode continuar usando auto-shrink como defesa visual, mas a qualidade deve ser corrigida na origem via schema + prompt.

@@ -60,6 +60,7 @@ _Atualizado: 2026-05-05 02:00 BRT — organização noturna silenciosa_
 - [ ] **Blog Budamix — inspeção visual manual do post de teste** id `35873e72-a3ff-4ad9-9ea4-1216c05ecec0` (pilar `receber-visitas`) no `/admin/blog`; após Pedro inspecionar cover/supports/pins, deletar o post de teste.
 - [ ] **Blog WF0 — polir payload de resposta**: hoje retorna `pillar_focus=null` no response mesmo quando o foco foi aplicado internamente. Cosmético; funcional OK.
 - [ ] **Social Studio Carrossel — decidir próxima fase**: Pedro escolhe entre Fase 4 publish IG (1 semana) ou Fase 5 hardening (1 semana). Recomendação técnica: Fase 5 primeiro se o objetivo for estabilidade; Fase 4 primeiro se publicação automática virar prioridade comercial.
+- [ ] **Social Studio Carrossel — Pedro rodar smoke E2E manual pela UI** após o fechamento da Fase 1 para validar a experiência real ponta a ponta no app.
 - [ ] **Social Studio Carrossel — Pedro identificar app Meta existente da Budamix e gerar long-lived token IG**; Kobe coloca no Supabase Vault quando recebido.
 - [ ] **Social Studio Carrossel — Fase 5 backlog**: container warm para cold start render, JPG encoder, QA visual diff CI, rate limiting + audit log, tradução de erros Meta.
 - [ ] **Vercel Token - Budamix Ecommerce** — item no 1Password `notesPlain` ainda incompleto; GitHub→Vercel auto-deploy já reduz bloqueio, mas token ainda é útil para rollback/hotfix CLI.

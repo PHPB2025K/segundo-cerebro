@@ -386,6 +386,18 @@ _Última Consolidação Profunda: 2026-05-01_
 **Ação:** Em renderizadores de marketing, validar screenshot final por fonte real antes de considerar UI aprovada.
 **Expira:** 2026-06-03
 
+### [TÁTICA] Social Studio: workloads de mídia em Supabase Edge precisam fan-out por slide e imports lazies (2026-05-05)
+**Contexto:** No fechamento das Etapas D/E do Social Studio, gerar 6 imagens ou carregar dependências pesadas numa única invocação derrubou a Edge Function com `WORKER_RESOURCE_LIMIT`.
+**Lição:** Em pipelines de imagem/export no Supabase Edge, evitar processamento pesado em lote dentro da mesma invocação. Preferir fan-out por slide/unidade de trabalho e carregar libs pesadas (PDF/JPG/ZIP) com import dinâmico só no branch usado.
+**Ação:** Novas edge functions de mídia devem assumir envelope curto de memória/CPU por padrão.
+**Expira:** 2026-06-04
+
+### [TÁTICA] Social Studio copy: headline curta deve ser tratada na origem, não só no frontend (2026-05-05)
+**Contexto:** O frontend já encolhia fonte quando o texto passava do confortável, mas a IA ainda gerava `product_name` longos o bastante para degradar o layout do template `lancamento`.
+**Lição:** Para slots de destaque (`headline`, `product_name`, `cta_headline`), apertar `max_chars` e instruir explicitamente a IA a priorizar até 6 palavras. Auto-shrink é defesa, não fonte de qualidade.
+**Ação:** Sempre que um template depender de headline grande, alinhar schema do slot + system prompt antes de confiar na mitigação visual.
+**Expira:** 2026-06-04
+
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 
 ### Duplicatas removidas nesta consolidação:

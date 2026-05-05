@@ -59,9 +59,13 @@ _Atualizado: 2026-05-04 23:30 BRT — consolidação diária_
 
 - [ ] **Blog Budamix — inspeção visual manual do post de teste** id `35873e72-a3ff-4ad9-9ea4-1216c05ecec0` (pilar `receber-visitas`) no `/admin/blog`; após Pedro inspecionar cover/supports/pins, deletar o post de teste.
 - [ ] **Blog WF0 — polir payload de resposta**: hoje retorna `pillar_focus=null` no response mesmo quando o foco foi aplicado internamente. Cosmético; funcional OK.
-- [ ] **Social Studio Carrossel — decidir próxima fase**: Pedro escolhe entre Fase 4 publish IG (1 semana) ou Fase 5 hardening (1 semana). Recomendação técnica: Fase 5 primeiro se o objetivo for estabilidade; Fase 4 primeiro se publicação automática virar prioridade comercial.
-- [ ] **Social Studio Carrossel — Pedro identificar app Meta existente da Budamix e gerar long-lived token IG**; Kobe coloca no Supabase Vault quando recebido.
-- [ ] **Social Studio Carrossel — Fase 5 backlog**: container warm para cold start render, JPG encoder, QA visual diff CI, rate limiting + audit log, tradução de erros Meta.
+- [ ] **Social Studio — PR2 (próximo)**: cor por elemento (com regra Terracotta restrita a `cta_button`) + versionamento JSONB de imagens (5 versões rotativas em `image_versions` JSONB no `social_carousel_slides`) + indicador `v1/v2/v3` clicável com popover de thumbnails. Estimativa ~1 dia. Plano completo em [[memory/sessions/2026-05-05]] e [[memory/context/decisoes/2026-05]].
+- [ ] **Social Studio — PR3 (depois do PR2)**: modo manual default (slides em branco; usuário decide quando gerar imagem; `ImageGenerationDialog` com prompt editável + foto de referência + preview de custo); botão "Delegar tudo à IA" como atalho pro fluxo legado. Estimativa ~1-2 dias.
+- [ ] **Social Studio — Fase 4 publish IG**: Pedro identificar app Meta existente da Budamix e gerar long-lived token IG; Kobe coloca no Supabase Vault. Posterior aos PR2/PR3.
+- [ ] **Social Studio — Fase 5 hardening backlog**: container warm para cold start render, JPG encoder, QA visual diff CI, rate limiting + audit log, tradução de erros Meta.
+- [ ] **Social Studio — drag-and-drop com zonas**: cortado do MVP em 05/05; reavaliar depois dos PR2/PR3. Provavelmente cancelado se UX dos presets de paleta + cor/fonte/tamanho por elemento já satisfizer.
+- [ ] **Social Studio — `social_palettes` cleanup**: tabela continua existindo no banco mas frontend não lê mais (usa `lib/palette-presets.ts`). Pode ser removida em cleanup futuro, sem urgência.
+- [ ] **Supabase CLI — investigar perms da conta**: `supabase link --project-ref jtczupudieeogzspdqae` falhou em 05/05 com "Your account does not have the necessary privileges". Migration do Social Studio rodada via Dashboard manualmente. Resolver se virar fluxo recorrente.
 - [ ] **Vercel Token - Budamix Ecommerce** — item no 1Password `notesPlain` ainda incompleto; GitHub→Vercel auto-deploy já reduz bloqueio, mas token ainda é útil para rollback/hotfix CLI.
 - [ ] **Vercel Preview Env** — configurar `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` no ambiente Preview do Vercel ou padronizar deploy preview via CLI com envs explícitas.
 

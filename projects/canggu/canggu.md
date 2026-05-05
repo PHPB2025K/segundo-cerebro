@@ -6,7 +6,7 @@ tags:
   - canggu
   - moc
 criado: 2026-04-22
-atualizado: 2026-04-30
+atualizado: 2026-05-05
 fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 ---
 
@@ -18,19 +18,28 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 > (Anthropic Claude + Google Gemini + Groq) → Supabase pgvector → resposta
 > via dispatcher inline. N8N standby pra rollback de 1 chamada.
 
-## Onde vive (atualizado 2026-04-30)
+## Onde vive (atualizado 2026-05-05)
 
 | Camada | Local | Notas |
 |---|---|---|
 | **Repo (single source of truth)** | `PHPB2025K/canguu` | Frontend + 13 edge functions consolidadas em `supabase/functions/` |
-| **Frontend admin** | `https://canguu-sigma.vercel.app` | Vercel próprio, GitHub auto-deploy |
+| **Frontend admin (oficial)** | `https://canggu.com.br` | Vercel + DNS Registro.br (A apex+www → 76.76.21.21). SSL Let's Encrypt. Domínio adotado em 05/05 |
+| **Frontend admin (fallback)** | `https://canguu-sigma.vercel.app` | Domínio Vercel default; continua aliased ao mesmo deploy de produção |
 | **Backend** | Supabase project `jpacmloqsfiebvagfomt` | Edge functions, Storage `chat-attachments` (público), pgvector |
-| **Webhook entrada** | `jpacmloqsfiebvagfomt.supabase.co/functions/v1/webhook-whatsapp` | Apontado pelo Evolution v2 desde cutover 30/04 |
+| **Webhook entrada** | `jpacmloqsfiebvagfomt.supabase.co/functions/v1/webhook-whatsapp` | Apontado pelo Evolution v2 desde cutover 30/04. Versão atual 29 (numbered-text origin poll a partir de 05/05 08:48 BRT) |
 | **N8N (standby)** | `trottingtuna-n8n.cloudfy.live` | Rollback de 1 chamada se necessário |
 
 ## Estado atual
 
 **Última grande sessão:** 2026-04-30 (maratona ~7-8h) — ver [[memory/sessions/2026-04-30]] seção "Maratona Canggu" + [[memory/context/decisoes/2026-04#[30/04 tarde/noite] Canggu — pipeline edge function canônico + mídia visível + repo único]].
+
+**O que mudou em 05/05:**
+- Pedro reportou regressão dupla (filtro Plataforma sumiu da UI + Ana parou de mandar origin poll). Investigação revelou que **não era código** — era drift de deploy:
+  - Vercel tinha o bundle correto (`grep` no `index-B57kBlxQ.js` confirmou strings "Plataforma" e "Site Budamix"), mas o cache CDN estava com 4.5 dias (`age: 393877s`).
+  - Edge function `webhook-whatsapp` versão 28 foi deployada em 30/04 13:29 BRT, **antes** do commit `604b2e3` (numbered-text origin poll, 17:28 BRT). Em produção rodava o `sendList` antigo que falha silenciosamente via Baileys.
+- Resolução: `supabase functions deploy webhook-whatsapp --project-ref jpacmloqsfiebvagfomt` (→ v29) + `vercel redeploy` (cache CDN invalidado).
+- **Migração de domínio oficial** pra `https://canggu.com.br`: DNS apex+www → 76.76.21.21, SSL Let's Encrypt emitido em ~2min, app respondendo HTTP/2 200 nos dois. Subdomínio `demo.canggu.com.br` (Lovable) e TXT `_lovable.*` foram preservados.
+- Pendente: redirect www↔apex (decisão do Pedro), GitHub Action que rode `supabase functions deploy` automático no push pra main (resolveria a classe inteira de drift entre repo e edge functions).
 
 **O que mudou em 30/04:**
 - Cutover do pipeline: edge function `webhook-whatsapp` agora é o webhook canônico do Evolution. N8N Principal vira standby.

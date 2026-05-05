@@ -75,6 +75,7 @@ _Atualizado: 2026-05-05 02:00 BRT — organização noturna silenciosa_
 
 - [ ] **Security Audit - Semanal** — último run conhecido em 03/05 06h BRT falhou com timeout/status `error`; investigar no próximo bloco operacional.
 - [ ] **core-audit** — boot check de 05/05 09:01 BRT encontrou último run com status `error`; investigar junto com o Security Audit antes de tratar auditoria como saudável.
+- [ ] **Bling Token Refresh** — heartbeat de 05/05 13:52 BRT encontrou último run com timeout; execuções anteriores indicavam Matriz OK e Filial com HTTP 403/empresa inativa. Investigar com Fisco antes de depender de refresh automático da Filial.
 - [ ] **ML Fees Monitor** — último run conhecido em 04/05 10h BRT falhou com timeout/status `error`; investigar se foi timeout de web fetch/modelo e ajustar timeout/escopo antes do próximo run semanal.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.

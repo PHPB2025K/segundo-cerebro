@@ -26,20 +26,31 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 | **Frontend admin (oficial)** | `https://canggu.com.br` | Vercel + DNS Registro.br (A apex+www → 76.76.21.21). SSL Let's Encrypt. Domínio adotado em 05/05 |
 | **Frontend admin (fallback)** | `https://canguu-sigma.vercel.app` | Domínio Vercel default; continua aliased ao mesmo deploy de produção |
 | **Backend** | Supabase project `jpacmloqsfiebvagfomt` | Edge functions, Storage `chat-attachments` (público), pgvector |
-| **Webhook entrada** | `jpacmloqsfiebvagfomt.supabase.co/functions/v1/webhook-whatsapp` | Apontado pelo Evolution v2 desde cutover 30/04. Versão atual 29 (numbered-text origin poll a partir de 05/05 08:48 BRT) |
+| **Webhook entrada** | `jpacmloqsfiebvagfomt.supabase.co/functions/v1/webhook-whatsapp` | Apontado pelo Evolution v2 desde cutover 30/04. Versão atual 30 (numbered-text origin poll a partir de 05/05 08:48 BRT) |
+| **CI auto-deploy** | `.github/workflows/deploy-edge-functions.yml` | Push em `supabase/functions/**` ou `workflow_dispatch` redeploya automaticamente. Cascade total se `_shared/` mudar, parcial se só uma função. Secret `SUPABASE_ACCESS_TOKEN` no repo. Ativo desde 05/05 |
 | **N8N (standby)** | `trottingtuna-n8n.cloudfy.live` | Rollback de 1 chamada se necessário |
 
 ## Estado atual
 
 **Última grande sessão:** 2026-04-30 (maratona ~7-8h) — ver [[memory/sessions/2026-04-30]] seção "Maratona Canggu" + [[memory/context/decisoes/2026-04#[30/04 tarde/noite] Canggu — pipeline edge function canônico + mídia visível + repo único]].
 
-**O que mudou em 05/05:**
-- Pedro reportou regressão dupla (filtro Plataforma sumiu da UI + Ana parou de mandar origin poll). Investigação revelou que **não era código** — era drift de deploy:
-  - Vercel tinha o bundle correto (`grep` no `index-B57kBlxQ.js` confirmou strings "Plataforma" e "Site Budamix"), mas o cache CDN estava com 4.5 dias (`age: 393877s`).
-  - Edge function `webhook-whatsapp` versão 28 foi deployada em 30/04 13:29 BRT, **antes** do commit `604b2e3` (numbered-text origin poll, 17:28 BRT). Em produção rodava o `sendList` antigo que falha silenciosamente via Baileys.
-- Resolução: `supabase functions deploy webhook-whatsapp --project-ref jpacmloqsfiebvagfomt` (→ v29) + `vercel redeploy` (cache CDN invalidado).
-- **Migração de domínio oficial** pra `https://canggu.com.br`: DNS apex+www → 76.76.21.21, SSL Let's Encrypt emitido em ~2min, app respondendo HTTP/2 200 nos dois. Subdomínio `demo.canggu.com.br` (Lovable) e TXT `_lovable.*` foram preservados.
-- Pendente: redirect www↔apex (decisão do Pedro), GitHub Action que rode `supabase functions deploy` automático no push pra main (resolveria a classe inteira de drift entre repo e edge functions).
+**O que mudou em 05/05 (dia inteiro de drift cleanup):**
+
+Manhã (~08:30-09:05 BRT):
+- Regressão dupla reportada — filtro Plataforma sumiu da UI + Ana parou de mandar origin poll. **Não era código**, era drift de deploy: Vercel CDN com `age: 393877s` (4.5 dias) e edge function `webhook-whatsapp` v28 deployada antes do commit `604b2e3`. Resolução: redeploy edge fn (→ v29) + `vercel redeploy` (cache invalidado).
+- **Migração de domínio oficial** pra `https://canggu.com.br`: DNS apex+www → 76.76.21.21 no Registro.br, SSL Let's Encrypt emitido em ~2min. Subdomínio `demo.canggu.com.br` (Lovable) e TXT `_lovable.*` preservados.
+
+Tarde (~13:30-16:40 BRT):
+- **Terceira regressão do dia:** Ana respondeu pergunta no MLB3343832496 com "Por favor entre em contato conosco para conhecer outros modelos disponíveis!". Causa: `process-ml-question` v10 deployada **9 segundos antes** do commit `1b88990` (hard-block). Detector existia em `_shared/`, mas a chamada `validateMLQuestionResponse()` em `process-ml-question/index.ts` ainda não tinha sido pushada. Resolução: redeploy → v11.
+- **Auditoria preventiva** das 14 edge functions revelou 9 outras stale desde `b2c6d0f` (consolidação 30/04 12:55 BRT). Redeploy manual de cada → 13/13 sincronizadas. Função órfã `test-search` deletada.
+- **GitHub Action de auto-deploy implementado** (commit `cedbe43`): trigger em push pra `main` filtrando `supabase/functions/**` ou `workflow_dispatch` manual. Detecta mudanças em `_shared/` → cascade total; senão só a função tocada. Pedro adicionou `SUPABASE_ACCESS_TOKEN` como secret. Validado end-to-end em dois runs (47s + 37s). **Drift entre repo e produção eliminado por construção.**
+- **Tom da Ana no ML reescrito** (commit `38d3fef`): regras 9, 10, 12 do prompt + `ML_QUESTION_FALLBACK` + `ML_MESSAGE_FALLBACK` em `_shared/ml-response-validator.ts`. Identificado conflito interno crítico — regra 9 mandava "estamos a disposição" que está nos `FORBIDDEN_CONTACT_PATTERNS`. Reescrito pra tom natural, sem frases prontas tipo telemarketing. `process-ml-question` v13 em produção. Push disparou Action que redeployou tudo automático.
+
+Pendente:
+- Redirect www↔apex em `canggu.com.br` (recomendação CC: www → apex)
+- Editar manualmente resposta no MLB3343832496 no painel ML + colar correção sugerida no Canggu via 👎 (alimenta `process-correction-embedding` pra perguntas semelhantes futuras)
+- Estender análise de tom pra `process-message` (Ana no WhatsApp)
+- Atualizar GitHub Actions de Node 20 → 24 antes de 16/09/2026
 
 **O que mudou em 30/04:**
 - Cutover do pipeline: edge function `webhook-whatsapp` agora é o webhook canônico do Evolution. N8N Principal vira standby.
@@ -60,7 +71,8 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 
 **Última auditoria forense:** 2026-04-22 ([[auditorias/2026-04-22-forense]])
 **Veredito original:** 🟡 Sólido tecnicamente, comprometido por dívida operacional.
-**Status pós-30/04:** B4 (arquitetura — cutover) ✅ feito. B3 (resiliência) parcial (Gemini retry pronto, falta retry classify/generate + dedup). B1/B2/B5/B6 ainda intocados.
+**Status pós-30/04:** B4 (arquitetura — cutover) ✅ feito. B3 (resiliência) parcial (Gemini retry pronto, falta retry classify/generate + dedup). B1/B2/B6 ainda intocados.
+**Status pós-05/05:** B5 (CI/CD) ✅ resolvido — auto-deploy via GitHub Actions ativo, drift entre repo e produção eliminado por construção.
 
 ## Métricas baseline (snapshot 2026-04-22)
 

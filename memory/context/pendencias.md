@@ -42,7 +42,7 @@ _Atualizado: 2026-05-04 23:30 BRT — consolidação diária_
 ## 🚨 RH / Ponto Certo
 
 - [ ] **RH — 05/05 reativação/normalização segura**: remover/expirar guard temporário de 04/05 apenas para proativos autorizados/rotina normal; manter exceção `--allow-rh-reply` para respostas inbound e não disparar alinhamentos retroativos sem aprovação.
-- [ ] **Ponto Certo — DNS do domínio novo**: criar/apontar A record de `ponto.budamix.com.br` para `187.77.237.231`; Traefik já aceita o host e validação local retornou HTTP 200.
+- ✅ ~~**Ponto Certo — DNS do domínio novo**: criar/apontar A record de `ponto.budamix.com.br` para `187.77.237.231`~~ → **RESOLVIDO 05/05.** Pedro criou A record no Registro.br, DNS propagou nos resolvers públicos, CC local restartou Traefik na VPS pra forçar reemissão do cert ACME (1ª tentativa havia falhado em 04/05 12:39 UTC com NXDOMAIN). Cert Let's Encrypt emitido, servidor responde HTTPS 200. Cache de DNS em provedores brasileiros pode levar horas pra atualizar — workaround: trocar pra DNS Cloudflare/Google ou tentar via 4G. Pendência menor: deletar entrada órfã `pontocerto.budamix.com.br` criada por engano. → [[memory/sessions/2026-05-05#Ponto Certo — DNS + cert SSL `ponto.budamix.com.br` resolvidos (CC local)]]
 - [ ] **Ponto Certo — deploy produção do módulo Conversas RH** se ainda estiver apenas local: build, publicar na VPS e reiniciar PM2 `ponto-certo`.
 - [ ] **RH — acompanhar feedback da Yasmin** sobre recebimento correto dos 2 chunks da mensagem inaugural reenviada com `linkPreview: false`.
 - [ ] **RH — acompanhar primeiras respostas dos funcionários** às mensagens inaugurais; `rh-poller` e `rh-stuck-detector` devem capturar falhas silenciosas.

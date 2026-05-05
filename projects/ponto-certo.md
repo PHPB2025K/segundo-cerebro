@@ -16,7 +16,8 @@ tags:
 **Branch:** main
 **Stack:** Vite + React + TypeScript + Tailwind + shadcn/ui + Supabase
 **Deploy:** VPS 187.77.237.231, PM2 (porta 3091), Traefik HTTPS
-**URL:** https://ponto.budamix.com.br
+**URL oficial:** https://ponto.budamix.com.br _(ativada 05/05/2026 — DNS no Registro.br + cert Let's Encrypt)_
+**URL legada:** https://pontocerto.gbformulario.com _(continua funcionando, mesmo backend, mesmo cert)_
 **Supabase:** dgldsmhbeosjgfrbegyv
 **GitHub:** https://github.com/PHPB2025K/ponto-certo.git
 
@@ -30,6 +31,7 @@ Ponto eletrônico dos funcionários Budamix. Registro de entrada/saída/interval
 - [15/04] Deploy via SCP (token GitHub na VPS inválido)
 - [30/04] Módulo Conversas RH no admin (`/admin/conversas-rh`) — ferramenta de supervisão das conversas do agente RH com funcionários em tempo real → [[memory/context/decisoes/2026-04#[30/04 noite] Módulo Conversas RH]]
 - [30/04] Saldo acumulado de banco de horas é INVIOLÁVEL — função SQL `calcular_banco_horas_v2` corrigida pra ignorar saldo mensal negativo → [[memory/context/decisoes/2026-04#[30/04 noite] Saldo acumulado]]
+- [05/05] Domínio oficial `ponto.budamix.com.br` ativo. DNS criado no Registro.br + Traefik restartado pra forçar emissão Let's Encrypt (1ª tentativa em 04/05 12:39 UTC falhou por NXDOMAIN). Backend e banco continuam os mesmos — domínio antigo `pontocerto.gbformulario.com` permanece como fallback. → [[memory/sessions/2026-05-05]]
 
 ## Módulos atuais
 

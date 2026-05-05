@@ -45,3 +45,16 @@ _Aprendizados operacionais. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 d
 **Contexto:** Um teste manual simulando o número do Lucas gerou resposta que caiu na conversa real dele, parecendo mensagem desconexa.
 **Lição:** Nunca testar pipeline de funcionário usando número real sem isolar conversa/tag de teste. Preferir contato controlado ou dry-run que não envia outbound.
 **Expira:** 2026-05-30
+
+
+### 2026-05-04 — WhatsApp RH: texto puro + linkPreview false [TÁTICA]
+**Contexto:** Yasmin recebeu bolhas “Aguardando mensagem” em vez de mensagens do RH.
+**Lição:** Mesmo texto simples pode acionar renderização problemática se o cliente/Evolution/Baileys tentar preview/rich render. Para RH, usar texto puro com `linkPreview:false` e evitar interativos/listas/polls.
+**Ação:** Wrapper central atualizado; manter regra em todas as mensagens para funcionários.
+**Expira:** 2026-06-03
+
+### 2026-05-04 — Separar proativo de inbound no RH [TÁTICA]
+**Contexto:** Bloqueio inicial parou todo o RH, mas Pedro queria apenas evitar disparos proativos/alinhamentos enquanto mantinha atendimento receptivo.
+**Lição:** Em agentes com WhatsApp operacional, bloqueio de outbound precisa distinguir proativo de resposta inbound. Parar tudo derruba suporte receptivo sem necessidade.
+**Ação:** Usar guard para proativos e flag explícita (`--allow-rh-reply`) para respostas do pipeline.
+**Expira:** 2026-06-03

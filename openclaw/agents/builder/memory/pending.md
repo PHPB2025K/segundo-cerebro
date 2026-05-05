@@ -10,7 +10,7 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-05-03_
+_Atualizado: 2026-05-04_
 
 ## 🔴 Prioridade Alta
 
@@ -23,6 +23,7 @@ _Atualizado: 2026-05-03_
 
 
 ### Infra OpenClaw / Agentes
+- [ ] **Social Studio Carrossel — Fase 5 cold start/render**: se Pedro priorizar hardening, desenhar container warm/render service para reduzir cold start Puppeteer de 18,6s.
 - [ ] Fisco/OpenClaw — diagnosticar bloqueio de sessions_spawn com `agentId=fisco` retornando `allowed: none`; validar policy/runtime/gateway e restaurar roteamento direto.
 
 ## 🟡 Prioridade Média

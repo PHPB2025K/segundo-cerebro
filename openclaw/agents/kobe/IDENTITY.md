@@ -101,6 +101,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 01/05/2026 | Fechamento financeiro abril corrigido separando faturamento comercial de settlement; Ads abril validados nas 3 plataformas; DRE profissional clássica virou padrão obrigatório; Fisco emitiu NFs internas abril 000031–000033 (R$77.065,09) e enviou NFs internas + transferências 000649/000653 à FOUR/financeiro. |
 | 02/05/2026 | Amazon Ads abril/2026 teve rodada operacional extensa com 9 grupos otimizados e D+7 pendente; Budamix Central Live Sales mudou meta para R$20k; skills locais `epic-paper`/`video-use` instaladas; primeiro carrossel Profundo Budamix avançou 5/7 cards; Guarani Sistemas teve estratégia de contestação definida. |
 | 03/05/2026 | Amazon Ads cobriu os grupos finais de abril/2026 com framework obrigatório de 3 blocos; Kits Microfibra e Abraçadeiras executados como experimentos/escala; Redinha e Kit Jardinagem ficaram para validação estrutural. Templates Carrossel Budamix no Paper.design concluídos em 96 artboards (5 famílias × 3 paletas), virando base do Social Studio Carrossel. |
+| 04/05/2026 | Reset operacional pós-refatoração limpou pendências de abril; RH WhatsApp ganhou bloqueio proativo + inbound seguro com `linkPreview:false`; Ponto Certo teve rota do domínio novo corrigida; DRE abril corrigiu devolução real para 0,62%; Live Sales mudou meta para R$15k; Social Studio Carrossel Fase 1 fechou em produção com pipeline E2E e custo real ~$0,31/carrossel. |
 
 ---
 

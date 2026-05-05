@@ -81,3 +81,21 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 
 - Geração direta do relatório mensal deve rodar como job realmente direcionado ao **Trader**, não como `main` tentando delegar via cron.
 - Conclusão ou falha desse job deve ser avisada no mesmo tópico **Marketplaces** do Telegram onde o Pedro pediu o acompanhamento.
+
+
+## 2026-05-04 — Social Studio Carrossel / Fase 1
+
+- Social Studio Carrossel Fase 1 foi fechada em produção com pipeline E2E: template+briefing → IA copy → IA imagem → render Puppeteer → export PNG ZIP/PDF.
+- Custo real validado: aproximadamente US$ 0,31 por carrossel completo; tempo briefing→pronto ~28–35s cold e ~10s hot cache.
+- Cold start de render de 18,6s fica aceito como dívida de Fase 5; cache hot de 1,31s cobre a operação atual.
+- JPG bundle fica desativado de forma controlada; PNG ZIP + PDF cobrem o uso real da Fase 1.
+- Editor inline e template panorama foram pulados deliberadamente por agora; próxima escolha é Fase 4 publish IG ou Fase 5 hardening.
+
+## 2026-05-04 — Budamix Central / Live Sales
+
+- Meta diária do Budamix Central Live Sales foi ajustada de R$ 20.000 para **R$ 15.000** em produção (`settings.daily_goal`). Esta decisão substitui a meta de 02/05.
+
+## 2026-05-04 — RH WhatsApp
+
+- Em 04/05, mensagens proativas/alinhamentos de RH ficaram bloqueados; agente RH deve continuar em produção para responder inbound espontâneo.
+- Wrapper central de WhatsApp RH deve usar texto puro com `linkPreview: false`; formatos ricos/previews/interativos devem ser evitados.

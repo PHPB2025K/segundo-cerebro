@@ -373,6 +373,19 @@ _Última Consolidação Profunda: 2026-05-01_
 **Ação:** Em templates Paper, pré-processar logos para alpha/crop real, declarar aspect ratio manualmente e evitar dependência de shaders/custom elements.
 **Expira:** 2026-06-02
 
+
+### [TÁTICA] DRE: devolução real ≠ cancelamento pré-envio (2026-05-04)
+**Contexto:** Pedro contestou corretamente uma taxa gerencial inicial de devolução/cancelamento de 13,30% no DRE de abril porque misturava cancelamento pré-envio com devolução financeira pós-recebimento.
+**Lição:** Para DRE estrita, deduzir apenas devolução pós-recebimento/refund real. Cancelamento pré-envio não entra como dedução se o faturamento bruto comercial já usa pedidos válidos; retornos em trânsito devem ser categoria conservadora separada.
+**Ação:** Em DREs futuras, separar categorias (a) cancelamento pré-envio, (b) pós-envio/em trânsito e (c) devolução pós-recebimento; reportar categoria c como dedução real e opcionalmente um cenário conservador com b.
+**Expira:** 2026-06-03
+
+### [TÁTICA] Social Studio render: fontes Variable precisam estar explícitas no Puppeteer (2026-05-04)
+**Contexto:** Render dos carrosséis caía em Helvetica apesar do visual do app estar correto, porque Puppeteer não aplicava as fontes esperadas sem declaração central explícita.
+**Lição:** Para render server-side/HTML→PNG, declarar fontes Variable e fallbacks no próprio render engine, não assumir herança do app/browser.
+**Ação:** Em renderizadores de marketing, validar screenshot final por fonte real antes de considerar UI aprovada.
+**Expira:** 2026-06-03
+
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 
 ### Duplicatas removidas nesta consolidação:
@@ -538,5 +551,7 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 **Lição:** Em jobs críticos com agente delegado, validar antes de anunciar sucesso: artefatos finais gerados, agente correto executado e aviso entregue no tópico esperado. Status `ok` do scheduler sozinho não prova conclusão real.
 **Expira:** 2026-06-03
 ### [TÁTICA] WhatsApp RH: texto puro + linkPreview false (2026-05-04)
-Print da Yasmin mostrou bolhas “Aguardando mensagem” no lugar de mensagens do agente RH. Mesmo `sendText` pode acionar renderização problemática no cliente quando há preview/formato rico. Wrapper central `scripts/send-whatsapp.py` deve enviar texto puro com `linkPreview: false`; evitar interativos/listas/polls/previews via Evolution/Baileys.
+**Contexto:** Print da Yasmin mostrou bolhas “Aguardando mensagem” no lugar de mensagens do agente RH.
+**Lição:** Mesmo `sendText` pode acionar renderização problemática no cliente quando há preview/formato rico. Wrapper central `scripts/send-whatsapp.py` deve enviar texto puro com `linkPreview: false`; evitar interativos/listas/polls/previews via Evolution/Baileys.
+**Expira:** 2026-06-03
 

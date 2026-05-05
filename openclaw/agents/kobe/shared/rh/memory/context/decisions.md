@@ -44,3 +44,11 @@ TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, 
 - Admin Ponto Certo terá módulo Conversas RH para supervisão em tempo real.
 - Bottom nav mobile prioriza Conversas RH no lugar de Histórico/Ponto.
 - Telegram deixa de receber spam de mensagem normal; só escalonamentos e erros.
+
+
+## 2026-05-04 — WhatsApp RH
+
+- Em 04/05, não enviar mensagens proativas/alinhamentos para funcionários sem aprovação explícita do Pedro.
+- O agente RH deve continuar em produção para responder mensagens inbound espontâneas.
+- Wrapper `send-whatsapp.py --instance rh` bloqueia proativo por padrão durante o guard; respostas receptivas usam exceção explícita `--allow-rh-reply`.
+- Mensagens RH devem ser texto puro com `linkPreview:false`; evitar listas, polls, interativos e previews/rich render.

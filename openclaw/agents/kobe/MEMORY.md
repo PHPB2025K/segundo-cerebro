@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-04 10:18 BRT (reset operacional pós-refatoração)._
+_Último update: 2026-05-04 23:30 BRT (consolidação diária)._
 
 ---
 
@@ -132,7 +132,7 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (04/05/2026 10:18 BRT — reset operacional pós-refatoração)
+## Status do Sistema (04/05/2026 23:30 BRT — consolidação diária)
 
 ### 🚨 Crítico
 - **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
@@ -142,11 +142,11 @@ skills/
 
 ### ⚠️ Importante
 - **Amazon Ads:** após reset de 04/05, acompanhar apenas novos sinais/experimentos materializados de maio; abril fica como baseline histórico, não pendência ativa.
-- **Social Studio** está em preview/branch `feat/social-studio-phase2` avançado até Fase 5; precisa QA autenticado e decisão de merge/deploy produção.
+- **Social Studio Carrossel** Fase 1 está em produção com pipeline E2E validado; próxima decisão é Fase 4 publish IG ou Fase 5 hardening.
 - **Blog Budamix Pipeline v2** está em produção; resta inspeção visual humana do post de teste e cleanup.
 - **Budamix Central Full:** fechado com `zero_cost=0`; restam monitoramento Shopee 1E e validação defensiva ML/Amazon.
 - **Vercel Preview** precisa envs públicas Supabase configuradas no ambiente Preview ou passadas explicitamente pela CLI.
-- **Social Studio Carrossel:** spec aprovada e 96 templates Paper prontos; Fase 0 pausada até sessão Claude Code carregar Paper MCP para baselines/system prompt.
+- **Social Studio Carrossel:** 96 templates Paper viraram base do módulo; Fase 1 fechada em produção com custo real ~$0,31/carrossel.
 
 ### ✅ Operacional
 - **Vault como SSoT** validado: OpenClaw aponta para `/root/segundo-cerebro`, sync Mac↔GitHub↔VPS funcionando, workspace antigo deprecado.
@@ -163,6 +163,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-04:** Dia de reset operacional pós-refatoração: Pedro mandou limpar pendências/inconformidades de abril da fila ativa; DRE abril corrigida para devolução estrita pós-recebimento (0,62%, ou 0,70% conservador com retorno em trânsito); Ponto Certo teve rota Traefik corrigida para `ponto.budamix.com.br` e ficou bloqueado apenas por DNS; RH WhatsApp foi bloqueado para proativos, reativado para inbound com guard `--allow-rh-reply`, `linkPreview:false` e reenvios autorizados para Yasmin/Leonardo; Budamix Live Sales mudou meta para R$15k; Social Studio Carrossel fechou Fase 1 em produção com pipeline E2E, export PNG/PDF e custo ~$0,31/carrossel.
 - **2026-05-03:** Amazon Ads fechou a cobertura dos grupos finais de abril: Kits Microfibra executado com criação de Exact `pano microfibra` e escala de Auto; Abraçadeiras Nylon virou experimento de tração após confirmação de 24 un FBA no ASIN ativo; Redinha Frutas e Kit Jardinagem ficaram sem bid por falta de entrega/estrutura. Pedro consolidou o framework obrigatório de 3 blocos para Ads. No CC local, templates Budamix no Paper.design foram concluídos em 96 artboards (5 famílias × 3 paletas), com decisões de CLARA teal/fundo areia e limitação de shaders via MCP registrada.
 - **2026-05-02:** Budamix Central/Live Sales teve meta diária alterada para R$20k em produção. Amazon Ads virou frente principal do dia: abril fechado usado como baseline, com cortes/harvesting/escala em 9 grupos (Potes Vidro, Canequinhas, Bambu, Canelada, Tulipa, Paris, Suporte Gamer, Jarra Medidora e Potes Redondos), D+7 pendente e Kits Microfibra aguardando aprovação. CC local instalou `epic-paper` e `video-use`, primeiro carrossel Profundo Budamix ficou 5/7 cards, e Guarani Sistemas teve estratégia de contestação/distrato com teto técnico R$7.002,30 sem reconhecimento de dívida.
 - **2026-05-01:** Fechamento financeiro abril revisado: faturamento comercial R$405,8k separado de settlement R$355,0k; Ads reais validados (ML R$5.441,44, Shopee R$9.460, Amazon R$2.478,95) e DRE profissional clássica definida como padrão obrigatório. Fisco emitiu NFs internas abril Filial→Simples 000031–000033 (R$77.065,09) após reconciliação fiscal por SKU/componente, exclusão CK4742/Jarra Clink e validação IPI; PDFs/XMLs enviados à FOUR e financeiro. NFs de transferência 000649/000653 também enviadas à FOUR com ressalva sobre orientação Suellen v2.1.

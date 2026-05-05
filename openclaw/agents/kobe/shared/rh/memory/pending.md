@@ -1,12 +1,12 @@
 # Pendências — Agente [[agents/rh/IDENTITY|RH]]
 
-_Atualizado: 2026-04-30_
+_Atualizado: 2026-05-04_
 
 ## 🔴 Imediato
+- [ ] Normalização 05/05: confirmar expiração/remoção do guard temporário e manter proativos bloqueados até haver rotina/autorização clara; inbound deve seguir ativo.
 - [ ] Deploy produção do módulo Conversas RH se ainda estiver apenas local.
-- [ ] Acompanhar feedback da Yasmin sobre recebimento dos 2 chunks da mensagem inaugural.
+- [ ] Acompanhar feedback da Yasmin sobre recebimento dos 2 chunks reenviados com `linkPreview:false`.
 - [ ] Acompanhar primeiras respostas dos funcionários às mensagens inaugurais.
-- [ ] Monitor Ponto Semanal real em 04/05 10h BRT com `rh-poller` e `rh-stuck-detector` ativos.
 
 ## Dados pendentes do Pedro / Contador
 - [ ] **Datas de admissão** — de cada funcionário (necessário para cálculo de férias).

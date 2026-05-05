@@ -1,6 +1,6 @@
 # Pendências — Spark
 
-_Atualizado: 2026-05-03_
+_Atualizado: 2026-05-04_
 
 ## 🔴 Prioridade Alta
 

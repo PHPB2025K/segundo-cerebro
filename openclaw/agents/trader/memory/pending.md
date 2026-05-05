@@ -1,8 +1,12 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-03_
+_Atualizado: 2026-05-04_
 
 ## 🔴 Prioridade Alta
+
+### Relatório mensal
+- [ ] **Relatório mensal abril — reexecutar job direto do Trader**: validar geração dos 3 artefatos finais, corrigir caminho Shopee e avisar conclusão/falha no tópico Marketplaces do Telegram.
+
 
 ### Fechamento Março — Gaps
 - [ ] Ads spend março por plataforma (ML, Amazon, Shopee manual) para validar consolidado.

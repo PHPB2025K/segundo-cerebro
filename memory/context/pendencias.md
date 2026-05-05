@@ -1,18 +1,18 @@
 ---
 title: "pendencias"
-created: 2026-04-14
+created: 2026-04-26
 type: tracker
+agent: kobe
 status: active
 tags:
-  - memory
-  - context
+ - agent/kobe
+ - memory
 ---
-
 # Pendências Ativas
 
-> Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração.
+> Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-04 10:18 BRT — reset operacional pós-refatoração_
+_Atualizado: 2026-05-04 23:30 BRT — consolidação diária_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -41,11 +41,11 @@ _Atualizado: 2026-05-04 10:18 BRT — reset operacional pós-refatoração_
 
 ## 🚨 RH / Ponto Certo
 
-- [ ] **RH — 04/05 sem mensagens proativas no WhatsApp**: sistema pós-refatoração voltou hoje; não enviar alinhamentos/monitor/push ativo para funcionários. O agente RH deve continuar em produção para responder mensagens inbound dos funcionários.
+- [ ] **RH — 05/05 reativação/normalização segura**: remover/expirar guard temporário de 04/05 apenas para proativos autorizados/rotina normal; manter exceção `--allow-rh-reply` para respostas inbound e não disparar alinhamentos retroativos sem aprovação.
+- [ ] **Ponto Certo — DNS do domínio novo**: criar/apontar A record de `ponto.budamix.com.br` para `187.77.237.231`; Traefik já aceita o host e validação local retornou HTTP 200.
 - [ ] **Ponto Certo — deploy produção do módulo Conversas RH** se ainda estiver apenas local: build, publicar na VPS e reiniciar PM2 `ponto-certo`.
-- [ ] **RH — acompanhar feedback da Yasmin** sobre recebimento correto dos 2 chunks da mensagem inaugural.
+- [ ] **RH — acompanhar feedback da Yasmin** sobre recebimento correto dos 2 chunks da mensagem inaugural reenviada com `linkPreview: false`.
 - [ ] **RH — acompanhar primeiras respostas dos funcionários** às mensagens inaugurais; `rh-poller` e `rh-stuck-detector` devem capturar falhas silenciosas.
-- [ ] **RH — Monitor Ponto Semanal real em 04/05 10h BRT**: primeira execução com agente RH operacional, polling e Conversas RH.
 - [ ] **RH — datas de admissão dos funcionários** para cálculo futuro de férias.
 - [ ] **RH — padrão do contador FOUR/Suellen** para espelho de ponto.
 
@@ -59,10 +59,9 @@ _Atualizado: 2026-05-04 10:18 BRT — reset operacional pós-refatoração_
 
 - [ ] **Blog Budamix — inspeção visual manual do post de teste** id `35873e72-a3ff-4ad9-9ea4-1216c05ecec0` (pilar `receber-visitas`) no `/admin/blog`; após Pedro inspecionar cover/supports/pins, deletar o post de teste.
 - [ ] **Blog WF0 — polir payload de resposta**: hoje retorna `pillar_focus=null` no response mesmo quando o foco foi aplicado internamente. Cosmético; funcional OK.
-- [ ] **Social Studio Carrossel — retomar Fase 0 após reiniciar sessão Claude Code**: Paper MCP precisa carregar; capturar 96 baselines do arquivo `01KQMVPNGXW4ZWQPVE1KDPMBN3`, arquivar wizard antigo Kobe e draftar system prompt da IA copy.
+- [ ] **Social Studio Carrossel — decidir próxima fase**: Pedro escolhe entre Fase 4 publish IG (1 semana) ou Fase 5 hardening (1 semana). Recomendação técnica: Fase 5 primeiro se o objetivo for estabilidade; Fase 4 primeiro se publicação automática virar prioridade comercial.
 - [ ] **Social Studio Carrossel — Pedro identificar app Meta existente da Budamix e gerar long-lived token IG**; Kobe coloca no Supabase Vault quando recebido.
-- [ ] **Social Studio — QA autenticado do preview atual**: testar fluxo completo até Fase 5 (criar ideia, gerar copy, editar carrossel, adicionar slides, renderizar PNGs) apenas se ainda fizer sentido antes do novo módulo de Carrossel.
-- [ ] **Social Studio — decidir merge/deploy produção** após QA e/ou após iniciar módulo de Carrossel; evitar empurrar wizard antigo se for descartado.
+- [ ] **Social Studio Carrossel — Fase 5 backlog**: container warm para cold start render, JPG encoder, QA visual diff CI, rate limiting + audit log, tradução de erros Meta.
 - [ ] **Vercel Token - Budamix Ecommerce** — item no 1Password `notesPlain` ainda incompleto; GitHub→Vercel auto-deploy já reduz bloqueio, mas token ainda é útil para rollback/hotfix CLI.
 - [ ] **Vercel Preview Env** — configurar `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` no ambiente Preview do Vercel ou padronizar deploy preview via CLI com envs explícitas.
 
@@ -74,7 +73,6 @@ _Atualizado: 2026-05-04 10:18 BRT — reset operacional pós-refatoração_
 
 ## 🚨 Infraestrutura e autenticações degradadas
 
-- [x] **core-audit cron** — resolvido na verificação de 04/05 02:00 BRT: último run conhecido em 03/05 03h BRT voltou `ok` após falha anterior.
 - [ ] **Security Audit - Semanal** — último run conhecido em 03/05 06h BRT falhou com timeout/status `error`; investigar no próximo bloco operacional.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.
@@ -84,9 +82,6 @@ _Atualizado: 2026-05-04 10:18 BRT — reset operacional pós-refatoração_
 ## 🟡 Observação / estabilidade
 
 - [ ] **Watchdog/Monitor Ponto/RH crons** — revisar timeouts/fallbacks em jobs com histórico de falha por timeout/model not found.
-
-## 🟡 Para briefing matinal — estagnados >7 dias
-
 
 ## 🟡 Futuro aprovado / não imediato
 
@@ -109,4 +104,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-05-04 02:00 BRT._
+_Última organização: 2026-05-04 23:30 BRT._

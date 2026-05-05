@@ -173,12 +173,43 @@ QA visual diff em CI (3% tolerância) + rate limiting + quota mensal $50 + audit
 - Fase 4 publish IG (1 sem) OU Fase 5 hardening (1 sem) — Pedro decide ordem
 - Backlog F5 priorizado: cold start render → container warm; JPG encoder; QA visual diff CI; rate limiting + audit log
 
+## PR2 · Cor por elemento + Histórico de imagens (05/05/2026)
+
+✅ **PR2 ~95% — C1 a C6 entregues, validado visualmente**. Implementado entre 05/05 manhã e noite.
+
+| Commit | Owner | Entrega |
+|---|---|---|
+| C1+C1.5 migrations | CC | `element_styles jsonb` + `image_versions jsonb` + backfill 21 slides sintéticos |
+| C2 helpers | CC | `lib/element-style-tokens.ts` com 7 tokens · `resolveSlotColor` · `colorOverrideForSlot` (conservador) · `updateSlideElementStyle` |
+| C3 ColorTokenPicker | CC | Swatches inline 3-estados (custom/default/limpar) · botão × · `cta_terracotta` exclusivo de `cta_button` |
+| C4 templates | CC | 11 templates + Eyebrow shared usando `colorOverrideForSlot(slot, ...) ?? palette.X` — visual 100% preservado quando sem custom |
+| C5 edge function | CC | `social-generate-image` v10 com append em `image_versions` + truncate `slice(-5)` · entries: id, image_asset_id, prompt, reference_image_url=null, cost, created_at |
+| C6 popover | CC | `ImageVersionsPopover.tsx` (213 linhas) · badge `vN/total` clicável · thumbs com signed URLs sob demanda · restore zero-custo · regenerar inline com guard de quota >80% |
+
+### Decisões PR2
+
+| ID | Decisão | Razão |
+|---|---|---|
+| D22 | Token semântico em `element_styles` (não RGB literal) | Ajustar paleta no futuro propaga em elementos customizados |
+| D23 | Manter blobs no bucket ao rotacionar versões (5 max) | Storage barato; cleanup futuro >90d como PR independente |
+| D24 | Padrão conservador `colorOverrideForSlot` no C4 (não `resolveSlotColor` completo) | `SLOT_DEFAULT_TOKEN` diverge do render real em alguns slots — preservar visual quando sem custom |
+| D25 | Edge function `generate-social-copy` reescrita com 2 queries em vez de embedded join `palette:social_palettes(*)` | Migration `palette_key_decouple` dropou FK; PostgREST não resolve embed sem FK → 404 enganoso |
+| D26 | `image_versions[].prompt = imageBrief` (não prompt completo enviado ao Gemini) | Coerência com `slide.image_prompt` e backfill C1.5; `aiKeywords` + RESTRICTIONS são uniformes |
+| D27 | Restore zero-custo · não bumpa `image_version` numérico · não toca `image_versions` array | Restore aponta de volta, não cria entry; "versão ativa" deriva do índice da entry com `image_asset_id == slide.image_asset_id` |
+| D28 | Geração individual em slide vazio fica para PR3 | C6 = "regenerar/restaurar versão" (slide já tem imagem); PR3 = "criar imagem sob demanda" (módulo coeso) |
+| D29 | Bug visual `cover-numeric` levantado mas NÃO corrigido na sessão | Pedro decide entre 3 opções de fix (mínimo / +tech debt / outro) na próxima sessão |
+
+### Falta apenas no PR2
+
+- [ ] **Bug cover-numeric**: `SlideRenderer.tsx:143` instancia `<CoverNumeric>` sem `imageUrl={img}`. Imagem é gerada (~$0.04) mas template nunca renderiza trans inferior 480px. Inconsistência colateral em `Editor.tsx:777` (`'cover-numeric'` em `noImage` do `needsImage`). Fix mínimo: 2 linhas.
+- [ ] **Tech debt lateral (não-bloqueante)**: edge function gera imagem pra slides item posições 2/6 do `lista` que nunca renderizam (~$0.08/carousel desperdiçado). Solução: edge function aceitar lista de slide_ids do frontend.
+
 ## Como retomar (próxima sessão)
 
 1. `/cerebro` no terminal
-2. Pedro decide: Fase 4 (publish IG) ou Fase 5 (hardening)?
-3. Se Fase 4: Pedro identifica app Meta existente da Budamix + gera long-lived token IG → Vault. Kobe implementa `social-publish-instagram` + cron refresh
-4. Se Fase 5: priorizar cold start render (container warm via Builder agent VPS) + rate limiting
+2. Pedro decide entre 3 opções de fix do bug cover-numeric (mínimo / +tech debt / outro) → fechar PR2 100%
+3. Depois: PR3 (modo manual default + ImageGenerationDialog + geração individual em slide vazio + foto de referência)
+4. Eventualmente Fase 4 (publish IG) ou Fase 5 (hardening)
 
 ## Referências cruzadas
 

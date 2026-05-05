@@ -16,6 +16,11 @@ _Atualizado: 2026-05-05 ~21:30 BRT — sessão Social Studio PR2 C4-C5-C6_
 
 ## 🚨 URGENTE — Operação / Dados
 
+- [ ] **Estoque Budamix — retomar deploy em produção** (pause em 05/05 22h aguardando decisão de credencial GitHub na VPS). PR1+PR2+PR3a no repo `PHPB2025K/estoque-budamix` mas produção ainda roda build de 13/04. Backup feito em `/var/www/estoque-budamix.backup-20260505-2143/`, `.env` preservado, plano de remediação aprovado com 5 salvaguardas. Bloqueado no Bloco 4 (`git fetch` falhou com 403). Recomendação: Deploy Key SSH read-only no repo. Ver [[memory/sessions/2026-05-05]] Session Extract estoque-budamix + memory local `estoque_budamix_deploy_checkpoint.md`.
+- [ ] **Estoque Budamix — POT1BB duplicado na aba ESTOQUE da planilha de Precificação** (`1u74a...`): L8 com Trava est=24, L9 sem Trava est=2, mesmo SKU. `find()` sempre pega L8, baixas em "sem Trava" caem na linha errada. Solução proposta: renomear L9 → `POT1BB_ST`. Aguardando OK do Pedro pra aplicar via gspread.
+- [ ] **Estoque Budamix — lista de aliases editável em `/tmp/pr3-cadastro-cleanup.md`** (5 famílias: POT1BB, IMB501, YW, KIT, série 914). Pedro precisa preencher os termos coloquiais reais da equipe (anilão? montado? caneca bola?) e devolver pra aplicar.
+- [ ] **Estoque Budamix — KFJ003 SKU não encontrado** apareceu 1x no histórico Supabase. Pedro vai consultar a equipe se é fantasma (excluir) ou cadastro retroativo necessário.
+- [ ] **Estoque Budamix — PR4 kits/BOM (bug #5/#6 estrutural)**: 75% dos erros reais (12 de 16 nas últimas 500 ops) são "Estoque insuficiente" — sintoma de sistema que não decompõe kit em componentes na baixa. Mudança estrutural com schema novo. Tocar só depois de fechar PR1+PR2+PR3a em produção + cleanup cadastro acima.
 - [ ] **Budamix Central — Estoque Fase 1.5: validação visual do Pedro** em `/estoque/fisico` e `/estoque/consolidado` (KPIs premium, badge sync, donut FULL×FÍSICO, Top 10 SKUs). Se aprovado, seguir para Fase 2.
 - [ ] **Budamix Central — Estoque Fase 2: movimentações**: tabela `physical_movements`, trigger `apply_physical_movement`, role `operator`, form modal, histórico por contramov e sync app→planilha a cada 2min.
 - [ ] **Budamix Central — Estoque Fase 3/4**: import CSV/XLSX com template e validação em lote; import PDF com Vision/Claude quando virar prioridade.

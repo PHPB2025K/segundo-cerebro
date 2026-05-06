@@ -56,3 +56,14 @@ _Registro de decisões permanentes. NUNCA contradizer._
 - Builder é agente especializado dev/MicroSaaS
 - Coordenado pelo Kobe — nunca fala direto com Pedro
 - Resultados sempre entregues ao Kobe para validação
+
+## 2026-05-05 — Estoque Budamix
+
+- Repo canônico desejado: `PHPB2025K/estoque-budamix` privado.
+- Produção segue na VPS via build rsync histórico até completar remediação.
+- App é desktop-only.
+- Próximo passo recomendado: Deploy Key SSH read-only na VPS para permitir `git fetch`/`reset --hard origin/main` com backup e rollback.
+
+## 2026-05-05 — Canggu CI/CD
+
+- Edge Functions Supabase do Canggu devem ser deployadas via GitHub Actions; mudanças em `_shared/` exigem redeploy total.

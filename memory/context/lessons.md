@@ -572,3 +572,32 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 **Lição:** Antes de evoluir plano de contas a partir de extrato/settlement, validar natureza por tipo/status e rodar sanity check por marketplace. “Bater com o total” não basta se a linha estiver contaminada.
 **Ação:** Para U44/U15 e linhas comerciais similares, separar timing de caixa, reembolso, disputa/cancelamento e fee operacional antes de consolidar DRE gerencial.
 **Expira:** 2026-06-05
+
+### [TÁTICA] Traefik ACME: criar DNS antes do Host, ou restartar após propagação (2026-05-05)
+**Contexto:** O Ponto Certo já tinha router Traefik aceitando `ponto.budamix.com.br`, mas o DNS não existia. O ACME tentou emitir, recebeu NXDOMAIN e ficou em backoff; depois que o DNS propagou, foi preciso restartar Traefik para forçar nova tentativa.
+**Lição:** Workflow correto para domínio novo na VPS: criar DNS → validar propagação pública → ajustar Host/Traefik → reload. Se a ordem for invertida, restart controlado do Traefik após propagação resolve o cache de erro ACME.
+**Expira:** 2026-06-04
+
+### [ESTRATÉGICA] Edge Functions Supabase precisam de CI/CD; repo não é produção (2026-05-05)
+**Contexto:** Canggu teve três regressões no mesmo dia por drift: origin poll estava antes do commit numerado, hard-block ML estava 9s antes do commit que chamava o validador, e outras funções estavam stale desde 30/04.
+**Lição:** Push no GitHub não publica Edge Function do Supabase. Todo projeto com edge functions operacionais precisa de deploy automático por GitHub Actions ou checklist obrigatório de deploy + versão. Caso contrário, o repo vira uma falsa fonte de verdade.
+**Ação:** Canggu ganhou GitHub Action de auto-deploy em 05/05; replicar padrão em outros projetos Supabase que tenham funções críticas.
+
+### [TÁTICA] Prompt e fallback não podem conter frase proibida pelo próprio validador (2026-05-05)
+**Contexto:** O prompt da Ana no ML mandava finalizar com “estamos à disposição”, exatamente um dos padrões proibidos pelo hard-block. O fallback técnico também continha a frase, criando loop interno.
+**Lição:** Sempre que criar guardrail determinístico de linguagem/compliance, auditar prompt, exemplos e fallbacks contra a mesma blacklist. O validador não pode brigar com as instruções do LLM.
+**Expira:** 2026-06-04
+
+### [ESTRATÉGICA] Antes de refatorar app em produção, provar a rota real de deploy (2026-05-05)
+**Contexto:** No Estoque Budamix, PR1+PR2+PR3a foram commitados no repo novo, mas produção continuava rodando build rsync histórico de 13/04 na VPS sem ponte GitHub→VPS. O push era backup, não deploy.
+**Lição:** Antes de prometer correção em produção, validar repo → build → deploy → domínio por evidência real: remote canônico, CI/CD ou script de deploy, commit servido, PM2/Vercel/Traefik e smoke pós-deploy. Se a ponte não existe, tratar como dívida de deploy antes de stackar PRs.
+
+### [TÁTICA] Estoque Budamix é desktop-only; não otimizar mobile por inferência (2026-05-05)
+**Contexto:** A PR2 do Estoque recebeu pente fino mobile porque o problema parecia “erro de clique”, mas Pedro corrigiu que a equipe lança entradas/saídas só no computador.
+**Lição:** Em sistemas internos, validar o dispositivo real de uso antes de gastar tempo em responsividade/touch/teclado iOS. Para estoque-budamix, daqui pra frente: desktop-first/only.
+**Expira:** 2026-06-04
+
+### [TÁTICA] Social Studio: render não deve gerar imagem para slide que não consome imagem (2026-05-05)
+**Contexto:** O template `lista` gerava imagem para `cover-numeric`, mas `SlideRenderer` não passava `imageUrl` para o componente; também gerava imagens para alguns slides `item` que não renderizam imagem.
+**Lição:** Antes de acionar IA de imagem por slide, o frontend/render engine deve ter uma matriz explícita `slide_type → needsImage → consumesImage`. Sem isso, há desperdício recorrente por carrossel e bugs visuais invisíveis.
+**Expira:** 2026-06-04

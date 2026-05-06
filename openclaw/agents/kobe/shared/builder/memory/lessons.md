@@ -55,3 +55,11 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 
 ### [ESTRATÉGICA] App de produção sem Git antes de refactor = risco alto (2026-04-29)
 **Lição:** Antes de refactor sério em produção, criar snapshot, baseline git, remote privado e tag de rollback.
+
+### 2026-05-05 — Provar rota real de deploy antes de refatorar produção [ESTRATÉGICA]
+**Contexto:** Estoque Budamix recebeu PRs no repo novo, mas produção ainda rodava build rsync histórico na VPS sem ponte GitHub→VPS.
+**Lição:** Antes de anunciar correção em produção, validar remote canônico, CI/deploy script, commit servido e smoke no domínio real. Push sem ponte de deploy é só backup.
+
+### 2026-05-05 — Supabase Edge Functions precisam de auto-deploy [ESTRATÉGICA]
+**Contexto:** Canggu teve regressões por funções stale em produção.
+**Lição:** Projeto com Edge Functions críticas deve ter GitHub Actions ou checklist obrigatório de deploy por função, especialmente quando `_shared/` muda.

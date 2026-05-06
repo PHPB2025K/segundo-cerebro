@@ -116,3 +116,31 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - ML: retirar de U44 e mover para Outras Taxas Marketplace **R$ 6.156,26** = disputas/cancelamentos R$ 3.769,11 + taxas de reembolso/devolução R$ 2.387,15. EBITDA não deve mudar nessa reorganização.
 - Amazon: reconciliar residual aproximado de R$ 120–258 e, se confirmado como fee acessório, classificar em Outras Taxas Marketplace.
 - Reconciliação obrigatória da v4: U44 limpa + Outras Taxas Marketplace = **R$ 115.531,68** com tolerância máxima ±R$ 100; EBITDA não pode mudar na refatoração v4.
+
+## 2026-05-05 — Canggu / domínio, CI/CD e Ana ML
+
+- `https://canggu.com.br` passa a ser o domínio oficial do admin Canggu; `https://canguu-sigma.vercel.app` fica como fallback. Redirect www↔apex ainda pendente, recomendação: www → apex.
+- Canggu deve usar GitHub Actions para auto-deploy das 13 Supabase Edge Functions. Mudanças em `_shared/` redeployam todas; mudanças em função específica redeployam só a função. Isso encerra o débito B5 de CI/CD.
+- Ana no Mercado Livre deve usar tom natural, simples e humano; proibido instruir ou fallbackar para frases como “entre em contato”, “fale conosco” ou “estamos à disposição”, pois conflitam com o hard-block do ML.
+- A resposta antiga no MLB3343832496 com frase forbidden precisa de correção manual no painel do ML e feedback 👎 no Canggu para alimentar embedding de correção.
+
+## 2026-05-05 — RH / Ponto Certo
+
+- `ponto.budamix.com.br` foi ativado como domínio oficial do Ponto Certo com DNS Registro.br → VPS, HTTPS Let's Encrypt e fallback `pontocerto.gbformulario.com`.
+- WhatsApp RH proativo fica bloqueado indefinidamente até liberação explícita do Pedro. Guard ativo até 2027-01-01 como data-limite técnica; exceção `--allow-rh-reply` segue permitida para respostas inbound.
+
+## 2026-05-05 — Social Studio PR2
+
+- PR2 do Social Studio usa tokens semânticos em `element_styles`, não RGB literal, para que futuras mudanças de paleta propaguem em elementos customizados.
+- Histórico de imagens fica em `image_versions` JSONB com máx. 5 entradas; blobs antigos permanecem no bucket para recuperação manual. Cleanup >90d fica para futura rotina.
+- Templates usam padrão conservador `colorOverrideForSlot(...) ?? palette.X`, preservando visual 100% quando não há customização explícita.
+- Restore de imagem é zero-custo, não incrementa `image_version` e não altera o array `image_versions`; versão ativa deriva do `image_asset_id` atual.
+- Bug `cover-numeric` não foi corrigido na sessão; Pedro decide o fix mínimo ou com tech debt na próxima rodada.
+
+## 2026-05-05 — Estoque Budamix
+
+- `PHPB2025K/estoque-budamix` é o repo canônico desejado, mas produção ainda roda deploy rsync histórico na VPS até completar a remediação.
+- Plano de remediação aprovado com backup completo, hash `.env`, verificação de HEAD remoto, rollback rápido e checagem PM2/ownership; execução pausada no `git fetch` por falta de credencial GitHub na VPS. Recomendação: Deploy Key SSH read-only.
+- Estoque Budamix é desktop-only; não gastar esforço futuro com otimização mobile salvo pedido explícito.
+- Correção de cadastro proposta: renomear `POT1BB` sem Trava para `POT1BB_ST`, após OK do Pedro.
+- Bug dominante do estoque é kits/BOM: 12 de 16 erros recentes eram “Estoque insuficiente”; tocar PR4 só depois de PR1+PR2+PR3a estarem em produção e cadastro limpo.

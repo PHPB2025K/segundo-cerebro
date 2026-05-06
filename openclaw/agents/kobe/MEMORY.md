@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-04 23:30 BRT (consolidação diária)._
+_Último update: 2026-05-05 23:30 BRT (consolidação diária)._
 
 ---
 
@@ -132,27 +132,26 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (04/05/2026 23:30 BRT — consolidação diária)
+## Status do Sistema (05/05/2026 23:30 BRT — consolidação diária)
 
 ### 🚨 Crítico
+- **Estoque Budamix:** PR1+PR2+PR3a estão no repo, mas produção ainda roda build rsync de 13/04; remediação pausada no `git fetch` por falta de credencial GitHub na VPS. Próxima decisão: Deploy Key SSH read-only (recomendado) vs PAT vs rsync.
+- **Social Studio PR2:** C1-C6 entregues e validados; falta decidir/corrigir bug `cover-numeric` que gera imagem mas não renderiza no template `lista`.
+- **DRE Abril:** U15 Descontos Concedidos vem antes da refatoração U44 v4 limpa.
 - **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
-- **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2 de movimentações.
-- **Marco 04/05 pós-refatoração:** pendências/inconformidades de abril removidas da fila ativa; Pedro vai regularizar abril diretamente. A partir daqui, só entram pendências novas ou recorrências materializadas após 04/05.
-- **Google Ads OAuth do Spark** segue com `invalid_grant` e precisa novo refresh token.
 
 ### ⚠️ Importante
-- **Amazon Ads:** após reset de 04/05, acompanhar apenas novos sinais/experimentos materializados de maio; abril fica como baseline histórico, não pendência ativa.
-- **Social Studio Carrossel** Fase 1 está em produção com pipeline E2E validado; próxima decisão é Fase 4 publish IG ou Fase 5 hardening.
-- **Blog Budamix Pipeline v2** está em produção; resta inspeção visual humana do post de teste e cleanup.
-- **Budamix Central Full:** fechado com `zero_cost=0`; restam monitoramento Shopee 1E e validação defensiva ML/Amazon.
-- **Vercel Preview** precisa envs públicas Supabase configuradas no ambiente Preview ou passadas explicitamente pela CLI.
-- **Social Studio Carrossel:** 96 templates Paper viraram base do módulo; Fase 1 fechada em produção com custo real ~$0,31/carrossel.
+- **Canggu:** domínio oficial `canggu.com.br` ativo; CI/CD de Edge Functions implementado; pendem correção manual da resposta ML antiga, feedback 👎 e decisão redirect www↔apex.
+- **RH/Ponto Certo:** `ponto.budamix.com.br` ativo com SSL; WhatsApp RH proativo bloqueado indefinidamente até liberação explícita, inbound permitido.
+- **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2.
+- **Amazon Ads:** D+7 das rodadas 02/05 e 03/05 seguem na fila.
+- **Blog Budamix Pipeline v2:** em produção; resta inspeção visual humana do post de teste e cleanup.
 
 ### ✅ Operacional
-- **Vault como SSoT** validado: OpenClaw aponta para `/root/segundo-cerebro`, sync Mac↔GitHub↔VPS funcionando, workspace antigo deprecado.
-- **Blog Budamix/Admin Pipeline v2** concluído em 7 fases e deployado em produção com `blog_pillars`, WF0/WF2/WF3/WF4 atualizados, LLM como diretor de arte criativo e Admin com pilares/pins manuais.
-- **Budamix Central** tem Full com custo 100% coberto e módulo Estoque dedicado (Full/Físico/Consolidado) deployado; capital total de estoque em torno de R$ 709k.
-- **Social Studio** tem preview antigo funcional até render PNG, mas o novo módulo de Carrossel vira frente canônica após os templates Paper oficiais.
+- **Vault como SSoT** segue válido: OpenClaw aponta para `/root/segundo-cerebro`, sync Mac↔GitHub↔VPS funcionando.
+- **Social Studio Carrossel Fase 1** segue em produção com pipeline E2E e custo real ~$0,31/carrossel.
+- **Canggu** agora tem 13/13 Edge Functions sincronizadas por Action e hard-block ML ativo no `process-ml-question`.
+- **Ponto Certo** responde HTTPS 200 no domínio oficial; fallback legado permanece disponível.
 
 ## Qualidade da Memória (Consolidação Diária 30/04)
 - **sessions/2026-04-30.md:** consolidado com Budamix Central Full/Estoque, Canggu, RH/Ponto Certo, GitHub→Vercel e pendências finais.
@@ -163,6 +162,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-05:** Dia pesado de correção de drift e produto: Ponto Certo ganhou DNS+SSL oficial em `ponto.budamix.com.br`; RH WhatsApp proativo foi bloqueado indefinidamente; Canggu migrou para `canggu.com.br`, eliminou drift de 13 Edge Functions com GitHub Actions e ajustou o tom/hard-block da Ana no ML; Social Studio avançou PR1+PR2 com paletas, swatches, histórico/restore de imagens e edge functions corrigidas, restando bug `cover-numeric`; Estoque Budamix ganhou repo canônico e PR1+PR2+PR3a, mas deploy pausou por falta de credencial GitHub na VPS; DRE abril confirmou U15 antes da U44 v4 limpa.
 - **2026-05-04:** Dia de reset operacional pós-refatoração: Pedro mandou limpar pendências/inconformidades de abril da fila ativa; DRE abril corrigida para devolução estrita pós-recebimento (0,62%, ou 0,70% conservador com retorno em trânsito); Ponto Certo teve rota Traefik corrigida para `ponto.budamix.com.br` e ficou bloqueado apenas por DNS; RH WhatsApp foi bloqueado para proativos, reativado para inbound com guard `--allow-rh-reply`, `linkPreview:false` e reenvios autorizados para Yasmin/Leonardo; Budamix Live Sales mudou meta para R$15k; Social Studio Carrossel fechou Fase 1 em produção com pipeline E2E, export PNG/PDF e custo ~$0,31/carrossel.
 - **2026-05-03:** Amazon Ads fechou a cobertura dos grupos finais de abril: Kits Microfibra executado com criação de Exact `pano microfibra` e escala de Auto; Abraçadeiras Nylon virou experimento de tração após confirmação de 24 un FBA no ASIN ativo; Redinha Frutas e Kit Jardinagem ficaram sem bid por falta de entrega/estrutura. Pedro consolidou o framework obrigatório de 3 blocos para Ads. No CC local, templates Budamix no Paper.design foram concluídos em 96 artboards (5 famílias × 3 paletas), com decisões de CLARA teal/fundo areia e limitação de shaders via MCP registrada.
 - **2026-05-02:** Budamix Central/Live Sales teve meta diária alterada para R$20k em produção. Amazon Ads virou frente principal do dia: abril fechado usado como baseline, com cortes/harvesting/escala em 9 grupos (Potes Vidro, Canequinhas, Bambu, Canelada, Tulipa, Paris, Suporte Gamer, Jarra Medidora e Potes Redondos), D+7 pendente e Kits Microfibra aguardando aprovação. CC local instalou `epic-paper` e `video-use`, primeiro carrossel Profundo Budamix ficou 5/7 cards, e Guarani Sistemas teve estratégia de contestação/distrato com teto técnico R$7.002,30 sem reconhecimento de dívida.
@@ -186,7 +186,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) operar a partir do marco 04/05 sem carregar abril como pendência ativa, (2) retomar Social Studio Carrossel Fase 0 com Paper MCP, (3) fechar março com ads + consolidado + DRE semanal, (4) QA real Blog Budamix e normalizar autenticações/rotas que ainda quebrarem após 04/05._
+_Próximas ações: (1) retomar deploy do Estoque Budamix com Deploy Key SSH read-only, (2) fechar bug cover-numeric do Social Studio PR2 e seguir PR3, (3) apurar U15 antes da U44 v4, (4) acompanhar D+7 Amazon Ads, (5) corrigir resposta ML antiga do Canggu e decidir redirect www↔apex._
 
 ---
 ## Contexto

@@ -29,3 +29,14 @@ TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, 
 - Módulo Estoque terá abas Full/Físico/Consolidado.
 - Fase 2 usará role `operator`, sem delete de movimentações; correção por contramov.
 - Sync app→planilha deve rodar a cada 2min.
+
+## 2026-05-05 — Estoque Budamix
+
+- Repo canônico desejado: `PHPB2025K/estoque-budamix` privado.
+- Produção segue na VPS via build rsync histórico até completar remediação.
+- App é desktop-only.
+- Próximo passo recomendado: Deploy Key SSH read-only na VPS para permitir `git fetch`/`reset --hard origin/main` com backup e rollback.
+
+## 2026-05-05 — Canggu CI/CD
+
+- Edge Functions Supabase do Canggu devem ser deployadas via GitHub Actions; mudanças em `_shared/` exigem redeploy total.

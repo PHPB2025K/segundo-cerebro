@@ -34,6 +34,18 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 
 **Última grande sessão:** 2026-04-30 (maratona ~7-8h) — ver [[memory/sessions/2026-04-30]] seção "Maratona Canggu" + [[memory/context/decisoes/2026-04#[30/04 tarde/noite] Canggu — pipeline edge function canônico + mídia visível + repo único]].
 
+**O que mudou em 06/05 (incidente Ana 24/7):**
+
+Manhã (~08:30-08:50 BRT) — Pedro reportou Ana respondendo "horário de atendimento de segunda a sexta, das 8h às 18h" (que contradiz proposta 24/7 inviolável) + origin poll ausente. Investigação: a frase exata aparece 11x no histórico em fev-mar/2026, **zero ocorrências nas últimas 24h** — print provavelmente antigo, mas a classe de bug continua viva (regra 11 do system_prompt era só persuasiva).
+
+Resolução em duas camadas + bonus, commit `604969a fix(ana): blindar 24/7 + ampliar gating do origin poll`:
+
+- **Camada A — prompt reforçado.** UPDATE no `agent_config.system_prompt` aplicado direto via Management API (19.452 → 20.209 chars). Regra 11 reescrita com bloco `PROIBIDO ABSOLUTAMENTE` listando frases negativas literais (segunda a sexta, Xh às Yh, expediente, deixe sua mensagem, retornaremos em breve, etc) + frase canônica obrigatória de resposta: *"Estou disponível 24 horas por dia, 7 dias por semana. Como posso te ajudar?"*. Migration registrada em `supabase/migrations/20260506100000_strengthen_24_7_rule.sql` pra rastreabilidade.
+- **Camada B — guardrail determinístico.** `_shared/response-validator.ts` ganhou `BUSINESS_HOURS_FORBIDDEN_PATTERNS` (11 regex) + `detectBusinessHoursLimit()` exposto + HARD BLOCK no início de `validateResponse()`. Quando aciona, a resposta INTEIRA é substituída pela canônica antes de chegar ao N8N — não tenta remendar. Razões logadas em warnings (`forbidden_business_hours:*` + `business_hours_blocked_substituted`). 8/8 smoke tests Deno passando, incluindo falsos positivos (preço, prazo de entrega, cores).
+- **Bonus — origin poll defensivo.** `webhook-whatsapp/index.ts` ampliou gating: `(customer._isNew || customer.source == null) && isNewConversation && assigned_to='agent'`. Cobre 5 customers com `source IS NULL` (4 criados últimos 7d) que tinham caído num gap. Loop continua protegido — uma vez source preenchido, não repete. Caso reportado pelo Pedro tinha customer com `source='whatsapp'` já (poll respondida antes como "outro") — gating amplo cobre defensivamente sem repetir poll desnecessário.
+- **Auto-deploy GitHub Actions** (cedbe43 ontem) cascade ativou via mudança em `_shared/`: run `25433307681` deployou todas 13 functions em ~50s. `process-message` v38→**v39**, `webhook-whatsapp` v30→**v31**.
+- Erro TS pré-existente em `_shared/evolution-api.ts` (`EvolutionMessageContent` referenciado mas tipo se chama `EvolutionMessageData`) detectado durante `deno check` mas NÃO foi tocado — fora de escopo do incidente. Edge functions deployam mesmo com warning. Anotado pra cleanup depois.
+
 **O que mudou em 05/05 (dia inteiro de drift cleanup):**
 
 Manhã (~08:30-09:05 BRT):

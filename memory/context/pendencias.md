@@ -12,7 +12,15 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-05 ~21:30 BRT — sessão Social Studio PR2 C4-C5-C6_
+_Atualizado: 2026-05-06 noite — sessão Social Studio Reborn (Pivot 2 + Fase A)_
+
+## 🟡 Social Studio Reborn — em andamento
+
+- [ ] **Social Studio Reborn — Pedro revisar e mergear PR #3** (https://github.com/PHPB2025K/budamix-ecommerce/pull/3). Fase A concluída: limpeza total + schema novo aplicado em prod, 5 edges legacy deletadas via REST API. Sem ação manual pendente — só review e merge. Próxima: Fase B (Composer + Agendador, ~2 dias).
+- [ ] **Social Studio Reborn — Fase B** (próxima, após merge PR #3): Composer + Lista/Calendário + cron mock. Reaproveitar `useSocialJobsChannel` (renomear) e `SlideImageUploader` (refatorar pra `PostAssetUploader`).
+- [ ] **Social Studio Reborn — Fase C** (depende Fase B): Meta OAuth + edge `publish-instagram-post` + cron real. Pré-requisito Pedro confirmou: conta Instagram Business `@budamix.br` vinculada a Facebook Page.
+- [ ] **Social Studio Reborn — Fase D** (depende Fase C): edge `collect-instagram-metrics` + Dashboard.
+- [ ] **Social Studio — branches preservadas até 05/06/2026** (30 dias): `feature/social-studio-pr2` (PR2 cancelado), `feature/social-studio-pivot-copy-only` (Pivot 1 descartado). Avaliar deletar quando Reborn estiver estável em prod.
 
 ## 🚨 URGENTE — Operação / Dados
 

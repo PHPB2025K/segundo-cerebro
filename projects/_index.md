@@ -37,7 +37,8 @@ tags:
 ## E-commerce
 
 - [[projects/budamix-ecommerce]] — E-commerce Budamix (React + Supabase + Mercado Pago)
-- [[projects/social-studio-carrossel]] — Módulo de Carrossel do Social Studio (5 templates × 3 paletas, IA copy + imagem, publicação IG) — **Fase 1 fechada em produção** (04/05/2026 · pipeline E2E ~$0.31/carrossel · pendente Fase 4 publish IG ou Fase 5 hardening)
+- [[projects/social-studio-reborn]] — **Social Studio Reborn** (publicador + métricas Instagram, sem IA) — Fase A concluída 06/05, PR #3 aguardando merge. Próxima: Fase B (Composer + Agendador).
+- [[projects/social-studio-carrossel]] — ⚠️ DESCONTINUADO 06/05/2026 (módulo IA original, substituído pelo Reborn). Mantido como referência histórica.
 
 ## Fiscal e Financeiro
 

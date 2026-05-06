@@ -1,8 +1,9 @@
 ---
-title: "Social Studio · Módulo de Carrossel"
+title: "Social Studio · Módulo de Carrossel (DESCONTINUADO)"
 created: 2026-05-03
+discontinued: 2026-05-06
 type: project
-status: active
+status: discontinued
 path: "~/Documents/05-Projetos-Codigo/budamix-ecommerce/"
 spec: "docs/social-studio-carrossel-spec.md"
 tags:
@@ -11,10 +12,16 @@ tags:
   - ecommerce
   - social-studio
   - carrossel
+  - discontinued
 related:
   - "[[projects/budamix-ecommerce]]"
+  - "[[projects/social-studio-reborn]]"
   - "[[business/marketing/marca/templates-carrossel-paper]]"
 ---
+
+> ⚠️ **DESCONTINUADO em 06/05/2026** após 2 pivots. Substituído por [[projects/social-studio-reborn]] (publicador + métricas, sem IA). Esta ficha permanece como referência histórica das fases PR1, PR2 e do Pivot 1 (copy-only).
+>
+> Branches preservadas no remoto por 30 dias: `feature/social-studio-pr2`, `feature/social-studio-pivot-copy-only`.
 
 # Social Studio · Módulo de Carrossel
 

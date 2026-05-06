@@ -35,6 +35,12 @@ tags:
 | Planejamento Financeiro GB 2025.xlsb | `GESTAO-FINANCEIRA-PEDRO/` | Planejamento macro GB |
 | Controle Financeiro - Pedro.xlsx | `GESTAO-FINANCEIRA-PEDRO/` | Controle financeiro pessoal |
 
+## DREs versionadas no vault
+
+| Competência | Arquivo | Descrição |
+|-------------|---------|-----------|
+| Abril/2026 | `dre/2026-04/2026-04-30_DRE_GB_PROCESSADO_recebido-2026-05-06_v1.xlsx` | DRE recebido do Pedro em 06/05/2026, salvo como versão segura no vault. Aba validada: `DRE`. SHA-256: `e43bd101469f7f03466fba7846b97adfbeda0bacf436455c783d32eb3aa98732`. |
+
 ## Contexto
 
 - **112 arquivos** no total

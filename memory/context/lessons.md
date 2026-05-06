@@ -601,3 +601,9 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 **Contexto:** O template `lista` gerava imagem para `cover-numeric`, mas `SlideRenderer` não passava `imageUrl` para o componente; também gerava imagens para alguns slides `item` que não renderizam imagem.
 **Lição:** Antes de acionar IA de imagem por slide, o frontend/render engine deve ter uma matriz explícita `slide_type → needsImage → consumesImage`. Sem isso, há desperdício recorrente por carrossel e bugs visuais invisíveis.
 **Expira:** 2026-06-04
+
+### [TÁTICA] U15 Shopee: `seller_discount` bruto pode inflar desconto concedido se misturar preço riscado/promocional com desconto financeiro efetivo (2026-05-06)
+**Contexto:** Na apuração da linha U15 do DRE de abril/2026, a Shopee devolveu ~R$63,7 mil (~24,8% do bruto) quando somada de forma ampla por campos promocionais do seller, estourando o benchmark esperado e conflitando com a leitura gerencial do Pedro.
+**Lição:** Para U15 na Shopee, não consolidar automaticamente `seller_discount`/promoções do payload como desconto concedido do DRE sem sanity check. Se o percentual sair muito fora da faixa esperada, tratar como suspeito e reclassificar separando desconto financeiro efetivo do seller de preço de lista/promocional e subsídios da plataforma antes de fechar o número.
+**Ação:** Em apurações futuras de U15/U44, travar números fora do benchmark como suspeitos antes de apresentar consolidado final.
+**Expira:** 2026-06-05

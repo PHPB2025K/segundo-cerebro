@@ -60,6 +60,8 @@ _Atualizado: 2026-05-05 23:30 BRT — consolidação diária_
 
 ## 🔥 PRIORIDADE IMEDIATA — Financeiro
 
+- [ ] **DRE abril/2026 — fechar U15 (Descontos Concedidos) com critério estrito por marketplace**: prioridade alta definida por Pedro em 05/05. ML já ficou consistente em **R$ 5.061,14 (4,19%)**; Amazon precisa fechar por `item-promotion-discount` sem frete promocional; Shopee precisa reclassificação porque o parcial amplo de `seller_discount`/promoções explodiu para **R$ 63.715,45 (24,79%)** e foi marcado como suspeito. **Não usar** o consolidado provisório de **R$ 68.776,59** no DRE até concluir a triagem.
+
 - [ ] **Ads spend março** — levantar gasto real com publicidade por plataforma (ML, Amazon via integração, Shopee manual). Sem este dado, consolidado de março é inválido.
 - [ ] **Refazer fechamento de março** — gerar consolidado novo (DRE operacional + planilha + HTML) com os 5 extratos validados completos + ads spend correto.
 - [ ] **Mapeamento semanal DRE** — separar março por semanas (01-07, 08-14, 15-21, 22-31) nas linhas da DRE para análise de evolução.

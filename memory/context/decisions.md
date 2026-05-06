@@ -144,3 +144,10 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Estoque Budamix é desktop-only; não gastar esforço futuro com otimização mobile salvo pedido explícito.
 - Correção de cadastro proposta: renomear `POT1BB` sem Trava para `POT1BB_ST`, após OK do Pedro.
 - Bug dominante do estoque é kits/BOM: 12 de 16 erros recentes eram “Estoque insuficiente”; tocar PR4 só depois de PR1+PR2+PR3a estarem em produção e cadastro limpo.
+
+## 2026-05-06 — DRE abril/2026 / prioridade e critério da U15
+
+- A linha **U15 — Descontos Concedidos** tem prioridade alta e deve ser fechada antes da refatoração gerencial da **U44**.
+- Na Amazon, **não rodar batches paralelos** de U15 e U44 na SP-API; concluir primeiro U15 para evitar rate limit e só depois atacar U44.
+- O parcial de Mercado Livre foi aceito como critério-base para U15: **R$ 5.061,14** sobre **R$ 120.764,44** (**4,19%**) com foco apenas em desconto explícito do seller em pedidos válidos do mês.
+- O consolidado provisório de **R$ 68.776,59** para U15 **não deve ser usado no DRE**, porque a Shopee ficou fora do benchmark e precisa reclassificação antes do fechamento final.

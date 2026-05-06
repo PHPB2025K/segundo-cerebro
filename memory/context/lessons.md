@@ -607,3 +607,9 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 **Lição:** Para U15 na Shopee, não consolidar automaticamente `seller_discount`/promoções do payload como desconto concedido do DRE sem sanity check. Se o percentual sair muito fora da faixa esperada, tratar como suspeito e reclassificar separando desconto financeiro efetivo do seller de preço de lista/promocional e subsídios da plataforma antes de fechar o número.
 **Ação:** Em apurações futuras de U15/U44, travar números fora do benchmark como suspeitos antes de apresentar consolidado final.
 **Expira:** 2026-06-05
+
+### [ESTRATÉGICA] Canggu/Ana: regra de produto crítica não pode ficar só no prompt (2026-05-06)
+**Contexto:** Ana respondeu a cliente com horário comercial (“segunda a sexta, 8h às 18h”) e falhou em enviar a qualificação inicial de origem. Isso contradiz a promessa central do produto: atendimento 24/7.
+**Lição:** Regras de produto críticas devem existir em duas camadas: prompt ativo + guardrail determinístico antes do envio. Só prompt não é suficiente para impedir regressão de LLM.
+**Ação:** Para Ana, bloquear deterministicamente frases de horário comercial e testar origin poll no caminho real do `webhook-whatsapp` após qualquer deploy.
+**Expira:** 2026-07-06

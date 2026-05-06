@@ -151,3 +151,9 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Na Amazon, **não rodar batches paralelos** de U15 e U44 na SP-API; concluir primeiro U15 para evitar rate limit e só depois atacar U44.
 - O parcial de Mercado Livre foi aceito como critério-base para U15: **R$ 5.061,14** sobre **R$ 120.764,44** (**4,19%**) com foco apenas em desconto explícito do seller em pedidos válidos do mês.
 - O consolidado provisório de **R$ 68.776,59** para U15 **não deve ser usado no DRE**, porque a Shopee ficou fora do benchmark e precisa reclassificação antes do fechamento final.
+
+## 2026-05-06 — Canggu/Ana: atendimento 24/7 é regra permanente
+
+- Ana/Canggu NUNCA deve responder que a Budamix tem horário comercial limitado ou que responderá apenas em horário de atendimento.
+- Regra correta: Ana atende **24 horas por dia, 7 dias por semana**; essa é vantagem central do produto e deve prevalecer no prompt, no fallback e nos testes.
+- Qualquer resposta contendo “segunda a sexta”, “8h às 18h” ou equivalente como limitação de atendimento deve ser tratada como bug crítico e bloqueada antes do envio.

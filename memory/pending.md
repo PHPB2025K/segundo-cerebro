@@ -38,6 +38,7 @@ _Atualizado: 2026-05-05 23:30 BRT — consolidação diária_
 
 ## 🚨 Canggu / Ana
 
+- [ ] **Canggu/Ana — INCIDENTE CRÍTICO 06/05: corrigir horário comercial indevido + origin poll ausente**. Ana respondeu a cliente com “segunda a sexta, 8h às 18h” e não enviou pergunta inicial de canal de origem. Regra permanente: atendimento 24/7, nunca horário comercial. Ação necessária no ambiente com acesso Canggu: atualizar `agent_config.system_prompt`, adicionar guard determinístico no `process-message`, auditar `webhook-whatsapp`/origin poll e fazer teste real. Bloqueado nesta VPS por falta de clone/credencial válida do repo/projeto Canggu.
 - [ ] **Canggu — trocar senha temporária do admin** no login do admin. Ação do Pedro.
 - [ ] **Canggu ML — editar manualmente resposta com frase forbidden no produto MLB3343832496** ("Jogo 6 Canequinha 100ml"). Resposta atual contém "Por favor entre em contato conosco para conhecer outros modelos disponíveis!" enviada às ~15:00 BRT de 05/05 antes do hard-block estar ativo em produção. Não é possível remover via API; só edit manual no painel ML. Sugestão de texto novo já dada na sessão (~187 chars, sem frases forbidden).
 - [ ] **Canggu ML — marcar 👎 na resposta do MLB3343832496 e colar correção** no painel Canggu pra alimentar `process-correction-embedding`. Vira embedding e blinda perguntas semelhantes futuras (ex: "tem maior?", "tem com mais ml?").

@@ -63,3 +63,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 ### 2026-05-05 — Supabase Edge Functions precisam de auto-deploy [ESTRATÉGICA]
 **Contexto:** Canggu teve regressões por funções stale em produção.
 **Lição:** Projeto com Edge Functions críticas deve ter GitHub Actions ou checklist obrigatório de deploy por função, especialmente quando `_shared/` muda.
+
+### 2026-05-06 — Pivot de produto remove backlog antigo [TÁTICA]
+**Contexto:** Social Studio PR2/copy-only estavam quase prontos, mas Pedro pivotou para Reborn sem IA.
+**Lição:** Quando a identidade do produto muda, limpar pending antigo imediatamente; manter branches como referência, não como tarefa ativa.
+**Expira:** 2026-06-05

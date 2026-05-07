@@ -1,12 +1,12 @@
 # Pendências — Spark
 
-_Atualizado: 2026-05-02_
+_Atualizado: 2026-05-06_
 
 ## 🔴 Prioridade Alta
 
 ### Amazon Ads — Rodada 02/05/2026
 - [ ] Medir D+7 dos grupos executados em 02/05: Potes Herméticos Vidro, Jogo Canequinhas Café, Potes Herméticos Tampa Bambu, Canecas Canelada, Canecas Porcelana Tulipa, Kit Xícaras Porcelana Paris, Suporte Controle Gamer, Jarra Medidora e Potes Redondos Plástico.
-- [ ] Kits Microfibra Carro — aguardar aprovação para criar/promover `pano microfibra`, subir Auto `substitutes`/`close-match` e não promover `vonixx` como keyword genérica.
+- [ ] Medir D+7 dos experimentos 03/05: Kits Microfibra Carro e Abraçadeiras Nylon (tração, entrega, Buy Box e estoque FBA).
 - [ ] Potes Herméticos Vidro — validar qual ASIN recebe tráfego de `pote hermetico vidro` e investigar preço/Buy Box/imagem/título/variação.
 - [ ] Revisar logs/action_type da rodada: separar escala Exact, Broad/Alcance, Auto e Product Targeting.
 - [ ] Continuar grupos finais de baixo gasto/inativos (Abraçadeiras Nylon, Redinha Frutas, Kit Jardinagem) apenas se houver materialidade.

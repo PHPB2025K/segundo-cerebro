@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-05 23:30 BRT (consolidação diária)._
+_Último update: 2026-05-06 23:30 BRT (consolidação diária)._
 
 ---
 
@@ -132,16 +132,16 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (05/05/2026 23:30 BRT — consolidação diária)
+## Status do Sistema (06/05/2026 23:30 BRT — consolidação diária)
 
 ### 🚨 Crítico
-- **Estoque Budamix:** PR1+PR2+PR3a estão no repo, mas produção ainda roda build rsync de 13/04; remediação pausada no `git fetch` por falta de credencial GitHub na VPS. Próxima decisão: Deploy Key SSH read-only (recomendado) vs PAT vs rsync.
-- **Social Studio PR2:** C1-C6 entregues e validados; falta decidir/corrigir bug `cover-numeric` que gera imagem mas não renderiza no template `lista`.
-- **DRE Abril:** U15 Descontos Concedidos vem antes da refatoração U44 v4 limpa.
+- **Estoque Budamix:** PR1+PR2+PR3a seguem no repo, mas produção ainda roda build rsync de 13/04; remediação continua pausada no `git fetch` por falta de credencial GitHub na VPS. Próxima decisão: Deploy Key SSH read-only (recomendado) vs PAT vs rsync.
+- **DRE Abril:** U15 Descontos Concedidos continua prioridade antes da U44 v4 limpa. ML aceito em R$ 5.061,14; Amazon precisa fechar item-promotion sem frete promocional; Shopee segue suspeita/reclassificação.
+- **Social Studio Reborn:** PR #3/Fase A aberto aguardando merge; Fase B Composer + Agendador é o próximo bloco.
 - **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
 
 ### ⚠️ Importante
-- **Canggu:** domínio oficial `canggu.com.br` ativo; CI/CD de Edge Functions implementado; pendem correção manual da resposta ML antiga, feedback 👎 e decisão redirect www↔apex.
+- **Canggu/Ana:** incidente 24/7 resolvido em produção com prompt reforçado + guardrail determinístico + origin poll defensivo. Pendente apenas cleanup TS menor, correção manual da resposta ML antiga, feedback 👎 e redirect www↔apex.
 - **RH/Ponto Certo:** `ponto.budamix.com.br` ativo com SSL; WhatsApp RH proativo bloqueado indefinidamente até liberação explícita, inbound permitido.
 - **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2.
 - **Amazon Ads:** D+7 das rodadas 02/05 e 03/05 seguem na fila.
@@ -149,8 +149,8 @@ skills/
 
 ### ✅ Operacional
 - **Vault como SSoT** segue válido: OpenClaw aponta para `/root/segundo-cerebro`, sync Mac↔GitHub↔VPS funcionando.
-- **Social Studio Carrossel Fase 1** segue em produção com pipeline E2E e custo real ~$0,31/carrossel.
-- **Canggu** agora tem 13/13 Edge Functions sincronizadas por Action e hard-block ML ativo no `process-ml-question`.
+- **Social Studio Carrossel/PR2/Pivot 1** viraram referência histórica; o produto ativo agora é Reborn (publicador + métricas, sem IA).
+- **Canggu** tem 13/13 Edge Functions com auto-deploy validado; `process-message` v39 e `webhook-whatsapp` v31 já carregam o fix 24/7.
 - **Ponto Certo** responde HTTPS 200 no domínio oficial; fallback legado permanece disponível.
 
 ## Qualidade da Memória (Consolidação Diária 30/04)
@@ -162,6 +162,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-06:** Social Studio passou por dois pivots e renasceu como Reborn: publicador + métricas Instagram, sem IA, com Fase A/PR #3 concluída e 5 Edge Functions legacy removidas da produção via Supabase REST API. Canggu/Ana teve incidente 24/7 resolvido em produção com prompt reforçado, guardrail determinístico e origin poll defensivo; DRE abril recebeu arquivo atual no vault e regra de canônico contínuo; U15 segue aberta com ML validado, Amazon/Shopee pendentes.
 - **2026-05-05:** Dia pesado de correção de drift e produto: Ponto Certo ganhou DNS+SSL oficial em `ponto.budamix.com.br`; RH WhatsApp proativo foi bloqueado indefinidamente; Canggu migrou para `canggu.com.br`, eliminou drift de 13 Edge Functions com GitHub Actions e ajustou o tom/hard-block da Ana no ML; Social Studio avançou PR1+PR2 com paletas, swatches, histórico/restore de imagens e edge functions corrigidas, restando bug `cover-numeric`; Estoque Budamix ganhou repo canônico e PR1+PR2+PR3a, mas deploy pausou por falta de credencial GitHub na VPS; DRE abril confirmou U15 antes da U44 v4 limpa.
 - **2026-05-04:** Dia de reset operacional pós-refatoração: Pedro mandou limpar pendências/inconformidades de abril da fila ativa; DRE abril corrigida para devolução estrita pós-recebimento (0,62%, ou 0,70% conservador com retorno em trânsito); Ponto Certo teve rota Traefik corrigida para `ponto.budamix.com.br` e ficou bloqueado apenas por DNS; RH WhatsApp foi bloqueado para proativos, reativado para inbound com guard `--allow-rh-reply`, `linkPreview:false` e reenvios autorizados para Yasmin/Leonardo; Budamix Live Sales mudou meta para R$15k; Social Studio Carrossel fechou Fase 1 em produção com pipeline E2E, export PNG/PDF e custo ~$0,31/carrossel.
 - **2026-05-03:** Amazon Ads fechou a cobertura dos grupos finais de abril: Kits Microfibra executado com criação de Exact `pano microfibra` e escala de Auto; Abraçadeiras Nylon virou experimento de tração após confirmação de 24 un FBA no ASIN ativo; Redinha Frutas e Kit Jardinagem ficaram sem bid por falta de entrega/estrutura. Pedro consolidou o framework obrigatório de 3 blocos para Ads. No CC local, templates Budamix no Paper.design foram concluídos em 96 artboards (5 famílias × 3 paletas), com decisões de CLARA teal/fundo areia e limitação de shaders via MCP registrada.
@@ -186,7 +187,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) retomar deploy do Estoque Budamix com Deploy Key SSH read-only, (2) fechar bug cover-numeric do Social Studio PR2 e seguir PR3, (3) apurar U15 antes da U44 v4, (4) acompanhar D+7 Amazon Ads, (5) corrigir resposta ML antiga do Canggu e decidir redirect www↔apex._
+_Próximas ações: (1) retomar deploy do Estoque Budamix com Deploy Key SSH read-only, (2) revisar/mergear PR #3 do Social Studio Reborn e iniciar Fase B, (3) apurar U15 antes da U44 v4, (4) acompanhar D+7 Amazon Ads, (5) corrigir resposta ML antiga do Canggu e decidir redirect www↔apex._
 
 ---
 ## Contexto

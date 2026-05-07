@@ -40,3 +40,9 @@ TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, 
 ## 2026-05-05 — Canggu CI/CD
 
 - Edge Functions Supabase do Canggu devem ser deployadas via GitHub Actions; mudanças em `_shared/` exigem redeploy total.
+
+## 2026-05-06 — Social Studio Reborn
+
+- Social Studio ativo deixa de ser editor/gerador com IA e passa a ser publicador + métricas Instagram, recebendo assets/caption prontos.
+- Branches PR2 e copy-only ficam preservadas por 30 dias como referência, mas não são backlog ativo.
+- Fase A/PR #3 concluiu limpeza/schema; próxima fase Builder é Composer + Agendador.

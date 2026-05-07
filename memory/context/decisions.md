@@ -157,3 +157,17 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Ana/Canggu NUNCA deve responder que a Budamix tem horário comercial limitado ou que responderá apenas em horário de atendimento.
 - Regra correta: Ana atende **24 horas por dia, 7 dias por semana**; essa é vantagem central do produto e deve prevalecer no prompt, no fallback e nos testes.
 - Qualquer resposta contendo “segunda a sexta”, “8h às 18h” ou equivalente como limitação de atendimento deve ser tratada como bug crítico e bloqueada antes do envio.
+
+## 2026-05-06 — Social Studio Reborn
+
+- Social Studio foi refundado: deixa de ser gerador/editor com IA e passa a ser **publicador + painel de métricas Instagram**, recebendo PNGs/caption prontos do Canva/usuário.
+- MVP cobre **carousel + single post** para a conta `@budamix.br`; Story/Reel ficam fora do escopo inicial.
+- Token Meta deve ficar no **Supabase Vault** (`vault_secret_id`), nunca em coluna comum.
+- Cron de publicação/métricas usa **Supabase Cron Jobs (`pg_cron` + `pg_net`)** chamando Edge Functions.
+- Schema usa `media_type text+CHECK`, `engagement_rate GENERATED STORED`, archive defensivo antes de drop legacy e bucket `social-assets` com convenção `posts/{post_id}/asset-{N}`.
+- PR #3 Fase A ficou aberto aguardando merge; Fases B/C/D seguem como roadmap.
+
+## 2026-05-06 — DRE abril/2026 / arquivo canônico contínuo
+
+- Pedro enviou `DRE_GB_PROCESSADO.xlsx` como versão atual do DRE abril/2026 e informou que sempre avisará quando gerar nova versão.
+- A planilha de DRE é **contínua**: próximas versões devem substituir o arquivo canônico da competência no vault, sem acumular versões antigas; manter registro de data/hash atual no índice financeiro.

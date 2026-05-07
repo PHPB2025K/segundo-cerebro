@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-05 23:30 BRT — consolidação diária_
+_Atualizado: 2026-05-06 23:30 BRT — consolidação diária_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -38,8 +38,8 @@ _Atualizado: 2026-05-05 23:30 BRT — consolidação diária_
 
 ## 🚨 Canggu / Ana
 
-- [ ] **Canggu/Ana — INCIDENTE CRÍTICO 06/05: corrigir horário comercial indevido + origin poll ausente**. Ana respondeu a cliente com “segunda a sexta, 8h às 18h” e não enviou pergunta inicial de canal de origem. Regra permanente: atendimento 24/7, nunca horário comercial. Ação necessária no ambiente com acesso Canggu: atualizar `agent_config.system_prompt`, adicionar guard determinístico no `process-message`, auditar `webhook-whatsapp`/origin poll e fazer teste real. Bloqueado nesta VPS por falta de clone/credencial válida do repo/projeto Canggu.
 - [ ] **Canggu — trocar senha temporária do admin** no login do admin. Ação do Pedro.
+- [ ] **Canggu — corrigir type TS pré-existente em `_shared/evolution-api.ts`**: `EvolutionMessageContent` é referenciado mas o tipo real chama `EvolutionMessageData`. Detectado no `deno check` durante incidente Ana 24/7; edge deploya mesmo com warning, mas limpar no próximo bloco Canggu.
 - [ ] **Canggu ML — editar manualmente resposta com frase forbidden no produto MLB3343832496** ("Jogo 6 Canequinha 100ml"). Resposta atual contém "Por favor entre em contato conosco para conhecer outros modelos disponíveis!" enviada às ~15:00 BRT de 05/05 antes do hard-block estar ativo em produção. Não é possível remover via API; só edit manual no painel ML. Sugestão de texto novo já dada na sessão (~187 chars, sem frases forbidden).
 - [ ] **Canggu ML — marcar 👎 na resposta do MLB3343832496 e colar correção** no painel Canggu pra alimentar `process-correction-embedding`. Vira embedding e blinda perguntas semelhantes futuras (ex: "tem maior?", "tem com mais ml?").
 - [ ] **Canggu — decidir redirect www↔apex em `canggu.com.br`**. Hoje ambos servem conteúdo idêntico (duplicate content, ruim pra SEO). Recomendação CC: www → apex. Configurável via `vercel.json` ou settings de domínio Vercel.
@@ -69,15 +69,14 @@ _Atualizado: 2026-05-05 23:30 BRT — consolidação diária_
 
 ## 🔥 PRIORIDADE IMEDIATA — Budamix E-commerce / Blog / Social Studio
 
+- [ ] **Social Studio Reborn — revisar/mergear PR #3 (Fase A)**: limpeza total + schema novo concluídos em `feature/social-studio-reborn`; PR #3 aberto aguardando revisão/merge. Sem dependência manual do Pedro além do merge/review.
+- [ ] **Social Studio Reborn — Fase B Composer + Agendador** (~2 dias): lista/calendário, composer, editor, validações, upload para `social-assets/posts/{post_id}/`, cron mock `scheduled → published`.
+- [ ] **Social Studio Reborn — Fase C Meta OAuth + publicação real** (~2-3 dias): conectar Instagram Business `@budamix.br`/Facebook Page, token no Supabase Vault, edge `publish-instagram-post`, cron real e refresh de token.
+- [ ] **Social Studio Reborn — Fase D Métricas + Dashboard** (~2-3 dias): edge `collect-instagram-metrics`, dashboard, KPIs/tabela/gráfico/export CSV.
+- [ ] **Social Studio — avaliar delete das branches antigas em 05/06/2026**: `feature/social-studio-pr2` e `feature/social-studio-pivot-copy-only` preservadas por 30 dias após pivot; apagar só depois se não houver necessidade histórica.
 - [ ] **Blog Budamix — inspeção visual manual do post de teste** id `35873e72-a3ff-4ad9-9ea4-1216c05ecec0` (pilar `receber-visitas`) no `/admin/blog`; após Pedro inspecionar cover/supports/pins, deletar o post de teste.
 - [ ] **Blog WF0 — polir payload de resposta**: hoje retorna `pillar_focus=null` no response mesmo quando o foco foi aplicado internamente. Cosmético; funcional OK.
-- [ ] **Social Studio — PR2 ~95% (C1-C6 entregues)**: C1+C1.5 migrations + 21 slides backfillados; C2 helpers (`resolveSlotColor` + `updateSlideElementStyle`); C3 ColorTokenPicker swatches inline; **C4** templates usando padrão conservador `colorOverrideForSlot(slot, ...) ?? palette.X` (visual 100% preservado quando sem custom); **C5** edge function `social-generate-image` v10 com append + truncate em 5 versões (deploy 05/05 17:44 BRT); **C6** ImageVersionsPopover.tsx (badge clicável + thumbs + restore zero-custo + regenerar inline com guard de quota >80%). Validado visualmente em 05/05 noite. **Falta apenas:** bug visual cover-numeric (linha abaixo). Tags defensivas: typecheck limpo nos arquivos do PR (erros pré-existentes só em `types.ts` por banner do Supabase CLI vazado em geração antiga).
-- [ ] **Social Studio — bug cover-numeric não recebe imageUrl**: descoberto em 05/05 noite. `SlideRenderer.tsx:143` instancia `<CoverNumeric>` sem `imageUrl={img}`, mas `CoverNumeric.tsx` renderiza trans inferior 480px se receber. Slide 1 do template `lista` tem imagem gerada (~$0.04 desperdiçado por carousel) que nunca renderiza. Bug colateral: `'cover-numeric'` está em `noImage` do `needsImage()` em `Editor.tsx:777` — inconsistente com o template real. **Fix mínimo (2 linhas):** passar `imageUrl={img}` no SlideRenderer + tirar `'cover-numeric'` do `noImage`. Tech debt lateral (não no fix mínimo): `'item'` posições 2/6 do `lista` ganham imagem que nunca renderiza (~$0.08 por carousel) — solução boa exigiria edge function aceitar lista de slide_ids do frontend em vez de gerar pra todos. Pedro decide entre 3 opções (a/b/c) na próxima sessão. Diagnóstico completo na sessão de 05/05.
 - [ ] **Rotacionar PAT Supabase exposto em chat**: token `sbp_1d24...` em `~/.mcp.json` continua exposto no transcript da sessão de 05/05 (Pedro escolheu pular a rotação pra destravar primeiro o fluxo do C4). Pedro decidiu não rotacionar; dívida anotada. Revogar em https://supabase.com/dashboard/account/tokens quando tiver janela. Risco prático: PAT dá acesso total a todos projetos Supabase do Pedro.
-- [ ] **Social Studio — PR3 (depois do PR2)**: escopo expandido em 05/05 noite. Vira módulo coeso de "controle manual de imagens": modo manual default (slides em branco; usuário decide quando gerar imagem) + `ImageGenerationDialog` com prompt editável + foto de referência + preview de custo + **geração individual em slide vazio** (botão "Gerar imagem" antes não existia em slide sem `image_versions`); botão "Delegar tudo à IA" como atalho pro fluxo legado. Estimativa ~1-2 dias.
-- [ ] **Social Studio — Fase 4 publish IG**: Pedro identificar app Meta existente da Budamix e gerar long-lived token IG; Kobe coloca no Supabase Vault. Posterior aos PR2/PR3.
-- [ ] **Social Studio — Fase 5 hardening backlog**: container warm para cold start render, JPG encoder, QA visual diff CI, rate limiting + audit log, tradução de erros Meta.
-- [ ] **Social Studio — drag-and-drop com zonas**: cortado do MVP em 05/05; reavaliar depois dos PR2/PR3. Provavelmente cancelado se UX dos presets de paleta + cor/fonte/tamanho por elemento já satisfizer.
 - [ ] **Supabase CLI — investigar perms da conta**: `supabase link --project-ref jtczupudieeogzspdqae` falhou em 05/05 com "Your account does not have the necessary privileges". Migration do Social Studio rodada via Dashboard manualmente. Resolver se virar fluxo recorrente.
 - [ ] **Vercel Token - Budamix Ecommerce** — item no 1Password `notesPlain` ainda incompleto; GitHub→Vercel auto-deploy já reduz bloqueio, mas token ainda é útil para rollback/hotfix CLI.
 - [ ] **Vercel Preview Env** — configurar `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` no ambiente Preview do Vercel ou padronizar deploy preview via CLI com envs explícitas.
@@ -121,4 +120,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-05-05 23:30 BRT._
+_Última organização: 2026-05-06 23:30 BRT._

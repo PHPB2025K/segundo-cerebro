@@ -9,7 +9,7 @@ tags:
 ---
 # MEMORY.md — Índice de Memória do Builder
 
-_Último update: 2026-05-02 23:30 BRT (Consolidação Diária)._
+_Último update: 2026-05-06 23:30 BRT (Consolidação Diária)._
 
 ---
 
@@ -48,6 +48,7 @@ _Último update: 2026-05-02 23:30 BRT (Consolidação Diária)._
 - [[openclaw/agents/kobe/shared/builder/memory/sessions/2026-04-29|Sessão 2026-04-29]]
 - [[openclaw/agents/kobe/shared/builder/memory/sessions/2026-04-30|Sessão 2026-04-30]]
 - [[openclaw/agents/kobe/shared/builder/memory/sessions/2026-05-02|Sessão 2026-05-02]]
+- [[openclaw/agents/kobe/shared/builder/memory/sessions/2026-05-06|Sessão 2026-05-06]]
 
 ---
 
@@ -76,8 +77,8 @@ Briefing de frontend sem design system e sem essas skills não deve ser disparad
 | Projeto | Estado |
 |---|---|
 | Budamix Central | Repo GitHub + tag rollback; Full fechado com `zero_cost=0`; Estoque Fase 1.5 deployado; Fase 2/3/4 pendentes. |
-| Budamix E-commerce / Blog | GitHub→Vercel auto-deploy ativo; Blog Pipeline v2 em produção; Social Studio em preview/branch, pendente QA/merge. |
-| Canggu | Repo único `canguu`; edge functions + admin em Vercel; B1 segurança e B3 resiliência pendentes. |
+| Budamix E-commerce / Blog | GitHub→Vercel auto-deploy ativo; Blog Pipeline v2 em produção; Social Studio Reborn com Fase A/PR #3 aberto e Fase B próxima. |
+| Canggu | Repo único `canguu`; edge functions + admin em Vercel; CI/CD ativo; Ana 24/7 blindada por prompt + guardrail; B1 segurança e B3 resiliência pendentes. |
 | Ponto Certo / RH | Conversas RH implementado; confirmar/deploy produção se ainda estiver local; monitor real em 04/05 10h BRT. |
 | SimulImport / Bidspark / Atlas | Fora da frente imediata. |
 

@@ -1,8 +1,11 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-01_
+_Atualizado: 2026-05-06_
 
 ## 🔴 Prioridade Alta
+
+### DRE Abril
+- [ ] DRE abril — U15 Descontos Concedidos: ML validado em R$ 5.061,14; Amazon fechar por item-promotion sem frete; Shopee reclassificar por suspeita de seller_discount inflado.
 
 ### Fechamento Março — Gaps
 - [ ] Ads spend março por plataforma (ML, Amazon, Shopee manual) para validar consolidado.

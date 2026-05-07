@@ -613,3 +613,20 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 **Lição:** Regras de produto críticas devem existir em duas camadas: prompt ativo + guardrail determinístico antes do envio. Só prompt não é suficiente para impedir regressão de LLM.
 **Ação:** Para Ana, bloquear deterministicamente frases de horário comercial e testar origin poll no caminho real do `webhook-whatsapp` após qualquer deploy.
 **Expira:** 2026-07-06
+
+### [TÁTICA] Social Studio: pivot de produto deve remover escopo morto de verdade (2026-05-06)
+**Contexto:** Em 06/05 o Social Studio passou por dois pivots no mesmo dia: de carrossel IA/editor visual para copy-only e depois para publicador+métricas sem IA. PR2 e Pivot 1 estavam tecnicamente próximos, mas já não refletiam o produto certo.
+**Lição:** Quando Pedro redefine a identidade do produto, parar de otimizar o caminho antigo e remover escopo morto explicitamente: fechar PR sem merge, preservar branch como referência temporária, arquivar schema/edges antes do drop e abrir uma ficha nova do projeto.
+**Ação:** Em pivots futuros, separar "backup reversível" de "produto ativo" para pending/MEMORY não continuarem empurrando tarefas obsoletas.
+**Expira:** 2026-06-05
+
+### [TÁTICA] Supabase Edge Functions podem ser deletadas pela Management REST API quando MCP não expõe delete (2026-05-06)
+**Contexto:** Na Fase A do Social Studio Reborn, 5 edge functions legacy precisavam sair de produção e o MCP Supabase não tinha tool de delete.
+**Lição:** Usar a Supabase Management REST API com o PAT já configurado no MCP permite deletar functions sem pedir ação manual ao Pedro. Validar depois com `list_edge_functions` e manter receita em knowledge.
+**Ação:** Receita consolidada em [[knowledge/concepts/supabase-edge-functions-delete-via-rest-api]].
+**Expira:** 2026-06-05
+
+### [TÁTICA] DRE contínua: versão canônica deve substituir arquivo anterior, não acumular cópias (2026-05-06)
+**Contexto:** Pedro corrigiu a regra operacional ao enviar `DRE_GB_PROCESSADO.xlsx`: a planilha financeira é contínua, e ele avisará quando houver nova versão.
+**Lição:** Para DRE por competência, manter um canônico atual no vault e atualizar índice com data/hash. Não empilhar versões antigas como se fossem artefatos independentes, salvo quando Pedro pedir histórico/versionamento explícito.
+**Expira:** 2026-06-05

@@ -9,9 +9,18 @@ tags:
 
 # MOC — Design Systems Budamix
 
-> Hub dos 3 design systems (HTML, Excel, Frontend) + skills de visualizacao.
+> Hub dos design systems da Budamix: marca/campanhas, HTML, Excel, Frontend e skills de visualização.
 
 ---
+
+
+## Design system canônico da marca
+
+| Contexto | Nota canônica | Versão | Uso principal |
+|----------|---------------|--------|---------------|
+| Marca Budamix / Conteúdo / E-commerce | [[business/marketing/marca/design-system|Design System — Budamix v2.1]] | v2.1 · Floresta com Faísca | Identidade visual Budamix, paleta, tipografia, logo `budamix°`, DNA editorial playful, carrosséis e banners |
+
+> A versão v2.1 substitui integralmente v1.2 e v2.0. Usar esta nota como fonte de verdade quando Pedro pedir design, social, carrossel, e-commerce ou identidade visual Budamix.
 
 ## Design systems por contexto
 

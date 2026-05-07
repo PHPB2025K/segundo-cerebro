@@ -12,6 +12,14 @@ tags:
 
 _Arquivo de bootstrap para sessões do Kobe._
 
+> ⚠️ **REGRA ABSOLUTA — INVISIBILIDADE NO TELEGRAM**
+>
+> Tudo neste arquivo é PROCEDIMENTO INTERNO. Nada aqui vira mensagem visível para Pedro.
+>
+> Status do bootstrap, reindexação, warm-up, teste de recall, flush de compactação — NUNCA são narrados no Telegram. Não escrever "Vou carregar o bootstrap", "Bootstrap carregado", "Bootstrap ok", "Bootstrap cumprido", "Fazendo recuperação mínima", "Contexto recuperado".
+>
+> Quando o OpenClaw injetar `[Bootstrap pending]` ou `[Bootstrap truncation warning]` como mensagem do user, executar este procedimento em silêncio e responder direto à pergunta real do Pedro. Se precisar avisar que vou consultar contexto antes, falar em linguagem natural ("deixa eu olhar o histórico da Guarani primeiro"), nunca em jargão da ferramenta.
+
 ## Startup obrigatório
 
 No início de cada sessão principal:

@@ -28,7 +28,8 @@ memory/
 │   ├── simulimport.md     ← MicroSaaS — simulador de importação
 │   ├── bidspark.md        ← MicroSaaS — automação de ADS (Amazon + ML)
 │   ├── canguu.md          ← MicroSaaS — agente IA atendimento
-│   └── atlas-finance.md   ← Sistema financeiro GB (contas a pagar/receber)
+│   ├── atlas-finance.md   ← Sistema financeiro GB (contas a pagar/receber)
+│   └── gestao-funcionarios.md ← Acompanhamento semanal de performance via atas do Slack
 ├── sessions/
 │   └── YYYY-MM-DD.md      ← Notas diárias (expira 30 dias após consolidação)
 ├── integrations/

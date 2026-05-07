@@ -12,7 +12,12 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-06 noite — sessão Social Studio Reborn (Pivot 2 + Fase A)_
+_Atualizado: 2026-05-07 — sessão CC local (Kobe SOUL/BOOTSTRAP, debounce inbound Telegram, upgrade ChatGPT Pro 5x)_
+
+## 🟡 OpenClaw / Kobe — pendências da sessão de 07/05
+
+- [ ] **Adicionar Anthropic ao fallback chain do Kobe**: perfil `anthropic:default` (token Claude válido) já configurado em `/root/.openclaw/agents/main/agent/auth-profiles.json` mas **fora** do `agents.defaults.model.fallbacks` (hoje só `openai-codex/gpt-5.4`). Se cota Pro estourar em pico futuro, ainda morre. Adicionar `anthropic/claude-sonnet-4-6` (ou modelo equivalente atualizado) como 3º fallback. Não urgente agora que cota é Pro 5x.
+- [ ] **CLAUDE.md global do Pedro desatualizado** sobre OpenClaw: ainda diz `Modelo: migrando para GPT 5.4 (default) + GPT 5.1-mini (crons)` e `Custo: ~$120/mês Anthropic (em migração para OpenAI)`. Realidade atual (07/05): `primary: openai-codex/gpt-5.5`, `fallback: openai-codex/gpt-5.4`, assinatura ChatGPT Pro 5x. Atualizar no Mac local em `~/.claude/CLAUDE.md` quando houver janela.
 
 ## 🟡 Social Studio Reborn — em andamento
 

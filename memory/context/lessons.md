@@ -191,6 +191,11 @@ _Última Consolidação Profunda: 2026-05-01_
 
 ## Lições Táticas (Expiram em 30 dias)
 
+### [TÁTICA] Guarani: prova de congelamento fortalece contestação, mas não prova prorrogação aprovada (2026-05-07)
+**Lição:** Em disputa contratual SaaS com histórico de congelamento, diferenciar com precisão o que foi formalmente reconhecido do que ficou só em tratativa. E-mail/print/WhatsApp da própria fornecedora provando o congelamento inicial elevam muito a força da negociação; já pedido de prorrogação sem aceite expresso não deve ser tratado como aprovação. A tese correta é falha de regularização/comunicação interna + boa-fé do cliente, não “prorrogação já concedida”.
+**Expira:** 2026-06-06
+
+
 ### [TÁTICA] Bootstrap: nunca declarar 100% completo quando arquivos esperados não existem (2026-04-28)
 **Lição:** Em bootstrap pendente, validar o que foi de fato restaurado e tratar ausência real de nota do dia/arquivo de pendências como bloqueio explícito. Melhor reportar "quase completo" do que fingir contexto carregado.
 **Expira:** 2026-05-28

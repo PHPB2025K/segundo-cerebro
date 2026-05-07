@@ -109,8 +109,7 @@ _Atualizado: 2026-05-07 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 Jurídico / Contratos
 
-- [ ] **Guarani Sistemas — enviar o email formal de contestação/distrato** com pedido de suspensão de protesto, memória de cálculo aberta e proposta **sem reconhecimento de dívida**.
-- [ ] **Guarani Sistemas — reunir prova do congelamento/prorrogação com o Junior** (emails, WhatsApp, histórico) para sustentar contestação forte e eventual redução adicional/teses de cobrança zero.
+- [ ] **Guarani Sistemas — aguardar resposta da Priscila à contraproposta final** de **R$ 7.500,00 à vista**, condicionada a quitação total, baixa dos títulos, ausência de protesto/negativação, distrato com quitação recíproca e encerramento definitivo dos contratos/aditivos. Histórico já consolidado com prova do congelamento formal de 01/10/2025 e tratativas com Junior Lopes via WhatsApp.
 
 ## Backlog Estagnado
 _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._

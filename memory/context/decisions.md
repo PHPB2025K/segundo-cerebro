@@ -171,3 +171,10 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 
 - Pedro enviou `DRE_GB_PROCESSADO.xlsx` como versão atual do DRE abril/2026 e informou que sempre avisará quando gerar nova versão.
 - A planilha de DRE é **contínua**: próximas versões devem substituir o arquivo canônico da competência no vault, sem acumular versões antigas; manter registro de data/hash atual no índice financeiro.
+
+## 2026-05-07 — Guarani Sistemas / contraproposta final para a Priscila
+
+- Pedro decidiu seguir com resposta firme e curta para a **Priscila**, ancorando a negociação em **R$ 7.500,00 à vista** como proposta final de composição amigável.
+- A posição oficial da GB fica estruturada em 4 pilares: **sem reconhecimento de dívida**, **contratos já fora da vigência inicial de 12 meses**, **congelamento formal reconhecido pela própria Guarani em 01/10/2025**, e **ausência de uso operacional efetivo dos sistemas**.
+- A contraproposta deve exigir como condição: **baixa/cancelamento dos títulos em aberto, ausência de protesto/negativação/cobrança externa, distrato com quitação recíproca, ausência de saldo remanescente e encerramento definitivo de todos os contratos/aditivos**.
+- Faixa interna de negociação consolidada nesta sessão: alvo ótimo **R$ 7.500**, aceitável **R$ 8.500–9.000**, teto psicológico **R$ 10.000**; acima disso passa a ser ruim para a GB.

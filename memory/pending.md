@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-06 23:30 BRT — consolidação diária_
+_Atualizado: 2026-05-07 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -90,6 +90,7 @@ _Atualizado: 2026-05-06 23:30 BRT — consolidação diária_
 ## 🚨 Infraestrutura e autenticações degradadas
 
 - [ ] **Security Audit - Semanal** — último run conhecido em 03/05 06h BRT falhou com timeout/status `error`; investigar no próximo bloco operacional.
+- [ ] **Daily GitHub Backup — investigar timeout do run de 07/05 00:00 BRT**: `lastRunStatus=error`, duração 120s, motivo `cron: job execution timed out`. Verificar se foi falha transitória de push/rede ou se o cron precisa timeout maior/execução mais enxuta. Últimos runs recorrentes de monitoramento após isso ficaram OK.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.
 - [ ] **Fisco / OpenClaw** — diagnosticar o bloqueio do `sessions_spawn` com `agentId=fisco` retornando `allowed: none` e restaurar o roteamento direto do agente.
@@ -120,4 +121,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-05-06 23:30 BRT._
+_Última organização: 2026-05-07 02:00 BRT._

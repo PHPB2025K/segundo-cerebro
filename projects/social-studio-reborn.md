@@ -61,9 +61,9 @@ Indices críticos:
 
 ## Roadmap em 4 fases
 
-### Fase A · Limpeza total + schema novo (1 dia) ✅ CONCLUÍDA 06/05
+### Fase A · Limpeza total + schema novo (1 dia) ✅ CONCLUÍDA 06/05 · ✅ MERGEADA 07/05
 
-PR #3: https://github.com/PHPB2025K/budamix-ecommerce/pull/3 (aguardando merge)
+PR #3 mergeado em `32c22bd` na main em 07/05.
 
 Branch: `feature/social-studio-reborn` — 7 commits.
 
@@ -77,22 +77,51 @@ Branch: `feature/social-studio-reborn` — 7 commits.
 
 Side-effect prod resolvido: 5 edges legacy DELETADAS via `DELETE /v1/projects/{ref}/functions/{slug}` da Supabase Management API. Validado via `mcp list_edge_functions` — só restam 3 edges não-Social-Studio (MP + orders).
 
-### Fase B · Composer + Agendador (~2 dias) ⏳ PRÓXIMA
+### Fase B · Composer + Agendador (~2 dias) ✅ CONCLUÍDA 07/05 · ✅ MERGEADA 07/05
 
-- Tela `/admin/social/posts` (lista + calendário)
-- Tela `/admin/social/posts/novo` (composer)
-- Tela `/admin/social/posts/[id]` (editor)
-- Validações (carousel 2-10, single 1, caption ≤2200, scheduled futuro)
-- Upload de assets pro bucket `social-assets/posts/{post_id}/`
-- pg_cron criado mas mock (marca publishing → published sem chamar Meta)
-- Reaproveitar: `useSocialJobsChannel` (renomeado), `STATUS_LABEL/DOT` (adaptados), `SlideImageUploader` (refatorado pra `PostAssetUploader`)
+PR #4 mergeado em `dfb9dda` na main em 07/05 após smoke E2E real validado por Pedro (criar carrossel → upload 3 PNGs → agendar +6min → status mudou em tempo real `scheduled → publishing → published` com mock IG ID).
 
-### Fase C · Publicação Instagram real (~2-3 dias)
+9 commits incrementais:
+- Pré (`c6bdb9f`): archived_at + soft-delete dos 17 posts pre-Reborn
+- B1 (`57c2eb9`): scaffold lib/social-studio.ts (types + CRUD + validations)
+- B2 (`10d6d09`): useSocialPostStatusChannel realtime hook
+- B3 (`76c712b`): PostAssetUploader (drag-drop multi-slot, single/carousel)
+- B4 (`512dfc0`): Composer page (`/novo` + `/:id`, datetime nativo)
+- B5 (`74ccb68`): PostList page (toggle list/calendar, filtros, archive inline)
+- B6 (`0d06308`): wire routes + restore Social Studio nav
+- B7 (`f3a9657`): pg_cron mock worker (`publish-instagram-post-tick` v1, edge ACTIVE)
+- B8 (`c5ce005`): empty state + list skeleton
 
-- Tela `/admin/social/conta` — Meta OAuth pra vincular @budamix.br
-- Edge `publish-instagram-post` (carousel = 2-step containers + agrupamento; single = 1-step)
-- pg_cron real disparando edge
-- Refresh automático de token long-lived (cron mensal)
+Side-effects ativos em prod:
+- Cron job `publish-tick [* * * * *]` mock (avança `scheduled → publishing → published` sem Meta — Fase C substitui pelo real)
+- Extensions `pg_cron 1.6.4` + `pg_net 0.20.0` instaladas
+
+### Fase C · Publicação Instagram real (~2-3 dias) 🟡 EM ANDAMENTO 07/05
+
+Branch: `feature/social-studio-reborn-fase-c` (PR aberto após C2 fechar).
+
+8 commits planejados:
+
+- ✅ **C1** (`d6384bd`): lib OAuth helpers (`getOAuthUrl`, `parseOAuthCallback`, `connectMetaAccount`, `disconnectAccount`, `computeAccountStatus`, types `AccountConnectStatus`) + types Supabase regenerados via MCP
+- ⏳ **C2**: Página `/admin/social/conta` (status conta + botão OAuth + callback handler)
+- ⏳ **C3**: Edge `meta-oauth-callback` (code → long-lived token, IG Business + FB Page resolve, Vault + social_accounts populados) — **bloqueado em pré-requisitos manuais Meta**
+- ⏳ **C4**: Edge `publish-instagram-post` (executor real Meta Graph, carousel/single, tratamento erros)
+- ⏳ **C5**: Tick v2 (mock → real invoke do executor) + trava temporária `TESTE INTERNO` no início da caption como salvaguarda
+- ⏳ **C5b**: Remove trava após smoke validado (commit isolado)
+- ⏳ **C6**: UI pós-publicação (link IG, retry, banner conta desconectada/expirando)
+- ⏳ **C7**: Edge `refresh-meta-token` + cron mensal `0 0 1 * *`
+- ⏳ **C8**: Smoke final + PR description
+
+**Pré-requisitos manuais do Pedro antes do C3:**
+1. App Business novo no `developers.facebook.com` (nome sugerido "Budamix Social Studio")
+2. Adicionar produtos: Instagram Graph API + Facebook Login
+3. Configurar Valid OAuth Redirect URIs (localhost:8080, 8081, prod)
+4. Permissões: `instagram_basic`, `instagram_content_publish`, `pages_show_list`, `pages_read_engagement`, `business_management`
+5. Pegar App ID + App Secret, setar `META_APP_ID` + `META_APP_SECRET` em Edge Functions Secrets do Supabase Studio
+
+CC vai guiar tela-a-tela quando chegar — Pedro nunca mexeu no Meta Developers antes.
+
+**9 decisões fundadoras** documentadas em [[memory/context/decisoes/2026-05]] entry "[07/05 noite] Social Studio Reborn — Fase B mergeada + plano Fase C".
 
 ### Fase D · Métricas e Dashboard (~2-3 dias)
 

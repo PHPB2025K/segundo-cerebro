@@ -17,9 +17,10 @@ tags:
 
 | Prazo | Entrega | Status | Nota |
 |-------|---------|--------|------|
-| **~08-09/05/2026** | **Social Studio Reborn — Fase B** (Composer + Lista/Calendário + cron mock) | ⏳ Após merge PR #3 | ~2 dias. Reaproveita useSocialJobsChannel + SlideImageUploader |
-| **~10-12/05/2026** | **Social Studio Reborn — Fase C** (Meta OAuth + publish real + cron) | ⏳ Após Fase B | ~2-3 dias. Pré-req confirmado: conta IG Business `@budamix.br` vinculada a FB Page |
-| **~13-15/05/2026** | **Social Studio Reborn — Fase D** (collect-metrics edge + Dashboard) | ⏳ Após Fase C | ~2-3 dias. Recharts + export CSV |
+| 07/05/2026 | Social Studio Reborn — Fase A merge PR #3 | ✅ Concluído | commit 32c22bd em main |
+| 07/05/2026 | Social Studio Reborn — Fase B merge PR #4 | ✅ Concluído | commit dfb9dda em main, smoke E2E validado |
+| **~08-10/05/2026** | **Social Studio Reborn — Fase C** (Meta OAuth + publish real + cron) | 🟡 Em andamento | C1 ✅ fechado. Aguarda Pedro fazer pré-requisitos Meta antes do C3 |
+| **~11-13/05/2026** | **Social Studio Reborn — Fase D** (collect-metrics edge + Dashboard) | ⏳ Após Fase C | ~2-3 dias. Recharts + export CSV |
 | **~05/06/2026** | **Social Studio — avaliar delete branches backup** (`feature/social-studio-pr2`, `feature/social-studio-pivot-copy-only`) | ⏳ +30d do pivot | Manter se Reborn ainda em estabilização |
 | 22/04/2026 14:30 | **Reunião Semanal Amazon — Leonardo** | 🟢 HOJE | Presencial Escritório Pedreira-SP, convidado marketplace@gbimportadora.com |
 | **23/04/2026 manhã** | **Canggu — Retomar B1 (rotação service_role)** | 🔴 Primeira tarefa | Iniciado e pausado 22/04 ~21:30 por confusão conceitual. Tag defensiva `b1-pre-rotation-20260422-211653`. Plano completo em [[projects/canggu/perguntas-abertas#Execução em andamento (pausada)]]. JWT continua exposto em 3 arquivos + no transcript da sessão CC de ontem. |

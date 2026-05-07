@@ -12,19 +12,20 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-07 — sessão CC local (Kobe SOUL/BOOTSTRAP, debounce inbound Telegram, upgrade ChatGPT Pro 5x)_
+_Atualizado: 2026-05-07 noite — Social Studio Reborn Fase B mergeada, Fase C iniciada (C1 fechado)_
 
 ## 🟡 OpenClaw / Kobe — pendências da sessão de 07/05
 
 - [ ] **Adicionar Anthropic ao fallback chain do Kobe**: perfil `anthropic:default` (token Claude válido) já configurado em `/root/.openclaw/agents/main/agent/auth-profiles.json` mas **fora** do `agents.defaults.model.fallbacks` (hoje só `openai-codex/gpt-5.4`). Se cota Pro estourar em pico futuro, ainda morre. Adicionar `anthropic/claude-sonnet-4-6` (ou modelo equivalente atualizado) como 3º fallback. Não urgente agora que cota é Pro 5x.
 - [ ] **CLAUDE.md global do Pedro desatualizado** sobre OpenClaw: ainda diz `Modelo: migrando para GPT 5.4 (default) + GPT 5.1-mini (crons)` e `Custo: ~$120/mês Anthropic (em migração para OpenAI)`. Realidade atual (07/05): `primary: openai-codex/gpt-5.5`, `fallback: openai-codex/gpt-5.4`, assinatura ChatGPT Pro 5x. Atualizar no Mac local em `~/.claude/CLAUDE.md` quando houver janela.
 
-## 🟡 Social Studio Reborn — em andamento
+## 🟡 Social Studio Reborn — Fase C em andamento
 
-- [ ] **Social Studio Reborn — Pedro revisar e mergear PR #3** (https://github.com/PHPB2025K/budamix-ecommerce/pull/3). Fase A concluída: limpeza total + schema novo aplicado em prod, 5 edges legacy deletadas via REST API. Sem ação manual pendente — só review e merge. Próxima: Fase B (Composer + Agendador, ~2 dias).
-- [ ] **Social Studio Reborn — Fase B** (próxima, após merge PR #3): Composer + Lista/Calendário + cron mock. Reaproveitar `useSocialJobsChannel` (renomear) e `SlideImageUploader` (refatorar pra `PostAssetUploader`).
-- [ ] **Social Studio Reborn — Fase C** (depende Fase B): Meta OAuth + edge `publish-instagram-post` + cron real. Pré-requisito Pedro confirmou: conta Instagram Business `@budamix.br` vinculada a Facebook Page.
-- [ ] **Social Studio Reborn — Fase D** (depende Fase C): edge `collect-instagram-metrics` + Dashboard.
+- ✅ ~~**Social Studio Reborn — Pedro revisar e mergear PR #3**~~ → **CONCLUÍDO 07/05** (commit `32c22bd` na main).
+- ✅ ~~**Social Studio Reborn — Fase B**~~ → **CONCLUÍDO 07/05** (commit `dfb9dda` na main, PR #4 mergeado após smoke E2E real validado).
+- [ ] **Social Studio Reborn — Fase C em progresso (C1 ✅ fechado)**: branch `feature/social-studio-reborn-fase-c`, PR aguarda C2 fechar. C1 = lib OAuth helpers + types Supabase regenerados (commit `d6384bd`). Próximos: C2 (página `/admin/social/conta` + OAuth start), C3 (edge `meta-oauth-callback`), C4 (edge `publish-instagram-post`), C5 (tick mock→real com trava `TESTE INTERNO`), C5b (remover trava após smoke validado), C6 (UI pós-publicação + retry + banner), C7 (refresh token cron mensal), C8 (smoke + PR final).
+- [ ] **Social Studio Reborn — pré-requisitos manuais Meta antes do C3**: Pedro vai precisar criar app Business no `developers.facebook.com` (Instagram Graph API + Facebook Login), pegar `META_APP_ID` + `META_APP_SECRET`, configurar redirect URIs (`http://localhost:8080/admin/social/conta/callback` + `http://localhost:8081/...` + `https://budamix.com.br/...`), adicionar Pedro como tester em modo Development, e setar os 2 secrets no Supabase Studio Edge Functions Secrets. CC vai guiar passo a passo quando chegar — Pedro precisa estar disponível pra responder dúvidas em cada tela do Meta Developers (primeira vez que ele mexe ali).
+- [ ] **Social Studio Reborn — Fase D** (depende Fase C): edge `collect-instagram-metrics` + Dashboard de métricas + recharts + export CSV.
 - [ ] **Social Studio — branches preservadas até 05/06/2026** (30 dias): `feature/social-studio-pr2` (PR2 cancelado), `feature/social-studio-pivot-copy-only` (Pivot 1 descartado). Avaliar deletar quando Reborn estiver estável em prod.
 
 ## 🚨 URGENTE — Operação / Dados

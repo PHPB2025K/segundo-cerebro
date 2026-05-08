@@ -96,7 +96,6 @@ _Atualizado: 2026-05-07 23:30 BRT — consolidação diária_
 ## 🚨 Infraestrutura e autenticações degradadas
 
 - [ ] **OpenClaw fallback — adicionar Anthropic como 3º fallback**: `anthropic:default` está configurado, mas fora de `agents.defaults.model.fallbacks`; após upgrade para ChatGPT Pro não é urgente, mas evita queda total se o mesmo auth profile OpenAI estourar em pico.
-- [ ] **Bling Token Refresh — investigar falhas repetidas de 07/05**: heartbeat de 07/05 à noite detectou novo `lastRunStatus=error` no cron `Bling Token Refresh`; após a tentativa automática ~22:15 BRT, em 08/05 02:07 UTC o cron ainda estava `error` com último run há ~53min e próxima tentativa em ~4h. Verificar se foi timeout/modelo ou refresh real do Bling/Fisco antes de depender de emissão fiscal.
 - [ ] **Security Audit - Semanal** — último run conhecido em 03/05 06h BRT falhou com timeout/status `error`; investigar no próximo bloco operacional.
 - [ ] **Daily GitHub Backup — investigar timeout do run de 07/05 00:00 BRT**: `lastRunStatus=error`, duração 120s, motivo `cron: job execution timed out`. Verificar se foi falha transitória de push/rede ou se o cron precisa timeout maior/execução mais enxuta. Últimos runs recorrentes de monitoramento após isso ficaram OK.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.

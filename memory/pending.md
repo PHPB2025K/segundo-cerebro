@@ -89,6 +89,7 @@ _Atualizado: 2026-05-07 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 Infraestrutura e autenticações degradadas
 
+- [ ] **Bling Token Refresh — investigar falhas repetidas de 07/05**: heartbeat de 07/05 à noite detectou novo `lastRunStatus=error` no cron `Bling Token Refresh`; após a tentativa automática ~22:15 BRT, em 08/05 02:07 UTC o cron ainda estava `error` com último run há ~53min e próxima tentativa em ~4h. Verificar se foi timeout/modelo ou refresh real do Bling/Fisco antes de depender de emissão fiscal.
 - [ ] **Security Audit - Semanal** — último run conhecido em 03/05 06h BRT falhou com timeout/status `error`; investigar no próximo bloco operacional.
 - [ ] **Daily GitHub Backup — investigar timeout do run de 07/05 00:00 BRT**: `lastRunStatus=error`, duração 120s, motivo `cron: job execution timed out`. Verificar se foi falha transitória de push/rede ou se o cron precisa timeout maior/execução mais enxuta. Últimos runs recorrentes de monitoramento após isso ficaram OK.
 - [ ] **Consolidação Diária — investigar erro do run de 06/05 23:30 BRT**: heartbeat de 07/05 04:06 BRT detectou `lastRunStatus=error` no cron de consolidação diária, ~5h após execução. Verificar se foi timeout/falha transitória e se a memória ficou consistente antes do próximo ciclo.

@@ -96,7 +96,7 @@ _Atualizado: 2026-05-07 23:30 BRT — consolidação diária_
 ## 🚨 Infraestrutura e autenticações degradadas
 
 - [ ] **OpenClaw fallback — adicionar Anthropic como 3º fallback**: `anthropic:default` está configurado, mas fora de `agents.defaults.model.fallbacks`; após upgrade para ChatGPT Pro não é urgente, mas evita queda total se o mesmo auth profile OpenAI estourar em pico.
-- [ ] **Bling Token Refresh — investigar erro intermitente em 08/05**: depois de um run OK às ~06:14 BRT, heartbeat de 09:01 BRT voltou a mostrar `lastRunStatus=error` no cron `Bling Token Refresh` há ~47min. Verificar se é timeout/modelo intermitente ou refresh real do Bling/Fisco antes de depender de emissão fiscal.
+- [ ] **Bling Token Refresh — Filial com erro 403/inativa no Bling**: heartbeat de 08/05 10:01 BRT confirmou Matriz OK e Filial com `403 — empresa vinculada ao token está inativa`. Impacto provável: refresh/conexão da Filial pode falhar até corrigir empresa/token no Bling. Verificar antes de depender de emissão fiscal pela Filial.
 - [ ] **Security Audit - Semanal** — último run conhecido em 03/05 06h BRT falhou com timeout/status `error`; investigar no próximo bloco operacional.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.

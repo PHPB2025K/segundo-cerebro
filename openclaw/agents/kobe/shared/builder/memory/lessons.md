@@ -68,3 +68,13 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 **Contexto:** Social Studio PR2/copy-only estavam quase prontos, mas Pedro pivotou para Reborn sem IA.
 **Lição:** Quando a identidade do produto muda, limpar pending antigo imediatamente; manter branches como referência, não como tarefa ativa.
 **Expira:** 2026-06-05
+
+### 2026-05-07 — Smoke real em rede social de marca precisa de trava [TÁTICA]
+**Contexto:** Fase C do Social Studio trocará mock por publicação real no Instagram `@budamix.br`.
+**Lição:** Antes de acionar API real de publicação em perfil de marca, usar salvaguarda temporária visível (`TESTE INTERNO` na caption) e remover só em commit isolado após smoke validado.
+**Expira:** 2026-06-06
+
+### 2026-05-07 — Types Supabase stale geram falso erro de IDE mesmo com build verde [TÁTICA]
+**Contexto:** C1 da Fase C regenerou `src/integrations/supabase/types.ts` porque `social_accounts` e `social_post_metrics` não estavam nos types desde a Fase A.
+**Lição:** Após migrations Supabase, regenerar types antes de avaliar erros TS do frontend; `tsc --noEmit` pode passar enquanto a IDE acusa `.from(...)` por type union stale.
+**Expira:** 2026-06-06

@@ -10,7 +10,7 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-05-06_
+_Atualizado: 2026-05-07_
 
 ## 🔴 Prioridade Alta
 
@@ -20,8 +20,10 @@ _Atualizado: 2026-05-06_
 - [ ] Depois do deploy/cadastro: desenhar PR4 kits/BOM, pois 75% dos erros reais recentes são “Estoque insuficiente”.
 
 ### Social Studio
-- [ ] Social Studio Reborn: revisar/mergear PR #3 (Fase A) e iniciar Fase B Composer + Agendador.
-- [ ] Fase C/D Reborn: Meta OAuth/publicação real e métricas/dashboard após Fase B.
+- [ ] Social Studio Reborn Fase C C2: página `/admin/social/conta` (status conta, botão OAuth, callback handler).
+- [ ] Social Studio Reborn C3: aguardar/guia Pedro nos pré-requisitos Meta Developers + `META_APP_ID`/`META_APP_SECRET` antes de implementar callback real.
+- [ ] Social Studio Reborn C4-C8: publicação Meta real com trava `TESTE INTERNO`, UI pós-publicação, refresh token, smoke final e PR.
+- [ ] Social Studio Reborn Fase D: métricas/dashboard após Fase C.
 
 ### Canggu
 - [ ] Corrigir type TS pré-existente em `_shared/evolution-api.ts` (`EvolutionMessageContent` vs `EvolutionMessageData`).

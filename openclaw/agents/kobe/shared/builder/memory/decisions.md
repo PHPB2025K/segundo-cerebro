@@ -46,3 +46,10 @@ TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, 
 - Social Studio ativo deixa de ser editor/gerador com IA e passa a ser publicador + métricas Instagram, recebendo assets/caption prontos.
 - Branches PR2 e copy-only ficam preservadas por 30 dias como referência, mas não são backlog ativo.
 - Fase A/PR #3 concluiu limpeza/schema; próxima fase Builder é Composer + Agendador.
+
+## 2026-05-07 — Social Studio Reborn Fase C
+
+- Fase A/PR #3 e Fase B/PR #4 foram mergeadas após smoke E2E real.
+- Fase C aprovada: Meta OAuth + publicação real Instagram, com C1 já fechado.
+- Smoke real em `@budamix.br` deve usar trava temporária `TESTE INTERNO` na caption até validação; remoção só em commit C5b.
+- Token Meta de usuário fica no Supabase Vault; App Secret fica em Edge env var.

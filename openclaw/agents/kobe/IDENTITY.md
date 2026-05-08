@@ -104,6 +104,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 04/05/2026 | Reset operacional pós-refatoração limpou pendências de abril; RH WhatsApp ganhou bloqueio proativo + inbound seguro com `linkPreview:false`; Ponto Certo teve rota do domínio novo corrigida; DRE abril corrigiu devolução real para 0,62%; Live Sales mudou meta para R$15k; Social Studio Carrossel Fase 1 fechou em produção com pipeline E2E e custo real ~$0,31/carrossel. |
 | 05/05/2026 | Canggu amadureceu com domínio oficial `canggu.com.br` + CI/CD das 13 Edge Functions; Ponto Certo ganhou DNS/SSL oficial; RH proativo bloqueado indefinidamente; Social Studio PR2 quase fechado; Estoque Budamix ganhou repo canônico mas revelou gap repo→VPS. |
 | 06/05/2026 | Social Studio foi refundado como Reborn (publicador + métricas Instagram, sem IA), com Fase A/PR #3 aberta; Canggu/Ana ganhou defesa 24/7 em prompt + guardrail determinístico; DRE abril recebeu arquivo canônico contínuo no vault. |
+| 07/05/2026 | Guarani avançou para contraproposta final de R$7,5k; Gestão de Funcionários foi criada com Slack como fonte oficial; Canggu/Ana teve webhook Evolution corrigido + backfill; OpenClaw/Kobe recebeu correções de bootstrap invisível, debounce inbound e Pro 5x; GB Import Hub voltou após nginx enable; Social Studio Reborn mergeou Fase B e iniciou Fase C. |
 
 ---
 

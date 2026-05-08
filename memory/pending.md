@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-07 02:00 BRT — organização noturna silenciosa_
+_Atualizado: 2026-05-07 23:30 BRT — consolidação diária_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -59,6 +59,12 @@ _Atualizado: 2026-05-07 02:00 BRT — organização noturna silenciosa_
 - [ ] **RH — datas de admissão dos funcionários** para cálculo futuro de férias.
 - [ ] **RH — padrão do contador FOUR/Suellen** para espelho de ponto.
 
+## 🚨 Gestão / Jurídico / Contratos
+
+- [ ] **Gestão de Funcionários — cron semanal via Slack**: criar rotina de sexta no fim do dia para puxar atas completas enviadas ao Pedro com `#ata-reuniao Nome AAAA-MM-DD`, consolidar por Yasmin/Lucas/Leonardo e avisar Pedro com resumo executivo.
+- [ ] **Adapta — aguardar retorno sobre cobranças recorrentes**: Pedro recebeu mensagem pronta em 07/05 para enviar como PEDRO HENRIQUE PERON BROGLIO. Se a empresa negar cancelamento/estorno, próxima frente é contestação pelo banco/cartão usando descritor `TAR PLANO ADAPT` e valores R$ 497,00/R$ 126,75.
+- [ ] **Guarani Sistemas — aguardar resposta da Priscila à contraproposta final** de **R$ 7.500,00 à vista**, condicionada a quitação total, baixa dos títulos, ausência de protesto/negativação, distrato com quitação recíproca e encerramento definitivo dos contratos/aditivos. Histórico já consolidado com prova do congelamento formal de 01/10/2025 e tratativas com Junior Lopes via WhatsApp.
+
 ## 🔥 PRIORIDADE IMEDIATA — Financeiro
 
 - [ ] **DRE abril/2026 — fechar U15 (Descontos Concedidos) com critério estrito por marketplace**: prioridade alta definida por Pedro em 05/05. ML já ficou consistente em **R$ 5.061,14 (4,19%)**; Amazon precisa fechar por `item-promotion-discount` sem frete promocional; Shopee precisa reclassificação porque o parcial amplo de `seller_discount`/promoções explodiu para **R$ 63.715,45 (24,79%)** e foi marcado como suspeito. **Não usar** o consolidado provisório de **R$ 68.776,59** no DRE até concluir a triagem.
@@ -69,9 +75,9 @@ _Atualizado: 2026-05-07 02:00 BRT — organização noturna silenciosa_
 
 ## 🔥 PRIORIDADE IMEDIATA — Budamix E-commerce / Blog / Social Studio
 
-- [ ] **Social Studio Reborn — revisar/mergear PR #3 (Fase A)**: limpeza total + schema novo concluídos em `feature/social-studio-reborn`; PR #3 aberto aguardando revisão/merge. Sem dependência manual do Pedro além do merge/review.
-- [ ] **Social Studio Reborn — Fase B Composer + Agendador** (~2 dias): lista/calendário, composer, editor, validações, upload para `social-assets/posts/{post_id}/`, cron mock `scheduled → published`.
-- [ ] **Social Studio Reborn — Fase C Meta OAuth + publicação real** (~2-3 dias): conectar Instagram Business `@budamix.br`/Facebook Page, token no Supabase Vault, edge `publish-instagram-post`, cron real e refresh de token.
+- [ ] **Social Studio Reborn — Fase C C2**: construir página `/admin/social/conta` (status da conta, botão OAuth, callback handler). C1 já fechado em 07/05 (`d6384bd`).
+- [ ] **Social Studio Reborn — pré-requisitos Meta antes do C3**: Pedro criar App Business novo no Meta Developers, adicionar Instagram Graph API + Facebook Login, configurar redirect URIs/permissões e setar `META_APP_ID`/`META_APP_SECRET` nos Edge Secrets do Supabase. Kobe/CC deve guiar tela-a-tela quando Pedro chamar.
+- [ ] **Social Studio Reborn — Fase C publicação real**: C3-C8 (OAuth callback, executor Meta Graph, tick real com trava temporária `TESTE INTERNO`, C5b remove trava, UI pós-publicação, refresh token e smoke final).
 - [ ] **Social Studio Reborn — Fase D Métricas + Dashboard** (~2-3 dias): edge `collect-instagram-metrics`, dashboard, KPIs/tabela/gráfico/export CSV.
 - [ ] **Social Studio — avaliar delete das branches antigas em 2026-06-05**: `feature/social-studio-pr2` e `feature/social-studio-pivot-copy-only` preservadas por 30 dias após pivot; apagar só depois se não houver necessidade histórica.
 - [ ] **Blog Budamix — inspeção visual manual do post de teste** id `35873e72-a3ff-4ad9-9ea4-1216c05ecec0` (pilar `receber-visitas`) no `/admin/blog`; após Pedro inspecionar cover/supports/pins, deletar o post de teste.
@@ -89,11 +95,10 @@ _Atualizado: 2026-05-07 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 Infraestrutura e autenticações degradadas
 
+- [ ] **OpenClaw fallback — adicionar Anthropic como 3º fallback**: `anthropic:default` está configurado, mas fora de `agents.defaults.model.fallbacks`; após upgrade para ChatGPT Pro não é urgente, mas evita queda total se o mesmo auth profile OpenAI estourar em pico.
 - [ ] **Bling Token Refresh — investigar falhas repetidas de 07/05**: heartbeat de 07/05 à noite detectou novo `lastRunStatus=error` no cron `Bling Token Refresh`; após a tentativa automática ~22:15 BRT, em 08/05 02:07 UTC o cron ainda estava `error` com último run há ~53min e próxima tentativa em ~4h. Verificar se foi timeout/modelo ou refresh real do Bling/Fisco antes de depender de emissão fiscal.
 - [ ] **Security Audit - Semanal** — último run conhecido em 03/05 06h BRT falhou com timeout/status `error`; investigar no próximo bloco operacional.
 - [ ] **Daily GitHub Backup — investigar timeout do run de 07/05 00:00 BRT**: `lastRunStatus=error`, duração 120s, motivo `cron: job execution timed out`. Verificar se foi falha transitória de push/rede ou se o cron precisa timeout maior/execução mais enxuta. Últimos runs recorrentes de monitoramento após isso ficaram OK.
-- [ ] **Consolidação Diária — investigar erro do run de 06/05 23:30 BRT**: heartbeat de 07/05 04:06 BRT detectou `lastRunStatus=error` no cron de consolidação diária, ~5h após execução. Verificar se foi timeout/falha transitória e se a memória ficou consistente antes do próximo ciclo.
-- [ ] **Organização Noturna Silenciosa — investigar erro do run de 07/05 02:00 BRT**: heartbeat de 07/05 10:44 BRT detectou `lastRunStatus=error` no cron de organização noturna, ~9h após execução. Verificar se a falha foi transitória e se houve impacto na limpeza/registro de memória.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.
 - [ ] **Fisco / OpenClaw** — diagnosticar o bloqueio do `sessions_spawn` com `agentId=fisco` retornando `allowed: none` e restaurar o roteamento direto do agente.
@@ -109,10 +114,6 @@ _Atualizado: 2026-05-07 02:00 BRT — organização noturna silenciosa_
 - [ ] **Budamix E-commerce — conteúdo real das páginas stub** `/faq`, `/contato`, `/termos`, `/trocas-e-devolucoes`; hoje são Coming Soon/noindex.
 - [ ] **Newsletter Budamix** — formulário ainda não persiste email; precisa backend real.
 
-## 🚨 Jurídico / Contratos
-
-- [ ] **Guarani Sistemas — aguardar resposta da Priscila à contraproposta final** de **R$ 7.500,00 à vista**, condicionada a quitação total, baixa dos títulos, ausência de protesto/negativação, distrato com quitação recíproca e encerramento definitivo dos contratos/aditivos. Histórico já consolidado com prova do congelamento formal de 01/10/2025 e tratativas com Junior Lopes via WhatsApp.
-
 ## Backlog Estagnado
 _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
@@ -123,4 +124,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-05-07 02:00 BRT._
+_Última organização: 2026-05-07 23:30 BRT._

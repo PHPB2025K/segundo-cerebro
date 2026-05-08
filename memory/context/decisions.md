@@ -178,3 +178,30 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - A posição oficial da GB fica estruturada em 4 pilares: **sem reconhecimento de dívida**, **contratos já fora da vigência inicial de 12 meses**, **congelamento formal reconhecido pela própria Guarani em 01/10/2025**, e **ausência de uso operacional efetivo dos sistemas**.
 - A contraproposta deve exigir como condição: **baixa/cancelamento dos títulos em aberto, ausência de protesto/negativação/cobrança externa, distrato com quitação recíproca, ausência de saldo remanescente e encerramento definitivo de todos os contratos/aditivos**.
 - Faixa interna de negociação consolidada nesta sessão: alvo ótimo **R$ 7.500**, aceitável **R$ 8.500–9.000**, teto psicológico **R$ 10.000**; acima disso passa a ser ruim para a GB.
+
+## 2026-05-07 — Gestão de Funcionários / Slack como fonte oficial
+
+- Acompanhamento de performance de Yasmin, Lucas e Leonardo fica em frente separada **Gestão de Funcionários**, distinta do RH/Ponto Certo.
+- Fonte oficial das atas será o Slack: Pedro envia para si a ata completa/gerencial com tag `#ata-reuniao Nome AAAA-MM-DD`; Kobe consolida semanalmente.
+- Mensagem enviada ao funcionário deve ser versão curta e objetiva, sem análise gerencial pesada.
+
+## 2026-05-07 — Canggu/Ana / webhook Evolution autenticado
+
+- Webhook Evolution da instância BUDAMIX AI AGENT precisa manter headers `Authorization` e `apikey` para a Supabase Edge `webhook-whatsapp`; conexão da Evolution sozinha não prova ingestão.
+- Backfills de mensagens perdidas devem ser controlados por conversa/bloco, comparando `whatsapp_message_id`, para evitar duplicidade e rajadas de respostas automáticas.
+
+## 2026-05-07 — Kobe/OpenClaw / comunicação e estabilidade
+
+- Kobe não deve narrar mecânica interna do OpenClaw no Telegram: bootstrap, reindex, warm-up, recall, embeddings e compactação rodam em silêncio; linguagem natural sobre consultar histórico segue permitida.
+- Debounce inbound do Telegram fica em 8s via `messages.inbound`, não `messages.queue`; mensagens com `/new`/`/cerebro` continuam bypass.
+- Conta ChatGPT do Pedro foi atualizada para **Pro 5x**; fallback `gpt-5.5 → gpt-5.4` usa o mesmo auth profile, então Anthropic como 3º fallback segue melhoria futura.
+
+## 2026-05-07 — Social Studio Reborn / Fase C
+
+- Fase B foi validada por smoke E2E e mergeada; Fase C será Meta OAuth + publicação real no Instagram.
+- Durante o smoke real em `@budamix.br`, o C5 deve adicionar trava temporária **`TESTE INTERNO`** no início da caption; remoção só em commit C5b após validação.
+- Token Meta de usuário permanece no Supabase Vault; App Secret fica em Edge env var.
+
+## 2026-05-07 — Infra VPS / nginx host
+
+- Apps estáticos roteados por Traefik para nginx host dependem de `nginx` ativo e `enabled`; `systemctl enable nginx` virou decisão para evitar novo 502 após reboot.

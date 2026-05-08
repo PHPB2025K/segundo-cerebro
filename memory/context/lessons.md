@@ -189,7 +189,36 @@ _Última Consolidação Profunda: 2026-05-01_
 
 ---
 
+
+### [ESTRATÉGICA] Comunicação do Kobe não deve expor mecânica interna do OpenClaw (2026-05-07)
+**Contexto:** Pedro reclamou de respostas com “Bootstrap carregado”, “Bootstrap ok” e status internos no Telegram. A injeção `[Bootstrap pending]` + BOOTSTRAP.md em formato de checklist induzia o modelo a narrar procedimento técnico.
+**Lição:** Procedimentos internos como bootstrap, reindexação, warm-up, embeddings, recall e compactação devem rodar em silêncio. Comunicação visível ao Pedro pode explicar intenção em linguagem natural, mas nunca jargão/plumbing da ferramenta.
+**Ação:** SOUL/BOOTSTRAP foram reforçados com regra de invisibilidade no Telegram.
+
+### [ESTRATÉGICA] Webhook Evolution autenticado precisa de teste de ingestão real, não só conexão WhatsApp (2026-05-07)
+**Contexto:** A instância BUDAMIX AI AGENT estava conectada e recebendo WhatsApp na Evolution, mas a Canggu parou de ingerir mensagens porque o webhook para Supabase Edge estava sem headers e retornava 401.
+**Lição:** Em integrações Evolution → Supabase Edge, validar a cadeia completa: mensagem recebida na Evolution, POST autenticado no webhook, insert no banco e efeito no produto. Healthcheck que só olha `state=open` mascara falha de autenticação.
+**Ação:** Webhook reconfigurado com `Authorization` + `apikey`; backfill controlado por `whatsapp_message_id`.
+
+### [ESTRATÉGICA] systemd unit fora de Docker/PM2 precisa estar `enabled`, não só funcionando agora (2026-05-07)
+**Contexto:** GB Import Hub, reports e Shopee OAuth ficaram 7 dias em 502 após reboot porque o nginx host estava `inactive` e `disabled`; PM2/Docker voltaram, nginx não.
+**Lição:** Qualquer app/serviço crítico servido por systemd fora de Docker/PM2 precisa validar `is-active` e `is-enabled`. Start manual resolve o presente; `enable` evita downtime silencioso no próximo reboot.
+**Ação:** `nginx` foi iniciado e habilitado, restaurando os 3 vhosts.
+
 ## Lições Táticas (Expiram em 30 dias)
+
+
+### [TÁTICA] ChatGPT plan_type em JWT pode estar stale; validar cota real por teste de modelo (2026-05-07)
+**Lição:** Após upgrade de Plus para Pro, o JWT local pode continuar mostrando `chatgpt_plan_type: plus` até refresh natural, mas a cota real já muda no account ID. Diagnóstico de rate limit deve combinar logs de erro, plano real na UI e teste curto de inferência antes de forçar re-login.
+**Expira:** 2026-06-06
+
+### [TÁTICA] Social Studio: smoke real no Instagram precisa de trava textual temporária (2026-05-07)
+**Lição:** Ao trocar mock por publicação real em perfil de marca, adicionar salvaguarda visível e removível em commit isolado — no caso, prefixo `TESTE INTERNO` na caption durante C5. Só remover depois do smoke aprovado.
+**Expira:** 2026-06-06
+
+### [TÁTICA] Backfill de atendimento WhatsApp deve ser por conversa/bloco e por ID da mensagem (2026-05-07)
+**Lição:** Para recuperar mensagens que ficaram na Evolution mas não entraram no produto, comparar por `whatsapp_message_id` e processar blocos pequenos por conversa. Comparação por texto gera falso positivo/duplicado, e replay em rajada pode disparar respostas automáticas indevidas.
+**Expira:** 2026-06-06
 
 ### [TÁTICA] Guarani: prova de congelamento fortalece contestação, mas não prova prorrogação aprovada (2026-05-07)
 **Lição:** Em disputa contratual SaaS com histórico de congelamento, diferenciar com precisão o que foi formalmente reconhecido do que ficou só em tratativa. E-mail/print/WhatsApp da própria fornecedora provando o congelamento inicial elevam muito a força da negociação; já pedido de prorrogação sem aceite expresso não deve ser tratado como aprovação. A tese correta é falha de regularização/comunicação interna + boa-fé do cliente, não “prorrogação já concedida”.

@@ -71,6 +71,13 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 
 - Para `video-use`, a API key ElevenLabs deve ser restrita ao mínimo necessário: apenas **Speech to Text**. Sanity check seguro: `POST /v1/speech-to-text` sem payload esperando HTTP 422 como prova de auth OK; não usar `/v1/user` porque exige permissão administrativa.
 
+## 2026-05-08 — Daily Sales Report / Trader
+
+- Pedro aprovou uma rotina diária chamada **Daily Sales Report — Trader**, executada pelo agente **Trader** todos os dias às **06:30 BRT**, com entrega no Telegram Kobe Hub, tópico **Marketplaces**.
+- O relatório deve consolidar vendas/pedidos do dia anterior completo (00:00–23:59 BRT) de **Mercado Livre**, **Shopee 3 contas**, **Amazon BR** e pedidos do Bling Matriz como canal nomeado exatamente **Atacado - GB Matriz**.
+- O report deve ser conciso, estilo Daily Briefing, focado em vendas geradas/pedidos do dia; não deve misturar settlement, extrato financeiro ou DRE com faturamento de pedidos.
+- Se alguma fonte falhar, o Trader deve gerar relatório parcial, marcar a fonte como indisponível e não estimar números.
+
 ## Ver também
 
 - `memory/context/decisoes/kobe-permanentes.md`

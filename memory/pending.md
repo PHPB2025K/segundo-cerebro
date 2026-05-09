@@ -63,7 +63,7 @@ _Atualizado: 2026-05-08 23:30 BRT — consolidação diária_
 
 - [ ] **Gestão de Funcionários — rotina semanal via Slack**: rotina executada manualmente em 08/05 com atas de Lucas (05/05) e Leonardo (04/05); Yasmin teve pontos operacionais sem ata formal. Se virar padrão recorrente, criar cron de sexta no fim do dia para puxar atas `#ata-reuniao Nome AAAA-MM-DD`, consolidar por Yasmin/Lucas/Leonardo e avisar Pedro com resumo executivo.
 - [ ] **Adapta — aguardar retorno sobre cobranças recorrentes**: Pedro recebeu mensagem pronta em 07/05 para enviar como PEDRO HENRIQUE PERON BROGLIO. Se a empresa negar cancelamento/estorno, próxima frente é contestação pelo banco/cartão usando descritor `TAR PLANO ADAPT` e valores R$ 497,00/R$ 126,75.
-- [ ] **Guarani Sistemas — aguardar resposta da Priscila à contraproposta final** de **R$ 7.500,00 à vista**, condicionada a quitação total, baixa dos títulos, ausência de protesto/negativação, distrato com quitação recíproca e encerramento definitivo dos contratos/aditivos. Histórico já consolidado com prova do congelamento formal de 01/10/2025 e tratativas com Junior Lopes via WhatsApp.
+- [ ] **Guarani Sistemas — acompanhar autorização da diretoria sobre proposta de R$ 7.500,00**: Priscilla respondeu em 07/05 15:49 BRT que os títulos em aberto seriam devidos, que não haverá protesto/negativação/cobrança externa enquanto a negociação estiver em andamento, que o pedido/termo de distrato deve partir da GB e que buscará autorização da diretoria para o valor de **R$ 7.500,00** referente ao aviso prévio. Não houve e-mail posterior localizado até 09/05 19:42 BRT. Histórico consolidado com prova do congelamento formal de 01/10/2025 e tratativas com Junior Lopes via WhatsApp.
 
 ## 🔥 PRIORIDADE IMEDIATA — Financeiro
 

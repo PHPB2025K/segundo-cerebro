@@ -22,7 +22,8 @@ memory/
 │   ├── decisions.md       ← Decisões permanentes (NUNCA contradizer)
 │   ├── lessons.md         ← Erros e aprendizados [ESTRATÉGICA|TÁTICA]
 │   ├── people.md          ← Contatos importantes
-│   └── business-context.md ← Vocabulário, números de referência
+│   ├── business-context.md ← Vocabulário, números de referência
+│   └── writing-as-pedro.md ← Tom padrão para WhatsApp/e-mail escritos no nome do Pedro
 ├── projects/
 │   ├── gb-importadora.md  ← Operação principal
 │   ├── simulimport.md     ← MicroSaaS — simulador de importação

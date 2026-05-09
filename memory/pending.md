@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-07 23:30 BRT — consolidação diária_
+_Atualizado: 2026-05-08 23:30 BRT — consolidação diária_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -61,7 +61,7 @@ _Atualizado: 2026-05-07 23:30 BRT — consolidação diária_
 
 ## 🚨 Gestão / Jurídico / Contratos
 
-- [ ] **Gestão de Funcionários — cron semanal via Slack**: criar rotina de sexta no fim do dia para puxar atas completas enviadas ao Pedro com `#ata-reuniao Nome AAAA-MM-DD`, consolidar por Yasmin/Lucas/Leonardo e avisar Pedro com resumo executivo.
+- [ ] **Gestão de Funcionários — rotina semanal via Slack**: rotina executada manualmente em 08/05 com atas de Lucas (05/05) e Leonardo (04/05); Yasmin teve pontos operacionais sem ata formal. Se virar padrão recorrente, criar cron de sexta no fim do dia para puxar atas `#ata-reuniao Nome AAAA-MM-DD`, consolidar por Yasmin/Lucas/Leonardo e avisar Pedro com resumo executivo.
 - [ ] **Adapta — aguardar retorno sobre cobranças recorrentes**: Pedro recebeu mensagem pronta em 07/05 para enviar como PEDRO HENRIQUE PERON BROGLIO. Se a empresa negar cancelamento/estorno, próxima frente é contestação pelo banco/cartão usando descritor `TAR PLANO ADAPT` e valores R$ 497,00/R$ 126,75.
 - [ ] **Guarani Sistemas — aguardar resposta da Priscila à contraproposta final** de **R$ 7.500,00 à vista**, condicionada a quitação total, baixa dos títulos, ausência de protesto/negativação, distrato com quitação recíproca e encerramento definitivo dos contratos/aditivos. Histórico já consolidado com prova do congelamento formal de 01/10/2025 e tratativas com Junior Lopes via WhatsApp.
 
@@ -123,4 +123,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-05-07 23:30 BRT._
+_Última organização: 2026-05-08 23:30 BRT._

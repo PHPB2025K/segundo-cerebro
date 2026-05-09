@@ -61,3 +61,7 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 
 ### Relatório mensal direto = job do Trader + aviso no tópico Marketplaces (2026-05-04)
 - Quando Pedro pedir acompanhamento de geração mensal, rodar como Trader direto (não `main` delegando) e avisar conclusão/falha no mesmo tópico do pedido.
+### Daily Sales Report — rotina diária (2026-05-08)
+- Rodar diariamente às **06:30 BRT** com entrega no Telegram Kobe Hub, tópico Marketplaces.
+- Consolidar vendas/pedidos do dia anterior completo em BRT para Mercado Livre, Shopee 3 contas, Amazon BR e Bling Matriz como **Atacado - GB Matriz**.
+- Não misturar settlement, extrato financeiro ou DRE com venda gerada; se fonte falhar, gerar parcial e marcar indisponibilidade sem estimar.

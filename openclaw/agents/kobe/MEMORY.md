@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-07 23:30 BRT (consolidação diária)._
+_Último update: 2026-05-08 23:30 BRT (consolidação diária)._
 
 ---
 
@@ -133,7 +133,7 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (07/05/2026 23:30 BRT — consolidação diária)
+## Status do Sistema (08/05/2026 23:30 BRT — consolidação diária)
 
 ### 🚨 Crítico
 - **Estoque Budamix:** PR1+PR2+PR3a seguem no repo, mas produção ainda roda build rsync de 13/04; remediação continua pausada no `git fetch` por falta de credencial GitHub na VPS. Próxima decisão: Deploy Key SSH read-only (recomendado) vs PAT vs rsync.
@@ -142,7 +142,7 @@ skills/
 - **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
 
 ### ⚠️ Importante
-- **Canggu/Ana:** incidente 24/7 resolvido e, em 07/05, webhook Evolution sem auth foi corrigido com backfill controlado; pipeline WhatsApp voltou a ingerir. Pendente cleanup TS menor, correção manual da resposta ML antiga, feedback 👎, redirect www↔apex e resiliência restante.
+- **Canggu/Ana:** incidente 24/7 segue como regra crítica já registrada; em 08/05 houve novo alerta de resposta indevida com limitação de horário comercial/origin poll, mas a correção ficou bloqueada por falta de acesso confiável ao repo/projeto canônico na sessão atual. Pendente cleanup TS menor, correção manual da resposta ML antiga, feedback 👎, redirect www↔apex e resiliência restante.
 - **RH/Ponto Certo:** `ponto.budamix.com.br` ativo com SSL; WhatsApp RH proativo bloqueado indefinidamente até liberação explícita, inbound permitido.
 - **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2.
 - **Amazon Ads:** D+7 das rodadas 02/05 e 03/05 seguem na fila.
@@ -163,6 +163,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-08:** Dia mais de consolidação do que construção: Daily Sales Report — Trader aprovado e criado para rodar diariamente às 06:30 BRT no tópico Marketplaces, consolidando ML, Shopee 3 contas, Amazon BR e Bling Matriz como Atacado - GB Matriz. Gestão de Funcionários rodou leitura semanal via Slack com atas formais de Lucas e Leonardo e pontos operacionais de Yasmin. Canggu/Ana voltou a aparecer como risco P0 por resposta de horário comercial/origin poll, sem falso positivo de correção por ausência de acesso ao repo canônico na sessão atual.
 - **2026-05-07:** Dia de correções estruturais e avanço de produto: Guarani consolidada em contraproposta final de R$7,5k; Adapta teve busca profunda no Gmail e mensagem de contestação; Gestão de Funcionários criada com Slack como fonte oficial; Canggu/Ana teve webhook Evolution sem auth corrigido e backfill controlado; Kobe/OpenClaw ganhou invisibilidade de bootstrap, debounce inbound 8s e ChatGPT Pro 5x; GB Import Hub voltou após habilitar nginx; Social Studio Reborn teve Fase B mergeada e Fase C iniciada com C1 fechado.
 - **2026-05-06:** Social Studio passou por dois pivots e renasceu como Reborn: publicador + métricas Instagram, sem IA, com Fase A/PR #3 concluída e 5 Edge Functions legacy removidas da produção via Supabase REST API. Canggu/Ana teve incidente 24/7 resolvido em produção com prompt reforçado, guardrail determinístico e origin poll defensivo; DRE abril recebeu arquivo atual no vault e regra de canônico contínuo; U15 segue aberta com ML validado, Amazon/Shopee pendentes.
 - **2026-05-05:** Dia pesado de correção de drift e produto: Ponto Certo ganhou DNS+SSL oficial em `ponto.budamix.com.br`; RH WhatsApp proativo foi bloqueado indefinidamente; Canggu migrou para `canggu.com.br`, eliminou drift de 13 Edge Functions com GitHub Actions e ajustou o tom/hard-block da Ana no ML; Social Studio avançou PR1+PR2 com paletas, swatches, histórico/restore de imagens e edge functions corrigidas, restando bug `cover-numeric`; Estoque Budamix ganhou repo canônico e PR1+PR2+PR3a, mas deploy pausou por falta de credencial GitHub na VPS; DRE abril confirmou U15 antes da U44 v4 limpa.
@@ -189,7 +190,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) retomar deploy do Estoque Budamix com Deploy Key SSH read-only, (2) fechar C2 da Fase C do Social Studio e guiar Pedro nos pré-requisitos Meta antes do C3, (3) apurar U15 antes da U44 v4, (4) acompanhar D+7 Amazon Ads, (5) monitorar Canggu/Ana pós-backfill e corrigir pendências ML/redirect._
+_Próximas ações: (1) retomar deploy do Estoque Budamix com Deploy Key SSH read-only, (2) fechar C2 da Fase C do Social Studio e guiar Pedro nos pré-requisitos Meta antes do C3, (3) apurar U15 antes da U44 v4, (4) acompanhar D+7 Amazon Ads, (5) monitorar Canggu/Ana 24/7/origin poll e corrigir pendências ML/redirect._
 
 ---
 ## Contexto

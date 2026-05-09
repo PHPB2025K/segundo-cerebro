@@ -1,8 +1,12 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-05_
+_Atualizado: 2026-05-08_
 
 ## 🔴 Prioridade Alta
+
+### Daily Sales Report
+- [ ] Monitorar a primeira execução em 09/05 às 06:30 BRT e validar se o relatório sai como Trader, no tópico Marketplaces, com ML/Shopee 3 contas/Amazon/Atacado - GB Matriz e fallback parcial explícito.
+
 
 ### Relatório mensal
 - [ ] **Relatório mensal abril — reexecutar job direto do Trader**: validar geração dos 3 artefatos finais, corrigir caminho Shopee e avisar conclusão/falha no tópico Marketplaces do Telegram.

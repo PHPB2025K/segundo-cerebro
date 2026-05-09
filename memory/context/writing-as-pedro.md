@@ -10,9 +10,9 @@ tags:
   - pedro
 ---
 
-# Writing as Pedro — WhatsApp e e-mail
+# Writing as Pedro — qualquer canal
 
-Regra permanente para qualquer mensagem, WhatsApp, e-mail, resposta a fornecedor, cliente, agência, parceiro ou terceiro que Kobe redigir **no nome do Pedro** ou **como se fosse o Pedro escrevendo**.
+Regra permanente para qualquer mensagem que Kobe redigir **no nome do Pedro** ou **como se fosse o Pedro escrevendo**, independentemente do canal: WhatsApp, e-mail, Slack, Telegram, marketplace, fornecedor, cliente, agência, parceiro ou terceiro.
 
 ## Tom base
 

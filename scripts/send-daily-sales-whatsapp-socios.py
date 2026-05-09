@@ -186,7 +186,7 @@ def build_message(day: str) -> str:
         f"• Amazon teve o maior ticket médio: {brl(amazon_ticket)}",
         "• Dia com bom equilíbrio entre volume na Shopee e ticket mais alto na Amazon",
         "",
-        "*📦 Estoque atual (Preço de Custo)*",
+        "*📦 Estoque atual (Custo)*",
         f"• Físico: {brl(physical_cost)}",
         f"• Full: {brl(full_cost)}",
         f"• Consolidado: {brl(stock_total_cost)}",

@@ -60,6 +60,32 @@ def supabase_get(url: str, key: str, table: str, params: dict[str, str]) -> list
         return json.loads(resp.read().decode("utf-8"))
 
 
+def fetch_stock_summary(supabase_url: str, service_key: str) -> dict[str, float]:
+    physical_rows = supabase_get(
+        supabase_url,
+        service_key,
+        "physical_inventory_summary",
+        {"id": "eq.1", "select": "total_cost"},
+    )
+    physical_cost = float((physical_rows[0] if physical_rows else {}).get("total_cost") or 0)
+
+    full_rows = supabase_get(
+        supabase_url,
+        service_key,
+        "fulfillment_inventory",
+        {"select": "available_qty,cost_price"},
+    )
+    full_cost = sum(
+        (float(row.get("available_qty") or 0) * float(row.get("cost_price") or 0))
+        for row in full_rows
+    )
+    return {
+        "physical_cost": round(physical_cost, 2),
+        "full_cost": round(full_cost, 2),
+        "total_cost": round(physical_cost + full_cost, 2),
+    }
+
+
 def fetch_bling_revenue(day: str) -> tuple[float | None, int | None]:
     """Busca pedidos do Bling Matriz. Retorna (None, None) se falhar."""
     token_path = Path("/root/.openclaw/workspace/scripts/bling-oauth/tokens-matriz.json")
@@ -136,6 +162,11 @@ def build_message(day: str) -> str:
     best_name, best_revenue, _ = max(channel_values, key=lambda item: item[1])
     amazon_ticket = float((by_platform.get("amazon") or {}).get("avg_order_value") or 0)
 
+    stock = fetch_stock_summary(supabase_url, service_key)
+    physical_cost = stock["physical_cost"]
+    full_cost = stock["full_cost"]
+    stock_total_cost = stock["total_cost"]
+
     display_date = datetime.fromisoformat(day).strftime("%d/%m/%Y")
 
     return "\n".join([
@@ -154,6 +185,11 @@ def build_message(day: str) -> str:
         f"• Melhor canal em faturamento: {best_name}",
         f"• Amazon teve o maior ticket médio: {brl(amazon_ticket)}",
         "• Dia com bom equilíbrio entre volume na Shopee e ticket mais alto na Amazon",
+        "",
+        "*📦 Estoque atual (Preço de Custo)*",
+        f"• Físico: {brl(physical_cost)}",
+        f"• Full: {brl(full_cost)}",
+        f"• Consolidado: {brl(stock_total_cost)}",
     ])
 
 

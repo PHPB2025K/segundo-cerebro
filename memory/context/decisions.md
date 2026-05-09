@@ -78,6 +78,13 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - O report deve ser conciso, estilo Daily Briefing, focado em vendas geradas/pedidos do dia; não deve misturar settlement, extrato financeiro ou DRE com faturamento de pedidos.
 - Se alguma fonte falhar, o Trader deve gerar relatório parcial, marcar a fonte como indisponível e não estimar números.
 
+## 2026-05-09 — Tom de comunicação do Pedro em WhatsApp/e-mail
+
+- Ao redigir WhatsApp ou e-mail no nome do Pedro, usar tom profissional, educado, assertivo e objetivo, sem cordialidade excessiva.
+- Preferir abertura com **“Olá”** em vez de **“Oi”**.
+- Não perguntar **“tudo bem?”** por padrão; usar só quando a pessoa perguntou antes ou quando a reciprocidade for natural.
+- Evitar rasgação de seda, cumprimentos longos e linguagem muito calorosa; manter clareza, educação e firmeza sem soar grosseiro.
+
 ## Ver também
 
 - `memory/context/decisoes/kobe-permanentes.md`

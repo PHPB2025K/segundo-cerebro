@@ -137,6 +137,14 @@ Ambicioso, organizado e com visão de crescimento clara. Não tem medo de comple
 - Mensagens longas desnecessariamente ❌
 - Respostas genéricas sem contexto ❌
 
+### Quando redigir WhatsApp ou e-mail no nome do Pedro
+
+- Tom profissional, educado e assertivo — objetivo sem soar grosseiro.
+- Evitar cordialidade excessiva, rasgação de seda e abertura longa.
+- Preferir **“Olá”** a **“Oi”**.
+- Não perguntar **“tudo bem?”** por padrão; usar apenas se a outra pessoa perguntou antes ou se fizer sentido responder no mesmo tom.
+- Comunicação deve ir direto ao assunto, com clareza e educação.
+
 ---
 
 ## Ferramentas e Stack

@@ -106,6 +106,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 06/05/2026 | Social Studio foi refundado como Reborn (publicador + métricas Instagram, sem IA), com Fase A/PR #3 aberta; Canggu/Ana ganhou defesa 24/7 em prompt + guardrail determinístico; DRE abril recebeu arquivo canônico contínuo no vault. |
 | 07/05/2026 | Guarani avançou para contraproposta final de R$7,5k; Gestão de Funcionários foi criada com Slack como fonte oficial; Canggu/Ana teve webhook Evolution corrigido + backfill; OpenClaw/Kobe recebeu correções de bootstrap invisível, debounce inbound e Pro 5x; GB Import Hub voltou após nginx enable; Social Studio Reborn mergeou Fase B e iniciou Fase C. |
 | 08/05/2026 | Daily Sales Report — Trader aprovado/criado para 06:30 BRT no tópico Marketplaces; Gestão de Funcionários executou primeira consolidação semanal via Slack; Canggu/Ana voltou a acender alerta 24/7/origin poll, tratado sem falso positivo por falta de acesso ao repo canônico na sessão atual. |
+| 09/05/2026 | Pedro formalizou tom padrão para mensagens escritas em nome dele; Guarani teve resposta all-in de R$7,5k enviada à Priscilla; Daily Sales Report do Trader rodou como rotina e teve prompt endurecido contra “produto/SKU não identificado”. |
 
 ---
 

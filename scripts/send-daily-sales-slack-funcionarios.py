@@ -296,7 +296,7 @@ def build_message(day: str) -> str:
         "• O mix de produtos considera SKUs equivalentes somados nas três plataformas, evitando duplicar o mesmo item por anúncio diferente.",
         "• Para hoje, vale acompanhar se Shopee e Mercado Livre recuperam tração. Se Amazon continuar abaixo, a checagem prioritária é Buy Box, anúncios e estoque FBA.",
     ]
-    section_gap = "\n\n\n"
+    section_gap = "\n\n"
     sections = [
         f"DAILY SALES REPORT - {display_date} (Ontem)",
         "\n".join([

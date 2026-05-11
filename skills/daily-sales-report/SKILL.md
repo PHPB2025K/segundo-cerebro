@@ -1,0 +1,114 @@
+---
+name: daily-sales-report
+description: Gere, valide, ajuste ou dispare o Daily Sales Report da GB Importadora para Slack/Telegram/WhatsApp. Use sempre que Pedro mencionar Daily Sales Report, Sales Report, relatório diário de vendas, resumo diário de vendas, vendas de ontem, envio para Yasmin/Lucas/Leonardo, ou ajustes no cron das 06:50 BRT. Garante fonte canônica, ranking consolidado por SKU cross-plataforma, formatação Slack aprovada e validações antes do envio.
+---
+
+# Daily Sales Report — GB Importadora
+
+## Objetivo
+Enviar diariamente o relatório de vendas do dia anterior com dados corretos, sem duplicidade de informação, em formato legível para equipe administrativa.
+
+## Fonte de verdade
+- Marketplaces: Budamix Central / Supabase `v_daily_sales`.
+- Período: dia anterior completo em BRT, 00:00–23:59.
+- Canais obrigatórios:
+  - Shopee
+  - Mercado Livre
+  - Amazon
+  - Atacado GB Matriz via Bling Matriz
+- Não usar coleta direta de APIs como total oficial, exceto fallback explícito com aviso.
+- Não misturar settlement/extrato financeiro/DRE com venda gerada do dia.
+
+## Script canônico
+Usar:
+
+```bash
+python3 /root/segundo-cerebro/scripts/send-daily-sales-slack-funcionarios.py [YYYY-MM-DD]
+```
+
+Modos úteis:
+- Preview sem envio:
+  ```bash
+  python3 /root/segundo-cerebro/scripts/send-daily-sales-slack-funcionarios.py YYYY-MM-DD --dry-run
+  ```
+- Enviar teste só para Pedro no Slack:
+  ```bash
+  python3 /root/segundo-cerebro/scripts/send-daily-sales-slack-funcionarios.py YYYY-MM-DD --to-pedro
+  ```
+- Envio real para equipe:
+  ```bash
+  python3 /root/segundo-cerebro/scripts/send-daily-sales-slack-funcionarios.py YYYY-MM-DD
+  ```
+
+## Destinatários Slack
+Envio por DM no Slack para:
+- Yasmin — usar o perfil `yasminoscarlino7@gmail.com` (`U09AX9SETDM`). Não usar o perfil antigo `yasmin.oscarlino@gbimportadora.com`.
+- Lucas — `U08TCL5A8U9`.
+- Leonardo — `U0AUUQ5MP6C`.
+
+## Cron
+- Nome: `Daily Sales Report — Slack Funcionários`.
+- Horário: diariamente às 06:50 BRT.
+- Deve rodar depois do Sales Report do Trader/rotinas de vendas e antes do Daily Briefing.
+- Se sucesso: responder `HEARTBEAT_OK`.
+- Se falha: alertar Pedro no Telegram tópico Marketplaces, sem expor tokens, comandos, paths internos ou logs brutos.
+
+## Estrutura aprovada
+Manter exatamente estas seções:
+1. `DAILY SALES REPORT - DD/MM/AAAA (Ontem)`
+2. `📊 RESUMO GERAL`
+3. `🛒 VENDAS POR CANAL`
+4. `🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS`
+5. `📈 ANÁLISE DO DIA`
+6. `Dia analisado: DD/MM/AAAA — 00:00–23:59 BRT`
+
+Não incluir a seção `DESTAQUES DO DIA`; ela foi removida por duplicar informação.
+
+## Formatação Slack aprovada
+- Títulos das seções: negrito + sublinhado real do Slack via `rich_text blocks` (`style: {bold: true, underline: true}`).
+- Não usar underline Unicode, linha separadora fake ou `────────────`.
+- Conteúdo interno: texto normal, sem negrito, sem itálico e sem sublinhado.
+- Bullets sem linhas em branco entre eles.
+- Espaçamento entre seções: uma linha em branco.
+- A seção `ANÁLISE DO DIA` deve ser em bullets; cada bullet é um chunk de ideia. Não duplicar informações já presentes nas seções anteriores.
+
+## Top Produtos — regra crítica
+O ranking deve ser consolidado por produto equivalente nas três plataformas, não por título/anúncio isolado.
+
+Obrigatório:
+- Usar mapeamento SKU cross-plataforma existente.
+- Somar vendas de SKUs equivalentes em Shopee + Mercado Livre + Amazon.
+- Mostrar produto único consolidado e unidades totais.
+- Nunca exibir “Produto não identificado” ou similar. Se o nome não for confiável, omitir do Top Produtos e tratar como problema de cadastro interno.
+
+## Análise do dia — regra crítica
+A análise deve ser curta e útil para operação.
+
+Deve considerar:
+- Faturamento total vs média dos últimos 30 dias.
+- Comparação com dias equivalentes da semana quando relevante.
+- Mês/data analisada e efeito de calendário.
+- Particularidades por canal quando realmente agregarem insight.
+- Tendência operacional acionável para o dia atual.
+
+Evitar:
+- Repetir números já listados em Resumo/Vendas por Canal.
+- Comentário genérico sem base nos dados.
+- Frases longas demais.
+
+## Checklist antes de enviar
+1. Confirmar dia analisado em BRT.
+2. Confirmar `v_daily_sales` disponível para o dia.
+3. Confirmar Atacado GB Matriz/Bling; se indisponível, marcar como indisponível, não estimar.
+4. Confirmar Top Produtos consolidado por SKU equivalente.
+5. Confirmar destinatários Slack corretos.
+6. Confirmar formatação rich text: títulos bold+underline, conteúdo normal.
+7. Em caso de ajuste de formato, testar primeiro com `--to-pedro`.
+
+## Último padrão aprovado
+Aprovado por Pedro em 2026-05-11:
+- Envio via Slack DM para Yasmin, Lucas e Leonardo.
+- Uma linha em branco entre seções.
+- Títulos em negrito + sublinhado real do Slack.
+- Conteúdo sem formatação especial.
+- Sem seção `DESTAQUES DO DIA`.

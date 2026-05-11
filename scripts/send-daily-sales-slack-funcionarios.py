@@ -63,6 +63,15 @@ def pct(value: float) -> str:
     return f"{value:.1f}%".replace(".", ",")
 
 
+def underline(text: str) -> str:
+    """Slack não tem underline nativo; usa combining low line para efeito visual."""
+    return "".join((ch + "\u0332") if ch != " " else " " for ch in text)
+
+
+def section_title(text: str) -> str:
+    return f"*{underline(text)}*"
+
+
 def load_env(path: Path) -> dict[str, str]:
     env: dict[str, str] = {}
     for raw in path.read_text().splitlines():
@@ -289,8 +298,8 @@ def build_message(day: str) -> str:
     weekday_name = weekday_names[d.weekday()]
     direction = "abaixo" if delta30 < 0 else "acima"
     analysis = [
-        f"• O faturamento de ontem ficou *{pct(abs(delta30))} {direction} da média dos últimos 30 dias*, que foi de aproximadamente *{brl(avg30)}*.",
-        f"• Como foi *{weekday_name}*, a leitura mais justa é cruzar também com dias equivalentes: a média dos últimos 4 {weekday_name}s foi de *{brl(avg_same_weekday)}*.",
+        f"• O faturamento de ontem ficou {pct(abs(delta30))} {direction} da média dos últimos 30 dias, que foi de aproximadamente {brl(avg30)}.",
+        f"• Como foi {weekday_name}, a leitura mais justa é cruzar também com dias equivalentes: a média dos últimos 4 {weekday_name}s foi de {brl(avg_same_weekday)}.",
         "• O mix de produtos considera SKUs equivalentes somados nas três plataformas, evitando duplicar o mesmo item por anúncio diferente.",
         "• Para hoje, vale acompanhar se Shopee e Mercado Livre recuperam tração. Se Amazon continuar abaixo, a checagem prioritária é Buy Box, anúncios e estoque FBA.",
     ]
@@ -298,31 +307,31 @@ def build_message(day: str) -> str:
     sections = [
         f"DAILY SALES REPORT - {display_date} (Ontem)",
         "\n".join([
-            "*📊 RESUMO GERAL*",
-            f"• Faturamento total: *{brl(total_revenue)}*",
-            f"• Pedidos: *{total_orders}*",
-            f"• Ticket médio: *{brl(ticket)}*",
+            section_title("📊 RESUMO GERAL"),
+            f"• Faturamento total: {brl(total_revenue)}",
+            f"• Pedidos: {total_orders}",
+            f"• Ticket médio: {brl(ticket)}",
         ]),
         "\n".join([
-            "*🛒 VENDAS POR CANAL*",
-            *[f"• {name}: *{brl(revenue)}* | {orders} pedidos" for name, revenue, orders in channel_values],
-            atacado_line,
+            section_title("🛒 VENDAS POR CANAL"),
+            *[f"• {name}: {brl(revenue)} | {orders} pedidos" for name, revenue, orders in channel_values],
+            atacado_line.replace("*", ""),
         ]),
         "\n".join([
-            "*📌 DESTAQUES DO DIA*",
-            f"• Melhor canal em faturamento: *{best_name}*",
-            f"• {best_name} representou aproximadamente *{pct(best_share)} do faturamento do dia*",
+            section_title("📌 DESTAQUES DO DIA"),
+            f"• Melhor canal em faturamento: {best_name}",
+            f"• {best_name} representou aproximadamente {pct(best_share)} do faturamento do dia",
             "• Ranking de produtos consolidado por equivalência de SKU entre plataformas",
         ]),
         "\n".join([
-            "*🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS*",
-            *[f"• *{item['name']}* — {item['qty']} un." for item in top_products],
+            section_title("🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS"),
+            *[f"• {item['name']} — {item['qty']} un." for item in top_products],
         ]),
         "\n".join([
-            "*📈 ANÁLISE DO DIA*",
+            section_title("📈 ANÁLISE DO DIA"),
             *analysis,
         ]),
-        f"_Dia analisado: {display_date} — 00:00–23:59 BRT_",
+        f"Dia analisado: {display_date} — 00:00–23:59 BRT",
     ]
     return section_gap.join(sections)
 

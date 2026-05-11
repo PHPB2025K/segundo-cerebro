@@ -12,7 +12,13 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-10 23:30 BRT — consolidação diária_
+_Atualizado: 2026-05-11 20:03 BRT — pedido do Pedro via áudio_
+
+## 🔥 PRIORIDADE — Amanhã cedo (12/05/2026)
+
+- [ ] **Meta Business — finalizar configuração da Segunda Venda**: Pedro precisa configurar no Meta Business o número de WhatsApp que será usado com a empresa **Segunda Venda**. Onboarding em andamento; fazer o quanto antes amanhã pela manhã para dar sequência.
+- [ ] **Quebra Cabeça de Animais — ajustar arquivo do produto MDF**: Pedro precisa finalizar/ajustar o arquivo do produto **Quebra Cabeça de Animais**, produto novo em MDF.
+- [ ] **Máquina de encher bolha — traduzir manual**: traduzir o manual da máquina de encher bolha. Tarefa simples, mas deve entrar no primeiro horário amanhã.
 
 ## 🚨 URGENTE — Operação / Dados
 

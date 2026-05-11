@@ -285,8 +285,6 @@ def build_message(day: str) -> str:
         row = by_platform.get(platform, {})
         channel_values.append((PLATFORM_LABELS[platform], float(row.get("total_revenue") or 0), int(row.get("order_count") or 0)))
     atacado_line = "• Atacado GB Matriz: indisponível" if bling_revenue is None else f"• Atacado GB Matriz: *{brl(bling_revenue)}* | {bling_orders} pedidos"
-    best_name, best_revenue, _ = max(channel_values, key=lambda item: item[1]) if channel_values else ("-", 0, 0)
-    best_share = (best_revenue / total_revenue * 100) if total_revenue else 0
     top_products = fetch_top_products(supabase_url, service_key, day)
     display_date = d.strftime("%d/%m/%Y")
     weekday_names = ["segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado", "domingo"]
@@ -313,12 +311,6 @@ def build_message(day: str) -> str:
             atacado_line.replace("*", ""),
         ]),
         "\n".join([
-            section_title("📌 DESTAQUES DO DIA"),
-            f"• Melhor canal em faturamento: {best_name}",
-            f"• {best_name} representou aproximadamente {pct(best_share)} do faturamento do dia",
-            "• Ranking de produtos consolidado por equivalência de SKU entre plataformas",
-        ]),
-        "\n".join([
             section_title("🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS"),
             *[f"• {item['name']} — {item['qty']} un." for item in top_products],
         ]),
@@ -336,7 +328,6 @@ def message_to_rich_text_blocks(text: str) -> list[dict]:
     section_titles = {
         "📊 RESUMO GERAL",
         "🛒 VENDAS POR CANAL",
-        "📌 DESTAQUES DO DIA",
         "🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS",
         "📈 ANÁLISE DO DIA",
     }

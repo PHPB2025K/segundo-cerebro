@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-09 23:30 BRT — consolidação diária_
+_Atualizado: 2026-05-10 23:30 BRT — consolidação diária_
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -69,9 +69,6 @@ _Atualizado: 2026-05-09 23:30 BRT — consolidação diária_
 
 - [ ] **DRE abril/2026 — fechar U15 (Descontos Concedidos) com critério estrito por marketplace**: prioridade alta definida por Pedro em 05/05. ML já ficou consistente em **R$ 5.061,14 (4,19%)**; Amazon precisa fechar por `item-promotion-discount` sem frete promocional; Shopee precisa reclassificação porque o parcial amplo de `seller_discount`/promoções explodiu para **R$ 63.715,45 (24,79%)** e foi marcado como suspeito. **Não usar** o consolidado provisório de **R$ 68.776,59** no DRE até concluir a triagem.
 
-- [ ] **Ads spend março** — levantar gasto real com publicidade por plataforma (ML, Amazon via integração, Shopee manual). Sem este dado, consolidado de março é inválido.
-- [ ] **Refazer fechamento de março** — gerar consolidado novo (DRE operacional + planilha + HTML) com os 5 extratos validados completos + ads spend correto.
-- [ ] **Mapeamento semanal DRE** — separar março por semanas (01-07, 08-14, 15-21, 22-31) nas linhas da DRE para análise de evolução.
 
 ## 🔥 PRIORIDADE IMEDIATA — Budamix E-commerce / Blog / Social Studio
 
@@ -97,7 +94,7 @@ _Atualizado: 2026-05-09 23:30 BRT — consolidação diária_
 
 - [ ] **OpenClaw fallback — adicionar Anthropic como 3º fallback**: `anthropic:default` está configurado, mas fora de `agents.defaults.model.fallbacks`; após upgrade para ChatGPT Pro não é urgente, mas evita queda total se o mesmo auth profile OpenAI estourar em pico.
 - [ ] **Bling Token Refresh — Filial com erro 403/inativa no Bling**: heartbeat de 08/05 10:01 BRT confirmou Matriz OK e Filial com `403 — empresa vinculada ao token está inativa`. Impacto provável: refresh/conexão da Filial pode falhar até corrigir empresa/token no Bling. Verificar antes de depender de emissão fiscal pela Filial.
-- [ ] **Security Audit - Semanal** — último run conhecido em 03/05 06h BRT falhou com timeout/status `error`; investigar no próximo bloco operacional.
+- [ ] **Security Audit / Firewall VPS** — auditoria de 10/05 06:01 BRT executou e substituiu a pendência antiga de timeout. Achados: `ufw` não instalado/disponível; Fail2ban OK (`sshd`, maxretry=5); SSH sem senha; portas públicas além de 22/80/443 incluem 3000, 3050, 3091, 8084 e 8090. Próximo passo: definir política de firewall/Traefik sem risco de lockout antes de qualquer mudança.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.
 - [ ] **Fisco / OpenClaw** — diagnosticar o bloqueio do `sessions_spawn` com `agentId=fisco` retornando `allowed: none` e restaurar o roteamento direto do agente.
@@ -121,6 +118,10 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Canggu/Ana B2/B5/B6** — blocos não urgentes de observabilidade, governança e cleanup seguem aguardando repriorização.
 - [ ] **Fisco** — product-packaging.json, limpeza de produtos origem=0, CC-e/NFs antigas e validações Bling Filial seguem abertas.
 - [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
+- [ ] **Ads spend março** — levantar gasto real com publicidade por plataforma (ML, Amazon via integração, Shopee manual). Sem movimentação material >14 dias; manter como backlog financeiro antes de refazer março.
+- [ ] **Refazer fechamento de março** — gerar consolidado novo (DRE operacional + planilha + HTML) com os 5 extratos validados completos + ads spend correto. Sem movimentação material >14 dias.
+- [ ] **Mapeamento semanal DRE março** — separar março por semanas (01-07, 08-14, 15-21, 22-31) nas linhas da DRE. Sem movimentação material >14 dias.
+
 
 ---
-_Última organização: 2026-05-09 23:30 BRT._
+_Última organização: 2026-05-10 23:30 BRT._

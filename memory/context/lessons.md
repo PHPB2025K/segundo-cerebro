@@ -432,6 +432,11 @@ _Última Consolidação Profunda: 2026-05-01_
 **Ação:** Sempre que um template depender de headline grande, alinhar schema do slot + system prompt antes de confiar na mitigação visual.
 **Expira:** 2026-06-04
 
+
+### [TÁTICA] Security Audit: não assumir UFW como firewall instalado/ativo (2026-05-10)
+**Lição:** Em auditorias de VPS, validar primeiro qual mecanismo de firewall existe de fato (`ufw`, nftables/iptables, security group do provedor, Traefik/reverse proxy) antes de classificar exposição. `ufw: command not found` não significa automaticamente “sem firewall”, mas bloqueia conclusão via checklist UFW; achados devem virar triagem explícita e qualquer hardening precisa plano anti-lockout.
+**Expira:** 2026-06-09
+
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 
 ### Duplicatas removidas nesta consolidação:

@@ -19,8 +19,8 @@ triggers:
 metadata:
   openclaw:
     emoji: 💰
-    last_updated: "2026-04-27"
-    next_review: "2026-05-04"
+    last_updated: "2026-05-11"
+    next_review: "2026-05-18"
     cron: "ML Fees Monitor — segunda 10h BRT"
     sources:
       - url: "https://www.mercadolivre.com.br/ajuda/quanto-custa-vender-um-produto_1338"
@@ -47,9 +47,9 @@ metadata:
 
 # Regras de Comissões, Taxas e Custos — Mercado Livre 2026 (CNPJ)
 
-> ⚠️ **Última atualização:** 27/04/2026
+> ⚠️ **Última atualização:** 11/05/2026
 > **Mudança estrutural em 02/03/2026:** ML substituiu taxa fixa por tabela variável de 232 combinações (peso × preço), encerrou subsídio de frete grátis, reajustou Full, criou tabelas de frete por reputação.
-> **Verificação oficial 27/04/2026:** páginas oficiais mantêm a tabela de frete e custos Full, mas corrigem 3 pontos documentais: Premium até 10x sem juros; desconto de frete verde/ML/sem reputação até 50%; desconto de reputação amarela até 40%.
+> **Verificação oficial 11/05/2026:** páginas oficiais mantêm comissões, custo de envio verde/ML/sem reputação, custo de envio reputação amarela, tarifas gerais e custos Full. Corrigidos 2 resquícios documentais na skill: desconto verde = até 50% (não 70%) e Premium = até 10× sem juros (não 12×).
 > **Cron de verificação:** Segunda-feira 10h BRT (ML Fees Monitor)
 
 ---
@@ -323,7 +323,7 @@ Todos exigem: cadastro ≥4 meses, termômetro verde-escuro, <1% reclamações, 
 | Dimensão | Impacto |
 |---|---|
 | **Comissões (%)** | NÃO variam por reputação — apenas por categoria e tipo |
-| **Custo de frete** | Tabelas diferenciadas: até 70% desconto (verde) vs 0% (laranja/vermelha) |
+| **Custo de frete** | Tabelas diferenciadas: até 50% desconto (verde/ML/sem reputação) vs 0% (laranja/vermelha) |
 | **Visibilidade** | Verde-escuro/ML nas primeiras posições. Vermelho praticamente invisível |
 | **Prazo recebimento** | 2 dias (boa reputação) vs até 28 dias (sem reputação) |
 | **Benefício especial** | Full + ML + Premium em itens >R$ 250: comissão Clássico (11% vs 16%) |
@@ -427,7 +427,7 @@ Preço mínimo = (CMV + Impostos + Margem desejada + Custo envio + Armazenagem)
 | Custo envio | R$ 6,75 | R$ 6,75 |
 | **Total custos ML** | **R$ 11,34** | **R$ 13,33** |
 | **Diferença** | — | **+R$ 1,99/venda** |
-| **Em troca de** | Sem parcelamento, exposição alta | Até 12× s/juros, exposição máxima |
+| **Em troca de** | Sem parcelamento, exposição alta | Até 10× s/juros, exposição máxima |
 
 ---
 
@@ -524,6 +524,7 @@ Ambos reestruturaram custos em março/2026, encerrando a "guerra de frete gráti
 
 | Data | Alteração |
 |---|---|
+| 11/05/2026 | v2.2 — Verificação semanal em fontes oficiais ML. Sem mudança nos valores oficiais conferidos. Corrigidos resquícios internos: seção reputação ainda citava até 70% de desconto no frete verde (corrigido para até 50%) e exemplo Clássico vs Premium ainda citava até 12× sem juros (corrigido para até 10×). |
 | 27/04/2026 | v2.1 — Verificação semanal em fontes oficiais ML. Corrigido Premium para até 10× sem juros; desconto de frete verde/MercadoLíder/sem reputação de 70% → 50%; reputação amarela de ~60% → até 40%. Tabelas de frete e custos Full conferidos sem alteração de valores. |
 | 10/04/2026 | v2.0 — Reformulação completa: taxa fixa abolida → tabela variável 232 combinações como seção principal. Tabelas de frete por reputação (verde/amarela/laranja). Tabela de categorias expandida (10→22). Parcelas Premium registrado como 12×; corrigido na v2.1 para 10× conforme fonte oficial. Full: reajustes +7,6%, cashback 40%, penalidades detalhadas, estoque >120 dias. Ads: modelo leilão 2º preço, requisitos, ACOS 5–15%. Recebimento: prazos detalhados por nível, Pix/TED sem custo. Mudanças operacionais 2026 (monitoramento preços, Minha Página, Loja Oficial, UP, API). Requisitos MercadoLíder adicionados. Comparativo ML vs Shopee atualizado. Fontes oficiais ML adicionadas (ajuda/40538, 40545). |
 | 18/03/2026 | v1.0 — Criação da skill |

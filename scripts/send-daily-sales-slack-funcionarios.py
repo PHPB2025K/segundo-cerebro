@@ -63,13 +63,8 @@ def pct(value: float) -> str:
     return f"{value:.1f}%".replace(".", ",")
 
 
-def underline(text: str) -> str:
-    """Slack não tem underline nativo; usa combining low line para efeito visual."""
-    return "".join((ch + "\u0332") if ch != " " else " " for ch in text)
-
-
 def section_title(text: str) -> str:
-    return f"*{underline(text)}*"
+    return f"*{text}*\n────────────"
 
 
 def load_env(path: Path) -> dict[str, str]:

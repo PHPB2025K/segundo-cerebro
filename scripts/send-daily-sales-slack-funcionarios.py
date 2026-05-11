@@ -29,10 +29,11 @@ OP_VAULT = "OpenClaw"
 
 # IDs validados em 2026-05-11 via users.list.
 RECIPIENTS = {
-    "Yasmin": "U08SG5M0QDB",      # yasmin.oscarlino@gbimportadora.com
+    "Yasmin": "U09AX9SETDM",      # yasminoscarlino7@gmail.com
     "Lucas": "U08TCL5A8U9",       # Lucas Gabriel / lsimon@gbimportadora.com
     "Leonardo": "U0AUUQ5MP6C",    # leonardoctparticular@gmail.com
 }
+PEDRO_RECIPIENT = {"Pedro": "U03UY0UNLDC"}  # Pedro Broglio / tradesup.co@gmail.com
 
 PLATFORM_LABELS = {"shopee": "Shopee", "ml": "Mercado Livre", "amazon": "Amazon"}
 PLATFORM_ORDER = ["shopee", "ml", "amazon"]
@@ -288,10 +289,10 @@ def build_message(day: str) -> str:
     weekday_name = weekday_names[d.weekday()]
     direction = "abaixo" if delta30 < 0 else "acima"
     analysis = [
-        f"O faturamento de ontem ficou *{pct(abs(delta30))} {direction} da média dos últimos 30 dias*, que foi de aproximadamente *{brl(avg30)}*.",
-        f"Como foi *{weekday_name}*, a leitura mais justa é cruzar também com dias equivalentes: a média dos últimos 4 {weekday_name}s foi de *{brl(avg_same_weekday)}*.",
-        "O mix de produtos considera SKUs equivalentes somados nas três plataformas, evitando duplicar o mesmo item por anúncio diferente.",
-        "Para hoje, vale acompanhar se Shopee e Mercado Livre recuperam tração. Se Amazon continuar abaixo, a checagem prioritária é Buy Box, anúncios e estoque FBA.",
+        f"• O faturamento de ontem ficou *{pct(abs(delta30))} {direction} da média dos últimos 30 dias*, que foi de aproximadamente *{brl(avg30)}*.",
+        f"• Como foi *{weekday_name}*, a leitura mais justa é cruzar também com dias equivalentes: a média dos últimos 4 {weekday_name}s foi de *{brl(avg_same_weekday)}*.",
+        "• O mix de produtos considera SKUs equivalentes somados nas três plataformas, evitando duplicar o mesmo item por anúncio diferente.",
+        "• Para hoje, vale acompanhar se Shopee e Mercado Livre recuperam tração. Se Amazon continuar abaixo, a checagem prioritária é Buy Box, anúncios e estoque FBA.",
     ]
     return "\n".join([
         f"DAILY SALES REPORT - {display_date} (Ontem)",
@@ -335,15 +336,17 @@ def main() -> int:
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     day = args[0] if args else (datetime.now(BRT).date() - timedelta(days=1)).isoformat()
     dry_run = "--dry-run" in sys.argv
+    test_pedro = "--to-pedro" in sys.argv
     message = build_message(day)
+    recipients = PEDRO_RECIPIENT if test_pedro else RECIPIENTS
     if dry_run:
         print(message)
         print("\n--- DESTINATÁRIOS SLACK ---")
-        for name, uid in RECIPIENTS.items():
+        for name, uid in recipients.items():
             print(f"{name}: {uid}")
         return 0
     sent = []
-    for name, uid in RECIPIENTS.items():
+    for name, uid in recipients.items():
         send_dm(uid, message)
         sent.append(name)
     print("SENT " + ", ".join(sent))

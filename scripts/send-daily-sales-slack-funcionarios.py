@@ -64,7 +64,7 @@ def pct(value: float) -> str:
 
 
 def section_title(text: str) -> str:
-    return f"*{text}*\n────────────"
+    return f"*{text}*"
 
 
 def load_env(path: Path) -> dict[str, str]:
@@ -331,12 +331,43 @@ def build_message(day: str) -> str:
     return section_gap.join(sections)
 
 
+def message_to_rich_text_blocks(text: str) -> list[dict]:
+    elements: list[dict] = []
+    section_titles = {
+        "📊 RESUMO GERAL",
+        "🛒 VENDAS POR CANAL",
+        "📌 DESTAQUES DO DIA",
+        "🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS",
+        "📈 ANÁLISE DO DIA",
+    }
+    lines = text.split("\n")
+    for idx, line in enumerate(lines):
+        raw = line.strip()
+        is_title = raw.startswith("*") and raw.endswith("*") and raw[1:-1] in section_titles
+        if is_title:
+            elements.append({"type": "text", "text": raw[1:-1], "style": {"bold": True, "underline": True}})
+        elif line:
+            # Conteúdo normal: sem bold, sem itálico, sem underline.
+            elements.append({"type": "text", "text": line})
+        if idx < len(lines) - 1:
+            elements.append({"type": "text", "text": "\n"})
+    return [{"type": "rich_text", "elements": [{"type": "rich_text_section", "elements": elements}]}]
+
+
 def send_dm(user_id: str, text: str) -> None:
     opened = slack_api("conversations.open", {"users": user_id}, post=True)
     if not opened.get("ok"):
         raise RuntimeError(f"conversations.open falhou: {opened.get('error')}")
     channel = (opened.get("channel") or {}).get("id")
-    sent = slack_api("chat.postMessage", {"channel": channel, "text": text}, post=True)
+    sent = slack_api(
+        "chat.postMessage",
+        {
+            "channel": channel,
+            "text": text.replace("*", ""),
+            "blocks": json.dumps(message_to_rich_text_blocks(text), ensure_ascii=False),
+        },
+        post=True,
+    )
     if not sent.get("ok"):
         raise RuntimeError(f"chat.postMessage falhou: {sent.get('error')}")
 

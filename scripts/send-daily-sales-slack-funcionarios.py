@@ -294,32 +294,37 @@ def build_message(day: str) -> str:
         "• O mix de produtos considera SKUs equivalentes somados nas três plataformas, evitando duplicar o mesmo item por anúncio diferente.",
         "• Para hoje, vale acompanhar se Shopee e Mercado Livre recuperam tração. Se Amazon continuar abaixo, a checagem prioritária é Buy Box, anúncios e estoque FBA.",
     ]
-    return "\n".join([
+    section_gap = "\n\n\n\n"
+    sections = [
         f"DAILY SALES REPORT - {display_date} (Ontem)",
-        "",
-        "*📊 RESUMO GERAL*",
-        f"• Faturamento total: *{brl(total_revenue)}*",
-        f"• Pedidos: *{total_orders}*",
-        f"• Ticket médio: *{brl(ticket)}*",
-        "",
-        "*🛒 VENDAS POR CANAL*",
-        *[f"• {name}: *{brl(revenue)}* | {orders} pedidos" for name, revenue, orders in channel_values],
-        atacado_line,
-        "",
-        "*📌 DESTAQUES DO DIA*",
-        f"• Melhor canal em faturamento: *{best_name}*",
-        f"• {best_name} representou aproximadamente *{pct(best_share)} do faturamento do dia*",
-        "• Ranking de produtos consolidado por equivalência de SKU entre plataformas",
-        "",
-        "*🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS*",
-        *[f"• *{item['name']}* — {item['qty']} un." for item in top_products],
-        "",
-        "*📈 ANÁLISE DO DIA*",
-        "",
-        "\n\n".join(analysis),
-        "",
-        f"_Período: 00:00–23:59 BRT de {display_date}_",
-    ])
+        "\n".join([
+            "*📊 RESUMO GERAL*",
+            f"• Faturamento total: *{brl(total_revenue)}*",
+            f"• Pedidos: *{total_orders}*",
+            f"• Ticket médio: *{brl(ticket)}*",
+        ]),
+        "\n".join([
+            "*🛒 VENDAS POR CANAL*",
+            *[f"• {name}: *{brl(revenue)}* | {orders} pedidos" for name, revenue, orders in channel_values],
+            atacado_line,
+        ]),
+        "\n".join([
+            "*📌 DESTAQUES DO DIA*",
+            f"• Melhor canal em faturamento: *{best_name}*",
+            f"• {best_name} representou aproximadamente *{pct(best_share)} do faturamento do dia*",
+            "• Ranking de produtos consolidado por equivalência de SKU entre plataformas",
+        ]),
+        "\n".join([
+            "*🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS*",
+            *[f"• *{item['name']}* — {item['qty']} un." for item in top_products],
+        ]),
+        "\n".join([
+            "*📈 ANÁLISE DO DIA*",
+            *analysis,
+        ]),
+        f"_Dia analisado: {display_date} — 00:00–23:59 BRT_",
+    ]
+    return section_gap.join(sections)
 
 
 def send_dm(user_id: str, text: str) -> None:

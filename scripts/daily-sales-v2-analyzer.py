@@ -409,15 +409,17 @@ def read_account_memory(account_slug: str):
     acct_dir = ACCOUNTS_DIR / account_slug
     context = {}
 
-    for fname in ["weekly.md", "monthly.md", "rules.md"]:
+    for fname in ["weekly.md", "monthly.md", "rules.md", "himmel-context.md"]:
         fpath = acct_dir / fname
         if fpath.exists():
-            context[fname] = fpath.read_text(encoding="utf-8")
+            key = fname if fname != "himmel-context.md" else "account-himmel-context.md"
+            context[key] = fpath.read_text(encoding="utf-8")
 
     for fname in ["himmel-context.md", "marketplace-rules-watch.md", "OPERATING-RULES.md"]:
         fpath = MEMORY_BASE / fname
         if fpath.exists():
-            context[fname] = fpath.read_text(encoding="utf-8")
+            key = fname if fname != "himmel-context.md" else "global-himmel-context.md"
+            context[key] = fpath.read_text(encoding="utf-8")
 
     # Última análise diária
     daily_dir = acct_dir / "daily"

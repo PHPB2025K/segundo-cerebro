@@ -107,6 +107,15 @@ Evitar:
 6. Confirmar formatação rich text: títulos bold+underline, conteúdo normal.
 7. Em caso de ajuste de formato, testar primeiro com `--to-pedro`.
 
+## Memória em camadas do Trader — Daily Sales Report v2
+- Fonte operacional: `shared/trader/memory/projects/daily-sales-report/`.
+- Skill específica do ciclo de memória: `skills/trader-daily-sales-memory-cycle/SKILL.md`.
+- Antes de gerar análise diária por conta, o Trader deve ler apenas o pacote relevante: análise diária anterior, `weekly.md`, `monthly.md`, `rules.md`, regras operacionais e contexto Himmel quando aplicável.
+- Camadas obrigatórias: diária (`daily/YYYY-MM-DD.md`), semanal (`weekly.md`), mensal (`monthly.md`) e regras permanentes (`rules.md`).
+- Unidades operacionais independentes: Shopee Budamix Store (`shop_id=448649947`), Shopee Budamix Oficial/Conta 2 (`shop_id=860803675`), Shopee Budamix Shop/Conta 3 (`shop_id=442066454`), Mercado Livre e Amazon.
+- `v_daily_sales` serve para resumo geral por plataforma; análise granular Shopee deve consultar `orders` por `shop_id`.
+- A análise interna por conta deve ser salva antes da mensagem Slack externa.
+
 ## Último padrão aprovado
 Aprovado por Pedro em 2026-05-11 e ajustado em 2026-05-12:
 - Envio via Slack DM para Yasmin, Lucas e Leonardo.

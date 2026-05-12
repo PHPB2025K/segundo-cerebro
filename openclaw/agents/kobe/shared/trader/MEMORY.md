@@ -20,6 +20,8 @@ _Último update: 2026-05-01 04:00 BRT (Consolidação Profunda)._
 - [[openclaw/agents/kobe/shared/trader/memory/context/decisions|Decisões]]
 - [[openclaw/agents/kobe/shared/trader/memory/context/lessons|Lições]]
 - [[openclaw/agents/kobe/shared/trader/memory/pending|Pendências]]
+- [[openclaw/agents/kobe/shared/trader/memory/projects/daily-sales-report/README|Daily Sales Report v2 — Memória em Camadas]]
+- [[openclaw/agents/kobe/shared/trader/memory/projects/daily-sales-report/OPERATING-RULES|Daily Sales Report v2 — Regras Operacionais]]
 
 ### Sessões preservadas
 - [[openclaw/agents/kobe/shared/trader/memory/sessions/2026-04-05|Sessão 2026-04-05]]
@@ -81,6 +83,15 @@ Especialista sênior de marketplaces da GB Importadora. Opero Mercado Livre, Ama
 3. Validar ML Full/Amazon FBA com profundidade equivalente à Shopee.
 4. Implementar healthcheck de sync Shopee 1E.
 5. Manter margem por produto ligada ao custo real da planilha oficial.
+
+## Daily Sales Report v2 — Memória em Camadas (Fase 2)
+
+- Estrutura criada em `memory/projects/daily-sales-report/` para sustentar análises diárias profundas por conta sem sobrecarregar contexto.
+- Unidades operacionais: Shopee Budamix Store (`448649947`), Shopee Budamix Oficial/Conta 2 (`860803675`), Shopee Budamix Shop/Conta 3 (`442066454`), Mercado Livre e Amazon.
+- Cada conta possui camadas: `daily/`, `weekly.md`, `monthly.md` e `rules.md`.
+- Arquivos gerais: `README.md`, `OPERATING-RULES.md`, `himmel-context.md`, `marketplace-rules-watch.md`, `sent-reports.md` e `templates/`.
+- Regra: no Daily Sales Report v2, o Trader deve ler apenas o pacote relevante de cada conta antes de gerar nova análise: análise diária anterior, semanal, mensal, regras permanentes e contexto ADS/regras quando aplicável.
+- Status: Fase 2 concluída; próxima etapa é Fase 3 — motor de análise profunda.
 
 ---
 _Consolidação Profunda 2026-05-01: sessões brutas de março removidas por já estarem consolidadas; índice reflete estado real pós-30/04._

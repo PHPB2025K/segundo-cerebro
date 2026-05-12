@@ -59,17 +59,13 @@ def split_entries(text: str) -> list[Entry]:
         part = part.strip()
         if not part:
             continue
-        # Ignore static intro unless it contains meeting-like content.
-        if "Granola" not in part and not any(t in part.lower() for t in ADS_TERMS):
-            continue
+        # Account files should receive concrete meeting/context entries, not the
+        # static global operating rules at the top of himmel-context.md.
         title_match = re.search(r"^## \[([^\]]+)\] (.+)$", part, re.M)
-        if title_match:
-            date = title_match.group(1).strip()
-            title = title_match.group(2).strip()
-        else:
-            date = "sem-data"
-            first = next((ln for ln in part.splitlines() if ln.startswith("#") or ln.startswith("##")), "Contexto Himmel")
-            title = first.lstrip("# ").strip()
+        if not title_match:
+            continue
+        date = title_match.group(1).strip()
+        title = title_match.group(2).strip()
         entries.append(Entry(title=title, body=part, date=date))
     return entries
 
@@ -80,12 +76,18 @@ def classify(entry: Entry) -> set[str]:
     is_ads = any(term in blob for term in ADS_TERMS)
     if not is_ads:
         return matched
+
+    # Regra Pedro 2026-05-12: reuniões Shopee/Himmel costumam ser consolidadas.
+    # Quando uma nota fala de Shopee, considerar as 3 contas abordadas por padrão.
+    # O relatório de cada conta deve usar esse contexto global e separar particularidades
+    # explicitamente citadas ou hipóteses específicas cruzando com dados reais.
+    if "shopee" in blob:
+        matched.update(a for a in ACCOUNT_LABELS if a.startswith("shopee-"))
+
     for account, keys in ACCOUNT_KEYWORDS.items():
         if any(k in blob for k in keys):
             matched.add(account)
-    # Contexto Shopee genérico vale para as 3 contas Shopee.
-    if "shopee" in blob and not any(a.startswith("shopee-") for a in matched):
-        matched.update(a for a in ACCOUNT_LABELS if a.startswith("shopee-"))
+
     # Contexto Himmel sem plataforma explícita vale para Shopee + ML, exceto Amazon.
     if "himmel" in blob and not matched:
         matched.update(ACCOUNT_LABELS)
@@ -116,6 +118,7 @@ def build_account_context(account: str, entries: list[Entry], generated_at: str)
         "- Cruzar qualquer fala/decisão de ADS com venda real, exposição, mix, cancelamentos e estoque.",
         "- Não culpar Himmel sem evidência quantitativa; formular como hipótese e ponto de checagem.",
         "- Amazon não entra nesta camada: Amazon Ads é gerido pelo Pedro.",
+        "- Regra Pedro 2026-05-12: reunião Shopee consolidada vale para as 3 contas Shopee; separar particularidades por conta quando o resumo/transcrição permitir.",
         "",
         "## Contextos relevantes recentes",
     ]

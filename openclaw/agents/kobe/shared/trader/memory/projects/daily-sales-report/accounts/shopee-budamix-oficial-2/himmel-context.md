@@ -1,53 +1,15 @@
 # Contexto Himmel/Granola — Shopee — Budamix Oficial / Conta 2
 
-_Gerado em: 2026-05-12 19:52:25 UTC._
+_Gerado em: 2026-05-12 19:57:09 UTC._
 
 ## Como usar
 - Usar como contexto causal/hipótese nas análises diárias, nunca como fato isolado.
 - Cruzar qualquer fala/decisão de ADS com venda real, exposição, mix, cancelamentos e estoque.
 - Não culpar Himmel sem evidência quantitativa; formular como hipótese e ponto de checagem.
 - Amazon não entra nesta camada: Amazon Ads é gerido pelo Pedro.
+- Regra Pedro 2026-05-12: reunião Shopee consolidada vale para as 3 contas Shopee; separar particularidades por conta quando o resumo/transcrição permitir.
 
 ## Contextos relevantes recentes
-
-### sem-data — Contexto Himmel (ADS)
-# Contexto Himmel (ADS)
-
-## Quem é Himmel
-Himmel é o agente responsável por gerenciar campanhas de ADS nas plataformas Shopee e Mercado Livre.
-
-## Responsabilidades
-- Gestão de campanhas pagas em Shopee (3 contas) e Mercado Livre.
-- Otimização de ROAS e alocação de budget.
-- Decisões sobre quais SKUs impulsionar.
-
-## Interação com Daily Sales Report
-- O Trader deve considerar contexto de ADS ao analisar variações de venda.
-- Quando houver mudança significativa em vendas, verificar se houve alteração de campanha.
-- Pontos relevantes de ADS devem ser registrados na análise diária.
-
-## Amazon
-- ADS da Amazon é gerido por **Pedro** diretamente, não por Himmel.
-
-## Formato de comunicação
-- Pontos para Himmel são registrados na análise diária e semanal.
-- Comunicação direta quando houver urgência ou oportunidade clara.
-
-### sem-data — Ações / pendências extraídas
-Chat with meeting transcript: [https://notes.granola.ai/t/0e615aa3-e8a0-4265-bd92-3d00c5c478f2](https://notes.granola.ai/t/0e615aa3-e8a0-4265-bd92-3d00c5c478f2)
-
-### Ações / pendências extraídas
-- Próximos Passos
-- Lucas: compartilhar produtos prioritários para trabalhar em maio
-- Rafaela: enviar lista dos 154 SKUs parados via WhatsApp
-- Equipe Shopee: reestruturação semanal de campanhas nas contas menores
-- Teste de cupons por 7 dias (opcional)
-- Análise de viabilidade para novos produtos MDF
-
-### Como usar nos reports
-- Usar como contexto causal/hipótese, não como fato isolado.
-- Cruzar com vendas reais, TACOS/ROAS/ACOS, exposição, estoque e campanhas nos próximos Daily Sales Reports.
-- Status inicial: **aberto**.
 
 ### 2026-05-12 — Granola — BUDAMIX | Shopee | Letícia Gonçalves
 ## [2026-05-12] Granola — BUDAMIX | Shopee | Letícia Gonçalves

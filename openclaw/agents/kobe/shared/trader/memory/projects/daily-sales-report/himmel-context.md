@@ -20,6 +20,19 @@ Himmel é o agente responsável por gerenciar campanhas de ADS nas plataformas S
 - Pontos para Himmel são registrados na análise diária e semanal.
 - Comunicação direta quando houver urgência ou oportunidade clara.
 
+## Regra operacional — Reuniões Shopee consolidadas
+
+- Reuniões Granola/Himmel sobre **Shopee** normalmente falam das **3 contas em conjunto**.
+- Por padrão, qualquer reunião Shopee consolidada deve ser considerada relevante para:
+  - Shopee — Budamix Store
+  - Shopee — Budamix Oficial / Conta 2
+  - Shopee — Budamix Shop / Conta 3
+- Nas análises, separar quando possível:
+  - contexto consolidado do grupo Shopee;
+  - particularidades explícitas por conta;
+  - hipóteses/insights específicos por conta derivados de estoque, mix, exposição, afiliados, cupons, TACOS/ROAS e desempenho real.
+- Se a reunião citar apenas “Shopee” sem conta específica, registrar nas 3 contas e tratar como contexto global Shopee a validar com dados.
+
 
 ---
 

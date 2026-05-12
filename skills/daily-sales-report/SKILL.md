@@ -128,3 +128,13 @@ Aprovado por Pedro em 2026-05-11 e ajustado em 2026-05-12:
 - Títulos em negrito + sublinhado real do Slack.
 - Conteúdo sem formatação especial.
 - Sem seção `DESTAQUES DO DIA`.
+
+## Correção obrigatória — profundidade analítica e nomes de produtos (Pedro, 2026-05-12)
+
+- Diagnóstico por conta e prioridades do dia NÃO podem ser rasos, óbvios ou meramente descritivos.
+- Cada diagnóstico deve trazer leitura temporal/retroativa: comparação com 30d, 60d, mesmo dia da semana, tendência recente, concentração de mix, horário de venda quando relevante, cancelamentos, fulfillment/estoque e hipótese operacional.
+- Prioridades do dia devem ser completas e acionáveis: explicar o porquê, indicar o que verificar, qual sinal confirma/refuta a hipótese e quem deve agir/acompanhá-la.
+- Usar memória persistente por conta sempre que existir; nunca gerar análise como se fosse o primeiro dia quando já houver `daily/`, `weekly.md`, `monthly.md` ou `rules.md`.
+- Sempre que mencionar produtos no texto visível ao funcionário/Pedro, mostrar o **nome do produto**, nunca o SKU. O SKU pode ser usado apenas internamente para cálculo/mapeamento.
+- Títulos de seções devem seguir o padrão visual aprovado no Slack: emoji + título em uppercase, com bold+underline real via rich_text. Ex.: `📊 RESUMO GERAL`, `🛒 VENDAS POR CANAL`, `🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS`, `📈 ANÁLISE DO DIA`. Para seções novas, manter o mesmo padrão: emoji + uppercase + bold+underline.
+- No report dos funcionários, manter sem Atacado/Bling, mas preservar o mesmo padrão visual dos títulos.

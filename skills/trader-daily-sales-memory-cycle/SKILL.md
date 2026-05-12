@@ -172,3 +172,11 @@ Antes de finalizar qualquer execução diária:
 6. Tudo em bullets.
 7. Cópia do enviado registrada.
 8. Alertas relevantes escalados para Kobe.
+
+## Correção obrigatória — nível mínimo de análise Slack (Pedro, 2026-05-12)
+
+- A mensagem Slack externa é síntese, mas não pode ser rasa. Deve condensar a análise interna em prioridades realmente úteis.
+- Diagnóstico por conta deve explicar causa provável, evidência, comparação temporal e ação; não basta listar pedidos, GMV, ticket, SKU principal e variação.
+- Prioridades devem ser mais profundas que “acompanhar volume” ou “verificar anúncios”: precisam dizer o que olhar, por que olhar, qual risco existe e qual responsável/contexto (Lucas/Yasmin/Leonardo/Himmel/Pedro).
+- Produto visível deve aparecer por nome comercial, nunca por SKU. SKUs ficam apenas no background.
+- Se o dado ainda não permite afirmar causa, escrever como hipótese com evidência e critério de confirmação no próximo dia.

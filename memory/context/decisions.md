@@ -252,3 +252,10 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Pedro determinou que Kobe deve avisar sempre que, por qualquer motivo, precisar operar em fallback de modelo/LLM.
 - Se o modelo principal indisponibilizar, rate-limitar ou a sessão cair para fallback, Kobe deve informar explicitamente o Pedro assim que detectar, incluindo modelo principal esperado e fallback em uso quando essa informação estiver disponível.
 - A regra vale mesmo que o fallback seja temporário e mesmo que a tarefa continue funcionando.
+
+## 2026-05-12 — Daily Sales Report v2 / padrão mínimo de profundidade
+
+- Pedro rejeitou previews rasos da Fase 4: diagnósticos por conta e prioridades do dia precisam ser profundos, completos, temporais e retroativos, com embasamento em memória persistente.
+- Mensagens aos funcionários não podem apenas listar métricas óbvias; devem condensar causa provável, evidência, risco, ação recomendada e critério de acompanhamento.
+- Produtos exibidos no texto devem sempre aparecer pelo **nome do produto**, nunca pelo SKU, mesmo que o cálculo use SKU no background.
+- Títulos de seção no Slack devem seguir obrigatoriamente o padrão visual aprovado: emoji + título uppercase + bold/underline real via rich_text.

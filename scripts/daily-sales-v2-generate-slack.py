@@ -722,32 +722,23 @@ def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[st
         cancel_rate, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
         if a.get("cancelamentos"):
             ml_lines.append(f"• Cancelamentos: {a['cancelamentos']} ({cancel_text})")
-        c30 = a.get("comparisons", {}).get("30d")
-        c60 = a.get("comparisons", {}).get("60d")
-        if c30:
-            ml_lines.append(f"• vs média 30d: GMV {_fmt_var(c30['var_gmv'])} | pedidos {_fmt_var(c30['var_orders'])}")
-        if c60:
-            ml_lines.append(f"• vs média 60d: GMV {_fmt_var(c60['var_gmv'])} | pedidos {_fmt_var(c60['var_orders'])}")
     sections.append("🛍️ __VISÃO MERCADO LIVRE__\n" + "\n".join(ml_lines))
     if a:
         sections.append(_top_products_section("TOP PRODUTOS MERCADO LIVRE", a.get("top_skus", [])))
 
     diag_lines = []
     if a:
-        diag_lines.append(f"▸ *Dia granular* — {a['pedidos']} pedidos | {brl(a['gmv'])} | ticket {brl(a['ticket'])}")
-        diag_lines.extend(_template_temporal_lines(a))
-        diag_lines.append(f" • Concentração top 3: {pct(a['concentration_top3'])} — {_risk_label(a['concentration_top3'])}")
         c30 = a.get("comparisons", {}).get("30d")
         c60 = a.get("comparisons", {}).get("60d")
         csw = a.get("comparisons", {}).get("same_weekday")
         if c30 and c60:
-            diag_lines.append(f" • Leitura: ML ficou {var_abs(c30['var_orders'])} abaixo da média 30d, mas {var_abs(c60['var_orders'])} acima da média 60d. Isso indica que o patamar recente estava elevado — a queda de ontem pode ser flutuação normal, não tendência. A leitura muda se repetir hoje.")
+            diag_lines.append(f" • Leitura: o Mercado Livre ficou abaixo do patamar mais recente, mas ainda acima da referência mais longa. Isso sugere que a base dos últimos 30 dias estava mais aquecida e que o dia analisado pode representar uma acomodação pontual, não necessariamente uma perda estrutural de tração.")
         if csw:
-            diag_lines.append(f" • A queda de {var_abs(csw['var_orders'])} vs mesma segunda pode ser efeito calendário (segunda pós-Dia das Mães, quinzena) ou sinal real. Diferenciação só com mais um dia de dado.")
-        diag_lines.append(" • Concentração de " + pct(a['concentration_top3']) + " é a mais saudável entre os 3 marketplaces. Vários produtos sustentando o GMV reduz risco se um anúncio cair.")
+            diag_lines.append(" • A comparação com segundas recentes adiciona um sinal de cautela: existe queda contra dias equivalentes, mas ela ainda precisa ser separada de efeito calendário, sazonalidade pós-Dia das Mães ou variação normal de início de semana. A confirmação vem se o ritmo do dia seguinte também ficar abaixo do padrão recente.")
+        diag_lines.append(" • A distribuição de vendas do Mercado Livre segue mais saudável do que a dos demais canais: o resultado não depende de um único SKU ou de uma concentração extrema no top 3. Isso reduz risco operacional e torna a queda do dia menos preocupante, porque vários anúncios ainda sustentam o volume.")
         cancel_rate, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
         if a.get("cancelamentos"):
-            diag_lines.append(f" • Cancelamentos em {cancel_text} — dentro do esperado, sem ação necessária.")
+            diag_lines.append(f" • Cancelamentos em {cancel_text} não aparecem como problema central. O ponto de atenção do canal é mais comportamento de demanda/exposição do que falha operacional ou ruptura evidente.")
     else:
         diag_lines.append("• Análise detalhada não disponível para o dia")
     sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(diag_lines))

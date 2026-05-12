@@ -246,3 +246,9 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Pedidos Amazon de remoção FBA não devem contar como venda no Budamix Central, Budamix Live, relatórios diários ou apurações comerciais.
 - Assinatura para exclusão determinística: `SalesChannel=Non-Amazon` + `FulfillmentChannel=AFN`, datas dummy `1995-01-01T00:00:00Z` ou `AmazonOrderId` começando com `S01-` em contexto de remoção.
 - Regra implementada no sync Amazon: pular esses pedidos no ingest e marcar legados como `cancelled` preservando auditoria.
+
+## 2026-05-12 — Aviso obrigatório de fallback de modelo
+
+- Pedro determinou que Kobe deve avisar sempre que, por qualquer motivo, precisar operar em fallback de modelo/LLM.
+- Se o modelo principal indisponibilizar, rate-limitar ou a sessão cair para fallback, Kobe deve informar explicitamente o Pedro assim que detectar, incluindo modelo principal esperado e fallback em uso quando essa informação estiver disponível.
+- A regra vale mesmo que o fallback seja temporário e mesmo que a tarefa continue funcionando.

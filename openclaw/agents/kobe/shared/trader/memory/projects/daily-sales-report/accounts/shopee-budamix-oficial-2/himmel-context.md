@@ -1,6 +1,6 @@
 # Contexto Himmel/Granola — Shopee — Budamix Oficial / Conta 2
 
-_Gerado em: 2026-05-12 19:57:09 UTC._
+_Gerado em: 2026-05-12 20:08:57 UTC._
 
 ## Como usar
 - Usar como contexto causal/hipótese nas análises diárias, nunca como fato isolado.
@@ -12,6 +12,19 @@ _Gerado em: 2026-05-12 19:57:09 UTC._
 ## Contextos relevantes recentes
 
 ### 2026-05-12 — Granola — BUDAMIX | Shopee | Letícia Gonçalves
+#### Pontos cabíveis para esta conta
+- Conta 2/Underline Store foi citada com faturamento de R$ 72,7k e melhora de TACOS de 6,78% para 4,67%; tratar como conta em melhora de eficiência, mas ainda dentro do risco de canibalização entre lojas.
+- Himmel propôs reestruturação semanal de campanhas nas contas menores; qualquer oscilação futura nessa conta deve ser lida junto dessa intervenção, não como ruído isolado.
+- Risco estrutural confirmado pela reunião: as 3 lojas Shopee competem entre si com produtos/fotos semelhantes. Análises devem olhar performance consolidada Shopee e, depois, separar se uma conta cresceu às custas da outra.
+- Há 154 SKUs com impressões sem conversão. Quando aparecer tráfego sem venda ou produto parado, priorizar hipótese de conversão/listing/oferta antes de aumentar verba cegamente.
+- Ruptura de produtos âncora foi citada: jarra medidora e pote 1520ml. Queda nesses produtos não deve ser interpretada como demanda fraca sem checar estoque/Full.
+- Himmel/Rafaela sugeriu foco em kits pequenos herméticos e kits maiores para marmitas; acompanhar se esses produtos ganham força nos Top Produtos e se substituem parte da queda dos itens em ruptura.
+- Produtos MDF foram sugeridos como alternativa com estoque controlável; se aparecerem em venda/ADS, tratar como teste estratégico para reduzir dependência de importados com reposição lenta.
+- Afiliados foram apontados como canal saudável e subutilizado, com ROI de 26%; bons candidatos são SKUs parados, desde que o report valide conversão e estoque.
+- Teste de cupons fixos/mais chamativos foi sugerido; se houver variação de ticket ou conversão nos próximos 7 dias, considerar efeito de cupom antes de concluir mudança orgânica de demanda.
+- Pendência operacional: Lucas deve compartilhar produtos prioritários para maio; enquanto isso não estiver fechado, recomendações de ADS Shopee ficam parcialmente dependentes dessa definição.
+
+#### Resumo-fonte Granola
 ## [2026-05-12] Granola — BUDAMIX | Shopee | Letícia Gonçalves
 
 **Granola note ID:** `not_7uNOrt0oC180Z3`  

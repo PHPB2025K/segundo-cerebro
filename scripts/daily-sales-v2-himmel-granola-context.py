@@ -94,6 +94,57 @@ def classify(entry: Entry) -> set[str]:
     return matched
 
 
+
+def account_interpretation(account: str, entry: Entry) -> list[str]:
+    """Extrai pontos operacionais cabíveis para a conta, sem depender de transcrição integral."""
+    blob = f"{entry.title}\n{entry.body}".lower()
+    points: list[str] = []
+
+    if account == "shopee-budamix-store":
+        if "queda de 11%" in blob or "budamix store principal" in blob:
+            points.append("Budamix Store principal teve queda citada de 11% em abril, mas com leitura positiva de eficiência: faturamento relevante com investimento baixo e TACOS melhorando. Nos reports, queda de venda aqui deve ser cruzada com redução deliberada de investimento/exposição antes de tratar como problema operacional.")
+        if "tacos" in blob:
+            points.append("TACOS da conta principal foi citado como muito melhor, saindo de 5,60% para 2,05%; usar como hipótese de eficiência de mídia, mas validar se o ganho não veio à custa de perda de volume.")
+    elif account == "shopee-budamix-oficial-2":
+        if "underline store" in blob or "72,7k" in blob:
+            points.append("Conta 2/Underline Store foi citada com faturamento de R$ 72,7k e melhora de TACOS de 6,78% para 4,67%; tratar como conta em melhora de eficiência, mas ainda dentro do risco de canibalização entre lojas.")
+        if "reestruturação semanal" in blob or "contas menores" in blob:
+            points.append("Himmel propôs reestruturação semanal de campanhas nas contas menores; qualquer oscilação futura nessa conta deve ser lida junto dessa intervenção, não como ruído isolado.")
+    elif account == "shopee-budamix-shop-3":
+        if "budamix shop" in blob or "75k" in blob:
+            points.append("Budamix Shop foi citado com cerca de R$ 75k de faturamento e TACOS melhorando de 5,69% para 4,36%; usar como sinal de eficiência crescente, mas monitorar dependência de produtos iguais às outras lojas.")
+        if "reestruturação semanal" in blob or "contas menores" in blob:
+            points.append("Conta menor incluída na proposta de reestruturação semanal de campanhas; nos próximos reports, separar efeito de campanha de efeito de estoque/mix.")
+
+    if account.startswith("shopee-"):
+        if "canibalização" in blob or "competem entre si" in blob:
+            points.append("Risco estrutural confirmado pela reunião: as 3 lojas Shopee competem entre si com produtos/fotos semelhantes. Análises devem olhar performance consolidada Shopee e, depois, separar se uma conta cresceu às custas da outra.")
+        if "154 skus" in blob or "produtos sem vendas" in blob:
+            points.append("Há 154 SKUs com impressões sem conversão. Quando aparecer tráfego sem venda ou produto parado, priorizar hipótese de conversão/listing/oferta antes de aumentar verba cegamente.")
+        if "jarra medidora" in blob or "1520ml" in blob or "rupturas" in blob:
+            points.append("Ruptura de produtos âncora foi citada: jarra medidora e pote 1520ml. Queda nesses produtos não deve ser interpretada como demanda fraca sem checar estoque/Full.")
+        if "kits pequenos" in blob or "320ml" in blob or "520ml" in blob or "640ml" in blob:
+            points.append("Himmel/Rafaela sugeriu foco em kits pequenos herméticos e kits maiores para marmitas; acompanhar se esses produtos ganham força nos Top Produtos e se substituem parte da queda dos itens em ruptura.")
+        if "mdf" in blob:
+            points.append("Produtos MDF foram sugeridos como alternativa com estoque controlável; se aparecerem em venda/ADS, tratar como teste estratégico para reduzir dependência de importados com reposição lenta.")
+        if "afiliados" in blob or "roi atual: 26" in blob:
+            points.append("Afiliados foram apontados como canal saudável e subutilizado, com ROI de 26%; bons candidatos são SKUs parados, desde que o report valide conversão e estoque.")
+        if "cupons" in blob:
+            points.append("Teste de cupons fixos/mais chamativos foi sugerido; se houver variação de ticket ou conversão nos próximos 7 dias, considerar efeito de cupom antes de concluir mudança orgânica de demanda.")
+        if "lucas" in blob and "produtos prioritários" in blob:
+            points.append("Pendência operacional: Lucas deve compartilhar produtos prioritários para maio; enquanto isso não estiver fechado, recomendações de ADS Shopee ficam parcialmente dependentes dessa definição.")
+
+    if account == "mercado-livre":
+        points.append("Nenhum ponto específico de Mercado Livre identificado nesta reunião; não usar este contexto para explicar variações de ML.")
+
+    # Deduplicate preserving order
+    seen = set()
+    out = []
+    for pt in points:
+        if pt not in seen:
+            seen.add(pt); out.append(pt)
+    return out
+
 def compact_body(entry: Entry, max_chars: int = 2200) -> str:
     body = entry.body.strip()
     # Remove transcript metadata noise but keep source/summary/actions.
@@ -126,7 +177,13 @@ def build_account_context(account: str, entries: list[Entry], generated_at: str)
         lines.append("- Nenhum contexto Himmel/Granola específico encontrado para esta conta ainda.")
     else:
         for e in relevant:
-            lines.extend(["", f"### {e.date} — {e.title}", compact_body(e)])
+            lines.extend(["", f"### {e.date} — {e.title}"])
+            interp = account_interpretation(account, e)
+            if interp:
+                lines.append("#### Pontos cabíveis para esta conta")
+                for pt in interp:
+                    lines.append(f"- {pt}")
+            lines.extend(["", "#### Resumo-fonte Granola", compact_body(e)])
     lines.append("")
     return "\n".join(lines)
 

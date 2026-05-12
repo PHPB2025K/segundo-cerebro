@@ -78,6 +78,8 @@ _Atualizado: 2026-05-07 noite — Social Studio Reborn Fase B mergeada, Fase C i
 - [ ] **Ads spend março** — levantar gasto real com publicidade por plataforma (ML, Amazon via integração, Shopee manual). Sem este dado, consolidado de março é inválido.
 - [ ] **Refazer fechamento de março** — gerar consolidado novo (DRE operacional + planilha + HTML) com os 5 extratos validados completos + ads spend correto.
 - [ ] **Mapeamento semanal DRE** — separar março por semanas (01-07, 08-14, 15-21, 22-31) nas linhas da DRE para análise de evolução.
+- [ ] **Obter contrato social da Concept (58.818.245/0001-00)** — capital social não localizado nos PDFs locais. Empresa aberta 13/01/2025; localmente só há Cartão CNPJ + CLI/JUCESP. Pedir à contabilidade ou puxar Certidão de Inteiro Teor em jucesponline.sp.gov.br. Necessário para fechar capital social consolidado do grupo (hoje em R$ 889.000 sem Concept). Ver [[business/empresa/capital-social-grupo-2026-05]].
+- [ ] **Obter alteração contratual que abre a filial GB Importadora (58.151.616/0002-24)** — filial inscrita em 23/01/2025 mas o ato de alteração não foi encontrado localmente. Capital não muda (é único da matriz), mas o documento é importante para a regularidade. Pedir à contabilidade ou Certidão de Inteiro Teor JUCESC do NIRE 42208840944.
 
 ## 🔥 PRIORIDADE IMEDIATA — Budamix E-commerce / Blog / Social Studio
 

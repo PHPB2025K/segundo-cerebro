@@ -42,6 +42,10 @@ tags:
 - Documentação legal e operacional de múltiplos CNPJs
 - Manuais guiam operação diária (fiscal, marketplace, expedição)
 
+## Referências derivadas
+
+- [[business/empresa/capital-social-grupo-2026-05]] — snapshot de capital social dos 6 CNPJs com fontes documentais (apurado 12/05/2026)
+
 ## Notas relacionadas no vault
 - [[projects/estoque-budamix]]
 - [[projects/openclaw-vps]]

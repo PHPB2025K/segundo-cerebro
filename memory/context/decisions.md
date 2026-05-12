@@ -259,3 +259,13 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Mensagens aos funcionários não podem apenas listar métricas óbvias; devem condensar causa provável, evidência, risco, ação recomendada e critério de acompanhamento.
 - Produtos exibidos no texto devem sempre aparecer pelo **nome do produto**, nunca pelo SKU, mesmo que o cálculo use SKU no background.
 - Títulos de seção no Slack devem seguir obrigatoriamente o padrão visual aprovado: emoji + título uppercase + bold/underline real via rich_text.
+
+## 2026-05-12 — Daily Sales Report v2 / templates individuais travados
+
+- Pedro aprovou e travou os três templates finais de Daily Sales Report individual para Amazon, Mercado Livre e Shopee como padrão obrigatório para todas as gerações futuras.
+- Estrutura fixa: `DAILY SALES REPORT — [PLATAFORMA] — DD/MM/AAAA (Ontem)` → `📊 RESUMO GERAL` → `🛒 VENDAS POR CANAL` → `🛍️ VISÃO [PLATAFORMA]` → `🏆 TOP PRODUTOS [PLATAFORMA]` → `🔍 ANÁLISE DA CONTA` → `🎯 PRIORIDADES DO DIA` → rodapé `Dia analisado`.
+- Separação inviolável: dados crus ficam fora da análise; `🔍 ANÁLISE DA CONTA` deve conter exclusivamente raciocínio denso, conclusões e insights baseados na análise em background/memória do Trader.
+- `VISÃO [PLATAFORMA]` não deve conter comparativos secos 30d/60d/mesmo dia; esses comparativos alimentam o raciocínio, mas não aparecem como linhas nessa seção.
+- Shopee mantém análise separada por conta, mas cada subitem é interpretação — sem cabeçalho com pedidos/GMV/ticket, sem linhas secas de comparativos, produto principal, concentração ou cancelamentos.
+- Amazon não exibe Fulfillment FBA na visão porque a operação é 100% FBA por padrão.
+- Produto visível deve ser sempre nome comercial; nunca SKU cru.

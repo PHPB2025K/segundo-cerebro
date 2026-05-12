@@ -55,15 +55,19 @@ Envio por DM no Slack para:
 - Se sucesso: responder `HEARTBEAT_OK`.
 - Se falha: alertar Pedro no Telegram tópico Marketplaces, sem expor tokens, comandos, paths internos ou logs brutos.
 
-## Estrutura aprovada
-Manter exatamente estas seções:
-1. `DAILY SALES REPORT - DD/MM/AAAA (Ontem)`
+## Estrutura obrigatória aprovada — v2 individual (TRAVADA em 2026-05-12)
+
+Para qualquer geração futura do Daily Sales Report individual de funcionários, manter rigorosamente esta ordem:
+1. `DAILY SALES REPORT — [PLATAFORMA] — DD/MM/AAAA (Ontem)`
 2. `📊 RESUMO GERAL`
 3. `🛒 VENDAS POR CANAL`
-4. `🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS`
-5. `📈 ANÁLISE DO DIA`
-6. `Dia analisado: DD/MM/AAAA — 00:00–23:59 BRT`
+4. `🛍️ VISÃO [PLATAFORMA]`
+5. `🏆 TOP PRODUTOS [PLATAFORMA]`
+6. `🔍 ANÁLISE DA CONTA`
+7. `🎯 PRIORIDADES DO DIA`
+8. `Dia analisado: DD/MM/AAAA — 00:00–23:59 BRT`
 
+Não incluir `Pedro Broglio` no topo. O título começa diretamente com `DAILY SALES REPORT`.
 Não incluir a seção `DESTAQUES DO DIA`; ela foi removida por duplicar informação.
 
 ## Formatação Slack aprovada
@@ -77,28 +81,33 @@ Não incluir a seção `DESTAQUES DO DIA`; ela foi removida por duplicar informa
 - A análise deve ser em bullets; cada bullet é um chunk de ideia. Não duplicar informações já presentes nas seções anteriores.
 
 ## Top Produtos — regra crítica
-O ranking deve ser consolidado por produto equivalente nas três plataformas, não por título/anúncio isolado.
+
+No Daily Sales Report v2 individual, o ranking `🏆 TOP PRODUTOS [PLATAFORMA]` deve ser da plataforma da mensagem, não um consolidado das três plataformas.
 
 Obrigatório:
-- Usar mapeamento SKU cross-plataforma existente.
-- Somar vendas de SKUs equivalentes em Shopee + Mercado Livre + Amazon.
+- Usar mapeamento SKU/produto equivalente para consolidar variações/anúncios dentro da própria plataforma/conta analisada.
+- Para Shopee, agregar os produtos equivalentes das 3 contas Shopee quando a mensagem for do Lucas.
+- Para Mercado Livre e Amazon, consolidar produtos equivalentes dentro da plataforma correspondente.
 - Mostrar produto único consolidado e unidades totais.
 - Nunca exibir “Produto não identificado” ou similar. Se o nome não for confiável, omitir do Top Produtos e tratar como problema de cadastro interno.
 
-## Análise do dia — regra crítica
-A análise deve ser curta e útil para operação.
+## Análise da Conta — regra crítica inviolável
 
-Deve considerar:
-- Faturamento total vs média dos últimos 30 dias.
-- Comparação com dias equivalentes da semana quando relevante.
-- Mês/data analisada e efeito de calendário.
-- Particularidades por canal quando realmente agregarem insight.
-- Tendência operacional acionável para o dia atual.
+A seção `🔍 ANÁLISE DA CONTA` é a seção mais importante do relatório.
+Ela deve conter exclusivamente raciocínio denso, conclusões, insights e reflexões relevantes construídas a partir da análise inteligente feita em background.
 
-Evitar:
-- Repetir números já listados em Resumo/Vendas por Canal.
-- Comentário genérico sem base nos dados.
-- Frases longas demais.
+Obrigatório:
+- Condensar e interpretar dados do dia anterior, últimos 30 dias, últimos 60 dias e dias equivalentes da semana.
+- Identificar padrões de comportamento de vendas, mudança de patamar, risco, dependência, sazonalidade, exposição/tráfego, mix, cancelamentos, estoque/fulfillment e hipóteses operacionais.
+- Separar leitura por conta quando a plataforma tiver múltiplas contas, especialmente Shopee: Budamix Store, Budamix Oficial / Conta 2 e Budamix Shop / Conta 3.
+- Escrever como conclusão analítica, não como tabela narrativa.
+
+Proibido dentro de `🔍 ANÁLISE DA CONTA`:
+- Repetir números secos já exibidos em `RESUMO GERAL`, `VENDAS POR CANAL`, `VISÃO [PLATAFORMA]` ou `TOP PRODUTOS`.
+- Incluir blocos como `Dia granular`, comparativos numéricos 30d/60d/mesma segunda, linha de produto principal, concentração top 3 ou cancelamentos como métrica solta.
+- Usar análise rasa, genérica ou óbvia.
+
+Em resumo: fora dados crus; dentro só raciocínio.
 
 ## Checklist antes de enviar
 1. Confirmar dia analisado em BRT.
@@ -151,3 +160,35 @@ Aprovado por Pedro em 2026-05-11 e ajustado em 2026-05-12:
 - O topo das mensagens NÃO deve incluir `Pedro Broglio`.
 - O título deve começar diretamente com `DAILY SALES REPORT — [PLATAFORMA] — DD/MM/AAAA (Ontem)`.
 - Manter estrutura próxima aos anexos aprovados: `📊 RESUMO GERAL`, `🛒 VENDAS POR CANAL`, `🛍️ VISÃO [CANAL]`, `🏆 TOP PRODUTOS [CANAL]`, `🔍 ANÁLISE DA CONTA`, `🎯 PRIORIDADES DO DIA`, rodapé `Dia analisado: DD/MM/AAAA — 00:00–23:59 BRT`.
+
+
+## Padrão obrigatório final — Daily Sales Report v2 individual (Pedro, 2026-05-12)
+
+Pedro aprovou e travou os três templates finais de Amazon, Mercado Livre e Shopee como padrão obrigatório para todas as gerações futuras.
+
+### Estrutura fixa
+- `DAILY SALES REPORT — [PLATAFORMA] — DD/MM/AAAA (Ontem)`
+- `📊 RESUMO GERAL`
+- `🛒 VENDAS POR CANAL`
+- `🛍️ VISÃO [PLATAFORMA]`
+- `🏆 TOP PRODUTOS [PLATAFORMA]`
+- `🔍 ANÁLISE DA CONTA`
+- `🎯 PRIORIDADES DO DIA`
+- `Dia analisado: DD/MM/AAAA — 00:00–23:59 BRT`
+
+### Separação dados crus vs análise
+- Dados crus ficam apenas em `RESUMO GERAL`, `VENDAS POR CANAL`, `VISÃO [PLATAFORMA]`, `TOP PRODUTOS` e, quando necessário, `PRIORIDADES DO DIA`.
+- `VISÃO [PLATAFORMA]` não deve conter comparativos 30d/60d/mesmo dia da semana; esses comparativos alimentam o raciocínio, mas não aparecem como linha seca ali.
+- `ANÁLISE DA CONTA` nunca repete blocos numéricos secos. Ela usa esses dados apenas como insumo para interpretação.
+
+### Regras por plataforma
+- Amazon: não mostrar Fulfillment FBA na visão, pois operação Amazon é 100% FBA por padrão; manter cancelamentos quando forem sinal relevante.
+- Mercado Livre: visão contém faturamento, pedidos, ticket médio e cancelamentos; análise interpreta comportamento de demanda, comparação de janelas, saúde de distribuição e risco.
+- Shopee: visão contém faturamento, pedidos, ticket médio e cancelamentos consolidados; análise deve manter separação por conta (Budamix Store, Budamix Oficial / Conta 2, Budamix Shop / Conta 3), mas cada subitem deve ser raciocínio denso, sem cabeçalho com números crus.
+
+### Raciocínio obrigatório
+- A análise deve partir da análise em background/memória do Trader e condensar padrões dos últimos 30/60 dias, dia equivalente da semana, tendência, mix, exposição/tráfego, cancelamentos, estoque/fulfillment e hipótese operacional.
+- Prioridades devem ser acionáveis: o que fazer, por quê, como confirmar/refutar e quando escalar.
+- Produto visível deve ser nome comercial, nunca SKU cru.
+
+Esse padrão substitui regras antigas conflitantes sobre `ANÁLISE DO DIA`, blocos genéricos ou análise rasa.

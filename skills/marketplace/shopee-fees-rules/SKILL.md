@@ -22,29 +22,59 @@ metadata:
  last_updated: "2026-04-29"
  next_review: "2026-05-06"
  cron: "Shopee Fees Monitor — quarta 10h SP"
+ source_policy: "OFICIAL_FIRST — Seller Education/Seller Center/termos Shopee > comunicados oficiais > evidência operacional em extrato > fontes secundárias. Artigo/blog nunca pode alterar regra sozinho."
  sources:
+ - url: "https://seller.shopee.com.br/edu/article/26839/Comissao-para-vendedores-CNPJ-e-CPF-em-2026"
+ status: "✅ OFICIAL — política 2026 para vendedores CNPJ/CPF; fonte primária para comissão/faixas/taxa fixa"
+ tier: "primary_official"
+ - url: "https://seller.shopee.com.br/edu/article/18483/como-funciona-a-politica-de-comissao-para-vendedores-shopee"
+ status: "✅ OFICIAL — política de comissão Shopee; usar para confirmar regra-base"
+ tier: "primary_official"
+ - url: "https://seller.shopee.com.br/edu/article/18484/como-funciona-o-adicional-de-comissao-para-vendedores-CPF"
+ status: "✅ OFICIAL — adicional CPF; usar só para auditoria/comparação, GB usa CNPJ"
+ tier: "primary_official"
+ - url: "https://seller.shopee.com.br/edu/article/23431/programa-de-frete-gratis"
+ status: "✅ OFICIAL — Programa de Frete Grátis/subsídios/cupom"
+ tier: "primary_official"
+ - url: "https://seller.shopee.com.br/edu/article/7749/duvidas-frequentes-sobre-comissao-e-frete-gratis-extra"
+ status: "✅ OFICIAL — dúvidas frequentes sobre comissão e frete grátis"
+ tier: "primary_official"
+ - url: "https://seller.shopee.com.br/edu/article/2856/conheca-o-processo-de-pagamentos-da-shopee"
+ status: "✅ OFICIAL — pagamentos/extrato; útil para validar cobranças no settlement"
+ tier: "primary_official"
  - url: "https://blog.calcularte.com.br/index.php/2026/03/06/taxas-comissoes-shopee-2026/"
- status: "✅ principal — mais completa e consistente"
+ status: "🟡 secundária — completa e consistente; usar para cross-check, nunca como fonte única"
+ tier: "secondary"
  - url: "https://www.ecommercebrasil.com.br/artigos/shopee-acaba-com-o-teto-de-comissao-de-r-100-e-aumenta-a-taxa-fixa-cobrada-por-cada-item-vendido-em-ate-550"
- status: "✅ confiável"
+ status: "🟡 secundária — notícia/validação contextual"
+ tier: "secondary"
  - url: "https://gosmarter.com.br/taxas-shopee-2026-comissao-custos/"
- status: "⚠️ diverge na taxa fixa R$500+ (lista R$28, correto é R$26)"
+ status: "⚠️ secundária divergente — diverge na taxa fixa R$500+; usar apenas como alerta"
+ tier: "secondary_divergent"
  - url: "https://gosmarter.com.br/frete-gratis-shopee-vendedor-como-funciona/"
- status: "✅ confiável para frete"
+ status: "🟡 secundária — apoio para frete, validar contra fonte oficial"
+ tier: "secondary"
  - url: "https://economia.ig.com.br/2026-03-06/shopee-aumenta-taxas-e-muda-regras-para-vendedores-no-brasil.html"
- status: "✅ confiável"
+ status: "🟡 secundária — notícia/validação contextual"
+ tier: "secondary"
  - url: "https://www.marketizesales.com.br/comissao-da-shopee-em-2026-o-que-muda-para-os-vendedores"
- status: "✅ confiável"
+ status: "🟡 secundária — validação contextual"
+ tier: "secondary"
  - url: "https://algoritmoquevende.com.br/blog/nova-comissao-shopee-2026-cpf-cnpj"
- status: "✅ confiável — atualizado em 29/04/2026; confirma regras CPF vs CNPJ"
+ status: "🟡 secundária — confirma CPF vs CNPJ, validar contra oficial"
+ tier: "secondary"
  - url: "https://www.precisaofinanceira.com.br/blog/taxas-shopee-2026-comissao-frete"
- status: "✅ confiável — confirma CPF alto volume +R$3 e transação embutida"
+ status: "🟡 secundária — confirma CPF alto volume/transação, validar contra oficial"
+ tier: "secondary"
  - url: "https://blog.irroba.com.br/novas-taxas-shopee-2026-guia-de-comissoes-e-frete/"
- status: "⚠️ diverge na taxa fixa R$500+ (lista R$28, correto operacional é R$26 por Calcularte/Precisão/Marketize)"
+ status: "⚠️ secundária divergente — taxa fixa R$500+ divergente; usar apenas como alerta"
+ tier: "secondary_divergent"
  - url: "https://conteudos.xpi.com.br/acoes/relatorios/mercado-livre-meli34-shopee-inicia-2026-com-aumento-de-taxas/"
- status: "✅ confirmou taxa transação embutida"
+ status: "🟡 secundária — análise de mercado; não fonte operacional"
+ tier: "secondary"
  - url: "https://blog.calcularte.com.br/index.php/2026/03/06/como-ler-extrato-renda-estimada-shopee/"
- status: "✅ referência para extrato"
+ status: "🟡 secundária — referência para leitura de extrato"
+ tier: "secondary"
  removed_sources:
  - url: "https://www.oquesobra.com.br/blog/comissao-shopee-2026-cnpj-cpf"
  reason: "Desatualizada — ainda descreve modelo antigo (14% + 6%)"
@@ -57,6 +87,24 @@ metadata:
 > **Monitor 29/04/2026:** regras CNPJ seguem iguais. Atualização desta skill apenas incorporou a diferença CPF vs CNPJ exigida pelo monitor e novas fontes recentes.
 > **Cron de verificação:** Quarta-feira 10h SP (Shopee Fees Monitor)
 > **Escopo operacional GB:** cálculos de margem e precificação usam **CNPJ**. Regras CPF ficam documentadas apenas para comparação/auditoria.
+
+---
+
+## 0. PROTOCOLO DE VERIFICAÇÃO DO SHOPEE FEES MONITOR
+
+**Hierarquia obrigatória de fontes:**
+1. **Oficial Shopee** — Seller Education/Seller Center/termos/comunicados oficiais.
+2. **Evidência operacional própria** — extrato/renda estimada das contas Shopee da GB, quando disponível.
+3. **Fontes secundárias confiáveis** — Calcularte, Ecommerce Brasil, GoSmarter, Marketize, XP etc., apenas para alerta/cross-check.
+
+**Regras invioláveis:**
+- Nunca alterar comissão, taxa fixa, frete, subsídio PIX ou regra CPF/CNPJ baseado em uma fonte secundária isolada.
+- Se fonte secundária divergir da Shopee oficial, manter a oficial e registrar a divergência como alerta.
+- Se a página oficial não renderizar no fetch público, ainda assim tentar validar via busca, Seller Education/Seller Center e snippets; marcar como “não acessível publicamente” se necessário, sem inventar valor.
+- Quando possível, validar cobrança real contra extrato/renda estimada das contas Shopee antes de mudar regra operacional da GB.
+- Mudança só entra em `marketplace-rules-watch.md` como confirmada se houver fonte oficial ou evidência operacional clara.
+
+**Campos que o cron precisa revisar toda semana:** comissão por faixa, taxa fixa por faixa, frete grátis/subsídio, subsídio PIX, campanhas de destaque, CPF vs CNPJ, taxa de transação embutida/separada e leitura de extrato.
 
 ---
 

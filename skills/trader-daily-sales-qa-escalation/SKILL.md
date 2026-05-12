@@ -67,3 +67,23 @@ Escalar quando:
 - Não esconder lacuna de dados.
 - Não prometer conclusão onde há hipótese.
 - Não mandar funcionário agir com base em dado suspeito.
+
+## Bloqueios de qualidade adicionados em 2026-05-12
+Bloquear o envio/preview e devolver para reescrita se houver qualquer um destes sinais:
+- produto visível por SKU em vez de nome comercial;
+- diagnóstico só descritivo, sem hipótese ou interpretação;
+- prioridade genérica sem ação concreta, evidência e critério de acompanhamento;
+- ausência de comparação temporal relevante;
+- Shopee sem leitura comparativa entre as 3 contas;
+- Amazon com cancelamento alto sem investigação operacional;
+- títulos fora do padrão emoji + uppercase + bold/underline real no payload Slack.
+
+## Score mínimo de QA
+Antes de enviar, atribuir PASS apenas se cada mensagem cumprir:
+- **Dados:** fonte oficial e conta correta.
+- **Interpretação:** explica o que mudou e por quê importa.
+- **Ação:** responsável sabe exatamente o que olhar hoje.
+- **Memória:** usa contexto persistente quando disponível.
+- **Forma:** títulos e produto-nome no padrão aprovado.
+Se qualquer item falhar, status = `BLOQUEADO_QUALIDADE`.
+

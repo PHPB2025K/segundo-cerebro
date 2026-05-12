@@ -180,3 +180,13 @@ Antes de finalizar qualquer execução diária:
 - Prioridades devem ser mais profundas que “acompanhar volume” ou “verificar anúncios”: precisam dizer o que olhar, por que olhar, qual risco existe e qual responsável/contexto (Lucas/Yasmin/Leonardo/Himmel/Pedro).
 - Produto visível deve aparecer por nome comercial, nunca por SKU. SKUs ficam apenas no background.
 - Se o dado ainda não permite afirmar causa, escrever como hipótese com evidência e critério de confirmação no próximo dia.
+
+## Como a memória deve elevar inteligência
+A memória não é arquivo morto. Todo ciclo diário deve carregar aprendizados úteis e testar hipóteses anteriores:
+- Se ontem havia hipótese de queda de tráfego, hoje comparar se recuperou por horário/conta/produto.
+- Se uma conta depende de poucos produtos, acompanhar se a dependência aumentou ou diminuiu.
+- Se cancelamento apareceu, verificar recorrência antes de tratar como ruído.
+- Se a weekly/monthly tiver tese da conta, a análise diária deve confirmar, refutar ou ajustar essa tese.
+
+Se a mensagem final não usa nenhuma memória ou hipótese anterior quando elas existem, o ciclo falhou.
+

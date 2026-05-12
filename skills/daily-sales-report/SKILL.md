@@ -19,26 +19,28 @@ Enviar diariamente o relatório de vendas do dia anterior com dados corretos, se
 - Não usar coleta direta de APIs como total oficial, exceto fallback explícito com aviso.
 - Não misturar settlement/extrato financeiro/DRE com venda gerada do dia.
 
-## Script canônico
-Usar:
+## Scripts canônicos
+
+### v2 — mensagens individuais com memória do Trader
+Usar para Lucas/Yasmin/Leonardo quando a rotina v2 estiver em preview/produção:
+
+```bash
+python3 /root/segundo-cerebro/scripts/daily-sales-v2-analyzer.py YYYY-MM-DD --write-memory
+python3 /root/segundo-cerebro/scripts/daily-sales-v2-generate-slack.py YYYY-MM-DD --dry-run
+python3 /root/segundo-cerebro/scripts/daily-sales-v2-generate-slack.py YYYY-MM-DD --write-preview
+```
+
+Envio real somente após QA e aprovação explícita:
+```bash
+python3 /root/segundo-cerebro/scripts/daily-sales-v2-generate-slack.py YYYY-MM-DD --send-real
+```
+
+### v1 — relatório único legado/aprovado
+Manter como fallback operacional enquanto v2 não estiver 100% aprovada:
 
 ```bash
 python3 /root/segundo-cerebro/scripts/send-daily-sales-slack-funcionarios.py [YYYY-MM-DD]
 ```
-
-Modos úteis:
-- Preview sem envio:
-  ```bash
-  python3 /root/segundo-cerebro/scripts/send-daily-sales-slack-funcionarios.py YYYY-MM-DD --dry-run
-  ```
-- Enviar teste só para Pedro no Slack:
-  ```bash
-  python3 /root/segundo-cerebro/scripts/send-daily-sales-slack-funcionarios.py YYYY-MM-DD --to-pedro
-  ```
-- Envio real para equipe:
-  ```bash
-  python3 /root/segundo-cerebro/scripts/send-daily-sales-slack-funcionarios.py YYYY-MM-DD
-  ```
 
 ## Destinatários Slack
 Envio por DM no Slack para:

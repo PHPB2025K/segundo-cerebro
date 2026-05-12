@@ -44,3 +44,16 @@ Escalar se:
 - timezone parece deslocado;
 - Amazon tem pedidos suspeitos de FBA removal ativos;
 - falta dado suficiente para recomendação acionável.
+
+## Reconciliação obrigatória v_daily_sales × orders
+- `v_daily_sales` é o total oficial para Slack/resumo.
+- `orders` é granular para conta/SKU/horário.
+- Divergência não bloqueia automaticamente, mas deve ser classificada:
+  - **baixa:** diferença pequena, usar `v_daily_sales` como oficial e `orders` como diagnóstico;
+  - **média:** mencionar internamente e impedir conclusão causal forte;
+  - **alta:** escalar para Kobe antes de envio.
+- Nunca somar `orders` e apresentar como total oficial se divergir de `v_daily_sales`.
+
+## Freshness
+Antes de rodar produção, confirmar que os dados do dia anterior já estabilizaram. Se valores oficiais mudarem entre preview e envio, regenerar previews/payloads e invalidar aprovação anterior.
+

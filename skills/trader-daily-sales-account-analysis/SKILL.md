@@ -68,3 +68,21 @@ A análise deve conter:
 - Não usar Shopee consolidada para decisão por conta.
 - Não recomendar preço/margem sem fonte de custo confiável.
 - Não enviar Slack nesta etapa.
+
+## Régua mínima de análise sênior (obrigatória)
+Uma análise só é aceitável se responder, para cada conta:
+1. **O que mudou?** Comparar contra 30d, 60d e últimos 4 mesmos dias da semana; não usar uma única comparação isolada.
+2. **Onde mudou?** Separar efeito de pedidos, ticket, mix, concentração de produto, horário, cancelamento e fulfillment.
+3. **Por que isso importa?** Explicar impacto operacional: tráfego, exposição, estoque, sortimento, Buy Box/FBA, campanha ou risco de dependência.
+4. **Qual hipótese é mais provável?** Declarar como hipótese quando não houver prova; nunca vender hipótese como fato.
+5. **Como confirmar/refutar amanhã?** Definir sinal observável: volume até certo horário, recuperação de SKU/produto, cancelamento, FBA/Full, ranking, Buy Box ou tráfego.
+
+## Profundidade por plataforma
+- **Shopee:** sempre comparar as 3 contas entre si; identificar se o problema é geral da Shopee ou concentrado em uma conta. Ler concentração de mix como risco real: se top 3 >70%, explicar qual produto sustenta a conta e o que acontece se ele perder tração.
+- **Mercado Livre:** diferenciar queda leve normal de perda de exposição. Se 30d e 60d apontarem leituras opostas, explicar a nuance em vez de simplificar.
+- **Amazon:** separar cancelamento, FBA, Buy Box, listing e ADS. Quando cancelamento >10%, isso vira investigação operacional obrigatória, mesmo que GMV esteja acima da média.
+
+## Produto visível
+- A análise interna pode guardar SKU, mas qualquer trecho destinado ao Slack/preview deve usar nome comercial.
+- Se só houver SKU, converter via mapeamento canônico; se não houver nome confiável, buscar título nos itens do pedido. SKU cru é falha de qualidade.
+

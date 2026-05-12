@@ -57,3 +57,16 @@ Executar o Daily Sales Report v2 na ordem correta, chamando as skills certas em 
 - Qualquer falha de Slack.
 - Qualquer mudança estratégica.
 - Qualquer inconsistência que possa afetar decisão do Pedro.
+
+## Gate de qualidade antes de produção
+O cron só pode enviar se todos estes gates passarem:
+1. Data readiness = `DADOS_OK` ou `DADOS_PARCIAIS` explicitamente aceito.
+2. Análises internas das 5 contas salvas.
+3. Slack writer sem SKU cru e com prioridades profundas.
+4. QA escalation = PASS; se `BLOQUEADO_QUALIDADE`, não enviar.
+5. Preview/payload gerado com dados oficiais estabilizados.
+6. Registro em `sent-reports.md` após envio real.
+
+## Skills opcionais inexistentes
+Se `trader-marketplace-rules-watch` ou `trader-himmel-context-ingestion` não existirem no workspace, não inventar. Usar os arquivos gerais `marketplace-rules-watch.md` e `himmel-context.md` dentro da memória do Daily Sales Report.
+

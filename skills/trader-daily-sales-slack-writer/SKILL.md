@@ -71,3 +71,26 @@ Se algo não muda ação, não entra no Slack.
 - Há hipótese apresentada como fato? Corrigir.
 - Está tudo em bullets?
 - Sem Atacado/Bling?
+
+## Régua mínima de mensagem aceitável
+Bloquear e reescrever se a mensagem parecer resumo automático. Cada mensagem precisa conter:
+- diagnóstico que explique **causa provável + evidência + risco**;
+- prioridades com **ação + motivo + critério de acompanhamento**;
+- produtos por **nome comercial**, nunca SKU;
+- título de seção com emoji + uppercase e rich_text bold+underline;
+- pelo menos uma leitura temporal útil, não apenas métrica do dia.
+
+## Proibido por baixa qualidade
+- “Monitorar operação normal” sozinho.
+- “Acompanhar volume” sem dizer qual produto/conta/horário e qual gatilho de escalonamento.
+- “Verificar anúncios” sem indicar evidência de tráfego/exposição e responsável/contexto.
+- Listar SKU cru no texto visível.
+- Repetir pedidos/GMV/ticket sem interpretação.
+
+## Modelo de prioridade boa
+Uma prioridade boa segue este formato mental:
+`Ação concreta` + `evidência numérica/temporal` + `risco` + `critério de decisão amanhã`.
+
+Exemplo:
+- Checar visibilidade dos anúncios dos potes de vidro redondos Tampa Preta na Budamix Store, porque a conta caiu em pedidos e GMV vs 30d com ticket preservado; se até 12h BRT o ritmo seguir abaixo da média horária, alinhar com Himmel revisão de tráfego/campanha.
+

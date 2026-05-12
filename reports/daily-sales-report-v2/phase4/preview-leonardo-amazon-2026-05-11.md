@@ -1,32 +1,43 @@
 DAILY SALES REPORT — AMAZON
 11/05/2026 (segunda-feira) — 00:00-23:59 BRT
 
-*RESUMO GERAL DA OPERACAO*
-• Faturamento total marketplaces: R$ 11.822,36
-• Pedidos totais: 260
-• Ticket medio: R$ 45,47
-• Shopee: R$ 7.202,43 | 142 pedidos
+📊 *RESUMO GERAL*
+• Faturamento total marketplaces: R$ 11.795,46
+• Pedidos totais: 259
+• Ticket medio: R$ 45,54
+• Shopee: R$ 7.175,53 | 141 pedidos
 • Mercado Livre: R$ 3.573,03 | 89 pedidos
 • Amazon: R$ 1.046,90 | 29 pedidos
 
-*VISAO AMAZON*
+🛒 *VISAO AMAZON*
 • Faturamento oficial Amazon: R$ 1.046,90
 • Pedidos Amazon: 29
 • Ticket medio Amazon: R$ 36,10
 
-*DIAGNOSTICO AMAZON*
+🔎 *DIAGNOSTICO AMAZON*
+• Dia granular: 32 pedidos | R$ 1.330,60 | ticket R$ 41,58
 • Fulfillment: FBA: 32/32 pedidos
+  - 100% FBA: bom para Buy Box. Porem, se houver cancelamento, pode ser ruptura no CD Amazon ou indisponibilidade temporaria.
+  - vs media 30d: pedidos +16.4% | GMV +22.8% | ticket +5.4%
+  - vs media 60d: pedidos +24.0% | GMV +31.4%
+  - vs mesmo dia da semana (4 semanas): pedidos +12.3% | GMV +28.7%
+• INTERPRETACAO: Dia forte — +16.4% acima da media 30d em pedidos e +22.8% em GMV. Tendencia confirmada tambem vs 60d (+24.0%). Amazon em trajetoria ascendente.
+• ALERTA — Taxa de cancelamento: 15,8% (6 de 38 pedidos totais)
+  - Com 100% FBA, cancelamentos altos podem indicar: (a) ruptura de estoque no CD Amazon; (b) atraso FBA gerando cancelamento automatico; (c) indisponibilidade temporaria de listing; (d) pedido pendente que expirou. Leonardo deve verificar no Seller Central o motivo de cada cancelamento.
 • Produtos que mais venderam:
-  - CK4742_BB: 14 un.
-  - SPC002: 6 un.
-  - 914C_BB: 4 un.
-  - IMB501T-cinza: 1 un.
-  - TL250B: 1 un.
-• Concentracao top 3 SKUs: 75,0%
-• Variacao vs media 30d: pedidos +16.4% | GMV +22.8%
-• Taxa de cancelamento: 15,8% — verificar motivo dos cancelamentos
+  - Jarra Medidora de Vidro 500ml: 14 un.
+  - Suporte Porta-Copos: 6 un.
+  - Kit 6 Canecas Porcelana 200ml: 4 un.
+  - Conjunto 5 Potes de Vidro Redondos Tampa Cinza: 1 un.
+  - Tigela de Vidro 250ml: 1 un.
+• Concentracao top 3: 75,0% (moderada)
 
-*PRIORIDADES DO DIA*
-• Operacional: confirmar estoque FBA e status de envio
-• Operacional: acompanhar listings dos SKUs principais no catalogo
-• Operacional: investigar causa dos cancelamentos (estoque, prazo, FBA)
+🎯 *PRIORIDADES DO DIA*
+• Leonardo (Operacional Amazon):
+  - URGENTE: Investigar os 6 cancelamentos no Seller Central. Identificar se vieram de ruptura FBA, indisponibilidade de listing ou prazo expirado. Se mais de 3 forem do mesmo produto, verificar estoque desse item no CD Amazon.
+  - Confirmar estoque FBA para os 3 principais produtos: Jarra Medidora de Vidro 500ml, Suporte Porta-Copos, Kit 6 Canecas Porcelana 200ml. Se algum estiver abaixo de 5 dias de cobertura, priorizar reposicao.
+  - Concentracao alta (75,0%). Verificar se listings secundarios (Conjunto 5 Potes de Vidro Redondos Tampa Cinza) estao com Buy Box ativo e estoque disponivel.
+
+• Pedro (ADS Amazon):
+  - Dia forte (+16.4% vs 30d). Avaliar se campanhas atuais estao contribuindo para o crescimento. Se sim, considerar escalar budget mantendo ACOS.
+  - Cancelamentos altos (15,8%). Verificar se alguma campanha esta direcionando trafego para listing sem estoque. Se confirmado, pausar anuncio.

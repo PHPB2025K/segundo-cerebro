@@ -644,11 +644,6 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     shopee_accounts = [analyses.get(slug) for slug, _ in account_slugs]
     shopee_cancel = sum((a or {}).get("cancelamentos", 0) for a in shopee_accounts)
     shopee_gran_orders = sum((a or {}).get("pedidos", 0) for a in shopee_accounts)
-    c30_gmv = _weighted_variation(shopee_accounts, "30d", "gmv")
-    c30_orders = _weighted_variation(shopee_accounts, "30d", "pedidos")
-    c60_gmv = _weighted_variation(shopee_accounts, "60d", "gmv")
-    c60_orders = _weighted_variation(shopee_accounts, "60d", "pedidos")
-
     shopee_lines = [
         f"• Faturamento Shopee: {brl(shopee_rev)}",
         f"• Pedidos Shopee: {shopee_orders}",
@@ -656,10 +651,6 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     ]
     if shopee_cancel and shopee_gran_orders:
         shopee_lines.append(f"• Cancelamentos consolidados: {shopee_cancel} ({pct(shopee_cancel/(shopee_cancel+shopee_gran_orders)*100)})")
-    if c30_gmv and c30_orders:
-        shopee_lines.append(f"• vs média 30d: GMV {c30_gmv} | pedidos {c30_orders}")
-    if c60_gmv and c60_orders:
-        shopee_lines.append(f"• vs média 60d: GMV {c60_gmv} | pedidos {c60_orders}")
     sections.append("🛍️ __VISÃO SHOPEE__\n" + "\n".join(shopee_lines))
     sections.append(_top_products_section("TOP PRODUTOS SHOPEE", _merge_top_products(*shopee_accounts)))
 
@@ -667,24 +658,24 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     for slug, label in account_slugs:
         a = analyses.get(slug)
         if not a:
-            diag_lines.append(f"▸ *{label}* — análise não disponível")
+            diag_lines.append(f"▸ *{label}*\n • Análise não disponível para esta conta.")
             continue
-        diag_lines.append(f"▸ *{label}* — {a['pedidos']} pedidos | {brl(a['gmv'])} | ticket {brl(a['ticket'])}")
-        diag_lines.extend(_template_temporal_lines(a))
-        if a.get("top_skus"):
-            diag_lines.append(f" • Produto principal: {display_name_from_sku(a['top_skus'][0][0])} ({a['top_skus'][0][1]} un.)")
-        if a.get("concentration_top3"):
-            diag_lines.append(f" • Concentração top 3: {pct(a['concentration_top3'])} — {_risk_label(a['concentration_top3'])}")
-        cancel_rate, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
-        if a.get("cancelamentos"):
-            diag_lines.append(f" • Cancelamentos: {a['cancelamentos']} ({cancel_text})")
         c30 = a.get("comparisons", {}).get("30d")
-        if slug == "shopee-budamix-store" and c30:
-            diag_lines.append(f" • Leitura: queda em pedidos com ticket quase estável aponta perda de tráfego/exposição, não mudança de mix. {pct(a['concentration_top3'])} concentrado em 3 produtos = qualquer um caindo derruba a conta inteira.")
-        elif slug == "shopee-budamix-oficial-2" and c30:
-            diag_lines.append(f" • Leitura: mesmo volume de pedidos mas ticket {_fmt_var(c30['var_ticket'])} indica mudança de mix para produtos de menor valor ou promoção ativa no {display_name_from_sku(a['top_skus'][0][0])}.")
-        elif slug == "shopee-budamix-shop-3" and c30:
-            diag_lines.append(f" • Leitura: ticket subindo compensou queda de volume. GMV estável depende de manter {display_name_from_sku(a['top_skus'][0][0])} girando — se ticket cair sem volume voltar, GMV despenca.")
+        c60 = a.get("comparisons", {}).get("60d")
+        csw = a.get("comparisons", {}).get("same_weekday")
+        diag_lines.append(f"▸ *{label}*")
+        if slug == "shopee-budamix-store":
+            diag_lines.append(" • Leitura: a conta principal mostra perda de tração com perfil mais parecido com queda de exposição/tráfego do que com mudança de mix. O ticket não parece ser o centro do problema; o risco maior é a dependência dos anúncios líderes, porque qualquer perda de ranking nesses produtos derruba a conta inteira.")
+            diag_lines.append(" • O comportamento contra as janelas recentes sugere que não foi apenas um dia fraco isolado: existe sinal de enfraquecimento quando comparado tanto ao histórico curto quanto aos mesmos dias da semana. A prioridade é entender se houve perda de posição, campanha menos eficiente ou pressão competitiva nos anúncios campeões.")
+            diag_lines.append(" • Os cancelamentos entram como agravante, não como explicação principal. Se estiverem ligados a ruptura ou prazo, podem piorar ranqueamento e conversão justamente em uma conta já sensível à exposição.")
+        elif slug == "shopee-budamix-oficial-2":
+            diag_lines.append(" • Leitura: a Conta 2 parece preservar volume, mas com qualidade de venda pior. Isso aponta para mudança de mix, desconto, cupom ou deslocamento para itens de menor valor, e não necessariamente para problema de demanda.")
+            diag_lines.append(" • A comparação com janelas mais longas mostra que a conta ainda não está em um patamar estruturalmente confortável. Mesmo quando o volume diário parece aceitável, o valor capturado por pedido precisa ser acompanhado para não mascarar deterioração de margem e GMV.")
+            diag_lines.append(" • O foco aqui não é aumentar tráfego a qualquer custo; primeiro precisa confirmar se a precificação/promoção dos produtos líderes está puxando ticket para baixo ou se o mix vendido mudou por comportamento orgânico do marketplace.")
+        elif slug == "shopee-budamix-shop-3":
+            diag_lines.append(" • Leitura: a Conta 3 teve uma dinâmica diferente das outras: menos volume, mas venda sustentada por ticket mais alto. Isso pode ser positivo no curto prazo, mas cria fragilidade se o produto que sustenta esse ticket perder força.")
+            diag_lines.append(" • A conta parece operar com dependência relevante de poucos itens. Quando o volume cai e o GMV só se mantém pelo ticket, o cenário exige atenção: se o mix voltar para produtos mais baratos sem recuperação de pedidos, o faturamento tende a cair rápido.")
+            diag_lines.append(" • O caminho mais saudável é usar o bom desempenho dos itens de maior ticket para ganhar fôlego, mas trabalhar anúncios secundários para reduzir dependência e estabilizar o volume diário.")
         diag_lines.append("")
     sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(diag_lines).strip())
 

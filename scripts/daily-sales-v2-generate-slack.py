@@ -778,37 +778,27 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
     amz_ticket = amz_rev / amz_orders if amz_orders else 0
     amz_lines = [f"• Faturamento Amazon: {brl(amz_rev)}", f"• Pedidos Amazon: {amz_orders}", f"• Ticket médio Amazon: {brl(amz_ticket)}"]
     if a:
-        if a.get("fulfillment"):
-            raw_f = a["fulfillment"].replace("FBA: ", "").replace(" pedidos", "")
-            amz_lines.append(f"• Fulfillment: 100% FBA ({raw_f} pedidos brutos)")
         cancel_rate, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
         if a.get("cancelamentos"):
             suffix = " — atenção" if cancel_rate > 10 else ""
             amz_lines.append(f"• Cancelamentos: {a['cancelamentos']} ({cancel_text}){suffix}")
-        c30 = a.get("comparisons", {}).get("30d")
-        c60 = a.get("comparisons", {}).get("60d")
-        if c30:
-            amz_lines.append(f"• vs média 30d: GMV {_fmt_var(c30['var_gmv'])} | pedidos {_fmt_var(c30['var_orders'])}")
-        if c60:
-            amz_lines.append(f"• vs média 60d: GMV {_fmt_var(c60['var_gmv'])} | pedidos {_fmt_var(c60['var_orders'])}")
     sections.append("🛍️ __VISÃO AMAZON__\n" + "\n".join(amz_lines))
     if a:
         sections.append(_top_products_section("TOP PRODUTOS AMAZON", a.get("top_skus", [])))
 
     diag_lines = []
     if a:
-        diag_lines.append(f"▸ *Dia granular* — {a['pedidos']} pedidos | {brl(a['gmv'])} | ticket {brl(a['ticket'])}")
-        diag_lines.extend(_template_temporal_lines(a))
-        diag_lines.append(f" • Concentração top 3: {pct(a['concentration_top3'])} — {_risk_label(a['concentration_top3'])}")
         c30 = a.get("comparisons", {}).get("30d")
-        if c30:
-            diag_lines.append(" • Leitura: dia forte com crescimento confirmado em todas as janelas (30d, 60d e mesma segunda). Canal em trajetória ascendente clara — não é flutuação isolada, é patamar novo.")
+        c60 = a.get("comparisons", {}).get("60d")
+        csw = a.get("comparisons", {}).get("same_weekday")
+        if c30 and c60 and csw:
+            diag_lines.append(" • Leitura: o desempenho da Amazon mostra crescimento consistente quando comparado às três janelas de referência — média de 30 dias, média de 60 dias e mesmas segundas recentes. Isso reduz a chance de ser apenas um pico isolado e indica que o canal está operando em patamar mais forte do que o histórico recente.")
         cancel_rate, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
         if cancel_rate > 10:
-            diag_lines.append(f" • Taxa de cancelamento em {cancel_text} é o ponto crítico. Com 100% FBA, cancelamento não vem do comprador — aponta para ruptura no CD Amazon, atraso FBA gerando cancel automático, indisponibilidade temporária de listing ou pedido pendente expirado.")
-            diag_lines.append(" • Combinação de crescimento de demanda com cancelamento alto é o risco principal: se a Amazon rebaixar ranqueamento por baixa taxa de fulfillment, o canal perde o ganho de tração que está construindo.")
+            diag_lines.append(f" • Taxa de cancelamento em {cancel_text} é o ponto crítico do dia. Como a operação Amazon é FBA por padrão, esse cancelamento tende a apontar mais para ruptura no CD Amazon, indisponibilidade temporária de listing, atraso/expiração automática ou problema de cobertura do que para falha operacional direta da equipe.")
+            diag_lines.append(" • A combinação de demanda crescendo com cancelamento alto é o principal risco: se a Amazon interpretar baixa capacidade de fulfillment, o canal pode perder Buy Box, ranqueamento ou eficiência de campanha justamente no momento em que está ganhando tração.")
         if a.get("top_skus"):
-            diag_lines.append(f" • {display_name_from_sku(a['top_skus'][0][0])} puxa o resultado com {a['top_skus'][0][1]} unidades. Concentração de {pct(a['concentration_top3'])} no top 3 é moderada, mas depende fortemente desse SKU.")
+            diag_lines.append(f" • {display_name_from_sku(a['top_skus'][0][0])} continua sendo o produto que mais explica o resultado do canal. A concentração no top 3 ainda não é extrema, mas exige acompanhamento porque qualquer instabilidade no produto líder pode reduzir a leitura positiva do dia.")
     else:
         diag_lines.append("• Análise detalhada não disponível para o dia")
     sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(diag_lines))

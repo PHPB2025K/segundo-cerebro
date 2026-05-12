@@ -1,24 +1,21 @@
 DAILY SALES REPORT — AMAZON — 11/05/2026 (Ontem)
 
 📊 __RESUMO GERAL__
-• Faturamento total: R$ 13.704,80
+• Faturamento total: R$ 12.724,05
 • Pedidos: 260
-• Ticket médio: R$ 52,71
+• Ticket médio: R$ 48,94
 
 🛒 __VENDAS POR CANAL__
 • Shopee: R$ 7.149,27 | 140 pedidos
 • Mercado Livre: R$ 3.573,03 | 89 pedidos
 • Amazon: R$ 1.021,00 | 28 pedidos
-• Atacado GB Matriz: R$ 1.961,50 | 3 pedidos
+• Atacado GB Matriz: R$ 980,75 | 3 pedidos
 
 🛍️ __VISÃO AMAZON__
 • Faturamento Amazon: R$ 1.021,00
 • Pedidos Amazon: 28
 • Ticket médio Amazon: R$ 36,46
-• Fulfillment: 100% FBA (32/32 pedidos brutos)
 • Cancelamentos: 6 (15,8%) — atenção
-• vs média 30d: GMV +22,5% | pedidos +16,4%
-• vs média 60d: GMV +31,1% | pedidos +24,0%
 
 🏆 __TOP PRODUTOS AMAZON__
 • Jarra Medidora de Vidro 500ml — 14 un.
@@ -29,15 +26,10 @@ DAILY SALES REPORT — AMAZON — 11/05/2026 (Ontem)
 
 🔍 __ANÁLISE DA CONTA__
 
-▸ *Dia granular* — 32 pedidos | R$ 1.327,60 | ticket R$ 41,49
- • vs média 30d: pedidos +16,4% | GMV +22,5% | ticket +5,2%
- • vs média 60d: pedidos +24,0% | GMV +31,1%
- • vs mesma segunda (4 sem): pedidos +12,3% | GMV +28,5%
- • Concentração top 3: 75,0% — risco alto
- • Leitura: dia forte com crescimento confirmado em todas as janelas (30d, 60d e mesma segunda). Canal em trajetória ascendente clara — não é flutuação isolada, é patamar novo.
- • Taxa de cancelamento em 15,8% é o ponto crítico. Com 100% FBA, cancelamento não vem do comprador — aponta para ruptura no CD Amazon, atraso FBA gerando cancel automático, indisponibilidade temporária de listing ou pedido pendente expirado.
- • Combinação de crescimento de demanda com cancelamento alto é o risco principal: se a Amazon rebaixar ranqueamento por baixa taxa de fulfillment, o canal perde o ganho de tração que está construindo.
- • Jarra Medidora de Vidro 500ml puxa o resultado com 14 unidades. Concentração de 75,0% no top 3 é moderada, mas depende fortemente desse SKU.
+ • Leitura: o desempenho da Amazon mostra crescimento consistente quando comparado às três janelas de referência — média de 30 dias, média de 60 dias e mesmas segundas recentes. Isso reduz a chance de ser apenas um pico isolado e indica que o canal está operando em patamar mais forte do que o histórico recente.
+ • Taxa de cancelamento em 15,8% é o ponto crítico do dia. Como a operação Amazon é FBA por padrão, esse cancelamento tende a apontar mais para ruptura no CD Amazon, indisponibilidade temporária de listing, atraso/expiração automática ou problema de cobertura do que para falha operacional direta da equipe.
+ • A combinação de demanda crescendo com cancelamento alto é o principal risco: se a Amazon interpretar baixa capacidade de fulfillment, o canal pode perder Buy Box, ranqueamento ou eficiência de campanha justamente no momento em que está ganhando tração.
+ • Jarra Medidora de Vidro 500ml continua sendo o produto que mais explica o resultado do canal. A concentração no top 3 ainda não é extrema, mas exige acompanhamento porque qualquer instabilidade no produto líder pode reduzir a leitura positiva do dia.
 
 🎯 __PRIORIDADES DO DIA__
 • Investigar os 6 cancelamentos no Seller Central. Identificar se vieram de ruptura FBA, indisponibilidade de listing ou prazo expirado. Se 3+ forem do mesmo SKU, verificar estoque no CD Amazon e reportar.

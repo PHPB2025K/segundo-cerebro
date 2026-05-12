@@ -10,8 +10,8 @@ Fase 4 implementa a geracao das 3 mensagens Slack individuais do Daily Sales Rep
 |---|---|---|
 | Shopee | 142 | R$ 7.202,43 |
 | Mercado Livre | 89 | R$ 3.573,03 |
-| Amazon | 29 | R$ 1.049,90 |
-| **Total Marketplaces** | **260** | **R$ 11.825,36** |
+| Amazon | 29 | R$ 1.046,90 |
+| **Total Marketplaces** | **260** | **R$ 11.822,36** |
 
 ## Scripts/arquivos criados
 - `scripts/daily-sales-v2-generate-slack.py` — script principal da Fase 4
@@ -52,7 +52,7 @@ python3 scripts/daily-sales-v2-generate-slack.py 2026-05-11 --send-real
 
 ### Leonardo — Amazon
 - Resumo geral igual
-- Visao Amazon oficial (29 pedidos, R$ 1.049,90)
+- Visao Amazon oficial (29 pedidos, R$ 1.046,90)
 - Fulfillment 100% FBA, top SKUs, concentracao 75,0%
 - Taxa de cancelamento 15,8% — prioridade de investigacao
 - Separacao clara: operacional Leonardo vs gestao/ADS Pedro

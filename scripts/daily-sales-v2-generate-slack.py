@@ -286,6 +286,38 @@ def fetch_v_daily_sales(day: str) -> dict[str, dict]:
     return {row["platform"]: row for row in rows}
 
 
+
+def fetch_bling_revenue(day: str) -> tuple[float | None, int | None]:
+    """Busca pedidos válidos do Atacado GB Matriz no Bling para o bloco geral."""
+    token_path = Path("/root/.openclaw/workspace/scripts/bling-oauth/tokens-matriz.json")
+    try:
+        token = json.loads(token_path.read_text())["access_token"]
+        page = 1
+        total = 0.0
+        count = 0
+        while True:
+            params = urllib.parse.urlencode({"dataInicial": day, "dataFinal": day, "pagina": page, "limite": 100})
+            req = urllib.request.Request(
+                f"https://api.bling.com.br/Api/v3/pedidos/vendas?{params}",
+                headers={"Authorization": f"Bearer {token}", "Accept": "application/json"},
+            )
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                payload = json.loads(resp.read().decode("utf-8"))
+            rows = payload.get("data", []) if isinstance(payload, dict) else []
+            for row in rows:
+                situacao = str((row.get("situacao") or {}).get("valor") or (row.get("situacao") or {}).get("nome") or "").lower()
+                if "cancel" in situacao:
+                    continue
+                total += float(row.get("total") or row.get("valorTotal") or row.get("totalProdutos") or 0)
+                count += 1
+            if len(rows) < 100:
+                break
+            page += 1
+        return round(total, 2), count
+    except Exception:
+        return None, None
+
+
 # ---------------------------------------------------------------------------
 # Leitura de análises da Fase 3
 # ---------------------------------------------------------------------------
@@ -430,6 +462,29 @@ def _top_products_text(top_skus: list[tuple[str, int]], limit: int = 5) -> list[
     return lines
 
 
+
+def _top_products_section(title: str, top_skus: list[tuple[str, int]], limit: int = 5) -> str:
+    """Gera seção TOP PRODUTOS no padrão aprovado."""
+    lines = []
+    for sku, qty in top_skus[:limit]:
+        lines.append(f"• {display_name_from_sku(sku)} — {qty} un.")
+    if not lines:
+        lines.append("• Sem produtos suficientes para ranking confiável.")
+    return f"🏆 __{title}__\n" + "\n".join(lines)
+
+
+def _merge_top_products(*analyses: dict, limit: int = 5) -> list[tuple[str, int]]:
+    """Agrega top SKUs de múltiplas contas por nome comercial."""
+    agg: dict[str, int] = {}
+    for a in analyses:
+        if not a:
+            continue
+        for sku, qty in a.get("top_skus", []):
+            name = display_name_from_sku(sku)
+            agg[name] = agg.get(name, 0) + int(qty)
+    return sorted(agg.items(), key=lambda kv: kv[1], reverse=True)[:limit]
+
+
 def _temporal_reading(comparisons: dict, pedidos: int, gmv: float) -> list[str]:
     """Gera leitura temporal completa vs 30d, 60d, mesmo dia da semana."""
     lines = []
@@ -486,7 +541,7 @@ def build_general_summary(canonical: dict[str, dict], day: str) -> list[str]:
     return [
         f"• Faturamento total: {brl(total_rev)}",
         f"• Pedidos: {total_orders}",
-        f"• Ticket medio: {brl(ticket)}",
+        f"• Ticket médio: {brl(ticket)}",
     ]
 
 
@@ -499,6 +554,9 @@ def build_sales_by_channel(canonical: dict[str, dict]) -> list[str]:
         orders = int(row.get("order_count") or 0)
         label = PLATFORM_LABELS[pk]
         lines.append(f"• {label}: {brl(rev)} | {orders} pedidos")
+    atacado = canonical.get("atacado")
+    if atacado:
+        lines.append(f"• Atacado GB Matriz: {brl(float(atacado.get('total_revenue') or 0))} | {int(atacado.get('order_count') or 0)} pedidos")
     return lines
 
 
@@ -519,10 +577,10 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
 
     # Resumo geral
     summary_lines = build_general_summary(canonical, day)
-    sections.append("📊 *RESUMO GERAL*\n" + "\n".join(summary_lines))
+    sections.append("📊 __RESUMO GERAL__\n" + "\n".join(summary_lines))
 
     channel_lines = build_sales_by_channel(canonical)
-    sections.append("🛒 *VENDAS POR CANAL*\n" + "\n".join(channel_lines))
+    sections.append("🛒 __VENDAS POR CANAL__\n" + "\n".join(channel_lines))
 
     # Visao Shopee oficial
     shopee_row = canonical.get("shopee", {})
@@ -531,10 +589,10 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     shopee_ticket = shopee_rev / shopee_orders if shopee_orders else 0
 
     shopee_lines = []
-    shopee_lines.append(f"• Faturamento oficial Shopee: {brl(shopee_rev)}")
+    shopee_lines.append(f"• Faturamento Shopee: {brl(shopee_rev)}")
     shopee_lines.append(f"• Pedidos Shopee: {shopee_orders}")
-    shopee_lines.append(f"• Ticket medio Shopee: {brl(shopee_ticket)}")
-    sections.append("🛒 *VISAO SHOPEE*\n" + "\n".join(shopee_lines))
+    shopee_lines.append(f"• Ticket médio Shopee: {brl(shopee_ticket)}")
+    sections.append("🛍️ __VISÃO SHOPEE__\n" + "\n".join(shopee_lines))
 
     # Diagnostico profundo por conta
     account_slugs = [
@@ -652,7 +710,7 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
                         f"  - INTERPRETACAO: Operacao estavel. Monitorar tendencia."
                     )
 
-    sections.append("🔎 *DIAGNOSTICO POR CONTA*" + "\n".join(diag_lines))
+    sections.append("🔍 __ANÁLISE DA CONTA__" + "\n".join(diag_lines))
 
     # Prioridades profundas
     prio_lines = []
@@ -721,7 +779,7 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     if not any_traffic_signal:
         prio_lines.append("  - Sem sinal critico de queda de trafego. Manter campanhas atuais e monitorar.")
 
-    sections.append("🎯 *PRIORIDADES DO DIA*" + "\n".join(prio_lines))
+    sections.append("🎯 __PRIORIDADES DO DIA__" + "\n".join(prio_lines))
 
     return "\n\n".join(sections)
 
@@ -743,10 +801,10 @@ def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[st
 
     # Resumo geral
     summary_lines = build_general_summary(canonical, day)
-    sections.append("📊 *RESUMO GERAL*\n" + "\n".join(summary_lines))
+    sections.append("📊 __RESUMO GERAL__\n" + "\n".join(summary_lines))
 
     channel_lines = build_sales_by_channel(canonical)
-    sections.append("🛒 *VENDAS POR CANAL*\n" + "\n".join(channel_lines))
+    sections.append("🛒 __VENDAS POR CANAL__\n" + "\n".join(channel_lines))
 
     # Visao ML oficial
     ml_row = canonical.get("ml", {})
@@ -755,10 +813,10 @@ def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[st
     ml_ticket = ml_rev / ml_orders if ml_orders else 0
 
     ml_lines = []
-    ml_lines.append(f"• Faturamento oficial Mercado Livre: {brl(ml_rev)}")
-    ml_lines.append(f"• Pedidos Mercado Livre: {ml_orders}")
-    ml_lines.append(f"• Ticket medio Mercado Livre: {brl(ml_ticket)}")
-    sections.append("🛒 *VISAO MERCADO LIVRE*\n" + "\n".join(ml_lines))
+    ml_lines.append(f"• Faturamento ML: {brl(ml_rev)}")
+    ml_lines.append(f"• Pedidos ML: {ml_orders}")
+    ml_lines.append(f"• Ticket médio ML: {brl(ml_ticket)}")
+    sections.append("🛍️ __VISÃO MERCADO LIVRE__\n" + "\n".join(ml_lines))
 
     # Diagnostico profundo ML
     a = analyses.get("mercado-livre")
@@ -810,10 +868,6 @@ def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[st
                     f"Verificar se e efeito calendario (feriado proximo, quinzena) ou sinal real."
                 )
 
-        # Top produtos por nome
-        diag_lines.append("• Produtos que mais venderam:")
-        diag_lines.extend(_top_products_text(a["top_skus"], 5))
-
         # Concentracao com interpretacao
         reading = _concentration_reading(a["concentration_top3"])
         diag_lines.append(f"• Concentracao top 3: {pct(a['concentration_top3'])} ({reading})")
@@ -834,7 +888,7 @@ def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[st
     else:
         diag_lines.append("• Analise detalhada nao disponivel para o dia")
 
-    sections.append("🔎 *DIAGNOSTICO MERCADO LIVRE*\n" + "\n".join(diag_lines))
+    sections.append("🔍 __ANÁLISE DA CONTA__\n" + "\n".join(diag_lines))
 
     # Prioridades profundas
     prio_lines = []
@@ -896,7 +950,7 @@ def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[st
                 "  - Sem sinal critico de queda. Manter campanhas atuais e monitorar tendencia semanal."
             )
 
-    sections.append("🎯 *PRIORIDADES DO DIA*" + "\n".join(prio_lines))
+    sections.append("🎯 __PRIORIDADES DO DIA__" + "\n".join(prio_lines))
 
     return "\n\n".join(sections)
 
@@ -918,10 +972,10 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
 
     # Resumo geral
     summary_lines = build_general_summary(canonical, day)
-    sections.append("📊 *RESUMO GERAL*\n" + "\n".join(summary_lines))
+    sections.append("📊 __RESUMO GERAL__\n" + "\n".join(summary_lines))
 
     channel_lines = build_sales_by_channel(canonical)
-    sections.append("🛒 *VENDAS POR CANAL*\n" + "\n".join(channel_lines))
+    sections.append("🛒 __VENDAS POR CANAL__\n" + "\n".join(channel_lines))
 
     # Visao Amazon oficial
     amz_row = canonical.get("amazon", {})
@@ -930,10 +984,10 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
     amz_ticket = amz_rev / amz_orders if amz_orders else 0
 
     amz_lines = []
-    amz_lines.append(f"• Faturamento oficial Amazon: {brl(amz_rev)}")
+    amz_lines.append(f"• Faturamento Amazon: {brl(amz_rev)}")
     amz_lines.append(f"• Pedidos Amazon: {amz_orders}")
-    amz_lines.append(f"• Ticket medio Amazon: {brl(amz_ticket)}")
-    sections.append("🛒 *VISAO AMAZON*\n" + "\n".join(amz_lines))
+    amz_lines.append(f"• Ticket médio Amazon: {brl(amz_ticket)}")
+    sections.append("🛍️ __VISÃO AMAZON__\n" + "\n".join(amz_lines))
 
     # Diagnostico profundo Amazon
     a = analyses.get("amazon")
@@ -1002,10 +1056,6 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
                 f"• Cancelamentos: {cancel_text} — acima do ideal mas nao critico. Monitorar."
             )
 
-        # Top produtos por nome
-        diag_lines.append("• Produtos que mais venderam:")
-        diag_lines.extend(_top_products_text(a["top_skus"], 5))
-
         # Concentracao
         reading = _concentration_reading(a["concentration_top3"])
         diag_lines.append(f"• Concentracao top 3: {pct(a['concentration_top3'])} ({reading})")
@@ -1013,7 +1063,7 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
     else:
         diag_lines.append("• Analise detalhada nao disponivel para o dia")
 
-    sections.append("🔎 *DIAGNOSTICO AMAZON*\n" + "\n".join(diag_lines))
+    sections.append("🔍 __ANÁLISE DA CONTA__\n" + "\n".join(diag_lines))
 
     # Prioridades profundas — separar operacional Leonardo vs ADS Pedro
     prio_lines = []
@@ -1075,7 +1125,7 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
                 f"esta direcionando trafego para listing sem estoque. Se confirmado, pausar anuncio."
             )
 
-    sections.append("🎯 *PRIORIDADES DO DIA*" + "\n".join(prio_lines))
+    sections.append("🎯 __PRIORIDADES DO DIA__" + "\n".join(prio_lines))
 
     return "\n\n".join(sections)
 
@@ -1087,14 +1137,14 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
 SECTION_TITLES = {
     "📊 RESUMO GERAL",
     "🛒 VENDAS POR CANAL",
-    "🛒 VISAO SHOPEE",
-    "🛒 VISAO MERCADO LIVRE",
-    "🛒 VISAO AMAZON",
-    "🔎 DIAGNOSTICO POR CONTA",
-    "🔎 DIAGNOSTICO MERCADO LIVRE",
-    "🔎 DIAGNOSTICO AMAZON",
+    "🛍️ VISÃO SHOPEE",
+    "🛍️ VISÃO MERCADO LIVRE",
+    "🛍️ VISÃO AMAZON",
+    "🏆 TOP PRODUTOS SHOPEE",
+    "🏆 TOP PRODUTOS MERCADO LIVRE",
+    "🏆 TOP PRODUTOS AMAZON",
+    "🔍 ANÁLISE DA CONTA",
     "🎯 PRIORIDADES DO DIA",
-    "📦 PRODUTOS EM DESTAQUE",
 }
 
 
@@ -1249,6 +1299,13 @@ def main() -> int:
         print("ERRO: v_daily_sales sem dados para a data.", file=sys.stderr)
         return 1
 
+    atacado_rev, atacado_orders = fetch_bling_revenue(day)
+    if atacado_rev is not None and atacado_orders is not None:
+        canonical["atacado"] = {"platform": "atacado", "order_count": atacado_orders, "total_revenue": atacado_rev}
+        print(f"Atacado GB Matriz OK: {atacado_orders} pedidos | {brl(atacado_rev)}")
+    else:
+        print("Atacado GB Matriz indisponivel; seguindo sem canal Atacado.")
+
     total_rev = sum(float(r.get("total_revenue") or 0) for r in canonical.values())
     total_orders = sum(int(r.get("order_count") or 0) for r in canonical.values())
     print(f"v_daily_sales OK: {total_orders} pedidos | {brl(total_rev)}")
@@ -1294,7 +1351,7 @@ def main() -> int:
             issues.append("CONTEM ATACADO/BLING")
         if not msg.strip():
             issues.append("MENSAGEM VAZIA")
-        for required_section in ["📊 *RESUMO GERAL*", "🛒 *VENDAS POR CANAL*"]:
+        for required_section in ["📊 __RESUMO GERAL__", "🛒 __VENDAS POR CANAL__"]:
             if required_section not in msg:
                 issues.append(f"SECAO FIXA AUSENTE: {required_section}")
 

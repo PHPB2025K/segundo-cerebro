@@ -628,7 +628,7 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     d = date.fromisoformat(day)
     display_date = d.strftime("%d/%m/%Y")
     sections: list[str] = []
-    sections.append(f"**Pedro Broglio** DAILY SALES REPORT — SHOPEE — {display_date} (Ontem)")
+    sections.append(f"DAILY SALES REPORT — SHOPEE — {display_date} (Ontem)")
     sections.append("📊 __RESUMO GERAL__\n" + "\n".join(build_general_summary(canonical, day)))
     sections.append("🛒 __VENDAS POR CANAL__\n" + "\n".join(build_sales_by_channel(canonical)))
 
@@ -709,7 +709,7 @@ def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[st
     display_date = d.strftime("%d/%m/%Y")
     sections: list[str] = []
     a = analyses.get("mercado-livre")
-    sections.append(f"**Pedro Broglio** DAILY SALES REPORT — MERCADO LIVRE — {display_date} (Ontem)")
+    sections.append(f"DAILY SALES REPORT — MERCADO LIVRE — {display_date} (Ontem)")
     sections.append("📊 __RESUMO GERAL__\n" + "\n".join(build_general_summary(canonical, day)))
     sections.append("🛒 __VENDAS POR CANAL__\n" + "\n".join(build_sales_by_channel(canonical)))
 
@@ -768,7 +768,7 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
     display_date = d.strftime("%d/%m/%Y")
     sections: list[str] = []
     a = analyses.get("amazon")
-    sections.append(f"**Pedro Broglio** DAILY SALES REPORT — AMAZON — {display_date} (Ontem)")
+    sections.append(f"DAILY SALES REPORT — AMAZON — {display_date} (Ontem)")
     sections.append("📊 __RESUMO GERAL__\n" + "\n".join(build_general_summary(canonical, day)))
     sections.append("🛒 __VENDAS POR CANAL__\n" + "\n".join(build_sales_by_channel(canonical)))
 

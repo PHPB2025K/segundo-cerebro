@@ -1,4 +1,4 @@
-**Pedro Broglio** DAILY SALES REPORT — AMAZON — 11/05/2026 (Ontem)
+DAILY SALES REPORT — AMAZON — 11/05/2026 (Ontem)
 
 📊 __RESUMO GERAL__
 • Faturamento total: R$ 13.704,80

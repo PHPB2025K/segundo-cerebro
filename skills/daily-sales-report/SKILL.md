@@ -15,7 +15,7 @@ Enviar diariamente o relatório de vendas do dia anterior com dados corretos, se
   - Shopee
   - Mercado Livre
   - Amazon
-- **Não incluir Atacado GB Matriz/Bling no Daily Sales Report enviado para Yasmin, Lucas e Leonardo.** Eles não atuam no atacado; o relatório deles deve refletir somente marketplaces.
+- Incluir `Atacado GB Matriz` no bloco geral `🛒 VENDAS POR CANAL` quando Pedro pedir o padrão dos templates de 2026-05-12. O diagnóstico individual continua focado no marketplace do responsável.
 - Não usar coleta direta de APIs como total oficial, exceto fallback explícito com aviso.
 - Não misturar settlement/extrato financeiro/DRE com venda gerada do dia.
 
@@ -103,7 +103,7 @@ Evitar:
 ## Checklist antes de enviar
 1. Confirmar dia analisado em BRT.
 2. Confirmar `v_daily_sales` disponível para o dia.
-3. Confirmar que o relatório dos funcionários está excluindo Atacado GB Matriz/Bling.
+3. Confirmar se o padrão vigente pede Atacado GB Matriz no bloco geral/canais; se sim, incluir apenas no resumo/canais e não no diagnóstico individual.
 4. Confirmar Top Produtos consolidado por SKU equivalente.
 5. Confirmar destinatários Slack corretos.
 6. Confirmar formatação rich text: títulos bold+underline, conteúdo normal.
@@ -121,7 +121,7 @@ Evitar:
 ## Último padrão aprovado
 Aprovado por Pedro em 2026-05-11 e ajustado em 2026-05-12:
 - Envio via Slack DM para Yasmin, Lucas e Leonardo.
-- Escopo do Slack dos funcionários: somente marketplaces (Shopee, Mercado Livre e Amazon), sem Atacado GB Matriz/Bling.
+- Padrão de 2026-05-12: o bloco geral/canais pode incluir Atacado GB Matriz quando o template aprovado pedir; diagnósticos individuais seguem por responsável/canal.
 - Mensagens serão individuais por funcionário: Lucas/Shopee, Yasmin/Mercado Livre, Leonardo/Amazon.
 - Cada mensagem começa obrigatoriamente com dois blocos fixos e separados, iguais para todos os funcionários: `📊 RESUMO GERAL` e `🛒 VENDAS POR CANAL`.
 - `📊 RESUMO GERAL` deve conter apenas os totais gerais: faturamento total, pedidos e ticket médio.
@@ -142,5 +142,12 @@ Aprovado por Pedro em 2026-05-11 e ajustado em 2026-05-12:
 - Usar memória persistente por conta sempre que existir; nunca gerar análise como se fosse o primeiro dia quando já houver `daily/`, `weekly.md`, `monthly.md` ou `rules.md`.
 - Sempre que mencionar produtos no texto visível ao funcionário/Pedro, mostrar o **nome do produto**, nunca o SKU. O SKU pode ser usado apenas internamente para cálculo/mapeamento.
 - Títulos de seções devem seguir o padrão visual aprovado no Slack: emoji + título em uppercase, com bold+underline real via rich_text. Ex.: `📊 RESUMO GERAL`, `🛒 VENDAS POR CANAL`, `🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS`, `📈 ANÁLISE DO DIA`. Para seções novas, manter o mesmo padrão: emoji + uppercase + bold+underline.
-- No report dos funcionários, manter sem Atacado/Bling, mas preservar o mesmo padrão visual dos títulos.
+- No report dos funcionários, se usar os templates aprovados em 2026-05-12, incluir Atacado GB Matriz apenas no bloco geral/canais e preservar o padrão visual dos títulos.
 - `📊 RESUMO GERAL` e `🛒 VENDAS POR CANAL` são seções obrigatórias e fixas em todas as mensagens para funcionários; nunca juntar canais dentro do resumo geral.
+
+
+## Correção obrigatória — template aprovado sem prefixo Pedro (Pedro, 2026-05-12)
+
+- O topo das mensagens NÃO deve incluir `Pedro Broglio`.
+- O título deve começar diretamente com `DAILY SALES REPORT — [PLATAFORMA] — DD/MM/AAAA (Ontem)`.
+- Manter estrutura próxima aos anexos aprovados: `📊 RESUMO GERAL`, `🛒 VENDAS POR CANAL`, `🛍️ VISÃO [CANAL]`, `🏆 TOP PRODUTOS [CANAL]`, `🔍 ANÁLISE DA CONTA`, `🎯 PRIORIDADES DO DIA`, rodapé `Dia analisado: DD/MM/AAAA — 00:00–23:59 BRT`.

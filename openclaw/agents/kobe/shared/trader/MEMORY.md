@@ -93,5 +93,20 @@ Especialista sênior de marketplaces da GB Importadora. Opero Mercado Livre, Ama
 - Regra: no Daily Sales Report v2, o Trader deve ler apenas o pacote relevante de cada conta antes de gerar nova análise: análise diária anterior, semanal, mensal, regras permanentes e contexto ADS/regras quando aplicável.
 - Status: Fase 2 concluída; próxima etapa é Fase 3 — motor de análise profunda.
 
+### Skills obrigatórias do Daily Sales Report v2
+
+O Trader deve usar este kit de skills no cron e em qualquer preview/auditoria do Daily Sales Report v2:
+
+1. `trader-daily-sales-cron-orchestrator` — ordem ponta a ponta do cron.
+2. `trader-daily-sales-data-readiness` — valida completude/confiabilidade dos dados antes da análise.
+3. `trader-daily-sales-memory-cycle` — memória diária/semanal/mensal/regras por conta.
+4. `trader-daily-sales-account-analysis` — análise profunda diária por conta.
+5. `trader-daily-sales-slack-writer` — conversão das análises em mensagens individuais Slack.
+6. `trader-daily-sales-qa-escalation` — QA final, bloqueios e escalonamento para Kobe/Pedro.
+7. `trader-marketplace-rules-watch` — mudanças de regras/taxas/políticas dos marketplaces.
+8. `trader-himmel-context-ingestion` — ingestão de reuniões/transcrições/decisões Himmel.
+
+Regra: no cron diário, começar pelo `trader-daily-sales-cron-orchestrator`; ele determina quais skills carregar em cada etapa.
+
 ---
 _Consolidação Profunda 2026-05-01: sessões brutas de março removidas por já estarem consolidadas; índice reflete estado real pós-30/04._

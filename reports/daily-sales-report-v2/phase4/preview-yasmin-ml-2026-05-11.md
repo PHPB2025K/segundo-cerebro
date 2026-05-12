@@ -2,10 +2,12 @@ DAILY SALES REPORT — MERCADO LIVRE
 11/05/2026 (segunda-feira) — 00:00-23:59 BRT
 
 📊 *RESUMO GERAL*
-• Faturamento total marketplaces: R$ 11.795,46
-• Pedidos totais: 259
-• Ticket medio: R$ 45,54
-• Shopee: R$ 7.175,53 | 141 pedidos
+• Faturamento total: R$ 11.769,20
+• Pedidos: 258
+• Ticket medio: R$ 45,62
+
+🛒 *VENDAS POR CANAL*
+• Shopee: R$ 7.149,27 | 140 pedidos
 • Mercado Livre: R$ 3.573,03 | 89 pedidos
 • Amazon: R$ 1.046,90 | 29 pedidos
 

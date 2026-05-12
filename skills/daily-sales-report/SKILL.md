@@ -192,3 +192,16 @@ Pedro aprovou e travou os três templates finais de Amazon, Mercado Livre e Shop
 - Produto visível deve ser nome comercial, nunca SKU cru.
 
 Esse padrão substitui regras antigas conflitantes sobre `ANÁLISE DO DIA`, blocos genéricos ou análise rasa.
+
+## Fase 7 — Contexto Himmel/Granola
+- Antes do Daily Sales Report v2, rodar a sincronização de contexto Himmel/Granola para Shopee e Mercado Livre.
+- Script canônico:
+```bash
+python3 /root/segundo-cerebro/scripts/daily-sales-v2-himmel-granola-context.py --days 30 --sync-granola --write
+```
+- A rotina nunca copia transcrição integral; usa apenas resumos/contextos já tratados.
+- O contexto global fica em `himmel-context.md`; o contexto específico por conta fica em `accounts/*/himmel-context.md`.
+- O analyzer deve carregar `account-himmel-context.md` e `global-himmel-context.md` como insumo de hipótese.
+- Usar falas/decisões da Himmel como contexto causal a validar nos dados, nunca como culpa ou fato isolado.
+- Amazon Ads não usa Himmel; Amazon continua com Pedro.
+- Cron ativo: `Daily Sales v2 — Himmel/Granola Context Sync`, 06:35 BRT, antes do envio das 06:50.

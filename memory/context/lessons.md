@@ -696,3 +696,8 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 ### [TÁTICA] Daily Sales Report: remover seções duplicadas e ranquear por SKU consolidado (2026-05-11)
 **Lição:** Para a equipe administrativa, o Daily Sales Report deve ser curto, sem seção `DESTAQUES DO DIA` duplicando números, e o Top Produtos deve consolidar SKUs equivalentes entre plataformas. Se o nome do produto não for confiável, omitir do ranking em vez de mostrar “Produto não identificado”.
 **Expira:** 2026-06-10
+
+### [TÁTICA] Bootstrap pendente pode mascarar a pergunta real do Pedro (2026-05-12)
+**Contexto:** Numa sessão de teste/checagem, a injeção automática de bootstrap dominou a abertura da conversa e a pergunta curta “deu certo?” foi interpretada primeiro como validação do bootstrap, quando na verdade Pedro se referia às atas da semana do Slack.
+**Lição:** Quando houver `bootstrap pending` ou outra mecânica interna na abertura, cumprir o protocolo silenciosamente, mas priorizar a intenção prática do Pedro assim que ela aparecer. Follow-ups curtos como “deu certo?” podem apontar para a entrega anterior de negócio, não para o estado técnico do bootstrap.
+**Expira:** 2026-06-11

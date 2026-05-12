@@ -2,7 +2,8 @@
 """Envia Daily Sales Report para equipe administrativa via Slack.
 
 Destinatários: Yasmin, Lucas e Leonardo.
-Fonte canônica marketplaces: Budamix Central / Supabase `v_daily_sales`.
+Fonte canônica: marketplaces no Budamix Central / Supabase `v_daily_sales`.
+Escopo aprovado: somente Shopee, Mercado Livre e Amazon; não incluir Atacado GB Matriz/Bling.
 Top produtos: consolidação cross-plataforma por SKU equivalente.
 """
 
@@ -254,11 +255,10 @@ def build_message(day: str) -> str:
     service_key = env["SUPABASE_SERVICE_ROLE_KEY"]
     rows = supabase_get(supabase_url, service_key, "v_daily_sales", {"sale_date": f"eq.{day}", "select": "platform,order_count,total_revenue,avg_order_value"})
     by_platform = {row["platform"]: row for row in rows}
-    market_revenue = sum(float(row.get("total_revenue") or 0) for row in rows)
-    market_orders = sum(int(row.get("order_count") or 0) for row in rows)
-    bling_revenue, bling_orders = fetch_bling_revenue(day)
-    total_revenue = market_revenue + (bling_revenue or 0)
-    total_orders = market_orders + (bling_orders or 0)
+    # Report dos funcionários cobre apenas marketplaces.
+    # Atacado GB Matriz/Bling fica fora porque a equipe destinatária não atua nesse canal.
+    total_revenue = sum(float(row.get("total_revenue") or 0) for row in rows)
+    total_orders = sum(int(row.get("order_count") or 0) for row in rows)
     ticket = total_revenue / total_orders if total_orders else 0
 
     d = date.fromisoformat(day)
@@ -284,7 +284,6 @@ def build_message(day: str) -> str:
     for platform in PLATFORM_ORDER:
         row = by_platform.get(platform, {})
         channel_values.append((PLATFORM_LABELS[platform], float(row.get("total_revenue") or 0), int(row.get("order_count") or 0)))
-    atacado_line = "• Atacado GB Matriz: indisponível" if bling_revenue is None else f"• Atacado GB Matriz: *{brl(bling_revenue)}* | {bling_orders} pedidos"
     top_products = fetch_top_products(supabase_url, service_key, day)
     display_date = d.strftime("%d/%m/%Y")
     weekday_names = ["segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado", "domingo"]
@@ -308,7 +307,6 @@ def build_message(day: str) -> str:
         "\n".join([
             section_title("🛒 VENDAS POR CANAL"),
             *[f"• {name}: {brl(revenue)} | {orders} pedidos" for name, revenue, orders in channel_values],
-            atacado_line.replace("*", ""),
         ]),
         "\n".join([
             section_title("🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS"),

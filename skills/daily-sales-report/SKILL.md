@@ -11,11 +11,11 @@ Enviar diariamente o relatório de vendas do dia anterior com dados corretos, se
 ## Fonte de verdade
 - Marketplaces: Budamix Central / Supabase `v_daily_sales`.
 - Período: dia anterior completo em BRT, 00:00–23:59.
-- Canais obrigatórios:
+- Canais obrigatórios para o Slack dos funcionários:
   - Shopee
   - Mercado Livre
   - Amazon
-  - Atacado GB Matriz via Bling Matriz
+- **Não incluir Atacado GB Matriz/Bling no Daily Sales Report enviado para Yasmin, Lucas e Leonardo.** Eles não atuam no atacado; o relatório deles deve refletir somente marketplaces.
 - Não usar coleta direta de APIs como total oficial, exceto fallback explícito com aviso.
 - Não misturar settlement/extrato financeiro/DRE com venda gerada do dia.
 
@@ -99,15 +99,16 @@ Evitar:
 ## Checklist antes de enviar
 1. Confirmar dia analisado em BRT.
 2. Confirmar `v_daily_sales` disponível para o dia.
-3. Confirmar Atacado GB Matriz/Bling; se indisponível, marcar como indisponível, não estimar.
+3. Confirmar que o relatório dos funcionários está excluindo Atacado GB Matriz/Bling.
 4. Confirmar Top Produtos consolidado por SKU equivalente.
 5. Confirmar destinatários Slack corretos.
 6. Confirmar formatação rich text: títulos bold+underline, conteúdo normal.
 7. Em caso de ajuste de formato, testar primeiro com `--to-pedro`.
 
 ## Último padrão aprovado
-Aprovado por Pedro em 2026-05-11:
+Aprovado por Pedro em 2026-05-11 e ajustado em 2026-05-12:
 - Envio via Slack DM para Yasmin, Lucas e Leonardo.
+- Escopo do Slack dos funcionários: somente marketplaces (Shopee, Mercado Livre e Amazon), sem Atacado GB Matriz/Bling.
 - Uma linha em branco entre seções.
 - Títulos em negrito + sublinhado real do Slack.
 - Conteúdo sem formatação especial.

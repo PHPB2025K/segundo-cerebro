@@ -68,9 +68,11 @@ Não incluir a seção `DESTAQUES DO DIA`; ela foi removida por duplicar informa
 - Títulos das seções: negrito + sublinhado real do Slack via `rich_text blocks` (`style: {bold: true, underline: true}`).
 - Não usar underline Unicode, linha separadora fake ou `────────────`.
 - Conteúdo interno: texto normal, sem negrito, sem itálico e sem sublinhado.
+- Usar bullet points em todas as seções de conteúdo, inclusive seções variáveis, prioridades e ações recomendadas.
+- Cada bullet deve transmitir uma ideia completa; bullets de análise podem ser parágrafos médios quando isso deixar o insight mais claro e acionável.
 - Bullets sem linhas em branco entre eles.
 - Espaçamento entre seções: uma linha em branco.
-- A seção `ANÁLISE DO DIA` deve ser em bullets; cada bullet é um chunk de ideia. Não duplicar informações já presentes nas seções anteriores.
+- A análise deve ser em bullets; cada bullet é um chunk de ideia. Não duplicar informações já presentes nas seções anteriores.
 
 ## Top Produtos — regra crítica
 O ranking deve ser consolidado por produto equivalente nas três plataformas, não por título/anúncio isolado.
@@ -109,6 +111,10 @@ Evitar:
 Aprovado por Pedro em 2026-05-11 e ajustado em 2026-05-12:
 - Envio via Slack DM para Yasmin, Lucas e Leonardo.
 - Escopo do Slack dos funcionários: somente marketplaces (Shopee, Mercado Livre e Amazon), sem Atacado GB Matriz/Bling.
+- Mensagens serão individuais por funcionário: Lucas/Shopee, Yasmin/Mercado Livre, Leonardo/Amazon.
+- Cada mensagem começa com o mesmo resumo geral da operação e depois traz diagnóstico específico da plataforma/conta do funcionário.
+- Estrutura híbrida: blocos fixos de resumo geral, visão da plataforma e prioridade do dia; seções variáveis conforme sinais relevantes do dia.
+- Usar bullet points em todas as seções de conteúdo; cada ideia deve ser quebrada em um novo bullet, inclusive nas prioridades e seções variáveis.
 - Uma linha em branco entre seções.
 - Títulos em negrito + sublinhado real do Slack.
 - Conteúdo sem formatação especial.

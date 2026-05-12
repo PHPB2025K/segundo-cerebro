@@ -1,56 +1,64 @@
-DAILY SALES REPORT — SHOPEE
-11/05/2026 (segunda-feira) — 00:00-23:59 BRT
+**Pedro Broglio** DAILY SALES REPORT — SHOPEE — 11/05/2026 (Ontem)
 
-📊 *RESUMO GERAL*
-• Faturamento total: R$ 11.769,20
-• Pedidos: 258
-• Ticket medio: R$ 45,62
+📊 __RESUMO GERAL__
+• Faturamento total: R$ 13.704,80
+• Pedidos: 260
+• Ticket médio: R$ 52,71
 
-🛒 *VENDAS POR CANAL*
+🛒 __VENDAS POR CANAL__
 • Shopee: R$ 7.149,27 | 140 pedidos
 • Mercado Livre: R$ 3.573,03 | 89 pedidos
-• Amazon: R$ 1.046,90 | 29 pedidos
+• Amazon: R$ 1.021,00 | 28 pedidos
+• Atacado GB Matriz: R$ 1.961,50 | 3 pedidos
 
-🛒 *VISAO SHOPEE*
-• Faturamento oficial Shopee: R$ 7.149,27
+🛍️ __VISÃO SHOPEE__
+• Faturamento Shopee: R$ 7.149,27
 • Pedidos Shopee: 140
-• Ticket medio Shopee: R$ 51,07
+• Ticket médio Shopee: R$ 51,07
+• Cancelamentos consolidados: 13 (8,3%)
+• vs média 30d: GMV -12,8% | pedidos -12,4%
+• vs média 60d: GMV -22,3% | pedidos -25,5%
 
-🔎 *DIAGNOSTICO POR CONTA*
-• Budamix Store: 77 pedidos | R$ 2.869,57 | ticket R$ 37,27
-  - vs media 30d: pedidos -18.2% | GMV -22.2% | ticket -4.9%
-  - vs media 60d: pedidos -27.1% | GMV -25.5%
-  - vs mesmo dia da semana (4 semanas): pedidos -27.0% | GMV -30.7%
-  - Produto principal: Conjunto 5 Potes de Vidro Redondos Tampa Preta (50 un.)
-  - Concentracao top 3: 95,1% (muito alta — risco critico de dependencia)
-  - Taxa de cancelamento: 9,4% (8 pedidos)
-  - INTERPRETACAO: Queda de 18,2% em pedidos e 22,2% em GMV vs 30d, com ticket -4.9%. Isso sugere perda de tracao/exposicao, nao mudanca de mix. Como 95,1% das unidades estao em 3 produtos, qualquer queda nesses anuncios derruba a conta inteira.
-  - ACAO: Checar posicao/visibilidade dos anuncios de Conjunto 5 Potes de Vidro Redondos Tampa Preta e Jarra Medidora de Vidro 500ml. Comparar trafego de ontem com media. Alinhar com Himmel se queda repetir hoje.
+🏆 __TOP PRODUTOS SHOPEE__
+• Conjunto 5 Potes de Vidro Redondos Tampa Preta — 50 un.
+• Kit 6 Canecas Tulipa Porcelana 250ml — 29 un.
+• Jarra Medidora de Vidro 500ml — 21 un.
+• Conjunto 5 Potes de Vidro Redondos Tampa Cinza — 20 un.
+• Kit 6 Canecas Altas Retas Porcelana 200ml — 8 un.
 
-• Budamix Oficial / Conta 2: 39 pedidos | R$ 2.027,67 | ticket R$ 51,99
-  - vs media 30d: pedidos +0.3% | GMV -8.9% | ticket -9.1%
-  - vs media 60d: pedidos -24.0% | GMV -26.7%
-  - vs mesmo dia da semana (4 semanas): pedidos -1.9% | GMV -13.7%
-  - Produto principal: Conjunto 5 Potes de Vidro Redondos Tampa Cinza (20 un.)
-  - Concentracao top 3: 78,0% (alta — risco de dependencia)
-  - Taxa de cancelamento: 7,1% (3 pedidos)
-  - INTERPRETACAO: Pedidos +0.3% vs 30d, mas GMV -8.9% e ticket -9.1%. Mais pedidos com ticket menor indica mudanca de mix para produtos de menor valor ou acao promocional. Verificar se houve alteracao de preco em Conjunto 5 Potes de Vidro Redondos Tampa Cinza.
+🔍 __ANÁLISE DA CONTA__
 
-• Budamix Shop / Conta 3: 27 pedidos | R$ 2.018,35 | ticket R$ 74,75
-  - vs media 30d: pedidos -10.6% | GMV +0.2% | ticket +12.1%
-  - vs media 60d: pedidos -22.9% | GMV -11.4%
-  - vs mesmo dia da semana (4 semanas): pedidos -5.3% | GMV +10.2%
-  - Produto principal: Kit 6 Canecas Tulipa Porcelana 250ml (13 un.)
-  - Concentracao top 3: 80,0% (alta — risco de dependencia)
-  - Taxa de cancelamento: 6,9% (2 pedidos)
-  - INTERPRETACAO: Menos pedidos (-10.6% vs 30d) mas GMV estavel (+0.2%). Ticket subiu +12.1%, compensando volume. Conta sustentada por Kit 6 Canecas Tulipa Porcelana 250ml com 13 un. Se ticket cair sem recuperar volume, GMV despenca.
+▸ *Budamix Store* — 77 pedidos | R$ 2.869,57 | ticket R$ 37,27
+ • vs média 30d: pedidos -18,2% | GMV -22,2% | ticket -4,9%
+ • vs média 60d: pedidos -27,1% | GMV -25,5%
+ • vs mesma segunda (4 sem): pedidos -27,0% | GMV -30,7%
+ • Produto principal: Conjunto 5 Potes de Vidro Redondos Tampa Preta (50 un.)
+ • Concentração top 3: 95,1% — risco crítico de dependência
+ • Cancelamentos: 8 (9,4%)
+ • Leitura: queda em pedidos com ticket quase estável aponta perda de tráfego/exposição, não mudança de mix. 95,1% concentrado em 3 produtos = qualquer um caindo derruba a conta inteira.
 
-🎯 *PRIORIDADES DO DIA*
-• Lucas (Operacional Shopee):
-  - Checar posicao e visibilidade dos anuncios de Conjunto 5 Potes de Vidro Redondos Tampa Preta e Jarra Medidora de Vidro 500ml na Budamix Store, porque a conta caiu 18,2% em pedidos com ticket estavel. Se hoje ate 12h seguir abaixo da media horaria, escalar para Himmel revisar trafego/campanha.
-  - Investigar cancelamentos na Budamix Store (8 cancelados, taxa 9,4%): verificar se sao por ruptura de estoque, prazo ou reclamacao. Se padrao se repetir, reportar ao Pedro.
-  - Conta 3: mix muito concentrado (80,0% em 3 produtos). Avaliar se ha espaco para impulsionar anuncios secundarios e reduzir dependencia de Kit 6 Canecas Tulipa Porcelana 250ml.
+▸ *Budamix Oficial / Conta 2* — 39 pedidos | R$ 2.027,67 | ticket R$ 51,99
+ • vs média 30d: pedidos +0,3% | GMV -8,9% | ticket -9,1%
+ • vs média 60d: pedidos -24,0% | GMV -26,7%
+ • vs mesma segunda (4 sem): pedidos -1,9% | GMV -13,7%
+ • Produto principal: Conjunto 5 Potes de Vidro Redondos Tampa Cinza (20 un.)
+ • Concentração top 3: 78,0% — risco alto
+ • Cancelamentos: 3 (7,1%)
+ • Leitura: mesmo volume de pedidos mas ticket -9,1% indica mudança de mix para produtos de menor valor ou promoção ativa no Conjunto 5 Potes de Vidro Redondos Tampa Cinza.
 
-• Himmel (ADS Shopee):
-  - Budamix Store: queda de 18,2% em pedidos vs 30d com ticket -4.9%. Verificar se campanhas/anuncios patrocinados perderam impressao ou posicao. Checar se concorrente entrou com preco agressivo nos Conjunto 5 Potes de Vidro Redondos Tampa Preta.
-  - Budamix Shop / Conta 3: queda de 10,6% em pedidos vs 30d com ticket +12.1%. Verificar se campanhas/anuncios patrocinados perderam impressao ou posicao. Checar se concorrente entrou com preco agressivo nos Kit 6 Canecas Tulipa Porcelana 250ml.
+▸ *Budamix Shop / Conta 3* — 27 pedidos | R$ 2.018,35 | ticket R$ 74,75
+ • vs média 30d: pedidos -10,6% | GMV +0,2% | ticket +12,1%
+ • vs média 60d: pedidos -22,9% | GMV -11,4%
+ • vs mesma segunda (4 sem): pedidos -5,3% | GMV +10,2%
+ • Produto principal: Kit 6 Canecas Tulipa Porcelana 250ml (13 un.)
+ • Concentração top 3: 80,0% — risco alto
+ • Cancelamentos: 2 (6,9%)
+ • Leitura: ticket subindo compensou queda de volume. GMV estável depende de manter Kit 6 Canecas Tulipa Porcelana 250ml girando — se ticket cair sem volume voltar, GMV despenca.
+
+🎯 __PRIORIDADES DO DIA__
+• Checar posição e visibilidade dos anúncios de Conjunto 5 Potes de Vidro Redondos Tampa Preta e Jarra Medidora de Vidro 500ml na Budamix Store. Comparar tráfego de ontem com média. Se até 12h o ritmo seguir abaixo, alinhar com Himmel para revisar tráfego/campanha.
+• Investigar os 8 cancelamentos da Budamix Store: verificar se foram por ruptura de estoque, prazo ou reclamação. Se padrão se repetir, reportar.
+• Conta 2: confirmar se houve alteração de preço no Conjunto 5 Potes de Vidro Redondos Tampa Cinza ou promoção ativa que justifique o ticket -9.1%.
+• Conta 3: avaliar espaço para impulsionar anúncios secundários e reduzir dependência do Kit 6 Canecas Tulipa Porcelana 250ml (concentração 80,0%).
+
+Dia analisado: 11/05/2026 — 00:00–23:59 BRT

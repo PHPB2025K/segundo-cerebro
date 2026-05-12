@@ -62,3 +62,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 - Rodar diariamente às **06:30 BRT** com entrega no Telegram Kobe Hub, tópico Marketplaces.
 - Consolidar vendas/pedidos do dia anterior completo em BRT para Mercado Livre, Shopee 3 contas, Amazon BR e Bling Matriz como **Atacado - GB Matriz**.
 - Não misturar settlement, extrato financeiro ou DRE com venda gerada; se fonte falhar, gerar parcial e marcar indisponibilidade sem estimar.
+
+## 2026-05-11 — Daily Sales Report para equipe administrativa
+
+- Daily Sales Report para Yasmin/Lucas/Leonardo deve usar Slack DM diário às 06:50 BRT, fonte canônica `v_daily_sales` + Bling Matriz, formato aprovado por Pedro e Top Produtos consolidado por SKU equivalente cross-plataforma.
+- Não usar WhatsApp para esse relatório e não incluir seção `DESTAQUES DO DIA`.

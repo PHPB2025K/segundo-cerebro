@@ -220,3 +220,29 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 ## 2026-05-07 — Infra VPS / nginx host
 
 - Apps estáticos roteados por Traefik para nginx host dependem de `nginx` ativo e `enabled`; `systemctl enable nginx` virou decisão para evitar novo 502 após reboot.
+
+## 2026-05-11 — RH WhatsApp / autorização específica de casos de ponto
+
+- Pedro autorizou o agente RH a tratar proativamente apenas o lote fechado do Monitor Ponto Semanal de 11/05/2026, semana 04/05–09/05, com Fran/Franciele, Leonardo, Lucas, Mateus e Sandra, até resolução completa.
+- Essa autorização não libera WhatsApp RH proativo de forma geral. O guard geral continua ativo até 2027-01-01; exceções válidas: `--allow-rh-reply` para inbound e `--allow-rh-approved-case` para esse lote aprovado.
+- Follow-ups desse lote podem rodar diariamente e escalar ao Pedro após 5 dias úteis sem resposta; devem se encerrar quando todos resolverem ou no máximo após 19/05/2026.
+
+## 2026-05-11 — Daily Sales Report / Slack funcionários
+
+- Daily Sales Report para equipe administrativa passa a ser enviado via Slack DM para Yasmin, Lucas e Leonardo, diariamente às 06:50 BRT.
+- Destinatários finais: Yasmin `U09AX9SETDM` (`yasminoscarlino7@gmail.com`), Lucas `U08TCL5A8U9`, Leonardo `U0AUUQ5MP6C`.
+- Formato aprovado: título `DAILY SALES REPORT - DD/MM/AAAA (Ontem)`, seções `RESUMO GERAL`, `VENDAS POR CANAL`, `TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS`, `ANÁLISE DO DIA`, rodapé com dia analisado 00:00–23:59 BRT.
+- Não incluir `DESTAQUES DO DIA`; títulos devem usar `rich_text blocks` com negrito + sublinhado real do Slack; conteúdo interno sem formatação especial.
+- Fonte canônica: Budamix Central/Supabase `v_daily_sales` para marketplaces e Bling Matriz para Atacado GB Matriz. Top Produtos deve consolidar SKUs equivalentes cross-plataforma e nunca exibir “Produto não identificado”.
+
+## 2026-05-11 — Canggu/Ana ML / guard determinístico antes de envio externo
+
+- Toda rota que posta resposta da Ana no Mercado Livre deve ter guard determinístico imediatamente antes do envio externo, bloqueando variações de “entre em contato”, “fale conosco”, “para mais detalhes”, “nossa equipe técnica” e equivalentes.
+- Prompt no banco não basta: rotas legadas Supabase, especialmente `ml-webhook`, precisam estar reconciliadas com o repo canônico e auditadas contra frases proibidas.
+- Repo canônico confirmado em 11/05: `PHPB2025K/canguu`; patch do `ml-webhook` commitado em `eb76d3f` para bloquear frases proibidas antes do POST no ML.
+
+## 2026-05-11 — Budamix Central / pedidos Amazon FBA removal não são venda
+
+- Pedidos Amazon de remoção FBA não devem contar como venda no Budamix Central, Budamix Live, relatórios diários ou apurações comerciais.
+- Assinatura para exclusão determinística: `SalesChannel=Non-Amazon` + `FulfillmentChannel=AFN`, datas dummy `1995-01-01T00:00:00Z` ou `AmazonOrderId` começando com `S01-` em contexto de remoção.
+- Regra implementada no sync Amazon: pular esses pedidos no ingest e marcar legados como `cancelled` preservando auditoria.

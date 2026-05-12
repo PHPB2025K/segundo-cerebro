@@ -67,3 +67,9 @@ _Registro de decisões permanentes. NUNCA contradizer._
 ## 2026-05-05 — Canggu CI/CD
 
 - Edge Functions Supabase do Canggu devem ser deployadas via GitHub Actions; mudanças em `_shared/` exigem redeploy total.
+
+## 2026-05-11 — Canggu ML guard final e FBA removal
+
+- Canggu/Ana ML deve manter guard determinístico imediatamente antes do POST externo em todas as rotas que respondem marketplace; `ml-webhook` foi corrigida no repo canônico `PHPB2025K/canguu` em `eb76d3f`.
+- Budamix Central/Amazon sync deve filtrar pedidos de remoção FBA como não-venda pela assinatura `Non-Amazon` + `AFN` + datas dummy 1995/S01.
+- Pipeline RH WhatsApp deve aceitar `@lid`/aliases/pushName para inbound.

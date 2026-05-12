@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-11 20:03 BRT — pedido do Pedro via áudio_
+_Atualizado: 2026-05-11 23:30 BRT — consolidação diária_
 
 ## 🔥 PRIORIDADE — Amanhã cedo (12/05/2026)
 
@@ -36,14 +36,17 @@ _Atualizado: 2026-05-11 20:03 BRT — pedido do Pedro via áudio_
 
 ## 🚨 Amazon Ads / BidSpark
 
-- [ ] **Amazon Ads — D+7 da rodada 02/05/2026**: medir impacto dos ajustes em Potes Herméticos Vidro, Jogo Canequinhas Café, Potes Herméticos Tampa Bambu, Canecas Canelada, Canecas Porcelana Tulipa, Kit Xícaras Porcelana Paris, Suporte Controle Gamer, Jarra Medidora e Potes Redondos Plástico.
-- [ ] **Amazon Ads — D+7 dos experimentos 03/05/2026**: medir Kits Microfibra Carro (ACoS base 7,6%, gasto R$3,62, vendas R$47,70, 3 pedidos) e Abraçadeiras Nylon (experimento de tração com ASIN ativo `KIT200BR10P`/`B0CN9PPC17`, 24 un FBA).
-- [ ] **Amazon Ads — Abraçadeiras Nylon**: no D+7 medir impressões, CTR, CPC, cliques, vendas, Buy Box e estoque FBA; objetivo é diagnóstico de tração, não otimização de ACoS ainda.
-- [ ] **Amazon Ads — Potes Herméticos Vidro**: validar no Seller Central qual ASIN recebe tráfego de `pote hermetico vidro` e investigar preço, Buy Box, imagem, título ou variação.
-- [ ] **Amazon Ads/BidSpark — revisar logs de action_type**: diferenciar escala Exact vs Broad/Alcance/Auto/Product Targeting para auditoria D+7.
+- [ ] **Amazon Ads — analisar grupo crítico Canecas Porcelana Tulipa**: rodada D+7 mostrou piora forte (ACoS 18,8% → 42,6%). Próximo passo recomendado: diagnóstico detalhado antes de novos cortes/escala.
+- [ ] **Amazon Ads — analisar grupo crítico Suporte Controle Gamer**: D+7 mostrou piora (ACoS 18,8% → 28,9%), com Auto/Descoberta voltando a gastar mal.
+- [ ] **Amazon Ads — analisar grupo crítico Potes Redondos Plástico**: D+7 mostrou piora (ACoS 13,3% → 32,3%), provável escala forte demais principalmente Exact.
+- [ ] **Amazon Ads — ajuste fino Jarra Medidora e Potes Herméticos Vidro**: Jarra ainda dentro da meta mas piorou; Potes Vidro melhorou eficiência mas ainda acima da meta.
+- [ ] **Amazon Ads — não cortar mais Potes Tampa Bambu por enquanto**: eficiência melhorou, mas gasto/venda diária caíram; risco de ter apertado volume demais.
+- [ ] **Amazon Ads — investigar elegibilidade/listing/Buy Box/categoria de Kits Microfibra e Abraçadeiras Nylon**: experimentos 03/05 ficaram com 0 impressões/0 cliques/0 vendas; problema parece estrutura/elegibilidade, não bid.
+- [ ] **Amazon Ads/BidSpark — revisar logs de action_type**: diferenciar escala Exact vs Broad/Alcance/Auto/Product Targeting para auditoria das ações.
 
 ## 🚨 Canggu / Ana
 
+- [ ] **Canggu — manter repo canônico reconciliado após hotfix ML**: repo `PHPB2025K/canguu` recebeu commit `eb76d3f`; quando Pedro voltar o repo para privado, garantir que a VPS/token mantém acesso de leitura/escrita para próximos patches e CI/CD.
 - [ ] **Canggu — trocar senha temporária do admin** no login do admin. Ação do Pedro.
 - [ ] **Canggu — corrigir type TS pré-existente em `_shared/evolution-api.ts`**: `EvolutionMessageContent` é referenciado mas o tipo real chama `EvolutionMessageData`. Detectado no `deno check` durante incidente Ana 24/7; edge deploya mesmo com warning, mas limpar no próximo bloco Canggu.
 - [ ] **Canggu ML — editar manualmente resposta com frase forbidden no produto MLB3343832496** ("Jogo 6 Canequinha 100ml"). Resposta atual contém "Por favor entre em contato conosco para conhecer outros modelos disponíveis!" enviada às ~15:00 BRT de 05/05 antes do hard-block estar ativo em produção. Não é possível remover via API; só edit manual no painel ML. Sugestão de texto novo já dada na sessão (~187 chars, sem frases forbidden).
@@ -54,10 +57,11 @@ _Atualizado: 2026-05-11 20:03 BRT — pedido do Pedro via áudio_
 - [ ] **Canggu — B1 segurança**: service_role JWT em arquivos tracked, `LOVABLE_API_KEY` legado, CORS aberto, `verify_jwt` em funções internas. Estimativa ~3 dias. (Ghost function `test-search` ✅ removida em 05/05.)
 - [ ] **Canggu — B3 resiliência restante**: retry em `classifyIntent`/`generateResponse`, UNIQUE index `whatsapp_message_id`, dedup e fallback textual.
 - [ ] **Canggu — estender ajuste de tom pra `process-message`** (Ana no WhatsApp). Tom natural já aplicado no ML; equalizar no WhatsApp se Pedro confirmar que lá também soa formal.
-- [ ] **Canggu ML — monitorar próxima pergunta real do ML** com prompt v13 (tom natural). Confirmar que (a) Ana não usa mais frases tipo "entre em contato conosco" e (b) tom realmente saiu do nível telemarketing. Se escapar, ampliar regex ou ajustar prompt.
+- [ ] **Canggu ML — monitorar próximas perguntas reais após hotfix `ml-webhook`**: confirmar que nenhuma rota volta a enviar “entre em contato”, “fale conosco”, “para mais detalhes” ou “nossa equipe técnica”. Se escapar, auditar todas as Edge Functions Supabase que postam no ML e ampliar o guard determinístico.
 
 ## 🚨 RH / Ponto Certo
 
+- [ ] **RH — acompanhar lote aprovado do Monitor Ponto Semanal 11/05**: Fran, Leonardo, Lucas, Mateus e Sandra; follow-up diário 10h BRT até todos resolverem ou até 19/05; escalar ao Pedro após 5 dias úteis sem retorno. Se inbounds continuarem invisíveis mesmo após suporte `@lid`, investigar sincronização da instância Evolution RH.
 - [ ] **RH — guard de WhatsApp proativo ESTENDIDO INDEFINIDAMENTE (até 2027-01-01)** em `/tmp/rh-whatsapp-block.json`. Pedro pediu 05/05 14:04 BRT que nenhum cron/agente RH dispare proativos a funcionários até liberação explícita. Em 11/05 10:15 BRT, Pedro liberou **apenas o escopo específico** dos problemas de ponto reportados no Monitor Ponto Semanal de 11/05 sobre a semana 04/05–09/05, até resolução completa com Fran, Leonardo, Lucas, Mateus e Sandra. Exceções técnicas: `--allow-rh-reply` permite respostas inbound; `--allow-rh-approved-case` permite follow-ups desse lote aprovado. Proativo genérico segue bloqueado. Crons em risco que continuam habilitados mas inofensivos enquanto o guard ativo: `RH Compliance Check` (diário 19h BRT), `Monitor Ponto Semanal` (segundas 10h BRT), `Ponto Certo - QR Code Refresh` (diário 03h, não envia WhatsApp). Validado: proativo → `BLOCKED_RH`; reply → `SENT`; caso aprovado → `SENT`.
 - [ ] **Ponto Certo — deploy produção do módulo Conversas RH** se ainda estiver apenas local: build, publicar na VPS e reiniciar PM2 `ponto-certo`.
 - [ ] **RH — acompanhar feedback da Yasmin** sobre recebimento correto dos 2 chunks da mensagem inaugural reenviada com `linkPreview: false`.
@@ -67,6 +71,7 @@ _Atualizado: 2026-05-11 20:03 BRT — pedido do Pedro via áudio_
 
 ## 🚨 Gestão / Jurídico / Contratos
 
+- [ ] **Daily Sales Report — Slack Funcionários — monitorar primeira execução automática em 12/05 06:50 BRT**: validar envio via Slack DM para Yasmin (`U09AX9SETDM`), Lucas e Leonardo, formato aprovado e Top Produtos consolidado por SKU. Se OK, remover da fila ativa.
 - [ ] **Gestão de Funcionários — rotina semanal via Slack**: rotina executada manualmente em 08/05 com atas de Lucas (05/05) e Leonardo (04/05); Yasmin teve pontos operacionais sem ata formal. Se virar padrão recorrente, criar cron de sexta no fim do dia para puxar atas `#ata-reuniao Nome AAAA-MM-DD`, consolidar por Yasmin/Lucas/Leonardo e avisar Pedro com resumo executivo.
 - [ ] **Adapta — aguardar retorno sobre cobranças recorrentes**: Pedro recebeu mensagem pronta em 07/05 para enviar como PEDRO HENRIQUE PERON BROGLIO. Se a empresa negar cancelamento/estorno, próxima frente é contestação pelo banco/cartão usando descritor `TAR PLANO ADAPT` e valores R$ 497,00/R$ 126,75.
 - [ ] **Guarani Sistemas — aguardar retorno da diretoria sobre proposta global de R$ 7.500,00**: em 09/05 19:52 BRT, Pedro autorizou e Kobe enviou resposta na thread da Priscilla esclarecendo que **R$ 7.500,00 à vista = quitação integral e definitiva de toda a relação contratual**, incluindo contratos, aditivos, boletos, NFs, mensalidades, implantação, treinamento, aviso prévio e quaisquer valores futuros. Argumentos reforçados: congelamento formal alinhado com Junior em 01/10/2025, contratos principais já passaram dos 12 meses, ausência de multa rescisória reconhecida pela Guarani e inexistência de uso operacional regular. Aguardar retorno/autorização da diretoria e, se aprovado, preparar minuta de distrato com quitação recíproca.

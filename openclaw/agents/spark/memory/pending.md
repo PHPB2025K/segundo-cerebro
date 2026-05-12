@@ -1,15 +1,17 @@
 # Pendências — Spark
 
-_Atualizado: 2026-05-08_
+_Atualizado: 2026-05-11_
 
 ## 🔴 Prioridade Alta
 
 ### Amazon Ads / BidSpark
-- [ ] Medir D+7 da rodada 02/05/2026: Potes Herméticos Vidro, Jogo Canequinhas Café, Potes Herméticos Tampa Bambu, Canecas Canelada, Canecas Porcelana Tulipa, Kit Xícaras Porcelana Paris, Suporte Controle Gamer, Jarra Medidora e Potes Redondos Plástico.
-- [ ] Medir D+7 dos experimentos 03/05/2026: Kits Microfibra Carro e Abraçadeiras Nylon.
-- [ ] Redinha Frutas: validar product ads + estoque/FBA + listing ativo + Buy Box antes de qualquer bid.
-- [ ] Kit Jardinagem: confirmar decisão de reativação e validar estrutura antes de qualquer bid.
-- [ ] Revisar logs de `action_type` para diferenciar Exact/Broad/Auto/Product Targeting antes da auditoria D+7.
+- [ ] Analisar Canecas Porcelana Tulipa com prioridade: D+7 mostrou piora forte (ACoS 18,8% → 42,6%).
+- [ ] Analisar Suporte Controle Gamer: D+7 mostrou piora (ACoS 18,8% → 28,9%) e Auto/Descoberta gastando mal.
+- [ ] Analisar Potes Redondos Plástico: D+7 mostrou piora (ACoS 13,3% → 32,3%), provável escala Exact forte demais.
+- [ ] Ajuste fino em Jarra Medidora e Potes Herméticos Vidro.
+- [ ] Não cortar mais Potes Tampa Bambu por enquanto; eficiência melhorou mas volume caiu.
+- [ ] Investigar elegibilidade/listing/Buy Box/categoria de Kits Microfibra e Abraçadeiras Nylon, que ficaram com 0 impressões/0 cliques/0 vendas.
+- [ ] Revisar logs de `action_type` para diferenciar Exact/Broad/Auto/Product Targeting antes de novas ações.
 
 ### Google Ads — Integração
 - [ ] Reautorizar OAuth/refresh token: validação em 26/04 retornou `invalid_grant`.

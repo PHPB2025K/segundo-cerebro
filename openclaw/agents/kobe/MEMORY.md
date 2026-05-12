@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-10 23:30 BRT (consolidação diária)._
+_Último update: 2026-05-11 23:30 BRT (consolidação diária)._
 
 ---
 
@@ -134,7 +134,7 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (09/05/2026 23:30 BRT — consolidação diária)
+## Status do Sistema (11/05/2026 23:30 BRT — consolidação diária)
 
 ### 🚨 Crítico
 - **Estoque Budamix:** PR1+PR2+PR3a seguem no repo, mas produção ainda roda build rsync de 13/04; remediação continua pausada no `git fetch` por falta de credencial GitHub na VPS. Próxima decisão: Deploy Key SSH read-only (recomendado) vs PAT vs rsync.
@@ -164,6 +164,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-11:** Dia com incidentes e rotinas novas: Daily Sales Report para equipe administrativa aprovado via Slack DM às 06:50 BRT; RH recebeu liberação específica para resolver o lote de ponto 04/05–09/05 e ganhou hardening `@lid` no inbound; Canggu/Ana teve regressão grave no ML “entre em contato conosco” corrigida em produção e no repo canônico `PHPB2025K/canguu` (`eb76d3f`); Amazon Ads D+7 foi retomado com grupos críticos identificados; Budamix Central passou a filtrar pedidos Amazon de remoção FBA como não-venda.
 - **2026-05-09:** Dia enxuto e jurídico/operacional: Pedro formalizou o tom padrão para mensagens escritas em nome dele (profissional, objetivo, sem cordialidade excessiva); Guarani avançou com e-mail autorizado e enviado à Priscilla reforçando que R$ 7.500,00 à vista é proposta global/all-in para quitação integral e definitiva; Daily Sales Report do Trader teve primeira execução registrada como OK e prompt endurecido para não exibir produto/SKU não identificado no Top Produtos.
 - **2026-05-08:** Dia mais de consolidação do que construção: Daily Sales Report — Trader aprovado e criado para rodar diariamente às 06:30 BRT no tópico Marketplaces, consolidando ML, Shopee 3 contas, Amazon BR e Bling Matriz como Atacado - GB Matriz. Gestão de Funcionários rodou leitura semanal via Slack com atas formais de Lucas e Leonardo e pontos operacionais de Yasmin. Canggu/Ana voltou a aparecer como risco P0 por resposta de horário comercial/origin poll, sem falso positivo de correção por ausência de acesso ao repo canônico na sessão atual.
 - **2026-05-07:** Dia de correções estruturais e avanço de produto: Guarani consolidada em contraproposta final de R$7,5k; Adapta teve busca profunda no Gmail e mensagem de contestação; Gestão de Funcionários criada com Slack como fonte oficial; Canggu/Ana teve webhook Evolution sem auth corrigido e backfill controlado; Kobe/OpenClaw ganhou invisibilidade de bootstrap, debounce inbound 8s e ChatGPT Pro 5x; GB Import Hub voltou após habilitar nginx; Social Studio Reborn teve Fase B mergeada e Fase C iniciada com C1 fechado.
@@ -192,7 +193,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) retomar deploy do Estoque Budamix com Deploy Key SSH read-only, (2) fechar C2 da Fase C do Social Studio e guiar Pedro nos pré-requisitos Meta antes do C3, (3) apurar U15 antes da U44 v4, (4) acompanhar D+7 Amazon Ads, (5) monitorar Canggu/Ana 24/7/origin poll e corrigir pendências ML/redirect._
+_Próximas ações: (1) validar primeira execução automática do Daily Sales Slack 12/05 06:50 BRT, (2) acompanhar lote RH aprovado e confirmar inbound real pós-`@lid`, (3) continuar Amazon Ads pelos grupos críticos Tulipa/Suporte/Redondos, (4) manter Canggu ML monitorado contra frases proibidas e repo canônico acessível, (5) retomar deploy Estoque Budamix com Deploy Key SSH._
 
 ---
 ## Contexto

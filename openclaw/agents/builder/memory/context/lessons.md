@@ -34,3 +34,14 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 ### 2026-05-05 — Supabase Edge Functions precisam de auto-deploy [ESTRATÉGICA]
 **Contexto:** Canggu teve regressões por funções stale em produção.
 **Lição:** Projeto com Edge Functions críticas deve ter GitHub Actions ou checklist obrigatório de deploy por função, especialmente quando `_shared/` muda.
+
+### [ESTRATÉGICA] Guard final antes de API externa é obrigatório em rotas legadas (2026-05-11)
+**Lição:** Prompt e banco não bastam quando há Edge Function legada enviando resposta externa. Toda rota que chama ML/WhatsApp/marketplace precisa de validação determinística imediatamente antes do POST.
+
+### [TÁTICA] Evolution/RH: normalizar `@lid` evita cegueira de inbound (2026-05-11)
+**Lição:** Webhook/poller/debounce de WhatsApp precisam aceitar `@lid`, `@c.us` e `@s.whatsapp.net`, resolver por pushName/aliases e logar desconhecidos em vez de descartar.
+**Expira:** 2026-06-10
+
+### [TÁTICA] Amazon Orders: filtrar FBA removal no ingest (2026-05-11)
+**Lição:** Pedidos de remoção FBA entram no feed como orders, mas não são vendas. Filtrar no sync por `SalesChannel=Non-Amazon`, `FulfillmentChannel=AFN`, datas dummy 1995/S01 e preservar auditoria ao cancelar legados.
+**Expira:** 2026-06-10

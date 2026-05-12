@@ -10,7 +10,7 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-05-08_
+_Atualizado: 2026-05-11_
 
 ## 🔴 Prioridade Alta
 
@@ -25,6 +25,8 @@ _Atualizado: 2026-05-08_
 - [ ] Fase 5 cold start/render: se Pedro priorizar hardening, desenhar container warm/render service para reduzir cold start Puppeteer de 18,6s.
 
 ### Canggu
+- [ ] Manter acesso ao repo canônico `PHPB2025K/canguu` após Pedro voltar privacidade do repo; garantir que VPS/token consegue patch/commit/deploy quando necessário.
+- [ ] Auditar rotas Supabase que postam no Mercado Livre para garantir guard determinístico contra frases proibidas em todas.
 - [ ] Atualizar GitHub Actions Node 20 → 24 antes de 16/09/2026.
 - [ ] Estender ajuste de tom para `process-message`/WhatsApp se Pedro quiser equalizar a Ana fora do ML.
 

@@ -1,11 +1,11 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-08_
+_Atualizado: 2026-05-11_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
-- [ ] Monitorar a primeira execução em 09/05 às 06:30 BRT e validar se o relatório sai como Trader, no tópico Marketplaces, com ML/Shopee 3 contas/Amazon/Atacado - GB Matriz e fallback parcial explícito.
+- [ ] Monitorar primeira execução automática do Daily Sales Report — Slack Funcionários em 12/05 às 06:50 BRT e validar envio para Yasmin/Lucas/Leonardo, formato aprovado e Top Produtos consolidado por SKU.
 
 
 ### Relatório mensal

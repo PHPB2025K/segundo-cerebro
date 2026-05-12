@@ -52,3 +52,7 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 di
 ---
 
 _Atualizado na Consolidação Profunda 2026-05-01._
+
+### [TÁTICA] Daily Sales Report: Top Produtos por SKU equivalente, não por título (2026-05-11)
+**Lição:** Relatório diário operacional deve consolidar SKUs equivalentes entre ML/Shopee/Amazon e omitir nomes não confiáveis, nunca exibir “Produto não identificado”.
+**Expira:** 2026-06-10

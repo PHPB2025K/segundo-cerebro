@@ -89,3 +89,8 @@ _Última revisão: 2026-05-03_
 
 ## Regra Universal — Horários em Brasília (2026-04-01)
 TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, nunca GMT. Formato: "14h" ou "14:03 BRT". Converter silenciosamente antes de exibir. Vale para relatórios, alertas, logs, timestamps — qualquer comunicação.
+
+## 2026-05-11 — Amazon Ads D+7 / priorização pós-rodada
+
+- Após leitura D+7 da rodada 02/05–03/05, priorizar análise detalhada de Canecas Porcelana Tulipa, Suporte Controle Gamer e Potes Redondos Plástico antes de nova rodada de execução.
+- Potes Tampa Bambu não deve receber mais cortes imediatos porque eficiência melhorou, mas volume caiu. Kits Microfibra e Abraçadeiras Nylon devem ser tratados como problema de elegibilidade/listing/Buy Box/categoria, não bid.

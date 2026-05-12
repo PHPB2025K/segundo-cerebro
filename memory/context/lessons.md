@@ -205,6 +205,20 @@ _Última Consolidação Profunda: 2026-05-01_
 **Lição:** Qualquer app/serviço crítico servido por systemd fora de Docker/PM2 precisa validar `is-active` e `is-enabled`. Start manual resolve o presente; `enable` evita downtime silencioso no próximo reboot.
 **Ação:** `nginx` foi iniciado e habilitado, restaurando os 3 vhosts.
 
+
+### [ESTRATÉGICA] Canggu/Ana ML: prompt no banco não basta; guard final antes do POST externo (2026-05-11)
+**Contexto:** A Ana voltou a responder no Mercado Livre com “por favor entre em contato conosco” porque a Edge Function legada `ml-webhook` tinha prompt hardcoded proibido e bypassava parte da proteção nova.
+**Lição:** Qualquer rota que envia resposta para marketplace precisa de sanitizer/guard determinístico imediatamente antes do envio externo. Prompt principal, embeddings e instruções no banco são camadas úteis, mas não substituem bloqueio final no código.
+**Ação:** `ml-webhook` recebeu validação `validateMLQuestionResponse` antes do POST no ML e fallback seguro quando detectar frases proibidas.
+
+### [ESTRATÉGICA] Canggu/Supabase: produção precisa estar reconciliada com repo canônico (2026-05-11)
+**Contexto:** O hotfix inicial precisou ser aplicado direto na Edge Function porque o código canônico do caminho `ml-webhook` não estava acessível/reconciliado na sessão. Depois Pedro tornou `PHPB2025K/canguu` público temporariamente e o patch foi commitado no source.
+**Lição:** Para Canggu, nunca considerar incidente fechado só com patch em produção. Confirmar repo canônico, aplicar patch no source, grep/testar contra regressões e registrar commit. Rotas legadas Supabase devem ser auditadas quando regra permanente volta a falhar.
+
+### [ESTRATÉGICA] Amazon SP-API: FBA removal order aparece como pedido, mas não é venda (2026-05-11)
+**Contexto:** Pedidos de remoção FBA entraram na tabela `orders` e inflaram Budamix Central/Live como se fossem vendas reais.
+**Lição:** Remoção FBA deve ser filtrada deterministicamente no ingest. Assinaturas fortes: `SalesChannel=Non-Amazon`, `FulfillmentChannel=AFN`, datas dummy de 1995 e/ou `AmazonOrderId` começando com `S01-` no contexto de removal. Não depender de correção manual por SKU/ASIN.
+
 ## Lições Táticas (Expiram em 30 dias)
 
 
@@ -669,3 +683,16 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 **Contexto:** Pedro corrigiu a regra operacional ao enviar `DRE_GB_PROCESSADO.xlsx`: a planilha financeira é contínua, e ele avisará quando houver nova versão.
 **Lição:** Para DRE por competência, manter um canônico atual no vault e atualizar índice com data/hash. Não empilhar versões antigas como se fossem artefatos independentes, salvo quando Pedro pedir histórico/versionamento explícito.
 **Expira:** 2026-06-05
+
+
+### [TÁTICA] Slack API: underline real exige rich_text blocks, não mrkdwn (2026-05-11)
+**Lição:** Para reproduzir título com negrito + sublinhado real no Slack via API, enviar `rich_text blocks` com `style: {bold: true, underline: true}`. `mrkdwn`, underline Unicode e linhas fake não reproduzem o editor Slack aprovado pelo Pedro.
+**Expira:** 2026-06-10
+
+### [TÁTICA] WhatsApp RH: inbound pode chegar como `@lid`, não só `@s.whatsapp.net` (2026-05-11)
+**Lição:** Pipelines de WhatsApp RH/Evolution precisam aceitar e normalizar `@lid`, `@c.us` e `@s.whatsapp.net`, resolver por `pushName`/aliases e logar desconhecidos. Assumir apenas telefone JID gera cegueira silenciosa de inbound.
+**Expira:** 2026-06-10
+
+### [TÁTICA] Daily Sales Report: remover seções duplicadas e ranquear por SKU consolidado (2026-05-11)
+**Lição:** Para a equipe administrativa, o Daily Sales Report deve ser curto, sem seção `DESTAQUES DO DIA` duplicando números, e o Top Produtos deve consolidar SKUs equivalentes entre plataformas. Se o nome do produto não for confiável, omitir do ranking em vez de mostrar “Produto não identificado”.
+**Expira:** 2026-06-10

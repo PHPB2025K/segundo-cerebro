@@ -88,3 +88,7 @@ _Lições TÁTICAS removidas após expiração. Mantidas aqui apenas para refer�
 ---
 
 _Novas lições são adicionadas conforme o Spark opera. Cada erro é uma oportunidade de melhorar o sistema._
+
+### [TÁTICA] Amazon Ads: 0 impressão após experimento indica elegibilidade antes de bid (2026-05-11)
+**Lição:** Quando campanha/experimento fica com 0 impressões, 0 cliques e 0 vendas após janela de D+6/D+7, investigar listing ativo, Buy Box, elegibilidade, categoria e relevância antes de aumentar bid.
+**Expira:** 2026-06-10

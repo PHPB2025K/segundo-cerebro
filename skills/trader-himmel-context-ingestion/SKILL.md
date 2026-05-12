@@ -62,3 +62,12 @@ Escalar se:
 - Não colar transcrição inteira na análise diária.
 - Não transformar fala de reunião em fato sem validação.
 - Não misturar contexto Himmel com Amazon, salvo comparação estratégica; Amazon ADS é Pedro.
+
+## Frequência e classificação Granola — decisão Pedro 2026-05-12
+- O sync Granola deve rodar **uma vez por dia no fim do dia**, não a cada 30 minutos.
+- Reuniões com Himmel e outras empresas são esporádicas; processamento diário é suficiente.
+- Cron canônico: `Granola Daily Sync → classificação de reuniões`, 20:30 BRT.
+- O agente deve classificar a reunião pelo conteúdo da transcrição/resumo, não apenas pelo título.
+- Se for Himmel/ADS Shopee ou Mercado Livre, distribuir pontos cabíveis para as contas do Daily Sales Report v2.
+- Se for outro tema, registrar no destino correto conforme conteúdo: Spark, Trader, Kobe ou projeto específico.
+- Nunca copiar transcrição integral; salvar só interpretação útil, decisões, pendências e hipóteses validáveis.

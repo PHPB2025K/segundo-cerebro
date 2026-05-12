@@ -140,7 +140,8 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **SimulImport — validar cenários reais** — Pedro testar com importações dele.
 - [ ] **Canggu/Ana B2/B5/B6** — blocos não urgentes de observabilidade, governança e cleanup seguem aguardando repriorização.
 - [ ] **Fisco** — product-packaging.json, limpeza de produtos origem=0, CC-e/NFs antigas e validações Bling Filial seguem abertas.
-- [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
+- [ ] **Mission Control** — DNS resolvido em 12/05 (`mission.budamix.com.br` no Registro.br), frontend 100% pronto + Dashboard PRD fechado. Pendentes: PRDs por módulo (Cron, Tasks, Sessions, Skills, Agents detail, Office 3D, Activity, Analytics, Reports, System, Git, Files, Memory, Search, Logs, Terminal), `configured-skills.json` ausente (módulo Skills), refinar regex botToken em `auth-profiles.json`, 4 hex hardcoded em `Office3D/AgentDesk.tsx` (WebGL Three.js).
+- [ ] **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-05-04 23:30 BRT._
+_Última organização: 2026-05-12 23:00 BRT — sessão Mission Control._

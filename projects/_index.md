@@ -56,6 +56,7 @@ tags:
 
 ## Infraestrutura e N8N
 
+- [[projects/mission-control]] — Mission Control (painel visual OpenClaw, fork TenacitOS + design system Budamix Central) — 🟢 frontend 100% + Dashboard PRD fechado 12/05
 - [[projects/openclaw-vps]] — OpenClaw VPS (deploy/config)
 - [[projects/openclaw-config]] — OpenClaw Config (briefings)
 - [[projects/n8n-builder]] — N8N Builder (workflow architect)

@@ -16,7 +16,7 @@ tags:
 ## Marketplaces e Ads
 
 - [[projects/amazon-ads-automation]] — Automação Amazon Ads (Python/FastAPI)
-- [[projects/ml-ads-automation]] — Automação ML Ads (Python/FastAPI)
+- [[projects/ml-ads-automation]] — Automação ML Ads (Python/FastAPI) — 🟡 semi-vivo (refresh diário OK, cron de coleta inativo). Advertiser 172453 (GAMMAOFICIAL). Briefing baseline gerado 08/05/2026.
 - [[projects/ml-ads-next-steps]] — Próximos passos ML Ads
 - [[projects/analise-semanal-skill-amazon]] — Skill de análise semanal Amazon
 - [[projects/bidspark-multiagente-completo]] — Bidspark multi-agente (spec)

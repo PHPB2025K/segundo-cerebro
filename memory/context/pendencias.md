@@ -42,6 +42,12 @@ _Atualizado: 2026-05-07 noite — Social Studio Reborn Fase B mergeada, Fase C i
 - [ ] **Budamix Central Full — Etapa 1E monitoramento Shopee**: criar healthcheck/alerta Telegram se alguma das 3 contas Shopee passar de 6h sem sync.
 - [ ] **Budamix Central Full — validação cruzada ML Full e Amazon FBA** equivalente à validação Shopee 1D. Confiança atual média; Amazon teve fantasmas removidos e precisa validação defensiva.
 
+## 🚨 Mercado Ads — internalização (Pedro assume gestão direta)
+
+- [ ] **Mercado Ads — Pedro vai internalizar a gestão** atualmente feita por agência terceirizada. Briefing baseline entregue em 08/05 em `~/Documents/05-Projetos-Codigo/planejamento-importacao-2026/ml-ads-briefing/` (5 arquivos: briefing.md, actions.md, campaigns.csv, ads_by_item.csv, monthly_metrics.csv). Conta GAMMAOFICIAL (advertiser_id 172453), 16 campanhas (10 ativas + 6 pausadas), só Product Ads. Performance 30d: investido R$ 5.942 → vendas atribuídas R$ 59.938 → ROAS 10,1x (efetivo c/ halo orgânico ~19x). ACOS evolução: Fev 21,7% → Mar 11,3% → **Abr 9,7% (melhor)** → 7d Mai 10,6%.
+- [ ] **Mercado Ads — ações imediatas do briefing (08/05)**: (a) pausar manualmente anúncios com estoque ≤5 ainda recebendo gasto (queima de orçamento identificada — lista em `actions.md` §🔴); (b) revisar Buy Box dos 15 anúncios perdendo BB com gasto ≥ R$ 20; (c) escalar orçamento das top 5 campanhas com ACOS < 8% em 30% (uma por vez, observar 3 dias entre cada). Decisão de execução fica com Pedro caso a caso.
+- [ ] **ml-ads-automation — ativar cron de coleta diária no Railway/N8N** para começar a acumular histórico próprio em Supabase (`ml_campaigns_daily` + `ml_ads_daily`). Sem isso, análise histórica fica travada nos 90 dias retroativos que a API ML expõe. Workflow N8N já documentado em [[projects/ml-ads-next-steps]] § 4. Refresh diário já roda (10:30 BRT); falta apenas o restante do pipeline.
+
 ## 🚨 Amazon Ads / BidSpark
 
 - [ ] **Amazon Ads — D+7 da rodada 02/05/2026**: medir impacto dos ajustes em Potes Herméticos Vidro, Jogo Canequinhas Café, Potes Herméticos Tampa Bambu, Canecas Canelada, Canecas Porcelana Tulipa, Kit Xícaras Porcelana Paris, Suporte Controle Gamer, Jarra Medidora e Potes Redondos Plástico.

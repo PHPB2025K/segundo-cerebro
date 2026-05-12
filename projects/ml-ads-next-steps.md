@@ -13,6 +13,11 @@ tags:
 
 - **[CORRIGIDO]** Bug crítico nos collectors: endpoints eram construídos em import-time com `ML_ADVERTISER_ID` vazio. Agora usam funções runtime `_get_campaigns_endpoint()` e `_get_ads_endpoint()` que leem env vars a cada chamada e validam presença do ID.
 - **[CORRIGIDO]** Evolution API migrada de EasyPanel para Cloudfy (`https://trottingtuna-evolution.cloudfy.live`). URL e API key atualizadas no .env.
+- **[OK 08/05/2026]** OAuth completo executado em sessão anterior — `ML_ADVERTISER_ID=172453` (conta GAMMAOFICIAL) já está no `.env` local. Refresh diário rodando às 10:30 BRT. Falta apenas o cron de coleta acumulativa (Seção 4 abaixo) — sem ele, a tabela `ml_tokens` é a única que recebe dados.
+
+## ⚠ Limitação descoberta em 08/05/2026
+
+A API ML Ads (`/marketplace/advertising/MLB/.../campaigns/search`) só permite métricas dos **últimos 90 dias**. Janelas anteriores retornam `400 — "You cannot request metrics with a date greater than 90 days"`. Por isso a coleta acumulativa em Supabase é a única forma de ter histórico > 90d. Hoje (sem coleta rodando), análise histórica máxima é Fev/2026 (parcial) → atual.
 
 ---
 

@@ -322,13 +322,19 @@ def summarize_month(account: str, rows: list[DailyAnalysis], until: date) -> str
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Consolida memória semanal/mensal do Daily Sales Report v2")
-    parser.add_argument("--until", default=date.today().isoformat(), help="Data final YYYY-MM-DD")
+    parser.add_argument("--until", default=None, help="Data final YYYY-MM-DD. Se omitido em monthly no dia 1, usa ontem para fechar o mês anterior.")
     parser.add_argument("--period", choices=["weekly", "monthly", "all"], default="all")
     parser.add_argument("--accounts", default="all", help="Lista separada por vírgula ou all")
     parser.add_argument("--write", action="store_true", help="Atualiza weekly.md/monthly.md; sem isso salva apenas preview")
     args = parser.parse_args()
 
-    until = date.fromisoformat(args.until)
+    today = date.today()
+    if args.until:
+        until = date.fromisoformat(args.until)
+    elif args.period == "monthly" and today.day == 1:
+        until = today - timedelta(days=1)
+    else:
+        until = today
     accounts = list(ACCOUNT_LABELS) if args.accounts == "all" else [a.strip() for a in args.accounts.split(",") if a.strip()]
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 

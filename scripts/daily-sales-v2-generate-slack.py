@@ -478,23 +478,27 @@ def _concentration_reading(conc: float) -> str:
 
 
 def build_general_summary(canonical: dict[str, dict], day: str) -> list[str]:
-    """Gera o bloco de Resumo Geral (igual para os 3 destinatários)."""
+    """Gera o bloco fixo de Resumo Geral (igual para os 3 destinatários)."""
     total_rev = sum(float(r.get("total_revenue") or 0) for r in canonical.values())
     total_orders = sum(int(r.get("order_count") or 0) for r in canonical.values())
     ticket = total_rev / total_orders if total_orders else 0
 
-    lines = []
-    lines.append(f"• Faturamento total marketplaces: {brl(total_rev)}")
-    lines.append(f"• Pedidos totais: {total_orders}")
-    lines.append(f"• Ticket medio: {brl(ticket)}")
+    return [
+        f"• Faturamento total: {brl(total_rev)}",
+        f"• Pedidos: {total_orders}",
+        f"• Ticket medio: {brl(ticket)}",
+    ]
 
+
+def build_sales_by_channel(canonical: dict[str, dict]) -> list[str]:
+    """Gera o bloco fixo de Vendas por Canal (igual para os 3 destinatários)."""
+    lines = []
     for pk in PLATFORM_ORDER:
         row = canonical.get(pk, {})
         rev = float(row.get("total_revenue") or 0)
         orders = int(row.get("order_count") or 0)
         label = PLATFORM_LABELS[pk]
         lines.append(f"• {label}: {brl(rev)} | {orders} pedidos")
-
     return lines
 
 
@@ -516,6 +520,9 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     # Resumo geral
     summary_lines = build_general_summary(canonical, day)
     sections.append("📊 *RESUMO GERAL*\n" + "\n".join(summary_lines))
+
+    channel_lines = build_sales_by_channel(canonical)
+    sections.append("🛒 *VENDAS POR CANAL*\n" + "\n".join(channel_lines))
 
     # Visao Shopee oficial
     shopee_row = canonical.get("shopee", {})
@@ -738,6 +745,9 @@ def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[st
     summary_lines = build_general_summary(canonical, day)
     sections.append("📊 *RESUMO GERAL*\n" + "\n".join(summary_lines))
 
+    channel_lines = build_sales_by_channel(canonical)
+    sections.append("🛒 *VENDAS POR CANAL*\n" + "\n".join(channel_lines))
+
     # Visao ML oficial
     ml_row = canonical.get("ml", {})
     ml_rev = float(ml_row.get("total_revenue") or 0)
@@ -910,6 +920,9 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
     summary_lines = build_general_summary(canonical, day)
     sections.append("📊 *RESUMO GERAL*\n" + "\n".join(summary_lines))
 
+    channel_lines = build_sales_by_channel(canonical)
+    sections.append("🛒 *VENDAS POR CANAL*\n" + "\n".join(channel_lines))
+
     # Visao Amazon oficial
     amz_row = canonical.get("amazon", {})
     amz_rev = float(amz_row.get("total_revenue") or 0)
@@ -1073,6 +1086,7 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
 
 SECTION_TITLES = {
     "📊 RESUMO GERAL",
+    "🛒 VENDAS POR CANAL",
     "🛒 VISAO SHOPEE",
     "🛒 VISAO MERCADO LIVRE",
     "🛒 VISAO AMAZON",
@@ -1280,6 +1294,9 @@ def main() -> int:
             issues.append("CONTEM ATACADO/BLING")
         if not msg.strip():
             issues.append("MENSAGEM VAZIA")
+        for required_section in ["📊 *RESUMO GERAL*", "🛒 *VENDAS POR CANAL*"]:
+            if required_section not in msg:
+                issues.append(f"SECAO FIXA AUSENTE: {required_section}")
 
         # QA: SKU cru no texto visivel
         sku_violations = qa_check_raw_skus(msg)

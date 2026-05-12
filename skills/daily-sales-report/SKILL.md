@@ -123,8 +123,11 @@ Aprovado por Pedro em 2026-05-11 e ajustado em 2026-05-12:
 - Envio via Slack DM para Yasmin, Lucas e Leonardo.
 - Escopo do Slack dos funcionários: somente marketplaces (Shopee, Mercado Livre e Amazon), sem Atacado GB Matriz/Bling.
 - Mensagens serão individuais por funcionário: Lucas/Shopee, Yasmin/Mercado Livre, Leonardo/Amazon.
-- Cada mensagem começa com o mesmo resumo geral da operação e depois traz diagnóstico específico da plataforma/conta do funcionário.
-- Estrutura híbrida: blocos fixos de resumo geral, visão da plataforma e prioridade do dia; seções variáveis conforme sinais relevantes do dia.
+- Cada mensagem começa obrigatoriamente com dois blocos fixos e separados, iguais para todos os funcionários: `📊 RESUMO GERAL` e `🛒 VENDAS POR CANAL`.
+- `📊 RESUMO GERAL` deve conter apenas os totais gerais: faturamento total, pedidos e ticket médio.
+- `🛒 VENDAS POR CANAL` deve vir logo depois, separado, com Shopee, Mercado Livre e Amazon em bullets próprios.
+- Depois desses dois blocos fixos, entra o diagnóstico específico da plataforma/conta do funcionário.
+- Estrutura híbrida: blocos fixos de resumo geral/vendas por canal, visão da plataforma e prioridade do dia; seções variáveis conforme sinais relevantes do dia.
 - Usar bullet points em todas as seções de conteúdo; cada ideia deve ser quebrada em um novo bullet, inclusive nas prioridades e seções variáveis.
 - Uma linha em branco entre seções.
 - Títulos em negrito + sublinhado real do Slack.
@@ -140,3 +143,4 @@ Aprovado por Pedro em 2026-05-11 e ajustado em 2026-05-12:
 - Sempre que mencionar produtos no texto visível ao funcionário/Pedro, mostrar o **nome do produto**, nunca o SKU. O SKU pode ser usado apenas internamente para cálculo/mapeamento.
 - Títulos de seções devem seguir o padrão visual aprovado no Slack: emoji + título em uppercase, com bold+underline real via rich_text. Ex.: `📊 RESUMO GERAL`, `🛒 VENDAS POR CANAL`, `🏆 TOP PRODUTOS — CONSOLIDADO 3 PLATAFORMAS`, `📈 ANÁLISE DO DIA`. Para seções novas, manter o mesmo padrão: emoji + uppercase + bold+underline.
 - No report dos funcionários, manter sem Atacado/Bling, mas preservar o mesmo padrão visual dos títulos.
+- `📊 RESUMO GERAL` e `🛒 VENDAS POR CANAL` são seções obrigatórias e fixas em todas as mensagens para funcionários; nunca juntar canais dentro do resumo geral.

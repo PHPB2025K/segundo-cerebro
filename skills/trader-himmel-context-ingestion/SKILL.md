@@ -66,7 +66,7 @@ Escalar se:
 ## Frequência e classificação Granola — decisão Pedro 2026-05-12
 - O sync Granola deve rodar **uma vez por dia no fim do dia**, não a cada 30 minutos.
 - Reuniões com Himmel e outras empresas são esporádicas; processamento diário é suficiente.
-- Cron canônico: `Granola Daily Sync → classificação de reuniões`, 20:30 BRT.
+- Cron canônico: `Granola Daily Sync → classificação de reuniões`, 20:37 BRT (horário quebrado para evitar colisão com outros crons).
 - O agente deve classificar a reunião pelo conteúdo da transcrição/resumo, não apenas pelo título.
 - Se for Himmel/ADS Shopee ou Mercado Livre, distribuir pontos cabíveis para as contas do Daily Sales Report v2.
 - Se for outro tema, registrar no destino correto conforme conteúdo: Spark, Trader, Kobe ou projeto específico.

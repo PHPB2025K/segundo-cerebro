@@ -204,4 +204,16 @@ python3 /root/segundo-cerebro/scripts/daily-sales-v2-himmel-granola-context.py -
 - O analyzer deve carregar `account-himmel-context.md` e `global-himmel-context.md` como insumo de hipótese.
 - Usar falas/decisões da Himmel como contexto causal a validar nos dados, nunca como culpa ou fato isolado.
 - Amazon Ads não usa Himmel; Amazon continua com Pedro.
-- Cron ativo: `Daily Sales v2 — Himmel/Granola Context Sync`, 06:35 BRT, antes do envio das 06:50.
+- Cron ativo: `Granola Daily Sync → classificação de reuniões`, 20:37 BRT. Classifica reuniões pelo conteúdo e atualiza os contextos cabíveis; não roda mais a cada 30min nem às 06:35.
+
+
+## Fase 8 — Marketplace Rules Watch
+- Antes dos reports matinais, atualizar `marketplace-rules-watch.md` com o estado das regras/taxas/políticas documentadas nas skills de ML, Shopee e Amazon.
+- Script canônico:
+```bash
+python3 /root/segundo-cerebro/scripts/daily-sales-v2-marketplace-rules-watch.py
+```
+- Cron ativo: `Daily Sales v2 — Marketplace Rules Watch Refresh`, 06:23 BRT, antes do Sales Report Trader das 06:30 e do Slack Funcionários das 06:50.
+- O arquivo é contexto para hipótese, não prova automática. Só mencionar regra/taxa no report quando afetar o dia ou uma prioridade prática.
+- Revisão vencida é alerta interno de qualidade de contexto, não mudança confirmada.
+- Revisões profundas por plataforma continuam em crons próprios: ML segunda 10h, Shopee quarta 10h, Amazon quarta 10:17 BRT.

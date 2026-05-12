@@ -62,3 +62,18 @@ Avisar Kobe se:
 - exigir ação com Himmel;
 - afetar múltiplas contas;
 - houver prazo curto para adaptação.
+
+
+## Implementação Daily Sales Report v2 — Fase 8
+- Arquivo operacional consumido pelo Trader: `shared/trader/memory/projects/daily-sales-report/marketplace-rules-watch.md`.
+- Script canônico de refresh leve diário:
+```bash
+python3 /root/segundo-cerebro/scripts/daily-sales-v2-marketplace-rules-watch.py
+```
+- Cron leve diário: `Daily Sales v2 — Marketplace Rules Watch Refresh`, 06:23 BRT.
+- Crons profundos por plataforma:
+  - ML Fees Monitor — segunda 10:00 BRT.
+  - Shopee Fees Monitor — quarta 10:00 BRT.
+  - Amazon Fees Monitor — quarta 10:17 BRT.
+- O refresh leve consolida estado das skills e revisões vencidas/próximas; não substitui auditoria profunda das fontes oficiais.
+- Revisão vencida deve virar alerta interno; não deve ser apresentada ao funcionário como mudança confirmada.

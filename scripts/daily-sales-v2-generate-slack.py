@@ -127,7 +127,7 @@ DISPLAY_NAMES: dict[str, str] = {
     "KIT3S099": "Kit 3 Potes de Vidro Hermético",
     "K6CAN250": "Kit 6 Canecas 250ml",
     "XCP002": "Xicara Porcelana com Pires",
-    "SPC002": "Suporte Porta-Copos",
+    "SPC002": "Suporte de Controle Gamer",
     "PCM001": "Porta-Copos MDF",
     "TL250": "Tigela de Vidro 250ml",
     "TL250B": "Tigela de Vidro 250ml",
@@ -183,6 +183,39 @@ def display_name_from_sku(raw_sku: str) -> str:
         return DISPLAY_NAMES[canon]
     # Fallback: humanizar o código
     return _humanize_sku(canon)
+
+
+def clean_marketplace_title(title: str) -> str:
+    """Condensa título real do marketplace em nome comercial legível."""
+    text = re.sub(r"\s+", " ", (title or "").strip())
+    if not text:
+        return ""
+
+    # Keep the real order title as source of truth, but remove marketplace SEO
+    # tail when it gets too long for Slack. Never replace it with a guessed SKU
+    # alias when ASIN/title are available.
+    text = re.split(r"\s+-\s+Budamix\b", text, maxsplit=1)[0]
+    text = re.sub(r"\s+Budamix\b.*$", "", text).strip()
+    if len(text) > 80:
+        text = text[:77].rstrip() + "..."
+    return text
+
+
+def display_name_from_product(raw_sku: str, marketplace_title: str = "", platform_item_id: str = "") -> str:
+    """Nome visível para Top Produtos.
+
+    Prioridade:
+    1. título real do item no pedido (especialmente Amazon/ASIN);
+    2. mapeamento SKU revisado;
+    3. fallback humanizado.
+
+    Isso evita erro crítico de renomear pedido real de um ASIN como se fosse
+    outro produto apenas porque o SKU tem um alias manual antigo/incorreto.
+    """
+    title_name = clean_marketplace_title(marketplace_title)
+    if title_name:
+        return title_name
+    return display_name_from_sku(raw_sku)
 
 
 def _humanize_sku(canon: str) -> str:
@@ -377,11 +410,21 @@ def parse_analysis(md: str) -> dict:
         result["canonical_orders"] = int(m.group(1))
         result["canonical_revenue"] = parse_number(m.group(2))
 
-    # Top SKUs
-    for m in re.finditer(r"\| \d+ \| ([^\|]+) \| (\d+) \|", md):
+    # Top products — new analyzer format with SKU + ASIN/platform id + real title.
+    for m in re.finditer(r"\| \d+ \| ([^\|]+) \| ([^\|]*) \| ([^\|]*) \| (\d+) \|", md):
         sku = m.group(1).strip()
-        qty = int(m.group(2))
-        result["top_skus"].append((sku, qty))
+        platform_item_id = m.group(2).strip()
+        title = m.group(3).strip()
+        qty = int(m.group(4))
+        name = display_name_from_product(sku, title, platform_item_id)
+        result["top_skus"].append((name, qty))
+
+    # Backward compatibility — old analyzer format with only SKU + quantity.
+    if not result["top_skus"]:
+        for m in re.finditer(r"\| \d+ \| ([^\|]+) \| (\d+) \|", md):
+            sku = m.group(1).strip()
+            qty = int(m.group(2))
+            result["top_skus"].append((sku, qty))
 
     # Concentration
     m = re.search(r"Concentração top 3:\*\* ([\d.,]+)%", md)
@@ -457,9 +500,18 @@ def _top_products_text(top_skus: list[tuple[str, int]], limit: int = 5) -> list[
     """Converte top SKUs em linhas com nome comercial."""
     lines = []
     for sku, qty in top_skus[:limit]:
-        name = display_name_from_sku(sku)
+        raw = str(sku or "").strip()
+        name = raw if " " in raw and not RAW_SKU_PATTERNS.search(raw) else display_name_from_sku(raw)
         lines.append(f"  - {name}: {qty} un.")
     return lines
+
+
+def _display_name_from_top_entry(value: str) -> str:
+    """Top entries may already be trusted marketplace titles."""
+    raw = str(value or "").strip()
+    if raw and " " in raw and not RAW_SKU_PATTERNS.search(raw):
+        return raw
+    return display_name_from_sku(raw)
 
 
 
@@ -469,7 +521,7 @@ def _top_products_section(title: str, top_skus: list[tuple[str, int]], limit: in
     for sku, qty in top_skus[:limit]:
         raw = str(sku or "").strip()
         # _merge_top_products já entrega nome comercial; análises individuais entregam SKU.
-        name = raw if " " in raw and not RAW_SKU_PATTERNS.search(raw) else display_name_from_sku(raw)
+        name = _display_name_from_top_entry(raw)
         lines.append(f"• {name} — {qty} un.")
     if not lines:
         lines.append("• Sem produtos suficientes para ranking confiável.")
@@ -484,7 +536,7 @@ def _merge_top_products(*analyses: dict, limit: int = 5) -> list[tuple[str, int]
             continue
         for sku, qty in a.get("top_skus", []):
             raw = str(sku or "").strip()
-            name = raw if " " in raw and not RAW_SKU_PATTERNS.search(raw) else display_name_from_sku(raw)
+            name = _display_name_from_top_entry(raw)
             agg[name] = agg.get(name, 0) + int(qty)
     return sorted(agg.items(), key=lambda kv: kv[1], reverse=True)[:limit]
 
@@ -684,12 +736,12 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     conta3_a = analyses.get("shopee-budamix-shop-3")
     prio_lines = []
     if store_a and store_a.get("top_skus"):
-        prio_lines.append(f"• Checar posição e visibilidade dos anúncios de {display_name_from_sku(store_a['top_skus'][0][0])} e {display_name_from_sku(store_a['top_skus'][1][0]) if len(store_a['top_skus']) > 1 else 'segundo produto'} na Budamix Store. Comparar tráfego de ontem com média. Se até 12h o ritmo seguir abaixo, alinhar com Himmel para revisar tráfego/campanha.")
+        prio_lines.append(f"• Checar posição e visibilidade dos anúncios de {_display_name_from_top_entry(store_a['top_skus'][0][0])} e {_display_name_from_top_entry(store_a['top_skus'][1][0]) if len(store_a['top_skus']) > 1 else 'segundo produto'} na Budamix Store. Comparar tráfego de ontem com média. Se até 12h o ritmo seguir abaixo, alinhar com Himmel para revisar tráfego/campanha.")
         prio_lines.append(f"• Investigar os {store_a['cancelamentos']} cancelamentos da Budamix Store: verificar se foram por ruptura de estoque, prazo ou reclamação. Se padrão se repetir, reportar.")
     if conta2_a and conta2_a.get("top_skus"):
-        prio_lines.append(f"• Conta 2: confirmar se houve alteração de preço no {display_name_from_sku(conta2_a['top_skus'][0][0])} ou promoção ativa que justifique o ticket {conta2_a['comparisons'].get('30d', {}).get('var_ticket', '')}.")
+        prio_lines.append(f"• Conta 2: confirmar se houve alteração de preço no {_display_name_from_top_entry(conta2_a['top_skus'][0][0])} ou promoção ativa que justifique o ticket {conta2_a['comparisons'].get('30d', {}).get('var_ticket', '')}.")
     if conta3_a and conta3_a.get("top_skus"):
-        prio_lines.append(f"• Conta 3: avaliar espaço para impulsionar anúncios secundários e reduzir dependência do {display_name_from_sku(conta3_a['top_skus'][0][0])} (concentração {pct(conta3_a['concentration_top3'])}).")
+        prio_lines.append(f"• Conta 3: avaliar espaço para impulsionar anúncios secundários e reduzir dependência do {_display_name_from_top_entry(conta3_a['top_skus'][0][0])} (concentração {pct(conta3_a['concentration_top3'])}).")
     sections.append("🎯 __PRIORIDADES DO DIA__\n" + "\n".join(prio_lines))
     sections.append(f"Dia analisado: {display_date} — 00:00–23:59 BRT")
     return "\n\n".join(sections)
@@ -736,7 +788,7 @@ def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[st
 
     prio_lines = []
     if a and a.get("top_skus"):
-        names = [display_name_from_sku(x[0]) for x in a["top_skus"][:3]]
+        names = [_display_name_from_top_entry(x[0]) for x in a["top_skus"][:3]]
         prio_lines.append(f"• Manter sortimento e disponibilidade dos 3 campeões que sustentaram {pct(a['concentration_top3'])} do volume: {', '.join(names)}. Conferir estoque no painel ML antes das 11h.")
         prio_lines.append("• Acompanhar se o patamar de pedidos recupera hoje. Se terça também vier abaixo da média de 30d, configura tendência e merece investigação mais profunda.")
         prio_lines.append("• Avaliar se a queda vs mesma segunda é efeito calendário cruzando com pedidos das últimas 2 horas (10h-12h) — se ritmo estiver em linha com média, descartar tendência.")
@@ -780,18 +832,18 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
             diag_lines.append(f" • Taxa de cancelamento em {cancel_text} é o ponto crítico do dia. Como a operação Amazon é FBA por padrão, esse cancelamento tende a apontar mais para ruptura no CD Amazon, indisponibilidade temporária de listing, atraso/expiração automática ou problema de cobertura do que para falha operacional direta da equipe.")
             diag_lines.append(" • A combinação de demanda crescendo com cancelamento alto é o principal risco: se a Amazon interpretar baixa capacidade de fulfillment, o canal pode perder Buy Box, ranqueamento ou eficiência de campanha justamente no momento em que está ganhando tração.")
         if a.get("top_skus"):
-            diag_lines.append(f" • {display_name_from_sku(a['top_skus'][0][0])} continua sendo o produto que mais explica o resultado do canal. A concentração no top 3 ainda não é extrema, mas exige acompanhamento porque qualquer instabilidade no produto líder pode reduzir a leitura positiva do dia.")
+            diag_lines.append(f" • {_display_name_from_top_entry(a['top_skus'][0][0])} continua sendo o produto que mais explica o resultado do canal. A concentração no top 3 ainda não é extrema, mas exige acompanhamento porque qualquer instabilidade no produto líder pode reduzir a leitura positiva do dia.")
     else:
         diag_lines.append("• Análise detalhada não disponível para o dia")
     sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(diag_lines))
 
     prio_lines = []
     if a and a.get("top_skus"):
-        names = [display_name_from_sku(x[0]) for x in a["top_skus"][:3]]
+        names = [_display_name_from_top_entry(x[0]) for x in a["top_skus"][:3]]
         prio_lines.append(f"• Investigar os {a['cancelamentos']} cancelamentos no Seller Central. Identificar se vieram de ruptura FBA, indisponibilidade de listing ou prazo expirado. Se 3+ forem do mesmo SKU, verificar estoque no CD Amazon e reportar.")
         prio_lines.append(f"• Confirmar cobertura FBA dos 3 principais: {', '.join(names)}. Se algum estiver abaixo de 5 dias de cobertura, priorizar reposição hoje.")
         if len(a["top_skus"]) > 3:
-            prio_lines.append(f"• Verificar se listings secundários ({display_name_from_sku(a['top_skus'][3][0])}) estão com Buy Box ativo e estoque disponível.")
+            prio_lines.append(f"• Verificar se listings secundários ({_display_name_from_top_entry(a['top_skus'][3][0])}) estão com Buy Box ativo e estoque disponível.")
         prio_lines.append("• ADS: avaliar se campanhas atuais estão contribuindo para o crescimento. Se sim, considerar escalar budget mantendo ACOS — porém antes de escalar, confirmar que cancelamento não vem de campanha direcionando para listing sem estoque. Se confirmado, pausar anúncio primeiro.")
     sections.append("🎯 __PRIORIDADES DO DIA__\n" + "\n".join(prio_lines))
     sections.append(f"Dia analisado: {display_date} — 00:00–23:59 BRT")

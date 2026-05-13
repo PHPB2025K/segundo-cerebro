@@ -44,7 +44,7 @@ DISPLAY_NAMES = {
     "KIT3S099": "Kit 3 Potes de Vidro Hermético",
     "K6CAN250": "Kit 6 Canecas 250ml",
     "XCP002": "Xícara Porcelana com Pires",
-    "SPC002": "Suporte Porta-Copos",
+    "SPC002": "Suporte de Controle Gamer",
     "PCM001": "Porta-Copos MDF",
     "TL250": "Tigela de Vidro 250ml",
     "TL250B": "Tigela de Vidro 250ml",

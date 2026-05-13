@@ -257,6 +257,7 @@ def compute_metrics(orders, cancelled):
     # Items
     total_items = 0
     sku_counter = Counter()
+    product_meta = {}
     for o in orders:
         for item in (o.get("items") or []):
             qty = item.get("quantity", 1)
@@ -264,8 +265,22 @@ def compute_metrics(orders, cancelled):
             sku = item.get("sku") or item.get("title", "unknown")
             sku_counter[sku] += qty
 
+            # Keep the real marketplace identity attached to the counted SKU.
+            # This is critical for Amazon: a SKU nickname can be wrong/stale, but
+            # ASIN + title come from the orderItems payload for the actual order.
+            if sku not in product_meta:
+                product_meta[sku] = {
+                    "sku": sku,
+                    "platform_item_id": item.get("platform_item_id") or item.get("asin") or "",
+                    "title": item.get("title") or item.get("name") or "",
+                }
+
     # Top SKUs
     top_skus = sku_counter.most_common(10)
+    top_products = [
+        {**product_meta.get(sku, {"sku": sku, "platform_item_id": "", "title": ""}), "quantity": qty}
+        for sku, qty in top_skus
+    ]
     total_sku_qty = sum(sku_counter.values()) or 1
     top3_concentration = sum(c for _, c in top_skus[:3]) / total_sku_qty * 100 if top_skus else 0
 
@@ -306,6 +321,7 @@ def compute_metrics(orders, cancelled):
         "ticket_medio": round(ticket, 2),
         "itens_vendidos": total_items,
         "top_skus": top_skus,
+        "top_products": top_products,
         "top3_concentration": round(top3_concentration, 1),
         "hour_distribution": dict(sorted(hour_dist.items())),
         "fulfillment": fulfillment,
@@ -470,12 +486,19 @@ def format_analysis(date_str, account_slug, metrics, avg30, avg60, avg_weekday, 
         lines.append("- **Regra:** o Slack/Resumo Geral permanece ancorado em `v_daily_sales`; `orders` é usado para diagnóstico por conta/SKU/horário.")
         lines.append("")
 
-    # Top SKUs
-    lines.append("## Top SKUs")
-    lines.append("| # | SKU | Qtd |")
-    lines.append("|---|---|---|")
-    for i, (sku, qty) in enumerate(m["top_skus"][:10], 1):
-        lines.append(f"| {i} | {sku} | {qty} |")
+    # Top products with real marketplace identity.
+    # Keep SKU for internal traceability, but also persist ASIN/platform id and
+    # title so downstream Slack generation never has to guess product names from
+    # a stale hardcoded SKU map.
+    lines.append("## Top Produtos")
+    lines.append("| # | SKU | ASIN/Item | Produto no pedido | Qtd |")
+    lines.append("|---|---|---|---|---|")
+    for i, product in enumerate(m.get("top_products", [])[:10], 1):
+        sku = str(product.get("sku") or "").replace("|", "-")
+        platform_item_id = str(product.get("platform_item_id") or "").replace("|", "-")
+        title = str(product.get("title") or "").replace("|", "-")
+        qty = int(product.get("quantity") or 0)
+        lines.append(f"| {i} | {sku} | {platform_item_id} | {title} | {qty} |")
     lines.append(f"\n**Concentração top 3:** {m['top3_concentration']}%")
     lines.append("")
 

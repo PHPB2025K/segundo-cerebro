@@ -74,9 +74,9 @@ PLATFORM_LABELS = {
     "amazon": "Amazon",
 }
 
-# O report externo usa v_daily_sales como fonte canônica de resumo geral.
-# A análise granular por conta usa orders porque v_daily_sales não separa shop_id.
-# Por isso o script sempre reconcilia as duas fontes e deixa a divergência explícita.
+# O report externo usa agregação direta de orders em BRT como fonte canônica.
+# A análise granular por conta usa orders porque v_daily_sales não separa shop_id
+# e historicamente truncava o dia em UTC. Por isso o script não depende da view.
 RECONCILIATION_ORDER_TOLERANCE = 0
 RECONCILIATION_REVENUE_TOLERANCE = 1.00
 
@@ -115,18 +115,51 @@ def get_supabase():
 # ---------------------------------------------------------------------------
 
 def fetch_v_daily_sales(sb, date_str: str):
-    """Busca a fonte canônica do resumo geral por plataforma."""
-    resp = (
-        sb.table("v_daily_sales")
-        .select("platform,order_count,total_revenue,avg_order_value")
-        .eq("sale_date", date_str)
-        .execute()
-    )
-    return {row["platform"]: row for row in (resp.data or [])}
+    """Busca a fonte canônica do resumo geral por plataforma.
+
+    Regra crítica: o dia de negócio da GB é BRT, não UTC. A view
+    v_daily_sales já foi corrigida no repo do Budamix Central, mas este
+    analyzer não deve depender cegamente da view: ele agrega diretamente a
+    tabela orders na janela BRT e usa essa agregação para reconciliação.
+    """
+    start, end = brt_window(date_str)
+    all_orders = []
+    offset = 0
+    page_size = 1000
+    while True:
+        resp = (
+            sb.table("orders")
+            .select("platform,status,total_amount")
+            .gte("order_date", start)
+            .lt("order_date", end)
+            .range(offset, offset + page_size - 1)
+            .execute()
+        )
+        data = resp.data or []
+        all_orders.extend(data)
+        if len(data) < page_size:
+            break
+        offset += page_size
+
+    grouped = {}
+    for row in all_orders:
+        if "cancel" in (row.get("status") or "").lower():
+            continue
+        platform = row.get("platform")
+        if not platform:
+            continue
+        bucket = grouped.setdefault(platform, {"platform": platform, "order_count": 0, "total_revenue": 0.0, "avg_order_value": 0.0})
+        bucket["order_count"] += 1
+        bucket["total_revenue"] += float(row.get("total_amount") or 0)
+
+    for bucket in grouped.values():
+        bucket["total_revenue"] = round(bucket["total_revenue"], 2)
+        bucket["avg_order_value"] = round(bucket["total_revenue"] / bucket["order_count"], 2) if bucket["order_count"] else 0
+    return grouped
 
 
 def reconciliation_for_platform(canonical_by_platform, platform, orders_count, gmv):
-    """Compara orders granular contra v_daily_sales canônico da plataforma."""
+    """Compara orders granular da conta contra orders canônico BRT da plataforma."""
     row = canonical_by_platform.get(platform) or {}
     canonical_orders = int(row.get("order_count") or 0)
     canonical_revenue = round(float(row.get("total_revenue") or 0), 2)
@@ -480,10 +513,10 @@ def format_analysis(date_str, account_slug, metrics, avg30, avg60, avg_weekday, 
         lines.append("## Reconciliação com Fonte Canônica")
         status = "OK" if reconciliation["ok"] else "DIVERGÊNCIA — NÃO usar soma de orders como total oficial"
         lines.append(f"- **Status:** {status}")
-        lines.append(f"- **v_daily_sales ({PLATFORM_LABELS.get(reconciliation['platform'], reconciliation['platform'])}):** {reconciliation['canonical_orders']} pedidos | {format_brl(reconciliation['canonical_revenue'])}")
+        lines.append(f"- **orders BRT canônico ({PLATFORM_LABELS.get(reconciliation['platform'], reconciliation['platform'])}):** {reconciliation['canonical_orders']} pedidos | {format_brl(reconciliation['canonical_revenue'])}")
         lines.append(f"- **orders granular usado nesta análise:** {reconciliation['orders_count']} pedidos | {format_brl(reconciliation['orders_revenue'])}")
         lines.append(f"- **Diferença:** {reconciliation['order_delta']:+d} pedidos | {format_brl(reconciliation['revenue_delta'])}")
-        lines.append("- **Regra:** o Slack/Resumo Geral permanece ancorado em `v_daily_sales`; `orders` é usado para diagnóstico por conta/SKU/horário.")
+        lines.append("- **Regra:** o Slack/Resumo Geral permanece ancorado em `orders` agregado em BRT; o diagnóstico usa a mesma fonte por conta/SKU/horário.")
         lines.append("")
 
     # Top products with real marketplace identity.
@@ -663,9 +696,9 @@ def analyze_account(sb, date_str: str, account_slug: str, dry_run: bool, canonic
         reconciliation = reconciliation_for_platform(canonical_by_platform, acct["platform"], metrics["pedidos_validos"], metrics["gmv"])
         if not reconciliation["ok"]:
             print(
-                "    ⚠ Divergência vs v_daily_sales: "
-                f"{reconciliation['order_delta']:+d} pedidos | {format_brl(reconciliation['revenue_delta'])}"
-            )
+                "    ⚠ Divergência vs total canônico BRT da plataforma: "
+                    f"{reconciliation['order_delta']:+d} pedidos | {format_brl(reconciliation['revenue_delta'])}"
+                )
 
     # 7. Generate analysis
     analysis = format_analysis(date_str, account_slug, metrics, avg30, avg60, avg_weekday, hypotheses, memory_ctx, reconciliation)
@@ -737,12 +770,12 @@ def main():
     canonical_by_platform = fetch_v_daily_sales(sb, args.date)
     selected_platforms = {ACCOUNTS[slug]["platform"] for slug in slugs}
     if not canonical_by_platform:
-        print("  ⚠ v_daily_sales sem dados para a data. A análise será marcada como não reconciliada.")
+        print("  ⚠ orders BRT sem dados para a data. A análise será marcada como não reconciliada.")
     else:
         selected_rows = [row for platform, row in canonical_by_platform.items() if platform in selected_platforms]
         canonical_orders = sum(int(row.get("order_count") or 0) for row in selected_rows)
         canonical_revenue = sum(float(row.get("total_revenue") or 0) for row in selected_rows)
-        print(f"   Fonte canônica v_daily_sales (escopo selecionado): {canonical_orders} pedidos | {format_brl(canonical_revenue)}")
+        print(f"   Fonte canônica orders BRT (escopo selecionado): {canonical_orders} pedidos | {format_brl(canonical_revenue)}")
 
     results = []
 
@@ -771,12 +804,12 @@ def main():
         selected_rows = [row for platform, row in canonical_by_platform.items() if platform in {ACCOUNTS[r['slug']]['platform'] for r in results}]
         canonical_orders = sum(int(row.get("order_count") or 0) for row in selected_rows)
         canonical_revenue = sum(float(row.get("total_revenue") or 0) for row in selected_rows)
-        print(f"  {'TOTAL v_daily_sales (oficial)':<40} Ped: {canonical_orders:>4} | GMV: R$ {canonical_revenue:>10,.2f}")
+        print(f"  {'TOTAL orders BRT (oficial)':<40} Ped: {canonical_orders:>4} | GMV: R$ {canonical_revenue:>10,.2f}")
 
     divergences = [r for r in results if r.get("reconciliation") and not r["reconciliation"]["ok"]]
     if divergences:
-        print("\n  ⚠ Reconciliação: há divergência orders vs v_daily_sales.")
-        print("  Regra aplicada: v_daily_sales é oficial para resumo/Slack; orders fica para diagnóstico granular.")
+        print("\n  ⚠ Reconciliação: há divergência entre conta granular e total da plataforma.")
+        print("  Regra aplicada: orders BRT é oficial para resumo/Slack e diagnóstico granular.")
     print()
 
     return results

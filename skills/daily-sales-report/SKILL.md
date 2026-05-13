@@ -9,7 +9,8 @@ description: Gere, valide, ajuste ou dispare o Daily Sales Report da GB Importad
 Enviar diariamente o relatório de vendas do dia anterior com dados corretos, sem duplicidade de informação, em formato legível para equipe administrativa.
 
 ## Fonte de verdade
-- Marketplaces: Budamix Central / Supabase `v_daily_sales`.
+- Marketplaces: agregação direta de Supabase `orders` em janela BRT (`00:00–23:59 America/Sao_Paulo`), excluindo cancelados.
+- `v_daily_sales` pode alimentar dashboard, mas o Daily Sales Report não deve depender cegamente dela se houver risco de truncamento UTC; qualquer view canônica precisa usar `timezone('America/Sao_Paulo', order_date)`.
 - Período: dia anterior completo em BRT, 00:00–23:59.
 - Canais obrigatórios para o Slack dos funcionários:
   - Shopee
@@ -87,7 +88,9 @@ No Daily Sales Report v2 individual, o ranking `🏆 TOP PRODUTOS [PLATAFORMA]` 
 Obrigatório:
 - Usar mapeamento SKU/produto equivalente para consolidar variações/anúncios dentro da própria plataforma/conta analisada.
 - Para Shopee, agregar os produtos equivalentes das 3 contas Shopee quando a mensagem for do Lucas.
-- Para Mercado Livre e Amazon, consolidar produtos equivalentes dentro da plataforma correspondente.
+- Para Mercado Livre, consolidar produtos equivalentes dentro da plataforma correspondente.
+- Para Amazon, priorizar identidade real do pedido (`platform_item_id`/ASIN + título vindo de `orderItems`) antes de qualquer alias manual de SKU. Alias manual só pode ser fallback quando ASIN/título não existir.
+- Nunca inferir que um ASIN vendeu a partir de memória, planilha, Ads, catálogo ou nome parecido; Top Produtos Amazon só pode sair de pedidos reais em `orders.items`.
 - Mostrar produto único consolidado e unidades totais.
 - Nunca exibir “Produto não identificado” ou similar. Se o nome não for confiável, omitir do Top Produtos e tratar como problema de cadastro interno.
 

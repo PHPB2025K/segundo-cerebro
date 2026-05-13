@@ -2,8 +2,8 @@
 """Daily Sales Report v2 — Fase 4.1: Geração de mensagens Slack individuais.
 
 Gera 3 mensagens Slack individuais para Lucas (Shopee), Yasmin (Mercado Livre)
-e Leonardo (Amazon), usando v_daily_sales como fonte oficial e análises
-internas salvas pela Fase 3.
+e Leonardo (Amazon), usando agregação direta de orders em BRT como fonte
+oficial e análises internas salvas pela Fase 3.
 
 Fase 4.1: correção de qualidade — diagnósticos profundos, nomes de produto
 (nunca SKU cru), prioridades acionáveis e formatação visual aprovada.
@@ -27,6 +27,8 @@ import urllib.parse
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+
+from supabase import create_client
 
 # ---------------------------------------------------------------------------
 # Configuração
@@ -302,21 +304,59 @@ def supabase_get(url: str, key: str, table: str, params: dict[str, str]) -> list
         return json.loads(resp.read().decode("utf-8"))
 
 
+def brt_window_iso(day: str) -> tuple[str, str]:
+    dt = datetime.strptime(day, "%Y-%m-%d").replace(tzinfo=BRT)
+    start = dt.astimezone(UTC).isoformat()
+    end = (dt + timedelta(days=1)).astimezone(UTC).isoformat()
+    return start, end
+
+
 def fetch_v_daily_sales(day: str) -> dict[str, dict]:
-    """Busca v_daily_sales canônica. Retorna dict por plataforma."""
+    """Busca venda diária canônica por plataforma.
+
+    O report precisa seguir o dia de negócio BRT. Para eliminar a classe de
+    erro UTC-vs-BRT, a geração agrega diretamente orders na janela 00:00–23:59
+    BRT e não depende cegamente da view v_daily_sales.
+    """
     env = load_env(CENTRAL_ENV)
     url = env["NEXT_PUBLIC_SUPABASE_URL"]
     key = env["SUPABASE_SERVICE_ROLE_KEY"]
-    rows = supabase_get(
-        url,
-        key,
-        "v_daily_sales",
-        {
-            "sale_date": f"eq.{day}",
-            "select": "platform,order_count,total_revenue,avg_order_value",
-        },
-    )
-    return {row["platform"]: row for row in rows}
+    sb = create_client(url, key)
+    start, end = brt_window_iso(day)
+
+    rows: list[dict] = []
+    offset = 0
+    page_size = 1000
+    while True:
+        resp = (
+            sb.table("orders")
+            .select("platform,status,total_amount")
+            .gte("order_date", start)
+            .lt("order_date", end)
+            .range(offset, offset + page_size - 1)
+            .execute()
+        )
+        page = resp.data or []
+        rows.extend(page)
+        if len(page) < page_size:
+            break
+        offset += page_size
+
+    grouped: dict[str, dict] = {}
+    for row in rows:
+        if "cancel" in (row.get("status") or "").lower():
+            continue
+        platform = row.get("platform")
+        if not platform:
+            continue
+        bucket = grouped.setdefault(platform, {"platform": platform, "order_count": 0, "total_revenue": 0.0, "avg_order_value": 0.0})
+        bucket["order_count"] += 1
+        bucket["total_revenue"] += float(row.get("total_amount") or 0)
+
+    for bucket in grouped.values():
+        bucket["total_revenue"] = round(bucket["total_revenue"], 2)
+        bucket["avg_order_value"] = round(bucket["total_revenue"] / bucket["order_count"], 2) if bucket["order_count"] else 0
+    return grouped
 
 
 
@@ -405,7 +445,7 @@ def parse_analysis(md: str) -> dict:
         result["itens"] = int(m.group(1))
 
     # Canonical from reconciliation
-    m = re.search(r"v_daily_sales \([^)]+\):\*\* (\d+) pedidos \| R\$ ([\d.,]+)", md)
+    m = re.search(r"(?:v_daily_sales|orders BRT canônico) \([^)]+\):\*\* (\d+) pedidos \| R\$ ([\d.,]+)", md)
     if m:
         result["canonical_orders"] = int(m.group(1))
         result["canonical_revenue"] = parse_number(m.group(2))
@@ -1010,14 +1050,14 @@ def main() -> int:
         print("ERRO: Data invalida. Use YYYY-MM-DD.", file=sys.stderr)
         return 1
 
-    # 1. Buscar v_daily_sales canonica
+    # 1. Buscar venda canônica em orders com janela BRT
     print(f"\n--- Daily Sales v2 — Slack Generator (Fase 4.1) ---")
     print(f"Data: {day}")
-    print(f"Buscando v_daily_sales...")
+    print(f"Buscando orders BRT canônico...")
 
     canonical = fetch_v_daily_sales(day)
     if not canonical:
-        print("ERRO: v_daily_sales sem dados para a data.", file=sys.stderr)
+        print("ERRO: orders BRT sem dados para a data.", file=sys.stderr)
         return 1
 
     atacado_rev, atacado_orders = fetch_bling_revenue(day)
@@ -1029,7 +1069,7 @@ def main() -> int:
 
     total_rev = sum(float(r.get("total_revenue") or 0) for r in canonical.values())
     total_orders = sum(int(r.get("order_count") or 0) for r in canonical.values())
-    print(f"v_daily_sales OK: {total_orders} pedidos | {brl(total_rev)}")
+    print(f"orders BRT OK: {total_orders} pedidos | {brl(total_rev)}")
 
     for pk in PLATFORM_ORDER:
         row = canonical.get(pk, {})

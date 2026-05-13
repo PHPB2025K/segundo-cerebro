@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-12 23:30 BRT — consolidação diária_
+_Atualizado: 2026-05-13 02:00 BRT — organização noturna silenciosa_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -38,7 +38,6 @@ _Atualizado: 2026-05-12 23:30 BRT — consolidação diária_
 
 - [ ] **Amazon Ads/BidSpark — corrigir auditoria interna de ações**: execução Tulipa 12/05 deu 7/7 success na API, mas `amazon_ads_actions_log` falhou por FK/constraints (`round_id`/`entity_id`). Corrigir fluxo/schema antes da próxima rodada manual para não perder trilha oficial no BidSpark.
 
-- [ ] **Amazon Ads — analisar grupo crítico Suporte Controle Gamer**: D+7 mostrou piora (ACoS 18,8% → 28,9%), com Auto/Descoberta voltando a gastar mal.
 - [ ] **Amazon Ads — analisar grupo crítico Potes Redondos Plástico**: D+7 mostrou piora (ACoS 13,3% → 32,3%), provável escala forte demais principalmente Exact.
 - [ ] **Amazon Ads — ajuste fino Jarra Medidora e Potes Herméticos Vidro**: Jarra ainda dentro da meta mas piorou; Potes Vidro melhorou eficiência mas ainda acima da meta.
 - [ ] **Amazon Ads — não cortar mais Potes Tampa Bambu por enquanto**: eficiência melhorou, mas gasto/venda diária caíram; risco de ter apertado volume demais.
@@ -139,4 +138,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-05-12 23:30 BRT._
+_Última organização: 2026-05-13 02:00 BRT._

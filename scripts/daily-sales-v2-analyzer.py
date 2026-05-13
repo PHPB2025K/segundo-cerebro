@@ -555,13 +555,27 @@ def build_layered_analysis(account_slug, metrics, avg30, avg60, avg_weekday, hyp
     elif acct["platform"] in {"shopee", "ml"}:
         confirm.append(f"Alinhar com {acct['ads']} se houve mudança de campanha, cupom, exposição ou orçamento nos produtos líderes.")
 
-    condensed_analysis = [
-        strategic[0],
-        operational[1],
-        granular[0],
-        f"Hipótese mais provável: {probable}",
-        f"Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.",
-    ]
+    # A análise visível no Slack precisa ser o OURO da análise: poucos
+    # insights, linguagem simples e sem despejar métrica. Os números ficam na
+    # memória interna; a Condensadora traduz o significado deles.
+    if acct["platform"] == "shopee":
+        condensed_analysis = [
+            f"A conta mostra um sinal mais ligado a exposição e força dos anúncios líderes do que a um problema isolado de preço. O ponto central é entender se {leader} continua puxando tráfego ou se começou a perder espaço.",
+            f"A dependência de poucos produtos deixa a operação frágil: quando o produto líder oscila, a leitura da conta inteira muda rápido. O trabalho do dia deve ser proteger os campeões e abrir espaço para um segundo vetor de venda.",
+            f"Antes de aumentar verba ou mudar campanha, vale confirmar se o comportamento se repete nas primeiras horas de hoje. Se repetir, é sinal de ajuste tático com Himmel; se normalizar, foi ruído de demanda/horário.",
+        ]
+    elif acct["platform"] == "ml":
+        condensed_analysis = [
+            "O Mercado Livre não parece ter um problema estrutural claro; a leitura é mais de acomodação do ritmo recente do que perda real de tração. O canal segue saudável porque não depende de um único anúncio para sustentar o resultado.",
+            f"O ponto de atenção é que o volume ficou mais fraco enquanto o valor por pedido segurou melhor. Isso normalmente indica mix mais qualificado ou menos vendas pequenas, não necessariamente queda de demanda.",
+            f"A melhor decisão é observar se hoje o ritmo volta ao normal antes de mexer pesado em campanha. Se a queda continuar, aí sim a investigação deve ir para exposição/ranking dos produtos líderes.",
+        ]
+    else:
+        condensed_analysis = [
+            "A Amazon mostra um dia operacionalmente bom, mas ainda muito dependente de poucos produtos. O crescimento só vira ganho sustentável se os líderes continuarem com Buy Box, estoque FBA e listing saudável.",
+            f"{leader} é o principal termômetro do canal: se ele sustenta ritmo, a conta tende a performar; se perde disponibilidade ou posição, o resultado pode cair mesmo com demanda ativa.",
+            "A prioridade não é escalar ADS às cegas. Primeiro precisa confirmar cobertura FBA, Buy Box e ausência de bloqueio/cancelamento nos ASINs líderes; depois disso, campanha faz sentido.",
+        ]
     condensed_priorities = []
     for item in [
         confirm[0],

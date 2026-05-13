@@ -25,11 +25,9 @@ DAILY SALES REPORT — AMAZON — 12/05/2026 (Ontem)
 
 🔍 __ANÁLISE DA CONTA__
 
-• A leitura macro é mista: pedidos +9.1% vs 30d e +16.3% vs 60d; tratar como variação a confirmar, não como virada estrutural.
-• Contra 30d: pedidos +9.1%, GMV +8.4%, ticket -0.6%; contra 60d: pedidos +16.3%, GMV +15.4%.
-• Produto líder: Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas; segundo vetor: Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto - Organizador de Mesa Game...; concentração top 3: 65.6%.
-• Hipótese mais provável: ⚠️ HIPÓTESE: Alta concentração nos top 3 SKUs (65.6%) → risco de dependência.
-• Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.
+• A Amazon mostra um dia operacionalmente bom, mas ainda muito dependente de poucos produtos. O crescimento só vira ganho sustentável se os líderes continuarem com Buy Box, estoque FBA e listing saudável.
+• Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas é o principal termômetro do canal: se ele sustenta ritmo, a conta tende a performar; se perde disponibilidade ou posição, o resultado pode cair mesmo com demanda ativa.
+• A prioridade não é escalar ADS às cegas. Primeiro precisa confirmar cobertura FBA, Buy Box e ausência de bloqueio/cancelamento nos ASINs líderes; depois disso, campanha faz sentido.
 
 🎯 __PRIORIDADES DO DIA__
 • Confirmar até 12h se Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.

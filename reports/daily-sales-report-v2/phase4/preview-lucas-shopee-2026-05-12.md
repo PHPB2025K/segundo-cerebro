@@ -26,25 +26,19 @@ DAILY SALES REPORT — SHOPEE — 12/05/2026 (Ontem)
 🔍 __ANÁLISE DA CONTA__
 
 ▸ *Budamix Store*
- • A conta perdeu patamar contra as duas janelas relevantes: pedidos -17.7% vs 30d e -27.6% vs 60d.
- • Contra 30d: pedidos -17.7%, GMV -21.9%, ticket -5.0%; contra 60d: pedidos -27.6%, GMV -26.6%.
- • Produto líder: Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições; segundo vetor: Jarra Medidora De Vidro 500ml com Alça Para Receitas Resistente; concentração top 3: 84.8%.
- • Hipótese mais provável: ⚠️ HIPÓTESE: Alta concentração nos top 3 SKUs (84.8%) → risco de dependência.
- • Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.
+ • A conta mostra um sinal mais ligado a exposição e força dos anúncios líderes do que a um problema isolado de preço. O ponto central é entender se Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições continua puxando tráfego ou se começou a perder espaço.
+ • A dependência de poucos produtos deixa a operação frágil: quando o produto líder oscila, a leitura da conta inteira muda rápido. O trabalho do dia deve ser proteger os campeões e abrir espaço para um segundo vetor de venda.
+ • Antes de aumentar verba ou mudar campanha, vale confirmar se o comportamento se repete nas primeiras horas de hoje. Se repetir, é sinal de ajuste tático com Himmel; se normalizar, foi ruído de demanda/horário.
 
 ▸ *Budamix Oficial / Conta 2*
- • A conta perdeu patamar contra as duas janelas relevantes: pedidos -34.4% vs 30d e -38.6% vs 60d.
- • Contra 30d: pedidos -34.4%, GMV -37.4%, ticket -4.6%; contra 60d: pedidos -38.6%, GMV -35.8%.
- • Produto líder: Kit 5 Potes de Vidro Redondos Translúcidos – Armazenamento Essencial para Mantimentos e Ma...; segundo vetor: Conjunto 6 Canecas Tulipa em Porcelana 250ml Coloridas para Café e Chá; concentração top 3: 80.0%.
- • Hipótese mais provável: ⚠️ HIPÓTESE: Queda de pedidos com ticket preservado → possível problema de tráfego/exposição/ADS.
- • Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.
+ • A conta mostra um sinal mais ligado a exposição e força dos anúncios líderes do que a um problema isolado de preço. O ponto central é entender se Kit 5 Potes de Vidro Redondos Translúcidos – Armazenamento Essencial para Mantimentos e Ma... continua puxando tráfego ou se começou a perder espaço.
+ • A dependência de poucos produtos deixa a operação frágil: quando o produto líder oscila, a leitura da conta inteira muda rápido. O trabalho do dia deve ser proteger os campeões e abrir espaço para um segundo vetor de venda.
+ • Antes de aumentar verba ou mudar campanha, vale confirmar se o comportamento se repete nas primeiras horas de hoje. Se repetir, é sinal de ajuste tático com Himmel; se normalizar, foi ruído de demanda/horário.
 
 ▸ *Budamix Shop / Conta 3*
- • A conta perdeu patamar contra as duas janelas relevantes: pedidos -32.9% vs 30d e -44.4% vs 60d.
- • Contra 30d: pedidos -32.9%, GMV -32.9%, ticket -0.2%; contra 60d: pedidos -44.4%, GMV -43.3%.
- • Produto líder: Kit 6 Canecas Tulipa Porcelana 250ml Coloridas Café Chá Xícaras Conjunto Mesa Cozinha; segundo vetor: Kit 6 Canecas Porcelana 200ml Reta Lisa Coloridas Sortidas Café Chá Mesa Posta; concentração top 3: 86.4%.
- • Hipótese mais provável: ⚠️ HIPÓTESE: Queda de pedidos com ticket preservado → possível problema de tráfego/exposição/ADS.
- • Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.
+ • A conta mostra um sinal mais ligado a exposição e força dos anúncios líderes do que a um problema isolado de preço. O ponto central é entender se Kit 6 Canecas Tulipa Porcelana 250ml Coloridas Café Chá Xícaras Conjunto Mesa Cozinha continua puxando tráfego ou se começou a perder espaço.
+ • A dependência de poucos produtos deixa a operação frágil: quando o produto líder oscila, a leitura da conta inteira muda rápido. O trabalho do dia deve ser proteger os campeões e abrir espaço para um segundo vetor de venda.
+ • Antes de aumentar verba ou mudar campanha, vale confirmar se o comportamento se repete nas primeiras horas de hoje. Se repetir, é sinal de ajuste tático com Himmel; se normalizar, foi ruído de demanda/horário.
 
 🎯 __PRIORIDADES DO DIA__
 • Confirmar até 12h se Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.

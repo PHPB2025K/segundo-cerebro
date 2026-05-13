@@ -25,11 +25,9 @@ DAILY SALES REPORT — MERCADO LIVRE — 12/05/2026 (Ontem)
 
 🔍 __ANÁLISE DA CONTA__
 
-• A leitura macro é mista: pedidos -8.7% vs 30d e +12.6% vs 60d; tratar como variação a confirmar, não como virada estrutural.
-• Contra 30d: pedidos -8.7%, GMV +0.6%, ticket +10.3%; contra 60d: pedidos +12.6%, GMV +20.0%.
-• Produto líder: Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita; segundo vetor: Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita; concentração top 3: 55.3%.
-• Hipótese mais provável: ⚠️ HIPÓTESE: dia sem anomalia extrema, mas com sinal operacional que precisa confirmação por concentração, cancelamento ou comparação semanal.
-• Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.
+• O Mercado Livre não parece ter um problema estrutural claro; a leitura é mais de acomodação do ritmo recente do que perda real de tração. O canal segue saudável porque não depende de um único anúncio para sustentar o resultado.
+• O ponto de atenção é que o volume ficou mais fraco enquanto o valor por pedido segurou melhor. Isso normalmente indica mix mais qualificado ou menos vendas pequenas, não necessariamente queda de demanda.
+• A melhor decisão é observar se hoje o ritmo volta ao normal antes de mexer pesado em campanha. Se a queda continuar, aí sim a investigação deve ir para exposição/ranking dos produtos líderes.
 
 🎯 __PRIORIDADES DO DIA__
 • Confirmar até 12h se Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.

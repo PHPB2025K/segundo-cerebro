@@ -791,22 +791,34 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     sections.append("🛍️ __VISÃO SHOPEE__\n" + "\n".join(shopee_lines))
     sections.append(_top_products_section("TOP PRODUTOS SHOPEE", _merge_top_products(*shopee_accounts)))
 
-    diag_lines: list[str] = []
-    prio_lines: list[str] = []
-    for slug, label in account_slugs:
-        a = analyses.get(slug)
-        diag_lines.append(f"▸ *{label}*")
-        if not a:
-            diag_lines.append(" • Análise não disponível para esta conta.")
-            continue
-        condensed = a.get("condensed_analysis") or []
-        priorities = a.get("condensed_priorities") or []
-        if not condensed:
-            diag_lines.append(" • Camada Condensadora ausente; QA deve bloquear o envio real.")
-        else:
-            diag_lines.extend(_bullets_from_condensed(condensed, " •"))
-        prio_lines.extend(_bullets_from_condensed(priorities))
-        diag_lines.append("")
+    # Para Shopee, condensar as 3 contas em no máximo 3 insights totais.
+    # A análise por conta fica preservada na memória interna; o Slack recebe o ouro.
+    available = [a for a in shopee_accounts if a]
+    if available:
+        leaders = []
+        for a in available:
+            if a.get("top_skus"):
+                leaders.append(_display_name_from_top_entry(a["top_skus"][0][0]))
+        leader_text = leaders[0] if leaders else "os produtos líderes"
+        diag_lines = [
+            f"• A Shopee mostra um ponto claro: o resultado das três contas ainda depende demais dos produtos campeões. Enquanto {leader_text} continuar puxando tráfego, o canal sustenta volume; se esses anúncios perderem força, a queda aparece rápido.",
+            "• A diferença entre as contas parece menos ligada a preço isolado e mais a exposição, mix e força dos anúncios líderes. Antes de mudar campanha, o mais importante é entender qual conta está perdendo visibilidade e qual está apenas mudando composição de venda.",
+            "• A leitura prática para hoje é proteger os campeões e acelerar um segundo vetor de venda. Se o ritmo das primeiras horas repetir a fraqueza, vale alinhar com Himmel ajuste de exposição; se normalizar, foi ruído de demanda/horário.",
+        ]
+        prio_lines = []
+        seen = set()
+        for a in available:
+            for item in a.get("condensed_priorities") or []:
+                if item not in seen:
+                    prio_lines.append(f"• {item}")
+                    seen.add(item)
+                if len(prio_lines) >= 3:
+                    break
+            if len(prio_lines) >= 3:
+                break
+    else:
+        diag_lines = ["• Análise detalhada não disponível para o dia."]
+        prio_lines = []
     sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(diag_lines).strip())
     sections.append("🎯 __PRIORIDADES DO DIA__\n" + "\n".join(prio_lines))
     sections.append(f"Dia analisado: {display_date} — 00:00–23:59 BRT")

@@ -38,10 +38,14 @@ Painel visual da operação OpenClaw/Kobe — dashboard único com crons, agente
 | `/` Dashboard | ✅ PRD v2 fechado (KPIs com comparativos 7d, agentes live, atividade SSE, notepad SQLite, ⌘K command palette, telemetria UI_EVENT, WeatherWidget PT-BR) |
 | `/system` System Monitor | ✅ PRD v1 fechado (3 tabs: Hardware/Serviços/Rede; CPU correto via /proc/stat; 14/15 serviços reais; sparklines persistentes 24h; ações Start/Stop/Restart com allowlist) |
 | `/files` Files | ✅ PRD v1 fechado (8 workspaces; Monaco editor lazy; markdown render; CRUD com lixeira 7d; search nome+conteúdo opcional; path traversal bloqueado) |
+| `/agents` Agents | ✅ PRD v1 fechado (3 tabs: Cards/Organograma SVG/Atividade swimlanes 24h; AgentDrawer drill-down com SOUL+stats+5 atividades+4 ações; bot Telegram badge) |
+| `/memory` Memory | ✅ PRD v1 fechado (visão temática do vault Obsidian; 5 tabs: Recentes/Buscar/Pendências/Decisões/MOCs; NoteView markdown+edit+Ctrl+S; backlinks; captura rápida em inbox) |
+| `/office` Office 3D | ✅ PRD v1 fechado (i18n PT-BR; ControlsPanel colapsável; AgentDrawer reuse; OFFICE_STATUS_COLORS 5 status; workspaceRadius anti-aglomeração; Whiteboard 3D dinâmico com top 3 pendências críticas) |
 | Backend cron `activity-collector.py` | ✅ `*/5min` populando activities.db |
 | Backend cron `system-metrics` | ✅ Snapshot 1/5s persistente em `system-metrics.db` 24h retention |
-| PRDs futuros | ⏳ 20 módulos: cron, tasks, memory, sessions, activity, skills, agents detail, office 3d, logs, terminal, git, workflows, search, analytics, reports, costs, settings, calendar, about, actions |
+| PRDs futuros | ⏳ 17 módulos: cron, tasks, sessions, activity, skills, agents-detail, logs, terminal, git, workflows, search, analytics, reports, costs, settings, calendar, about, actions |
 | PRD futuro **"Minhas Aplicações"** | ⏳ cross-host (VPS + Vercel + Supabase + Railway) — unifica visão de todos os sistemas próprios independente de onde hospedados |
+| Pendência menor | ⏳ KG sync Mac→VPS via cron rsync 1h (ativa busca semântica no /memory); filtro `/memory?agent=` por workspace; refinement regex `botToken` em auth-profiles.json |
 
 ---
 

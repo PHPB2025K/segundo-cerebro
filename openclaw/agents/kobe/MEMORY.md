@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-11 23:30 BRT (consolidação diária)._
+_Último update: 2026-05-12 23:30 BRT (consolidação diária)._
 
 ---
 
@@ -134,7 +134,7 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (11/05/2026 23:30 BRT — consolidação diária)
+## Status do Sistema (12/05/2026 23:30 BRT — consolidação diária)
 
 ### 🚨 Crítico
 - **Estoque Budamix:** PR1+PR2+PR3a seguem no repo, mas produção ainda roda build rsync de 13/04; remediação continua pausada no `git fetch` por falta de credencial GitHub na VPS. Próxima decisão: Deploy Key SSH read-only (recomendado) vs PAT vs rsync.
@@ -143,13 +143,14 @@ skills/
 - **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
 
 ### ⚠️ Importante
-- **Canggu/Ana:** incidente 24/7 segue como regra crítica já registrada; em 08/05 houve novo alerta de resposta indevida com limitação de horário comercial/origin poll, mas a correção ficou bloqueada por falta de acesso confiável ao repo/projeto canônico na sessão atual. Pendente cleanup TS menor, correção manual da resposta ML antiga, feedback 👎, redirect www↔apex e resiliência restante.
+- **Canggu/Ana:** repo canônico `PHPB2025K/canguu` reconciliado após hotfix ML; guard determinístico antes do POST no ML ativo contra “entre em contato/fale conosco”. Pendente cleanup TS menor, correção manual da resposta ML antiga, feedback 👎, redirect www↔apex e resiliência restante.
 - **RH/Ponto Certo:** `ponto.budamix.com.br` ativo com SSL; WhatsApp RH proativo bloqueado indefinidamente até liberação explícita, inbound permitido.
 - **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2.
 - **Amazon Ads:** D+7 das rodadas 02/05 e 03/05 seguem na fila.
 - **Blog Budamix Pipeline v2:** em produção; resta inspeção visual humana do post de teste e cleanup.
 
 ### ✅ Operacional
+- **Daily Sales Report v2:** pipeline individual por funcionário em produção: análise profunda por conta, memória Trader diária/semanal/mensal, Slack DM 06:50 BRT, Granola/Himmel 20:37 BRT e Marketplace Rules Watch 06:23 BRT.
 - **Vault como SSoT** segue válido: OpenClaw aponta para `/root/segundo-cerebro`, sync Mac↔GitHub↔VPS funcionando.
 - **Social Studio Carrossel/PR2/Pivot 1** viraram referência histórica; o produto ativo agora é Reborn (publicador + métricas, sem IA).
 - **Canggu** tem 13/13 Edge Functions com auto-deploy validado; `process-message` v39 e `webhook-whatsapp` v31 já carregam o fix 24/7.
@@ -164,6 +165,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-12:** Daily Sales Report v2 virou a frente central do dia: Fases 1–8 implementadas (mapeamento por `shop_id`, memória em camadas do Trader, motor de análise profunda, Slack individual, wrapper/cron real, consolidações semanal/mensal, Granola/Himmel e Marketplace Rules Watch). Pedro rejeitou previews rasos e travou templates finais por plataforma com análise densa, nome comercial obrigatório e títulos Slack rich_text. Integração Granola foi criada via API Key e ajustada para sync diário 20:37 BRT. Shopee Fees Monitor ganhou política `OFICIAL_FIRST`. Planilha de avaliações Amazon foi gerada/corrigida. Mission Control retomou com domínio `mission.budamix.com.br`, visual Budamix e dashboard real. Amazon Ads Tulipa executou 7/7 bids, com pendência de log interno BidSpark.
 - **2026-05-11:** Dia com incidentes e rotinas novas: Daily Sales Report para equipe administrativa aprovado via Slack DM às 06:50 BRT; RH recebeu liberação específica para resolver o lote de ponto 04/05–09/05 e ganhou hardening `@lid` no inbound; Canggu/Ana teve regressão grave no ML “entre em contato conosco” corrigida em produção e no repo canônico `PHPB2025K/canguu` (`eb76d3f`); Amazon Ads D+7 foi retomado com grupos críticos identificados; Budamix Central passou a filtrar pedidos Amazon de remoção FBA como não-venda.
 - **2026-05-09:** Dia enxuto e jurídico/operacional: Pedro formalizou o tom padrão para mensagens escritas em nome dele (profissional, objetivo, sem cordialidade excessiva); Guarani avançou com e-mail autorizado e enviado à Priscilla reforçando que R$ 7.500,00 à vista é proposta global/all-in para quitação integral e definitiva; Daily Sales Report do Trader teve primeira execução registrada como OK e prompt endurecido para não exibir produto/SKU não identificado no Top Produtos.
 - **2026-05-08:** Dia mais de consolidação do que construção: Daily Sales Report — Trader aprovado e criado para rodar diariamente às 06:30 BRT no tópico Marketplaces, consolidando ML, Shopee 3 contas, Amazon BR e Bling Matriz como Atacado - GB Matriz. Gestão de Funcionários rodou leitura semanal via Slack com atas formais de Lucas e Leonardo e pontos operacionais de Yasmin. Canggu/Ana voltou a aparecer como risco P0 por resposta de horário comercial/origin poll, sem falso positivo de correção por ausência de acesso ao repo canônico na sessão atual.
@@ -193,7 +195,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) validar primeira execução automática do Daily Sales Slack 12/05 06:50 BRT, (2) acompanhar lote RH aprovado e confirmar inbound real pós-`@lid`, (3) continuar Amazon Ads pelos grupos críticos Tulipa/Suporte/Redondos, (4) manter Canggu ML monitorado contra frases proibidas e repo canônico acessível, (5) retomar deploy Estoque Budamix com Deploy Key SSH._
+_Próximas ações: (1) validar primeira execução automática do wrapper Daily Sales v2, (2) acompanhar lote RH aprovado e confirmar inbound real pós-`@lid`, (3) corrigir auditoria interna do BidSpark/Amazon Ads antes da próxima execução manual, (4) manter Canggu ML monitorado contra frases proibidas e repo canônico acessível, (5) retomar deploy Estoque Budamix com Deploy Key SSH._
 
 ---
 ## Contexto

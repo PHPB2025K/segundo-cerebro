@@ -10,9 +10,13 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-05-10_
+_Atualizado: 2026-05-12_
 
 ## 🔴 Prioridade Alta
+
+### Mission Control
+- [ ] Implementar PRDs por módulo após dashboard base fechado: Cron, Tasks, Sessions, Skills, Agents detail, Office 3D, Activity, Analytics, Reports, System, Git, Files, Memory, Search, Logs, Terminal.
+- [ ] Criar/configurar `data/configured-skills.json` para módulo Skills deixar de aparecer vazio.
 
 ### Estoque Budamix
 - [ ] Retomar deploy em produção: VPS sem credencial GitHub, `git fetch` falhou 403. Recomendação: Deploy Key SSH read-only; depois reset/build/restart/smoke com backup e hash `.env`.

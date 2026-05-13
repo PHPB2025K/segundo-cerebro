@@ -91,3 +91,9 @@ _Última revisão: 2026-05-01_
 ## Regra Universal — Horários em Brasília (2026-04-01)
 TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, nunca GMT. Formato: "14h" ou "14:03 BRT". Converter silenciosamente antes de exibir. Vale para relatórios, alertas, logs, timestamps — qualquer comunicação.
 
+## Granola/Himmel como apoio ADS (2026-05-12)
+
+| Decisão | Data | Origem |
+|---|---|---|
+| Reuniões Granola/Himmel classificadas como ADS Shopee/ML devem alimentar Spark como contexto qualitativo, mas nunca virar conclusão causal sem validação por dados de campanha. | 2026-05-12 | Pedro/Kobe |
+| Amazon Ads continua sendo gestão do Pedro; contexto Himmel não deve ser aplicado à Amazon. | 2026-05-12 | Pedro/Kobe |

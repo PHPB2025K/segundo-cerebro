@@ -107,3 +107,9 @@ _Lições TÁTICAS removidas após expiração. Mantidas aqui apenas para refer�
 ---
 
 _Novas lições são adicionadas conforme o Spark opera. Cada erro é uma oportunidade de melhorar o sistema._
+
+### 2026-05-12 — Contexto de reunião ADS é hipótese, não métrica [TÁTICA]
+**Contexto:** Granola passou a ingerir reuniões Himmel/Shopee e distribuir contexto para contas e agentes.
+**Lição:** Usar reuniões para explicar hipóteses e próximos checks, mas validar com métricas reais antes de recomendar alteração de budget/bid.
+**Ação concreta:** Em análises Spark, separar “sinal qualitativo Himmel” de “evidência quantitativa Ads”.
+**Expira:** 2026-06-11

@@ -65,3 +65,15 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 - Rodar diariamente às **06:30 BRT** com entrega no Telegram Kobe Hub, tópico Marketplaces.
 - Consolidar vendas/pedidos do dia anterior completo em BRT para Mercado Livre, Shopee 3 contas, Amazon BR e Bling Matriz como **Atacado - GB Matriz**.
 - Não misturar settlement, extrato financeiro ou DRE com venda gerada; se fonte falhar, gerar parcial e marcar indisponibilidade sem estimar.
+
+### Daily Sales Report v2 — individual por funcionário (2026-05-12)
+- Trader é dono operacional do Daily Sales v2: análise profunda por conta, memória diária/semanal/mensal, geração Slack e consolidações.
+- Report de funcionários considera somente marketplaces; Atacado GB Matriz/Bling fica fora.
+- `v_daily_sales` é fonte do resumo geral; `orders` por `shop_id` é fonte granular para Shopee 3 contas.
+- Produto visível deve ser nome comercial, nunca SKU cru.
+- Templates finais por plataforma aprovados por Pedro em 12/05 são obrigatórios.
+
+### Granola/Himmel como contexto qualitativo (2026-05-12)
+- Reuniões Shopee consolidadas podem alimentar as 3 contas Shopee quando o conteúdo for geral.
+- Contexto de ADS/Himmel é hipótese causal a validar, nunca culpa/fato isolado.
+- Nunca copiar transcrição integral; registrar apenas pontos cabíveis por conta.

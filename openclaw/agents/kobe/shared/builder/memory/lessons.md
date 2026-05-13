@@ -78,3 +78,13 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 **Contexto:** C1 da Fase C regenerou `src/integrations/supabase/types.ts` porque `social_accounts` e `social_post_metrics` não estavam nos types desde a Fase A.
 **Lição:** Após migrations Supabase, regenerar types antes de avaliar erros TS do frontend; `tsc --noEmit` pode passar enquanto a IDE acusa `.from(...)` por type union stale.
 **Expira:** 2026-06-06
+
+### 2026-05-12 — Script funcional não basta quando a entrega é análise de negócio [TÁTICA]
+**Contexto:** Fase 4 do Daily Sales v2 gerou previews tecnicamente corretos, mas Pedro rejeitou por diagnósticos e prioridades rasos.
+**Lição:** Em automações de relatório, o critério de aceite deve incluir profundidade analítica, não só geração/envio/QA sintático.
+**Expira:** 2026-06-11
+
+### 2026-05-12 — Workspace isolado pode simplificar índice existente [TÁTICA]
+**Contexto:** Na Fase 2, Builder criou versões simplificadas demais de índices/memórias; Kobe precisou preservar o conteúdo original e incorporar apenas adições boas.
+**Lição:** Ao tocar arquivos core de memória/índice, comparar com conteúdo atual do repo principal antes de substituir.
+**Expira:** 2026-06-11

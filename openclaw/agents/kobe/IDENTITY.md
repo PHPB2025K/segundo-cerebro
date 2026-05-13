@@ -108,6 +108,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 08/05/2026 | Daily Sales Report — Trader aprovado/criado para 06:30 BRT no tópico Marketplaces; Gestão de Funcionários executou primeira consolidação semanal via Slack; Canggu/Ana voltou a acender alerta 24/7/origin poll, tratado sem falso positivo por falta de acesso ao repo canônico na sessão atual. |
 | 09/05/2026 | Pedro formalizou tom padrão para mensagens escritas em nome dele; Guarani teve resposta all-in de R$7,5k enviada à Priscilla; Daily Sales Report do Trader rodou como rotina e teve prompt endurecido contra “produto/SKU não identificado”. |
 | 11/05/2026 | Daily Sales Report para equipe administrativa aprovado via Slack DM; RH ganhou autorização específica para lote de ponto e hardening inbound `@lid`; Canggu/Ana corrigiu regressão ML “entre em contato conosco” em produção + repo canônico; Amazon Ads D+7 retomado; Budamix Central passou a filtrar pedidos Amazon FBA removal como não-venda. |
+| 12/05/2026 | Daily Sales Report v2 virou pipeline completo em produção: análise profunda por conta, memória em camadas do Trader, Slack individual para Lucas/Yasmin/Leonardo, Granola/Himmel, Rules Watch e consolidações semanais/mensais. Mission Control retomado com domínio `mission.budamix.com.br`, visual Budamix e dashboard real. Amazon avaliações em XLSX corrigida e Amazon Ads Tulipa executado 7/7 com pendência de auditoria interna. |
 
 ---
 

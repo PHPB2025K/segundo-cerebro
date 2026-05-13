@@ -12,9 +12,9 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-11 23:30 BRT — consolidação diária_
+_Atualizado: 2026-05-12 23:30 BRT — consolidação diária_
 
-## 🔥 PRIORIDADE — Amanhã cedo (12/05/2026)
+## 🔥 PRIORIDADE — Operação imediata
 
 - [ ] **Meta Business — finalizar configuração da Segunda Venda**: Pedro precisa configurar no Meta Business o número de WhatsApp que será usado com a empresa **Segunda Venda**. Onboarding em andamento; fazer o quanto antes amanhã pela manhã para dar sequência.
 - [ ] **Quebra Cabeça de Animais — ajustar arquivo do produto MDF**: Pedro precisa finalizar/ajustar o arquivo do produto **Quebra Cabeça de Animais**, produto novo em MDF.
@@ -36,7 +36,8 @@ _Atualizado: 2026-05-11 23:30 BRT — consolidação diária_
 
 ## 🚨 Amazon Ads / BidSpark
 
-- [ ] **Amazon Ads — analisar grupo crítico Canecas Porcelana Tulipa**: rodada D+7 mostrou piora forte (ACoS 18,8% → 42,6%). Próximo passo recomendado: diagnóstico detalhado antes de novos cortes/escala.
+- [ ] **Amazon Ads/BidSpark — corrigir auditoria interna de ações**: execução Tulipa 12/05 deu 7/7 success na API, mas `amazon_ads_actions_log` falhou por FK/constraints (`round_id`/`entity_id`). Corrigir fluxo/schema antes da próxima rodada manual para não perder trilha oficial no BidSpark.
+
 - [ ] **Amazon Ads — analisar grupo crítico Suporte Controle Gamer**: D+7 mostrou piora (ACoS 18,8% → 28,9%), com Auto/Descoberta voltando a gastar mal.
 - [ ] **Amazon Ads — analisar grupo crítico Potes Redondos Plástico**: D+7 mostrou piora (ACoS 13,3% → 32,3%), provável escala forte demais principalmente Exact.
 - [ ] **Amazon Ads — ajuste fino Jarra Medidora e Potes Herméticos Vidro**: Jarra ainda dentro da meta mas piorou; Potes Vidro melhorou eficiência mas ainda acima da meta.
@@ -71,7 +72,8 @@ _Atualizado: 2026-05-11 23:30 BRT — consolidação diária_
 
 ## 🚨 Gestão / Jurídico / Contratos
 
-- [ ] **Daily Sales Report — Slack Funcionários — monitorar primeira execução automática em 12/05 06:50 BRT**: validar envio via Slack DM para Yasmin (`U09AX9SETDM`), Lucas e Leonardo, formato aprovado e Top Produtos consolidado por SKU. Se OK, remover da fila ativa.
+- [ ] **Daily Sales Report v2 — monitorar primeira execução real do novo wrapper**: cron 06:50 BRT agora usa `send-daily-sales-v2-slack-funcionarios.py`, gera análise profunda por conta e envia Slack DM individual. Validar próxima execução automática com Lucas/Yasmin/Leonardo e ausência de SKU cru/frases rasas.
+
 - [ ] **Gestão de Funcionários — rotina semanal via Slack**: rotina executada manualmente em 08/05 com atas de Lucas (05/05) e Leonardo (04/05); Yasmin teve pontos operacionais sem ata formal. Se virar padrão recorrente, criar cron de sexta no fim do dia para puxar atas `#ata-reuniao Nome AAAA-MM-DD`, consolidar por Yasmin/Lucas/Leonardo e avisar Pedro com resumo executivo.
 - [ ] **Adapta — aguardar retorno sobre cobranças recorrentes**: Pedro recebeu mensagem pronta em 07/05 para enviar como PEDRO HENRIQUE PERON BROGLIO. Se a empresa negar cancelamento/estorno, próxima frente é contestação pelo banco/cartão usando descritor `TAR PLANO ADAPT` e valores R$ 497,00/R$ 126,75.
 - [ ] **Guarani Sistemas — aguardar retorno da diretoria sobre proposta global de R$ 7.500,00**: em 09/05 19:52 BRT, Pedro autorizou e Kobe enviou resposta na thread da Priscilla esclarecendo que **R$ 7.500,00 à vista = quitação integral e definitiva de toda a relação contratual**, incluindo contratos, aditivos, boletos, NFs, mensalidades, implantação, treinamento, aviso prévio e quaisquer valores futuros. Argumentos reforçados: congelamento formal alinhado com Junior em 01/10/2025, contratos principais já passaram dos 12 meses, ausência de multa rescisória reconhecida pela Guarani e inexistência de uso operacional regular. Aguardar retorno/autorização da diretoria e, se aprovado, preparar minuta de distrato com quitação recíproca.
@@ -103,6 +105,8 @@ _Atualizado: 2026-05-11 23:30 BRT — consolidação diária_
 
 ## 🚨 Infraestrutura e autenticações degradadas
 
+- [ ] **Mission Control — PRDs dos módulos internos**: domínio `mission.budamix.com.br` e dashboard base fechados em 12/05. Próximo: PRDs/implementação por módulo (Cron, Tasks, Sessions, Skills, Agents detail, Office 3D, Activity, Analytics, Reports, System, Git, Files, Memory, Search, Logs, Terminal), configurar `data/configured-skills.json` e refinar detecção de botToken.
+
 - [ ] **OpenClaw fallback — adicionar Anthropic como 3º fallback**: `anthropic:default` está configurado, mas fora de `agents.defaults.model.fallbacks`; após upgrade para ChatGPT Pro não é urgente, mas evita queda total se o mesmo auth profile OpenAI estourar em pico.
 - [ ] **Bling Token Refresh — Filial com erro 403/inativa no Bling**: heartbeat de 08/05 10:01 BRT confirmou Matriz OK e Filial com `403 — empresa vinculada ao token está inativa`. Impacto provável: refresh/conexão da Filial pode falhar até corrigir empresa/token no Bling. Verificar antes de depender de emissão fiscal pela Filial.
 - [ ] **Security Audit / Firewall VPS** — auditoria de 10/05 06:01 BRT executou e substituiu a pendência antiga de timeout. Achados: `ufw` não instalado/disponível; Fail2ban OK (`sshd`, maxretry=5); SSH sem senha; portas públicas além de 22/80/443 incluem 3000, 3050, 3091, 8084 e 8090. Próximo passo: definir política de firewall/Traefik sem risco de lockout antes de qualquer mudança.
@@ -128,11 +132,11 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **SimulImport — validar cenários reais** — Pedro testar com importações dele.
 - [ ] **Canggu/Ana B2/B5/B6** — blocos não urgentes de observabilidade, governança e cleanup seguem aguardando repriorização.
 - [ ] **Fisco** — product-packaging.json, limpeza de produtos origem=0, CC-e/NFs antigas e validações Bling Filial seguem abertas.
-- [ ] **Mission Control DNS/customização**, **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
+- [ ] **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 - [ ] **Ads spend março** — levantar gasto real com publicidade por plataforma (ML, Amazon via integração, Shopee manual). Sem movimentação material >14 dias; manter como backlog financeiro antes de refazer março.
 - [ ] **Refazer fechamento de março** — gerar consolidado novo (DRE operacional + planilha + HTML) com os 5 extratos validados completos + ads spend correto. Sem movimentação material >14 dias.
 - [ ] **Mapeamento semanal DRE março** — separar março por semanas (01-07, 08-14, 15-21, 22-31) nas linhas da DRE. Sem movimentação material >14 dias.
 
 
 ---
-_Última organização: 2026-05-10 23:30 BRT._
+_Última organização: 2026-05-12 23:30 BRT._

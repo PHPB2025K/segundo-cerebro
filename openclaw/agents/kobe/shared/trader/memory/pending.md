@@ -1,8 +1,13 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-10_
+_Atualizado: 2026-05-12_
 
 ## 🔴 Prioridade Alta
+
+### Daily Sales Report v2
+- [ ] Validar primeira execução automática do wrapper v2 às 06:50 BRT com Slack DM para Lucas/Yasmin/Leonardo.
+- [ ] Monitorar se análises diárias continuam salvando `daily/YYYY-MM-DD.md` para as 5 contas antes do envio.
+- [ ] Revisar nomes comerciais de SKUs menores ainda inferidos no `DISPLAY_NAMES` do gerador Slack.
 
 ### DRE Abril
 - [ ] DRE abril — U15 Descontos Concedidos: ML validado em R$ 5.061,14; Amazon fechar por item-promotion sem frete; Shopee reclassificar por suspeita de seller_discount inflado.

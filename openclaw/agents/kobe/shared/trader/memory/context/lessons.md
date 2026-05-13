@@ -57,3 +57,10 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 **Contexto:** O cron das 06h BRT do relatório mensal marcou `ok`, mas não fechou os 3 entregáveis finais; a etapa Shopee travou por caminho errado e a execução não saiu como Trader direto.
 **Lição:** Antes de anunciar relatório mensal como concluído, validar artefatos finais, agente executor real e entrega no tópico do Pedro. Scheduler `ok` sozinho não basta.
 **Expira:** 2026-06-03
+
+### [ESTRATÉGICA] Daily Sales v2 exige memória por conta antes do Slack (2026-05-12)
+**Lição:** Mensagem individual curta só fica boa quando existe análise interna profunda por conta, com histórico, hipótese, risco e ação. Não enviar relatório que apenas repete métricas do dia.
+
+### [TÁTICA] Marketplace Rules Watch vencido é alerta de contexto, não mudança de regra (2026-05-12)
+**Lição:** Se uma skill/regra de taxas estiver vencida, marcar como alerta interno e revisar fonte oficial; não assumir mudança de comissão/frete sem evidência oficial.
+**Expira:** 2026-06-11

@@ -269,3 +269,32 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Shopee mantém análise separada por conta, mas cada subitem é interpretação — sem cabeçalho com pedidos/GMV/ticket, sem linhas secas de comparativos, produto principal, concentração ou cancelamentos.
 - Amazon não exibe Fulfillment FBA na visão porque a operação é 100% FBA por padrão.
 - Produto visível deve ser sempre nome comercial; nunca SKU cru.
+
+## 2026-05-12 — Daily Sales Report v2 / memória, Slack e crons
+
+- Daily Sales Report individual para funcionários deve considerar somente marketplaces; Atacado GB Matriz/Bling fica fora das mensagens de Yasmin, Lucas e Leonardo.
+- Trader é dono operacional do ciclo v2: análise profunda por conta, memória diária/semanal/mensal, geração de Slack, envio e consolidações. Kobe faz governança/QA; Spark apoia ADS quando necessário; Builder implementa scripts/automações.
+- A fonte para resumo geral/Slack é `v_daily_sales`; a fonte granular por conta/SKU/horário é `orders`, separando Shopee por `shop_id`.
+- Mensagens individuais devem usar os templates travados de 12/05; dados crus ficam fora de `🔍 ANÁLISE DA CONTA`, que deve trazer raciocínio denso, conclusões e insights baseados na análise em background/memória do Trader.
+- Produto visível no Slack deve ser sempre nome comercial, nunca SKU cru.
+- Consolidações semanal e mensal do Trader ficam ativas em cron; tese semanal/mensal deve marcar explicitamente quando a amostra ainda estiver em formação.
+
+## 2026-05-12 — Granola / Himmel como contexto qualitativo
+
+- Granola deve ser integrado via API Key para automação em servidor/cron; MCP fica reservado para uso interativo/desktop.
+- Transcrições completas nunca devem ser copiadas para memória; salvar apenas pontos cabíveis, decisões, hipóteses, responsáveis, prazos e validações.
+- Reuniões Shopee consolidadas da Himmel devem alimentar as 3 contas Shopee quando o conteúdo for geral, separando particularidades por conta quando possível.
+- Cron final do Granola Sync: diário às **20:37 BRT**, classificando reunião pelo conteúdo, não apenas pelo título.
+- Contexto Himmel/Granola é hipótese causal a validar com dados, nunca culpa/fato isolado.
+
+## 2026-05-12 — Daily Sales v2 / Marketplace Rules Watch
+
+- Marketplace Rules Watch deve rodar antes dos Daily Sales Reports e alimentar o pacote de contexto do Trader.
+- Revisão vencida de skill/regra/taxa é alerta interno de qualidade de contexto, não mudança confirmada de regra comercial.
+- Shopee Fees Monitor deve seguir política `OFICIAL_FIRST`: fontes oficiais Shopee/Seller Center/comunicados > evidência operacional em extrato/renda estimada > fontes secundárias como cross-check.
+
+## 2026-05-12 — Mission Control
+
+- `mission.budamix.com.br` passa a ser o domínio oficial do Mission Control.
+- Mission Control deve usar identidade visual Budamix/GB, PT-BR, agentes reais e dados reais do vault; mocks/template TenacitOS não podem permanecer em áreas operacionais visíveis.
+- Service worker do Mission Control deve ser network-first para HTML/navegação, evitando cache antigo ocultar mudanças visuais.

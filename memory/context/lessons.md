@@ -701,3 +701,18 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 **Contexto:** Numa sessão de teste/checagem, a injeção automática de bootstrap dominou a abertura da conversa e a pergunta curta “deu certo?” foi interpretada primeiro como validação do bootstrap, quando na verdade Pedro se referia às atas da semana do Slack.
 **Lição:** Quando houver `bootstrap pending` ou outra mecânica interna na abertura, cumprir o protocolo silenciosamente, mas priorizar a intenção prática do Pedro assim que ela aparecer. Follow-ups curtos como “deu certo?” podem apontar para a entrega anterior de negócio, não para o estado técnico do bootstrap.
 **Expira:** 2026-06-11
+
+### [ESTRATÉGICA] Daily Sales Report: qualidade vem da análise persistente, não do template bonito (2026-05-12)
+**Contexto:** Pedro rejeitou previews do Daily Sales v2 porque listavam métricas e prioridades óbvias, sem profundidade temporal/retroativa nem uso real da memória.
+**Lição:** Relatório recorrente para equipe só é útil se a análise em background for mais profunda que a mensagem enviada. Templates, emojis e seções fixas não substituem diagnóstico com evidência, hipótese, risco, ação e critério de acompanhamento.
+**Ação:** Bloquear previews/envios rasos; gerar análise interna por conta antes do Slack e usar memória diária/semanal/mensal do Trader como fonte de raciocínio.
+
+### [ESTRATÉGICA] Reunião/transcrição deve ser classificada pelo conteúdo e roteada por conta/agente (2026-05-12)
+**Contexto:** A integração Granola inicialmente puxava nota global, mas Daily Sales v2 precisava distribuir reuniões Himmel/Shopee para as três contas e manter Mercado Livre limpo quando o conteúdo não se aplicava.
+**Lição:** Em ingestão de reuniões, título ajuda mas não é fonte suficiente. Classificar pelo conteúdo/resumo, salvar apenas contexto operacional, e rotear para agente/projeto/conta certa evita contaminação da memória analítica.
+**Ação:** Granola Sync diário às 20:37 BRT com classificação por conteúdo, sem transcrição integral, e contexto como hipótese causal a validar.
+
+### [TÁTICA] Amazon Ads: execução sem log interno íntegro perde auditoria mesmo quando API dá success (2026-05-12)
+**Contexto:** Pacote de bids de Canecas Porcelana Tulipa executou 7/7 com sucesso na Amazon Ads API, mas o log interno `amazon_ads_actions_log` falhou por FK/constraints do schema.
+**Lição:** Em ações que mexem com dinheiro, sucesso da API externa não basta; a auditoria interna precisa registrar round, entidade, ação e resultado. Se o schema impedir log, corrigir antes da próxima rodada manual.
+**Expira:** 2026-06-11

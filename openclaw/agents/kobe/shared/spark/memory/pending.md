@@ -1,11 +1,12 @@
 # Pendências — Spark
 
-_Atualizado: 2026-05-10_
+_Atualizado: 2026-05-12_
 
 ## 🔴 Prioridade Alta
 
 ### Amazon Ads — Rodada 02/05/2026
-- [ ] Medir D+7 dos grupos executados em 02/05: Potes Herméticos Vidro, Jogo Canequinhas Café, Potes Herméticos Tampa Bambu, Canecas Canelada, Canecas Porcelana Tulipa, Kit Xícaras Porcelana Paris, Suporte Controle Gamer, Jarra Medidora e Potes Redondos Plástico.
+- [ ] Amazon Ads/BidSpark — corrigir action log Tulipa: API executou 7/7, mas `amazon_ads_actions_log` falhou por schema/constraints.
+- [ ] Medir D+7 dos grupos executados em 02/05: Kit Xícaras Porcelana Paris, Suporte Controle Gamer, Jarra Medidora e Potes Redondos Plástico.
 - [ ] Medir D+7 dos experimentos 03/05: Kits Microfibra Carro e Abraçadeiras Nylon (tração, entrega, Buy Box e estoque FBA).
 - [ ] Potes Herméticos Vidro — validar qual ASIN recebe tráfego de `pote hermetico vidro` e investigar preço/Buy Box/imagem/título/variação.
 - [ ] Revisar logs/action_type da rodada: separar escala Exact, Broad/Alcance, Auto e Product Targeting.

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Envia o Resumo de Vendas Diário simplificado para o grupo WhatsApp dos sócios.
 
-Fonte canônica marketplaces: Budamix Central / Supabase `v_daily_sales`.
+Fonte canônica marketplaces: Budamix Central / Supabase `orders` agregado em
+janela BRT (00:00–23:59 America/Sao_Paulo), excluindo cancelados.
 Envio: WhatsApp próprio do Kobe via wrapper central `send-whatsapp.py`.
 """
 
@@ -15,6 +16,8 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
+from supabase import create_client
 
 BRT = timezone(timedelta(hours=-3))
 CENTRAL_ENV = Path("/var/www/budamix-central/.env")
@@ -122,24 +125,59 @@ def fetch_bling_revenue(day: str) -> tuple[float | None, int | None]:
         return None, None
 
 
+def brt_window_iso(day: str) -> tuple[str, str]:
+    dt = datetime.strptime(day, "%Y-%m-%d").replace(tzinfo=BRT)
+    return dt.astimezone(timezone.utc).isoformat(), (dt + timedelta(days=1)).astimezone(timezone.utc).isoformat()
+
+
+def fetch_marketplace_sales_brt(supabase_url: str, service_key: str, day: str) -> dict[str, dict]:
+    """Agrega orders diretamente em BRT para evitar bug UTC em reports."""
+    sb = create_client(supabase_url, service_key)
+    start, end = brt_window_iso(day)
+    rows: list[dict] = []
+    offset = 0
+    page_size = 1000
+    while True:
+        resp = (
+            sb.table("orders")
+            .select("platform,status,total_amount")
+            .gte("order_date", start)
+            .lt("order_date", end)
+            .range(offset, offset + page_size - 1)
+            .execute()
+        )
+        page = resp.data or []
+        rows.extend(page)
+        if len(page) < page_size:
+            break
+        offset += page_size
+
+    grouped: dict[str, dict] = {}
+    for row in rows:
+        if "cancel" in (row.get("status") or "").lower():
+            continue
+        platform = row.get("platform")
+        if platform not in PLATFORM_LABELS:
+            continue
+        bucket = grouped.setdefault(platform, {"platform": platform, "order_count": 0, "total_revenue": 0.0, "avg_order_value": 0.0})
+        bucket["order_count"] += 1
+        bucket["total_revenue"] += float(row.get("total_amount") or 0)
+
+    for bucket in grouped.values():
+        bucket["total_revenue"] = round(bucket["total_revenue"], 2)
+        bucket["avg_order_value"] = round(bucket["total_revenue"] / bucket["order_count"], 2) if bucket["order_count"] else 0
+    return grouped
+
+
 def build_message(day: str) -> str:
     env = load_env(CENTRAL_ENV)
     supabase_url = env["NEXT_PUBLIC_SUPABASE_URL"]
     service_key = env["SUPABASE_SERVICE_ROLE_KEY"]
 
-    rows = supabase_get(
-        supabase_url,
-        service_key,
-        "v_daily_sales",
-        {
-            "sale_date": f"eq.{day}",
-            "select": "platform,order_count,total_revenue,avg_order_value",
-        },
-    )
-    by_platform = {row["platform"]: row for row in rows}
+    by_platform = fetch_marketplace_sales_brt(supabase_url, service_key, day)
 
-    market_revenue = sum(float(row.get("total_revenue") or 0) for row in rows)
-    market_orders = sum(int(row.get("order_count") or 0) for row in rows)
+    market_revenue = sum(float(row.get("total_revenue") or 0) for row in by_platform.values())
+    market_orders = sum(int(row.get("order_count") or 0) for row in by_platform.values())
 
     bling_revenue, bling_orders = fetch_bling_revenue(day)
     total_revenue = market_revenue + (bling_revenue or 0)

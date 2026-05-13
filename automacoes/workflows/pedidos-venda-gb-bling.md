@@ -2,7 +2,7 @@
 title: "Workflow N8N — Pedidos de Venda GB → Bling Matriz"
 type: workflow
 created: 2026-05-13
-status: draft-inactive
+status: ready-dry-run-validated
 tags:
   - n8n
   - whatsapp
@@ -17,11 +17,11 @@ tags:
 
 - **N8N workflow:** `GB — Pedidos de Venda WhatsApp → Bling Matriz (Fisco)`
 - **Workflow ID:** `T7WT4vGaRuWd0N0Q`
-- **Status no N8N:** **ativo em produção** para teste controlado.
+- **Status no N8N:** workflow configurado, mas **inativo pela API em 13/05 19:03 BRT**. Não reativar sem decisão explícita, porque pode criar pedidos reais no Bling.
 - **Webhook test:** `https://trottingtuna-n8n.cloudfy.live/webhook-test/pedidos-venda-gb`
 - **Webhook produção:** `https://trottingtuna-n8n.cloudfy.live/webhook/pedidos-venda-gb`
-- **Evolution WhatsApp Kobe:** webhook configurado para `MESSAGES_UPSERT` no endpoint de produção do N8N.
-- **Fisco/Bling:** rota ativa no Mission Control em `/api/fisco/pedidos-venda-gb`, com segredo compartilhado, LLM opcional, mapa de aliases SKU, validação determinística, idempotência persistente e dry-run validado.
+- **Evolution WhatsApp Kobe:** webhook já foi configurado para `MESSAGES_UPSERT`; precisa novo teste real depois da ativação.
+- **Fisco/Bling:** rota ativa no Mission Control em `/api/fisco/pedidos-venda-gb`, com segredo compartilhado, LLM configurado, mapa de aliases SKU, validação determinística, idempotência persistente e dry-run validado.
 
 ## Motivo de ficar inativo na primeira criação
 
@@ -38,34 +38,20 @@ O fluxo já está publicado no N8N, mas deve permanecer inativo até fechar a po
    - Filtra intenção por grupo e estrutura mínima de pedido.
 
 3. `Parse + Validação Fisco`
-   - Extrai campos do pedido por linhas `campo: valor` e regex fallback.
-   - Campos esperados:
-     - número do pedido GB
-     - estoque
-     - cliente novo
-     - tipo
-     - nome da empresa
-     - CNPJ
-     - contato
-     - produto/SKU
-     - quantidade
-     - preço de venda
-     - método de pagamento
-     - vendedor
-   - Bloqueia se faltar CNPJ, produto/SKU, quantidade, preço, forma de pagamento ou número do pedido.
-   - Bloqueia desconto/bonificação sem justificativa documentada.
+   - **Não é autoridade fiscal nem de SKU.** Só identifica grupo/intenção e calcula chave temporária.
+   - A interpretação final da mensagem fica na rota Fisco/LLM.
 
 4. `Idempotência message_id + pedido`
-   - Usa `messageId:numero_pedido_gb` como chave.
-   - Reserva a chave em static data do workflow para evitar duplicidade.
+   - Não reserva chave no N8N.
+   - A idempotência persistente final fica na rota Fisco, somente após validação/criação.
 
 5. `Payload para Fisco`
    - Monta payload canônico para o Fisco:
-     - idempotency key
+     - idempotency key temporária
      - origem
      - IDs da mensagem/grupo/remetente
      - texto bruto
-     - objeto `pedido` parseado.
+     - `pedido: {}` para o Fisco interpretar sem viés do parser N8N.
 
 6. `Criar Pedido no Bling Matriz via Fisco`
    - HTTP POST para endpoint real do Fisco: `https://mission.budamix.com.br/api/fisco/pedidos-venda-gb`.
@@ -87,10 +73,11 @@ O fluxo já está publicado no N8N, mas deve permanecer inativo até fechar a po
 
 ## Próximos passos
 
-1. Ampliar `sku-aliases.json` com os principais produtos/nomes coloquiais usados pelo Pedro Fernandes.
-2. Testar 3–5 mensagens reais novas do grupo `Pedidos de Venda - GB`.
-3. Ajustar resposta no grupo para casos bloqueados/ambíguos.
-4. Só liberar criação automática contínua depois de alguns pedidos controlados sem erro.
+1. Pedro decidir se o pedido **953** deve ser criado de verdade no Bling.
+2. Se sim, ativar o workflow no N8N e rodar teste real controlado sem `dry_run`.
+3. Ampliar `sku-aliases.json` com os principais produtos/nomes coloquiais usados pelo Pedro Fernandes.
+4. Ajustar resposta no grupo para bloqueios vindos do Fisco (`blocked_llm_review`, `blocked_validation`, cliente/produto não encontrado).
+5. Só liberar criação automática contínua depois de alguns pedidos controlados sem erro.
 
 ## Validação de 13/05/2026
 
@@ -100,7 +87,7 @@ O fluxo já está publicado no N8N, mas deve permanecer inativo até fechar a po
   - descrição `Caixa de fita 300` → SKU `CXFIT300M` via LLM + alias map;
   - CNPJ `55.773.184/0001-14` encontrou contato no Bling Matriz;
   - SKU `CXFIT300M` encontrou produto no Bling Matriz;
-  - payload de pedido montado com quantidade 8 e preço unitário R$ 232,90;
+  - payload de pedido montado com quantidade 1 e preço unitário R$ 232,90;
   - PDF dry-run gerado.
 - Pedido real **não foi criado** nesse teste; validação foi `dry_run_ok`.
 

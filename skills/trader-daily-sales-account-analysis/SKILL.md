@@ -67,6 +67,8 @@ A Camada Condensadora deve entregar:
 - por que importa;
 - como confirmar/refutar amanhã.
 
+Para o Slack, `🔍 ANÁLISE DA CONTA` deve ser o **ouro condensado**: no máximo 3 insights curtos, fáceis de entender, sem despejar métricas ou comparativos numéricos. Os números ficam na análise interna; o Slack recebe apenas a interpretação inteligente do que eles significam. Para Shopee, os 3 insights devem consolidar as 3 contas, não repetir 3 insights por conta.
+
 A análise também deve conter:
 - hipóteses anteriores lidas;
 - hipóteses confirmadas/refutadas;

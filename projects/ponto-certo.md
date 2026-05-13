@@ -32,6 +32,7 @@ Ponto eletrônico dos funcionários Budamix. Registro de entrada/saída/interval
 - [30/04] Módulo Conversas RH no admin (`/admin/conversas-rh`) — ferramenta de supervisão das conversas do agente RH com funcionários em tempo real → [[memory/context/decisoes/2026-04#[30/04 noite] Módulo Conversas RH]]
 - [30/04] Saldo acumulado de banco de horas é INVIOLÁVEL — função SQL `calcular_banco_horas_v2` corrigida pra ignorar saldo mensal negativo → [[memory/context/decisoes/2026-04#[30/04 noite] Saldo acumulado]]
 - [05/05] Domínio oficial `ponto.budamix.com.br` ativo. DNS criado no Registro.br + Traefik restartado pra forçar emissão Let's Encrypt (1ª tentativa em 04/05 12:39 UTC falhou por NXDOMAIN). Backend e banco continuam os mesmos — domínio antigo `pontocerto.gbformulario.com` permanece como fallback. → [[memory/sessions/2026-05-05]]
+- [13/05] Painel `/admin/conversas` redesenhado como WhatsApp Web (split-view, sem badges/filtros) + criada `/admin/equipe/:id` (FuncionarioDetalhe com 4 tabs: pendências/ajustes/justificativas/casos resolvidos). Anti-duplicação via trigger PG em `adjustment_requests` + `time_records`, com mensagens PT-BR amigáveis via helper `mapSupabaseError`. Favicon novo: relógio Deep Teal `#004D4D` + acento Amber Gold `#C7A35A` (7 tamanhos). → [[memory/context/decisoes/2026-05#2026-05-13 · RH + Ponto Certo]]
 
 ## Módulos atuais
 
@@ -42,7 +43,8 @@ Ponto eletrônico dos funcionários Budamix. Registro de entrada/saída/interval
 | Banco de Horas | `/admin/banco-horas` | Saldos individuais e teto |
 | Ajustar Ponto | `/admin/historico-ponto` | Editar registros manualmente |
 | Solicitações | `/admin/solicitacoes` | Aprovar/rejeitar ajustes e justificativas |
-| **Conversas RH** | `/admin/conversas-rh` | Histórico de conversas agente RH ↔ funcionários (estilo WhatsApp Web, real-time) |
+| **Conversas RH** | `/admin/conversas` (e `/admin/conversas/:employeeId`) | Painel WhatsApp Web real-time — só leitura |
+| **Detalhe Funcionário** | `/admin/equipe/:id` | 4 tabs: pendências, ajustes, justificativas, casos resolvidos |
 | Configurações | `/admin/ajustes` | Tolerâncias, jornadas, débito mensal |
 | Relatórios | `/admin/relatorios` | Espelho de ponto, banco semestral |
 
@@ -58,10 +60,11 @@ Ponto eletrônico dos funcionários Budamix. Registro de entrada/saída/interval
 
 ## Pendências
 
-- [ ] Deploy do módulo Conversas RH em produção (build OK local, falta SCP/git pull na VPS + restart PM2)
+- [x] ~~Deploy do módulo Conversas RH em produção~~ — feito 13/05/2026 (`/admin/conversas` + `/admin/equipe/:id` em produção via `pm2 restart ponto-certo`)
 - [ ] Reautenticar `gh auth` na VPS para restaurar `git pull`
 - [ ] Validar timer Android com funcionário real
 - [ ] Validar layout mobile estoque (equipe usa celular no armazém)
+- [ ] Pedro trocar a senha admin temporária (`*d8tzMJ=EvtLfGxD7&`) pelo app quando puder
 
 ## Notas relacionadas
 

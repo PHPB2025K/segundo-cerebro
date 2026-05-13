@@ -73,9 +73,10 @@ _Atualizado: 2026-05-07 noite — Social Studio Reborn Fase B mergeada, Fase C i
 
 - [ ] **RH — guard de WhatsApp proativo ESTENDIDO INDEFINIDAMENTE (até 2027-01-01)** em `/tmp/rh-whatsapp-block.json`. Pedro pediu 05/05 14:04 BRT que nenhum cron/agente RH dispare proativos a funcionários até liberação explícita. Em 11/05 10:15 BRT, Pedro liberou **apenas o escopo específico** dos problemas de ponto reportados no Monitor Ponto Semanal de 11/05 sobre a semana 04/05–09/05, até resolução completa com Fran, Leonardo, Lucas, Mateus e Sandra. Exceções técnicas: `--allow-rh-reply` permite respostas inbound; `--allow-rh-approved-case` permite follow-ups desse lote aprovado. Proativo genérico segue bloqueado. Crons em risco que continuam habilitados mas inofensivos enquanto o guard ativo: `RH Compliance Check` (diário 19h BRT), `Monitor Ponto Semanal` (segundas 10h BRT), `Ponto Certo - QR Code Refresh` (diário 03h, não envia WhatsApp). Validado: proativo → `BLOCKED_RH`; reply → `SENT`; caso aprovado → `SENT`.
 - ✅ ~~**Ponto Certo — DNS do domínio novo**: criar/apontar A record de `ponto.budamix.com.br` para `187.77.237.231`~~ → **RESOLVIDO 05/05.** Pedro criou A record no Registro.br, DNS propagou nos resolvers públicos, CC local restartou Traefik na VPS pra forçar reemissão do cert ACME (1ª tentativa havia falhado em 04/05 12:39 UTC com NXDOMAIN). Cert Let's Encrypt emitido, servidor responde HTTPS 200. Cache de DNS em provedores brasileiros pode levar horas pra atualizar — workaround: trocar pra DNS Cloudflare/Google ou tentar via 4G. Pendência menor: deletar entrada órfã `pontocerto.budamix.com.br` criada por engano. → [[memory/sessions/2026-05-05#Ponto Certo — DNS + cert SSL `ponto.budamix.com.br` resolvidos (CC local)]]
-- [ ] **Ponto Certo — deploy produção do módulo Conversas RH** se ainda estiver apenas local: build, publicar na VPS e reiniciar PM2 `ponto-certo`.
+- ✅ ~~**Ponto Certo — deploy produção do módulo Conversas RH**~~ → **RESOLVIDO 13/05.** Painel `/admin/conversas` (WhatsApp Web split-view real-time) + `/admin/equipe/:id` (FuncionarioDetalhe com 4 tabs) deployados em `/var/www/ponto-certo/`. Build + pm2 restart. Realtime habilitado em 5 tabelas. → [[memory/sessions/2026-05-13#Ponto Certo + Agente RH]]
+- [ ] **RH — lote semana 04–09/05: aguardando Sandra, Mateus, Leonardo responderem** à saudação cordial reenviada 13/05 10:04 BRT ("Olá, X. Tudo bem?"). Histórico apagado e recomeçado por pedido do Pedro. Cron diário (`rh-cron-followup-lote-20260511.py`, seg-sex 10h BRT) cuida do desenrolar com regra 18 (abertura 2 etapas). Após 5 dias úteis sem resposta, escala automaticamente via Telegram tópico RH. Fran + Lucas já estão resolved (cobertura via app aprovada por Pedro).
+- [ ] **Pedro — trocar senha admin temporária do Ponto Certo** (`*d8tzMJ=EvtLfGxD7&`) pelo app em Configurações → Senha quando puder.
 - [ ] **RH — acompanhar feedback da Yasmin** sobre recebimento correto dos 2 chunks da mensagem inaugural reenviada com `linkPreview: false`.
-- [ ] **RH — acompanhar primeiras respostas dos funcionários** às mensagens inaugurais; `rh-poller` e `rh-stuck-detector` devem capturar falhas silenciosas.
 - [ ] **RH — datas de admissão dos funcionários** para cálculo futuro de férias.
 - [ ] **RH — padrão do contador FOUR/Suellen** para espelho de ponto.
 
@@ -144,4 +145,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 - [ ] **Security hardening extra**, **Lovable sync**, **Stripe live key**, **LinkedIn integração** seguem fora da fila imediata.
 
 ---
-_Última organização: 2026-05-12 23:00 BRT — sessão Mission Control._
+_Última organização: 2026-05-13 13:30 BRT — sessão Claude Code: deploy Conversas RH + Equipe detalhe + processor v3._

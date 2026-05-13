@@ -52,9 +52,11 @@ tags:
 
 **Ponto Certo** — SaaS de controle de ponto da GB Importadora
 - Stack: React 18 + TypeScript + Vite + Tailwind + shadcn/ui
-- Backend: Lovable Cloud (Supabase)
-- URL: https://clockwork-buddy-00.lovable.app
+- Backend: Supabase `dgldsmhbeosjgfrbegyv`
+- **URL produção:** https://ponto.budamix.com.br (também https://pontocerto.gbformulario.com)
+- **App real:** `/var/www/ponto-certo/` na VPS 187.77.237.231, servido por pm2 (serve estático na porta 3091) — Lovable foi só staging inicial.
 - Acesso: Supabase REST API (service role key)
+- Painel admin tem `/admin/conversas` (WhatsApp Web real-time de leitura) e `/admin/equipe/:id` (detalhes de pendências/ajustes/justificativas/casos por funcionário). Realtime habilitado em 5 tabelas.
 
 ---
 
@@ -79,6 +81,9 @@ tags:
 | Data | Marco |
 |------|-------|
 | 30/03/2026 | Agente RH criado. Fase 1: estrutura + Monitor de Ponto + Alertas básicos |
+| 11/05/2026 | Lote semanal 04–09/05: 5 mensagens enviadas. Hardening emergencial inbound `@lid` (pipeline antigo só aceitava `@s.whatsapp.net`) |
+| 12/05/2026 | Backfill Evolution `@lid` recuperou 2 inbounds invisíveis (Lucas + Leonardo). Mapping `wa_lid` salvo em `employees.json`. Cron diário `rh-cron-followup-lote` ativado (seg-sex 10h BRT, hard-limit 30/06) |
+| 13/05/2026 | **Processor v3 ativado** — memória layered L0 perfil + L1 working 7d/12msgs + L2 episodes (`rh_episode_summaries` nova tabela). Regras 1-18 (incluindo verificação tripla, fuso BRT→UTC, resolved=true automático, episode_summary auto, abertura cordial 2 etapas "Olá, X. Tudo bem?"). Cobertura via app tem prioridade — Fran+Lucas auto-resolvidos. Painel admin Conversas RH + Equipe detalhe deployados em prod |
 
 ---
 

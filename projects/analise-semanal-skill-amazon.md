@@ -155,8 +155,10 @@ Toda análise Amazon Ads da Budamix deve usar raciocínio avançado e cruzado. N
 
 3. **Camada operacional — ASINs/product ads/listing dentro das campanhas**
    - Verificar quais ASINs/SKUs estão ativos em cada campanha, estado, estoque/FBA, Buy Box, preço, variação e aderência ao grupo.
+   - Acompanhar performance persistente por ASIN/SKU anunciado quando a tabela diária existir: impressions, clicks, spend, sales, purchases, ACoS, ROAS, CTR, CPC por `advertisedAsin`/`advertisedSku`/`adId`/campanha/data.
+   - Cruzar performance por ASIN com ações executadas no período: se uma otimização de keyword melhorou o grupo mas concentrou gasto em uma variação ruim, a camada condensadora deve capturar isso.
    - Quando a campanha tem tráfego bom e venda ruim, investigar produto antes de culpar keyword: preço vs concorrentes, título, imagem, reviews, categoria, oferta FBA, cupom/promoção e Buy Box.
-   - Se houver múltiplos ASINs no grupo, estimar qual ASIN está recebendo tráfego/venda e se a campanha está empurrando a variação errada.
+   - Se houver múltiplos ASINs no grupo, identificar qual ASIN está recebendo tráfego/venda e se a campanha está empurrando a variação errada; se os dados ainda não existirem, marcar lacuna operacional e propor coleta via `spAdvertisedProduct`.
 
 4. **Camada granular — keyword/search term/target por target**
    - Auditar cada keyword/target relevante: histórico de bid, bid atual, match type, estado, clicks, spend, sales, pedidos, ACoS, ROAS, CTR, CPC, tendência e ação anterior ligada a ela.
@@ -222,8 +224,13 @@ SELECT * FROM amazon_ads_negative_snapshots
 WHERE campaign_id IN (...)
 AND snapshot_date = (SELECT MAX(snapshot_date) FROM amazon_ads_negative_snapshots);
 
--- Produtos por campanha (ASINs vinculados)
+-- Produtos por campanha (ASINs vinculados / snapshot estrutural)
 SELECT * FROM amazon_ads_product_ads WHERE campaign_id IN (...);
+
+-- Performance diária por ASIN anunciado (quando implementado)
+SELECT * FROM amazon_ads_advertised_products_daily
+WHERE campaign_id IN (...)
+AND report_date >= CURRENT_DATE - INTERVAL '30 days';
 
 -- Catálogo/listing dos ASINs do grupo quando disponível
 SELECT * FROM amazon_ads_catalog WHERE asin IN (...);
@@ -244,6 +251,7 @@ Até ~10/Mai/2026, as tabelas `keyword_snapshots` e `negative_snapshots` terão 
 - Budget utilization por campanha (spend/budget %)
 - Histórico de ações executadas no período e seus resultados
 - ASINs/product ads ativos por campanha, estado, estoque/Buy Box/listing quando disponível
+- Performance diária por advertised ASIN/SKU/adId quando disponível: impressions, clicks, spend, sales, purchases, ACoS, ROAS, CTR, CPC
 - Histórico de bids por keyword/target e ações anteriores ligadas à mesma entidade
 
 ---
@@ -298,6 +306,7 @@ Se o tráfego é alto mas vendas são zero, o problema pode NÃO ser de ads:
 - Impressões caíram de repente → verificar se alguma ação nossa causou
 - ACoS subiu gradualmente → identificar quais termos/campanhas específicas estão piorando
 - Performance ruim concentrada em um ASIN/variação → investigar product ad/listing/preço/Buy Box antes de cortar todos os termos
+- Se ainda não houver histórico por ASIN, não concluir causalidade por variação; recomendar implementação/coleta do `spAdvertisedProduct` antes de decisões estruturais por produto.
 - Termos novos ausentes mas com potencial → fazer busca estruturada por novas keywords e propor teste controlado
 
 ---
@@ -577,6 +586,7 @@ Budget Utilization = (Avg Daily Spend / Daily Budget) × 100
 
 | Data | Versão | Mudança |
 |------|--------|---------|
+| 13/Mai/2026 | 4.4 | Camada operacional elevada: acompanhamento persistente por advertised ASIN/SKU/adId via tabela diária `amazon_ads_advertised_products_daily` e cruzamento com otimizações para alimentar a camada condensadora. |
 | 13/Mai/2026 | 4.3 | Protocolo obrigatório de análise em 5 camadas: estratégica/funil, tática/campanha, operacional/ASIN-listing, granular/keyword-search term e condensadora macro. Corrigido modelo canônico para 3 campanhas; Defesa vira exceção legada. |
 | 09/Abr/2026 | 1.0 | Criação inicial |
 | 09/Abr/2026 | 2.0 | Guardrails, lições aprendidas, logging, queries SQL |

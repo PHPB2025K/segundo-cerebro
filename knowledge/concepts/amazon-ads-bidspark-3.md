@@ -28,7 +28,7 @@ tags:
 | **Deploy** | Railway |
 | **Supabase** | tabelas `amazon_ads_*` (ver §6) |
 | **Orquestração** | N8N (workflow `U8MCTTkNEJnD75aV` — Ciclo Diário 6h BRT) |
-| **Skill operacional** | `ANALISE_SEMANAL_SKILL.md` **v4.3** (BidSpark-3, análise em 5 camadas) |
+| **Skill operacional** | `ANALISE_SEMANAL_SKILL.md` **v4.4** (BidSpark-3, análise em 5 camadas + ASIN diário) |
 | **Estado** | 4/8 grupos migrados para BidSpark-3 (19/04/2026) |
 
 **Modelo operacional (atualizado 19/04):** N8N roda **apenas coletas diárias**. Análise e otimização são **manuais via Claude Code** usando a skill BidSpark-3. Supervisão humana substituiu o fluxo "N8N → Claude API automática → ações" original.
@@ -101,11 +101,13 @@ Existem porque em Fev/Mar 2026, o sistema antigo negativou termos core ("caneca"
 
 Fonte primária: **Supabase** (dados do ciclo N8N). Secundária: **API Amazon ao vivo** enquanto `keyword_snapshots` e `negative_snapshots` não têm 30d de histórico (até ~10/05/2026).
 
-Métricas em 3 janelas (**7d, 15d, 30d**) para evitar decisões por flutuação de curto prazo: impressões, cliques, CTR, CPC médio, spend, sales, ACoS, ROAS, pedidos, budget utilization, histórico de bids/ações e ASINs/product ads por campanha.
+Métricas em 3 janelas (**7d, 15d, 30d**) para evitar decisões por flutuação de curto prazo: impressões, cliques, CTR, CPC médio, spend, sales, ACoS, ROAS, pedidos, budget utilization, histórico de bids/ações, ASINs/product ads por campanha e, quando implementado, performance diária por advertised ASIN/SKU/adId.
 
 ### FASE 2 — Análise (automática, máximo esforço em 5 camadas + 6 checks)
 
-Antes de recomendar qualquer ação, a análise precisa passar por 5 camadas: **estratégica** (Descoberta/Alcance/Performance como funil único), **tática** (eficiência por campanha vs target e tendência), **operacional** (ASINs/product ads/listing/estoque/Buy Box/preço), **granular** (keyword/search term/target, histórico de bids e ações) e **condensadora** (tese macro que cruza todas as camadas e prioriza ações para reduzir ACoS/aumentar ROAS). Quando faltarem keywords potenciais, fazer busca estruturada na web/Amazon/concorrência e propor teste com hipótese, bid inicial e critério D+7.
+Antes de recomendar qualquer ação, a análise precisa passar por 5 camadas: **estratégica** (Descoberta/Alcance/Performance como funil único), **tática** (eficiência por campanha vs target e tendência), **operacional** (ASINs/product ads/listing/estoque/Buy Box/preço e performance diária por ASIN quando disponível), **granular** (keyword/search term/target, histórico de bids e ações) e **condensadora** (tese macro que cruza todas as camadas e prioriza ações para reduzir ACoS/aumentar ROAS). Quando faltarem keywords potenciais, fazer busca estruturada na web/Amazon/concorrência e propor teste com hipótese, bid inicial e critério D+7.
+
+**Gap confirmado em 13/05/2026:** o Supabase já possui `amazon_ads_product_ads` com `ad_id`, `campaign_id`, `ad_group_id`, `asin`, `sku`, `state`, `collected_at`, mas essa tabela é snapshot estrutural, não performance diária. Ainda não existe tabela de histórico por ASIN. Caminho recomendado: criar `amazon_ads_advertised_products_daily` alimentada pelo relatório Amazon Ads v3 `spAdvertisedProduct`, com granularidade DAILY e colunas como `date`, `campaignId`, `adGroupId`, `adId`, `advertisedAsin`, `advertisedSku`, `impressions`, `clicks`, `cost`, `sales7d`, `purchases7d`, `unitsSoldClicks7d`, `acosClicks7d`, `roasClicks7d`, `clickThroughRate`, `costPerClick`.
 
 1. **Integridade do funil:** furos de NEGATIVE_EXACT? PHRASE destrutivas? ASINs em todas as campanhas? Competição interna? Bids invertidos (Alcance > Performance no mesmo termo)?
 2. **Métricas vs target:** cada campanha vs seu target específico (multiplicador). Budget utilization >90% limita, <30% sobra.

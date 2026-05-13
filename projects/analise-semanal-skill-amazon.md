@@ -9,15 +9,15 @@ tags:
 
 # SKILL: Análise Semanal Amazon Ads — Budamix (BidSpark)
 
-**Versão:** 3.0
-**Atualizada:** 10/Abr/2026
+**Versão:** 4.3
+**Atualizada:** 13/Mai/2026
 **Modo:** Otimização MANUAL via Claude Code (análise automática multi-agente pausada)
 
 ---
 
 ## 1. OBJETIVO
 
-Otimizar semanalmente TODAS as campanhas Amazon Ads Sponsored Products da Budamix, maximizando vendas com ACoS dentro do target definido por grupo, utilizando a estratégia de 4 campanhas complementares (funil).
+Otimizar semanalmente TODAS as campanhas Amazon Ads Sponsored Products da Budamix, maximizando vendas com ACoS dentro do target definido por grupo, utilizando a estratégia de 3 campanhas complementares (funil) e análise em camadas: estratégica, tática, operacional, granular e condensadora.
 
 ### Fonte Única de Metas
 Tabela `amazon_ads_product_groups` no Supabase. SEMPRE consultar antes de analisar — nunca usar valores de memória.
@@ -28,15 +28,14 @@ Tabela `amazon_ads_product_groups` no Supabase. SEMPRE consultar antes de analis
 | DESCOBERTA | ×1.5 | Mineração — aceita custo maior para descobrir termos novos |
 | ALCANCE | ×1.2 | Broad/Phrase — captura variações de termos conhecidos |
 | PERFORMANCE | ×0.72 | Exact — motor de lucro, deve performar MELHOR que target |
-| DEFESA | ×0.5 | Marca própria — competição mínima, bid baixo |
 
-**Exemplo com target 20%:** Desc 30% | Alc 24% | Perf 14.4% | Def 10%
+**Exemplo com target 20%:** Desc 30% | Alc 24% | Perf 14.4%
 
 ---
 
-## 2. ESTRATÉGIA: FUNIL DE 4 CAMPANHAS
+## 2. ESTRATÉGIA: FUNIL DE 3 CAMPANHAS + RACIOCÍNIO EM CAMADAS
 
-Cada grupo de anúncios é composto por 4 campanhas que funcionam como um **funil integrado**. Nenhuma campanha opera isolada — cada uma tem um papel específico e alimenta a próxima. Antes de analisar qualquer métrica individual, é preciso entender como o tráfego flui entre as 4 campanhas.
+Cada grupo de anúncios é composto por 3 campanhas que funcionam como um **funil integrado**. Nenhuma campanha opera isolada — cada uma tem um papel específico e alimenta a próxima. Antes de analisar qualquer métrica individual, é preciso entender como o tráfego flui entre as 3 campanhas.
 
 ### Como o funil funciona
 
@@ -44,16 +43,16 @@ A **DESCOBERTA** (campanha automática) minera termos novos que ninguém pensou.
 
 O **ALCANCE** (broad/phrase) faz o mesmo papel da Descoberta, mas com keywords manuais que capturam variações. Por exemplo, "pote hermético vidro grande" no Alcance BROAD captura variações como "pote hermético vidro grande 1 litro". Winners do Alcance também migram para a Performance com negativa EXACT correspondente.
 
-A **PERFORMANCE** (exact match) concentra os winners comprovados com bids otimizados individualmente e o maior budget do grupo (~50%). É o motor de lucro — deve ter o menor ACoS de todas as campanhas.
+A **PERFORMANCE** (exact match) concentra os winners comprovados com bids otimizados individualmente e o maior budget do grupo (~55%). É o motor de lucro — deve ter o menor ACoS de todas as campanhas.
 
-A **DEFESA** protege buscas de marca ("budamix" + variações) contra concorrentes. Budget mínimo, quase sem tráfego, e está tudo bem assim — ela só ativa quando alguém busca pela marca.
+**Defesa:** desde o BidSpark-3, Defesa deixou de ser campanha padrão. Se existir campanha Defesa legada ativa, tratar como exceção operacional: auditar se ainda tem função real, medir separadamente e não deixar contaminar a leitura do funil principal Descoberta → Alcance → Performance.
 
 ### Regras do Funil (INVIOLÁVEIS)
 - **NEGATIVE_EXACT = roteamento** (direciona tráfego exact de uma campanha para outra)
 - **NEGATIVE_PHRASE = filtro** (bloqueia material/contexto irrelevante, como "inox" para produto de porcelana)
 - NUNCA usar NEGATIVE_PHRASE em termos core do produto (substantivos como caneca, jarra, pote, xícara)
 - Todo termo da Performance DEVE ter NEGATIVE_EXACT correspondente nas origens (Descoberta + Alcance)
-- ASINs dos produtos devem estar em TODAS as 4 campanhas do grupo
+- ASINs dos produtos devem estar nas 3 campanhas do grupo quando a estratégia do grupo exigir cobertura total; ausências devem ser explicadas por estoque, Buy Box, variação, listing ou decisão consciente.
 
 ### Fluxo de exemplo
 ```
@@ -138,7 +137,39 @@ Antes de qualquer opinião, coletamos TUDO. Não analisamos de cabeça — anali
 3. **🟢 Saudáveis** — verificação rápida de oportunidades
 4. **⚪ Inativos** — só reportar status
 
-Dentro de cada grupo, a análise é sempre **POR CAMPANHA** (Performance → Alcance → Descoberta → Defesa), considerando o papel de cada uma no funil.
+Dentro de cada grupo, a análise é sempre **POR CAMPANHA** (Performance → Alcance → Descoberta; Defesa só se existir como exceção), considerando o papel de cada uma no funil.
+
+### Protocolo obrigatório de raciocínio em 5 camadas — MÁXIMO ESFORÇO
+
+Toda análise Amazon Ads da Budamix deve usar raciocínio avançado e cruzado. Não basta identificar um ACoS ruim; é obrigatório explicar **por que o funil se comportou daquele jeito** e como a ação proposta reduz ACoS/aumenta ROAS sem matar volume saudável.
+
+1. **Camada estratégica — comportamento do funil do grupo**
+   - Ler Descoberta, Alcance e Performance como sistema único, não como campanhas isoladas.
+   - Perguntar: a Descoberta está minerando? O Alcance está capturando variações úteis? A Performance está realmente concentrando winners e lucro?
+   - Identificar competição interna, roteamento incompleto, budget/bid invertido e dependência excessiva de uma campanha.
+
+2. **Camada tática — eficiência por campanha**
+   - Comparar cada campanha contra seu target específico por multiplicador, em 7d/15d/30d e contra o baseline da última ação.
+   - Medir ACoS, ROAS, spend, sales, pedidos, CTR, CPC, budget utilization, direção da tendência e ponto de inflexão.
+   - Separar: cortar waste, preservar winners, promover winners, escalar winners e investigar problemas fora de Ads.
+
+3. **Camada operacional — ASINs/product ads/listing dentro das campanhas**
+   - Verificar quais ASINs/SKUs estão ativos em cada campanha, estado, estoque/FBA, Buy Box, preço, variação e aderência ao grupo.
+   - Quando a campanha tem tráfego bom e venda ruim, investigar produto antes de culpar keyword: preço vs concorrentes, título, imagem, reviews, categoria, oferta FBA, cupom/promoção e Buy Box.
+   - Se houver múltiplos ASINs no grupo, estimar qual ASIN está recebendo tráfego/venda e se a campanha está empurrando a variação errada.
+
+4. **Camada granular — keyword/search term/target por target**
+   - Auditar cada keyword/target relevante: histórico de bid, bid atual, match type, estado, clicks, spend, sales, pedidos, ACoS, ROAS, CTR, CPC, tendência e ação anterior ligada a ela.
+   - Classificar termos em: winner comprovado, winner frágil, bleeder, core caro, irrelevante, candidato a harvest, candidato a negative, candidato a teste.
+   - Para novas oportunidades, fazer busca estruturada na web/Amazon/concorrentes quando necessário para descobrir palavras, sinônimos, usos, materiais, tamanhos e intenções de compra que ainda não aparecem nos dados.
+   - Nunca propor nova keyword só por intuição: explicar hipótese, intenção de busca, campanha destino, bid inicial, risco e critério de sucesso/falha.
+
+5. **Camada condensadora — entendimento macro e decisão**
+   - Condensar as quatro camadas anteriores em uma tese única: “o grupo piorou/melhorou porque...”.
+   - A recomendação final deve mostrar tradeoff: impacto esperado em ACoS, ROAS, volume, aprendizado e risco de matar venda.
+   - Priorizar ações por inteligência, não por quantidade: menos ações, mais certeiras. Cada ação precisa ter motivo, efeito esperado e métrica de validação D+7.
+
+Se alguma camada não puder ser concluída por falta de dado, marcar explicitamente como **lacuna** e propor a menor coleta necessária antes de executar mudança estrutural.
 
 ---
 
@@ -193,6 +224,9 @@ AND snapshot_date = (SELECT MAX(snapshot_date) FROM amazon_ads_negative_snapshot
 
 -- Produtos por campanha (ASINs vinculados)
 SELECT * FROM amazon_ads_product_ads WHERE campaign_id IN (...);
+
+-- Catálogo/listing dos ASINs do grupo quando disponível
+SELECT * FROM amazon_ads_catalog WHERE asin IN (...);
 ```
 
 **Fonte secundária: API Amazon ao vivo** (usar ENQUANTO snapshots não têm 30 dias de histórico)
@@ -209,18 +243,23 @@ Até ~10/Mai/2026, as tabelas `keyword_snapshots` e `negative_snapshots` terão 
 - Pedidos (conversões)
 - Budget utilization por campanha (spend/budget %)
 - Histórico de ações executadas no período e seus resultados
+- ASINs/product ads ativos por campanha, estado, estoque/Buy Box/listing quando disponível
+- Histórico de bids por keyword/target e ações anteriores ligadas à mesma entidade
 
 ---
 
 ### FASE 2 — ANÁLISE (executar automaticamente, sem perguntar)
 
-Para cada grupo, analisar em **6 dimensões**, sempre considerando o funil completo:
+Para cada grupo, analisar usando o protocolo de **5 camadas** acima e, dentro dele, estes **6 checks obrigatórios**:
+
+**2.0 — Síntese preliminar por camadas**
+Antes dos checks abaixo, escrever rascunho interno das 5 camadas: estratégica, tática, operacional/ASIN, granular e condensadora. A resposta ao Pedro pode ser curta, mas a análise não pode ser rasa.
 
 **2.1 — Integridade do funil**
-Verificar se as 4 campanhas estão trabalhando juntas corretamente:
+Verificar se as 3 campanhas canônicas estão trabalhando juntas corretamente:
 - Todo termo da Performance tem NEGATIVE_EXACT nas origens? Se não, há "furos" — tráfego exact que deveria ir para Performance está sendo capturado pelo Alcance a custo maior.
 - Há NEGATIVE_PHRASE destrutivas bloqueando termos core do produto? (verificar contra `protected_terms`)
-- Produtos (ASINs) estão em todas as 4 campanhas?
+- Produtos (ASINs) estão nas campanhas corretas do grupo? Se faltar em alguma, há motivo operacional claro?
 - Há competição interna? (mesmo termo EXACT no Alcance e Performance sem negativa)
 - Bids estão invertidos? (Alcance com bid MAIOR que Performance para o mesmo termo)
 
@@ -253,11 +292,13 @@ O feedback loop mais importante — aprender com o que fizemos:
 - Se uma negativação causou queda >50% impressões E >30% vendas — considerar reverter
 - Se uma ação MELHOROU: considerar escalar (mais do mesmo)
 
-**2.6 — Diagnóstico de conversão**
+**2.6 — Diagnóstico operacional de conversão / ASIN**
 Se o tráfego é alto mas vendas são zero, o problema pode NÃO ser de ads:
 - Tráfego alto + 0 vendas → possível problema de listing/preço/Buy Box/estoque (NÃO negativar termos core)
 - Impressões caíram de repente → verificar se alguma ação nossa causou
 - ACoS subiu gradualmente → identificar quais termos/campanhas específicas estão piorando
+- Performance ruim concentrada em um ASIN/variação → investigar product ad/listing/preço/Buy Box antes de cortar todos os termos
+- Termos novos ausentes mas com potencial → fazer busca estruturada por novas keywords e propor teste controlado
 
 ---
 
@@ -273,6 +314,13 @@ ACoS 7d: X% | 15d: Y% | 30d: Z% (target: W%)
 Spend 7d: R$X | Sales 7d: R$X | Ped: X | Tendência: ↑/↓/→
 
 INTEGRIDADE DO FUNIL: ✅ OK / ⚠️ X furos / 🔴 problemas estruturais
+
+CAMADAS DA ANÁLISE:
+- Estratégica: [como o funil se comportou]
+- Tática: [campanhas que puxaram melhora/piora]
+- Operacional/ASIN: [produto/listing/Buy Box/variação/estoque]
+- Granular: [keywords/search terms/targets decisivos]
+- Condensadora: [tese macro + decisão]
 
 RESULTADO DAS AÇÕES ANTERIORES:
 - [ação] em [data] → [MELHOROU/NEUTRO/PIOROU] — [dados concretos]
@@ -290,8 +338,14 @@ POR CAMPANHA:
   DESCOBERTA (target X%):
     [mesma estrutura]
 
-  DEFESA (target X%):
-    [mesma estrutura]
+  DEFESA (se existir como exceção):
+    [mesma estrutura; se inativa/legada, explicar e não deixar contaminar o funil principal]
+
+NOVAS OPORTUNIDADES DE KEYWORD/TESTE:
+  - [termo] → origem da hipótese (dados/web/concorrência), campanha destino, bid inicial, critério D+7
+
+SÍNTESE CONDENSADORA:
+  - [tese final: por que o grupo se comportou assim + ações prioritárias]
 
 GUARDRAILS VERIFICADOS: ✅ G1-G8 / ⚠️ atenção em GX
 RISCO: [se executar / se NÃO executar]
@@ -523,6 +577,7 @@ Budget Utilization = (Avg Daily Spend / Daily Budget) × 100
 
 | Data | Versão | Mudança |
 |------|--------|---------|
+| 13/Mai/2026 | 4.3 | Protocolo obrigatório de análise em 5 camadas: estratégica/funil, tática/campanha, operacional/ASIN-listing, granular/keyword-search term e condensadora macro. Corrigido modelo canônico para 3 campanhas; Defesa vira exceção legada. |
 | 09/Abr/2026 | 1.0 | Criação inicial |
 | 09/Abr/2026 | 2.0 | Guardrails, lições aprendidas, logging, queries SQL |
 | 10/Abr/2026 | 2.1 | Sessão Tulipa logada, formato análise por campanha |

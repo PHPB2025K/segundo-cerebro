@@ -28,7 +28,7 @@ tags:
 | **Deploy** | Railway |
 | **Supabase** | tabelas `amazon_ads_*` (ver §6) |
 | **Orquestração** | N8N (workflow `U8MCTTkNEJnD75aV` — Ciclo Diário 6h BRT) |
-| **Skill operacional** | `ANALISE_SEMANAL_SKILL.md` **v4.2** (BidSpark-3) |
+| **Skill operacional** | `ANALISE_SEMANAL_SKILL.md` **v4.3** (BidSpark-3, análise em 5 camadas) |
 | **Estado** | 4/8 grupos migrados para BidSpark-3 (19/04/2026) |
 
 **Modelo operacional (atualizado 19/04):** N8N roda **apenas coletas diárias**. Análise e otimização são **manuais via Claude Code** usando a skill BidSpark-3. Supervisão humana substituiu o fluxo "N8N → Claude API automática → ações" original.
@@ -101,20 +101,22 @@ Existem porque em Fev/Mar 2026, o sistema antigo negativou termos core ("caneca"
 
 Fonte primária: **Supabase** (dados do ciclo N8N). Secundária: **API Amazon ao vivo** enquanto `keyword_snapshots` e `negative_snapshots` não têm 30d de histórico (até ~10/05/2026).
 
-Métricas em 3 janelas (**7d, 15d, 30d**) para evitar decisões por flutuação de curto prazo: impressões, cliques, CTR, CPC médio, spend, sales, ACoS, ROAS, pedidos, budget utilization.
+Métricas em 3 janelas (**7d, 15d, 30d**) para evitar decisões por flutuação de curto prazo: impressões, cliques, CTR, CPC médio, spend, sales, ACoS, ROAS, pedidos, budget utilization, histórico de bids/ações e ASINs/product ads por campanha.
 
-### FASE 2 — Análise (automática, 6 dimensões)
+### FASE 2 — Análise (automática, máximo esforço em 5 camadas + 6 checks)
+
+Antes de recomendar qualquer ação, a análise precisa passar por 5 camadas: **estratégica** (Descoberta/Alcance/Performance como funil único), **tática** (eficiência por campanha vs target e tendência), **operacional** (ASINs/product ads/listing/estoque/Buy Box/preço), **granular** (keyword/search term/target, histórico de bids e ações) e **condensadora** (tese macro que cruza todas as camadas e prioriza ações para reduzir ACoS/aumentar ROAS). Quando faltarem keywords potenciais, fazer busca estruturada na web/Amazon/concorrência e propor teste com hipótese, bid inicial e critério D+7.
 
 1. **Integridade do funil:** furos de NEGATIVE_EXACT? PHRASE destrutivas? ASINs em todas as campanhas? Competição interna? Bids invertidos (Alcance > Performance no mesmo termo)?
 2. **Métricas vs target:** cada campanha vs seu target específico (multiplicador). Budget utilization >90% limita, <30% sobra.
 3. **Search terms:** winners (candidatos a migração), waste (spend >R$3 + 0 vendas), ASINs (separar concorrente de product targeting).
 4. **Tendência:** 7d vs 15d vs 30d. Ponto de inflexão cruzado com data das ações nossas.
 5. **Resultado das ações anteriores:** `result_after_7d` calculado pelo compute-results. MELHOROU/NEUTRO/PIOROU. Se PIOROU: não repetir abordagem. Se MELHOROU: escalar.
-6. **Diagnóstico de conversão:** tráfego alto + 0 vendas pode ser listing/preço/Buy Box/estoque, NÃO ads.
+6. **Diagnóstico de conversão/ASIN:** tráfego alto + 0 vendas pode ser listing/preço/Buy Box/estoque/variação errada, NÃO ads. Nunca cortar termo core sem antes checar a camada operacional.
 
 ### FASE 3 — Recomendações (PARAR e esperar aprovação)
 
-Formato por grupo, dentro de cada grupo **por campanha**, classificação de risco das ações:
+Formato por grupo, dentro de cada grupo **por campanha**, sempre incluindo síntese das 5 camadas e classificação de risco das ações:
 - ✅ **SEGURA**: negativar ASIN concorrente, migrar winner comprovado, negativar irrelevante claro
 - ⚠️ **REVISAR**: reduzir bid >20%, negativar termo com alguma relação, ajustar budget
 - 🔴 **DECISÃO**: pausar keyword com vendas históricas, mudança estrutural

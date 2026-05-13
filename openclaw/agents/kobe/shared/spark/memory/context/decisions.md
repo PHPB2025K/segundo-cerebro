@@ -75,6 +75,7 @@ _Só o Pedro (via Kobe) pode adicionar, alterar ou revogar decisões aqui._
 | Mudanças em campanhas/keywords/targets Amazon Ads exigem aprovação explícita por grupo antes da execução. | 2026-05-02 | Pedro/Kobe |
 | Para `Potes Redondos Plástico`, termos de vidro são core porque o produto é pote redondo de vidro com tampa plástica. | 2026-05-02 | Pedro |
 | Todo pacote executado em 02/05 precisa revisão D+7 antes de nova camada de otimização por impacto. | 2026-05-02 | Kobe |
+| Toda análise Amazon Ads por grupo deve usar máximo esforço em 5 camadas: estratégica/funil, tática/campanha, operacional/ASIN-listing, granular/keyword-search term e condensadora macro; objetivo sempre reduzir ACoS e aumentar ROAS sem matar volume saudável. | 2026-05-13 | Pedro |
 
 ## Decisões Revogadas
 

@@ -91,6 +91,14 @@ _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
 **Cross-ref:** decisions.md — Potes Redondos Plástico
 **Expira:** 2026-06-01
 
+
+### 2026-05-13 — Amazon Ads: análise rasa por ACoS não basta [ESTRATÉGICA]
+**Contexto:** Pedro explicitou que Amazon Ads precisa ser analisado com inteligência avançada em camadas, não apenas por ACoS/keyword isolada.
+**Lição:** Toda revisão por grupo deve cruzar funil estratégico, eficiência tática por campanha, ASIN/listing/Buy Box/estoque, granularidade keyword/search term/histórico de bids e uma camada condensadora que gere entendimento macro.
+**Ação concreta:** Usar `projects/analise-semanal-skill-amazon.md` v4.3 e knowledge BidSpark-3 atualizado antes de qualquer nova recomendação.
+**Cross-ref:** Amazon Ads / BidSpark-3 / análise em 5 camadas
+**Expira:** Permanente
+
 ## Lições Expiradas (arquivo)
 
 _Lições TÁTICAS removidas após expiração. Mantidas aqui apenas para referência histórica._

@@ -16,6 +16,7 @@ _Atualizado: 2026-05-13 02:00 BRT — organização noturna silenciosa_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
+- [ ] **Automação Pedidos de Venda GB — retomar teste controlado amanhã**: workflow N8N `T7WT4vGaRuWd0N0Q` está pausado/inativo; Evolution do WhatsApp Kobe segue configurada para o webhook. Pedido teste real **954** foi criado no Bling Matriz e excluído com sucesso (DELETE 204; verificação 404). Correção já aplicada: N8N envia texto bruto, Fisco/LLM interpreta com mapa SKU/aliases e prompt reforçado para opções marcadas com `(x)`; dry-run posterior confirmou `Estoque 2025`, `Caixa de fita 300` → `CXFIT300M`, cliente/produto encontrados. Amanhã: reativar workflow só quando Pedro pedir, mandar novo teste real, validar estoque/checkbox, alias SKU e resposta no grupo para bloqueios; ampliar `sku-aliases.json` antes de produção contínua.
 - [ ] **Meta Business — finalizar configuração da Segunda Venda**: Pedro precisa configurar no Meta Business o número de WhatsApp que será usado com a empresa **Segunda Venda**. Onboarding em andamento; fazer o quanto antes amanhã pela manhã para dar sequência.
 - [ ] **Quebra Cabeça de Animais — ajustar arquivo do produto MDF**: Pedro precisa finalizar/ajustar o arquivo do produto **Quebra Cabeça de Animais**, produto novo em MDF.
 - [ ] **Máquina de encher bolha — traduzir manual**: traduzir o manual da máquina de encher bolha. Tarefa simples, mas deve entrar no primeiro horário amanhã.

@@ -119,6 +119,7 @@ DISPLAY_NAMES: dict[str, str] = {
     "KIT2YW1050": "Kit 2 Potes de Vidro 1050ml Retangular",
     "KIT4YW1050": "Kit 4 Potes de Vidro 1050ml Retangular",
     "KIT2YW1520": "Kit 2 Potes de Vidro 1520ml Retangular",
+    "KIT4YW1520": "Kit 4 Potes de Vidro 1520ml Retangular",
     "KIT2YW520SQ": "Kit 2 Potes de Vidro 520ml Quadrado",
     "KIT2YW320": "Kit 2 Potes de Vidro 320ml Retangular",
     "KIT6S097": "Kit 6 Potes de Vidro Hermético",
@@ -239,6 +240,23 @@ def qa_check_raw_skus(text: str) -> list[str]:
         for m in matches:
             sku = m if isinstance(m, str) else m[0]
             violations.append(f"SKU cru encontrado: '{sku}' na linha: {line.strip()[:80]}")
+    return violations
+
+
+def qa_check_condensed_quality(name: str, analyses: dict[str, dict]) -> list[str]:
+    violations = []
+    cfg = RECIPIENT_ACCOUNTS[name]
+    missing = []
+    for acct in cfg["accounts"]:
+        a = analyses.get(acct["slug"]) or {}
+        if not a.get("layered_sections_present"):
+            missing.append(acct["slug"])
+        if len(a.get("condensed_analysis") or []) < 3:
+            violations.append(f"{acct['slug']}: camada condensada com menos de 3 bullets de análise")
+        if len(a.get("condensed_priorities") or []) < 2:
+            violations.append(f"{acct['slug']}: camada condensada com menos de 2 prioridades")
+    if missing:
+        violations.append(f"{name}: análises sem camadas hierárquicas: {', '.join(missing)}")
     return violations
 
 
@@ -422,6 +440,9 @@ def parse_analysis(md: str) -> dict:
         "canonical_orders": 0,
         "canonical_revenue": 0.0,
         "watch_tomorrow": [],
+        "condensed_analysis": [],
+        "condensed_priorities": [],
+        "layered_sections_present": False,
     }
 
     def parse_number(s: str) -> float:
@@ -501,6 +522,26 @@ def parse_analysis(md: str) -> dict:
             result["actions"].append(stripped[2:])
         if in_watch and stripped.startswith("- "):
             result["watch_tomorrow"].append(stripped[2:])
+
+
+    # Camada Condensadora — fonte primária para Slack.
+    current_condensed = None
+    for line in md.splitlines():
+        stripped = line.strip()
+        if stripped == "## Camada Condensadora":
+            result["layered_sections_present"] = True
+        if stripped == "### Análise Final Condensada":
+            current_condensed = "analysis"
+            continue
+        if stripped == "### Prioridades Condensadas para Slack":
+            current_condensed = "priorities"
+            continue
+        if stripped.startswith("## ") and not stripped.startswith("### "):
+            current_condensed = None
+            continue
+        if current_condensed and stripped.startswith("- "):
+            target = "condensed_analysis" if current_condensed == "analysis" else "condensed_priorities"
+            result[target].append(stripped[2:].strip())
 
     # Comparisons — 30d, 60d, same weekday
     for m in re.finditer(

@@ -449,6 +449,155 @@ def generate_hypotheses(metrics, avg30, avg60, avg_weekday, account_slug):
     return hyps
 
 
+
+
+# ---------------------------------------------------------------------------
+# Daily Sales Analyst — análise hierárquica em 5 camadas
+# ---------------------------------------------------------------------------
+
+def _var_float(var_str):
+    try:
+        return float(str(var_str).rstrip("%").replace(",", "."))
+    except Exception:
+        return 0.0
+
+
+def _weekday_avg(avg_weekday):
+    if not avg_weekday:
+        return {"orders": 0.0, "gmv": 0.0, "ticket": 0.0}
+    orders = sum(d["orders"] for d in avg_weekday) / len(avg_weekday)
+    gmv = sum(d["gmv"] for d in avg_weekday) / len(avg_weekday)
+    return {"orders": orders, "gmv": gmv, "ticket": (gmv / orders if orders else 0)}
+
+
+def _top_product_name(product):
+    title = (product.get("title") or "").strip()
+    if title:
+        title = " ".join(title.split())
+        title = title.split(" - Budamix", 1)[0].replace(" Budamix", "").strip()
+        return title[:90].rstrip() + ("..." if len(title) > 90 else "")
+    return product.get("sku") or "produto líder"
+
+
+def build_layered_analysis(account_slug, metrics, avg30, avg60, avg_weekday, hypotheses, memory_context):
+    """Produz as 5 camadas do Daily Sales Analyst.
+
+    Esta função é determinística de propósito: o LLM/Trader pode consumir o
+    resultado, mas o cron não fica dependente de uma interpretação solta. A
+    camada condensadora vira a fonte primária do Slack e da memória de amanhã.
+    """
+    acct = ACCOUNTS[account_slug]
+    m = metrics
+    wd = _weekday_avg(avg_weekday)
+    top = m.get("top_products", [])
+    leader = _top_product_name(top[0]) if top else "produto líder não identificado"
+    runner = _top_product_name(top[1]) if len(top) > 1 else "segundo produto"
+    orders_30 = pct_change(m["pedidos_validos"], avg30.get("avg_orders", 0))
+    gmv_30 = pct_change(m["gmv"], avg30.get("avg_gmv", 0))
+    ticket_30 = pct_change(m["ticket_medio"], avg30.get("avg_ticket", 0))
+    orders_60 = pct_change(m["pedidos_validos"], avg60.get("avg_orders", 0))
+    gmv_60 = pct_change(m["gmv"], avg60.get("avg_gmv", 0))
+    wd_orders = pct_change(m["pedidos_validos"], wd["orders"])
+    wd_gmv = pct_change(m["gmv"], wd["gmv"])
+    cancel_rate = (m["cancelamentos"] / (m["pedidos_validos"] + m["cancelamentos"]) * 100) if (m["pedidos_validos"] + m["cancelamentos"]) else 0
+    conc = m["top3_concentration"]
+
+    context_loaded = [k for k in memory_context if k not in {"last_daily", "last_daily_file"}]
+    last_daily = memory_context.get("last_daily_file", "nenhuma análise anterior")
+
+    strategic = []
+    if _var_float(orders_30) > 10 and _var_float(orders_60) > 10:
+        strategic.append(f"A conta opera acima do patamar estrutural recente: pedidos {orders_30} vs 30d e {orders_60} vs 60d.")
+    elif _var_float(orders_30) < -10 and _var_float(orders_60) < -10:
+        strategic.append(f"A conta perdeu patamar contra as duas janelas relevantes: pedidos {orders_30} vs 30d e {orders_60} vs 60d.")
+    else:
+        strategic.append(f"A leitura macro é mista: pedidos {orders_30} vs 30d e {orders_60} vs 60d; tratar como variação a confirmar, não como virada estrutural.")
+    strategic.append(f"O principal risco estrutural é concentração: top 3 representam {conc:.1f}% das unidades, com liderança de {leader}.")
+    strategic.append(f"Contexto carregado para tese: {', '.join(context_loaded) if context_loaded else 'sem camadas persistentes'}; última diária usada: {last_daily}.")
+
+    tactical = []
+    if acct["platform"] == "shopee":
+        tactical.append(f"Prioridade tática para Lucas/Himmel: separar perda de tráfego de mudança de mix na conta {acct['name']} antes de aumentar verba.")
+        tactical.append(f"Se {leader} perder posição ou estoque, a conta fica vulnerável por concentração; preparar produto secundário ({runner}) como sustentação.")
+    elif acct["platform"] == "ml":
+        tactical.append("Prioridade tática para Yasmin/Himmel: diferenciar acomodação normal de perda de exposição; ML tem leitura menos concentrada, então a investigação deve começar por tráfego e ranking dos campeões.")
+        tactical.append(f"Manter disponibilidade dos líderes, principalmente {leader}, e acompanhar se o ritmo até meio-dia confirma ou refuta queda vs mesmo dia da semana.")
+    else:
+        tactical.append("Prioridade tática para Leonardo/Pedro: validar Buy Box, cobertura FBA e disponibilidade dos produtos líderes antes de mexer em ADS.")
+        tactical.append(f"Como Amazon está 100% FBA por padrão, qualquer cancelamento ou ruptura em {leader} pode virar perda de Buy Box/ranking rapidamente.")
+
+    operational = [
+        f"Dia fechou com {m['pedidos_validos']} pedidos, {format_brl(m['gmv'])}, ticket {format_brl(m['ticket_medio'])} e {m['cancelamentos']} cancelamentos ({cancel_rate:.1f}%).",
+        f"Contra 30d: pedidos {orders_30}, GMV {gmv_30}, ticket {ticket_30}; contra 60d: pedidos {orders_60}, GMV {gmv_60}.",
+        f"Contra o mesmo dia da semana: pedidos {wd_orders}, GMV {wd_gmv}; essa é a comparação que deve pesar mais para confirmar sazonalidade.",
+    ]
+
+    granular = [
+        f"Produto líder: {leader}; segundo vetor: {runner}; concentração top 3: {conc:.1f}%.",
+        f"Itens vendidos: {m['itens_vendidos']}; pedidos por hora têm pico em {max(m['hour_distribution'], key=m['hour_distribution'].get) if m['hour_distribution'] else 'N/A'}h BRT.",
+    ]
+    if acct["platform"] == "amazon":
+        ff = m["fulfillment"]
+        granular.append(f"Fulfillment Amazon: FBA {ff['amazon_fba']}/{ff['total']} e FBM {ff['amazon_fbm']}/{ff['total']}.")
+    elif acct["platform"] == "shopee":
+        ff = m["fulfillment"]
+        granular.append(f"Fulfillment Shopee: Full {ff['shopee_full']}/{ff['total']} pedidos.")
+
+    probable = hypotheses[0] if hypotheses else "Hipótese principal não definida."
+    if "Dia dentro" in probable and (abs(_var_float(wd_orders)) > 15 or conc > 70 or cancel_rate > 5):
+        probable = "⚠️ HIPÓTESE: dia sem anomalia extrema, mas com sinal operacional que precisa confirmação por concentração, cancelamento ou comparação semanal."
+    confirm = []
+    confirm.append(f"Confirmar até 12h se {leader} mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.")
+    if cancel_rate > 5:
+        confirm.append("Cruzar cancelamentos por motivo/SKU; se concentrados em um produto, tratar como problema operacional/estoque, não demanda.")
+    if acct["platform"] == "amazon":
+        confirm.append("Checar Buy Box, cobertura FBA e status dos ASINs líderes antes de escalar ADS.")
+    elif acct["platform"] in {"shopee", "ml"}:
+        confirm.append(f"Alinhar com {acct['ads']} se houve mudança de campanha, cupom, exposição ou orçamento nos produtos líderes.")
+
+    condensed_analysis = [
+        strategic[0],
+        operational[1],
+        granular[0],
+        f"Hipótese mais provável: {probable}",
+        f"Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.",
+    ]
+    condensed_priorities = [
+        confirm[0],
+        confirm[1] if len(confirm) > 1 else "Comparar ritmo por horário com a média recente antes de concluir tendência.",
+        confirm[-1],
+    ]
+
+    return {
+        "strategic": strategic,
+        "tactical": tactical,
+        "operational": operational,
+        "granular": granular,
+        "condensed_analysis": condensed_analysis,
+        "condensed_priorities": condensed_priorities,
+    }
+
+
+def append_layered_sections(lines, layers):
+    sections = [
+        ("## Camada Estratégica", layers["strategic"]),
+        ("## Camada Tática", layers["tactical"]),
+        ("## Camada Operacional", layers["operational"]),
+        ("## Camada Granular", layers["granular"]),
+        ("## Camada Condensadora", []),
+        ("### Análise Final Condensada", layers["condensed_analysis"]),
+        ("### Prioridades Condensadas para Slack", layers["condensed_priorities"]),
+    ]
+    for title, bullets in sections:
+        lines.append(title)
+        if title == "## Camada Condensadora":
+            lines.append("Consome as camadas estratégica, tática, operacional e granular; resolve conflitos e entrega a análise final para memória e Slack.")
+            lines.append("")
+            continue
+        for item in bullets:
+            lines.append(f"- {item}")
+        lines.append("")
+
 # ---------------------------------------------------------------------------
 # Memória: leitura de contexto
 # ---------------------------------------------------------------------------
@@ -485,7 +634,7 @@ def read_account_memory(account_slug: str):
 # Geração de análise (Markdown)
 # ---------------------------------------------------------------------------
 
-def format_analysis(date_str, account_slug, metrics, avg30, avg60, avg_weekday, hypotheses, memory_context, reconciliation=None):
+def format_analysis(date_str, account_slug, metrics, avg30, avg60, avg_weekday, hypotheses, memory_context, reconciliation=None, layers=None):
     acct = ACCOUNTS[account_slug]
     m = metrics
     dt = datetime.strptime(date_str, "%Y-%m-%d")
@@ -603,6 +752,9 @@ def format_analysis(date_str, account_slug, metrics, avg30, avg60, avg_weekday, 
         lines.append("_Nenhuma memória anterior encontrada para esta conta._")
     lines.append("")
 
+    if layers:
+        append_layered_sections(lines, layers)
+
     # Hipóteses
     lines.append("## Hipóteses e Insights")
     for h in hypotheses:
@@ -700,8 +852,9 @@ def analyze_account(sb, date_str: str, account_slug: str, dry_run: bool, canonic
                     f"{reconciliation['order_delta']:+d} pedidos | {format_brl(reconciliation['revenue_delta'])}"
                 )
 
-    # 7. Generate analysis
-    analysis = format_analysis(date_str, account_slug, metrics, avg30, avg60, avg_weekday, hypotheses, memory_ctx, reconciliation)
+    # 7. Generate layered Daily Sales Analyst output
+    layers = build_layered_analysis(account_slug, metrics, avg30, avg60, avg_weekday, hypotheses, memory_ctx)
+    analysis = format_analysis(date_str, account_slug, metrics, avg30, avg60, avg_weekday, hypotheses, memory_ctx, reconciliation, layers)
 
     # 7. Output
     if dry_run:

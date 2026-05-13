@@ -25,28 +25,13 @@ DAILY SALES REPORT — SHOPEE — 12/05/2026 (Ontem)
 
 🔍 __ANÁLISE DA CONTA__
 
-▸ *Budamix Store*
- • A conta mostra um sinal mais ligado a exposição e força dos anúncios líderes do que a um problema isolado de preço. O ponto central é entender se Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições continua puxando tráfego ou se começou a perder espaço.
- • A dependência de poucos produtos deixa a operação frágil: quando o produto líder oscila, a leitura da conta inteira muda rápido. O trabalho do dia deve ser proteger os campeões e abrir espaço para um segundo vetor de venda.
- • Antes de aumentar verba ou mudar campanha, vale confirmar se o comportamento se repete nas primeiras horas de hoje. Se repetir, é sinal de ajuste tático com Himmel; se normalizar, foi ruído de demanda/horário.
-
-▸ *Budamix Oficial / Conta 2*
- • A conta mostra um sinal mais ligado a exposição e força dos anúncios líderes do que a um problema isolado de preço. O ponto central é entender se Kit 5 Potes de Vidro Redondos Translúcidos – Armazenamento Essencial para Mantimentos e Ma... continua puxando tráfego ou se começou a perder espaço.
- • A dependência de poucos produtos deixa a operação frágil: quando o produto líder oscila, a leitura da conta inteira muda rápido. O trabalho do dia deve ser proteger os campeões e abrir espaço para um segundo vetor de venda.
- • Antes de aumentar verba ou mudar campanha, vale confirmar se o comportamento se repete nas primeiras horas de hoje. Se repetir, é sinal de ajuste tático com Himmel; se normalizar, foi ruído de demanda/horário.
-
-▸ *Budamix Shop / Conta 3*
- • A conta mostra um sinal mais ligado a exposição e força dos anúncios líderes do que a um problema isolado de preço. O ponto central é entender se Kit 6 Canecas Tulipa Porcelana 250ml Coloridas Café Chá Xícaras Conjunto Mesa Cozinha continua puxando tráfego ou se começou a perder espaço.
- • A dependência de poucos produtos deixa a operação frágil: quando o produto líder oscila, a leitura da conta inteira muda rápido. O trabalho do dia deve ser proteger os campeões e abrir espaço para um segundo vetor de venda.
- • Antes de aumentar verba ou mudar campanha, vale confirmar se o comportamento se repete nas primeiras horas de hoje. Se repetir, é sinal de ajuste tático com Himmel; se normalizar, foi ruído de demanda/horário.
+• A Shopee mostra um ponto claro: o resultado das três contas ainda depende demais dos produtos campeões. Enquanto Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições continuar puxando tráfego, o canal sustenta volume; se esses anúncios perderem força, a queda aparece rápido.
+• A diferença entre as contas parece menos ligada a preço isolado e mais a exposição, mix e força dos anúncios líderes. Antes de mudar campanha, o mais importante é entender qual conta está perdendo visibilidade e qual está apenas mudando composição de venda.
+• A leitura prática para hoje é proteger os campeões e acelerar um segundo vetor de venda. Se o ritmo das primeiras horas repetir a fraqueza, vale alinhar com Himmel ajuste de exposição; se normalizar, foi ruído de demanda/horário.
 
 🎯 __PRIORIDADES DO DIA__
 • Confirmar até 12h se Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.
 • Cruzar cancelamentos por motivo/SKU; se concentrados em um produto, tratar como problema operacional/estoque, não demanda.
-• Alinhar com Himmel se houve mudança de campanha, cupom, exposição ou orçamento nos produtos líderes.
-• Confirmar até 12h se Kit 5 Potes de Vidro Redondos Translúcidos – Armazenamento Essencial para Mantimentos e Ma... mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.
-• Alinhar com Himmel se houve mudança de campanha, cupom, exposição ou orçamento nos produtos líderes.
-• Confirmar até 12h se Kit 6 Canecas Tulipa Porcelana 250ml Coloridas Café Chá Xícaras Conjunto Mesa Cozinha mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.
 • Alinhar com Himmel se houve mudança de campanha, cupom, exposição ou orçamento nos produtos líderes.
 
 Dia analisado: 12/05/2026 — 00:00–23:59 BRT

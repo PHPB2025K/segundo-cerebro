@@ -29,16 +29,19 @@ Painel visual da operação OpenClaw/Kobe — dashboard único com crons, agente
 
 ---
 
-## Status atual (12/05/2026)
+## Status atual (13/05/2026)
 
 | Camada | Status |
 |--------|--------|
 | Deploy + HTTPS | ✅ `mission.budamix.com.br`, Let's Encrypt válido até 10/08/2026 |
-| Frontend 100% | ✅ Design System Budamix Central aplicado, sem hardcodes, PT-BR completo, sem crashes residuais (sweep de 34 defensive checks) |
-| Dashboard `/` | ✅ PRD completo implementado — stats reais, agentes com status live, activity feed populado, logo removido a pedido do Pedro |
-| Backend: `/api/agents` | ✅ Status detection real via vault sessions, thresholds 2h/24h, botToken detection |
-| Backend: `activities.db` | ✅ Popula via `scripts/activity-collector.py` + crontab `*/5min` parseando headings `## titulo — HH:MM BRT` |
-| PRDs por módulo restantes | ⏳ Cron, Tasks, Sessions, Skills (precisa `configured-skills.json`), Agents detail, Office 3D, Activity, Analytics, Reports, System, Git, Files, Memory, Search, Logs, Terminal, Calendar, Reports, About |
+| Frontend 100% | ✅ Design System Budamix Central aplicado |
+| `/` Dashboard | ✅ PRD v2 fechado (KPIs com comparativos 7d, agentes live, atividade SSE, notepad SQLite, ⌘K command palette, telemetria UI_EVENT, WeatherWidget PT-BR) |
+| `/system` System Monitor | ✅ PRD v1 fechado (3 tabs: Hardware/Serviços/Rede; CPU correto via /proc/stat; 14/15 serviços reais; sparklines persistentes 24h; ações Start/Stop/Restart com allowlist) |
+| `/files` Files | ✅ PRD v1 fechado (8 workspaces; Monaco editor lazy; markdown render; CRUD com lixeira 7d; search nome+conteúdo opcional; path traversal bloqueado) |
+| Backend cron `activity-collector.py` | ✅ `*/5min` populando activities.db |
+| Backend cron `system-metrics` | ✅ Snapshot 1/5s persistente em `system-metrics.db` 24h retention |
+| PRDs futuros | ⏳ 20 módulos: cron, tasks, memory, sessions, activity, skills, agents detail, office 3d, logs, terminal, git, workflows, search, analytics, reports, costs, settings, calendar, about, actions |
+| PRD futuro **"Minhas Aplicações"** | ⏳ cross-host (VPS + Vercel + Supabase + Railway) — unifica visão de todos os sistemas próprios independente de onde hospedados |
 
 ---
 

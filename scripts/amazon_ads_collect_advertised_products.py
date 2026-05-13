@@ -96,7 +96,8 @@ class AmazonAdsClient:
             }
         }
         r = self.s.post(AMAZON_REPORT_URL, headers=self._headers(create=True), json=payload, timeout=DEFAULT_TIMEOUT)
-        r.raise_for_status()
+        if r.status_code >= 400:
+            raise requests.HTTPError(f'{r.status_code} creating report: {r.text[:1000]}', response=r)
         return r.json()['reportId']
 
     def get_report(self, report_id: str) -> Dict[str, Any]:
@@ -249,6 +250,7 @@ def main():
     ap.add_argument('--ensure-schema', action='store_true')
     ap.add_argument('--schema-sql', default='/root/segundo-cerebro/sql/amazon_ads_advertised_products_daily.sql')
     ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--report-id', help='Resume/download an existing Amazon Ads report id for a single date range')
     args = ap.parse_args()
     if not args.project_ref or not args.supabase_token:
         raise SystemExit('Missing SUPABASE_PROJECT_REF or SUPABASE_ACCESS_TOKEN')
@@ -274,7 +276,7 @@ def main():
     collected_at = now_utc()
     for d in daterange(start, end):
         day = d.isoformat()
-        report_id = client.create_report(day, day, time_unit='DAILY')
+        report_id = args.report_id if args.report_id else client.create_report(day, day, time_unit='DAILY')
         meta = client.wait_report(report_id, poll_seconds=args.poll_seconds, max_wait_seconds=args.max_wait_seconds)
         rows = client.download_report(meta['url'])
         norm = [normalize_row(r, role_map, collected_at) for r in rows if r.get('advertisedAsin') and r.get('adId')]

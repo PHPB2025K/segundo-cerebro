@@ -25,14 +25,14 @@ DAILY SALES REPORT — MERCADO LIVRE — 12/05/2026 (Ontem)
 
 🔍 __ANÁLISE DA CONTA__
 
- • Leitura: o Mercado Livre ficou abaixo do patamar mais recente, mas ainda acima da referência mais longa. Isso sugere que a base dos últimos 30 dias estava mais aquecida e que o dia analisado pode representar uma acomodação pontual, não necessariamente uma perda estrutural de tração.
- • A comparação com segundas recentes adiciona um sinal de cautela: existe queda contra dias equivalentes, mas ela ainda precisa ser separada de efeito calendário, sazonalidade pós-Dia das Mães ou variação normal de início de semana. A confirmação vem se o ritmo do dia seguinte também ficar abaixo do padrão recente.
- • A distribuição de vendas do Mercado Livre segue mais saudável do que a dos demais canais: o resultado não depende de um único SKU ou de uma concentração extrema no top 3. Isso reduz risco operacional e torna a queda do dia menos preocupante, porque vários anúncios ainda sustentam o volume.
- • Cancelamentos em 4,2% não aparecem como problema central. O ponto de atenção do canal é mais comportamento de demanda/exposição do que falha operacional ou ruptura evidente.
+• A leitura macro é mista: pedidos -8.7% vs 30d e +12.6% vs 60d; tratar como variação a confirmar, não como virada estrutural.
+• Contra 30d: pedidos -8.7%, GMV +0.6%, ticket +10.3%; contra 60d: pedidos +12.6%, GMV +20.0%.
+• Produto líder: Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita; segundo vetor: Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita; concentração top 3: 55.3%.
+• Hipótese mais provável: ⚠️ HIPÓTESE: dia sem anomalia extrema, mas com sinal operacional que precisa confirmação por concentração, cancelamento ou comparação semanal.
+• Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.
 
 🎯 __PRIORIDADES DO DIA__
-• Manter sortimento e disponibilidade dos 3 campeões que sustentaram 55,3% do volume: Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita, Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita, Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita. Conferir estoque no painel ML antes das 11h.
-• Acompanhar se o patamar de pedidos recupera hoje. Se terça também vier abaixo da média de 30d, configura tendência e merece investigação mais profunda.
-• Avaliar se a queda vs mesma segunda é efeito calendário cruzando com pedidos das últimas 2 horas (10h-12h) — se ritmo estiver em linha com média, descartar tendência.
+• Confirmar até 12h se Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.
+• Alinhar com Himmel se houve mudança de campanha, cupom, exposição ou orçamento nos produtos líderes.
 
 Dia analisado: 12/05/2026 — 00:00–23:59 BRT

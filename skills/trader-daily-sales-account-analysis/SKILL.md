@@ -53,7 +53,21 @@ Use como hipóteses, não como verdade absoluta:
 Salvar análise interna seguindo o template em:
 `shared/trader/memory/projects/daily-sales-report/accounts/{slug}/daily/YYYY-MM-DD.md`
 
-A análise deve conter:
+A análise deve conter obrigatoriamente as 5 camadas do **Daily Sales Analyst**:
+1. **Camada Estratégica** — visão macro, tese da conta, risco estrutural, dependência e direcionamento de longo prazo.
+2. **Camada Tática** — desdobramento em plano de médio prazo, ADS/Himmel/Pedro, mix, exposição, estoque/Full/FBA/Buy Box.
+3. **Camada Operacional** — execução do dia, pedidos, GMV, ticket, cancelamentos, horários e comparativos.
+4. **Camada Granular** — produtos, SKUs, ASIN/título real, shop_id, concentração, fulfillment e microanomalias.
+5. **Camada Condensadora** — consome as 4 camadas anteriores, resolve conflitos, separa fato de hipótese e produz a análise final para memória e Slack.
+
+A Camada Condensadora deve entregar:
+- análise final condensada;
+- prioridades condensadas para Slack;
+- hipótese mais provável;
+- por que importa;
+- como confirmar/refutar amanhã.
+
+A análise também deve conter:
 - hipóteses anteriores lidas;
 - hipóteses confirmadas/refutadas;
 - novas hipóteses;
@@ -68,6 +82,8 @@ A análise deve conter:
 - Não usar Shopee consolidada para decisão por conta.
 - Não recomendar preço/margem sem fonte de custo confiável.
 - Não enviar Slack nesta etapa.
+- Não deixar o Slack consumir diagnóstico hardcoded/legado quando a Camada Condensadora existir.
+- Não permitir envio real se a análise diária não tiver as 5 camadas ou se a Condensadora estiver rasa.
 
 ## Régua mínima de análise sênior (obrigatória)
 Uma análise só é aceitável se responder, para cada conta:

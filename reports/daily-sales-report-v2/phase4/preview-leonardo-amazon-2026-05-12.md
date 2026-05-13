@@ -25,13 +25,14 @@ DAILY SALES REPORT — AMAZON — 12/05/2026 (Ontem)
 
 🔍 __ANÁLISE DA CONTA__
 
- • Leitura: o desempenho da Amazon mostra crescimento consistente quando comparado às três janelas de referência — média de 30 dias, média de 60 dias e mesmas segundas recentes. Isso reduz a chance de ser apenas um pico isolado e indica que o canal está operando em patamar mais forte do que o histórico recente.
- • Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas continua sendo o produto que mais explica o resultado do canal. A concentração no top 3 ainda não é extrema, mas exige acompanhamento porque qualquer instabilidade no produto líder pode reduzir a leitura positiva do dia.
+• A leitura macro é mista: pedidos +9.1% vs 30d e +16.3% vs 60d; tratar como variação a confirmar, não como virada estrutural.
+• Contra 30d: pedidos +9.1%, GMV +8.4%, ticket -0.6%; contra 60d: pedidos +16.3%, GMV +15.4%.
+• Produto líder: Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas; segundo vetor: Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto - Organizador de Mesa Game...; concentração top 3: 65.6%.
+• Hipótese mais provável: ⚠️ HIPÓTESE: Alta concentração nos top 3 SKUs (65.6%) → risco de dependência.
+• Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.
 
 🎯 __PRIORIDADES DO DIA__
-• Investigar os 1 cancelamentos no Seller Central. Identificar se vieram de ruptura FBA, indisponibilidade de listing ou prazo expirado. Se 3+ forem do mesmo SKU, verificar estoque no CD Amazon e reportar.
-• Confirmar cobertura FBA dos 3 principais: Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas, Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto - Organizador..., Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio. Se algum estiver abaixo de 5 dias de cobertura, priorizar reposição hoje.
-• Verificar se listings secundários (Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Jogo de Caneca Grande...) estão com Buy Box ativo e estoque disponível.
-• ADS: avaliar se campanhas atuais estão contribuindo para o crescimento. Se sim, considerar escalar budget mantendo ACOS — porém antes de escalar, confirmar que cancelamento não vem de campanha direcionando para listing sem estoque. Se confirmado, pausar anúncio primeiro.
+• Confirmar até 12h se Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.
+• Checar Buy Box, cobertura FBA e status dos ASINs líderes antes de escalar ADS.
 
 Dia analisado: 12/05/2026 — 00:00–23:59 BRT

@@ -756,8 +756,12 @@ def _risk_label(conc: float) -> str:
         return "moderada"
     return "saudável, boa diversificação"
 
+def _bullets_from_condensed(items: list[str], prefix: str = "•") -> list[str]:
+    return [f"{prefix} {item}" for item in items if item]
+
+
 def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str, dict]) -> str:
-    """Mensagem individual para Lucas — Shopee no padrão obrigatório dos templates."""
+    """Mensagem individual para Lucas — Shopee, consumindo Camada Condensadora."""
     d = date.fromisoformat(day)
     display_date = d.strftime("%d/%m/%Y")
     sections: list[str] = []
@@ -788,47 +792,29 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     sections.append(_top_products_section("TOP PRODUTOS SHOPEE", _merge_top_products(*shopee_accounts)))
 
     diag_lines: list[str] = []
+    prio_lines: list[str] = []
     for slug, label in account_slugs:
         a = analyses.get(slug)
-        if not a:
-            diag_lines.append(f"▸ *{label}*\n • Análise não disponível para esta conta.")
-            continue
-        c30 = a.get("comparisons", {}).get("30d")
-        c60 = a.get("comparisons", {}).get("60d")
-        csw = a.get("comparisons", {}).get("same_weekday")
         diag_lines.append(f"▸ *{label}*")
-        if slug == "shopee-budamix-store":
-            diag_lines.append(" • Leitura: a conta principal mostra perda de tração com perfil mais parecido com queda de exposição/tráfego do que com mudança de mix. O ticket não parece ser o centro do problema; o risco maior é a dependência dos anúncios líderes, porque qualquer perda de ranking nesses produtos derruba a conta inteira.")
-            diag_lines.append(" • O comportamento contra as janelas recentes sugere que não foi apenas um dia fraco isolado: existe sinal de enfraquecimento quando comparado tanto ao histórico curto quanto aos mesmos dias da semana. A prioridade é entender se houve perda de posição, campanha menos eficiente ou pressão competitiva nos anúncios campeões.")
-            diag_lines.append(" • Os cancelamentos entram como agravante, não como explicação principal. Se estiverem ligados a ruptura ou prazo, podem piorar ranqueamento e conversão justamente em uma conta já sensível à exposição.")
-        elif slug == "shopee-budamix-oficial-2":
-            diag_lines.append(" • Leitura: a Conta 2 parece preservar volume, mas com qualidade de venda pior. Isso aponta para mudança de mix, desconto, cupom ou deslocamento para itens de menor valor, e não necessariamente para problema de demanda.")
-            diag_lines.append(" • A comparação com janelas mais longas mostra que a conta ainda não está em um patamar estruturalmente confortável. Mesmo quando o volume diário parece aceitável, o valor capturado por pedido precisa ser acompanhado para não mascarar deterioração de margem e GMV.")
-            diag_lines.append(" • O foco aqui não é aumentar tráfego a qualquer custo; primeiro precisa confirmar se a precificação/promoção dos produtos líderes está puxando ticket para baixo ou se o mix vendido mudou por comportamento orgânico do marketplace.")
-        elif slug == "shopee-budamix-shop-3":
-            diag_lines.append(" • Leitura: a Conta 3 teve uma dinâmica diferente das outras: menos volume, mas venda sustentada por ticket mais alto. Isso pode ser positivo no curto prazo, mas cria fragilidade se o produto que sustenta esse ticket perder força.")
-            diag_lines.append(" • A conta parece operar com dependência relevante de poucos itens. Quando o volume cai e o GMV só se mantém pelo ticket, o cenário exige atenção: se o mix voltar para produtos mais baratos sem recuperação de pedidos, o faturamento tende a cair rápido.")
-            diag_lines.append(" • O caminho mais saudável é usar o bom desempenho dos itens de maior ticket para ganhar fôlego, mas trabalhar anúncios secundários para reduzir dependência e estabilizar o volume diário.")
+        if not a:
+            diag_lines.append(" • Análise não disponível para esta conta.")
+            continue
+        condensed = a.get("condensed_analysis") or []
+        priorities = a.get("condensed_priorities") or []
+        if not condensed:
+            diag_lines.append(" • Camada Condensadora ausente; QA deve bloquear o envio real.")
+        else:
+            diag_lines.extend(_bullets_from_condensed(condensed, " •"))
+        prio_lines.extend(_bullets_from_condensed(priorities))
         diag_lines.append("")
     sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(diag_lines).strip())
-
-    store_a = analyses.get("shopee-budamix-store")
-    conta2_a = analyses.get("shopee-budamix-oficial-2")
-    conta3_a = analyses.get("shopee-budamix-shop-3")
-    prio_lines = []
-    if store_a and store_a.get("top_skus"):
-        prio_lines.append(f"• Checar posição e visibilidade dos anúncios de {_display_name_from_top_entry(store_a['top_skus'][0][0])} e {_display_name_from_top_entry(store_a['top_skus'][1][0]) if len(store_a['top_skus']) > 1 else 'segundo produto'} na Budamix Store. Comparar tráfego de ontem com média. Se até 12h o ritmo seguir abaixo, alinhar com Himmel para revisar tráfego/campanha.")
-        prio_lines.append(f"• Investigar os {store_a['cancelamentos']} cancelamentos da Budamix Store: verificar se foram por ruptura de estoque, prazo ou reclamação. Se padrão se repetir, reportar.")
-    if conta2_a and conta2_a.get("top_skus"):
-        prio_lines.append(f"• Conta 2: confirmar se houve alteração de preço no {_display_name_from_top_entry(conta2_a['top_skus'][0][0])} ou promoção ativa que justifique o ticket {conta2_a['comparisons'].get('30d', {}).get('var_ticket', '')}.")
-    if conta3_a and conta3_a.get("top_skus"):
-        prio_lines.append(f"• Conta 3: avaliar espaço para impulsionar anúncios secundários e reduzir dependência do {_display_name_from_top_entry(conta3_a['top_skus'][0][0])} (concentração {pct(conta3_a['concentration_top3'])}).")
     sections.append("🎯 __PRIORIDADES DO DIA__\n" + "\n".join(prio_lines))
     sections.append(f"Dia analisado: {display_date} — 00:00–23:59 BRT")
     return "\n\n".join(sections)
 
+
 def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[str, dict]) -> str:
-    """Mensagem individual para Yasmin — Mercado Livre no padrão obrigatório dos templates."""
+    """Mensagem individual para Yasmin — Mercado Livre, consumindo Camada Condensadora."""
     d = date.fromisoformat(day)
     display_date = d.strftime("%d/%m/%Y")
     sections: list[str] = []
@@ -842,43 +828,22 @@ def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[st
     ml_orders = int(ml_row.get("order_count") or 0)
     ml_ticket = ml_rev / ml_orders if ml_orders else 0
     ml_lines = [f"• Faturamento ML: {brl(ml_rev)}", f"• Pedidos ML: {ml_orders}", f"• Ticket médio ML: {brl(ml_ticket)}"]
-    if a:
-        cancel_rate, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
-        if a.get("cancelamentos"):
-            ml_lines.append(f"• Cancelamentos: {a['cancelamentos']} ({cancel_text})")
+    if a and a.get("cancelamentos"):
+        _, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
+        ml_lines.append(f"• Cancelamentos: {a['cancelamentos']} ({cancel_text})")
     sections.append("🛍️ __VISÃO MERCADO LIVRE__\n" + "\n".join(ml_lines))
     if a:
         sections.append(_top_products_section("TOP PRODUTOS MERCADO LIVRE", a.get("top_skus", [])))
-
-    diag_lines = []
-    if a:
-        c30 = a.get("comparisons", {}).get("30d")
-        c60 = a.get("comparisons", {}).get("60d")
-        csw = a.get("comparisons", {}).get("same_weekday")
-        if c30 and c60:
-            diag_lines.append(f" • Leitura: o Mercado Livre ficou abaixo do patamar mais recente, mas ainda acima da referência mais longa. Isso sugere que a base dos últimos 30 dias estava mais aquecida e que o dia analisado pode representar uma acomodação pontual, não necessariamente uma perda estrutural de tração.")
-        if csw:
-            diag_lines.append(" • A comparação com segundas recentes adiciona um sinal de cautela: existe queda contra dias equivalentes, mas ela ainda precisa ser separada de efeito calendário, sazonalidade pós-Dia das Mães ou variação normal de início de semana. A confirmação vem se o ritmo do dia seguinte também ficar abaixo do padrão recente.")
-        diag_lines.append(" • A distribuição de vendas do Mercado Livre segue mais saudável do que a dos demais canais: o resultado não depende de um único SKU ou de uma concentração extrema no top 3. Isso reduz risco operacional e torna a queda do dia menos preocupante, porque vários anúncios ainda sustentam o volume.")
-        cancel_rate, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
-        if a.get("cancelamentos"):
-            diag_lines.append(f" • Cancelamentos em {cancel_text} não aparecem como problema central. O ponto de atenção do canal é mais comportamento de demanda/exposição do que falha operacional ou ruptura evidente.")
-    else:
-        diag_lines.append("• Análise detalhada não disponível para o dia")
-    sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(diag_lines))
-
-    prio_lines = []
-    if a and a.get("top_skus"):
-        names = [_display_name_from_top_entry(x[0]) for x in a["top_skus"][:3]]
-        prio_lines.append(f"• Manter sortimento e disponibilidade dos 3 campeões que sustentaram {pct(a['concentration_top3'])} do volume: {', '.join(names)}. Conferir estoque no painel ML antes das 11h.")
-        prio_lines.append("• Acompanhar se o patamar de pedidos recupera hoje. Se terça também vier abaixo da média de 30d, configura tendência e merece investigação mais profunda.")
-        prio_lines.append("• Avaliar se a queda vs mesma segunda é efeito calendário cruzando com pedidos das últimas 2 horas (10h-12h) — se ritmo estiver em linha com média, descartar tendência.")
-    sections.append("🎯 __PRIORIDADES DO DIA__\n" + "\n".join(prio_lines))
+    condensed = (a or {}).get("condensed_analysis") or []
+    priorities = (a or {}).get("condensed_priorities") or []
+    sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(_bullets_from_condensed(condensed) or ["• Camada Condensadora ausente; QA deve bloquear o envio real."]))
+    sections.append("🎯 __PRIORIDADES DO DIA__\n" + "\n".join(_bullets_from_condensed(priorities)))
     sections.append(f"Dia analisado: {display_date} — 00:00–23:59 BRT")
     return "\n\n".join(sections)
 
+
 def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[str, dict]) -> str:
-    """Mensagem individual para Leonardo — Amazon no padrão obrigatório dos templates."""
+    """Mensagem individual para Leonardo — Amazon, consumindo Camada Condensadora."""
     d = date.fromisoformat(day)
     display_date = d.strftime("%d/%m/%Y")
     sections: list[str] = []
@@ -892,41 +857,17 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
     amz_orders = int(amz_row.get("order_count") or 0)
     amz_ticket = amz_rev / amz_orders if amz_orders else 0
     amz_lines = [f"• Faturamento Amazon: {brl(amz_rev)}", f"• Pedidos Amazon: {amz_orders}", f"• Ticket médio Amazon: {brl(amz_ticket)}"]
-    if a:
+    if a and a.get("cancelamentos"):
         cancel_rate, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
-        if a.get("cancelamentos"):
-            suffix = " — atenção" if cancel_rate > 10 else ""
-            amz_lines.append(f"• Cancelamentos: {a['cancelamentos']} ({cancel_text}){suffix}")
+        suffix = " — atenção" if cancel_rate > 10 else ""
+        amz_lines.append(f"• Cancelamentos: {a['cancelamentos']} ({cancel_text}){suffix}")
     sections.append("🛍️ __VISÃO AMAZON__\n" + "\n".join(amz_lines))
     if a:
         sections.append(_top_products_section("TOP PRODUTOS AMAZON", a.get("top_skus", [])))
-
-    diag_lines = []
-    if a:
-        c30 = a.get("comparisons", {}).get("30d")
-        c60 = a.get("comparisons", {}).get("60d")
-        csw = a.get("comparisons", {}).get("same_weekday")
-        if c30 and c60 and csw:
-            diag_lines.append(" • Leitura: o desempenho da Amazon mostra crescimento consistente quando comparado às três janelas de referência — média de 30 dias, média de 60 dias e mesmas segundas recentes. Isso reduz a chance de ser apenas um pico isolado e indica que o canal está operando em patamar mais forte do que o histórico recente.")
-        cancel_rate, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
-        if cancel_rate > 10:
-            diag_lines.append(f" • Taxa de cancelamento em {cancel_text} é o ponto crítico do dia. Como a operação Amazon é FBA por padrão, esse cancelamento tende a apontar mais para ruptura no CD Amazon, indisponibilidade temporária de listing, atraso/expiração automática ou problema de cobertura do que para falha operacional direta da equipe.")
-            diag_lines.append(" • A combinação de demanda crescendo com cancelamento alto é o principal risco: se a Amazon interpretar baixa capacidade de fulfillment, o canal pode perder Buy Box, ranqueamento ou eficiência de campanha justamente no momento em que está ganhando tração.")
-        if a.get("top_skus"):
-            diag_lines.append(f" • {_display_name_from_top_entry(a['top_skus'][0][0])} continua sendo o produto que mais explica o resultado do canal. A concentração no top 3 ainda não é extrema, mas exige acompanhamento porque qualquer instabilidade no produto líder pode reduzir a leitura positiva do dia.")
-    else:
-        diag_lines.append("• Análise detalhada não disponível para o dia")
-    sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(diag_lines))
-
-    prio_lines = []
-    if a and a.get("top_skus"):
-        names = [_display_name_from_top_entry(x[0]) for x in a["top_skus"][:3]]
-        prio_lines.append(f"• Investigar os {a['cancelamentos']} cancelamentos no Seller Central. Identificar se vieram de ruptura FBA, indisponibilidade de listing ou prazo expirado. Se 3+ forem do mesmo SKU, verificar estoque no CD Amazon e reportar.")
-        prio_lines.append(f"• Confirmar cobertura FBA dos 3 principais: {', '.join(names)}. Se algum estiver abaixo de 5 dias de cobertura, priorizar reposição hoje.")
-        if len(a["top_skus"]) > 3:
-            prio_lines.append(f"• Verificar se listings secundários ({_display_name_from_top_entry(a['top_skus'][3][0])}) estão com Buy Box ativo e estoque disponível.")
-        prio_lines.append("• ADS: avaliar se campanhas atuais estão contribuindo para o crescimento. Se sim, considerar escalar budget mantendo ACOS — porém antes de escalar, confirmar que cancelamento não vem de campanha direcionando para listing sem estoque. Se confirmado, pausar anúncio primeiro.")
-    sections.append("🎯 __PRIORIDADES DO DIA__\n" + "\n".join(prio_lines))
+    condensed = (a or {}).get("condensed_analysis") or []
+    priorities = (a or {}).get("condensed_priorities") or []
+    sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(_bullets_from_condensed(condensed) or ["• Camada Condensadora ausente; QA deve bloquear o envio real."]))
+    sections.append("🎯 __PRIORIDADES DO DIA__\n" + "\n".join(_bullets_from_condensed(priorities)))
     sections.append(f"Dia analisado: {display_date} — 00:00–23:59 BRT")
     return "\n\n".join(sections)
 
@@ -1149,6 +1090,7 @@ def main() -> int:
     qa_passed = True
     for name, msg in messages.items():
         issues = []
+        issues.extend(qa_check_condensed_quality(name, analyses))
         
         if not msg.strip():
             issues.append("MENSAGEM VAZIA")
@@ -1177,7 +1119,9 @@ def main() -> int:
         print(f"  {name}: {status}")
 
     if not qa_passed:
-        print("\n⚠ QA encontrou problemas. Verifique as mensagens.")
+        print("\n⚠ QA encontrou problemas. Envio real bloqueado até corrigir as mensagens.")
+        if args.send_real or args.to_pedro or args.write_preview:
+            return 1
 
     # 5. Output conforme modo
     if args.dry_run or (not args.write_preview and not args.to_pedro and not args.send_real):

@@ -26,24 +26,33 @@ DAILY SALES REPORT — SHOPEE — 12/05/2026 (Ontem)
 🔍 __ANÁLISE DA CONTA__
 
 ▸ *Budamix Store*
- • Leitura: a conta principal mostra perda de tração com perfil mais parecido com queda de exposição/tráfego do que com mudança de mix. O ticket não parece ser o centro do problema; o risco maior é a dependência dos anúncios líderes, porque qualquer perda de ranking nesses produtos derruba a conta inteira.
- • O comportamento contra as janelas recentes sugere que não foi apenas um dia fraco isolado: existe sinal de enfraquecimento quando comparado tanto ao histórico curto quanto aos mesmos dias da semana. A prioridade é entender se houve perda de posição, campanha menos eficiente ou pressão competitiva nos anúncios campeões.
- • Os cancelamentos entram como agravante, não como explicação principal. Se estiverem ligados a ruptura ou prazo, podem piorar ranqueamento e conversão justamente em uma conta já sensível à exposição.
+ • A conta perdeu patamar contra as duas janelas relevantes: pedidos -17.7% vs 30d e -27.6% vs 60d.
+ • Contra 30d: pedidos -17.7%, GMV -21.9%, ticket -5.0%; contra 60d: pedidos -27.6%, GMV -26.6%.
+ • Produto líder: Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições; segundo vetor: Jarra Medidora De Vidro 500ml com Alça Para Receitas Resistente; concentração top 3: 84.8%.
+ • Hipótese mais provável: ⚠️ HIPÓTESE: Alta concentração nos top 3 SKUs (84.8%) → risco de dependência.
+ • Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.
 
 ▸ *Budamix Oficial / Conta 2*
- • Leitura: a Conta 2 parece preservar volume, mas com qualidade de venda pior. Isso aponta para mudança de mix, desconto, cupom ou deslocamento para itens de menor valor, e não necessariamente para problema de demanda.
- • A comparação com janelas mais longas mostra que a conta ainda não está em um patamar estruturalmente confortável. Mesmo quando o volume diário parece aceitável, o valor capturado por pedido precisa ser acompanhado para não mascarar deterioração de margem e GMV.
- • O foco aqui não é aumentar tráfego a qualquer custo; primeiro precisa confirmar se a precificação/promoção dos produtos líderes está puxando ticket para baixo ou se o mix vendido mudou por comportamento orgânico do marketplace.
+ • A conta perdeu patamar contra as duas janelas relevantes: pedidos -34.4% vs 30d e -38.6% vs 60d.
+ • Contra 30d: pedidos -34.4%, GMV -37.4%, ticket -4.6%; contra 60d: pedidos -38.6%, GMV -35.8%.
+ • Produto líder: Kit 5 Potes de Vidro Redondos Translúcidos – Armazenamento Essencial para Mantimentos e Ma...; segundo vetor: Conjunto 6 Canecas Tulipa em Porcelana 250ml Coloridas para Café e Chá; concentração top 3: 80.0%.
+ • Hipótese mais provável: ⚠️ HIPÓTESE: Queda de pedidos com ticket preservado → possível problema de tráfego/exposição/ADS.
+ • Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.
 
 ▸ *Budamix Shop / Conta 3*
- • Leitura: a Conta 3 teve uma dinâmica diferente das outras: menos volume, mas venda sustentada por ticket mais alto. Isso pode ser positivo no curto prazo, mas cria fragilidade se o produto que sustenta esse ticket perder força.
- • A conta parece operar com dependência relevante de poucos itens. Quando o volume cai e o GMV só se mantém pelo ticket, o cenário exige atenção: se o mix voltar para produtos mais baratos sem recuperação de pedidos, o faturamento tende a cair rápido.
- • O caminho mais saudável é usar o bom desempenho dos itens de maior ticket para ganhar fôlego, mas trabalhar anúncios secundários para reduzir dependência e estabilizar o volume diário.
+ • A conta perdeu patamar contra as duas janelas relevantes: pedidos -32.9% vs 30d e -44.4% vs 60d.
+ • Contra 30d: pedidos -32.9%, GMV -32.9%, ticket -0.2%; contra 60d: pedidos -44.4%, GMV -43.3%.
+ • Produto líder: Kit 6 Canecas Tulipa Porcelana 250ml Coloridas Café Chá Xícaras Conjunto Mesa Cozinha; segundo vetor: Kit 6 Canecas Porcelana 200ml Reta Lisa Coloridas Sortidas Café Chá Mesa Posta; concentração top 3: 86.4%.
+ • Hipótese mais provável: ⚠️ HIPÓTESE: Queda de pedidos com ticket preservado → possível problema de tráfego/exposição/ADS.
+ • Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.
 
 🎯 __PRIORIDADES DO DIA__
-• Checar posição e visibilidade dos anúncios de Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições e Jarra Medidora De Vidro 500ml com Alça Para Receitas Resistente na Budamix Store. Comparar tráfego de ontem com média. Se até 12h o ritmo seguir abaixo, alinhar com Himmel para revisar tráfego/campanha.
-• Investigar os 10 cancelamentos da Budamix Store: verificar se foram por ruptura de estoque, prazo ou reclamação. Se padrão se repetir, reportar.
-• Conta 2: confirmar se houve alteração de preço no Kit 5 Potes de Vidro Redondos Translúcidos – Armazenamento Essencial para Man... ou promoção ativa que justifique o ticket -4.6%.
-• Conta 3: avaliar espaço para impulsionar anúncios secundários e reduzir dependência do Kit 6 Canecas Tulipa Porcelana 250ml Coloridas Café Chá Xícaras Conjunto Mesa... (concentração 86,4%).
+• Confirmar até 12h se Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.
+• Cruzar cancelamentos por motivo/SKU; se concentrados em um produto, tratar como problema operacional/estoque, não demanda.
+• Alinhar com Himmel se houve mudança de campanha, cupom, exposição ou orçamento nos produtos líderes.
+• Confirmar até 12h se Kit 5 Potes de Vidro Redondos Translúcidos – Armazenamento Essencial para Mantimentos e Ma... mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.
+• Alinhar com Himmel se houve mudança de campanha, cupom, exposição ou orçamento nos produtos líderes.
+• Confirmar até 12h se Kit 6 Canecas Tulipa Porcelana 250ml Coloridas Café Chá Xícaras Conjunto Mesa Cozinha mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.
+• Alinhar com Himmel se houve mudança de campanha, cupom, exposição ou orçamento nos produtos líderes.
 
 Dia analisado: 12/05/2026 — 00:00–23:59 BRT

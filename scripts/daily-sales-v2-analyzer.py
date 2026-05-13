@@ -562,11 +562,14 @@ def build_layered_analysis(account_slug, metrics, avg30, avg60, avg_weekday, hyp
         f"Hipótese mais provável: {probable}",
         f"Por que importa: se o padrão se repetir amanhã, a conta pode estar mudando de patamar ou ficando dependente demais de poucos anúncios; se não repetir, foi ruído operacional/sazonal.",
     ]
-    condensed_priorities = [
+    condensed_priorities = []
+    for item in [
         confirm[0],
         confirm[1] if len(confirm) > 1 else "Comparar ritmo por horário com a média recente antes de concluir tendência.",
         confirm[-1],
-    ]
+    ]:
+        if item and item not in condensed_priorities:
+            condensed_priorities.append(item)
 
     return {
         "strategic": strategic,

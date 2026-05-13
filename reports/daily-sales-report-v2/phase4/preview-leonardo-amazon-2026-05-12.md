@@ -30,7 +30,8 @@ DAILY SALES REPORT — AMAZON — 12/05/2026 (Ontem)
 • A prioridade não é escalar ADS às cegas. Primeiro precisa confirmar cobertura FBA, Buy Box e ausência de bloqueio/cancelamento nos ASINs líderes; depois disso, campanha faz sentido.
 
 🎯 __PRIORIDADES DO DIA__
-• Confirmar até 12h se Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.
-• Checar Buy Box, cobertura FBA e status dos ASINs líderes antes de escalar ADS.
+• Checar Buy Box, cobertura FBA e status dos ASINs líderes antes de qualquer ajuste em ADS.
+• Investigar cancelamento ou listing indisponível no Seller Central. Na Amazon, problema de fulfillment pode parecer queda de demanda se não for isolado rapidamente.
+• Só considerar escalar campanha se os produtos líderes estiverem com estoque, FBA e Buy Box estáveis.
 
 Dia analisado: 12/05/2026 — 00:00–23:59 BRT

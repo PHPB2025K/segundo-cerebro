@@ -30,8 +30,8 @@ DAILY SALES REPORT — SHOPEE — 12/05/2026 (Ontem)
 • A leitura prática para hoje é proteger os campeões e acelerar um segundo vetor de venda. Se o ritmo das primeiras horas repetir a fraqueza, vale alinhar com Himmel ajuste de exposição; se normalizar, foi ruído de demanda/horário.
 
 🎯 __PRIORIDADES DO DIA__
-• Confirmar até 12h se Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.
-• Cruzar cancelamentos por motivo/SKU; se concentrados em um produto, tratar como problema operacional/estoque, não demanda.
-• Alinhar com Himmel se houve mudança de campanha, cupom, exposição ou orçamento nos produtos líderes.
+• Revisar com Himmel qual das contas perdeu visibilidade nos anúncios líderes; não mexer nas três contas ao mesmo tempo antes de separar exposição de mix.
+• Checar cancelamentos e estoque dos campeões por conta. Se o problema estiver concentrado em um SKU ou loja, tratar operacionalmente antes de aumentar verba.
+• Escolher um produto secundário para ganhar tração hoje e reduzir dependência dos campeões que sustentam o canal.
 
 Dia analisado: 12/05/2026 — 00:00–23:59 BRT

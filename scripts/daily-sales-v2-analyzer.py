@@ -546,14 +546,24 @@ def build_layered_analysis(account_slug, metrics, avg30, avg60, avg_weekday, hyp
     probable = hypotheses[0] if hypotheses else "Hipótese principal não definida."
     if "Dia dentro" in probable and (abs(_var_float(wd_orders)) > 15 or conc > 70 or cancel_rate > 5):
         probable = "⚠️ HIPÓTESE: dia sem anomalia extrema, mas com sinal operacional que precisa confirmação por concentração, cancelamento ou comparação semanal."
-    confirm = []
-    confirm.append(f"Confirmar até 12h se {leader} mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.")
-    if cancel_rate > 5:
-        confirm.append("Cruzar cancelamentos por motivo/SKU; se concentrados em um produto, tratar como problema operacional/estoque, não demanda.")
-    if acct["platform"] == "amazon":
-        confirm.append("Checar Buy Box, cobertura FBA e status dos ASINs líderes antes de escalar ADS.")
-    elif acct["platform"] in {"shopee", "ml"}:
-        confirm.append(f"Alinhar com {acct['ads']} se houve mudança de campanha, cupom, exposição ou orçamento nos produtos líderes.")
+    if acct["platform"] == "shopee":
+        confirm = [
+            "Revisar com Himmel qual das contas perdeu visibilidade nos anúncios líderes; não mexer nas três contas ao mesmo tempo antes de separar exposição de mix.",
+            "Checar cancelamentos e estoque dos campeões por conta. Se o problema estiver concentrado em um SKU ou loja, tratar operacionalmente antes de aumentar verba.",
+            "Escolher um produto secundário para ganhar tração hoje e reduzir dependência dos campeões que sustentam o canal.",
+        ]
+    elif acct["platform"] == "ml":
+        confirm = [
+            "Conferir no painel do Mercado Livre se os anúncios líderes mantêm posição, reputação e competitividade; não alterar campanha antes de confirmar que não foi só acomodação de demanda.",
+            "Acompanhar o ritmo do canal nos horários fortes de hoje. Só escalar para Himmel se a fraqueza persistir, porque a conta ainda parece saudável no conjunto.",
+            "Garantir estoque e saúde dos principais anúncios, mantendo o mix distribuído — esse é o diferencial do ML em relação aos canais mais dependentes de poucos produtos.",
+        ]
+    else:
+        confirm = [
+            "Checar Buy Box, cobertura FBA e status dos ASINs líderes antes de qualquer ajuste em ADS.",
+            "Investigar cancelamento ou listing indisponível no Seller Central. Na Amazon, problema de fulfillment pode parecer queda de demanda se não for isolado rapidamente.",
+            "Só considerar escalar campanha se os produtos líderes estiverem com estoque, FBA e Buy Box estáveis.",
+        ]
 
     # A análise visível no Slack precisa ser o OURO da análise: poucos
     # insights, linguagem simples e sem despejar métrica. Os números ficam na

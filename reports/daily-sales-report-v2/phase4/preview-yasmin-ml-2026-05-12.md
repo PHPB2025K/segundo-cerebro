@@ -30,7 +30,8 @@ DAILY SALES REPORT — MERCADO LIVRE — 12/05/2026 (Ontem)
 • A melhor decisão é observar se hoje o ritmo volta ao normal antes de mexer pesado em campanha. Se a queda continuar, aí sim a investigação deve ir para exposição/ranking dos produtos líderes.
 
 🎯 __PRIORIDADES DO DIA__
-• Confirmar até 12h se Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita mantém ritmo próximo da média; se cair junto com pedidos totais, hipótese de tráfego/exposição ganha força.
-• Alinhar com Himmel se houve mudança de campanha, cupom, exposição ou orçamento nos produtos líderes.
+• Conferir no painel do Mercado Livre se os anúncios líderes mantêm posição, reputação e competitividade; não alterar campanha antes de confirmar que não foi só acomodação de demanda.
+• Acompanhar o ritmo do canal nos horários fortes de hoje. Só escalar para Himmel se a fraqueza persistir, porque a conta ainda parece saudável no conjunto.
+• Garantir estoque e saúde dos principais anúncios, mantendo o mix distribuído — esse é o diferencial do ML em relação aos canais mais dependentes de poucos produtos.
 
 Dia analisado: 12/05/2026 — 00:00–23:59 BRT

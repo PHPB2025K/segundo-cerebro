@@ -21,8 +21,8 @@ triggers:
 metadata:
   openclaw:
     emoji: 📦
-    last_updated: "2026-04-10"
-    next_review: "2026-04-16"
+    last_updated: "2026-05-13"
+    next_review: "2026-05-20"
     cron: "Amazon Fees Monitor — quarta 10h SP"
     sources:
       - url: "https://venda.amazon.com.br/precos"
@@ -49,11 +49,11 @@ metadata:
 
 # Regras de Comissões, Taxas e Custos — Amazon Brasil 2026 (CNPJ)
 
-> ⚠️ **Última atualização:** 10/04/2026
+> ⚠️ **Última atualização:** 13/05/2026
 > **Comissões:** sem alteração desde 20/01/2025 (quando 17 categorias tiveram redução de até 3 p.p.)
 > **FBA:** promoção agressiva vigente (fev–jul/2026) — tarifa zero para produtos ≥R$100
 > **Parcelamento:** desde 16/03/2026, taxa de 1,5% expandida para faixa R$40–100
-> **Nenhuma mudança adicional de comissões entre janeiro e abril de 2026.**
+> **Nenhuma mudança adicional de comissões entre janeiro e maio de 2026.**
 > **Cron de verificação:** Quarta-feira 10h SP (Amazon Fees Monitor)
 > **Escopo:** Vendedores CNPJ com Plano Profissional.
 
@@ -178,7 +178,7 @@ Comissão reduzida a **5%** nos primeiros 100 itens padrão (ou 50 extragrandes)
 - **Selo Prime automático** — frete grátis para membros Prime sem custo extra ao vendedor
 - Frete de saída (CD → cliente) **incluído na tarifa FBA** — não paga frete separado
 - Entrega em 1 dia em 50+ cidades, 2 dias em 100+ cidades
-- Amazon reporta que sellers FBA multiplicam vendas em média **5×**
+- Amazon reporta que sellers FBA crescem vendas em média **4×** (dados internos Amazon 2025)
 - Requisitos: CNPJ com IE em SP, MG, PR, RJ, SC, RS, CE, DF ou PE
 
 ### 4.2 DBA (Delivery by Amazon) — Padrão para novos sellers
@@ -244,24 +244,16 @@ Peso = real ou cubado (C×L×A ÷ 6.000 + 20g embalagem), o maior. Limite: 22 kg
 
 **Produtos < R$ 79 (fora de promoção):**
 
-| Peso | < R$ 79 |
-|---|---|
-| 0–100g | 12,95 |
-| 100–200g | 13,45 |
-| 200–300g | 13,95 |
-| 300–400g | 14,45 |
-| 400–500g | 14,95 |
-| 500–750g | 15,45 |
-| 750g–1kg | 15,95 |
-| 1–1,5kg | 16,95 |
-| 1,5–2kg | 17,95 |
-| 2–3kg | 18,95 |
-| 3–4kg | 19,95 |
-| 4–5kg | 20,95 |
-| 5–6kg | 25,95 |
-| Kg adicional | 3,05 |
+A página oficial passou a separar a faixa abaixo de R$ 79 em três colunas: **<R$30**, **R$30–49,99** e **R$50–78,99**. Não usar a tabela antiga única de “<R$79”.
 
-### 5.2 ⚡ Promoção FBA Grátis (fev–jul 2026, ATIVA em abril 2026)
+| Peso | <R$30 | R$30–49,99 | R$50–78,99 |
+|---|---:|---:|---:|
+| 1–1,5kg | 5,65 | 5,85 | 6,05 |
+| Kg adicional | — | — | — |
+
+> ⚠️ Para outras faixas de peso abaixo de R$79, conferir o simulador/tabela no Seller Central antes de precificar. A extração pública oficial de 13/05/2026 não expôs todos os valores abaixo de R$79 com clareza; fonte oficial prevalece sobre a tabela antiga.
+
+### 5.2 ⚡ Promoção FBA Grátis (fev–jul 2026, ATIVA em maio 2026)
 
 Campanha **"Experimente FBA+"**:
 
@@ -571,6 +563,7 @@ Se precificar a R$ 100:
 
 | Data | Alteração |
 |---|---|
+| 13/05/2026 | v1.1 — Revisão semanal oficial. Comissões, parcelamento, DBA, Buy Box e Ads sem mudança material. FBA atualizado: benchmark oficial de crescimento médio ajustado de 5× para 4×; seção de produtos <R$79 corrigida para refletir a tabela oficial atual em três faixas de preço e remover a tabela antiga única de “<R$79”. Promoção FBA+ confirmada ativa até 31/07/2026 com validação mensal de 3,5% em Ads. |
 | 10/04/2026 | v1.0 — Criação da skill do zero. Tabela completa de comissões (35+ categorias). 4 modelos logísticos (FBA/DBA/FBA Onsite/FBM). Tarifas FBA completas (peso × preço). Promoção FBA+ vigente. Armazenagem e remoção. Amazon Ads (3 formatos + benchmarks). Buy Box (critérios e importância). Saúde da conta (AHR + métricas). Recebimento (ciclo 14 dias). Programas especiais (Vine, Programe e Poupe, Lightning Deals). Fórmula de precificação com exemplos. Comparativo Amazon vs ML vs Shopee. Mudanças 2026. |
 
 ---

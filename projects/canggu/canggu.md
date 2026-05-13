@@ -34,6 +34,15 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 
 **Última grande sessão:** 2026-04-30 (maratona ~7-8h) — ver [[memory/sessions/2026-04-30]] seção "Maratona Canggu" + [[memory/context/decisoes/2026-04#[30/04 tarde/noite] Canggu — pipeline edge function canônico + mídia visível + repo único]].
 
+**O que mudou em 13/05 (recovery Ana 5 dias de silêncio):**
+
+Pedro reportou "Ana parou de responder após o poll automático". Diagnóstico forense confirmou que a **última resposta real da Ana foi em 2026-05-08 16:09 BRT** — 5 dias inteiros (11, 12, 13/05) com zero `messages.sender='agent' AND tokens_used>0`. Yasmin e equipe vinham cobrindo manualmente sem perceber que era falha total, porque o webhook continuava enviando o poll automático e retornando 200 OK pra Evolution.
+
+- Causa raiz: chave Anthropic original começou a falhar em 08/05 (expirada / sem créditos / rate-limited).
+- Bug arquitetural mascarando o sintoma: `webhook-whatsapp/index.ts:446-455` faz `fetch('/functions/v1/process-message', ...)` sem `EdgeRuntime.waitUntil()`. Edge runtime suspende a função após `return jsonResponse(...)`, cancelando o fetch antes do process-message rodar. Por isso ZERO logs de erro, ZERO escalations.
+- Resolução: (a) Pedro criou nova chave Anthropic dedicada (`ANTHROPIC - API KEY ANA` no 1Password vault OpenClaw, ID `aqbss2uqd24alizcx2ew5lmumu`); (b) CC rotacionou `ANTHROPIC_API_KEY` no Supabase Edge secrets via Management API (HTTP 201); (c) upgrade do modelo `claude-sonnet-4-6` → `claude-opus-4-6` em `agent_config` por mandato do Pedro; (d) migration commitada em [`PHPB2025K/canguu@d80c054`](https://github.com/PHPB2025K/canguu/commit/d80c054).
+- Pendente: smoke test em WhatsApp real (Pedro vai mandar) + fix arquitetural `EdgeRuntime.waitUntil()` (rotação ataca sintoma, não bug) + investigação `verify_jwt: true` em webhook-whatsapp/process-message + N8N principal `KE7YVXayl5ntjwQk` ainda `active=true`.
+
 **O que mudou em 06/05 (incidente Ana 24/7):**
 
 Manhã (~08:30-08:50 BRT) — Pedro reportou Ana respondendo "horário de atendimento de segunda a sexta, das 8h às 18h" (que contradiz proposta 24/7 inviolável) + origin poll ausente. Investigação: a frase exata aparece 11x no histórico em fev-mar/2026, **zero ocorrências nas últimas 24h** — print provavelmente antigo, mas a classe de bug continua viva (regra 11 do system_prompt era só persuasiva).

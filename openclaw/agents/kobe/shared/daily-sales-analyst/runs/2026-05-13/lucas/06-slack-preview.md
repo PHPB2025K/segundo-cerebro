@@ -5,29 +5,28 @@
 DAILY SALES REPORT — SHOPEE — 13/05/2026 (Ontem)
 
 📊 VISÃO SHOPEE
-- Total Shopee: R$ 5.964,55 — 119 pedidos — ticket médio R$ 50,12 — 9 cancelamentos
-- Budamix Store: R$ 3.285,11 — 75 pedidos — 5 cancelamentos
-- Budamix Oficial (Conta 2): R$ 852,36 — 13 pedidos — 3 cancelamentos
-- Budamix Shop (Conta 3): R$ 1.827,08 — 31 pedidos — 1 cancelamento
+- Total Shopee: R$ 5.964,55 — 119 pedidos — ticket médio R$ 50,12
+- Budamix Store: R$ 3.285,11 — 75 pedidos
+- Budamix Oficial (Conta 2): R$ 852,36 — 13 pedidos
+- Budamix Shop (Conta 3): R$ 1.827,08 — 31 pedidos
+- Cancelamentos: 9 no total (Store: 5 / Conta 2: 3 / Conta 3: 1)
 
 🏆 TOP PRODUTOS SHOPEE
-- Store — item líder: 31 pedidos
-- Store — segundo item: 26 pedidos
-- Store — terceiro item: 15 pedidos
-- Conta 2 — item líder: 5 pedidos
-- Conta 2 — segundo item: 4 pedidos
-- Conta 3 — item líder: 12 pedidos
-- Conta 3 — segundo item: 9 pedidos
-- Conta 3 — terceiro item: 5 pedidos
+- Jarra Medidora de Vidro 500ml com Alça (Store) — 31 pedidos
+- Kit 5 Potes de Vidro Redondos — 30 pedidos
+- Canecas Tulipa 250ml Porcelana Colorida — 25 pedidos
+- Kit 6 Canecas Porcelana 200ml (Conta 3) — 15 pedidos
+- Kit 2 Potes Vidro 800ml Quadrado Hermético (Conta 3) — 10 pedidos
 
 🔍 ANÁLISE DA CONTA
-- A Budamix Oficial (Conta 2) não tem apenas queda de demanda — tem execução comprometida: colapso de volume em todas as janelas combinado com taxa de cancelamento de 23% (3 em 13 pedidos) é padrão de algo bloqueando ou revertendo pedidos na conta, não de demanda baixa. Tratar como "dia fraco" distorce a ação necessária.
-- A Budamix Store (Conta 1) parece estar segurando o resultado, mas o GMV está sendo sustentado por ticket anomalamente elevado (R$ 43,80 vs banda histórica de R$ 35–39) enquanto o volume de pedidos cai há pelo menos 60 dias. Se o ticket reverter para a banda, o GMV cai estruturalmente — o resultado de hoje mascara erosão em curso, não estabilidade.
-- A Budamix Shop (Conta 3) manteve volume, mas o mix migrou para produtos de menor valor: ticket comprimido de R$ 67–72 histórico para R$ 58,94, com itens de menor preço liderando. Pedidos estáveis com GMV em queda é deterioração silenciosa de composição — não é dia neutro.
+- O problema da Conta 2 (Budamix Oficial) não é queda de demanda — é combinação de colapso de volume com cancelamentos que apontam para bloqueio na execução. Investigar só a queda de pedidos não é suficiente: Lucas precisa identificar o que está gerando rejeição nessa conta especificamente. A leitura ainda é limitada porque o dado da Conta 2 está fora da banda de confiança — o diagnóstico é indicado pela combinação de evidências, mas não pode ser tratado como fato confirmado até amanhã.
+- A queda de hoje não é de canal — é da Conta 2 especificamente: Store e Conta 3 ficaram dentro de seus padrões de erosão já esperada, enquanto a Conta 2 (que deveria responder por cerca de 28–30% do GMV) contribuiu com apenas 14%. Tratar como "dia fraco na Shopee" distorce a leitura e desvia o foco de onde o sinal está.
+- Na Conta 3 (Budamix Shop), o volume segurou — mas o ticket caiu de R$ 71,75 (média do mesmo dia da semana) para R$ 58,94, com mix migrando para itens de valor menor. O GMV parece estável mas a qualidade do faturamento piorou. Se o ticket permanecer comprimido por mais 2 dias, não é variação do ciclo — é deriva de mix em curso.
 
 🎯 PRIORIDADES DO DIA
-- Lucas: verificar Conta 2 (Budamix Oficial) na plataforma Shopee — checar se há campanha pausada, limitação de exposição, listing com problema ou restrição de loja. A combinação de colapso de volume e cancelamento de 23% aponta para causa operacional ou de plataforma, não demanda pura. Confirmar/refutar: volume acima de 20 pedidos amanhã sem intervenção indica evento pontual; abaixo de 18 pelo segundo dia seguido com exposição normal, escalar para Himmel sobre exposição de campanha.
-- Lucas: acompanhar ticket médio de Conta 1 (Budamix Store) nos próximos 2 dias. O GMV está sustentado por ticket fora da banda histórica — reversão expõe a erosão de volume sem compensação. Confirmar/refutar: ticket abaixo de R$ 39 por 2 dias seguidos com pedidos abaixo de 70 confirma erosão estrutural; ticket acima de R$ 40 por mais um dia sustenta acomodação. Escalar se erosão for confirmada.
+- Lucas: investigar o que está gerando cancelamentos na Conta 2 (Budamix Oficial) — não apenas o volume baixo; a combinação com cancelamentos aponta para bloqueio na execução, não demanda fraca. Confirmar/refutar amanhã: mais de 20 pedidos com cancelamentos abaixo de 10% = anomalia pontual; menos de 15 pedidos ou cancelamentos acima de 15% novamente = padrão de bloqueio operacional. Escalar se Conta 2 ficar abaixo de 15 pedidos por 2 dias seguidos — Lucas alinha com Himmel para diagnóstico de exposição e ADS antes de qualquer movimentação.
+- Lucas: verificar se os produtos campeões da Store (Jarra Medidora 500ml e Kit 5 Potes Redondos) e da Conta 3 (Kit 6 Canecas 200ml e Kit 2 Potes 800ml) estão com listing ativo e estoque disponível. Todos com listing ativo e estoque positivo = GMV atual é dinâmica de demanda, não problema operacional. Qualquer campeão com listing ou estoque comprometido = prioridade imediata antes de qualquer outra ação.
+- Lucas: registrar o ticket médio da Conta 3 pelos próximos 3 dias. Ticket abaixo de R$ 62,00 por 3 dias seguidos = erosão de mix em curso, avaliar ajuste de exposição dos produtos de ticket maior. Ticket acima de R$ 65,00 em até 2 dias = variação do ciclo semanal, encerra observação.
 
 Dia analisado: 13/05/2026 — 00:00–23:59 BRT
 ```
@@ -36,22 +35,23 @@ Dia analisado: 13/05/2026 — 00:00–23:59 BRT
 
 ### Respeito de bloqueios
 
-- **Item bloqueado:** todos os produtos nominais das 3 contas Shopee (Jarra Medidora, Conjunto Potes, Canecas Tulipa, etc.)
-- **Origem do bloqueio:** Condensadora
-- **Motivo:** Granular usou fallback determinístico — sem validação de identidade de produto; Condensadora explicitou "usar apenas agregados"
-- **Agregado autorizado:** sim — Condensadora autorizou agregados do tipo "o produto líder", "o item de maior valor da conta"
-- **Tratamento aplicado:** substituídos por agregados posicionais com indicação de conta ("Store — item líder", "Conta 2 — segundo item", etc.)
-- **Aparece na mensagem final:** sim, como agregados posicionais por conta
+- Sem bloqueios de produto recebidos com nome explícito.
+- Restrições recebidas da Condensadora foram editoriais (não nominais), tratadas nas Decisões de Formatação abaixo.
 
 ---
 
 ### Decisões de formatação
 
-- Remoção de metadados internos (`— base: Operacional + Tática`, `— base: Estratégica + Operacional`, `— base: Operacional + Granular (fallback)`) dos 3 insights — conteúdo e tese preservados integralmente
-- Substituição de todos os produtos nominais por agregados posicionais em Top Produtos — bloqueio da Condensadora; agregado posicional autorizado explicitamente
-- Faturamento por produto omitido em Top Produtos — dado não disponível no pacote (apenas quantity por produto); omissão registrada para QA
-- Indicação de conta em todos os itens de Top Produtos — cada produto vendeu em conta única; regra Shopee exige identificação de conta quando produto vendeu em menos de 2 contas
-- Cancelamentos incluídos em VISÃO SHOPEE para as 3 contas e total — relevantes e disponíveis no pacote; apresentados como dado objetivo sem análise
-- Linguagem de hipótese preservada na análise de Conta 2 ("padrão de algo bloqueando", "aponta para causa operacional") — confiança média declarada pela Condensadora; diagnóstico de Conta 2 não foi marcado como fato confirmado
-- Padrão numérico aplicado: vírgula decimal (R$ 43,80; R$ 58,94; R$ 50,12), ponto separador de milhar (R$ 5.964,55; R$ 3.285,11; R$ 1.827,08), pedidos sem separador (119 pedidos, 75 pedidos)
-- Condições de confirmação/refutação e escalonamento preservadas integralmente em Prioridades — vieram da Condensadora e são estruturalmente necessárias para ação correta de Lucas
+- `Remoção de metadados internos ("base: Operacional + Estratégica")` — regra do prompt: nomes de camadas não vão ao Slack; tese e termos analíticos preservados integralmente.
+- `Ressalva do flag PARCIAL da Conta 2 preservada na Análise` — Condensadora marcou confiança ajustada; linguagem de indício usada ("a leitura ainda é limitada", "indicado pela combinação de evidências, mas não pode ser tratado como fato confirmado").
+- `Taxa exata de cancelamento da Conta 2 omitida como manchete` — incorporada como contexto diagnóstico ("combinação de colapso de volume com cancelamentos"), conforme orientação da Condensadora.
+- `Variações históricas percentuais omitidas da Análise e Visão` — Condensadora bloqueou percentuais históricos como dado central; diagnóstico sustentado pela tese, não pelos números.
+- `Hipótese de canibalização (CTL002 entre contas) omitida` — Condensadora classificou como hipótese fraca sem dados de exposição por conta; não incluída.
+- `Concentração top 3 (90%, 84%) não citada como métrica explícita` — Condensadora orientou usar apenas como enquadramento estrutural; mantida na forma de tese de risco nas prioridades, sem os percentuais.
+- `Top Produtos: receita por produto omitida` — pacote de dados não contém faturamento por produto; itens listados por quantidade de pedidos. Nenhum dado inventado.
+- `Top Produtos: Jarra Medidora 500ml com indicação (Store)` — vendeu exclusivamente na Store (1 conta); regra de indicação de conta aplicada.
+- `Top Produtos: Kit 6 Canecas 200ml com indicação (Conta 3)` — vendeu nas 3 contas (Store: 1, Conta 2: 2, Conta 3: 12), mas Condensadora citou explicitamente como campeão da Conta 3 nas prioridades; indicação de conta aplicada por critério de relevância editorial.
+- `Top Produtos: Kit 2 Potes Vidro 800ml com indicação (Conta 3)` — vendeu em 2 contas (Store: 1, Conta 3: 9), Conta 3 dominante e citada explicitamente pela Condensadora como campeão da conta.
+- `Top Produtos: Kit 5 Potes Redondos consolidado de Store (IMB501P_T) + Conta 2 (IMB501C_T)` — SKUs ligeiramente distintos (_T vs _C no sufixo) mas produto equivalente (potes redondos vidro); consolidação aplicada; 2 contas, sem indicação de conta por regra.
+- `Top Produtos: Canecas Tulipa 250ml sem indicação de conta` — vendeu nas 3 contas; sem indicação necessária por regra.
+- `Generalização "Shopee caiu" não utilizada` — Condensadora bloqueou explicitamente; sinal localizado na Conta 2 preservado com especificidade.

@@ -1,21 +1,31 @@
 #!/usr/bin/env python3
 """
-Daily Sales Analyst Runner — Phase 4 (Dry-Run)
+Daily Sales Analyst Runner — Phase 6 (Kill Switch, Rollback & Supervised Rollout)
 
 Executes Layer 0 + 7 layers sequentially, generates auditable artifacts
-per date/recipient, with NO real send.
+per date/recipient, with kill switch and rollback protections.
 
 Usage:
     python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --dry-run
     python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --shadow
     python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --preview
-    python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --dry-run --recipients lucas,yasmin
-    python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --dry-run --package path/to/package.json
+    python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --preview-to-kobe
+    python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --send-candidate
+    python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --production-send
 
-Limitations:
-    - Deterministic fallback: no LLM calls. Layers 1-6 produce placeholder
-      artifacts based on data package metrics. QA marks them accordingly.
-    - send_real_allowed=false enforced in all modes.
+Modes:
+    --dry-run          Generate artifacts, no send. Standard test mode.
+    --shadow           Shadow mode: generate + compare, no send.
+    --preview          Preview mode: generate artifacts for review.
+    --preview-to-kobe  Generate artifacts + PREVIEW_TO_KOBE.md summary. No external send.
+    --send-candidate   Mark as send candidate. Blocked if config/fallback/approval prevent send.
+    --production-send  Real send. Blocked unless ALL protections are satisfied.
+
+Protections:
+    - send_real_allowed=false enforced when config prevents it.
+    - llm_layers_enabled=false blocks any real send.
+    - require_kobe_approval_for_real_send=true blocks send without approval.
+    - Kill switch via enabled=false aborts immediately.
 """
 
 import argparse
@@ -35,7 +45,14 @@ CONFIG_PATHS = [
 DEFAULT_PACKAGE_DIR = Path("/root/segundo-cerebro/reports/daily-sales-report-v2/layered/packages")
 RUNS_DIR = WORKSPACE / "shared" / "daily-sales-analyst" / "runs"
 
-VALID_MODES = {"dry-run": "DRY_RUN", "shadow": "SHADOW", "preview": "PREVIEW"}
+VALID_MODES = {
+    "dry-run": "DRY_RUN",
+    "shadow": "SHADOW",
+    "preview": "PREVIEW",
+    "preview-to-kobe": "PREVIEW_TO_KOBE",
+    "send-candidate": "SEND_CANDIDATE",
+    "production-send": "PRODUCTION_SEND",
+}
 ALL_RECIPIENTS = ["lucas", "yasmin", "leonardo"]
 
 RECIPIENT_PLATFORM = {
@@ -97,6 +114,22 @@ def accounts_data(package, recipient_name):
     return {s: platforms[s] for s in slugs if s in platforms}
 
 
+def check_send_real_allowed(config, mode):
+    """Check all protections and return (allowed, blockers)."""
+    blockers = []
+
+    if not config.get("send_real_enabled", False):
+        blockers.append("send_real_enabled=false in config")
+
+    if not config.get("llm_layers_enabled", False):
+        blockers.append("llm_layers_enabled=false — fallback deterministic active, real send blocked")
+
+    if config.get("require_kobe_approval_for_real_send", True):
+        blockers.append("require_kobe_approval_for_real_send=true — no approval document found")
+
+    return len(blockers) == 0, blockers
+
+
 # --- Layer Generators (Deterministic Fallback) ---
 
 def gen_layer00_data_package(package, run_dir, recipient_name):
@@ -112,7 +145,6 @@ def gen_layer01_estrategica(package, run_dir, recipient_name, blocked, block_rea
     """Layer 1: Strategic analysis (deterministic fallback)."""
     path = run_dir / recipient_name / "01-estrategica.md"
     rec = recipient_data(package, recipient_name)
-    accs = accounts_data(package, recipient_name)
 
     if blocked:
         content = f"""# Camada 1 — Analise Estrategica: {recipient_name.capitalize()}
@@ -394,25 +426,113 @@ def gen_layer07_qa(package, run_dir, recipient_name, blocked, block_reason, data
     return str(path)
 
 
+# --- Preview to Kobe ---
+
+def gen_preview_to_kobe(date_str, run_dir, config, recipient_results, manifest):
+    """Generate PREVIEW_TO_KOBE.md consolidating all recipients."""
+    path = run_dir / "PREVIEW_TO_KOBE.md"
+    send_allowed, send_blockers = check_send_real_allowed(config, "preview-to-kobe")
+
+    lines = [
+        f"# Preview para Kobe — {date_str}",
+        f"**Gerado em:** {now_utc()}",
+        f"**Modo:** PREVIEW_TO_KOBE",
+        f"**send_real_allowed:** false",
+        f"**Global Status:** {manifest['global_status']}",
+        f"**Prompt Version:** {manifest['prompt_version']}",
+        f"**Data Builder Version:** {manifest['data_builder_version']}",
+        "",
+        "## Protecoes Ativas",
+    ]
+
+    for b in send_blockers:
+        lines.append(f"- {b}")
+    lines.append("")
+
+    lines.append("## Resumo por Recipient")
+    lines.append("")
+
+    for r_name, r_data in recipient_results.items():
+        lines.append(f"### {r_name.capitalize()} ({r_data['platform']})")
+        lines.append(f"- **Status:** {r_data['status']}")
+        lines.append(f"- **send_allowed:** {r_data['send_allowed']}")
+        if r_data.get("warnings"):
+            for w in r_data["warnings"]:
+                lines.append(f"- **Aviso:** {w}")
+        lines.append("")
+        lines.append("**Artefatos:**")
+        for layer_name, layer_path in r_data.get("layers", {}).items():
+            lines.append(f"  - `{layer_name}`: `{layer_path}`")
+        lines.append("")
+
+    lines.extend([
+        "## Acao Requerida",
+        "",
+        "Kobe/Pedro: revisar artefatos acima e decidir:",
+        "- [ ] APROVADO — preview aceitavel, pode avancar para send-candidate",
+        "- [ ] BLOQUEADO — problemas encontrados, corrigir antes de avancar",
+        "",
+        "---",
+        "*Este arquivo e um artefato local. Nenhum envio externo foi realizado.*",
+    ])
+
+    with open(path, "w") as f:
+        f.write("\n".join(lines) + "\n")
+    return str(path)
+
+
 # --- Main Runner ---
 
 def run(date_str, mode, recipients, config, package_path=None, prompt_version=None):
-    print(f"=== Daily Sales Analyst Runner ===")
+    print(f"=== Daily Sales Analyst Runner (Phase 6) ===")
     print(f"Date: {date_str} | Mode: {mode}")
     print(f"Recipients: {', '.join(recipients)}")
     print()
 
-    # Validate config
+    # --- Kill Switch ---
     if not config.get("enabled", False):
-        print("ABORT: Config enabled=false. Pipeline disabled.")
+        print("ABORT: Config enabled=false. Pipeline disabled (kill switch).")
         sys.exit(1)
 
     if not config.get("layer0_required", True):
-        print("ABORT: layer0_required=false inconsistent with Phase 4.")
+        print("ABORT: layer0_required=false inconsistent with pipeline requirements.")
+        sys.exit(1)
+
+    # --- Send real protection check ---
+    send_real_allowed, send_blockers = check_send_real_allowed(config, mode)
+
+    if mode in ("send-candidate", "production-send"):
+        print("=== Send Protection Check ===")
+        if not send_real_allowed:
+            print("BLOCKED: Real send is NOT allowed. Reasons:")
+            for b in send_blockers:
+                print(f"  - {b}")
+            print()
+            if mode == "production-send":
+                print("ABORT: --production-send blocked by protections.")
+                print("No artifacts generated. No external send attempted.")
+                print("Resolve blockers above before attempting production send.")
+                sys.exit(2)
+            else:
+                # send-candidate: generate artifacts but mark as blocked
+                print("INFO: --send-candidate will generate artifacts but mark send as BLOCKED.")
+                print()
+
+    # --- Preview to Kobe check ---
+    if mode == "preview-to-kobe" and not config.get("preview_to_kobe_enabled", True):
+        print("ABORT: preview_to_kobe_enabled=false in config.")
         sys.exit(1)
 
     pv = prompt_version or config.get("pinned_prompt_version") or config.get("prompt_version", "v3.0")
     dbv = config.get("data_builder_version", "v1.0")
+
+    # Handle rollback versions
+    if config.get("rollback_to_version"):
+        pv = config["rollback_to_version"]
+        print(f"ROLLBACK: Using prompt version {pv} (rollback active)")
+    if config.get("rollback_data_builder_version"):
+        dbv = config["rollback_data_builder_version"]
+        print(f"ROLLBACK: Using data builder version {dbv} (rollback active)")
 
     # Load package
     package, pkg_path = load_package(date_str, package_path)
@@ -523,16 +643,25 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
 
     # Build manifest
     manifest = {
-        "schema_version": "daily-sales-analyst-run/v1.0",
+        "schema_version": "daily-sales-analyst-run/v2.0",
         "date": date_str,
         "generated_at_utc": now_utc(),
         "mode": VALID_MODES.get(mode, mode.upper()),
         "send_real_allowed": False,
+        "send_real_blockers": send_blockers,
         "global_status": global_status,
         "global_failure": global_failure,
         "prompt_version": pv,
         "data_builder_version": dbv,
         "package_path": pkg_path,
+        "config_snapshot": {
+            "enabled": config.get("enabled"),
+            "send_real_enabled": config.get("send_real_enabled"),
+            "llm_layers_enabled": config.get("llm_layers_enabled"),
+            "fallback_deterministic_allowed": config.get("fallback_deterministic_allowed"),
+            "require_kobe_approval_for_real_send": config.get("require_kobe_approval_for_real_send"),
+            "preview_to_kobe_enabled": config.get("preview_to_kobe_enabled"),
+        },
         "data_readiness": {
             "status": dr_status,
             "data_quality": dr_quality,
@@ -555,12 +684,14 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
             "applied": [],
         },
         "runner_meta": {
+            "phase": 6,
             "fallback_mode": True,
             "llm_used": False,
             "limitations": [
                 "Runner deterministico: sem chamadas LLM.",
                 "Camadas 1-6 sao placeholders baseados no data package.",
                 "QA reflete limitacao do fallback.",
+                "send_real_allowed=false enforced.",
             ],
         },
     }
@@ -569,26 +700,44 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
     with open(manifest_path, "w") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False)
 
+    # Generate PREVIEW_TO_KOBE.md if mode is preview-to-kobe
+    preview_path = None
+    if mode == "preview-to-kobe":
+        preview_path = gen_preview_to_kobe(date_str, run_dir, config, recipient_results, manifest)
+        print(f"\nPREVIEW_TO_KOBE.md generated: {preview_path}")
+
     print(f"\n=== Run Complete ===")
+    print(f"Mode: {mode}")
     print(f"Global Status: {global_status}")
     print(f"Global Failure: {global_failure}")
     print(f"send_real_allowed: False")
+    if send_blockers:
+        print(f"Send blockers: {len(send_blockers)}")
+        for b in send_blockers:
+            print(f"  - {b}")
     print(f"Manifest: {manifest_path}")
     print(f"Run Dir: {run_dir}")
     for r in active_recipients:
         print(f"  {r}: {recipient_results[r]['status']}")
+    if preview_path:
+        print(f"Preview: {preview_path}")
 
     return manifest
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Daily Sales Analyst Runner (Phase 4 — Dry-Run)")
+    parser = argparse.ArgumentParser(
+        description="Daily Sales Analyst Runner (Phase 6 — Kill Switch, Rollback & Supervised Rollout)"
+    )
     parser.add_argument("date", help="Date to analyze (YYYY-MM-DD)")
 
     mode_group = parser.add_mutually_exclusive_group(required=True)
     mode_group.add_argument("--dry-run", action="store_const", const="dry-run", dest="mode")
     mode_group.add_argument("--shadow", action="store_const", const="shadow", dest="mode")
     mode_group.add_argument("--preview", action="store_const", const="preview", dest="mode")
+    mode_group.add_argument("--preview-to-kobe", action="store_const", const="preview-to-kobe", dest="mode")
+    mode_group.add_argument("--send-candidate", action="store_const", const="send-candidate", dest="mode")
+    mode_group.add_argument("--production-send", action="store_const", const="production-send", dest="mode")
 
     parser.add_argument("--recipients", type=str, default=None,
                         help="Comma-separated recipients (default: all)")
@@ -620,7 +769,7 @@ def main():
 
     # Enforce send_real_allowed=false
     if config.get("send_real_enabled", False):
-        print("WARNING: Config has send_real_enabled=true but Phase 4 enforces false.")
+        print("WARNING: Config has send_real_enabled=true — Phase 6 protections will still enforce checks.")
 
     manifest = run(args.date, args.mode, recipients, config,
                    package_path=args.package, prompt_version=args.prompt_version)

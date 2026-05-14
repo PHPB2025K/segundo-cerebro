@@ -76,6 +76,8 @@ Componente determinístico. Não usa LLM.
 
 Responsável por produzir o pacote validado de dados consumido pelas camadas analíticas.
 
+O Data Builder é componente do pipeline do DSA. Seu executável vive em `scripts/` para permitir reuso pelo Trader em outras rotinas quando necessário; sua documentação, schema, regras de readiness e changelog vivem dentro do workspace do DSA.
+
 ### Camadas analíticas
 
 1. **Estratégica**  
@@ -220,8 +222,25 @@ scripts/daily-sales-data-builder.py
 shared/daily-sales-analyst/data-builder/README.md
 shared/daily-sales-analyst/data-builder/schema.json
 shared/daily-sales-analyst/data-builder/readiness-rules.md
+shared/daily-sales-analyst/data-builder/CHANGELOG.md
 reports/daily-sales-report-v2/layered/packages/YYYY-MM-DD/package.json
 ```
+
+### Versionamento do Data Builder
+
+O Data Builder também usa versionamento semântico e registra toda mudança em:
+
+```text
+shared/daily-sales-analyst/data-builder/CHANGELOG.md
+```
+
+Regras:
+
+- `vX.0` = mudança estrutural de schema, fonte canônica, contrato do package ou critério de bloqueio crítico. Requer aprovação Kobe.
+- `vX.Y` = ajuste de threshold, calibração de Data Readiness, nova flag de qualidade ou melhoria de reconciliação. Trader aprova; Kobe entra se afetar rollout/envio real.
+- `vX.Y.Z` = correção pontual de bug, typo, label, cálculo isolado sem mudança de contrato. DSA/Builder pode aplicar e registrar; Trader revisa depois.
+
+Todo package gerado precisa registrar `data_builder_version`.
 
 ### Critérios de saída
 
@@ -560,6 +579,8 @@ Definir contrato formal de delegação entre Trader e DSA.
 - Definir o que DSA devolve.
 - Definir quando Trader envia, bloqueia ou escala Kobe.
 - Suportar execução parcial por plataforma.
+- Atualizar o Trader existente para implementar este contrato.
+- Documentar o escopo exato de modificação do Trader e o sincronismo com o rollout do DSA.
 
 ### Entregáveis
 
@@ -571,7 +592,8 @@ shared/daily-sales-analyst/handoff/
 ├── examples/
 │   ├── input-example.json
 │   └── output-example.json
-└── escalation-rules.md
+├── escalation-rules.md
+└── TRADER-INTEGRATION-SCOPE.md
 ```
 
 ### Input esperado do Trader
@@ -593,6 +615,7 @@ O output deve suportar status por plataforma.
 
 ```text
 global_status: APPROVED | APPROVED_WITH_REMARKS | PARTIAL | BLOCKED
+global_failure: false | timezone | layer0 | runner | killswitch | prompt_version | canonical_source
 send_real_allowed: true | false
 prompt_version: vX.Y.Z
 data_builder_version: vX.Y.Z
@@ -618,6 +641,14 @@ memory_updates:
   suggested: ...
   applied: ...
 ```
+
+### Regra de decisão de envio
+
+`global_status` é uma agregação visual/auditável da rodada, não é a fonte de decisão de envio.
+
+A decisão de envio é **sempre por destinatário/plataforma**, usando `recipients.<nome>.status` + `recipients.<nome>.send_allowed`.
+
+O Trader nunca deve enviar ou bloquear uma plataforma olhando apenas para `global_status`. Ele só aborta todas as plataformas quando `global_failure` indicar falha sistêmica (`timezone`, `layer0`, `runner`, `killswitch`, `prompt_version` ou `canonical_source`).
 
 ### Regra de execução parcial
 
@@ -648,6 +679,8 @@ Abortar tudo somente se houver falha global:
 - Envio real continua pertencendo ao Trader.
 - Bloqueios e ressalvas têm formato padronizado.
 - Status por plataforma implementado.
+- Escopo de alteração do Trader documentado em `TRADER-INTEGRATION-SCOPE.md`.
+- Cron atual mapeado para trocar de wrapper/script solto para fluxo Trader → DSA no rollout.
 
 ### Checkpoint Kobe
 

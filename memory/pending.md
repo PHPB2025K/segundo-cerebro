@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-13 02:00 BRT — organização noturna silenciosa_
+_Atualizado: 2026-05-14 02:05 BRT — organização noturna silenciosa_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -47,6 +47,7 @@ _Atualizado: 2026-05-13 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 Canggu / Ana
 
+- [ ] **Canggu/Ana — smoke test pós-recovery e corrigir fire-and-forget**: em 13/05, Ana estava sem responder desde 08/05; chave Anthropic dedicada foi rotacionada, modelo subiu para `claude-opus-4-6` e secret Supabase foi atualizado. Falta Pedro enviar mensagem real no WhatsApp para smoke test e corrigir arquitetura `webhook-whatsapp` com `EdgeRuntime.waitUntil()` para evitar cancelamento silencioso do `process-message`.
 - [ ] **Canggu — manter repo canônico reconciliado após hotfix ML**: repo `PHPB2025K/canguu` recebeu commit `eb76d3f`; quando Pedro voltar o repo para privado, garantir que a VPS/token mantém acesso de leitura/escrita para próximos patches e CI/CD.
 - [ ] **Canggu — trocar senha temporária do admin** no login do admin. Ação do Pedro.
 - [ ] **Canggu — corrigir type TS pré-existente em `_shared/evolution-api.ts`**: `EvolutionMessageContent` é referenciado mas o tipo real chama `EvolutionMessageData`. Detectado no `deno check` durante incidente Ana 24/7; edge deploya mesmo com warning, mas limpar no próximo bloco Canggu.
@@ -72,6 +73,7 @@ _Atualizado: 2026-05-13 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 Gestão / Jurídico / Contratos
 
+- [ ] **Daily Sales Report v2 híbrido — salvar Prompt 4/6 e seguir aprovação camada por camada**: prompts 1/6 Estratégica e 2/6 Tática aprovados/salvos; Prompt 3 Operacional salvo; Prompt 4 Granular v2 foi aprovado conceitualmente e precisa ser salvo em `prompts/daily-sales/camada-4-granular.md`, commitado e então gerar Prompt 5 Condensadora + Prompt 6 QA. Não substituir produção antes de shadow/preview aprovado.
 - [ ] **Daily Sales Report v2 — monitorar primeira execução real do novo wrapper**: cron 06:50 BRT agora usa `send-daily-sales-v2-slack-funcionarios.py`, gera análise profunda por conta e envia Slack DM individual. Validar próxima execução automática com Lucas/Yasmin/Leonardo e ausência de SKU cru/frases rasas.
 
 - [ ] **Gestão de Funcionários — rotina semanal via Slack**: rotina executada manualmente em 08/05 com atas de Lucas (05/05) e Leonardo (04/05); Yasmin teve pontos operacionais sem ata formal. Se virar padrão recorrente, criar cron de sexta no fim do dia para puxar atas `#ata-reuniao Nome AAAA-MM-DD`, consolidar por Yasmin/Lucas/Leonardo e avisar Pedro com resumo executivo.
@@ -105,6 +107,7 @@ _Atualizado: 2026-05-13 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 Infraestrutura e autenticações degradadas
 
+- [ ] **Consolidação Diária — investigar falha da execução de 13/05 23:30 BRT**: `openclaw cron list` às 02:01 BRT de 14/05 mostrou status `error` para o cron `Consolidação Diária` (última execução ~3h antes). Verificar logs da execução, confirmar se houve commit/push parcial e reexecutar consolidação se necessário.
 - [ ] **Mission Control — PRDs dos módulos internos**: domínio `mission.budamix.com.br` e dashboard base fechados em 12/05. Próximo: PRDs/implementação por módulo (Cron, Tasks, Sessions, Skills, Agents detail, Office 3D, Activity, Analytics, Reports, System, Git, Files, Memory, Search, Logs, Terminal), configurar `data/configured-skills.json` e refinar detecção de botToken.
 
 - [ ] **OpenClaw fallback — adicionar Anthropic como 3º fallback**: `anthropic:default` está configurado, mas fora de `agents.defaults.model.fallbacks`; após upgrade para ChatGPT Pro não é urgente, mas evita queda total se o mesmo auth profile OpenAI estourar em pico.
@@ -139,4 +142,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-05-13 02:00 BRT._
+_Última organização: 2026-05-14 02:05 BRT._

@@ -16,7 +16,7 @@ Enviar diariamente o relatório de vendas do dia anterior com dados corretos, se
   - Shopee
   - Mercado Livre
   - Amazon
-- Incluir `Atacado GB Matriz` no bloco geral `🛒 VENDAS POR CANAL` quando Pedro pedir o padrão dos templates de 2026-05-12. O diagnóstico individual continua focado no marketplace do responsável.
+- No pipeline v2.5 individual em camadas, não incluir blocos consolidados (`RESUMO GERAL` / `VENDAS POR CANAL`) nem Atacado GB Matriz; cada mensagem é específica da plataforma do responsável.
 - Não usar coleta direta de APIs como total oficial, exceto fallback explícito com aviso.
 - Não misturar settlement/extrato financeiro/DRE com venda gerada do dia.
 
@@ -117,7 +117,7 @@ Obrigatório:
 - Escrever como conclusão analítica, não como tabela narrativa.
 
 Proibido dentro de `🔍 ANÁLISE DA CONTA`:
-- Repetir números secos já exibidos em `RESUMO GERAL`, `VENDAS POR CANAL`, `VISÃO [PLATAFORMA]` ou `TOP PRODUTOS`.
+- Repetir números secos já exibidos em `VISÃO [PLATAFORMA]` ou `TOP PRODUTOS`.
 - Incluir blocos como `Dia granular`, comparativos numéricos 30d/60d/mesma segunda, linha de produto principal, concentração top 3 ou cancelamentos como métrica solta.
 - Usar análise rasa, genérica ou óbvia.
 

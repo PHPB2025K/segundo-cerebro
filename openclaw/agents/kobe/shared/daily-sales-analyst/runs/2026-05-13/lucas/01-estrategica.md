@@ -1,53 +1,58 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Qualidade da base
 
-Weekly.md e monthly.md das três contas são templates vazios — nenhuma consolidação semanal ou mensal disponível. Não há hipóteses ativas, teses anteriores ou riscos documentados para confirmar ou refutar. O last_daily_file registra 2026-05-12, mas seu conteúdo não está no pacote. A análise de hoje é ponto de partida, não confirmação de tese. Conta 2 (Oficial 2) tem flag de qualidade PARCIAL (volume fora da banda). Todas as conclusões abaixo têm confiança ajustada para base fraca.
+Weekly, monthly e rules estão carregados para as 3 contas, mas são **templates vazios** — sem consolidação real, sem tese mensal documentada, sem hipóteses ativas registradas. Esta leitura serve como ponto de partida da memória, não como confirmação de tese. Todas as janelas temporais (7d, 30d, 60d, same weekday) estão disponíveis; Conta 2 tem flag PARTIAL por volume fora da banda (-62.9% vs avg30), com confiança reduzida para tese forte sobre essa conta. O spike de 22/04 na média de mesmo dia da semana (181 pedidos na Store, provável campanha) infla a comparação de same weekday para cima — queda aparente vs same weekday é parcialmente contaminada por esse outlier.
 
 ---
 
 ### Leitura temporal
 
-- **Budamix Store:** Acima da média de 7d em GMV (+34.6%), mas abaixo da banda de 30d (-7.1% GMV, -17.4% pedidos) e deteriorado em relação ao patamar de 60d (-13.5% GMV, -27.7% pedidos). Vs mesmos dias da semana: -16.7% GMV, -31.4% pedidos — porém a série dos 4 mesmos dias tem alta variância (pico de 181 pedidos em 22/04, provável evento promocional que contamina a média; excluindo esse dia, a média seria ~85 pedidos e hoje com 75 ficaria dentro da banda). O ticket médio é consistentemente elevado vs histórico: +12.6% vs 30d e +19.6% vs 60d — pedidos caindo, ticket subindo, o que sugere concentração em itens de valor maior ou mix diferente.
+- **Store (Conta 1) — dominante, 63% dos pedidos e 55% do GMV da plataforma:** acima da média dos últimos 7 dias em pedidos (+8.1%) e com GMV expressivamente acima (+34.6%), o que revela elevação de ticket (R$43.80 hoje vs avg7d R$35.15). Porém, ao expandir a janela, o quadro inverte: -17.4% em pedidos vs 30d e -27.7% vs 60d. O patamar de bimestre (média 103.7 pedidos/dia) está sendo entregue bem abaixo. O ticket sobe (+19.6% vs 60d), o que atenua o GMV, mas não reverte a queda de volume. Comparando as quartas-feiras anteriores: excluindo o outlier de 22/04 (181 pedidos), as 3 quartas restantes médiam ~85 pedidos — hoje com 75 estaria dentro de uma faixa aceitável, não em colapso.
 
-- **Budamix Oficial 2:** Colapso severo e consistente em todas as janelas: -55.2% vs 7d, -62.9% vs 30d, -66.4% vs 60d, -59.4% vs mesmo dia da semana. A magnitude é uniforme entre janelas, o que afasta ruído pontual — mas a flag de qualidade PARCIAL impede conclusão firme. Ticket elevado (+13.5% vs 30d, +24.6% vs 60d) em volume muito baixo (13 pedidos), o que significa base pequena demais para sustentar tendência de ticket.
+- **Conta 2 — colapso em todas as janelas:** -55% vs 7d, -62.9% vs 30d, -66.4% vs 60d, -59.4% vs same weekday. É o sinal mais severo do dia. O ticket alto (R$65.57, acima do avg30 R$57.77) sugere que os poucos pedidos que entraram foram de produtos mais caros — mas o volume sumiu em magnitude que transcende variação normal. Dado o flag PARTIAL, a confiança é reduzida, mas a divergência entre essa conta e as outras duas não sustenta a hipótese de efeito de dado isolado.
 
-- **Budamix Shop 3:** Pedidos estáveis vs mesmo dia da semana (-1.6%) e levemente positivos vs 30d (+7.3%). GMV, no entanto, negativo em todas as janelas além de 7d: -6.0% vs 30d, -18.6% vs 60d, -19.2% vs mesmo dia da semana. O ticket comprimiu de R$71.75 (mesmo dia da semana histórico) para R$58.94 hoje — erosão de ticket visível e consistente entre janelas, não pontual.
+- **Shop 3 — estabilidade de volume, compressão de ticket:** -1.6% vs same weekday em pedidos, mas -19.2% em GMV. O volume está essencialmente estável ao longo das quartas-feiras recentes (24/30/43/29 → hoje 31), mas o ticket caiu de R$71.75 (avg same weekday) para R$58.94. Vs 30d: pedidos levemente acima (+7.3%), GMV abaixo (-6.0%). Vs 60d: ambos abaixo. Mix se movendo para produtos de menor valor.
 
-- **Plataforma consolidada (soma das 3 contas):** vs 30d estimado, a plataforma está ~-20% em GMV e ~-23% em pedidos. O grosso dessa queda é explicado pela Conta 2, mas a Conta 1 contribui com deterioração moderada. A Conta 3 é o único ponto de estabilidade em volume.
+- **Hipóteses anteriores:** não há hipóteses documentadas para confirmar ou refutar — memória está vazia.
 
 ---
 
 ### Leitura estratégica
 
-- **A Conta 2 é o sinal dominante e o ponto de incerteza central.** A queda é consistente entre 7d, 30d, 60d e mesmo dia da semana — não é ruído. Hipótese (não fato): perda de exposição, desativação de campanha ou problema operacional nessa conta. Sem memória anterior, é impossível saber se esse padrão é recorrente ou novo. A flag de qualidade PARCIAL não descarta o problema — apenas exige cautela antes de ação.
+- **A Shopee como plataforma não pode ser lida como bloco.** A Store está em trajetória de queda de patamar de pedidos ao longo do bimestre (60d > 30d > semana recente), parcialmente mascarada pela elevação de ticket. A Shop 3 apresenta volume estável mas mix comprimido. A Conta 2 é um outlier de queda não explicado. Os três comportamentos são distintos — generalizá-los como "Shopee foi fraca" perde o diagnóstico.
 
-- **A Conta 1 está em desaceleração moderada vs patamar histórico, mas com mix diferente.** O ticket elevado vs 30d e 60d sugere que os pedidos que chegam têm valor unitário maior — o que pode refletir deslocamento de demanda de itens baratos para kits, ou redução de volume em cauda. Não é crise, mas o patamar de pedidos está abaixo de onde estava 30 e 60 dias atrás.
+- **A Store sustenta a plataforma com concentração estrutural perigosa.** Top 3 com 90% dos pedidos (Jarra 500ml, Conjunto 5 Potes, Canecas Tulipa) significa que qualquer oscilação nesses SKUs se transmite integralmente ao GMV da conta — e da plataforma. O ticket mais alto de hoje, que compensou parcialmente a queda de volume, pode refletir mix que favoreceu os produtos mais caros desse top 3, mas isso é hipótese sem dado de preço médio por SKU para confirmar.
 
-- **A Conta 3 sustenta volume mas está com ticket em erosão estrutural.** O ticket caiu de ~R$65-67 (30/60d) para R$58.94 hoje, e o mesmo padrão aparece vs mesmo dia da semana (-19.2% GMV com -1.6% pedidos). Hipótese: mix derivando para itens de ticket menor (Kit 6 Canecas 200ml e Kit 2 Potes 800ml dominaram, vs produtos mais densos em valor em períodos anteriores).
+- **A Conta 2 exibe sinal de deterioração consistente em todas as janelas temporais**, o que a separa de variação de dia da semana ou ruído pontual. Sem memória histórica preenchida, não é possível dizer se essa queda é nova ou vem se acumulando — o que é em si um dado preocupante: a conta entrou no pipeline de análise sem lastro histórico documentado.
 
-- **Concentração de top 3 é transversal e estrutural nas três contas.** Store em 90%, Shop 3 em 84%, Oficial 2 em 69% (sobre volume mínimo). Há sobreposição de SKUs entre contas (CTL002 aparece nas três; KIT6CAR200 em Store e Shop 3), o que mantém o risco de canibalização como latente — sem dados de exposição por conta, não dá para quantificá-lo hoje.
+- **A compressão de ticket na Shop 3 ao longo das quartas-feiras** (de R$71.75 avg para R$58.94 hoje) não é evento de um dia — o delta GMV vs same weekday (-19.2%) com volume estável (-1.6%) indica que o mix está consistentemente se movendo para produtos mais baratos. Se esse padrão continuar, o GMV da conta encolhe mesmo com volume mantido.
 
 ---
 
 ### Tese da conta
 
-**Vulnerável.** A plataforma opera abaixo do patamar de 30 e 60 dias em todas as três contas, com naturezas distintas: a Conta 2 em queda severa (parcialmente confiável mas consistente entre janelas), a Conta 1 em desaceleração moderada com mix deslocando para ticket maior, e a Conta 3 segurando pedidos mas com ticket em erosão. A base de memória vazia impede saber se esse movimento é tendência nova ou ciclo já observado — o que, por si só, é um dado: a operação Shopee entra na semana sem âncora histórica registrada e com três dinâmicas distintas rodando simultaneamente. A tese é vulnerável, não em queda real, porque a Conta 3 segura e a Conta 1 tem ticket sustentado — mas a Conta 2 é o fator que pode puxar a classificação para baixo se confirmado nos próximos dias.
+**Shopee — vulnerável.**
+
+A plataforma entrega volume aceitável quando se compara com os últimos 7 dias, mas está em deterioração de patamar quando a janela se abre para 30d e 60d — e isso é consistente nas três contas, em graus diferentes. A Store (principal vetor) perde pedidos sistematicamente ao longo do bimestre enquanto o ticket sobe, sugerindo que o canal está se estreitando: vende menos, vende mais caro, mas o segundo vetor não existe. A Conta 2 apresenta colapso não explicado que precisaria de histórico documentado para ser classificado como estrutural ou transitório — e a ausência desse histórico é parte do problema. A tese de **vulnerável** (e não "em queda real") se sustenta porque a Store ainda não está abaixo do patamar de 7d e o GMV do dia ficou dentro de uma faixa razoável. Mas a estrutura de dependência e a trajetória de longo prazo apontam para fragilidade real, não conforto.
 
 ---
 
 ### Risco estrutural principal
 
-- **Risco:** Concentração extrema de receita em top 3 produtos por conta (90% Store, 84% Shop 3), sem segundo vetor documentado e com sobreposição de SKUs entre contas — qualquer oscilação dos campeões impacta diretamente o GMV da plataforma.
-- **Por que importa:** Se os campeões (Jarra Medidora 500ml e Kit 5 Potes Redondos na Store; Kit 6 Canecas 200ml e Kit 2 Potes 800ml na Shop 3) sofrerem perda de exposição, ruptura de estoque ou queda de ranking, não há segundo vetor que absorva. A plataforma opera sem rede.
-- **Histórico:** Não há registros anteriores — é o primeiro dado documentado. Não se sabe se essa concentração é crônica ou piorou recentemente.
-- **Sinal de confirmação:** Se os top 3 de qualquer conta perderem posição relativa (menor quantidade proporcional no mix) por 2 dias seguidos, enquanto o GMV da conta cai, o risco se confirma como erosão e não flutuação. Se a concentração se mantiver estável e o GMV recuperar, é padrão normal da conta.
+**Risco:** Concentração crítica nos campeões da Store (top 3 = 90% dos pedidos) sem segundo vetor identificável, combinada com queda de volume no patamar de 30d e 60d.
+
+**Por que importa:** Qualquer oscilação nos 3 SKUs líderes da Store — desabastecimento, perda de exposição, mudança de cupom/ADS ou aumento de concorrência — se transmite integralmente ao GMV da plataforma. Não há cauda longa que absorva o choque. O ticket mais alto hoje atenua temporariamente, mas não constrói resiliência.
+
+**Histórico:** Sem memória preenchida, não é possível afirmar há quantas semanas esse padrão existe. A concentração de 90% no top 3 é o dado mais alto entre as três contas — indica que o mix nunca se diversificou ou que houve estreitamento recente. Inconclusivo sem histórico.
+
+**Sinal de confirmação:** Top 3 da Store acima de 85% de concentração pelo segundo ciclo semanal consecutivo confirma dependência estrutural crônica, não evento de mix do dia.
 
 ---
 
 ### Sinais a observar
 
-1. **Conta 2 (Oficial 2):** Pedidos acima de 20 por qualquer dos próximos 3 dias indicam que a queda de hoje foi anomalia pontual. Pedidos abaixo de 15 por 2 dias seguidos confirmam erosão real e exigem investigação de exposição com Lucas/Himmel.
+1. **Conta 2:** Volume abaixo de 20 pedidos por 3 dias seguidos nos próximos 5 dias confirma deterioração real de patamar — descarta hipótese de ruído de dado ou variação sazonal isolada e exige diagnóstico de exposição/ADS/mix via Lucas/Himmel.
 
-2. **Ticket da Conta 3 (Shop 3):** Se o ticket médio permanecer abaixo de R$62 por 3 dias seguidos (vs 30d avg de R$67.16), a erosão de mix está em curso — não é flutuação do dia. Se recuperar acima de R$65 nos próximos 2 dias, foi variação do ciclo semanal.
+2. **Store — ticket vs volume:** Ticket acima de R$42 com pedidos abaixo de 80 por 2 dias seguidos nos próximos 5 dias confirma a hipótese de estreitamento do mix — canal vendendo mais caro e menos, sem recuperação de volume base.
 
-3. **Concentração de top 3 na Store:** Se a Jarra Medidora 500ml + Kit 5 Potes Redondos continuarem representando acima de 75% dos itens vendidos na Conta 1 pelo segundo ciclo semanal, a dependência é crônica e sem segundo vetor — o que eleva o risco estrutural de moderado para alto no próximo review.
+3. **Shop 3 — compressão de ticket:** GMV/pedido abaixo de R$60 por 3 das próximas 5 quartas-feiras confirma que o mix está se movendo estruturalmente para produtos de menor valor, e que a estabilidade de volume não está sustentando o faturamento.

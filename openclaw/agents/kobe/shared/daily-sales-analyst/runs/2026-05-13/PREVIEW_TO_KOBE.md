@@ -1,11 +1,11 @@
 # Preview para Kobe — 2026-05-13
-**Gerado em:** 2026-05-14T21:42:30.735737+00:00
+**Gerado em:** 2026-05-14T21:58:04.110203+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
 **Prompt Version:** v3.0
 **Data Builder Version:** v1.0
-**LLM Used:** False
+**LLM Used:** True
 
 ## Protecoes Ativas
 - send_real_enabled=false in config
@@ -17,15 +17,15 @@
 ### Lucas (shopee)
 - **Status:** APPROVED_WITH_REMARKS
 - **send_allowed:** False
-- **llm_used:** False
-  - 01-estrategica: FALLBACK
-  - 02-tatica: FALLBACK
-  - 03-operacional: FALLBACK
+- **llm_used:** True
+  - 01-estrategica: LLM
+  - 02-tatica: LLM
+  - 03-operacional: LLM
   - 04-granular: FALLBACK
-  - 05-condensadora: FALLBACK
-  - 06-slack-preview: FALLBACK
+  - 05-condensadora: LLM
+  - 06-slack-preview: LLM
   - 07-qa: FALLBACK
-- **Aviso:** Fallback deterministico: sem analise LLM profunda.
+- **Aviso:** Analise LLM executada. Verificar artefatos para qualidade.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/lucas/00-data-package.json`

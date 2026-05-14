@@ -1,16 +1,56 @@
 {
-  "layer": "05-condensadora",
-  "recipient": "lucas",
-  "status": "FALLBACK_DETERMINISTICO",
-  "date": "2026-05-13",
-  "platform": "shopee",
-  "condensed_output": {
-    "orders": 119,
-    "gmv": 5964.55,
-    "ticket_medio": 50.12,
-    "cancelamentos": 9
+  "analise_final_condensada": [
+    {
+      "insight": "A Budamix Oficial (Conta 2) não tem apenas queda de demanda — tem execução comprometida: colapso de volume em todas as janelas combinado com taxa de cancelamento de 23% (3 em 13 pedidos) é padrão de algo bloqueando ou revertendo pedidos na conta, não de demanda baixa. Tratar como 'dia fraco' distorce a ação necessária. — base: Operacional + Tática",
+      "padrao": "Padrão E — localização (o problema não é Shopee caindo, é Conta 2 com execução comprometida)",
+      "criterio_descarte": "Evita interpretação errada + muda a prioridade de ação"
+    },
+    {
+      "insight": "A Budamix Store (Conta 1) parece estar segurando o resultado, mas o GMV está sendo sustentado por ticket anomalamente elevado (R$43,80 vs banda histórica de R$35–39) enquanto o volume de pedidos cai há pelo menos 60 dias. Se o ticket reverter para a banda, o GMV cai estruturalmente — o resultado de hoje mascara erosão em curso, não estabilidade. — base: Estratégica + Operacional",
+      "padrao": "Padrão B — inversão positiva (parece sustentado, mas a estrutura mostra fragilidade de base)",
+      "criterio_descarte": "Muda a leitura do dia + alerta contra risco silencioso"
+    },
+    {
+      "insight": "A Budamix Shop (Conta 3) manteve volume, mas o mix migrou para produtos de menor valor: ticket comprimido de R$67–72 histórico para R$58,94, com itens de menor preço liderando. Pedidos estáveis com GMV em queda é deterioração silenciosa de composição — não é dia neutro. — base: Operacional + Granular (fallback)",
+      "padrao": "Padrão F — métrica vs qualidade (pedidos estáveis, qualidade de mix piorou)",
+      "criterio_descarte": "Evita interpretação errada (conta 3 não é ponto estável, é deterioração silenciosa)"
+    }
+  ],
+  "prioridades_condensadas_slack": [
+    {
+      "prioridade": "Verificar Conta 2 (Budamix Oficial) na plataforma Shopee — checar se há campanha pausada, limitação de exposição, listing com problema ou restrição de loja",
+      "por_que": "Combinação de colapso de volume em todas as janelas e cancelamento de 23% aponta para causa operacional ou de plataforma, não demanda pura — distribuição horária esparsa reforça hipótese de exposição suprimida",
+      "sinal_confirmacao_refutacao": "Se volume Conta 2 voltar acima de 20 pedidos amanhã sem intervenção, o evento de hoje foi pontual de plataforma; se ficar abaixo de 18 pelo segundo dia seguido com exposição normal, o colapso é real e requer alinhamento com Himmel",
+      "escalar_se": "Plataforma sem anomalia operacional aparente e volume permanecer colapsado amanhã — alinhar com Himmel sobre exposição de campanha"
+    },
+    {
+      "prioridade": "Acompanhar ticket médio de Conta 1 (Budamix Store) nos próximos 2 dias",
+      "por_que": "O GMV de Conta 1 está sendo sustentado por ticket elevado fora da banda histórica; se reverter, a queda de GMV torna-se estrutural e a erosão de volume fica exposta sem compensação",
+      "sinal_confirmacao_refutacao": "Ticket abaixo de R$39 por 2 dias seguidos com pedidos abaixo de 70 confirma erosão estrutural; ticket acima de R$40 por mais um dia sustenta a tese de acomodação",
+      "escalar_se": "Ticket confirma erosão — sinal muda tese da conta e pode requerer revisão de postura operacional"
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [
+    "Produtos específicos por nome — Granular usou fallback determinístico, sem validação de identidade de produto; usar apenas agregados ('o produto líder', 'o item de maior valor da conta')",
+    "Diagnóstico definitivo de Conta 2 como 'queda real' — dado parcial (volume_band check retornou partial); tratar como indício forte, não fato confirmado",
+    "Concentração de cancelamentos de Conta 2 em produto/SKU específico — pergunta não respondida pela Granular (fallback); não afirmar nem descartar sem evidência",
+    "Status de campanha ADS de Conta 2 em 13/05 — não validado pela Granular; hipótese de campanha pausada é candidata, não confirmada",
+    "Hipótese de canibalização entre contas (SKU CTL002 aparece nas 3 contas) — sinal plausível mas sem base histórica disponível (weekly/monthly vazios); não citar como causa",
+    "Comparação com mesmo dia da semana como âncora confiável para Conta 1 — alta variabilidade (181 pedidos em 22/04 vs 56 em 29/04 vs 75 hoje) torna essa janela não confiável como referência isolada"
+  ],
+  "memoria_para_amanha": [
+    "Conta 2 (Budamix Oficial): verificar se pedidos voltam acima de 20 — abaixo de 18 pelo segundo dia seguido com exposição normal eleva o sinal de colapso de parcial para real e requer alinhamento Himmel",
+    "Conta 2: checar se os 3 cancelamentos de 13/05 foram concentrados no mesmo produto/SKU ou pulverizados — essa informação muda o diagnóstico (listing específico vs problema amplo de conta)",
+    "Conta 1 (Budamix Store): verificar ticket médio — acima de R$40 por mais um dia sustenta acomodação; abaixo de R$39 por 2 dias consecutivos confirma erosão estrutural e expõe a queda de volume sem compensação",
+    "Conta 3 (Budamix Shop): verificar se ticket permanece abaixo de R$60 — terceiro dia consecutivo abaixo desse patamar confirma migração de mix como padrão, não oscilação pontual",
+    "Weekly e monthly das 3 contas estão com templates vazios — este ciclo marca o primeiro registro formal de risco de Conta 1 e sinal de alerta de Conta 2; amanhã já há base mínima para comparar direção, o que reduz a incerteza estratégica atual",
+    "Conteúdo do daily de 2026-05-12 não estava disponível no pacote — se disponível amanhã, verificar se os padrões de ticket de Conta 1 e ticket de Conta 3 já estavam presentes ou se 13/05 é ponto de inflexão"
+  ],
+  "alertas_de_confianca": {
+    "nivel": "media",
+    "justificativa": "Os dados canônicos das 3 contas estão presentes e reconciliados. O dado parcial é localizado em Conta 2 (volume_band check partial por magnitude do colapso, mas acima do piso crítico). A Granular usou fallback determinístico, sem validação de produto — os insights da Condensadora evitaram nominação de produto por precaução. Os insights principais derivam de métricas quantitativas disponíveis (volume, ticket, cancelamento, distribuição horária) e não dependem de confirmação granular de produto para sustentar a tese. A incerteza residual está em: (1) causa real do colapso de Conta 2 — hipótese operacional forte mas não confirmada; (2) ausência de conteúdo em weekly/monthly — base qualitativa vazia impede confirmar se os padrões são recorrentes ou novos."
   },
-  "fallback": true,
-  "llm_used": false,
-  "warning": "Condensacao deterministica. Sem LLM."
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

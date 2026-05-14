@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-13
-**Gerado em:** 2026-05-14T21:58:04.110203+00:00
+**Gerado em:** 2026-05-14T22:37:33.229359+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -14,28 +14,51 @@
 
 ## Resumo por Recipient
 
-### Lucas (shopee)
+### Yasmin (mercado_livre)
 - **Status:** APPROVED_WITH_REMARKS
 - **send_allowed:** False
 - **llm_used:** True
   - 01-estrategica: LLM
   - 02-tatica: LLM
   - 03-operacional: LLM
-  - 04-granular: FALLBACK
+  - 04-granular: LLM
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: FALLBACK
 - **Aviso:** Analise LLM executada. Verificar artefatos para qualidade.
 
 **Artefatos:**
-  - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/lucas/00-data-package.json`
-  - `layer1_estrategica`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/lucas/01-estrategica.md`
-  - `layer2_tatica`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/lucas/02-tatica.md`
-  - `layer3_operacional`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/lucas/03-operacional.md`
-  - `layer4_granular`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/lucas/04-granular.json`
-  - `layer5_condensadora`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/lucas/05-condensadora.json`
-  - `layer6_slack_writer`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/lucas/06-slack-preview.md`
-  - `layer7_qa_gate`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/lucas/07-qa.json`
+  - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/yasmin/00-data-package.json`
+  - `layer1_estrategica`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/yasmin/01-estrategica.md`
+  - `layer2_tatica`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/yasmin/02-tatica.md`
+  - `layer3_operacional`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/yasmin/03-operacional.md`
+  - `layer4_granular`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/yasmin/04-granular.json`
+  - `layer5_condensadora`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/yasmin/05-condensadora.json`
+  - `layer6_slack_writer`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/yasmin/06-slack-preview.md`
+  - `layer7_qa_gate`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/yasmin/07-qa.json`
+
+### Leonardo (amazon)
+- **Status:** APPROVED_WITH_REMARKS
+- **send_allowed:** False
+- **llm_used:** True
+  - 01-estrategica: LLM
+  - 02-tatica: LLM
+  - 03-operacional: LLM
+  - 04-granular: LLM
+  - 05-condensadora: LLM
+  - 06-slack-preview: LLM
+  - 07-qa: LLM
+- **Aviso:** Analise LLM executada. Verificar artefatos para qualidade.
+
+**Artefatos:**
+  - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/leonardo/00-data-package.json`
+  - `layer1_estrategica`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/leonardo/01-estrategica.md`
+  - `layer2_tatica`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/leonardo/02-tatica.md`
+  - `layer3_operacional`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/leonardo/03-operacional.md`
+  - `layer4_granular`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/leonardo/04-granular.json`
+  - `layer5_condensadora`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/leonardo/05-condensadora.json`
+  - `layer6_slack_writer`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/leonardo/06-slack-preview.md`
+  - `layer7_qa_gate`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-13/leonardo/07-qa.json`
 
 ## Acao Requerida
 

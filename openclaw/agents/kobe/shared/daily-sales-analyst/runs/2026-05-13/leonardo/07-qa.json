@@ -1,18 +1,57 @@
 {
-  "layer": "07-qa",
-  "recipient": "leonardo",
-  "date": "2026-05-13",
-  "verdict": "APPROVED_WITH_REMARKS",
-  "checks_passed": 1,
-  "checks_total": 1,
-  "blockers": [],
-  "remarks": [
-    "Artefatos gerados por fallback deterministico (sem LLM).",
-    "Dados extraidos diretamente do data package v1.0.",
-    "Data Readiness: DADOS_PARCIAIS."
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem não viola nenhuma regra crítica. Dados numéricos conferem com o pacote canônico, destinatário e plataforma corretos, estrutura das 6 seções na ordem exata, insights copiados literalmente da Condensadora sem alteração de tese, prioridades fiéis com responsável correto e condições de falsificação preservadas, bloqueios da Condensadora respeitados na mensagem final. Dois problemas Menores foram encontrados: (1) o log 'Respeito de bloqueios' da Slack Writer não cobre explicitamente 4 dos 7 itens da lista 'o_que_nao_pode_ir_para_slack' da Condensadora — nenhum desses itens aparece na mensagem, portanto sem risco real; (2) dois títulos do Top Produtos foram truncados sem registro explícito de truncamento nas Decisões de formatação, embora os produtos permaneçam claramente identificáveis. Regra de agregação aplicada: 0 Maiores + 2 Menores isolados = APROVADO COM RESSALVA.",
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "RESSALVA",
+    "gate_9_consistencia_entre_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 2,
+    "degradacao_sistemica": false,
+    "regra_agregacao_aplicada": "0 Maiores + 1–5 Menores → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": 8,
+      "estado_atual": "O bloco 'Respeito de bloqueios' da Slack Writer documenta explicitamente apenas 3 dos 7 itens da lista 'o_que_nao_pode_ir_para_slack' da Condensadora: (a) hipótese Suporte Gamer, (b) ASINs específicos, (c) SKUs crus. Os outros 4 itens — discrepância de 4 unidades não atribuídas, weekly/monthly vazios, debate metodológico sobre top3_concentration por ASIN vs família, e as 4 perguntas granulares sem resposta — não aparecem no log com status de omissão explícita.",
+      "estado_esperado": "Cada item da lista 'o_que_nao_pode_ir_para_slack' da Condensadora deve aparecer no log de bloqueios com: origem (Condensadora), motivo, tratamento aplicado (omitido) e confirmação de ausência na mensagem final.",
+      "regra_violada": "Gate 8 — Passo 2: 'Cada bloqueio da Granular/Condensadora deve aparecer no log.' e 'Cada entrada do log deve informar origem, motivo, agregado autorizado — sim/não — tratamento aplicado e presença na mensagem final.'",
+      "bloqueia_envio": false,
+      "observacao": "Nenhum dos 4 itens não logados aparece na mensagem final. O risco de induzir erro é zero. O problema é de completude de auditoria interna, não de segurança da mensagem."
+    },
+    {
+      "severidade": "Menor",
+      "gate": 5,
+      "estado_atual": "Os títulos dos produtos 4 e 5 do Top Produtos foram truncados na mensagem final sem registro explícito de truncamento nas Decisões de formatação. Título real do produto 4: 'Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável Ideal para Chocolate Quente e Café Expresso Preto' → Slack: 'Kit 6 Canecas de Porcelana Tulipa 250ml Preto'. Título real do produto 5: 'Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto - Organizador de Mesa Gamer 2 em 1 - Compatível Nintendo Switch Pro - Budamix' → Slack: 'Suporte de Controle PS5/PS4/Xbox Organizador de Mesa Gamer 2 em 1'.",
+      "estado_esperado": "A decisão de truncar títulos para legibilidade no Slack deve estar registrada explicitamente nas Decisões de formatação, com confirmação de que a identificação do produto permanece unívoca após o truncamento.",
+      "regra_violada": "Gate 8 — Decisões de formatação: 'Deve registrar [...] decisão de mostrar/omitir ASIN' e implicitamente qualquer alteração de apresentação de título que afete rastreabilidade; Gate 5 — 'título real do pedido é fonte primária' exige que truncamentos sejam documentados.",
+      "bloqueia_envio": false,
+      "observacao": "Os produtos truncados permanecem claramente identificáveis — risco de identificação é baixo (confirmado pelo check amazon_product_identity: ok). O truncamento não induz erro. O problema é de registro de decisão de formatação incompleto."
+    }
   ],
-  "send_allowed": false,
-  "send_real_allowed": false,
-  "fallback": true,
-  "llm_used": false
+  "correcoes_obrigatorias_antes_do_envio": "Nenhuma.",
+  "ressalvas_memoria_interna": [
+    "Log de bloqueios da Slack Writer deve ser ampliado no próximo ciclo para cobrir explicitamente todos os itens de 'o_que_nao_pode_ir_para_slack' da Condensadora — não apenas os bloqueios formais da Granular.",
+    "Decisões de formatação devem registrar explicitamente quando títulos de Top Produtos são truncados, incluindo confirmação de que a identificação permanece unívoca."
+  ],
+  "ressalvas_auditoria": [
+    "As prioridades do dia são extensas para um Slack operacional — cada prioridade tem 4–5 linhas com condições quantificadas e escalonamento. O conteúdo é fiel à Condensadora e não viola regra objetiva. Mas a extensão total das Prioridades aproxima a mensagem de briefing interno em vez de acionamento rápido. Condensadora — sugere avaliar se o nível de detalhe das condições de confirmação e escalonamento pertence ao Slack ou a um documento de acompanhamento separado no próximo ciclo.",
+    "A Análise da Conta copia os insights da Condensadora literalmente, incluindo a expressão 'ASINs líderes' no insight 1. A expressão não é um código bruto e não viola a regra de bloqueio de ASINs específicos. Porém, para Leonardo, 'produtos líderes' seria mais natural e consistente com o padrão adotado nas Prioridades (onde a substituição foi feita). Condensadora — sugere avaliar padronização da expressão nos próprios insights para o próximo ciclo."
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

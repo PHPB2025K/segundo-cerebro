@@ -41,9 +41,15 @@ Painel visual da operação OpenClaw/Kobe — dashboard único com crons, agente
 | `/agents` Agents | ✅ PRD v1 fechado (3 tabs: Cards/Organograma SVG/Atividade swimlanes 24h; AgentDrawer drill-down com SOUL+stats+5 atividades+4 ações; bot Telegram badge) |
 | `/memory` Memory | ✅ PRD v1 fechado (visão temática do vault Obsidian; 5 tabs: Recentes/Buscar/Pendências/Decisões/MOCs; NoteView markdown+edit+Ctrl+S; backlinks; captura rápida em inbox) |
 | `/office` Office 3D | ✅ PRD v1 fechado (i18n PT-BR; ControlsPanel colapsável; AgentDrawer reuse; OFFICE_STATUS_COLORS 5 status; workspaceRadius anti-aglomeração; Whiteboard 3D dinâmico com top 3 pendências críticas) |
+| `/activity` Activity Log | ✅ PRD v1 fechado 14/05 (i18n PT-BR; UI_EVENT hidden default + toggle; heatmap 12w/26w/52w default 52w; ActivityDrawer desktop + expand mobile; deep-link `?agent=`; custom date range; export CSV) |
+| `/cron` Cron Jobs | ✅ PRD v1 fechado 14/05 (API lê `jobs.json` + `jobs-state.json` + `runs/*.jsonl` direto — antes execSync travava 15s; 83 jobs <100ms; filtros agente/status/erros; schedule humanizado em BRT; CronDrawer com 50 runs+payload; toggle escreve no jobs.json + reload) |
+| `/sessions` Sessions | ✅ PRD v1 fechado 14/05 (API lê `agents/<id>/sessions/sessions.json` — antes Bad Gateway por CLI quebrado; 82 sessões <400ms; filtros tipo/agente/abortadas; presets período Hoje/7d/30d/Tudo; SessionDrawer paginado 50 msgs com user/assistant/thinking/tool_use/tool_result) |
+| `/skills` Skills | ✅ PRD v1 fechado 14/05 (scan automático 4 dirs canônicos — antes dependia de `configured-skills.json` inexistente; 118 skills com dedup +N cópias; filtros tipo + 6 agentes; SkillDrawer com react-markdown + syntax highlight) |
+| `/costs` Costs & Analytics | ✅ PRD v1 fechado 14/05 (separa custo real API vs subscription; pricing.ts: Anthropic=API real, GPT=subscription Pro 5x cobre; migration usage-tracking.db com billing_type/real_cost/equivalent_cost recalculou 4628 snapshots; budget só sobre API; 2 cards novos Subscription/Economia; AgentCostDrawer; histórico 6 meses) |
 | Backend cron `activity-collector.py` | ✅ `*/5min` populando activities.db |
 | Backend cron `system-metrics` | ✅ Snapshot 1/5s persistente em `system-metrics.db` 24h retention |
-| PRDs futuros | ⏳ 17 módulos: cron, tasks, sessions, activity, skills, agents-detail, logs, terminal, git, workflows, search, analytics, reports, costs, settings, calendar, about, actions |
+| n8n usage tracking | ⏳ Em aberto (retomar 15/05) — 3 workflows LLM mapeados em `trottingtuna-n8n.cloudfy.live`, plano 4 passos pronto |
+| PRDs futuros | ⏳ 12 módulos: tasks, agents-detail, logs, terminal, git, workflows, search, analytics, reports, settings, calendar, about, actions |
 | PRD futuro **"Minhas Aplicações"** | ⏳ cross-host (VPS + Vercel + Supabase + Railway) — unifica visão de todos os sistemas próprios independente de onde hospedados |
 | Pendência menor | ⏳ KG sync Mac→VPS via cron rsync 1h (ativa busca semântica no /memory); filtro `/memory?agent=` por workspace; refinement regex `botToken` em auth-profiles.json |
 

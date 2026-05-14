@@ -126,7 +126,7 @@ Em resumo: fora dados crus; dentro só raciocínio.
 ## Checklist antes de enviar
 1. Confirmar dia analisado em BRT.
 2. Confirmar `v_daily_sales` disponível para o dia.
-3. Confirmar se o padrão vigente pede Atacado GB Matriz no bloco geral/canais; se sim, incluir apenas no resumo/canais e não no diagnóstico individual.
+3. Confirmar que o pipeline v2.5 não inclui Atacado GB Matriz, `RESUMO GERAL` nem `VENDAS POR CANAL` nas mensagens individuais.
 4. Confirmar Top Produtos consolidado por SKU equivalente.
 5. Confirmar destinatários Slack corretos.
 6. Confirmar formatação rich text: títulos bold+underline, conteúdo normal.

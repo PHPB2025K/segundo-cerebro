@@ -15,14 +15,11 @@ Fonte: Supabase `orders` em janela BRT, cancelados excluídos dos totais válido
 - Shopee — Budamix Shop / Conta 3: 20 pedidos, R$ 1.335,83, ticket R$ 66,79, 0 cancelamentos; vs 30d: pedidos -32,9%, GMV -32,9%; top3 86,4%.
 
 ## O que precisa ser investigado pela Granular
-- Shopee — Budamix Store: validar `reconciliation_mismatch` — Orders granular divergem da fonte canônica BRT.
 - Shopee — Budamix Store: validar `high_top3_concentration` — Alta concentração nos top 3 produtos.
 - Shopee — Budamix Store: avaliar risco de concentração de mix/top produtos.
-- Shopee — Budamix Oficial / Conta 2: validar `reconciliation_mismatch` — Orders granular divergem da fonte canônica BRT.
 - Shopee — Budamix Oficial / Conta 2: validar `high_top3_concentration` — Alta concentração nos top 3 produtos.
 - Shopee — Budamix Oficial / Conta 2: explicar variação forte de pedidos vs 30d (-37,2%).
 - Shopee — Budamix Oficial / Conta 2: avaliar risco de concentração de mix/top produtos.
-- Shopee — Budamix Shop / Conta 3: validar `reconciliation_mismatch` — Orders granular divergem da fonte canônica BRT.
 - Shopee — Budamix Shop / Conta 3: validar `high_top3_concentration` — Alta concentração nos top 3 produtos.
 - Shopee — Budamix Shop / Conta 3: explicar variação forte de pedidos vs 30d (-32,9%).
 - Shopee — Budamix Shop / Conta 3: avaliar risco de concentração de mix/top produtos.

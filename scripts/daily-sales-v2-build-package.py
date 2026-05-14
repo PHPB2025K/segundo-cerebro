@@ -84,12 +84,34 @@ def build_account_package(analyzer, sb, date_str: str, account_slug: str, canoni
     }
     weekday_avg["avg_ticket"] = round(weekday_avg["avg_gmv"] / weekday_avg["avg_orders"], 2) if weekday_avg["avg_orders"] else 0
 
-    reconciliation = analyzer.reconciliation_for_platform(
-        canonical_by_platform,
-        acct["platform"],
-        metrics["pedidos_validos"],
-        metrics["gmv"],
-    )
+    # Contas Shopee são subconjuntos do total da plataforma. Reconciliar cada
+    # conta isolada contra o total Shopee cria falso bloqueio; a igualdade só
+    # vale para plataformas sem divisão por shop_id (ML/Amazon) ou para o
+    # consolidado do responsável.
+    if "shop_id" in acct["filter"]:
+        canonical = canonical_by_platform.get(acct["platform"], {})
+        reconciliation = {
+            "scope": "account_subset",
+            "platform": acct["platform"],
+            "canonical_orders": int(canonical.get("order_count") or 0),
+            "canonical_revenue": round(float(canonical.get("total_revenue") or 0), 2),
+            "orders_count": metrics["pedidos_validos"],
+            "orders_revenue": round(metrics["gmv"], 2),
+            "order_delta": None,
+            "revenue_delta": None,
+            "ok": (
+                metrics["pedidos_validos"] <= int(canonical.get("order_count") or 0)
+                and round(metrics["gmv"], 2) <= round(float(canonical.get("total_revenue") or 0), 2) + 1.00
+            ),
+            "note": "Conta Shopee é subconjunto do total da plataforma; igualdade deve ser validada no consolidado Lucas/Shopee.",
+        }
+    else:
+        reconciliation = analyzer.reconciliation_for_platform(
+            canonical_by_platform,
+            acct["platform"],
+            metrics["pedidos_validos"],
+            metrics["gmv"],
+        )
 
     memory_context = analyzer.read_account_memory(account_slug)
     memory_loaded = sorted(k for k in memory_context.keys() if k != "last_daily")
@@ -135,7 +157,10 @@ def build_account_package(analyzer, sb, date_str: str, account_slug: str, canoni
 def quality_flags(acct: dict[str, Any], metrics: dict[str, Any], reconciliation: dict[str, Any], memory_context: dict[str, Any]) -> list[dict[str, str]]:
     flags: list[dict[str, str]] = []
     if not reconciliation.get("ok"):
-        flags.append({"level": "critical", "code": "reconciliation_mismatch", "message": "Orders granular divergem da fonte canônica BRT."})
+        if reconciliation.get("scope") == "account_subset":
+            flags.append({"level": "critical", "code": "account_subset_exceeds_platform_total", "message": "Conta Shopee excede o total canônico da plataforma; provável erro de filtro/shop_id."})
+        else:
+            flags.append({"level": "critical", "code": "reconciliation_mismatch", "message": "Orders granular divergem da fonte canônica BRT."})
     if metrics.get("pedidos_validos", 0) == 0:
         flags.append({"level": "warning", "code": "no_orders", "message": "Sem pedidos válidos na janela BRT."})
     if metrics.get("top3_concentration", 0) >= 70:

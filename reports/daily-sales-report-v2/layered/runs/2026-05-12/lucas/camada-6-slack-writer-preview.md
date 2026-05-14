@@ -19,8 +19,8 @@ DAILY SALES REPORT — SHOPEE — 12/05/2026 (Ontem)
 - Shopee — Budamix Shop / Conta 3 perdeu tração contra a média de 30 dias (-32,9% em pedidos e -32,9% em GMV), então a leitura principal é queda de exposição/demanda antes de mexer em margem.
 
 🎯 PRIORIDADES DO DIA
-- Não enviar Slack real antes de resolver os bloqueios críticos apontados pela Granular/QA.
 - Validar estoque, ranking e campanha dos produtos líderes em Shopee — Budamix Store; concentração alta vira risco operacional se um item cair.
 - Checar exposição/ADS/listing em Shopee — Budamix Oficial / Conta 2 antes de qualquer ajuste de preço; queda de pedido precisa ser explicada por tráfego ou ruptura.
+- Checar exposição/ADS/listing em Shopee — Budamix Shop / Conta 3 antes de qualquer ajuste de preço; queda de pedido precisa ser explicada por tráfego ou ruptura.
 
 Dia analisado: 12/05/2026 — 00:00–23:59 BRT

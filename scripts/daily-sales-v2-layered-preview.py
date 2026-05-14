@@ -194,7 +194,9 @@ def insight_for_account(account: dict[str, Any]) -> str:
         return f"{name} rodou acima do patamar recente ({pct(orders_delta)} em pedidos e {pct(gmv_delta)} em GMV), mas precisa validar se o ganho veio de tráfego saudável ou concentração pontual de mix."
     if conc >= 65:
         return f"{name} está dependente dos produtos líderes: top 3 concentram {str(conc).replace('.', ',')}% das unidades, o que aumenta risco se anúncio, estoque ou ranking desses itens oscilar."
-    return f"{name} ficou dentro de uma faixa operacional sem ruptura clara; o foco do dia é proteger execução, disponibilidade e consistência dos produtos que sustentaram o volume."
+    ticket = brl(m.get("ticket_medio", 0))
+    orders = m.get("pedidos_validos", 0)
+    return f"{name} operou com {orders} pedidos e ticket {ticket}, sem desvio significativo contra a média recente; estrutura de mix e volume mantida."
 
 
 def build_condenser(package: dict[str, Any], recipient: str, granular: dict[str, Any]) -> dict[str, Any]:
@@ -211,11 +213,11 @@ def build_condenser(package: dict[str, Any], recipient: str, granular: dict[str,
         acc = package["accounts"][slug]
         h = acc["historical"]["changes"]
         if h.get("orders_vs_30d_pct") is not None and h["orders_vs_30d_pct"] <= -20:
-            priorities.append(f"Checar exposição/ADS/listing em {acc['account_name']} antes de qualquer ajuste de preço; queda de pedido precisa ser explicada por tráfego ou ruptura.")
+            priorities.append(f"Investigar causa da queda de pedidos em {acc['account_name']} ({pct(h['orders_vs_30d_pct'])} vs 30d): verificar se houve perda de tráfego, ruptura de estoque ou mudança de ranking antes de qualquer ajuste de preço.")
         elif acc["metrics"].get("top3_concentration", 0) >= 65:
             priorities.append(f"Validar estoque, ranking e campanha dos produtos líderes em {acc['account_name']}; concentração alta vira risco operacional se um item cair.")
     if not priorities:
-        priorities.append("Manter rotina de execução e observar se o padrão se repete amanhã antes de tomar ação estrutural.")
+        priorities.append("Dia dentro da faixa operacional sem ruptura; sem ação estrutural necessária — foco em disponibilidade e execução.")
     return {
         "layer": "camada-5-condensadora",
         "recipient": recipient,
@@ -266,25 +268,106 @@ def build_slack_preview(package: dict[str, Any], recipient: str, condenser: dict
     return "\n".join(lines) + "\n"
 
 
+SHALLOW_PRIORITY_PATTERNS = [
+    re.compile(r"\b(monitorar|acompanhar|observar)\b.*\b(amanhã|se repet[ei]|próximos dias)\b", re.IGNORECASE),
+    re.compile(r"\bchecar (exposição|ADS|listing)\b(?!.*\b(porque|pois|dado que|evidência|sinal)\b)", re.IGNORECASE),
+    re.compile(r"\bobservar se (o padrão )?se repete?\b", re.IGNORECASE),
+    re.compile(r"\bmanter rotina\b.*\bobservar\b", re.IGNORECASE),
+]
+
+SHALLOW_INSIGHT_PATTERNS = [
+    re.compile(r"\bprecisa validar\b(?!.*\b(porque|pois|dado que|evidência)\b)", re.IGNORECASE),
+    re.compile(r"\bficou dentro de uma faixa operacional\b", re.IGNORECASE),
+]
+
+CONSOLIDATED_SECTION_PATTERNS = [
+    re.compile(r"📊 RESUMO GERAL", re.IGNORECASE),
+    re.compile(r"🛒 VENDAS POR CANAL", re.IGNORECASE),
+    re.compile(r"DESTAQUES DO DIA", re.IGNORECASE),
+    re.compile(r"VISÃO CONSOLIDADA", re.IGNORECASE),
+    re.compile(r"RESUMO DO DIA", re.IGNORECASE),
+]
+
+
+def _check_shallow_content(text: str, patterns: list[re.Pattern], label: str) -> list[str]:
+    """Check for shallow/generic phrases that lack evidence or falsifiable conditions."""
+    issues = []
+    for pattern in patterns:
+        matches = pattern.findall(text)
+        if matches:
+            issues.append(f"{label} rasa/genérica detectada: padrão '{pattern.pattern}' encontrado sem condição ou evidência.")
+    return issues
+
+
 def qa_gate(slack_text: str, granular: dict[str, Any], condenser: dict[str, Any], package: dict[str, Any], recipient: str) -> dict[str, Any]:
     errors = []
     warnings = []
+
+    # --- Structural checks ---
     for section in FORBIDDEN_SECTIONS:
         if section in slack_text:
             errors.append(f"Seção proibida encontrada: {section}")
     for section in REQUIRED_SECTIONS:
         if section not in slack_text:
             errors.append(f"Seção obrigatória ausente: {section}")
+
+    # --- Product identity ---
     if "Produto não identificado" in slack_text or "Produto sem identidade confiável" in slack_text:
         errors.append("Produto sem identidade confiável apareceu no texto final.")
+
+    # --- Raw SKU check ---
+    raw_sku_pattern = re.compile(r"\b[A-Z0-9]{2,}_[A-Z0-9_]{2,}\b")
+    raw_skus = raw_sku_pattern.findall(slack_text)
+    if raw_skus:
+        errors.append(f"SKU cru detectado no texto final: {', '.join(raw_skus[:3])}")
+
+    # --- Granular block ---
     if granular["blocked_for_slack"]:
         errors.append("Granular marcou bloqueio para Slack.")
+
+    # --- Insight count ---
     if len(condenser.get("final_insights", [])) > 3:
         errors.append("Condensadora passou de 3 insights finais.")
+
+    # --- send_real_allowed ---
     if package["pipeline"].get("send_real_allowed") is not False:
         errors.append("Package preview não está explicitamente travado contra envio real.")
+
+    # --- Priority count ---
     if len(condenser.get("priorities", [])) > 3:
         warnings.append("Mais de 3 prioridades detectadas; preview truncou para 3.")
+
+    # --- HARDENED: Block shallow/generic priorities ---
+    priorities_text = "\n".join(condenser.get("priorities", []))
+    shallow_priority_issues = _check_shallow_content(priorities_text, SHALLOW_PRIORITY_PATTERNS, "Prioridade")
+    for issue in shallow_priority_issues:
+        warnings.append(issue)
+
+    # --- HARDENED: Block shallow/generic insights ---
+    insights_text = "\n".join(condenser.get("final_insights", []))
+    shallow_insight_issues = _check_shallow_content(insights_text, SHALLOW_INSIGHT_PATTERNS, "Insight")
+    for issue in shallow_insight_issues:
+        warnings.append(issue)
+
+    # --- HARDENED: Block metric repetition without thesis ---
+    for insight in condenser.get("final_insights", []):
+        # Check if insight just repeats metric numbers without interpretation
+        numbers = re.findall(r"[+-]?\d+[.,]\d+%", insight)
+        interpretive_words = re.findall(r"\b(porque|portanto|isso significa|o que indica|sugere que|então|logo)\b", insight, re.IGNORECASE)
+        if len(numbers) >= 2 and not interpretive_words:
+            warnings.append(f"Insight repete métricas sem tese interpretativa: '{insight[:80]}...'")
+
+    # --- HARDENED: Block consolidated sections reintroduced by Slack Writer ---
+    for pattern in CONSOLIDATED_SECTION_PATTERNS:
+        if pattern.search(slack_text):
+            errors.append(f"Seção consolidada proibida reintroduzida no Slack: padrão '{pattern.pattern}'")
+
+    # --- Determine status ---
+    # Shallow warnings become errors if 3+ accumulate (systemic shallow analysis)
+    shallow_warning_count = len(shallow_priority_issues) + len(shallow_insight_issues)
+    if shallow_warning_count >= 3:
+        errors.append(f"Análise sistematicamente rasa: {shallow_warning_count} padrões genéricos detectados — bloqueio por acúmulo.")
+
     status = "BLOQUEADO" if errors else "APROVADO COM RESSALVA" if warnings else "APROVADO"
     return {
         "layer": "camada-7-qa-gate-preview",
@@ -294,6 +377,11 @@ def qa_gate(slack_text: str, granular: dict[str, Any], condenser: dict[str, Any]
         "send_real_allowed": False,
         "errors": errors,
         "warnings": warnings,
+        "shallow_checks": {
+            "priority_issues": shallow_priority_issues,
+            "insight_issues": shallow_insight_issues,
+            "systemic_block": shallow_warning_count >= 3,
+        },
         "checked_at_utc": datetime.now(timezone.utc).isoformat(),
     }
 

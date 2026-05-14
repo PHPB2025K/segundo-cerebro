@@ -1,5 +1,25 @@
 # Camada 2 — Analise Tatica: Lucas
-## Status: BLOCKED
-**Motivo:** Data Readiness NOT_READY. Checks failed: volume_band_shopee-budamix-oficial-2: Orders 14 vs avg30 35.0 = -60.0% (outside both 30d and 60d bands); volume_band_amazon: Orders 46 vs avg30 27.3 = +68.5% (outside both 30d and 60d bands)
+## Status: FALLBACK_DETERMINISTICO
+**Data:** 2026-05-13
 
-> Analise bloqueada. Placeholder deterministico.
+### Shopee — Budamix Store
+- Pedidos: 75 | GMV: R$ 3285.11
+- Ticket: R$ 43.8
+- vs 7d: 8.1% pedidos, 34.6% GMV
+- vs 30d: -17.4% pedidos, -7.1% GMV
+- Quality flags: high_top3_concentration
+
+### Shopee — Budamix Oficial / Conta 2
+- Pedidos: 13 | GMV: R$ 852.36
+- Ticket: R$ 65.57
+- vs 7d: -55.2% pedidos, -49.1% GMV
+- vs 30d: -62.9% pedidos, -57.8% GMV
+
+### Shopee — Budamix Shop / Conta 3
+- Pedidos: 31 | GMV: R$ 1827.08
+- Ticket: R$ 58.94
+- vs 7d: 33.0% pedidos, 19.1% GMV
+- vs 30d: 7.3% pedidos, -6.0% GMV
+- Quality flags: high_top3_concentration
+
+> **AVISO:** Fallback deterministico, sem analise LLM.

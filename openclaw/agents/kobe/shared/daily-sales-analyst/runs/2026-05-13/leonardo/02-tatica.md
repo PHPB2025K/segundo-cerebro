@@ -1,5 +1,11 @@
 # Camada 2 — Analise Tatica: Leonardo
-## Status: BLOCKED
-**Motivo:** Data Readiness NOT_READY. Checks failed: volume_band_shopee-budamix-oficial-2: Orders 14 vs avg30 35.0 = -60.0% (outside both 30d and 60d bands); volume_band_amazon: Orders 46 vs avg30 27.3 = +68.5% (outside both 30d and 60d bands)
+## Status: FALLBACK_DETERMINISTICO
+**Data:** 2026-05-13
 
-> Analise bloqueada. Placeholder deterministico.
+### Amazon
+- Pedidos: 46 | GMV: R$ 2258.49
+- Ticket: R$ 49.1
+- vs 7d: 74.9% pedidos, 117.0% GMV
+- vs 30d: 68.5% pedidos, 111.3% GMV
+
+> **AVISO:** Fallback deterministico, sem analise LLM.

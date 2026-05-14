@@ -28,8 +28,8 @@ from typing import Any
 # Constants
 # ---------------------------------------------------------------------------
 
-DATA_BUILDER_VERSION = "v1.0"
-SCHEMA_VERSION = "daily-sales-data-package/v1.0"
+DATA_BUILDER_VERSION = "v1.1"
+SCHEMA_VERSION = "daily-sales-data-package/v1.1"
 BRT = timezone(timedelta(hours=-3))
 
 WORKSPACE = Path(__file__).resolve().parent.parent
@@ -538,24 +538,26 @@ def evaluate_readiness(
                 checks.append({
                     "check": f"volume_band_{slug}",
                     "status": "fail",
-                    "detail": f"Orders {today_orders} vs avg30 {avg_orders} = {pct_change:+.1f}% (below critical threshold)",
+                    "detail": f"Orders {today_orders} vs avg30 {avg_orders} = {pct_change:+.1f}% (below critical negative threshold)",
                 })
                 has_critical = True
             elif not in_30d_band:
-                if in_60d_band:
-                    checks.append({
-                        "check": f"volume_band_{slug}",
-                        "status": "partial",
-                        "detail": f"Orders {today_orders} vs avg30 {avg_orders} = {pct_change:+.1f}% (outside 30d band, within 60d band)",
-                    })
-                    has_partial = True
+                # Positive spikes are treated as DADOS_PARCIAIS, not NOT_READY:
+                # they may indicate a legitimately strong day and should lower confidence,
+                # not block the whole pipeline. Negative moves outside both bands but above
+                # the critical floor are also partial; only <30% of avg30 is critical.
+                if pct_change > VOLUME_BAND_30D_HIGH:
+                    detail = f"Orders {today_orders} vs avg30 {avg_orders} = {pct_change:+.1f}% (positive spike; partial confidence, not blocking)"
+                elif in_60d_band:
+                    detail = f"Orders {today_orders} vs avg30 {avg_orders} = {pct_change:+.1f}% (outside 30d band, within 60d band)"
                 else:
-                    checks.append({
-                        "check": f"volume_band_{slug}",
-                        "status": "fail",
-                        "detail": f"Orders {today_orders} vs avg30 {avg_orders} = {pct_change:+.1f}% (outside both 30d and 60d bands)",
-                    })
-                    has_critical = True
+                    detail = f"Orders {today_orders} vs avg30 {avg_orders} = {pct_change:+.1f}% (outside both bands but above critical floor; partial confidence)"
+                checks.append({
+                    "check": f"volume_band_{slug}",
+                    "status": "partial",
+                    "detail": detail,
+                })
+                has_partial = True
             else:
                 checks.append({
                     "check": f"volume_band_{slug}",

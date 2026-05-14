@@ -19,7 +19,8 @@ Resultado: `data_quality = ok`, pipeline pode rodar normalmente.
 Condição quando uma ou mais ocorrerem:
 
 - Uma fonte com latência entre 4h e 8h
-- Volume fora da banda 30d, mas dentro da banda 60d (-60% a +60%)
+- Volume fora da banda 30d, inclusive spike positivo forte, desde que não indique quebra crítica de extração
+- Queda fora da banda 60d, mas ainda acima do piso crítico de 30% da média 30d
 - Divergência menor entre fontes (<5%)
 - Dado secundário ausente sem comprometer totais principais
 
@@ -32,7 +33,7 @@ Condição quando uma ou mais ocorrerem:
 - Fonte canônica indisponível (plataforma ausente do canonical)
 - Timezone incorreto ou janela BRT inconsistente
 - Divergência crítica >10% entre fontes
-- Volume abaixo de 30% da média 30d sem explicação operacional
+- Volume abaixo de 30% da média 30d sem explicação operacional (queda crítica; `pct_change < -70%`)
 - Falha na separação Shopee por `shop_id`
 - Pacote sem pedido real suficiente para citar produto (Amazon sem ASIN/título)
 - Erro sistêmico de sync, banco ou extração
@@ -48,8 +49,9 @@ Quando métrica de sync/frescura não existir no banco, o check é registrado co
 | Parâmetro | Valor | Nota |
 |-----------|-------|------|
 | Banda 30d | -40% a +40% | |
-| Banda 60d | -60% a +60% | Fallback para DADOS_PARCIAIS |
-| Volume crítico | <30% da média 30d | NOT_READY |
+| Banda 60d | -60% a +60% | Referência contextual; fora dela não bloqueia sozinho se acima do piso crítico |
+| Spike positivo | >+40% vs média 30d | DADOS_PARCIAIS; não bloqueia sozinho |
+| Volume crítico | <30% da média 30d (`pct_change < -70%`) | NOT_READY |
 | Divergência menor | <5% | DADOS_PARCIAIS |
 | Divergência crítica | >10% | NOT_READY |
 | Sync freshness | 4h (ok), 4-8h (parcial), >8h (fail) | Quando mensurável |

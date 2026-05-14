@@ -59,10 +59,7 @@ O bloqueio de Amazon com +68.5% pode ser um dia legitimamente bom (nao anomalia)
 
 **Questao:** O threshold atual e adequado? Um spike positivo em Amazon deveria bloquear a analise de Shopee para Lucas?
 
-**Status:** ABERTO — requer decisao de Pedro/Kobe sobre:
-1. Separar bloqueio por recipient (nao global)?
-2. Ajustar threshold para spikes positivos?
-3. Tratar spike positivo como "DADOS_PARCIAIS" em vez de NOT_READY?
+**Status:** RESOLVIDO por decisão Pedro/Kobe em 2026-05-14. Spike positivo forte passa a ser `DADOS_PARCIAIS`, não `NOT_READY`; queda fora das bandas mas acima do piso crítico também vira parcial. Somente queda crítica abaixo de 30% da média 30d permanece bloqueante.
 
 ---
 
@@ -75,7 +72,7 @@ Atualmente, se ANY volume_band falha, TODA a pipeline e bloqueada para TODOS os 
 
 O TRADER-CONTRACT.md define status per-recipient, mas o Layer 0 decide globalmente.
 
-**Status:** ABERTO — decisao arquitetural para Fase 6.
+**Status:** DECIDIDO por Pedro em 2026-05-14: bloqueio por anomalia localizada deve afetar somente o responsável/plataforma correspondente. No caso específico de Amazon, bloqueia somente Leonardo, não Lucas/Yasmin. Falhas globais continuam bloqueando todos.
 
 ---
 

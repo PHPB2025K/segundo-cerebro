@@ -39,3 +39,11 @@ Os seguintes ajustes foram identificados mas NAO aplicados nesta fase por serem 
 2. **Ajustar threshold de volume_band** — Requer decisao de Pedro. Fase 6.
 3. **Implementar sync_freshness** — Requer mudanca na infraestrutura de sync. Fora do escopo DSA.
 4. **Integrar LLM** — Fase 6.
+
+
+## Fix 4 — Data Builder v1.1: spike positivo e queda não crítica viram DADOS_PARCIAIS
+
+- **Data:** 2026-05-14
+- **Motivo:** Decisão de Pedro após Fase 5: Amazon +68,5% em 13/05 não deveria bloquear o pipeline; deve ser tratado como `DADOS_PARCIAIS`.
+- **Mudança:** `scripts/daily-sales-data-builder.py` v1.1: spike positivo fora da banda vira `partial`; queda fora das bandas mas acima do piso crítico também vira `partial`; só queda abaixo de 30% da média 30d continua `fail`.
+- **Validação:** `2026-05-13` reprocessado como `DADOS_PARCIAIS`; runner retornou `APPROVED_WITH_REMARKS` com `send_real_allowed=false`.

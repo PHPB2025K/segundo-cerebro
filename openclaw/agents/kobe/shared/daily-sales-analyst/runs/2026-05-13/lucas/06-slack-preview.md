@@ -1,6 +1,13 @@
 # Camada 6 — Slack Preview: Lucas
-## Status: BLOCKED
-**Motivo:** Data Readiness NOT_READY. Checks failed: volume_band_shopee-budamix-oficial-2: Orders 14 vs avg30 35.0 = -60.0% (outside both 30d and 60d bands); volume_band_amazon: Orders 46 vs avg30 27.3 = +68.5% (outside both 30d and 60d bands)
+## Status: FALLBACK_DETERMINISTICO
+**Data:** 2026-05-13
+**send_real_allowed:** false
 
-> Mensagem Slack NAO gerada. Data Readiness bloqueou a pipeline.
-> send_real_allowed = false
+### Preview (placeholder — sem formatacao LLM)
+
+> Resumo 2026-05-13: shopee
+> Pedidos: 119 | GMV: R$ 5964.55 | Ticket: R$ 50.12
+> Cancelamentos: 9
+
+> **AVISO:** Texto placeholder. Nao e mensagem final formatada.
+> Nenhum envio real sera feito.

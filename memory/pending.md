@@ -12,10 +12,11 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-14 02:05 BRT — organização noturna silenciosa_
+_Atualizado: 2026-05-14 18:47 BRT — pendência adicionada por Pedro_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
+- [ ] **Automação Pedidos de Venda GB — retomar PDF oficial do pedido Bling amanhã**: foco correto definido por Pedro em 14/05: não gerar NF-e/DANFE; precisa baixar o **PDF oficial do pedido de venda**. Mecanismo descoberto via DevTools: formulário web `direcionador`, POST `relatorios/venda.impressao.php`, campos `idVenda=<ID Bling>`, `imprimeDetalhado=N`, `imprimeOrdem=I`, `desmembrarEstrutura=N`. Script criado em `/var/www/mission-control/scripts/bling-order-print-pdf.py` e commitado (`9cdebc3`). Bloqueio restante: rota exige sessão web autenticada do painel Bling; OAuth/API v3 não serve. Amanhã: Pedro fazer logout/login no Bling por cookies terem aparecido no chat, salvar sessão web nova em 1Password como `Bling Web Session - Matriz` ou decidir alternativa segura; Kobe testar com pedido 658/659, validar PDF e integrar no pipeline para envio WhatsApp.
 - [ ] **Automação Pedidos de Venda GB — retomar teste controlado amanhã**: workflow N8N `T7WT4vGaRuWd0N0Q` está pausado/inativo; Evolution do WhatsApp Kobe segue configurada para o webhook. Pedido teste real **954** foi criado no Bling Matriz e excluído com sucesso (DELETE 204; verificação 404). Correção já aplicada: N8N envia texto bruto, Fisco/LLM interpreta com mapa SKU/aliases e prompt reforçado para opções marcadas com `(x)`; dry-run posterior confirmou `Estoque 2025`, `Caixa de fita 300` → `CXFIT300M`, cliente/produto encontrados. Amanhã: reativar workflow só quando Pedro pedir, mandar novo teste real, validar estoque/checkbox, alias SKU e resposta no grupo para bloqueios; ampliar `sku-aliases.json` antes de produção contínua.
 - [ ] **Meta Business — finalizar configuração da Segunda Venda**: Pedro precisa configurar no Meta Business o número de WhatsApp que será usado com a empresa **Segunda Venda**. Onboarding em andamento; fazer o quanto antes amanhã pela manhã para dar sequência.
 - [ ] **Quebra Cabeça de Animais — ajustar arquivo do produto MDF**: Pedro precisa finalizar/ajustar o arquivo do produto **Quebra Cabeça de Animais**, produto novo em MDF.

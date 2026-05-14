@@ -1,22 +1,103 @@
 {
-  "layer": "04-granular",
-  "recipient": "leonardo",
-  "status": "FALLBACK_DETERMINISTICO",
-  "date": "2026-05-13",
+  "camada": "granular",
+  "data": "2026-05-13",
+  "recipient": "Leonardo",
   "platform": "amazon",
-  "investigations": [
+  "respostas_operacional": [
     {
-      "account": "amazon",
-      "pedidos": 46,
-      "gmv": 2258.49,
-      "ticket_medio": 49.1,
-      "orders_vs_30d_pct": 68.5,
-      "gmv_vs_30d_pct": 111.3,
-      "top3_concentration": 51.6,
-      "quality_flags": []
+      "pergunta": "Os 2 cancelamentos estão concentrados em qual ASIN ou em produtos distintos?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote de dados não inclui detalhamento individual dos pedidos cancelados. O campo metrics.cancelamentos registra o valor 2, mas não há orderItems com status cancelado entregue — sem ASIN, SKU ou motivo de cancelamento disponíveis para investigação granular.",
+      "leitura": "Impossível determinar concentração ou dispersão dos cancelamentos por produto. A pergunta da Operacional permanece sem resposta por ausência de dado primário.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Qual era o status de Buy Box da Jarra Medidora (B0G2CWWMGK) e dos Potes de Vidro (B0GSWLK5F3 + variações) em 13/05?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "Dado de Buy Box ausente do pacote. O array quality_flags da conta está vazio — isso não confirma Buy Box estável, apenas indica ausência de flag automático disparado. Ausência de flag não equivale a confirmação de Buy Box ativo nos ASINs líderes.",
+      "leitura": "Pré-requisito operacional central para qualquer decisão de ADS permanece não validado. A regra explícita da conta (nunca escalar ADS sem validar Buy Box, FBA e estoque) não pode ser checada com os dados disponíveis.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Há registro de campanha ADS ativa ou promoção de listing em 13/05?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "Nenhum dado de ADS, promoção ou evento de listing presente no pacote. A distribuição horária disponível (pico em 14h com 6 pedidos, atividade entre 9h e 22h) é compatível tanto com ADS diurno quanto com tráfego orgânico ampliado — não discrimina entre as duas hipóteses com os dados fornecidos.",
+      "leitura": "Causa do spike permanece não identificada. Sem âncora de causa, qualquer normalização de volume nos próximos dias ficará sem interpretação segura.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "O Suporte Gamer (SPC002) teve comportamento normal ou atípico em dias anteriores?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "Daily de 2026-05-12 não está no pacote. Weekly e monthly contêm apenas templates vazios. Não há série histórica de SKU disponível para comparação. O único dado disponível é o top_products de 2026-05-13, que mostra SPC002 com 6 unidades — ASIN B0GH2BTQFJ, título real do pedido: 'Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto - Organizador de Mesa Gamer 2 em 1 - Compatível Nintendo Switch Pro - Budamix'. Fonte: orderItems / pedido real.",
+      "leitura": "Identificação do produto confirmada por fonte primária (ASIN + título real). Mas sem histórico, impossível distinguir comportamento atípico de recorrente para este SKU.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
     }
   ],
-  "fallback": true,
-  "llm_used": false,
-  "warning": "Dados extraidos diretamente do package. Sem investigacao LLM profunda."
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Concentração real por família de produto: top3/top5 reportados subestimam dependência na família Potes",
+      "origem": "anomalia",
+      "evidencia": "Protocolo forense:\n\nFamília Potes de Vidro Redondos (4 ASINs distintos, mesmo produto em variações):\n- Produto visível: Conjunto de 5 Potes de Vidro Redondos - Ideal para Alimentos e Refeições(vermelho) | ASIN: B0GSWLK5F3 | SKU: IMB501T-vermelho | 12 unidades\n- Produto visível: Conjunto de 5 Potes de Vidro Redondos - Ideal para Alimentos e Refeições(cinza) | ASIN: B0GSWRMDRG | SKU: IMB501T-cinza | 5 unidades\n- Produto visível: Conjunto de 5 Potes de Vidro Redondos - Ideal para Alimentos e Refeições(preto) | ASIN: B0GSWJ91JM | SKU: IMB501T-preto | 3 unidades\n- Produto visível: Kit Conjunto de 5 Potes de Vidro Redondo, Tampa Preta - Conjunto de Tigelas Redondas | ASIN: B0DCP9TBTM | SKU: IMB501P_T | 1 unidade\n- Total família Potes: 21 unidades | Fonte: orderItems / pedido real\n\nJarra Medidora:\n- Produto visível: Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas | ASIN: B0G2CWWMGK | SKU: CK4742_BB | 13 unidades | Fonte: orderItems / pedido real\n\nConcentração por família: 34 unidades das 64 totais = 53.1% em duas famílias de produto.",
+      "leitura": "O top3 em 51.6% reportado pelas métricas distribui os Potes entre posições 2, 6, 8 e 10 do ranking — mascarando que uma única família de produto sustenta 32.8% das unidades sozinha. A leitura estratégica de 'mix mais distribuído' fica parcialmente enfraquecida: o crescimento de volume é real, mas a dependência está estruturalmente concentrada em duas famílias, não em expansão de base.",
+      "conclusao_granular": "complica",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "Cobertura do ranking fornecido: discrepância de 4 unidades entre total reportado e soma do top 10",
+      "origem": "divergência",
+      "evidencia": "Total de itens vendidos reportado: 64 unidades. Soma das quantidades dos 10 produtos no top_products: 13+12+8+6+6+5+4+3+2+1 = 60 unidades. Diferença: 4 unidades sem produto identificado no ranking fornecido no pacote.",
+      "leitura": "4 unidades (6.25% do total de itens) não têm produto atribuído no granular disponível. Não é risco de identificação errada dos produtos presentes, mas cobertura incompleta do ranking. A Condensadora não pode atribuir 100% do volume a produtos nominados com base neste pacote.",
+      "conclusao_granular": "complica",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "Saúde da cauda além do top 5: os 30% restantes são genuinamente distribuídos?",
+      "origem": "hipótese da Estratégica",
+      "evidencia": "Produtos nas posições 6 a 10 do ranking:\n- Produto: Conjunto de 5 Potes de Vidro Redondos(cinza) | ASIN: B0GSWRMDRG | 5 unidades (variação da mesma família Potes)\n- Produto: Saco Plástico PP 78 Unidades (1kg) 40x70cm | ASIN: B0G61FJG5S | SKU: EMB01TT | 4 unidades\n- Produto: Conjunto de 5 Potes de Vidro Redondos(preto) | ASIN: B0GSWJ91JM | 3 unidades (variação da família Potes)\n- Produto: Budamix Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas | ASIN: B0GFPQD4G9 | SKU: TL6250 | 2 unidades\n- Produto: Kit Conjunto de 5 Potes de Vidro Redondo Tampa Preta | ASIN: B0DCP9TBTM | 1 unidade (variação da família Potes)\nFonte: orderItems / pedido real\n\nSoma posições 6-10 identificadas: 15 unidades. Mais 4 unidades não atribuídas = 19 unidades na 'cauda'.",
+      "leitura": "Das 15 unidades identificadas na cauda (posições 6-10), 9 são variações da família Potes. A cauda existe mas não é genuinamente diversa: ela é composta majoritariamente por variações do produto líder de família. O único produto genuinamente diferente e com volume relevante fora do core cozinha/organização é o Saco Plástico (4u) — produto de uso utilitário, não decoração.",
+      "conclusao_granular": "enfraquece",
+      "confianca": "média"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "baixo",
+    "explicacao": "O check amazon_product_identity retornou status ok para os top 5 produtos. Todos os 10 produtos no ranking possuem ASIN (platform_item_id) e título real do pedido disponíveis — protocolo forense aplicado com fonte primária em todos os itens investigados. Reconciliação da conta está ok (delta 0 em pedidos e receita). A discrepância de 4 unidades não atribuídas ao top 10 não representa risco de identificação errada de produtos presentes — é gap de cobertura do ranking, não produto mal identificado. Risco de identificação é baixo. Confiança máxima das evidências permanece média (não alta) porque Estratégica e sistema marcaram base fraca e partial confidence pelo spike de volume.",
+    "bloqueios_para_slack": []
+  },
+  "divergencia_entre_fontes": {
+    "divergencia": "Métricas de top_concentration (top3: 51.6%, top5: 70.3%) calculadas sobre pedidos tratam cada ASIN como produto independente. Cálculo por família de produto (pedido real, agrupado por linha de produto) mostra família Potes = 32.8% das unidades sozinha.",
+    "resolucao": "Pedido real prevalece (regra: top produtos — cálculo a partir dos pedidos reais vence ranking de dashboard). A métrica de top3_concentration do pacote está tecnicamente correta por ASIN, mas não reflete dependência de família de produto.",
+    "impacto": "A leitura de concentração muda: de 'top 3 em 51.6% com cauda de 30%' para 'duas famílias de produto (Potes + Jarra) sustentam 53.1% das unidades, com cauda composta majoritariamente por variações da família Potes'. Não reescreve a tese de volume, mas reescreve a leitura de diversidade de mix."
+  },
+  "detalhes_condensadora": [
+    {
+      "detalhe": "Família Potes de Vidro (4 variações, 21 unidades = 32.8%) + Jarra Medidora (13 unidades = 20.3%) sustentam 53.1% do volume de itens do dia — a concentração real está em duas famílias de produto, não em 3 ASINs dispersos como a métrica de top3 sugere.",
+      "por_que_importa": "Se a mensagem disser que o mix foi distribuído ou que a cauda foi saudável sem esta ressalva, estará imprecisa. O crescimento foi real em volume de pedidos mas estruturalmente dependente de dois produtos-família.",
+      "confianca": "média"
+    },
+    {
+      "detalhe": "As 4 perguntas que a Operacional encaminhou para a Granular ficaram todas sem resposta por ausência de dado no pacote — cancelamentos por ASIN, Buy Box dos líderes, ADS/promoção ativa e histórico do Suporte Gamer não têm evidência granular disponível.",
+      "por_que_importa": "A Condensadora não pode comunicar o resultado como operacionalmente validado. A postura correta é: dia forte em volume e GMV, com pré-requisitos de continuidade (Buy Box, cobertura FBA, causa do spike) ainda pendentes de checagem por Leonardo.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Há 4 unidades de itens vendidos (6.25% do total) sem produto identificado no top 10 fornecido — o ranking cobre 60 das 64 unidades.",
+      "por_que_importa": "A Condensadora deve usar '64 itens vendidos' como dado total sem atribuir 100% a produtos nominados. Não é erro — é gap de cobertura do granular disponível.",
+      "confianca": "média"
+    }
+  ],
+  "memoria_interna": [
+    "ASINs com unidades por posição no ranking: B0G2CWWMGK/13u, B0GSWLK5F3/12u, B0G2SV7NR1/8u, B0GGTY2BLT/6u, B0GH2BTQFJ/6u, B0GSWRMDRG/5u, B0G61FJG5S/4u, B0GSWJ91JM/3u, B0GFPQD4G9/2u, B0DCP9TBTM/1u — soma: 60u de 64u totais",
+    "Família Potes completa: B0GSWLK5F3 (vermelho, 12u) + B0GSWRMDRG (cinza, 5u) + B0GSWJ91JM (preto, 3u) + B0DCP9TBTM (tampa preta, 1u) = 21u = 32.8% das unidades",
+    "Distribuição horária completa: 0h:2, 3h:2, 6h:2, 7h:1, 8h:1, 9h:4, 10h:3, 11h:2, 12h:2, 13h:3, 14h:6, 15h:2, 16h:4, 17h:2, 18h:1, 19h:2, 20h:3, 21h:1, 22h:3 — pico em 14h, sem concentração noturna típica de ADS",
+    "Todas as 4 perguntas da Operacional retornaram sem resposta por ausência de dado granular no pacote (cancelamentos por ASIN, Buy Box, ADS/promoção, histórico SPC002)",
+    "Discrepância de cobertura: top10 soma 60 unidades vs 64 itens_vendidos reportados — 4 unidades sem produto identificado no ranking fornecido"
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

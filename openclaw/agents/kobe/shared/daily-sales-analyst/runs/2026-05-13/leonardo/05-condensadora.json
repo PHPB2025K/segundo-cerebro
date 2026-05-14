@@ -1,16 +1,72 @@
 {
-  "layer": "05-condensadora",
-  "recipient": "leonardo",
-  "status": "FALLBACK_DETERMINISTICO",
-  "date": "2026-05-13",
+  "camada": "condensadora",
+  "data": "2026-05-13",
+  "recipient": "Leonardo",
   "platform": "amazon",
-  "condensed_output": {
-    "orders": 46,
-    "gmv": 2258.49,
-    "ticket_medio": 49.1,
-    "cancelamentos": 2
+  "analise_final_condensada": [
+    {
+      "insight": "O dia foi genuinamente forte em volume e GMV, mas a leitura positiva é condicionada — a causa do spike não foi identificada e Buy Box e cobertura FBA dos ASINs líderes não foram validados; tratar hoje como novo patamar antes dessas checagens é o risco exato que as regras da conta buscam evitar.",
+      "padrao": "B — inversão positiva (parece bom, mas a estrutura mostra fragilidade operacional pendente de validação)",
+      "criterio_descarte": "evita interpretação errada + muda prioridade",
+      "base": "Tática + Granular"
+    },
+    {
+      "insight": "O mix não ficou mais distribuído do que o ranking de ASINs sugere — duas famílias de produto (Jarra Medidora e família Potes em quatro variações de cor) sustentam 53% do volume de itens do dia; a cauda existe mas é composta majoritariamente por variações da família líder, não por expansão real de base.",
+      "padrao": "A — contraste (não é X, é Y: não é diversificação de mix, é concentração em duas famílias mascarada pelo fracionamento de variações)",
+      "criterio_descarte": "muda leitura do dia + evita interpretação errada",
+      "base": "Granular + Estratégica"
+    }
+  ],
+  "prioridades_condensadas_para_slack": [
+    {
+      "prioridade": "Checar Buy Box e cobertura de estoque FBA dos dois ASINs líderes — Jarra Medidora e família Potes de Vidro, que juntos respondem por mais da metade do volume do dia.",
+      "por_que": "Sem essa validação, qualquer decisão sobre ADS fica bloqueada pelas regras da conta — escalar tráfego pago sem Buy Box estável nos líderes amplifica risco em vez de oportunidade.",
+      "sinal_confirmacao_refutacao": "Buy Box ≥ 85% nos dois ASINs líderes com FBA sem alerta de estoque = pré-requisitos operacionais atendidos e conversa sobre ADS pode avançar após confirmação de volume por 2 ciclos. Abaixo disso, ADS pausa independentemente do resultado de hoje.",
+      "escalar_se": "Buy Box instável ou FBA com risco de ruptura nos líderes — sinalizar para Pedro antes de qualquer decisão de tráfego pago."
+    },
+    {
+      "prioridade": "Identificar e registrar a causa do spike de 13/05 — promoção ativa, campanha ADS, mudança de listing ou boost algorítmico.",
+      "por_que": "Sem causa identificada, qualquer normalização de volume nos próximos dias fica sem âncora interpretativa — retorno ao baseline pode ser lido erroneamente como queda se hoje for tomado como nova referência.",
+      "sinal_confirmacao_refutacao": "Causa documentada com data de início e escopo. Se promoção pontual: normalização esperada, não é alerta. Se orgânico ou boost de listing: acompanhar por 2 ciclos para classificar como sustentação ou evento isolado.",
+      "escalar_se": "Não aplicável — resolução interna por Leonardo."
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [
+    "ASINs específicos (B0G2CWWMGK, B0GSWLK5F3 e demais) — desnecessariamente granulares; usar agregados 'Jarra Medidora' e 'família Potes de Vidro' no Slack.",
+    "SKUs crus (CK4742_BB, IMB501T-vermelho etc.) — nunca no Slack.",
+    "Discrepância de 4 unidades sem produto identificado no top 10 — gap de cobertura granular sem impacto na mensagem final.",
+    "Hipótese sobre Suporte Gamer (SPC002) — sem histórico disponível, confiança insuficiente para qualquer afirmação no Slack.",
+    "Weekly e monthly vazios — detalhe interno de infraestrutura de memória, não relevante para Leonardo.",
+    "Debate metodológico sobre cálculo de top3_concentration por ASIN vs família de produto — contexto técnico interno.",
+    "As 4 perguntas granulares que retornaram sem resposta — mencionar apenas de forma agregada como 'validação pendente', sem listar cada pergunta individualmente."
+  ],
+  "memoria_para_amanha": [
+    {
+      "memoria": "Spike de 13/05: 46 pedidos, GMV R$2.258, ticket R$49.10 — ~2x baseline 60d sem causa identificada; condição falsificável: ≥ 35 pedidos + ticket ≥ R$45 por 2 dias consecutivos = novo patamar; retorno para 20-27 pedidos com ticket R$38-42 = spike pontual.",
+      "por_que_importa": "Âncora interpretativa para os próximos 2-3 ciclos — sem ela, qualquer variação de volume fica sem classificação."
+    },
+    {
+      "memoria": "Validação pendente por Leonardo: Buy Box e cobertura FBA Jarra Medidora + família Potes de Vidro — se não registrado no próximo ciclo, repetir como prioridade antes de qualquer discussão de ADS com Pedro.",
+      "por_que_importa": "Pré-requisito obrigatório pelas rules.md da conta; não pode ser omitido em dia com spike ativo."
+    },
+    {
+      "memoria": "Concentração real por família: Jarra (20.3%) + família Potes em 4 variações (32.8%) = 53.1% das unidades — métrica top3_concentration por ASIN subestima dependência estrutural; usar visão de família ao avaliar saúde de mix nos próximos ciclos.",
+      "por_que_importa": "Evita que leitura de 'cauda de 30%' seja tomada como diversificação real quando a cauda é majoritariamente variação do produto líder."
+    },
+    {
+      "memoria": "Suporte Gamer (SPC002, 6 unidades, ASIN B0GH2BTQFJ) apareceu em top 5 em dia de spike — produto fora do core cozinha/organização; verificar presença nos próximos 2-3 ciclos antes de qualquer conclusão sobre expansão de mix.",
+      "por_que_importa": "Se recorrente, muda perfil de mix da conta; se pontual, foi arrastado pelo mesmo evento que gerou o spike."
+    },
+    {
+      "memoria": "13/05 é primeiro ponto de dado relevante registrado neste sistema para a conta Amazon — weekly e monthly continuam vazios; não usar este dia como nova baseline até confirmar sustentação por ao menos 2 ciclos consecutivos.",
+      "por_que_importa": "Usando hoje como nova referência sem confirmação, qualquer retorno ao baseline histórico vira 'queda' — erro de enquadramento que contamina decisões subsequentes."
+    }
+  ],
+  "alertas_de_confianca": {
+    "nivel": "media",
+    "explicacao": "O volume da Amazon foi marcado como partial confidence pelo sistema de QA (spike de +68.5% vs avg30, não bloqueante mas com ressalva explícita). Todas as 4 perguntas encaminhadas pela Operacional à Granular retornaram sem resposta por ausência de dado no pacote — Buy Box, causa do spike, cancelamentos por ASIN e histórico do Suporte Gamer permanecem inconclusivos. Weekly e monthly contêm apenas templates vazios, sem tese acumulada para confirmar ou refutar. Os dados disponíveis sustentam os 2 insights emitidos e as 2 prioridades táticas sem risco de identificação errada de produtos (check amazon_product_identity ok, reconciliação ok). A confiança não atinge nível alto porque as variáveis mais críticas para decisão de continuidade estão ausentes do pacote — os insights são válidos mas condicionados, e a mensagem Slack deve refletir isso."
   },
-  "fallback": true,
-  "llm_used": false,
-  "warning": "Condensacao deterministica. Sem LLM."
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

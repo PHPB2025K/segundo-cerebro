@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Daily Sales Analyst Runner — Phase 7 (LLM Integration)
+Daily Sales Analyst Runner — Phase 7.1 (LLM Hardening)
 
 Executes Layer 0 + 7 layers sequentially, generates auditable artifacts
 per date/recipient, with kill switch, rollback, and LLM integration.
@@ -9,6 +9,8 @@ Usage:
     python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --dry-run
     python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --preview-to-kobe
     python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --preview-to-kobe --llm
+    python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --preview-to-kobe --llm --recipients lucas
+    python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --preview-to-kobe --llm --recipients lucas --merge-existing
 
 Modes:
     --dry-run          Generate artifacts, no send. Standard test mode.
@@ -21,16 +23,23 @@ Modes:
 LLM:
     --llm              Enable LLM execution for layers 1-7 (requires config or flag).
 
+Hardening (Phase 7.1):
+    --merge-existing   Merge new recipient results into existing manifest (default: true when --recipients subset).
+    --timeout SECS     Override LLM timeout per layer (default: from config or 180s).
+
 Protections:
     - send_real_allowed=false enforced when config prevents it.
     - llm_layers_enabled=false blocks any real send.
     - require_kobe_approval_for_real_send=true blocks send without approval.
     - Kill switch via enabled=false aborts immediately.
+    - Contamination detection: LLM output with meta-commentary (permission requests,
+      file/tool references, overwrite language) is auto-rejected and falls back.
 """
 
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -193,6 +202,9 @@ def build_llm_input(layer_def, package, recipient_name, prompt_content,
 
     sections = []
 
+    # Phase 7.1: Strong technical wrapper (prepended, not part of v3.0 prompts)
+    sections.append(LLM_HARDENING_WRAPPER)
+
     # System instruction
     sections.append("# Contexto de Execucao — Daily Sales Analyst")
     sections.append(f"Data: {package.get('date', 'N/A')}")
@@ -351,6 +363,72 @@ def validate_json_output(text):
         return parsed, None
     except json.JSONDecodeError as e:
         return None, str(e)
+
+
+# --- Contamination Detection (Phase 7.1) ---
+
+CONTAMINATION_PATTERNS = [
+    r"(?i)preciso de permiss[aã]o",
+    r"(?i)n[aã]o posso sobrescrever",
+    r"(?i)n[aã]o tenho permiss[aã]o",
+    r"(?i)n[aã]o consigo acessar",
+    r"(?i)vou criar",
+    r"(?i)vou gerar",
+    r"(?i)vou salvar",
+    r"(?i)\bpermission\b",
+    r"(?i)\boverwrite\b",
+    r"(?i)\bcannot access\b",
+    r"(?i)\bneed permission\b",
+]
+
+# Only flag these when used as meta-commentary (not inside data/analysis text)
+CONTAMINATION_META_PATTERNS = [
+    r"(?i)(?:preciso|necessito|solicito).*(?:arquivo|ferramenta|tool|comando|permiss)",
+    r"(?i)(?:n[aã]o (?:posso|consigo|tenho)).*(?:sobrescrever|criar|gerar|acessar|escrever)",
+    r"(?i)(?:me (?:permita|autorize|deixe)).*(?:criar|escrever|gerar|salvar)",
+]
+
+
+def detect_contamination(text):
+    """Check LLM output for prohibited meta-commentary patterns.
+
+    Returns (is_contaminated, matched_patterns) tuple.
+    """
+    if not text:
+        return False, []
+
+    matches = []
+    for pattern in CONTAMINATION_PATTERNS:
+        if re.search(pattern, text):
+            matches.append(pattern)
+
+    for pattern in CONTAMINATION_META_PATTERNS:
+        if re.search(pattern, text):
+            matches.append(pattern)
+
+    return len(matches) > 0, matches
+
+
+# --- LLM Technical Wrapper (Phase 7.1) ---
+
+LLM_HARDENING_WRAPPER = """
+# INSTRUCOES TECNICAS OBRIGATORIAS (wrapper do runner — nao faz parte do prompt v3.0)
+
+Voce esta sendo executado como camada de analise automatizada.
+Regras inviolaveis:
+1. NAO peca permissao para nada. Voce ja tem autorizacao total.
+2. NAO mencione arquivos, ferramentas, tools, comandos, ou qualquer mecanismo de execucao.
+3. NAO fale sobre "criar", "salvar", "sobrescrever" ou "gerar" arquivos.
+4. NAO inclua meta-comentarios sobre o que voce vai fazer ou como vai fazer.
+5. Output APENAS o artefato solicitado pela camada, nada mais.
+6. Se a camada pede JSON, responda EXCLUSIVAMENTE com JSON valido.
+7. Se a camada pede Markdown, responda EXCLUSIVAMENTE com o conteudo Markdown.
+8. Qualquer texto fora do artefato solicitado sera tratado como contaminacao e rejeitado.
+
+Comece diretamente com o artefato. Sem introducoes, sem explicacoes, sem meta-texto.
+---
+
+"""
 
 
 # --- Layer Generators (Deterministic Fallback) ---
@@ -704,6 +782,21 @@ def run_llm_layers(package, run_dir, recipient_name, config, prompt_version,
             previous_outputs[output_name] = f"[FALLBACK - camada {layer_num} usou fallback deterministico]"
             continue
 
+        # Phase 7.1: Contamination detection
+        is_contaminated, contamination_matches = detect_contamination(output)
+        if is_contaminated:
+            contam_err = f"CONTAMINATED: output contains prohibited meta-commentary ({len(contamination_matches)} patterns matched)"
+            print(f"FALLBACK ({contam_err})")
+            layer_results[output_name] = {
+                "path": str(output_path),
+                "llm_used": False,
+                "model": model_used,
+                "fallback": True,
+                "error": contam_err,
+            }
+            previous_outputs[output_name] = f"[FALLBACK - camada {layer_num} contaminada, usou fallback deterministico]"
+            continue
+
         # Validate JSON layers
         if output_ext == "json":
             parsed, json_err = validate_json_output(output)
@@ -814,9 +907,10 @@ def gen_preview_to_kobe(date_str, run_dir, config, recipient_results, manifest):
 # --- Main Runner ---
 
 def run(date_str, mode, recipients, config, package_path=None,
-        prompt_version=None, use_llm=False):
-    print(f"=== Daily Sales Analyst Runner (Phase 7 — LLM Integration) ===")
-    print(f"Date: {date_str} | Mode: {mode} | LLM: {use_llm}")
+        prompt_version=None, use_llm=False, merge_existing=False,
+        timeout_override=None):
+    print(f"=== Daily Sales Analyst Runner (Phase 7.1 — LLM Hardening) ===")
+    print(f"Date: {date_str} | Mode: {mode} | LLM: {use_llm} | Merge: {merge_existing}")
     print(f"Recipients: {', '.join(recipients)}")
     print()
 
@@ -902,6 +996,12 @@ def run(date_str, mode, recipients, config, package_path=None,
         block_reason = f"Data Readiness NOT_READY. Checks failed: {'; '.join(reasons)}"
         print(f"\nPipeline BLOCKED: {block_reason}\n")
     print()
+
+    # Phase 7.1: Apply timeout override
+    if timeout_override is not None:
+        config = dict(config)  # shallow copy to avoid mutating original
+        config["llm_timeout_seconds"] = timeout_override
+        print(f"Timeout override: {timeout_override}s")
 
     # Load context and memory (for LLM mode)
     context_files = {}
@@ -1049,6 +1149,21 @@ def run(date_str, mode, recipients, config, package_path=None,
 
     global_failure = "layer0" if is_blocked else False
 
+    # Phase 7.1: Auto-enable merge when running subset of recipients
+    is_subset = set(active_recipients) != set(ALL_RECIPIENTS)
+    should_merge = merge_existing or is_subset
+    existing_manifest = None
+    if should_merge:
+        existing_manifest_path = run_dir / "manifest.json"
+        if existing_manifest_path.exists():
+            try:
+                with open(existing_manifest_path) as f:
+                    existing_manifest = json.load(f)
+                print(f"\nMerge mode: loaded existing manifest with {len(existing_manifest.get('recipients', {}))} recipients")
+            except (json.JSONDecodeError, KeyError) as e:
+                print(f"WARNING: Could not load existing manifest for merge: {e}")
+                existing_manifest = None
+
     # Build manifest
     manifest = {
         "schema_version": "daily-sales-analyst-run/v3.0",
@@ -1114,6 +1229,27 @@ def run(date_str, mode, recipients, config, package_path=None,
         },
     }
 
+    # Phase 7.1: Merge with existing manifest
+    if existing_manifest and should_merge:
+        # Preserve recipients from existing manifest that we didn't re-run
+        for r_name, r_data in existing_manifest.get("recipients", {}).items():
+            if r_name not in recipient_results:
+                recipient_results[r_name] = r_data
+                artifact_paths[r_name] = existing_manifest.get("audit_refs", {}).get("layer_artifacts", {}).get(r_name, {})
+                print(f"  Merged existing recipient: {r_name}")
+
+        # Recalculate global status after merge
+        manifest["recipients"] = recipient_results
+        manifest["audit_refs"]["layer_artifacts"] = artifact_paths
+        statuses = [r["status"] for r in recipient_results.values()]
+        if all(s == "BLOCKED" for s in statuses):
+            manifest["global_status"] = "BLOCKED"
+        elif all(s in ("APPROVED", "APPROVED_WITH_REMARKS") for s in statuses):
+            manifest["global_status"] = "APPROVED_WITH_REMARKS" if "APPROVED_WITH_REMARKS" in statuses else "APPROVED"
+        else:
+            manifest["global_status"] = "PARTIAL"
+        global_status = manifest["global_status"]
+
     manifest_path = run_dir / "manifest.json"
     with open(manifest_path, "w") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False)
@@ -1130,15 +1266,16 @@ def run(date_str, mode, recipients, config, package_path=None,
     print(f"Global Status: {global_status}")
     print(f"Global Failure: {global_failure}")
     print(f"send_real_allowed: False")
+    print(f"Recipients in manifest: {list(recipient_results.keys())} ({len(recipient_results)}/{len(ALL_RECIPIENTS)})")
     if send_blockers:
         print(f"Send blockers: {len(send_blockers)}")
         for b in send_blockers:
             print(f"  - {b}")
     print(f"Manifest: {manifest_path}")
     print(f"Run Dir: {run_dir}")
-    for r in active_recipients:
-        llm_label = " (LLM)" if recipient_results[r].get("llm_used") else " (fallback)"
-        print(f"  {r}: {recipient_results[r]['status']}{llm_label}")
+    for r_name in sorted(recipient_results.keys()):
+        llm_label = " (LLM)" if recipient_results[r_name].get("llm_used") else " (fallback)"
+        print(f"  {r_name}: {recipient_results[r_name]['status']}{llm_label}")
     if preview_path:
         print(f"Preview: {preview_path}")
 
@@ -1167,6 +1304,10 @@ def main():
                         help="Prompt version (default: from config)")
     parser.add_argument("--package", type=str, default=None,
                         help="Path to data package JSON")
+    parser.add_argument("--merge-existing", action="store_true", default=False,
+                        help="Merge new results into existing manifest (default: auto when --recipients subset)")
+    parser.add_argument("--timeout", type=int, default=None,
+                        help="Override LLM timeout per layer in seconds")
 
     args = parser.parse_args()
 
@@ -1195,7 +1336,8 @@ def main():
 
     manifest = run(args.date, args.mode, recipients, config,
                    package_path=args.package, prompt_version=args.prompt_version,
-                   use_llm=args.llm)
+                   use_llm=args.llm, merge_existing=args.merge_existing,
+                   timeout_override=args.timeout)
 
     # Final safety assertion
     assert manifest["send_real_allowed"] is False, "CRITICAL: send_real_allowed must be false!"

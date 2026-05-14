@@ -1,16 +1,63 @@
 {
   "layer": "05-condensadora",
-  "recipient": "yasmin",
-  "status": "FALLBACK_DETERMINISTICO",
   "date": "2026-05-13",
   "platform": "ml",
-  "condensed_output": {
-    "orders": 65,
-    "gmv": 2984.35,
-    "ticket_medio": 45.91,
-    "cancelamentos": 4
+  "recipient": "Yasmin",
+  "analise_final_condensada": [
+    {
+      "insight": "A queda de hoje não é ruído de um dia — é o terceiro ponto consecutivo de declínio em terças (134→87→65), com a média da semana já abaixo do piso de 60 dias como bloco. O canal não teve um dia fraco; ele está em trajetória de enfraquecimento sem causa identificada ainda.",
+      "padrao": "D — Enquadramento estrutural (não é evento, é padrão)",
+      "criterio_atendido": "Muda a leitura do dia — sem isso, a terça seria interpretada como oscilação normal em vez de terceiro ponto de trajetória",
+      "base": "Estratégica"
+    },
+    {
+      "insight": "A dependência operacional não é em três produtos distintos — é em um único anúncio ML (o líder de Potes de Vidro) que gerou 41% dos itens em três variantes de cor. Somando toda a família Potes presente no top-10, o canal operou com 57% dos itens concentrados numa única categoria, sem segundo vetor com massa para compensar qualquer falha nesse listing.",
+      "padrao": "E — Localização (o risco não é 'três produtos', é um único anúncio) + A — Contraste",
+      "criterio_atendido": "Evita interpretação errada — se a mensagem diz 'três produtos lideraram', a concentração real de risco fica subestimada; a vulnerabilidade é mais severa e imediata do que a visão de top-3 de SKU indica",
+      "base": "Granular"
+    },
+    {
+      "insight": "O volume não caiu por falha de janela horária — os três picos canônicos (9h, 15h, 19h) estiveram ativos e seguiram o padrão esperado para o canal. A perda está distribuída ao longo de todo o dia, sem concentração anômala em nenhuma hora, o que aponta para redução geral de exposição ou tráfego, não problema localizado num período. Isso muda a prioridade de investigação: não é ajuste de pico, é checar ranking e exposição do anúncio líder.",
+      "padrao": "A — Contraste (não é falha de janela, é redução ampla de exposição)",
+      "criterio_atendido": "Muda a prioridade — sem isso, a checagem poderia ser direcionada para horário específico em vez de exposição geral; e confirma padrão da Operacional com evidência granular da distribuição horária",
+      "base": "Operacional + Granular"
+    }
+  ],
+  "prioridades_condensadas_para_slack": [
+    {
+      "prioridade": "Checar posição dos anúncios do cluster Potes de Vidro no painel ML e comparar com 7 dias atrás — começando pelo anúncio líder da família",
+      "por_que": "É o anúncio que concentrou 41% dos itens do dia em variantes de cor; qualquer erosão de ranking nesse listing explica a queda distribuída de volume identificada na análise horária, e é o pré-requisito para acionar ou não Himmel",
+      "sinal_de_confirmacao_refutacao": "Se posição caiu em 3 ou mais anúncios do cluster → acionar Himmel para alinhamento de ADS ML. Se posição estável → avançar para checagem de reputação e Full antes de qualquer ajuste",
+      "escalar_se": "Queda de posição confirmada em 3 ou mais anúncios líderes da família — esse é o gatilho de saída do modo observação e entrada no alinhamento com Himmel"
+    },
+    {
+      "prioridade": "Checar reputação da conta e disponibilidade dos anúncios do cluster principal no painel ML",
+      "por_que": "Antes de investigar exposição ou ADS, a primeira barreira a descartar é risco operacional simples — reputação degradada, anúncio pausado ou Full indisponível. Nenhuma dessas informações está disponível no pacote de dados atual",
+      "sinal_de_confirmacao_refutacao": "Reputação verde e anúncios ativos → hipótese de exposição ganha peso; qualquer degradação operacional encontrada → é a causa primária e deve ser resolvida antes de qualquer outro diagnóstico",
+      "escalar_se": "Não aplicável — resolução operacional direta no painel"
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [
+    "SKUs técnicos crus (IMB501P_T, IMB501C_T, IMB501V_T, IMB501PT, IMB501CT, CLR002, 914C_B, etc.) — nunca aparecem no Slack",
+    "IDs de anúncio ML na forma MLB seguidos de número (MLB3288536143, MLB5322494954, etc.) — usar 'anúncio líder da família Potes' ou equivalente descritivo",
+    "As quatro perguntas da Operacional não respondidas pela Granular não podem virar afirmações — cancelamentos por produto, ranking histórico, status ML Full e ticket da cauda são hipóteses a checar manualmente, não fatos confirmados",
+    "Hipótese de erosão de cauda (ticket elevado como evidência de perda desproporcional de anúncios de menor valor) — plausível mas sem base granular; tratar como hipótese, não diagnóstico",
+    "Média de 30 dias como referência de 'normal' — inflada por eventos de alto volume de abril (15/04 e 29/04); usar 60d como patamar operacional honesto",
+    "Comparação percentual vs mesmo dia da semana histórico (-49,3% vs avg de terças) sem contexto — a série de terças inclui outlier de 15/04 (208 pedidos) e 29/04 (134 pedidos) que distorcem o referencial",
+    "Concentração em 'três produtos' no top-10 — a realidade é um único anúncio com três variantes; a framing de três produtos distintos está errada e subestima o risco"
+  ],
+  "memoria_para_amanha": [
+    "MLB3288536143 é UM anúncio ML (não três produtos) com três variantes internas de cor (P_T=19, C_T=5, V_T=5); o cluster completo de Potes no top-10 soma 40/70 itens (57,1%) — essa é a concentração real a monitorar, não a top-3 de 44,3% — por que importa amanhã: se o cluster continuar acima de 55% de concentração, o risco estrutural não melhorou mesmo que o volume suba",
+    "Série de terças: 134→87→65 (três pontos consecutivos em declínio); próximo ponto de confirmação é 20/05 — abaixo de 75 consolida trajetória de queda, acima de 90 enfraquece a tese — por que importa amanhã: é o critério de escalada para Kobe se confirmado como padrão consolidado",
+    "Quatro perguntas não respondidas por ausência de dado no schema atual: (1) cancelamentos por produto/anúncio, (2) ranking histórico do anúncio líder, (3) status ML Full no cluster Potes, (4) ticket da cauda vs ticket do dia — todas requerem extensão do schema ou consulta manual ao painel ML — por que importa amanhã: se o schema não evoluir, a análise de causa continuará bloqueada por falta de dado",
+    "Semana como bloco (média 7d = 77,1 pedidos) já está abaixo do piso de 60d (81,7 pedidos) — não é dia fraco isolado; o movimento de enfraquecimento já contaminou a semana — por que importa amanhã: se a média de 7d continuar abaixo de 80 na próxima leitura, a tese de vulnerabilidade transita de 'trajetória' para 'patamar rebaixado'",
+    "Ticket médio de hoje (R$45,91) supera todo o histórico disponível — hipótese de erosão desproporcional da cauda de anúncios de menor valor ainda não confirmada granularmente; se o ticket segurar acima de R$44 por mais 3 dias enquanto volume permanece abaixo de 75, a hipótese ganha peso suficiente para comunicar — por que importa amanhã: sustenta ou derruba a leitura de mix mais qualificado vs deterioração ampla"
+  ],
+  "alertas_de_confianca": {
+    "nivel": "média",
+    "explicacao": "Reconciliação ML fechada sem divergência (delta=0), identidade dos produtos sustentada por pedido real com platform_item_id confiável, e distribuição horária completa disponível. A confiança é limitada a média porque as quatro perguntas dirigidas pela Operacional não foram respondidas pela Granular — todas bloqueadas por ausência de dado no pacote (cancelamentos por produto, ranking histórico, ML Full, ticket da cauda). Isso significa que o diagnóstico de causa (exposição? ranking? Full? mix?) é hipótese qualificada, não diagnóstico confirmado. Os insights da Análise Final Condensada são sólidos na parte descritiva (o que aconteceu e onde está concentrado), mas o componente causal permanece aberto. A memória analítica da conta (weekly/monthly) está vazia, o que impede confirmar se a trajetória de declínio é nova ou recorrente."
   },
-  "fallback": true,
-  "llm_used": false,
-  "warning": "Condensacao deterministica. Sem LLM."
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

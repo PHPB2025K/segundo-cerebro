@@ -1,22 +1,182 @@
 {
   "layer": "04-granular",
-  "recipient": "yasmin",
-  "status": "FALLBACK_DETERMINISTICO",
   "date": "2026-05-13",
   "platform": "ml",
-  "investigations": [
+  "recipient": "Yasmin",
+  "respostas_operacional": [
     {
-      "account": "mercado-livre",
-      "pedidos": 65,
-      "gmv": 2984.35,
-      "ticket_medio": 45.91,
-      "orders_vs_30d_pct": -34.7,
-      "gmv_vs_30d_pct": -27.1,
-      "top3_concentration": 44.3,
-      "quality_flags": []
+      "pergunta": "Os 4 cancelamentos estão concentrados em algum produto ou anúncio específico?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote de dados não inclui breakdown de cancelamentos por produto, anúncio ou platform_item_id. O campo top_products reflete exclusivamente pedidos válidos. Não há campo de cancelamento por item no pacote entregue.",
+      "leitura": "Impossível confirmar ou descartar concentração dos 4 cancelamentos no cluster Potes de Vidro (MLB3288536143) ou em qualquer outro anúncio. A pergunta motivada pela Operacional permanece sem resposta granular.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "As três variantes do anúncio MLB3288536143 (T, C e V) têm posições de ranking distintas hoje versus 7 dias atrás?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "Dado de ranking ou posição de anúncio não está presente no pacote. O que existe são quantidades vendidas por variante via pedido real: IMB501P_T = 19 itens, IMB501C_T = 5 itens, IMB501V_T = 5 itens — todas mapeadas no mesmo MLB3288536143 com título idêntico 'Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita'. Sem dado de posição, exposição ou impressões, não é possível comparar ranking entre hoje e 7 dias atrás.",
+      "leitura": "A disparidade de volume entre as variantes (19 vs 5 vs 5) pode indicar posição diferenciada das variações dentro do anúncio, mas não é evidência de ranking — pode ser simplesmente preferência de cor. A checagem de posição que a Tática atribuiu como primeira ação de Yasmin precisa ser feita diretamente no painel ML. Evidência granular não substitui essa checagem.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "O canal está operando com ML Full em algum dos anúncios do cluster Potes de Vidro?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O campo fulfillment do pacote retorna: shopee_full=0, amazon_fba=0, amazon_fbm=0, other=0, total=65. Não há campo de ML Full discriminado. A métrica de ML Full não está capturada no schema atual para o canal Mercado Livre.",
+      "leitura": "Impossível confirmar ou descartar presença de ML Full nos anúncios do cluster principal. A hipótese de desvantagem competitiva de visibilidade por ausência de Full permanece sem dado para ser avaliada no pacote.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Qual é o ticket médio dos 10 anúncios com menor volume nos últimos 7 dias, comparado ao ticket do dia de hoje?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote entrega top_products com os 10 produtos de maior volume — não os de menor volume. Não há dado de cauda do catálogo no pacote. O ticket médio de hoje é R$45,91 (derivável do pacote), mas a comparação com anúncios de menor ticket requer dado de produtos fora do top-10, que não está disponível.",
+      "leitura": "A hipótese de erosão desproporcional da cauda de menor ticket — que sustenta a tese de ticket elevado com volume baixo — não pode ser confirmada ou descartada. A investigação requereria dado de todos os anúncios ativos com volume histórico dos últimos 7 dias.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
     }
   ],
-  "fallback": true,
-  "llm_used": false,
-  "warning": "Dados extraidos diretamente do package. Sem investigacao LLM profunda."
+  "investigacoes_proprias": [
+    {
+      "investigacao": "MLB3288536143 como anúncio único com múltiplas variações internas — três SKUs, mesmo listing, mesma identidade de pedido",
+      "origem": "risco de identificação",
+      "evidencia": {
+        "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+        "platform_item_id_MLB": "MLB3288536143",
+        "fonte": "orderItems / pedido real",
+        "detalhe": "Três SKUs distintos (IMB501P_T: 19 itens, IMB501C_T: 5 itens, IMB501V_T: 5 itens) compartilham o mesmo MLB3288536143 e o mesmo título de pedido real. Isso indica variações de cor ou tipo dentro de um único anúncio ML — não três anúncios independentes. Volume total consolidado do anúncio: 29/70 itens = 41,4% dos itens do dia."
+      },
+      "leitura": "A concentração operacional real é em UM anúncio ML (MLB3288536143), não em três produtos distintos. A leitura de 'top-3 SKUs' na visão interna fragmenta artificialmente a concentração. Qualquer evento nesse anúncio — queda de ranking, suspensão, perda de Full, alteração de preço — afeta simultaneamente as três variantes. O risco de concentração é mais severo do que a visão por SKU indica.",
+      "conclusao_granular": "complica",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Dimensionamento real do cluster Potes vs cluster Canecas como segundo vetor",
+      "origem": "anomalia",
+      "evidencia": {
+        "cluster_potes_completo": {
+          "anuncios": [
+            {
+              "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+              "platform_item_id_MLB": "MLB3288536143",
+              "itens": 29,
+              "fonte": "orderItems"
+            },
+            {
+              "produto_visivel": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
+              "platform_item_id_MLB": "MLB4535865317",
+              "itens": 3,
+              "fonte": "orderItems"
+            },
+            {
+              "produto_visivel": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Cinza",
+              "platform_item_id_MLB": "MLB4535865311",
+              "itens": 2,
+              "fonte": "orderItems"
+            },
+            {
+              "produto_visivel": "Kit 2 Potes Vidro 1520ml Tampa Hermético Travas Vedação Verde-escuro",
+              "platform_item_id_MLB": "MLB5322494954",
+              "itens": 4,
+              "fonte": "orderItems"
+            },
+            {
+              "produto_visivel": "Kit 4 Potes Vidro Tampa Hermética 1520ml Travas Vedação Verde-escuro",
+              "platform_item_id_MLB": "MLB5322470722",
+              "itens": 2,
+              "fonte": "orderItems"
+            }
+          ],
+          "total_itens": 40,
+          "proporcao_do_dia": "57,1%"
+        },
+        "cluster_canecas": {
+          "anuncios": [
+            {
+              "produto_visivel": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+              "platform_item_id_MLB": "MLB6232315532",
+              "itens": 7,
+              "fonte": "orderItems"
+            },
+            {
+              "produto_visivel": "Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo",
+              "platform_item_id_MLB": "MLB3343832496",
+              "itens": 5,
+              "fonte": "orderItems"
+            },
+            {
+              "produto_visivel": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico",
+              "platform_item_id_MLB": "MLB4410218897",
+              "itens": 3,
+              "fonte": "orderItems"
+            }
+          ],
+          "total_itens": 15,
+          "proporcao_do_dia": "21,4%"
+        }
+      },
+      "leitura": "O cluster de Canecas (3 anúncios, 15 itens) existe como segundo vetor, mas é 2,7x menor que apenas o anúncio MLB3288536143 (29 itens). O cluster completo de Potes — somando todas as variantes de potes e kits presentes no top-10 — representa 57,1% dos itens do dia. O segundo vetor não tem massa para compensar qualquer falha no cluster principal. A concentração reportada pelo top3 (44,3%) subestima a dependência real da família Potes.",
+      "conclusao_granular": "complica",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "Distribuição horária e contribuição proporcional dos picos canônicos",
+      "origem": "anomalia",
+      "evidencia": {
+        "pico_9h": 8,
+        "pico_15h": 7,
+        "pico_19h": 7,
+        "total_nos_3_picos": 22,
+        "proporcao_do_dia": "33,8%",
+        "pedidos_fora_dos_picos": 43,
+        "horas_fora_dos_picos": 17,
+        "maior_volume_nao_pico": {
+          "hora": "0h",
+          "pedidos": 3
+        }
+      },
+      "leitura": "Os três horários canônicos de pico estão ativos e correspondem ao padrão esperado para ML — não houve colapso de pico específico. A contribuição relativa dos picos (33,8%) é coerente com distribuição normal do canal. A perda de volume não está localizada em nenhuma janela horária específica: os 43 pedidos restantes estão distribuídos em 17 horas sem concentração anômala. Isso é consistente com hipótese de redução geral de exposição ou tráfego ao longo do dia inteiro, não falha pontual de janela — confirma leitura da Operacional.",
+      "conclusao_granular": "confirma",
+      "confianca": "média"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "médio",
+    "fontes_de_risco": [
+      "SKU ambíguo: três SKUs distintos (IMB501P_T, IMB501C_T, IMB501V_T) mapeados no mesmo platform_item_id MLB3288536143 — variações internas de um anúncio tratadas como produtos separados na visão de SKU",
+      "Títulos dos pedidos reais para as três variantes são idênticos ('Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita'), impedindo distinguir variante individualmente por título de pedido",
+      "Cancelamentos sem dado de produto associado — 4 cancelamentos não identificáveis por anúncio ou SKU no pacote atual"
+    ],
+    "explicacao": "O risco médio é motivado pela ambiguidade de MLB3288536143: três SKUs internos distintos apontam para o mesmo anúncio ML com título idêntico nos pedidos reais, impedindo atribuir performance por variante individual com a granularidade de pedido. A identificação ao nível de anúncio ML (MLB3288536143) é confiável e sustentada por pedido real — o risco é apenas na granularidade de variante de cor. Isso não bloqueia a citação do anúncio como líder, mas impede afirmar qual variante específica sustentou o resultado. Os cancelamentos sem produto associado adicionam risco leve adicional: não é possível confirmar ou descartar impacto sobre o cluster principal. Confiança máxima possível para evidências granulares deste pacote: média.",
+    "bloqueios_para_slack": []
+  },
+  "detalhe_condensadora": [
+    {
+      "detalhe": "MLB3288536143 não são 'três produtos no top-10' — é um único anúncio ML com três variantes internas (SKUs IMB501P_T, IMB501C_T, IMB501V_T), totalizando 29/70 itens (41,4%) de um único listing. A visão por SKU fragmenta artificialmente a concentração real.",
+      "importancia": "Se a mensagem disser 'três produtos diferentes lideraram', está errada. O correto é 'um anúncio concentrou 41% dos itens em três variantes de cor'. O risco de concentração é mais severo e imediato do que a visão de top-3 de SKU indica: um único problema operacional nesse anúncio afeta todo o bloco de uma vez.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Nenhuma das quatro perguntas da Operacional foi respondida com dado granular — todas bloqueadas por ausência de dado no pacote: cancelamentos por produto, ranking de MLB3288536143, status ML Full no cluster potes, ticket da cauda vs ticket do dia.",
+      "importancia": "O diagnóstico para Yasmin não pode incluir afirmações sobre concentração de cancelamentos, posição de ranking ou status de Full como fatos — são hipóteses a verificar manualmente no painel ML. A mensagem deve deixar claro o que precisa ser checado, não o que o dado confirmou.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "O cluster completo de Potes no top-10 (MLB3288536143 + MLB4535865317 + MLB4535865311 + MLB5322494954 + MLB5322470722) soma 40/70 itens (57,1%). O segundo cluster (Canecas, 15 itens, 21,4%) é 2,7x menor que apenas o anúncio líder isolado.",
+      "importancia": "A dependência de família de produto é mais concentrada do que a concentração de top-3 (44,3%) indica. A Condensadora deve comunicar vulnerabilidade estrutural a uma família de produto — não a três anúncios individualmente.",
+      "confianca": "média"
+    }
+  ],
+  "memoria_interna": [
+    "platform_item_ids cluster Potes: MLB3288536143 (principal, 3 variantes internas), MLB4535865317 (Hermético Preto, 3 itens), MLB4535865311 (Hermético Cinza, 2 itens), MLB5322494954 (Kit 2 Potes 1520ml Verde, 4 itens), MLB5322470722 (Kit 4 Potes 1520ml Verde, 2 itens) — total cluster: 40 itens",
+    "platform_item_ids cluster Canecas: MLB6232315532 (Canecas Porcelana Colorida, 7 itens), MLB3343832496 (Canequinha 100ml Madeira Amarelo, 5 itens), MLB4410218897 (Canequinha 100ml Madeira Acrílico, 3 itens) — total cluster: 15 itens",
+    "SKUs do cluster MLB3288536143: IMB501P_T (19 itens), IMB501C_T (5 itens), IMB501V_T (5 itens) — título idêntico, mesmo platform_item_id",
+    "Distribuição horária completa: 0h=3, 4h=1, 6h=1, 7h=1, 8h=1, 9h=8, 10h=6, 11h=4, 12h=4, 13h=3, 14h=3, 15h=7, 16h=2, 17h=3, 18h=1, 19h=7, 20h=4, 21h=2, 22h=1, 23h=3",
+    "Quatro perguntas da Operacional não respondidas por falta de dado no pacote atual: cancelamentos por produto/anúncio, ranking de MLB3288536143 vs 7d atrás, status ML Full cluster potes, ticket cauda vs ticket do dia — todas requerem consulta direta ao painel ML ou extensão do schema de dados",
+    "Reconciliação ML: pedidos=65, receita=R$2.984,35, delta_pedidos=0, delta_receita=0,00 — fechado sem divergência"
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

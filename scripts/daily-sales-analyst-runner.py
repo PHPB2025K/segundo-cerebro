@@ -1,17 +1,14 @@
 #!/usr/bin/env python3
 """
-Daily Sales Analyst Runner — Phase 6 (Kill Switch, Rollback & Supervised Rollout)
+Daily Sales Analyst Runner — Phase 7 (LLM Integration)
 
 Executes Layer 0 + 7 layers sequentially, generates auditable artifacts
-per date/recipient, with kill switch and rollback protections.
+per date/recipient, with kill switch, rollback, and LLM integration.
 
 Usage:
     python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --dry-run
-    python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --shadow
-    python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --preview
     python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --preview-to-kobe
-    python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --send-candidate
-    python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --production-send
+    python3 scripts/daily-sales-analyst-runner.py 2026-05-13 --preview-to-kobe --llm
 
 Modes:
     --dry-run          Generate artifacts, no send. Standard test mode.
@@ -20,6 +17,9 @@ Modes:
     --preview-to-kobe  Generate artifacts + PREVIEW_TO_KOBE.md summary. No external send.
     --send-candidate   Mark as send candidate. Blocked if config/fallback/approval prevent send.
     --production-send  Real send. Blocked unless ALL protections are satisfied.
+
+LLM:
+    --llm              Enable LLM execution for layers 1-7 (requires config or flag).
 
 Protections:
     - send_real_allowed=false enforced when config prevents it.
@@ -32,7 +32,9 @@ import argparse
 import json
 import os
 import shutil
+import subprocess
 import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -44,6 +46,9 @@ CONFIG_PATHS = [
 ]
 DEFAULT_PACKAGE_DIR = Path("/root/segundo-cerebro/reports/daily-sales-report-v2/layered/packages")
 RUNS_DIR = WORKSPACE / "shared" / "daily-sales-analyst" / "runs"
+PROMPTS_BASE = Path("/root/segundo-cerebro/openclaw/agents/kobe/shared/daily-sales-analyst/prompts/versions")
+CONTEXT_DIR = Path("/root/segundo-cerebro/openclaw/agents/kobe/shared/daily-sales-analyst/memory/context")
+ACCOUNTS_DIR = Path("/root/segundo-cerebro/openclaw/agents/kobe/shared/daily-sales-analyst/memory/accounts")
 
 VALID_MODES = {
     "dry-run": "DRY_RUN",
@@ -66,6 +71,16 @@ RECIPIENT_ACCOUNTS = {
     "yasmin": ["mercado-livre"],
     "leonardo": ["amazon"],
 }
+
+LAYER_DEFS = [
+    {"num": "01", "name": "estrategica", "prompt_file": "01-estrategica.md", "output_ext": "md"},
+    {"num": "02", "name": "tatica", "prompt_file": "02-tatica.md", "output_ext": "md"},
+    {"num": "03", "name": "operacional", "prompt_file": "03-operacional.md", "output_ext": "md"},
+    {"num": "04", "name": "granular", "prompt_file": "04-granular.md", "output_ext": "json"},
+    {"num": "05", "name": "condensadora", "prompt_file": "05-condensadora.md", "output_ext": "json"},
+    {"num": "06", "name": "slack-writer", "prompt_file": "06-slack-writer.md", "output_ext": "md", "output_name": "06-slack-preview"},
+    {"num": "07", "name": "qa-gate", "prompt_file": "07-qa-gate.md", "output_ext": "json", "output_name": "07-qa"},
+]
 
 # --- Helpers ---
 
@@ -128,6 +143,214 @@ def check_send_real_allowed(config, mode):
         blockers.append("require_kobe_approval_for_real_send=true — no approval document found")
 
     return len(blockers) == 0, blockers
+
+
+def read_file_safe(path):
+    """Read a file, return empty string if not found."""
+    try:
+        with open(path) as f:
+            return f.read()
+    except (FileNotFoundError, IsADirectoryError):
+        return ""
+
+
+# --- LLM Backend ---
+
+def load_context_files():
+    """Load all shared context files."""
+    context = {}
+    for name in ["responsaveis", "contas-shopee", "himmel", "marketplace-rules", "slack-format", "qa-standards"]:
+        path = CONTEXT_DIR / f"{name}.md"
+        content = read_file_safe(path)
+        if content:
+            context[name] = content
+    return context
+
+
+def load_account_memory(recipient_name):
+    """Load account memory files for a recipient's accounts."""
+    memory = {}
+    slugs = RECIPIENT_ACCOUNTS.get(recipient_name, [])
+    for slug in slugs:
+        acc_dir = ACCOUNTS_DIR / slug
+        if acc_dir.is_dir():
+            acc_mem = {}
+            for fname in ["rules.md", "weekly.md", "monthly.md"]:
+                content = read_file_safe(acc_dir / fname)
+                if content.strip():
+                    acc_mem[fname] = content
+            if acc_mem:
+                memory[slug] = acc_mem
+    return memory
+
+
+def build_llm_input(layer_def, package, recipient_name, prompt_content,
+                    context_files, account_memory, previous_outputs):
+    """Build the full input prompt for an LLM layer call."""
+    rec = recipient_data(package, recipient_name)
+    accs = accounts_data(package, recipient_name)
+    platform = RECIPIENT_PLATFORM.get(recipient_name, "unknown")
+
+    sections = []
+
+    # System instruction
+    sections.append("# Contexto de Execucao — Daily Sales Analyst")
+    sections.append(f"Data: {package.get('date', 'N/A')}")
+    sections.append(f"Recipient: {recipient_name.capitalize()}")
+    sections.append(f"Plataforma: {platform}")
+    sections.append(f"Data Readiness: {package.get('data_readiness', {}).get('status', 'N/A')}")
+    sections.append(f"Prompt Version: v3.0")
+    sections.append(f"Camada: {layer_def['num']}-{layer_def['name']}")
+    sections.append("")
+
+    # Prompt (the versioned prompt itself)
+    sections.append("---")
+    sections.append("# PROMPT DA CAMADA")
+    sections.append(prompt_content)
+    sections.append("")
+
+    # Data package (recipient-specific subset)
+    sections.append("---")
+    sections.append("# DADOS — Layer 0 Data Package")
+    sections.append("")
+    sections.append("## Recipient Data")
+    sections.append(f"```json\n{json.dumps(rec, indent=2, ensure_ascii=False)}\n```")
+    sections.append("")
+    sections.append("## Accounts Data")
+    sections.append(f"```json\n{json.dumps(accs, indent=2, ensure_ascii=False)}\n```")
+    sections.append("")
+    sections.append("## Data Readiness")
+    sections.append(f"```json\n{json.dumps(package.get('data_readiness', {}), indent=2, ensure_ascii=False)}\n```")
+    sections.append("")
+
+    # Context files (relevant ones)
+    relevant_context = {
+        "01": ["responsaveis", "marketplace-rules"],
+        "02": ["responsaveis", "marketplace-rules", "contas-shopee"],
+        "03": ["responsaveis", "marketplace-rules", "contas-shopee"],
+        "04": ["marketplace-rules", "contas-shopee"],
+        "05": ["marketplace-rules", "qa-standards"],
+        "06": ["slack-format", "responsaveis", "contas-shopee", "himmel"],
+        "07": ["qa-standards", "slack-format", "responsaveis", "marketplace-rules"],
+    }
+    ctx_keys = relevant_context.get(layer_def["num"], list(context_files.keys()))
+    for key in ctx_keys:
+        if key in context_files:
+            sections.append(f"---")
+            sections.append(f"# CONTEXTO: {key}")
+            sections.append(context_files[key])
+            sections.append("")
+
+    # Account memory
+    if account_memory:
+        sections.append("---")
+        sections.append("# MEMORIA DAS CONTAS")
+        for slug, mem_files in account_memory.items():
+            sections.append(f"## {slug}")
+            for fname, content in mem_files.items():
+                sections.append(f"### {fname}")
+                sections.append(content)
+                sections.append("")
+
+    # Previous layer outputs
+    if previous_outputs:
+        sections.append("---")
+        sections.append("# OUTPUTS DAS CAMADAS ANTERIORES")
+        for layer_key, output in previous_outputs.items():
+            sections.append(f"## {layer_key}")
+            sections.append(output)
+            sections.append("")
+
+    # Output format instruction
+    if layer_def["output_ext"] == "json":
+        sections.append("---")
+        sections.append("# INSTRUCAO DE OUTPUT")
+        sections.append("Responda EXCLUSIVAMENTE com JSON valido. Nenhum texto fora do JSON.")
+        sections.append("Nao use blocos de codigo markdown (```). Apenas o JSON puro.")
+        sections.append("")
+    elif layer_def["num"] == "06":
+        sections.append("---")
+        sections.append("# INSTRUCAO DE OUTPUT")
+        sections.append("Responda com a mensagem Slack em formato Markdown, pronta para envio.")
+        sections.append("send_real_allowed = false. Este e apenas um preview.")
+        sections.append("")
+
+    return "\n".join(sections)
+
+
+def call_llm(prompt_text, config):
+    """Call LLM via claude CLI and return (output, model_used, error)."""
+    model = config.get("llm_model", "sonnet")
+    timeout = config.get("llm_timeout_seconds", 120)
+    max_retries = config.get("llm_max_retries", 2)
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False) as tmp:
+                tmp.write(prompt_text)
+                tmp_path = tmp.name
+
+            result = subprocess.run(
+                [
+                    "claude", "-p",
+                    "--model", model,
+                    "--allowedTools", "",
+                ],
+                input=prompt_text,
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+            )
+
+            os.unlink(tmp_path)
+
+            if result.returncode == 0 and result.stdout.strip():
+                return result.stdout.strip(), model, None
+            else:
+                err = result.stderr.strip() or f"returncode={result.returncode}, empty output"
+                if attempt < max_retries:
+                    print(f"    LLM attempt {attempt} failed: {err}. Retrying...")
+                    continue
+                return None, model, err
+
+        except subprocess.TimeoutExpired:
+            try:
+                os.unlink(tmp_path)
+            except Exception:
+                pass
+            err = f"timeout ({timeout}s)"
+            if attempt < max_retries:
+                print(f"    LLM attempt {attempt} timed out. Retrying...")
+                continue
+            return None, model, err
+        except Exception as e:
+            try:
+                os.unlink(tmp_path)
+            except Exception:
+                pass
+            return None, model, str(e)
+
+    return None, model, "max retries exceeded"
+
+
+def validate_json_output(text):
+    """Try to parse JSON from LLM output, handling markdown code blocks."""
+    cleaned = text.strip()
+    if cleaned.startswith("```"):
+        lines = cleaned.split("\n")
+        start = 1
+        end = len(lines)
+        for i in range(len(lines) - 1, 0, -1):
+            if lines[i].strip() == "```":
+                end = i
+                break
+        cleaned = "\n".join(lines[start:end]).strip()
+
+    try:
+        parsed = json.loads(cleaned)
+        return parsed, None
+    except json.JSONDecodeError as e:
+        return None, str(e)
 
 
 # --- Layer Generators (Deterministic Fallback) ---
@@ -426,6 +649,107 @@ def gen_layer07_qa(package, run_dir, recipient_name, blocked, block_reason, data
     return str(path)
 
 
+# --- LLM Layer Execution ---
+
+def run_llm_layers(package, run_dir, recipient_name, config, prompt_version,
+                   context_files, account_memory):
+    """Execute all 7 layers via LLM for a recipient. Returns layer results dict."""
+    prompts_dir = PROMPTS_BASE / prompt_version
+    previous_outputs = {}
+    layer_results = {}  # {layer_key: {path, llm_used, model, fallback, error}}
+
+    for layer_def in LAYER_DEFS:
+        layer_num = layer_def["num"]
+        layer_name = layer_def["name"]
+        output_name = layer_def.get("output_name", f"{layer_num}-{layer_name}")
+        output_ext = layer_def["output_ext"]
+        output_file = f"{output_name}.{output_ext}"
+        output_path = run_dir / recipient_name / output_file
+
+        print(f"    Layer {layer_num} ({layer_name}): ", end="", flush=True)
+
+        # Load prompt
+        prompt_path = prompts_dir / layer_def["prompt_file"]
+        prompt_content = read_file_safe(prompt_path)
+        if not prompt_content:
+            print(f"SKIP (prompt not found: {prompt_path})")
+            layer_results[output_name] = {
+                "path": str(output_path),
+                "llm_used": False,
+                "model": None,
+                "fallback": True,
+                "error": f"Prompt file not found: {prompt_path}",
+            }
+            continue
+
+        # Build input
+        llm_input = build_llm_input(
+            layer_def, package, recipient_name, prompt_content,
+            context_files, account_memory, previous_outputs
+        )
+
+        # Call LLM
+        output, model_used, error = call_llm(llm_input, config)
+
+        if error or not output:
+            print(f"FALLBACK (error: {error})")
+            layer_results[output_name] = {
+                "path": str(output_path),
+                "llm_used": False,
+                "model": model_used,
+                "fallback": True,
+                "error": error,
+            }
+            # Store empty previous output so next layers know
+            previous_outputs[output_name] = f"[FALLBACK - camada {layer_num} usou fallback deterministico]"
+            continue
+
+        # Validate JSON layers
+        if output_ext == "json":
+            parsed, json_err = validate_json_output(output)
+            if json_err:
+                print(f"FALLBACK (invalid JSON: {json_err})")
+                layer_results[output_name] = {
+                    "path": str(output_path),
+                    "llm_used": False,
+                    "model": model_used,
+                    "fallback": True,
+                    "error": f"Invalid JSON from LLM: {json_err}",
+                }
+                previous_outputs[output_name] = f"[FALLBACK - JSON invalido na camada {layer_num}]"
+                continue
+
+            # Enrich JSON with metadata
+            if isinstance(parsed, dict):
+                parsed["llm_used"] = True
+                parsed["model"] = model_used
+                parsed["fallback"] = False
+
+            with open(output_path, "w") as f:
+                json.dump(parsed, f, indent=2, ensure_ascii=False)
+
+            previous_outputs[output_name] = json.dumps(parsed, indent=2, ensure_ascii=False)
+        else:
+            # Markdown layers — add metadata header
+            header = f"<!-- llm_used=true model={model_used} fallback=false -->\n"
+            full_output = header + output
+            with open(output_path, "w") as f:
+                f.write(full_output)
+
+            previous_outputs[output_name] = output
+
+        print(f"OK (llm={model_used})")
+        layer_results[output_name] = {
+            "path": str(output_path),
+            "llm_used": True,
+            "model": model_used,
+            "fallback": False,
+            "error": None,
+        }
+
+    return layer_results
+
+
 # --- Preview to Kobe ---
 
 def gen_preview_to_kobe(date_str, run_dir, config, recipient_results, manifest):
@@ -441,6 +765,7 @@ def gen_preview_to_kobe(date_str, run_dir, config, recipient_results, manifest):
         f"**Global Status:** {manifest['global_status']}",
         f"**Prompt Version:** {manifest['prompt_version']}",
         f"**Data Builder Version:** {manifest['data_builder_version']}",
+        f"**LLM Used:** {manifest['runner_meta']['llm_used']}",
         "",
         "## Protecoes Ativas",
     ]
@@ -456,6 +781,11 @@ def gen_preview_to_kobe(date_str, run_dir, config, recipient_results, manifest):
         lines.append(f"### {r_name.capitalize()} ({r_data['platform']})")
         lines.append(f"- **Status:** {r_data['status']}")
         lines.append(f"- **send_allowed:** {r_data['send_allowed']}")
+        lines.append(f"- **llm_used:** {r_data.get('llm_used', False)}")
+        if r_data.get("llm_layers_detail"):
+            for lk, ld in r_data["llm_layers_detail"].items():
+                status = "LLM" if ld.get("llm_used") else "FALLBACK"
+                lines.append(f"  - {lk}: {status}")
         if r_data.get("warnings"):
             for w in r_data["warnings"]:
                 lines.append(f"- **Aviso:** {w}")
@@ -483,9 +813,10 @@ def gen_preview_to_kobe(date_str, run_dir, config, recipient_results, manifest):
 
 # --- Main Runner ---
 
-def run(date_str, mode, recipients, config, package_path=None, prompt_version=None):
-    print(f"=== Daily Sales Analyst Runner (Phase 6) ===")
-    print(f"Date: {date_str} | Mode: {mode}")
+def run(date_str, mode, recipients, config, package_path=None,
+        prompt_version=None, use_llm=False):
+    print(f"=== Daily Sales Analyst Runner (Phase 7 — LLM Integration) ===")
+    print(f"Date: {date_str} | Mode: {mode} | LLM: {use_llm}")
     print(f"Recipients: {', '.join(recipients)}")
     print()
 
@@ -497,6 +828,19 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
     if not config.get("layer0_required", True):
         print("ABORT: layer0_required=false inconsistent with pipeline requirements.")
         sys.exit(1)
+
+    # --- LLM eligibility ---
+    llm_active = False
+    if use_llm:
+        if config.get("llm_layers_enabled", False):
+            llm_active = True
+            print("LLM: Enabled via config llm_layers_enabled=true")
+        elif config.get("allow_llm_in_shadow", False):
+            llm_active = True
+            print("LLM: Enabled via allow_llm_in_shadow=true (shadow/test mode)")
+        else:
+            print("WARNING: --llm flag passed but neither llm_layers_enabled nor allow_llm_in_shadow is true.")
+            print("         Falling back to deterministic mode.")
 
     # --- Send real protection check ---
     send_real_allowed, send_blockers = check_send_real_allowed(config, mode)
@@ -514,7 +858,6 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
                 print("Resolve blockers above before attempting production send.")
                 sys.exit(2)
             else:
-                # send-candidate: generate artifacts but mark as blocked
                 print("INFO: --send-candidate will generate artifacts but mark send as BLOCKED.")
                 print()
 
@@ -560,6 +903,12 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
         print(f"\nPipeline BLOCKED: {block_reason}\n")
     print()
 
+    # Load context and memory (for LLM mode)
+    context_files = {}
+    if llm_active:
+        context_files = load_context_files()
+        print(f"Context files loaded: {list(context_files.keys())}")
+
     # Create run dir
     run_dir = RUNS_DIR / date_str
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -576,19 +925,72 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
     # Generate artifacts per recipient
     recipient_results = {}
     artifact_paths = {}
+    any_llm_used = False
 
     for r in active_recipients:
-        print(f"--- Processing: {r} ---")
+        print(f"\n--- Processing: {r} ---")
         paths = {}
 
         paths["00-data-package"] = gen_layer00_data_package(package, run_dir, r)
-        paths["01-estrategica"] = gen_layer01_estrategica(package, run_dir, r, is_blocked, block_reason)
-        paths["02-tatica"] = gen_layer02_tatica(package, run_dir, r, is_blocked, block_reason)
-        paths["03-operacional"] = gen_layer03_operacional(package, run_dir, r, is_blocked, block_reason)
-        paths["04-granular"] = gen_layer04_granular(package, run_dir, r, is_blocked, block_reason)
-        paths["05-condensadora"] = gen_layer05_condensadora(package, run_dir, r, is_blocked, block_reason)
-        paths["06-slack-preview"] = gen_layer06_slack_preview(package, run_dir, r, is_blocked, block_reason)
-        paths["07-qa"] = gen_layer07_qa(package, run_dir, r, is_blocked, block_reason, dr_status)
+
+        recipient_llm_used = False
+        llm_layers_detail = {}
+
+        if llm_active and not is_blocked:
+            # LLM execution path
+            print(f"  LLM mode: executing 7 layers via LLM...")
+            account_memory = load_account_memory(r)
+            llm_results = run_llm_layers(
+                package, run_dir, r, config, pv,
+                context_files, account_memory
+            )
+
+            # Map results to paths
+            fallback_layers = []
+            for layer_def in LAYER_DEFS:
+                output_name = layer_def.get("output_name", f"{layer_def['num']}-{layer_def['name']}")
+                lr = llm_results.get(output_name, {})
+                paths[output_name] = lr.get("path", "")
+                llm_layers_detail[output_name] = lr
+                if lr.get("llm_used"):
+                    recipient_llm_used = True
+                    any_llm_used = True
+                elif lr.get("fallback"):
+                    fallback_layers.append(output_name)
+
+            # Generate fallback for layers that failed LLM
+            for layer_def in LAYER_DEFS:
+                output_name = layer_def.get("output_name", f"{layer_def['num']}-{layer_def['name']}")
+                lr = llm_results.get(output_name, {})
+                if lr.get("fallback") and not Path(lr.get("path", "")).exists():
+                    # Generate deterministic fallback
+                    if layer_def["num"] == "01":
+                        paths["01-estrategica"] = gen_layer01_estrategica(package, run_dir, r, False, "")
+                    elif layer_def["num"] == "02":
+                        paths["02-tatica"] = gen_layer02_tatica(package, run_dir, r, False, "")
+                    elif layer_def["num"] == "03":
+                        paths["03-operacional"] = gen_layer03_operacional(package, run_dir, r, False, "")
+                    elif layer_def["num"] == "04":
+                        paths["04-granular"] = gen_layer04_granular(package, run_dir, r, False, "")
+                    elif layer_def["num"] == "05":
+                        paths["05-condensadora"] = gen_layer05_condensadora(package, run_dir, r, False, "")
+                    elif layer_def["num"] == "06":
+                        paths["06-slack-preview"] = gen_layer06_slack_preview(package, run_dir, r, False, "")
+                    elif layer_def["num"] == "07":
+                        paths["07-qa"] = gen_layer07_qa(package, run_dir, r, False, "", dr_status)
+
+            if fallback_layers:
+                print(f"  Fallback layers: {', '.join(fallback_layers)}")
+
+        else:
+            # Deterministic fallback path
+            paths["01-estrategica"] = gen_layer01_estrategica(package, run_dir, r, is_blocked, block_reason)
+            paths["02-tatica"] = gen_layer02_tatica(package, run_dir, r, is_blocked, block_reason)
+            paths["03-operacional"] = gen_layer03_operacional(package, run_dir, r, is_blocked, block_reason)
+            paths["04-granular"] = gen_layer04_granular(package, run_dir, r, is_blocked, block_reason)
+            paths["05-condensadora"] = gen_layer05_condensadora(package, run_dir, r, is_blocked, block_reason)
+            paths["06-slack-preview"] = gen_layer06_slack_preview(package, run_dir, r, is_blocked, block_reason)
+            paths["07-qa"] = gen_layer07_qa(package, run_dir, r, is_blocked, block_reason, dr_status)
 
         artifact_paths[r] = paths
 
@@ -601,22 +1003,27 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
             status = "APPROVED_WITH_REMARKS"
             qa_verdict = "APPROVED_WITH_REMARKS"
             blockers = []
-            warnings = ["Fallback deterministico: sem analise LLM profunda."]
+            if recipient_llm_used:
+                warnings = ["Analise LLM executada. Verificar artefatos para qualidade."]
+            else:
+                warnings = ["Fallback deterministico: sem analise LLM profunda."]
 
         recipient_results[r] = {
             "platform": RECIPIENT_PLATFORM.get(r, "unknown"),
             "status": status,
             "send_allowed": False,
             "slack_payload": None,
+            "llm_used": recipient_llm_used,
+            "llm_layers_detail": llm_layers_detail,
             "layers": {
-                "layer0_data_package": paths["00-data-package"],
-                "layer1_estrategica": paths["01-estrategica"],
-                "layer2_tatica": paths["02-tatica"],
-                "layer3_operacional": paths["03-operacional"],
-                "layer4_granular": paths["04-granular"],
-                "layer5_condensadora": paths["05-condensadora"],
-                "layer6_slack_writer": paths["06-slack-preview"],
-                "layer7_qa_gate": paths["07-qa"],
+                "layer0_data_package": paths.get("00-data-package", ""),
+                "layer1_estrategica": paths.get("01-estrategica", ""),
+                "layer2_tatica": paths.get("02-tatica", ""),
+                "layer3_operacional": paths.get("03-operacional", ""),
+                "layer4_granular": paths.get("04-granular", ""),
+                "layer5_condensadora": paths.get("05-condensadora", ""),
+                "layer6_slack_writer": paths.get("06-slack-preview", ""),
+                "layer7_qa_gate": paths.get("07-qa", ""),
             },
             "qa": {
                 "verdict": qa_verdict,
@@ -628,7 +1035,8 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
             "blockers": blockers,
             "warnings": warnings,
         }
-        print(f"  Status: {status} | Artifacts: {len(paths)} files")
+        llm_label = " (LLM)" if recipient_llm_used else " (fallback)"
+        print(f"  Status: {status} | Artifacts: {len(paths)} files{llm_label}")
 
     # Global status
     statuses = [r["status"] for r in recipient_results.values()]
@@ -643,7 +1051,7 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
 
     # Build manifest
     manifest = {
-        "schema_version": "daily-sales-analyst-run/v2.0",
+        "schema_version": "daily-sales-analyst-run/v3.0",
         "date": date_str,
         "generated_at_utc": now_utc(),
         "mode": VALID_MODES.get(mode, mode.upper()),
@@ -658,6 +1066,8 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
             "enabled": config.get("enabled"),
             "send_real_enabled": config.get("send_real_enabled"),
             "llm_layers_enabled": config.get("llm_layers_enabled"),
+            "allow_llm_in_shadow": config.get("allow_llm_in_shadow"),
+            "llm_model": config.get("llm_model"),
             "fallback_deterministic_allowed": config.get("fallback_deterministic_allowed"),
             "require_kobe_approval_for_real_send": config.get("require_kobe_approval_for_real_send"),
             "preview_to_kobe_enabled": config.get("preview_to_kobe_enabled"),
@@ -684,15 +1094,23 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
             "applied": [],
         },
         "runner_meta": {
-            "phase": 6,
-            "fallback_mode": True,
-            "llm_used": False,
+            "phase": 7,
+            "fallback_mode": not any_llm_used,
+            "llm_used": any_llm_used,
+            "llm_flag_passed": use_llm,
+            "llm_active": llm_active,
+            "llm_model": config.get("llm_model", "sonnet"),
             "limitations": [
-                "Runner deterministico: sem chamadas LLM.",
-                "Camadas 1-6 sao placeholders baseados no data package.",
-                "QA reflete limitacao do fallback.",
                 "send_real_allowed=false enforced.",
-            ],
+            ] + (
+                ["Camadas executadas via LLM com fallback deterministico quando necessario."]
+                if any_llm_used else
+                [
+                    "Runner deterministico: sem chamadas LLM.",
+                    "Camadas 1-6 sao placeholders baseados no data package.",
+                    "QA reflete limitacao do fallback.",
+                ]
+            ),
         },
     }
 
@@ -708,6 +1126,7 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
 
     print(f"\n=== Run Complete ===")
     print(f"Mode: {mode}")
+    print(f"LLM Used: {any_llm_used}")
     print(f"Global Status: {global_status}")
     print(f"Global Failure: {global_failure}")
     print(f"send_real_allowed: False")
@@ -718,7 +1137,8 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
     print(f"Manifest: {manifest_path}")
     print(f"Run Dir: {run_dir}")
     for r in active_recipients:
-        print(f"  {r}: {recipient_results[r]['status']}")
+        llm_label = " (LLM)" if recipient_results[r].get("llm_used") else " (fallback)"
+        print(f"  {r}: {recipient_results[r]['status']}{llm_label}")
     if preview_path:
         print(f"Preview: {preview_path}")
 
@@ -727,7 +1147,7 @@ def run(date_str, mode, recipients, config, package_path=None, prompt_version=No
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Daily Sales Analyst Runner (Phase 6 — Kill Switch, Rollback & Supervised Rollout)"
+        description="Daily Sales Analyst Runner (Phase 7 — LLM Integration)"
     )
     parser.add_argument("date", help="Date to analyze (YYYY-MM-DD)")
 
@@ -739,6 +1159,8 @@ def main():
     mode_group.add_argument("--send-candidate", action="store_const", const="send-candidate", dest="mode")
     mode_group.add_argument("--production-send", action="store_const", const="production-send", dest="mode")
 
+    parser.add_argument("--llm", action="store_true", default=False,
+                        help="Enable LLM execution for layers 1-7")
     parser.add_argument("--recipients", type=str, default=None,
                         help="Comma-separated recipients (default: all)")
     parser.add_argument("--prompt-version", type=str, default=None,
@@ -769,10 +1191,11 @@ def main():
 
     # Enforce send_real_allowed=false
     if config.get("send_real_enabled", False):
-        print("WARNING: Config has send_real_enabled=true — Phase 6 protections will still enforce checks.")
+        print("WARNING: Config has send_real_enabled=true — Phase 7 protections will still enforce checks.")
 
     manifest = run(args.date, args.mode, recipients, config,
-                   package_path=args.package, prompt_version=args.prompt_version)
+                   package_path=args.package, prompt_version=args.prompt_version,
+                   use_llm=args.llm)
 
     # Final safety assertion
     assert manifest["send_real_allowed"] is False, "CRITICAL: send_real_allowed must be false!"

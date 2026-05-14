@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Daily Sales Data Package",
+  "description": "Schema for the Layer 0 data package produced by the Daily Sales Data Builder. Consumed by the 7-layer analytical pipeline of the Daily Sales Analyst.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "data_builder_version",
+    "date",
+    "brt_window",
+    "generated_at_utc",
+    "data_readiness",
+    "source_of_truth",
+    "canonical_by_platform",
+    "platforms",
+    "recipients"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version identifier, e.g. daily-sales-data-package/v1.0"
+    },
+    "data_builder_version": {
+      "type": "string",
+      "description": "Data Builder version, e.g. v1.0"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Analyzed date in YYYY-MM-DD (BRT business day)"
+    },
+    "brt_window": {
+      "type": "object",
+      "required": ["start_utc", "end_utc", "display", "timezone"],
+      "properties": {
+        "start_utc": { "type": "string", "format": "date-time" },
+        "end_utc": { "type": "string", "format": "date-time" },
+        "display": { "type": "string" },
+        "timezone": { "type": "string", "const": "America/Sao_Paulo" }
+      }
+    },
+    "generated_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "data_readiness": {
+      "type": "object",
+      "required": ["status", "data_quality", "checks"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["DADOS_OK", "DADOS_PARCIAIS", "NOT_READY"]
+        },
+        "data_quality": {
+          "type": "string",
+          "enum": ["ok", "partial", "not_ready"]
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["check", "status", "detail"],
+            "properties": {
+              "check": { "type": "string" },
+              "status": { "type": "string", "enum": ["ok", "fail", "partial", "unknown", "not_measured"] },
+              "detail": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "source_of_truth": {
+      "type": "object",
+      "properties": {
+        "canonical": { "type": "string" },
+        "amazon_products": { "type": "string" },
+        "shopee_accounts": { "type": "string" }
+      }
+    },
+    "canonical_by_platform": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "platform": { "type": "string" },
+          "order_count": { "type": "integer" },
+          "total_revenue": { "type": "number" },
+          "avg_order_value": { "type": "number" }
+        }
+      }
+    },
+    "platforms": {
+      "type": "object",
+      "description": "Account-level data keyed by account slug",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["account_slug", "platform", "metrics", "historical", "reconciliation", "quality_flags"],
+        "properties": {
+          "account_slug": { "type": "string" },
+          "account_name": { "type": "string" },
+          "platform": { "type": "string" },
+          "responsavel": { "type": "string" },
+          "ads_owner": { "type": "string" },
+          "filter": { "type": "object" },
+          "metrics": {
+            "type": "object",
+            "properties": {
+              "pedidos_validos": { "type": "integer" },
+              "cancelamentos": { "type": "integer" },
+              "gmv": { "type": "number" },
+              "ticket_medio": { "type": "number" },
+              "itens_vendidos": { "type": "integer" },
+              "top_products": { "type": "array" },
+              "top3_concentration": { "type": "number" },
+              "top5_concentration": { "type": "number" },
+              "hour_distribution": { "type": "object" },
+              "fulfillment": { "type": "object" }
+            }
+          },
+          "historical": { "type": "object" },
+          "reconciliation": { "type": "object" },
+          "memory": { "type": "object" },
+          "quality_flags": { "type": "array" }
+        }
+      }
+    },
+    "recipients": {
+      "type": "object",
+      "description": "Recipient-level aggregation (Lucas, Yasmin, Leonardo)",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "recipient": { "type": "string" },
+          "platform": { "type": "string" },
+          "accounts": { "type": "array", "items": { "type": "string" } },
+          "totals": { "type": "object" },
+          "canonical_platform_total": { "type": ["object", "null"] }
+        }
+      }
+    }
+  }
+}

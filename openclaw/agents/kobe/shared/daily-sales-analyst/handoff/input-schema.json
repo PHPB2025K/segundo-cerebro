@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DSA Input Payload",
+  "description": "Schema for the input payload sent by Trader to Daily Sales Analyst. Defines the contract for pipeline invocation.",
+  "type": "object",
+  "required": [
+    "date",
+    "mode",
+    "data_readiness",
+    "recipients_requested",
+    "prompt_version",
+    "data_builder_version",
+    "requested_by"
+  ],
+  "oneOf": [
+    { "required": ["package_path"] },
+    { "required": ["data_package"] }
+  ],
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Analyzed date in YYYY-MM-DD format (BRT business day)"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["DRY_RUN", "SHADOW", "PREVIEW_TO_KOBE", "SEND_CANDIDATE", "PRODUCTION_SEND"],
+      "description": "Execution mode controlling pipeline behavior and send permissions"
+    },
+    "package_path": {
+      "type": "string",
+      "description": "Filesystem path to the Layer 0 data package JSON. Mutually exclusive with data_package."
+    },
+    "data_package": {
+      "type": "object",
+      "description": "Inline Layer 0 data package object. Mutually exclusive with package_path."
+    },
+    "data_readiness": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["DADOS_OK", "DADOS_PARCIAIS", "NOT_READY"],
+          "description": "Data readiness status from Layer 0"
+        },
+        "checks_summary": {
+          "type": "string",
+          "description": "Optional human-readable summary of readiness checks"
+        }
+      }
+    },
+    "recipients_requested": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["lucas", "yasmin", "leonardo"]
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "List of recipients to generate reports for"
+    },
+    "prompt_version": {
+      "type": "string",
+      "description": "Prompt version to use. 'current' for latest or explicit version like 'v3.0'"
+    },
+    "data_builder_version": {
+      "type": "string",
+      "description": "Version of the Data Builder that produced the package, e.g. 'v1.0'"
+    },
+    "context_refs": {
+      "type": "object",
+      "description": "Optional references to memory, rules, and external context",
+      "properties": {
+        "memory_refs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Paths to relevant memory files"
+        },
+        "rules_refs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Paths to active marketplace/account rules"
+        },
+        "himmel_context": {
+          "type": ["object", "null"],
+          "description": "Himmel/ADS context when applicable"
+        },
+        "marketplace_context": {
+          "type": ["object", "null"],
+          "description": "Additional marketplace context when applicable"
+        }
+      }
+    },
+    "requested_by": {
+      "type": "string",
+      "const": "Trader",
+      "description": "Identifies the caller. Must always be 'Trader'."
+    }
+  }
+}

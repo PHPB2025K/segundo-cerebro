@@ -64,6 +64,20 @@ prompts/
         └── 07-qa-gate.md
 ```
 
+## Handoff — Contrato Trader ↔ DSA (Fase 3)
+
+```
+handoff/
+├── TRADER-CONTRACT.md            ← contrato formal de delegação
+├── input-schema.json             ← schema do payload de entrada
+├── output-schema.json            ← schema do payload de saída
+├── escalation-rules.md           ← regras de escalonamento
+├── TRADER-INTEGRATION-SCOPE.md   ← escopo de integração futura
+└── examples/
+    ├── input-example.json        ← exemplo de input válido
+    └── output-example.json       ← exemplo de output completo
+```
+
 ## Config
 
 ```

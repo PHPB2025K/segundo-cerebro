@@ -43,7 +43,7 @@ shared/daily-sales-analyst/
 ├── data-builder/      ← docs/schema/changelog do Layer 0 (Fase 0 ✓)
 ├── memory/            ← memória por conta/plataforma (Fase 2+)
 ├── runs/              ← logs de execução
-├── handoff/           ← contrato de integração com Trader (Fase 3+)
+├── handoff/           ← contrato de integração com Trader (Fase 3 ✓)
 └── validation/        ← casos de validação e baseline (Fase 4+)
 ```
 
@@ -53,6 +53,16 @@ O Data Builder é componente do pipeline DSA:
 - **Executável:** `scripts/daily-sales-data-builder.py`
 - **Docs/schema/changelog:** `shared/daily-sales-analyst/data-builder/`
 - **Status Fase 0:** APROVADO_COM_RESSALVA (checkpoint Kobe) — calibragem futura de thresholds e freshness prevista na Fase 5.
+
+## Relação com Fase 3
+
+O contrato formal de delegação Trader ↔ DSA foi implementado:
+- **Contrato:** `handoff/TRADER-CONTRACT.md`
+- **Schemas:** `handoff/input-schema.json`, `handoff/output-schema.json`
+- **Exemplos:** `handoff/examples/`
+- **Escalonamento:** `handoff/escalation-rules.md`
+- **Escopo de integração:** `handoff/TRADER-INTEGRATION-SCOPE.md`
+- **Status Fase 3:** Implementado, checkpoint Kobe pendente.
 
 ## Limites
 

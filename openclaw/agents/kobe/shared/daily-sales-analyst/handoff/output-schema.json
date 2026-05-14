@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DSA Output Payload",
+  "description": "Schema for the output payload returned by Daily Sales Analyst to Trader. Contains per-recipient status, analysis results, QA verdicts, and Slack payloads.",
+  "type": "object",
+  "required": [
+    "global_status",
+    "global_failure",
+    "send_real_allowed",
+    "date",
+    "mode",
+    "prompt_version",
+    "data_builder_version",
+    "recipients",
+    "escalation",
+    "audit_refs"
+  ],
+  "properties": {
+    "global_status": {
+      "type": "string",
+      "enum": ["APPROVED", "APPROVED_WITH_REMARKS", "PARTIAL", "BLOCKED"],
+      "description": "Aggregated visual/auditable status of the run. NOT the send decision source. Send decisions are per-recipient using recipients.<name>.status + send_allowed."
+    },
+    "global_failure": {
+      "oneOf": [
+        { "type": "boolean", "const": false },
+        { "type": "string", "enum": ["timezone", "layer0", "runner", "killswitch", "prompt_version", "canonical_source"] }
+      ],
+      "description": "Systemic failure indicator. false = no systemic failure. When set, ALL recipients are blocked regardless of individual status."
+    },
+    "send_real_allowed": {
+      "type": "boolean",
+      "description": "Global permission for real send. false blocks all real sends regardless of per-recipient status."
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Analyzed date in YYYY-MM-DD"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["DRY_RUN", "SHADOW", "PREVIEW_TO_KOBE", "SEND_CANDIDATE", "PRODUCTION_SEND"]
+    },
+    "prompt_version": {
+      "type": "string",
+      "description": "Prompt version used in this run"
+    },
+    "data_builder_version": {
+      "type": "string",
+      "description": "Data Builder version used in this run"
+    },
+    "recipients": {
+      "type": "object",
+      "description": "Per-recipient results. Keys are recipient names (lucas, yasmin, leonardo).",
+      "additionalProperties": {
+        "$ref": "#/$defs/recipient_result"
+      }
+    },
+    "escalation": {
+      "type": "object",
+      "required": ["required"],
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Whether escalation to Kobe is needed"
+        },
+        "reason": {
+          "type": ["string", "null"],
+          "description": "Reason for escalation, null if not required"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"],
+          "description": "Severity of the escalation"
+        },
+        "details": {
+          "type": ["array", "null"],
+          "items": { "type": "string" },
+          "description": "Detailed escalation items"
+        }
+      }
+    },
+    "memory_updates": {
+      "type": "object",
+      "properties": {
+        "suggested": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "account": { "type": "string" },
+              "type": { "type": "string", "enum": ["daily", "weekly", "monthly", "rule"] },
+              "content": { "type": "string" },
+              "reason": { "type": "string" }
+            }
+          },
+          "description": "Memory updates suggested by DSA for Trader approval"
+        },
+        "applied": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "account": { "type": "string" },
+              "type": { "type": "string" },
+              "path": { "type": "string" },
+              "summary": { "type": "string" }
+            }
+          },
+          "description": "Memory updates already applied (daily entries only)"
+        }
+      }
+    },
+    "audit_refs": {
+      "type": "object",
+      "required": ["run_dir"],
+      "properties": {
+        "run_dir": {
+          "type": "string",
+          "description": "Path to the run artifacts directory"
+        },
+        "manifest_path": {
+          "type": "string",
+          "description": "Path to the run manifest file"
+        },
+        "layer_artifacts": {
+          "type": "object",
+          "description": "Per-recipient paths to layer artifacts",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "recipient_result": {
+      "type": "object",
+      "required": ["platform", "status", "send_allowed", "layers", "qa"],
+      "properties": {
+        "platform": {
+          "type": "string",
+          "description": "Primary platform for this recipient (shopee, mercado_livre, amazon)"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["APPROVED", "APPROVED_WITH_REMARKS", "BLOCKED", "SKIPPED"],
+          "description": "Per-recipient QA verdict. APPROVED/APPROVED_WITH_REMARKS = can send. BLOCKED = cannot send. SKIPPED = not processed."
+        },
+        "send_allowed": {
+          "type": "boolean",
+          "description": "Whether sending is allowed for this specific recipient. Derived from status + global conditions."
+        },
+        "slack_payload": {
+          "type": ["object", "null"],
+          "description": "Ready-to-send Slack message payload. null if blocked or skipped.",
+          "properties": {
+            "channel": { "type": "string" },
+            "text": { "type": "string" },
+            "blocks": { "type": "array" }
+          }
+        },
+        "layers": {
+          "type": "object",
+          "description": "Results from each analytical layer",
+          "properties": {
+            "layer0_data_package": { "type": "string", "description": "Path to data package used" },
+            "layer1_estrategica": { "type": "string", "description": "Strategic analysis summary" },
+            "layer2_tatica": { "type": "string", "description": "Tactical analysis summary" },
+            "layer3_operacional": { "type": "string", "description": "Operational analysis summary" },
+            "layer4_granular": { "type": "string", "description": "Granular investigation summary" },
+            "layer5_condensadora": { "type": "string", "description": "Condensed output summary" },
+            "layer6_slack_writer": { "type": "string", "description": "Slack message draft status" },
+            "layer7_qa_gate": { "type": "string", "description": "QA Gate verdict" }
+          }
+        },
+        "qa": {
+          "type": "object",
+          "required": ["verdict"],
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": ["APPROVED", "APPROVED_WITH_REMARKS", "BLOCKED"]
+            },
+            "checks_passed": { "type": "integer" },
+            "checks_total": { "type": "integer" },
+            "blockers": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "List of blocking issues found by QA"
+            },
+            "remarks": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Non-blocking remarks/warnings from QA"
+            }
+          }
+        },
+        "blockers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Aggregated list of all blockers for this recipient"
+        },
+        "warnings": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Aggregated list of all warnings for this recipient"
+        }
+      }
+    }
+  }
+}

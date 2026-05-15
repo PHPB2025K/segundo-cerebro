@@ -33,29 +33,25 @@ TOP PRODUTOS SHOPEE
 
 ANÁLISE DAS CONTAS
 
-*⚫ Consolidado (3 contas):*
-• Leitura: Shopee não é uma conta única — Budamix Store puxou 47,3% dos pedidos; Budamix Shop carregou 42,0% do faturamento.
-• Escala: preservar campeões consolidados (Jarra Medidora de Vidro 500ml (17), Potes Vidro Redondos Tampa Preta (13), Kit 6 Canecas Tulipa 250ml (10)) sem fazer as três lojas disputarem o mesmo papel.
-• Risco: Budamix Oficial tem cancelamento de 11,1%; qualquer aumento de tráfego precisa passar por essa correção primeiro.
+⚫ *Consolidado (3 contas):*
+• Todas as contas exibem padrão extremo de dependência no top 3 produtos, sem tração real fora do núcleo — o risco estrutural está cristalizado em todas as frentes.
+• O volume de pedidos vem majoritariamente da Budamix Store, mas esse volume é frágil: mais de 90% concentrado nos três campeões, expondo a conta a quebra se um líder oscilar.
+• O faturamento e ticket médio alto partem de Budamix Oficial e Budamix Shop, ambas também presas no núcleo dos campeões — não há diluição nem avanço de cauda longa.
+• Não há complementaridade real entre as contas; todas convergem para a mesma lógica de concentração, sem ameaça clara de canibalização mas também sem fortalecer o mix total.
+• O risco mais urgente de ruptura está na Store pela hiperconcentração, mas a estagnação dos secundários é sistêmica nos três slots.
 🟠 *Budamix Store (Shopee 1):*
-• Papel: conta de volume — 35 pedidos | ticket R$ 35,01.
-• Puxadores: Jarra Medidora de Vidro 500ml (17 pedidos) e Potes Vidro Redondos Tampa Preta.
-• Risco: perder ranking/tráfego nos campeões; top 3 concentra 91,4%.
+• Puxa o volume de pedidos, mas opera em zona vermelha: 91% concentrado em 3 itens, cauda parada e mix perde vitalidade operação após operação.
 🟠 *Budamix Oficial (Shopee 2):*
-• Papel: menor tração — 16 pedidos | ticket R$ 76,42.
-• Alerta: cancelamento de 11,1%; tratar causa antes de escalar tráfego.
-• Checagem: confirmar se Kit 2 Potes de Vidro 1520ml Retangular perdeu exposição ou gerou venda suja.
+• Explica subida de ticket, porém absolutamente dependente do top 3 — a cauda não reage e nem os cancelamentos abrem resposta tática.
 🟠 *Budamix Shop (Shopee 3):*
-• Papel: segundo vetor de faturamento — melhor ticket (R$ 76,93).
-• Mix: Kit 6 Canecas Retas 200ml e Kit 6 Canecas Tulipa 250ml carregam demanda diferente da Store.
-• Leitura: abaixo da média 30d (-19,0% em pedidos), mas útil para escala sem canibalizar volume.
+• Fatura mais alto, mas cai em pedidos; segue dependente do trio líder, sem sinal autêntico de diversificação — movimento negativo persiste.
 
 
 🎯 PRIORIDADES DO DIA
 
-• Proteger a conta de volume (Budamix Store) nos campeões Jarra Medidora de Vidro 500ml e Potes Vidro Redondos Tampa Preta; se eles perderem posição, o consolidado da Shopee cai antes de qualquer ajuste nas outras lojas compensar.
-• Tratar Budamix Oficial antes de escalar tráfego: a conta tem o pior cancelamento do grupo (11,1%) e o primeiro diagnóstico deve ser no produto líder Kit 2 Potes de Vidro 1520ml Retangular, não em verba.
-• Usar Budamix Shop como vetor de faturamento complementar, preservando Kit 6 Canecas Retas 200ml e mix de ticket alto; a meta é somar venda incremental, não deslocar demanda da Budamix Store.
+• Lucas deve atacar o colapso de mix na Store e acelerar revisão dos itens fora do top 3 nas três contas — o risco já não é hipotético.
+• Não perder tempo em ajustes pontuais nos campeões: enquanto a cauda seguir travada, qualquer esforço concentra mais ainda o risco.
+• Evitar mover preços, estoque ou anúncio só no núcleo; foco absoluto deve ser mobilidade real da cauda longa ou rever de imediato a estratégia de exposição.
 
 
 Dia analisado: 14/05/2026 — 00:00–23:59 BRT

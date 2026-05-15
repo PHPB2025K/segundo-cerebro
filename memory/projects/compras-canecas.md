@@ -80,9 +80,16 @@ Para cada SKU/cor/modelo:
 
 ## Agente de Compras
 
-Ideia do Pedro: criar um agente específico de compras.
+Decisão do Pedro em 2026-05-15 18:56 BRT: o Agente de Compras deve ser criado. A primeira rodada de canecas será feita diretamente pelo Kobe, sem agente, para validar o método, o formato, os cálculos e o processo.
 
-Recomendação inicial: rodar primeiro este ciclo como playbook supervisionado por Kobe/Trader. Depois de validar a lógica e o formato final, transformar em agente/rotina recorrente de compras para canecas e, depois, ampliar para outros SKUs.
+Depois da validação da primeira rodada, transformar o playbook em agente/rotina recorrente, porque Pedro pretende usar esse fluxo para vários outros produtos além das canecas.
+
+Sequência aprovada:
+1. Rodada 1 — Kobe executa manualmente a análise das canecas.
+2. Validar com Pedro o formato final, os campos, os critérios e a recomendação semanal.
+3. Documentar o playbook canônico de compras.
+4. Criar o Agente de Compras com base no processo validado.
+5. Ampliar para outras famílias de produto.
 
 ## Próximo passo
 

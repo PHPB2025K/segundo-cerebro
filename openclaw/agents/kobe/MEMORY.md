@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-15 04:00 BRT (consolidação profunda)._
+_Último update: 2026-05-15 15:20 BRT (consolidação diária em camadas)._
 
 ---
 
@@ -134,9 +134,12 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (14/05/2026 23:30 BRT — consolidação diária)
+## Status do Sistema (15/05/2026 15:20 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
+- **Telegram Alertas:** roteamento técnico temporariamente bloqueado até capturar o thread ID real do tópico Alertas; thread 8 é Urgente e não pode receber watchdogs/guards/audits.
+- **Planejamento de reposição das canecas:** prioridade máxima do próximo bloco operacional, definida por Pedro em 14/05.
+- **Daily Sales Report Slack:** Shopee/Lucas agora exige Consolidadora Shopee/Camada 6B; próxima execução real precisa validar que o wrapper usa a nova arquitetura e o layout aprovado.
 - **Estoque Budamix:** PR1+PR2+PR3a seguem no repo, mas produção ainda roda build rsync de 13/04; remediação continua pausada no `git fetch` por falta de credencial GitHub na VPS. Próxima decisão: Deploy Key SSH read-only (recomendado) vs PAT vs rsync.
 - **DRE Abril:** U15 Descontos Concedidos continua prioridade antes da U44 v4 limpa. ML aceito em R$ 5.061,14; Amazon precisa fechar item-promotion sem frete promocional; Shopee segue suspeita/reclassificação.
 - **Mission Control:** 11/23 módulos fechados; próxima prioridade técnica é n8n usage tracking em `/costs` e PRDs dos 12 módulos restantes.
@@ -163,6 +166,12 @@ skills/
 - Decisões/lessons perdidas promovidas: Amazon Ads em 5 camadas, Guarani aceite do acordo final, n8n usage tracking e Mission Control/PWA network-first.
 - Agent memories de Trader, Spark e Builder atualizadas para refletir Daily Sales v2, Amazon Ads 5 camadas, Mission Control/Social Studio Reborn/Canggu.
 
+
+## Qualidade da Memória (Consolidação Diária em Camadas 15/05 — 15:20 BRT)
+- Kobe consolidou apenas o próprio dia/main e não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
+- Digests esperados dos agentes diretos estavam ausentes neste primeiro ciclo: Trader, Spark, Builder, Fisco e RH. Lacuna registrada sem tentar fazer o trabalho dos agentes.
+- Marcos globais incorporados: roteamento de Alertas pendente de thread ID real, tópico Daily Sales Report - SLACK, Consolidadora Shopee/Camada 6B e WhatsApp Himmel/ML como contexto operacional do Trader.
+
 ## Qualidade da Memória (Pipeline em Camadas 15/05)
 - Consolidação Diária deixou de ser monolítica: Trader, Spark, Builder, Fisco e RH consolidam suas próprias memórias.
 - Cada agente direto gera digest diário para Kobe em `memory/agent-digests/YYYY-MM-DD/<agent>.md`.
@@ -178,6 +187,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-15:** Consolidação diária em camadas entrou em operação: Kobe deixa de varrer memórias internas dos agentes e passa a consolidar apenas o próprio dia + digests executivos. Watchdog do ciclo criado; alertas técnicos passaram a exigir tópico Alertas real (thread 8 era Urgente e ficou bloqueado até captura do ID correto). Daily Sales Report Slack ganhou tópico dedicado, regras finais de marketplace e Consolidadora Shopee/Camada 6B; WhatsApp Himmel/ML passou a alimentar contexto read-only do Trader.
 - **2026-05-14:** Mission Control avançou forte: `/activity`, `/cron`, `/sessions`, `/skills` e `/costs` fechados, totalizando 11/23 módulos. `/cron` e `/sessions` foram reescritos para ler arquivos JSON direto do disco em vez de depender do CLI travando no PM2; `/skills` passou a scan automático de 118 skills; `/costs` separou custo real API vs equivalente API vs subscription. Validação crítica: OpenClaw/GPT-5.x roda coberto pela subscription Pro 5x (custo real zero nos crons), enquanto n8n usa OpenAI/Anthropic API keys e precisa tracking próprio.
 - **2026-05-12:** Daily Sales Report v2 virou a frente central do dia: Fases 1–8 implementadas (mapeamento por `shop_id`, memória em camadas do Trader, motor de análise profunda, Slack individual, wrapper/cron real, consolidações semanal/mensal, Granola/Himmel e Marketplace Rules Watch). Pedro rejeitou previews rasos e travou templates finais por plataforma com análise densa, nome comercial obrigatório e títulos Slack rich_text. Integração Granola foi criada via API Key e ajustada para sync diário 20:37 BRT. Shopee Fees Monitor ganhou política `OFICIAL_FIRST`. Planilha de avaliações Amazon foi gerada/corrigida. Mission Control retomou com domínio `mission.budamix.com.br`, visual Budamix e dashboard real. Amazon Ads Tulipa executou 7/7 bids, com pendência de log interno BidSpark.
 - **2026-05-11:** Dia com incidentes e rotinas novas: Daily Sales Report para equipe administrativa aprovado via Slack DM às 06:50 BRT; RH recebeu liberação específica para resolver o lote de ponto 04/05–09/05 e ganhou hardening `@lid` no inbound; Canggu/Ana teve regressão grave no ML “entre em contato conosco” corrigida em produção e no repo canônico `PHPB2025K/canguu` (`eb76d3f`); Amazon Ads D+7 foi retomado com grupos críticos identificados; Budamix Central passou a filtrar pedidos Amazon de remoção FBA como não-venda.
@@ -209,7 +219,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) retomar n8n usage tracking no Mission Control `/costs`, (2) planejar reposição de canecas, (3) acompanhar lote RH aprovado, (4) corrigir auditoria/logs do BidSpark onde ainda houver lacuna, (5) retomar deploy Estoque Budamix com Deploy Key SSH._
+_Próximas ações: (1) capturar o thread ID real do tópico Alertas, (2) planejar reposição de canecas, (3) validar próxima execução real do Daily Sales Slack com Consolidadora Shopee, (4) retomar n8n usage tracking no Mission Control `/costs`, (5) acompanhar lote RH aprovado._
 
 ---
 ## Contexto

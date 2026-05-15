@@ -713,3 +713,18 @@ _Consolidação Profunda executada em 2026-05-15 04:00 BRT._
 **Lição:** Consolidação de memória deve respeitar a fronteira de responsabilidade de cada agente. Cada agente direto consolida a própria memória e sobe apenas digest executivo para o Kobe.
 **Regra:** Kobe não deve varrer memória interna de agentes diretos no cron diário; deve ler o próprio dia + digests dos agentes diretos e deixar commit/index para uma etapa final do pipeline.
 
+### [TÁTICA] Telegram tópico/alerta: não assumir thread ID por renomeação aparente (2026-05-15)
+**Contexto:** Alertas de watchdog/GitHub foram roteados para o thread 8 porque Kobe assumiu que o antigo tópico Urgente tinha sido renomeado para Alertas. Pedro corrigiu que Alertas era outro tópico e que thread 8 continuava sendo Urgente.
+**Lição:** Antes de apontar alertas, crons ou failure alerts para um tópico Telegram, validar o `message_thread_id` por mensagem real/metadados. Nome do tópico e memória de renomeação não bastam.
+**Expira:** 2026-06-14
+
+### [TÁTICA] Daily Sales: caminho preview e caminho de produção precisam usar a mesma regra (2026-05-15)
+**Contexto:** Ajustes do Daily Sales Report Slack foram validados em previews, mas Pedro reforçou que o caminho antigo/real também precisava receber as regras de variação vendável, layout e remoção de seções genéricas.
+**Lição:** Em rotina recorrente, não considerar uma regra fechada só porque o preview ficou correto. Validar que o wrapper/cron real, fallback e template antigo usam a mesma lógica antes de produção.
+**Expira:** 2026-06-14
+
+### [TÁTICA] Shopee multi-conta: consolidar análise não é somar métricas (2026-05-15)
+**Contexto:** O Daily Sales Report do Lucas cobre Budamix Store, Budamix Oficial e Budamix Shop. Pedro rejeitou uma leitura quebrada demais ou determinística e aprovou uma Consolidadora Shopee que interpreta as três contas em conjunto.
+**Lição:** Para Shopee multi-conta, a análise consolidada deve comparar complementaridade, canibalização, mix, risco e consequência operacional entre contas. Soma de pedidos/GMV é só insumo; a tese precisa vir de camada analítica própria.
+**Expira:** 2026-06-14
+

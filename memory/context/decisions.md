@@ -336,3 +336,29 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Regra fixa: qualquer assunto, alerta, aviso, preview, QA, bloqueio, mensagem, cron ou desenvolvimento relacionado ao Daily Sales Report dos funcionários deve obrigatoriamente ser enviado nesse tópico.
 - Thread ID confirmado: **10222**. Delivery canônico: `-1003730816228:topic:10222`.
 - Não usar Marketplaces/Urgente/Operacional para essa rotina específica, salvo nova orientação explícita do Pedro.
+
+## 2026-05-15 — Roteamento de alertas técnicos no Kobe Hub
+
+- Qualquer alerta técnico, watchdog, monitor, guard, audit ou resumo de alertas deve ir exclusivamente para o tópico Telegram **Alertas**.
+- O thread 8 não deve ser usado para Alertas: ele corresponde ao tópico antigo **Urgente**.
+- Enquanto o `message_thread_id` real do tópico Alertas não for capturado por mensagem no tópico, os alertas técnicos devem permanecer silenciosos/sem delivery para não cair no tópico errado.
+- Não inferir thread ID por nome antigo/renomeação aparente; validar sempre por metadado real de mensagem.
+
+## 2026-05-15 — Daily Sales Report Slack / regra de marketplace e Shopee multi-conta
+
+- O Daily Sales Report enviado aos funcionários via Slack deve ficar concentrado no tópico Telegram **Daily Sales Report - SLACK**; thread confirmada: **10222**.
+- Reports individuais de funcionários devem ser somente marketplace: sem Atacado/Bling, sem Resumo Geral geral e sem Vendas por Canal quando o report é específico de uma plataforma.
+- Ranking de Top Produtos deve consolidar por variação vendável/SKU pai da variação, não por família inteira nem por listing isolado; ranking visível usa pedidos e nome comercial curto.
+- Para Mercado Livre, `IMB501P`, `IMB501C` e `IMB501V` permanecem separados; filhos/listings equivalentes somam na variação correta.
+- Para Shopee/Lucas, o fluxo correto inclui análise individual das três contas até a condensadora e depois uma **Consolidadora Shopee / Camada 6B** exclusiva.
+- A Consolidadora Shopee recebe as três condensadoras individuais e gera a seção completa `ANÁLISE DAS CONTAS`: consolidado, Budamix Store, Budamix Oficial e Budamix Shop.
+- O Slack Writer não deve raciocinar nem reescrever análise; apenas transforma a saída analítica aprovada no layout Slack.
+- `ANÁLISE DAS CONTAS` deve usar parágrafos curtos, densos e interpretativos; `PRIORIDADES DO DIA` continua em bullets.
+
+## 2026-05-15 — WhatsApp Himmel/ML como contexto operacional do Trader
+
+- O grupo WhatsApp **💎 [HML*] BUDAMIX** passa a ser fonte operacional read-only para contexto de Mercado Livre/Himmel.
+- Mensagens relevantes desse grupo alimentam memória dedicada do Trader e podem servir como hipótese qualitativa para Daily Sales Report e diagnósticos de ML.
+- Contexto vindo da Himmel/WhatsApp é hipótese operacional a validar com dados, não fato causal isolado.
+- Quando a ingestão atualizar memória relevante, deve haver persistência rápida em GitHub, sem depender apenas do fechamento técnico diário.
+

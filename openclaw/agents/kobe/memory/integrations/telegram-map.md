@@ -28,7 +28,7 @@ tags:
 | 8 | 🚨 Urgente | Alertas críticos realmente urgentes, incidentes imediatos, pedidos em atraso graves |
 | 9 | 📣 Marketing | Instagram, conteúdo, campanhas, redes sociais |
 | 10 | 👥 RH | Equipe, analistas, contratações |
-| 11 | 🛍️ Compras | Fornecedores, cotações, pedidos de compra |
+| 11 | 🛍️ Compras | Regra fixa: qualquer assunto relacionado a compras deve ficar aqui, incluindo fornecedores, cotações, pedidos de compra, planejamento/projeção de compras e reposição de canecas |
 | 12 | 📦 Estoque & Expedição | Níveis de estoque, envios, logística nacional |
 | 13 | ⚙️ Operacional & Sistema | Crons, integrações, VPS, backups, skills |
 | 10204 | 🚨 Alertas | Todo conteúdo relacionado a alertas: watchdogs, guards, audits, monitores, failure alerts, resumos técnicos e avisos de risco/problema |

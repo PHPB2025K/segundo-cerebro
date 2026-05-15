@@ -373,3 +373,8 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Pedro decidiu criar um **Agente de Compras** para apoiar reposição recorrente de produtos da GB, começando por canecas e depois ampliando para outras famílias.
 - A primeira rodada de reposição das canecas deve ser feita manualmente pelo Kobe, sem agente, para validar método, dados, cálculo, formato de entrega e processo decisório.
 - Após validar a primeira rodada com Pedro, transformar o playbook em agente/rotina recorrente.
+
+## 2026-05-15 — Telegram / tópico Compras
+
+- Qualquer assunto relacionado a **compras** deve ser tratado sempre no tópico Telegram **🛍️ Compras** do Kobe Hub, thread **11** (`https://t.me/c/3730816228/11`).
+- A regra inclui fornecedores, cotações, pedidos de compra, planejamento/projeção de compras, reposição das canecas e o futuro Agente de Compras.

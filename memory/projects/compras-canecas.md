@@ -91,6 +91,10 @@ Sequência aprovada:
 4. Criar o Agente de Compras com base no processo validado.
 5. Ampliar para outras famílias de produto.
 
+## Regra de canal
+
+Todo assunto relacionado a compras deve ser tratado no tópico Telegram **🛍️ Compras** do Kobe Hub, thread 11. Isso inclui o planejamento/projeção das canecas e o futuro Agente de Compras.
+
 ## Próximo passo
 
 Aguardar os arquivos/projeções da equipe e montar a primeira rodada consolidada.

@@ -329,3 +329,10 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Subagentes/workers internos não escrevem direto para Kobe; o agente-pai absorve e resume.
 - O fechamento técnico do pipeline fica centralizado depois das consolidações, responsável por commit/push/indexação.
 
+
+## 2026-05-15 — Canal obrigatório para Daily Sales Report dos funcionários Slack
+
+- Pedro criou o tópico Telegram **Daily Sales Report - SLACK** no Kobe Hub para concentrar o desenvolvimento e operação do Daily Sales Report enviado por Slack aos funcionários.
+- Regra fixa: qualquer assunto, alerta, aviso, preview, QA, bloqueio, mensagem, cron ou desenvolvimento relacionado ao Daily Sales Report dos funcionários deve obrigatoriamente ser enviado nesse tópico.
+- Thread ID confirmado: **10222**. Delivery canônico: `-1003730816228:topic:10222`.
+- Não usar Marketplaces/Urgente/Operacional para essa rotina específica, salvo nova orientação explícita do Pedro.

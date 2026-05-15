@@ -44,7 +44,7 @@ Envio real somente se QA Gate retornar `APROVADO` ou `APROVADO COM RESSALVA`:
 python3 /root/segundo-cerebro/scripts/daily-sales-v2-generate-slack.py YYYY-MM-DD --send-real
 ```
 
-Se QA Gate retornar `BLOQUEADO`, não enviar Slack real; salvar artefatos e alertar Pedro no tópico Marketplaces.
+Se QA Gate retornar `BLOQUEADO`, não enviar Slack real; salvar artefatos e alertar Pedro no tópico Telegram `Daily Sales Report - SLACK` (thread 10222).
 
 ### v1 — relatório único legado/aprovado
 Manter como fallback operacional enquanto v2 não estiver 100% aprovada:
@@ -52,6 +52,15 @@ Manter como fallback operacional enquanto v2 não estiver 100% aprovada:
 ```bash
 python3 /root/segundo-cerebro/scripts/send-daily-sales-slack-funcionarios.py [YYYY-MM-DD]
 ```
+
+## Regra de canal Telegram — funcionários Slack
+
+Decisão Pedro 2026-05-15: qualquer assunto, alerta, aviso, preview, QA, bloqueio, desenvolvimento, cron ou mensagem relacionado ao Daily Sales Report dos funcionários enviado no Slack deve obrigatoriamente ir no tópico Telegram **Daily Sales Report - SLACK** do Kobe Hub.
+
+- Chat: Kobe Hub (`-1003730816228`)
+- Thread ID: `10222`
+- Delivery para crons relacionados: `-1003730816228:topic:10222`
+- Não usar mais Marketplaces/Urgente/Operacional para esta rotina, exceto se Pedro mover explicitamente o assunto.
 
 ## Destinatários Slack
 Envio por DM no Slack para:
@@ -64,7 +73,7 @@ Envio por DM no Slack para:
 - Horário: diariamente às 06:50 BRT.
 - Deve rodar depois do Sales Report do Trader/rotinas de vendas e antes do Daily Briefing.
 - Se sucesso: responder `HEARTBEAT_OK`.
-- Se falha: alertar Pedro no Telegram tópico Marketplaces, sem expor tokens, comandos, paths internos ou logs brutos.
+- Se falha: alertar Pedro no Telegram tópico `Daily Sales Report - SLACK` (thread 10222), sem expor tokens, comandos, paths internos ou logs brutos.
 
 ## Estrutura obrigatória aprovada — v2.5 individual em camadas (TRAVADA em 2026-05-14)
 

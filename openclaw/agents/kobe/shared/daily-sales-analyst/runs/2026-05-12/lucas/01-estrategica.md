@@ -1,53 +1,53 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Qualidade da base
 
-Weekly e monthly das três contas estão em template vazio — sem entradas históricas registradas. Não há hipóteses ativas transitando, sem tese semanal ou mensal madura. A memória disponível se limita às regras operacionais e às janelas quantitativas (7d, 30d, 60d, mesmos dias da semana). Base suficiente para leitura temporal honesta, insuficiente para confirmar ou refutar hipóteses anteriores — pois não existem hipóteses anteriores documentadas.
+Memória das três contas é estrutural apenas — weekly.md e monthly.md estão vazios (apenas templates, sem entradas históricas), rules.md sem exceções documentadas. Não há hipóteses anteriores ativas, não há tese semanal nem mensal consolidada. Base é de primeiro ciclo: os dados quantitativos estão disponíveis e íntegros em todas as janelas (7d, 30d, 60d, mesmos dias da semana), mas sem âncora narrativa prévia para confirmar ou refutar. Confiança da tese é moderada — fundada nos dados, não em padrões historicamente documentados.
 
 ---
 
 ### Leitura temporal
 
-- **Budamix Store (Conta 1):** Na janela de 7 dias, os pedidos estão praticamente estáveis (-0,4%) e o GMV levemente positivo (+4,8%) — sinal de ticket subindo dentro da semana. Contra 30d e 60d, a queda é significativa: -17,7% em pedidos vs 30d, -27,6% vs 60d. A comparação contra mesmos dias da semana (média 114 pedidos, 76 hoje) revela -33,5% — o dia foi fraco mesmo dentro do padrão sazonal, não apenas fraco em termos absolutos. Isso indica que a Conta 1 está em desaceleração estrutural de volume, com 7d já abaixo de 30d e 60d.
+- **Conta 1 (Budamix Store):** É a âncora do volume Shopee (76 de 118 pedidos). Contra os mesmos dias de terça das últimas 4 semanas, está 33% abaixo em pedidos e 37% abaixo em GMV — queda expressiva vs sazonalidade esperada. Porém, contra a média 7d, o recuo é mínimo (-0,4% pedidos, +4,8% GMV): os últimos 7 dias já vinham fracos. A conta caiu de patamar no bimestre: média 60d era ~105 pedidos/dia e ~R$3.830; a média 7d está em 76 pedidos/R$2.686. O movimento não é ruído de um dia — é convergência de curto e médio prazo.
 
-- **Budamix Oficial (Conta 2):** Queda consistente em todas as janelas — -26% vs 7d, -37% vs 30d, -41,2% vs 60d, -39,1% vs mesmo dia da semana. Ticket levemente positivo vs 60d (+7,1%) mas não compensa a erosão de volume. A conta está em trajetória de encolhimento progressivo, com o sinal de curto prazo (7d) confirmando o movimento de médio (30-60d).
+- **Conta 2 (Oficial/2):** Queda mais pronunciada. Pedidos 37% abaixo da média 30d, 41% abaixo da média 60d, e 39% abaixo da média dos mesmos dias da semana. Ticket médio (R$56) ainda estável vs histórico (57–58), mas volume está em compressão consistente em todas as janelas. A conta 2 foi a que mais encolheu proporcionalmente no bimestre.
 
-- **Budamix Shop (Conta 3):** Queda mais acentuada das três: -24% vs 7d, -36,2% vs 30d, -45,2% vs 60d, -51% vs mesmo dia da semana. O ticket está praticamente estável em todas as janelas (-0,3% vs 30d, +2,2% vs 60d), o que descarta efeito de mix como explicação — é volume puro caindo. Esta é a conta com maior deterioração relativa no bimestre.
+- **Conta 3 (Shop/3):** Situação mais grave em magnitude relativa. Pedidos 45% abaixo da média 60d e 51% abaixo dos mesmos dias da semana. Ticket médio estável (R$66,7 vs ~R$65–67 histórico), o que significa que o problema é volume, não mix. A Conta 3 parece ter entrado em desaceleração estrutural: mesmo a média 7d (25 pedidos) já está bem abaixo da média 30d (29,8) e 60d (34,7) — a queda não é de ontem.
 
-- **Padrão transversal:** As três contas mostram queda de volume simultânea, com magnitudes diferentes. A Conta 1 ainda amortece pela massa de pedidos, mas está convergindo para baixo. Contas 2 e 3 já mostram sinais claros de perda de patamar. O ticket médio agregado (R$45,58) está abaixo do 30d e 60d de Contas 2 e 3 individualmente, sugerindo que o mix está sendo puxado pela Conta 1 (ticket mais baixo, R$37).
+- **Padrão transversal:** As três contas apresentam queda convergente de volume com ticket médio relativamente sustentado. Isso isola o problema em exposição/tráfego, não em mix ou precificação. Sem hipóteses anteriores documentadas, não há tese ativa para confirmar ou refutar — esta leitura é ponto de partida.
 
 ---
 
 ### Leitura estratégica
 
-- **A plataforma Shopee como bloco está em desaceleração de volume sustentada no bimestre, não é ruído.** As três contas mostram queda consistente de pedidos em 30d e 60d, e o mesmo dia da semana confirma que o nível atual não é explicado por sazonalidade. A leitura de 7d na Conta 1 (estável) isola essa conta como o último amortecedor de volume — mas ela também está abaixo do próprio patamar histórico.
+- **A queda não é de um dia — é de uma trajetória.** As três contas estão abaixo da banda 30d e 60d simultaneamente, e a média 7d já reflete essa compressão. Quando curto e médio prazo apontam na mesma direção, o risco de ser ruído cai. O Shopee Budamix como canal está em desaceleração de patamar, não em oscilação pontual.
 
-- **A distribuição desigual de queda entre contas é o sinal mais relevante: Contas 2 e 3 perderam patamar de forma mais severa e consistente.** Isso sugere, como hipótese, que a exposição orgânica ou a eficiência de ADS dessas contas deteriorou de forma diferenciada. A Conta 1 ainda tem massa suficiente para mascarar o movimento agregado, mas o piso está descendo.
+- **O problema é tráfego/exposição, não produto.** O ticket médio se sustentou nas três contas (Store: R$37 vs histórico R$35–39; Oficial/2: R$56 vs R$52–58; Shop/3: R$67 vs R$65–67). Quando o volume cai mas o ticket aguenta, o mix não degradou — o produto que chega à compra ainda converte no preço esperado. A hipótese estrutural aponta para redução de exposição ou tráfego qualificado, não para perda de competitividade de produto.
 
-- **Concentração extrema nos top 3 produtos (84,8% / 79,2% / 85,7%) é crônica e estrutural.** Com o volume caindo, qualquer oscilação negativa nos campeões — exposição, estoque, competitividade — amplifica a queda sem segunda linha de produto para absorver. A cauda (produtos 4-8) gera volumes unitários. Esse perfil não é novo, mas fica mais perigoso em cenário de encolhimento.
+- **Concentração de produto é crônica e amplifica o risco de exposição.** As três contas operam com top 3 respondendo por 80–86% do volume. Em Store, dois produtos (Potes Redondos e Jarra Medidora) concentram ~79% dos itens. Em Shop/3, dois SKUs de canecas respondem por 85% dos itens. Essa estrutura é padrão — não é nova — mas num cenário de queda de tráfego, qualquer oscilação de exposição dos campeões se transmite diretamente para o GMV da conta. Não há segundo vetor que absorva o choque.
 
-- **Ticket médio sustentado (especialmente nas Contas 2 e 3) não é sinal positivo nesse contexto:** indica que não houve degradação de preço, mas também que a queda é de alcance/volume — provavelmente exposição, não price pressure. Hipótese: problema de tráfego/visibilidade, não de competitividade de preço.
+- **Contas 2 e 3 caíram mais que a Conta 1, mas o mecanismo parece o mesmo.** A Store está menos afastada da média 7d (quase estável) porque o curto prazo já havia caído; as Contas 2 e 3 mostram queda ainda mais acentuada vs mesmo dia da semana (-39% e -51%). Isso não é canibalização crescente entre as três — ticket e mix diferentes sugerem públicos parcialmente distintos. É hipótese (não fato) que a queda seja transversal a uma causa comum de exposição ou campanha.
 
 ---
 
 ### Tese da conta
 
-**Vulnerável** — as três contas Shopee mostram GMV e pedidos abaixo do patamar de 30d e 60d de forma consistente, e o mesmo dia da semana confirma que o dia de 12/05 não foi fraco por sazonalidade, mas fraco dentro de uma tendência. A Conta 1 ainda absorve o volume, mas já está em desaceleração. Contas 2 e 3 estão em queda real de patamar, com confirmação em múltiplas janelas. O ticket médio sustentado sugere que o problema é de alcance/tráfego, não de preço. A base de memória (weekly/monthly sem entradas) impede confirmar se essa queda é contínua ou se existe reversão episódica documentada — o que mantém a tese em "vulnerável" e não em "em queda real" para a plataforma como um todo, dado que a Conta 1 ainda segura volume razoável em 7d.
+**Vulnerável — em queda de patamar.**
+
+O Shopee Budamix consolidado está abaixo da banda 30d e 60d nas três contas simultaneamente, com o movimento já refletido na média 7d — descartando a leitura de ruído de um dia. O canal está saudável no ticket (produto ainda converte bem) mas frágil no volume, o que aponta para problema de exposição ou tráfego, não de mix. A concentração em poucos campeões — padrão crônico — transforma qualquer oscilação de exposição em impacto direto no GMV. Sem histórico narrativo documentado (weekly/monthly vazios), não é possível afirmar quando essa queda começou ou se há causa externa conhecida; mas os dados quantitativos são consistentes o suficiente para classificar a conta como **vulnerável**, com risco de transição para **em queda real** se o padrão persistir por mais 1–2 semanas.
 
 ---
 
 ### Risco estrutural principal
 
-- **Risco:** Concentração extrema de receita em 2-3 produtos por conta, sem segundo vetor, em ambiente de volume decrescente.
-- **Por que importa:** Com as três contas perdendo pedidos em relação ao bimestre e sem cauda ativa para compensar, qualquer degradação de exposição, estoque ou competitividade dos campeões (Potes de Vidro Redondos e Jarra Medidora na Conta 1; Kit Potes + Canecas Tulipa na Conta 2; Canecas Tulipa + Canecas Reta na Conta 3) produz queda de GMV sem mecanismo de absorção. A plataforma não tem buffer.
-- **Histórico:** Não há registro em weekly/monthly anterior — mas os dados quantitativos mostram que essa concentração é consistente com os top products disponíveis, sugerindo que é padrão crônico da operação, não deterioração recente de mix.
-- **Sinal de confirmação:** Se nos próximos 3 dias a Conta 1 registrar queda de pedidos nos SKUs IMB501P_T ou CK4742_B (que hoje somaram 60 das 79 unidades da conta) sem compensação em outros produtos, o risco estrutural de concentração se converte em queda operacional imediata.
+- **Risco:** Volume sustentado por tráfego sem segundo vetor — as três contas dependem de exposição/ADS dos campeões (2–3 SKUs por conta) sem produto de reposição capaz de absorver queda de tráfego nos líderes.
+- **Por que importa:** Se a exposição dos campeões cair — por mudança de algoritmo, perda de ranking, redução de verba ADS, ou canibalização entre contas — não há SKU na cauda capaz de compensar. A cauda existe (top 5 já captura 92–95% do volume, com muito pouco além disso), mas não é ativa. A conta não tem colchão.
+- **Histórico:** Padrão não documentado anteriormente (weekly/monthly sem histórico), mas a concentração de 80–86% nos top 3 é visível em todas as contas hoje. Hipótese é que seja crônico, não recente.
+- **Sinal de confirmação:** Concentração dos top 3 acima de 80% pelo segundo e terceiro ciclo semanal consecutivos confirma dependência estrutural — não é evento isolado.
 
 ---
 
 ### Sinais a observar
 
-1. **Pedidos das Contas 2 e 3 abaixo de 20 e 15 respectivamente por 2 dias seguidos** confirma que essas contas saíram da faixa de operação tolerável e estão em queda real — não oscilação dentro da banda.
-
-2. **GMV agregado das três contas Shopee abaixo de R$5.000 por 3 dos próximos 5 dias** confirmaria perda de patamar da plataforma como bloco, reforçando a tese de vulnerável para queda real.
-
-3. **Concentração top 3 da Conta 1 acima de 85% por mais dois ciclos semanais** (dado disponível no pacote de dados) confirma que não há desenvolvimento de segunda linha e o risco estrutural de dependência está se aprofundando, não estabilizando.
+1. **GMV consolidado Shopee abaixo de R$ 5.500 por 3 dias seguidos** confirma queda de patamar real — descarta hipótese de oscilação semanal pontual.
+2. **Conta 3 (Shop/3) com pedidos abaixo de 20 por 2 dias seguidos** — se a semana fechar consistentemente abaixo da média 7d atual (25 pedidos/dia), a conta entrou em desaceleração acelerada e merece atenção diferenciada de Lucas para Himmel.
+3. **Ticket médio consolidado caindo abaixo de R$ 42 por 2 dias consecutivos** refutaria a hipótese de que o problema é só tráfego — indicaria degradação de mix ou competitividade de produto, mudando o diagnóstico estrutural.

@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "Nenhum Crítico e nenhum Maior detectado. Quatro Menores identificados nos Gates 5, 6 e 8: uso de 'pedidos' no Top Produtos quando o campo bruto é 'quantity' (itens vendidos), remoção não documentada de 'não três produtos independentes' do insight 1, remoção dos percentuais explícitos do insight 2 sem registro nas Decisões de Formatação, e substituição de '-30,9% em pedidos' por 'queda expressiva' no insight 3. Nenhum dos quatro Menores altera a tese central, induz erro operacional ou configura degradação sistêmica. Regra aplicada: 0 Maiores + 4 Menores → APROVADO COM RESSALVA.",
+  "motivo": "A mensagem passou todos os gates críticos sem violação de Crítico ou Maior. Dois desvios Menores isolados foram identificados em Gate 6: (1) o contexto parentético '(flat contra o 30d)' do Insight 2 da Condensadora foi omitido sem registro nas Decisões de Formatação, removendo a âncora quantitativa que fundamenta 'parece neutro em GMV'; (2) a expressão diretiva 'esse ruído silencioso não pode ser tratado como irrelevante' do Insight 3 foi substituída por 'a leitura ainda é limitada', suavizando o alerta operacional sem documentar a decisão. Nenhuma das duas alterações muda a tese central, introduz erro analítico ou viola bloqueio. Regra de agregação aplicada: 0 Críticos + 0 Maiores + 2 Menores isolados sem degradação sistêmica = APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -8,72 +8,53 @@
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "RESSALVA",
+    "gate_5_top_produtos": "OK",
     "gate_6_analise_conta": "RESSALVA",
     "gate_7_prioridades": "OK",
-    "gate_8_bloqueios_confianca_logs": "RESSALVA",
+    "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "RESSALVA"
+    "gate_11_padrao_numerico_formatacao": "OK"
   },
   "contagem_severidade": {
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 4,
-    "regra_agregacao_aplicada": "0 Maiores + 4 Menores (não sistêmicos) → APROVADO COM RESSALVA"
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 2 Menores isolados (sem degradação sistêmica) → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
       "severidade": "Menor",
-      "gate": "5 / 11",
-      "texto_atual": "• Jogo Potes de Vidro 5 Peças — tampa preta — 26 pedidos",
-      "texto_esperado": "• Jogo Potes de Vidro 5 Peças — tampa preta — 26 unidades (ou itens)",
-      "estado_atual": "Top Produtos usa a unidade 'pedidos' para representar o campo 'quantity' do pacote, que corresponde a itens/unidades vendidas, não a número de pedidos",
-      "estado_esperado": "A métrica no Top Produtos deveria refletir o dado bruto como unidades ou itens vendidos; com ratio 1,03 itens/pedido (94 itens, 91 pedidos) a imprecisão não induz erro material, mas é tecnicamente incorreta",
-      "regra_violada": "Gate 5: ranking vem do pacote validado; Gate 11: dados objetivos apresentados de forma inconsistente — a VISÃO usa 'pedidos: 91' referindo-se corretamente a pedidos, enquanto o Top Produtos atribui o campo 'quantity' (itens) ao mesmo rótulo 'pedidos'",
+      "gate": "6 — Análise da Conta",
+      "texto_atual": "O dia parece neutro em GMV, mas a estabilidade é frágil: o volume menor foi compensado pelo ticket mais alto, e toda a execução dependeu desse anúncio único sem segundo vetor com capacidade real de absorção na cauda — os produtos da posição 4 em diante somaram menos da metade do volume do anúncio principal.",
+      "texto_esperado": "O dia parece neutro em GMV (flat contra o 30d), mas a estabilidade é frágil: o volume menor foi compensado pelo ticket mais alto, e toda a execução dependeu desse anúncio único sem segundo vetor com capacidade real de absorção na cauda — os produtos da posição 4 em diante somaram menos da metade do volume do anúncio principal.",
+      "estado_atual": "O parentético '(flat contra o 30d)' que âncora quantitativamente a afirmação 'parece neutro em GMV' foi omitido. A omissão não foi registrada nas Decisões de Formatação.",
+      "estado_esperado": "O parentético estava presente na Condensadora como suporte explícito à tese de aparente neutralidade de GMV e deveria ter sido preservado ou sua remoção documentada com justificativa.",
+      "regra_violada": "Fidelidade de frase — contexto analítico de suporte à tese omitido sem justificativa registrada; decisão de formatação não documentada.",
       "bloqueia_envio": false
     },
     {
       "severidade": "Menor",
-      "gate": "6",
-      "texto_atual": "os três SKUs do topo são variantes de cor de um único anúncio — qualquer problema de ranking, preço ou operação nesse listing afeta os três simultaneamente, sem separação de risco entre eles",
-      "texto_esperado": "os três SKUs do topo são variantes de cor de um único anúncio, não três produtos independentes — qualquer problema de ranking, preço ou operação nesse listing afeta os três simultaneamente, sem separação de risco entre eles",
-      "estado_atual": "O trecho 'não três produtos independentes' foi removido do insight 1; esse contraste explícito reforçava o padrão de localização declarado pela Condensadora ('o problema não é em três produtos, é em um único listing com variantes') e sua ausência enfraquece o enquadramento comparativo da tese",
-      "estado_esperado": "Preservar o contraste explícito conforme a Condensadora; a remoção não foi documentada nas Decisões de Formatação",
-      "regra_violada": "Gate 6: contraste/inversão/enquadramento preservados; nenhum termo analítico-chave removido",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "6 / 8",
-      "texto_atual": "o que segurou o número foi o ticket acima da média, não o volume de pedidos",
-      "texto_esperado": "o que segurou o número foi o ticket acima da média (+10,3% vs 30d), não o volume de pedidos (-8,7% vs 30d)",
-      "estado_atual": "Os percentuais quantitativos que ancoram 'ticket acima da média' e 'volume de pedidos' foram omitidos sem registro nas Decisões de Formatação; a Condensadora incluiu esses valores como parte integral do insight 2, não como dado decorativo",
-      "estado_esperado": "Omissão documentada nas Decisões de Formatação, ou percentuais mantidos; a tese central está preservada e a omissão não induz erro operacional, mas a ausência de registro no log constitui lacuna de rastreabilidade",
-      "regra_violada": "Gate 6: nenhum termo analítico-chave removido; Gate 8: Decisões de formatação devem registrar quebras de frase e omissões de dado que alteram a densidade informacional do insight",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "6",
-      "texto_atual": "A comparação com outras terças mostra queda expressiva",
-      "texto_esperado": "A comparação com outras terças mostra -30,9% em pedidos",
-      "estado_atual": "O dado quantitativo '-30,9% em pedidos' foi substituído pelo qualitativo 'queda expressiva'; a decisão foi documentada nas Decisões de Formatação com justificativa coerente (risco de interpretação isolada sem contexto do outlier); a tese central e a ressalva do outlier de 28/04 estão preservadas",
-      "estado_esperado": "Aceitável se documentado — a justificativa registrada é coerente com os bloqueios da Condensadora; o problema é menor porque a decisão de formatação foi registrada e a tese permanece fiel",
-      "regra_violada": "Gate 6: termo analítico-chave (dado quantitativo específico) substituído por qualitativo; classificado como Menor porque a substituição foi documentada e a tese não foi alterada",
+      "gate": "6 — Análise da Conta",
+      "texto_atual": "a leitura ainda é limitada até que a origem seja confirmada",
+      "texto_esperado": "esse ruído silencioso não pode ser tratado como irrelevante até que a origem seja confirmada",
+      "estado_atual": "A diretiva operacional 'não pode ser tratado como irrelevante' foi convertida em declaração epistêmica neutra 'a leitura ainda é limitada', suavizando o alerta sem documentar a decisão nas Decisões de Formatação.",
+      "estado_esperado": "A formulação original da Condensadora preserva urgência operacional ao indicar que o risco de cancelamentos concentrados não deve ser descartado; a substituição mantém a inconclusividade mas perde a diretividade do aviso.",
+      "regra_violada": "Decisão de formatação ambígua não registrada — substituição que altera tom diretivo do insight sem justificativa explícita no log da Slack Writer.",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Lacuna estrutural de log confirmada: Decisões de Formatação não registraram a omissão dos percentuais do insight 2 (+10,3% vs 30d e -8,7% vs 30d); sinal para ajuste do template da Slack Writer no próximo ciclo",
-    "O uso de 'pedidos' no Top Produtos em vez de 'unidades' ou 'itens' é recorrentemente ambíguo quando o campo bruto é 'quantity'; recomenda-se padronizar o rótulo no template da Slack Writer para evitar imprecisão técnica em dias com ratio itens/pedido mais distante de 1,0"
+    "Insight 2: omissão de '(flat contra o 30d)' não prejudica a mensagem operacionalmente — a comparação vs 30d está disponível para Yasmin via VISÃO (R$ 4.081,49 ≈ avg_30d R$ 4.055,53) — mas a âncora analítica explícita da ANÁLISE foi enfraquecida. Registrar para calibração da Slack Writer nos próximos ciclos.",
+    "Insight 3: a substituição de 'ruído silencioso não pode ser tratado como irrelevante' por 'a leitura ainda é limitada' é uma decisão de suavização válida em contexto de confiança média, mas deveria constar explicitamente nas Decisões de Formatação para rastreabilidade. Recomendar documentação desse tipo de escolha em ciclos futuros."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "O insight 1 usa o termo 'SKUs' na mensagem final ('os três SKUs do topo são variantes...'); embora os valores individuais dos SKUs estejam bloqueados, o termo genérico é aceitável para o perfil operacional de Yasmin em ML; não constitui violação mas pode ser revisto em futuras versões do template para manter consistência com público menos técnico",
-    "A confiança média declarada pela Condensadora não gerou marcador explícito de confiança na mensagem final; os três insights têm sustentação suficiente para o Slack sem marcador e a Condensadora não exigiu sinalização explícita de confiança na mensagem — registrado apenas como dado de auditoria",
-    "O Top Produtos lista 5 itens, sendo os três primeiros variantes do mesmo listing; a formatação com três linhas separadas para o mesmo anúncio pode ser percebida por Yasmin como três produtos distintos, gerando leitura inversa ao alerta da Análise; o enquadramento do insight 1 na Análise mitiga esse risco, mas a coerência visual entre as duas seções poderia ser reforçada em versões futuras do template"
+    "Gate 5 ML — separação de variantes: a decisão de apresentar as três variantes do Jogo Potes de Vidro em linhas distintas (Tampa Preta/Cinza/Vermelha) está correta e alinhada com as regras explícitas do Gate 5. O mapeamento de cores por sufixo de SKU (P=Preta, C=Cinza, V=Vermelha) foi confirmado pelo exemplo literal no prompt, sem ambiguidade. Nenhuma variação foi esmagada em família única.",
+    "Gate 8 — cruzamento direto de bloqueios: todos os 5 bloqueios da Condensadora foram corretamente mapeados, documentados e respeitados. O cruzamento passo a passo confirmou integridade completa: SKUs internos não aparecem, MLB técnico não aparece, pico de 16h omitido, hipótese de ranking convertida em interrogação operacional, cancelamentos preservados como inconclusivos.",
+    "Gate 10 — termo 'hedge interno': preservado da Condensadora na ANÁLISE. Não constitui jargão interno de pipeline; é termo analítico-financeiro que carrega a tese de ausência de diversificação entre variantes. Preservação válida pelo critério de fidelidade, não enquadrável como 'jargão interno' vedado.",
+    "Weekly.md e monthly.md da conta permanecem como templates vazios — tese de acomodação com confiança moderada foi corretamente propagada desde a Estratégica com qualificação adequada de ausência de âncora narrativa. Quando preenchidos, a base histórica narrativa reforçará ou revisará a tese atual."
   ],
   "llm_used": true,
   "model": "sonnet",

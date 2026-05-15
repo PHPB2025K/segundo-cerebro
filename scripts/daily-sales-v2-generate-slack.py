@@ -691,9 +691,6 @@ def build_sales_by_channel(canonical: dict[str, dict]) -> list[str]:
         orders = int(row.get("order_count") or 0)
         label = PLATFORM_LABELS[pk]
         lines.append(f"• {label}: {brl(rev)} | {orders} pedidos")
-    atacado = canonical.get("atacado")
-    if atacado:
-        lines.append(f"• Atacado GB Matriz: {brl(float(atacado.get('total_revenue') or 0))} | {int(atacado.get('order_count') or 0)} pedidos")
     return lines
 
 
@@ -1054,12 +1051,8 @@ def main() -> int:
         print("ERRO: orders BRT sem dados para a data.", file=sys.stderr)
         return 1
 
-    atacado_rev, atacado_orders = fetch_bling_revenue(day)
-    if atacado_rev is not None and atacado_orders is not None:
-        canonical["atacado"] = {"platform": "atacado", "order_count": atacado_orders, "total_revenue": atacado_rev}
-        print(f"Atacado GB Matriz OK: {atacado_orders} pedidos | {brl(atacado_rev)}")
-    else:
-        print("Atacado GB Matriz indisponivel; seguindo sem canal Atacado.")
+    # Report dos funcionários é somente marketplaces. Atacado/Bling não entra
+    # no resumo geral nem nas vendas por canal (decisão Pedro 2026-05-12).
 
     total_rev = sum(float(r.get("total_revenue") or 0) for r in canonical.values())
     total_orders = sum(int(r.get("order_count") or 0) for r in canonical.values())

@@ -594,8 +594,12 @@ def build_layered_analysis(account_slug, metrics, avg30, avg60, avg_weekday, hyp
         tactical.append(f"Prioridade tática para Lucas/Himmel: separar perda de tráfego de mudança de mix na conta {acct['name']} antes de aumentar verba.")
         tactical.append(f"Se {leader} perder posição ou estoque, a conta fica vulnerável por concentração; preparar produto secundário ({runner}) como sustentação.")
     elif acct["platform"] == "ml":
-        tactical.append("Prioridade tática para Yasmin/Himmel: diferenciar acomodação normal de perda de exposição; ML tem leitura menos concentrada, então a investigação deve começar por tráfego e ranking dos campeões.")
-        tactical.append(f"Manter disponibilidade dos líderes, principalmente {leader}, e acompanhar se o ritmo até meio-dia confirma ou refuta queda vs mesmo dia da semana.")
+        if _var_float(orders_30) > 10 and _var_float(wd_orders) > 10:
+            tactical.append("Prioridade tática para Yasmin/Himmel: proteger o pico positivo antes de tratar como novo patamar; confirmar se houve tráfego orgânico saudável ou impulso de campanha nos anúncios líderes.")
+            tactical.append(f"Manter disponibilidade dos líderes, principalmente {leader}, e acompanhar se o ritmo até meio-dia repete o ganho de ontem.")
+        else:
+            tactical.append("Prioridade tática para Yasmin/Himmel: diferenciar acomodação normal de perda de exposição; ML tem leitura menos concentrada, então a investigação deve começar por tráfego e ranking dos campeões.")
+            tactical.append(f"Manter disponibilidade dos líderes, principalmente {leader}, e acompanhar se o ritmo até meio-dia confirma ou refuta queda vs mesmo dia da semana.")
     else:
         tactical.append("Prioridade tática para Leonardo/Pedro: validar Buy Box, cobertura FBA e disponibilidade dos produtos líderes antes de mexer em ADS.")
         tactical.append(f"Como Amazon está 100% FBA por padrão, qualquer cancelamento ou ruptura em {leader} pode virar perda de Buy Box/ranking rapidamente.")
@@ -627,11 +631,18 @@ def build_layered_analysis(account_slug, metrics, avg30, avg60, avg_weekday, hyp
             "Escolher um produto secundário para ganhar tração hoje e reduzir dependência dos campeões que sustentam o canal.",
         ]
     elif acct["platform"] == "ml":
-        confirm = [
-            "Conferir no painel do Mercado Livre se os anúncios líderes mantêm posição, reputação e competitividade; não alterar campanha antes de confirmar que não foi só acomodação de demanda.",
-            "Acompanhar o ritmo do canal nos horários fortes de hoje. Só escalar para Himmel se a fraqueza persistir, porque a conta ainda parece saudável no conjunto.",
-            "Garantir estoque e saúde dos principais anúncios, mantendo o mix distribuído — esse é o diferencial do ML em relação aos canais mais dependentes de poucos produtos.",
-        ]
+        if _var_float(orders_30) > 10 and _var_float(wd_orders) > 10:
+            confirm = [
+                f"Validar estoque, preço e posição dos anúncios líderes, principalmente {leader} e {runner}; o pico de ontem só é aproveitável se esses itens seguirem disponíveis e competitivos.",
+                "Acompanhar o ritmo do Mercado Livre até 12h BRT. Se não repetir o ganho de ontem, alinhar com Himmel se o resultado foi pico orgânico, campanha ou efeito pontual de demanda.",
+                "Não mexer em preço/campanha como reação automática: primeiro separar crescimento real de pico concentrado nos líderes.",
+            ]
+        else:
+            confirm = [
+                "Conferir no painel do Mercado Livre se os anúncios líderes mantêm posição, reputação e competitividade; não alterar campanha antes de confirmar que não foi só acomodação de demanda.",
+                "Acompanhar o ritmo do canal nos horários fortes de hoje. Só escalar para Himmel se a fraqueza persistir, porque a conta ainda parece saudável no conjunto.",
+                "Garantir estoque e saúde dos principais anúncios, mantendo o mix distribuído — esse é o diferencial do ML em relação aos canais mais dependentes de poucos produtos.",
+            ]
     else:
         confirm = [
             "Checar Buy Box, cobertura FBA e status dos ASINs líderes antes de qualquer ajuste em ADS.",
@@ -649,11 +660,18 @@ def build_layered_analysis(account_slug, metrics, avg30, avg60, avg_weekday, hyp
             f"Antes de aumentar verba ou mudar campanha, vale confirmar se o comportamento se repete nas primeiras horas de hoje. Se repetir, é sinal de ajuste tático com Himmel; se normalizar, foi ruído de demanda/horário.",
         ]
     elif acct["platform"] == "ml":
-        condensed_analysis = [
-            "O Mercado Livre não parece ter um problema estrutural claro; a leitura é mais de acomodação do ritmo recente do que perda real de tração. O canal segue saudável porque não depende de um único anúncio para sustentar o resultado.",
-            f"O ponto de atenção é que o volume ficou mais fraco enquanto o valor por pedido segurou melhor. Isso normalmente indica mix mais qualificado ou menos vendas pequenas, não necessariamente queda de demanda.",
-            f"A melhor decisão é observar se hoje o ritmo volta ao normal antes de mexer pesado em campanha. Se a queda continuar, aí sim a investigação deve ir para exposição/ranking dos produtos líderes.",
-        ]
+        if _var_float(orders_30) > 10 and _var_float(wd_orders) > 10:
+            condensed_analysis = [
+                f"O Mercado Livre rodou acima do patamar recente: pedidos {orders_30} vs 30d e {wd_orders} vs mesma quinta-feira. A leitura correta é pico positivo, não queda nem acomodação.",
+                f"O ganho ficou concentrado nos líderes: {leader} puxou o dia e {runner} foi o segundo vetor. Isso é bom para volume, mas cria risco de confundir pico concentrado com crescimento estrutural.",
+                "A decisão prática é proteger disponibilidade, preço e ranking dos líderes hoje. Se o ritmo não repetir nas primeiras horas, o resultado de ontem deve ser tratado como pico pontual e não como novo normal.",
+            ]
+        else:
+            condensed_analysis = [
+                "O Mercado Livre não parece ter um problema estrutural claro; a leitura é mais de acomodação do ritmo recente do que perda real de tração. O canal segue saudável porque não depende de um único anúncio para sustentar o resultado.",
+                f"O ponto de atenção é que o volume ficou mais fraco enquanto o valor por pedido segurou melhor. Isso normalmente indica mix mais qualificado ou menos vendas pequenas, não necessariamente queda de demanda.",
+                f"A melhor decisão é observar se hoje o ritmo volta ao normal antes de mexer pesado em campanha. Se a queda continuar, aí sim a investigação deve ir para exposição/ranking dos produtos líderes.",
+            ]
     else:
         condensed_analysis = [
             "A Amazon mostra um dia operacionalmente bom, mas ainda muito dependente de poucos produtos. O crescimento só vira ganho sustentável se os líderes continuarem com Buy Box, estoque FBA e listing saudável.",

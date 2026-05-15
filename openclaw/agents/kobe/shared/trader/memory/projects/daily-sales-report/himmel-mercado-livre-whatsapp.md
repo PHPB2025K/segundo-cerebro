@@ -38,24 +38,36 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 ## Interações
 
-### 2026-05-15 13:11 BRT — Entrada do Kobe no grupo e alinhamento inicial
+### 2026-05-15 12:38–13:13 BRT — Projeção de maio, eficiência ADS e foco contra ruptura
 
-**Participantes:** Pedro Broglio; Cláudio Manrique Junior; menção a responsável da Himmel no grupo.  
+**Participantes:** Cláudio Manrique Junior/Himmel; Pedro Broglio.  
 **Plataforma/conta:** Mercado Livre — Budamix.  
-**Tema:** Projeção/crescimento da conta e entrada dos produtos MDF no plano operacional.
+**Tema:** Projeção de faturamento, ACoS/TACoS, sazonalidade da primeira quinzena, prevenção de rupturas e acompanhamento de novos produtos MDF.
 
 **Contexto registrado:**
-- Pedro respondeu no grupo agradecendo a projeção e sinalizou que a GB já está se organizando para buscar o aumento e, se possível, superar.
-- Pedro citou que produtos de **MDF** devem fortalecer a conta quando começarem a encaixar.
-- Cláudio respondeu reforçando alinhamento e potencial de evolução.
+- Himmel analisou a conta e projetou **+4,6% de faturamento em maio**.
+- Base informada: mês anterior fechou em **R$ 127.545,00**; projeção atual em torno de **R$ 133.362,00** se o ritmo continuar.
+- Himmel classificou o aumento como baixo, mas positivo e indicativo de que a conta está no caminho certo.
+- Métricas de ADS informadas:
+  - mês anterior: **ACoS 10%** e **TACoS 4,3%**;
+  - mês atual até a primeira quinzena: **ACoS 11,3%** e **TACoS 6,0%**;
+  - explicação: primeira quinzena teve datas sazonais; expectativa da Himmel é que a segunda metade do mês tenha baixa de impressões e reduza essas métricas no fechamento.
+- Alerta operacional da Himmel: acompanhar produtos mais vendidos para evitar impacto forte por **ruptura de estoque**.
+- Estratégia atual da Himmel: focar produtos com **maior profundidade de estoque** para manter ritmo.
+- Himmel está acompanhando os **novos produtos MDF** para medir resultados e fazer movimentações necessárias.
+- Pedro respondeu que a GB está se organizando para buscar/superar a projeção e reforçou que os MDF devem fortalecer a conta quando encaixarem.
 
 **Impacto esperado:**
-- Produtos MDF passam a ser contexto importante para planejamento operacional de Mercado Livre e devem aparecer como hipótese positiva em análises de crescimento/escala.
-- Trader deve observar se a entrada/fortalecimento dos MDF gera melhora de faturamento, mix, margem, conversão ou eficiência de ADS no ML.
+- A leitura de maio no ML deve considerar crescimento modesto, mas ainda positivo, com eficiência de ADS pressionada temporariamente pela sazonalidade da primeira quinzena.
+- Ruptura nos produtos mais vendidos vira risco operacional direto para o fechamento do mês.
+- Produtos com estoque profundo e MDF passam a ser os dois eixos de sustentação/escala observados pela Himmel.
+- Yasmin aparece como responsável operacional elogiada pela execução, então análises para ela devem reforçar alertas de estoque e priorização prática de produtos.
 
 **Como validar nos dados:**
-- Separar desempenho de SKUs MDF no ML após início do push.
-- Comparar vendas, conversão, ADS spend, ROAS/ACOS, exposição e estoque antes/depois.
-- Verificar se MDF substitui ou complementa produtos importados em ruptura.
+- Conferir se o faturamento projetado de **R$ 133,3k** se sustenta no ritmo diário do ML.
+- Monitorar ACoS/TACoS na segunda quinzena para validar se a redução esperada realmente ocorre.
+- Cruzar Top Produtos ML com estoque/cobertura para identificar risco de ruptura antes de afetar vendas.
+- Separar performance de produtos com estoque profundo vs produtos em risco de ruptura.
+- Acompanhar SKUs MDF no ML: vendas, conversão, impressões, investimento, ROAS/ACoS, margem e estoque.
 
-**Status:** aberto.
+**Status:** aberto — usar nos próximos Daily Sales Reports/diagnósticos de Mercado Livre até o fechamento de maio confirmar ou refutar a projeção.

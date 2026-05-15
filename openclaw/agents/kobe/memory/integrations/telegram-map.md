@@ -25,7 +25,7 @@ tags:
 | 4 | 🚢 Importação | Skiway, Open Trade, embarques, documentos |
 | 6 | 💻 Projetos SaaS | Bidspark, SimulImport, Canguu, Atlas Finance |
 | 7 | 💰 Financeiro | Extratos, contas a pagar/receber, fluxo de caixa |
-| 8 | 🚨 Urgente | Alertas críticos, pedidos em atraso, problemas |
+| 8 | 🚨 Alertas | Alertas consolidados, watchdogs, riscos técnicos e problemas críticos |
 | 9 | 📣 Marketing | Instagram, conteúdo, campanhas, redes sociais |
 | 10 | 👥 RH | Equipe, analistas, contratações |
 | 11 | 🛍️ Compras | Fornecedores, cotações, pedidos de compra |
@@ -43,5 +43,6 @@ to: -1003730816228:topic:{thread_id}
 | Cron | Thread ID | Tópico |
 |---|---|---|
 | Daily Briefing | 2 | 📋 Daily Briefing |
-| Inbox Cleanup | 13 | ⚙️ Operacional & Sistema |
-| GitHub Backup | 13 | ⚙️ Operacional & Sistema |
+| Inbox Cleanup | silencioso | Consolidado no resumo diário de Alertas |
+| GitHub Backup | silencioso | Consolidado no resumo diário de Alertas |
+| Resumo Diário — Alertas Watchdogs | 8 | 🚨 Alertas |

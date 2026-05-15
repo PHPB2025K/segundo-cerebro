@@ -34,7 +34,9 @@ A análise precisa responder:
 - Não incluir Atacado/Bling.
 - Não usar frases genéricas como “acompanhar”, “monitorar”, “usar de forma complementar” sem evidência.
 - A saída deve ser densa, curta e acionável.
-- Escrever para ser legível no celular: bullets curtos.
+- A seção de análise deve manter o formato aprovado do Slack Writer: título da conta + **um parágrafo curto, condensado e profundo**.
+- Não quebrar a análise em muitos bullets. Bullets são permitidos nas prioridades, não na análise das contas.
+- Cada parágrafo de análise deve ter no máximo 2 frases, mas precisa conter raciocínio real: tese, causa provável, risco e consequência operacional.
 
 ## Saída obrigatória
 
@@ -42,15 +44,10 @@ Responda somente JSON válido, sem markdown:
 
 {
   "analysis_lines": [
-    "⚫ *Consolidado (3 contas):*",
-    "• ...",
-    "• ...",
-    "🟠 *Budamix Store (Shopee 1):*",
-    "• ...",
-    "🟠 *Budamix Oficial (Shopee 2):*",
-    "• ...",
-    "🟠 *Budamix Shop (Shopee 3):*",
-    "• ..."
+    "⚫ *Consolidado (3 contas):* [parágrafo curto, denso e interpretativo da Shopee consolidada]",
+    "🟠 *Budamix Store (Shopee 1):* [parágrafo curto, denso e interpretativo da conta]",
+    "🟠 *Budamix Oficial (Shopee 2):* [parágrafo curto, denso e interpretativo da conta]",
+    "🟠 *Budamix Shop (Shopee 3):* [parágrafo curto, denso e interpretativo da conta]"
   ],
   "priority_lines": [
     "• ...",
@@ -70,4 +67,6 @@ A saída é ruim se:
 - não apontar tese consolidada;
 - não separar o papel das três contas;
 - não orientar o Lucas sobre o que fazer e o que evitar;
-- parecer relatório de BI em vez de raciocínio operacional.
+- parecer relatório de BI em vez de raciocínio operacional;
+- transformar a análise em lista longa de bullets;
+- deixar a mensagem escaneável, mas sem densidade de raciocínio.

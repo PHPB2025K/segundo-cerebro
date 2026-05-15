@@ -1,18 +1,93 @@
 {
-  "layer": "07-qa",
-  "recipient": "lucas",
-  "date": "2026-05-12",
-  "verdict": "APPROVED_WITH_REMARKS",
-  "checks_passed": 1,
-  "checks_total": 1,
-  "blockers": [],
-  "remarks": [
-    "Artefatos gerados por fallback deterministico (sem LLM).",
-    "Dados extraidos diretamente do data package v1.0.",
-    "Data Readiness: DADOS_OK."
-  ],
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "1 erro Crítico identificado no Gate 9: a mensagem afirma que 'a Budamix Store responde por 64% do GMV', mas o cálculo direto com os dados brutos (Store GMV R$ 2.813,88 / GMV total R$ 5.378,44) resulta em 52,3% — o valor 64% corresponde à participação de pedidos (76/118 = 64,4%), não ao GMV. O erro originou-se no 06b-shopee-consolidator e foi fielmente reproduzido pela Slack Writer, o que não exime o envio do risco de induzir Lucas a erro sobre o peso financeiro real da conta principal. Adicionalmente, 4 Menores de padrão numérico no Gate 11 (percentuais sem 1 casa decimal e valor monetário sem casas decimais), todos propagados do 06b. Regra de agregação aplicada: 1+ Crítico → BLOQUEADO.",
   "send_allowed": false,
   "send_real_allowed": false,
-  "fallback": true,
-  "llm_used": false
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "RESSALVA",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "FALHA",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "RESSALVA"
+  },
+  "contagem_severidade": {
+    "criticos": 1,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 4,
+    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Crítico",
+      "gate": "9 — Consistência entre camadas / dado bruto vs pacote validado",
+      "texto_atual": "a Budamix Store responde por 64% do GMV e 76% dos cancelamentos",
+      "texto_esperado": "a Budamix Store responde por 52,3% do GMV e 76,9% dos cancelamentos — ou, alternativamente, corrigir para 64% dos pedidos (76/118), que é o número real ao qual 64% corresponde",
+      "estado_atual": "O 06b-shopee-consolidator afirmou '64% do GMV'; Slack Writer reproduziu fielmente. Porém 64% é a participação de PEDIDOS (76/118 = 64,4%), não de GMV. GMV da Store: R$ 2.813,88 / GMV total R$ 5.378,44 = 52,3%. A métrica declarada (GMV) e o número apresentado (64%) são inconsistentes — o número pertence a outra métrica (pedidos).",
+      "estado_esperado": "Percentual correto de GMV (52,3%) ou, se a intenção era citar pedidos, identificação correta da métrica como participação de pedidos (64%). A confusão entre as duas métricas é factualmente errada e pode induzir Lucas a superestimar o peso financeiro da Budamix Store no canal.",
+      "regra_violada": "Gate 9 — dado bruto deve bater com pacote validado; classificação de severidade — 'dado errado → Crítico, bloqueia envio sozinho'",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Menor",
+      "gate": "11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "R$ 56,38 vs R$ 37 da Store",
+      "texto_esperado": "R$ 56,38 vs R$ 37,02 da Store (ou R$ 37,00 como aproximação formatada com decimais)",
+      "estado_atual": "valor monetário sem casas decimais; ticket_medio da Store nos dados brutos é R$ 37,02",
+      "estado_esperado": "valores monetários com 2 casas decimais conforme padrão R$ 1.234,56",
+      "regra_violada": "Gate 11 — padrão monetário R$ 1.234,56",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "declínio ativo em todas as janelas, incluindo 7d (-26%)",
+      "texto_esperado": "-26,0%",
+      "estado_atual": "percentual sem 1 casa decimal",
+      "estado_esperado": "percentuais com vírgula e 1 casa decimal conforme padrão obrigatório",
+      "regra_violada": "Gate 11 — percentuais com vírgula e 1 casa quando aparecerem",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "queda de -45% vs 60d",
+      "texto_esperado": "-45,2% vs 60d (valor exato dos dados brutos: orders_vs_60d_pct = -45.2)",
+      "estado_atual": "percentual sem decimal e com imprecisão em relação ao dado bruto; -45% oculta a casa decimal significativa de -45,2%",
+      "estado_esperado": "percentual com 1 casa decimal e fidelidade ao dado bruto quando valor é mencionado na análise",
+      "regra_violada": "Gate 11 — percentuais com vírgula e 1 casa quando aparecerem",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "-51% vs mesmo dia da semana",
+      "texto_esperado": "-51,0% vs mesmo dia da semana",
+      "estado_atual": "percentual sem 1 casa decimal",
+      "estado_esperado": "percentuais com vírgula e 1 casa decimal conforme padrão obrigatório",
+      "regra_violada": "Gate 11 — percentuais com vírgula e 1 casa quando aparecerem",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [
+    "Corrigir '64% do GMV' no 06b-shopee-consolidator e na mensagem Slack: o valor correto de participação no GMV da Budamix Store é 52,3% (R$ 2.813,88 / R$ 5.378,44). Se a intenção era citar participação de pedidos, o texto deve ser corrigido para '64% dos pedidos (76 de 118)'. A ambiguidade métrica não pode ir ao Slack — Lucas pode tomar decisões com base em uma representação incorreta do peso financeiro da conta."
+  ],
+  "ressalvas_memoria_interna": [
+    "Erro de origem no 06b-shopee-consolidator: '64% do GMV' foi produzido pelo 06b com a métrica errada (GMV) para o número correto de outra métrica (pedidos). Recomendação para o próximo ciclo: adicionar validação cruzada automática no 06b para checar se percentuais de participação declarados batem com os dados brutos antes de passar para a Slack Writer.",
+    "Os 4 Menores de Gate 11 (R$ 37 sem decimais; -26%, -45%, -51% sem 1 casa) originaram-se no 06b e foram fielmente reproduzidos pela Slack Writer. A Slack Writer não introduziu desvios de formatação próprios — o problema está nos formatos que o 06b entrega. Considerar incluir normalização de formato numérico como etapa do 06b ou da Slack Writer para o próximo ciclo."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "Gate 6 — A Slack Writer removeu as aspas tipográficas em 'estabilização saudável' (06b usou aspas simples; Slack omitiu). Diferença cosmética sem impacto analítico ou de sentido.",
+    "Gate 11 — '76% dos cancelamentos' na análise: o valor exato é 76,9% (10/13). Arredondado para 76% em vez de 77% — discrepância de 1 ponto que não gera confusão operacional mas é levemente impreciso. Originou-se no 06b.",
+    "Gate 10 — Os 4 blocos de análise das contas são extensos para uma mensagem operacional de Slack. Não viola regra objetiva (profundidade vem do 06b autorizado), mas o volume pode reduzir a leitura efetiva. Sinal para avaliar limitação de comprimento no 06b em ciclos futuros."
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

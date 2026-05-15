@@ -728,3 +728,6 @@ _Consolidação Profunda executada em 2026-05-15 04:00 BRT._
 **Lição:** Para Shopee multi-conta, a análise consolidada deve comparar complementaridade, canibalização, mix, risco e consequência operacional entre contas. Soma de pedidos/GMV é só insumo; a tese precisa vir de camada analítica própria.
 **Expira:** 2026-06-14
 
+### [TÁTICA] Daily Sales shadow multi-destinatário deve quebrar por destinatário quando uma camada trava (2026-05-15)
+**Lição:** Em shadow de promoção do Daily Sales Report com Lucas/Yasmin/Leonardo, se uma camada LLM travar em um destinatário, não deixar o lote inteiro preso. Encerrar a execução parcial, preservar os artefatos já válidos e retomar por destinatário com timeout isolado para fechar o comparativo sem perder a sessão toda.
+**Expira:** 2026-06-14

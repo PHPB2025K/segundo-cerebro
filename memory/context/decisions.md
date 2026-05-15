@@ -362,3 +362,8 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Contexto vindo da Himmel/WhatsApp é hipótese operacional a validar com dados, não fato causal isolado.
 - Quando a ingestão atualizar memória relevante, deve haver persistência rápida em GitHub, sem depender apenas do fechamento técnico diário.
 
+## 2026-05-15 — Daily Sales Report Slack / promoção LLM por fases na mesma sessão
+
+- Pedro encurtou o plano original: a promoção de Slack Writer e QA Gate para LLM não precisa mais esperar 2–3 dias de shadow; a validação deve ser comprimida e concluída na mesma sessão com testes comparativos lado a lado.
+- Fases 1, 2 e 3 foram autorizadas para execução sequencial sem novos checkpoints formais entre elas.
+- O checkpoint inegociável permanece na Fase 4: a decisão de promover para o caminho principal continua sendo exclusivamente do Pedro, baseada no comparativo final.

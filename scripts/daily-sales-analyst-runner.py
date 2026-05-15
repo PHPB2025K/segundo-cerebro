@@ -1056,6 +1056,8 @@ def run(date_str, mode, recipients, config, package_path=None,
 
         recipient_llm_used = False
         llm_layers_detail = {}
+        llm_strict_failure = False
+        llm_strict_blockers = []
 
         if llm_active and not is_blocked:
             # LLM execution path
@@ -1081,31 +1083,37 @@ def run(date_str, mode, recipients, config, package_path=None,
                 elif lr.get("fallback"):
                     fallback_layers.append(output_name)
 
-            # Generate fallback for layers that failed LLM
-            for layer_def in LAYER_DEFS:
-                if layer_def.get("only_recipients") and r not in layer_def["only_recipients"]:
-                    continue
-                output_name = layer_def.get("output_name", f"{layer_def['num']}-{layer_def['name']}")
-                lr = llm_results.get(output_name, {})
-                if lr.get("fallback") and not Path(lr.get("path", "")).exists():
-                    # Generate deterministic fallback
-                    if layer_def["num"] == "01":
-                        paths["01-estrategica"] = gen_layer01_estrategica(package, run_dir, r, False, "")
-                    elif layer_def["num"] == "02":
-                        paths["02-tatica"] = gen_layer02_tatica(package, run_dir, r, False, "")
-                    elif layer_def["num"] == "03":
-                        paths["03-operacional"] = gen_layer03_operacional(package, run_dir, r, False, "")
-                    elif layer_def["num"] == "04":
-                        paths["04-granular"] = gen_layer04_granular(package, run_dir, r, False, "")
-                    elif layer_def["num"] == "05":
-                        paths["05-condensadora"] = gen_layer05_condensadora(package, run_dir, r, False, "")
-                    elif layer_def["num"] == "06":
-                        paths["06-slack-preview"] = gen_layer06_slack_preview(package, run_dir, r, False, "")
-                    elif layer_def["num"] == "07":
-                        paths["07-qa"] = gen_layer07_qa(package, run_dir, r, False, "", dr_status)
-
             if fallback_layers:
                 print(f"  Fallback layers: {', '.join(fallback_layers)}")
+                if not config.get("fallback_deterministic_allowed", True):
+                    llm_strict_failure = True
+                    llm_strict_blockers = [
+                        f"LLM layer failed and deterministic fallback is disabled: {', '.join(fallback_layers)}"
+                    ]
+                    print("  BLOCKED: deterministic fallback disabled; recipient not approved.")
+                else:
+                    # Generate fallback for layers that failed LLM
+                    for layer_def in LAYER_DEFS:
+                        if layer_def.get("only_recipients") and r not in layer_def["only_recipients"]:
+                            continue
+                        output_name = layer_def.get("output_name", f"{layer_def['num']}-{layer_def['name']}")
+                        lr = llm_results.get(output_name, {})
+                        if lr.get("fallback") and not Path(lr.get("path", "")).exists():
+                            # Generate deterministic fallback
+                            if layer_def["num"] == "01":
+                                paths["01-estrategica"] = gen_layer01_estrategica(package, run_dir, r, False, "")
+                            elif layer_def["num"] == "02":
+                                paths["02-tatica"] = gen_layer02_tatica(package, run_dir, r, False, "")
+                            elif layer_def["num"] == "03":
+                                paths["03-operacional"] = gen_layer03_operacional(package, run_dir, r, False, "")
+                            elif layer_def["num"] == "04":
+                                paths["04-granular"] = gen_layer04_granular(package, run_dir, r, False, "")
+                            elif layer_def["num"] == "05":
+                                paths["05-condensadora"] = gen_layer05_condensadora(package, run_dir, r, False, "")
+                            elif layer_def["num"] == "06":
+                                paths["06-slack-preview"] = gen_layer06_slack_preview(package, run_dir, r, False, "")
+                            elif layer_def["num"] == "07":
+                                paths["07-qa"] = gen_layer07_qa(package, run_dir, r, False, "", dr_status)
 
         else:
             # Deterministic fallback path
@@ -1124,6 +1132,11 @@ def run(date_str, mode, recipients, config, package_path=None,
             qa_verdict = "BLOCKED"
             blockers = [block_reason]
             warnings = ["Artefatos placeholder deterministicos gerados para auditoria."]
+        elif llm_strict_failure:
+            status = "BLOCKED"
+            qa_verdict = "BLOCKED"
+            blockers = llm_strict_blockers
+            warnings = ["LLM obrigatório: fallback determinístico não é caminho aprovado."]
         else:
             status = "APPROVED_WITH_REMARKS"
             qa_verdict = "APPROVED_WITH_REMARKS"

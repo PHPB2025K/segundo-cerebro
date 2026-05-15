@@ -12,6 +12,7 @@ Himmel é o agente responsável por gerenciar campanhas de ADS nas plataformas S
 - O Trader deve considerar contexto de ADS ao analisar variações de venda.
 - Quando houver mudança significativa em vendas, verificar se houve alteração de campanha.
 - Pontos relevantes de ADS devem ser registrados na análise diária.
+- Para Mercado Livre, consultar também a memória dedicada do grupo WhatsApp `himmel-mercado-livre-whatsapp.md`, que registra interações operacionais contínuas com a Himmel.
 
 ## Amazon
 - ADS da Amazon é gerido por **Pedro** diretamente, não por Himmel.

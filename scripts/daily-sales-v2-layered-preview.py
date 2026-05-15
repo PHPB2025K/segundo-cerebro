@@ -57,6 +57,9 @@ def slugify(text: str) -> str:
 
 
 def product_name(product: dict[str, Any]) -> str:
+    display_name = (product.get("display_name") or "").strip()
+    if display_name:
+        return display_name
     title = (product.get("title") or "").strip()
     if title:
         title = re.sub(r"\s+", " ", title)
@@ -69,19 +72,35 @@ def product_name(product: dict[str, Any]) -> str:
     return "Produto sem identidade confiável"
 
 
+def package_accounts(package: dict[str, Any]) -> dict[str, Any]:
+    """Return account mapping across package schema versions.
+
+    v1 used `accounts`; v1.1 from the data builder uses `platforms` keyed by
+    account slug. The layered preview must stay compatible with both because
+    the report handoff package is v1.1.
+    """
+    return package.get("accounts") or package.get("platforms") or {}
+
+
 def collect_top_products(package: dict[str, Any], account_slugs: list[str]) -> list[dict[str, Any]]:
+    accounts = package_accounts(package)
     grouped: dict[str, dict[str, Any]] = {}
     for slug in account_slugs:
-        account = package["accounts"][slug]
+        account = accounts[slug]
         for product in account["metrics"].get("top_products", []):
             name = product_name(product)
             key = name.lower()
             bucket = grouped.setdefault(key, {
                 "name": name,
+                "orders": 0,
                 "quantity": 0,
                 "platform_item_ids": set(),
                 "skus": set(),
             })
+            # Pedro corrigiu em 2026-05-15: Top Produtos do Slack deve ranquear
+            # por variação vendável/SKU pai e por pedidos, não por família nem
+            # por unidades. Quantidade fica só como metadado interno.
+            bucket["orders"] += int(product.get("orders") or product.get("quantity") or 0)
             bucket["quantity"] += int(product.get("quantity") or 0)
             if product.get("platform_item_id"):
                 bucket["platform_item_ids"].add(str(product["platform_item_id"]))
@@ -91,11 +110,12 @@ def collect_top_products(package: dict[str, Any], account_slugs: list[str]) -> l
     for item in grouped.values():
         out.append({
             "name": item["name"],
+            "orders": item["orders"],
             "quantity": item["quantity"],
             "platform_item_ids": sorted(item["platform_item_ids"]),
             "skus_internal": sorted(item["skus"]),
         })
-    return sorted(out, key=lambda x: x["quantity"], reverse=True)[:10]
+    return sorted(out, key=lambda x: (x["orders"], x["quantity"]), reverse=True)[:10]
 
 
 def account_line(account: dict[str, Any]) -> str:
@@ -110,6 +130,7 @@ def account_line(account: dict[str, Any]) -> str:
 
 
 def build_operational(package: dict[str, Any], recipient: str) -> str:
+    accounts = package_accounts(package)
     cfg = package["recipients"][recipient]
     platform_label = PLATFORM_LABELS[cfg["platform"]]
     lines = [
@@ -127,13 +148,13 @@ def build_operational(package: dict[str, Any], recipient: str) -> str:
         "## Raio-X por unidade operacional",
     ]
     for slug in cfg["accounts"]:
-        lines.append(account_line(package["accounts"][slug]))
+        lines.append(account_line(accounts[slug]))
     lines.extend([
         "",
         "## O que precisa ser investigado pela Granular",
     ])
     for slug in cfg["accounts"]:
-        acc = package["accounts"][slug]
+        acc = accounts[slug]
         flags = acc.get("quality_flags", [])
         if flags:
             for flag in flags:
@@ -149,10 +170,11 @@ def build_operational(package: dict[str, Any], recipient: str) -> str:
 
 
 def build_granular(package: dict[str, Any], recipient: str) -> dict[str, Any]:
+    accounts = package_accounts(package)
     cfg = package["recipients"][recipient]
     checks = []
     for slug in cfg["accounts"]:
-        acc = package["accounts"][slug]
+        acc = accounts[slug]
         rec = acc["reconciliation"]
         checks.append({
             "account": acc["account_name"],
@@ -188,10 +210,17 @@ def insight_for_account(account: dict[str, Any]) -> str:
     orders_delta = h.get("orders_vs_30d_pct")
     gmv_delta = h.get("gmv_vs_30d_pct")
     conc = m.get("top3_concentration", 0)
+    top_products = m.get("top_products") or []
+    leader = product_name(top_products[0]) if top_products else "produto líder"
+    leader_orders = int(top_products[0].get("orders") or 0) if top_products else 0
+    runner = product_name(top_products[1]) if len(top_products) > 1 else "segundo produto"
+    runner_orders = int(top_products[1].get("orders") or 0) if len(top_products) > 1 else 0
     if orders_delta is not None and orders_delta <= -20:
-        return f"{name} perdeu tração contra a média de 30 dias ({pct(orders_delta)} em pedidos e {pct(gmv_delta)} em GMV), então a leitura principal é queda de exposição/demanda antes de mexer em margem."
+        return f"{name} perdeu tração contra a média de 30 dias ({pct(orders_delta)} em pedidos e {pct(gmv_delta)} em GMV), então a leitura principal é queda de exposição/demanda antes de mexer em margem; o primeiro teste é checar ranking e tráfego de {leader}."
     if orders_delta is not None and orders_delta >= 20:
-        return f"{name} rodou acima do patamar recente ({pct(orders_delta)} em pedidos e {pct(gmv_delta)} em GMV), mas precisa validar se o ganho veio de tráfego saudável ou concentração pontual de mix."
+        if leader_orders and runner_orders:
+            return f"{name} rodou acima do patamar recente ({pct(orders_delta)} em pedidos e {pct(gmv_delta)} em GMV) porque o ganho ficou concentrado nos líderes: {leader} fez {leader_orders} pedidos e {runner} fez {runner_orders}; o risco é tratar o pico como crescimento estrutural sem confirmar repetição nas primeiras horas de hoje."
+        return f"{name} rodou acima do patamar recente ({pct(orders_delta)} em pedidos e {pct(gmv_delta)} em GMV) porque houve pico real de demanda; o risco é tratar o dia como novo normal antes de confirmar repetição nas primeiras horas de hoje."
     if conc >= 65:
         return f"{name} está dependente dos produtos líderes: top 3 concentram {str(conc).replace('.', ',')}% das unidades, o que aumenta risco se anúncio, estoque ou ranking desses itens oscilar."
     ticket = brl(m.get("ticket_medio", 0))
@@ -200,20 +229,26 @@ def insight_for_account(account: dict[str, Any]) -> str:
 
 
 def build_condenser(package: dict[str, Any], recipient: str, granular: dict[str, Any]) -> dict[str, Any]:
+    accounts = package_accounts(package)
     cfg = package["recipients"][recipient]
     insights = []
     for slug in cfg["accounts"]:
-        insights.append(insight_for_account(package["accounts"][slug]))
+        insights.append(insight_for_account(accounts[slug]))
     # Shopee pode ter 3 contas; limitar forte a 3 insights finais.
     insights = insights[:3]
     priorities = []
     if granular["blocked_for_slack"]:
         priorities.append("Não enviar Slack real antes de resolver os bloqueios críticos apontados pela Granular/QA.")
     for slug in cfg["accounts"]:
-        acc = package["accounts"][slug]
+        acc = accounts[slug]
         h = acc["historical"]["changes"]
+        top_products = acc["metrics"].get("top_products") or []
+        leader = product_name(top_products[0]) if top_products else "produto líder"
+        runner = product_name(top_products[1]) if len(top_products) > 1 else "segundo produto"
         if h.get("orders_vs_30d_pct") is not None and h["orders_vs_30d_pct"] <= -20:
             priorities.append(f"Investigar causa da queda de pedidos em {acc['account_name']} ({pct(h['orders_vs_30d_pct'])} vs 30d): verificar se houve perda de tráfego, ruptura de estoque ou mudança de ranking antes de qualquer ajuste de preço.")
+        elif h.get("orders_vs_30d_pct") is not None and h["orders_vs_30d_pct"] >= 20:
+            priorities.append(f"Proteger o pico de Mercado Livre validando estoque, preço e posição dos anúncios de {leader} e {runner}; se até 12h BRT o ritmo não repetir o ganho de ontem, alinhar com Himmel se foi pico orgânico ou empurrão de tráfego/campanha.")
         elif acc["metrics"].get("top3_concentration", 0) >= 65:
             priorities.append(f"Validar estoque, ranking e campanha dos produtos líderes em {acc['account_name']}; concentração alta vira risco operacional se um item cair.")
     if not priorities:
@@ -246,7 +281,7 @@ def build_slack_preview(package: dict[str, Any], recipient: str, condenser: dict
         f"🏆 TOP PRODUTOS {platform_label}",
     ]
     for i, product in enumerate(top_products[:5], 1):
-        lines.append(f"- {i}. {product['name']} — {product['quantity']} un.")
+        lines.append(f"- {i}. {product['name']} — {product['orders']} pedidos")
     if not top_products:
         lines.append("- Ranking bloqueado: nenhum produto com identidade confiável no pacote.")
     lines.extend([
@@ -330,7 +365,8 @@ def qa_gate(slack_text: str, granular: dict[str, Any], condenser: dict[str, Any]
         errors.append("Condensadora passou de 3 insights finais.")
 
     # --- send_real_allowed ---
-    if package["pipeline"].get("send_real_allowed") is not False:
+    pipeline = package.get("pipeline") or {"send_real_allowed": False}
+    if pipeline.get("send_real_allowed") is not False:
         errors.append("Package preview não está explicitamente travado contra envio real.")
 
     # --- Priority count ---

@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-15 18:43 BRT — tópico Gestão de Funcionários roteado_
+_Atualizado: 2026-05-15 18:46 BRT — tópico Alertas roteado_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -24,7 +24,6 @@ _Atualizado: 2026-05-15 18:43 BRT — tópico Gestão de Funcionários roteado_
 
 ## 🚨 URGENTE — Operação / Dados
 
-- [ ] **Telegram Alertas — capturar thread ID real do tópico Alertas**: Pedro precisa enviar uma mensagem simples dentro do tópico Alertas (ex.: “teste alertas”) para o bot capturar o `message_thread_id`. Até lá, não usar thread 8: ele é o tópico Urgente. Depois de capturar, remapear watchdogs/guards/audits/resumo diário para o ID correto e reativar delivery/failure alerts técnicos.
 - [ ] **Estoque Budamix — retomar deploy em produção** (pause em 05/05 22h aguardando decisão de credencial GitHub na VPS). PR1+PR2+PR3a no repo `PHPB2025K/estoque-budamix` mas produção ainda roda build de 13/04. Backup feito em `/var/www/estoque-budamix.backup-20260505-2143/`, `.env` preservado, plano de remediação aprovado com 5 salvaguardas. Bloqueado no Bloco 4 (`git fetch` falhou com 403). Recomendação: Deploy Key SSH read-only no repo. Ver [[memory/sessions/2026-05-05]] Session Extract estoque-budamix + memory local `estoque_budamix_deploy_checkpoint.md`.
 - [ ] **Estoque Budamix — POT1BB duplicado na aba ESTOQUE da planilha de Precificação** (`1u74a...`): L8 com Trava est=24, L9 sem Trava est=2, mesmo SKU. `find()` sempre pega L8, baixas em "sem Trava" caem na linha errada. Solução proposta: renomear L9 → `POT1BB_ST`. Aguardando OK do Pedro pra aplicar via gspread.
 - [ ] **Estoque Budamix — lista de aliases editável em `/tmp/pr3-cadastro-cleanup.md`** (5 famílias: POT1BB, IMB501, YW, KIT, série 914). Pedro precisa preencher os termos coloquiais reais da equipe (anilão? montado? caneca bola?) e devolver pra aplicar.

@@ -31,7 +31,7 @@ tags:
 | 11 | 🛍️ Compras | Fornecedores, cotações, pedidos de compra |
 | 12 | 📦 Estoque & Expedição | Níveis de estoque, envios, logística nacional |
 | 13 | ⚙️ Operacional & Sistema | Crons, integrações, VPS, backups, skills |
-| PENDENTE | 🚨 Alertas | Resumo diário consolidado de watchdogs/monitores técnicos — aguarda captura do thread_id real |
+| 10204 | 🚨 Alertas | Resumo diário consolidado de watchdogs/monitores técnicos, watchdogs, guards, audits e alertas não urgentes |
 | 10222 | Daily Sales Report - SLACK | Desenvolvimento, previews, alertas, QA, avisos e qualquer comunicação sobre o Daily Sales Report dos funcionários no Slack |
 | 10469 | Gestão de Funcionários | Assuntos de gestão específica de funcionários da empresa e rotina semanal `✅ Rotina semanal de Gestão de Funcionários` |
 
@@ -48,7 +48,7 @@ to: -1003730816228:topic:{thread_id}
 | Daily Briefing | 2 | 📋 Daily Briefing |
 | Inbox Cleanup | silencioso | Consolidado no resumo diário de Alertas |
 | GitHub Backup | silencioso | Consolidado no resumo diário de Alertas |
-| Resumo Diário — Alertas Watchdogs | PENDENTE | Aguardando thread_id real do tópico Alertas |
+| Resumo Diário — Alertas Watchdogs | 10204 | 🚨 Alertas |
 | Daily Sales Report — Slack Funcionários | 10222 | Daily Sales Report - SLACK |
 | Daily Sales v2 — Marketplace Rules Watch Refresh | 10222 | Daily Sales Report - SLACK |
 | Daily Sales v2 — Consolidação Semanal/Mensal Trader | 10222 | Daily Sales Report - SLACK |

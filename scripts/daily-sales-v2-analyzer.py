@@ -306,8 +306,8 @@ PRODUCT_VARIATION_MAP = {
 }
 
 SHORT_DISPLAY_NAMES = {
-    "CK4742": "Jarra Medidora Vidro 500ml",
-    "XCP002": "Kit 6 Xícaras Paris 170ml",
+    "CK4742": "Jarra Medidora de Vidro 500ml",
+    "XCP002": "Kit 6 Xícaras Porcelana Paris 170ml",
     "SPC002": "Suporte Controle Gamer",
     "CTL002": "Kit 6 Canecas Tulipa 250ml",
     "TL250P": "Kit 6 Canecas Tulipa 250ml",

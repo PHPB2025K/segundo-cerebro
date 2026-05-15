@@ -6,25 +6,26 @@ DAILY SALES REPORT — AMAZON — 13/05/2026 (Ontem)
 
 📊 VISÃO AMAZON
 - Faturamento: R$ 2.258,49
-- Pedidos: 46
+- Pedidos: 46 pedidos
 - Ticket médio: R$ 49,10
 - Cancelamentos: 2
 - Fulfillment: 100% FBA
 
 🏆 TOP PRODUTOS AMAZON
-- Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas — 13 unidades
-- Conjunto de 5 Potes de Vidro Redondos (vermelho) — 12 unidades
-- Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio — 8 unidades
-- Kit 6 Canecas de Porcelana Tulipa 250ml Preto — 6 unidades
-- Suporte de Controle PS5/PS4/Xbox Organizador de Mesa Gamer 2 em 1 — 6 unidades
+- Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas — 13 pedidos
+- Conjunto de 5 Potes de Vidro Redondos - Ideal para Alimentos e Refeições (vermelho) — 12 pedidos
+- Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio — 8 pedidos
+- Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável (preto) — 6 pedidos
+- Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto - Organizador de Mesa Gamer 2 em 1 - Budamix — 6 pedidos
 
 🔍 ANÁLISE DA CONTA
-- O dia foi genuinamente forte em volume e GMV, mas a leitura positiva é condicionada — a causa do spike não foi identificada e Buy Box e cobertura FBA dos ASINs líderes não foram validados; tratar hoje como novo patamar antes dessas checagens é o risco exato que as regras da conta buscam evitar.
-- O mix não ficou mais distribuído do que o ranking de ASINs sugere — duas famílias de produto (Jarra Medidora e família Potes em quatro variações de cor) sustentam 53% do volume de itens do dia; a cauda existe mas é composta majoritariamente por variações da família líder, não por expansão real de base.
+- O spike é real e consistente em todas as janelas históricas — mas a leitura segura termina aí. Buy Box e cobertura FBA nos ASINs líderes ainda não foram validados, e o ciclo de confirmação de patamar só pode avançar depois dessa checagem. Resultado excepcional sobre operação não validada é contexto favorável, não conclusão.
+- Não é um pico puro de volume: o ticket subiu junto com o volume — e a distribuição ao longo de 19 das 24 horas, sem concentração em nenhuma janela curta, é o dado que diferencia evento datado de exposição orgânica sustentada. Se o resultado se sustentar nos próximos dias, a origem é estrutural, não pontual — e essa distinção muda o que vale monitorar.
+- A família Potes de Vidro rodou com 4 variantes ativas, mas a assimetria de volume é 4x entre a variante vermelha e a preta — a saúde operacional da família inteira depende de um único ASIN âncora. Se Buy Box ou FBA dele oscilar, o volume da família colapsa desproporcionalmente.
 
 🎯 PRIORIDADES DO DIA
-- Leonardo: checar Buy Box e cobertura de estoque FBA da Jarra Medidora e da família Potes de Vidro, que juntos respondem por mais da metade do volume do dia. Sem essa validação, qualquer decisão sobre ADS fica bloqueada pelas regras da conta — escalar tráfego pago sem Buy Box estável nos líderes amplifica risco em vez de oportunidade. Confirmar por: Buy Box ≥ 85% nos dois produtos líderes com FBA sem alerta de estoque = pré-requisitos atendidos e conversa sobre ADS pode avançar após confirmação de volume por 2 ciclos. Abaixo disso, ADS pausa independentemente do resultado de hoje. Escalar se: Buy Box instável ou FBA com risco de ruptura nos líderes → sinalizar para Pedro antes de qualquer decisão de tráfego pago.
-- Leonardo: identificar e registrar a causa do spike de ontem — promoção ativa, campanha ADS, mudança de listing ou boost algorítmico. Sem causa identificada, qualquer normalização de volume nos próximos dias fica sem âncora interpretativa — retorno ao baseline pode ser lido erroneamente como queda se hoje for tomado como nova referência. Confirmar por: causa documentada com data de início e escopo. Se promoção pontual: normalização esperada, não é alerta. Se orgânico ou boost de listing: acompanhar por 2 ciclos para classificar.
+- Leonardo: verificar Buy Box da Jarra Medidora e da variante vermelha dos Potes de Vidro — são os ASINs líderes e o âncora da família; a tese de patamar só avança com Buy Box confirmado nesses produtos. Buy Box acima de 85% nos dois confirma que a operação está apta para avançar no ciclo. Escalar para Pedro se Buy Box estiver abaixo de 85% em qualquer um dos dois — nesse caso resolve a fragilidade operacional antes de qualquer outra decisão.
+- Leonardo: verificar cobertura FBA e fila de reposição dos produtos de maior volume (Jarra Medidora e Potes de Vidro vermelho) — 100% da operação é FBA e ruptura nos líderes eliminaria fração desproporcional do resultado. Cobertura intacta mantém a hipótese de patamar aberta. Escalar ação imediata de reposição se houver alerta de estoque crítico nesses ASINs.
 
 Dia analisado: 13/05/2026 — 00:00–23:59 BRT
 ```
@@ -33,21 +34,19 @@ Dia analisado: 13/05/2026 — 00:00–23:59 BRT
 
 ### Respeito de bloqueios
 
-- Sem bloqueios formais recebidos da Granular/Condensadora (bloqueios_para_slack vazio; risco de identificação classificado como baixo).
-- Tratamento aplicado ao item "Hipótese sobre Suporte Gamer": produto aparece no Top Produtos com título real (ranking seguro, sem bloqueio), mas qualquer afirmação analítica sobre ele foi omitida da seção ANÁLISE DA CONTA conforme instrução explícita da Condensadora (confiança insuficiente por ausência de histórico).
-- ASINs específicos não aparecem na mensagem final (instrução da Condensadora: "desnecessariamente granulares"; risco de identificação baixo, títulos suficientemente discriminantes).
-- SKUs crus não aparecem.
+- Sem bloqueios recebidos. A Granular retornou risco de identificação nível baixo, sem bloqueios para Slack. Nenhum item foi marcado como bloqueado pela Condensadora.
 
 ---
 
 ### Decisões de formatação
 
-- Remoção de metadados internos (`— base: Tática + Granular`, `— base: Granular + Estratégica`) dos insights, mantendo a tese intacta.
-- Confiança média preservada: insights escritos em tom condicionado, sem transformar hipótese em fato — "mas a leitura positiva é condicionada" e "a cauda existe mas é composta majoritariamente por variações da família líder" preservados integralmente.
-- Top Produtos: exibidos individualmente por título real (fonte primária: pedido real com ASIN confirmado). Suporte Gamer incluído no ranking por ter pedidos reais identificados com risco baixo; sem análise sobre ele na seção ANÁLISE DA CONTA conforme Condensadora.
-- ASIN omitido em todos os produtos — títulos são suficientemente discriminantes e risco de identificação é baixo; nenhum caso de ambiguidade de título para o mesmo produto.
-- Métrica usada em Top Produtos: "unidades" em vez de "pedidos" — o campo quantity do pacote representa unidades vendidas por SKU, não contagem de pedidos; usar "pedidos" seria impreciso.
-- Prioridades: texto preservado da Condensadora com remoção mínima de redundâncias de formato e substituição de "ASINs líderes" por "produtos líderes" onde o contexto já tornava claro quais produtos eram — mantendo a regra de não usar ASINs brutos no Slack.
-- Sem seção DESTAQUES DO DIA, RESUMO GERAL, VENDAS POR CANAL — proibições estruturais respeitadas.
-- Sem nome de Pedro Broglio no cabeçalho.
-- Data confirmada em BRT: 13/05/2026.
+- Remoção de metadados internos (`— base: Tática + Operacional + Granular` etc.) nos 3 bullets da análise — regra padrão: metadados internos não vão ao Slack.
+- Preservação das ressalvas de confiança nos 3 bullets — Condensadora classificou nível de confiança como médio; linguagem de indício preservada ("contexto favorável, não conclusão"; "se o resultado se sustentar").
+- ASIN omitido nos Top Produtos — o check `amazon_product_identity` retornou ok para todos os top 5, títulos reais disponíveis sem ambiguidade; ASIN não foi necessário para nenhum produto.
+- Título do 4° produto encurtado para clareza: o título original ("Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável Ideal para Chocolate Quente e Café Expresso Preto") foi truncado para preservar legibilidade no Slack, mantendo os elementos identificadores essenciais (linha Tulipa, 250ml, preto). Decisão: legibilidade sem perda de identificação.
+- Produtos 6°–10° do ranking omitidos no Top Produtos — Top 5 é suficiente para a seção; os itens de menor volume (5, 4, 3, 2, 1 unidades) não alteram a leitura e adicionariam ruído visual.
+- Hipótese do Suporte PS5 como fator de elevação de ticket omitida da análise — Condensadora marcou explicitamente como item que não pode ir ao Slack (confiança baixa, sem preço unitário confirmável).
+- Saco Plástico PP omitido da análise — Condensadora marcou explicitamente como item que não pode ir ao Slack (4 unidades, sem sustentação de tese).
+- Ausência de afirmação conclusiva sobre mudança de patamar — Condensadora foi explícita: tese estratégica inconclusiva; qualquer afirmação conclusiva está bloqueada.
+- Escalonamento para Pedro incluído na prioridade 1 — veio da Tática ("Leonardo apresenta a Pedro") e foi preservado pela Condensadora nas prioridades; incluído com a condição correta de acionamento.
+- Faturamento formatado como R$ 2.258,49 — padrão numérico obrigatório (ponto como separador de milhar, vírgula como decimal, 2 casas).

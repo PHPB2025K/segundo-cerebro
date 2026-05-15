@@ -1,55 +1,93 @@
 {
-  "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem não viola nenhuma regra crítica. Dados numéricos conferem com o pacote canônico, destinatário e plataforma corretos, estrutura das 6 seções na ordem exata, insights copiados literalmente da Condensadora sem alteração de tese, prioridades fiéis com responsável correto e condições de falsificação preservadas, bloqueios da Condensadora respeitados na mensagem final. Dois problemas Menores foram encontrados: (1) o log 'Respeito de bloqueios' da Slack Writer não cobre explicitamente 4 dos 7 itens da lista 'o_que_nao_pode_ir_para_slack' da Condensadora — nenhum desses itens aparece na mensagem, portanto sem risco real; (2) dois títulos do Top Produtos foram truncados sem registro explícito de truncamento nas Decisões de formatação, embora os produtos permaneçam claramente identificáveis. Regra de agregação aplicada: 0 Maiores + 2 Menores isolados = APROVADO COM RESSALVA.",
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "A mensagem falha em Gate 7 com problema Crítico: a Slack Writer inverteu a condição de escalação para Pedro, dizendo 'Escalar para Pedro se Buy Box estiver abaixo de 85%', quando a Tática é explícita que escalação a Pedro acontece quando condições são boas (Buy Box e FBA validados + GMV sustentado), não quando Buy Box está comprometido. Buy Box ruim = Leonardo resolve fragilidade operacional; escalação a Pedro para ADS só vem depois de pre-requisitos confirmados. A inversão contradiz diretamente a Tática e pode levar Leonardo a acionar Pedro no contexto errado. Gate 8 registra falha Maior: o log 'Respeito de bloqueios' declara 'Sem bloqueios recebidos' quando a Condensadora tem 7 itens explícitos em 'nao_pode_ir_para_slack', que são os bloqueios da Condensadora conforme o prompt. Apenas parte desses itens aparece nas 'Decisões de formatação'; o log formal não os enumera. Gate 6 registra 3 Menores de fidelidade. Regra aplicada: 1 Crítico → BLOQUEADO.",
   "gates_avaliados": {
     "gate_1_data_periodo_fonte": "OK",
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
     "gate_5_top_produtos": "RESSALVA",
-    "gate_6_analise_conta": "OK",
-    "gate_7_prioridades": "OK",
-    "gate_8_bloqueios_confianca_logs": "RESSALVA",
-    "gate_9_consistencia_entre_camadas": "OK",
+    "gate_6_analise_conta": "RESSALVA",
+    "gate_7_prioridades": "FALHA",
+    "gate_8_bloqueios_confianca_logs": "FALHA",
+    "gate_9_consistencia_entre_camadas": "RESSALVA",
     "gate_10_tom_utilidade": "OK",
     "gate_11_padrao_numerico_formatacao": "OK"
   },
   "contagem_severidade": {
-    "criticos": 0,
-    "maiores": 0,
-    "maiores_gates_distintos": 0,
-    "menores": 2,
-    "degradacao_sistemica": false,
-    "regra_agregacao_aplicada": "0 Maiores + 1–5 Menores → APROVADO COM RESSALVA"
+    "criticos": 1,
+    "maiores": 1,
+    "maiores_em_gates_diferentes": 1,
+    "menores": 4,
+    "regra_aplicada": "1+ Crítico → BLOQUEADO"
   },
   "problemas_encontrados": [
     {
-      "severidade": "Menor",
+      "severidade": "Critico",
+      "gate": 7,
+      "texto_atual": "Escalar para Pedro se Buy Box estiver abaixo de 85% em qualquer um dos dois — nesse caso resolve a fragilidade operacional antes de qualquer outra decisão.",
+      "texto_esperado": "Se Buy Box estiver abaixo de 85% em qualquer um dos dois, a prioridade muda: resolver a fragilidade operacional antes de qualquer outra decisão. ADS permanece fora de pauta independentemente do resultado de ontem.",
+      "regra_violada": "Gate 7 — prioridade contradizer a Tática. A Tática é explícita: 'Não acionar Pedro para escalar ADS Amazon' sem pre-requisitos validados; escalação a Pedro ocorre quando Buy Box e FBA estão saudáveis e GMV sustentado por 3 dias. O Slack Writer inverteu a condição: colocou escalação a Pedro exatamente quando ela não deve acontecer (Buy Box comprometido).",
+      "bloqueia_envio": "sim"
+    },
+    {
+      "severidade": "Maior",
       "gate": 8,
-      "estado_atual": "O bloco 'Respeito de bloqueios' da Slack Writer documenta explicitamente apenas 3 dos 7 itens da lista 'o_que_nao_pode_ir_para_slack' da Condensadora: (a) hipótese Suporte Gamer, (b) ASINs específicos, (c) SKUs crus. Os outros 4 itens — discrepância de 4 unidades não atribuídas, weekly/monthly vazios, debate metodológico sobre top3_concentration por ASIN vs família, e as 4 perguntas granulares sem resposta — não aparecem no log com status de omissão explícita.",
-      "estado_esperado": "Cada item da lista 'o_que_nao_pode_ir_para_slack' da Condensadora deve aparecer no log de bloqueios com: origem (Condensadora), motivo, tratamento aplicado (omitido) e confirmação de ausência na mensagem final.",
-      "regra_violada": "Gate 8 — Passo 2: 'Cada bloqueio da Granular/Condensadora deve aparecer no log.' e 'Cada entrada do log deve informar origem, motivo, agregado autorizado — sim/não — tratamento aplicado e presença na mensagem final.'",
-      "bloqueia_envio": false,
-      "observacao": "Nenhum dos 4 itens não logados aparece na mensagem final. O risco de induzir erro é zero. O problema é de completude de auditoria interna, não de segurança da mensagem."
+      "estado_atual": "O log 'Respeito de bloqueios' declara 'Sem bloqueios recebidos. A Granular retornou risco de identificação nível baixo, sem bloqueios para Slack. Nenhum item foi marcado como bloqueado pela Condensadora.' A seção 'Decisões de formatação' cobre parcialmente 3 dos 7 itens da Condensadora (Hipótese PS5, Saco Plástico, afirmação conclusiva de patamar), mas os demais não aparecem no log formal: SKUs internos, ASINs brutos, afirmação dos 2 cancelamentos como residuais sem ressalva, e assimetria granular 4x como evidência isolada.",
+      "estado_esperado": "O log 'Respeito de bloqueios' deve enumerar cada item do campo 'nao_pode_ir_para_slack' da Condensadora (7 itens), com origem (Condensadora), motivo, tratamento aplicado (omitido / substituído) e confirmação de ausência na mensagem final. Declarar 'Sem bloqueios recebidos' quando existem 7 itens bloqueados explícitos é log incompleto por definição do Gate 8.",
+      "regra_violada": "Gate 8 — 'Cada bloqueio da Granular/Condensadora deve aparecer no log. Bloqueios da Condensadora — campo O que não pode ir para Slack.' O campo nao_pode_ir_para_slack da Condensadora é a fonte canônica de bloqueios da Condensadora; todos os 7 itens devem estar no log formal.",
+      "bloqueia_envio": "sim"
     },
     {
       "severidade": "Menor",
       "gate": 5,
-      "estado_atual": "Os títulos dos produtos 4 e 5 do Top Produtos foram truncados na mensagem final sem registro explícito de truncamento nas Decisões de formatação. Título real do produto 4: 'Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável Ideal para Chocolate Quente e Café Expresso Preto' → Slack: 'Kit 6 Canecas de Porcelana Tulipa 250ml Preto'. Título real do produto 5: 'Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto - Organizador de Mesa Gamer 2 em 1 - Compatível Nintendo Switch Pro - Budamix' → Slack: 'Suporte de Controle PS5/PS4/Xbox Organizador de Mesa Gamer 2 em 1'.",
-      "estado_esperado": "A decisão de truncar títulos para legibilidade no Slack deve estar registrada explicitamente nas Decisões de formatação, com confirmação de que a identificação do produto permanece unívoca após o truncamento.",
-      "regra_violada": "Gate 8 — Decisões de formatação: 'Deve registrar [...] decisão de mostrar/omitir ASIN' e implicitamente qualquer alteração de apresentação de título que afete rastreabilidade; Gate 5 — 'título real do pedido é fonte primária' exige que truncamentos sejam documentados.",
-      "bloqueia_envio": false,
-      "observacao": "Os produtos truncados permanecem claramente identificáveis — risco de identificação é baixo (confirmado pelo check amazon_product_identity: ok). O truncamento não induz erro. O problema é de registro de decisão de formatação incompleto."
+      "texto_atual": "Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável (preto) — 6 pedidos",
+      "texto_esperado": "Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável Ideal para Chocolate Quente e Café Expresso Preto — 6 pedidos",
+      "regra_violada": "Gate 5 — 'título real do pedido é fonte primária'. O título foi truncado. A decisão foi documentada e a identificação do produto não está comprometida, mas o título exibido diverge do título real do pedido.",
+      "bloqueia_envio": "nao"
+    },
+    {
+      "severidade": "Menor",
+      "gate": 6,
+      "texto_atual": "Buy Box e cobertura FBA nos ASINs líderes ainda não foram validados, e o ciclo de confirmação de patamar só pode avançar depois dessa checagem.",
+      "texto_esperado": "Buy Box e cobertura FBA nos ASINs líderes ainda não foram validados por Leonardo, e o ciclo de confirmação de patamar só pode avançar depois dessa checagem.",
+      "regra_violada": "Gate 6 — 'nenhum termo analítico-chave removido'. 'por Leonardo' foi removido do bullet 1. Não altera a tese central, mas remove referência explícita ao responsável pela checagem, presente na Condensadora.",
+      "bloqueia_envio": "nao"
+    },
+    {
+      "severidade": "Menor",
+      "gate": 6,
+      "texto_atual": "e a distribuição ao longo de 19 das 24 horas, sem concentração em nenhuma janela curta, é o dado que diferencia evento datado de exposição orgânica sustentada. Se o resultado se sustentar nos próximos dias, a origem é estrutural, não pontual — e essa distinção muda o que vale monitorar.",
+      "texto_esperado": "e a distribuição horária em 19 das 24 horas, sem concentração em nenhuma janela curta, é o dado granular que diferencia evento datado de exposição orgânica sustentada. Ambos os sinais apontam na mesma direção: se o resultado se sustentar nos próximos dias, a origem é estrutural, não pontual — e essa distinção muda o que vale monitorar.",
+      "regra_violada": "Gate 6 — 'mesmo conectivo principal' e 'nenhum termo analítico-chave removido'. A Slack Writer removeu 'granular' (que qualifica a natureza do dado), 'horária' (que qualifica a distribuição), e a frase-ponte 'Ambos os sinais apontam na mesma direção:' que explicita a convergência dos dois sinais (ticket + distribuição horária). A tese central é preservada, mas a estrutura lógica do argumento foi levemente enfraquecida.",
+      "bloqueia_envio": "nao"
+    },
+    {
+      "severidade": "Menor",
+      "gate": 6,
+      "estado_atual": "Bullet 3 da Análise termina em: '...o volume da família colapsa desproporcionalmente.' A última frase da Condensadora foi removida.",
+      "estado_esperado": "Bullet 3 deve incluir: 'É exatamente esse produto que Leonardo precisa checar com prioridade na validação de Buy Box.' A frase conecta o insight à ação prioritária e foi removida sem justificativa registrada nas Decisões de formatação.",
+      "regra_violada": "Gate 6 — 'nenhum termo analítico-chave removido'. A frase removida não é meta-dado interno; é parte do insight que orienta a leitura da prioridade. A Condensadora a incluiu como encerramento funcional do bullet. Não há registro de decisão de omissão nas Decisões de formatação.",
+      "bloqueia_envio": "nao"
     }
   ],
-  "correcoes_obrigatorias_antes_do_envio": "Nenhuma.",
+  "correcoes_obrigatorias_antes_do_envio": [
+    {
+      "gate": 7,
+      "correcao": "Remover 'Escalar para Pedro se Buy Box estiver abaixo de 85%' da prioridade 1. Substituir pela formulação correta da Condensadora e da Tática: quando Buy Box está abaixo de 85%, a prioridade muda para resolver a fragilidade operacional — ADS permanece fora de pauta. A escalação a Pedro (para ADS) ocorre somente quando Buy Box e FBA estiverem saudáveis e o resultado dos próximos dias confirmar patamar. Texto sugerido: 'Se Buy Box estiver abaixo de 85% em qualquer um dos dois, a prioridade muda: resolver a fragilidade operacional antes de qualquer outra decisão — ADS permanece fora de pauta independentemente do resultado de ontem.'"
+    },
+    {
+      "gate": 8,
+      "correcao": "Reescrever o bloco 'Respeito de bloqueios' para enumerar os 7 itens do campo nao_pode_ir_para_slack da Condensadora, com origem (Condensadora), tratamento aplicado (omitido da mensagem) e confirmação de ausência na mensagem final. O log atual ('Sem bloqueios recebidos') é factualmente incorreto em relação à Condensadora."
+    }
+  ],
   "ressalvas_memoria_interna": [
-    "Log de bloqueios da Slack Writer deve ser ampliado no próximo ciclo para cobrir explicitamente todos os itens de 'o_que_nao_pode_ir_para_slack' da Condensadora — não apenas os bloqueios formais da Granular.",
-    "Decisões de formatação devem registrar explicitamente quando títulos de Top Produtos são truncados, incluindo confirmação de que a identificação permanece unívoca."
+    "O log 'Respeito de bloqueios' da Slack Writer precisa de template aprimorado que enumere explicitamente os itens do campo nao_pode_ir_para_slack da Condensadora — a lacuna entre 'bloqueios formais do campo bloqueios_para_slack da Granular' e 'itens proibidos da Condensadora' gerou o log incompleto desta rodada.",
+    "A condição de escalação a Pedro deve ser documentada com mais precisão nas prioridades: o threshold de 85% de Buy Box está correto, mas o contexto de escalação (condições boas → ADS; condições ruins → fix operacional, sem Pedro) precisa ser preservado literalmente no Slack."
   ],
   "ressalvas_auditoria": [
-    "As prioridades do dia são extensas para um Slack operacional — cada prioridade tem 4–5 linhas com condições quantificadas e escalonamento. O conteúdo é fiel à Condensadora e não viola regra objetiva. Mas a extensão total das Prioridades aproxima a mensagem de briefing interno em vez de acionamento rápido. Condensadora — sugere avaliar se o nível de detalhe das condições de confirmação e escalonamento pertence ao Slack ou a um documento de acompanhamento separado no próximo ciclo.",
-    "A Análise da Conta copia os insights da Condensadora literalmente, incluindo a expressão 'ASINs líderes' no insight 1. A expressão não é um código bruto e não viola a regra de bloqueio de ASINs específicos. Porém, para Leonardo, 'produtos líderes' seria mais natural e consistente com o padrão adotado nas Prioridades (onde a substituição foi feita). Condensadora — sugere avaliar padronização da expressão nos próprios insights para o próximo ciclo."
+    "A remoção da frase 'Ambos os sinais apontam na mesma direção:' no bullet 2 da Análise é tecnicamente Menor, mas a estrutura argumentativa do insight (dois sinais convergentes) fica levemente menos explícita — Condensadora — sugere reforço da regra de preservação de frases-ponte que conectam múltiplos sinais dentro de um único bullet.",
+    "O bullet 3 da Análise seria mais completo se terminasse com a conexão à ação ('É exatamente esse produto que Leonardo precisa checar'), pois a Prioridade do Dia repete essa instrução mas o insight fica sem encerramento orientador — Condensadora — sugere avaliar se a última frase de bullets de padrão E (localização) deve sempre aparecer na Análise mesmo quando duplica a Prioridade."
   ],
   "llm_used": true,
   "model": "sonnet",

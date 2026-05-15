@@ -810,13 +810,16 @@ def _shopee_consolidated_priorities(accounts: list[tuple[str, str, dict | None]]
     ]
 
 
-def _load_shopee_layer8(day: str) -> dict | None:
-    path = LAYERED_RUNS_DIR / day / "lucas" / "camada-8-shopee-consolidada.json"
+def _load_shopee_consolidator(day: str) -> dict | None:
+    path = LAYERED_RUNS_DIR / day / "lucas" / "camada-6b-shopee-consolidadora.json"
+    legacy_path = LAYERED_RUNS_DIR / day / "lucas" / "camada-8-shopee-consolidada.json"
     if not path.exists():
-        return None
+        if not legacy_path.exists():
+            return None
+        path = legacy_path
     data = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(data.get("analysis_lines"), list) or not isinstance(data.get("priority_lines"), list):
-        raise ValueError("Camada 8 Shopee inválida: analysis_lines/priority_lines ausentes")
+        raise ValueError("Consolidadora Shopee inválida: analysis_lines/priority_lines ausentes")
     return data
 
 
@@ -1013,10 +1016,10 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     # Para Shopee, condensar as 3 contas em no máximo 3 insights totais.
     # A análise por conta fica preservada na memória interna; o Slack recebe o ouro.
     available = [a for a in shopee_accounts if a]
-    layer8 = _load_shopee_layer8(day)
-    if layer8:
-        diag_lines = [str(x) for x in layer8["analysis_lines"]]
-        prio_lines = [str(x) for x in layer8["priority_lines"]]
+    shopee_consolidator = _load_shopee_consolidator(day)
+    if shopee_consolidator:
+        diag_lines = [str(x) for x in shopee_consolidator["analysis_lines"]]
+        prio_lines = [str(x) for x in shopee_consolidator["priority_lines"]]
     elif available:
         leaders = []
         for a in available:

@@ -25,16 +25,22 @@ Executar o Daily Sales Report v2 na ordem correta, chamando as skills certas em 
    - Se houver mudança de regra/taxa: usar `trader-marketplace-rules-watch`.
    - Se houver reunião/decisão Himmel relevante: usar `trader-himmel-context-ingestion`.
 
-5. **Mensagem Slack**
+5. **Consolidação específica da Shopee (somente Lucas/Shopee)**
+   - Após a Camada Condensadora individual das 3 contas Shopee, rodar a Consolidadora Shopee.
+   - A Consolidadora Shopee consome apenas as 3 condensadoras individuais e gera 4 análises para a seção `ANÁLISE DAS CONTAS`: consolidado + Budamix Store + Budamix Oficial + Budamix Shop.
+   - Mercado Livre e Amazon NÃO passam por essa etapa extra, porque cada um tem uma única unidade operacional no report individual.
+
+6. **Mensagem Slack**
    - Usar `trader-daily-sales-slack-writer`.
    - Gerar 3 mensagens individuais.
+   - Para Lucas/Shopee, o Slack Writer deve apenas traduzir a saída da Consolidadora Shopee para o layout aprovado, sem rediagnosticar.
 
-6. **QA e escalonamento**
+7. **QA e escalonamento**
    - Usar `trader-daily-sales-qa-escalation`.
    - Se aprovado, enviar/registrar conforme modo.
    - Se falhar, não enviar report normal.
 
-7. **Registro final**
+8. **Registro final**
    - Salvar cópia do enviado/preview em `sent-reports.md`.
    - Registrar alertas para Kobe quando necessário.
 

@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
-"""Daily Sales v2 — Camada 8 Shopee via LLM.
+"""Daily Sales v2 — Consolidadora Shopee via LLM.
 
-Roda depois das 7 camadas por conta. Para a Shopee, usa as três saídas da
-Camada Condensadora (Budamix Store, Oficial e Shop) como input exclusivo da
-síntese consolidada que alimenta o Slack Writer.
+Roda depois da Camada 5 (Condensadora) das três contas Shopee. Usa as três
+saídas condensadas individuais (Budamix Store, Oficial e Shop) como input
+exclusivo para gerar o pacote da seção ANÁLISE DAS CONTAS: 1 análise
+consolidada + 3 análises individuais finais.
 
-Nunca envia Slack. Apenas salva artefato auditável.
+Mercado Livre e Amazon não passam por esta etapa porque cada um tem uma única
+unidade operacional no report do funcionário.
+
+Nunca envia Slack. Apenas salva artefato auditável para o Slack Writer.
 """
 
 from __future__ import annotations
@@ -53,7 +57,7 @@ def package_accounts(package: dict[str, Any]) -> dict[str, Any]:
 def call_openai(prompt: str, *, model: str) -> str:
     key = os.environ.get("OPENAI_API_KEY")
     if not key:
-        raise SystemExit("OPENAI_API_KEY ausente; Camada 8 LLM bloqueada.")
+        raise SystemExit("OPENAI_API_KEY ausente; Consolidadora Shopee LLM bloqueada.")
     payload = json.dumps({"model": model, "input": prompt}).encode()
     req = urllib.request.Request(
         "https://api.openai.com/v1/responses",
@@ -142,13 +146,13 @@ def extract_json(text: str) -> dict[str, Any]:
     start = cleaned.find("{")
     end = cleaned.rfind("}")
     if start == -1 or end == -1:
-        raise ValueError("Saída da Camada 8 não contém JSON")
+        raise ValueError("Saída da Consolidadora Shopee não contém JSON")
     return json.loads(cleaned[start:end + 1])
 
 
-def run_layer8(package: dict[str, Any], condensers: dict[str, str], day: str, model: str) -> dict[str, Any]:
+def run_shopee_consolidator(package: dict[str, Any], condensers: dict[str, str], day: str, model: str) -> dict[str, Any]:
     accounts = package_accounts(package)
-    prompt = (PROMPTS / "camada-8-shopee-consolidada.md").read_text(encoding="utf-8")
+    prompt = (PROMPTS / "camada-6b-shopee-consolidadora.md").read_text(encoding="utf-8")
     payload = {
         "date": package["date"],
         "recipient": "Lucas",
@@ -164,7 +168,7 @@ def run_layer8(package: dict[str, Any], condensers: dict[str, str], day: str, mo
     }
     full_prompt = f"""{prompt}
 
-# Input da Camada 8
+# Input da Consolidadora Shopee
 {json.dumps(payload, ensure_ascii=False, indent=2)}
 """
     raw = call_openai(full_prompt, model=model)
@@ -172,18 +176,18 @@ def run_layer8(package: dict[str, Any], condensers: dict[str, str], day: str, mo
     required = ["analysis_lines", "priority_lines", "memory_for_tomorrow", "qa_flags"]
     missing = [k for k in required if k not in parsed]
     if missing:
-        raise ValueError(f"Camada 8 sem campos obrigatórios: {missing}")
+        raise ValueError(f"Consolidadora Shopee sem campos obrigatórios: {missing}")
     out_dir = RUNS_BASE / day / "lucas"
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "camada-8-shopee-consolidada.raw.md").write_text(raw + "\n", encoding="utf-8")
-    (out_dir / "camada-8-shopee-consolidada.json").write_text(
+    (out_dir / "camada-6b-shopee-consolidadora.raw.md").write_text(raw + "\n", encoding="utf-8")
+    (out_dir / "camada-6b-shopee-consolidadora.json").write_text(
         json.dumps(parsed, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     return parsed
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Daily Sales v2 — Camada 8 Shopee LLM")
+    parser = argparse.ArgumentParser(description="Daily Sales v2 — Consolidadora Shopee LLM")
     parser.add_argument("date", help="YYYY-MM-DD")
     parser.add_argument("--model", default=os.environ.get("DAILY_SALES_OPENAI_MODEL", "gpt-4.1"))
     parser.add_argument("--force", action="store_true", help="Reexecuta camadas 1-5 mesmo se artefatos já existirem")
@@ -194,7 +198,7 @@ def main() -> int:
     for slug, label, _slot in SHOPEE_ACCOUNTS:
         outputs = run_account_layers(package, slug, label, args.date, args.model, args.force)
         condensers[slug] = outputs[5]
-    parsed = run_layer8(package, condensers, args.date, args.model)
+    parsed = run_shopee_consolidator(package, condensers, args.date, args.model)
     print(json.dumps({"status": "OK", "analysis_lines": len(parsed["analysis_lines"]), "priority_lines": len(parsed["priority_lines"])}, ensure_ascii=False))
     return 0
 

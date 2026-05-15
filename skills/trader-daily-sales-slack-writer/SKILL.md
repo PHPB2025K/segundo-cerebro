@@ -49,9 +49,15 @@ Se algo não muda ação, não entra no Slack.
 ## Regras por responsável
 ### Lucas — Shopee
 - A Shopee tem três contas: Budamix Store, Budamix Oficial e Budamix Shop.
+- O layout da mensagem do Lucas/Shopee deve seguir obrigatoriamente o padrão aprovado em 15/05/2026:
+  - Título começa com `📊 DAILY SALES REPORT — SHOPEE — DD/MM/AAAA (Ontem)`.
+  - Títulos de seção em CAPS, sem emoji, exceto `🎯 PRIORIDADES DO DIA`.
+  - Títulos de seção visualmente em negrito+sublinhado no Slack.
+  - Usar `⚫` para consolidado e `🟠` para contas individuais.
+  - Manter linhas em branco entre seções, sem linha em branco entre bullets do mesmo bloco.
 - Na seção `📊 VISÃO SHOPEE`: mostrar primeiro o consolidado das três contas em negrito; logo abaixo, mostrar os números individuais das três contas em texto normal.
 - Na seção `🏆 TOP PRODUTOS SHOPEE`: mostrar primeiro o ranking consolidado das três contas, somando pedidos da mesma variação entre contas; depois mostrar rankings independentes de Budamix Store, Budamix Oficial e Budamix Shop. Usar nomes curtos de produto e ranking por pedidos.
-- Na seção `🔍 ANÁLISE DAS CONTAS`: inverter a ordem — primeiro análise individual das três contas, depois análise consolidada em negrito. A análise consolidada deve avaliar complementaridade entre contas, aumento de faturamento total, escala e risco de canibalização.
+- Na seção `ANÁLISE DAS CONTAS`: seguir o layout visual aprovado no print — consolidado primeiro em `⚫` e negrito, depois Budamix Store, Budamix Oficial e Budamix Shop em `🟠`. A análise consolidada deve avaliar complementaridade entre contas, aumento de faturamento total, escala e risco de canibalização.
 - Na seção `🎯 PRIORIDADES DO DIA`: mostrar apenas ações consolidadas, derivadas das análises individuais + consolidada.
 - Não concluir “Shopee caiu/subiu” sem dizer qual conta explica.
 - Se o sinal for ADS/tráfego, formular como ponto para alinhar com Himmel.

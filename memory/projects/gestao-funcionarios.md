@@ -108,3 +108,37 @@ Toda sexta-feira no fim do dia:
 #### Ponto sistêmico
 - A rotina funcionou, mas só Lucas/Leonardo tinham ata clara. Recomendo reforçar com os três o padrão `#ata-reuniao Nome AAAA-MM-DD` no início da mensagem para evitar depender de busca textual solta.
 
+
+### 2026-W20 — Coleta semanal Slack (15/05)
+
+**Fonte consultada:** Slack read-only, últimos 7 dias, buscas por `#ata-reuniao`, atas/reuniões/feedbacks de Yasmin, Lucas e Leonardo, além do histórico recente das DMs onde apareceram os registros.
+
+#### Yasmin
+- **Ata formal localizada:** não. Pedro informou no Slack que a gravação da reunião falhou; Yasmin confirmou que anotou os pontos.
+- **Pontos tratados:** anúncios/cadastros de quebra-cabeças e jogos da memória, precificação agressiva de entrada para ranqueamento no Mercado Livre, comparação de concorrência, uso do Granola pelo login do marketplace e organização de anúncios de canecas/variações com paleta Budamix.
+- **Acordos/prazos:** reunião marcada para quarta às 14:30; Yasmin deve registrar/organizar os pontos anotados; usar Granola no login correto para futuras reuniões; precificar os novos itens considerando concorrência e visibilidade por canal.
+- **Evolução vs histórico:** houve avanço operacional em MDF/infantil e atenção a concorrência/preço, mas a ausência de ata formal continua sendo o maior gargalo de acompanhamento.
+- **Alertas:** risco de perder memória da reunião quando a gravação falha; reforçar que, quando não houver gravação, Yasmin deve mandar uma síntese curta no Slack no mesmo dia.
+- **Pontos positivos:** Yasmin confirmou que anotou tudo e mostrou critério ao comparar concorrentes equivalentes e preços entre ML/Shopee/Amazon.
+- **Pendências para Pedro cobrar:** pedir a ata/síntese manual da reunião que não gravou; confirmar se os anúncios de quebra-cabeças/jogos da memória ficaram em kits corretos e com promoção; validar se a análise de concorrência foi suficiente para o preço agressivo de entrada.
+
+#### Lucas
+- **Ata formal localizada:** sim — reunião semanal de 12/05 sobre gestão de estoque, canibalização e estratégia de kits.
+- **Pontos tratados:** distinção entre estoque físico e ruptura no Full; limpeza de anúncios duplicados/canibalizados; organização de contas Shopee; priorização de Tulipa e potes quatro travas; ajuste de preço da jarra para desacelerar venda; fortalecimento de curva B, MDF/infantil e afiliados; reforço do chat Shopee e uso do Granola para reuniões com Himmel.
+- **Acordos/prazos:** revisar estoque por SKU nas três lojas e no Full; aumentar jarra em R$ 2,00; limpar duplicados começando por quatro travas; consolidar variações; mapear por loja o que fica/sai; levantar histórico dos kits 30 dias; apagar SKUs sem estoque/performance; planejar reforço de embalagem da Tulipa; criar/testar kits 5/10/20; confirmar MDF em afiliados; enviar resumo de pendências e entregas anteriores até a próxima reunião.
+- **Evolução vs histórico:** saiu de pontos genéricos de operação para um plano mais estruturado por loja/SKU; também instalou e começou a usar Granola para reuniões externas.
+- **Alertas:** canibalização entre lojas e duplicidade de anúncio seguem como risco alto; planejamento de reposição de canecas ainda estava pouco lapidado e precisou ser redirecionado para Shopee/Full especificamente.
+- **Pontos positivos:** respondeu rápido às orientações, entregou primeira segmentação de canecas por conta e manteve evolução em imagens/criativos.
+- **Pendências para Pedro cobrar:** status da limpeza de anúncios duplicados; mapa A1/A2/A3 do que fica e sai; relatório de kits 30 dias; plano de reposição Shopee Full por modelo de caneca; evidência de reforço de embalagem Tulipa; lista de MDF ativos/faltantes nos afiliados.
+
+#### Leonardo
+- **Ata formal localizada:** sim — `#ata-reuniao Leonardo 2026-05-11`.
+- **Pontos tratados:** operação Amazon, IPI em torno de 398/1000, excesso de estoque parado no FBA, lógica de remoção como última alternativa, uso de IA para análises mais refinadas, Budamix Central como fonte da verdade, preço/margem/promoção/ADS, imagens/cadastros e avaliações negativas.
+- **Acordos/prazos:** montar planilha de excesso FBA com SKU, produto, estoque, vendas 90 dias, média diária, cobertura, custo mensal, ação recomendada e impacto; classificar itens entre manter, promover, reforçar ADS, remover parcialmente ou remover com urgência; cruzar Amazon com Budamix Central; avaliar margem/concorrência antes de reduzir preço; checar campanhas ativas; continuar imagens/capas; cadastrar variações de canecas; mapear avaliações negativas por SKU/produto.
+- **Evolução vs histórico:** trouxe tema relevante e real de Amazon/FBA, já havia tratado itens sem oferta ativa e evoluiu no padrão visual; depois da reunião, aplicou descontos em produtos definidos e acompanhou reputação/avaliações da conta.
+- **Alertas:** análise ainda chega pouco lapidada; precisa condensar comunicação para Pedro e evitar textos longos; antes de qualquer remoção FBA deve esgotar preço, promoção, ADS, concorrência, margem e giro real.
+- **Pontos positivos:** iniciativa boa em IPI/FBA, avaliações e pós-venda Amazon; conta identificada com boa reputação, nota 4,80 e 68 avaliações; pesquisou serviço de automação de pós-venda/avaliações para apresentar.
+- **Pendências para Pedro cobrar:** planilha refinada de excesso FBA com recomendação por SKU; status dos descontos e campanhas; confirmação de estoque/chegada dos jogos da memória ao FBA; lista de produtos sem capa no padrão; primeiros padrões de avaliações negativas; proposta objetiva sobre pós-venda/avaliações sem texto longo.
+
+#### Ponto sistêmico
+- O padrão `#ata-reuniao Nome AAAA-MM-DD` funcionou bem para Leonardo e deve ser obrigatório. Para Yasmin, a falha de gravação mostrou a necessidade de plano B: quando não houver Granola/PLAUD, a própria pessoa envia no Slack uma síntese manual curta no mesmo dia.

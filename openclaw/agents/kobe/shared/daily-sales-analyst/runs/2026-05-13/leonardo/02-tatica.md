@@ -1,44 +1,35 @@
 <!-- llm_used=true model=sonnet fallback=false -->
-Preciso de permissão para editar o arquivo `02-tatica.md`. Por favor, aprove a operação de escrita.
-
-Enquanto isso, aqui está a análise tática completa produzida:
-
----
-
 ### Decisão tática
 
-- **Dado que a tese é inconclusiva** (base fraca, sem hipóteses ativas, spike isolado de ~2x o baseline 60d sem causa identificada), a postura tática correta é coletar evidência sem alterar a operação. A questão central não é "o que fazer com o crescimento" — é "o crescimento é real ou pontual?".
-
-- **O risco principal identificado pela Estratégica é a decisão prematura:** inferir mudança de patamar com base em um único dia e agir sobre essa inferência — seja escalando ADS, seja ajustando estoque com urgência. A tática que responde a esse risco é validar pré-requisitos operacionais (Buy Box, cobertura FBA dos ASINs líderes) antes de qualquer outra decisão.
-
-- **O que proteger:** FBA 100% está funcionando e não exige intervenção. O que precisa ser protegido é a *leitura correta dos próximos dias* — não deixar que o spike de hoje distorça a baseline percebida e induza reação errada se os pedidos normalizarem.
-
-- **O que observar:** se Buy Box dos ASINs líderes (Jarra Medidora + Potes de Vidro) estiver estável e FBA com cobertura, a conta está operacionalmente apta a receber tráfego pago — mas a decisão de acionar Pedro só se sustenta após 2 dias consecutivos ≥ 35 pedidos com ticket ≥ R$ 45.
+- **Dado que a tese estratégica é inconclusiva** — spike real em todas as janelas, mas causa não identificada e base interpretativa vazia — a postura correta é validar a saúde operacional antes de qualquer movimento. Um único dia excepcional, sem contexto, não autoriza ação forte.
+- **Dado que o risco estrutural principal é dependência operacional em poucos ASINs com operação 100% FBA**, a prioridade tática imediata é confirmar que os ASINs líderes estão com Buy Box e cobertura FBA íntegros — não porque há sinal de problema, mas porque esse pré-requisito é obrigatório antes de qualquer outra decisão.
+- **Dado que o ticket subiu junto com o volume (+25%)**, isso abre hipótese de mudança de mix ou Buy Box favorável em ASINs de maior valor — hipótese que vale ser rastreada nos próximos dias como condição falsificável, não como conclusão.
+- **Dado que weekly e monthly estão vazios**, hoje é ponto zero da memória interpretativa da conta. A decisão tática correta é coletar evidência sem alterar operação.
 
 ---
 
 ### O que fazer hoje
 
-- **Leonardo:** checar Buy Box e cobertura FBA dos ASINs líderes (Jarra Medidora e Potes de Vidro, que respondem por ~55% do volume do dia) — risco principal é escalar tráfego pago sobre operação frágil, regra da conta é explícita — Buy Box ≥ 85% nos dois ASINs líderes e FBA com cobertura confirmam que a conta está apta a receber ADS caso o volume se sustente; abaixo disso, qualquer conversa sobre ADS pausa.
+- **Leonardo:** verificar Buy Box dos ASINs líderes (em especial a Jarra Medidora e a família de Potes de Vidro, que concentraram ~39% do volume físico do dia) — a Estratégica identificou dependência operacional como risco estrutural, e o pré-requisito para qualquer decisão futura de ADS é Buy Box ≥85% nesses ASINs — sinal de resultado: Buy Box acima de 85% nos líderes confirma que a operação está apta para eventual acionamento de Pedro nos próximos dias; abaixo disso, ADS permanece descartado independentemente do resultado de ontem.
 
-- **Leonardo:** registrar se há evento identificável que explique o spike (promoção ativa, campanha ADS de Pedro, mudança de listing, boost algorítmico) — sem causa identificada, os próximos dias de dado ficam sem âncora de interpretação — se causa for identificada, normalização pós-promoção não é queda, é retorno esperado.
+- **Leonardo:** verificar cobertura FBA e fila de reposição dos ASINs com maior volume no dia — 100% da operação é FBA, e ruptura nos líderes eliminaria fração desproporcional do resultado diário — sinal de resultado: cobertura FBA intacta e sem alerta de reposição mantém a hipótese de patamar aberta; qualquer sinal de ruptura ou baixo nível de estoque nos líderes vira alerta prioritário e determina ação antes de qualquer outra decisão.
 
-- **Leonardo:** observar volume e ticket dos próximos 2 dias com a condição falsificável da Estratégica como referência (≥ 35 pedidos + ticket ≥ R$ 45 por 2 dias consecutivos = novo patamar; retorno para 20-27 com ticket R$ 38-42 = spike pontual) — sinal de resultado: ao final de 15/05, Leonardo tem condição de classificar o evento e a próxima decisão sobre ADS sai dessa classificação, não do resultado de hoje.
+- **Leonardo:** registrar o resultado do dia de hoje (2026-05-13, data dos dados) como ponto zero da série interpretativa da conta — sem essa âncora, o sinal de "sustentação do patamar por 3 dias" (indicado pela Estratégica como condição de confirmação) não pode ser rastreado — sinal de resultado: se GMV de hoje ficar acima de R$1.500, começa o ciclo de confirmação; se retornar para a banda histórica de R$900–R$1.100, o spike de ontem classifica-se como evento pontual.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Pedro para escalar ADS:** tese inconclusiva, causa do spike não identificada, Buy Box e estoque dos ASINs líderes não validados. Escalar tráfego com base em um único dia anômalo é o risco exato que a Estratégica identificou como principal.
+- **Não acionar Pedro para escalar ADS Amazon.** A Estratégica é explícita: tese inconclusiva, causa do spike não identificada, base histórica interpretativa vazia. Escalar ADS sobre um único dia de resultado excepcional — sem saber se é patamar, evento pontual ou efeito de campanha externa — é precipitado. O pré-requisito operacional (Buy Box, FBA) ainda não foi validado por Leonardo. Ambas as condições precisam ser satisfeitas antes de qualquer conversa com Pedro.
 
-- **Não rever urgentemente reposição de estoque FBA com base neste dia:** volume de hoje é 2x o baseline 60d. Se pontual, ajustar reposição para esse nível criaria estoque desnecessário — decisão precisa de 3-5 dias para separar novo patamar de evento isolado.
+- **Não interpretar o spike como mudança de patamar e agir sobre essa premissa.** A Estratégica define que a confirmação de patamar exige GMV acima de R$1.500 por 3 dias seguidos e ticket acima de R$45 por 2 dos próximos 5 dias. Nenhum desses critérios foi atingido ainda — ontem foi o primeiro ponto. Tomar decisões estruturais (mudar mix, alterar preços, redirecionar exposição) com base em um dia isolado arrisca otimizar para um evento que pode não se repetir.
 
-- **Não classificar o resultado de hoje como "a conta cresceu":** contamina a leitura dos próximos dias. Se pedidos voltarem para 25 amanhã, a interpretação correta é "voltou ao baseline" — não "caiu". Usar hoje como nova referência é o mecanismo pelo qual o spike distorce decisões futuras.
+- **Não testar segundo vetor ou novo produto enquanto a saúde operacional dos líderes não estiver confirmada.** Com top 5 em 70% de concentração e operação 100% FBA, qualquer experimento de mix que redistribua atenção dos ASINs líderes antes de entender se eles estão com Buy Box e FBA íntegros amplia risco sem base. A Estratégica identificou concentração como padrão, não como problema a resolver agora — e proteger o campeão precede testar o segundo vetor.
 
 ---
 
 ### Escalonamento
 
-**Observar** — Leonardo coleta mais 1-2 ciclos antes de qualquer decisão.
+**observar**
 
-Base fraca, tese inconclusiva, sem risco operacional iminente — FBA 100% funcional, reconciliação ok, cancelamentos irrelevantes (2 em 46). A conta não está em crise; está em ponto de dado anômalo que precisa de confirmação. Leonardo resolve a validação de Buy Box/FBA internamente sem acionar Pedro. Sobe para **escalar para Pedro** se, após 2 dias consecutivos com volume ≥ 35 e ticket ≥ R$ 45, Buy Box dos ASINs líderes estiver confirmado estável — aí a condição para ADS Amazon estará completa.
+A tese estratégica é inconclusiva, a base histórica interpretativa está vazia (weekly/monthly sem nenhum registro), e o spike de ontem não tem causa identificada. A postura correta é coletar mais 2-3 ciclos antes de qualquer decisão de ADS ou ajuste estrutural. Leonardo executa as checagens de Buy Box e FBA hoje — se ambas voltarem saudáveis e o resultado dos próximos 2 dias ficar acima de R$1.500, a classificação sobe para **escalar para Pedro**: Leonardo apresenta a Pedro o diagnóstico fechado (pré-requisitos validados, série de 3 dias acima do patamar histórico, hipótese de ticket elevado sustentado) e decide se há base para aumentar tráfego pago. Se Buy Box ou FBA registrarem problema, a prioridade muda: Leonardo resolve a fragilidade operacional antes de qualquer outra conversa.

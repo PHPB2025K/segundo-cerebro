@@ -1,53 +1,58 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Qualidade da base
 
-`weekly.md` e `monthly.md` contêm apenas templates vazios — sem tese semanal ou mensal acumulada. O daily anterior (2026-05-12) está registrado mas seu conteúdo não foi entregue no pacote. Sem hipóteses ativas para confirmar ou refutar. O volume check da Amazon sinalizou "partial confidence" pela magnitude do spike (+68.5% vs avg30) — o sistema já sinalizou cautela interpretativa. **Base fraca: leitura de hoje é ponto de partida, não confirmação de tese.**
+Weekly.md e monthly.md estão em formato de template vazio — sem nenhuma consolidação histórica formal acumulada. Todas as janelas numéricas estão disponíveis (7d com 7 dias, 30d com 30 dias, 60d com 60 dias), mas sem memória interpretativa prévia: não há tese semanal, não há hipóteses ativas documentadas, e não há padrões registrados para ancorar a leitura de hoje. O último diário é 2026-05-12, porém seu conteúdo não está no pacote. A base numérica é suficiente para leitura temporal; a base interpretativa é rasa — qualquer tese derivada deste pacote é inaugural, não confirmação de hipótese anterior.
 
 ---
 
 ### Leitura temporal
 
-- **Spike coerente entre todas as janelas:** 46 pedidos e R$ 2.258 de GMV estão ~2x acima das médias de 7d (26.3 / R$ 1.041), 30d (27.3 / R$ 1.069), 60d (25.8 / R$ 1.010) e dos mesmos dias da semana (27.25 / R$ 1.074). O sinal é homogêneo — não é sazonalidade da terça nem flutuação de curto prazo isolada.
+- **Spike consistente em todas as janelas:** 46 pedidos e R$2.258 representam desvio de +69 a +78% em volume e +111 a +124% em GMV sobre as três janelas históricas (7d, 30d, 60d). A consistência do desvio entre janelas afasta ruptura de série como explicação — o resultado é genuinamente anômalo em relação ao histórico.
 
-- **Duplo efeito no GMV — volume e ticket simultaneamente:** Ticket médio de R$ 49.10 contra baseline estável de R$ 39.21 (30d e 60d idênticos) = +25.2%. O GMV mais que dobrando é resultado composto: volume +68-78% e ticket +25% ao mesmo tempo. Sem daily anterior visível, não é possível saber se o ticket já vinha subindo ou se hoje é ponto fora da curva.
+- **Mesmos dias da semana como controle:** As últimas quatro terças registraram [24, 23, 33, 29] pedidos e GMV entre R$876 e R$1.343. 46 pedidos e R$2.258 estão fora da banda em ambas as dimensões — o dia não foi só forte em termos absolutos, foi excepcional mesmo controlando sazonalidade semanal.
 
-- **FBA 100%, sem fragmentação de fulfillment:** Toda operação é FBA, sem FBM. Não há variável de fulfillment como confusão nesta leitura.
+- **Ticket médio como sinal adicional:** O ticket subiu de R$39 (média 30d/60d) para R$49 (+25%). Isso diferencia o movimento de um pico puro de volume: o mix mudou ou a composição dos pedidos foi diferente. Não é possível, com os dados disponíveis, identificar a causa — promoção, destaque de algoritmo, Buy Box favorável, entrada de novo público — mas o padrão é relevante porque sugere que não foram "mais pedidos do mesmo produto mais barato".
 
-- **Memória anterior ausente:** Sem weekly/monthly consolidados e sem daily de 12/05 no pacote, não há hipótese ativa a confirmar ou refutar. A leitura de hoje é primeiro ponto de referência, não verificação.
+- **Sem hipóteses anteriores para confirmar ou refutar:** Weekly e monthly vazios significam que hoje é ponto zero da memória interpretativa desta conta. Não há tese anterior para testar.
 
 ---
 
 ### Leitura estratégica
 
-- **A magnitude exige causa antes de conclusão:** Quando volume e ticket sobem simultaneamente para ~2x o baseline de 60 dias, a pergunta relevante não é "a conta cresceu?" — é "o que causou isso e é repetível?" Promoção pontual, boost algorítmico, mudança de listing, ou ADS agressivo de Pedro explicam esse padrão; cada causa tem implicação distinta para continuidade. Sem dado de causa, qualquer classificação positiva é prematura.
+- **O spike de ontem é real, mas sem causa identificada:** A consistência do desvio entre janelas descarta ruído de série ou erro de dado — a flag de qualidade "partial" no volume_band é esperada para spikes positivos, não indica contaminação. O que não se sabe é o que gerou o resultado: não há registro de campanha, promoção, mudança de listing ou evento externo no pacote. Sem causa identificada, um único dia — por mais expressivo que seja — não sustenta tese de patamar.
 
-- **Mix aparentemente mais distribuído:** Top 3 em 51.6% e top 5 em 70.3% deixam ~30% de contribuição na cauda — incluindo um produto fora do core de cozinha (Suporte Gamer, 6 unidades). Hipótese: o dia trouxe exposição mais ampla, não concentração maior no campeão. Saudável se se sustentar; um único dia não confirma padrão.
+- **O ticket subindo junto com o volume é o sinal mais interessante:** Picos de volume isolados costumam comprimir ticket (pedidos menores, mais acessíveis). Aqui o ticket subiu. Isso pode indicar: entrada de produtos com preço mais alto no mix do dia, pedidos com mais itens por transação (64 itens em 46 pedidos = ~1,4 itens/pedido, modestamente acima do padrão histórico de ~1,05 itens/pedido calculado das médias), ou Buy Box favorável em ASINs de maior valor. A hipótese não pode ser confirmada hoje — é candidata.
 
-- **Ticket elevado compatível com mix de kits:** Potes de Vidro (três variações, 20 unidades no total) e Canecas (dois SKUs, 14 unidades) puxam o valor médio por pedido. Se o ticket subiu porque kits/conjuntos venderam mais, o efeito pode ser frágil — dependente de estoque ou visibilidade específica desses ASINs. Hipótese, não fato.
+- **Concentração é padrão observado, não novo alerta:** Top 5 em 70.3% com 10 produtos visíveis no ranking é consistente com perfil típico de contas Amazon em categorias domésticas. O que chama atenção é que a Jarra e os Potes de Vidro (os dois primeiros do top) representaram 25 dos 64 itens vendidos no dia — ~39% do volume físico concentrado em dois SKUs. Se esse padrão se mantiver em dias "normais", a conta tem segundo vetor apenas parcial.
 
-- **FBA pleno elimina fragilidade de fulfillment como risco imediato**, mas Buy Box e disponibilidade de estoque dos ASINs líderes — variáveis ausentes do pacote — permanecem como incógnitas relevantes antes de qualquer conclusão sobre escalar tráfego.
+- **Base vazia impede diagnóstico de trajetória:** Sem weekly/monthly, não é possível saber se a conta está em fase de ganho de patamar pós-algum evento (novo listing, ajuste de preço, campanha FBA iniciada recentemente) ou se este foi um evento isolado. A leitura honesta é que os dados de hoje criam o ponto de partida da série interpretativa.
 
 ---
 
 ### Tese da conta
 
-**Inconclusiva.** O dia é anomalamente forte em todas as janelas comparativas, mas sem memória diária anterior, sem weekly/monthly consolidados, e sem dado de Buy Box, causa do spike ou estoque dos campeões, não é possível afirmar mudança de patamar, boost pontual ou evento específico. A conta tem um dia de saída expressiva (~2x o baseline de 60d em GMV, volume e ticket) com mix aparentemente mais distribuído — todos sinais positivos **se confirmados em sequência**. Um ponto de dado não é tese.
+**Inconclusiva.**
+
+O resultado de ontem é excepcionalmente forte em todas as janelas disponíveis, mas a base histórica interpretativa está vazia — sem tese semanal, sem padrões documentados, sem hipóteses ativas. Um único dia de spike, mesmo consistente entre janelas temporais e com ticket subindo, não é suficiente para classificar a conta como "em ganho de patamar" sem pelo menos dois ou três pontos de confirmação ao longo da semana. O resultado abre a hipótese de mudança de patamar — mas a tese correta hoje é inconclusiva: dados presentes, contexto ausente.
 
 ---
 
 ### Risco estrutural principal
 
-- **Risco:** Spike isolado sem causa identificada inflando a baseline percebida e induzindo decisão prematura sobre ADS ou reposição de estoque.
-- **Por que importa:** Se a causa foi pontual (promoção, boost algorítmico, tráfego orgânico eventual), a normalização nos próximos dias pode ser interpretada erroneamente como queda quando é retorno ao patamar. Escalar ADS com base neste dia, sem validar Buy Box e disponibilidade FBA dos ASINs líderes, amplificaria risco em vez de oportunidade — regra explícita das rules.md desta conta.
-- **Histórico:** Risco novo — sem memória anterior para confirmar recorrência. É o primeiro ponto de dado com esta magnitude registrado neste sistema.
-- **Sinal de confirmação:** Pedidos retornando para faixa 20-27 nos próximos 3 dias com ticket voltando a R$ 38-42 confirma spike pontual. Pedidos sustentados ≥ 35 com ticket ≥ R$ 45 por 2 dias consecutivos começaria a sustentar leitura de novo patamar.
+**Risco:** Dependência operacional de poucos SKUs em canal 100% FBA, sem base histórica documentada para identificar erosão gradual.
+
+**Por que importa:** A conta opera integralmente via FBA. Qualquer instabilidade de estoque no centro de distribuição — seja por ruptura, atraso de reposição ou Buy Box perdido — nos ASINs líderes (Jarra e Potes de Vidro respondem por ~39% do volume físico do dia) pode eliminar uma fração desproporcional do resultado diário. O risco não é a FBA em si — é a combinação de concentração alta em poucos ASINs com ausência de registro histórico de como a conta se comporta quando esses ASINs oscilam.
+
+**Histórico:** Não documentado. Esta é a primeira entrada da memória interpretativa da conta.
+
+**Sinal de confirmação:** Se nos próximos 7 dias a Jarra Medidora ou os Potes de Vidro somados registrarem queda de disponibilidade FBA ou Buy Box abaixo de 85% (se Buy Box disponível no pacote), e o GMV diário cair mais de 40% em relação ao observado hoje, isso confirma a dependência estrutural como risco real — não apenas teórico.
 
 ---
 
 ### Sinais a observar
 
-1. **Sustentação de volume nos próximos 3 dias:** Pedidos ≥ 35 por 2 dias consecutivos indica ganho real de patamar. Retorno para faixa 20-27 confirma que 13/05 foi spike pontual e a conta permanece na banda histórica de 30d.
+1. **Sustentação do patamar nos próximos 3 dias:** Se GMV diário ficar acima de R$1.500 por 3 dias seguidos (vs média histórica de ~R$1.040 nos últimos 30d), o spike de hoje começa a ganhar caráter de mudança de patamar. Se retornar para a banda R$900–R$1.100, classifica-se como evento pontual.
 
-2. **Ticket médio nos próximos 2 dias:** Ticket sustentado acima de R$ 45 indica mudança de mix com impacto duradouro. Retorno para faixa R$ 38-42 confirma que o efeito foi atípico — provavelmente concentração de kits ou evento específico de exposição.
+2. **Comportamento do ticket médio ao longo da semana:** Ticket acima de R$45 por mais 2 dias nos próximos 5 dias de dados disponíveis confirma que houve mudança real de mix — e não apenas volume inflado por um produto específico no dia. Ticket retornando para R$38–R$41 descarta a hipótese de mudança de composição.
 
-3. **Buy Box e disponibilidade FBA dos ASINs líderes (Jarra Medidora + Potes de Vidro) — se disponível no pacote:** Sem Buy Box estável nesses dois ASINs, qualquer decisão de escalar ADS é prematura independentemente do resultado de hoje.
+3. **Concentração top 3 como termômetro de vulnerabilidade:** Se a concentração dos três primeiros SKUs ultrapassar 60% em dois dos próximos três dias com dados, a dependência estrutural se confirma como padrão — não anomalia do dia de hoje — e passa a ser monitorada como risco ativo nas próximas leituras.

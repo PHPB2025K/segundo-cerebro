@@ -707,3 +707,9 @@ _Consolidação Profunda executada em 2026-05-15 04:00 BRT._
 ### [TÁTICA] Mission Control/PWA: HTML deve ser network-first para não esconder deploy novo (2026-05-13)
 **Lição:** Service worker cache-first em app operacional mascara mudanças de UI e pode manter versão antiga após deploy. Para Mission Control e apps internos similares, HTML/navegação deve ser network-first; cache-first fica só para assets estáticos versionados.
 **Expira:** 2026-06-12
+
+### [ESTRATÉGICA] Consolidação diária monolítica do Kobe não escala; precisa ser em camadas por agente (2026-05-15)
+**Contexto:** O cron único do Kobe passou a concentrar limpeza de pending, consolidação de todos os agentes, cross-agent e commit final, batendo timeout de 10min em dias pesados.
+**Lição:** Consolidação de memória deve respeitar a fronteira de responsabilidade de cada agente. Cada agente direto consolida a própria memória e sobe apenas digest executivo para o Kobe.
+**Regra:** Kobe não deve varrer memória interna de agentes diretos no cron diário; deve ler o próprio dia + digests dos agentes diretos e deixar commit/index para uma etapa final do pipeline.
+

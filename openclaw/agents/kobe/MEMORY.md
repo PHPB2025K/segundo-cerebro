@@ -163,6 +163,12 @@ skills/
 - Decisões/lessons perdidas promovidas: Amazon Ads em 5 camadas, Guarani aceite do acordo final, n8n usage tracking e Mission Control/PWA network-first.
 - Agent memories de Trader, Spark e Builder atualizadas para refletir Daily Sales v2, Amazon Ads 5 camadas, Mission Control/Social Studio Reborn/Canggu.
 
+## Qualidade da Memória (Pipeline em Camadas 15/05)
+- Consolidação Diária deixou de ser monolítica: Trader, Spark, Builder, Fisco e RH consolidam suas próprias memórias.
+- Cada agente direto gera digest diário para Kobe em `memory/agent-digests/YYYY-MM-DD/<agent>.md`.
+- Kobe consolida apenas o próprio dia + digests dos agentes diretos; subagentes internos sobem via agente-pai.
+- Fechamento técnico às 00:05 BRT centraliza commit/push/indexação para reduzir conflitos e timeouts.
+
 ## Qualidade da Memória (Consolidação Diária 30/04)
 - **sessions/2026-04-30.md:** consolidado com Budamix Central Full/Estoque, Canggu, RH/Ponto Certo, GitHub→Vercel e pendências finais.
 - **pending.md:** limpo; removidas pendências resolvidas de cadastro de SKU base/2D; adicionadas Estoque Fase 2-4, Canggu, RH e validações reais.

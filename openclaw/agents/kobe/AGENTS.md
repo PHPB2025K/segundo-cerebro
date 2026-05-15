@@ -121,6 +121,28 @@ Quando uma sessão precisa ser compactada:
 
 **IMPORTANTE:** O `/compact` NÃO extrai lições automaticamente. Ele só resume a sessão. A extração é responsabilidade do Kobe via este protocolo. O `memory index` apenas reprocessa embeddings pra busca semântica — também NÃO popula lessons/decisions/pending. A destilação é 100% manual.
 
+
+### Consolidação em Camadas por Agente (Decisão Pedro 2026-05-15)
+
+A Consolidação Diária NÃO deve mais ser um monólito do Kobe varrendo todos os agentes. O modelo correto é em camadas:
+
+1. **Cada agente direto consolida a própria memória:** Trader, Spark, Builder, Fisco e RH.
+2. **Cada agente gera um digest diário para Kobe** em `memory/agent-digests/YYYY-MM-DD/<agent>.md`.
+3. **Kobe lê apenas o próprio dia + digests dos agentes diretos.**
+4. **Subagentes/workers internos NÃO escrevem digest direto para Kobe.** O agente-pai absorve e resume.
+5. **Commit/index são responsabilidade do fechamento do pipeline**, não dos crons individuais.
+
+Pipeline diário padrão:
+- 22:45 BRT — Consolidação Trader
+- 22:55 BRT — Consolidação Spark
+- 23:05 BRT — Consolidação Builder
+- 23:15 BRT — Consolidação Fisco
+- 23:25 BRT — Consolidação RH
+- 23:45 BRT — Consolidação Kobe
+- 00:05 BRT — Fechamento técnico: valida digests, commit/push e indexação
+
+Regra de escopo: Kobe nunca deve consolidar diretamente memória interna de agentes diretos durante o cron diário. Se digest faltar, registrar lacuna e seguir; não fazer o trabalho do agente.
+
 ### Busca Semântica
 - Provedor: OpenAI (embeddings)
 - `memory_search("query")` → busca por significado em todos os arquivos de memória

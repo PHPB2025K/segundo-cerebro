@@ -320,3 +320,12 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Guarani aceitou a proposta final de R$ 7.500,00 à vista, com baixa/quitação dos 7 títulos/NFs em aberto, sem protesto, negativação, cobrança externa e com isenção do aviso prévio.
 - A GB não deve pagar antes de distrato aprovado/assinado ou aceite escrito inequívoco dos termos finais.
 - A minuta deve preservar quitação integral e definitiva, ausência de saldo futuro, sem reconhecimento de dívida e neutralizar qualquer frase que possa virar admissão ampla de culpa por “ausência de mão de obra”.
+
+## 2026-05-15 — Consolidação de memória em camadas por agentes diretos
+- A Consolidação Diária deixou de ser monolítica no Kobe.
+- Cada agente direto do Kobe (Trader, Spark, Builder, Fisco e RH) passa a consolidar a própria memória de forma independente.
+- Cada agente direto deve gerar um digest diário curto para o Kobe.
+- Kobe consolida apenas o próprio dia + digests dos agentes diretos.
+- Subagentes/workers internos não escrevem direto para Kobe; o agente-pai absorve e resume.
+- O fechamento técnico do pipeline fica centralizado depois das consolidações, responsável por commit/push/indexação.
+

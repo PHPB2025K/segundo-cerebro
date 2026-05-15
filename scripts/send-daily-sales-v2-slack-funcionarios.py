@@ -10,7 +10,7 @@ Este arquivo permanece apenas como compatibilidade para crons/wrappers antigos:
 2. executa análise/memória do Trader e pacote validado;
 3. delega a execução das camadas ao runner oficial do DSA em modo preview/shadow.
 
-Envio real por este wrapper fica bloqueado até promoção explícita do Pedro.
+Entrega em produção temporária: enviar somente para o Slack pessoal do Pedro; nunca para DMs dos funcionários até nova liberação explícita.
 """
 
 from __future__ import annotations
@@ -26,6 +26,7 @@ WORKSPACE = Path(__file__).resolve().parent.parent
 ANALYZER = WORKSPACE / "scripts" / "daily-sales-v2-analyzer.py"
 BUILD_PACKAGE = WORKSPACE / "scripts" / "daily-sales-v2-build-package.py"
 DSA_RUNNER = WORKSPACE / "scripts" / "daily-sales-analyst-runner.py"
+DSA_PEDRO_SLACK = WORKSPACE / "scripts" / "daily-sales-dsa-send-slack-pedro.py"
 
 
 def default_day() -> str:
@@ -45,8 +46,8 @@ def main() -> int:
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--dry-run", action="store_true", help="Roda análise sem salvar e gera preview sem enviar")
     group.add_argument("--write-preview", action="store_true", help="Salva análise/memória e previews, sem enviar")
-    group.add_argument("--to-pedro", action="store_true", help="Envia previews para Pedro, não para equipe")
-    group.add_argument("--send-real", action="store_true", help="Envia real para Lucas/Yasmin/Leonardo")
+    group.add_argument("--to-pedro", action="store_true", help="Executa pipeline completo e envia as 3 mensagens para o Slack pessoal do Pedro")
+    group.add_argument("--send-real", action="store_true", help="Bloqueado: não enviar para Lucas/Yasmin/Leonardo")
     args = parser.parse_args()
 
     day = args.date
@@ -63,9 +64,9 @@ def main() -> int:
     elif args.to_pedro:
         analyzer_mode = "--write-memory"
         generator_mode = "--to-pedro"
-        final = "PREVIEW_SENT_TO_PEDRO"
+        final = "SENT_TO_PEDRO_SLACK"
     elif args.send_real:
-        print("BLOQUEADO: envio real por wrapper legado desativado. Use cadeia Trader → DSA → Trader após aprovação do Pedro.", file=sys.stderr)
+        print("BLOQUEADO: envio para funcionários desativado. Modo de produção atual envia somente para o Slack pessoal do Pedro.", file=sys.stderr)
         return 2
     else:
         analyzer_mode = "--write-memory"
@@ -76,7 +77,9 @@ def main() -> int:
     run_step([sys.executable, str(ANALYZER), day, analyzer_mode], "Análise profunda por conta")
     run_step([sys.executable, str(BUILD_PACKAGE), day, "--write"], "Pacote validado / Data readiness")
     dsa_mode = "--dry-run" if args.dry_run else "--preview-to-kobe"
-    run_step([sys.executable, str(DSA_RUNNER), day, dsa_mode, "--llm"], "Daily Sales Analyst oficial — camadas LLM + QA shadow")
+    run_step([sys.executable, str(DSA_RUNNER), day, dsa_mode, "--llm"], "Daily Sales Analyst oficial — camadas LLM + QA")
+    if args.to_pedro:
+        run_step([sys.executable, str(DSA_PEDRO_SLACK), "--date", day], "Entrega Slack — Pedro somente")
     print(final)
     return 0
 

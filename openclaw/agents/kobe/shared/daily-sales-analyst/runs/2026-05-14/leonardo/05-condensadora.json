@@ -1,10 +1,57 @@
 {
   "layer": "05-condensadora",
-  "recipient": "leonardo",
-  "status": "BLOCKED",
-  "reason": "Data Readiness NOT_READY. Checks failed: ",
   "date": "2026-05-14",
-  "condensed_output": null,
-  "fallback": true,
-  "llm_used": false
+  "recipient": "Leonardo",
+  "platform": "amazon",
+  "analise_final_condensada": [
+    {
+      "insight": "Parece resultado forte de canal, mas é resultado forte de um produto — o GMV mais que dobrou qualquer referência histórica disponível, mas o crescimento não foi distribuído: 32% dos itens saíram de um único ASIN campeão, e o cluster de porcelana oferece suporte real (28% combinado) sem eliminar a dependência estrutural. A leitura correta não é 'Amazon crescendo bem' — é 'o ASIN líder teve um dia excepcionalmente bom, e a conta carrega essa fragilidade mesmo quando o resultado é positivo'.",
+      "padrao": "E — localização: o resultado não é de canal, é de produto específico",
+      "criterio_descarte": "Evita interpretação errada + muda a leitura do dia",
+      "base": "Granular + Estratégica",
+      "confianca": "alta"
+    },
+    {
+      "insight": "O diagnóstico parece completo mas três lacunas operacionais críticas seguem abertas: Buy Box do ASIN líder, causa do spike (promoção, preço ou orgânico) e ASIN do cancelamento não puderam ser verificados pelo pacote. O resultado bom não valida a operação — a proteção do campeão e a decisão de escalar ADS dependem exatamente dessas três respostas, que só o Seller Central pode fornecer.",
+      "padrao": "F — a métrica subiu, mas a qualidade do diagnóstico é incompleta: resultado positivo com base analítica parcialmente aberta",
+      "criterio_descarte": "Alerta contra risco silencioso + muda a prioridade",
+      "base": "Tática + Granular",
+      "confianca": "alta"
+    }
+  ],
+  "prioridades_condensadas_slack": [
+    {
+      "prioridade": "Checar Buy Box e cobertura de estoque FBA do ASIN líder no Seller Central antes de qualquer decisão de tráfego pago",
+      "por_que": "A conta dependeu de um único produto para 32% dos itens do dia; Buy Box não está no pacote — escalar ADS sem essa validação amplifica risco sobre operação com campeão não confirmado",
+      "sinal_confirmacao_refutacao": "Buy Box ≥85% e estoque FBA cobrindo ao menos 7 dias no ritmo de ontem indica condição apta para testar aceleração; abaixo disso, manter pausa em ADS",
+      "escalar_se": "Buy Box abaixo de 85% ou estoque FBA crítico — escalar para Pedro com diagnóstico de risco operacional, não de crescimento"
+    },
+    {
+      "prioridade": "Verificar no Seller Central se houve promoção, alteração de preço ou mudança de posição do ASIN líder em 2026-05-14",
+      "por_que": "A causa do volume excepcional do campeão segue sem confirmação granular; saber se foi orgânico ou induzido por evento pontual determina se o resultado é replicável ou exceção de um dia — essa distinção muda a decisão de enquadrar o dia como novo patamar ou ruído positivo",
+      "sinal_confirmacao_refutacao": "Promoção ou alteração de preço confirmada: resultado foi evento pontual, âncora não aplicável; ausência de evento: resultado orgânico, reforça tese de ganho de patamar — a confirmar com 2-3 dias de sequência",
+      "escalar_se": "Não aplicável — decisão permanece com Leonardo até fechamento do diagnóstico"
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [
+    "ASIN do cancelamento — não identificado granularmente; citar no Slack sem dado confirmado não agrega e pode induzir leitura errada",
+    "Hipótese de promoção como causa confirmada do spike — evidência conflitante e não resolvida; distribuição horária enfraquece mas não descarta; tratar como causa não identificada, não como fato",
+    "Afirmação de que o ASIN líder está com Buy Box saudável — há evidência indireta favorável (FBA 100%, 16 unidades distribuídas ao longo do dia), mas confirmação direta está ausente; não emitir afirmação positiva direta sobre Buy Box",
+    "Variações percentuais brutas como manchete (ex: +88,3% GMV vs 30d, +107% vs mesmas quartas) — o argumento se sustenta sem elas; métricas como suporte, nunca como abertura",
+    "SKUs internos (CK4742_BB, XCP002, K6CAN250) — desnecessários para mensagem operacional a Leonardo"
+  ],
+  "memoria_para_amanha": [
+    "A conta não tem weekly.md nem monthly.md constituídos — 2026-05-14 é o primeiro ponto de registro qualitativo; verificar amanhã se GMV sustenta acima de R$1.500 e ticket acima de R$48 para começar a construir tese de ganho de patamar vs spike isolado",
+    "Hipótese de causa do spike (promoção, preço ou orgânico para o ASIN líder) segue em aberto — se Leonardo verificou no Seller Central, alimentar a memória do próximo ciclo com o resultado antes da análise do dia seguinte",
+    "Cluster de porcelana (Xícaras Paris + Canecas Caneladas + variantes Tulipa) respondeu por 28% dos itens combinados — monitorar nos próximos 3-5 dias se se consolida como segundo vetor real ou foi composição específica deste dia",
+    "Cancelamento sem ASIN identificado — se Leonardo verificou no Seller Central, registrar o ASIN para os próximos ciclos; cancelamento recorrente no ASIN líder vira sinal operacional, não ruído",
+    "O dia foi operacionalmente limpo (FBA 100%, reconciliação OK, identificação de produto OK) mas com diagnóstico analiticamente parcial — não usar o resultado de 2026-05-14 como âncora de novo patamar antes de 2-3 dias de sequência dentro da banda elevada"
+  ],
+  "alertas_confianca": {
+    "nivel": "media",
+    "explicacao": "Os dados de pedidos estão íntegros — reconciliação OK, identificação de produto OK, FBA confirmado, volume_band_amazon marcado como partial por spike positivo (não blocking). A confiança média vem das três perguntas operacionais críticas que o pacote não pôde responder (Buy Box, causa do spike, ASIN do cancelamento), gerando hipóteses relevantes em aberto. A análise é confiável no que descreve — volume, concentração, execução operacional — mas incompleta nas causas. Os dois insights refletem isso e preservam as ressalvas adequadas sem forçar conclusão onde o dado não chega."
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

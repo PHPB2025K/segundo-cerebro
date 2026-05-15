@@ -65,6 +65,12 @@ Toda sexta-feira no fim do dia:
 3. Atualizar este arquivo com um bloco semanal.
 4. Avisar Pedro no Telegram somente com resumo executivo e pontos que merecem atenção.
 
+## Canal Telegram obrigatório
+- Pedro criou em 15/05/2026 um tópico específico no Kobe Hub para **Gestão de Funcionários**.
+- Toda comunicação, alerta, resumo, follow-up ou assunto relacionado à gestão específica de funcionários da empresa deve ir obrigatoriamente nesse tópico, não no Financeiro nem no RH genérico.
+- A rotina semanal **“✅ Rotina semanal de Gestão de Funcionários”** deve anunciar o resultado apenas nesse tópico específico.
+- Estado técnico: thread ID ainda precisa ser capturado por uma mensagem real dentro do novo tópico; até capturar, não enviar a rotina no tópico Financeiro.
+
 ## Segurança e privacidade
 - Não persistir dados sensíveis desnecessários.
 - Não copiar transcrição integral para memória; salvar síntese executiva e decisões/pontos de acompanhamento.

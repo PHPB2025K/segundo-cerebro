@@ -446,6 +446,7 @@ def parse_analysis(md: str) -> dict:
         "condensed_analysis": [],
         "condensed_priorities": [],
         "layered_sections_present": False,
+        "layers": {"strategic": [], "tactical": [], "operational": [], "granular": []},
     }
 
     def parse_number(s: str) -> float:
@@ -525,6 +526,27 @@ def parse_analysis(md: str) -> dict:
             result["actions"].append(stripped[2:])
         if in_watch and stripped.startswith("- "):
             result["watch_tomorrow"].append(stripped[2:])
+
+
+    # Camadas internas 1-4 — usadas pela síntese consolidada Shopee.
+    layer_map = {
+        "## Camada Estratégica": "strategic",
+        "## Camada Tática": "tactical",
+        "## Camada Operacional": "operational",
+        "## Camada Granular": "granular",
+    }
+    current_layer = None
+    for line in md.splitlines():
+        stripped = line.strip()
+        if stripped in layer_map:
+            current_layer = layer_map[stripped]
+            result["layered_sections_present"] = True
+            continue
+        if stripped.startswith("## "):
+            current_layer = None
+            continue
+        if current_layer and stripped.startswith("- "):
+            result["layers"][current_layer].append(stripped[2:].strip())
 
 
     # Camada Condensadora — fonte primária para Slack.
@@ -667,8 +689,70 @@ def _shopee_account_metric_line(label: str, analysis: dict | None, index: int) -
 def _shopee_individual_analysis_lines(accounts: list[tuple[str, str, dict | None]]) -> list[str]:
     lines: list[str] = []
     for idx, (slug, label, analysis) in enumerate(accounts, 1):
-        lines.append(f"🟠 *{label} (Shopee {idx}):* {((analysis or {}).get('condensed_analysis') or ['Análise indisponível para esta conta.'])[0]}")
+        lines.append(f"🟠 *{label} (Shopee {idx}):* {_shopee_account_diagnosis(label, analysis)}")
     return lines
+
+
+def _share(part: float, total: float) -> float:
+    return (part / total * 100) if total else 0.0
+
+
+def _account_top_name(analysis: dict | None, idx: int = 0) -> str:
+    top = (analysis or {}).get("top_skus") or []
+    if len(top) <= idx:
+        return "produto líder"
+    return _display_name_from_top_entry(top[idx][0])
+
+
+def _account_top_qty(analysis: dict | None, idx: int = 0) -> int:
+    top = (analysis or {}).get("top_skus") or []
+    if len(top) <= idx:
+        return 0
+    return int(top[idx][1] or 0)
+
+
+def _account_var_orders(analysis: dict | None, window: str = "30d") -> float:
+    comp = (analysis or {}).get("comparisons", {}).get(window) or {}
+    return _var_float(comp.get("var_orders", "0%"))
+
+
+def _cancel_rate(analysis: dict | None) -> float:
+    pedidos = int((analysis or {}).get("pedidos") or 0)
+    cancel = int((analysis or {}).get("cancelamentos") or 0)
+    return cancel / (pedidos + cancel) * 100 if pedidos + cancel else 0.0
+
+
+def _shopee_account_diagnosis(label: str, analysis: dict | None) -> str:
+    if not analysis:
+        return "dados indisponíveis; não usar esta conta para orientar ação até a coleta granular fechar."
+    pedidos = int(analysis.get("pedidos") or 0)
+    gmv = float(analysis.get("gmv") or 0)
+    ticket = float(analysis.get("ticket") or 0)
+    leader = _account_top_name(analysis)
+    leader_qty = _account_top_qty(analysis)
+    runner = _account_top_name(analysis, 1)
+    var30 = _account_var_orders(analysis, "30d")
+    var_week = _account_var_orders(analysis, "same_weekday")
+    cancel = _cancel_rate(analysis)
+    conc = float(analysis.get("concentration_top3") or 0)
+
+    if label == "Budamix Store":
+        return (
+            f"é a conta de volume da Shopee: {pedidos} pedidos com ticket {brl(ticket)}, puxada por {leader} ({leader_qty} pedidos) e {runner}. "
+            f"O risco não é preço isolado; é perder ranking/tráfego nos campeões que sustentam a base de pedidos, principalmente com top 3 em {pct(conc)}."
+        )
+    if label == "Budamix Oficial":
+        return (
+            f"ficou como conta de menor tração: {pedidos} pedidos, ticket {brl(ticket)} e cancelamento de {pct(cancel)}. "
+            f"A leitura é operacional antes de escala: limpar causa dos cancelamentos e confirmar se {leader} perdeu exposição; aumentar tráfego sem resolver isso só amplifica venda suja."
+        )
+    if label == "Budamix Shop":
+        direction = "abaixo" if var30 < 0 else "acima"
+        return (
+            f"entregou o melhor ticket ({brl(ticket)}) e funciona como segundo vetor de faturamento, com {leader} e {runner} carregando mix diferente da Store. "
+            f"Mesmo {direction} da média de 30d ({_fmt_var(str(var30) + '%')} em pedidos), ela é a conta que mais ajuda a escalar sem canibalizar os campeões de volume."
+        )
+    return f"{pedidos} pedidos, ticket {brl(ticket)}; líder {leader}. A leitura precisa separar papel da conta, concentração e variação contra histórico antes de mexer em campanha."
 
 
 def _shopee_consolidated_analysis(available: list[dict], leader_text: str) -> str:
@@ -676,11 +760,45 @@ def _shopee_consolidated_analysis(available: list[dict], leader_text: str) -> st
     total_gmv = sum(float(a.get("gmv") or 0) for a in available)
     if not available:
         return "*• Consolidado: análise indisponível; QA deve bloquear envio real.*"
+    ordered = sorted(available, key=lambda a: int(a.get("pedidos") or 0), reverse=True)
+    revenue_ordered = sorted(available, key=lambda a: float(a.get("gmv") or 0), reverse=True)
+    volume_acc = ordered[0]
+    revenue_acc = revenue_ordered[0]
+    volume_name = str(volume_acc.get("account_label") or volume_acc.get("account_name") or "conta de volume")
+    revenue_name = str(revenue_acc.get("account_label") or revenue_acc.get("account_name") or "conta de faturamento")
+    volume_share = _share(int(volume_acc.get("pedidos") or 0), total_orders)
+    revenue_share = _share(float(revenue_acc.get("gmv") or 0), total_gmv)
+    cancellation_focus = max(available, key=lambda a: _cancel_rate(a))
+    cancellation_name = str(cancellation_focus.get("account_label") or cancellation_focus.get("account_name") or "conta com cancelamento")
+    cancellation_rate = _cancel_rate(cancellation_focus)
+    top = _merge_top_products(*available, limit=3)
+    top_text = ", ".join(f"{_display_name_from_top_entry(name)} ({qty})" for name, qty in top)
     return (
-        f"*⚫ Consolidado (3 contas):* As três contas somaram *{total_orders} pedidos* e *{brl(total_gmv)}*. "
-        f"A leitura principal é usar as contas de forma complementar: proteger os campeões como {leader_text}, "
-        "evitar canibalização entre lojas e distribuir o mix para aumentar faturamento total da Shopee sem depender de uma única conta."
+        f"*⚫ Consolidado (3 contas):* A Shopee não deve ser lida como uma conta única: {volume_name} puxou {pct(volume_share)} dos pedidos, "
+        f"enquanto {revenue_name} carregou {pct(revenue_share)} do faturamento. O caminho de escala é preservar os campeões consolidados ({top_text}) "
+        f"sem fazer as três lojas disputarem o mesmo papel; {cancellation_name} exige atenção separada porque o cancelamento de {pct(cancellation_rate)} pode contaminar qualquer aumento de tráfego."
     )
+
+
+def _shopee_consolidated_priorities(accounts: list[tuple[str, str, dict | None]]) -> list[str]:
+    available = [a for _, _, a in accounts if a]
+    if not available:
+        return ["• Não enviar ações para Lucas antes de recompor a análise granular das três contas Shopee."]
+
+    by_orders = sorted(accounts, key=lambda x: int((x[2] or {}).get("pedidos") or 0), reverse=True)
+    by_gmv = sorted(accounts, key=lambda x: float((x[2] or {}).get("gmv") or 0), reverse=True)
+    worst_cancel = max(accounts, key=lambda x: _cancel_rate(x[2]))
+    volume_label, volume_analysis = by_orders[0][1], by_orders[0][2]
+    gmv_label, gmv_analysis = by_gmv[0][1], by_gmv[0][2]
+    cancel_label, cancel_analysis = worst_cancel[1], worst_cancel[2]
+    volume_leader = _account_top_name(volume_analysis)
+    gmv_leader = _account_top_name(gmv_analysis)
+    cancel_leader = _account_top_name(cancel_analysis)
+    return [
+        f"• Proteger a conta de volume ({volume_label}) nos campeões {volume_leader} e {_account_top_name(volume_analysis, 1)}; se eles perderem posição, o consolidado da Shopee cai antes de qualquer ajuste nas outras lojas compensar.",
+        f"• Tratar {cancel_label} antes de escalar tráfego: a conta tem o pior cancelamento do grupo ({pct(_cancel_rate(cancel_analysis))}) e o primeiro diagnóstico deve ser no produto líder {cancel_leader}, não em verba.",
+        f"• Usar {gmv_label} como vetor de faturamento complementar, preservando {gmv_leader} e mix de ticket alto; a meta é somar venda incremental, não deslocar demanda da {volume_label}.",
+    ]
 
 
 def _temporal_reading(comparisons: dict, pedidos: int, gmv: float) -> list[str]:
@@ -851,6 +969,9 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     ]
     shopee_accounts = [analyses.get(slug) for slug, _ in account_slugs]
     account_triplets = [(slug, label, analyses.get(slug)) for slug, label in account_slugs]
+    for _, label, account_analysis in account_triplets:
+        if account_analysis is not None:
+            account_analysis["account_label"] = label
     shopee_cancel = sum((a or {}).get("cancelamentos", 0) for a in shopee_accounts)
     shopee_gran_orders = sum((a or {}).get("pedidos", 0) for a in shopee_accounts)
     consolidated_line = f"⚫ Consolidado: {brl(shopee_rev)} | {shopee_orders} pedidos | ticket {brl(shopee_ticket)}"
@@ -881,17 +1002,7 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
         leader_text = leaders[0] if leaders else "os produtos líderes"
         diag_lines = [_shopee_consolidated_analysis(available, leader_text)]
         diag_lines.extend(_shopee_individual_analysis_lines(account_triplets))
-        prio_lines = []
-        seen = set()
-        for a in available:
-            for item in a.get("condensed_priorities") or []:
-                if item not in seen:
-                    prio_lines.append(f"• {item}")
-                    seen.add(item)
-                if len(prio_lines) >= 3:
-                    break
-            if len(prio_lines) >= 3:
-                break
+        prio_lines = _shopee_consolidated_priorities(account_triplets)
     else:
         diag_lines = ["• Análise detalhada não disponível para o dia."]
         prio_lines = []
@@ -1201,6 +1312,15 @@ def main() -> int:
         for forbidden_section in ["📊 __RESUMO GERAL__", "🛒 __VENDAS POR CANAL__", "🛍️ __VISÃO"]:
             if forbidden_section in msg:
                 issues.append(f"SECAO PROIBIDA: {forbidden_section}")
+        if name == "Lucas":
+            shallow_shopee_patterns = [
+                "usar as contas de forma complementar: proteger os campeões",
+                "A conta mostra um sinal mais ligado a exposição e força dos anúncios líderes",
+                "O ponto central é entender se",
+            ]
+            for pattern in shallow_shopee_patterns:
+                if pattern in msg:
+                    issues.append(f"ANALISE SHOPEE RASA/HARDCODED: {pattern}")
 
         # QA: SKU cru no texto visivel
         sku_violations = qa_check_raw_skus(msg)

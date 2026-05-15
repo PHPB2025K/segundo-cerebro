@@ -1,18 +1,70 @@
 {
-  "layer": "07-qa",
-  "recipient": "lucas",
-  "date": "2026-05-13",
-  "verdict": "APPROVED_WITH_REMARKS",
-  "checks_passed": 1,
-  "checks_total": 1,
-  "blockers": [],
-  "remarks": [
-    "Artefatos gerados por fallback deterministico (sem LLM).",
-    "Dados extraidos diretamente do data package v1.0.",
-    "Data Readiness: DADOS_PARCIAIS."
-  ],
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "A camada 06 (Slack Writer) não produziu mensagem — o output registrado é apenas '[FALLBACK - camada 06 usou fallback deterministico]' sem nenhum texto de mensagem, sem log de bloqueios e sem decisões de formatação. Sem artefato de saída, os gates 3 a 11 que dependem de conteúdo textual não são validáveis e devem ser tratados como FALHA. A regra de agregação dura indica BLOQUEADO com 3 Críticos independentes.",
   "send_allowed": false,
   "send_real_allowed": false,
-  "fallback": true,
-  "llm_used": false
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "FALHA",
+    "gate_4_visao_plataforma": "FALHA",
+    "gate_5_top_produtos": "FALHA",
+    "gate_6_analise_conta": "FALHA",
+    "gate_7_prioridades": "FALHA",
+    "gate_8_bloqueios_confianca_logs": "FALHA",
+    "gate_9_consistencia_camadas": "FALHA",
+    "gate_10_tom_utilidade": "FALHA",
+    "gate_11_padrao_numerico_formatacao": "FALHA"
+  },
+  "contagem_severidade": {
+    "criticos": 3,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 0,
+    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Crítico",
+      "gate": "Gate 3 — Estrutura Slack aprovada",
+      "texto_atual": "[FALLBACK - camada 06 usou fallback deterministico]",
+      "texto_esperado": "Mensagem Slack completa com as 6 seções obrigatórias na ordem aprovada",
+      "estado_atual": "Camada 06 não produziu nenhum texto de mensagem — output é apenas indicador de fallback sem conteúdo algum",
+      "estado_esperado": "Mensagem Slack contendo: DAILY SALES REPORT → 📊 VISÃO SHOPEE → 🏆 TOP PRODUTOS SHOPEE → 🔍 ANÁLISE DAS CONTAS → 🎯 PRIORIDADES DO DIA → rodapé BRT",
+      "regra_violada": "A saída da Slack Writer deve conter mensagem Slack completa com as 6 seções obrigatórias; output ausente ou vazio impede qualquer validação de estrutura e bloqueia envio",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Crítico",
+      "gate": "Gate 6 — Análise da Conta (fidelidade à Condensadora)",
+      "texto_atual": "Nenhum conteúdo produzido pela camada 06",
+      "texto_esperado": "Exatamente 3 bullets correspondentes aos 3 insights aprovados pela Condensadora (C2 sem exposição; GMV sustentado por amortecedor de ticket de C1; compressão de ticket de C3 como padrão em observação)",
+      "estado_atual": "Não há mensagem para validar fidelidade — camada 06 não gerou conteúdo; contagem de insights impossível de verificar",
+      "estado_esperado": "Slack Writer deve replicar fielmente os 3 insights da Condensadora, preservando tese central, conectivos, verbos modais e ressalvas de confiança",
+      "regra_violada": "Gate 6 exige cruzamento entre contagem de insights da Condensadora e bullets do Slack e verificação item a item de fidelidade; sem mensagem a validação é impossível e o gate falha como Crítico",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Crítico",
+      "gate": "Gate 8 — Bloqueios, confiança e logs da Slack Writer",
+      "texto_atual": "Nenhum log de 'Respeito de bloqueios' e nenhum bloco 'Decisões de formatação' fornecidos",
+      "texto_esperado": "Log completo de bloqueios cobrindo todos os itens listados em 'O que não pode ir para Slack' da Condensadora (preço unitário por SKU, cancelamentos de C2 sem rastreabilidade, hipótese de canibalização ativa, IDs técnicos) com origem, motivo, agregado autorizado, tratamento aplicado e presença na mensagem final; mais bloco de Decisões de formatação documentando tratamento de ausências e ressalvas",
+      "estado_atual": "A camada 06 produziu apenas indicador de fallback — campos obrigatórios Respeito de bloqueios e Decisões de formatação completamente ausentes",
+      "estado_esperado": "Slack Writer deve entregar três componentes: Mensagem Slack + Respeito de bloqueios + Decisões de formatação; ausência de qualquer um deles impede cruzamento direto de bloqueios exigido pelo Gate 8",
+      "regra_violada": "Gate 8 exige cruzamento direto das fontes primárias de bloqueio da Granular e Condensadora com o log da Slack Writer; log ausente impede os 4 passos obrigatórios de cruzamento e constitui falha crítica de controle de segurança",
+      "bloqueia_envio": true
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [
+    "Re-executar camada 06 (Slack Writer) para gerar mensagem Slack completa com as 6 seções obrigatórias, log de Respeito de bloqueios e bloco de Decisões de formatação — o fallback determinístico deve produzir conteúdo completo, não apenas indicador de status",
+    "Após re-execução da camada 06 com output válido, re-submeter ao QA Gate (camada 07) com o artefato completo para validação dos gates 3 a 11"
+  ],
+  "ressalvas_memoria_interna": [],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "A causa do fallback na camada 06 deve ser investigada pelo Trader — um fallback determinístico que retorna apenas '[FALLBACK - camada 06 usou fallback deterministico]' sem mensagem é bug de pipeline; o comportamento esperado de fallback é produzir mensagem completa via lógica determinística mesmo sem LLM disponível",
+    "Gates 1 e 2 foram avaliados como OK com base no pacote de dados: período BRT correto (2026-05-13T03:00:00Z a 2026-05-14T03:00:00Z), data de análise 13/05/2026 confirmada, destinatário Lucas mapeado corretamente para plataforma Shopee com 3 contas identificadas — esses gates não precisam ser re-validados na próxima rodada salvo mudança no pacote de dados"
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

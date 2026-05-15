@@ -1,18 +1,81 @@
 {
-  "layer": "07-qa",
-  "recipient": "yasmin",
-  "date": "2026-05-12",
-  "verdict": "APPROVED_WITH_REMARKS",
-  "checks_passed": 1,
-  "checks_total": 1,
-  "blockers": [],
-  "remarks": [
-    "Artefatos gerados por fallback deterministico (sem LLM).",
-    "Dados extraidos diretamente do data package v1.0.",
-    "Data Readiness: DADOS_OK."
-  ],
-  "send_allowed": false,
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "Nenhum Crítico e nenhum Maior detectado. Quatro Menores identificados nos Gates 5, 6 e 8: uso de 'pedidos' no Top Produtos quando o campo bruto é 'quantity' (itens vendidos), remoção não documentada de 'não três produtos independentes' do insight 1, remoção dos percentuais explícitos do insight 2 sem registro nas Decisões de Formatação, e substituição de '-30,9% em pedidos' por 'queda expressiva' no insight 3. Nenhum dos quatro Menores altera a tese central, induz erro operacional ou configura degradação sistêmica. Regra aplicada: 0 Maiores + 4 Menores → APROVADO COM RESSALVA.",
+  "send_allowed": true,
   "send_real_allowed": false,
-  "fallback": true,
-  "llm_used": false
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "RESSALVA",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "RESSALVA",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "RESSALVA"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 4,
+    "regra_agregacao_aplicada": "0 Maiores + 4 Menores (não sistêmicos) → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "5 / 11",
+      "texto_atual": "• Jogo Potes de Vidro 5 Peças — tampa preta — 26 pedidos",
+      "texto_esperado": "• Jogo Potes de Vidro 5 Peças — tampa preta — 26 unidades (ou itens)",
+      "estado_atual": "Top Produtos usa a unidade 'pedidos' para representar o campo 'quantity' do pacote, que corresponde a itens/unidades vendidas, não a número de pedidos",
+      "estado_esperado": "A métrica no Top Produtos deveria refletir o dado bruto como unidades ou itens vendidos; com ratio 1,03 itens/pedido (94 itens, 91 pedidos) a imprecisão não induz erro material, mas é tecnicamente incorreta",
+      "regra_violada": "Gate 5: ranking vem do pacote validado; Gate 11: dados objetivos apresentados de forma inconsistente — a VISÃO usa 'pedidos: 91' referindo-se corretamente a pedidos, enquanto o Top Produtos atribui o campo 'quantity' (itens) ao mesmo rótulo 'pedidos'",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "6",
+      "texto_atual": "os três SKUs do topo são variantes de cor de um único anúncio — qualquer problema de ranking, preço ou operação nesse listing afeta os três simultaneamente, sem separação de risco entre eles",
+      "texto_esperado": "os três SKUs do topo são variantes de cor de um único anúncio, não três produtos independentes — qualquer problema de ranking, preço ou operação nesse listing afeta os três simultaneamente, sem separação de risco entre eles",
+      "estado_atual": "O trecho 'não três produtos independentes' foi removido do insight 1; esse contraste explícito reforçava o padrão de localização declarado pela Condensadora ('o problema não é em três produtos, é em um único listing com variantes') e sua ausência enfraquece o enquadramento comparativo da tese",
+      "estado_esperado": "Preservar o contraste explícito conforme a Condensadora; a remoção não foi documentada nas Decisões de Formatação",
+      "regra_violada": "Gate 6: contraste/inversão/enquadramento preservados; nenhum termo analítico-chave removido",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "6 / 8",
+      "texto_atual": "o que segurou o número foi o ticket acima da média, não o volume de pedidos",
+      "texto_esperado": "o que segurou o número foi o ticket acima da média (+10,3% vs 30d), não o volume de pedidos (-8,7% vs 30d)",
+      "estado_atual": "Os percentuais quantitativos que ancoram 'ticket acima da média' e 'volume de pedidos' foram omitidos sem registro nas Decisões de Formatação; a Condensadora incluiu esses valores como parte integral do insight 2, não como dado decorativo",
+      "estado_esperado": "Omissão documentada nas Decisões de Formatação, ou percentuais mantidos; a tese central está preservada e a omissão não induz erro operacional, mas a ausência de registro no log constitui lacuna de rastreabilidade",
+      "regra_violada": "Gate 6: nenhum termo analítico-chave removido; Gate 8: Decisões de formatação devem registrar quebras de frase e omissões de dado que alteram a densidade informacional do insight",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "6",
+      "texto_atual": "A comparação com outras terças mostra queda expressiva",
+      "texto_esperado": "A comparação com outras terças mostra -30,9% em pedidos",
+      "estado_atual": "O dado quantitativo '-30,9% em pedidos' foi substituído pelo qualitativo 'queda expressiva'; a decisão foi documentada nas Decisões de Formatação com justificativa coerente (risco de interpretação isolada sem contexto do outlier); a tese central e a ressalva do outlier de 28/04 estão preservadas",
+      "estado_esperado": "Aceitável se documentado — a justificativa registrada é coerente com os bloqueios da Condensadora; o problema é menor porque a decisão de formatação foi registrada e a tese permanece fiel",
+      "regra_violada": "Gate 6: termo analítico-chave (dado quantitativo específico) substituído por qualitativo; classificado como Menor porque a substituição foi documentada e a tese não foi alterada",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "Lacuna estrutural de log confirmada: Decisões de Formatação não registraram a omissão dos percentuais do insight 2 (+10,3% vs 30d e -8,7% vs 30d); sinal para ajuste do template da Slack Writer no próximo ciclo",
+    "O uso de 'pedidos' no Top Produtos em vez de 'unidades' ou 'itens' é recorrentemente ambíguo quando o campo bruto é 'quantity'; recomenda-se padronizar o rótulo no template da Slack Writer para evitar imprecisão técnica em dias com ratio itens/pedido mais distante de 1,0"
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "O insight 1 usa o termo 'SKUs' na mensagem final ('os três SKUs do topo são variantes...'); embora os valores individuais dos SKUs estejam bloqueados, o termo genérico é aceitável para o perfil operacional de Yasmin em ML; não constitui violação mas pode ser revisto em futuras versões do template para manter consistência com público menos técnico",
+    "A confiança média declarada pela Condensadora não gerou marcador explícito de confiança na mensagem final; os três insights têm sustentação suficiente para o Slack sem marcador e a Condensadora não exigiu sinalização explícita de confiança na mensagem — registrado apenas como dado de auditoria",
+    "O Top Produtos lista 5 itens, sendo os três primeiros variantes do mesmo listing; a formatação com três linhas separadas para o mesmo anúncio pode ser percebida por Yasmin como três produtos distintos, gerando leitura inversa ao alerta da Análise; o enquadramento do insight 1 na Análise mitiga esse risco, mas a coerência visual entre as duas seções poderia ser reforçada em versões futuras do template"
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

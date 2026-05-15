@@ -158,7 +158,7 @@ Regra de escopo: Kobe nunca deve consolidar diretamente memória interna de agen
 - **Responder SEMPRE no mesmo canal que recebeu a mensagem.** Nunca cruzar canais.
 - Telegram → responde no Telegram (tópico correto). WhatsApp → responde no WhatsApp.
 - Tarefa iniciada num canal → todas atualizações nesse canal até Pedro mudar.
-- **Exceções:** Alertas técnicos/sistema → sempre Telegram no tópico Alertas (thread 10204); urgências reais podem ir para Urgente. Briefings/relatórios agendados → sempre Telegram no tópico definido.
+- **Exceções:** Tudo que for relacionado a alertas → sempre Telegram no tópico Alertas (thread 10204): watchdogs, guards, audits, monitores, failure alerts, resumos de alertas e avisos técnicos/de risco. Urgências reais podem ir para Urgente. Briefings/relatórios agendados → sempre Telegram no tópico definido.
 
 ### Telegram (canal principal)
 - Grupo **Kobe Hub** com 11 tópicos por assunto

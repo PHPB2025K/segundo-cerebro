@@ -31,7 +31,7 @@ tags:
 | 11 | 🛍️ Compras | Fornecedores, cotações, pedidos de compra |
 | 12 | 📦 Estoque & Expedição | Níveis de estoque, envios, logística nacional |
 | 13 | ⚙️ Operacional & Sistema | Crons, integrações, VPS, backups, skills |
-| 10204 | 🚨 Alertas | Resumo diário consolidado de watchdogs/monitores técnicos, watchdogs, guards, audits e alertas não urgentes |
+| 10204 | 🚨 Alertas | Todo conteúdo relacionado a alertas: watchdogs, guards, audits, monitores, failure alerts, resumos técnicos e avisos de risco/problema |
 | 10222 | Daily Sales Report - SLACK | Desenvolvimento, previews, alertas, QA, avisos e qualquer comunicação sobre o Daily Sales Report dos funcionários no Slack |
 | 10469 | Gestão de Funcionários | Assuntos de gestão específica de funcionários da empresa e rotina semanal `✅ Rotina semanal de Gestão de Funcionários` |
 

@@ -341,7 +341,7 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 
 - Qualquer alerta técnico, watchdog, monitor, guard, audit ou resumo de alertas deve ir exclusivamente para o tópico Telegram **Alertas**.
 - O thread 8 não deve ser usado para Alertas: ele corresponde ao tópico antigo **Urgente**.
-- O tópico Telegram **Alertas** está confirmado no thread **10204** (`https://t.me/c/3730816228/10204`) e deve receber watchdogs, guards, audits, resumo diário e alertas técnicos não urgentes.
+- O tópico Telegram **Alertas** está confirmado no thread **10204** (`https://t.me/c/3730816228/10204`) e deve receber **todo conteúdo relacionado a alertas**: watchdogs, guards, audits, monitores, failure alerts, alertas técnicos, resumos de alertas e qualquer aviso não operacional que exista para sinalizar problema/risco. Não rotear alertas para Operacional & Sistema, Marketplaces ou outro tópico só porque a origem do alerta nasceu ali; o alerta vai para Alertas.
 - Não inferir thread ID por nome antigo/renomeação aparente; validar sempre por metadado real de mensagem.
 
 ## 2026-05-15 — Daily Sales Report Slack / regra de marketplace e Shopee multi-conta

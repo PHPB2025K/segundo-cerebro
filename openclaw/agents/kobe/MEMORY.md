@@ -137,7 +137,7 @@ skills/
 ## Status do Sistema (15/05/2026 15:20 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
-- **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; thread 8 permanece Urgente e não deve receber watchdogs/guards/audits.
+- **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; todo conteúdo relacionado a alertas deve ir para lá (watchdogs, guards, audits, monitores, failure alerts, resumos e avisos de risco/problema). Thread 8 permanece Urgente e não deve receber alertas técnicos de rotina.
 - **Planejamento de reposição das canecas:** prioridade máxima do próximo bloco operacional, definida por Pedro em 14/05.
 - **Daily Sales Report Slack:** Shopee/Lucas agora exige Consolidadora Shopee/Camada 6B; próxima execução real precisa validar que o wrapper usa a nova arquitetura e o layout aprovado.
 - **Estoque Budamix:** PR1+PR2+PR3a seguem no repo, mas produção ainda roda build rsync de 13/04; remediação continua pausada no `git fetch` por falta de credencial GitHub na VPS. Próxima decisão: Deploy Key SSH read-only (recomendado) vs PAT vs rsync.

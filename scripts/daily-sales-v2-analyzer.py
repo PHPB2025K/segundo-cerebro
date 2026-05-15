@@ -14,6 +14,7 @@ Uso:
 import argparse
 import json
 import os
+import re
 import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
@@ -281,6 +282,65 @@ def fetch_same_weekday_orders(sb, date_str: str, account_slug: str, count=4):
 # Métricas
 # ---------------------------------------------------------------------------
 
+SKU_SUFFIX_RE = re.compile(r"(_T|_BB|_B2|_B|_BAP)$", re.I)
+
+PRODUCT_VARIATION_MAP = {
+    "IMB501P": {
+        "family": "IMB501",
+        "variation_sku": "IMB501P",
+        "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+        "color_terms": ["preto", "preta"],
+    },
+    "IMB501C": {
+        "family": "IMB501",
+        "variation_sku": "IMB501C",
+        "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+        "color_terms": ["cinza"],
+    },
+    "IMB501V": {
+        "family": "IMB501",
+        "variation_sku": "IMB501V",
+        "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+        "color_terms": ["vermelho", "vermelha"],
+    },
+}
+
+
+def normalize_sku(raw_sku: str) -> str:
+    sku = (raw_sku or "").strip().upper()
+    return SKU_SUFFIX_RE.sub("", sku) if sku else ""
+
+
+def title_has_color(title_l: str, variation_sku: str) -> bool:
+    return any(re.search(rf"\b{re.escape(term)}\b", title_l) for term in PRODUCT_VARIATION_MAP[variation_sku]["color_terms"])
+
+
+def product_variation_key(raw_sku: str, title: str = "") -> dict:
+    """Canonical sellable variation for Top Produtos.
+
+    Pedro corrigiu em 2026-05-15: o ranking dos reports dos funcionários deve
+    consolidar filhos/listings por variação vendável, nunca por família inteira.
+    Ex.: IMB501P_T e KITIMB501P_T entram em IMB501P; IMB501C_T em IMB501C;
+    IMB501V_T em IMB501V.
+    """
+    sku = normalize_sku(raw_sku)
+    raw_upper = (raw_sku or "").strip().upper()
+    title_l = (title or "").lower()
+
+    if "IMB501" in raw_upper or "IBM501" in raw_upper:
+        if "C" in sku[-3:] or title_has_color(title_l, "IMB501C"):
+            return {**PRODUCT_VARIATION_MAP["IMB501C"], "key": "IMB501C"}
+        if "V" in sku[-3:] or title_has_color(title_l, "IMB501V"):
+            return {**PRODUCT_VARIATION_MAP["IMB501V"], "key": "IMB501V"}
+        return {**PRODUCT_VARIATION_MAP["IMB501P"], "key": "IMB501P"}
+
+    return {
+        "key": sku or (title or "unknown"),
+        "family": sku or "unknown",
+        "variation_sku": sku,
+        "display_name": "",
+    }
+
 def compute_metrics(orders, cancelled):
     """Calcula métricas do dia para uma lista de pedidos válidos."""
     n = len(orders)
@@ -289,33 +349,47 @@ def compute_metrics(orders, cancelled):
 
     # Items
     total_items = 0
-    sku_counter = Counter()
+    product_counter = Counter()
+    product_order_ids = defaultdict(set)
     product_meta = {}
-    for o in orders:
+    for order_idx, o in enumerate(orders):
+        order_id = str(o.get("order_id") or o.get("id") or o.get("platform_order_id") or order_idx)
         for item in (o.get("items") or []):
             qty = item.get("quantity", 1)
             total_items += qty
-            sku = item.get("sku") or item.get("title", "unknown")
-            sku_counter[sku] += qty
+            raw_sku = item.get("sku") or ""
+            title = item.get("title") or item.get("name") or ""
+            variation = product_variation_key(raw_sku, title)
+            key = variation["key"]
+            product_counter[key] += qty
+            product_order_ids[key].add(order_id)
 
             # Keep the real marketplace identity attached to the counted SKU.
             # This is critical for Amazon: a SKU nickname can be wrong/stale, but
             # ASIN + title come from the orderItems payload for the actual order.
-            if sku not in product_meta:
-                product_meta[sku] = {
-                    "sku": sku,
+            if key not in product_meta:
+                product_meta[key] = {
+                    "sku": variation.get("variation_sku") or raw_sku or key,
+                    "family": variation.get("family") or key,
+                    "variation_sku": variation.get("variation_sku") or raw_sku or key,
+                    "display_name": variation.get("display_name") or "",
                     "platform_item_id": item.get("platform_item_id") or item.get("asin") or "",
-                    "title": item.get("title") or item.get("name") or "",
+                    "title": variation.get("display_name") or title,
                 }
 
-    # Top SKUs
-    top_skus = sku_counter.most_common(10)
+    # Top Produtos por pedidos, não por unidades. Quantity fica para contexto.
+    top_skus = sorted(product_counter.items(), key=lambda kv: (len(product_order_ids[kv[0]]), kv[1]), reverse=True)[:10]
     top_products = [
-        {**product_meta.get(sku, {"sku": sku, "platform_item_id": "", "title": ""}), "quantity": qty}
+        {
+            **product_meta.get(sku, {"sku": sku, "platform_item_id": "", "title": ""}),
+            "orders": len(product_order_ids.get(sku, set())),
+            "quantity": qty,
+            "aggregation_level": "variation",
+        }
         for sku, qty in top_skus
     ]
-    total_sku_qty = sum(sku_counter.values()) or 1
-    top3_concentration = sum(c for _, c in top_skus[:3]) / total_sku_qty * 100 if top_skus else 0
+    total_product_orders = sum(len(v) for v in product_order_ids.values()) or 1
+    top3_concentration = sum(len(product_order_ids.get(sku, set())) for sku, _ in top_skus[:3]) / total_product_orders * 100 if top_skus else 0
 
     # Distribuição por hora BRT
     hour_dist = Counter()
@@ -353,7 +427,7 @@ def compute_metrics(orders, cancelled):
         "gmv": round(gmv, 2),
         "ticket_medio": round(ticket, 2),
         "itens_vendidos": total_items,
-        "top_skus": top_skus,
+        "top_skus": [(sku, len(product_order_ids.get(sku, set()))) for sku, _ in top_skus],
         "top_products": top_products,
         "top3_concentration": round(top3_concentration, 1),
         "hour_distribution": dict(sorted(hour_dist.items())),
@@ -700,14 +774,14 @@ def format_analysis(date_str, account_slug, metrics, avg30, avg60, avg_weekday, 
     # title so downstream Slack generation never has to guess product names from
     # a stale hardcoded SKU map.
     lines.append("## Top Produtos")
-    lines.append("| # | SKU | ASIN/Item | Produto no pedido | Qtd |")
+    lines.append("| # | SKU | ASIN/Item | Produto no pedido | Pedidos |")
     lines.append("|---|---|---|---|---|")
     for i, product in enumerate(m.get("top_products", [])[:10], 1):
         sku = str(product.get("sku") or "").replace("|", "-")
         platform_item_id = str(product.get("platform_item_id") or "").replace("|", "-")
         title = str(product.get("title") or "").replace("|", "-")
-        qty = int(product.get("quantity") or 0)
-        lines.append(f"| {i} | {sku} | {platform_item_id} | {title} | {qty} |")
+        orders = int(product.get("orders") or product.get("quantity") or 0)
+        lines.append(f"| {i} | {sku} | {platform_item_id} | {title} | {orders} |")
     lines.append(f"\n**Concentração top 3:** {m['top3_concentration']}%")
     lines.append("")
 

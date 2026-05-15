@@ -583,7 +583,7 @@ def _top_products_text(top_skus: list[tuple[str, int]], limit: int = 5) -> list[
     for sku, qty in top_skus[:limit]:
         raw = str(sku or "").strip()
         name = raw if " " in raw and not RAW_SKU_PATTERNS.search(raw) else display_name_from_sku(raw)
-        lines.append(f"  - {name}: {qty} un.")
+        lines.append(f"  - {name}: {qty} pedidos")
     return lines
 
 
@@ -603,7 +603,7 @@ def _top_products_section(title: str, top_skus: list[tuple[str, int]], limit: in
         raw = str(sku or "").strip()
         # _merge_top_products já entrega nome comercial; análises individuais entregam SKU.
         name = _display_name_from_top_entry(raw)
-        lines.append(f"• {name} — {qty} un.")
+        lines.append(f"• {name} — {qty} pedidos")
     if not lines:
         lines.append("• Sem produtos suficientes para ranking confiável.")
     return f"🏆 __{title}__\n" + "\n".join(lines)

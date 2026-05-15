@@ -10,10 +10,15 @@ tags:
 
 # MEMORY.md — Trader
 
-_Último update: 2026-03-23_
+_Último update: 2026-05-15_
 _Versão: 2.1_
 
 ---
+
+## Estado operacional recente
+
+- Daily Sales Report v2 é frente ativa do Trader: análises profundas por conta, memória diária/semanal/mensal, Slack individual para Lucas/Yasmin/Leonardo e templates aprovados em 12/05.
+- Para mensagens a funcionários, usar somente marketplaces; Atacado/Bling fica fora. Produto visível deve ser nome comercial, nunca SKU cru.
 
 ## 1. Quem Sou
 

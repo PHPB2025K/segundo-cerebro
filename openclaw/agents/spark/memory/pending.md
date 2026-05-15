@@ -1,12 +1,12 @@
 # Pendências — Spark
 
-_Atualizado: 2026-05-11_
+_Atualizado: 2026-05-15_
 
 ## 🔴 Prioridade Alta
 
 ### Amazon Ads / BidSpark
-- [ ] Analisar Canecas Porcelana Tulipa com prioridade: D+7 mostrou piora forte (ACoS 18,8% → 42,6%).
-- [ ] Analisar Suporte Controle Gamer: D+7 mostrou piora (ACoS 18,8% → 28,9%) e Auto/Descoberta gastando mal.
+- [ ] Corrigir auditoria interna `amazon_ads_actions_log` antes da próxima rodada manual: execução Tulipa 13/05 alterou 7/7 bids com sucesso, mas log interno falhou por constraints/FK.
+- [ ] Aplicar protocolo de análise em 5 camadas em todos os próximos grupos antes de recomendar ações.
 - [ ] Analisar Potes Redondos Plástico: D+7 mostrou piora (ACoS 13,3% → 32,3%), provável escala Exact forte demais.
 - [ ] Ajuste fino em Jarra Medidora e Potes Herméticos Vidro.
 - [ ] Não cortar mais Potes Tampa Bambu por enquanto; eficiência melhorou mas volume caiu.

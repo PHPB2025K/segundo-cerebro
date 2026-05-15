@@ -94,3 +94,9 @@ TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, 
 
 - Após leitura D+7 da rodada 02/05–03/05, priorizar análise detalhada de Canecas Porcelana Tulipa, Suporte Controle Gamer e Potes Redondos Plástico antes de nova rodada de execução.
 - Potes Tampa Bambu não deve receber mais cortes imediatos porque eficiência melhorou, mas volume caiu. Kits Microfibra e Abraçadeiras Nylon devem ser tratados como problema de elegibilidade/listing/Buy Box/categoria, não bid.
+
+## 2026-05-13 — Amazon Ads em 5 camadas
+
+- Toda análise Amazon Ads do Spark deve seguir o protocolo de 5 camadas: estratégia/funil, campanha, ASIN-listing/Buy Box, keyword-search term/histórico de bids/novas keywords e síntese condensadora.
+- Ação de bid/corte/harvest só sai após síntese; ACoS isolado não basta.
+- A metodologia v4.3 dos arquivos Amazon Ads/BidSpark é o padrão vigente.

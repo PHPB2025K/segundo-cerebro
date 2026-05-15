@@ -10,10 +10,15 @@ tags:
 
 # MEMORY.md — Spark
 
-_Último update: 2026-03-23_
+_Último update: 2026-05-15_
 _Versão: 2.0_
 
 ---
+
+## Estado operacional recente
+
+- Amazon Ads/BidSpark agora usa protocolo de 5 camadas antes de qualquer recomendação.
+- Pendência crítica: corrigir auditoria `amazon_ads_actions_log` e seguir com Potes Redondos/Jarra/Potes Vidro após Tulipa e Suporte Gamer.
 
 ## 1. Quem Sou
 

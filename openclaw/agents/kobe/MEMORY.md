@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-14 23:30 BRT (consolidação diária)._
+_Último update: 2026-05-15 04:00 BRT (consolidação profunda)._
 
 ---
 
@@ -156,6 +156,12 @@ skills/
 - **Social Studio Carrossel/PR2/Pivot 1** viraram referência histórica; o produto ativo agora é Reborn (publicador + métricas, sem IA).
 - **Canggu** tem 13/13 Edge Functions com auto-deploy validado; `process-message` v39 e `webhook-whatsapp` v31 já carregam o fix 24/7.
 - **Ponto Certo** responde HTTPS 200 no domínio oficial; fallback legado permanece disponível.
+
+## Qualidade da Memória (Consolidação Profunda 15/05)
+- Últimos 15 dias revisados para main, Trader, Spark e Builder.
+- Lições táticas expiradas removidas quando tinham `Expira` anterior a 15/05; auditorias registradas nos arquivos de lessons.
+- Decisões/lessons perdidas promovidas: Amazon Ads em 5 camadas, Guarani aceite do acordo final, n8n usage tracking e Mission Control/PWA network-first.
+- Agent memories de Trader, Spark e Builder atualizadas para refletir Daily Sales v2, Amazon Ads 5 camadas, Mission Control/Social Studio Reborn/Canggu.
 
 ## Qualidade da Memória (Consolidação Diária 30/04)
 - **sessions/2026-04-30.md:** consolidado com Budamix Central Full/Estoque, Canggu, RH/Ponto Certo, GitHub→Vercel e pendências finais.

@@ -308,3 +308,15 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - `mission.budamix.com.br` passa a ser o domínio oficial do Mission Control.
 - Mission Control deve usar identidade visual Budamix/GB, PT-BR, agentes reais e dados reais do vault; mocks/template TenacitOS não podem permanecer em áreas operacionais visíveis.
 - Service worker do Mission Control deve ser network-first para HTML/navegação, evitando cache antigo ocultar mudanças visuais.
+
+## 2026-05-13 — Amazon Ads / protocolo de análise em 5 camadas
+
+- Toda análise Amazon Ads deve rodar com 5 camadas obrigatórias antes de recomendar ações: estratégica/funil, tática/campanha, operacional/ASIN-listing/Buy Box, granular/keyword-search term/histórico de bids/novas keywords, e condensadora macro.
+- A metodologia v4.3 registrada em `projects/analise-semanal-skill-amazon.md` e `knowledge/concepts/amazon-ads-bidspark-3.md` passa a ser padrão para análises futuras.
+- Recomendações de bid/corte/harvest só devem sair depois da síntese condensadora; não pular direto de métricas para ação.
+
+## 2026-05-13 — Guarani Sistemas / aceite do acordo final
+
+- Guarani aceitou a proposta final de R$ 7.500,00 à vista, com baixa/quitação dos 7 títulos/NFs em aberto, sem protesto, negativação, cobrança externa e com isenção do aviso prévio.
+- A GB não deve pagar antes de distrato aprovado/assinado ou aceite escrito inequívoco dos termos finais.
+- A minuta deve preservar quitação integral e definitiva, ausência de saldo futuro, sem reconhecimento de dívida e neutralizar qualquer frase que possa virar admissão ampla de culpa por “ausência de mão de obra”.

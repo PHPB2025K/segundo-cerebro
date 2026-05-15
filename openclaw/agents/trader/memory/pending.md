@@ -1,12 +1,12 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-11_
+_Atualizado: 2026-05-15_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
-- [ ] Monitorar primeira execução automática do Daily Sales Report — Slack Funcionários em 12/05 às 06:50 BRT e validar envio para Yasmin/Lucas/Leonardo, formato aprovado e Top Produtos consolidado por SKU.
-
+- [ ] Daily Sales Report v2 híbrido: salvar Prompt 4/6 aprovado, gerar Prompts 5–6 e só substituir produção após shadow/preview aprovado.
+- [ ] Monitorar execuções reais do wrapper v2 e garantir que análise por conta use memória diária/semanal/mensal, nome comercial e sem SKU cru.
 
 ### Relatório mensal
 - [ ] **Relatório mensal abril — reexecutar job direto do Trader**: validar geração dos 3 artefatos finais, corrigir caminho Shopee e avisar conclusão/falha no tópico Marketplaces do Telegram.

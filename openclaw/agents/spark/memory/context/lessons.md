@@ -76,19 +76,27 @@ _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
 
 _Lições TÁTICAS removidas após expiração. Mantidas aqui apenas para referência histórica._
 
-### 2026-03-19 — Meta Ads: system user limitado por Business Manager [TÁTICA]
-**Contexto:** Kobe tentou criar System User pra token permanente, mas BM da GB já atingiu limite.
-**Erro/Problema:** Limite de System Users no BM impossibilita token permanente.
-**Lição:** Usar Long-lived token (60 dias) com monitoramento de expiração.
-**Ação concreta:** Verificar token semanalmente no health check. Alertar Kobe 7 dias antes da expiração. Token atual expira ~15/05.
-**Cross-ref:** `accounts.md` → Protocolo de Token Meta
-**Expira:** 2026-04-19
-
-
----
-
-_Novas lições são adicionadas conforme o Spark opera. Cada erro é uma oportunidade de melhorar o sistema._
-
 ### [TÁTICA] Amazon Ads: 0 impressão após experimento indica elegibilidade antes de bid (2026-05-11)
 **Lição:** Quando campanha/experimento fica com 0 impressões, 0 cliques e 0 vendas após janela de D+6/D+7, investigar listing ativo, Buy Box, elegibilidade, categoria e relevância antes de aumentar bid.
 **Expira:** 2026-06-10
+
+## Auditoria — Consolidação Profunda 2026-05-15
+
+### Táticas expiradas removidas
+- ### 2026-03-19 — Meta Ads: system user limitado por Business Manager [TÁTICA] — expirada em 2026-04-19.
+
+
+### 2026-05-13 — Amazon Ads deve seguir protocolo de 5 camadas [ESTRATÉGICA]
+**Contexto:** Pedro exigiu análise máxima antes de novas recomendações Amazon Ads.
+**Lição:** Spark deve analisar Amazon Ads em 5 camadas: funil/estratégia, campanha, ASIN-listing/Buy Box, keyword-search term/histórico de bids e síntese macro. Não recomendar ação apenas por ACoS isolado.
+**Ação concreta:** Usar v4.3 do playbook Amazon Ads/BidSpark antes de qualquer corte, escala ou harvest.
+**Cross-ref:** decisions.md; `projects/analise-semanal-skill-amazon.md` v4.3
+**Expira:** Nunca
+
+
+### 2026-05-13 — Amazon Ads log interno deve ser validado antes de próxima rodada manual [TÁTICA]
+**Contexto:** Execução Tulipa teve 7/7 success na Amazon Ads API, mas falhou em `amazon_ads_actions_log` por FK/constraints.
+**Lição:** Se a API externa muda bid mas o log interno não registra, a auditoria D+7 fica capenga.
+**Ação concreta:** Antes da próxima rodada manual, validar schema/fluxo de log para round, entity_id e action_type.
+**Cross-ref:** pending.md
+**Expira:** 2026-06-12

@@ -255,63 +255,8 @@ _Última Consolidação Profunda: 2026-05-01_
 **Lição:** Se a transcrição de áudio falhar, ficar incompleta ou ambígua, NUNCA preencher lacunas com inferência e muito menos afirmar que um incidente/configuração já foi verificado ou corrigido sem validação real. Primeiro transcrever corretamente ou pedir clarificação.
 **Expira:** 2026-05-25
 
-### [TÁTICA] Mercado Livre: gold_special = Clássico 11%, gold_pro = Premium 16% (2026-04-07)
-**Lição:** Em anúncios Budamix de ticket próximo de R$39,90, `gold_special` costuma ser a escolha certa. No PCM001, usar `gold_pro` queimaria cerca de R$2 por venda sem ganho proporcional.
-**Expira:** 2026-05-07
-
-### [TÁTICA] Amazon Listings: `unit_count` precisa ser objeto com `language_tag` (2026-04-07)
-**Lição:** Na SP-API da Amazon, `unit_count` não aceita string simples. O formato validado foi: `{"value": 7.0, "type": {"value": "count", "language_tag": "pt_BR"}}`.
-**Expira:** 2026-05-07
-
-### [TÁTICA] Shopee categoria 101247: API só edita parte das especificações (2026-04-07)
-**Lição:** Em `Placemats & Coasters` (101247), apenas 7 atributos ficam realmente editáveis via API. O restante precisa ser completado no Seller Center para o anúncio sair com diagnóstico qualificado.
-**Expira:** 2026-05-07
-
-### [TÁTICA] Amazon BR aceitou GTIN exemption para DRINK_COASTER Budamix (2026-04-07)
-**Lição:** O product type `DRINK_COASTER` funcionou com `supplier_declared_has_product_identifier_exemption` ativo e zerou erros no cadastro do PCM001. Vale repetir esse padrão em produtos MDF equivalentes da Budamix.
-**Expira:** 2026-05-07
-
-### [TÁTICA] Shopee: nunca encostar em R$80,00 sem recalcular a taxa fixa (2026-04-07)
-**Lição:** Na Shopee, a taxa fixa do anúncio pode saltar de R$4 para R$16 ao cruzar o degrau de R$80. Para kits de ticket médio, isso destrói margem rápido se o preço for definido no chute.
-**Expira:** 2026-05-07
-
-### [TÁTICA] Dados técnicos de catálogo só podem ser inferidos quando o risco é baixo (2026-04-04)
-**Lição:** Em catálogos de atendimento, só inferir com segurança descrições curtas, sugestões de uso, diferenciais genéricos e cuidados amplos da categoria. Material exato, compatibilidades, dimensões, peso, embalagem específica e capacidade só entram como valor real se a fonte confirmar; caso contrário, usar [VERIFICAR].
-**Expira:** 2026-05-04
-
-### [TÁTICA] Amazon Request Review: janela de elegibilidade usa data de ENTREGA (2026-04-02)
-**Lição:** A Amazon calcula a janela 5-30 dias pela data de entrega ao cliente, não pela data de compra.
-**Expira:** 2026-05-02
-
-### [TÁTICA] SP-API Solicitations: 403 "Unauthorized" pode ser endpoint errado, não permissão (2026-04-10)
-**Lição:** Antes de concluir que faltou scope/role no app, validar o path exato da Solicitations API. O path correto que funcionou foi `productReviewAndSellerFeedback`; o uso de `productReview` gerou falso diagnóstico de permissão.
-**Expira:** 2026-05-10
-
 ### [TÁTICA] Tolerância desatualizada frontend vs backend (2026-03-30)
 **Lição:** Ao migrar sistema, conferir constantes hardcoded no frontend que podem ter ficado defasadas.
-
-### [TÁTICA] Shopee sync on_conflict: parâmetro condicional por tabela (2026-04-02)
-**Contexto:** `sync-shopee-prices.py` falhava com HTTP 409/400 há 8 dias (desde 25/03). `supabase_upsert` sem `on_conflict` para `products` (409 em duplicatas), e com `on_conflict` errado para `price_history` (400 em tabela sem constraint).
-**Lição:** `products` usa `on_conflict=platform,platform_item_id`. `price_history` NÃO usa on_conflict (tabela de log append-only). Tornar on_conflict parâmetro opcional na função de upsert genérica.
-**Expira:** 2026-05-02
-
-### [TÁTICA] Gateway bloqueia heredocs grandes como obfuscação — usar Write + scripts curtos (2026-04-06)
-**Contexto:** Na coleta de links dos marketplaces para a base da Ana, duas execuções aprovadas expiraram com `approval-timeout (obfuscation-detected)` porque o comando tentava criar scripts longos via heredoc.
-**Lição:** Quando precisar rodar automação via gateway, criar arquivos com `Write`/`Edit` e quebrar em scripts curtos por etapa/marketplace. Evitar `cat <<'PY'` e blocos longos inline.
-**Expira:** 2026-05-06
-
-### [TÁTICA] Cruzamento de links do ML: listar não casados com motivo acelera revisão manual (2026-04-06)
-**Contexto:** A base da Ana tinha 61 produtos e o ML só cruzou parcialmente porque vários anúncios ativos vieram sem `seller_custom_field` ou com títulos ambíguos.
-**Lição:** Depois do match automático, gerar lista de `ML_ID | título | SKU | motivo` dos não cruzados. Isso permite Pedro confirmar manualmente em minutos e destrava atualização da planilha sem insistir em fuzzy matching inseguro.
-**Expira:** 2026-05-06
-
-### [TÁTICA] Amazon catálogo por SKU pode falhar mesmo com listing ativo; manter fallback por keyword (2026-04-06)
-**Contexto:** Na base Ana, a tentativa de recuperar links Amazon por extratos não trouxe ASIN utilizável por SKU para os 61 produtos.
-**Lição:** Para catálogo Amazon, tentar primeiro `identifiersType=SKU` com sellerId. Se não resolver, cair para busca por keyword/SKU e tratar o restante como cruzamento manual, em vez de assumir ausência de listing cedo demais.
-**Expira:** 2026-05-06
-
----
-
 
 ### [TÁTICA] Supabase/N8N: validar keys REST reais antes de assumir que a credencial serve (2026-04-26)
 **Lição:** No Budamix Ecommerce, as anon/service role keys salvas no 1Password retornaram 401 via REST, enquanto a conexão direta PostgreSQL funcionou. Antes de montar workflow N8N ou diagnóstico de RLS, testar `apikey` + `Authorization` contra endpoint real do Supabase. Se REST falhar, corrigir/rotacionar as keys no 1Password antes de automatizar.
@@ -725,3 +670,40 @@ _Consolidação Profunda executada em 2026-05-01 04:00 BRT._
 **Contexto:** Pacote de bids de Canecas Porcelana Tulipa executou 7/7 com sucesso na Amazon Ads API, mas o log interno `amazon_ads_actions_log` falhou por FK/constraints do schema.
 **Lição:** Em ações que mexem com dinheiro, sucesso da API externa não basta; a auditoria interna precisa registrar round, entidade, ação e resultado. Se o schema impedir log, corrigir antes da próxima rodada manual.
 **Expira:** 2026-06-11
+
+## Auditoria de Qualidade — Consolidação Profunda 2026-05-15
+
+### Lições táticas expiradas removidas nesta consolidação
+- ### [TÁTICA] Mercado Livre: gold_special = Clássico 11%, gold_pro = Premium 16% (2026-04-07) — expirada em 2026-05-07.
+- ### [TÁTICA] Amazon Listings: `unit_count` precisa ser objeto com `language_tag` (2026-04-07) — expirada em 2026-05-07.
+- ### [TÁTICA] Shopee categoria 101247: API só edita parte das especificações (2026-04-07) — expirada em 2026-05-07.
+- ### [TÁTICA] Amazon BR aceitou GTIN exemption para DRINK_COASTER Budamix (2026-04-07) — expirada em 2026-05-07.
+- ### [TÁTICA] Shopee: nunca encostar em R$80,00 sem recalcular a taxa fixa (2026-04-07) — expirada em 2026-05-07.
+- ### [TÁTICA] Dados técnicos de catálogo só podem ser inferidos quando o risco é baixo (2026-04-04) — expirada em 2026-05-04.
+- ### [TÁTICA] Amazon Request Review: janela de elegibilidade usa data de ENTREGA (2026-04-02) — expirada em 2026-05-02.
+- ### [TÁTICA] SP-API Solicitations: 403 "Unauthorized" pode ser endpoint errado, não permissão (2026-04-10) — expirada em 2026-05-10.
+- ### [TÁTICA] Shopee sync on_conflict: parâmetro condicional por tabela (2026-04-02) — expirada em 2026-05-02.
+- ### [TÁTICA] Gateway bloqueia heredocs grandes como obfuscação — usar Write + scripts curtos (2026-04-06) — expirada em 2026-05-06.
+- ### [TÁTICA] Cruzamento de links do ML: listar não casados com motivo acelera revisão manual (2026-04-06) — expirada em 2026-05-06.
+- ### [TÁTICA] Amazon catálogo por SKU pode falhar mesmo com listing ativo; manter fallback por keyword (2026-04-06) — expirada em 2026-05-06.
+
+### Promoções / recorrência
+- Promovido/reforçado o padrão de **análise Amazon Ads em camadas** como estratégico, por recorrência em 02/05, 03/05, 11/05 e 13/05: corte de desperdício sozinho não basta; análise precisa ir do funil macro ao keyword/search term e condensar em ação.
+- Nenhuma outra promoção por recorrência 3+ exigiu novo item: guard determinístico antes de saída externa, repo/deploy real e custos real vs subscription já estavam registrados como estratégicos.
+
+_Consolidação Profunda executada em 2026-05-15 04:00 BRT._
+
+
+### [ESTRATÉGICA] Amazon Ads: análise precisa rodar em 5 camadas antes de recomendar ação (2026-05-13)
+**Contexto:** Após a rodada D+7 de Amazon Ads, Pedro determinou que análises não podem ficar só em corte de ACoS ou leitura superficial de campanha.
+**Lição:** Toda recomendação de Amazon Ads deve passar por 5 camadas: estratégia/funil, tática/campanha, operacional/ASIN-listing/Buy Box, granular/keyword-search term/histórico de bids/novas keywords e síntese condensadora macro. Ação só vem depois dessa síntese.
+
+
+### [TÁTICA] n8n usage tracking exige salvar execuções bem-sucedidas antes de medir custo LLM (2026-05-14)
+**Lição:** Workflows n8n com `saveDataSuccessExecution=None` podem executar LLMs e ainda retornar 0 execuções úteis via API. Antes de construir tracking de custo/uso, habilitar retenção controlada nos workflows LLM e só então coletar tokens/custo.
+**Expira:** 2026-06-13
+
+
+### [TÁTICA] Mission Control/PWA: HTML deve ser network-first para não esconder deploy novo (2026-05-13)
+**Lição:** Service worker cache-first em app operacional mascara mudanças de UI e pode manter versão antiga após deploy. Para Mission Control e apps internos similares, HTML/navegação deve ser network-first; cache-first fica só para assets estáticos versionados.
+**Expira:** 2026-06-12

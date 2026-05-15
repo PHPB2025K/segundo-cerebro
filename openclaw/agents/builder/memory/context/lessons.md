@@ -22,11 +22,6 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 **Lição:** Arquivos de contexto de IA (CLAUDE.md, .cursorrules, etc.) são frequentemente commitados e lidos por LLMs. NUNCA colocar credenciais neles.
 **Ação:** Alertar Pedro para remover. Usar 1Password ou env vars exclusivamente.
 
-### 2026-03-17 — Bidspark está em sandbox, não em produção [TÁTICA]
-**Contexto:** CLAUDE.md do Amazon Ads aponta para sandbox environment.
-**Lição:** Antes de ativar otimizações automáticas com dinheiro real: confirmar que `AMAZON_ADS_ENVIRONMENT=production` no `.env`.
-**Expira:** 2026-04-17
-
 ### 2026-05-05 — Provar rota real de deploy antes de refatorar produção [ESTRATÉGICA]
 **Contexto:** Estoque Budamix recebeu PRs no repo novo, mas produção ainda rodava build rsync histórico na VPS sem ponte GitHub→VPS.
 **Lição:** Antes de anunciar correção em produção, validar remote canônico, CI/deploy script, commit servido e smoke no domínio real. Push sem ponte de deploy é só backup.
@@ -45,3 +40,22 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 ### [TÁTICA] Amazon Orders: filtrar FBA removal no ingest (2026-05-11)
 **Lição:** Pedidos de remoção FBA entram no feed como orders, mas não são vendas. Filtrar no sync por `SalesChannel=Non-Amazon`, `FulfillmentChannel=AFN`, datas dummy 1995/S01 e preservar auditoria ao cancelar legados.
 **Expira:** 2026-06-10
+
+## Auditoria — Consolidação Profunda 2026-05-15
+
+### Táticas expiradas removidas
+- ### 2026-03-17 — Bidspark está em sandbox, não em produção [TÁTICA] — expirada em 2026-04-17.
+
+
+### [ESTRATÉGICA] APIs operacionais web não devem depender de CLI em runtime (2026-05-14)
+**Lição:** Mission Control que lista crons, sessões ou skills deve ler arquivos/caches internos com parser próprio e cache curto. `execSync(openclaw ... --json)` dentro do PM2 travou/rejeitou argumentos e derrubou páginas.
+
+
+### [TÁTICA] HTML de PWA/admin deve ser network-first (2026-05-13)
+**Lição:** Service worker cache-first pode esconder deploy novo e gerar falsa regressão visual. Em admin interno, usar network-first para HTML/navegação e cache-first só para assets versionados.
+**Expira:** 2026-06-12
+
+
+### [TÁTICA] Supabase fire-and-forget precisa EdgeRuntime.waitUntil (2026-05-13)
+**Lição:** Edge Function que dispara `fetch()` assíncrono para processamento pode ter a chamada cancelada ao retornar resposta se não usar `EdgeRuntime.waitUntil()` ou fila persistente. Foi causa provável da Ana parar após poll automático sem logs úteis.
+**Expira:** 2026-06-12

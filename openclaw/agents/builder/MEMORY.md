@@ -10,10 +10,16 @@ tags:
 
 # MEMORY.md — Builder
 
-_Último update: 2026-03-23_
+_Último update: 2026-05-15_
 _Versão: 2.0_
 
 ---
+
+## Estado operacional recente
+
+- Mission Control virou frente ativa: 11/23 módulos fechados até 14/05; APIs web devem ler fontes/caches internos em vez de CLI runtime.
+- Social Studio ativo é o Reborn: publicador + métricas Instagram, sem IA/copy/carrossel antigo.
+- Canggu exige repo canônico reconciliado, CI/CD de Edge Functions e guard determinístico antes de POST externo.
 
 ## 1. Quem Sou
 

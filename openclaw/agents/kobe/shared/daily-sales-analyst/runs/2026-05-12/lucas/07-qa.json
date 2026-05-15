@@ -1,91 +1,50 @@
 {
-  "resultado_qa": "BLOQUEADO",
-  "motivo": "1 erro Crítico identificado no Gate 9: a mensagem afirma que 'a Budamix Store responde por 64% do GMV', mas o cálculo direto com os dados brutos (Store GMV R$ 2.813,88 / GMV total R$ 5.378,44) resulta em 52,3% — o valor 64% corresponde à participação de pedidos (76/118 = 64,4%), não ao GMV. O erro originou-se no 06b-shopee-consolidator e foi fielmente reproduzido pela Slack Writer, o que não exime o envio do risco de induzir Lucas a erro sobre o peso financeiro real da conta principal. Adicionalmente, 4 Menores de padrão numérico no Gate 11 (percentuais sem 1 casa decimal e valor monetário sem casas decimais), todos propagados do 06b. Regra de agregação aplicada: 1+ Crítico → BLOQUEADO.",
-  "send_allowed": false,
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem passou em 10 dos 11 gates sem falha. Um problema Menor foi identificado no Gate 5: o produto 'Conjunto de 5 Potes de Vidro Redondos' (IMB501P_T) foi listado sem indicação de conta, mas o produto é um campeão explícito da Conta 1 na Condensadora e na 6B — a segunda condição da regra de indicação ('ou quando a conta foi relevante na Condensadora') se aplica e não foi aplicada pela Slack Writer. O risco de induzir erro é baixo porque a seção ANÁLISE DAS CONTAS contextualiza explicitamente o produto como campeão da Budamix Store. Regra de agregação aplicada: 0 Maiores + 1 Menor = APROVADO COM RESSALVA. Todos os demais gates verificados: data e período corretos (00:00–23:59 BRT), destinatário e plataforma corretos (Lucas = Shopee), estrutura com as 6 seções na ordem exata e 'ANÁLISE DAS CONTAS' aceito per addendum v3.1, VISÃO com dados objetivos e sem comparação temporal, Top Produtos com números verificados contra o pacote, fidelidade à 6B confirmada linha a linha, prioridades fielmente extraídas da Condensadora/6B com condições de confirmação/refutação e escalonamento preservadas, bloqueios da Condensadora respeitados e linguagem de incerteza preservada nos três pontos críticos, consistência entre camadas verificada, tom direto e operacional sem jargão de camada, e padrão numérico BRL correto em todos os valores.",
+  "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
     "gate_1_data_periodo_fonte": "OK",
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "OK",
-    "gate_6_analise_conta": "RESSALVA",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "OK",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "OK",
-    "gate_9_consistencia_camadas": "FALHA",
+    "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "RESSALVA"
+    "gate_11_padrao_numerico_formatacao": "OK"
   },
   "contagem_severidade": {
-    "criticos": 1,
+    "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 4,
-    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
+    "menores": 1,
+    "regra_agregacao_aplicada": "0 Maiores + 1–5 Menores → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
-      "severidade": "Crítico",
-      "gate": "9 — Consistência entre camadas / dado bruto vs pacote validado",
-      "texto_atual": "a Budamix Store responde por 64% do GMV e 76% dos cancelamentos",
-      "texto_esperado": "a Budamix Store responde por 52,3% do GMV e 76,9% dos cancelamentos — ou, alternativamente, corrigir para 64% dos pedidos (76/118), que é o número real ao qual 64% corresponde",
-      "estado_atual": "O 06b-shopee-consolidator afirmou '64% do GMV'; Slack Writer reproduziu fielmente. Porém 64% é a participação de PEDIDOS (76/118 = 64,4%), não de GMV. GMV da Store: R$ 2.813,88 / GMV total R$ 5.378,44 = 52,3%. A métrica declarada (GMV) e o número apresentado (64%) são inconsistentes — o número pertence a outra métrica (pedidos).",
-      "estado_esperado": "Percentual correto de GMV (52,3%) ou, se a intenção era citar pedidos, identificação correta da métrica como participação de pedidos (64%). A confusão entre as duas métricas é factualmente errada e pode induzir Lucas a superestimar o peso financeiro da Budamix Store no canal.",
-      "regra_violada": "Gate 9 — dado bruto deve bater com pacote validado; classificação de severidade — 'dado errado → Crítico, bloqueia envio sozinho'",
-      "bloqueia_envio": true
-    },
-    {
       "severidade": "Menor",
-      "gate": "11 — Padrão numérico e formatação objetiva",
-      "texto_atual": "R$ 56,38 vs R$ 37 da Store",
-      "texto_esperado": "R$ 56,38 vs R$ 37,02 da Store (ou R$ 37,00 como aproximação formatada com decimais)",
-      "estado_atual": "valor monetário sem casas decimais; ticket_medio da Store nos dados brutos é R$ 37,02",
-      "estado_esperado": "valores monetários com 2 casas decimais conforme padrão R$ 1.234,56",
-      "regra_violada": "Gate 11 — padrão monetário R$ 1.234,56",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "11 — Padrão numérico e formatação objetiva",
-      "texto_atual": "declínio ativo em todas as janelas, incluindo 7d (-26%)",
-      "texto_esperado": "-26,0%",
-      "estado_atual": "percentual sem 1 casa decimal",
-      "estado_esperado": "percentuais com vírgula e 1 casa decimal conforme padrão obrigatório",
-      "regra_violada": "Gate 11 — percentuais com vírgula e 1 casa quando aparecerem",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "11 — Padrão numérico e formatação objetiva",
-      "texto_atual": "queda de -45% vs 60d",
-      "texto_esperado": "-45,2% vs 60d (valor exato dos dados brutos: orders_vs_60d_pct = -45.2)",
-      "estado_atual": "percentual sem decimal e com imprecisão em relação ao dado bruto; -45% oculta a casa decimal significativa de -45,2%",
-      "estado_esperado": "percentual com 1 casa decimal e fidelidade ao dado bruto quando valor é mencionado na análise",
-      "regra_violada": "Gate 11 — percentuais com vírgula e 1 casa quando aparecerem",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "11 — Padrão numérico e formatação objetiva",
-      "texto_atual": "-51% vs mesmo dia da semana",
-      "texto_esperado": "-51,0% vs mesmo dia da semana",
-      "estado_atual": "percentual sem 1 casa decimal",
-      "estado_esperado": "percentuais com vírgula e 1 casa decimal conforme padrão obrigatório",
-      "regra_violada": "Gate 11 — percentuais com vírgula e 1 casa quando aparecerem",
+      "gate": "5 — Top Produtos",
+      "texto_atual": "• Conjunto de 5 Potes de Vidro Redondos — 33 unidades",
+      "texto_esperado": "• Conjunto de 5 Potes de Vidro Redondos (Budamix Store) — 33 unidades",
+      "estado_atual": "Produto listado sem indicação de conta. A Slack Writer aplicou apenas a condição 'menos de 2 contas' (produto aparece em 3 contas: 31 Store + 1 Conta 2 + 1 Conta 3), ignorando a condição alternativa da regra.",
+      "estado_esperado": "A regra de indicação de conta tem duas condições: 'quando produto vendeu em menos de 2 contas OU quando a conta foi relevante na Condensadora.' O produto IMB501P_T é explicitamente o campeão da Conta 1 na Condensadora ('Potes de Vidro Redondos e Jarra Medidora carregaram 76% das unidades do dia') e na 6B ('IMB501P_T + CK4742_B carregaram 76% das unidades do dia'). A segunda condição estava ativa e não foi aplicada.",
+      "regra_violada": "Gate 5 Shopee: 'conta indicada quando produto vendeu em menos de 2 contas ou quando a conta foi relevante na Condensadora.' Risco de indução de erro é baixo porque a seção ANÁLISE DAS CONTAS contextualiza o produto como campeão da Store, mas a omissão não foi justificada no log de Decisões de Formatação com base na segunda condição — apenas a primeira condição foi citada.",
       "bloqueia_envio": false
     }
   ],
-  "correcoes_obrigatorias_antes_envio": [
-    "Corrigir '64% do GMV' no 06b-shopee-consolidator e na mensagem Slack: o valor correto de participação no GMV da Budamix Store é 52,3% (R$ 2.813,88 / R$ 5.378,44). Se a intenção era citar participação de pedidos, o texto deve ser corrigido para '64% dos pedidos (76 de 118)'. A ambiguidade métrica não pode ir ao Slack — Lucas pode tomar decisões com base em uma representação incorreta do peso financeiro da conta."
-  ],
+  "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Erro de origem no 06b-shopee-consolidator: '64% do GMV' foi produzido pelo 06b com a métrica errada (GMV) para o número correto de outra métrica (pedidos). Recomendação para o próximo ciclo: adicionar validação cruzada automática no 06b para checar se percentuais de participação declarados batem com os dados brutos antes de passar para a Slack Writer.",
-    "Os 4 Menores de Gate 11 (R$ 37 sem decimais; -26%, -45%, -51% sem 1 casa) originaram-se no 06b e foram fielmente reproduzidos pela Slack Writer. A Slack Writer não introduziu desvios de formatação próprios — o problema está nos formatos que o 06b entrega. Considerar incluir normalização de formato numérico como etapa do 06b ou da Slack Writer para o próximo ciclo."
+    "A decisão de formatação sobre IMB501P_T ('3 contas, regra de indicação não ativada') aplica apenas a primeira condição da regra de indicação e ignora a segunda ('ou quando a conta foi relevante na Condensadora'). Para próximos ciclos, a Slack Writer deve checar ambas as condições antes de omitir indicação de conta no Top Produtos Shopee.",
+    "O dado faltante mais crítico para o ciclo de 13/05 é o breakdown de cancelamentos por SKU da Conta 1 (shop_id 448649947). Sem ele, o risco operacional nos campeões IMB501P_T e CK4742_B permanece em aberto e o escalonamento para Himmel não pode ser definido.",
+    "Padrão horário das Contas 2 e 3 na janela 17–22h deve ser observado e comparado com o dia de hoje: Conta 2 com picos em 7h e 23h, Conta 3 fragmentada em 11 janelas. Recorrência por 2 dias seguidos aciona Himmel."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "Gate 6 — A Slack Writer removeu as aspas tipográficas em 'estabilização saudável' (06b usou aspas simples; Slack omitiu). Diferença cosmética sem impacto analítico ou de sentido.",
-    "Gate 11 — '76% dos cancelamentos' na análise: o valor exato é 76,9% (10/13). Arredondado para 76% em vez de 77% — discrepância de 1 ponto que não gera confusão operacional mas é levemente impreciso. Originou-se no 06b.",
-    "Gate 10 — Os 4 blocos de análise das contas são extensos para uma mensagem operacional de Slack. Não viola regra objetiva (profundidade vem do 06b autorizado), mas o volume pode reduzir a leitura efetiva. Sinal para avaliar limitação de comprimento no 06b em ciclos futuros."
+    "A fidelidade linha a linha da Slack Writer à 6B é muito alta — os quatro blocos de análise reproduzem as analysis_lines da 6B com apenas as substituições de SKU técnicos por nomes de produto, que são corretas e documentadas. A preservação das linguagens de incerteza ('permanecem sem explicação por produto', 'recorrente ou episódico') atende integralmente ao alerta de confiança média da Condensadora.",
+    "A terceira prioridade ('Não acionar Himmel para ajuste de ADS nas Contas 2 e 3 hoje') foi reproduzida como bullet negativo na seção PRIORIDADES. Essa é uma decisão de formatação que não viola nenhuma regra objetiva — a priority_lines da 6B inclui explicitamente esse item como orientação tática — e a Decisões de Formatação não registrou esta decisão de forma explícita. O registro poderia ter sido mais detalhado, mas o item é fiel à fonte e não induz erro.",
+    "A análise da Conta 3 substituiu 'confirmada em pedido real' por 'confirmada' na frase sobre canibalização multiloja. A remoção de 'em pedido real' simplifica sem alterar a tese. Tecnicamente a Condensadora e a 6B usaram 'confirmada em pedido real' para reforçar que não é hipótese inferida. A simplificação é aceitável e não muda sentido, mas o reforço de origem poderia ter sido mantido para deixar claro que não é especulação."
   ],
   "llm_used": true,
   "model": "sonnet",

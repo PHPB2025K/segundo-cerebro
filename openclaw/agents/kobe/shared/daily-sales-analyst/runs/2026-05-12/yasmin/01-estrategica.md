@@ -1,44 +1,51 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Qualidade da base
 
-`weekly.md` e `monthly.md` estão carregados mas são templates sem entradas reais — nenhuma tese semanal ou mensal acumulada existe. As janelas numéricas (7d, 30d, 60d) têm dados completos e íntegros, o que sustenta leitura temporal. Ausência de memória qualitativa significa que não há hipóteses anteriores para confirmar ou refutar — a leitura de hoje serve como ponto de partida, não como confirmação de tese. Confiança na classificação final: média.
+Weekly.md e monthly.md carregados são templates vazios — sem tese semanal, sem tese mensal, sem hipóteses ativas registradas. A leitura de hoje parte do zero analítico: não há histórico de hipóteses para confirmar ou refutar. Todas as janelas temporais estão disponíveis e com dados completos (7d, 30d, 60d, mesmos dias da semana), o que sustenta leitura de patamar — mas a ausência de memória narrativa rebaixa a confiança em qualquer tese para **moderada**.
 
 ---
 
 ### Leitura temporal
 
-- **vs 60d (+20% GMV, +12.6% pedidos):** A conta está acima do patamar do bimestre em volume e faturamento — sinal consistente de ganho real de patamar nos últimos 30–45 dias.
-- **vs 30d (GMV +0.6%, pedidos -8.7%, ticket +10.3%):** O faturamento segura a média mensal mesmo com menos pedidos — o ticket está compensando o volume, não o volume sustentando o GMV. Sinaliza possível mix shift para itens de maior valor (Potes de Vidro dominam o topo).
-- **vs 7d (GMV +24.5%, pedidos +14.8%):** Os últimos 7 dias estavam abaixo da média de 30d; hoje recuperou em direção à banda mensal. Não é aceleração — é retorno ao patamar.
-- **vs mesmos dias da semana (-30.9% pedidos, -19.8% GMV):** A comparação está fortemente contaminada pelo dia 28/04 (199 pedidos, R$ 7.546 — provável evento ou campanha pontual). Excluindo o outlier, as outras 3 terças têm média de ~109 pedidos e ~R$ 4.273; contra esse benchmark limpo, o dia registra -16,7% em pedidos e -4,5% em GMV — fraqueza real mas moderada.
+- **Vs 7d (+14.8% pedidos, +24.5% GMV):** O dia ficou claramente acima da média recente da semana — sinal de que os dias anteriores da semana puxaram a média semanal para baixo. A 7d média de 79 pedidos e R$ 3.279 indica semana corrente mais fraca que hoje.
+- **Vs 30d (pedidos −8.7%, GMV +0.6%, ticket +10.3%):** No patamar de GMV, o dia é essencialmente neutro contra a média dos últimos 30 dias. O que mudou é a composição: menos pedidos, ticket maior — a conta entregou o mesmo volume financeiro com mix mais valioso.
+- **Vs 60d (+12.6% pedidos, +20.0% GMV):** O dia está confortavelmente acima do bimestre. Isso sugere que o patamar dos últimos 30 dias é mais alto que o dos 30 dias anteriores — possível ganho de patamar já ocorrido antes desta leitura.
+- **Vs mesmos dias da semana (segunda-feira):** A comparação acusa −30.9% em pedidos e −19.8% em GMV, mas o dado de 28/04 (199 pedidos, R$ 7.546) é um outlier evidente — provavelmente evento/promoção pontual. Excluindo-o, a média das três segundas anteriores cai para ~109 pedidos e ~R$ 4.273, o que coloca o dia de hoje ~17% abaixo — fraco contra pares, mas não colapso.
 
 ---
 
 ### Leitura estratégica
 
-- **Patamar ganho, sustentado por ticket — não por volume:** A conta está num nível genuinamente superior ao de 60 dias atrás, mas a composição desse resultado mudou: o GMV segura pela alta do ticket enquanto o volume de pedidos recua contra a média de 30d. Se o ticket reverter — por pressão competitiva no produto líder, hipótese ainda não testada — o GMV cai sem a proteção do volume.
-- **Concentração em um único anúncio, não em três produtos:** Os três SKUs do topo (variantes de cor do Jogo Potes Vidro 5 Peças) compartilham o mesmo `platform_item_id` (MLB3288536143) e respondem por 55% dos itens vendidos. A conta não distribui risco entre três produtos — ela concentra em um único listing em três variações. Qualquer oscilação de ranking, competitividade de preço ou problema operacional nesse anúncio move toda a conta.
-- **Ausência de segundo vetor:** Os produtos de 4 a 10 somam individualmente 3–6 unidades. Não há candidato emergente na cauda capaz de assumir papel de segundo pilar. A conta opera sem rede de segurança de mix — padrão que, sem memória prévia, não é possível datar, mas que a magnitude da concentração sugere ser crônico.
+- **O patamar da conta parece ter subido na janela de 30-60d, mas a semana corrente está em ritmo mais fraco.** Hoje foi um dia acima da 7d — não força da conta, mas recuperação dentro de uma semana que andou abaixo do patamar. O sinal relevante não é o dia; é se a 7d vai convergir para cima ao longo dos próximos dias ou se vai puxar o 30d para baixo.
+- **Ticket mais alto compensando volume menor é dado a observar, não a celebrar.** O ticket de R$ 44.85 está 10% acima do 30d e 6.6% acima do 60d. Hipótese: mix está se concentrando em produtos de maior valor unitário, com menos volume na cauda. Isso pode ser natural (mix mais limpo) ou pode indicar redução de exposição em produtos de entrada — sem histórico narrativo, não é possível distinguir.
+- **A concentração no Jogo Potes de Vidro não é risco de produto — é risco de listing único.** Os três SKUs do top 3 (IMB501P_T, IMB501C_T, IMB501V_T) têm o mesmo platform_item_id (MLB3288536143), ou seja, são variantes do mesmo anúncio. Os 55.3% do top 3 estão, na prática, em um único listing. Qualquer problema de exposição, reputação ou estoque nesse anúncio afeta diretamente mais da metade do volume.
 
 ---
 
 ### Tese da conta
 
-**Vulnerável.** O GMV do dia é aceitável — alinha com a média de 30d e supera o patamar de 60d — mas a estrutura que sustenta esse número é frágil: um único anúncio concentra 55% do volume, e o canal mantém faturamento por ticket crescente, não por expansão de alcance. A conta está saudável no número, vulnerável na estrutura. Sem memória semanal ou mensal acumulada para ancorar, a classificação é fundamentada nos dados numéricos disponíveis, mas com confiança média — "inconclusiva" seria honesta se a janela temporal não entregasse o sinal de patamar em 60d tão consistente.
+**Em acomodação, com possível ganho de patamar ainda não confirmado.**
+
+O GMV de hoje é essencialmente idêntico à média de 30d — a conta não cresce, mas também não recua no patamar financeiro. O fato de o 30d estar ~19% acima do 60d sugere que houve subida de patamar antes desta janela de observação, mas sem memória narrativa que documente esse movimento, não é possível afirmar que é ganho estrutural consolidado ou acomodação em pico transitório. A semana corrente está mais fraca que o dia (7d avg em 79 pedidos contra 91 hoje), o que adiciona incerteza sobre se o patamar se sustenta. Tese **em acomodação** com viés positivo — mas sem semanais/mensais para âncora, confiança é moderada.
 
 ---
 
 ### Risco estrutural principal
 
-- **Risco:** Dependência de um único anúncio (MLB3288536143 — Jogo Potes Vidro 5 Peças) que concentra 55% dos itens vendidos, distribuído apenas em variantes de cor do mesmo produto, sem segundo vetor real na cauda.
-- **Por que importa:** Qualquer degradação de ranking, perda de competitividade de preço ou problema operacional nesse listing (estoque, reputação da oferta, concorrente com Full + preço inferior) colapsa o GMV da conta sem mecanismo de compensação. O ticket em alta pode mascarar erosão de volume por um período — até o ponto em que a redução de pedidos deixa de ser absorvida pela alta do ticket médio.
-- **Histórico:** `weekly.md` e `monthly.md` são templates sem entradas — não é possível confirmar se esse padrão é crônico ou recente. Dado o nível de concentração observado, a hipótese mais provável é padrão crônico, mas permanece não confirmada.
-- **Sinal de confirmação:** Concentração top 3 acima de 55% confirmada por 3 semanas consecutivas valida padrão estrutural crônico; queda de pedidos do MLB3288536143 por 2 dias seguidos sem resposta de outra linha confirma ausência de segundo vetor real.
+**Risco:** Dependência de listing único no anúncio Jogo Potes de Vidro (MLB3288536143), que concentra 55.3% dos pedidos via três variantes de SKU do mesmo item.
+
+**Por que importa:** Qualquer oscilação de ranking, alteração de reputação, problema de estoque ou desativação desse anúncio derruba mais da metade do volume da conta imediatamente. A conta não tem segundo vetor visível no top 5 — os itens seguintes (Canequinha 100ml, Kit Potes 1520ml, Canecas Porcelana) cada um com 3-6 unidades representam fatia marginal.
+
+**Histórico:** Sem memória narrativa anterior — não é possível afirmar se essa concentração é padrão crônico ou movimento recente. Esta leitura registra o padrão como ponto de partida.
+
+**Sinal de confirmação:** Concentração top 3 acima de 55% por três dias seguidos confirma padrão estrutural crônico, não pontual. Queda de pedidos do anúncio MLB3288536143 para abaixo de 30 unidades/dia por dois dias consecutivos, sem compensação na cauda, confirmaria o risco como ativo.
 
 ---
 
 ### Sinais a observar
 
-1. **Ticket acima de R$ 43 com pedidos abaixo de 85 por 3 dias consecutivos:** Consolidaria a divergência ticket/volume como tendência — e indicaria que o GMV passou a depender exclusivamente do preço médio do anúncio líder, aumentando exposição a qualquer pressão competitiva sobre ele.
-2. **Concentração top 3 acima de 55% pelo segundo ciclo semanal:** Confirmaria a dependência de um único listing como padrão estrutural crônico, elevando a classificação de risco de hipótese para fato observado.
-3. **Pedidos abaixo de 85 por 2 terças consecutivas (excluindo dias com evento identificado):** Indicaria que a fraqueza moderada desta terça não é ruído dentro da banda, mas início de desaceleração real no patamar atual — sinal relevante dado que o mesmo-dia-da-semana já mostrou tendência de queda excluindo o outlier de 28/04.
+1. **7d média de pedidos nos próximos 3 dias:** Se a média de 7d permanecer abaixo de 85 pedidos enquanto o 30d segura acima de 95, o dia de hoje foi recuperação pontual dentro de semana fraca — e o patamar de 30d começa a ser pressionado para baixo. Se a 7d subir para acima de 90, a semana corrente está convergindo para o patamar.
+
+2. **Ticket médio nos próximos 5 dias:** Se o ticket permanecer acima de R$ 43 enquanto pedidos ficam abaixo de 95, confirma hipótese de mix mais valorizado com cauda menor — padrão a documentar como característica da conta. Se o ticket cair de volta para a faixa de R$ 40-41 com pedidos também baixos, era ruído.
+
+3. **Concentração top 3 por ciclo semanal:** Se ao final da semana corrente o top 3 seguir acima de 55%, confirma dependência estrutural do listing único e deve ser registrado como risco persistente no weekly quando este for preenchido.

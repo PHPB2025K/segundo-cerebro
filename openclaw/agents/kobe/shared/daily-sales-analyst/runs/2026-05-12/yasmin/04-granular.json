@@ -1,124 +1,203 @@
 {
-  "layer": "04-granular",
-  "date": "2026-05-12",
+  "camada": "04-granular",
+  "data": "2026-05-12",
   "recipient": "Yasmin",
-  "platform": "mercado_livre",
+  "plataforma": "mercado_livre",
   "respostas_operacional": [
     {
-      "pergunta": "Os 4 cancelamentos do dia estão concentrados no MLB3288536143 ou distribuídos por produtos diferentes?",
+      "pergunta": "Os 4 cancelamentos estão concentrados no listing MLB3288536143 ou distribuídos por outros produtos?",
       "status": "não respondida por falta de dado",
-      "evidencia": "O pacote de dados registra apenas o total de 4 cancelamentos nas métricas agregadas da conta (campo 'cancelamentos': 4). Não há breakdown de cancelamentos por platform_item_id, SKU ou anúncio. Os dados de top_products refletem apenas pedidos válidos — cancelamentos não estão decompostos por produto em nenhum campo do pacote.",
-      "leitura": "Sem granular de cancelamento por produto, não é possível determinar se os 4 cancelamentos estão concentrados no anúncio líder MLB3288536143 ou pulverizados em outros listings. A pergunta da Operacional permanece sem resposta por ausência de dado estrutural no pacote.",
+      "evidencia": "O pacote de dados registra 4 cancelamentos no total mas não contém breakdown de cancelamentos por platform_item_id, SKU ou produto. Não há orderItems de pedidos cancelados no pacote — apenas o contador agregado de 4.",
+      "leitura": "Impossível determinar se os cancelamentos estão concentrados no listing principal (MLB3288536143) ou dispersos na cauda. Dado que esse listing representa 55.3% dos itens vendidos (52 de 94), cancelamentos concentrados ali têm peso operacional desproporcionalmente maior do que cancelamentos pulverizados. A pergunta permanece em aberto.",
       "conclusao_granular": "inconclusivo por falta de dado",
       "confianca": "baixa"
     },
     {
-      "pergunta": "A conta opera com Mercado Livre Full em algum anúncio — e especificamente o MLB3288536143 está elegível para Full?",
+      "pergunta": "Qual era a posição de ranking do anúncio MLB3288536143 (Jogo Potes de Vidro) em 2026-05-12 versus a semana anterior?",
       "status": "não respondida por falta de dado",
-      "evidencia": "O campo fulfillment do pacote registra: shopee_full=0, amazon_fba=0, amazon_fbm=0, other=91, total=91. Não existe campo ml_full no schema de fulfillment. Os 91 pedidos caem em 'other', que funciona como categoria residual — não como afirmação explícita de ausência de Full ML. O schema atual não captura fulfillment Mercado Livre como dimensão distinta.",
-      "leitura": "A ausência de ml_full no schema não equivale a 'conta não opera com Full'. O dado necessário para responder a pergunta — elegibilidade e uso de Full ML por anúncio — não está estruturado no pacote. É ausência de dado, não evidência de ausência de Full.",
+      "evidencia": "O pacote não contém métricas de ranking, posição de anúncio, visibilidade ou exposição para nenhum listing. Os dados de fulfillment (shopee_full: 0, amazon_fba: 0, amazon_fbm: 0, other: 0, total: 91) referem-se ao tipo de fulfillment da conta, não a ranking. Os dados históricos disponíveis (avg_7d, avg_30d, same_weekday_last_4) são agregados de volume diário, sem nenhuma dimensão de posição de anúncio.",
+      "leitura": "Não é possível confirmar ou descartar queda de exposição do listing principal a partir dos dados disponíveis. A checagem de saúde desse listing foi identificada pela Tática como ação prioritária do dia — mas a camada granular não tem dado para executá-la. A hipótese de queda de ranking como explicação para o volume abaixo dos pares de segunda-feira (~17% abaixo das três segundas anteriores excluindo o outlier de 04/28) permanece nem confirmada nem descartada.",
       "conclusao_granular": "inconclusivo por falta de dado",
       "confianca": "baixa"
     },
     {
-      "pergunta": "Algum produto nas posições 4–10 acumulou crescimento de unidades nos últimos 3–5 dias, mesmo que o dia isolado não mostre destaque?",
+      "pergunta": "O pico de 16h (12 pedidos) é recorrente nas segundas-feiras anteriores ou foi concentração atípica para o dia?",
       "status": "não respondida por falta de dado",
-      "evidencia": "O pacote contém apenas o snapshot de top_products do dia 2026-05-12. O histórico disponível (avg_7d, avg_30d, avg_60d, same_weekday_last_4) é agregado de conta — sem breakdowns por platform_item_id ou SKU nos dias anteriores. Não há série diária granular por produto para calcular tendência de 3–5 dias.",
-      "leitura": "A pergunta exige histórico diário por produto — dado estruturalmente ausente no pacote. O snapshot do dia mostra MLB3343832496 e MLB5322470722 empatados em 6 unidades cada (posições #4 e #5 fora do listing líder), mas isso é foto do dia, não tendência. A confirmação ou descarte de candidato emergente na cauda permanece impossível com os dados disponíveis.",
+      "evidencia": "O pacote contém a distribuição horária do dia corrente com resolução de 1 hora. Os dados históricos (avg_7d, avg_30d, avg_60d, same_weekday_last_4) são agregados diários sem granularidade horária. Não há histórico de distribuição por hora para nenhum dia anterior no pacote.",
+      "leitura": "O pico de 16h existiu e concentrou 12 pedidos (~13% do total diário em uma única hora), sendo o maior horário do dia. Mas sem série histórica horária, não é possível classificar esse pico como padrão recorrente de segunda-feira, comportamento orgânico da conta ou desvio pontual. A informação fica sem contexto comparável.",
       "conclusao_granular": "inconclusivo por falta de dado",
       "confianca": "baixa"
     }
   ],
   "investigacoes_proprias": [
     {
-      "investigacao": "Confirmação da estrutura do anúncio líder: MLB3288536143 é listing único com 3 variantes de cor (SKUs distintos, mesmo platform_item_id)?",
+      "investigacao": "Natureza da concentração top 3: um listing único com três variantes, não três produtos distintos",
       "origem": "risco de identificação",
-      "evidencia": "Protocolo forense Mercado Livre:\n- Produto visível: Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita\n- platform_item_id (MLB): MLB3288536143\n- SKUs internos e volumes: IMB501P_T (26 un), IMB501C_T (15 un), IMB501V_T (11 un)\n- Fonte: orderItems / top_products do pacote\n\nOs 3 SKUs distintos compartilham exatamente o mesmo platform_item_id MLB3288536143 e o mesmo título de anúncio. Trata-se de um único listing ML com variações de atributo (cor/tipo), não de 3 anúncios independentes. Total consolidado do listing: 52 unidades de 94 itens vendidos = 55,3% do volume de itens.",
-      "leitura": "A concentração de 55,3% está em um único listing Mercado Livre — não em três produtos distintos. O risco estrutural identificado pela Estratégica é mais concentrado do que o framing 'top 3 produtos' sugere: qualquer problema no listing MLB3288536143 (ranking, status, preço, reputação da oferta) afeta os 3 SKUs simultaneamente, sem que exista separação de risco entre eles.",
-      "conclusao_granular": "confirma",
+      "evidencia": {
+        "produtos": [
+          {
+            "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+            "platform_item_id": "MLB3288536143",
+            "sku_interno": "IMB501P_T",
+            "quantidade": 26,
+            "fonte": "top_products / dados da conta"
+          },
+          {
+            "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+            "platform_item_id": "MLB3288536143",
+            "sku_interno": "IMB501C_T",
+            "quantidade": 15,
+            "fonte": "top_products / dados da conta"
+          },
+          {
+            "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+            "platform_item_id": "MLB3288536143",
+            "sku_interno": "IMB501V_T",
+            "quantidade": 11,
+            "fonte": "top_products / dados da conta"
+          }
+        ],
+        "total_itens_listing_principal": 52,
+        "total_itens_dia": 94,
+        "percentual_confirmado": 55.3,
+        "nota": "Os três SKUs do top 3 compartilham o mesmo platform_item_id (MLB3288536143) e o mesmo título. São variantes do mesmo anúncio — provavelmente diferenciadas por cor (sufixos _T nos SKUs: P, C, V). A concentração de 55.3% no top 3 está inteiramente em um único listing, não distribuída entre três produtos independentes."
+      },
+      "leitura": "O campo top3_concentration de 55.3% é matematicamente correto, mas pode ser lido como diversificação entre três produtos quando na prática é dependência de um único anúncio com três variantes. Isso amplifica o risco de listing único: qualquer problema de ranking, reputação ou estoque no MLB3288536143 afeta simultaneamente os três SKUs — não há hedge interno entre eles.",
+      "conclusao_granular": "confirma — e agrava a leitura de concentração da Estratégica; o risco não é top-3 produtos, é top-1 listing",
       "confianca": "alta"
     },
     {
-      "investigacao": "Análise da distribuição horária: o pico de 16h é real e a distribuição é orgânica ou há compressão de volume em janela atípica?",
+      "investigacao": "Capacidade de absorção da cauda se o listing principal oscilar",
       "origem": "anomalia",
-      "evidencia": "Distribuição dos 91 pedidos por bloco:\n- Madrugada (0–6h): 8 pedidos (8,8%)\n- Manhã (7–11h): 17 pedidos (18,7%)\n- Almoço (12–13h): 13 pedidos (14,3%)\n- Tarde (14–17h): 30 pedidos (33,0%) — pico em 16h com 12 pedidos isolados (13,2% do dia)\n- Noite (18–23h): 23 pedidos (25,3%)\n\nPresença em todos os blocos. Sem hora zerada que indique janela travada. Pico de 16h é o mais alto mas não é outlier extremo dado o padrão do bloco tarde como um todo.",
-      "leitura": "A distribuição horária é orgânica: sem compressão em janela atípica, sem ausência de bloco relevante, sem pico desproporcional que sinalize evento externo ou campanha pontual. O dia se comportou como demanda orgânica distribuída — confirma a leitura da Operacional e descarta hipótese de resultado puxado por estímulo externo de campanha.",
-      "conclusao_granular": "confirma",
-      "confianca": "alta"
-    },
-    {
-      "investigacao": "Saúde da cauda no snapshot do dia: existe algum produto nas posições 4–10 com volume que mereça atenção diferenciada?",
-      "origem": "risco de identificação",
-      "evidencia": "Protocolo forense Mercado Livre — posições 4–10:\n- Produto visível: Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo | MLB: MLB3343832496 | SKU: 914C_B | 6 un\n- Produto visível: Kit 4 Potes Vidro Tampa Hermética 1520ml Travas Vedação Verde-escuro | MLB: MLB5322470722 | SKU: KIT4YW1520 | 6 un\n- Produto visível: Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200ml | MLB: MLB6232315532 | SKU: CLR002 | 5 un\n- Produto visível: Suporte Gamer 2 Controles E Headset Mesa Organizador Ps5 Ps4 Preto | MLB: MLB6661811594 | SKU: SPC0111 | 3 un\n- Produto visível: Kit Jogo 6 Potes Vidro Hermético Tampa Travas Marmita Fit Azul-petróleo | MLB: MLB5406503442 | SKU: KIT6S100 | 3 un\n- Produto visível: Kit 2 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo | MLB: MLB6518176572 | SKU: KIT2YW1050 | 3 un\n- Produto visível: Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico | MLB: MLB4410218897 | SKU: 914C_BAP | 3 un\n\nMáximo fora do listing líder: 6 unidades. Distância do listing líder (52 un): 8,7x. Nenhum item se aproxima de ser segundo vetor.",
-      "leitura": "A cauda não entrega candidato emergente visível no snapshot do dia. Os 6 unidades cada de MLB3343832496 e MLB5322470722 são os máximos fora do listing principal — ambos a 8,7x de distância das 52 unidades de MLB3288536143. Confirma operacionalmente a ausência de segundo vetor real. A confirmação de tendência de crescimento de 3–5 dias permanece impossível pelo snapshot.",
-      "conclusao_granular": "confirma",
+      "evidencia": {
+        "produtos_posicao_4_a_10": [
+          {
+            "produto_visivel": "Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo",
+            "platform_item_id": "MLB3343832496",
+            "sku_interno": "914C_B",
+            "quantidade": 6,
+            "fonte": "top_products / dados da conta"
+          },
+          {
+            "produto_visivel": "Kit 4 Potes Vidro Tampa Hermética 1520ml Travas Vedação Verde-escuro",
+            "platform_item_id": "MLB5322470722",
+            "sku_interno": "KIT4YW1520",
+            "quantidade": 6,
+            "fonte": "top_products / dados da conta"
+          },
+          {
+            "produto_visivel": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+            "platform_item_id": "MLB6232315532",
+            "sku_interno": "CLR002",
+            "quantidade": 5,
+            "fonte": "top_products / dados da conta"
+          },
+          {
+            "produto_visivel": "Suporte Gamer 2 Controles E Headset Mesa Organizador Ps5 Ps4 Preto",
+            "platform_item_id": "MLB6661811594",
+            "sku_interno": "SPC0111",
+            "quantidade": 3,
+            "fonte": "top_products / dados da conta"
+          },
+          {
+            "produto_visivel": "Kit Jogo 6 Potes Vidro Hermético Tampa Travas Marmita Fit Azul-petróleo",
+            "platform_item_id": "MLB5406503442",
+            "sku_interno": "KIT6S100",
+            "quantidade": 3,
+            "fonte": "top_products / dados da conta"
+          },
+          {
+            "produto_visivel": "Kit 2 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+            "platform_item_id": "MLB6518176572",
+            "sku_interno": "KIT2YW1050",
+            "quantidade": 3,
+            "fonte": "top_products / dados da conta"
+          },
+          {
+            "produto_visivel": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico",
+            "platform_item_id": "MLB4410218897",
+            "sku_interno": "914C_BAP",
+            "quantidade": 3,
+            "fonte": "top_products / dados da conta"
+          }
+        ],
+        "total_itens_posicao_4_a_10": 29,
+        "itens_fora_do_top10": 13,
+        "calculo": "94 itens totais - 52 (listing principal, posições 1-3) - 29 (posições 4-10) = 13 itens em produtos fora do top 10",
+        "maior_produto_da_cauda_itens": 6
+      },
+      "leitura": "Os 7 produtos nas posições 4-10 somam 29 itens, com o maior individualmente em 6 unidades. Se o listing principal (MLB3288536143) caísse para zero, a cauda visível entregaria ~42 itens — menos da metade do volume atual. Nenhum produto da cauda tem força para absorver a oscilação do listing principal. Não há segundo vetor emergindo.",
+      "conclusao_granular": "confirma ausência de segundo vetor — a cauda existe mas é estruturalmente insuficiente para compensar o listing principal",
       "confianca": "alta"
     }
   ],
-  "risco_identificacao": {
+  "risco_identificacao_ou_leitura_errada": {
     "nivel": "baixo",
-    "fontes": [],
-    "explicacao": "Todos os top produtos têm platform_item_id (MLB) e título real de anúncio identificados via orderItems. Os 3 SKUs do listing líder compartilham o mesmo MLB3288536143 com o mesmo título — a correspondência entre SKU e listing é direta e sem ambiguidade, confirmada pela coincidência de platform_item_id entre os três. A reconciliação da conta está OK (order_delta=0, revenue_delta=0,0). Não há alias manual como fonte primária, não há título ausente, não há platform_item_id ambíguo. O único dado ausente é o breakdown de cancelamentos por produto — mas isso é lacuna de cobertura do pacote, não risco de identificação errada do que foi vendido."
+    "fontes_de_risco": [],
+    "explicacao": "Todos os produtos identificados no top 10 têm platform_item_id (MLB) e título real presentes. A reconciliação está OK (order_delta=0, revenue_delta=0.0, ok=true). O único ponto de atenção — três SKUs distintos compartilhando o mesmo platform_item_id — é comportamento esperado para variantes de um mesmo anúncio no Mercado Livre, não ambiguidade de identificação. Não há alias manual substituindo pedido real, não há título ausente, não há ASIN faltante. O risco de citar produto errado é baixo. A Condensadora pode citar os produtos identificados nominalmente.",
+    "bloqueios_para_slack": []
   },
   "divergencia_entre_fontes": null,
   "evidencia_conflitante": null,
-  "detalhe_condensadora": [
+  "detalhe_que_condensadora_nao_pode_perder": [
     {
-      "detalhe": "Os SKUs top-1, top-2 e top-3 compartilham o mesmo platform_item_id MLB3288536143 — são variantes do mesmo listing único (Jogo Potes Vidro 5 Peças), não três produtos distintos; a concentração de 55,3% dos itens vendidos está em um único anúncio, e qualquer problema nesse listing afeta os três SKUs simultaneamente sem separação de risco entre eles",
-      "por_que_importa": "Se a mensagem final usar o frame 'top 3 produtos concentram 55% do volume', a leitura de risco fica subestimada — três produtos sugerem alguma diversificação que na prática não existe; a vulnerabilidade real é de um único ponto de falha, não três",
+      "detalhe": "Os 55.3% do top 3 estão em um único listing (MLB3288536143) com três variantes — não é concentração em três produtos distintos, é dependência de um único anúncio; qualquer problema nesse anúncio afeta as três variantes simultaneamente, sem hedge interno entre elas.",
+      "por_que_importa": "Se a mensagem falar em 'top 3 produtos', cria falsa impressão de diversificação; o correto é que um único anúncio com variantes sustenta mais da metade do volume da conta.",
       "confianca": "alta"
     },
     {
-      "detalhe": "Os 4 cancelamentos do dia não têm breakdown por produto no pacote — não é possível confirmar ou descartar concentração no anúncio líder; a Operacional considerou essa checagem necessária para classificar a taxa de cancelamento como 'operacionalmente baixa sem impacto' versus 'sinal específico no listing líder'",
-      "por_que_importa": "Qualquer afirmação sobre cancelamentos no Slack — tranquilizadora ou alarmante — não tem base granular; a Condensadora deve ou omitir cancelamentos ou marcar explicitamente que o breakdown por produto não estava disponível; não pode afirmar que cancelamentos são irrelevantes se a concentração no listing líder não foi verificada",
-      "confianca": "média"
+      "detalhe": "As três perguntas prioritárias da Operacional — concentração dos cancelamentos por produto, ranking do listing principal versus semana anterior, e recorrência do pico de 16h — ficaram sem resposta por ausência de dado granular no pacote; o risco operacional central (cancelamentos possivelmente concentrados no listing principal) permanece em aberto e não pode ser tratado como resolvido.",
+      "por_que_importa": "A mensagem final não pode apresentar os cancelamentos como irrelevantes ou dispersos — eles são ruído silencioso ainda não localizado, e podem estar concentrados exatamente no produto que carrega o resultado da conta.",
+      "confianca": "alta"
     },
     {
-      "detalhe": "O schema de fulfillment não captura Full ML como categoria distinta — todos os 91 pedidos caem em 'other'; não é possível afirmar que a conta opera ou não opera com Full; a pergunta de competitividade de exposição versus concorrentes com Full permanece estruturalmente aberta",
-      "por_que_importa": "A Tática identificou checagem de Full como parte da avaliação de posição competitiva do anúncio líder; qualquer leitura de ranking ou exposição no Slack deve ser marcada como hipótese não verificável pelo dado atual, não como conclusão",
-      "confianca": "média"
+      "detalhe": "A cauda da conta após o listing principal é composta por 7 produtos com 3-6 unidades cada, sem nenhum com capacidade de absorção do volume do listing principal; se o MLB3288536143 oscilar, não existe produto na fila para compensar.",
+      "por_que_importa": "Sem esse dado, a mensagem pode sugerir diversidade de produtos quando a conta é estruturalmente dependente de um único anúncio sem substituto operacional visível.",
+      "confianca": "alta"
     }
   ],
   "memoria_interna": {
-    "ids_tecnicos_top_produtos": [
-      "MLB3288536143 — listing único Jogo Potes Vidro 5 Peças: IMB501P_T (26 un) + IMB501C_T (15 un) + IMB501V_T (11 un) = 52 un total",
-      "MLB3343832496 — Canequinha 100ml Alumínio Amarelo (914C_B) — 6 un",
-      "MLB5322470722 — Kit 4 Potes 1520ml Verde-escuro (KIT4YW1520) — 6 un",
-      "MLB6232315532 — Canecas Porcelana Lisa 200ml Colorida (CLR002) — 5 un",
-      "MLB6661811594 — Suporte Gamer 2 Controles Headset Preto (SPC0111) — 3 un",
-      "MLB5406503442 — Kit 6 Potes Vidro Hermético Azul-petróleo (KIT6S100) — 3 un",
-      "MLB6518176572 — Kit 2 Potes 1050ml Azul-petróleo (KIT2YW1050) — 3 un",
-      "MLB4410218897 — Kit 6 Canequinhas 100ml Suporte Acrílico (914C_BAP) — 3 un"
+    "platform_item_ids_top10": [
+      "MLB3288536143 — Jogo Potes Vidro 5 Peças (variantes IMB501P_T: 26 itens, IMB501C_T: 15 itens, IMB501V_T: 11 itens)",
+      "MLB3343832496 — Canequinha 100ml Suporte Madeira (914C_B: 6 itens)",
+      "MLB5322470722 — Kit Potes Vidro 1520ml Verde-escuro (KIT4YW1520: 6 itens)",
+      "MLB6232315532 — Canecas Porcelana 200ml Colorida (CLR002: 5 itens)",
+      "MLB6661811594 — Suporte Gamer 2 Controles Headset Preto (SPC0111: 3 itens)",
+      "MLB5406503442 — Kit 6 Potes Vidro Hermético Azul-petróleo (KIT6S100: 3 itens)",
+      "MLB6518176572 — Kit 2 Potes Vidro 1050ml Azul-petróleo (KIT2YW1050: 3 itens)",
+      "MLB4410218897 — Kit Canequinhas 100ml Suporte Acrílico (914C_BAP: 3 itens)"
     ],
-    "distribuicao_horaria_detalhada": {
-      "0h": 3,
-      "2h": 2,
-      "3h": 1,
-      "4h": 1,
-      "6h": 1,
-      "7h": 3,
-      "8h": 4,
-      "9h": 3,
-      "10h": 3,
-      "11h": 4,
-      "12h": 7,
-      "13h": 6,
-      "14h": 5,
-      "15h": 7,
-      "16h": 12,
-      "17h": 6,
-      "18h": 5,
-      "19h": 6,
-      "20h": 4,
-      "21h": 1,
-      "22h": 2,
-      "23h": 5
+    "distribuicao_horaria_completa": {
+      "0": 3,
+      "2": 2,
+      "3": 1,
+      "4": 1,
+      "6": 1,
+      "7": 3,
+      "8": 4,
+      "9": 3,
+      "10": 3,
+      "11": 4,
+      "12": 7,
+      "13": 6,
+      "14": 5,
+      "15": 7,
+      "16": 12,
+      "17": 6,
+      "18": 5,
+      "19": 6,
+      "20": 4,
+      "21": 1,
+      "22": 2,
+      "23": 5
     },
-    "lacunas_estruturais_do_pacote": [
-      "Cancelamentos: total=4 disponível, breakdown por MLB/SKU ausente — lacuna a adicionar em próximas coletas para permitir investigação granular de concentração",
-      "Fulfillment: schema não inclui campo ml_full — impossível verificar elegibilidade Full ML por anúncio; campo 'other' é residual, não confirmatório",
-      "Histórico granular por produto: avg_7d/30d/60d são agregados de conta — tendência de crescimento de cauda por produto não é calculável com o schema atual"
-    ]
+    "perguntas_operacional_sem_dado": [
+      "cancelamentos por produto/listing — dado não disponível no pacote",
+      "ranking do listing MLB3288536143 vs semana anterior — dado não disponível no pacote",
+      "histórico de distribuição horária por dia da semana — dado não disponível no pacote"
+    ],
+    "reconciliacao": "OK — order_delta=0, revenue_delta=0.0",
+    "nota_divergencia": "Nenhuma divergência entre fontes detectada."
   },
   "llm_used": true,
   "model": "sonnet",

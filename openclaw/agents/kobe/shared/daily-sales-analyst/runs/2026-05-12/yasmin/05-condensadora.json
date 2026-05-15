@@ -1,67 +1,79 @@
 {
-  "layer": "05-condensadora",
-  "date": "2026-05-12",
+  "camada": "05-condensadora",
+  "data": "2026-05-12",
   "recipient": "Yasmin",
-  "platform": "mercado_livre",
+  "plataforma": "mercado_livre",
   "analise_final_condensada": [
     {
-      "ordem": 1,
-      "insight": "A leitura de '55% concentrado nos top 3 produtos' distorce o risco real: os três SKUs do topo são variantes de cor de um único anúncio, não três produtos independentes — qualquer problema de ranking, preço ou operação nesse listing afeta os três simultaneamente, sem separação de risco entre eles.",
-      "padrao": "E — localização ('o problema não é em três produtos, é em um único listing com variantes')",
-      "criterio_descarte": "1 (muda a leitura do dia) + 3 (evita interpretação errada)",
+      "insight": "A leitura de 'top 3 produtos' mascara o risco real: os 55.3% de concentração estão em um único anúncio (MLB3288536143) com três variantes de cor — não há diversificação entre três produtos distintos, e qualquer oscilação de ranking, reputação ou estoque afeta as três variantes simultaneamente, sem hedge interno entre elas.",
+      "padrao": "Padrão A — Contraste (não é X, é Y)",
+      "criterio_descarte_atendido": "Evita interpretação errada — a leitura natural do dado (top 3 produtos) leva à conclusão equivocada de diversificação quando a dependência é de um único listing",
       "base": "Granular",
       "confianca": "alta"
     },
     {
-      "ordem": 2,
-      "insight": "O GMV ficou dentro da banda mensal, mas o que segurou o número foi o ticket acima da média (+10,3% vs 30d), não o volume de pedidos (-8,7% vs 30d) — a conta está saudável no número e vulnerável na estrutura: se o anúncio líder perder posição ou preço competitivo, não há cauda com capacidade para absorver o impacto.",
-      "padrao": "B — inversão positiva ('parece ok, mas a estrutura que sustenta o resultado é de ponto único de falha')",
-      "criterio_descarte": "2 (muda a prioridade) + 5 (risco silencioso)",
-      "base": "Estratégica + Operacional",
+      "insight": "O dia parece neutro em GMV (flat contra o 30d), mas a estabilidade é frágil: o volume menor foi compensado pelo ticket mais alto, e toda a execução dependeu do listing único sem segundo vetor com capacidade real de absorção na cauda — os produtos da posição 4 em diante somaram menos da metade do volume do listing principal.",
+      "padrao": "Padrão B — Inversão positiva (parece bom, mas...)",
+      "criterio_descarte_atendido": "Muda a leitura do dia — sem esse enquadramento, o funcionário leria o GMV flat como operação normal quando a base é estruturalmente estreita",
+      "base": "Operacional + Granular",
       "confianca": "alta"
     },
     {
-      "ordem": 3,
-      "insight": "A comparação com outras terças mostra -30,9% em pedidos, mas o resultado de 28/04 (provável evento ou campanha pontual) puxa a média para cima; excluindo esse outlier, a conta fica a -16,7% de um benchmark limpo — fraqueza real mas moderada, não sinal de deterioração consolidada.",
-      "padrao": "A — contraste ('não é fraqueza estrutural — é comparação contaminada por evento pontual')",
-      "criterio_descarte": "3 (evita interpretação errada)",
-      "base": "Estratégica + Operacional",
-      "confianca": "alta"
+      "insight": "Os 4 cancelamentos ficaram sem localização de origem — se estiverem concentrados no listing principal (que carregou 55.3% dos itens do dia), o peso operacional é desproporcionalmente maior do que cancelamentos dispersos na cauda; esse ruído silencioso não pode ser tratado como irrelevante até que a origem seja confirmada.",
+      "padrao": "Padrão F — Métrica vs qualidade (a métrica parece aceitável, mas a qualidade do diagnóstico piorou)",
+      "criterio_descarte_atendido": "Alerta contra risco silencioso — cancelamentos agregados sem localização podem estar concentrados exatamente no produto que sustenta o resultado da conta",
+      "base": "Granular",
+      "confianca": "média — dado de cancelamento por produto ausente no pacote; a ressalva de inconclusividade deve aparecer na mensagem"
     }
   ],
   "prioridades_condensadas": [
     {
-      "ordem": 1,
-      "prioridade": "Checar posição de ranking e preço relativo do anúncio líder (Jogo Potes Vidro 5 Peças) em relação aos principais concorrentes.",
-      "por_que": "55% dos itens vendidos dependem de um único listing sem variação real de risco entre os SKUs — qualquer degradação de posição ou entrada de concorrente competitivo nesse anúncio colapsa o GMV sem mecanismo de compensação de mix.",
-      "sinal_confirmacao_refutacao": "Posição estável vs semana passada e sem concorrente relevante identificado abaixo no ranking → manter observação sem ação. Posição caiu ou concorrente com Full + preço inferior apareceu → documentar e avaliar alinhamento com Himmel.",
-      "escalar_se": "Posição do anúncio líder caiu vs semana passada com concorrente relevante identificado abaixo no ranking."
+      "prioridade": "Checar posição e saúde do listing principal (Jogo Potes de Vidro, três variantes) comparando com a semana anterior — verificar se o ranking caiu, se há problema de reputação ou indisponibilidade de estoque em alguma das variantes",
+      "por_que": "Esse listing único carregou mais da metade do volume do dia; volume abaixo dos pares de segunda-feira (~17% abaixo das três segundas anteriores excluindo outlier) pode ter explicação operacional ali, e sem essa verificação qualquer leitura de tendência futura fica sem âncora",
+      "sinal_confirmacao_refutacao": "Se a posição estiver estável vs semana anterior e as variantes disponíveis: mantém observação. Se ranking caiu visualmente ou alguma variante aparece com restrição: alinhar com Himmel sobre exposição antes do fim do dia",
+      "escalar_se": "Posição caiu de forma visível vs semana passada ou qualquer variante do listing com sinal de restrição operacional",
+      "filho_de_insight": 1
     },
     {
-      "ordem": 2,
-      "prioridade": "Verificar se algum produto da cauda (posições 4–10) acumulou crescimento nos últimos 3–5 dias — o snapshot do dia por si só não responde essa pergunta.",
-      "por_que": "A conta não mostrou segundo vetor emergente no dia, mas o sinal de candidato pode estar na tendência de dias anteriores, não no snapshot isolado; identificar um candidato muda a leitura estrutural de dependência crônica.",
-      "sinal_confirmacao_refutacao": "Produto da cauda com crescimento de 50%+ em unidades vs média recente → observar por 2–3 dias antes de qualquer decisão de exposição. Cauda flat → confirma dependência crônica e registrar como padrão observado.",
-      "escalar_se": "Não aplicável — checagem diagnóstica, sem escalonamento imediato."
+      "prioridade": "Verificar origem dos 4 cancelamentos do dia — se for possível identificar em qual produto ou listing estão concentrados",
+      "por_que": "A origem dos cancelamentos permaneceu inconclusiva na camada granular; se estiverem no listing principal, o sinal muda de ruído para dado operacional com peso real",
+      "sinal_confirmacao_refutacao": "Cancelamentos dispersos em diferentes produtos: ruído normal, encerra checagem. Dois ou mais cancelamentos no mesmo listing: sinal operacional ativo, registrar e observar nos próximos dias",
+      "escalar_se": "Dois ou mais cancelamentos confirmados no listing principal (MLB3288536143)",
+      "filho_de_insight": 3
     }
   ],
   "bloqueios_para_slack": [
-    "SKUs individuais (IMB501P_T, IMB501C_T, IMB501V_T) e platform_item_id técnico (MLB3288536143) não devem aparecer no Slack — usar 'anúncio líder' ou 'principal listing da conta'.",
-    "Cancelamentos: não afirmar que são irrelevantes ou que estão pulverizados — o breakdown por produto não estava disponível no pacote; se cancelamentos forem mencionados, marcar como 'sem breakdown por produto disponível'.",
-    "Full ML: não fazer afirmação sobre a conta operar ou não operar com Full, nem sobre competitividade de exposição versus concorrentes com Full — o schema não captura esse campo; qualquer leitura de ranking deve ser tratada como hipótese não verificável pelo dado atual.",
-    "Tendência de cauda por produto: o pacote não tem histórico diário granular por produto — não afirmar ausência de candidato emergente como fato confirmado, apenas como sinal não observado no dia."
+    {
+      "item": "SKUs internos (IMB501P_T, IMB501C_T, IMB501V_T)",
+      "motivo": "Desnecessários na mensagem — o listing é identificável pelo nome do produto e pelo MLB; SKU cru não agrega para Yasmin"
+    },
+    {
+      "item": "Pico de 16h como dado acionável",
+      "motivo": "Sem histórico de distribuição horária para comparação, o pico não tem contexto interpretável — citar como insight seria hipótese fraca disfarçada de fato"
+    },
+    {
+      "item": "Hipótese de queda de ranking como causa do volume abaixo dos pares de segunda-feira",
+      "motivo": "Não confirmada pela Granular por ausência de dado — pode aparecer como pergunta a investigar, não como diagnóstico"
+    },
+    {
+      "item": "Platform item ID (MLB3288536143) em formato técnico",
+      "motivo": "Usar nome do produto — o ID técnico é desnecessário para a mensagem operacional e polui o Slack"
+    },
+    {
+      "item": "Afirmação de que os cancelamentos são irrelevantes ou dispersos",
+      "motivo": "Inconclusivo por falta de dado — a mensagem não pode assumir direção que o pacote não confirmou"
+    }
   ],
   "memoria_para_amanha": [
-    "Concentração top3 = 55,3% em um único listing com variantes de cor (não 3 produtos distintos) — linha de base confirmada hoje pela Granular; se se repetir por mais 2 ciclos semanais, classificar como padrão estrutural crônico verificado.",
-    "Ticket R$44,85 (+10,3% vs 30d) com pedidos em -8,7% vs 30d — divergência ticket/volume ativa; confirmar amanhã se persiste ou foi pontual; se ticket acima de R$43 com pedidos abaixo de 85 por 3 dias consecutivos, a divergência vira tendência consolidada.",
-    "Cancelamentos: total=4 sem breakdown por produto — lacuna estrutural do pacote; solicitar que próximas coletas incluam cancelamentos por platform_item_id/SKU para permitir investigação de concentração no anúncio líder.",
-    "Full ML: schema atual não captura campo ml_full; verificar com Yasmin se a conta opera com Full e se o anúncio líder está elegível — informação necessária para leitura de competitividade de exposição vs concorrentes.",
-    "Outlier de 28/04 (199 pedidos) deve ser excluído das comparações de mesmo dia da semana nas próximas leituras; benchmark limpo para terças = ~109 pedidos / ~R$4.273 — referência mais confiável do que a média com o outlier incluído.",
-    "weekly.md e monthly.md estão sem entradas reais — hoje é o primeiro ponto de dados qualitativo registrável; os valores de hoje (91 pedidos, GMV R$4.081,49, ticket R$44,85, concentração 55,3%) devem servir como âncora inicial para as próximas semanas."
+    "Listing único MLB3288536143 (Jogo Potes de Vidro, três variantes de cor) carregou 55.3% dos itens do dia de 2026-05-12 — primeira âncora documentada de concentração; comparar concentração ao final da semana para confirmar se é padrão estrutural crônico ou oscilação pontual",
+    "Ticket médio de R$44.85 em 2026-05-12 ficou 10.3% acima do 30d com pedidos abaixo do 30d — hipótese de mix mais valorizado com cauda menor ativa; monitorar nos próximos 5 dias se ticket permanece acima de R$43 com volume também baixo (confirma padrão) ou se ambos caem juntos (era ruído)",
+    "Semana corrente em 2026-05-12 com média de 7d em 79 pedidos contra 30d de 99.7 — observar convergência da 7d nos próximos 3 dias; se ficar abaixo de 85, patamar de 30d começa a ser pressionado; se convergir para 90+, semana retoma patamar",
+    "Cancelamentos de 2026-05-12 (4 pedidos) sem localização por produto — verificar amanhã se o sistema ou Yasmin consegue identificar a origem; se concentração for no listing principal, registrar como sinal operacional ativo",
+    "Cauda da conta (posições 4-10) soma 29 itens com maior produto em 6 unidades — ausência de segundo vetor documentada em 2026-05-12; verificar ao longo da semana se algum produto da cauda ganha tração ou se a estrutura permanece dependente do listing único"
   ],
-  "alertas_confianca": {
-    "nivel": "media",
-    "explicacao": "Os dados numéricos são sólidos: reconciliação OK, 7d/30d/60d com cobertura completa, Granular confirmou com alta confiança a estrutura do anúncio líder e a distribuição horária orgânica. A confiança fica em média porque três perguntas operacionais ficaram sem resposta por ausência de dado no pacote (cancelamentos por produto, Full ML, tendência de cauda por produto), e porque weekly.md e monthly.md estão sem entradas reais, impedindo ancoragem em hipóteses ou padrões anteriores. Os insights 1 e 2 têm sustentação suficiente para o Slack; o insight 3 é contextual mas sólido. Nenhum bloqueio crítico compromete a mensagem final."
+  "alertas_de_confianca": {
+    "nivel": "média",
+    "explicacao": "Os dados de volume, produto e reconciliação são consistentes e sem divergência — a identificação do listing único com três variantes é de alta confiança e sustenta os dois primeiros insights com solidez. O que rebaixa a confiança para média são as três perguntas operacionais que ficaram sem resposta por ausência de dado no pacote: a origem dos cancelamentos por produto, o histórico de ranking do listing principal versus semana anterior, e o histórico de distribuição horária. Essas lacunas não invalidam a leitura central — o risco de listing único está bem sustentado — mas introduzem incerteza sobre o status operacional atual do anúncio e sobre o peso real dos cancelamentos. Sem weekly.md e monthly.md preenchidos, a tese de acomodação é plausível mas sem âncora narrativa. A mensagem pode ser entregue com os dois primeiros insights em tom firme; o terceiro (cancelamentos) deve carregar a ressalva de inconclusividade explicitamente."
   },
   "llm_used": true,
   "model": "sonnet",

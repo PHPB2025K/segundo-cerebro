@@ -1,33 +1,35 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Decisão tática
 
-- Dado que a tese estratégica classifica a conta como vulnerável por concentração estrutural — não por emergência operacional —, a decisão correta é checar a saúde e posição do anúncio líder antes de qualquer movimento ativo; o GMV está dentro da banda mensal e não justifica ação corretiva hoje.
-- Dado que o risco principal é dependência de um único listing sem segundo vetor, a prioridade tática imediata é verificar se o anúncio líder mantém posição e competitividade de preço — qualquer degradação aí não tem amortecedor de mix, ao contrário do que aconteceria em conta diversificada.
-- Dado que ticket crescente (+10,3% vs 30d) está compensando volume menor (-8,7% vs 30d), não é possível saber ainda se o mix shift para itens de maior valor é estável ou se está mascarando erosão de alcance — a checagem de posição do anúncio líder resolve parte dessa ambiguidade antes de qualquer decisão de exposição ou ADS.
-- Dado que weekly e monthly estão sem entradas reais, registrar o padrão de concentração atual como linha de base é condição para que hipóteses futuras possam ser confirmadas ou refutadas — sem esse registro, o ciclo analítico não fecha nas próximas semanas.
+- **Dado que a tese é acomodação com confiança moderada** — sem memória narrativa semanal/mensal como âncora — a postura tática correta é checar, não agir. Nenhum sinal hoje aponta para ação forte em ADS ou preço.
+- **Dado que o risco estrutural principal é dependência de listing único** (MLB3288536143 concentra 55.3% dos pedidos via três variantes do mesmo anúncio), a prioridade imediata é verificar a saúde operacional desse listing — ranking, exposição, disponibilidade — antes que qualquer oscilação futura seja mal diagnosticada como problema de canal.
+- **Dado que a semana corrente está rodando mais fraca que o dia de hoje** (7d avg de 79 pedidos contra 91 hoje), o sinal relevante não é o dia — é se a semana converge para o patamar dos 30d (avg 99.7 pedidos) ou se continua pressionando para baixo. Aguardar 2-3 dias antes de qualquer decisão de exposição.
+- **Dado que o ticket está 10.3% acima do 30d com volume abaixo**, a hipótese de mix mais valorizado com cauda menor ainda não está confirmada — proteger o patamar de GMV antes de testar qualquer segundo vetor.
 
 ---
 
 ### O que fazer hoje
 
-- **Yasmin:** checar posição de ranking e preço relativo do anúncio líder (Jogo Potes Vidro 5 Peças, listing único com variantes de cor) em relação aos principais concorrentes — dado que 55% dos itens dependem desse anúncio e não há segundo vetor, qualquer degradação de posição ou entrada de concorrente com Full + preço inferior colapsa o GMV sem mecanismo de compensação — se posição caiu em relação à semana passada ou concorrente relevante apareceu abaixo no ranking, Yasmin documenta e avalia alinhamento com Himmel; se posição estável e preço competitivo, mantém observação sem mexer.
+- **Yasmin:** checar posição e saúde do listing MLB3288536143 (Jogo Potes de Vidro, 3 variantes) comparando com 7 dias atrás — dado que esse listing único sustenta mais de metade do volume da conta, qualquer queda de ranking ou problema de reputação ali derruba o GMV antes que a análise diária capte — se a posição caiu em relação à semana passada, Yasmin alinha com Himmel sobre exposição; se estável, mantém observação sem mexer.
 
-- **Yasmin:** verificar se há sinal de crescimento consistente em algum produto da cauda (posições 4–10) nos últimos 3–5 dias — dado que a Estratégica aponta ausência de segundo vetor real, identificar um candidato emergente muda a leitura estrutural e abre possibilidade de teste de exposição futuro — se algum produto da cauda acumulou crescimento de 50%+ em unidades vs média recente, observar por mais 2–3 dias antes de qualquer decisão de exposição; se cauda continua flat, confirma dependência crônica e Yasmin registra como padrão observado.
+- **Yasmin:** observar se os pedidos dos próximos 2-3 dias (quarta a sexta desta semana) convergem para acima de 90 pedidos/dia ou continuam abaixo de 85 — a tese estratégica identifica a semana corrente como mais fraca que o patamar de 30d, e hoje foi recuperação dentro da semana, não sinal de força — se a média dos próximos 3 dias ficar abaixo de 85, o patamar de 30d começa a ser pressionado para baixo e Yasmin escalona para observação ativa de exposição; se convergir para 90+, a semana corrente está retomando o patamar e a postura de acomodação se confirma.
 
-- **Yasmin:** registrar concentração top3 = 55,3% (anúncio único em 3 variantes de cor) e ticket R$ 44,85 como linha de base inicial da conta — dado que weekly e monthly estão sem entradas, sem essa âncora as leituras das próximas semanas não têm referência para confirmar ou refutar padrão crônico — resultado esperado: dado registrado e disponível para a leitura da semana que vem; sem isso, a hipótese de dependência estrutural permanece não verificável.
+- **Yasmin:** registrar a concentração top 3 de hoje (55.3%, listing único) como ponto de partida no próximo preenchimento de weekly — sem memória narrativa anterior, esta é a primeira âncora disponível para comparação em ciclos futuros; se a concentração se repetir acima de 55% ao final da semana, o risco de dependência de listing único passa de hipótese para padrão documentado.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Himmel para mexer em ADS ML:** a fraqueza de -8,7% vs 30d é moderada e o GMV está dentro da banda mensal; sem confirmação de queda de posição do anúncio líder ou de persistência da fraqueza por 2 ciclos (2 terças seguidas abaixo de 90 pedidos, excluindo eventos), acionar ADS é precipitado — gasto sem causa identificada que justifique aumento de exposição.
+- **Não acionar Himmel para mexer em ADS ML agora** — hoje a conta ficou acima da 7d e empatou com o 30d em GMV; não há sinal de queda de exposição confirmada — acionar ADS sobre oscilação dentro da banda normal desperdiça verba e pode mascarar a leitura de comportamento orgânico da conta nos próximos dias.
 
-- **Não alterar preço, mix ou configuração do anúncio líder:** o ticket em alta (+10,3% vs 30d) pode estar sustentando ativamente o GMV; alterar o único anúncio que ancora 55% do volume sem entender se a pressão competitiva de preço é real é risco de colapso de receita — a checagem de posição resolve essa dúvida antes de qualquer mudança.
+- **Não tratar o dia de hoje como confirmação de retomada de patamar** — o dia foi acima da semana fraca, não acima do patamar de 30d em pedidos (91 vs avg 99.7); a 7d ainda está em 79 pedidos; uma única segunda-feira acima não reverte a semana — qualquer movimentação de mix, preço ou exposição baseada em um único ponto de dado seria precipitada.
 
-- **Não concluir que a fraqueza desta terça é tendência consolidada:** excluindo o outlier de 28/04 (evento pontual com 199 pedidos), as outras 3 terças têm média de ~109 pedidos; contra esse benchmark limpo, o dia registra -16,7% em pedidos e -4,5% em GMV — fraqueza real mas não extrema, e um único dia não confirma tendência; a classificação como tendência exige repetição na terça seguinte (19/05).
+- **Não testar segundo vetor ou novo produto enquanto o listing principal não tiver saúde confirmada** — a estratégica identifica que os itens seguintes ao top 3 têm volume marginal (3-6 unidades cada); expandir aposta em cauda antes de entender se o listing principal está saudável pode dividir exposição/ADS em posição de fragilidade da conta.
 
 ---
 
 ### Escalonamento
 
-**Observar** — Yasmin executa as duas checagens de hoje (posição do anúncio líder + sinal de cauda) sem alterar a operação. A tese é vulnerabilidade estrutural crônica, não emergência — o volume do dia está dentro da variação esperada quando o outlier de 28/04 é excluído, e o GMV está na banda mensal. Alinhamento com Himmel torna-se pertinente se: (a) posição do anúncio líder tiver caído vs semana passada com concorrente relevante identificado abaixo no ranking, ou (b) pedidos ficarem abaixo de 85 na terça seguinte (19/05) sem causa de evento identificada. Até lá, a postura correta é diagnóstica — coletar evidência sem alterar a operação.
+**observar** — Yasmin resolve no nível da conta.
+
+O dia de hoje não apresenta sinal de alerta que justifique acionar Himmel ou escalar para Kobe. A tese estratégica é acomodação com confiança moderada — postura compatível com observação por 2-3 ciclos antes de qualquer movimento. Yasmin conduz as duas checagens de hoje (saúde do listing principal e convergência da semana) de forma autônoma. A classificação muda para **alinhar com Himmel** se: (a) a posição do listing MLB3288536143 tiver caído de forma visível vs semana passada, ou (b) os pedidos dos próximos 2 dias ficarem consistentemente abaixo de 85, sugerindo queda de exposição além da acomodação normal. Enquanto nenhum desses sinais aparecer, a operação segue sem alterar ADS, preço ou mix.

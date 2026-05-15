@@ -1,15 +1,14 @@
 ### Análise Final Condensada
 
-- Não houve concentração dos cancelamentos em um único campeão — cada cancelamento caiu em um produto diferente do top 4, sem padrão focalizado ou sintoma operacional relevante. — base: Operacional + Granular
-- O padrão de concentração forte nos campeões se mantém: o top 3 ainda responde por mais de 60% dos pedidos e o mix secundário não mostrou reação, sem nenhum produto fora dos líderes gerando mais de um pedido no dia. — base: Estratégica + Granular
-- Queda de volume não veio acompanhada de diluição de mix — o ticket médio subiu, mas o cenário é de menos pedidos e concentração nos líderes, não de substituição por itens de maior valor fora do núcleo. — base: Estratégica + Operacional
+- Não é recuperação de mix: os produtos intermediários típicos da Budamix Oficial continuam completamente fora das vendas — o giro segue travado nos campeões, sem retomada de cauda. — base: Granular (confiança alta)
+- O dia foi carregado pelos top 3, todos vendendo normalmente e sem sinal de perda de saúde no giro real; mas não dá para cravar manutenção de posição ou vitrine, já que não há dados de exposição — só há confirmação por venda efetiva. — base: Granular (confiança média)
 
 ### Prioridades Condensadas para Slack
 
-- **Prioridade:** Manter atenção no núcleo dos campeões, já que o mix secundário segue inerte e a operação do dia não apresentou risco de dispersão ou foco de cancelamento.
-- **Por quê:** O cenário de hoje reforça que qualquer ação relevante deve mirar no núcleo top 3, pois a cauda não mostrou sinal de tração ou início de estabilização.
-- **Sinal de confirmação/refutação:** Mix secundário segue com, no máximo, um pedido por produto nos próximos dias; concentração dos pedidos permanece no top 3.
-- **Escalar se:** Algum produto fora do top 3 apresentar mais de um pedido em ciclo curto, ou concentração dos cancelamentos passar a se repetir em um único item.
+- **Prioridade:** Registrar manutenção do foco nos campeões enquanto o mix segue travado — não desviar esforço para linha intermediária antes de sinal claro de giro.
+  - **Por quê:** O insight central é que os intermediários seguem zerados; ação em cima deles seria improdutiva hoje.
+  - **Sinal de confirmação/refutação:** Qualquer pedido real em produto intermediário nos próximos 2 dias falsifica o quadro — até lá, trata como mix travado.
+  - **Escalar se:** Horizonte de 2 dias sem variação.
 
 ### O que não pode ir para Slack
 
@@ -17,12 +16,12 @@ Sem bloqueios relevantes para Slack.
 
 ### Memória para amanhã
 
-- Padrão de concentração alta nos campeões se mantém; nenhum secundário deu sinal de reação — monitorar se a cauda segue inerte nos próximos ciclos.
-- Cancelamentos dispersos entre campeões; sem foco, sem abrir ação corretiva — mas registrar se mudar nos próximos dias.
-- Falta de dado horário travou análise de pico do dia; buscar esse detalhe técnico na próxima base para tirar leitura operacional mais fina.
-- O ticket subiu em contexto de volume menor — se repetir, pode sinalizar mix ainda mais concentrado (menos volume, valor relativo maior nos campeões).
-- Conta seguiu estável, sem incidente ou anomalia operacional; padrão é continuidade, não inflexão neste ciclo.
+- Ainda não há sinal de volta dos produtos intermediários; se o histórico de zeragem persistir, reforça tese de mix cada vez mais curto — importante para calibrar próximos ciclos comerciais.
+- Top 3 seguem dominando, mas falta confirmação de exposição/vitrine: útil buscar input de visitas/impressões amanhã para fechar leitura estrutural.
+- Se qualquer produto intermediário aparecer nos próximos dias, reavaliar imediatamente para captar mudança de cenário — mesmo um pedido já abre nova frente.
+- Dia operacionalmente calmo em ruptura — útil para detectar qualquer oscilação ou microgiro amanhã.
+- Não há divergência de identificação, mas manter a lógica de checar sempre via pedido real para evitar ruído na análise de mix.
 
 ### Alertas de confiança
 
-**Alta** — Os dados estão sólidos, vindos diretamente de pedidos reais com identificação segura, sem nenhuma divergência relevante entre fontes. Granular concluiu com confiança alta e não há bloqueios ou hipóteses abertas. Não houve ambiguidade de produto, SKU ou conta; a leitura é firme para orientar a mensagem do Slack.
+Confiança geral **alta** quanto à ausência de vendas de intermediários e o giro nos campeões, pois a confirmação vem por pedido real sem ambiguidade de SKU, família ou título. No entanto, a capacidade de atestar saúde de exposição e vitrine dos campeões é apenas **média**, pois o input é restrito a vendas realizadas, sem dados de visitas ou impressões. No conjunto, a leitura é sólida para vendas, parcial para exposição.

@@ -33,25 +33,17 @@ TOP PRODUTOS SHOPEE
 
 ANÁLISE DAS CONTAS
 
-⚫ *Consolidado (3 contas):*
-• Todas as contas exibem padrão extremo de dependência no top 3 produtos, sem tração real fora do núcleo — o risco estrutural está cristalizado em todas as frentes.
-• O volume de pedidos vem majoritariamente da Budamix Store, mas esse volume é frágil: mais de 90% concentrado nos três campeões, expondo a conta a quebra se um líder oscilar.
-• O faturamento e ticket médio alto partem de Budamix Oficial e Budamix Shop, ambas também presas no núcleo dos campeões — não há diluição nem avanço de cauda longa.
-• Não há complementaridade real entre as contas; todas convergem para a mesma lógica de concentração, sem ameaça clara de canibalização mas também sem fortalecer o mix total.
-• O risco mais urgente de ruptura está na Store pela hiperconcentração, mas a estagnação dos secundários é sistêmica nos três slots.
-🟠 *Budamix Store (Shopee 1):*
-• Puxa o volume de pedidos, mas opera em zona vermelha: 91% concentrado em 3 itens, cauda parada e mix perde vitalidade operação após operação.
-🟠 *Budamix Oficial (Shopee 2):*
-• Explica subida de ticket, porém absolutamente dependente do top 3 — a cauda não reage e nem os cancelamentos abrem resposta tática.
-🟠 *Budamix Shop (Shopee 3):*
-• Fatura mais alto, mas cai em pedidos; segue dependente do trio líder, sem sinal autêntico de diversificação — movimento negativo persiste.
+⚫ *Consolidado (3 contas):* Shopee segue expondo uma única dinâmica: todo o volume e GMV estão travados nos campeões de cada loja, sem tração real de cauda ou intermediários — a complementaridade operacional entre contas não apareceu e o risco de queda brusca mantém-se elevado se algum top 3 oscilar. A leve dispersão de ticket e microgiros isolados na cauda não sinalizam recuperação; hoje não há espaço para movimentos amplos no mix nem para testar expansão, pois qualquer instabilidade nos líderes pode derrubar o canal inteiro.
+🟠 *Budamix Store (Shopee 1):* A conta só performou graças aos três líderes, com o mix restante praticamente morto em vendas e concentração extrema — qualquer revisão de preço, estoque ou lead time em um campeão precisa ser prioridade imediata, pois toda a estabilidade aparente depende desse trio.
+🟠 *Budamix Oficial (Shopee 2):* O desempenho só veio dos campeões, sem nenhum push dos intermediários típicos da conta — qualquer tentativa de ativação fora do top 3 é desperdício, enquanto a exposição real segue incerta e a saúde comercial depende de pedidos validando giro, não de vitrine.
+🟠 *Budamix Shop (Shopee 3):* A conta registrou pedidos só em campeões e cauda mínima, mas o ticket médio ajudou a segurar o GMV — não há sinal consistente de mix revivendo, então testar aposta no restante do portfólio seria movimento arriscado, não inteligente para hoje.
 
 
 🎯 PRIORIDADES DO DIA
 
-• Lucas deve atacar o colapso de mix na Store e acelerar revisão dos itens fora do top 3 nas três contas — o risco já não é hipotético.
-• Não perder tempo em ajustes pontuais nos campeões: enquanto a cauda seguir travada, qualquer esforço concentra mais ainda o risco.
-• Evitar mover preços, estoque ou anúncio só no núcleo; foco absoluto deve ser mobilidade real da cauda longa ou rever de imediato a estratégia de exposição.
+• Foco absoluto na sustentação dos top 3 de cada conta; preferir revisão de competitividade e ruptura em campeões, especialmente onde o giro está mais frágil.
+• Não destinar esforço para reativar intermediários ou cauda — mesmo microvendas não sustentam tese de expansão saudável neste ciclo.
+• Caso algum campeão dê sinal de instabilidade (estoque, preço, lead time), pausar qualquer outra ação e pivotar toda atenção para evitar perda de canal.
 
 
 Dia analisado: 14/05/2026 — 00:00–23:59 BRT

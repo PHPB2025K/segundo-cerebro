@@ -2,68 +2,75 @@
 
 ---
 
-- Pergunta: algum produto fora do top 3 apresentou aproximação relevante em número de visitas/carrinhos, ainda que sem converter em venda?  
-- Status: não respondida por falta de dado  
-- Evidência: O pacote de dados validado enviado para análise contém métricas exclusivamente relacionadas a pedidos válidos, GMV, ticket médio, cancelamentos e top produtos por pedidos/quantidade efetivamente vendidos. Não há dados sobre visitas, visualizações de produto, adição a carrinho, ou métricas de comportamento pré-compra em nível granular de produto dentro deste pacote.  
-- Leitura: Não é possível afirmar se algum produto fora do top 3 teve tração em visitas ou comportamento de carrinho, já que tais eventos não são informados neste recorte.  
-- Conclusão granular: inconclusivo por falta de dado  
-- Confiança: baixa (ausência total do tipo de evidência solicitado)  
+#### 1. Pergunta: há algum padrão operacional ou evento nos horários de venda que explique o volume baixo mesmo com ticket alto?
+
+- **Status:** não respondida por falta de dado
+- **Evidência:** O pacote validado não contém a relação detalhada de horários dos pedidos do dia nem distribuição horária dos pedidos. Apenas o total agregado do dia está disponível.
+- **Leitura:** Não é possível confirmar concentração em horários específicos nem identificar eventos pontuais que possam explicar o volume reduzido em contraposição ao ticket médio elevado.
+- **Conclusão granular:** inconclusivo por falta de dado
+- **Confiança:** baixa
 
 ---
 
-- Pergunta: houve oscilação atípica na exposição/vitrine dos campeões ao longo do dia, que ajude a explicar a manutenção da concentração ou resistência à diversificação?  
-- Status: não respondida por falta de dado  
-- Evidência: O pacote validado não possui métricas ou logs horários sobre exposição em vitrine (ex: impressões, mudanças de ranking, alteração manual de destaque), nem detalhamento de comportamento ao longo do dia. Só há registro final do consolidado de vendas por produto.  
-- Leitura: Não se pode verificar se houve alteração relevante na exposição dos produtos campeões, nem se a Shopee alterou ou não o posicionamento ao longo do dia.  
-- Conclusão granular: inconclusivo por falta de dado  
-- Confiança: baixa (tipo de métrica ausente do pacote fornecido)  
+#### 2. Pergunta: as vendas de produtos de cauda (fora do top 3) foram vinculadas a campanhas específicas, cupons ou ações pontuais?
+
+- **Status:** não respondida por falta de dado
+- **Evidência:** O pacote da conta não inclui marcadores de campanha, uso de cupons ou referência a ações promocionais atreladas aos pedidos. Tampouco há no detalhamento dos itens/pedidos qualquer indicação de origem promocional ou atribuição de campanha.
+- **Leitura:** Não há como afirmar se as vendas de cauda foram impulsionadas por ações específicas; permanece desconhecido se foram totalmente orgânicas ou motivadas.
+- **Conclusão granular:** inconclusivo por falta de dado
+- **Confiança:** baixa
 
 ---
 
-- Pergunta: existe recorrência ou variação sazonal que explique volume de pedidos abaixo em relação ao histórico, sobretudo nos mesmos dias da semana?  
-- Status: parcialmente respondida  
-- Evidência:  
-    - Métricas históricas apresentadas indicam que o total de pedidos do dia (23) ficou consistentemente abaixo do comparativo de 30 dias (-19%), 60 dias (-32,6%) e do mesmo dia da semana anterior (-22%).  
-    - Não há, no pacote fornecido, dados por semana anterior detalhados, registro de sazonalidade, feriados regionais, ou detalhamento de comportamento fora das métricas absolutas (“orders_vs_same_weekday_pct”: -22.0).  
-- Leitura: O padrão de queda nos pedidos parece alinhado com uma tendência contínua de redução no comparativo temporal, sem indicativo de anomalia pontual ou ressurgimento sazonal típica. Porém, faltam dados externos (ex: calendário promocional Shopee, feriados, histórico multi-ano) para cravar se há fator externo explicativo, o que limita a explicação exclusivamente a tendência interna da base.  
-- Conclusão granular: complica — a evidência mostra decréscimo persistente, mas não permite isolar sazonalidade ou efeito de calendário.  
-- Confiança: média (a queda é estatisticamente robusta no dado interno, mas o motivo permanece indeterminado devido à ausência de contexto externo/histórico mais profundo)  
+#### 3. Pergunta: há indício de indisponibilidade, ruptura ou exposição reduzida dos produtos fora do top 3?
+
+- **Status:** parcialmente respondida
+- **Evidência:** Os pedidos validados mostram que todos os produtos fora do top 3 (pelos pedidos do dia 14/05/2026) tiveram pedidos, ainda que isolados e em volume mínimo:
+    - Produto visível: "Conjunto 2 Potes de Vidro 320ml Hermético Quadrado Marmita 4 Travas BPA Free"
+      - Conta: Budamix Shop / Conta 3
+      - shop_id: 22298562359
+      - Fonte: orderItems / pedido real
+      - Pedidos: 1
+    - Produto visível: "Kit Jogo 6 Potes Vidro Retangulares Hermético Tampa Travas Marmita Fit"
+      - Conta: Budamix Shop / Conta 3
+      - shop_id: 23294048241
+      - Fonte: orderItems / pedido real
+      - Pedidos: 1
+  Não há, no entanto, informações sobre ruptura de estoque, status de exposição nos listings ou campanhas de mídia. O conjunto de pedidos prova que ao menos estavam disponíveis para serem vendidos, mas não esclarece se todos os demais itens do catálogo estavam igualmente expostos ou se houve alguma parcialidade na oferta.
+- **Leitura:** Ausência total de alguns produtos não pode ser afirmada ou negada; mas ao menos dois itens de cauda realizaram venda, indicando disponibilidade parcial. Não há evidência sobre exposição reduzida para outros SKU não vendidos.
+- **Conclusão granular:** complica — há indício de disponibilidade mínima em parte da cauda, mas não há base para afirmar ausência de ruptura/exposição reduzida nos demais itens.
+- **Confiança:** média (a base mostra apenas o que foi vendido, sem acesso ao panorama de estoque ou exposição geral)
 
 ---
 
 ### Investigações próprias
 
-sem investigação adicional motivada hoje
+Sem investigação adicional motivada hoje.
 
 ---
 
 ### Risco de identificação ou leitura errada
 
-**Baixo.**  
-- Todos os produtos citados contam com título real visível a partir do pedido (“Kit 6 Canecas Retas 200ml”, “Kit 6 Canecas Tulipa 250ml”, “Kit 3 Potes de Vidro Hermético” e demais), acompanhados de platform_item_id explícito por variação e referência segura ao SKU interno apenas para apoio cruzado.
-- Não há uso de alias manual, SKU ambíguo, ausência de título, ausência de shop_id (por ser conta única, a associação é direta na Shopee).
-- O único fator limitante relevante para confiança plena das respostas é a ausência das métricas solicitadas nas perguntas 1 e 2, o que limita a possibilidade de erro de identificação dos padrões dos campeões, mas não dos produtos em si.
+**Classificação:** baixo
 
-Conclusão: risco de identificação **baixo** para concentração e desempenho dos produtos, e risco de **leitura incompleta** por déficit de métricas comportamentais externas ao escopo de vendas.
+A camada granular dispõe dos nomes dos produtos exatamente como constam nos pedidos reais, todos os itens vêm acompanhados do shop_id, display_name e/ou título real. Não há uso de alias manual, nem ausência de título, plataforma_item_id ou shop_id que fragilizem a identificação de item no Shopee para esta conta. Isso garante rastreabilidade clara dos produtos líderes e de cauda dentro do que foi vendido.  
+O único risco moderado, marginal, é para SKUs do catálogo que não tiveram pedidos no dia, para os quais não se pode atestar exposição, mas isso não afeta a confiança das evidências reportadas (pois são baseadas apenas em pedidos efetivos).
 
 ---
 
 ### Detalhe que a Condensadora não pode perder
 
-- "Os três produtos campeões respondem por 78,3% dos pedidos válidos na data — se a mensagem não detalhar este grau de concentração específica, dilui o risco real de dependência operacional. — Confiança: alta."
-- "Nenhum produto fora do top 3 apresentou sinal mensurável de tração em vendas — qualquer menção a possível reação ou efeito de tentativa tática de diversificação não está sustentada neste recorte. — Confiança: alta."
-- "A queda de pedidos em relação a períodos anteriores segue padrão contínuo negativo, sem evidência interna de sazonalidade ou evento externo que explique — não há anomalia pontual, mas sim continuidade da tendência de enfraquecimento. — Confiança: média."
+- Todos os itens de cauda que apareceram em pedidos no dia foram vendidos em quantidades mínimas (1 pedido cada), e **só se pode atestar disponibilidade para eles, não para o restante potencial do mix** — não confundir “mix disponível” com “mix saudável” — Confiança: média.
+- Nenhuma evidência granular de campanha, promoção ou cupom associada aos pedidos de cauda foi registrada — não confundir microvenda fora do top 3 com resultado de ação ativa — Confiança: baixa (informação ausente, não negativa).
+- A identificação dos produtos vendidos é robusta — todos os itens listados (top 3 e cauda) possuem nome real, shop_id corretos e origem em pedido validado — **não existe risco de erro de atribuição nominal no reporte** — Confiança: alta.
 
 ---
 
 ### O que fica só na memória interna
 
-- platform_item_id dos top 6 produtos (para rastreio futuro de mix e identificação de variação entre períodos):  
-    - Kit 6 Canecas Retas 200ml — platform_item_id: 57756043479  
-    - Kit 6 Canecas Tulipa 250ml — platform_item_id: 50954968481  
-    - Kit 3 Potes de Vidro Hermético — platform_item_id: 23094048438  
-    - Kit 2 Potes de Vidro 800ml Quadrado — platform_item_id: 23298676159  
-    - Conjunto 2 Potes de Vidro 320ml Hermético Quadrado Marmita — platform_item_id: 22298562359  
-    - Kit Jogo 6 Potes Vidro Retangulares Hermético Tampa Travas Marmita Fit — platform_item_id: 23294048241  
-- Lista completa dos SKUs de todos os itens do dia  
-- Detalhamento percentual do ticket médio versus histórico para comparação interna
+- Lista exata de shop_id e platform_item_id de cada item vendido para eventuais tracebacks futuros.
+- O detalhe de que os produtos de cauda vendidos no dia foram:
+    - "Conjunto 2 Potes de Vidro 320ml Hermético Quadrado Marmita 4 Travas BPA Free" — shop_id: 22298562359, platform_item_id: 22298562359
+    - "Kit Jogo 6 Potes Vidro Retangulares Hermético Tampa Travas Marmita Fit" — shop_id: 23294048241, platform_item_id: 23294048241  
+- Anotação: ausência de venda ≠ prova de indisponibilidade, mantendo o tema para ciclos futuros caso haja acesso a estoque/listing.  
+- Ausência de detalhamento de horário, campanha/cupom, exposure/stock — limitações explícitas a serem revisitadas se o dado vier em ciclos posteriores.

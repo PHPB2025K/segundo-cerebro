@@ -1,28 +1,26 @@
 ### Análise Final Condensada
 
-- A conta manteve alta concentração nos três produtos líderes, respondendo por quase 80% dos pedidos — não houve avanço na diversificação, e o risco operacional por dependência permanece elevado. — base: Granular + Operacional
-- Embora a queda nos pedidos seja relevante (-22% vs mesmo dia da semana anterior), ela é parte de um padrão de enfraquecimento contínuo, não reflexo de evento pontual ou anomalia isolada. — base: Estratégica + Granular
-- Não há indicação confiável de reação entre os produtos fora do top 3 — qualquer leitura de possível retomada fora dos campeões não se sustenta nos dados atuais. — base: Granular
+- O volume baixo do dia não é sintoma de perda de demanda brusca, mas de operação restrita ao topo do mix: a conta teve concentração extrema nos top 3 produtos e, fora eles, só itens de cauda venderam — em volumes mínimos. Não dá para ler o dia como sinal de mix saudável ou ativação de cauda; foi um giro pontual restrito, não expansão. — base: Operacional + Granular
 
 ### Prioridades Condensadas para Slack
 
-- **Prioridade:** Reforçar acompanhamento da dependência dos três campeões na conta.
-- **Por quê:** A concentração seguiu extrema, sem sinal de diversificação real; foco operacional precisa permanecer na mitigação do risco de dependência.
-- **Sinal de confirmação/refutação:** Se amanhã a concentração dos top 3 recuar abaixo de 70%, revisar a leitura; se permanecer acima de 75%, o risco se cristaliza.
-- **Escalar se:** Algum dos campeões falhar (ex: ruptura, deslistagem, bloqueio de anúncio).
+- **Prioridade:** Não tratar microvenda na cauda como sinal de mix recuperando; o dia concentrou nos campeões e o giro pequeno fora do topo não muda a estrutura.
+- **Por quê:** A análise mostra que apenas alguns itens de cauda venderam e em volumes mínimos, sem provas de ação ativa ou expansão real do mix.
+- **Sinal de confirmação/refutação:** Se nos próximos dias o volume da cauda aumentar de forma consistente — e não apenas registros isolados —, reabrir o diagnóstico.
+- **Escalar se:** Confirmada venda relevante e recorrente fora do top 3 até sexta-feira.
 
 ### O que não pode ir para Slack
 
-Sem bloqueios relevantes para Slack.
+- Sem bloqueios relevantes para Slack.
 
 ### Memória para amanhã
 
-- Mantém-se o risco estrutural pela dependência dos três produtos campeões — deve seguir como ponto central na análise diária.
-- O padrão de queda nos pedidos é persistente, mas sem confirmação de efeito sazonal ou evento externo claro; se a tendência continuar, investigar sinais externos ou concorrenciais.
-- Ausência de dados sobre visitas, exposição e carrinho limitou respostas sobre potenciais reações do mix — se surgir dado granular, reavaliar essa hipótese.
-- Os produtos fora do top 3 seguem sem tração mensurável; qualquer eventual aumento de pedidos fora do trio principal amanhã pode sinalizar inflexão temporária ou início de diversificação.
-- Dia operacionalmente calmo em cancelamentos, com zero ocorrências — segue fora do radar, mas reter para monitoramento da qualidade.
+- A cauda vendeu, mas só em pedidos isolados e mínimos — continuar checando se vira padrão ou segue restrito, pois não há evidência de expansão de mix real. — pode indicar recuperação futura, mas ainda é indício fraco.
+- Ainda sem visão de rupturas, exposição geral ou efeito de campanha sobre as vendas de cauda — se dados de estoque/listing/campanhas aparecerem, reavaliar.
+- O ticket alto protegeu parte do GMV mesmo com queda no volume — registrar se o mix segue qualificado ou volta a cair.
+- Dia sem cancelamentos — manter registro para caso surja concentração futura em algum produto.
+- Registar que não há resposta granular sobre horário ou motivação das vendas — se vier o detalhamento nos próximos ciclos, fechar essa lacuna.
 
 ### Alertas de confiança
 
-Confiança geral **alta**: os dados de vendas, concentração e mix são auditáveis e validados, sem bloqueios de identificação de produto. As únicas limitações vêm da ausência de métricas comportamentais (visitas/carrinho/exposição), o que restringe interpretações além do realizado em vendas. Isso não compromete a leitura central sobre dependência e padrão negativo de pedidos, portanto a base para os insights principais é sólida.
+Confiança geral **alta** para o recorte do dia: não há risco de erro de leitura ou identificação nos produtos com pedido validado, e a concentração no topo está registrada com base robusta. Apenas os temas de ruptura/exposição geral ou campanhas permanecem abertos por ausência de dado, mas sem impacto direto na leitura central do dia.

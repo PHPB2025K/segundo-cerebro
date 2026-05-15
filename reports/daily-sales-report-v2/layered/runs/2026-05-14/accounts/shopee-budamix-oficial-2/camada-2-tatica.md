@@ -1,30 +1,30 @@
 ### Decisão tática
 
-- **Dado que a tese é queda estrutural mascarada por ticket médio alto, a prioridade deve ser proteger os campeões e não acelerar exposição paga ou experimentar segundo vetor sem evidência de tração.** Qualquer teste em ADS, mix ou cupons antes de estabilizar a base pode ampliar o problema ao invés de mitigar.
-- **Com a concentração dos top 3 produtos em patamar elevado, mas não crítico, o movimento correto é checar se a dependência irá se agravar (acima de 70%) no próximo ciclo — não avançar em diversificação sem falso sinal de estabilização.** Evita dispersão de esforço em secundários sem base.
-- **A ausência de recuperação do volume de pedidos em múltiplas janelas recomenda adiar ação forte em ADS até que o padrão nos horários de pico seja checado por mais 2-3 dias.** Acomodação pontual e acomodação estrutural requerem respostas distintas; só agir após distinção clara desses padrões.
-- **Não há indício operacional grave (cancelamento, ruptura), então não se justifica escalonamento ou ajuste emergencial.** Checagem e observação dirigida são a resposta prática mais defensiva, evitando gasto e exposição desnecessárias.
+- Dado que a tese estratégica é queda real e consistente, a decisão prioritária é **não acionar Himmel/ADS nem mexer em exposição paga imediatamente**: a erosão é sólida, mas não há evidência clara de ruptura de exposição (como perda súbita de visibilidade ou acesso aos campeões), nem de colapso operacional ou anomalia pontual.
+- Com o risco estrutural centrado na dependência dos campeões, a tática deve ser **proteger o mix campeão enquanto testa, em ciclo curto, ganhos marginais em produtos secundários** — evitar qualquer ajuste que ameace a entrega ou a posição dos top 3 neste momento sensível.
+- Como o ticket médio subiu e pode esconder mudança de comportamento de cliente/mix, a ação de hoje é **checar padrão do mix em vendas e exposição dos produtos medianos** — o objetivo é discriminar se a conta perdeu volume principalmente por redução de fluxo (menos clientes) ou por encolhimento real do sortimento vendido.
+- Diante da ausência de ruptura operacional e da persistência do padrão, **evitar mexidas amplas ou agressivas** (em mix, ADS ou preço) até pelo menos mais 2-3 ciclos, salvo sinal claro de agravamento.
 
 ---
 
 ### O que fazer hoje
 
-- **Lucas:** observar Budamix Oficial (Conta 2) nos horários de pico (19-22h) pelos próximos 3 dias — para distinguir se a queda é estrutural em todo o dia ou se há janela de reação à noite — sinal de resultado: se a conta permanece sub-40% do volume médio mesmo nesses horários, configura confirmação de queda estrutural e exclui ruído de horário.
-- **Lucas:** checar concentração dos top 3 produtos ao final do novo ciclo semanal — motivado pelo risco de dependência agravar para além de 70% — sinal de resultado: se a concentração dos campeões se mantém ou sobe para níveis críticos, reforça necessidade de proteção máxima e adia qualquer teste de promoção secundária.
-- **Lucas:** mapear (sem acionar ADS ou cupons) quais produtos fora do top 3 apresentariam potencial de reboque caso sejam alavancados, com base no histórico de vendas dos últimos 30 dias — motivado pela hipótese de mix afunilado — sinal de resultado: presença de pelo menos um secundário com histórico consistente justifica preparar hipótese de teste futuro, mas não executar.
+- **Lucas:** revisar o mix de produtos vendidos nos últimos 5 dias em Budamix Oficial (Conta 2) — motivo: entender se o aumento do ticket médio veio de mudança real na ordem de venda (clientes migrando para itens mais caros) ou se há ausência/queda de produtos de giro médio — sinal de resultado: se identificar concentração ainda maior nos campeões ou queda/ausência de produtos intermediários, próxima ação pode ser teste focalizado nesses intermediários; se não, foco volta para aguardar sinais operacionais mais amplos.
+- **Lucas:** confirmar status de exposição/orgânico e condições dos anúncios campeões (Kit 2 Potes de Vidro, Kit 6 Canequinhas, Potes Redondos Cinza) — motivo: risco estrutural explícito é qualquer ameaça à sustentação desses itens; checagem garante que o problema não escalou para ruptura ou perda competitiva súbita — sinal de resultado: campeões íntegros e ativos, mantém-se a postura de não escalar ADS; qualquer sinal de perda, Lucas suspende novos testes e revisa com granular.
+- **Lucas:** observar se a concentração dos top 3 permanece ≥60% e volume de pedidos segue <20 nos próximos 3 dias — motivo: reforçar se o padrão é persistente ou reverte espontaneamente com ciclo — sinal de resultado: manutenção do padrão implica reforço da tese estrutural e prepara terreno para possíveis testes (de mix ou tráfego) na sequência.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- Não mexer em ADS, cupons ou aumentar verba promocional (mesmo via Himmel) — a queda é estrutural, não pontual, e ação precipitada pode ampliar canibalização e volatilidade da conta.
-- Não realizar ação forte de diversificação de mix ou promoção de secundários — sem indício de produto secundário crescendo ou de recuperação do volume total, a diversificação pode dispersar tração ao invés de diluir risco.
-- Não generalizar ações para as outras contas Shopee (Budamix Store, Budamix Shop) — o diagnóstico está restrito à Budamix Oficial e não há evidência suficiente de padrão replicado nas demais; agir aqui influenciaria só Conte 2.
+- **Não acionar Himmel para ajuste de ADS** — não há evidência de queda aguda de exposição ou competição nos campeões; mexer em ADS nesse estágio pode desperdiçar verba sem atacar a raiz do problema.
+- **Não expandir ou alterar o mix de maneira agressiva** — sem antes confirmar padrão de venda e exposição dos produtos intermediários; alteração ampla pode acelerar queda se canibalizar campeões ou não endereçar o real gargalo.
+- **Não mexer em preço dos campeões** — incremento de ticket pode ser efeito temporário ou alteração de mix, sem clareza se há elasticidade negativa; ajuste de preço sem sinal claro pode agravar queda de volume.
 
 ---
 
 ### Escalonamento
 
-**Observar** — Não há gatilho para acionar Himmel, Pedro ou Kobe neste estágio; Lucas mantém a operação estável, orientada por checagens dirigidas, até que se confirmem sinais críticos (ex: concentração dos campeões ultrapassa 70% ou volume permanece mais de 40% abaixo mesmo em horários de pico).
+**Observar**
 
-Caso, após 3 dias de nova observação, a conta permaneça no mesmo patamar ou piore especialmente à noite, Lucas deve preparar insumo para alinhar com Himmel sobre alternativas de exposição e ADS, mas **só acionar após teste confirmatório de concentração e ausência total de reação natural em ciclos de pico**.
+Não há causa operacional aguda nem sinal de ruptura nos campeões; a queda, embora relevante e consistente, não justifica ação forte ou escalonamento imediato para Himmel (ADS) ou mix estrutural. A postura correta é coletar mais 2-3 ciclos (dias) com observação dirigida e checagem de exposição/mix. Caso a concentração se agrave (>65% nos campeões) e o volume siga caindo (<15 pedidos/dia), ou se houver sinal de ruptura/exclusão de campeão detectado, Lucas prepara alinhamento proativo com Himmel sobre possíveis ajustes de exposição ou teste de tráfego pago.

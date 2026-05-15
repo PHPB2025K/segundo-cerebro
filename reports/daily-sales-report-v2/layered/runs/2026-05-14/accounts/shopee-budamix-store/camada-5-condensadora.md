@@ -1,13 +1,13 @@
 ### Análise Final Condensada
 
-- A queda expressiva de vendas não foi acompanhada de problema técnico ou ruído de operação, mas o que sustenta o faturamento é uma dependência extrema dos três campeões — 91% dos pedidos ficaram neles, com imobilidade real da cauda longa. O risco não é perda invisível, é operar com mix travado. — base: Estratégica + Operacional + Granular
+- Não foi um dia estável — a conta sobreviveu 100% baseada nos campeões: 32 dos 35 pedidos ficaram nos top 3, com a cauda praticamente nula (1 unidade por produto, cada um diferente). Tratar como estabilidade é erro: sem tração fora dos líderes, qualquer oscilação neles vira risco estrutural. — base: Operacional + Granular
 
 ### Prioridades Condensadas para Slack
 
-- **Prioridade:** Reavaliar a estratégia de mix da Budamix Store, buscando alternativas para diminuir a dependência dos três campeões.
-- **Por quê:** Apenas três produtos foram responsáveis pela quase totalidade dos pedidos do dia, sem movimento real dos demais itens — se um dos campeões oscilar, o faturamento desmonta.
-- **Sinal de confirmação/refutação:** Caso amanhã mais de 80% dos pedidos sigam concentrados nesses mesmos itens, manter alerta de risco estrutural.
-- **Escalar se:** Qualquer um dos três campeões apresentar queda relevante de pedidos ou sinal de restrição operacional.
+- **Prioridade:** Revisar sinais operacionais dos campeões da Budamix Store (estoque, preço, entrega) antes de assumir estabilidade ou escalar tráfego.
+- **Por quê:** Só há sustentação de vendas nos top 3; qualquer alteração neles implica potencial queda brusca.
+- **Sinal de confirmação/refutação:** Se houver ajuste de preço, ruptura de estoque ou alteração de lead time em algum dos líderes nas próximas 24h, status de "estabilidade" deve ser imediatamente revisto.
+- **Escalar se:** Identificada instabilidade operacional em qualquer campeão (altera leitura do canal).
 
 ### O que não pode ir para Slack
 
@@ -15,12 +15,12 @@ Sem bloqueios relevantes para Slack.
 
 ### Memória para amanhã
 
-- O padrão de concentração nos campeões se mantém extremo e o mix está cada vez mais travado — monitorar se isso se repete ou intensifica.
-- Não há dado granular de exposição, variação de preço ou horário dos pedidos; registrar falta para revisão dos logs caso seja necessário investigar qualquer anomalia futura.
-- A cauda longa continua praticamente imóvel — se algum produto secundário tiver mobilidade nas próximas rodadas, pode ser sinal de espaço para reação.
-- Ausência de eventos técnicos ou operacionais (como restrição ou erro de catálogo) nos secundários — registrar o comportamento de inércia real, não bloqueio pontual.
-- Dia operacionalmente calmo apesar da queda — importante como referência caso venha uma ruptura.
+- A cauda só respirou com 1 unidade por produto — padrão indica mix praticamente morto, útil para acompanhar caso algum item fuja dessa regra amanhã.
+- O diagnóstico de “estabilidade” só pode ser sustentado enquanto os campeões mantiverem fôlego; monitorar movimento de qualquer um dos três líderes é a prioridade recorrente.
+- Faltam dados de estoque/preço/lead time — persistindo a ausência, pode ser útil solicitar log/alerta específico se a dependência dos campeões continuar.
+- Nenhum cancelamento ou anomalia operacional hoje — isso reforça que o foco deve ir para estrutura de mix e não para processo de pedidos.
+- Convergência total de dados entre pedidos e ranking — dia com confiança máxima em identificação dos produtos.
 
 ### Alertas de confiança
 
-**Confiança geral: alta.** Todos os dados operacionais vieram diretamente dos pedidos reais, sem ruído de identificação ou conflito entre camadas; a ausência de granularidade sobre exposição ou horário dos pedidos limita a leitura de microdinâmica mas não compromete o diagnóstico central do risco estrutural de concentração. Insight único, denso e seguro.
+**Confiança alta** — Todos os principais sinais foram capturados diretamente dos pedidos reais, não há risco de ambiguidade na identificação dos produtos, e todas as camadas convergem para o mesmo diagnóstico: conta travada nos campeões, sem microdúvida em nenhum sinal apresentado. A mensagem pode ser sustentada integralmente no Slack.

@@ -2,73 +2,114 @@
 
 ---
 
-#### 1. Pergunta: houve qualquer variação diária de exposição, preço ou feedback operacional especificamente nos três campeões?
+#### 1. Houve algum micro movimento de vendas (mesmo pedido isolado ou sacola) nos produtos da cauda longa fora do top 3?
 
-- **Status:** não respondida por falta de dado
-- **Evidência:** O pacote de dados contém pedidos válidos, títulos reais, SKUs, quantidade e métricas dos top 3 produtos (“Jarra Medidora de Vidro 500ml”, “Potes Vidro Redondos Tampa Preta”, “Kit 2 Potes de Vidro 800ml Quadrado”), mas **não há registro de dados granulares de exposição (ex.: page view, ranking, posição de anúncio), flutuação de preço ao longo do dia ou feedback operacional do anúncio (catálogo, restrição, atualização de anúncio, ou histórico de edição/listagem)**.
-    - Dados disponíveis limitam-se a volume por item, SKU, título e ausência de cancelamento, sem nenhuma camada de evento de exposição, alteração de preço intra-dia ou anotação operacional.
-- **Leitura:** Não é possível granularizar variação intra-dia de exposição/preço ou intervenção operacional específica nos três campeões apenas com pedidos válidos e top produtos.
-- **Conclusão granular:** inconclusivo por falta de dado (ausência de log de exposição/preço/feedback de anúncio)
-- **Confiança:** baixa
-
----
-
-#### 2. Pergunta: existe indício técnico de limitação (catalogação, restrição, atualização de anúncio) nos pedidos residuais da cauda longa?
-
-- **Status:** parcialmente respondida
+- **Pergunta:** houve algum micro movimento de vendas (mesmo pedido isolado ou sacola) nos produtos da cauda longa fora do top 3?
+- **Status:** respondida
 - **Evidência:**  
-    - Pedidos dos itens fora do top 3 (total: 4 pedidos, distribuídos entre 4 produtos, cada um respondendo por 1 pedido).
-    - Para todos esses itens, o dado disponível é limitado a:  
-        - “Kit 5 Potes de Vidro Hermetico com Tampa Marmita Alimentos Freezer Micro-ondas”  
-        - “Kit 6 Canequinhas 100ml”  
-        - “Kit 6 Canecas Tulipa 250ml”  
-        - Dados presentes: título real do pedido, SKU, platform_item_id, quantidade.
-    - **Não há nenhuma indicação agregada de erro de catálogo, restrição, deslistagem ou atualização recente no anúncio nem motivo de bloqueio/cancelamento para esses pedidos**.
-    - Porém, a ausência de pedidos com mais de 1 unidade e nenhum pedido adicional nos secundários **pode sugerir mobilidade inercial**.
-- **Leitura:** Não há indício explícito de limitação técnica a partir dos campos disponíveis; a ausência total de mobilidade na cauda longa não pode ser atribuída granularmente a restrição ou catalogação. O dado confirma apenas o resultado de vendas nulas/baixas; não permite confirmar se houve tentativa frustrada ou bloqueio invisível sem dado de exposição, motivos de restrição, ou log de atualização.
-- **Conclusão granular:** enfraquece a hipótese de limitação técnica explícita — mas mantém possibilidade aberta por falta de dado granulado de restrição.
-- **Confiança:** média (dado de pedido real suficiente para ausência de problema explícito, mas amostra mínima e ausência de evento técnico)
+  Dos 35 pedidos válidos, 32 estão concentrados nos três produtos líderes abaixo:
+  - Produto visível: Jarra Medidora de Vidro 500ml  
+    - Conta: Budamix Store  
+    - shop_id: não destacado individualmente (mas único em pacote)  
+    - platform_item_id: 23993264258  
+    - quant.: 17  
+    - Fonte: orderItems / pedido real
+  - Produto visível: Potes Vidro Redondos Tampa Preta  
+    - Conta: Budamix Store  
+    - shop_id: idem  
+    - platform_item_id: 22393168887  
+    - quant.: 13  
+    - Fonte: orderItems / pedido real
+  - Produto visível: Kit 2 Potes de Vidro 800ml Quadrado  
+    - Conta: Budamix Store  
+    - shop_id: idem  
+    - platform_item_id: 22593169868  
+    - quant.: 2  
+    - Fonte: orderItems / pedido real
+
+  Fora do top 3, apenas 3 pedidos únicos:
+  - Produto visível: Kit 5 Potes de Vidro Hermetico com Tampa Marmita Alimentos Freezer Micro-ondas  
+    - platform_item_id: 49056997127  
+    - quant.: 1  
+    - Fonte: orderItems / pedido real
+  - Produto visível: Kit 6 Canequinhas 100ml  
+    - platform_item_id: 23036701291  
+    - quant.: 1  
+    - Fonte: orderItems / pedido real
+  - Produto visível: Kit 6 Canecas Tulipa 250ml  
+    - platform_item_id: 45554989236  
+    - quant.: 1  
+    - Fonte: orderItems / pedido real
+
+- **Leitura:**  
+  A cauda longa vendeu 3 unidades distribuídas, cada uma em produto diferente, sem repetição nem indício de tração (1 pedido isolado para cada variação). Não houve pacotes/sacolas multivariate nem sinal de sacola combinada entre cauda e líderes.
+- **Conclusão granular:**  
+  Confirma ausência de tração/viabilidade de expansão de mix no dia — cauda apenas subsiste via venda pontual e isolada, sem padrão nem repetição.
+- **Confiança:**  
+  Alta (fonte: orderItems real, base robusta para o tamanho do canal no dia, sem risco relevante de identificação).
 
 ---
 
-#### 3. Pergunta: os pedidos dos três campeões vieram pulverizados ao longo do dia ou concentrados em horários/ondas específicas?
+#### 2. Algum dos top 3 apresentou sinal de oscilação de estoque, preço ou tempo de entrega nas últimas 24h?
 
+- **Pergunta:** algum dos top 3 apresentou sinal de oscilação de estoque, preço ou tempo de entrega nas últimas 24h?
 - **Status:** não respondida por falta de dado
-- **Evidência:** O dado granular entregue não inclui timestamp/hora-evento dos pedidos ou distribuição horária, apenas contagem final por produto.
-- **Leitura:** Não é possível afirmar se a concretização dos pedidos dos campeões se deu de modo homogêneo ou concentrado ao longo do dia.
-- **Conclusão granular:** inconclusivo por falta de dado (ausência de timestamp/fatia horária dos pedidos).
-- **Confiança:** baixa
+- **Evidência:**  
+  O pacote não inclui dados de estoque, logs de alteração de preço, nem registro de SLAs/tempo de entrega sinalizado no detalhe granular do dia.
+- **Leitura:**  
+  Não é possível afirmar, com base apenas nos pedidos válidos e na métrica agregada do dia, se houve ou não qualquer alteração operacional nos parâmetros de estoque, preço ou lead-time percebidos na plataforma.
+- **Conclusão granular:**  
+  Inconclusivo por ausência de evidência granular sobre estoque/preço/entrega.
+- **Confiança:**  
+  Não aplicável (ausência da evidência primária necessária).
+
+---
+
+#### 3. Identificou-se alteração na exposição dos produtos fora do top 3 na vitrine ou busca orgânica Shopee?
+
+- **Pergunta:** identificou-se alteração na exposição dos produtos fora do top 3 na vitrine ou busca orgânica Shopee?
+- **Status:** não respondida por falta de dado
+- **Evidência:**  
+  O pacote não contém métricas de exposição/vitrine, posição em busca, logs de visualizações ou dados similares para os produtos da cauda. Só há registro de vendas efetivamente realizadas.
+- **Leitura:**  
+  Não há elemento granular que permita aferir qualquer alteração de exposição orgânica ou de vitrine; permanece desconhecido se o não-venda da cauda resulta apenas de falta de demanda ou também baixa exposição.
+- **Conclusão granular:**  
+  Inconclusivo por ausência de dado diretamente sobre exposição.
+- **Confiança:**  
+  Não aplicável (falta de evidência necessária).
 
 ---
 
 ### Investigações próprias
 
-sem investigação adicional motivada hoje
+Sem investigação adicional motivada hoje. Não há anomalia, divergência entre fontes ou sinal de risco de identificação além das perguntas obrigatórias.
 
 ---
 
 ### Risco de identificação ou leitura errada
 
-**Nível:** baixo
+**Baixo.**  
+Todos os produtos citados têm identificação direta e exclusiva por título real do pedido + platform_item_id (Shopee), sem ambiguidades entre SKUs, sem uso de alias manual, sem duplicidade de shop_id (única conta da Budamix Store), e sem ausência de atributos primários no pacote. Não há microamostras interpretadas como padrão, nem dado agregado demais.  
+Nenhum item entra em **BLOQUEIO PARA SLACK**.
 
-Todos os produtos citados são identificados pelo nome real do pedido e platform_item_id oriundos do sistema de pedidos Shopee. Não há alias manual, ausência de título ou SKU ambíguo. A conta é única (Budamix Store), e todos os dados são provenientes dos pedidos válidos. Não há evidência de risco de leitura equivocada nem ambiguidade de identificação de produto que exija ressalva ou bloqueio.
+---
+
+### Divergência entre fontes
+
+Nenhuma divergência detectada entre pedidos reais (orderItems) e agregados do top 3/concentração. As contagens e o ranking de produtos coincidem integralmente.
 
 ---
 
 ### Detalhe que a Condensadora não pode perder
 
-- Os três campeões (“Jarra Medidora de Vidro 500ml”, “Potes Vidro Redondos Tampa Preta” e “Kit 2 Potes de Vidro 800ml Quadrado”) respondem sozinhos por 91,4% dos pedidos do dia, cada um identificado por título real do pedido e platform_item_id; não houve ruído de catálogo, e a dependência crítica está materializada sem ambiguidade — Confiança: alta.
-- A cauda longa ficou restrita a quatro produtos, todos com apenas um pedido, sem registro de bloqueio, erro de catálogo, cancelamento ou atualização visível — reforçando imobilidade e dependência do mix — Confiança: média (amostra mínima, mas ausência de ruído explícito).
-- Nenhuma métrica ou evento granular aponta concentração de pedidos líder em horário específico ou onda operacional — mas esse dado não foi entregue, e qualquer leitura sobre pico/momento de venda é especulativa — Confiança: baixa (não afirmar concentração horária sem base).
+- Fora do top 3, cada produto da cauda vendeu exatamente 1 unidade — isso reforça o diagnóstico de inexistência total de tração fora dos campeões; se omitido, sugeriria indevidamente alguma “diversidade” no mix — Confiança: alta.
+- Todos os pedidos foram processados sem cancelamentos ou anomalia operacional, mas a “estabilidade” do dia é artificial: só existiu porque os campeões sustentaram absolutamente tudo — Confiança: alta.
+- A confiança em cada identificação de produto está em nível máximo, pois toda citação nominal usada como base advém exclusivamente dos pedidos reais, sem alias manual nem risco de leitura por dado ambíguo — Confiança: alta.
 
 ---
 
 ### O que fica só na memória interna
 
-- platform_item_id dos secundários para checagem futura:  
-    - “49056997127” (“Kit 5 Potes de Vidro Hermetico com Tampa Marmita Alimentos Freezer Micro-ondas”)
-    - “23036701291” (“Kit 6 Canequinhas 100ml”)
-    - “45554989236” (“Kit 6 Canecas Tulipa 250ml”)
-- Quantitativo exato por produto: líder (17), vice (13), terceiro colocado (2), secundários (1 cada).
-- Falta de timestamp/hora dos pedidos impossibilita auditoria do perfil temporal — necessário log para investigação futura de ondas/concentração horária.
-- Não há item em BLOQUEIO PARA SLACK neste ciclo.
+- Lista dos platform_item_id dos produtos de cauda para rastreio técnico: 49056997127, 23036701291, 45554989236.
+- Não foram identificadas divergências técnicas que exijam log para revisão futura.
+- Pedidos de investigação sobre oscilação de estoque/preço/tempo de entrega e exposição permanecem abertos para próxima janela, caso dados surjam (podem ser solicitados em rotina futura).

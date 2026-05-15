@@ -1,54 +1,48 @@
 <!-- llm_used=true model=sonnet fallback=false -->
-Preciso de permissão para sobrescrever o arquivo. O output da Camada Operacional está pronto — vou apresentar aqui para revisão:
-
----
-
 ### Leitura operacional do dia
 
-- **A Store (Conta 1) foi sustentada pelo ticket, não por força de demanda.** Com 75 pedidos — abaixo do patamar de 30d (avg 90.8) e 60d (avg 103.7), mas com ticket de R$43.80 contra avg7d de R$35.15 (+24.6%) — o GMV resistiu por elevação de mix, não por tração de volume. Confirma o padrão identificado pela Estratégica: o canal está se estreitando, vende menos e mais caro, sem recuperação de base.
+- A Store (Budamix Store) sustentou o dia operando sobre ticket elevado enquanto o volume ficou abaixo do patamar histórico: 75 pedidos entregando R$3.285 com concentração de 90% nos top 3 SKUs. O GMV foi preservado não por força de volume mas por ticket de R$43.80 — 19.6% acima da média de 60 dias — enquanto os pedidos estavam -27.7% no mesmo período. Isso confirma o que a Estratégica apontou como shift de mix e não recuperação de demanda: a conta entregou pedidos de valor mais alto porque os de menor valor simplesmente não vieram.
 
-- **A Conta 2 (Oficial) combinou colapso de volume com taxa de cancelamento desproporcionalmente alta.** Com 13 pedidos válidos e 3 cancelamentos (~23% do bruto estimado), a conta não exibe queda de demanda pura — exibe falha na execução do pedido. A Estratégica classificou como deterioração consistente em todas as janelas; o cancelamento adiciona evidência operacional que muda a natureza do problema: algo está bloqueando ou revertendo pedidos nessa conta especificamente.
+- A Conta 2 (Budamix Oficial) mal operou no dia: 13 pedidos distribuídos em 8 horas esparsas, sem padrão de pico identificável, com 18.75% de cancelamento (3/13). A distribuição horária não mostra volume insuficiente em horário forte — mostra ausência de fluxo consistente ao longo do dia. Isso não é desempenho fraco: é ausência de exposição funcional, exatamente o colapso que a Estratégica documentou como risco estrutural da plataforma.
 
-- **A Shop 3 (Conta 3) manteve volume mas com mix comprimido para itens de menor valor.** Volume quase estável vs same weekday (-1.6%), mas ticket de R$58.94 contra avg same weekday de R$71.75 (-17.8%). O produto líder foi Kit 6 Canecas 200ml com 12 unidades (38.7% do volume da conta). Confirma a hipótese estratégica de migração de mix: a conta sustenta demanda mas não sustenta GMV.
+- A Shop 3 (Budamix Shop) manteve cadência de pedidos próxima ao mesmo dia da semana (-1.6% em pedidos), mas a relação itens/pedidos de 1:1 — contra 80 itens em 75 pedidos da Store — indica que a Conta 3 operou predominantemente em pedidos de item único, com mix se estreitando nos SKUs de menor valor. O GMV caiu -19.2% vs mesmo dia por compressão de ticket (R$58.94 contra média histórica de R$71.75), adicionando evidência operacional à erosão de valor que a Estratégica identificou como trajetória consistente nas três janelas.
 
-- **Estruturalmente, a plataforma opera com uma conta silenciada.** A Conta 2 respondia por ~28-30% do GMV Shopee (avg30 R$2.020/dia); hoje entregou 14% (R$852). Store e Shop 3 carregam 86% do resultado — sobre dependências top 3 de 90% e 83.9% respectivamente, sem rede de segurança.
+- Plataforma como bloco: R$5.964 produzidos com Store respondendo por 55%, Shop 3 por 30% e Conta 2 por apenas 14% — mesmo a Conta 2 tendo em tese capacidade histórica de 30-35 pedidos/dia. A diversificação de três contas não amorteceu nada hoje: Store e Shop 3 carregaram juntas o que três contas saudáveis deveriam distribuir.
 
 ---
 
 ### Sinais operacionais relevantes
 
-- **Sinal:** taxa de cancelamento da Conta 2 de ~23% (3 cancelamentos em ~16 pedidos brutos estimados) — **interpretação operacional:** com volume já em colapso, cancelamento proporcional desta magnitude sugere problema operacional específico concentrado nessa conta (listing, campanha, produto restrito), não falha sistêmica da plataforma.
+- **Sinal:** Jarra Medidora representou 38.75% dos itens vendidos na Store (31/80), com Potes Redondos somando mais 32.5% (26/80) — dois SKUs dominaram 71% dos itens em 75 pedidos. **Interpretação operacional:** a Store funcionou no dia quase como canal de distribuição desses dois itens; qualquer oscilação de estoque, listing ou ADS nesses SKUs teria impacto imediato e desproporcional no resultado da conta — confirma a dependência estrutural de campeões apontada pela Estratégica.
 
-- **Sinal:** ticket da Store +24.6% vs média 7d com queda simultânea de volume vs 30d/60d — **interpretação operacional:** o mix do dia favoreceu produtos de maior valor dentro do top 3, mas o ticket elevado não indica demanda mais forte — indica estreitamento com seleção natural de ticket maior; o canal não está crescendo.
+- **Sinal:** Conta 2 com 3 cancelamentos em 13 pedidos (18.75%) e hora de venda distribuída em apenas 8 momentos ao longo do dia, sem concentração em nenhum horário. **Interpretação operacional:** em volume tão baixo, 3 cancelamentos podem estar concentrados em um único SKU ou origem — o que mudaria o diagnóstico de colapso de exposição para problema combinado de listing/estoque específico. A Tática já apontou isso como checagem prioritária via Lucas.
 
-- **Sinal:** Kit 6 Canecas 200ml (KIT6CAR200) como produto #1 da Shop 3 com 38.7% do volume da conta — **interpretação operacional:** concentração no produto de menor ticket explicita a compressão de GMV; quando esse item lidera, arrasta o ticket médio para baixo e o volume não compensa.
+- **Sinal:** Ticket residual da Conta 2 em R$65.57 — acima da média de 30d (R$57.77) e de 60d (R$52.63) — num cenário de colapso de pedidos. **Interpretação operacional:** padrão operacional característico de exposição colapsada com demanda residual: os compradores que chegaram converteram em valor mais alto, sugerindo que a demanda pelo produto existe mas a conta não está sendo entregue para a base larga de potenciais compradores — adiciona evidência à hipótese da Tática de ADS pausado ou ranking perdido.
 
-- **Sinal:** CTL002 (Canecas Tulipa 250ml) aparece nos top produtos das 3 contas simultaneamente (15 + 5 + 5 unidades) — **interpretação operacional:** exposição paralela ativa nas 3 contas ao mesmo tempo; risco real de canibalização interna se ADS estiver rodando para o mesmo SKU em múltiplas contas.
+- **Sinal:** Shop 3 com 31 pedidos e 31 itens (razão 1:1) e ticket de R$58.94 contra R$71.75 histórico do mesmo dia da semana. **Interpretação operacional:** a conta está convertendo pedidos mas com mix estreitado em SKUs de menor valor unitário — Canecas 200ml (12un) e Potes 800ml (9un) dominando 67.7% dos itens. Se esses SKUs carregam ticket menor que os que dominavam o mix antes, a compressão de ticket é estrutural de composição de demanda, não desconto ou promoção.
 
-- **Sinal:** Shopee Full zerado nas 3 contas — **interpretação operacional:** estado estrutural da operação sem alavanca de visibilidade extra via Full; sem interferência de fulfillment no resultado do dia, mas ausência de Full como contexto para explicar exposição.
+- **Sinal:** Store com distribuição horária funcional ao longo do dia (picos em 9-10h, 13-14h, 20-22h), sem hora forte vazia. **Interpretação operacional:** o déficit de pedidos vs histórico da Store não está concentrado em perda de exposição em horário específico — é déficit distribuído ao longo do dia, consistente com hipótese de menos tráfego entrante (ADS, cupons, afiliados) e não com perda de ranking em janela pontual.
 
 ---
 
 ### Anomalias ou ausência de anomalia
 
-**Anomalia moderada.**
-
-Sustentada por desvios operacionais em mais de uma dimensão concentrados na Conta 2: colapso de volume (-62.9% vs 30d) combinado com taxa de cancelamento de ~23%, consistentes entre si e com as janelas históricas. O par de desvios simultâneos começa a sugerir causa comum operacional nessa conta. Store e Shop 3 não estão em anomalia — apresentam o padrão de erosão já descrito pela Estratégica, que é processo em curso, não evento de ruptura do dia.
-
-Subiria para **anomalia crítica** com confirmação de listing indisponível ou campanha desativada na Conta 2. Desceria para **anomalia leve** se amanhã a Conta 2 retornar acima de 20 pedidos sem explicação — nesse caso o dia seria outlier de dado. A qualidade PARTIAL da Conta 2 não invalida a anomalia, mas mantém a causa como inconclusiva.
+**Anomalia moderada** — concentrada na Conta 2 (Budamix Oficial), com extensão leve nas outras duas. A Conta 2 apresenta desvio em duas dimensões simultâneas: volume colapsado (consistente em todas as janelas) e cancelamento de 18.75% que numa base pequena sugere problema operacional específico ainda não identificado. Store e Shop 3 apresentam desvio em uma dimensão cada (ticket elevado com volume abaixo do patamar na Store; ticket comprimido com pedidos estáveis na Shop 3), sem sinal que bloqueia ou compromete a execução direta. Para subir a anomalia para crítica seria necessário confirmar listing indisponível em campeão da Conta 2 ou cancelamento sistêmico concentrado num mesmo SKU com causa identificada. Para rebaixar a leve, seria necessário Lucas identificar causa operacional trivial e pontual na Conta 2 com resolução em curso.
 
 ---
 
 ### O que precisa ser investigado pela Granular
 
-- **Pergunta:** os 3 cancelamentos da Conta 2 estão concentrados em qual produto ou categoria? — **motivada por:** taxa de cancelamento de ~23% em conta com volume colapsado sugere problema específico de listing ou produto; identificar o SKU descarta a hipótese de demanda e aponta para causa operacional.
+- **Pergunta:** os 3 cancelamentos da Conta 2 estão concentrados em um mesmo SKU ou distribuídos entre produtos diferentes? — **motivada por:** com base de apenas 13 pedidos, 3 cancelamentos concentrados num único produto indicam problema específico de listing ou estoque que agrava o colapso de exposição com camada adicional de problema operacional interno.
 
-- **Pergunta:** o listing e estoque do CTL002 (Canecas Tulipa 250ml) está ativo e idêntico nas 3 contas simultaneamente? — **motivada por:** produto aparece nos top vendors das 3 contas ao mesmo tempo; se ADS estiver rodando para o mesmo SKU em múltiplas contas, precisa-se confirmar se está somando ou dividindo demanda.
+- **Pergunta:** qual o ticket médio por SKU dominante na Shop 3 hoje vs semana anterior — as Canecas 200ml e os Potes 800ml têm ticket menor que os SKUs que lideravam o mix antes? — **motivada por:** sinal de compressão de ticket com pedidos estáveis e razão 1:1 itens/pedido sugere estreitamento de mix; precisamos saber se é o mesmo produto convertendo menos ou mix diferente com produtos mais baratos tomando participação.
 
-- **Pergunta:** qual é o preço médio por pedido dos top 3 SKUs da Store hoje vs semana passada? — **motivada por:** ticket elevado da Store sugere deslocamento para itens mais caros dentro do top 3, mas o dado agregado não separa se foi preço ou mix — necessário para confirmar ou descartar a hipótese de promoção diferenciada aplicada a algum item.
+- **Pergunta:** a distribuição horária da Conta 2 nos últimos 7 dias mostra o mesmo padrão esparso de hoje (8 horas com venda vs dia inteiro) ou o colapso de distribuição é recente? — **motivada por:** se a ausência de fluxo horário é nova (últimos 2-3 dias), reforça hipótese de ADS pausado recentemente; se já era padrão da semana, a conta estava em colapso antes de 13/05.
+
+- **Pergunta:** o GMV real da Conta 2 nos últimos 7 dias (série diária) mostra queda progressiva ou colapso abrupto num dia específico? — **motivada por:** o data readiness sinalizou confiança parcial no volume da Conta 2; entender se o colapso foi gradual ou teve ponto de ruptura específico define se é operacional corrigível ou estrutural crônico.
 
 ---
 
 ### Destaque para a Condensadora
 
-O fato operacional mais importante do dia não é o volume baixo da Conta 2 em si — a Estratégica já mapeou a deterioração consistente. É a **combinação de colapso de volume com taxa de cancelamento de ~23%** nessa conta que muda o diagnóstico: não é demanda fraca, é demanda que tenta converter e está sendo revertida na execução. Isso adiciona evidência operacional nova — e a checagem de listing, campanha ativa e produto cancelado precisa acontecer antes de qualquer interpretação de demanda. A Tática definiu postura de observar por mais um ciclo, o que é correto dado o dado parcial; mas o sinal de cancelamento operacional é o elemento que a Condensadora deve carregar, porque é o que muda a natureza da investigação que Lucas precisará conduzir.
+O fato operacional que merece atenção central não está no total de R$5.964 — está na Conta 2 (Budamix Oficial) que distribuiu 13 pedidos em 8 horas esparsas, com 3 cancelamentos, num dia em que sua média histórica é 35 pedidos. Operacionalmente, a conta não estava aberta para negócios de forma funcional: sem pico de horário, sem fluxo consistente, com cancelamento proporcional alto. Isso não é oscilação — é o colapso de exposição que a Estratégica identificou como risco estrutural, agora com assinatura operacional clara. Store e Shop 3 estão em dinâmicas interpretáveis e não urgentes (shift de mix e erosão de ticket, respectivamente), mas a Conta 2 tem um risco silencioso: se a causa for ADS pausado ou penalidade de ranking que Lucas ainda não identificou, o próximo dia pode ser igual — e sem diagnóstico, a Condensadora deve garantir que esse sinal chegue com peso suficiente para não ser enterrado pelos números gerais da plataforma.

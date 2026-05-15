@@ -1,38 +1,35 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Decisão tática
 
-- **Dado que a tese estratégica é vulnerável com Conta 2 em colapso consistente mas base de qualidade PARCIAL**, a postura correta é observar Conta 2 com condição falsificável definida antes de qualquer ação — agir em ADS sobre dado parcial queima verba sem diagnóstico real.
-
-- **Dado que o risco estrutural principal é concentração extrema nos top 3 sem segundo vetor documentado**, a prioridade tática nas três contas é primeiro proteger os campeões (listing, estoque, exposição) antes de qualquer experimento de mix ou ação de tráfego pago.
-
-- **Dado que Store e Shop 3 têm dinâmicas distintas entre si e em relação à Conta 2**, cada conta exige leitura separada — Store está em desaceleração moderada com ticket sustentado (não é crise), Shop 3 segura volume mas com erosão de ticket que pode ser padrão do ciclo ou deriva de mix; nenhuma das duas justifica ação forte hoje.
-
-- **Dado que a base de memória é vazia (templates sem histórico consolidado)**, não há âncora para confirmar se os padrões observados são novos ou recorrentes — isso reforça postura de observação e coleta sobre ação.
+- **Dado que a tese é colapso de exposição na Conta 2 com consistência em todas as janelas (7d, 30d, 60d), a decisão prioritária é investigar a causa antes de qualquer ajuste operacional** — sem diagnóstico de causa, qualquer intervenção em ADS ou listing pode amplificar o problema ou ser direcionada ao ponto errado.
+- **Dado que o risco estrutural é a Store operar como único sustentáculo real com volume abaixo do patamar de 60d**, a decisão correta é proteger o que está funcionando (concentração em campeões) e não introduzir variáveis novas enquanto a Conta 2 está sem diagnóstico.
+- **Dado que Shop 3 mantém pedidos mas comprime ticket de forma consistente nas três janelas disponíveis**, a decisão é checar se a compressão tem causa identificável (mix se estreitando, cupons, pressão de preço) antes de tratar como ruído.
+- **Dado que a base semanal e mensal estão zeradas e este é o primeiro ciclo de análise sistemática**, nenhuma ação forte está justificada hoje — o ciclo correto é registrar, checar e criar a baseline que as próximas leituras vão usar para qualificar confirmação ou reversão.
 
 ---
 
 ### O que fazer hoje
 
-- **Lucas:** Verificar se os produtos campeões da Store (Jarra Medidora 500ml e Kit 5 Potes Redondos) e da Conta 3 (Kit 6 Canecas 200ml e Kit 2 Potes 800ml) estão com listing ativo e estoque disponível — o risco estrutural é concentração extrema sem rede de segurança, e indisponibilidade desses itens impacta diretamente o GMV da plataforma — sinal de resultado: todos os campeões com listing ativo e estoque positivo confirmam que o GMV atual é dinâmica de demanda, não problema operacional; qualquer produto campeão com problema de listing ou estoque passa a ser prioridade de resolução imediata antes de qualquer outra ação.
+- **Lucas:** verificar status operacional da Conta 2 (Budamix Oficial) — checar se há ADS pausado, listing com restrição, queda de ranking ou penalidade de marketplace — dado que o colapso consistente em todas as janelas sugere problema de exposição e não flutuação, e o sinal de cancelamento de 18.75% adiciona fragilidade — se Lucas identificar ADS pausado ou penalidade ativa, aciona Himmel com diagnóstico fechado; se não houver causa operacional evidente, mantém observação por mais 2 dias antes de qualquer intervenção.
 
-- **Lucas:** Observar volume de pedidos da Conta 2 (Budamix Oficial 2) por 2 dias com condição definida — a queda de 13 pedidos é consistente entre janelas (−63% vs 30d, −59% vs mesmo dia da semana) mas o dado tem flag PARCIAL e não há memória anterior que diga se esse padrão já ocorreu — se pedidos ficarem abaixo de 15 por mais um dia amanhã (2º ciclo), Lucas alinha com Himmel sobre exposição e ADS da Conta 2; se superar 20 pedidos amanhã, a queda de hoje foi anomalia pontual e a observação encerra.
+- **Lucas:** observar volume e ticket da Store (Budamix Store) nos horários de pico (9h–14h e 19h–22h) por hoje e amanhã — dado que a tese de shift de mix (ticket elevado com pedidos abaixo do patamar) precisa de ao menos 2 dias para ser separada de flutuação pontual — se ticket ficar acima de R$42 com pedidos abaixo de 85 pelo segundo dia consecutivo, shift de mix se confirma e Lucas avalia se há alteração recente em cupons ou promoção que explique a mudança.
 
-- **Lucas:** Registrar ticket médio da Conta 3 (Budamix Shop) pelos próximos 3 dias — a Estratégica identificou erosão de R$71.75 (avg mesmo dia da semana) para R$58.94 hoje, com mix concentrado em canecas 200ml e potes 800ml vs produtos de valor maior em períodos anteriores — sinal de resultado: se ticket permanecer abaixo de R$62 por 3 dias seguidos, a erosão de mix está em curso e Lucas avalia ajuste de exposição dos produtos de ticket maior na Conta 3; se recuperar acima de R$65 nos próximos 2 dias, foi variação do ciclo semanal e não requer ação.
+- **Lucas:** registrar ticket médio real da Shop 3 (Budamix Shop) ao final do dia — dado que a compressão de ticket aparece nas três janelas históricas e hoje precisamos estabelecer se o padrão continua (-12.2% vs 30d) ou há reversão — se ticket ficar abaixo de R$62 pelo segundo dia seguido nesta semana, Lucas investiga se há mudança de mix (produtos de menor valor tomando participação) ou pressão de preço nos campeões.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Himmel para mexer em ADS da Conta 2.** A queda é consistente entre janelas, mas o volume de 13 pedidos tem flag de qualidade PARCIAL e é a primeira observação registrada sem memória anterior — ação em ADS sobre dado parcial e sem diagnóstico de causa (perda de exposição? campanha desativada? problema operacional?) queima verba sem direcionamento. A condição de acionamento está definida: 2 dias seguidos abaixo de 15 pedidos.
+- **Não acionar Himmel para ajuste de ADS em nenhuma das três contas** — a tese estratégica está em primeiro ciclo de análise sem memória estabelecida, o colapso da Conta 2 não tem causa documentada, e o shift de mix da Store não foi confirmado por segundo dia. Aumentar verba ADS antes de entender a causa do colapso na Conta 2 pode alocá-la sobre operação já frágil; redirecionar verba da Store enquanto o volume está abaixo do patamar adiciona risco sem hipótese de melhora validada.
 
-- **Não generalizar o sinal da Conta 2 para "Shopee em queda".** Store e Conta 3 têm comportamentos distintos: Store com ticket elevado e volume acima da média de 7 dias, Conta 3 com volume estável. O colapso da Conta 2 é localizado nessa conta — sem evidência análoga nas outras duas, a leitura de plataforma continua diferenciada por conta.
+- **Não generalizar o colapso da Conta 2 para as três contas Shopee** — Store e Shop 3 têm sinais distintos (shift de mix e erosão de ticket, respectivamente), não colapso de volume. A Conta 2 é problema localizado e precisa de diagnóstico próprio. Tratá-la como sinal da plataforma levaria a intervenções desnecessárias nas outras contas.
 
-- **Não testar segundo vetor, novos produtos ou realocação de mix enquanto os campeões não estiverem verificados.** A concentração top 3 é extrema nas três contas (90% Store, 84% Shop 3) e não há segundo vetor documentado. Experimento de mix antes de proteger os campeões aumenta o risco de oscilação sem base de sustentação — a sequência correta é: proteger primeiro, testar depois, quando a operação tiver mais ciclos documentados.
+- **Não tratar o ticket elevado da Store como recuperação de patamar** — ticket de R$43.80 contra histórico de R$35–38 com pedidos ainda -17.4% vs 30d e -27.7% vs 60d não é sinal de melhora: é sinal de shift que ainda não foi explicado. Classificar como positivo antes de entender a causa pode levar Lucas a reduzir atenção sobre a conta exatamente quando o padrão merece mais cuidado.
 
 ---
 
 ### Escalonamento
 
-**Observar** — Lucas acompanha as três contas pelos próximos 2-3 dias com as condições falsificáveis definidas acima, sem alterar ADS, preço ou mix.
+**observar** — com gatilho explícito para alinhar com Himmel em até 2 dias caso Conta 2 não apresente causa operacional identificável por Lucas.
 
-A base de memória vazia e o dado parcial da Conta 2 impedem qualquer ação estrutural hoje. A postura correta é coletar evidência sem mover a operação: Lucas verifica os campeões (ação operacional, não tática), registra o volume da Conta 2 amanhã e acompanha o ticket da Conta 3 por 3 dias. Se Conta 2 confirmar erosão (≤15 pedidos por 2 dias seguidos), o escalonamento sobe para **alinhar com Himmel** via Lucas, com diagnóstico de causa como pré-requisito antes de qualquer movimentação de ADS ou campanha. Se o ticket da Conta 3 confirmar erosão de mix (abaixo de R$62 por 3 dias), Lucas avalia ajuste de exposição — sem envolver Himmel ainda, pois não é sinal de ADS, é sinal de mix. Kobe não é acionado neste ciclo — não há decisão estrutural em aberto, apenas confirmação de teses que precisam de mais dados.
+A situação das três contas não justifica escalonamento hoje: nenhuma conta está em risco operacional imediato (sem estoque crítico, sem cancamento sistêmico confirmado, sem penalidade conhecida), e o primeiro ciclo de análise ainda está estabelecendo baseline. Lucas tem ação dirigida para cada conta sem necessidade de Himmel ainda. A mudança de classificação ocorre se: (a) Lucas confirmar na Conta 2 que não há causa operacional evidente após checagem de listing, ADS e ranking — nesse caso Lucas alinha com Himmel para avaliar exposição via ADS Shopee da Conta 2 especificamente; ou (b) Store apresentar ticket elevado com volume abaixo do patamar pelo segundo dia consecutivo e a causa não for identificada internamente — nesse caso Lucas e Himmel avaliam se há espaço para ajuste de promoções coordenadas sem ampliar canibalização entre contas.

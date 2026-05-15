@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-"""Envia Daily Sales Report para equipe administrativa via Slack.
+"""Daily Sales Report Slack Funcionários — LEGADO DESATIVADO para envio real.
+
+LOCK DE OWNERSHIP (2026-05-15): este script v1 não pode mais enviar Slack
+real para Lucas/Yasmin/Leonardo. O caminho oficial é:
+
+    Cron → Trader → Daily Sales Analyst (DSA) → Trader → Kobe
+
+Este arquivo permanece apenas como fallback determinístico controlado para
+auditoria/dry-run ou preview explícito para Pedro. Qualquer tentativa de envio
+real para a equipe é bloqueada aqui para evitar bypass da cadeia oficial.
 
 Destinatários: Yasmin, Lucas e Leonardo.
 Fonte canônica: marketplaces no Budamix Central / Supabase `v_daily_sales`.
@@ -366,6 +375,12 @@ def main() -> int:
     day = args[0] if args else (datetime.now(BRT).date() - timedelta(days=1)).isoformat()
     dry_run = "--dry-run" in sys.argv
     test_pedro = "--to-pedro" in sys.argv
+    if not dry_run and not test_pedro:
+        print(
+            "BLOQUEADO: script legado v1 desativado para envio real. Use a cadeia oficial Trader → DSA → Trader → Kobe.",
+            file=sys.stderr,
+        )
+        return 2
     message = build_message(day)
     recipients = PEDRO_RECIPIENT if test_pedro else RECIPIENTS
     if dry_run:

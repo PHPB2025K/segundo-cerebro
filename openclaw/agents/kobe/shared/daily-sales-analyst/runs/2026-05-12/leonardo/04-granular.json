@@ -1,22 +1,250 @@
 {
-  "layer": "04-granular",
-  "recipient": "leonardo",
-  "status": "FALLBACK_DETERMINISTICO",
-  "date": "2026-05-12",
+  "camada": "granular",
+  "data": "2026-05-12",
+  "recipient": "Leonardo",
   "platform": "amazon",
-  "investigations": [
+  "respostas_operacional": [
     {
-      "account": "amazon",
-      "pedidos": 30,
-      "gmv": 1157.57,
-      "ticket_medio": 38.59,
-      "orders_vs_30d_pct": 9.1,
-      "gmv_vs_30d_pct": 7.4,
-      "top3_concentration": 65.6,
-      "quality_flags": []
+      "pergunta": "O cancelamento registrado incide sobre qual ASIN — é na Jarra Medidora, no Suporte de Controle ou em produto fora do top 2?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote registra cancelamentos: 1 nas métricas agregadas da conta, mas não entrega detalhamento do pedido cancelado — sem order_id, ASIN, título ou SKU do item cancelado disponível na estrutura entregue. O campo top_products lista itens por quantidade vendida em pedidos válidos (pedidos_validos: 30), sem identificação do pedido ou item cancelado. Nenhuma outra estrutura no pacote contém esse nível de detalhe.",
+      "leitura": "Impossível determinar se o cancelamento incide nos ASINs líderes (B0G2CWWMGK ou B0GH2BTQFJ) ou em produto de cauda longa. A ausência do dado anula a possibilidade de avaliação de risco diferenciado para os líderes e impede confirmar ou descartar fragilidade operacional pontual nos 2 ASINs que concentram 59.4% dos itens.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Os ASINs da Jarra Medidora de Vidro 500ml e do Suporte de Controle PS5/PS4/Xbox estavam com Buy Box ativa e cobertura FBA sem alerta durante o dia?",
+      "status": "parcialmente respondida",
+      "evidencia": {
+        "fba_status": "Pacote confirma 100% FBA: amazon_fba: 30, amazon_fbm: 0 — os 30 pedidos válidos foram integralmente processados via FBA. Os dois líderes venderam via FBA sem ruptura visível no fluxo de pedidos.",
+        "produto_1": {
+          "produto_visivel": "Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas",
+          "asin": "B0G2CWWMGK",
+          "sku_interno": "CK4742_BB",
+          "fonte": "orderItems / pedido real",
+          "itens_vendidos": 11
+        },
+        "produto_2": {
+          "produto_visivel": "Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto - Organizador de Mesa Gamer 2 em 1 - Compatível Nintendo Switch Pro - Budamix",
+          "asin": "B0GH2BTQFJ",
+          "sku_interno": "SPC002",
+          "fonte": "orderItems / pedido real",
+          "itens_vendidos": 8
+        },
+        "buy_box_status": "Dado não disponível no pacote. Nenhum campo buy_box_pct ou buy_box_status foi entregue na estrutura de dados. O check amazon_product_identity confirmou identificação dos top 5 por título e ASIN, mas não testa status de Buy Box."
+      },
+      "leitura": "Cobertura FBA dos dois líderes estava funcional no dia: 11 itens da Jarra Medidora e 8 do Suporte de Controle foram processados via FBA sem ruptura visível. Ausência de ruptura durante o dia é evidência indireta de Buy Box ativa — produto FBA sem Buy Box dificilmente gera esse volume de conversão — mas é inferência, não confirmação direta. O pacote não entrega o campo necessário para fechar a checagem que a Tática exigiu como pré-requisito.",
+      "conclusao_granular": "parcialmente confirma — FBA operacional confirmado por volume real; Buy Box não confirmada por ausência de dado direto no pacote",
+      "confianca": "média"
+    },
+    {
+      "pergunta": "A concentração dos top 2 ASINs acima de 55% dos itens é padrão observado nos últimos 7 dias ou é distribuição específica de ontem?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote histórico entrega médias agregadas de 7 dias (avg_orders: 27.9, avg_gmv: R$1.100,78, avg_items: 29.4) sem breakdown de top_products por dia nas janelas históricas. O campo top_products contém exclusivamente dados do dia atual (2026-05-12). Nenhuma estrutura top_products_7d ou top_products_history existe no pacote. A memória semanal (weekly.md) está como template vazio — sem teses ou padrões acumulados anteriores.",
+      "leitura": "Impossível confirmar ou desmentir se a concentração dos 2 ASINs líderes acima de 55% é padrão estrutural de 7 dias ou comportamento específico do dia. O dado granular necessário não foi entregue. A pergunta permanece em aberto e deve transitar para o próximo ciclo como investigação prioritária se a estrutura de pacote for expandida.",
+      "conclusao_granular": "inconclusivo por falta de dado — hipótese de concentração crônica não confirmável com o pacote atual",
+      "confianca": "baixa"
     }
   ],
-  "fallback": true,
-  "llm_used": false,
-  "warning": "Dados extraidos diretamente do package. Sem investigacao LLM profunda."
+  "investigacoes_proprias": [
+    {
+      "investigacao": "A cauda longa (posições 3-10, 8 produtos) oferece segundo vetor real ou é dispersão pulverizada sem capacidade de substituição?",
+      "origem": "anomalia",
+      "evidencia": {
+        "calculo_itens": {
+          "total_itens": 32,
+          "top2_itens": 19,
+          "top2_participacao_pct": 59.4,
+          "cauda_posicoes_3_a_10_itens": 13,
+          "cauda_participacao_pct": 40.6,
+          "media_itens_por_produto_na_cauda": 1.6
+        },
+        "produtos_cauda": [
+          {
+            "produto_visivel": "Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio",
+            "asin": "B0G2SV7NR1",
+            "sku": "914C_BB",
+            "itens": 2,
+            "fonte": "orderItems"
+          },
+          {
+            "produto_visivel": "Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Jogo de Caneca Grande Empilhável Ideal para Chocolate Quente e Café Expresso Budamix Preto",
+            "asin": "B0GGTY2BLT",
+            "sku": "TL250P",
+            "itens": 2,
+            "fonte": "orderItems"
+          },
+          {
+            "produto_visivel": "Conjunto de 5 Potes de Vidro Redondos - Ideal para Alimentos e Refeições(preto)",
+            "asin": "B0GSWJ91JM",
+            "sku": "IMB501T-preto",
+            "itens": 2,
+            "fonte": "orderItems"
+          },
+          {
+            "produto_visivel": "Conjunto de 5 Potes de Vidro Redondos - Ideal para Alimentos e Refeições(vermelho)",
+            "asin": "B0GSWLK5F3",
+            "sku": "IMB501T-vermelho",
+            "itens": 2,
+            "fonte": "orderItems"
+          },
+          {
+            "produto_visivel": "Kit 6 Xícaras de Café Chá Porcelana 170ml Modelo Paris Presente Casa Cozinha Chocolate Quente Xícara Budamix (Rosa)",
+            "asin": "B0GGTRYN4Q",
+            "sku": "XCP003",
+            "itens": 1,
+            "fonte": "orderItems"
+          },
+          {
+            "produto_visivel": "Conjunto de 5 Potes de Vidro Redondos - Ideal para Alimentos e Refeições(cinza)",
+            "asin": "B0GSWRMDRG",
+            "sku": "IMB501T-cinza",
+            "itens": 1,
+            "fonte": "orderItems"
+          },
+          {
+            "produto_visivel": "Kit 6 Canecas Porcelana Canelada 250ml Coloridas Café Chá Xícara - Presente Casa Cozinha",
+            "asin": "B0GFPF42HC",
+            "sku": "K6CAN250",
+            "itens": 1,
+            "fonte": "orderItems"
+          },
+          {
+            "produto_visivel": "Conjunto 10 Potes Vidro 520ml Hermético Marmita Tampa 4 Vedação 800ml",
+            "asin": "B0DY2V72P8",
+            "sku": "008",
+            "itens": 1,
+            "fonte": "orderItems"
+          }
+        ]
+      },
+      "leitura": "Os 8 produtos da cauda entregaram 13 itens com média de 1.6 itens por SKU. Nenhum produto da cauda supera 2 itens — o produto mais forte da cauda (posição 3) vendeu 2 itens contra 11 e 8 dos líderes. A dispersão entre 8 SKUs com volumes unitários é fragmentação cosmética: não existe segundo vetor real. Se qualquer um dos dois ASINs líderes apresentasse instabilidade de Buy Box ou ruptura de FBA, os 8 produtos restantes não teriam capacidade individual nem coletiva de compensar o volume perdido.",
+      "conclusao_granular": "confirma — a cauda existe mas é pulverizada; a dependência operacional nos 2 ASINs líderes não é amortecida por nenhum produto com volume expressivo",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Os SKUs IMB501T-preto, IMB501T-vermelho e IMB501T-cinza são variantes do mesmo produto-base — o ranking por SKU individual subestima a posição real do produto no mix?",
+      "origem": "risco de identificação",
+      "evidencia": {
+        "produto_preto": {
+          "produto_visivel": "Conjunto de 5 Potes de Vidro Redondos - Ideal para Alimentos e Refeições(preto)",
+          "asin": "B0GSWJ91JM",
+          "sku": "IMB501T-preto",
+          "itens": 2,
+          "fonte": "orderItems",
+          "posicao_ranking_individual": 5
+        },
+        "produto_vermelho": {
+          "produto_visivel": "Conjunto de 5 Potes de Vidro Redondos - Ideal para Alimentos e Refeições(vermelho)",
+          "asin": "B0GSWLK5F3",
+          "sku": "IMB501T-vermelho",
+          "itens": 2,
+          "fonte": "orderItems",
+          "posicao_ranking_individual": 6
+        },
+        "produto_cinza": {
+          "produto_visivel": "Conjunto de 5 Potes de Vidro Redondos - Ideal para Alimentos e Refeições(cinza)",
+          "asin": "B0GSWRMDRG",
+          "sku": "IMB501T-cinza",
+          "itens": 1,
+          "fonte": "orderItems",
+          "posicao_ranking_individual": 8
+        },
+        "total_familia_itens": 5,
+        "posicao_agrupada": "3º produto por volume se agrupado como família IMB501T (5 itens > 914C_BB com 2 itens)"
+      },
+      "leitura": "Cada variante possui ASIN distinto confirmado por pedido real — não há erro de identificação, são listings separados na Amazon. Porém, como variações de cor do mesmo produto-base (Conjunto 5 Potes de Vidro Redondos), o agrupamento por família revela IMB501T como 3º produto do dia com 5 itens — à frente individualmente de todos os produtos da cauda. Esse dado não altera a conclusão de dependência nos 2 líderes (19 itens vs 5 da família IMB501T), mas é relevante para análise de mix: a linha de potes de vidro tem presença mais forte do que o ranking individual sugere.",
+      "conclusao_granular": "complica — sem risco de identificação errada (ASINs reais confirmados por pedido), mas o agrupamento por produto-base reposiciona a família IMB501T como 3º vetor do dia; não muda a leitura de concentração nos 2 líderes, mas muda a leitura de qual é o terceiro produto relevante da conta",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "A janela do almoço (12h-13h) com 9 pedidos e 30% do volume diário representa anomalia horária ou é distribuição esperada?",
+      "origem": "anomalia",
+      "evidencia": {
+        "distribuicao_horaria": {
+          "0h": 1,
+          "8h": 2,
+          "9h": 1,
+          "10h": 2,
+          "12h": 6,
+          "13h": 3,
+          "15h": 2,
+          "16h": 3,
+          "17h": 2,
+          "18h": 2,
+          "19h": 1,
+          "20h": 2,
+          "22h": 2,
+          "23h": 1
+        },
+        "janela_almoco_12_13h": {
+          "pedidos": 9,
+          "participacao_pct": 30.0
+        },
+        "janela_tarde_15_17h": {
+          "pedidos": 7,
+          "participacao_pct": 23.3
+        },
+        "janela_noite_18_23h": {
+          "pedidos": 8,
+          "participacao_pct": 26.7
+        },
+        "janela_manha_8_10h": {
+          "pedidos": 5,
+          "participacao_pct": 16.7
+        },
+        "madrugada_0h": {
+          "pedidos": 1,
+          "participacao_pct": 3.3
+        },
+        "historico_horario_disponivel": false
+      },
+      "leitura": "O pico de 12h (6 pedidos, 20% do volume em 1 hora) é o mais expressivo do dia, e quando somado a 13h (3 pedidos), a janela 12h-13h responde por 30% do volume diário. A tarde (15h-17h) e a noite (18h-23h) mostram dispersão razoável sem colapso — o que a Operacional já registrou como 'exposição estável'. O pico do almoço é real como fato granular, mas sem série histórica de distribuição horária no pacote, não é possível classificá-lo como anomalia ou padrão estrutural da conta. Em Amazon FBA com produtos de uso doméstico, pico de almoço é plausível como comportamento de compra, mas é hipótese, não confirmação.",
+      "conclusao_granular": "parcialmente confirma — pico de almoço (12h-13h com 30% do dia) é evidência granular real; classificação como anomalia ou padrão estrutural é inconclusiva sem histórico horário comparável",
+      "confianca": "média"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "baixo",
+    "explicacao": "Todos os produtos citados foram identificados via título real do pedido + ASIN/platform_item_id confirmados por orderItems. O check amazon_product_identity retornou 'ok' para os top 5. Nenhum produto depende de alias manual como fonte primária — ASINs reais estão disponíveis e confirmados em todos os casos. O único ponto examinado (família IMB501T com 3 variantes) não configura risco de identificação: cada variante tem ASIN distinto e título distinto por cor, confirmados por pedido real. Reconciliação perfeita (order_delta: 0, revenue_delta: 0.0) sem divergência entre fonte canônica e pedidos. Sem BLOQUEIO PARA SLACK — todos os produtos citados podem ser referenciados nominalmente com base em pedido real.",
+    "fontes_de_risco_identificadas": [],
+    "bloqueios_para_slack": []
+  },
+  "divergencia_entre_fontes": null,
+  "evidencia_conflitante": null,
+  "detalhe_condensadora": [
+    {
+      "detalhe": "A cauda da conta (8 produtos nas posições 3-10) entregou 13 itens no total com média de 1.6 itens por SKU — nenhum produto da cauda supera 2 itens; a diversidade de 10 SKUs vendendo é cosmética, não é segundo vetor operacional real",
+      "por_que_importa": "Se a mensagem tratar o mix como diversificado e saudável ('10 produtos vendendo'), estará errada. A dependência real está nos 2 ASINs líderes, e a cauda não tem capacidade individual nem coletiva de compensar qualquer instabilidade nesses produtos. O risco operacional é concentrado, não distribuído.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "O cancelamento registrado (1 ocorrência) não pôde ser atribuído a nenhum ASIN específico — o pacote não entrega detalhes do pedido cancelado; é impossível confirmar ou descartar que incide nos ASINs líderes",
+      "por_que_importa": "A Tática e a Operacional sinalizaram que cancelamento nos ASINs líderes tem peso operacional distinto de cancelamento em cauda longa. Sem o dado, a Condensadora não pode tratar o cancelamento como operacionalmente inofensivo — a incerteza deve ser preservada, não resolvida por inferência.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Buy Box não confirmada por dado direto — o volume FBA de 30 pedidos é evidência indireta de Buy Box funcional nos líderes, mas o pacote não entrega campo buy_box_pct ou buy_box_status; a checagem que a Tática exigiu como pré-requisito para ADS ainda depende de validação manual por Leonardo",
+      "por_que_importa": "Se a Condensadora tratar o dia como 'operacionalmente validado', estará antecipando uma confirmação que ainda não ocorreu. O patamar positivo do dia é real, mas condicionado à solidez operacional dos 2 ASINs líderes — e essa solidez foi parcialmente inferida, não completamente verificada.",
+      "confianca": "média"
+    }
+  ],
+  "memoria_interna": {
+    "detalhes_tecnicos": {
+      "asin_lider_1_itens": "B0G2CWWMGK (CK4742_BB) — 11 itens — 34.4% do total",
+      "asin_lider_2_itens": "B0GH2BTQFJ (SPC002) — 8 itens — 25.0% do total",
+      "top2_combinado": "19 itens / 32 = 59.4%",
+      "top3_combinado": "21 itens / 32 = 65.6% (confirma top3_concentration declarado)",
+      "top5_combinado": "25 itens / 32 = 78.1% (confirma top5_concentration declarado)",
+      "cauda_posicoes_6_a_10": "6 itens em 5 SKUs (IMB501T-vermelho 2, XCP003 1, IMB501T-cinza 1, K6CAN250 1, 008 1)",
+      "familia_imb501t_agrupada": "ASINs B0GSWJ91JM + B0GSWLK5F3 + B0GSWRMDRG = 5 itens = 3º produto por volume se agrupado",
+      "janela_almoco_12_13h": "9 pedidos = 30.0% do volume diário",
+      "cancelamento_asin": "não identificável — dado ausente no pacote",
+      "buy_box_status_direto": "não disponível no pacote — inferência de Buy Box ativa pelo volume FBA, não por campo direto",
+      "reconciliacao": "perfeita — order_delta: 0, revenue_delta: 0.0, ok: true"
+    }
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

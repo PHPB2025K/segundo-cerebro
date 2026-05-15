@@ -1,16 +1,57 @@
 {
-  "layer": "05-condensadora",
-  "recipient": "leonardo",
-  "status": "FALLBACK_DETERMINISTICO",
-  "date": "2026-05-12",
+  "camada": "condensadora",
+  "data": "2026-05-12",
+  "recipient": "Leonardo",
   "platform": "amazon",
-  "condensed_output": {
-    "orders": 30,
-    "gmv": 1157.57,
-    "ticket_medio": 38.59,
-    "cancelamentos": 1
+  "analise_final_condensada": [
+    {
+      "insight": "O dia parece positivo — e é, nas médias de 7d, 30d e 60d —, mas o resultado veio inteiramente de dois ASINs operando via FBA, sem nenhum segundo vetor real: a cauda de 8 produtos entregou média de 1,6 itens por SKU e não teria capacidade de compensar qualquer instabilidade nos líderes. A leitura não é de conta saudável, é de conta em patamar positivo com dependência operacional concentrada.",
+      "padrao": "B — Inversão positiva",
+      "base": "Operacional + Granular",
+      "criterio_sobrevivencia": "evita interpretação errada; muda a leitura do dia"
+    },
+    {
+      "insight": "A solidez operacional que sustenta esse resultado ainda não foi verificada: FBA funcional foi confirmado pelo volume real, mas Buy Box não tem dado direto no pacote — é inferência. O cancelamento do dia também não pôde ser atribuído a nenhum ASIN específico, o que impede descartar que incide nos produtos que concentram 59% dos itens. A operação funcionou hoje, mas a checagem que a Tática definiu como pré-requisito antes de qualquer decisão de ADS ainda está em aberto.",
+      "padrao": "F — Métrica vs qualidade",
+      "base": "Tática + Granular",
+      "criterio_sobrevivencia": "alerta contra risco silencioso; muda a prioridade"
+    }
+  ],
+  "prioridades_condensadas_para_slack": [
+    {
+      "prioridade": "Checar Buy Box e cobertura FBA dos dois ASINs líderes da conta — Jarra Medidora de Vidro 500ml e Suporte de Controle PS5/PS4/Xbox",
+      "por_que": "Esses dois produtos concentraram 59% dos itens do dia e a conta opera 100% FBA sem nenhum fallback FBM. FBA confirmado pelo volume, mas Buy Box não tem dado direto — é inferência. A operação de amanhã depende da mesma estrutura, e escalar ADS sem essa validação amplifica sobre base não verificada.",
+      "sinal_de_confirmacao_refutacao": "Buy Box ≥ 85% em ambos os ASINs líderes e cobertura FBA sem alerta de ruptura confirma operação apta; qualquer leitura abaixo ou alerta de estoque eleva o risco estrutural antes de qualquer decisão.",
+      "escalar_se": "Buy Box abaixo de 85% ou cobertura FBA em risco em qualquer um dos dois líderes — Leonardo escala para Pedro com diagnóstico fechado."
+    },
+    {
+      "prioridade": "Identificar a qual ASIN pertence o cancelamento registrado no dia",
+      "por_que": "Com 59% dos itens concentrados em dois produtos, cancelamento nesses ASINs tem peso operacional completamente diferente de cancelamento em cauda longa. O pacote não entregou o detalhamento — precisa de verificação manual no painel Amazon.",
+      "sinal_de_confirmacao_refutacao": "Cancelamento em produto de cauda confirma que não há anomalia operacional nos líderes; cancelamento em qualquer um dos dois ASINs líderes exige diagnóstico antes de qualquer ação.",
+      "escalar_se": "Cancelamento identificado nos ASINs líderes com padrão recorrente (2+ dias)."
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [
+    "Detalhes técnicos de ASINs individuais (B0G2CWWMGK, B0GH2BTQFJ) — nomes por extenso são seguros por pedido real, mas códigos técnicos são ruído para o Slack.",
+    "A família IMB501T agrupada como '3º produto por volume' — é insight granular interno, não muda nenhuma decisão operacional de Leonardo hoje.",
+    "A análise de pico horário 12h-13h — sem histórico comparável, é observação descritiva sem capacidade de orientar ação.",
+    "Conclusão de 'Buy Box ativa' — é inferência, não confirmação. Não pode aparecer como fato verificado.",
+    "Qualquer framing de 'conta saudável' ou 'crescimento positivo' sem a ressalva de dependência operacional concentrada.",
+    "Erosão de ticket como alerta — ainda abaixo do limiar de confirmação (3 dias consecutivos abaixo de R$38,00); aparece na memória, não no Slack."
+  ],
+  "memoria_para_amanha": [
+    "Buy Box dos ASINs líderes (B0G2CWWMGK e B0GH2BTQFJ) não foi confirmada por dado direto no pacote — o campo buy_box_pct não está disponível na estrutura atual; se amanhã o pacote continuar sem esse campo, a tese de 'patamar positivo sustentável' permanece parcialmente inferida.",
+    "Cancelamento de 2026-05-12 não atribuído a ASIN específico — se Leonardo confirmar via painel que incide nos líderes, isso eleva o risco operacional e precisa entrar na análise do dia seguinte como sinal, não ruído.",
+    "Ticket médio vem recuando de forma consistente (R$39,52 em 7d → R$38,59 hoje) — amanhã será o segundo dia de observação direta; 3 dias consecutivos abaixo de R$38,00 confirmam hipótese de erosão de mix e requerem análise de composição dos ASINs líderes.",
+    "Concentração dos top 2 ASINs em 59,4% dos itens não pôde ser comparada ao histórico de 7 dias (top_products histórico não disponível no pacote) — se essa estrutura se repetir amanhã, começa a se configurar como padrão estrutural, não evento pontual; vale registrar a concentração diária nos próximos ciclos.",
+    "Família IMB501T (potes de vidro em 3 cores, 5 itens agrupados) foi o 3º produto real do dia quando agrupado por produto-base — pode ser relevante para análise de mix quando a conta acumular mais dias; não é segundo vetor ainda, mas tem presença mais sólida do que o ranking individual indica.",
+    "2026-05-12 foi dia operacionalmente dentro do patamar — acima de 7d/30d/60d, nenhuma anomalia confirmada, base reconciliada sem divergência; registro útil para detectar mudança de padrão se o próximo ciclo apresentar queda."
+  ],
+  "alertas_de_confianca": {
+    "nivel": "media",
+    "explicacao": "A base de dados é sólida: reconciliação perfeita, quality_flags vazios, janelas históricas completas (7d, 30d, 60d), identificação de produto confirmada por pedido real para todos os top 5. A confiança desce de alta para média por duas lacunas específicas: (1) Buy Box não tem campo direto no pacote — é inferência pelo volume FBA, não confirmação; (2) o cancelamento registrado não foi atribuído a ASIN, o que impede avaliar se incide nos líderes ou na cauda. Weekly e monthly estão como templates vazios, o que remove o contexto de trajetória prévia — mas isso limita profundidade histórica, não a confiabilidade dos dados do dia. Os dois insights entregues são sustentados por evidência granular de alta confiança; a ressalva de Buy Box está explicitamente carregada no segundo insight."
   },
-  "fallback": true,
-  "llm_used": false,
-  "warning": "Condensacao deterministica. Sem LLM."
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

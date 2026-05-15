@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem passou em 10 dos 11 gates sem falha. Um problema Menor foi identificado no Gate 5: o produto 'Conjunto de 5 Potes de Vidro Redondos' (IMB501P_T) foi listado sem indicação de conta, mas o produto é um campeão explícito da Conta 1 na Condensadora e na 6B — a segunda condição da regra de indicação ('ou quando a conta foi relevante na Condensadora') se aplica e não foi aplicada pela Slack Writer. O risco de induzir erro é baixo porque a seção ANÁLISE DAS CONTAS contextualiza explicitamente o produto como campeão da Budamix Store. Regra de agregação aplicada: 0 Maiores + 1 Menor = APROVADO COM RESSALVA. Todos os demais gates verificados: data e período corretos (00:00–23:59 BRT), destinatário e plataforma corretos (Lucas = Shopee), estrutura com as 6 seções na ordem exata e 'ANÁLISE DAS CONTAS' aceito per addendum v3.1, VISÃO com dados objetivos e sem comparação temporal, Top Produtos com números verificados contra o pacote, fidelidade à 6B confirmada linha a linha, prioridades fielmente extraídas da Condensadora/6B com condições de confirmação/refutação e escalonamento preservadas, bloqueios da Condensadora respeitados e linguagem de incerteza preservada nos três pontos críticos, consistência entre camadas verificada, tom direto e operacional sem jargão de camada, e padrão numérico BRL correto em todos os valores.",
+  "motivo": "A mensagem passou em todos os 11 gates sem nenhum Crítico ou Maior. Foram identificados 2 Menores isolados: (1) o log de Decisões de formatação contém uma autocorreção com valor inconsistente no registro da consolidação do CTL002 — '7+8+9=33... aguarda: ... 24 pedidos' — sem impacto na mensagem final, que exibe corretamente 24 pedidos; (2) o produto IMB501P_T não recebeu indicador de conta no Top Produtos apesar de a dominância da Store (31 de 33 unidades) ter sido explicitamente analítica na 6B, ativando a regra 'conta indicada quando a conta foi relevante na Condensadora'; a ausência não induz erro porque a Análise DAS CONTAS cobre o ponto, mas configura omissão de formatação registrável. Regra de agregação aplicada: 0 Críticos + 0 Maiores + 2 Menores sem degradação sistêmica → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -11,7 +11,7 @@
     "gate_5_top_produtos": "RESSALVA",
     "gate_6_analise_conta": "OK",
     "gate_7_prioridades": "OK",
-    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_8_bloqueios_confianca_logs": "RESSALVA",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
     "gate_11_padrao_numerico_formatacao": "OK"
@@ -20,31 +20,43 @@
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 1,
-    "regra_agregacao_aplicada": "0 Maiores + 1–5 Menores → APROVADO COM RESSALVA"
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 2 Menores isolados sem degradação sistêmica → APROVADO COM RESSALVA (0 Maiores + 1–5 Menores)"
   },
   "problemas_encontrados": [
     {
       "severidade": "Menor",
-      "gate": "5 — Top Produtos",
-      "texto_atual": "• Conjunto de 5 Potes de Vidro Redondos — 33 unidades",
-      "texto_esperado": "• Conjunto de 5 Potes de Vidro Redondos (Budamix Store) — 33 unidades",
-      "estado_atual": "Produto listado sem indicação de conta. A Slack Writer aplicou apenas a condição 'menos de 2 contas' (produto aparece em 3 contas: 31 Store + 1 Conta 2 + 1 Conta 3), ignorando a condição alternativa da regra.",
-      "estado_esperado": "A regra de indicação de conta tem duas condições: 'quando produto vendeu em menos de 2 contas OU quando a conta foi relevante na Condensadora.' O produto IMB501P_T é explicitamente o campeão da Conta 1 na Condensadora ('Potes de Vidro Redondos e Jarra Medidora carregaram 76% das unidades do dia') e na 6B ('IMB501P_T + CK4742_B carregaram 76% das unidades do dia'). A segunda condição estava ativa e não foi aplicada.",
-      "regra_violada": "Gate 5 Shopee: 'conta indicada quando produto vendeu em menos de 2 contas ou quando a conta foi relevante na Condensadora.' Risco de indução de erro é baixo porque a seção ANÁLISE DAS CONTAS contextualiza o produto como campeão da Store, mas a omissão não foi justificada no log de Decisões de Formatação com base na segunda condição — apenas a primeira condição foi citada.",
+      "gate": "Gate 8 — Bloqueios, confiança e logs da Slack Writer",
+      "texto_atual": "Consolidação de CTL002 nas 3 contas (7+8+9=33... aguarda: Store 7 + Conta 2 8 + Conta 3 9 = 24 pedidos)",
+      "texto_esperado": "Consolidação de CTL002 nas 3 contas: Store 7 + Conta 2 8 + Conta 3 9 = 24 pedidos",
+      "estado_atual": "Log de Decisões de formatação contém valor contraditório internamente ('33' antes da autocorreção para '24'); a mensagem final exibe corretamente 24 pedidos para as Canecas Tulipa.",
+      "estado_esperado": "Registro limpo sem valor inconsistente na mesma linha.",
+      "regra_violada": "Gate 8: Decisões de formatação devem registrar decisões sem contradição interna; decisão registrada não deve contradizer nem parecer contradizer a mensagem final.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "• Conjunto de 5 Potes de Vidro Redondos — 33 pedidos",
+      "texto_esperado": "• Conjunto de 5 Potes de Vidro Redondos (Budamix Store) — 33 pedidos",
+      "estado_atual": "IMB501P_T consolidado apresentado sem indicador de conta; a dominância da Store (31 de 33 unidades) foi explicitamente analítica na 6B ('o produto líder de potes foi dominado pela Store'), ativando a condição 'conta indicada quando a conta foi relevante na Condensadora'.",
+      "estado_esperado": "Indicador '(Budamix Store)' presente junto ao produto, dado que a Store foi conta analiticamente relevante para este produto na fonte primária 6B.",
+      "regra_violada": "Gate 5 — Shopee: conta indicada quando produto vendeu em menos de 2 contas OU quando a conta foi relevante na Condensadora; a segunda condição está ativa para IMB501P_T. A ausência não induz erro (a Análise DAS CONTAS cobre o ponto), mas a regra de formatação não foi plenamente respeitada.",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "A decisão de formatação sobre IMB501P_T ('3 contas, regra de indicação não ativada') aplica apenas a primeira condição da regra de indicação e ignora a segunda ('ou quando a conta foi relevante na Condensadora'). Para próximos ciclos, a Slack Writer deve checar ambas as condições antes de omitir indicação de conta no Top Produtos Shopee.",
-    "O dado faltante mais crítico para o ciclo de 13/05 é o breakdown de cancelamentos por SKU da Conta 1 (shop_id 448649947). Sem ele, o risco operacional nos campeões IMB501P_T e CK4742_B permanece em aberto e o escalonamento para Himmel não pode ser definido.",
-    "Padrão horário das Contas 2 e 3 na janela 17–22h deve ser observado e comparado com o dia de hoje: Conta 2 com picos em 7h e 23h, Conta 3 fragmentada em 11 janelas. Recorrência por 2 dias seguidos aciona Himmel."
+    "Dado crítico ausente para o próximo ciclo: breakdown de cancelamentos por order_id e produto na Store (shop_id: 448649947) — sem esse dado, o risco de fragilidade ativa nos dois SKUs campeões que sustentam 76% do volume da conta não poderá ser diagnosticado; deve ser incluído no próximo ciclo de coleta.",
+    "Perguntas sem resposta por ausência de dado que persistem para o próximo ciclo: (1) hour_distribution histórica por conta para os últimos 4 mesmos dias da semana, especialmente Conta 2 (shop_id: 860803675), para classificar o padrão de pico nos extremos do dia; (2) top_products histórico por conta e data para as últimas 2 semanas, especialmente Conta 3, para rastrear dinâmica dos SKUs de canecas.",
+    "Sobreposição de SKU confirmada por pedido real em 2026-05-12: CTL002 nas 3 contas (7+8+9=24 itens total), IMB501P_T com Store dominante (31 contra 1+1); hipótese de canibalização interna entre as contas permanece em aberto para verificação no próximo ciclo após checagem de campanha por Lucas.",
+    "Contas 2 e 3 ainda em queda ativa vs média 7d ao fim do dia 2026-05-12 (-26% e -24% respectivamente); se amanhã seguirem abaixo da média 7d, escalonamento para Himmel via Lucas fica justificado.",
+    "Ticket médio estável nas 3 contas vs histórico 30d (Store -5,0%, Conta 2 -2,4%, Conta 3 -0,3%) — registrar como padrão ativo; se amanhã o ticket começar a cair junto com o volume, diagnóstico muda de tráfego/exposição para competitividade de produto.",
+    "Dia 2026-05-12 classificado como primeiro ciclo com memória narrativa em branco (weekly/monthly sem entradas históricas): tese de patamar = vulnerável em queda; 3 anomalias operacionais não resolvidas ao fechar o dia."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "A fidelidade linha a linha da Slack Writer à 6B é muito alta — os quatro blocos de análise reproduzem as analysis_lines da 6B com apenas as substituições de SKU técnicos por nomes de produto, que são corretas e documentadas. A preservação das linguagens de incerteza ('permanecem sem explicação por produto', 'recorrente ou episódico') atende integralmente ao alerta de confiança média da Condensadora.",
-    "A terceira prioridade ('Não acionar Himmel para ajuste de ADS nas Contas 2 e 3 hoje') foi reproduzida como bullet negativo na seção PRIORIDADES. Essa é uma decisão de formatação que não viola nenhuma regra objetiva — a priority_lines da 6B inclui explicitamente esse item como orientação tática — e a Decisões de Formatação não registrou esta decisão de forma explícita. O registro poderia ter sido mais detalhado, mas o item é fiel à fonte e não induz erro.",
-    "A análise da Conta 3 substituiu 'confirmada em pedido real' por 'confirmada' na frase sobre canibalização multiloja. A remoção de 'em pedido real' simplifica sem alterar a tese. Tecnicamente a Condensadora e a 6B usaram 'confirmada em pedido real' para reforçar que não é hipótese inferida. A simplificação é aceitável e não muda sentido, mas o reforço de origem poderia ter sido mantido para deixar claro que não é especulação."
+    "A regra 'conta indicada quando a conta foi relevante na Condensadora' para Top Produtos (Gate 5 — Shopee) merece critério mais explícito no próximo ciclo: quando a relevância analítica da conta já está coberta integralmente na Análise DAS CONTAS, a omissão do indicador no Top Produtos não induz erro operacional. Sugestão de refinamento da regra: indicar conta no Top Produtos quando a omissão puder gerar leitura equivocada do ranking em contexto de leitura isolada da seção, independentemente de cobertura na Análise. Esta distinção evitaria ambiguidade na aplicação da regra em ciclos futuros.",
+    "O log de Decisões de formatação apresentou autocorreção inline (valor '33' seguido de recalculação para '24') em vez de registro direto do valor correto; recomenda-se que a Slack Writer adote registro final limpo nas Decisões de formatação, sem rascunho de cálculo intermediário, para facilitar auditoria do Gate 8 nos próximos ciclos."
   ],
   "llm_used": true,
   "model": "sonnet",

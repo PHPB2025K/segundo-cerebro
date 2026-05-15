@@ -1,47 +1,35 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Qualidade da base
 
-Weekly.md e monthly.md estão presentes mas são apenas templates sem dados preenchidos — não há tese semanal nem mensal ativa para confirmar ou refutar. As três janelas temporais (7d, 30d, 60d) estão disponíveis e íntegras, com 7, 30 e 60 dias de histórico respectivamente. Sem hipóteses anteriores ativas, a leitura de hoje serve como ponto de partida, não como confirmação de tese. Confiança na leitura de patamar: moderada-alta (janelas completas); confiança em tese de trajetória: moderada (sem âncora semanal/mensal preenchida).
-
----
+Weekly e monthly estão como templates vazios — sem teses semanais ou mensais anteriores acumuladas, nenhuma hipótese ativa para confirmar ou refutar. A leitura de hoje é ponto de partida, não confirmação de trajetória estabelecida. As janelas de 7d, 30d e 60d têm cobertura completa (7, 30 e 60 dias com dados), o que fornece base sólida para leitura temporal — o limite é a ausência de memória interpretativa prévia, não a ausência de dado.
 
 ### Leitura temporal
 
-- **Progressão 60d → 30d → 7d → dia:** médias de 25,8 pedidos (60d), 27,5 (30d) e 27,9 (7d), com o dia em 30 — todas as janelas em ascensão sequencial. O dia ficou acima das três médias históricas, o que, isoladamente, seria ruído; em progressão consistente, é sinal de ganho gradual de patamar ao longo do bimestre.
-- **Mesmo dia da semana:** a média dos últimos 4 mesmos dias é 31,5 pedidos e R$1.224, e o dia entregou 30 e R$1.157 — aparente fraqueza de -4,8% e -5,4%. Porém a série tem alta variância: 23, 24, 38, 41 pedidos nos quatro ciclos anteriores. O pico de 05/05 (41 pedidos, R$1.576) puxa a média para cima; sem esse outlier, a conta hoje estaria alinhada ou acima. A "fraqueza" contra o mesmo dia da semana é estatisticamente inconclusiva dada a dispersão.
-- **Ticket em leve compressão:** -1,5% vs 30d e -1,7% vs 60d, enquanto volume cresce. Movimento consistente e pequeno — hipótese de mix levemente mais barato ou pressão de precificação nos campeões, ainda sem confirmação suficiente para tese.
-- **Sem hipóteses ativas para testar:** weekly e monthly vazios impedem confirmação/refutação de qualquer tese anterior.
-
----
+- **vs 60d (+16.3% pedidos, +14.3% GMV):** A conta está operando consistentemente acima do patamar do bimestre — não é oscilação de um dia, é posição sustentada ao longo de 30 dias vis-à-vis os 60d.
+- **vs 30d (+9.1% pedidos, +7.4% GMV):** A semana mais recente confirma o movimento: a conta está acima da própria média do mês. O crescimento de pedidos supera o de GMV, e o ticket recua leve mas consistentemente (-1.5% vs 30d, -1.7% vs 60d) — o volume está puxando mais do que o valor unitário.
+- **vs 7d (+7.5% pedidos, +5.2% GMV):** O dia ficou acima da média dos últimos 7 dias, sugerindo que a semana atual não reverteu o movimento positivo de médio prazo.
+- **vs mesmos dias da semana (-4.8% pedidos, -5.4% GMV):** A comparação de sazonalidade aponta para baixo: a média das últimas 4 terças foi 31.5 pedidos e R$1.224; hoje ficou em 30 e R$1.157. O dia foi relativamente fraco para o dia da semana — mas a volatilidade entre as 4 terças é alta (23 a 41), o que enfraquece a leitura de sazonalidade como sinal isolado.
 
 ### Leitura estratégica
 
-- **A conta ganhou patamar no bimestre, não apenas ontem.** A progressão 60d < 30d < 7d < dia em volume e GMV não é coincidência de um ponto — é o padrão acumulado de semanas. O canal Amazon parece ter avançado de uma faixa de ~26 pedidos/dia (60d) para ~28-30 (recente), o que é estruturalmente diferente de uma oscilação pontual.
-- **A concentração em dois ASINs é o padrão operacional da conta, não novidade.** Jarra Medidora e Suporte PS5 respondem por ~19 dos 32 itens vendidos (~59% das unidades) e os top 3 concentram 65,6% do volume. Não há segundo vetor visível que absorva choque se qualquer um dos dois campeões perder FBA, Buy Box ou estoque. Isso converte qualquer ganho de patamar em ganho frágil — a conta cresce, mas cresce dependente.
-- **FBA 100% é pré-requisito para o patamar atual.** Todo o crescimento observado está sobre base exclusivamente FBA. Qualquer ruptura de disponibilidade FBA nos ASINs líderes impacta diretamente o patamar — não como risco hipotético, mas como consequência direta da estrutura atual.
-- **A compressão de ticket acompanhando crescimento de volume merece atenção ao longo das próximas semanas.** Ainda é sinal fraco (< 2%), mas se o ticket continuar cedendo enquanto volume avança, a conta pode estar ganhando pedidos sem ganhar margem — hipótese, não fato ainda.
-
----
+- A trajetória de médio prazo (30d vs 60d) indica ganho de patamar consistente, não ruído: a conta saiu de ~R$1.013 de GMV médio (60d) para ~R$1.077 (30d), e o dia de hoje, mesmo sendo relativamente fraco vs terças anteriores, está alinhado com esse nível elevado.
+- A erosão leve e consistente de ticket (-1.5% a -1.7%) em paralelo ao crescimento de volume levanta hipótese de mudança de mix: produtos de menor valor unitário (Jarra Medidora a ~R$38, itens de porcelana) ganhando participação relativa. **Hipótese, não fato** — a leitura do mix de top produtos em um único dia não é suficiente para confirmar.
+- A concentração em dois ASINs (Jarra Medidora + Suporte Controle) respondeu sozinha por ~59% dos itens. Essa concentração em 2 produtos é padrão que precisa ser rastreado ao longo da semana para distinguir característica estrutural da conta de evento pontual — com memória semanal vazia, não há como afirmar ainda se é crônico.
+- O dia ficou abaixo das terças anteriores, mas a variância entre os 4 comparativos (23 a 41 pedidos) é alta o suficiente para que hoje (30) seja ruído dentro da banda, não deterioração de posição.
 
 ### Tese da conta
 
-**Em ganho de patamar — com vulnerabilidade estrutural por dependência.**
-
-A progressão consistente das três janelas temporais (60d → 30d → 7d → dia) sustenta a tese de que a conta avançou de faixa ao longo do bimestre. Não é o dia que sustenta essa leitura — é a convergência das médias em ascensão. A fragilidade está na estrutura: o ganho de patamar repousa sobre dois ASINs em FBA sem segundo vetor identificável, o que torna qualquer eventual instabilidade operacional (estoque, Buy Box, FBA) capaz de reverter o avanço rapidamente.
-
----
+**Em ganho de patamar** — com ressalva de memória incipiente. A leitura das janelas de 30d e 60d, combinada com o dia acima de 7d, sustenta que a conta se deslocou para cima em relação ao bimestre anterior. O sinal não depende de um único dia: o 30d já está 6.4% acima do 60d em GMV, e o dia de hoje está dentro dessa faixa elevada. A ressalva é que sem weekly/monthly consolidados, não há como dizer se esse ganho é aceleração ou acomodação em novo patamar — a tese é honesta sobre o que os dados mostram, não sobre a causa.
 
 ### Risco estrutural principal
 
-- **Risco:** Dependência de dois ASINs (Jarra Medidora 500ml + Suporte PS5) responsáveis por ~59% das unidades vendidas, integralmente em FBA, sem segundo vetor de volume identificável na cauda.
-- **Por que importa:** Se qualquer um dos dois campeões perder disponibilidade FBA, Buy Box ou estoque, o GMV da conta cai proporcionalmente e sem amortecedor. O ganho de patamar observado no bimestre ficaria vulnerável a um único evento operacional pontual.
-- **Histórico:** Dado que weekly e monthly estão vazios, não é possível confirmar se essa concentração é crônica ou recente. O dado de hoje, porém, é coerente com uma conta estruturalmente concentrada — não parece ser anomalia do dia.
-- **Sinal de confirmação:** Top 3 mantendo concentração acima de 65% por 3 semanas consecutivas confirma que a dependência é padrão estrutural da conta, não oscilação de mix pontual.
-
----
+- **Risco:** Dependência excessiva de 2 ASINs (Jarra Medidora de Vidro 500ml + Suporte de Controle PS5/PS4/Xbox) sem segundo vetor documentado. Os dois produtos responderam por ~59% dos itens do dia; top 3 concentrou 65.6% dos pedidos.
+- **Por que importa:** Em Amazon, qualquer instabilidade de Buy Box, estoque FBA ou listing nesses 2 ASINs colapsa o volume do dia. A operação 100% FBA amplifica essa dependência — disponibilidade de FBA é pré-requisito, não garantia.
+- **Histórico:** Memória anterior vazia — não é possível afirmar se essa concentração é padrão crônico ou comportamento recente. É o primeiro registro observável.
+- **Sinal de confirmação:** Concentração dos top 2 ASINs acima de 55% dos itens por 3 dias seguidos confirma que é padrão estrutural da conta, não dia específico.
 
 ### Sinais a observar
 
-1. **Ticket médio abaixo de R$38,00 por 3 dias seguidos** confirmaria compressão real de mix/precificação nos campeões e enfraqueceria a tese de ganho de patamar com qualidade — hoje o sinal existe mas ainda é fraco.
-2. **Jarra Medidora ou Suporte PS5 com volume zerado ou inferior a 3 unidades/dia em qualquer dia da próxima semana** (se disponível no pacote de produtos) sinalizaria ruptura de FBA ou Buy Box no ASIN líder — evento que converteria vulnerabilidade em problema real.
-3. **GMV abaixo de R$1.000 por 2 dias seguidos nos próximos 7 dias** refutaria a tese de ganho de patamar e indicaria que o bimestre foi ascensão seguida de retração, não consolidação em nova faixa.
+1. **Confirmação de ganho de patamar:** GMV diário acima de R$1.050 (linha de 30d) por pelo menos 4 dos próximos 5 dias — isso separaria acomodação no novo patamar de drift de curto prazo.
+2. **Erosão de ticket:** Ticket médio abaixo de R$38.00 por 3 dias consecutivos confirmaria hipótese de mudança de mix em direção a produtos de menor valor unitário — requereria revisão da tese de ganho de patamar (volume crescendo, mas GMV descolando).
+3. **Concentração estrutural:** Participação dos top 2 ASINs acima de 55% dos itens vendidos por 3 dias seguidos confirma dependência crônica e eleva o risco estrutural de instabilidade de Buy Box/FBA (verificar disponibilidade de dados de Buy Box no pacote quando disponível).

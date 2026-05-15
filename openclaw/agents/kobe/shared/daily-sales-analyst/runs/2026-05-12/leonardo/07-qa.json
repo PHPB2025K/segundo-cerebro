@@ -1,18 +1,52 @@
 {
-  "layer": "07-qa",
-  "recipient": "leonardo",
-  "date": "2026-05-12",
-  "verdict": "APPROVED_WITH_REMARKS",
-  "checks_passed": 1,
-  "checks_total": 1,
-  "blockers": [],
-  "remarks": [
-    "Artefatos gerados por fallback deterministico (sem LLM).",
-    "Dados extraidos diretamente do data package v1.0.",
-    "Data Readiness: DADOS_OK."
-  ],
-  "send_allowed": false,
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "Todos os gates críticos passaram sem falha. A mensagem é fiel à Condensadora, preserva as duas teses com conectivos e verbos modais intactos, respeita todos os itens de bloqueio da Condensadora, atribui responsável correto (Leonardo/Amazon) e mantém estrutura Slack na ordem aprovada. Uma única inconsistência Menor foi identificada no Gate 5/11: o Top Produtos utiliza o termo 'pedidos' (ex: '11 pedidos') quando o campo quantity do pacote representa itens/unidades vendidas, não pedidos. O risco prático de induzir erro é baixo dado o volume total (30 pedidos / 32 itens), mas é imprecisão técnica documentável. Regra de agregação aplicada: 0 Críticos, 0 Maiores, 1 Menor → APROVADO COM RESSALVA.",
+  "send_allowed": true,
   "send_real_allowed": false,
-  "fallback": true,
-  "llm_used": false
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "RESSALVA"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 1,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 1 Menor → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "Gate 5 / Gate 11",
+      "texto_atual": "Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas — 11 pedidos / Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto - Organizador de Mesa Gamer 2 em 1 - Budamix — 8 pedidos",
+      "texto_esperado": "Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas — 11 itens / Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto - Organizador de Mesa Gamer 2 em 1 - Budamix — 8 itens",
+      "estado_atual": "Top Produtos usa 'pedidos' como unidade de medida para o ranking de produtos",
+      "estado_esperado": "O campo quantity do pacote representa itens/unidades vendidas (itens_vendidos: 32 vs pedidos_validos: 30). A Granular usa 'itens' explicitamente: 'B0G2CWWMGK — 11 itens — 34.4% do total'. O ranking deveria usar 'itens' ou 'unidades', não 'pedidos'.",
+      "regra_violada": "Padrão numérico e terminologia devem refletir fielmente a métrica da fonte de dados. 'Pedidos' e 'itens' são métricas distintas no pacote Amazon (30 pedidos / 32 itens); usar 'pedidos' no Top Produtos é imprecisão técnica, ainda que o risco prático de induzir erro seja baixo dado a proximidade dos valores neste dia.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "Top Produtos Amazon usa 'pedidos' como label para o que o pacote chama de 'quantity' (itens/unidades). Em dias onde um pedido contenha 2+ unidades do mesmo produto, a diferença entre 'itens' e 'pedidos' pode ser materialmente relevante. Recomenda-se padronizar o label para 'itens' ou 'unidades' nos próximos ciclos para evitar ambiguidade progressiva.",
+    "Buy Box não disponível no pacote atual (campo buy_box_pct ausente da estrutura). A tese de patamar positivo sustentável permanece parcialmente inferida — risco preservado nos dois insights da análise e na prioridade 1. Se o campo continuar ausente nos próximos ciclos, considerar escalação da limitação para revisão da estrutura do pacote.",
+    "Cancelamento de 2026-05-12 não atribuído a ASIN específico — depende de verificação manual de Leonardo no painel Amazon. Resultado da verificação deve ser registrado na memória do próximo ciclo."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "A Slack Writer optou por mostrar top 5 produtos em vez do top 3 ou top 10. Nenhuma regra do prompt especifica a quantidade exata para Amazon; a decisão não foi registrada explicitamente no bloco 'Decisões de formatação', mas não induz erro e é defensável dado que todos os 5 produtos têm fonte confirmada por pedido real.",
+    "A substituição de 'ASINs' por 'produtos' no primeiro insight da Análise ('dois ASINs operando' → 'dois produtos operando') é editorialmente razoável e alinhada com a proibição de jargão técnico no Slack. Não altera tese, conectivo ou verbo modal.",
+    "A omissão de 'no pacote' em 'Buy Box não tem dado direto no pacote — é inferência' → 'Buy Box não tem dado direto — é inferência' é simplificação editorial que não altera o sentido nem suaviza o alerta."
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

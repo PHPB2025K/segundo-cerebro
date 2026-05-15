@@ -1,35 +1,38 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Decisão tática
 
-- **Dado que a tese é colapso de exposição na Conta 2 com consistência em todas as janelas (7d, 30d, 60d), a decisão prioritária é investigar a causa antes de qualquer ajuste operacional** — sem diagnóstico de causa, qualquer intervenção em ADS ou listing pode amplificar o problema ou ser direcionada ao ponto errado.
-- **Dado que o risco estrutural é a Store operar como único sustentáculo real com volume abaixo do patamar de 60d**, a decisão correta é proteger o que está funcionando (concentração em campeões) e não introduzir variáveis novas enquanto a Conta 2 está sem diagnóstico.
-- **Dado que Shop 3 mantém pedidos mas comprime ticket de forma consistente nas três janelas disponíveis**, a decisão é checar se a compressão tem causa identificável (mix se estreitando, cupons, pressão de preço) antes de tratar como ruído.
-- **Dado que a base semanal e mensal estão zeradas e este é o primeiro ciclo de análise sistemática**, nenhuma ação forte está justificada hoje — o ciclo correto é registrar, checar e criar a baseline que as próximas leituras vão usar para qualificar confirmação ou reversão.
+- **Dado que o risco estrutural principal é o colapso de C2**, a decisão prioritária é investigação da causa antes de qualquer ação operacional — sem entender se é ADS, exposição de listagens ou penalidade de plataforma, qualquer movimento em C2 pode ser na direção errada ou não ter efeito. A janela tática é hoje e amanhã: dois dias abaixo de 20 pedidos confirmam colapso real.
+
+- **Dado que C1 está perdendo volume mas segurando GMV por ticket**, a decisão correta é proteger sem intervir: o ticket elevado de hoje é amortecedor, não recuperação — mexer em ADS ou mix de C1 agora pode desfazer o equilíbrio frágil que está segurando o GMV consolidado da plataforma.
+
+- **Dado que C3 mostra compressão de ticket com volume estável**, a decisão é registrar como hipótese e observar com condição falsificável, não agir — um único dia de divergência entre volume e GMV não sustenta ação forte. Canibalização entre contas é hipótese relevante mas ainda sem evidência suficiente.
+
+- **Dado que as memórias semanais e mensais são templates vazios** (primeiro ponto de observação documentado), não há tese anterior a confirmar ou refutar — qualquer ação forte seria baseada em um único dia de dados sem ancoragem histórica narrativa. Postura tática conservadora é a correta.
 
 ---
 
 ### O que fazer hoje
 
-- **Lucas:** verificar status operacional da Conta 2 (Budamix Oficial) — checar se há ADS pausado, listing com restrição, queda de ranking ou penalidade de marketplace — dado que o colapso consistente em todas as janelas sugere problema de exposição e não flutuação, e o sinal de cancelamento de 18.75% adiciona fragilidade — se Lucas identificar ADS pausado ou penalidade ativa, aciona Himmel com diagnóstico fechado; se não houver causa operacional evidente, mantém observação por mais 2 dias antes de qualquer intervenção.
+- **Lucas:** verificar status de ADS, exposição das listagens e notificações de plataforma em C2 (Budamix Oficial) — dado que o colapso de -60% atravessa todas as janelas temporais e inclui taxa de cancelamento de ~19%, a hipótese mais urgente é interrupção ou colapso de visibilidade na conta; se ADS estiver ativo e listagens visíveis, o problema se desloca para penalidade de plataforma ou mix — sinal de resultado: se Lucas identificar causa (ADS desligado, listagem suprimida ou penalidade), há ação concreta a executar; se todas as alavancas estiverem aparentemente normais, sobe para alinhar com Himmel para verificar configuração de campanha em C2.
 
-- **Lucas:** observar volume e ticket da Store (Budamix Store) nos horários de pico (9h–14h e 19h–22h) por hoje e amanhã — dado que a tese de shift de mix (ticket elevado com pedidos abaixo do patamar) precisa de ao menos 2 dias para ser separada de flutuação pontual — se ticket ficar acima de R$42 com pedidos abaixo de 85 pelo segundo dia consecutivo, shift de mix se confirma e Lucas avalia se há alteração recente em cupons ou promoção que explique a mudança.
+- **Lucas:** observar volume e ticket de C1 (Budamix Store) nos dois dias seguintes, especialmente nas janelas de 09h-16h onde a conta concentra pedidos — tese é que o ticket de R$43,80 hoje foi pontual e não estrutural; se ticket cair abaixo de R$38,00 em 2 dos próximos 3 dias, o GMV real de C1 entra em queda junto com o volume — sinal de resultado: ticket de C1 acima de R$38,00 por 2 dias confirma que o amortecedor ainda está ativo e a tese de desaceleração de volume sem colapso de GMV se sustenta; abaixo disso, C1 passa a requerer investigação de mix junto com C2.
 
-- **Lucas:** registrar ticket médio real da Shop 3 (Budamix Shop) ao final do dia — dado que a compressão de ticket aparece nas três janelas históricas e hoje precisamos estabelecer se o padrão continua (-12.2% vs 30d) ou há reversão — se ticket ficar abaixo de R$62 pelo segundo dia seguido nesta semana, Lucas investiga se há mudança de mix (produtos de menor valor tomando participação) ou pressão de preço nos campeões.
+- **Lucas:** registrar para os próximos 2-3 dias o par (pedidos, GMV) de C3 (Budamix Shop) como linha de base — hoje: 31 pedidos / R$1.827; a hipótese de compressão de ticket em C3 precisa de ao menos 2 dias adicionais para distinguir tendência de oscilação — sinal de resultado: se GMV de C3 cair abaixo de R$1.600 com volume estável ou crescente em 2 dos próximos 3 dias, hipótese de compressão de ticket se fortalece e exige investigação de mix por conta.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Himmel para ajuste de ADS em nenhuma das três contas** — a tese estratégica está em primeiro ciclo de análise sem memória estabelecida, o colapso da Conta 2 não tem causa documentada, e o shift de mix da Store não foi confirmado por segundo dia. Aumentar verba ADS antes de entender a causa do colapso na Conta 2 pode alocá-la sobre operação já frágil; redirecionar verba da Store enquanto o volume está abaixo do patamar adiciona risco sem hipótese de melhora validada.
+- **Não acionar Himmel para aumentar ou redistribuir verba de ADS em qualquer das 3 contas agora** — o colapso de C2 pode ter origem no próprio ADS (campanha desligada ou orçamento esgotado), e a acomodação de C1 ainda não tem causa diagnosticada; escalar verba sem entender a causa é amplificar um problema não identificado, não resolvê-lo.
 
-- **Não generalizar o colapso da Conta 2 para as três contas Shopee** — Store e Shop 3 têm sinais distintos (shift de mix e erosão de ticket, respectivamente), não colapso de volume. A Conta 2 é problema localizado e precisa de diagnóstico próprio. Tratá-la como sinal da plataforma levaria a intervenções desnecessárias nas outras contas.
+- **Não generalizar a leitura de C2 para "a Shopee está em queda"** — C1 segura GMV por ticket e C3 segura volume; o colapso é localizado em C2 e requer investigação específica nessa conta antes de qualquer movimento que afete as três simultaneamente (ex.: alterar mix de catálogo, redistribuir estoque, acionar campanha conjunta).
 
-- **Não tratar o ticket elevado da Store como recuperação de patamar** — ticket de R$43.80 contra histórico de R$35–38 com pedidos ainda -17.4% vs 30d e -27.7% vs 60d não é sinal de melhora: é sinal de shift que ainda não foi explicado. Classificar como positivo antes de entender a causa pode levar Lucas a reduzir atenção sobre a conta exatamente quando o padrão merece mais cuidado.
+- **Não tratar a expansão de ticket de C1 como sinal positivo que justifique testar segundo vetor ou novo produto na conta** — o ticket elevado hoje é sintoma de mix do dia (provavelmente pedidos de kits maiores), não de crescimento de demanda; testar produto secundário em C1 agora adiciona variável numa conta que ainda não está estabilizada em volume, dificultando leitura do que está causando a desaceleração.
 
 ---
 
 ### Escalonamento
 
-**observar** — com gatilho explícito para alinhar com Himmel em até 2 dias caso Conta 2 não apresente causa operacional identificável por Lucas.
+**Classificação: não escalar (Lucas resolve primeiro, com gatilho de alinhamento com Himmel definido)**
 
-A situação das três contas não justifica escalonamento hoje: nenhuma conta está em risco operacional imediato (sem estoque crítico, sem cancamento sistêmico confirmado, sem penalidade conhecida), e o primeiro ciclo de análise ainda está estabelecendo baseline. Lucas tem ação dirigida para cada conta sem necessidade de Himmel ainda. A mudança de classificação ocorre se: (a) Lucas confirmar na Conta 2 que não há causa operacional evidente após checagem de listing, ADS e ranking — nesse caso Lucas alinha com Himmel para avaliar exposição via ADS Shopee da Conta 2 especificamente; ou (b) Store apresentar ticket elevado com volume abaixo do patamar pelo segundo dia consecutivo e a causa não for identificada internamente — nesse caso Lucas e Himmel avaliam se há espaço para ajuste de promoções coordenadas sem ampliar canibalização entre contas.
+C2 requer investigação de causa antes de qualquer decisão de ADS. Lucas tem o diagnóstico inicial a fazer — verificar status de campanhas, exposição de listagens e notificações de plataforma é ação dentro da alçada operacional dele, não de Himmel. Himmel só entra se Lucas confirmar que ADS está ativo e configurado normalmente, ou se a causa for campanha com parâmetros inadequados que Himmel precise corrigir. Gatilho explícito: se Lucas verificar status e concluir que ADS de C2 está rodando normalmente e listagens estão visíveis, o próximo passo é Lucas alinhar com Himmel para revisar configuração de campanha em C2. Se C2 continuar abaixo de 20 pedidos por mais um dia (14/05) sem causa identificada após a checagem de Lucas, o passo seguinte é Lucas alinhar com Himmel independentemente do diagnóstico. Não há razão para envolver Kobe agora — o sinal está localizado em uma conta e ainda não há evidência de decisão estrutural.

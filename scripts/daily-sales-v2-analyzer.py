@@ -315,6 +315,10 @@ SHORT_DISPLAY_NAMES = {
     "914C": "Kit 6 Canequinhas 100ml",
     "CLR002": "Kit 6 Canecas Lisas 200ml",
     "KIT6CAR200": "Kit 6 Canecas Retas 200ml",
+    "KIT2YW1520": "Kit 2 Potes de Vidro 1520ml",
+    "KIT4YW1050": "Kit 4 Potes de Vidro 1050ml",
+    "KIT2YW800SQ": "Kit 2 Potes de Vidro 800ml Quadrado",
+    "KIT3S099": "Kit 3 Potes de Vidro Hermético",
 }
 
 

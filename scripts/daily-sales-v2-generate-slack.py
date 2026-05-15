@@ -625,6 +625,50 @@ def _merge_top_products(*analyses: dict, limit: int = 5) -> list[tuple[str, int]
     return sorted(agg.items(), key=lambda kv: kv[1], reverse=True)[:limit]
 
 
+def _top_products_bullets(top_skus: list[tuple[str, int]], limit: int = 5, *, bold: bool = False) -> list[str]:
+    lines: list[str] = []
+    for sku, qty in top_skus[:limit]:
+        raw = str(sku or "").strip()
+        name = _display_name_from_top_entry(raw)
+        line = f"• {name} — {qty} pedidos"
+        lines.append(f"*{line}*" if bold else line)
+    return lines or ["• Sem produtos suficientes para ranking confiável."]
+
+
+def _account_metric_lines(label: str, analysis: dict | None, *, bold: bool = False) -> list[str]:
+    if not analysis:
+        line = f"• {label}: dados indisponíveis"
+        return [f"*{line}*" if bold else line]
+    pedidos = int(analysis.get("pedidos") or 0)
+    gmv = float(analysis.get("gmv") or 0)
+    ticket = float(analysis.get("ticket") or 0)
+    cancel = int(analysis.get("cancelamentos") or 0)
+    line = f"• {label}: {brl(gmv)} | {pedidos} pedidos | ticket {brl(ticket)}"
+    if cancel:
+        total = pedidos + cancel
+        line += f" | {cancel} cancelamentos ({pct(cancel / total * 100)})" if total else f" | {cancel} cancelamentos"
+    return [f"*{line}*" if bold else line]
+
+
+def _shopee_individual_analysis_lines(accounts: list[tuple[str, str, dict | None]]) -> list[str]:
+    lines: list[str] = []
+    for slug, label, analysis in accounts:
+        lines.append(f"• {label}: {((analysis or {}).get('condensed_analysis') or ['Análise indisponível para esta conta.'])[0]}")
+    return lines
+
+
+def _shopee_consolidated_analysis(available: list[dict], leader_text: str) -> str:
+    total_orders = sum(int(a.get("pedidos") or 0) for a in available)
+    total_gmv = sum(float(a.get("gmv") or 0) for a in available)
+    if not available:
+        return "*• Consolidado: análise indisponível; QA deve bloquear envio real.*"
+    return (
+        f"*• Consolidado: as três contas somaram {total_orders} pedidos e {brl(total_gmv)}. "
+        f"A leitura principal é usar as contas de forma complementar: proteger os campeões como {leader_text}, "
+        "evitar canibalização entre lojas e distribuir o mix para aumentar faturamento total da Shopee sem depender de uma única conta.*"
+    )
+
+
 def _temporal_reading(comparisons: dict, pedidos: int, gmv: float) -> list[str]:
     """Gera leitura temporal completa vs 30d, 60d, mesmo dia da semana."""
     lines = []
@@ -773,21 +817,29 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     shopee_ticket = shopee_rev / shopee_orders if shopee_orders else 0
     account_slugs = [
         ("shopee-budamix-store", "Budamix Store"),
-        ("shopee-budamix-oficial-2", "Budamix Oficial / Conta 2"),
-        ("shopee-budamix-shop-3", "Budamix Shop / Conta 3"),
+        ("shopee-budamix-oficial-2", "Budamix Oficial"),
+        ("shopee-budamix-shop-3", "Budamix Shop"),
     ]
     shopee_accounts = [analyses.get(slug) for slug, _ in account_slugs]
+    account_triplets = [(slug, label, analyses.get(slug)) for slug, label in account_slugs]
     shopee_cancel = sum((a or {}).get("cancelamentos", 0) for a in shopee_accounts)
     shopee_gran_orders = sum((a or {}).get("pedidos", 0) for a in shopee_accounts)
-    shopee_lines = [
-        f"• Faturamento: {brl(shopee_rev)}",
-        f"• Pedidos: {shopee_orders}",
-        f"• Ticket médio: {brl(shopee_ticket)}",
-    ]
+    consolidated_line = f"• Consolidado: {brl(shopee_rev)} | {shopee_orders} pedidos | ticket {brl(shopee_ticket)}"
     if shopee_cancel and shopee_gran_orders:
-        shopee_lines.append(f"• Cancelamentos consolidados: {shopee_cancel} ({pct(shopee_cancel/(shopee_cancel+shopee_gran_orders)*100)})")
+        consolidated_line += f" | {shopee_cancel} cancelamentos ({pct(shopee_cancel/(shopee_cancel+shopee_gran_orders)*100)})"
+    shopee_lines = [
+        f"*{consolidated_line}*",
+    ]
+    for _, label, account_analysis in account_triplets:
+        shopee_lines.extend(_account_metric_lines(label, account_analysis))
     sections.append("📊 __VISÃO SHOPEE__\n" + "\n".join(shopee_lines))
-    sections.append(_top_products_section("TOP PRODUTOS SHOPEE", _merge_top_products(*shopee_accounts)))
+
+    top_lines = ["*• Consolidado (3 contas)*"]
+    top_lines.extend(_top_products_bullets(_merge_top_products(*shopee_accounts), bold=True))
+    for _, label, account_analysis in account_triplets:
+        top_lines.append(f"• {label}")
+        top_lines.extend(_top_products_bullets((account_analysis or {}).get("top_skus", []), limit=3))
+    sections.append("🏆 __TOP PRODUTOS SHOPEE__\n" + "\n".join(top_lines))
 
     # Para Shopee, condensar as 3 contas em no máximo 3 insights totais.
     # A análise por conta fica preservada na memória interna; o Slack recebe o ouro.
@@ -798,11 +850,8 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
             if a.get("top_skus"):
                 leaders.append(_display_name_from_top_entry(a["top_skus"][0][0]))
         leader_text = leaders[0] if leaders else "os produtos líderes"
-        diag_lines = [
-            f"• A Shopee mostra um ponto claro: o resultado das três contas ainda depende demais dos produtos campeões. Enquanto {leader_text} continuar puxando tráfego, o canal sustenta volume; se esses anúncios perderem força, a queda aparece rápido.",
-            "• A diferença entre as contas parece menos ligada a preço isolado e mais a exposição, mix e força dos anúncios líderes. Antes de mudar campanha, o mais importante é entender qual conta está perdendo visibilidade e qual está apenas mudando composição de venda.",
-            "• A leitura prática para hoje é proteger os campeões e acelerar um segundo vetor de venda. Se o ritmo das primeiras horas repetir a fraqueza, vale alinhar com Himmel ajuste de exposição; se normalizar, foi ruído de demanda/horário.",
-        ]
+        diag_lines = _shopee_individual_analysis_lines(account_triplets)
+        diag_lines.append(_shopee_consolidated_analysis(available, leader_text))
         prio_lines = []
         seen = set()
         for a in available:
@@ -817,7 +866,7 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     else:
         diag_lines = ["• Análise detalhada não disponível para o dia."]
         prio_lines = []
-    sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(diag_lines).strip())
+    sections.append("🔍 __ANÁLISE DAS CONTAS__\n\n" + "\n".join(diag_lines).strip())
     sections.append("🎯 __PRIORIDADES DO DIA__\n" + "\n".join(prio_lines))
     sections.append(f"Dia analisado: {display_date} — 00:00–23:59 BRT")
     return "\n\n".join(sections)
@@ -890,6 +939,7 @@ SECTION_TITLES = {
     "🏆 TOP PRODUTOS MERCADO LIVRE",
     "🏆 TOP PRODUTOS AMAZON",
     "🔍 ANÁLISE DA CONTA",
+    "🔍 ANÁLISE DAS CONTAS",
     "🎯 PRIORIDADES DO DIA",
 }
 
@@ -913,9 +963,15 @@ def message_to_rich_text_blocks(text: str) -> list[dict]:
         elif title_text in SECTION_TITLES:
             is_title = True
 
+        bold_line_match = re.match(r"^\*(.+)\*$", raw)
+
         if is_title:
             elements.append(
                 {"type": "text", "text": title_text, "style": {"bold": True, "underline": True}}
+            )
+        elif bold_line_match:
+            elements.append(
+                {"type": "text", "text": bold_line_match.group(1), "style": {"bold": True}}
             )
         elif line:
             elements.append({"type": "text", "text": line})

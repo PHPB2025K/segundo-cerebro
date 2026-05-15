@@ -19,14 +19,12 @@ O Slack não é a análise bruta. O Slack é a síntese operacional do que cada 
 ## Estrutura fixa de cada mensagem
 1. Título: `DAILY SALES REPORT — {PLATAFORMA}`.
 2. Dia analisado: `DD/MM/YYYY — 00:00–23:59 BRT`.
-3. `📊 RESUMO GERAL DA OPERAÇÃO` igual para todos:
-   - Total marketplaces;
-   - Shopee;
-   - Mercado Livre;
-   - Amazon.
-4. Visão geral da plataforma do responsável.
+3. Visão geral da plataforma do responsável.
+4. Top Produtos da plataforma.
 5. Diagnóstico específico da(s) conta(s).
 6. Prioridades do dia.
+
+Não incluir `RESUMO GERAL` nem `VENDAS POR CANAL` nas mensagens individuais dos funcionários. Cada DM deve ser especializada somente no marketplace do responsável.
 
 ## Formatação
 - Tudo em bullet points.
@@ -50,8 +48,11 @@ Se algo não muda ação, não entra no Slack.
 
 ## Regras por responsável
 ### Lucas — Shopee
-- Mostrar visão geral da Shopee.
-- Separar Budamix Store, Conta 2 e Conta 3.
+- A Shopee tem três contas: Budamix Store, Budamix Oficial e Budamix Shop.
+- Na seção `📊 VISÃO SHOPEE`: mostrar primeiro o consolidado das três contas em negrito; logo abaixo, mostrar os números individuais das três contas em texto normal.
+- Na seção `🏆 TOP PRODUTOS SHOPEE`: mostrar primeiro o ranking consolidado das três contas, somando pedidos da mesma variação entre contas; depois mostrar rankings independentes de Budamix Store, Budamix Oficial e Budamix Shop. Usar nomes curtos de produto e ranking por pedidos.
+- Na seção `🔍 ANÁLISE DAS CONTAS`: inverter a ordem — primeiro análise individual das três contas, depois análise consolidada em negrito. A análise consolidada deve avaliar complementaridade entre contas, aumento de faturamento total, escala e risco de canibalização.
+- Na seção `🎯 PRIORIDADES DO DIA`: mostrar apenas ações consolidadas, derivadas das análises individuais + consolidada.
 - Não concluir “Shopee caiu/subiu” sem dizer qual conta explica.
 - Se o sinal for ADS/tráfego, formular como ponto para alinhar com Himmel.
 
@@ -93,4 +94,3 @@ Uma prioridade boa segue este formato mental:
 
 Exemplo:
 - Checar visibilidade dos anúncios dos potes de vidro redondos Tampa Preta na Budamix Store, porque a conta caiu em pedidos e GMV vs 30d com ticket preservado; se até 12h BRT o ritmo seguir abaixo da média horária, alinhar com Himmel revisão de tráfego/campanha.
-

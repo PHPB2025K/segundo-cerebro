@@ -1,16 +1,55 @@
 {
-  "layer": "05-condensadora",
-  "recipient": "lucas",
-  "status": "FALLBACK_DETERMINISTICO",
+  "layer": "condensadora",
   "date": "2026-05-12",
+  "recipient": "Lucas",
   "platform": "shopee",
-  "condensed_output": {
-    "orders": 118,
-    "gmv": 5378.44,
-    "ticket_medio": 45.58,
-    "cancelamentos": 13
+  "analise_final_condensada": [
+    {
+      "insight": "A Budamix Store parece estabilizada em volume, mas os cancelamentos (11.6% da tentativa bruta, 77% de todos os cancelamentos da plataforma no dia) estão concentrados nessa conta — o gradiente entre as 3 contas (5.0% / 8.0% / 11.6%) confirma que a causa é operacional localizada, não evento de Shopee. O volume alinhado à semana recente mascara que quase 1 em cada 8 tentativas está cancelando.",
+      "padrao": "B — inversão positiva (parece estabilizado, mas a qualidade da operação mostra deterioração)",
+      "criterio_descarte": "evita interpretação errada — sem esse ponto, a leitura seria de conta saudável em patamar aceitável",
+      "base": "Operacional + Granular"
+    },
+    {
+      "insight": "A queda das Contas 2 e 3 é inteiramente de volume, com ticket estável nas duas — não é produto deteriorado nem mix pior, é menos gente chegando ou convertendo. A distinção muda a ação: o próximo passo é checar exposição e visibilidade nessas contas, não ajustar produto ou preço.",
+      "padrao": "E — localização (o problema não é mix ou produto, é volume/exposição)",
+      "criterio_descarte": "muda prioridade — sem esse ponto, a ação natural seria mexer em produto ou mix",
+      "base": "Estratégica + Operacional"
+    }
+  ],
+  "prioridades_condensadas": [
+    {
+      "prioridade": "Investigar a origem dos cancelamentos da Budamix Store",
+      "por_que": "Com 10 cancelamentos sobre 76 pedidos válidos e gradiente confirmado entre contas, o problema é operacional da conta, não ruído de plataforma — causa raiz (produto, estoque, processo) ainda é desconhecida e bloqueia o diagnóstico do canal mais relevante",
+      "sinal_confirmacao_refutacao": "Se ≥8 cancelamentos se repetirem no próximo dia, o padrão é operacional real e escala para Kobe; se cair para ≤4, foi anomalia pontual",
+      "escalar_se": "≥8 cancelamentos por 2 dias consecutivos — escalar para Kobe com possível causa de produto ou estoque"
+    },
+    {
+      "prioridade": "Observar Conta 2 (Budamix Oficial) e Conta 3 (Budamix Shop) nos horários de pico 19-22h no próximo ciclo",
+      "por_que": "A Conta 2 teve 7 pedidos no pico convencional 19-22h e 8 pedidos em 7h+23h — padrão atípico confirmado para o dia, mas sem histórico para classificar como desvio ou recorrência. Se se repetir, é sinal de perda de exposição no horário forte, com implicação direta para alinhamento com Himmel",
+      "sinal_confirmacao_refutacao": "Conta 2 com ≤5 pedidos em 19-22h e volume comparável fora do pico no próximo dia = confirma desvio e indica alinhamento com Himmel; reação normal no pico = ruído pontual",
+      "escalar_se": "Padrão atípico confirmado por 2 dias consecutivos — alinhar com Himmel especificamente sobre exposição das Contas 2 e 3 no horário nobre"
+    }
+  ],
+  "bloqueios_para_slack": [
+    "Breakdown de cancelamentos por produto — dado indisponível no pacote; mencionar cancelamentos apenas em nível de conta, nunca por SKU",
+    "SKUs técnicos (IMB501P_T, CK4742_B, CTL002, etc.) e platform_item_ids — não entram no Slack",
+    "Hipótese de canibalização entre listings do CTL002 nas 3 contas — plausível estruturalmente, sem dado de tráfego para sustentar",
+    "Classificação do padrão horário da Conta 2 como 'perda de exposição confirmada' — é hipótese, não fato; Slack pode mencionar padrão atípico observado, não diagnóstico fechado",
+    "Erosão de ranking ou preço relativo dos SKUs de canecas da Conta 3 — hipótese aberta sem dado de listing ou impressões; disponibilidade no dia confirmada, causa da queda não"
+  ],
+  "memoria_para_amanha": [
+    "Incluir breakdown de cancelamentos por SKU ou platform_item_id no pacote do próximo ciclo — a pergunta operacional mais urgente do dia ficou sem resposta por ausência desse dado; sem ele, a investigação permanece cega",
+    "Gradiente de taxas de cancelamento hoje: Conta 1 = 11.6%, Conta 2 = 8.0%, Conta 3 = 5.0% — registrar para comparação no próximo ciclo; se Conta 1 sustentar ≥10% por mais um dia, padrão deixa de ser pontual",
+    "Padrão horário atípico da Conta 2: fraco no pico 19-22h (7 pedidos), forte em 7h+23h (8 pedidos) — verificar se se repete amanhã; se repetir, é sinal de exposição localizada no horário nobre que precisa de alinhamento com Himmel",
+    "Conta 1 em tentativa de estabilização em ~76 pedidos/dia — verificar se sustenta ≥70 por 3 dias consecutivos; se sustentar, confirma acomodação em novo piso (e desloca o risco ativo para Contas 2 e 3); se cair abaixo de 70, o rebaixamento está continuando",
+    "Conta 3 opera com 81% dos itens concentrados em 2 SKUs de canecas — sem segundo vetor; qualquer queda de exposição nesses produtos equivale ao resultado total da conta; hipótese de erosão de ranking nesses listings permanece aberta e deve ser checada quando houver dado de impressões"
+  ],
+  "alertas_de_confianca": {
+    "nivel": "media",
+    "explicacao": "Os dados das 3 contas são separados por shop_id com reconciliação confirmada, e os produtos identificados vêm de pedido real com platform_item_id. A confiança cai por dois motivos: (1) os 10 cancelamentos da Conta 1 não têm breakdown por produto, o que impede fechar o diagnóstico mais urgente do ciclo; (2) a série histórica horária está ausente, impedindo classificar o padrão atípico da Conta 2 como desvio ou recorrência. As memórias semanais e mensais das 3 contas estão vazias, o que elimina âncoras históricas interpretadas. Os 2 insights entregues são sustentados por evidência de pedido real, mas ambos carregam zonas de incerteza que precisam ser resolvidas no próximo ciclo."
   },
-  "fallback": true,
-  "llm_used": false,
-  "warning": "Condensacao deterministica. Sem LLM."
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

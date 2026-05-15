@@ -34,6 +34,7 @@ tags:
 | 10204 | 🚨 Alertas | Todo conteúdo relacionado a alertas: watchdogs, guards, audits, monitores, failure alerts, resumos técnicos e avisos de risco/problema |
 | 10222 | Daily Sales Report - SLACK | Desenvolvimento, previews, alertas, QA, avisos e qualquer comunicação sobre o Daily Sales Report dos funcionários no Slack |
 | 10469 | Gestão de Funcionários | Assuntos de gestão específica de funcionários da empresa e rotina semanal `✅ Rotina semanal de Gestão de Funcionários` |
+| 10494 | Pedidos Atacado Automação | Assunto exclusivo da automação do WhatsApp **Pedidos de Venda - GB** / pedidos de atacado: desenho, testes, N8N, Bling Matriz, PDF oficial do pedido, parser, validação, webhook, bloqueios e alertas dessa rotina |
 
 ## Formato de delivery para crons
 ```
@@ -54,3 +55,4 @@ to: -1003730816228:topic:{thread_id}
 | Daily Sales v2 — Consolidação Semanal/Mensal Trader | 10222 | Daily Sales Report - SLACK |
 | Daily Sales v2 — Himmel/Granola Context Sync | 10222 | Daily Sales Report - SLACK |
 | Gestão Funcionários — atas semanais Slack | 10469 | Gestão de Funcionários |
+| Automação Pedidos Atacado / Pedidos de Venda GB | 10494 | Pedidos Atacado Automação |

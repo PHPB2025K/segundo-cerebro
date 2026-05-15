@@ -378,3 +378,9 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 
 - Qualquer assunto relacionado a **compras** deve ser tratado sempre no tópico Telegram **🛍️ Compras** do Kobe Hub, thread **11** (`https://t.me/c/3730816228/11`).
 - A regra inclui fornecedores, cotações, pedidos de compra, planejamento/projeção de compras, reposição das canecas e o futuro Agente de Compras.
+
+## 2026-05-15 — Telegram / Automação Pedidos Atacado
+
+- Todo assunto específico da automação do WhatsApp **Pedidos de Venda - GB** / pedidos de atacado deve ser tratado obrigatoriamente no tópico Telegram **Pedidos Atacado Automação** (`thread_id 10494`).
+- A regra inclui: desenho da automação, testes controlados, N8N, Evolution API, Bling Matriz, PDF oficial do pedido, parser/validação, webhook, bloqueios, previews, alertas e retomadas dessa rotina.
+- Não misturar essa frente em Marketplaces, Operacional & Sistema, Estoque, Daily Sales Report - SLACK ou Gestão de Funcionários, salvo se Pedro mandar explicitamente mudar de tópico.

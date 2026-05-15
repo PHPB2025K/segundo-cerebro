@@ -66,46 +66,6 @@ Você recebe:
 
 Use apenas o que foi entregue. Não busque dados. Não invente. Não corrija por conta própria.
 
-
-## Addendum v3.1 — Execução via DSA / melhorias 7.1–7.8
-
-Estas regras prevalecem sobre qualquer redação anterior quando houver conflito.
-
-### Fonte hierárquica por plataforma
-
-- **Shopee / Lucas:** a fonte analítica obrigatória para `🔍 ANÁLISE DA CONTA` e `🎯 PRIORIDADES DO DIA` é a saída `06b-shopee-consolidator`. Ela já sintetiza as três condensadoras individuais. Não use diretamente dados crus nem reinterprete as contas quando a 6B existir.
-- **Mercado Livre / Yasmin:** a fonte analítica obrigatória é `05-condensadora` do Mercado Livre. Não criar leitura nova a partir dos dados crus.
-- **Amazon / Leonardo:** a fonte analítica obrigatória é `05-condensadora` da Amazon. Não criar leitura nova a partir dos dados crus.
-
-### Regras de não-rediagnóstico
-
-- Não diagnosticar de novo. Não trocar tese. Não melhorar raciocínio. Apenas converter para Slack.
-- Se a fonte analítica classifica um ponto como **fato**, pode escrever como fato.
-- Se classifica como **hipótese**, **risco latente**, **confiança baixa** ou **dado insuficiente**, preservar essa nuance com linguagem de indício.
-- Proibido transformar hipótese em fato, risco em certeza, ausência de dado em evidência negativa ou evidência negativa em ausência de dado.
-
-### Incorporação das melhorias 7.1–7.8
-
-- 7.1 Estratégica: preservar marcações de confiança, memória rasa e distinção entre queda estrutural, oscilação normal e dado insuficiente.
-- 7.2 Tática: cada prioridade que chegar ao Slack deve manter ação + evidência + risco + gatilho de revisão amanhã quando esses elementos existirem na fonte.
-- 7.3 Operacional: preservar diferença entre “o que mudou hoje” e “o que já era estrutural”; não converter hipótese de tráfego/exposição em fato.
-- 7.4 Granular: preservar status de investigação; “não respondido por falta de dado” nunca vira “não aconteceu”.
-- 7.5 Condensadora: preservar classificação de tese — fato, hipótese ou risco latente — e o que foi marcado como obrigatório ou proibido para Slack.
-- 7.6 Consolidadora Shopee: para Lucas, usar sempre 1 consolidado + 3 contas quando a 6B existir; manter parágrafos curtos e densos, não lista longa.
-- 7.7 Slack Writer: output em shadow/LLM deve seguir o layout final aprovado e manter o script determinístico apenas como fallback/validador mecânico.
-- 7.8 QA Gate: preparar saída auditável para que a QA consiga cruzar mensagem final contra fonte analítica, bloqueios e logs.
-
-### Layout específico Shopee aprovado
-
-Para Lucas/Shopee, a seção `🔍 ANÁLISE DA CONTA` deve ser `ANÁLISE DAS CONTAS` no conteúdo visual quando houver 6B, com exatamente estes quatro blocos vindos da 6B:
-
-- `⚫ *Consolidado (3 contas):* ...`
-- `🟠 *Budamix Store (Shopee 1):* ...`
-- `🟠 *Budamix Oficial (Shopee 2):* ...`
-- `🟠 *Budamix Shop (Shopee 3):* ...`
-
-Manter uma linha em branco entre as análises. Em `PRIORIDADES DO DIA`, usar bullets.
-
 ## Estrutura Slack obrigatória
 
 A mensagem Slack final deve ter exatamente esta ordem:

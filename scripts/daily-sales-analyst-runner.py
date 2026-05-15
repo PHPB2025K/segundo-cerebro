@@ -87,6 +87,14 @@ LAYER_DEFS = [
     {"num": "03", "name": "operacional", "prompt_file": "03-operacional.md", "output_ext": "md"},
     {"num": "04", "name": "granular", "prompt_file": "04-granular.md", "output_ext": "json"},
     {"num": "05", "name": "condensadora", "prompt_file": "05-condensadora.md", "output_ext": "json"},
+    {
+        "num": "06B",
+        "name": "shopee-consolidator",
+        "prompt_file": "06b-shopee-consolidator.md",
+        "output_ext": "json",
+        "output_name": "06b-shopee-consolidator",
+        "only_recipients": ["lucas"],
+    },
     {"num": "06", "name": "slack-writer", "prompt_file": "06-slack-writer.md", "output_ext": "md", "output_name": "06-slack-preview"},
     {"num": "07", "name": "qa-gate", "prompt_file": "07-qa-gate.md", "output_ext": "json", "output_name": "07-qa"},
 ]
@@ -242,6 +250,7 @@ def build_llm_input(layer_def, package, recipient_name, prompt_content,
         "03": ["responsaveis", "marketplace-rules", "contas-shopee"],
         "04": ["marketplace-rules", "contas-shopee"],
         "05": ["marketplace-rules", "qa-standards"],
+        "06B": ["slack-format", "responsaveis", "contas-shopee", "qa-standards"],
         "06": ["slack-format", "responsaveis", "contas-shopee", "himmel"],
         "07": ["qa-standards", "slack-format", "responsaveis", "marketplace-rules"],
     }
@@ -264,6 +273,15 @@ def build_llm_input(layer_def, package, recipient_name, prompt_content,
                 sections.append(content)
                 sections.append("")
 
+    # Shopee 6B receives the three account lenses explicitly before Slack Writer.
+    if layer_def["num"] == "06B" and recipient_name == "lucas":
+        sections.append("---")
+        sections.append("# INPUT ESPECIFICO — CONSOLIDADORA SHOPEE 6B")
+        sections.append("Voce deve produzir uma sintese consolidada das 3 contas Shopee usando as camadas anteriores e os dados das tres contas abaixo.")
+        sections.append("Nao trate Shopee como conta unica. Gere exatamente: consolidado + Budamix Store + Budamix Oficial + Budamix Shop.")
+        sections.append(f"```json\n{json.dumps(accs, indent=2, ensure_ascii=False)}\n```")
+        sections.append("")
+
     # Previous layer outputs
     if previous_outputs:
         sections.append("---")
@@ -283,8 +301,8 @@ def build_llm_input(layer_def, package, recipient_name, prompt_content,
     elif layer_def["num"] == "06":
         sections.append("---")
         sections.append("# INSTRUCAO DE OUTPUT")
-        sections.append("Responda com a mensagem Slack em formato Markdown, pronta para envio.")
-        sections.append("send_real_allowed = false. Este e apenas um preview.")
+        sections.append("Responda em Markdown exatamente com os blocos pedidos pelo prompt da Slack Writer: Mensagem Slack, Respeito de bloqueios e Decisoes de formatacao.")
+        sections.append("A Mensagem Slack deve estar pronta para preview, mas send_real_allowed = false. Este e apenas um preview.")
         sections.append("")
 
     return "\n".join(sections)
@@ -737,6 +755,9 @@ def run_llm_layers(package, run_dir, recipient_name, config, prompt_version,
     layer_results = {}  # {layer_key: {path, llm_used, model, fallback, error}}
 
     for layer_def in LAYER_DEFS:
+        if layer_def.get("only_recipients") and recipient_name not in layer_def["only_recipients"]:
+            continue
+
         layer_num = layer_def["num"]
         layer_name = layer_def["name"]
         output_name = layer_def.get("output_name", f"{layer_num}-{layer_name}")
@@ -1048,6 +1069,8 @@ def run(date_str, mode, recipients, config, package_path=None,
             # Map results to paths
             fallback_layers = []
             for layer_def in LAYER_DEFS:
+                if layer_def.get("only_recipients") and r not in layer_def["only_recipients"]:
+                    continue
                 output_name = layer_def.get("output_name", f"{layer_def['num']}-{layer_def['name']}")
                 lr = llm_results.get(output_name, {})
                 paths[output_name] = lr.get("path", "")
@@ -1060,6 +1083,8 @@ def run(date_str, mode, recipients, config, package_path=None,
 
             # Generate fallback for layers that failed LLM
             for layer_def in LAYER_DEFS:
+                if layer_def.get("only_recipients") and r not in layer_def["only_recipients"]:
+                    continue
                 output_name = layer_def.get("output_name", f"{layer_def['num']}-{layer_def['name']}")
                 lr = llm_results.get(output_name, {})
                 if lr.get("fallback") and not Path(lr.get("path", "")).exists():
@@ -1122,6 +1147,7 @@ def run(date_str, mode, recipients, config, package_path=None,
                 "layer3_operacional": paths.get("03-operacional", ""),
                 "layer4_granular": paths.get("04-granular", ""),
                 "layer5_condensadora": paths.get("05-condensadora", ""),
+                "layer6b_shopee_consolidator": paths.get("06b-shopee-consolidator", ""),
                 "layer6_slack_writer": paths.get("06-slack-preview", ""),
                 "layer7_qa_gate": paths.get("07-qa", ""),
             },

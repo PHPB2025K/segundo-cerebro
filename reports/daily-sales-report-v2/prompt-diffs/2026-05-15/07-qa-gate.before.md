@@ -96,45 +96,6 @@ Você recebe:
 
 Use apenas o que foi entregue. Não busque dado externo. Não invente correção. Não aprove por “parecer bom”.
 
-
-## Addendum v3.1 — QA LLM + trava hipótese/fato
-
-Estas regras prevalecem sobre qualquer redação anterior quando houver conflito.
-
-### Fonte hierárquica para validação
-
-- **Shopee / Lucas:** validar a mensagem contra `06b-shopee-consolidator` como fonte analítica final. A QA deve confirmar 1 consolidado + 3 contas quando a 6B existir.
-- **Shopee / Lucas:** no Gate 3, aceitar `🔍 ANÁLISE DAS CONTAS` no lugar de `🔍 ANÁLISE DA CONTA` quando a saída 6B existir; para ML/Amazon, manter `🔍 ANÁLISE DA CONTA`.
-- **Mercado Livre / Yasmin:** validar contra `05-condensadora` do Mercado Livre.
-- **Amazon / Leonardo:** validar contra `05-condensadora` da Amazon.
-- Dados crus servem para checar números, Top Produtos e período; não servem para a QA rediagnosticar a tese.
-
-### Trava hipótese vs fato
-
-Bloquear como **Crítico** quando qualquer uma destas conversões acontecer:
-
-- hipótese, indício ou risco latente virou fato;
-- confiança baixa virou certeza;
-- “dado insuficiente” virou conclusão;
-- “não respondido por falta de dado” virou “não aconteceu”;
-- risco de canibalização virou canibalização estrutural sem evidência direta;
-- oscilação normal virou queda estrutural sem a fonte analítica dizer isso.
-
-### Incorporação das melhorias 7.1–7.8
-
-- 7.1: conferir se memória rasa/confiança baixa foi preservada.
-- 7.2: conferir se prioridades mantêm ação + evidência + risco + gatilho quando disponíveis.
-- 7.3: conferir se “mudou hoje” não foi confundido com padrão estrutural.
-- 7.4: conferir se status de investigação foi preservado.
-- 7.5: conferir se fato/hipótese/risco latente sobreviveram intactos.
-- 7.6: em Shopee, conferir 1 consolidado + 3 contas e marcador de confiança para termos fortes.
-- 7.7: conferir que Slack Writer não rediagnosticou.
-- 7.8: manter QA LLM como gate de auditoria e QA determinístico como trava mecânica posterior.
-
-### Limite de atuação
-
-A QA não melhora texto e não reescreve análise. Se houver bloqueio, informe o trecho atual, o esperado e a regra violada. Se for apenas discordância analítica sem violação objetiva, registre em ressalva de auditoria, não bloqueie.
-
 ## Saída possível
 
 A QA só pode retornar um destes estados:
@@ -646,53 +607,93 @@ Para cada problema encontrado, classifique:
 
 ## Saída obrigatória
 
-Responda exclusivamente em JSON válido, sem Markdown e sem texto fora do JSON.
+Responda em Markdown exatamente neste formato:
 
-Schema obrigatório:
+### Resultado QA
 
-{
-  "resultado_qa": "APROVADO | APROVADO COM RESSALVA | BLOQUEADO",
-  "motivo": "1 parágrafo curto explicando a decisão, gates que falharam e regra de agregação aplicada",
-  "send_allowed": false,
-  "send_real_allowed": false,
-  "gates_avaliados": {
-    "gate_1_data_periodo_fonte": "OK | FALHA | RESSALVA",
-    "gate_2_destinatario_plataforma_responsavel": "OK | FALHA | RESSALVA",
-    "gate_3_estrutura_slack": "OK | FALHA | RESSALVA",
-    "gate_4_visao_plataforma": "OK | FALHA | RESSALVA",
-    "gate_5_top_produtos": "OK | FALHA | RESSALVA",
-    "gate_6_analise_conta": "OK | FALHA | RESSALVA",
-    "gate_7_prioridades": "OK | FALHA | RESSALVA",
-    "gate_8_bloqueios_confianca_logs": "OK | FALHA | RESSALVA",
-    "gate_9_consistencia_camadas": "OK | FALHA | RESSALVA",
-    "gate_10_tom_utilidade": "OK | FALHA | RESSALVA",
-    "gate_11_padrao_numerico_formatacao": "OK | FALHA | RESSALVA"
-  },
-  "contagem_severidade": {
-    "criticos": 0,
-    "maiores": 0,
-    "maiores_gates_distintos": 0,
-    "menores": 0,
-    "regra_agregacao_aplicada": "texto"
-  },
-  "problemas_encontrados": [
-    {
-      "severidade": "Crítico | Maior | Menor",
-      "gate": "número ou nome",
-      "texto_atual": "trecho literal, se houver",
-      "texto_esperado": "trecho esperado, se houver",
-      "estado_atual": "descrição quando não houver trecho literal",
-      "estado_esperado": "descrição quando não houver trecho literal",
-      "regra_violada": "texto",
-      "bloqueia_envio": true
-    }
-  ],
-  "correcoes_obrigatorias_antes_envio": [],
-  "ressalvas_memoria_interna": [],
-  "ressalvas_auditoria_nao_bloqueante": []
-}
+`APROVADO` / `APROVADO COM RESSALVA` / `BLOQUEADO`
 
-Se não houver problemas, use arrays vazios. `send_real_allowed` deve permanecer `false` enquanto a promoção final não for aprovada por Pedro e aplicada pelo Trader.
+### Motivo
+
+1 parágrafo curto explicando a decisão, citando os gates que falharam, se houver, e a regra de agregação aplicada.
+
+### Gates avaliados
+
+- Gate 1 — Data/período/fonte: OK / FALHA / RESSALVA
+- Gate 2 — Destinatário/plataforma/responsável: OK / FALHA / RESSALVA
+- Gate 3 — Estrutura Slack: OK / FALHA / RESSALVA
+- Gate 4 — Visão da Plataforma: OK / FALHA / RESSALVA
+- Gate 5 — Top Produtos: OK / FALHA / RESSALVA
+- Gate 6 — Análise da Conta: OK / FALHA / RESSALVA
+- Gate 7 — Prioridades: OK / FALHA / RESSALVA
+- Gate 8 — Bloqueios/confiança/logs: OK / FALHA / RESSALVA
+- Gate 9 — Consistência entre camadas: OK / FALHA / RESSALVA
+- Gate 10 — Tom/utilidade: OK / FALHA / RESSALVA
+- Gate 11 — Padrão numérico/formatação objetiva: OK / FALHA / RESSALVA
+
+### Contagem de severidade
+
+- Críticos: [n]
+- Maiores: [n] (em [k] gates diferentes)
+- Menores: [n]
+- Regra de agregação aplicada: [qual regra resultou no veredito]
+
+### Problemas encontrados (com diff acionável)
+
+Para cada problema, use o formato apropriado.
+
+Quando há trecho literal a corrigir:
+
+- **Severidade:** Crítico / Maior / Menor
+- **Gate:** [número]
+- **Texto atual:** `[citação literal do trecho que precisa mudar]`
+- **Texto esperado:** `[citação literal do que deveria estar lá, vindo da Condensadora ou da regra]`
+- **Regra violada:** [qual regra do prompt foi violada]
+- **Bloqueia envio:** sim/não
+
+Quando não há trecho literal — seção ausente, item omitido, data errada, log incompleto:
+
+- **Severidade:** Crítico / Maior / Menor
+- **Gate:** [número]
+- **Estado atual:** [o que está acontecendo]
+- **Estado esperado:** [o que deveria acontecer]
+- **Regra violada:** [qual regra do prompt foi violada]
+- **Bloqueia envio:** sim/não
+
+Se não houver problemas:
+- Nenhum problema encontrado.
+
+### Correções obrigatórias antes do envio
+
+Liste apenas correções que precisam acontecer antes de enviar Slack real — somente as que bloqueiam envio.
+
+Se aprovado:
+- Nenhuma.
+
+### Ressalvas para memória interna
+
+Liste ressalvas que não precisam aparecer no Slack, mas devem ser registradas para amanhã.
+
+Se não houver:
+- Nenhuma.
+
+### Ressalvas de auditoria (não bloqueante)
+
+Esta seção captura discordâncias analíticas da QA com as camadas anteriores que não violam regra objetiva e portanto não bloqueiam envio, mas que servem como sinal para evolução do sistema.
+
+A QA não rediagnostica análise. Não bloqueia por discordar. Mas pode registrar aqui pontos onde o julgamento das camadas anteriores poderia ser revisto:
+
+- [observação da QA] — [qual camada produziu o item] — [por que a QA acha que poderia ser diferente]
+
+Exemplos legítimos:
+- `Insight 2 da Análise está tecnicamente correto, mas a inversão poderia ser mais forte — Condensadora — sugere revisão do critério de profundidade percebida`.
+- `Granular marcou risco de identificação como médio para ASIN X, mas o título tem alta similaridade com Y — Granular — sugere reforço do checklist de ambiguidade`.
+- `Prioridade do dia é acionável, mas o sinal de confirmação parece amplo demais — Tática — sugere refinar critério de falsificabilidade`.
+
+Importante: entradas nesta seção não geram bloqueio nem ressalva oficial. São input para revisão de regras no próximo ciclo, não veredito sobre a mensagem atual.
+
+Se não houver:
+- Nenhuma.
 
 ## Regra final
 

@@ -56,7 +56,9 @@ Se algo não muda ação, não entra no Slack.
   - Usar `⚫` para consolidado e `🟠` para contas individuais.
   - Título de seção deve ter exatamente uma linha em branco antes do conteúdo.
   - Entre uma seção e outra, manter exatamente duas linhas em branco visíveis.
-  - Sem linha em branco entre bullets do mesmo bloco.
+  - Sem linha em branco entre bullets do mesmo bloco, exceto separação visual entre blocos de contas.
+  - Na seção `TOP PRODUTOS SHOPEE`, manter uma linha em branco entre o consolidado e cada conta, e também entre as contas.
+  - Na seção `ANÁLISE DAS CONTAS`, manter uma linha em branco entre a análise consolidada e cada análise individual, e também entre as análises individuais.
 - Na seção `📊 VISÃO SHOPEE`: mostrar primeiro o consolidado das três contas em negrito; logo abaixo, mostrar os números individuais das três contas em texto normal.
 - Na seção `🏆 TOP PRODUTOS SHOPEE`: mostrar primeiro o ranking consolidado das três contas, somando pedidos da mesma variação entre contas; depois mostrar rankings independentes de Budamix Store, Budamix Oficial e Budamix Shop. Usar nomes curtos de produto e ranking por pedidos.
 - Na seção `ANÁLISE DAS CONTAS`: seguir o layout visual aprovado no print — consolidado primeiro em `⚫` e negrito, depois Budamix Store, Budamix Oficial e Budamix Shop em `🟠`. A análise consolidada deve avaliar complementaridade entre contas, aumento de faturamento total, escala e risco de canibalização.

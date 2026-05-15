@@ -1009,6 +1009,7 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     top_lines = ["*⚫ Consolidado (3 contas)*"]
     top_lines.extend(_top_products_bullets(_merge_top_products(*shopee_accounts), bold=True))
     for idx, (_, label, account_analysis) in enumerate(account_triplets, 1):
+        top_lines.append("")
         top_lines.append(f"🟠 *{label} (Shopee {idx}):*")
         top_lines.extend(_top_products_bullets((account_analysis or {}).get("top_skus", []), limit=3))
     sections.append(_section("TOP PRODUTOS SHOPEE", "\n".join(top_lines)))
@@ -1032,7 +1033,7 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     else:
         diag_lines = ["• Análise detalhada não disponível para o dia."]
         prio_lines = []
-    sections.append(_section("ANÁLISE DAS CONTAS", "\n".join(diag_lines)))
+    sections.append(_section("ANÁLISE DAS CONTAS", "\n\n".join(diag_lines)))
     sections.append(_section("🎯 PRIORIDADES DO DIA", "\n".join(prio_lines)))
     sections.append(f"Dia analisado: {display_date} — 00:00–23:59 BRT")
     return _join_message(sections)

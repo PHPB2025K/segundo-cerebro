@@ -88,3 +88,11 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 **Contexto:** Na Fase 2, Builder criou versões simplificadas demais de índices/memórias; Kobe precisou preservar o conteúdo original e incorporar apenas adições boas.
 **Lição:** Ao tocar arquivos core de memória/índice, comparar com conteúdo atual do repo principal antes de substituir.
 **Expira:** 2026-06-11
+### 2026-05-14 — API web não deve depender de CLI síncrono instável [ESTRATÉGICA]
+**Contexto:** `/cron` e `/sessions` quebravam no Mission Control porque comandos `openclaw ... --json` travavam ou não aceitavam argumentos no runtime PM2.
+**Lição:** Para dashboards internos, ler fonte persistida/canônica diretamente quando existir (`jobs.json`, `sessions.json`, diretórios de skills), com parser e cache próprio. CLI é interface humana/operacional, não dependência obrigatória de backend web.
+
+### 2026-05-14 — Pricing de LLM deve modelar billing_type explicitamente [ESTRATÉGICA]
+**Contexto:** `/costs` misturava Anthropic como subscription e GPT-5.x sem preço próprio, gerando estimativa enganosa.
+**Lição:** Todo tracking de token precisa registrar se o modelo é API real, subscription ou externo; calcular custo real e equivalente API separadamente.
+

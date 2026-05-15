@@ -53,3 +53,11 @@ TODOS os horários apresentados ao Pedro devem estar em BRT (UTC-3). Nunca UTC, 
 - Fase C aprovada: Meta OAuth + publicação real Instagram, com C1 já fechado.
 - Smoke real em `@budamix.br` deve usar trava temporária `TESTE INTERNO` na caption até validação; remoção só em commit C5b.
 - Token Meta de usuário fica no Supabase Vault; App Secret fica em Edge env var.
+## 2026-05-14 — Mission Control / módulos e custos
+
+- Mission Control chegou a 11/23 módulos fechados com `/activity`, `/cron`, `/sessions`, `/skills` e `/costs`.
+- Para APIs web do Mission Control, preferir leitura direta de arquivos/caches internos quando o CLI for lento ou incompatível com o runtime PM2.
+- `/skills` usa scan automático dos diretórios canônicos com dedup; `configured-skills.json` não é mais requisito.
+- Tracking de custos precisa separar `real_cost`, `equivalent_cost` e `billing_type`; Anthropic é API real, GPT-5.x via `openai-codex` é subscription Pro 5x.
+- n8n fica fora da subscription e deve entrar como categoria própria de custo real por API.
+

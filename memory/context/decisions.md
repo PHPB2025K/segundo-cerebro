@@ -86,6 +86,16 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Não perguntar **“tudo bem?”** por padrão; usar só quando a pessoa perguntou antes ou quando a reciprocidade for natural.
 - Evitar rasgação de seda, cumprimentos longos e linguagem muito calorosa; manter clareza, educação e firmeza sem soar grosseiro.
 
+
+## 2026-05-14 — Mission Control / custos reais vs subscription
+
+- Mission Control fechou mais 5 módulos: `/activity`, `/cron`, `/sessions`, `/skills` e `/costs`, elevando o total consolidado para **11/23 módulos** com PRD/implementação completos.
+- `/cron` e `/sessions` devem ler arquivos JSON/caches internos diretamente quando o CLI trava ou rejeita argumentos no contexto PM2; não depender de `execSync(openclaw ... --json)` para APIs web do Mission Control.
+- `/skills` passa a usar scan automático dos diretórios canônicos com deduplicação; `data/configured-skills.json` não é mais requisito operacional.
+- Tracking de custos deve separar rigidamente **custo real API**, **equivalente API** e **subscription**. Anthropic é custo real via API; GPT-5.x via `openai-codex` é coberto pela subscription ChatGPT Pro 5x e tem custo real zero no OpenClaw.
+- Budget de API e subscription são métricas separadas: alertas de budget devem considerar apenas custo real de API.
+- Crons OpenClaw foram validados como 100% `openai-codex`/GPT-5.x, cobertos pela subscription Pro 5x; n8n usa credenciais OpenAI/Anthropic próprias e gera custo real fora da subscription.
+
 ## Ver também
 
 - `memory/context/decisoes/kobe-permanentes.md`

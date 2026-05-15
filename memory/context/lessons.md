@@ -451,6 +451,15 @@ _Última Consolidação Profunda: 2026-05-01_
 **Lição:** Em auditorias de VPS, validar primeiro qual mecanismo de firewall existe de fato (`ufw`, nftables/iptables, security group do provedor, Traefik/reverse proxy) antes de classificar exposição. `ufw: command not found` não significa automaticamente “sem firewall”, mas bloqueia conclusão via checklist UFW; achados devem virar triagem explícita e qualquer hardening precisa plano anti-lockout.
 **Expira:** 2026-06-09
 
+
+### [ESTRATÉGICA] Tracking de LLM precisa distinguir custo real, equivalente API e subscription (2026-05-14)
+**Contexto:** `/costs` do Mission Control misturava pricing incorreto: Anthropic marcado como subscription apesar de ser API paga, e modelos GPT-5.x ausentes caindo em fallback de preço errado.
+**Lição:** Todo tracking de custo LLM precisa guardar `billing_type`, `real_cost` e `equivalent_cost`. GPT via `openai-codex`/ChatGPT Pro 5x é custo real zero para OpenClaw, mas n8n com OpenAI/Anthropic API keys é custo real separado.
+
+### [TÁTICA] Mission Control: APIs web não devem depender de CLI lento/quebrado em runtime (2026-05-14)
+**Lição:** Quando uma página web precisa listar crons/sessões/skills, preferir leitura direta de arquivos/caches internos (`jobs.json`, `jobs-state.json`, `sessions.json`, diretórios de skills) com parser próprio e cache curto. `execSync(openclaw ... --json)` dentro do PM2 travou ou rejeitou argumentos e derrubou páginas inteiras.
+**Expira:** 2026-06-13
+
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 
 ### Duplicatas removidas nesta consolidação:

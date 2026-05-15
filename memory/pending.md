@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-14 18:50 BRT — pendências adicionadas por Pedro_
+_Atualizado: 2026-05-14 23:30 BRT — consolidação diária_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -109,8 +109,9 @@ _Atualizado: 2026-05-14 18:50 BRT — pendências adicionadas por Pedro_
 
 ## 🚨 Infraestrutura e autenticações degradadas
 
-- [ ] **Consolidação Diária — investigar falha da execução de 13/05 23:30 BRT**: `openclaw cron list` às 02:01 BRT de 14/05 mostrou status `error` para o cron `Consolidação Diária` (última execução ~3h antes). Verificar logs da execução, confirmar se houve commit/push parcial e reexecutar consolidação se necessário.
-- [ ] **Mission Control — PRDs dos módulos internos**: domínio `mission.budamix.com.br` e dashboard base fechados em 12/05. Próximo: PRDs/implementação por módulo (Cron, Tasks, Sessions, Skills, Agents detail, Office 3D, Activity, Analytics, Reports, System, Git, Files, Memory, Search, Logs, Terminal), configurar `data/configured-skills.json` e refinar detecção de botToken.
+- [ ] **Mission Control — n8n usage tracking em `/costs` (retomar 15/05)**: investigação de 14/05 confirmou que OpenClaw/GPT-5.x roda via subscription Pro 5x, mas n8n usa API keys reais. Próximos passos: habilitar `saveDataSuccessExecution='all'` nos 3 workflows LLM, criar coletor `collect-n8n-usage` com cron 15min, adicionar pricing de `gpt-5.2`, `text-embedding-3-small`, `tts-1-hd` e `claude-sonnet-4-6`, e criar categoria n8n em `/costs`.
+- [ ] **Mission Control — 12 módulos restantes sem PRD próprio**: após 14/05, 11/23 módulos estão fechados (Dashboard, System, Files, Agents, Memory, Office 3D, Activity, Cron, Sessions, Skills, Costs). Restam: Tasks, Agents detail, Logs, Terminal, Git, Workflows, Search, Analytics, Reports, Settings, Calendar, About/Actions.
+- [ ] **Mission Control — refinamentos pós-14/05**: KG sync Mac→VPS via cron rsync 1h para liberar busca semântica; filtro `/memory?agent=`; refinar regex de detecção de `botToken` em `auth-profiles.json`.
 
 - [ ] **OpenClaw fallback — adicionar Anthropic como 3º fallback**: `anthropic:default` está configurado, mas fora de `agents.defaults.model.fallbacks`; após upgrade para ChatGPT Pro não é urgente, mas evita queda total se o mesmo auth profile OpenAI estourar em pico.
 - [ ] **Bling Token Refresh — Filial com erro 403/inativa no Bling**: heartbeat de 08/05 10:01 BRT confirmou Matriz OK e Filial com `403 — empresa vinculada ao token está inativa`. Impacto provável: refresh/conexão da Filial pode falhar até corrigir empresa/token no Bling. Verificar antes de depender de emissão fiscal pela Filial.

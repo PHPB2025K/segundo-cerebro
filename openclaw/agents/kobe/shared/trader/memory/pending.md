@@ -1,6 +1,6 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-12_
+_Atualizado: 2026-05-14_
 
 ## 🔴 Prioridade Alta
 

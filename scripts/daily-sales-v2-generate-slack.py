@@ -609,7 +609,7 @@ def _top_products_section(title: str, top_skus: list[tuple[str, int]], limit: in
         lines.append(f"• {name} — {qty} pedidos")
     if not lines:
         lines.append("• Sem produtos suficientes para ranking confiável.")
-    return f"🏆 __{title}__\n" + "\n".join(lines)
+    return _section(f"🏆 __{title}__", "\n".join(lines))
 
 
 def _merge_top_products(*analyses: dict, limit: int = 5) -> list[tuple[str, int]]:
@@ -818,6 +818,21 @@ def _bullets_from_condensed(items: list[str], prefix: str = "•") -> list[str]:
     return [f"{prefix} {item}" for item in items if item]
 
 
+def _section(title: str, body: str) -> str:
+    """Formata seção no layout Slack aprovado.
+
+    Regra Pedro 2026-05-15: título da seção, uma linha em branco, conteúdo.
+    A separação entre seções é feita por `_join_message` com duas linhas em
+    branco visíveis.
+    """
+    return f"{title}\n\n{body.strip()}"
+
+
+def _join_message(sections: list[str]) -> str:
+    """Duas linhas em branco visíveis entre seções."""
+    return "\n\n\n".join(s.strip() for s in sections if s and s.strip())
+
+
 def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str, dict]) -> str:
     """Mensagem individual para Lucas — Shopee, consumindo Camada Condensadora."""
     d = date.fromisoformat(day)
@@ -846,14 +861,14 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     ]
     for idx, (_, label, account_analysis) in enumerate(account_triplets, 1):
         shopee_lines.append(_shopee_account_metric_line(label, account_analysis, idx))
-    sections.append("VISÃO SHOPEE\n" + "\n".join(shopee_lines))
+    sections.append(_section("VISÃO SHOPEE", "\n".join(shopee_lines)))
 
     top_lines = ["*⚫ Consolidado (3 contas)*"]
     top_lines.extend(_top_products_bullets(_merge_top_products(*shopee_accounts), bold=True))
     for idx, (_, label, account_analysis) in enumerate(account_triplets, 1):
         top_lines.append(f"🟠 *{label} (Shopee {idx}):*")
         top_lines.extend(_top_products_bullets((account_analysis or {}).get("top_skus", []), limit=3))
-    sections.append("TOP PRODUTOS SHOPEE\n" + "\n".join(top_lines))
+    sections.append(_section("TOP PRODUTOS SHOPEE", "\n".join(top_lines)))
 
     # Para Shopee, condensar as 3 contas em no máximo 3 insights totais.
     # A análise por conta fica preservada na memória interna; o Slack recebe o ouro.
@@ -880,10 +895,10 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     else:
         diag_lines = ["• Análise detalhada não disponível para o dia."]
         prio_lines = []
-    sections.append("ANÁLISE DAS CONTAS\n\n" + "\n".join(diag_lines).strip())
-    sections.append("🎯 PRIORIDADES DO DIA\n" + "\n".join(prio_lines))
+    sections.append(_section("ANÁLISE DAS CONTAS", "\n".join(diag_lines)))
+    sections.append(_section("🎯 PRIORIDADES DO DIA", "\n".join(prio_lines)))
     sections.append(f"Dia analisado: {display_date} — 00:00–23:59 BRT")
-    return "\n\n".join(sections)
+    return _join_message(sections)
 
 
 def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[str, dict]) -> str:
@@ -902,15 +917,15 @@ def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[st
     if a and a.get("cancelamentos"):
         _, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
         ml_lines.append(f"• Cancelamentos: {a['cancelamentos']} ({cancel_text})")
-    sections.append("📊 __VISÃO MERCADO LIVRE__\n" + "\n".join(ml_lines))
+    sections.append(_section("📊 __VISÃO MERCADO LIVRE__", "\n".join(ml_lines)))
     if a:
         sections.append(_top_products_section("TOP PRODUTOS MERCADO LIVRE", a.get("top_skus", [])))
     condensed = (a or {}).get("condensed_analysis") or []
     priorities = (a or {}).get("condensed_priorities") or []
-    sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(_bullets_from_condensed(condensed) or ["• Camada Condensadora ausente; QA deve bloquear o envio real."]))
-    sections.append("🎯 __PRIORIDADES DO DIA__\n" + "\n".join(_bullets_from_condensed(priorities)))
+    sections.append(_section("🔍 __ANÁLISE DA CONTA__", "\n".join(_bullets_from_condensed(condensed) or ["• Camada Condensadora ausente; QA deve bloquear o envio real."])))
+    sections.append(_section("🎯 __PRIORIDADES DO DIA__", "\n".join(_bullets_from_condensed(priorities))))
     sections.append(f"Dia analisado: {display_date} — 00:00–23:59 BRT")
-    return "\n\n".join(sections)
+    return _join_message(sections)
 
 
 def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[str, dict]) -> str:
@@ -930,15 +945,15 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
         cancel_rate, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
         suffix = " — atenção" if cancel_rate > 10 else ""
         amz_lines.append(f"• Cancelamentos: {a['cancelamentos']} ({cancel_text}){suffix}")
-    sections.append("📊 __VISÃO AMAZON__\n" + "\n".join(amz_lines))
+    sections.append(_section("📊 __VISÃO AMAZON__", "\n".join(amz_lines)))
     if a:
         sections.append(_top_products_section("TOP PRODUTOS AMAZON", a.get("top_skus", [])))
     condensed = (a or {}).get("condensed_analysis") or []
     priorities = (a or {}).get("condensed_priorities") or []
-    sections.append("🔍 __ANÁLISE DA CONTA__\n\n" + "\n".join(_bullets_from_condensed(condensed) or ["• Camada Condensadora ausente; QA deve bloquear o envio real."]))
-    sections.append("🎯 __PRIORIDADES DO DIA__\n" + "\n".join(_bullets_from_condensed(priorities)))
+    sections.append(_section("🔍 __ANÁLISE DA CONTA__", "\n".join(_bullets_from_condensed(condensed) or ["• Camada Condensadora ausente; QA deve bloquear o envio real."])))
+    sections.append(_section("🎯 __PRIORIDADES DO DIA__", "\n".join(_bullets_from_condensed(priorities))))
     sections.append(f"Dia analisado: {display_date} — 00:00–23:59 BRT")
-    return "\n\n".join(sections)
+    return _join_message(sections)
 
 # ---------------------------------------------------------------------------
 # Slack rich_text blocks# ---------------------------------------------------------------------------

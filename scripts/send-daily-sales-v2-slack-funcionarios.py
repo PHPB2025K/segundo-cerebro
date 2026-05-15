@@ -26,6 +26,7 @@ WORKSPACE = Path(__file__).resolve().parent.parent
 ANALYZER = WORKSPACE / "scripts" / "daily-sales-v2-analyzer.py"
 BUILD_PACKAGE = WORKSPACE / "scripts" / "daily-sales-v2-build-package.py"
 LAYERED_PREVIEW = WORKSPACE / "scripts" / "daily-sales-v2-layered-preview.py"
+SHOPEE_LAYER8 = WORKSPACE / "scripts" / "daily-sales-v2-shopee-layer8-runner.py"
 GENERATOR = WORKSPACE / "scripts" / "daily-sales-v2-generate-slack.py"
 
 
@@ -78,6 +79,7 @@ def main() -> int:
     run_step([sys.executable, str(ANALYZER), day, analyzer_mode], "Análise profunda por conta")
     run_step([sys.executable, str(BUILD_PACKAGE), day, "--write"], "Pacote validado / Data readiness")
     run_step([sys.executable, str(LAYERED_PREVIEW), day], "Ciclo em 7 camadas / QA shadow")
+    run_step([sys.executable, str(SHOPEE_LAYER8), day], "Camada 8 Shopee / síntese consolidada")
     run_step([sys.executable, str(GENERATOR), day, generator_mode], "Geração/Envio Slack")
     print(final)
     return 0

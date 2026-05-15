@@ -51,6 +51,7 @@ MEMORY_BASE = (
 )
 ACCOUNTS_DIR = MEMORY_BASE / "accounts"
 REPORTS_DIR = WORKSPACE / "reports" / "daily-sales-report-v2" / "phase4"
+LAYERED_RUNS_DIR = WORKSPACE / "reports" / "daily-sales-report-v2" / "layered" / "runs"
 
 OP_ITEM = "Slack Pedro Read Only"
 OP_VAULT = "OpenClaw"
@@ -809,6 +810,16 @@ def _shopee_consolidated_priorities(accounts: list[tuple[str, str, dict | None]]
     ]
 
 
+def _load_shopee_layer8(day: str) -> dict | None:
+    path = LAYERED_RUNS_DIR / day / "lucas" / "camada-8-shopee-consolidada.json"
+    if not path.exists():
+        return None
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data.get("analysis_lines"), list) or not isinstance(data.get("priority_lines"), list):
+        raise ValueError("Camada 8 Shopee inválida: analysis_lines/priority_lines ausentes")
+    return data
+
+
 def _temporal_reading(comparisons: dict, pedidos: int, gmv: float) -> list[str]:
     """Gera leitura temporal completa vs 30d, 60d, mesmo dia da semana."""
     lines = []
@@ -1002,7 +1013,11 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     # Para Shopee, condensar as 3 contas em no máximo 3 insights totais.
     # A análise por conta fica preservada na memória interna; o Slack recebe o ouro.
     available = [a for a in shopee_accounts if a]
-    if available:
+    layer8 = _load_shopee_layer8(day)
+    if layer8:
+        diag_lines = [str(x) for x in layer8["analysis_lines"]]
+        prio_lines = [str(x) for x in layer8["priority_lines"]]
+    elif available:
         leaders = []
         for a in available:
             if a.get("top_skus"):

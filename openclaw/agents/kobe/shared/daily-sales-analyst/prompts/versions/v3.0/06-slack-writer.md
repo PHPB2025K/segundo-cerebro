@@ -228,10 +228,15 @@ Regras gerais:
 - não inferir venda por catálogo, Ads, planilha ou memória;
 - usar apenas ranking seguro vindo do pacote validado;
 - formato: `[nome do produto] — [pedidos] pedidos — R$ [faturamento]`.
+- produtos com variações vendáveis reais devem aparecer no nível da **variação**, não no nível da família.
+- se a Condensadora/6B autorizar “agregado” mas esse agregado esmagar variações reais, a autorização é inválida e deve ser recusada.
+- exemplo crítico obrigatório em qualquer plataforma: `Conjunto de 5 Potes de Vidro Redondos` não pode virar uma linha única quando há tampa preta/cinza/vermelha. As linhas corretas são por variação vendável: `Tampa Preta`, `Tampa Cinza`, `Tampa Vermelha`, cada uma somente com seu volume próprio.
 
 #### Shopee
 
 - Consolidar produtos equivalentes nas 3 contas quando aplicável.
+- Consolidar apenas equivalentes da **mesma variação vendável**. Não juntar variações diferentes na mesma família.
+- Exemplo obrigatório: `IMB501P_T`/filhos da tampa preta somam em `Conjunto 5 Potes de Vidro Redondos Tampa Preta`; `IMB501C_T` em Tampa Cinza; `IMB501V_T` em Tampa Vermelha. Nunca escrever apenas `Conjunto de 5 Potes de Vidro Redondos` como agregado de cores.
 - Indicar conta quando:
   - o produto vendeu em menos de 2 contas; ou
   - a Condensadora citou a conta como relevante no dia.
@@ -249,6 +254,8 @@ Regras gerais:
 #### Amazon
 
 - Default: título real do pedido. O título do pedido é a fonte primária.
+- Quando o título real permitir identificar variação vendável (ex.: cor/tampa/tamanho), preservar a variação no texto visível. Não encurtar para família genérica.
+- Exemplo obrigatório: se o pedido indicar `preto`, a linha deve manter `Tampa Preta`/`preto`; não trocar por `Conjunto de 5 Potes de Vidro Redondos` genérico.
 - ASIN visível apenas quando:
   - o título for ambíguo, com mesmo título para produtos diferentes; ou
   - a Granular marcou risco médio de identificação para aquele item.

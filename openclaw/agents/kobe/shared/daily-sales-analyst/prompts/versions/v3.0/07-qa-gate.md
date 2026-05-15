@@ -339,11 +339,15 @@ Validar:
 - ranking não inferiu venda por catálogo, Ads, planilha ou memória;
 - formato numérico está correto;
 - produtos equivalentes foram consolidados quando aplicável.
+- consolidação de equivalentes para no nível da **variação vendável/SKU pai da variação**, não na família inteira.
+- qualquer menção relevante a produto com variações reais preserva a variação quando o dado permite identificar cor/tamanho/modelo.
 
 ### Shopee
 
 Validar:
-- produtos equivalentes consolidados nas 3 contas quando aplicável;
+- produtos equivalentes consolidados nas 3 contas quando aplicável, mas somente dentro da mesma variação vendável;
+- variações reais do mesmo produto não foram esmagadas em uma família única;
+- exemplo crítico: Conjunto 5 Potes Redondos de Vidro deve separar tampa preta (`IMB501P`), tampa cinza (`IMB501C`) e tampa vermelha (`IMB501V`), cada uma entrando no ranking apenas se seu volume próprio justificar;
 - conta indicada quando produto vendeu em menos de 2 contas ou quando a conta foi relevante na Condensadora;
 - não há análise dentro do Top Produtos.
 
@@ -351,6 +355,9 @@ Bloquear se:
 - dado de uma conta virar conclusão sobre canal;
 - produto aparecer sem segurança;
 - conta relevante for omitida e isso induzir erro.
+- Top Produtos ou análise consolidar família inteira quando existem variações vendáveis diferentes;
+- uma variação de cor/tamanho desaparecer por ter sido somada em outra ou em família genérica;
+- texto usar `Conjunto de 5 Potes de Vidro Redondos` sem tampa/cor quando a origem identifica `IMB501P`, `IMB501C` ou `IMB501V`.
 
 ### Mercado Livre
 
@@ -371,6 +378,7 @@ Bloquear se:
 
 Validar:
 - título real do pedido é fonte primária;
+- variação vendável identificável no título real foi preservada no texto visível;
 - ASIN aparece só quando necessário: título ambíguo ou risco médio de identificação;
 - alias manual não aparece;
 - se título e ASIN forem ausentes, item não aparece nominalmente;
@@ -378,6 +386,7 @@ Validar:
 
 Bloquear se:
 - Amazon inferir produto por catálogo, Ads, planilha, memória ou alias manual;
+- título real com variação/cor/tamanho for encurtado para família genérica;
 - alias manual dominar título real;
 - ASIN/produto bloqueado aparecer nominalmente;
 - produto inseguro aparecer no ranking.

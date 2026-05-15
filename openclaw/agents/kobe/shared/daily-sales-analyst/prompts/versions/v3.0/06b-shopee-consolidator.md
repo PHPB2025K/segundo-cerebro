@@ -32,6 +32,10 @@ A análise precisa responder:
 - Não repetir uma condensadora com outras palavras.
 - Não inventar dado faltante.
 - Não incluir Atacado/Bling.
+- Não consolidar produtos no nível de família quando existem variações vendáveis reais.
+- Regra crítica de ranking/menção de produto: SKUs filhos/listings devem ser somados somente até o **SKU pai da variação vendável**, nunca até a família inteira.
+- Exemplo obrigatório: `Conjunto de 5 Potes de Vidro Redondos` não pode aparecer como agregado único se o dado identifica tampa preta/cinza/vermelha. Usar as variações `IMB501P` (tampa preta), `IMB501C` (tampa cinza) e `IMB501V` (tampa vermelha), cada uma com seu volume próprio.
+- Se a camada individual trouxer `IMB501P_T`, `KITIMB501P_T` ou equivalente, tratar como tampa preta; `IMB501C_T` como tampa cinza; `IMB501V_T` como tampa vermelha. Nunca trocar isso por “potes redondos” genérico.
 - Não usar frases genéricas como “acompanhar”, “monitorar”, “usar de forma complementar” sem evidência.
 - A saída deve ser densa, curta e acionável.
 - A seção de análise deve manter o formato aprovado do Slack Writer: título da conta + **um parágrafo curto, condensado e profundo**.

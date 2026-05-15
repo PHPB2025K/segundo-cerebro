@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-15 18:38 BRT — tópico Gestão de Funcionários pendente de thread_id_
+_Atualizado: 2026-05-15 18:43 BRT — tópico Gestão de Funcionários roteado_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -79,7 +79,6 @@ _Atualizado: 2026-05-15 18:38 BRT — tópico Gestão de Funcionários pendente 
 - [ ] **Daily Sales Report v2 — finalizar validação Shopee multi-conta em produção**: garantir que Budamix Store, Budamix Oficial e Budamix Shop passam por condensadoras individuais; a Consolidadora Shopee gera `ANÁLISE DAS CONTAS`; Slack Writer apenas formata no layout aprovado do print do Lucas.
 - [ ] **Daily Sales Report v2 — finalizar shadow completo da Fase 3 para Yasmin e Leonardo**: Lucas/Shopee já fechou com aprovação e ressalvas; falta concluir o shadow por destinatário de Yasmin/ML e Leonardo/Amazon, salvar comparativos lado a lado e consolidar o veredito para abrir a Fase 4 de decisão do Pedro.
 
-- [ ] **Gestão de Funcionários — capturar thread ID do novo tópico e remapear rotina semanal**: Pedro criou em 15/05 um tópico específico para Gestão de Funcionários e determinou que todo assunto dessa frente, inclusive a rotina semanal “✅ Rotina semanal de Gestão de Funcionários”, deve ir obrigatoriamente nesse tópico. Próximo passo: Pedro enviar uma mensagem simples dentro do novo tópico (ex.: “teste gestão funcionários”) para capturar o `message_thread_id`; depois atualizar o cron `Gestão Funcionários — atas semanais Slack` para anunciar ali. Até lá, não enviar resultado no tópico Financeiro.
 - [ ] **Adapta — aguardar retorno sobre cobranças recorrentes**: Pedro recebeu mensagem pronta em 07/05 para enviar como PEDRO HENRIQUE PERON BROGLIO. Se a empresa negar cancelamento/estorno, próxima frente é contestação pelo banco/cartão usando descritor `TAR PLANO ADAPT` e valores R$ 497,00/R$ 126,75.
 - [ ] **Guarani Sistemas — preparar minuta de distrato e só pagar após aceite/assinatura**: em 13/05, Guarani aceitou a proposta global de **R$ 7.500,00 à vista** e confirmou baixa/quitação dos 7 títulos/NFs em aberto, sem protesto/negativação/cobrança externa, com isenção do aviso prévio. Próximo passo: enviar minuta de distrato para análise. Ponto crítico: a minuta deve preservar **quitação integral e definitiva**, **sem saldo remanescente/cobrança futura**, **sem reconhecimento de dívida**, e evitar que a cláusula “distrato parte da sua empresa por ausência de mão de obra” vire admissão ampla de culpa. Recomendação: não pagar antes de distrato aprovado/assinado ou, no mínimo, aceite escrito inequívoco dos termos finais.
 

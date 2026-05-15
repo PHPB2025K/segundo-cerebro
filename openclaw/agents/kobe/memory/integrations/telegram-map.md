@@ -33,7 +33,7 @@ tags:
 | 13 | ⚙️ Operacional & Sistema | Crons, integrações, VPS, backups, skills |
 | PENDENTE | 🚨 Alertas | Resumo diário consolidado de watchdogs/monitores técnicos — aguarda captura do thread_id real |
 | 10222 | Daily Sales Report - SLACK | Desenvolvimento, previews, alertas, QA, avisos e qualquer comunicação sobre o Daily Sales Report dos funcionários no Slack |
-| PENDENTE | Gestão de Funcionários | Assuntos de gestão específica de funcionários da empresa e rotina semanal `✅ Rotina semanal de Gestão de Funcionários` — aguarda captura do thread_id real |
+| 10469 | Gestão de Funcionários | Assuntos de gestão específica de funcionários da empresa e rotina semanal `✅ Rotina semanal de Gestão de Funcionários` |
 
 ## Formato de delivery para crons
 ```
@@ -53,4 +53,4 @@ to: -1003730816228:topic:{thread_id}
 | Daily Sales v2 — Marketplace Rules Watch Refresh | 10222 | Daily Sales Report - SLACK |
 | Daily Sales v2 — Consolidação Semanal/Mensal Trader | 10222 | Daily Sales Report - SLACK |
 | Daily Sales v2 — Himmel/Granola Context Sync | 10222 | Daily Sales Report - SLACK |
-| Gestão Funcionários — atas semanais Slack | PENDENTE | Gestão de Funcionários — aguarda thread_id real; não usar Financeiro |
+| Gestão Funcionários — atas semanais Slack | 10469 | Gestão de Funcionários |

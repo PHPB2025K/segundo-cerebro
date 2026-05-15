@@ -69,7 +69,7 @@ Toda sexta-feira no fim do dia:
 - Pedro criou em 15/05/2026 um tópico específico no Kobe Hub para **Gestão de Funcionários**.
 - Toda comunicação, alerta, resumo, follow-up ou assunto relacionado à gestão específica de funcionários da empresa deve ir obrigatoriamente nesse tópico, não no Financeiro nem no RH genérico.
 - A rotina semanal **“✅ Rotina semanal de Gestão de Funcionários”** deve anunciar o resultado apenas nesse tópico específico.
-- Estado técnico: thread ID ainda precisa ser capturado por uma mensagem real dentro do novo tópico; até capturar, não enviar a rotina no tópico Financeiro.
+- Thread ID confirmado: **10469** (`-1003730816228:topic:10469`). A rotina semanal já deve anunciar apenas nesse tópico.
 
 ## Segurança e privacidade
 - Não persistir dados sensíveis desnecessários.

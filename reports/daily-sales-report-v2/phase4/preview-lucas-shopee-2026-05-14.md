@@ -33,10 +33,22 @@ TOP PRODUTOS SHOPEE
 
 ANÁLISE DAS CONTAS
 
-*⚫ Consolidado (3 contas):* A Shopee não deve ser lida como uma conta única: Budamix Store puxou 47,3% dos pedidos, enquanto Budamix Shop carregou 42,0% do faturamento. O caminho de escala é preservar os campeões consolidados (Jarra Medidora de Vidro 500ml (17), Potes Vidro Redondos Tampa Preta (13), Kit 6 Canecas Tulipa 250ml (10)) sem fazer as três lojas disputarem o mesmo papel; Budamix Oficial exige atenção separada porque o cancelamento de 11,1% pode contaminar qualquer aumento de tráfego.
-🟠 *Budamix Store (Shopee 1):* é a conta de volume da Shopee: 35 pedidos com ticket R$ 35,01, puxada por Jarra Medidora de Vidro 500ml (17 pedidos) e Potes Vidro Redondos Tampa Preta. O risco não é preço isolado; é perder ranking/tráfego nos campeões que sustentam a base de pedidos, principalmente com top 3 em 91,4%.
-🟠 *Budamix Oficial (Shopee 2):* ficou como conta de menor tração: 16 pedidos, ticket R$ 76,42 e cancelamento de 11,1%. A leitura é operacional antes de escala: limpar causa dos cancelamentos e confirmar se Kit 2 Potes de Vidro 1520ml Retangular perdeu exposição; aumentar tráfego sem resolver isso só amplifica venda suja.
-🟠 *Budamix Shop (Shopee 3):* entregou o melhor ticket (R$ 76,93) e funciona como segundo vetor de faturamento, com Kit 6 Canecas Retas 200ml e Kit 6 Canecas Tulipa 250ml carregando mix diferente da Store. Mesmo abaixo da média de 30d (-19,0% em pedidos), ela é a conta que mais ajuda a escalar sem canibalizar os campeões de volume.
+*⚫ Consolidado (3 contas):*
+• Leitura: Shopee não é uma conta única — Budamix Store puxou 47,3% dos pedidos; Budamix Shop carregou 42,0% do faturamento.
+• Escala: preservar campeões consolidados (Jarra Medidora de Vidro 500ml (17), Potes Vidro Redondos Tampa Preta (13), Kit 6 Canecas Tulipa 250ml (10)) sem fazer as três lojas disputarem o mesmo papel.
+• Risco: Budamix Oficial tem cancelamento de 11,1%; qualquer aumento de tráfego precisa passar por essa correção primeiro.
+🟠 *Budamix Store (Shopee 1):*
+• Papel: conta de volume — 35 pedidos | ticket R$ 35,01.
+• Puxadores: Jarra Medidora de Vidro 500ml (17 pedidos) e Potes Vidro Redondos Tampa Preta.
+• Risco: perder ranking/tráfego nos campeões; top 3 concentra 91,4%.
+🟠 *Budamix Oficial (Shopee 2):*
+• Papel: menor tração — 16 pedidos | ticket R$ 76,42.
+• Alerta: cancelamento de 11,1%; tratar causa antes de escalar tráfego.
+• Checagem: confirmar se Kit 2 Potes de Vidro 1520ml Retangular perdeu exposição ou gerou venda suja.
+🟠 *Budamix Shop (Shopee 3):*
+• Papel: segundo vetor de faturamento — melhor ticket (R$ 76,93).
+• Mix: Kit 6 Canecas Retas 200ml e Kit 6 Canecas Tulipa 250ml carregam demanda diferente da Store.
+• Leitura: abaixo da média 30d (-19,0% em pedidos), mas útil para escala sem canibalizar volume.
 
 
 🎯 PRIORIDADES DO DIA

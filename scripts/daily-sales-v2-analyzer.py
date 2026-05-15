@@ -288,21 +288,33 @@ PRODUCT_VARIATION_MAP = {
     "IMB501P": {
         "family": "IMB501",
         "variation_sku": "IMB501P",
-        "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+        "display_name": "Potes Vidro Redondos Tampa Preta",
         "color_terms": ["preto", "preta"],
     },
     "IMB501C": {
         "family": "IMB501",
         "variation_sku": "IMB501C",
-        "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+        "display_name": "Potes Vidro Redondos Tampa Cinza",
         "color_terms": ["cinza"],
     },
     "IMB501V": {
         "family": "IMB501",
         "variation_sku": "IMB501V",
-        "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+        "display_name": "Potes Vidro Redondos Tampa Vermelha",
         "color_terms": ["vermelho", "vermelha"],
     },
+}
+
+SHORT_DISPLAY_NAMES = {
+    "CK4742": "Jarra Medidora Vidro 500ml",
+    "XCP002": "Kit 6 Xícaras Paris 170ml",
+    "SPC002": "Suporte Controle Gamer",
+    "CTL002": "Kit 6 Canecas Tulipa 250ml",
+    "TL250P": "Kit 6 Canecas Tulipa 250ml",
+    "TL250": "Tigela de Vidro 250ml",
+    "914C": "Kit 6 Canequinhas 100ml",
+    "CLR002": "Kit 6 Canecas Lisas 200ml",
+    "KIT6CAR200": "Kit 6 Canecas Retas 200ml",
 }
 
 
@@ -333,6 +345,14 @@ def product_variation_key(raw_sku: str, title: str = "") -> dict:
         if "V" in sku[-3:] or title_has_color(title_l, "IMB501V"):
             return {**PRODUCT_VARIATION_MAP["IMB501V"], "key": "IMB501V"}
         return {**PRODUCT_VARIATION_MAP["IMB501P"], "key": "IMB501P"}
+
+    if sku in SHORT_DISPLAY_NAMES:
+        return {
+            "key": sku,
+            "family": sku,
+            "variation_sku": sku,
+            "display_name": SHORT_DISPLAY_NAMES[sku],
+        }
 
     return {
         "key": sku or (title or "unknown"),
@@ -545,6 +565,9 @@ def _weekday_avg(avg_weekday):
 
 
 def _top_product_name(product):
+    display_name = (product.get("display_name") or "").strip()
+    if display_name:
+        return display_name
     title = (product.get("title") or "").strip()
     if title:
         title = " ".join(title.split())

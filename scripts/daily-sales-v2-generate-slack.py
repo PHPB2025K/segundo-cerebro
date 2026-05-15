@@ -107,13 +107,13 @@ ADS_OWNER = {
 SKU_SUFFIX_RE = re.compile(r"(_T|_BB|_B2|_B|_BAP)$", re.I)
 
 DISPLAY_NAMES: dict[str, str] = {
-    "IMB501P": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
-    "IMB501C": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
-    "IMB501V": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
-    "IMB501PT": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
-    "IMB501T-PRETO": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
-    "IMB501T-CINZA": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
-    "CK4742": "Jarra Medidora de Vidro 500ml",
+    "IMB501P": "Potes Vidro Redondos Tampa Preta",
+    "IMB501C": "Potes Vidro Redondos Tampa Cinza",
+    "IMB501V": "Potes Vidro Redondos Tampa Vermelha",
+    "IMB501PT": "Potes Vidro Redondos Tampa Preta",
+    "IMB501T-PRETO": "Potes Vidro Redondos Tampa Preta",
+    "IMB501T-CINZA": "Potes Vidro Redondos Tampa Cinza",
+    "CK4742": "Jarra Medidora Vidro 500ml",
     "KIT2YW800SQ": "Kit 2 Potes de Vidro 800ml Quadrado",
     "KIT4YW800SQ": "Kit 4 Potes de Vidro 800ml Quadrado",
     "KIT2YW1050": "Kit 2 Potes de Vidro 1050ml Retangular",
@@ -123,14 +123,14 @@ DISPLAY_NAMES: dict[str, str] = {
     "KIT2YW520SQ": "Kit 2 Potes de Vidro 520ml Quadrado",
     "KIT2YW320": "Kit 2 Potes de Vidro 320ml Retangular",
     "KIT6S097": "Kit 6 Potes de Vidro Hermético",
-    "914C": "Kit 6 Canecas Porcelana 200ml",
-    "CTL002": "Kit 6 Canecas Tulipa Porcelana 250ml",
-    "CLR002": "Kit 6 Canecas Lisas Redondas Porcelana",
-    "KIT6CAR200": "Kit 6 Canecas Altas Retas Porcelana 200ml",
+    "914C": "Kit 6 Canequinhas 100ml",
+    "CTL002": "Kit 6 Canecas Tulipa 250ml",
+    "CLR002": "Kit 6 Canecas Lisas 200ml",
+    "KIT6CAR200": "Kit 6 Canecas Retas 200ml",
     "KIT3S099": "Kit 3 Potes de Vidro Hermético",
     "K6CAN250": "Kit 6 Canecas 250ml",
-    "XCP002": "Xicara Porcelana com Pires",
-    "SPC002": "Suporte de Controle Gamer",
+    "XCP002": "Kit 6 Xícaras Paris 170ml",
+    "SPC002": "Suporte Controle Gamer",
     "PCM001": "Porta-Copos MDF",
     "TL250": "Tigela de Vidro 250ml",
     "TL250B": "Tigela de Vidro 250ml",
@@ -215,10 +215,13 @@ def display_name_from_product(raw_sku: str, marketplace_title: str = "", platfor
     Isso evita erro crítico de renomear pedido real de um ASIN como se fosse
     outro produto apenas porque o SKU tem um alias manual antigo/incorreto.
     """
+    mapped = display_name_from_sku(raw_sku)
+    if mapped and not mapped.startswith("Produto Budamix") and mapped != "Produto não identificado":
+        return mapped
     title_name = clean_marketplace_title(marketplace_title)
     if title_name:
         return title_name
-    return display_name_from_sku(raw_sku)
+    return mapped
 
 
 def _humanize_sku(canon: str) -> str:

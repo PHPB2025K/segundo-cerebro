@@ -17,14 +17,17 @@ TOP PRODUTOS SHOPEE
 *• Kit 6 Canecas Tulipa 250ml — 10 pedidos*
 *• Kit 6 Canecas Retas 200ml — 7 pedidos*
 *• Kit 2 Potes de Vidro 800ml Quadrado — 5 pedidos*
+
 🟠 *Budamix Store (Shopee 1):*
 • Jarra Medidora de Vidro 500ml — 17 pedidos
 • Potes Vidro Redondos Tampa Preta — 13 pedidos
 • Kit 2 Potes de Vidro 800ml Quadrado — 2 pedidos
+
 🟠 *Budamix Oficial (Shopee 2):*
 • Kit 2 Potes de Vidro 1520ml Retangular — 4 pedidos
 • Kit 6 Canequinhas 100ml — 3 pedidos
 • Potes Vidro Redondos Tampa Cinza — 3 pedidos
+
 🟠 *Budamix Shop (Shopee 3):*
 • Kit 6 Canecas Retas 200ml — 7 pedidos
 • Kit 6 Canecas Tulipa 250ml — 6 pedidos
@@ -34,8 +37,11 @@ TOP PRODUTOS SHOPEE
 ANÁLISE DAS CONTAS
 
 ⚫ *Consolidado (3 contas):* As três contas travaram quase todo o giro nos top 3, sem ativação relevante de mix intermediário ou cauda e com concentração extrema de risco operacional: qualquer instabilidade nos líderes pode ameaçar todo o canal. O volume geral foi sustentado apenas graças à soma dos campeões das três contas — não houve complementaridade real de mix; a canibalização estrutural é o maior risco latente.
+
 🟠 *Budamix Store (Shopee 1):* A conta gira puramente em cima dos campeões, com cauda praticamente nula e dependência total de operações sem ruptura, preço ou prazo nos top 3; qualquer incidente nesses itens gera queda abrupta. Não há sustentação real de estabilidade: é erro tratar o canal como saudável enquanto o mix segue morto.
+
 🟠 *Budamix Oficial (Shopee 2):* Aqui, o mix intermediário segue zerado e todos os resultados se concentram nos campeões, sem sinal de recuperação estrutural do sortimento; insistir em ativar intermediários é desperdício operacional. Volume menor e ticket alto protegem faturamento, mas o quadro só muda se houver venda fora do topo nos próximos dias.
+
 🟠 *Budamix Shop (Shopee 3):* O giro foi moderado e o ticket alto aliviou a queda de volume, mas a leitura de mix é de concentração extrema: só houve respiro pontual da cauda, insuficiente para sinalizar expansão real ou saúde de mix. Operação segue risco funcional — oscilações nos tops explicam a conta e o canal inteiro.
 
 

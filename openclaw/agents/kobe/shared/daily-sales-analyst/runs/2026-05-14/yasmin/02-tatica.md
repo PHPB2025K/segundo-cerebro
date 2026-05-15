@@ -1,33 +1,35 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Decisão tática
 
-- Dado que a tese é "ganho de patamar com ressalva de confirmação" e a memória está vazia, a postura tática correta é **observar sem alterar** — não há base histórica para distinguir se o pico de hoje é orgânico, ADS ou evento pontual, e nenhuma das hipóteses está confirmada.
-- Se o risco principal é que o patamar percebido seja sustentado por componente não identificado (ADS/evento), a decisão prioritária é **entender a composição do resultado de hoje antes de qualquer movimento de verba ou exposição** — escalar ADS ou validar ranking sem saber o que gerou os 140 pedidos é agir sobre premissa errada.
-- Dado que ticket e volume subiram juntos — comportamento atípico de crescimento orgânico puro — é prudente **checar se houve intervenção ativa de Himmel (ADS, boost, campanha) nos últimos 2 dias** antes de calibrar expectativa de patamar; se houve, o resultado de hoje tem componente efêmero que não pode ser tratado como novo piso.
-- A série de quintas é volátil (98→81→115→75→140) e a memória está sem âncoras: **nenhuma ação forte** (ajuste de ADS, mudança de mix, escalonamento de verba) é sustentada pelos dados disponíveis. A tática é coletar mais 2–3 ciclos antes de decidir.
+- **Dado que a tese estratégica é inconclusiva** — spike positivo de magnitude excepcional (+51,8% vs mesma quarta-feira histórica, +43,4% vs 30d) sem causa documentada — a postura tática correta é observar, não agir. Um único dia acima de todos os benchmarks não é base para decisão estrutural.
+- **Dado que o risco principal é concentração na família IMB501** (~50% dos pedidos em um dia já excepcionalmente alto), a prioridade é entender se o spike veio de exposição ou ADS antes de qualquer movimento no mix ou na verba. Proteger o campeão precede qualquer teste de vetor secundário.
+- **Dado que a memória está em template vazio** (weekly e monthly sem tese real, último diário de 12/05), a janela dos próximos 2–3 dias é a primeira oportunidade real de construir base. Ação forte agora, sem esse contexto, é decisão sobre terreno desconhecido.
+- **Dado que o 7d estava deprimido**, o contraste hoje vs 7d é parcialmente artificial. A referência confiável para os próximos dias é o 30d e os mesmos dias da semana — e não o volume de hoje como novo normal.
 
 ---
 
 ### O que fazer hoje
 
-- **Yasmin:** checar com Himmel se houve intervenção de ADS ML nos últimos 2 dias (boost, campanha, ajuste de lance) — a elevação simultânea de volume e ticket é incompatível com crescimento orgânico puro, e identificar se houve intervenção ativa é a checagem que valida ou derruba a tese de patamar — se Himmel confirmar intervenção ativa, o resultado de hoje tem componente efêmero; se não houver intervenção, o sinal de patamar ganha peso e justifica observação atenta nos próximos 2 dias.
+- **Yasmin:** verificar com Himmel se houve alguma ação de ADS ML nos dias 13/05 ou 14/05 (ajuste de verba, campanha ativada, segmentação alterada) — a causa do spike ainda não tem explicação documentada, e exposição paga é a hipótese mais testável de imediato — se houver ação ADS confirmada nesse período, o volume de hoje é dependente de campanha e a expectativa de sustentação precisa ser calibrada à duração da ação; se não houver, o volume é candidato a orgânico e muda o peso da observação nos próximos dias.
 
-- **Yasmin:** observar GMV dos próximos 2 dias úteis (05-15 e 05-16) com referência explícita ao patamar de R$4.500 definido pela Estratégica — a tese de ganho de patamar só se sustenta se o GMV confirmar a faixa acima de R$4.500 em pelo menos 2 dos próximos 3 dias; retorno consistente à faixa R$3.000–3.500 classifica hoje como pico episódico e reverte a tese — sinal de resultado: GMV acima de R$4.500 em 2 dos próximos 3 dias confirma patamar; abaixo disso, reclassifica hoje como outlier.
+- **Yasmin:** checar a posição dos anúncios líderes da família IMB501 (potes de vidro redondos) e comparar com a última referência disponível (12/05 ou anterior) — com 50% dos pedidos concentrados nessa família num dia fora da curva, é fundamental saber se o ranking dos líderes está estável, subiu, ou se há sinal de volatilidade — se posição estável ou ganha, o spike tem base orgânica sólida e sustentação mais provável; se posição instável ou com queda registrada, o volume pode ser bolha de exposição temporária.
 
-- **Yasmin:** verificar posição dos anúncios líderes hoje versus 7 dias atrás — dado que não há memória de histórico de ranking documentada, este é o momento de estabelecer a linha de base antes de qualquer decisão de exposição — sinal de resultado: posição estável ou melhorada confirma que o resultado de hoje não foi acompanhado de degradação de ranking; queda de posição em 3+ anúncios líderes acende alerta de exposição e justifica alinhamento com Himmel.
+- **Yasmin:** registrar o volume de amanhã (quinta-feira, 15/05) com leitura explícita frente ao benchmark do mesmo dia da semana (média histórica das quintas disponíveis) — esse é o primeiro ponto de confirmação da tese estratégica: volume acima de 100 pedidos sustenta hipótese de aceleração de patamar; volume abaixo de 80 refuta e classifica hoje como pico isolado.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Himmel para escalar ADS ML agora:** a hipótese de que o pico de hoje é orgânico não está confirmada — escalar verba sobre componente que pode ser já ADS ativo amplifica custo sem garantia de resultado, e a memória vazia impede saber qual é o nível de ADS atual versus resultado orgânico.
-- **Não tratar o resultado de hoje como novo piso operacional:** calibrar expectativas, planejamento de estoque ou metas semanais com base nos 140 pedidos de hoje é prematuro — a tese exige 2–3 dias de confirmação, e a série de quintas documenta volatilidade alta (pico anterior de 115 foi seguido por 75 na quinta seguinte).
-- **Não ajustar mix ou priorizar novos produtos com base no ticket elevado de hoje:** a elevação de ticket pode refletir mix temporário do evento/campanha — expandir apostas de mix antes de confirmar que o perfil de comprador se sustenta é decisão sem evidência; aguardar ticket das próximas sessões para avaliar se R$46,71 é o novo padrão ou foi pontual.
+- **Não classificar hoje como confirmação de novo patamar nem ajustar expectativas operacionais para cima** — a base é um único dia excepcionalmente acima de todos os benchmarks, com memória rasa e sem causa identificada. Reclassificar o patamar da conta exige pelo menos 2 dias consecutivos acima de R$5.000 GMV; não chegamos lá.
+
+- **Não acionar Himmel para aumentar verba ADS ML com base no volume de hoje** — se o spike já foi gerado por ação de ADS, aumentar sobre o topo da campanha pode queimar verba sem retorno adicional; se foi orgânico, mexer em ADS antes de entender a causa distorce a leitura dos próximos dias. O alinhamento com Himmel, se necessário, vem depois da checagem de ADS descrita acima.
+
+- **Não testar vetores secundários (canequinhas, KITs herméticos) com ação ativa** — enquanto a causa do spike na família IMB501 não estiver entendida e o volume dos próximos 2 dias não confirmar sustentação, qualquer movimento no mix cria ruído que dificulta a leitura. Testar segundo vetor faz sentido depois que o campeão estiver com comportamento estabilizado e compreendido.
 
 ---
 
 ### Escalonamento
 
-**observar** — Yasmin resolve internamente por mais 2 ciclos.
+**Observar** — Yasmin resolve internamente por enquanto.
 
-A conta está em tese de ganho de patamar, mas com memória vazia e componente de resultado não identificado. Não há risco operacional iminente (reputação, Full, cancelamento sistêmico) que justifique escalação imediata. A checagem de Himmel (se houve intervenção ativa de ADS) é alinhamento de contexto, não acionamento de mudança. Se em 2–3 dias o GMV se mantiver acima de R$4.500 e Yasmin confirmar que houve intervenção ADS ativa, o escalonamento natural é "alinhar com Himmel" para avaliar continuidade da campanha sobre base mais sólida. Se o GMV retornar à faixa R$3.000–3.500, a tese de patamar cai e Yasmin mantém observação sem ação — sem necessidade de Kobe neste estágio.
+O volume de hoje é positivo mas não tem âncora suficiente para acionar Himmel ou qualquer ajuste estrutural. A prioridade é fechar a lacuna de informação (causa do spike, posição dos anúncios líderes) sem alterar a operação. Se amanhã (quinta) o volume se sustentar acima de 100 pedidos e a checagem de ADS confirmar que não houve ação recente, o sinal migra para "possível aceleração orgânica" e Yasmin alinha com Himmel para entender se há espaço de otimização de exposição sem aumentar verba. Se o volume recuar abaixo de 80, o dia de hoje é classificado como pico isolado e a observação retorna ao ritmo normal sem escalonamento.

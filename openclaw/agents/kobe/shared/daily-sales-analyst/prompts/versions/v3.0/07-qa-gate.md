@@ -316,9 +316,17 @@ Bloquear se:
 ### Mercado Livre
 
 Validar:
-- título real do anúncio/produto;
-- consolidação dentro da plataforma quando aplicável;
-- sem SKU cru.
+- ranking vem do pacote validado por variação vendável;
+- SKUs filhos do mesmo produto/variação foram consolidados no SKU pai da variação;
+- variações reais do mesmo produto não foram esmagadas em uma família única;
+- exemplo crítico: Conjunto 5 Potes Redondos de Vidro deve separar tampa preta (`IMB501P`), tampa cinza (`IMB501C`) e tampa vermelha (`IMB501V`), cada uma entrando no ranking apenas se seu volume próprio justificar;
+- `platform_item_id`/MLB não foi usado para juntar cores/tamanhos diferentes;
+- sem SKU cru visível.
+
+Bloquear se:
+- Top Produtos consolidar família inteira quando existem variações vendáveis diferentes;
+- uma variação de cor/tamanho desaparecer por ter sido somada em outra;
+- o texto afirmar liderança de um produto agregado sem separar as variações que realmente venderam.
 
 ### Amazon
 

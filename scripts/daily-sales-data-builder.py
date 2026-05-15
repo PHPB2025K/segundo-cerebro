@@ -23,6 +23,7 @@ from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+import re
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -241,35 +242,122 @@ def fetch_same_weekday(sb, date_str: str, account_slug: str, count: int = 4) -> 
 # Metrics computation
 # ---------------------------------------------------------------------------
 
+SKU_SUFFIX_RE = re.compile(r"(_T|_BB|_B2|_B|_BAP)$", re.I)
+
+PRODUCT_VARIATION_MAP: dict[str, dict[str, Any]] = {
+    # Conjunto de 5 Potes Redondos de Vidro — variações por cor da tampa.
+    # Regra Pedro 2026-05-15: não consolidar a família inteira em uma linha.
+    # Consolidar SKUs filhos por variação vendável: IMB501P / IMB501C / IMB501V.
+    "IMB501P": {
+        "family": "IMB501",
+        "variation_sku": "IMB501P",
+        "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+        "color_terms": ["preto", "preta"],
+    },
+    "IMB501C": {
+        "family": "IMB501",
+        "variation_sku": "IMB501C",
+        "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+        "color_terms": ["cinza"],
+    },
+    "IMB501V": {
+        "family": "IMB501",
+        "variation_sku": "IMB501V",
+        "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+        "color_terms": ["vermelho", "vermelha"],
+    },
+}
+
+
+def normalize_sku(raw_sku: str) -> str:
+    sku = (raw_sku or "").strip().upper()
+    if not sku:
+        return ""
+    return SKU_SUFFIX_RE.sub("", sku)
+
+
+def title_has_color(title_l: str, variation_sku: str) -> bool:
+    return any(re.search(rf"\b{re.escape(term)}\b", title_l) for term in PRODUCT_VARIATION_MAP[variation_sku]["color_terms"])
+
+
+def product_variation_key(raw_sku: str, title: str = "") -> dict[str, Any]:
+    """Return canonical sellable-variation key for product ranking.
+
+    Important: this intentionally groups children that represent the same
+    sellable variation, but never collapses all color variations into one
+    product family line. Example: IMB501P_T and KITIMB501P_T map to IMB501P;
+    IMB501C_T maps to IMB501C; IMB501V_T maps to IMB501V.
+    """
+    sku = normalize_sku(raw_sku)
+    raw_upper = (raw_sku or "").strip().upper()
+    title_l = (title or "").lower()
+
+    if "IMB501" in raw_upper or "IBM501" in raw_upper:
+        # SKU is the strongest signal for this family. Color in title is only
+        # fallback when SKU is generic/legacy.
+        if "C" in sku[-3:] or title_has_color(title_l, "IMB501C"):
+            return {**PRODUCT_VARIATION_MAP["IMB501C"], "key": "IMB501C"}
+        if "V" in sku[-3:] or title_has_color(title_l, "IMB501V"):
+            return {**PRODUCT_VARIATION_MAP["IMB501V"], "key": "IMB501V"}
+        # PT, P, PRETO and unknown legacy variants default to black only when
+        # the SKU itself belongs to the IMB501 family and does not signal C/V.
+        return {**PRODUCT_VARIATION_MAP["IMB501P"], "key": "IMB501P"}
+
+    return {
+        "key": sku or (title or "unknown"),
+        "family": sku or "unknown",
+        "variation_sku": sku,
+        "display_name": "",
+    }
+
 def compute_metrics(orders: list[dict], cancelled: list[dict]) -> dict[str, Any]:
     n = len(orders)
     gmv = sum(float(o.get("total_amount") or 0) for o in orders)
     ticket = gmv / n if n else 0
 
     total_items = 0
-    sku_counter: Counter = Counter()
+    product_counter: Counter = Counter()
+    product_order_ids: dict[str, set[str]] = defaultdict(set)
     product_meta: dict[str, dict] = {}
-    for o in orders:
+    for order_idx, o in enumerate(orders):
+        order_id = str(o.get("order_id") or o.get("id") or o.get("platform_order_id") or order_idx)
         for item in (o.get("items") or []):
             qty = item.get("quantity", 1)
             total_items += qty
-            sku = item.get("sku") or item.get("title", "unknown")
-            sku_counter[sku] += qty
-            if sku not in product_meta:
-                product_meta[sku] = {
-                    "sku": sku,
+            raw_sku = item.get("sku") or ""
+            title = item.get("title") or item.get("name") or ""
+            variation = product_variation_key(raw_sku, title)
+            key = variation["key"]
+            product_counter[key] += qty
+            product_order_ids[key].add(order_id)
+            if key not in product_meta:
+                product_meta[key] = {
+                    "sku": variation.get("variation_sku") or raw_sku or key,
+                    "family": variation.get("family") or variation.get("variation_sku") or key,
+                    "variation_sku": variation.get("variation_sku") or raw_sku or key,
+                    "display_name": variation.get("display_name") or "",
+                    "raw_skus": [],
                     "platform_item_id": item.get("platform_item_id") or item.get("asin") or "",
-                    "title": item.get("title") or item.get("name") or "",
+                    "title": variation.get("display_name") or title,
                 }
+            if raw_sku and raw_sku not in product_meta[key]["raw_skus"]:
+                product_meta[key]["raw_skus"].append(raw_sku)
 
-    top_skus = sku_counter.most_common(10)
+    # Rank by number of orders first, then units. This matches the Slack
+    # wording/ranking expected by Pedro for marketplace reports.
+    top_skus = sorted(product_counter.items(), key=lambda kv: (len(product_order_ids[kv[0]]), kv[1]), reverse=True)[:10]
     top_products = [
-        {**product_meta.get(sku, {"sku": sku, "platform_item_id": "", "title": ""}), "quantity": qty}
+        {
+            **product_meta.get(sku, {"sku": sku, "platform_item_id": "", "title": ""}),
+            "orders": len(product_order_ids.get(sku, set())),
+            "quantity": qty,
+            "aggregation_level": "variation",
+        }
         for sku, qty in top_skus
     ]
-    total_qty = sum(sku_counter.values()) or 1
-    top3_conc = sum(c for _, c in top_skus[:3]) / total_qty * 100 if top_skus else 0
-    top5_conc = sum(c for _, c in top_skus[:5]) / total_qty * 100 if top_skus else 0
+    total_orders_for_products = sum(len(v) for v in product_order_ids.values()) or 1
+    top3_conc = sum(len(product_order_ids.get(sku, set())) for sku, _ in top_skus[:3]) / total_orders_for_products * 100 if top_skus else 0
+    top5_conc = sum(len(product_order_ids.get(sku, set())) for sku, _ in top_skus[:5]) / total_orders_for_products * 100 if top_skus else 0
 
     hour_dist: Counter = Counter()
     for o in orders:

@@ -200,8 +200,11 @@ Regras gerais:
 
 #### Mercado Livre
 
-- Usar título real do anúncio/produto.
-- Consolidar produtos equivalentes dentro da plataforma quando título permite.
+- Usar o ranking seguro vindo do pacote validado.
+- Consolidar SKUs filhos apenas até o nível de **variação vendável/SKU pai da variação**, nunca até a família inteira quando existem variações reais.
+- Exemplo obrigatório: `Conjunto de 5 Potes Redondos de Vidro` não vira uma linha única. Separar por cor da tampa: `IMB501P` tampa preta, `IMB501C` tampa cinza, `IMB501V` tampa vermelha. Cada variação só aparece se seu volume próprio entrar no ranking.
+- Se vários SKUs filhos/listings representam a mesma variação, somar na variação correta; se representam cores diferentes, manter linhas diferentes.
+- Não consolidar por `platform_item_id`/MLB quando o anúncio tem variações de cor/tamanho que representam SKUs pais diferentes.
 
 #### Amazon
 

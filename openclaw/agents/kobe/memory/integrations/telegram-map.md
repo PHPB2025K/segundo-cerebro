@@ -31,6 +31,7 @@ tags:
 | 11 | 🛍️ Compras | Fornecedores, cotações, pedidos de compra |
 | 12 | 📦 Estoque & Expedição | Níveis de estoque, envios, logística nacional |
 | 13 | ⚙️ Operacional & Sistema | Crons, integrações, VPS, backups, skills |
+| 10222 | Daily Sales Report - SLACK | Desenvolvimento, previews, alertas, QA, avisos e qualquer comunicação sobre o Daily Sales Report dos funcionários no Slack |
 
 ## Formato de delivery para crons
 ```
@@ -46,3 +47,7 @@ to: -1003730816228:topic:{thread_id}
 | Inbox Cleanup | silencioso | Consolidado no resumo diário de Alertas |
 | GitHub Backup | silencioso | Consolidado no resumo diário de Alertas |
 | Resumo Diário — Alertas Watchdogs | 8 | 🚨 Alertas |
+| Daily Sales Report — Slack Funcionários | 10222 | Daily Sales Report - SLACK |
+| Daily Sales v2 — Marketplace Rules Watch Refresh | 10222 | Daily Sales Report - SLACK |
+| Daily Sales v2 — Consolidação Semanal/Mensal Trader | 10222 | Daily Sales Report - SLACK |
+| Daily Sales v2 — Himmel/Granola Context Sync | 10222 | Daily Sales Report - SLACK |

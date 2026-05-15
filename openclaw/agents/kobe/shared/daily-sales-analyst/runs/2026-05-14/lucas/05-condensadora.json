@@ -1,10 +1,59 @@
 {
-  "layer": "05-condensadora",
-  "recipient": "lucas",
-  "status": "BLOCKED",
-  "reason": "Data Readiness NOT_READY. Checks failed: ",
-  "date": "2026-05-14",
-  "condensed_output": null,
-  "fallback": true,
-  "llm_used": false
+  "camada": "05-condensadora",
+  "data": "2026-05-14",
+  "plataforma": "shopee",
+  "analise_final_condensada": [
+    {
+      "insight": "O GMV agregado da plataforma (R$4.284) não representa Shopee funcionando com saúde distribuída — a composição se inverteu: Conta 3 (Shop) passou a ser a maior contribuidora individual, enquanto Conta 1 (Store), historicamente a principal, virou a menor; tratar o total como resultado da plataforma mascara que a estrutura de sustentação mudou completamente.",
+      "padrao": "F — métrica vs qualidade (a métrica aparece razoável, mas a composição piorou)",
+      "base": "Operacional + Granular",
+      "confianca": "alta"
+    },
+    {
+      "insight": "A queda de Conta 1 pode não ser perda de mercado pura — há canibalização interna ativa: o mesmo produto (canecas tulipa 250ml) está listado nas três contas com anúncios distintos, e Conta 3 capturou a maior parte desse volume no dia; antes de diagnosticar queda estrutural de demanda em Conta 1, é necessário entender quanto do volume está sendo redistribuído internamente entre as contas.",
+      "padrao": "A — contraste (não é queda de mercado, pode ser redistribuição interna)",
+      "base": "Granular + Estratégica",
+      "confianca": "média",
+      "ressalva": "Canibalização confirmada por pedido real, mas a distribuição de um único dia não estabelece padrão — pode ser coincidência de posição de anúncio ou campanha ativa em Conta 3 neste dia"
+    },
+    {
+      "insight": "Conta 1 (Store) não tem defesa operacional: mais de 85% dos itens saem de dois produtos e um quarto dos pedidos se concentra na janela 21-22h — a conta inteira depende da exposição noturna de dois anúncios específicos; qualquer oscilação de posição desses dois produtos nesse horário é o resultado da conta, sem segundo vetor que absorva.",
+      "padrao": "D — enquadramento estrutural (não é evento de um dia, é como a conta está estruturada)",
+      "base": "Operacional + Granular",
+      "confianca": "média",
+      "ressalva": "Base parcial para Conta 1 (data readiness partial) — padrão consistente com o dado disponível, mas confiança máxima é média"
+    }
+  ],
+  "prioridades_condensadas": [
+    {
+      "prioridade": "Verificar visibilidade e posição dos dois produtos campeões da Conta 1 (Store) especificamente no período noturno (19h-22h) — e comparar se os mesmos produtos aparecem em posição diferente nos anúncios das outras contas nesse mesmo horário",
+      "por_que": "Conta 1 opera como dois anúncios com janela noturna e há sobreposição ativa do mesmo produto entre as três contas; se o anúncio de Conta 3 estiver ganhando posição sobre o de Conta 1 no período noturno, o diagnóstico é redistribuição interna — não perda de demanda — e a ação muda completamente; sem essa distinção, qualquer intervenção em ADS pode estar atacando o problema errado",
+      "sinal_de_confirmacao": "Se os campeões de Conta 1 aparecerem em posição inferior ao equivalente de Conta 3 nos resultados de busca no horário 19-22h, confirma redistribuição interna; se a posição for equivalente ou superior, o problema é de demanda e ADS de Conta 1 não é a alavanca — janela: próximas 24h",
+      "escalar_se": "Lucas confirmar queda de posição dos campeões de Conta 1 no período noturno em relação ao equivalente de Conta 3 → alinhar com Himmel com diagnóstico fechado (causa: posição de anúncio desfavorável para Conta 1 vs Conta 3), não pedido aberto de aumento de verba"
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [
+    "platform_item_ids específicos de qualquer produto — usar título ou descrição do produto, nunca o identificador técnico",
+    "distribuição horária detalhada por conta em forma de tabela ou lista — é dado de log, não diagnóstico",
+    "volume unitário por SKU e conta no cruzamento de canibalização — mencionar o fato estrutural da sobreposição, não os números de distribuição interna por conta",
+    "hipótese de ausência de promoção em Conta 3 como driver do ticket elevado — dado não disponível no pacote e hipótese alternativa não descartável; tratar como inconclusivo",
+    "dados brutos de fulfillment (shopee_full: 0) como insight direto — é contexto estrutural sem causalidade provada com a queda de Conta 1",
+    "quality flag 'high_top3_concentration' pelo nome técnico — o fato de concentração já está capturado na análise de produto",
+    "proporção itens/pedidos de Conta 3 (1,17) — detalhe granular sem impacto na leitura do Slack",
+    "referências ao last_daily_file ou à ausência de memória histórica — são detalhes de infraestrutura do pipeline, não da operação"
+  ],
+  "memoria_para_amanha": [
+    "Canibalização cross-account confirmada por pedido real em pelo menos dois SKUs (canecas tulipa e canequinhas com suporte) — verificar nos próximos 2-3 dias se a distribuição de volume entre contas se repete; se Conta 3 continuar dominando o mesmo produto que também está em Conta 1 e Conta 2, o padrão é estrutural de posicionamento e muda o diagnóstico de queda de Conta 1",
+    "Ticket elevado de Conta 3 (R$76,93 vs R$67,43 média 30d) com driver inconclusivo entre mix de produto (evidência parcial: canecas/porcelana dominando o mix) e ausência de promoção (dado não disponível) — amanhã observar se ticket segura acima de R$70 sem que o volume caia; se confirmar, driver é provavelmente mix; se ticket recuar junto com algum crescimento de volume, era promoção ausente",
+    "Inversão de hierarquia de GMV registrada em 2026-05-14: Conta 3 (R$1.769) > Conta 2 (R$1.289) > Conta 1 (R$1.225) — verificar se o padrão se repete amanhã (quinta-feira); se sim, é transição estrutural documentável; se não, foi flutuação do dia e a hierarquia histórica ainda vale",
+    "Gap horário de Conta 2 (zero pedidos 19h-20h) confirmado por pedido real em 2026-05-14 — verificar se aparece nos próximos dias; se recorrente, é perfil de comprador diurno da conta (coerente com ticket elevado e volume menor); se não, pode ter sido exposição pontualmente alterada nesse horário",
+    "2026-05-14 é o primeiro ponto documentado para as três contas — weekly e monthly são templates vazios; este dia serve como ponto zero de referência; registrar que foi dia com data readiness partial em Conta 1 e Conta 2, inversão de hierarquia de GMV e canibalização cross-account confirmada — contexto necessário para interpretar os próximos dias"
+  ],
+  "alertas_de_confianca": {
+    "nivel": "média",
+    "explicacao": "Conta 1 e Conta 2 foram marcadas como partial pelo sistema de data readiness — volume abaixo das bandas históricas esperadas, fora do intervalo de confiança padrão. Weekly e monthly das três contas são templates vazios, sem baseline histórico para distinguir se a queda de Conta 1 é aceleração de padrão já gerenciado ou evento novo. A canibalização cross-account foi identificada por pedido real (confiança alta para o fato estrutural da sobreposição), mas a distribuição de um único dia não é base para diagnóstico causal. Conta 3 com status ok ancora a parte mais sólida da análise. Dois dos três insights foram emitidos com ressalva explícita de confiança média — nenhum foi apresentado como fato confirmado onde há incerteza material. A confiança geral é média, não baixa, porque os dados de identificação de produto são sólidos (pedidos reais com shop_id validados) e o fato da inversão de hierarquia é de alta confiança."
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

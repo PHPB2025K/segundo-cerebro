@@ -1,10 +1,80 @@
 {
-  "layer": "04-granular",
+  "camada": "granular",
+  "data": "2026-05-14",
   "recipient": "yasmin",
-  "status": "BLOCKED",
-  "reason": "Data Readiness NOT_READY. Checks failed: ",
-  "date": "2026-05-14",
-  "investigations": [],
-  "fallback": true,
-  "llm_used": false
+  "plataforma": "mercado_livre",
+  "respostas_operacional": [
+    {
+      "pergunta": "Qual foi o comportamento de ranking e posição dos anúncios líderes (especialmente MLB3288536143) nas janelas de 8–11h e 20–22h versus o restante do dia?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote contém distribuição horária de pedidos — confirmando bimodalidade: bloco matinal 8–11h = 54 pedidos (38,6% do dia); bloco noturno 20–22h = 32 pedidos (22,9%); vale real em 16–17h = 6 pedidos (4,3%). Dados de ranking, posição de anúncio ou variação de exposição por hora não estão disponíveis no pacote. A pergunta pressupõe dado de ranking horário ausente.",
+      "leitura": "A concentração temporal em dois blocos distintos está confirmada nos pedidos reais. A causa do padrão — oscilação de ranking, janela de ADS, boost por horário — não é investigável com os dados disponíveis. O padrão existe; a origem não pode ser atribuída.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Os 3 cancelamentos estão concentrados em algum produto ou SKU específico, ou são pulverizados?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote informa total de 3 cancelamentos mas não detalha os pedidos cancelados por produto, SKU ou platform_item_id (MLB). Não há orderItems de cancelamentos disponíveis para investigação granular.",
+      "leitura": "Taxa de 2,1% (3/140) é operacionalmente irrelevante independente da concentração. A pergunta ganha peso apenas se os cancelamentos baterem no listing campeão MLB3288536143 — o que não pode ser confirmado ou descartado com os dados disponíveis.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Houve intervenção de Himmel nos últimos 2 dias (boost, campanha, ajuste de lance ML)?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "Dado de intervenção ADS ou boost é externo ao pacote de dados — requer checagem direta com Himmel. Não há metadado de campanha ativa no pacote.",
+      "leitura": "A hipótese de intervenção externa permanece a mais compatível com a estrutura do dia (volume e ticket subindo juntos, padrão bimodal), mas não pode ser confirmada ou descartada por evidência granular interna.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "MLB3288536143 aparece três vezes no top produtos com SKUs distintos (IMB501P_T, IMB501C_T, IMB501V_T) e mesmo título — verificar se são variações do mesmo listing e qual é a concentração real por listing ML.",
+      "origem": "risco de identificação",
+      "evidencia": "Produto visível: Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita | platform_item_id (MLB): MLB3288536143 | Fonte: top_products / pedido real. Os três registros compartilham platform_item_id idêntico (MLB3288536143) e título idêntico — confirmam ser variações de um único listing ML (provavelmente cor ou modelo como SKU interno). Volumes: IMB501P_T = 34 un (posição 1), IMB501C_T = 8 un (posição 6), IMB501V_T = 5 un (posição 8) → total listing MLB3288536143 = 47 unidades de 156 itens = 30,1% do volume de itens em um único anúncio. O top3_concentration reportado de 41,7% foi calculado por SKU individual — no top3 por SKU não há duplicação (posições 1, 2, 3 têm MLB distintos), mas no top10 o mesmo listing aparece três vezes, mascarando que um único anúncio domina com 30,1% isolado.",
+      "leitura": "A concentração real por listing líder (30,1%) é mais alta do que qualquer leitura por SKU individual sugere. Com o segundo listing (KIT2YW1520, MLB5322494954, 22 un = 14,1%), os dois listings dominantes respondem por 69/156 = 44,2% dos itens. A dependência funcional de um único anúncio documentada pela Operacional é confirmada e quantificada: MLB3288536143 é o anúncio estrutural da conta — qualquer perda de ranking, estoque ou elegibilidade nesse listing tem impacto de ~30% no volume de itens imediatamente.",
+      "conclusao_granular": "complica — o indicador top3_concentration (41,7%) não representa concentração incorreta no top3, mas mascara que o listing líder isolado já é 30,1% do volume; dependência documentada pela Operacional é confirmada e é estruturalmente mais severa do que o número de concentração sugeria",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "Saúde da cauda: qual fração do volume de itens está fora do top10 SKUs? O crescimento de hoje veio da cauda ou dos líderes?",
+      "origem": "anomalia",
+      "evidencia": "Top 10 SKUs somam: 34+22+9+9+9+8+6+5+4+4 = 110 unidades de 156 totais. Volume fora do top10 = 46 unidades = 29,5% dos itens. Os 10 SKUs representam 7 listings distintos (MLB3288536143 conta 3 vezes). Cauda real (fora do top10) = ~46 itens em listings não identificados no pacote.",
+      "leitura": "Crescimento do dia (+43% vs 30d em pedidos) foi sustentado pelos líderes, não por expansão de cauda. Para um dia de pico absoluto, a cauda representar apenas 29,5% é consistente com a hipótese de boost/ADS concentrado nos anúncios já bem posicionados — intervenção de exposição tende a amplificar os campeões, não descobrir novos produtos.",
+      "conclusao_granular": "confirma que o pico foi concentrado nos produtos líderes; cauda não explica o crescimento — consistente com intervenção de exposição nos campeões, não com descoberta orgânica",
+      "confianca": "média"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "médio",
+    "fontes_de_risco": [
+      "SKU ambíguo em top produtos: MLB3288536143 aparece com 3 SKUs distintos (IMB501P_T, IMB501C_T, IMB501V_T) — leitura por SKU individual subestima concentração real por listing",
+      "top3_concentration calculado por SKU, não por listing — métrica oficial tecnicamente correta no top3 mas não captura domínio do listing líder no top10"
+    ],
+    "explicacao": "O risco é médio, não alto. Os produtos têm platform_item_id (MLB) identificável nos dados reais, o que permite confirmar que MLB3288536143 é um único listing com variações internas. Não há risco de citar produto completamente errado — o risco é subestimar a concentração real ao usar a métrica top3_concentration (41,7%) como proxy da dependência do canal. A Condensadora pode citar o produto líder nominalmente com a ressalva de que o listing MLB3288536143 responde por ~30% dos itens nas suas variações combinadas. Adicionalmente, o data_readiness DADOS_PARCIAIS com spike positivo em ML impõe teto de confiança média para qualquer evidência granular nesta conta.",
+    "bloqueio_para_slack": null
+  },
+  "divergencia_fontes": {
+    "divergencia": "Leitura de top produtos por SKU individual (top3_concentration = 41,7%) vs concentração real por listing ML quando MLB3288536143 é consolidado.",
+    "resolucao": "Pedido real com platform_item_id (MLB) prevalece (regra: top produtos — cálculo por pedido real > métrica agregada por SKU). MLB3288536143 com 3 SKUs = 1 listing = 47 unidades = 30,1% dos itens isoladamente. Top2 por listing = MLB3288536143 + MLB5322494954 = 69/156 = 44,2%.",
+    "impacto": "A Condensadora que usar '41,7% nos top 3 produtos' estará descrevendo 3 SKUs de 3 listings distintos — tecnicamente correto no top3. Mas a leitura de concentração da conta fica incompleta se não mencionar que o listing líder sozinho representa 30,1% dos itens em suas variações. A dependência documentada pela Operacional é numericamente confirmada e é mais severa do que o indicador oficial sugeria."
+  },
+  "detalhes_condensadora": [
+    "O listing campeão MLB3288536143 (Jogo Potes De Vidro 5 Peças Claro) responde por 47 unidades em 3 variações de SKU = 30,1% dos itens em um único anúncio; a Condensadora não pode usar top3_concentration (41,7%) como proxy da dependência real da conta sem essa ressalva — Confiança: média",
+    "As três perguntas prioritárias da Operacional (ranking por hora, produtos cancelados, intervenção Himmel) não puderam ser respondidas por falta de dado granular no pacote; a Condensadora deve sinalizar que a composição do resultado de 05-14 permanece em aberto e que a checagem com Himmel é o dado desbloqueador — sem essa checagem, a tese de patamar não pode ser confirmada nem derrubada — Confiança: alta",
+    "A bimodalidade horária está confirmada nos pedidos reais: 8–11h = 54 pedidos (38,6%), 20–22h = 32 pedidos (22,9%), vale em 16–17h = 6 pedidos (4,3%); a Condensadora pode citar estrutura bimodal como fato do dia sem precisar atribuir causa — Confiança: alta"
+  ],
+  "memoria_interna": [
+    "Distribuição horária completa: 0h:1, 7h:3, 8h:11, 9h:13, 10h:14, 11h:16, 12h:5, 13h:8, 14h:4, 15h:11, 16h:3, 17h:3, 18h:6, 19h:4, 20h:10, 21h:10, 22h:12, 23h:6",
+    "MLB3288536143 SKUs consolidados: IMB501P_T (34 un) + IMB501C_T (8 un) + IMB501V_T (5 un) = 47 un / 156 itens = 30,1%",
+    "MLB5322494954 (KIT2YW1520 — Kit 2 Potes Vidro 1520ml) = 22 un = 14,1% dos itens — segundo listing por volume",
+    "MLB3288536143 + MLB5322494954 juntos = 69/156 = 44,2% em 2 listings",
+    "Top10 SKUs = 110/156 = 70,5% dos itens; cauda fora do top10 = 46 un = 29,5%",
+    "3 cancelamentos sem detalhamento de produto — dado ausente no pacote"
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

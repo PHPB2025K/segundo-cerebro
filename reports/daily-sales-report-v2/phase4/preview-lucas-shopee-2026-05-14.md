@@ -1,19 +1,9 @@
 DAILY SALES REPORT — SHOPEE — 14/05/2026 (Ontem)
 
-📊 __RESUMO GERAL__
-• Faturamento total: R$ 12.795,39
-• Pedidos: 253
-• Ticket médio: R$ 50,57
-
-🛒 __VENDAS POR CANAL__
-• Shopee: R$ 4.217,42 | 74 pedidos
-• Mercado Livre: R$ 6.539,97 | 140 pedidos
-• Amazon: R$ 2.038,00 | 39 pedidos
-
-🛍️ __VISÃO SHOPEE__
-• Faturamento Shopee: R$ 4.217,42
-• Pedidos Shopee: 74
-• Ticket médio Shopee: R$ 56,99
+📊 __VISÃO SHOPEE__
+• Faturamento: R$ 4.217,42
+• Pedidos: 74
+• Ticket médio: R$ 56,99
 • Cancelamentos consolidados: 2 (2,6%)
 
 🏆 __TOP PRODUTOS SHOPEE__

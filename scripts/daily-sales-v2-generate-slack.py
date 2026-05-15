@@ -766,8 +766,6 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     display_date = d.strftime("%d/%m/%Y")
     sections: list[str] = []
     sections.append(f"DAILY SALES REPORT — SHOPEE — {display_date} (Ontem)")
-    sections.append("📊 __RESUMO GERAL__\n" + "\n".join(build_general_summary(canonical, day)))
-    sections.append("🛒 __VENDAS POR CANAL__\n" + "\n".join(build_sales_by_channel(canonical)))
 
     shopee_row = canonical.get("shopee", {})
     shopee_rev = float(shopee_row.get("total_revenue") or 0)
@@ -782,13 +780,13 @@ def build_lucas_message(canonical: dict[str, dict], day: str, analyses: dict[str
     shopee_cancel = sum((a or {}).get("cancelamentos", 0) for a in shopee_accounts)
     shopee_gran_orders = sum((a or {}).get("pedidos", 0) for a in shopee_accounts)
     shopee_lines = [
-        f"• Faturamento Shopee: {brl(shopee_rev)}",
-        f"• Pedidos Shopee: {shopee_orders}",
-        f"• Ticket médio Shopee: {brl(shopee_ticket)}",
+        f"• Faturamento: {brl(shopee_rev)}",
+        f"• Pedidos: {shopee_orders}",
+        f"• Ticket médio: {brl(shopee_ticket)}",
     ]
     if shopee_cancel and shopee_gran_orders:
         shopee_lines.append(f"• Cancelamentos consolidados: {shopee_cancel} ({pct(shopee_cancel/(shopee_cancel+shopee_gran_orders)*100)})")
-    sections.append("🛍️ __VISÃO SHOPEE__\n" + "\n".join(shopee_lines))
+    sections.append("📊 __VISÃO SHOPEE__\n" + "\n".join(shopee_lines))
     sections.append(_top_products_section("TOP PRODUTOS SHOPEE", _merge_top_products(*shopee_accounts)))
 
     # Para Shopee, condensar as 3 contas em no máximo 3 insights totais.
@@ -832,18 +830,16 @@ def build_yasmin_message(canonical: dict[str, dict], day: str, analyses: dict[st
     sections: list[str] = []
     a = analyses.get("mercado-livre")
     sections.append(f"DAILY SALES REPORT — MERCADO LIVRE — {display_date} (Ontem)")
-    sections.append("📊 __RESUMO GERAL__\n" + "\n".join(build_general_summary(canonical, day)))
-    sections.append("🛒 __VENDAS POR CANAL__\n" + "\n".join(build_sales_by_channel(canonical)))
 
     ml_row = canonical.get("ml", {})
     ml_rev = float(ml_row.get("total_revenue") or 0)
     ml_orders = int(ml_row.get("order_count") or 0)
     ml_ticket = ml_rev / ml_orders if ml_orders else 0
-    ml_lines = [f"• Faturamento ML: {brl(ml_rev)}", f"• Pedidos ML: {ml_orders}", f"• Ticket médio ML: {brl(ml_ticket)}"]
+    ml_lines = [f"• Faturamento: {brl(ml_rev)}", f"• Pedidos: {ml_orders}", f"• Ticket médio: {brl(ml_ticket)}"]
     if a and a.get("cancelamentos"):
         _, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
         ml_lines.append(f"• Cancelamentos: {a['cancelamentos']} ({cancel_text})")
-    sections.append("🛍️ __VISÃO MERCADO LIVRE__\n" + "\n".join(ml_lines))
+    sections.append("📊 __VISÃO MERCADO LIVRE__\n" + "\n".join(ml_lines))
     if a:
         sections.append(_top_products_section("TOP PRODUTOS MERCADO LIVRE", a.get("top_skus", [])))
     condensed = (a or {}).get("condensed_analysis") or []
@@ -861,19 +857,17 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
     sections: list[str] = []
     a = analyses.get("amazon")
     sections.append(f"DAILY SALES REPORT — AMAZON — {display_date} (Ontem)")
-    sections.append("📊 __RESUMO GERAL__\n" + "\n".join(build_general_summary(canonical, day)))
-    sections.append("🛒 __VENDAS POR CANAL__\n" + "\n".join(build_sales_by_channel(canonical)))
 
     amz_row = canonical.get("amazon", {})
     amz_rev = float(amz_row.get("total_revenue") or 0)
     amz_orders = int(amz_row.get("order_count") or 0)
     amz_ticket = amz_rev / amz_orders if amz_orders else 0
-    amz_lines = [f"• Faturamento Amazon: {brl(amz_rev)}", f"• Pedidos Amazon: {amz_orders}", f"• Ticket médio Amazon: {brl(amz_ticket)}"]
+    amz_lines = [f"• Faturamento: {brl(amz_rev)}", f"• Pedidos: {amz_orders}", f"• Ticket médio: {brl(amz_ticket)}"]
     if a and a.get("cancelamentos"):
         cancel_rate, cancel_text = _cancel_analysis(a["cancelamentos"], a["pedidos"])
         suffix = " — atenção" if cancel_rate > 10 else ""
         amz_lines.append(f"• Cancelamentos: {a['cancelamentos']} ({cancel_text}){suffix}")
-    sections.append("🛍️ __VISÃO AMAZON__\n" + "\n".join(amz_lines))
+    sections.append("📊 __VISÃO AMAZON__\n" + "\n".join(amz_lines))
     if a:
         sections.append(_top_products_section("TOP PRODUTOS AMAZON", a.get("top_skus", [])))
     condensed = (a or {}).get("condensed_analysis") or []
@@ -889,11 +883,9 @@ def build_leonardo_message(canonical: dict[str, dict], day: str, analyses: dict[
 # ---------------------------------------------------------------------------
 
 SECTION_TITLES = {
-    "📊 RESUMO GERAL",
-    "🛒 VENDAS POR CANAL",
-    "🛍️ VISÃO SHOPEE",
-    "🛍️ VISÃO MERCADO LIVRE",
-    "🛍️ VISÃO AMAZON",
+    "📊 VISÃO SHOPEE",
+    "📊 VISÃO MERCADO LIVRE",
+    "📊 VISÃO AMAZON",
     "🏆 TOP PRODUTOS SHOPEE",
     "🏆 TOP PRODUTOS MERCADO LIVRE",
     "🏆 TOP PRODUTOS AMAZON",
@@ -1102,9 +1094,13 @@ def main() -> int:
         
         if not msg.strip():
             issues.append("MENSAGEM VAZIA")
-        for required_section in ["📊 __RESUMO GERAL__", "🛒 __VENDAS POR CANAL__"]:
+        platform_label = RECIPIENT_ACCOUNTS[name]["platform_label"].upper()
+        for required_section in [f"📊 __VISÃO {platform_label}__"]:
             if required_section not in msg:
                 issues.append(f"SECAO FIXA AUSENTE: {required_section}")
+        for forbidden_section in ["📊 __RESUMO GERAL__", "🛒 __VENDAS POR CANAL__", "🛍️ __VISÃO"]:
+            if forbidden_section in msg:
+                issues.append(f"SECAO PROIBIDA: {forbidden_section}")
 
         # QA: SKU cru no texto visivel
         sku_violations = qa_check_raw_skus(msg)
@@ -1116,7 +1112,7 @@ def main() -> int:
         # QA: Titulos com emoji + uppercase
         has_emoji_titles = any(
             emoji in msg
-            for emoji in ["📊", "🛒", "🛍️", "🏆", "🔍", "🎯"]
+            for emoji in ["📊", "🏆", "🔍", "🎯"]
         )
         if not has_emoji_titles:
             issues.append("FALTAM TITULOS COM EMOJI")

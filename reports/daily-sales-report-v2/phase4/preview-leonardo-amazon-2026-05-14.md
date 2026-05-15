@@ -1,19 +1,9 @@
 DAILY SALES REPORT — AMAZON — 14/05/2026 (Ontem)
 
-📊 __RESUMO GERAL__
-• Faturamento total: R$ 12.795,39
-• Pedidos: 253
-• Ticket médio: R$ 50,57
-
-🛒 __VENDAS POR CANAL__
-• Shopee: R$ 4.217,42 | 74 pedidos
-• Mercado Livre: R$ 6.539,97 | 140 pedidos
-• Amazon: R$ 2.038,00 | 39 pedidos
-
-🛍️ __VISÃO AMAZON__
-• Faturamento Amazon: R$ 2.038,00
-• Pedidos Amazon: 39
-• Ticket médio Amazon: R$ 52,26
+📊 __VISÃO AMAZON__
+• Faturamento: R$ 2.038,00
+• Pedidos: 39
+• Ticket médio: R$ 52,26
 • Cancelamentos: 2 (4,9%)
 
 🏆 __TOP PRODUTOS AMAZON__

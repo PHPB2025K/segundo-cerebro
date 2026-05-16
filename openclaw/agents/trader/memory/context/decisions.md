@@ -67,3 +67,9 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 
 - Daily Sales Report para Yasmin/Lucas/Leonardo deve usar Slack DM diário às 06:50 BRT, fonte canônica `v_daily_sales` + Bling Matriz, formato aprovado por Pedro e Top Produtos consolidado por SKU equivalente cross-plataforma.
 - Não usar WhatsApp para esse relatório e não incluir seção `DESTAQUES DO DIA`.
+
+
+### Daily Sales Report v2 — LLM como caminho principal (2026-05-15)
+- Pedro aprovou tecnicamente o uso de LLM como caminho principal para os três reports individuais: Lucas/Shopee, Yasmin/Mercado Livre e Leonardo/Amazon.
+- Slack Writer LLM + QA Gate LLM passam a ser o caminho aprovado; fallback determinístico não pode mascarar falha de camada LLM.
+- Envio real continua bloqueado até autorização explícita de Pedro/Kobe; se camada LLM falhar, o recipient fica bloqueado em vez de seguir por fallback.

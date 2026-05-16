@@ -5,8 +5,8 @@ _Atualizado: 2026-05-15_
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
-- [ ] Daily Sales Report v2 híbrido: salvar Prompt 4/6 aprovado, gerar Prompts 5–6 e só substituir produção após shadow/preview aprovado.
-- [ ] Monitorar execuções reais do wrapper v2 e garantir que análise por conta use memória diária/semanal/mensal, nome comercial e sem SKU cru.
+- [ ] Daily Sales Report v2: validar pós-promoção técnica LLM dos três recipients (Lucas/Shopee, Yasmin/ML, Leonardo/Amazon); envio real segue bloqueado até autorização explícita de Pedro/Kobe.
+- [ ] Monitorar primeira execução real/autorizada do wrapper v2 e garantir que análise por conta use memória diária/semanal/mensal, nome comercial e sem SKU cru; se LLM falhar, bloquear recipient em vez de fallback.
 
 ### Relatório mensal
 - [ ] **Relatório mensal abril — reexecutar job direto do Trader**: validar geração dos 3 artefatos finais, corrigir caminho Shopee e avisar conclusão/falha no tópico Marketplaces do Telegram.

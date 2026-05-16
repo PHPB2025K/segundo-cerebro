@@ -64,3 +64,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 ### [TÁTICA] Marketplace Rules Watch vencido é alerta de contexto, não mudança de regra (2026-05-12)
 **Lição:** Se uma skill/regra de taxas estiver vencida, marcar como alerta interno e revisar fonte oficial; não assumir mudança de comissão/frete sem evidência oficial.
 **Expira:** 2026-06-11
+
+
+### [ESTRATÉGICA] Daily Sales v2: fallback determinístico não pode maquiar falha LLM (2026-05-15)
+**Contexto:** Na promoção técnica do Slack Writer LLM + QA Gate LLM para Lucas/Shopee, Yasmin/Mercado Livre e Leonardo/Amazon, os três recipients foram aprovados com ressalvas, mas o envio real permaneceu bloqueado.
+**Lição:** Quando LLM for caminho principal aprovado, falha de camada LLM deve bloquear o recipient; fallback determinístico serve para validação mecânica/segurança, não para produzir aparência de aprovação.

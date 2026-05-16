@@ -77,3 +77,9 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 - Reuniões Shopee consolidadas podem alimentar as 3 contas Shopee quando o conteúdo for geral.
 - Contexto de ADS/Himmel é hipótese causal a validar, nunca culpa/fato isolado.
 - Nunca copiar transcrição integral; registrar apenas pontos cabíveis por conta.
+
+
+### Daily Sales Report v2 — LLM como caminho principal (2026-05-15)
+- Pedro aprovou tecnicamente o uso de LLM como caminho principal para os três reports individuais: Lucas/Shopee, Yasmin/Mercado Livre e Leonardo/Amazon.
+- Slack Writer LLM + QA Gate LLM passam a ser o caminho aprovado; fallback determinístico não pode mascarar falha de camada LLM.
+- Envio real continua bloqueado até autorização explícita de Pedro/Kobe; se camada LLM falhar, o recipient fica bloqueado em vez de seguir por fallback.

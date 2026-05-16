@@ -1,69 +1,59 @@
 {
-  "resultado_qa": "BLOQUEADO",
-  "motivo": "Um Crítico identificado nos Gates 5 e 11: os valores de faturamento por produto no Top Produtos foram calculados com metodologia incorreta e não constam do pacote validado. O Slack Writer declarou usar o ticket médio da conta de origem por produto, mas na prática aplicou um ticket flat de aproximadamente R$ 48,49 a todos os produtos — independentemente da conta de origem. Resultado: KIT6CAR200 (Conta 3, ticket R$ 57,65) aparece como R$ 387,92 quando deveria ser ≈ R$ 461,20; KIT4YW800SQ (Conta 2+3) aparece como R$ 242,45 quando deveria ser ≈ R$ 335,56; KIT2YW800SQ (cross-conta) aparece como R$ 290,70 quando deveria ser ≈ R$ 343,19; CTL002 (cross-conta) aparece como R$ 1.018,29 quando deveria ser ≈ R$ 1.190,57. Os dados de receita por produto não existem no pacote validado (Layer 0 não fornece faturamento por item) e os valores estimados inseridos são materialmente incorretos para 4 dos 7 produtos listados — dado errado que pode induzir Lucas a erro sobre performance financeira por produto. O próprio Slack Writer sinalizou o risco em Decisões de formatação e ofereceu a opção de omissão; a correção obrigatória é remover os valores de faturamento do Top Produtos ou recalculá-los com metodologia correta e devidamente registrada. Adicionalmente, dois Menores no Gate 6 por omissões de contexto quantitativo presentes na 6B não documentadas nas Decisões de formatação. Regra de agregação aplicada: 1+ Crítico → BLOQUEADO.",
-  "send_allowed": false,
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem passou todos os gates críticos sem violação. Nenhum Crítico e nenhum Maior identificado. Dois Menores foram detectados: (1) Gate 8 — o item 7 da lista nao_pode_ir_para_slack da Condensadora ('distribuição horária por produto da Store e Conta 2 — não inferir comportamento do produto líder a partir da distribuição total da conta') não foi registrado em nenhuma das seções de log da Slack Writer (Respeito de bloqueios ou Decisões de formatação), embora a mensagem respeite a restrição; (2) Gate 11 — valores monetários comparativos no bloco analítico da Store ('R$ 3.243 vs R$ 3.297') aparecem truncados sem centavos, em divergência com o padrão R$ 1.234,56. Nenhuma das falhas viola regra crítica nem induz erro operacional. Regra de agregação aplicada: 0 Críticos + 0 Maiores + 2 Menores (abaixo de 6, sem degradação sistêmica) → APROVADO COM RESSALVA.",
+  "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
     "gate_1_data_periodo_fonte": "OK",
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "FALHA",
-    "gate_6_analise_conta": "RESSALVA",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "OK",
     "gate_7_prioridades": "OK",
-    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_8_bloqueios_confianca_logs": "RESSALVA",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "FALHA"
+    "gate_11_padrao_numerico_formatacao": "RESSALVA"
   },
   "contagem_severidade": {
-    "criticos": 1,
+    "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
     "menores": 2,
-    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 2 Menores (abaixo de 6, sem degradação sistêmica) → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
-      "severidade": "Crítico",
-      "gate": "5 e 11",
-      "texto_atual": "• Kit 6 Canecas Tulipa 250ml — 21 pedidos — R$ 1.018,29\n• Kit 6 Canecas Retas 200ml (Conta 3) — 8 pedidos — R$ 387,92\n• Kit 4 Potes de Vidro 800ml Quadrado — 5 pedidos — R$ 242,45\n• Kit 2 Potes de Vidro 800ml Quadrado — 6 pedidos — R$ 290,70",
-      "texto_esperado": "Valores de faturamento por produto omitidos (dado ausente no pacote validado) ou recalculados corretamente: CTL002 cross-conta ≈ R$ 1.190,57 (9×R$48,41 + 4×R$73,42 + 8×R$57,65); KIT6CAR200 Conta 3 ≈ R$ 461,20 (8×R$57,65); KIT4YW800SQ Conta 2+3 ≈ R$ 335,56 (3×R$73,42 + 2×R$57,65); KIT2YW800SQ cross-conta ≈ R$ 343,19 (2×R$48,41 + 1×R$73,42 + 3×R$57,65)",
-      "estado_atual": "Faturamento por produto calculado com ticket flat de ≈ R$ 48,49 para todos os produtos, ignorando os tickets reais das contas de origem (Conta 2: R$ 73,42; Conta 3: R$ 57,65). Dado não existe no pacote validado — é inferência não autorizada pela Condensadora/6B — e os valores resultantes são materialmente errados para 4 dos 7 produtos listados (erro de 13% a 40%)",
-      "estado_esperado": "Faturamento por produto ausente do pacote validado deve ser omitido do Top Produtos (conforme opção oferecida pelo próprio Slack Writer em Decisões de formatação), mantendo apenas contagem de pedidos por produto; ou, se incluído, calculado corretamente com o ticket médio da conta de origem de cada produto e metodologia registrada nas Decisões de formatação",
-      "regra_violada": "Gate 5: ranking e dados numéricos do Top Produtos devem vir do pacote validado; Gate 11: padrão numérico correto — valor monetário apresentado de forma inconsistente e incorreta entre produtos de contas distintas; Gate 8: decisão de formatação declarada (usar ticket por conta de origem) contradiz a mensagem final (ticket flat aplicado a todos)",
-      "bloqueia_envio": true
-    },
-    {
       "severidade": "Menor",
-      "gate": "6",
-      "texto_atual": "qualquer oscilação nos líderes impacta diretamente o GMV total da plataforma Shopee",
-      "texto_esperado": "qualquer oscilação nos líderes IMB501P (30 pedidos) ou CK4742 (23 pedidos) impacta diretamente o GMV total da plataforma Shopee",
-      "estado_atual": "Os identificadores de produto IMB501P e CK4742 com suas contagens de pedidos — presentes na análise da 6B — foram removidos e substituídos por 'nos líderes'. A substituição não foi registrada nas Decisões de formatação",
-      "estado_esperado": "Manutenção dos identificadores do produto da 6B ou registro explícito da decisão de omissão nas Decisões de formatação",
-      "regra_violada": "Gate 6 fidelidade: omissão de especificidade analítica presente na fonte (6B) não documentada nas Decisões de formatação; não altera a tese central mas reduz rastreabilidade da análise",
+      "gate": "Gate 8 — Bloqueios, confiança e logs",
+      "texto_atual": "Ausente — item 7 da Condensadora não aparece em Respeito de bloqueios nem em Decisões de formatação",
+      "texto_esperado": "Decisões de formatação deveria registrar: 'Restrição de inferência de distribuição horária por produto respeitada — pacote não oferece granularidade horária por SKU; nenhum comportamento horário individual de produto foi descrito ou inferido na mensagem final'",
+      "estado_atual": "O item 7 da lista nao_pode_ir_para_slack da Condensadora ('Distribuição horária por produto da Store e Conta 2: pacote não oferece granularidade horária por SKU — não inferir comportamento do produto líder a partir da distribuição total da conta') não está registrado em nenhuma das seções de log da Slack Writer. Os itens 4, 5 e 6 da mesma lista estão cobertos em Decisões de formatação. A mensagem final respeita a restrição (não há inferência de distribuição horária por produto), mas a auditabilidade do bloqueio está incompleta para esse item específico.",
+      "estado_esperado": "Cada item da nao_pode_ir_para_slack da Condensadora deve aparecer em Respeito de bloqueios (produtos nominais) ou Decisões de formatação (restrições analíticas e de inferência), com confirmação explícita de tratamento aplicado e conformidade na mensagem.",
+      "regra_violada": "Gate 8, Passo 2 e Passo 4: cada bloqueio da Granular/Condensadora deve aparecer no log da Slack Writer; lacuna de registro sem violação real na mensagem, mas com risco de auditoria e rastreabilidade comprometida.",
       "bloqueia_envio": false
     },
     {
       "severidade": "Menor",
-      "gate": "6",
-      "texto_atual": "puxada pelo mix dominante de canecas; os 3 cancelamentos",
-      "texto_esperado": "puxada pelo mix dominante de canecas (CTL002 e KIT6CAR200 somaram 16 dos 27 pedidos); os 3 cancelamentos",
-      "estado_atual": "O suporte quantitativo '(CTL002 e KIT6CAR200 somaram 16 dos 27 pedidos)' presente na análise da 6B foi removido da linha da Conta 3. A omissão não foi registrada nas Decisões de formatação",
-      "estado_esperado": "Manutenção do contexto quantitativo da 6B ou registro explícito da decisão de omissão nas Decisões de formatação",
-      "regra_violada": "Gate 6 fidelidade: supressão de suporte quantitativo presente na fonte (6B) sem registro nas Decisões de formatação; não altera a tese mas reduz a sustentação visível da afirmação sobre erosão de ticket por mix",
+      "gate": "Gate 11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "A Store sustentou o GMV próximo à média de 30d (R$ 3.243 vs R$ 3.297)",
+      "texto_esperado": "R$ 3.243,64 vs R$ 3.297,38 — ou substituição por referência descritiva sem valor monetário truncado ('próximo à média de 30d', sem citar o número)",
+      "estado_atual": "Valores monetários comparativos no bloco analítico da Store aparecem truncados sem casas decimais, em divergência com o padrão numérico aprovado (R$ 1.234,56). O trecho foi reproduzido fielmente da 6B que já usava esse formato. Risco de confusão operacional mínimo — o contexto torna os valores claramente aproximados — mas a inconsistência com o padrão da VISÃO (que usa precisão completa) existe formalmente.",
+      "estado_esperado": "Valores monetários em toda a mensagem, incluindo referências comparativas em texto narrativo, seguem o padrão R$ 1.234,56, ou são substituídos por referência descritiva sem valor numérico específico quando a precisão não puder ser mantida.",
+      "regra_violada": "Gate 11: moeda no formato R$ 1.234,56; dados objetivos não apresentados de forma inconsistente entre seções; sem excesso ou déficit de casas decimais.",
       "bloqueia_envio": false
     }
   ],
-  "correcoes_obrigatorias_antes_envio": [
-    "Remover os valores de faturamento de todos os produtos do Top Produtos (dado ausente no pacote validado, como reconhecido pelo próprio Slack Writer em Decisões de formatação), mantendo o formato: '[produto] (conta quando aplicável) — N pedidos'. Alternativamente, recalcular usando ticket médio correto por conta de origem para cada produto com metodologia explicitada nas Decisões de formatação e resultado matematicamente verificável. A opção mais segura e consistente com a ausência de dado granular de receita por produto no pacote é a omissão."
-  ],
+  "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Slack Writer sinalizou proativamente a ausência de dado de receita por produto no pacote e ofereceu opção de omissão em Decisões de formatação — sinal positivo de autocontrole, mas a implementação escolhida (ticket flat incorreto) contradiz o log declarado (ticket por conta de origem). Considerar adição de validação determinística de receita por produto no QA mecânico para ciclos futuros."
+    "Slack Writer deve incluir item 7 da nao_pode_ir_para_slack da Condensadora no log de Decisões de formatação em ciclos futuros quando houver restrição de inferência motivada por granularidade de dado indisponível no pacote. O padrão atual cobre produtos bloqueados nominalmente (Respeito de bloqueios) e restrições analíticas parcialmente (Decisões de formatação), mas omitiu a restrição de inferência horária por produto.",
+    "Valores monetários comparativos em texto analítico reproduzidos da 6B devem seguir o padrão R$ 1.234,56 ou ser substituídos por referência descritiva. A 6B deve emitir valores já no padrão correto para evitar que a Slack Writer herde truncamento."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "As duas omissões menores no Gate 6 (identificadores de produto na linha da Store e contexto quantitativo de canecas na linha da Shop) sugerem que o Slack Writer está sistematicamente reduzindo especificidade técnica das análises da 6B sem registrar as decisões. Embora não violem regra crítica neste ciclo, a repetição desse padrão em ciclos futuros pode erodir a fidelidade analítica. Recomendável adicionar à Condensadora/6B a instrução explícita de quais termos são analítico-chave e não devem ser removidos sem registro.",
-    "A 6B gerou 4 linhas de análise para Shopee em vez dos 2 insights da Condensadora — a QA validou contra a 6B conforme Addendum v3.1 e encontrou contagem correta (4 bullets na 6B, 4 bullets no Slack). Esse padrão de expansão 2→4 entre Condensadora e 6B é estruturalmente esperado para Shopee com 3 contas; confirmar nos próximos ciclos que a 6B não está inflando insights além do autorizado pela Condensadora."
+    "Confiança geral da análise é média pela Condensadora, motivada por três limitações estruturais do pacote: (1) ausência de hour_distribution histórico por conta, que impede validar se a anomalia matinal da Conta 2 é nova ou padrão recorrente; (2) cancelamentos da Conta 3 sem atribuição por SKU; (3) weekly e monthly das três contas são templates vazios — primeiro ciclo analítico sem memória acumulada. A mensagem preserva corretamente a linguagem de hipótese ('aponta para', 'sem causa confirmada', 'padrão que aponta para'), sem converter indícios em fatos. Sinal de evolução do sistema: incluir hour_distribution histórico (últimas 4 semanas por conta) no pacote para habilitar comparação de perfil horário entre dias equivalentes e aumentar confiança granular para alta.",
+    "Hipótese de canibalização de CTL002 entre as três contas foi preservada corretamente como candidata — presente implicitamente no consolidado como risco de fragmentação de exposição, sem ser nomeada como fato. A ausência de confirmação é limitação do pacote (sem granularidade horária por produto), não da análise. Requere inclusão de hour_distribution por SKU em ciclos futuros para validação definitiva antes de qualquer intervenção via Himmel.",
+    "A mensagem tem extensão elevada na seção ANÁLISE DAS CONTAS por reproduzir fielmente os quatro blocos da 6B (consolidado + 3 contas individuais). Não é violação de regra — o conteúdo é fiel e a fonte autorizou a estrutura — mas a extensão total da mensagem tende a superar o tom operacional ideal para Slack. Sinal para avaliar compressão dos blocos individuais na 6B em ciclos futuros sem comprometer fidelidade às teses analíticas."
   ],
   "llm_used": true,
   "model": "sonnet",

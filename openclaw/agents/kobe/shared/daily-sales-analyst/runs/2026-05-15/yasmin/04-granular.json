@@ -1,197 +1,231 @@
 {
-  "camada": "04-granular",
+  "camada": "granular",
   "data": "2026-05-15",
+  "plataforma": "ml",
   "recipient": "Yasmin",
-  "plataforma": "mercado_livre",
-  "respostas_granulares_operacional": [
+  "respostas_operacional": [
     {
-      "pergunta": "Os 4 cancelamentos estão concentrados em algum produto específico ou estão pulverizados entre pedidos distintos?",
+      "pergunta": "Os 4 cancelamentos estão concentrados em produto específico ou distribuídos entre pedidos distintos?",
       "status": "não respondida por falta de dado",
-      "evidencia": "O pacote fornece o total de cancelamentos (4) apenas no nível agregado da conta. Não há breakdown por pedido cancelado, por SKU, por MLB-id ou por horário nos dados disponíveis. O campo top_products lista exclusivamente pedidos válidos, sem separação dos cancelados. Nenhuma fonte do pacote permite identificar qual produto ou anúncio concentrou os cancelamentos.",
-      "leitura": "Sem dado granular de cancelamento por produto, não é possível determinar se os 4 cancelamentos recaem sobre o mesmo anúncio ou estão dispersos. O risco de problema pontual de listing ou estoque no produto líder (Kit 2 Potes de Vidro 1520ml Retangular, MLB5322494954) permanece em aberto — não pode ser confirmado nem descartado por esta camada.",
+      "evidencia": "O pacote não contém detalhe de pedidos cancelados discriminado por SKU, platform_item_id ou título de anúncio. Os dados de top_products refletem exclusivamente pedidos válidos (115). Os 4 cancelamentos não aparecem em nenhuma fonte granular do pacote com atribuição de produto.",
+      "leitura": "Não é possível determinar se os 4 cancelamentos são eventos independentes pulverizados ou se há concentração em produto específico. A hipótese de concentração nos líderes — que respondem por ~72% do volume — permanece aberta e não confirmável com os dados disponíveis.",
       "conclusao_granular": "inconclusivo por falta de dado",
       "confianca": "baixa"
     },
     {
-      "pergunta": "Qual é a posição dos anúncios do Kit 2 Potes de Vidro 1520ml Retangular e da família Conjunto 5 Potes de Vidro Redondos no ranking orgânico do Mercado Livre hoje?",
-      "status": "não respondida por falta de dado",
-      "evidencia": "O pacote de dados não contém informação de ranking, posição de anúncio, score de exposição, reputação ou histórico de cliques para nenhum anúncio do Mercado Livre. Os identificadores disponíveis são MLB5322494954 (KIT2YW1520), MLB3288536143 e MLB4535865311 (família IMB501), obtidos via orderItems. Dado de posição de anúncio é externo ao pacote atual.",
-      "leitura": "A opacidade dos vetores de exposição identificada pela Estratégica e pela Tática não pode ser resolvida com os dados disponíveis neste ciclo. A checagem de posição dos anúncios líderes depende de consulta externa ao painel do Mercado Livre ou ferramenta de monitoramento de ranking — ação que cabe a Yasmin, conforme orientação tática.",
-      "conclusao_granular": "inconclusivo por falta de dado",
+      "pergunta": "O Kit 2 Potes 1520ml (líder com ~28% dos pedidos) está com posição e status de anúncio estáveis no Mercado Livre?",
+      "status": "parcialmente respondida",
+      "evidencia": {
+        "produto_visivel": "Kit 2 Potes de Vidro 1520ml Retangular",
+        "platform_item_id": "MLB5322494954",
+        "fonte": "orderItems / top_products",
+        "confirmado": "32 pedidos válidos atribuídos a este MLB no dia — anúncio estava ativo e recebendo conversões",
+        "ausente": "dados de posição de ranking, status de listing, reputação ou exposição não estão disponíveis no pacote"
+      },
+      "leitura": "O volume de 32 pedidos confirma indiretamente que o anúncio estava funcional durante o dia. Não confirma nem descarta oscilação de posição, queda de ranking ainda não refletida em conversão ou fragilidade de listing em janela futura.",
+      "conclusao_granular": "parcialmente respondida — funcionalidade confirmada indiretamente por volume; posição e status de listing não verificáveis com os dados disponíveis",
       "confianca": "baixa"
     },
     {
-      "pergunta": "Há algum produto da cauda (abaixo do top-5) com tendência de crescimento consistente nos últimos 7 dias que o pacote agregado não captura?",
+      "pergunta": "O pico horário duplo (9h e 15h–17h) é padrão recorrente para esta conta ou foi comportamento novo no dia?",
       "status": "não respondida por falta de dado",
-      "evidencia": "O pacote fornece o top-10 de produtos apenas do dia 2026-05-15, sem série histórica por produto ou MLB nos últimos 7 dias. Não há dado de evolução individual de SKU ao longo da semana — apenas médias agregadas da conta (7d, 30d, 60d) e os 4 comparativos de mesma data da semana, todos no nível de conta, não de produto.",
-      "leitura": "Tendências de crescimento na cauda exigem série temporal por produto — dado que não compõe o pacote atual. A pergunta não pode ser respondida sem histórico granular por SKU ou MLB em série diária.",
-      "conclusao_granular": "inconclusivo por falta de dado",
+      "evidencia": {
+        "distribuicao_do_dia": {
+          "9h": 11,
+          "15h": 11,
+          "16h": 12,
+          "17h": 11
+        },
+        "ausente": "weekly e monthly estão em template vazio — sem nenhum histórico de distribuição horária acumulado na memória da conta; não há dado de dias anteriores com granularidade de hora no pacote"
+      },
+      "leitura": "O padrão duplo de tração do dia é coerente internamente (dois blocos definidos com presença razoável entre eles), mas não é possível determinar se representa comportamento estrutural da conta ou coincidência do dia.",
+      "conclusao_granular": "inconclusivo por falta de dado — memória nascente não fornece âncora histórica de horários",
       "confianca": "baixa"
     }
   ],
   "investigacoes_proprias": [
     {
-      "investigacao": "Dois produtos da família IMB501 (Tampa Preta e Tampa Vermelha) compartilham o mesmo platform_item_id MLB3288536143. Risco de atribuição incorreta de volume entre variações do mesmo anúncio.",
-      "origem": "risco de identificação",
-      "evidencia": {
-        "produto_preta": {
-          "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
-          "platform_item_id_MLB": "MLB3288536143",
-          "sku_interno": "IMB501P",
-          "fonte": "orderItems / pedido real",
-          "pedidos": 20
-        },
-        "produto_vermelha": {
-          "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
-          "platform_item_id_MLB": "MLB3288536143",
-          "sku_interno": "IMB501V",
-          "fonte": "orderItems / pedido real",
-          "pedidos": 12
-        },
-        "produto_cinza": {
-          "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
-          "platform_item_id_MLB": "MLB4535865311",
-          "sku_interno": "IMB501C",
-          "fonte": "orderItems / pedido real",
-          "pedidos": 9
-        }
-      },
-      "leitura": "IMB501P e IMB501V apontam para o mesmo MLB — comportamento esperado em anúncio multi-variação do Mercado Livre. O SKU diferenciado por variação (IMB501P vs IMB501V_T) e o mapping_reason 'sku_alias_high_confidence' indicam que a separação granular veio do SKU do pedido real, não de suposição. O MLB compartilhado é estrutura de anúncio multi-variação, não erro de atribuição. IMB501C tem MLB próprio (MLB4535865311), confirmando anúncio separado para Tampa Cinza.",
-      "conclusao_granular": "confirma — distinção por variação sustentada pelo SKU do pedido real; risco de identificação não se materializa para essa família",
-      "confianca": "media"
-    },
-    {
-      "investigacao": "Concentração por família: KIT2YW (1520ml + 1050ml) versus IMB501 (Tampa Preta + Vermelha + Cinza) — volume absoluto por família, proporção sobre o total do dia e assimetria interna.",
-      "origem": "anomalia",
+      "investigacao": "Assimetria interna dentro das famílias KIT2YW e IMB501 — a dependência está distribuída entre variações ou concentrada em variação única?",
+      "origem": "risco de identificação / hipótese da Estratégica sobre dependência de famílias",
       "evidencia": {
         "familia_KIT2YW": {
-          "variacoes": [
-            {
-              "produto_visivel": "Kit 2 Potes de Vidro 1520ml Retangular",
-              "platform_item_id_MLB": "MLB5322494954",
-              "pedidos": 32
-            },
-            {
-              "produto_visivel": "Kit 2 Potes de Vidro 1050ml Retangular",
-              "platform_item_id_MLB": "MLB6518176572",
-              "pedidos": 9
-            }
-          ],
-          "total_pedidos_familia": 41,
-          "pct_sobre_115_pedidos": "35,7%",
-          "concentracao_interna_lider": "78% da família vem de uma única variação (1520ml)"
+          "KIT2YW1520": {
+            "produto_visivel": "Kit 2 Potes de Vidro 1520ml Retangular",
+            "platform_item_id": "MLB5322494954",
+            "fonte": "orderItems / top_products",
+            "orders": 32,
+            "pct_total": "27.8%",
+            "pct_dentro_da_familia": "78%"
+          },
+          "KIT2YW1050": {
+            "produto_visivel": "Kit 2 Potes de Vidro 1050ml Retangular",
+            "platform_item_id": "MLB6518176572",
+            "fonte": "orderItems / top_products",
+            "orders": 9,
+            "pct_total": "7.8%",
+            "pct_dentro_da_familia": "22%"
+          },
+          "total_familia": {
+            "orders": 41,
+            "pct_total": "35.7%"
+          }
         },
         "familia_IMB501": {
-          "variacoes": [
-            {
-              "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
-              "platform_item_id_MLB": "MLB3288536143",
-              "pedidos": 20
-            },
-            {
-              "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
-              "platform_item_id_MLB": "MLB3288536143",
-              "pedidos": 12
-            },
-            {
-              "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
-              "platform_item_id_MLB": "MLB4535865311",
-              "pedidos": 9
-            }
-          ],
-          "total_pedidos_familia": 41,
-          "pct_sobre_115_pedidos": "35,7%",
-          "concentracao_interna_lider": "49% da família vem da variação líder (Tampa Preta)"
+          "IMB501P": {
+            "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+            "platform_item_id": "MLB3288536143",
+            "fonte": "orderItems / top_products",
+            "orders": 20,
+            "pct_total": "17.4%",
+            "pct_dentro_da_familia": "48.8%"
+          },
+          "IMB501V": {
+            "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+            "platform_item_id": "MLB3288536143",
+            "fonte": "orderItems / top_products",
+            "orders": 12,
+            "pct_total": "10.4%",
+            "pct_dentro_da_familia": "29.3%",
+            "nota_identificacao": "IMB501P e IMB501V compartilham o mesmo platform_item_id MLB3288536143 — são variações de cor do mesmo anúncio base; atribuição de pedidos por variação é indireta via SKU, não via MLB independente"
+          },
+          "IMB501C": {
+            "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+            "platform_item_id": "MLB4535865311",
+            "fonte": "orderItems / top_products",
+            "orders": 9,
+            "pct_total": "7.8%",
+            "pct_dentro_da_familia": "22%"
+          },
+          "total_familia": {
+            "orders": 41,
+            "pct_total": "35.7%"
+          }
         },
-        "total_duas_familias_pedidos": 82,
-        "pct_duas_familias_sobre_total": "71,3%"
+        "dependencia_combinada": "82 pedidos — 71.3% do total"
       },
-      "leitura": "As duas famílias são matematicamente simétricas em volume (41 pedidos cada), mas com perfis internos opostos. KIT2YW tem assimetria crítica: o 1520ml (32 pedidos) carrega 78% da família e 27,8% do total da conta — qualquer choque nessa variação derruba a família inteira. IMB501 distribui melhor entre três variações (49%/29%/22%), o que confere maior resiliência interna. A soma de 71,3% das duas famílias coincide exatamente com o top-5 concentration reportado, confirmando que o top-5 é, na prática, essas duas famílias.",
-      "conclusao_granular": "confirma — dependência de dois grupos é real e simétrica em volume total, mas assimétrica internamente; KIT2YW é mais frágil que IMB501 por depender de uma única variação",
+      "leitura": "A família KIT2YW é fortemente assimétrica: KIT2YW1520 carrega 78% do volume da família. A família IMB501 é relativamente distribuída: a tampa preta lidera com 49%, mas vermelha e cinza têm participação real. A dependência das camadas anteriores estava tecnicamente correta, mas o detalhe revela concentração interna desigual: há um único anúncio (MLB5322494954) que funciona como vetor individual crítico da conta, respondendo por mais de um quarto de todos os pedidos.",
+      "conclusao_granular": "confirma e complica — a tese de dependência em duas famílias é válida, mas o risco operacional real está concentrado em uma variação específica do MLB5322494954; oscilação nesse anúncio tem impacto desproporcional",
       "confianca": "alta"
     },
     {
-      "investigacao": "Cobertura do top-10 sobre o total de pedidos válidos — massa da cauda real e capacidade de absorção de choque nos líderes.",
-      "origem": "anomalia",
+      "investigacao": "Saúde da cauda — produtos fora do top 5 têm presença real ou é microamostra irrelevante?",
+      "origem": "hipótese da Estratégica sobre ausência de segundo vetor",
       "evidencia": {
-        "pedidos_top10": 100,
-        "pedidos_totais_validos": 115,
-        "pedidos_fora_top10": 15,
-        "pct_fora_top10": "13,0%",
-        "produto_lider_pedidos": 32,
-        "razao_lider_vs_cauda": "2,1x — o produto líder isolado tem mais que o dobro de pedidos de toda a cauda fora do top-10"
+        "posicoes_6_a_10": [
+          {
+            "produto_visivel": "Kit 6 Canequinhas 100ml",
+            "platform_item_id": "MLB3343832496",
+            "fonte": "orderItems / top_products",
+            "orders": 7,
+            "pct_total": "6.1%"
+          },
+          {
+            "produto_visivel": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petr...",
+            "platform_item_id": "MLB5402326666",
+            "fonte": "orderItems / top_products",
+            "orders": 3,
+            "pct_total": "2.6%",
+            "confidence": "medium"
+          },
+          {
+            "produto_visivel": "Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-pet...",
+            "platform_item_id": "MLB4073064873",
+            "fonte": "orderItems / top_products",
+            "orders": 3,
+            "pct_total": "2.6%",
+            "confidence": "medium"
+          },
+          {
+            "produto_visivel": "Kit 4 Potes de Vidro 1050ml Retangular",
+            "platform_item_id": "MLB4073003575",
+            "fonte": "orderItems / top_products",
+            "orders": 3,
+            "pct_total": "2.6%"
+          },
+          {
+            "produto_visivel": "Kit 4 Potes de Vidro 1520ml Retangular",
+            "platform_item_id": "MLB5322470722",
+            "fonte": "orderItems / top_products",
+            "orders": 2,
+            "pct_total": "1.7%"
+          }
+        ],
+        "total_posicoes_6_a_10": {
+          "orders": 18,
+          "pct_total": "15.7%"
+        },
+        "pedidos_fora_top10_estimados": {
+          "orders_estimados": 15,
+          "pct_estimado": "~13%",
+          "nota": "115 total - 82 top5 - 18 posições 6-10 = ~15 pedidos distribuídos em produtos não listados nos top 10"
+        }
       },
-      "leitura": "O top-10 captura 100 de 115 pedidos (87%). Os 15 pedidos restantes representam a cauda real do dia — produtos não identificados individualmente no pacote. A cauda tem contribuição de 13%, insuficiente para compensar qualquer choque no Kit 2 Potes de Vidro 1520ml Retangular (32 pedidos, 27,8% do total). A leitura de 'distribuição horária saudável' da Operacional descreve o eixo tempo — mas não o eixo produto; operacionalmente, o dia foi concentrado em poucos anúncios mesmo com volume distribuído ao longo das horas.",
-      "conclusao_granular": "confirma — cauda real (15 pedidos, 13%) não tem massa para absorver perda do produto líder (32 pedidos); dependência estrutural confirmada em nível granular",
+      "leitura": "A cauda (posições 6-10) contribui com 15.7% dos pedidos. O único produto da cauda com presença não trivial é o Kit 6 Canequinhas com 7 pedidos — categoria diferente (alumínio, não vidro), o que sugere diversidade de categoria, não profundidade de mix de potes. Os demais têm 2-3 pedidos cada — microamostra que não sustenta tese de tracção própria. A cauda não cresceu junto com os líderes.",
+      "conclusao_granular": "confirma hipótese da Estratégica — cauda sem segundo vetor real; Kit 6 Canequinhas é candidato emergente de categoria diferente mas com 7 pedidos não fecha tese de vetor independente",
       "confianca": "alta"
+    },
+    {
+      "investigacao": "Risco de identificação nos produtos com confidence medium (KIT4YW640 e KIT4YW320) — impacto na leitura geral",
+      "origem": "risco de identificação",
+      "evidencia": {
+        "KIT4YW640": {
+          "platform_item_id": "MLB5402326666",
+          "titulo_disponivel": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petr...",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "confidence": "medium",
+          "orders": 3
+        },
+        "KIT4YW320": {
+          "platform_item_id": "MLB4073064873",
+          "titulo_disponivel": "Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-pet...",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "confidence": "medium",
+          "orders": 3
+        },
+        "volume_combinado": "6 pedidos — 5.2% do total"
+      },
+      "leitura": "Ambos têm platform_item_id disponível, título real (truncado, mas presente) e SKU normalizado. O risco de identificação errada é real mas de impacto mínimo no agregado — mesmo que fossem mal identificados, 6 pedidos não alteram nenhuma leitura de concentração ou dependência das camadas anteriores. Esses produtos não devem ser citados nominalmente no Slack com certeza, mas sua exclusão não muda qualquer conclusão.",
+      "conclusao_granular": "risco de identificação localizado e de impacto negligível — não altera nenhuma leitura das camadas anteriores",
+      "confianca": "média"
     }
   ],
   "risco_identificacao": {
     "nivel": "baixo",
-    "fontes_de_risco_presentes": [
-      "KIT4YW640: mapping_status mapped_generic_sku, título truncado no display_name (MLB5402326666, 3 pedidos, 2,6% do total)",
-      "KIT4YW320: mapping_status mapped_generic_sku, título truncado no display_name (MLB4073064873, 3 pedidos, 2,6% do total)"
+    "fontes_de_risco": [
+      "KIT4YW640 e KIT4YW320 com mapping_status mapped_generic_sku e confidence medium (6 pedidos combinados, 5.2% do total)",
+      "IMB501P e IMB501V compartilham o mesmo platform_item_id MLB3288536143 — atribuição por variação de cor é via SKU interno, não via MLB independente; risco baixo pois os SKUs são distintos e a fonte sinaliza isso"
     ],
-    "explicacao": "Oito das dez variações do top-10 têm confiança 'high' no mapeamento, com SKU direto, título real e platform_item_id todos presentes a partir de orderItems. As únicas exceções são KIT4YW640 e KIT4YW320, ambas com mapping_reason 'raw_sku_normalized_with_short_title_fallback' e título truncado — risco de identificação médio restrito a esses dois produtos, mas com peso de 3 pedidos cada (5,2% combinado), sem impacto material na leitura agregada da conta. O compartilhamento de MLB3288536143 entre IMB501P e IMB501V foi avaliado na investigação própria e resolvido pelo SKU do pedido real. Nenhum produto entra em BLOQUEIO PARA SLACK. Confiança máxima das evidências factuais do dia é alta; confiança de afirmações sobre padrão histórico permanece média por ausência de memória narrativa da conta.",
-    "bloqueio_para_slack": null
+    "explicacao": "8 dos 10 produtos listados têm confidence high com raw_sku, título real e platform_item_id disponíveis, mapeados por reviewed_sku_display_map ou sku_alias_high_confidence. Os dois produtos com confidence medium somam 6 pedidos e têm platform_item_id disponível. O compartilhamento de platform_item_id entre IMB501P e IMB501V é esperado no modelo ML de variações de cor e não constitui risco real de identificação errada dado que os SKUs são distintos. Nenhum produto apresenta risco alto de identificação. As conclusões das camadas anteriores não são afetadas.",
+    "bloqueios_slack": []
   },
   "detalhe_condensadora": [
     {
-      "detalhe": "KIT2YW e IMB501 somam 71,3% do volume e são simétricas em pedidos (41 cada), mas com dinâmicas internas opostas: KIT2YW depende de uma única variação que carrega 78% da família (Kit 2 Potes 1520ml, 32 pedidos); IMB501 distribui entre três cores (49%/29%/22%)",
-      "por_que_importa": "Se a mensagem citar 'dois grupos lideraram de forma equilibrada', esconde que a fragilidade real está concentrada em um único SKU dentro de um dos grupos — e esse SKU é o vetor de risco, não a família como bloco",
+      "detalhe": "KIT2YW1520 (MLB5322494954 — Kit 2 Potes de Vidro 1520ml Retangular) com 32 pedidos é o vetor individual mais crítico da conta — não é 'dependência equilibrada em duas famílias' mas uma variação única que carrega 78% da sua família e 28% do GMV total sozinha; qualquer oscilação nesse anúncio específico tem impacto desproporcional no resultado do canal",
+      "por_que_importa": "se a mensagem tratar a dependência como duas famílias equivalentes, a leitura estará errada; o risco operacional real está concentrado em um único MLB e deve ser comunicado com essa precisão para motivar checagem correta por Yasmin",
       "confianca": "alta"
     },
     {
-      "detalhe": "A cauda fora do top-10 representa apenas 15 pedidos (13% do volume) — menos da metade do volume do produto líder isolado (32 pedidos)",
-      "por_que_importa": "A distribuição horária saudável descrita pela Operacional é real no eixo tempo, mas não no eixo produto: o dia foi operacionalmente concentrado em poucos anúncios, e a cauda real não tem massa para compensar choque nos líderes — essa distinção é crítica para não comunicar resiliência que o mix não tem",
+      "detalhe": "A cauda não participou do crescimento — o único produto fora das famílias dominantes com presença não trivial é o Kit 6 Canequinhas (MLB3343832496, 7 pedidos, categoria diferente: alumínio); os demais têm 2-3 pedidos cada e não sustentam tese de segundo vetor; o crescimento de hoje foi amplificação dos líderes, não expansão de mix",
+      "por_que_importa": "a mensagem não deve sugerir diversificação de portfólio como positivo do dia; o risco estrutural permanece intacto e a cauda não apresentou sinal de recuperação que contrabalance a dependência",
       "confianca": "alta"
     },
     {
-      "detalhe": "Os 4 cancelamentos não puderam ser atribuídos a nenhum produto por falta de dado granular no pacote — risco de problema pontual no produto líder permanece em aberto",
-      "por_que_importa": "A Operacional pediu essa checagem porque cancelamento concentrado no Kit 2 Potes 1520ml seria sinal de listing ou estoque com problema invisível no agregado; sem o dado, a Condensadora não pode afirmar que os cancelamentos são pulverizados — deve tratar como dado ausente, não como ausência de problema",
+      "detalhe": "Os 4 cancelamentos não foram rastreáveis por produto com os dados disponíveis — não é possível confirmar nem descartar concentração nos anúncios líderes",
+      "por_que_importa": "a mensagem deve tratar os cancelamentos apenas pela quantidade (baixa, 3.5%) sem afirmar distribuição ou ausência de concentração por produto; qualquer afirmação mais específica seria extrapolação sem evidência granular",
       "confianca": "baixa"
     }
   ],
   "memoria_interna": {
-    "ids_anuncios_por_sku": {
-      "KIT2YW1520": "MLB5322494954",
-      "KIT2YW1050": "MLB6518176572",
-      "IMB501P": "MLB3288536143",
-      "IMB501V": "MLB3288536143",
-      "IMB501C": "MLB4535865311",
-      "914C": "MLB3343832496",
-      "KIT4YW640": "MLB5402326666",
-      "KIT4YW320": "MLB4073064873",
-      "KIT4YW1050": "MLB4073003575",
-      "KIT4YW1520": "MLB5322470722"
-    },
-    "pedidos_por_hora_completo": {
-      "0h": 2,
-      "2h": 2,
-      "4h": 1,
-      "7h": 3,
-      "8h": 4,
-      "9h": 11,
-      "10h": 7,
-      "11h": 5,
-      "12h": 4,
-      "13h": 5,
-      "14h": 4,
-      "15h": 11,
-      "16h": 12,
-      "17h": 11,
-      "18h": 5,
-      "19h": 7,
-      "20h": 5,
-      "21h": 7,
-      "22h": 3,
-      "23h": 6
-    },
-    "notas_tecnicas": [
-      "KIT4YW640 e KIT4YW320: mapping_status mapped_generic_sku, título truncado — risco médio de identificação restrito; peso negligenciável (3 pedidos cada); citação com ressalva se necessário em contexto interno",
-      "MLB3288536143 compartilhado entre IMB501P e IMB501V: resolvido pelo SKU do pedido real — não é erro de atribuição",
-      "Top-10 cobre 100 de 115 pedidos válidos; 15 pedidos em cauda não identificada individualmente",
-      "Nenhuma pergunta da Operacional respondida por dado granular — todas bloqueadas por ausência de dado no pacote; investigação de cancelamentos por produto exige acesso a pedidos individuais com status cancelado"
+    "nota": "Itens técnicos para log e investigações futuras — não devem ir para Slack",
+    "itens": [
+      "platform_item_ids confirmados por pedido real: MLB5322494954 (KIT2YW1520), MLB3288536143 (IMB501P e IMB501V — mesmo MLB, variações de cor), MLB4535865311 (IMB501C), MLB6518176572 (KIT2YW1050), MLB3343832496 (914C), MLB5402326666 (KIT4YW640), MLB4073064873 (KIT4YW320), MLB4073003575 (KIT4YW1050), MLB5322470722 (KIT4YW1520)",
+      "atenção: IMB501P e IMB501V compartilham platform_item_id MLB3288536143 — monitorar para não tratar como MLBs independentes em análises futuras; atribuição por variação depende do SKU interno",
+      "distribuição horária completa: 0h=2, 2h=2, 4h=1, 7h=3, 8h=4, 9h=11, 10h=7, 11h=5, 12h=4, 13h=5, 14h=4, 15h=11, 16h=12, 17h=11, 18h=5, 19h=7, 20h=5, 21h=7, 22h=3, 23h=6",
+      "KIT4YW640 e KIT4YW320: mapping_status mapped_generic_sku, confidence medium — não citar nominalmente no Slack com certeza",
+      "cancelamentos: 4 pedidos cancelados sem atribuição de produto disponível no pacote — investigar em próximos ciclos se o dado vier desagregado",
+      "pergunta aberta para próximo ciclo operacional: confirmar se o padrão horário duplo (9h + bloco 15h-17h) é recorrente — a memória não tem histórico para validar"
     ]
   },
   "llm_used": true,

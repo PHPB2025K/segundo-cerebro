@@ -1,46 +1,45 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Qualidade da base
 
-Weekly e monthly estão em template vazio — sem histórico acumulado real, sem hipóteses ativas anteriores, sem teses anteriores para confirmar ou refutar. Esta é efetivamente a primeira leitura com memória estruturada para esta conta. Todas as janelas temporais (7d, 30d, 60d, mesmo dia da semana) estão disponíveis e com dados completos — a limitação não é de dado, é de âncora de memória. Confiança na tese ajustada para "provável, não confirmada".
+Weekly.md e monthly.md são templates vazios — nenhuma consolidação semanal ou tese mensal madura disponível. Os dados quantitativos cobrem janelas de 7d, 30d e 60d com integridade confirmada, mas não há hipóteses ativas anteriores para confirmar ou refutar. A leitura de hoje serve como âncora, não como confirmação de tese.
+
+---
 
 ### Leitura temporal
 
-- **30d vs 60d — mudança de patamar em curso:** A média de 30d (98,3 pedidos / R$4.126) já estava 18% acima da média de 60d (83 pedidos / R$3.474), indicando que a conta vinha num ciclo de elevação antes de hoje. Hoje (115 pedidos / R$5.495) está 17% acima do 30d e 38% acima do 60d — o dia não criou o movimento, reforçou um que já estava acontecendo.
+- **60d → 30d (mudança de patamar):** A média de 30d (98,3 pedidos / R$ 4.126) está ~18% acima da média de 60d (83,0 pedidos / R$ 3.474) — sinal consistente de que a conta ganhou patamar no último mês, não apenas oscilou dentro da banda anterior.
+- **7d abaixo do 30d (ruído ou acomodação):** A média de 7d (83,3 pedidos / R$ 3.736) ficou abaixo da média de 30d, o que inicialmente sugere desaceleração recente — mas o 01/05 (134 pedidos, feriado Dia do Trabalho) infla o 30d artificialmente. O 7d sem esse outlier é mais representativo do comportamento operacional cotidiano.
+- **Mesmos dias da semana — quinta-feira:** Excluindo 01/05, a série é 70 → 76 → 83 → 115 — aceleração visível ao longo dos quatro ciclos. Hoje (115) não é ruído: é a leitura mais alta de quinta-feira em quatro semanas, e está 38% acima da média dos pares (90,75 pedidos).
+- **Ticket médio em alta estrutural:** R$ 47,78 vs R$ 41,87 no 60d (+14,1%) e R$ 41,99 no 30d (+13,8%). O GMV está crescendo mais rápido que o volume em todas as janelas, o que indica mudança de mix para produtos de ticket maior (kits maiores e conjuntos maiores dominando o top).
 
-- **Mesmo dia da semana — hoje se destaca mesmo excluindo o outlier:** Os quatro pares de quinta-feira mostram: 70, 76, 134 (01/05 — provável feriado), 83 pedidos. Excluindo o dia de feriado, a média dos demais é ~76 pedidos. Hoje em 115 está 51% acima da média normalizada dos pares de quinta — não é sazonalidade, é elevação real.
-
-- **Ticket em alta estrutural:** O ticket médio de hoje (R$47,78) está 13-14% acima do 30d e 60d (R$41,99 e R$41,87). Quando volume e ticket sobem juntos, o ganho de GMV é mais qualitativo — não é apenas mais pedidos de itens baratos.
-
-- **Sem hipóteses anteriores para testar:** A memória não registra tese ativa, ciclo anterior ou padrão recorrente documentado. A leitura temporal favorece ganho de patamar, mas não há âncora de memória que confirme se esse nível superior já foi tentado e reverteu antes.
+---
 
 ### Leitura estratégica
 
-- **A conta está em aceleração observável em mais de uma janela, com qualidade de mix:** O movimento não é de um dia — o 30d já estava acima do 60d, e o 7d (83,3) ainda está comprimido pelos dias mais fracos da semana. O dia de hoje é a leitura mais forte da série disponível, e o ganho é simultâneo em volume e ticket, o que distingue expansão real de pico pontual de quantidade.
+- **O ganho de patamar do 30d sobre o 60d se confirma hoje.** A conta não só sustenta o patamar mais alto — ela produz seu melhor resultado de quinta-feira em ao menos quatro semanas. Isso transforma o que poderia ser acomodação em ganho de patamar em consolidação.
+- **O ticket é o segundo vetor de crescimento.** GMV crescendo +33% vs 30d e +58% vs 60d, enquanto pedidos crescem +17% e +39% respectivamente, evidencia que o mix se deslocou para produtos de maior valor unitário. Kit 2 Potes 1520ml (R$ ~47–50 por kit) como líder absoluto (32 pedidos, 27,8% do total) é coerente com esse padrão.
+- **A família IMB501 funciona como segundo vetor, mas dentro de um mix estreito.** Potes Redondos em três cores somam 41 pedidos (35,7%), enquanto a família KIT2YW soma ~46 pedidos (40%). Dois grupos de família respondem por ~75% do volume — é diversificação de variação, não de categoria. A conta não tem ainda um terceiro produto com tração significativa visível.
+- **A ausência de memória semanal/mensal impede saber se essa concentração é padrão crônico ou recente.** Sem esse contexto, não é possível afirmar se o mix estreito é estrutural consolidado ou se houve estreitamento recente — o que muda o nível de urgência do risco.
 
-- **Concentração nos líderes é moderada-alta e potencialmente crônica:** Top 3 em 55,7% e top 5 em 71,3%. O Kit 2 Potes Retangular 1520ml sozinho respondeu por ~28% dos pedidos. A família KIT2YW (as duas variações 1520ml e 1050ml juntas) representou cerca de 36% do volume. A família IMB501 (três variações de tampa) somou outro ~36%. A conta corre sobre dois grupos de família — não sobre dezenas de produtos. Isso é estruturalmente eficiente quando os líderes performam, e estruturalmente frágil quando qualquer deles oscila.
-
-- **Sem dado de reputação, ranking ou exposição no pacote — hipóteses sobre canal ficam suspensas:** O crescimento pode ser orgânico de ranking, efeito de ADS Himmel ou sazonalidade de categoria. Sem esses dados disponíveis no pacote, não é possível identificar o motor do ganho — e portanto não é possível saber se é sustentável ou dependente de condição externa.
-
-- **A base de memória nascente impede confirmar se esse nível já foi visitado:** Se o 30d já estava acima do 60d há semanas, o patamar de R$4-5k de GMV pode ser a nova normalidade estabelecida. Sem histórico acumulado no weekly/monthly, esse nível superior pode ser novidade ou pode ser retorno a um pico anterior.
+---
 
 ### Tese da conta
 
-**Em ganho de patamar — provável, não confirmada.** A convergência de três sinais — 30d acima de 60d, hoje acima de 30d, e ticket em alta simultânea — aponta para elevação estrutural em curso, não para pico isolado. A ausência de memória acumulada impede confirmar se esse nível é novo ou recorrente, mas os dados disponíveis não sustentam leitura conservadora de "acomodação" nem pessimista de "ruído". O qualificador "provável" reflete a base de memória nascente, não dúvida sobre o movimento dos dados.
+**Em ganho de patamar.** A comparação 30d vs 60d mostra deslocamento estrutural para cima — não flutuação dentro da mesma banda. O resultado de hoje, ao superar o 30d e ao se posicionar como o melhor resultado de quinta-feira em quatro semanas (excluindo feriado), confirma a trajetória em vez de contrariá-la. O ticket em alta há pelo menos duas janelas temporais amplifica o efeito no GMV. A confiança nesta classificação é moderada: base quantitativa sustenta, mas a ausência de memória semanal/mensal impede ancoragem histórica mais fina.
+
+---
 
 ### Risco estrutural principal
 
-**Risco:** Dependência de duas famílias de produto (KIT2YW e IMB501) sem segundo vetor documentado — as duas famílias responderam por ~72% dos pedidos do dia.
+- **Risco:** Dependência concentrada em dois grupos de família (KIT2YW + IMB501) sem terceiro produto com tração significativa. Top 5 responde por 71,3% do volume; o produto líder isolado (Kit 2 Potes 1520ml) representa 27,8% dos pedidos do dia.
+- **Por que importa:** Qualquer interrupção nesses produtos — estoque, competitividade de preço, perda de exposição/ranking no ML — impacta imediatamente o faturamento sem segundo vetor de compensação. Em momentos de aceleração de patamar como o atual, a dependência é mais crítica porque o crescimento está sendo construído sobre base estreita.
+- **Histórico:** Sem weekly/monthly preenchidos, não é possível determinar se essa concentração é crônica ou se se acentuou recentemente. Hipótese em aberto.
+- **Sinal de confirmação:** Concentração do top 3 acima de 60% por dois ciclos semanais consecutivos confirma a dependência como padrão estrutural da conta, não oscilação pontual de mix.
 
-**Por que importa:** Qualquer evento que afete estoque, listing, ranking ou competitividade de preço dessas famílias impacta diretamente o GMV total. Num dia de crescimento, a concentração parece irrelevante — mas ela transforma qualquer oscilação dos líderes em evento de conta, não em evento de produto.
-
-**Histórico:** Sem memória anterior para confirmar se isso é padrão crônico ou novo. Não pode ser classificado como "crônico confirmado" — mas a estrutura do mix do dia é consistente com uma conta que não tem cauda ativa relevante.
-
-**Sinal de confirmação:** Concentração de top 3 acima de 55% por duas semanas consecutivas confirmaria dependência crônica, não evento do dia.
+---
 
 ### Sinais a observar
 
-1. **GMV acima de R$4.500 por dois dias seguidos nos próximos 5 dias** confirmaria que a conta rompeu o piso do 30d (R$4.126) de forma sustentada e está estabelecendo novo patamar — não foi pico de quinta.
-
-2. **Ticket médio sustentado acima de R$45 por 3 dos próximos 5 dias** confirmaria que a alta de mix não é pontual — o mercado está absorvendo o volume com mix mais rico, o que muda a leitura de rentabilidade da conta.
-
-3. **Concentração de top 3 acima de 55% pelo segundo ciclo semanal consecutivo** confirmaria dependência estrutural crônica e sinalizaria que a cauda não está crescendo junto com os líderes — risco que deve transitar para o weekly assim que acumulado.
+1. **Confirmação de patamar:** GMV acima de R$ 4.500 em ao menos 3 dos próximos 5 dias consolidaria o ganho de patamar do 30d como novo baseline — abaixo desse nível por mais de 2 dias seguidos reabre a hipótese de que hoje foi outlier positivo, não tendência.
+2. **Ticket médio:** Ticket abaixo de R$ 43 por dois dias consecutivos indicaria reversão do mix para produtos menores e fragilizaria a tese de crescimento de GMV sustentado por valor unitário — não por volume.
+3. **Concentração do top 3:** Concentração acima de 60% no acumulado da semana, confirmada por dois ciclos semanais, valida o risco estrutural como crônico e ativa necessidade de análise de cauda (se disponível no pacote das próximas leituras).

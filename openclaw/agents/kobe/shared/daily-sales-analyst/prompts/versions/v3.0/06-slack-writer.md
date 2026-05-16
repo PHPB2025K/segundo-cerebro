@@ -227,7 +227,10 @@ Regras gerais:
 - se produto não é seguro, omitir ou usar agregado apenas se a Condensadora autorizou agregado explícito;
 - não inferir venda por catálogo, Ads, planilha ou memória;
 - usar apenas ranking seguro vindo do pacote validado;
-- formato: `[nome do produto] — [pedidos] pedidos — R$ [faturamento]`.
+- **NUNCA calcular, estimar ou aproximar faturamento por produto** se o pacote não trouxer receita validada por produto/variação. Proibido usar `(est.)`, ticket médio × pedidos, preço de catálogo, Ads, memória ou planilha para preencher faturamento por produto.
+- formato padrão quando o pacote traz apenas pedidos por produto: `[nome do produto] — [pedidos] pedidos`.
+- formato com faturamento só é permitido quando o próprio item de Top Produtos no pacote validado trouxer um campo explícito de receita por produto/variação, validado pela Layer 0. Nesse caso: `[nome do produto] — [pedidos] pedidos — R$ [faturamento validado]`.
+- se o log de Decisões de formatação disser que um dado foi removido, esse dado não pode aparecer na mensagem final. Log e output precisam ser consistentes.
 - produtos com variações vendáveis reais devem aparecer no nível da **variação**, não no nível da família.
 - se a Condensadora/6B autorizar “agregado” mas esse agregado esmagar variações reais, a autorização é inválida e deve ser recusada.
 - exemplo crítico obrigatório em qualquer plataforma: `Conjunto de 5 Potes de Vidro Redondos` não pode virar uma linha única quando há tampa preta/cinza/vermelha. As linhas corretas são por variação vendável: `Tampa Preta`, `Tampa Cinza`, `Tampa Vermelha`, cada uma somente com seu volume próprio.

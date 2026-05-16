@@ -413,6 +413,30 @@ def validate_json_output(text):
         return None, str(e)
 
 
+def validate_slack_writer_output(text, package, recipient_name):
+    """Mechanical guard for Slack Writer output before QA.
+
+    The current Layer 0 package exposes product order counts, not validated
+    product-level revenue. Top Produtos must not contain R$ values or estimated
+    revenue unless the package explicitly starts providing product revenue fields.
+    """
+    errors = []
+    in_top = False
+    for raw in text.splitlines():
+        line = raw.strip()
+        if line.startswith("🏆 TOP PRODUTOS"):
+            in_top = True
+            continue
+        if in_top and (line.startswith("🔍 ") or line.startswith("🎯 ") or line.startswith("Dia analisado:")):
+            in_top = False
+        if in_top and line.startswith("-"):
+            if re.search(r"\bR\$\s*\d", line) or re.search(r"(?i)\best\.?\b|estimad", line):
+                errors.append(f"Top Produtos contém faturamento/estimativa não autorizada: {line}")
+    if re.search(r"(?i)foi removid[oa]", text) and re.search(r"(?i)\best\.?\b|estimad", text):
+        errors.append("Log declara remoção de estimativa, mas output ainda contém referência estimada.")
+    return errors
+
+
 # --- Contamination Detection (Phase 7.1) ---
 
 CONTAMINATION_PATTERNS = [
@@ -883,6 +907,21 @@ def run_llm_layers(package, run_dir, recipient_name, config, prompt_version,
 
             previous_outputs[output_name] = json.dumps(parsed, indent=2, ensure_ascii=False)
         else:
+            if output_name == "06-slack-preview":
+                slack_errors = validate_slack_writer_output(output, package, recipient_name)
+                if slack_errors:
+                    err = "; ".join(slack_errors[:3])
+                    print(f"FALLBACK (slack writer guard: {err})")
+                    layer_results[output_name] = {
+                        "path": str(output_path),
+                        "llm_used": False,
+                        "model": model_used,
+                        "fallback": True,
+                        "error": f"Slack Writer guard failed: {err}",
+                    }
+                    previous_outputs[output_name] = f"[FALLBACK - Slack Writer violou contrato: {err}]"
+                    continue
+
             # Markdown layers — add metadata header
             header = f"<!-- llm_used=true model={model_used} fallback=false -->\n"
             full_output = header + output

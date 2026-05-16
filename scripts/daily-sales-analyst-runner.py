@@ -132,6 +132,36 @@ def get_failed_checks(data_readiness):
             failed.append(c)
     return failed
 
+def product_display_name(product):
+    """Only use Layer 0 short commercial name for visible product labels."""
+    return (
+        product.get("short_product_name")
+        or product.get("display_name")
+        or product.get("title")
+        or "Produto não identificado"
+    )
+
+
+def validate_layer0_product_contract(package):
+    """Fail closed if Layer 0 did not provide sellable variation + short name."""
+    blockers = []
+    if package.get("schema_version") != "daily-sales-data-package/v1.2":
+        blockers.append("Layer 0 package schema antigo; exige daily-sales-data-package/v1.2")
+
+    for slug, account in (package.get("platforms") or {}).items():
+        for idx, product in enumerate(account.get("metrics", {}).get("top_products", [])[:10], 1):
+            short_name = (product.get("short_product_name") or "").strip()
+            mapped = (product.get("mapped_variation_sku") or "").strip()
+            status = product.get("mapping_status")
+            confidence = product.get("confidence")
+            if not short_name or not mapped or status in {"ambiguous", "unmapped_title_only"} or confidence == "low":
+                blockers.append(
+                    f"{slug} top#{idx}: identidade insegura "
+                    f"(raw_sku={product.get('raw_sku')!r}, mapped={mapped!r}, "
+                    f"short={short_name!r}, status={status!r}, confidence={confidence!r})"
+                )
+    return blockers
+
 
 def recipient_data(package, recipient_name):
     """Extract recipient-specific data from package."""
@@ -557,7 +587,7 @@ def gen_layer03_operacional(package, run_dir, recipient_name, blocked, block_rea
             if top:
                 lines.append("**Top Produtos:**")
                 for i, p in enumerate(top, 1):
-                    lines.append(f"  {i}. {p.get('title', 'N/A')} — qty: {p.get('quantity', 0)}")
+                    lines.append(f"  {i}. {product_display_name(p)} — qty: {p.get('quantity', 0)}")
             lines.append(f"- Top3 concentracao: {m.get('top3_concentration', 'N/A')}%")
             lines.append(f"- Top5 concentracao: {m.get('top5_concentration', 'N/A')}%")
             ff = m.get("fulfillment", {})
@@ -1010,11 +1040,21 @@ def run(date_str, mode, recipients, config, package_path=None,
         for fc in failed_checks:
             print(f"  FAIL: {fc['check']} — {fc.get('detail', '')}")
 
-    is_blocked = dr_status == "NOT_READY"
+    contract_blockers = validate_layer0_product_contract(package)
+    if contract_blockers:
+        print("Layer 0 product contract: FAIL")
+        for b in contract_blockers[:10]:
+            print(f"  FAIL: {b}")
+    else:
+        print("Layer 0 product contract: OK")
+
+    is_blocked = dr_status == "NOT_READY" or bool(contract_blockers)
     block_reason = ""
     if is_blocked:
         reasons = [f"{fc['check']}: {fc.get('detail', '')}" for fc in failed_checks]
-        block_reason = f"Data Readiness NOT_READY. Checks failed: {'; '.join(reasons)}"
+        if contract_blockers:
+            reasons.extend([f"product_identity_contract: {b}" for b in contract_blockers[:10]])
+        block_reason = f"Layer 0/Data Readiness blocked. Checks failed: {'; '.join(reasons)}"
         print(f"\nPipeline BLOCKED: {block_reason}\n")
     print()
 

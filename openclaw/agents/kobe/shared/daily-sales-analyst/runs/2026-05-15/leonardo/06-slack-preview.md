@@ -6,28 +6,24 @@ DAILY SALES REPORT — AMAZON — 15/05/2026 (Ontem)
 
 📊 VISÃO AMAZON
 - Faturamento: R$ 878,00
-- Pedidos: 27
+- Pedidos: 27 pedidos
 - Ticket médio: R$ 32,52
 - Cancelamentos: 0
-- Fulfillment: 27/27 FBA
+- Fulfillment: 100% FBA
 
 🏆 TOP PRODUTOS AMAZON
 - Jarra Medidora de Vidro 500ml — 7 pedidos
 - Suporte Controle Gamer — 5 pedidos
 - Conjunto 5 Potes de Vidro Redondos Tampa Preta — 4 pedidos
 - Kit 6 Xícaras Porcelana Paris 170ml — 1 pedido
-- Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset (Cru) (ASIN: B0GTQXRDTM) — 1 pedido
+- Kit 2 Potes de Vidro 1050ml Retangular — 1 pedido
 
 🔍 ANÁLISE DA CONTA
-A conta chegou a 27 pedidos — dentro da banda histórica em todas as janelas disponíveis — e ainda assim gerou R$ 878,00. Não é queda de demanda; é que cada venda vale ~20% menos do que o padrão da conta, e isso já aparecia no 60d, então não é ruído de hoje.
-
-Os dois líderes do dia concentraram 44% dos pedidos com identificação de alta confiança — enquanto os oito produtos restantes com 1 pedido cada não formaram cauda suficiente para compensar. A conta não tem segundo vetor de volume com ticket mais alto funcionando: a estrutura confirma que o GMV está refém da composição dos dois líderes, e enquanto eles dominarem o mix, o ticket médio tende a ficar estruturalmente abaixo do histórico.
-
-O diagnóstico recomendado — verificar Buy Box e elegibilidade nos ASINs de maior ticket — não pode ser concluído pelo relatório automático: esses dados precisam ser buscados diretamente na plataforma. A ausência não invalida a tese; confirma que a investigação é manual.
+- Parece dia fraco pelo GMV, mas a operação está íntegra — FBA 100%, zero cancelamentos, volume dentro da banda histórica. O que caiu foi o valor capturado por pedido, não a demanda. A leitura correta é compressão de ticket, não perda de canal.
+- A explicação mais coerente para o ticket comprimido é que um único ASIN de menor valor liderou com quase 26% dos pedidos e pode ter arrastado o ticket médio da conta — mas isso é hipótese, não fato confirmado. Sem receita por produto no pacote e sem histórico qualitativo acumulado da conta, não é possível classificar como tendência nova ou patamar recente.
 
 🎯 PRIORIDADES DO DIA
-- Leonardo: verificar Buy Box e FBA dos ASINs com perfil de ticket historicamente mais alto — Conjunto 5 Potes de Vidro Tampa Preta, Kit 6 Xícaras Porcelana Paris e Kit 2 Potes de Vidro 1050ml Retangular são os candidatos prioritários. Se Buy Box ≥ 85% e FBA elegível nesses listings: o problema é mix/exposição orgânica. Se Buy Box baixa ou indisponível em algum deles: o problema é operacional e precede qualquer discussão de ADS. Checagem em até 24h. Escalar para Pedro apenas após consolidar o diagnóstico com evidência de qual ASIN tem problema operacional confirmado.
-- Leonardo: registrar o ticket médio de hoje (R$ 32,52) e a tese inaugural da conta na memória semanal/mensal — sem esse registro, a análise de amanhã parte do zero e o padrão não pode ser confirmado ou refutado.
+- Leonardo: checar Buy Box e cobertura FBA dos ASINs líderes diretamente no Seller Central. A operação parece saudável, mas o ticket comprimido levanta hipótese de mix shift — validar os pré-requisitos agora evita retrabalho se o sinal se confirmar nos próximos dias e for necessário acionar Pedro. Confirmar/refutar por: Buy Box acima de 85% nos ASINs líderes e FBA sem ruptura confirmam que os pré-requisitos para eventual ação de ADS estão íntegros. Escalar se: Buy Box abaixo de 85% em qualquer ASIN líder ou ruptura de FBA identificada — acionar Pedro imediatamente.
 
 Dia analisado: 15/05/2026 — 00:00–23:59 BRT
 ```
@@ -36,35 +32,45 @@ Dia analisado: 15/05/2026 — 00:00–23:59 BRT
 
 ### Respeito de bloqueios
 
-- **Item bloqueado:** TL250P — display_name "Tigela de Vidro 250ml" (ASIN B0GGTY2BLT)
-- **Origem do bloqueio:** Granular + Condensadora
-- **Motivo:** Display_name incorreto — raw_title do pedido real indica "Kit 6 Canecas de Porcelana Tulipa 250ml"; categorias distintas (porcelana vs vidro, caneca vs tigela)
-- **Agregado autorizado:** não — Condensadora não autorizou agregado explícito para este item
-- **Tratamento aplicado:** omitido do ranking Top Produtos
-- **Aparece na mensagem final:** não
+- Item bloqueado: TL250P / TL6250 — "Tigela de Vidro 250ml" / "Kit 6 Tigelas de Vidro 250ml" (display_name do sistema)
+- Origem do bloqueio: Granular + Condensadora
+- Motivo: erro de mapeamento confirmado — display_name do sistema diverge do raw_title do pedido real; produto correto é "Canecas de Porcelana Tulipa 250ml", não "Tigela de Vidro"
+- Agregado autorizado: não — nenhum agregado autorizado pela Condensadora para esses SKUs
+- Tratamento aplicado: omitidos do Top Produtos
+- Aparece na mensagem final: não
 
----
+- Item bloqueado: mix shift como fato consumado
+- Origem do bloqueio: Condensadora
+- Motivo: hipótese coerente mas sem confirmação granular direta (sem receita por ASIN no pacote)
+- Agregado autorizado: sim — linguagem de hipótese/indício autorizada
+- Tratamento aplicado: preservada como hipótese com ressalva explícita ("mas isso é hipótese, não fato confirmado")
+- Aparece na mensagem final: sim, como hipótese
 
-- **Item bloqueado:** TL6250 — display_name "Kit 6 Tigelas de Vidro 250ml" (ASIN B0GFPQD4G9)
-- **Origem do bloqueio:** Granular + Condensadora
-- **Motivo:** Display_name incorreto — raw_title do pedido real indica "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas"; mesma família de erro de TL250P
-- **Agregado autorizado:** não — Condensadora não autorizou agregado explícito para este item
-- **Tratamento aplicado:** omitido do ranking Top Produtos
-- **Aparece na mensagem final:** não
+- Item bloqueado: compressão de ticket como tendência confirmada
+- Origem do bloqueio: Condensadora
+- Motivo: weekly e monthly sem histórico — sem base para afirmar se é deterioração nova ou patamar recente
+- Agregado autorizado: sim — linguagem de indício autorizada
+- Tratamento aplicado: preservada a ressalva de inconclusividade temporal
+- Aparece na mensagem final: sim, com ressalva
+
+- Item bloqueado: 14,8% do volume sem produto identificado (4 pedidos)
+- Origem do bloqueio: Condensadora
+- Motivo: detalhe interno de qualidade de dados, não deve aparecer no Slack
+- Agregado autorizado: não
+- Tratamento aplicado: omitido da mensagem
+- Aparece na mensagem final: não
 
 ---
 
 ### Decisões de formatação
 
-- Remoção de metadados internos ("base: Estratégica + Operacional + Granular", "Padrão C/D/E", referências a "a Granular marcou", "a Tática recomenda") — regra de tom: nomes de camadas internas não aparecem no Slack
-- TL250P e TL6250 omitidos do Top Produtos — bloqueio recebido da Granular/Condensadora; display_name incorreto; sem agregado autorizado pela Condensadora
-- SPC013 mantido no ranking com ASIN visível — confiança média de identificação (mapping_reason: raw_sku_normalized_with_short_title_fallback); título truncado no pacote tornava a identificação ambígua sem o ASIN
-- KIT2PANO800AZ omitido do Top Produtos — confidência média e título de baixa distintividade; com TL250P e TL6250 já omitidos, o ranking ficou com 5 itens naturalmente, sem necessidade de preencher com produto de confiança menor
-- KJP0041 omitido do Top Produtos — confiança média; com 5 itens já no ranking (top 5 natural por volume), omissão não distorce o ranking
-- TL6250 e TL250P representavam as posições 6 e 9 do ranking original — sua omissão não afetou o top 5 apresentado
-- Preservação da nuance "sugere/parece/não invalida a tese" nos insights — Condensadora marcou confiança média; hipóteses de ticket por produto e Buy Box mantidas como hipóteses, não convertidas em fato
-- Quebra de frases longas em dois pontos na seção de análise — mantidos todos os termos analíticos, tese intacta e conectivos originais (especialmente o "não é... é que" da inversão do insight 1)
-- Seção VISÃO sem comparação temporal — valores objetivos do dia apenas; comparações permanecem na ANÁLISE DA CONTA conforme regra de seção
-- Ticket médio na seção VISÃO sem casas decimais extras: R$ 32,52 (2 casas) — padrão numérico obrigatório aplicado
-- Prioridade de registro de memória mantida como ação explícita para Leonardo — Condensadora marcou como "não aplicável para escalonamento" mas incluiu nas prioridades para Slack; mantida
-- Rodapé com data de análise: 15/05/2026 — data do dia analisado (ontem em relação a 2026-05-16), não data de execução
+- Top Produtos limitado a 5 itens — ranking seguro do pacote; TL250P e TL6250 omitidos por bloqueio de mapeamento; SPC013 e KJP0041 (confiança medium, mapped_generic_sku) omitidos por não comporem o top 5 seguro após bloqueios
+- TL250P e TL6250 omitidos do ranking — bloqueio da Condensadora por erro de mapeamento confirmado pela Granular; nenhum agregado autorizado; itens simplesmente não aparecem
+- ASINs não exibidos na mensagem — nenhum ASIN dos 5 produtos selecionados apresentou título ambíguo entre si nem foi marcado com risco médio de identificação pela Granular que exigisse ASIN explícito; os títulos são suficientemente distintos
+- Mix shift preservado como hipótese — "pode ter arrastado" e "hipótese, não fato confirmado" mantidos conforme classificação da Condensadora; não elevado para conclusão
+- Ressalva de memória vazia preservada — "sem histórico qualitativo acumulado da conta" reflete o alerta da Condensadora sobre weekly/monthly vazios; mantida na análise para não induzir Leonardo a tratar a leitura como tendência confirmada
+- Remoção de metadados internos — "base: Estratégica + Granular", "base: Operacional + Granular" removidos dos insights; tese preservada integralmente
+- Nenhum insight de enchimento adicionado — Condensadora entregou 2 insights; usados os 2, sem complementação
+- Prioridade única preservada na íntegra — Condensadora entregou 1 prioridade; estrutura ação + evidência + sinal de confirmação/refutação + gatilho de escalonamento mantida conforme regra 7.2
+- Seção VISÃO sem comparação temporal — dados objetivos do dia apenas; comparações pertencem à análise e vieram da Condensadora
+- FBA informado na VISÃO como dado objetivo — 100% FBA é dado estrutural do dia, não análise

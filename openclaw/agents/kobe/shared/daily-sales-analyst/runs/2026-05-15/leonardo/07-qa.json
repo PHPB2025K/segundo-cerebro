@@ -1,15 +1,15 @@
 {
-  "resultado_qa": "BLOQUEADO",
-  "motivo": "Gate 5 falhou com severidade Crítica: o produto SPC002 aparece no Top Produtos como 'Suporte Controle Gamer' — nome genérico de família sem preservar a variação de cor 'Preto' identificável no raw_title do pedido real, enquanto existe na base um segundo variant SPC013 (Cru) que também vendeu no dia. A regra Gate 5 Amazon é explícita: 'título real com variação/cor/tamanho for encurtado para família genérica' → BLOQUEIO. Com 1 Crítico, a regra de agregação determina BLOQUEADO sem exceção. Adicionalmente, dois Menores foram registrados: remoção não logada de '(liderado pelos ASINs de menor valor unitário)' no insight 1 da análise, e divergência entre o log do Decisões de formatação ('frase original preservada em conteúdo e tese') e a mensagem final, que suprimiu 'e serve como ponto de partida para monitoramento' do insight 3 — mas esses Menores não alteram o veredito que já está fixado pelo Crítico.",
-  "send_allowed": false,
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "Nenhuma regra crítica foi violada. A mensagem é fiel à Condensadora, os bloqueios de produto foram respeitados na mensagem final, a estrutura Slack está correta, e hipótese/fato foram corretamente preservados. Dois problemas Menores foram identificados: (1) Gate 5 — o display_name de KIT2YW1050 inclui 'Retangular', descritor ausente no raw_title do pedido real, introduzindo atributo não verificado pelo pedido; (2) Gate 8 — dois itens do campo nao_pode_ir_para_slack da Condensadora (proibição de SKU cru/ASIN desnecessário e concentração top3/top5 como dado fechado) não têm entrada formal estruturada no log de bloqueios da Slack Writer, embora ambos estejam corretamente ausentes da mensagem e parcialmente endereçados nas Decisões de formatação. Regra aplicada: 0 Críticos + 0 Maiores + 2 Menores → APROVADO COM RESSALVA.",
+  "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
     "gate_1_data_periodo_fonte": "OK",
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "FALHA",
-    "gate_6_analise_conta": "RESSALVA",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "OK",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "RESSALVA",
     "gate_9_consistencia_camadas": "OK",
@@ -17,56 +17,43 @@
     "gate_11_padrao_numerico_formatacao": "OK"
   },
   "contagem_severidade": {
-    "criticos": 1,
+    "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
     "menores": 2,
-    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 2 Menores (isolados, sem degradação sistêmica) → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
-      "severidade": "Crítico",
-      "gate": "5 — Top Produtos (Amazon)",
-      "texto_atual": "Suporte Controle Gamer — 5 pedidos",
-      "texto_esperado": "Suporte Controle Gamer Preto — 5 pedidos",
-      "estado_atual": "O produto SPC002 exibe o display_name genérico 'Suporte Controle Gamer', que é o nome da família, sem preservar a variação de cor 'Preto' identificável no raw_title do pedido real ('Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto'). Existe na base um segundo variant SPC013 ('Cru') que também vendeu no dia (1 pedido), tornando a distinção de cor essencial para identificação correta da variação vendável.",
-      "estado_esperado": "O texto visível do Top Produtos deve preservar a variação 'Preto' do raw_title, exibindo 'Suporte Controle Gamer Preto — 5 pedidos'. O display_name do mapeamento interno não prevalece sobre a variação identificável no título real do pedido quando existe outro variant distinto na base.",
-      "regra_violada": "Gate 5 Amazon — 'título real com variação/cor/tamanho for encurtado para família genérica' → BLOQUEIO. Adicionalmente: 'variação vendável identificável no título real foi preservada no texto visível' é requisito positivo que não foi satisfeito. O fato de o display_name ter sido gerado por reviewed_sku_display_map não isenta da regra — a fonte primária para o texto visível é o raw_title do pedido real.",
-      "bloqueia_envio": true
-    },
-    {
       "severidade": "Menor",
-      "gate": "6 — Análise da Conta / 8 — Bloqueios e Logs",
-      "texto_atual": "A hipótese é que o mix-do-dia comprimiu o ticket médio para R$ 32,52 contra R$ 40–43 histórico, mas essa hipótese é consistente com o dado, não provada — o detalhamento do dia não tem receita desagregada por ASIN.",
-      "texto_esperado": "A hipótese é que o mix-do-dia (liderado pelos ASINs de menor valor unitário) comprimiu o ticket médio para R$ 32,52 contra R$ 40–43 histórico, mas essa hipótese é consistente com o dado, não provada — o detalhamento do dia não tem receita desagregada por ASIN.",
-      "estado_atual": "O trecho '(liderado pelos ASINs de menor valor unitário)' foi removido do insight 1 sem registro nas Decisões de formatação. O mecanismo explicativo da hipótese de mix foi simplificado sem justificativa logada.",
-      "estado_esperado": "A remoção deveria estar registrada nas Decisões de formatação com justificativa explícita. O conteúdo analítico do insight não foi fundamentalmente alterado, mas o termo explicativo foi suprimido sem log — violação menor de rastreabilidade.",
-      "regra_violada": "Gate 6 — 'Nenhum termo analítico-chave removido'; Gate 8 — 'houve decisão ambígua não registrada'. Classificado como Menor porque o conectivo principal e a tese central foram preservados, e o termo removido é explicativo, não a conclusão.",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "Kit 2 Potes de Vidro 1050ml Retangular — 1 pedido",
+      "texto_esperado": "Kit 2 Potes de Vidro 1050ml Retangular — 1 pedido (display_name deveria derivar do raw_title: 'Kit 2 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação')",
+      "estado_atual": "display_name de KIT2YW1050 exibe 'Retangular', atributo de forma não presente no raw_title do pedido real. Raw_title descreve 'Hermético' e 'Tampa 4 Travas Vedação', sem menção a forma retangular. O atributo 'Retangular' foi introduzido pelo reviewed_sku_display_map, não pelo título do pedido.",
+      "estado_esperado": "Atributo exibido ao usuário deve derivar do raw_title do pedido real (fonte primária Amazon) ou de mapeamento verificado contra ele. 'Retangular' não é verificável pelo raw_title disponível.",
+      "regra_violada": "Gate 5 Amazon: 'título real do pedido é fonte primária; variação vendável identificável no título real foi preservada no texto visível.' Atributo de forma não verificado pelo pedido foi adicionado via display_name de catálogo. Impacto baixo: 1 pedido, produto de menor volume, sem risco de confusão com outra variação. Granular não flagou este SKU como problemático.",
       "bloqueia_envio": false
     },
     {
       "severidade": "Menor",
-      "gate": "8 — Bloqueios, Confiança e Logs",
-      "texto_atual": "Decisões de formatação: 'Quebra de frase longa no terceiro insight da análise (...) — frase original preservada em conteúdo e tese; adequação de comprimento sem mudança de sentido'",
-      "texto_esperado": "O log deveria registrar explicitamente a remoção de 'e serve como ponto de partida para monitoramento' ao final do insight 3, já que essa supressão ocorreu e altera levemente o enquadramento de ação da tese (de 'primeiro registro + iniciar monitoramento' para apenas 'primeiro registro'). A declaração 'frase original preservada em conteúdo e tese' é imprecisa.",
-      "estado_atual": "Condensadora: '...é o primeiro registro estrutural da conta e serve como ponto de partida para monitoramento.' Slack: '...hoje é o primeiro registro estrutural da conta.' — o complemento de ação foi suprimido. O Decisões de formatação declara falsamente que a frase foi preservada integralmente.",
-      "estado_esperado": "Log deve registrar a supressão com justificativa, ou o texto deve preservar 'e serve como ponto de partida para monitoramento'. A discrepância entre log e mensagem final é a violação objetiva.",
-      "regra_violada": "Gate 8 — 'decisão registrada contradiz a mensagem final'. Classificado como Menor porque o enquadramento central do insight 3 (concentração, cauda sem espessura, primeiro registro) está preservado; apenas o complemento de ação foi perdido.",
+      "gate": "Gate 8 — Bloqueios, confiança e logs",
+      "texto_atual": "Log de bloqueios da Slack Writer contém 4 entradas formais estruturadas (TL250P/TL6250; mix shift como fato; compressão de ticket como tendência; 14,8% sem produto identificado).",
+      "texto_esperado": "Log deve cobrir todos os itens do campo nao_pode_ir_para_slack da Condensadora. Dois itens não têm entrada formal: (a) 'Qualquer referência a SKU cru ou ASIN técnico desnecessário' e (b) 'Concentração top3/top5 como dado fechado'.",
+      "estado_atual": "Os dois itens ausentes do log estão corretamente ausentes da mensagem final e parcialmente endereçados nas Decisões de formatação ('ASINs não exibidos na mensagem'; nenhuma porcentagem de concentração citada). O risco de induzir erro é zero. O problema é de cobertura documental do log, não de violação de conteúdo.",
+      "estado_esperado": "Cada item do campo nao_pode_ir_para_slack da Condensadora deve ter entrada formal no log de bloqueios com origem, motivo, agregado autorizado, tratamento e presença na mensagem final.",
+      "regra_violada": "Gate 8, Passo 2: 'Cada bloqueio da Granular/Condensadora deve aparecer no log.' Dois itens da Condensadora (nao_pode_ir_para_slack itens 5 e 6) não têm entrada estruturada. Classificado como Menor por ausência de risco real: itens não aparecem na mensagem e são tratados nas Decisões.",
       "bloqueia_envio": false
     }
   ],
-  "correcoes_obrigatorias_antes_envio": [
-    "Corrigir Top Produtos: substituir 'Suporte Controle Gamer — 5 pedidos' por 'Suporte Controle Gamer Preto — 5 pedidos', preservando a variação de cor do raw_title do pedido real (SPC002 — 'Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto'). Atualizar o log de Decisões de formatação para registrar a variação preservada."
-  ],
+  "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "ERRO DE MAPEAMENTO PERSISTENTE: display_name de TL250P ('Tigela de Vidro 250ml') e TL6250 ('Kit 6 Tigelas de Vidro 250ml') incorretos para canecas de porcelana tulipa — confirmado por Granular e Condensadora. Não bloqueia Slack de hoje (produtos omitidos corretamente por volume irrelevante), mas o erro de mapeamento no sistema deve ser corrigido antes que esses SKUs ganhem relevância.",
-    "ERRO DE MAPEAMENTO POTENCIAL: display_name de SPC002 ('Suporte Controle Gamer') não preserva a variação de cor 'Preto' do raw_title — erro sistêmico no reviewed_sku_display_map que deve ser corrigido para evitar recorrência deste bloqueio.",
-    "Buy Box por ASIN dos top-3 (B0G2CWWMGK, B0GH2BTQFJ, B0DCP9TBTM) não foi confirmada pelo pacote de dados — pendente de verificação manual de Leonardo; resultado deve ser registrado no próximo ciclo."
+    "KIT2YW1050 (B0FB1523N3): display_name 'Kit 2 Potes de Vidro 1050ml Retangular' inclui atributo 'Retangular' ausente no raw_title 'Kit 2 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação'. Revisar reviewed_sku_display_map para este SKU na próxima calibração de mapeamento.",
+    "Log de bloqueios da Slack Writer deve cobrir todos os itens do nao_pode_ir_para_slack da Condensadora com entrada formal — incluindo bloqueios do tipo regra geral (SKU cru/ASIN desnecessário; concentração top3/top5 como dado fechado). Incorporar na próxima revisão do template da Slack Writer."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "O Top Produtos exibe XCP002 como '4º posição' com 1 pedido / 2 itens. A exibição por pedidos (1) e não por itens (2) é coerente com o padrão adotado para os demais produtos e com o critério do pacote (orders como métrica de ranking). Nenhuma violação, mas a inconsistência entre orders=1 e quantity=2 neste produto poderia merecer nota interna no próximo ciclo de regras.",
-    "KIT2PANO800AZ (confidence medium, 1 pedido) foi omitido do Top Produtos com mesmo tratamento de SPC013 e KJP0041. Correto pela regra de confidence medium + volume irrelevante, mas o Decisões de formatação menciona SPC013 e KJP0041 explicitamente e omite KIT2PANO800AZ da lista de itens omitidos — incompletude menor de log sem risco operacional.",
-    "A memória analítica da conta (weekly.md, monthly.md) continua zerada. A partir de hoje existe o primeiro ponto de dado estrutural — a Condensadora registrou isso corretamente em memoria_para_amanha. Nenhuma violação no Slack de hoje, mas o acúmulo de teses de curto prazo nas próximas 5-7 leituras é necessário antes de qualquer afirmação estrutural sobre a conta."
+    "Hipótese de mix shift foi corretamente preservada como hipótese em ambas as camadas (Condensadora e Slack Writer). Porém, a ausência de receita por ASIN no pacote de dados impede confirmação ou refutação granular. O sistema está operando no limite do que os dados permitem concluir — não há violação de regra, mas a qualidade analítica ficaria elevada com dado de ticket por produto em coletas futuras.",
+    "Weekly e monthly da conta Amazon sem histórico preenchido. Este é o primeiro ciclo qualitativo registrado. As leituras de tendência dos próximos 2-3 dias devem ser tratadas com confiança moderada até que ao menos uma semana de memória acumulada esteja disponível.",
+    "4 pedidos (14,8% do volume do dia) sem produto identificado no top_products — gap de qualidade de dados interno. Monitorar persistência nas próximas coletas. Se o gap persistir, pode introduzir viés sistemático na leitura de concentração de mix."
   ],
   "llm_used": true,
   "model": "sonnet",

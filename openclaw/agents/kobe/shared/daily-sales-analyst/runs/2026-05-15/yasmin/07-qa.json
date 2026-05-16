@@ -1,19 +1,59 @@
 {
-  "layer": "07-qa",
-  "recipient": "yasmin",
-  "date": "2026-05-15",
-  "verdict": "BLOCKED",
-  "checks_passed": 0,
-  "checks_total": 1,
-  "blockers": [
-    "Layer 0/Data Readiness blocked. Checks failed: product_identity_contract: Layer 0 package schema antigo; exige daily-sales-data-package/v1.2"
-  ],
-  "remarks": [
-    "Pipeline bloqueada por Data Readiness NOT_READY.",
-    "Artefatos gerados como placeholders deterministicos."
-  ],
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "A mensagem contém um valor monetário estimado por produto (R$ 1.398,00 est.) que não possui fonte no pacote de dados — o pacote fornece apenas GMV total da conta e contagem de pedidos por produto, sem receita individual por SKU. Esse dado foi inferido sem autorização e constitui Crítico no Gate 5. Agrava a situação o fato de o log de 'Decisões de formatação' da Slack Writer declarar explicitamente que 'O faturamento estimado junto ao produto líder foi removido para manter consistência e evitar inferência não autorizada' — porém o valor permanece na mensagem final, configurando contradição direta entre log e output, Crítico no Gate 8. Dois Críticos em gates distintos. Regra de agregação aplicada: 1+ Crítico → BLOQUEADO.",
   "send_allowed": false,
   "send_real_allowed": false,
-  "fallback": true,
-  "llm_used": false
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "FALHA",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "FALHA",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 2,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 0,
+    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Crítico",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "Kit 2 Potes de Vidro 1520ml Retangular — 32 pedidos — R$ 1.398,00 (est.)",
+      "texto_esperado": "Kit 2 Potes de Vidro 1520ml Retangular — 32 pedidos",
+      "estado_atual": "O Top Produtos exibe valor monetário estimado por produto ('R$ 1.398,00 est.') que não está presente no pacote de dados. O pacote fornece GMV total da conta (R$ 5.494,93) e contagem de pedidos por variação, mas não fornece receita individual por SKU/produto para o Mercado Livre. O valor foi inferido sem fonte canônica autorizada.",
+      "estado_esperado": "Top Produtos exibe apenas pedidos por variação. Receita individual por produto somente quando presente e validada no pacote de dados.",
+      "regra_violada": "Gate 5: 'ranking não inferiu venda por catálogo, Ads, planilha ou memória'; 'formato numérico está correto' — o número está no formato correto mas é dado inventado. Dado inferido sem fonte no pacote constitui Crítico.",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Crítico",
+      "gate": "Gate 8 — Bloqueios, confiança e logs da Slack Writer",
+      "texto_atual": "Decisões de formatação: 'O faturamento estimado junto ao produto líder foi removido para manter consistência e evitar inferência não autorizada' — mas a mensagem final contém '— R$ 1.398,00 (est.)' no primeiro item do Top Produtos.",
+      "texto_esperado": "Se o log declara que o faturamento estimado foi removido, o item correspondente não deve aparecer na mensagem final.",
+      "estado_atual": "O log de Decisões de formatação registra explicitamente a remoção do valor estimado por produto. A mensagem final contradiz essa decisão ao exibir o valor junto ao produto líder. Contradição direta entre decisão registrada e output produzido.",
+      "estado_esperado": "Decisão registrada no log deve ser fiel ao conteúdo da mensagem final. Se log diz 'removido', o item não pode aparecer.",
+      "regra_violada": "Gate 8: 'decisão registrada contradiz a mensagem final' → BLOQUEIO.",
+      "bloqueia_envio": true
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [
+    "Remover '— R$ 1.398,00 (est.)' da linha do Kit 2 Potes de Vidro 1520ml Retangular no Top Produtos, mantendo apenas '— 32 pedidos'. Nenhum outro produto tem valor monetário individual nessa seção — o produto líder deve seguir o mesmo padrão. Correção alinha a mensagem com a decisão já registrada no log da Slack Writer e com os dados disponíveis no pacote."
+  ],
+  "ressalvas_memoria_interna": [],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "A mensagem como um todo, excluído o problema do valor estimado, está bem construída: estrutura Slack correta em ordem e completude, 2 insights fielmente reproduzidos da Condensadora (verbatim), 2 prioridades com motivo, sinal de confirmação/refutação e gatilho de escalonamento, bloqueios de KIT4YW640 e KIT4YW320 respeitados, variações IMB501P/V/C corretamente separadas, nenhum jargão de camada interna, rodapé presente e correto. A única correção necessária é a remoção de um único campo de dado não autorizado.",
+    "Confiança média da Condensadora está implicitamente preservada nos dois insights via uso de 'mas' e inversão estrutural — sem transformar em leitura positiva direta. Sem problema formal, mas vale registro: a confiança média não aparece sinalizada explicitamente para Yasmin, o que é aceitável dado que a Condensadora não exigiu marcador explícito na mensagem."
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

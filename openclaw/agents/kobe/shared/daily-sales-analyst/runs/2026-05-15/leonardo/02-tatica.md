@@ -1,38 +1,38 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Decisão tática
 
-- **Dado que a tese estratégica aponta compressão estrutural de ticket (não perda de volume), a ação prioritária é diagnóstico de mix — não mexer em ADS.** Escalar tráfego pago sobre mix de ticket comprimido amplifica custo sem recuperar GMV. O problema não é demanda; é o que está sendo vendido por pedido.
+- **A tese estratégica é vulnerabilidade de GMV por mix shift, não queda operacional.** O volume está dentro da banda histórica, FBA 100%, zero cancelamentos — a operação está funcionando. A decisão correta é investigar composição de mix antes de qualquer movimento de ADS ou preço. Agir em ADS agora seria escalar tráfego sobre um mix que pode estar estruturalmente comprimindo o ticket — risco de amplificar o problema.
 
-- **Dado que o risco principal é deslocamento de portfólio sem segundo vetor compensatório, Leonardo precisa investigar se ASINs de maior ticket estão elegíveis e com Buy Box ativa.** A Estratégica não tem dados de Buy Box no pacote — essa é a lacuna que impede ou autoriza qualquer movimento de ADS.
+- **O risco operacional não é iminente — é estrutural e ainda sem confirmação de tendência.** Dado que weekly e monthly estão sem histórico e este é o primeiro registro de ticket comprimido, Leonardo não tem base suficiente para concluir tendência: pode ser evento pontual de mix ou início de deterioração. A postura correta é coletar confirmação por 2-3 dias antes de qualquer movimento forte.
 
-- **Dado que a compressão de ticket aparece no 60d (não só hoje), a postura tática correta é diagnóstico e checagem, não ação forte.** Um padrão com 60 dias de histórico não se resolve com ação pontual em um dia — e não foi criado ontem.
+- **O que precisa ser protegido:** operação FBA saudável e Buy Box dos ASINs líderes — estes são os pré-requisitos que tornariam qualquer ação futura de ADS viável. Validar agora significa não ter que correr depois.
 
-- **Dado que não há memória narrativa prévia, esta leitura serve como baseline — o que se decide hoje deve ser registrado para não se perder nas próximas análises.**
+- **O que precisa esperar:** qualquer decisão sobre mix, precificação ou ADS Amazon depende de confirmar se o ticket comprimido é recorrente ou foi evento do dia. Sem essa confirmação (mínimo 2-3 dias), ação forte é precipitada.
 
 ---
 
 ### O que fazer hoje
 
-- **Leonardo:** verificar Buy Box dos ASINs líderes de maior ticket (os que historicamente puxavam o ticket médio da conta acima de R$40) — a Estratégica aponta compressão de ticket em 60d e concentração nos produtos de menor valor, mas sem dados de Buy Box não é possível saber se os ASINs de alto ticket estão simplesmente perdendo visibilidade por problema operacional — se Buy Box ≥85% nos ASINs de maior ticket, o problema é mix/exposição orgânica; se Buy Box baixa ou perdida, o problema é operacional e precede qualquer discussão de ADS.
+- **Leonardo:** checar Buy Box e cobertura FBA dos ASINs líderes da Amazon — dado que a tese aponta operação saudável mas ticket comprimido, validar agora os pré-requisitos de ADS evita ter que correr a checagem se o sinal se confirmar nos próximos dias — Buy Box ≥85% nos líderes e FBA sem ruptura confirmam que, se o sinal de ticket se confirmar, Pedro pode ser acionado sem retrabalho; Buy Box abaixo disso ou FBA frágil muda a prioridade para operação, não para ADS.
 
-- **Leonardo:** identificar qual produto de maior ticket médio está abaixo da média histórica de pedidos nos últimos 7 dias — dado que os top 2 do dia (Jarra Medidora e Suporte Gamer) têm ticket estimado na faixa de R$30-35, verificar se há ASIN com ticket histórico acima de R$45-50 que caiu de volume nas últimas semanas — sinal de resultado: se encontrar ASIN de alto ticket com queda de pedidos, Leonardo consolida para análise e, somente após checar Buy Box e FBA desse ASIN, decide se leva para Pedro.
+- **Leonardo:** observar a composição de mix Amazon pelo próximo ciclo de 2-3 dias com foco no peso do produto líder de volume — a tese estratégica aponta que um ASIN de menor ticket pode estar dominando a composição e arrastando o GMV da conta; acompanhar se a participação do produto campeão se mantém acima de 20% do volume por 2 dias seguidos é a checagem que transforma hipótese em sinal — se o padrão se repetir, Leonardo tem base para acionar conversa com Pedro sobre mix e ADS; se não se repetir, o evento foi pontual e não exige ação.
 
-- **Leonardo:** registrar na memória da conta o ticket médio de hoje (R$32.52) e a tese inaugural desta análise (compressão de ticket em 60d, mix puxado para produtos de menor valor, operação funcional em volume) — dado que weekly e monthly estão vazios, esta leitura não vai ter continuidade se não for registrada — sinal de resultado: memória disponível para a próxima análise diária, permitindo que a tese seja confirmada, enfraquecida ou refutada nos próximos dias.
+- **Leonardo:** registrar o ticket médio dos próximos 2-3 dias comparado com a faixa histórica de R$ 38-42 — a Estratégica identificou ticket hoje em R$ 32.52 vs média 30d/60d de R$ 40-41; monitorar se o ticket se recupera para a faixa histórica ou permanece comprimido abaixo de R$ 36 é o critério que define se a leitura de hoje foi ruído ou início de tendência estrutural — ticket acima de R$ 38 em 2 dos próximos 3 dias enfraquece a hipótese de mix shift consolidado; ticket abaixo de R$ 36 por 3 dias confirma deterioração e aciona revisão de estratégia com Pedro.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Pedro para escalar ADS Amazon.** A compressão de GMV não é causada por falta de tráfego — pedidos estão estáveis em todas as janelas. Escalar ADS sem Buy Box validada e sem entender qual ASIN de alto ticket está elegível resultaria em mais tráfego sobre mix de ticket baixo, com custo adicional e GMV marginal pobre.
+- **Não acionar Pedro para escalar ADS Amazon agora.** A tese estratégica é ticket comprimido por possível mix shift — escalar tráfego pago sobre um mix que pode estar deprimindo o ticket amplifica o problema sem endereçar a causa. Pedro só deve ser acionado após Leonardo validar (a) Buy Box e FBA dos líderes e (b) que o ticket comprimido é tendência, não evento pontual. Acionar Pedro hoje seria reagir a um único dia fraco sem confirmação.
 
-- **Não interpretar o dia de hoje como evento isolado que "passou" amanhã.** O 60d já mostrava ticket comprimido. Tratar a leitura de hoje como ruído seria ignorar o sinal mais relevante da Estratégica. Qualquer normalização de ticket amanhã precisa ser contextualizada contra a banda histórica — não usada para descartar a tese de deslocamento de mix.
+- **Não alterar preço ou mix de catálogo.** Sem dados de margem por produto no pacote, sem histórico qualitativo da conta (weekly e monthly vazios), e sem confirmação de que a composição de mix de hoje é padrão recorrente — qualquer ajuste de preço seria especulativo. A hipótese de mix shift é candidata plausível, não conclusão validada. Alterar preço do produto campeão antes de confirmar a hipótese pode romper o que está funcionando na operação.
 
-- **Não tomar decisão sobre precificação ou reequilíbrio de portfólio ainda.** Sem histórico de ticket por ASIN, sem dados de margem, e sem memória narrativa anterior, qualquer ajuste de preço ou decisão de catálogo seria baseado em hipótese não sustentada por evidência suficiente. A precificação entra apenas após Leonardo mapear quais ASINs de alto ticket têm Buy Box saudável e estão simplesmente sem exposição.
+- **Não tratar o evento de hoje como tendência confirmada.** A compressão de ticket é consistente nas janelas longas, mas esta é a primeira leitura com memória vazia. Não há como distinguir entre deterioração em curso e patamar normal recente da conta sem acumular mais dias. Agir com ação forte (mudança de estratégia, escalonamento para Pedro, revisão de catálogo) baseado em um único ponto de dados seria precipitado.
 
 ---
 
 ### Escalonamento
 
-**Observar** — Leonardo resolve o diagnóstico interno antes de qualquer acionamento externo.
+**Observar** — Leonardo coleta evidência por 2-3 dias antes de qualquer decisão.
 
-A compressão de ticket aparece em 60d, o que significa que não é urgência do dia — é padrão acumulado que precisa ser compreendido antes de ser tratado. Leonardo faz as checagens de Buy Box e FBA hoje, registra a baseline na memória, e observa o ticket médio dos próximos 3-5 dias. Se o ticket se mantiver abaixo de R$37 por 3 dos próximos 5 dias (sinal de confirmação da Estratégica), Leonardo leva um diagnóstico fechado para Pedro — não um pedido aberto, mas um mapa de quais ASINs de maior ticket estão elegíveis e aptos a receber tráfego. Somente nesse momento o escalonamento sobe para **escalar para Pedro**. Se Buy Box revelar problema operacional em ASINs específicos, o escalonamento pode ser resolvido internamente por Leonardo sem envolver Pedro.
+A operação está saudável nos indicadores estruturais (FBA 100%, zero cancelamentos, volume dentro da banda histórica). O sinal de ticket comprimido é real e consistente nas janelas longas, mas com weekly e monthly sem histórico não é possível classificar como tendência nova ou patamar recente da conta. A postura correta é que Leonardo execute as checagens de Buy Box/FBA hoje (validação preventiva, não ação) e acumule mais 2-3 dias de leitura de ticket e composição de mix antes de qualquer movimento. Mudança de classificação: se o ticket permanecer abaixo de R$ 36 por 3 dias consecutivos E a participação do ASIN de menor ticket se mantiver acima de 20% do volume, Leonardo tem base para escalar para Pedro — com diagnóstico fechado (mix shift confirmado + operação apta para ADS), não com pedido aberto.

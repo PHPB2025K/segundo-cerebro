@@ -131,6 +131,28 @@ def recipient_is_full_llm(recipient: dict) -> bool:
     return all(layer.get("llm_used") is True and layer.get("fallback") is False for layer in details.values())
 
 
+def load_qa_gate(recipient: dict) -> dict:
+    qa_path = ((recipient.get("layers") or {}).get("layer7_qa_gate") or "").strip()
+    if not qa_path:
+        raise RuntimeError("Recipient sem artefato QA Gate")
+    path = Path(qa_path)
+    if not path.exists():
+        raise RuntimeError(f"Artefato QA Gate não encontrado: {path}")
+    return json.loads(path.read_text())
+
+
+def qa_gate_allows_send(recipient: dict) -> bool:
+    qa = load_qa_gate(recipient)
+    verdict = str(qa.get("resultado_qa") or qa.get("verdict") or "").upper()
+    if "BLOQUEADO" in verdict or verdict == "BLOCKED":
+        return False
+    if qa.get("send_allowed") is False:
+        return False
+    if qa.get("fallback") is True or qa.get("llm_used") is not True:
+        return False
+    return True
+
+
 def validate_manifest(manifest: dict) -> None:
     recipients = manifest.get("recipients") or {}
     missing = [name for name in EXPECTED_RECIPIENTS if name not in recipients]
@@ -142,6 +164,9 @@ def validate_manifest(manifest: dict) -> None:
     blocked = [name for name in EXPECTED_RECIPIENTS if recipients[name].get("status") == "BLOCKED"]
     if blocked:
         raise RuntimeError(f"Recipients bloqueados: {', '.join(blocked)}")
+    qa_blocked = [name for name in EXPECTED_RECIPIENTS if not qa_gate_allows_send(recipients[name])]
+    if qa_blocked:
+        raise RuntimeError(f"QA Gate não permite envio: {', '.join(qa_blocked)}")
 
 
 def load_manifest(day: str) -> dict:

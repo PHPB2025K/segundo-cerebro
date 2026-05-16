@@ -123,6 +123,8 @@ _Atualizado: 2026-05-15 23:45 BRT — consolidação diária em camadas_
 
 ## 🟡 Observação / estabilidade
 
+- [ ] **Consolidação em camadas — investigar digests ausentes no fechamento 16/05 00:05 BRT**: fechamento técnico registrou ausência dos digests Trader, Spark, Builder, Fisco e RH em `memory/agent-digests/2026-05-15/`. Não gerar digest substituto pelo Kobe; validar se os crons dos agentes rodaram, se houve race/path errado ou atraso antes da consolidação Kobe/fechamento técnico.
+
 - [ ] **Watchdog/Monitor Ponto/RH crons** — revisar timeouts/fallbacks em jobs com histórico de falha por timeout/model not found.
 
 ## 🟡 Futuro aprovado / não imediato
@@ -130,6 +132,13 @@ _Atualizado: 2026-05-15 23:45 BRT — consolidação diária em camadas_
 - [ ] **Budamix Blog — Pinterest API/OAuth** — ativar postagem automática no Pinterest quando padrão de artigos e imagens estiver validado. Por enquanto pins ficam como assets no Admin.
 - [ ] **Budamix E-commerce — conteúdo real das páginas stub** `/faq`, `/contato`, `/termos`, `/trocas-e-devolucoes`; hoje são Coming Soon/noindex.
 - [ ] **Newsletter Budamix** — formulário ainda não persiste email; precisa backend real.
+
+
+## Nota para briefing matinal — itens estagnados >7 dias
+_Gerado pela organização noturna de 16/05 02:00 BRT._
+
+- Revalidar no briefing apenas os itens que continuam bloqueados por decisão/input do Pedro: Estoque Budamix deploy/credencial GitHub, Social Studio Meta App/secrets, Canggu senha/admin + smoke real, DRE abril U15, Guarani distrato, Bling Filial 403, firewall VPS e rotação de tokens expostos.
+- Não reabrir pendências antigas de abril/2026 que Pedro já mandou limpar; manter histórico fora da fila ativa.
 
 ## Backlog Estagnado
 _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
@@ -145,4 +154,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-05-14 02:05 BRT._
+_Última organização: 2026-05-16 02:00 BRT._

@@ -1,10 +1,55 @@
 {
-  "layer": "05-condensadora",
-  "recipient": "yasmin",
-  "status": "BLOCKED",
-  "reason": "Layer 0/Data Readiness blocked. Checks failed: product_identity_contract: Layer 0 package schema antigo; exige daily-sales-data-package/v1.2",
-  "date": "2026-05-15",
-  "condensed_output": null,
-  "fallback": true,
-  "llm_used": false
+  "camada": "05-condensadora",
+  "data": "2026-05-15",
+  "recipient": "Yasmin",
+  "plataforma": "mercado_livre",
+  "analise_final_condensada": [
+    {
+      "insight": "O resultado excepcional do dia rodou inteiramente sobre duas famílias de produto — a linha KITxYW (potes retangulares com travas) respondeu por 45% do volume, e a família IMB501 (potes redondos) por outros 36%, totalizando mais de 80% dos pedidos do dia. A conta não performou de forma diversificada: ela performou concentrada, com o mesmo padrão estrutural de sempre ampliado pelo volume alto. A subida de patamar é real, mas está sendo sustentada por base estreita — qualquer perturbação nas duas famílias não tem segundo vetor para absorver.",
+      "padrao": "B — parece forte, mas a estrutura que carregou o resultado é estreita",
+      "criterio_de_descarte_atendido": "Evita interpretação errada (crescimento parece diversificado, não é) + alerta risco silencioso (concentração estrutural invisível em dia positivo)",
+      "base": "Estratégica + Operacional + Granular"
+    },
+    {
+      "insight": "O ticket médio não é resultado de hoje — é tendência de múltiplas semanas. A trajetória de R$41,87 (60d) para R$41,99 (30d) para R$44,85 (7d) para R$47,78 (hoje) indica mudança real de mix que vem se consolidando, não amplificação pontual. Isso muda a leitura do GMV alto: não é volume que empurrou — é volume qualificado com mix mais nobre, o que é estruturalmente diferente de uma promoção que infla resultado.",
+      "padrao": "D — não é evento do dia, é padrão de semanas",
+      "criterio_de_descarte_atendido": "Muda a leitura do dia (sem isso, GMV alto parece pico de volume; com isso, é crescimento de qualidade composta) + confirma padrão recorrente importante",
+      "base": "Estratégica + Operacional"
+    }
+  ],
+  "prioridades_condensadas_para_slack": [
+    {
+      "prioridade": "Verificar posição e status de exposição dos anúncios das duas famílias líderes (potes retangulares e potes redondos) diretamente no painel ML",
+      "por_que": "O dia foi expressivamente forte e 80%+ do volume veio dessas duas famílias — confirmar que o resultado veio de exposição estável e não de pico de ranking transitório é a checagem mais direta de integridade antes de qualquer outra decisão",
+      "sinal_de_confirmacao_refutacao": "Posição dos anúncios líderes estável ou melhor que 7 dias atrás confirma base sólida; queda em 2+ anúncios após volume alto indica exposição que não vai se sustentar",
+      "escalar_se": "Queda de posição nos dois líderes de família — alinhar com Himmel sobre ADS ML"
+    },
+    {
+      "prioridade": "Registrar os três sinais de confirmação da tese como checagem ativa para os próximos 3-5 dias: GMV acima de R$4.800 por 3 dias consecutivos, ticket acima de R$45 por 5 dias, e campeão de potes retangulares 1520ml acima de 20 pedidos/dia",
+      "por_que": "Hoje pode ser retomada após semana fraca (7d recuou ao patamar de 60d) ou pode ser bounce pontual — a tese de ganho de patamar só transita de hipótese para base de decisão com ao menos dois desses sinais confirmados juntos",
+      "sinal_de_confirmacao_refutacao": "Ao final de 3 dias: 2+ sinais confirmados muda postura de 'observar' para 'proteger crescimento'; nenhum confirmado sugere que a semana fraca anterior era a tendência real",
+      "escalar_se": "Não aplicável por ora — postura de observação"
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [
+    "Breakdown de cancelamentos por produto — dado não disponível no pacote; não afirmar integridade operacional dos líderes com base em cancelamentos",
+    "Kit 6 Canequinhas como candidato a segundo vetor — 7 pedidos reais (não 9), sem distribuição horária por produto; tração inconclusiva, não afirmar diversificação com base nesse dado",
+    "KIT4YW640 e KIT4YW320 como evidência analítica — confidence medium por mapeamento genérico; 6 pedidos combinados (5,2%), descartáveis sem impacto na leitura",
+    "MLBs e SKUs técnicos — IDs de plataforma ficam em memória interna, não no Slack",
+    "Afirmação de que os líderes estão operacionalmente íntegros — cancelamentos por produto não foram verificáveis; dados de ranking e exposição não estão no pacote; a integridade dos líderes é hipótese, não dado confirmado"
+  ],
+  "memoria_para_amanha": [
+    "Verificar se GMV do dia seguinte sustenta acima de R$4.800 — primeiro sinal da tese de ganho de patamar; hoje foi o ponto mais alto de todas as janelas, mas pode ser bounce após semana fraca (7d recuou ao patamar 60d)",
+    "A concentração das duas famílias somou mais de 80% do volume do dia (KITxYW = 45,2%, IMB501 = 35,7%) — checar se esse padrão se repete nos próximos 2 dias para confirmar que é estrutural e não evento de uma quinta-feira específica",
+    "Ticket médio de R$47,78 é o ponto mais alto de todas as janelas — checar se sustenta acima de R$45 nos próximos 5 dias para confirmar mudança de mix estrutural",
+    "Cancelamento por produto: dado não disponível no pacote atual; se futuramente necessário confirmar integridade dos líderes via cancelamentos, o pipeline precisa entregar breakdown por SKU/MLB — registrar como limitação a resolver",
+    "Kit 6 Canequinhas (MLB3343832496): 7 pedidos reais, único produto fora das duas famílias dominantes no top 10 — acompanhar nos próximos 3 dias para avaliar se há tração consistente ou foi presença pontual; sem dado de distribuição horária por produto hoje, conclusão sobre segundo vetor não foi possível"
+  ],
+  "alertas_de_confianca": {
+    "nivel": "média",
+    "explicacao": "Os dados do ML estão sólidos — reconciliação ok, produtos líderes com confidence high, janelas temporais completas e sem contaminação, nenhum produto em bloqueio para Slack. A ressalva que puxa a confiança de alta para média são duas perguntas estruturalmente não respondidas pela Granular: cancelamentos por produto (limitação do pacote, não da análise) e dados de ranking e exposição no painel ML (não disponíveis na fonte canônica, requerem checagem manual por Yasmin). Sem esses dados, a Condensadora não pode confirmar se a força do dia veio de exposição sustentável ou de variação de ranking que pode reverter. Os dois insights entregues estão sustentados por dados disponíveis e não dependem dessas perguntas abertas — mas a leitura completa da saúde operacional do dia tem um componente que permanece como hipótese, não dado."
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

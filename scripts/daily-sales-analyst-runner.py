@@ -851,23 +851,32 @@ def run_llm_layers(package, run_dir, recipient_name, config, prompt_version,
         # Validate JSON layers
         if output_ext == "json":
             parsed, json_err = validate_json_output(output)
+            repaired_by_llm = False
             if json_err:
-                print(f"FALLBACK (invalid JSON: {json_err})")
-                layer_results[output_name] = {
-                    "path": str(output_path),
-                    "llm_used": False,
-                    "model": model_used,
-                    "fallback": True,
-                    "error": f"Invalid JSON from LLM: {json_err}",
-                }
-                previous_outputs[output_name] = f"[FALLBACK - JSON invalido na camada {layer_num}]"
-                continue
+                print(f"REPAIR_JSON (invalid JSON: {json_err})", end=" ", flush=True)
+                repaired, repair_model, repair_err = repair_json_with_llm(output, json_err, config)
+                if repair_err:
+                    print(f"FALLBACK (repair failed: {repair_err})")
+                    layer_results[output_name] = {
+                        "path": str(output_path),
+                        "llm_used": False,
+                        "model": model_used,
+                        "fallback": True,
+                        "error": f"Invalid JSON from LLM: {json_err}; repair failed: {repair_err}",
+                    }
+                    previous_outputs[output_name] = f"[FALLBACK - JSON invalido na camada {layer_num}]"
+                    continue
+                parsed = repaired
+                repaired_by_llm = True
+                print(f"OK (repair={repair_model})")
 
             # Enrich JSON with metadata
             if isinstance(parsed, dict):
                 parsed["llm_used"] = True
                 parsed["model"] = model_used
                 parsed["fallback"] = False
+                if repaired_by_llm:
+                    parsed["json_repaired"] = True
 
             with open(output_path, "w") as f:
                 json.dump(parsed, f, indent=2, ensure_ascii=False)

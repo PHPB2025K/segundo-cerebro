@@ -1,10 +1,45 @@
 {
-  "layer": "05-condensadora",
-  "recipient": "lucas",
-  "status": "BLOCKED",
-  "reason": "Layer 0/Data Readiness blocked. Checks failed: product_identity_contract: Layer 0 package schema antigo; exige daily-sales-data-package/v1.2",
-  "date": "2026-05-15",
-  "condensed_output": null,
-  "fallback": true,
-  "llm_used": false
+  "analise_final_condensada": [
+    {
+      "insight": "O número agregado da Shopee (111 pedidos, R$6.048) esconde o fato operacional mais relevante do dia: a Conta 2 operou em colapso limpo de volume — 17 pedidos contra padrão de 35+ nos mesmos dias da semana, sem cancelamentos, sem fulfillment comprometido, simplesmente sem entrada de pedidos. Tratar isso como resultado aceitável de canal distorce completamente a leitura.",
+      "padrao": "E — Localização: o problema não é a Shopee como canal, é a Conta 2 especificamente",
+      "criterio_descarte_atendido": "Evita interpretação errada — quem lê o total vê resultado dentro de banda; quem olha por conta vê deterioração estrutural localizada e não explicada",
+      "base": "Operacional + Granular"
+    },
+    {
+      "insight": "A Conta 1 não tem alta concentração — tem dependência absoluta: 100% dos pedidos do dia vieram dos cinco produtos mapeados, zero pedidos fora deles. Os dois líderes respondem por 79% do volume da conta, que carrega 60% da plataforma Shopee. Qualquer oscilação nesses dois produtos impacta o total do canal sem nenhum amortecedor.",
+      "padrao": "F — Métrica vs qualidade: o número parece aceitável, mas a estrutura que o sustenta é mais frágil do que descrita pelas camadas anteriores",
+      "criterio_descarte_atendido": "Corrige leitura falsa — a descrição anterior era 'quase absoluta'; o dado concreto da Granular é dependência absoluta; a diferença altera o nível de risco real",
+      "base": "Granular + Estratégica"
+    }
+  ],
+  "prioridades_condensadas": [
+    {
+      "prioridade": "Verificar com Himmel se houve alteração de ADS, verba, segmentação ou cobertura de campanha na Conta 2 nos últimos 7 a 14 dias",
+      "por_que": "A Conta 2 operou em colapso limpo de volume sem cancelamento nem distorção de fulfillment, o que isola o problema na entrada de pedidos — a hipótese mais provável é degradação de exposição por ADS ou campanha, mas não pode ser confirmada sem verificação direta com Himmel",
+      "sinal_de_confirmacao_refutacao": "Se Himmel confirmar alteração de campanha no período, causa identificada e próximo passo alinhado entre os dois. Se não houver alteração confirmada, escalar para investigar exposição orgânica da conta — janela: hoje",
+      "escalar_se": "Himmel não confirmar alteração de campanha — neste caso investigar exposição orgânica antes de qualquer decisão de verba"
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [
+    "SKU 098 da Conta 2 não pode ser citado nominalmente — raw_title do pedido real descreve kit de 9 potes quadrados, incompatível com o display_name mapeado de pote singular; divergência confirmada pela Granular; 1 pedido, impacto nulo hoje, mas identificação é incorreta",
+    "ITEM:28044349447 e SKU 096 da Conta 3 — confiança média, mapeamentos não confirmados, 1 pedido cada; não citar nominalmente",
+    "Cancelamentos da Conta 3 — taxa de aproximadamente 11% é sinal real, mas a Granular não pôde determinar se estão concentrados em produto específico ou pulverizados; não atribuir causa nem produto até dado disponível",
+    "Hipótese de canibalização do CTL002 entre as três contas — sobreposição horária às 15h é evidência real mas insuficiente para afirmar canibalização; tratar como ressalva interna, não como fato no Slack",
+    "Atribuição de responsável nas prioridades — o Slack Writer define o destinatário com base no canal"
+  ],
+  "memoria_para_amanha": [
+    "Conta 2 (shop_id 860803675) em 15/05: 17 pedidos, fundo histórico confirmado em todas as janelas, manhã inteira zerada de 0h a 10h; causa ainda não identificada — aguardar retorno de Himmel sobre ADS para interpretar",
+    "Conta 1 (shop_id 448649947) em 15/05: top5_concentration 100%, zero pedidos fora dos cinco produtos mapeados; confirmar amanhã se cauda zero é padrão crônico ou específico deste dia; ticket R$48,41 como base de comparação para monitorar sustentação do amortecimento",
+    "CTL002 em 15/05: 21 pedidos distribuídos nas três contas Shopee simultaneamente (Conta 1: 9, Conta 2: 4, Conta 3: 8), sobreposição horária às 15h nas três contas; hipótese de impulsionamento transversal ou canibalização por Himmel em aberto — monitorar distribuição horária por conta no próximo ciclo",
+    "Conta 3 (shop_id 442066454) em 15/05: 3 cancelamentos em 27 pedidos, taxa de aproximadamente 11%, causa não identificada por ausência de dado de cancelamento por produto no pacote; se taxa persistir amanhã, investigar se concentrada em produto específico",
+    "Registro de dia operacionalmente coerente com tese de vulnerabilidade da plataforma: resultado agregado dentro de banda, arquitetura interna frágil com três dinâmicas distintas coexistindo; não é recuperação, é acomodação instável — útil para detectar qualquer mudança de padrão nos próximos dias"
+  ],
+  "alertas_de_confianca": {
+    "nivel": "media",
+    "explicacao": "Os dados estruturais das três contas são consistentes e a Granular não emitiu bloqueios que impeçam as leituras centrais. A dependência absoluta da Conta 1 e o colapso limpo da Conta 2 têm confiança alta — produtos líderes e volume por conta confirmados por pedido real com shop_id separado. O que mantém a confiança em média e não alta: a causa do colapso da Conta 2 não foi identificada, a hipótese de ADS é provável mas depende de confirmação de Himmel; os cancelamentos da Conta 3 têm sinal real mas causa inconclusiva por ausência de dado granular de cancelamento por produto; a hipótese de canibalização do CTL002 tem sobreposição horária como evidência mas não confirmação por produto por hora. Nenhuma dessas incertezas invalida os dois insights da análise final, mas impede classificação como alta."
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

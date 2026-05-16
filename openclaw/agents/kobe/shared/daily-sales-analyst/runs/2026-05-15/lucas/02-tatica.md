@@ -1,38 +1,40 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Decisão tática
 
-- Dado que o risco principal identificado pela Estratégica é a deterioração conta-específica de Oficial 2 — com sinal uniforme entre 7d, 30d, 60d e mesmo dia da semana — a decisão imediata é investigar a causa antes de qualquer intervenção: se o problema é ADS/exposição, a resposta é Himmel via Lucas; se é operacional (listing, estoque, reputação), a resposta é diagnóstico interno. Agir sem entender a causa trataria sintoma.
+- **Dado que a tese estratégica identifica Conta 2 em deterioração estrutural cross-janela**, a decisão é investigar causa — não ajustar verba nem alterar mix — porque sem dado de campanha Himmel ou posição de anúncio no pacote, qualquer ação sobre ADS seria tiro cego. A postura é checagem dirigida com hipótese explícita antes de mover qualquer peça.
 
-- Dado que a tese da Store é resiliência frágil sustentada por ticket elevado e concentração extrema nos campeões, a decisão é proteger os produtos líderes antes de qualquer experimento — concentração acima de 90% em top 3 significa que qualquer oscilação nesses itens derruba o GMV sem amortecedor. Não é momento de testar segundo vetor.
+- **Dado que o risco estrutural principal é a hiper-concentração em dois produtos campeões da Conta 1**, a decisão é proteger a operação existente antes de qualquer teste de segundo vetor. Conta 1 está com volume em queda bimestral — não é momento de experimentar exposição em produtos secundários enquanto o que sustenta a plataforma ainda não está estabilizado.
 
-- Dado que Shop 3 comprime ticket de forma consistente ao longo do bimestre com volume estável, a decisão é observar o mix dos próximos 2 dias antes de qualquer ajuste — o movimento pode ser demanda orgânica por categorias de menor valor ou efeito de ADS, e os dois caminhos têm respostas opostas. Agir agora seria precipitado.
+- **Dado que Conta 3 tem volume estável mas ticket em erosão**, a decisão é observar — a erosão pode ser mix natural desta conta (canecas dominando) ou pode indicar compressão de precificação. Sem dado de margem ou contexto de campanha, não há base para agir; e o volume estável não configura urgência.
 
-- Dado que a base de memória narrativa é semente (sem hipóteses anteriores, sem tese semanal/mensal consolidada), qualquer ação forte requer pelo menos 2–3 dias de confirmação para não ser ancorada em um único ponto — a regra dura de não agir baseado em um dia fraco aplica especialmente aqui, exceto para Oficial 2, onde a consistência entre todas as janelas justifica checagem ativa hoje.
+- **As três contas não compartilham o mesmo diagnóstico**, portanto Lucas não trata isso como "problema Shopee" — trata como três situações distintas com priorização explícita: Conta 2 é a urgência, Conta 1 é a proteção, Conta 3 é a observação.
 
 ---
 
 ### O que fazer hoje
 
-- **Lucas:** verificar status de exposição e ADS da Oficial 2 (Conta 2) junto a Himmel — dado que a queda de Oficial 2 é consistente entre todas as janelas temporais e Store/Shop 3 não replicam o padrão, o problema é conta-específico e a causa mais provável é queda de exposição ou problema operacional na conta 860803675 — se Himmel confirmar que ADS e exposição da Conta 2 estão ativos e normais, o problema migra para diagnóstico operacional (listing, estoque, reputação) e Lucas investiga por esse caminho; se houver redução de ADS ou cobertura de campanha nesta conta, Lucas alinha com Himmel para reativação localizada apenas na Conta 2.
+- **Lucas:** verificar junto a Himmel se houve alteração de ADS, verba, segmentação ou cobertura de campanha na Conta 2 nos últimos 7-14 dias — tese estratégica identifica queda estrutural de pedidos nesta conta sem causa conhecida, e a hipótese mais provável é redução de exposição por ADS ou mudança de campanha — sinal de resultado: se Himmel confirmar alteração de campanha no período, a causa está identificada e Lucas e Himmel alinham próximo passo; se não houver alteração, Lucas escala para investigar exposição orgânica da conta.
 
-- **Lucas:** confirmar disponibilidade de estoque dos produtos campeões da Store para os próximos 5–7 dias — dado que 92,5% do volume da Store está concentrado em top 3 e o GMV da conta depende desses itens para sustentar o ticket elevado, ruptura de estoque derrubaria o único vetor de receita da conta sem nenhum amortecedor — se estoque adequado, mantém posição; se estoque em risco nos próximos 5 dias, acionamento de reposição é prioridade antes de qualquer outra movimentação na Store.
+- **Lucas:** observar comportamento dos dois produtos líderes da Conta 1 nos horários de pico (12h e 19-23h) por 2 dias — tese estratégica aponta dependência crítica desses dois produtos como sustentáculo do GMV da plataforma; se somarem menos de 40 pedidos em um único dia, o risco de dependência passa de potencial para operacional — sinal de resultado: se mantiverem volume acima de 40 pedidos/dia nos 2 dias, hipótese de acomodação normal se sustenta e não há ação; se caírem abaixo, Lucas alinha com Himmel sobre exposição dos líderes na Conta 1.
 
-- **Lucas:** observar volume de Oficial 2 amanhã (sexta-feira) e registrar — referência de sextas nas 4 últimas semanas não está disponível no pacote, mas a média de 30d é 31,9 pedidos/dia; se Oficial 2 fechar abaixo de 25 pedidos na sexta também, a deterioração está se confirmando em segundo ciclo e exige diagnóstico ativo; se recuperar para 28+ pedidos, abre hipótese de que hoje foi outlier e a postura volta a observação sem intervenção.
+- **Lucas:** checar se o ticket médio da Conta 1 se mantém acima de R$42 nos próximos 2 dias — tese estratégica identifica que o ticket elevado está amortecendo a queda de volume; se o ticket reverter para próximo da média de 30d (~R$38), o amortecimento desaparece e a queda de pedidos passa a impactar diretamente o GMV — sinal de resultado: ticket acima de R$42 confirma sustentação do amortecimento; abaixo, configura queda de patamar real e Lucas reporta a Kobe.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Himmel para aumentar verba ou mudar segmentação de ADS de Oficial 2 sem antes confirmar se o problema é de campanha ou operacional** — subir verba de ADS sobre um problema de listing indisponível, estoque baixo ou queda de reputação não recupera volume e queima recurso; o diagnóstico de causa vem primeiro, a decisão de ADS vem depois.
+- **Não acionar Himmel para aumentar verba ou alterar campanhas na Conta 2 agora** — a queda está documentada em todas as janelas, mas a causa não está isolada. Aumentar ADS sobre exposição degradada ou sobre problema orgânico não recupera pedidos e queima verba sem retorno. A ação correta é primeiro identificar a causa (ver "o que fazer hoje"), não aplicar verba como resposta reflexa a queda de volume.
 
-- **Não tratar as 3 contas Shopee como bloco nem propagar o diagnóstico de Oficial 2 para Store ou Shop 3** — Store opera em dinâmica própria (ticket elevado, volume em desaceleração) e Shop 3 sustenta volume com compressão de ticket; nenhuma das duas replica o colapso de volume de Oficial 2; mexer em ADS ou mix das 3 contas ao mesmo tempo sem evidência transversal seria precipitado e aumenta risco de canibalização.
+- **Não testar segundo vetor ou novo produto em Conta 1 agora** — Conta 1 está com volume bimestral em contração e sustenta o GMV da plataforma via dois campeões. Introduzir teste de exposição em produto secundário antes de estabilizar os líderes arrisca canibalizar a exposição existente dos campeões sem base histórica que justifique o experimento.
 
-- **Não introduzir experimento de segundo vetor ou nova exposição de produtos secundários na Store agora** — a Estratégica identificou a concentração extrema como risco, mas o remédio correto não é testar produtos secundários enquanto o ticket elevado não está explicado e enquanto o estoque dos campeões não está confirmado; desviar exposição dos líderes neste momento pode comprimir o GMV que ainda sustenta a Store; o diagnóstico de Oficial 2 tem prioridade sobre qualquer experimento de diversificação.
+- **Não generalizar o diagnóstico de Conta 2 para as outras contas** — as três contas têm comportamentos distintos: Conta 1 tem contração de volume com ticket alto, Conta 3 tem volume estável com erosão de ticket. O sinal de Conta 2 (queda estrutural) não se replica para as demais com os dados disponíveis. Qualquer ação transversal nas três contas ao mesmo tempo seria precipitada e dificulta isolar efeito de qualquer mudança.
 
 ---
 
 ### Escalonamento
 
-**observar** — com condição explícita de escalada para alinhar com Himmel.
+**Observar** — com gatilho explícito para alinhar com Himmel.
 
-O estado atual não justifica intervenção imediata em ADS de nenhuma conta, mas tampouco permite inação sobre Oficial 2. A postura correta é: Lucas faz hoje a checagem de exposição/ADS da Conta 2 junto a Himmel como diagnóstico (não como pedido de mudança), e confirma estoque dos campeões da Store. Se Oficial 2 fechar abaixo de 25 pedidos por dois dias consecutivos — ou se Himmel confirmar que ADS e exposição estão normais e o problema é operacional —, Lucas sobe para diagnóstico ativo da Conta 2 com intervenção correspondente (operacional ou alinhamento de campanha). Se Oficial 2 se recuperar para 28+ pedidos na sexta, o sinal é reclassificado como outlier e a postura volta a observação sem ação. Store e Shop 3 não apresentam risco operacional de emergência e mantêm observação passiva por mais 2–3 dias antes de qualquer decisão de mix ou ADS.
+A situação da Conta 2 é a única que carrega urgência tática: a queda é consistente e cross-janela, mas a causa ainda não está identificada. Antes de qualquer decisão de ADS, Lucas precisa confirmar com Himmel se houve alteração de campanha. Se sim, a classificação sobe imediatamente para **alinhar com Himmel** — Lucas e Himmel definem correção. Se não, a classificação sobe para **alinhar com Himmel** de toda forma, mas com propósito diferente: investigar exposição orgânica da conta e avaliar se campanha precisa ser ativada ou reforçada.
+
+Para Conta 1 e Conta 3, a classificação se mantém em **observar** pelos próximos 2 dias. Os gatilhos de escalonamento estão definidos na Estratégica: queda dos líderes da Conta 1 abaixo de 40 pedidos/dia ou reversão de ticket abaixo de R$42 aciona alinhamento com Himmel via Lucas. Conta 3 não tem gatilho de curto prazo — ticket precisaria cair abaixo de R$52 por 2 dias seguidos para configurar urgência.

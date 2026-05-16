@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-15 18:46 BRT — tópico Alertas roteado_
+_Atualizado: 2026-05-15 23:45 BRT — consolidação diária em camadas_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -64,7 +64,8 @@ _Atualizado: 2026-05-15 18:46 BRT — tópico Alertas roteado_
 
 ## 🚨 RH / Ponto Certo
 
-- [ ] **RH — acompanhar lote aprovado do Monitor Ponto Semanal 11/05**: Fran, Leonardo, Lucas, Mateus e Sandra; follow-up diário 10h BRT até todos resolverem ou até 19/05; escalar ao Pedro após 5 dias úteis sem retorno. Se inbounds continuarem invisíveis mesmo após suporte `@lid`, investigar sincronização da instância Evolution RH.
+- [ ] **RH — acompanhar lote aprovado do Monitor Ponto Semanal 11/05**: Fran, Leonardo, Lucas, Mateus e Sandra; follow-up diário 10h BRT até todos resolverem ou até 19/05; escalar ao Pedro após 5 dias úteis sem retorno. Digest RH de 15/05 acrescentou atenção especial a Mateus (sem saída em 15/05 + pendências), Sandra (sem marcações/sem resposta) e Leonardo (jornada especial/faculdade). Se inbounds continuarem invisíveis mesmo após suporte `@lid`, investigar sincronização da instância Evolution RH.
+- [ ] **RH — compliance 15/05 intervalos abaixo de 1h**: Geziele, Guilherme, Leonardo e Lucas tiveram intervalo de almoço abaixo de 1h no check de 15/05; tratar como risco trabalhista/operacional no acompanhamento, sem liberar WhatsApp proativo genérico.
 - [ ] **RH — guard de WhatsApp proativo ESTENDIDO INDEFINIDAMENTE (até 2027-01-01)** em `/tmp/rh-whatsapp-block.json`. Pedro pediu 05/05 14:04 BRT que nenhum cron/agente RH dispare proativos a funcionários até liberação explícita. Em 11/05 10:15 BRT, Pedro liberou **apenas o escopo específico** dos problemas de ponto reportados no Monitor Ponto Semanal de 11/05 sobre a semana 04/05–09/05, até resolução completa com Fran, Leonardo, Lucas, Mateus e Sandra. Exceções técnicas: `--allow-rh-reply` permite respostas inbound; `--allow-rh-approved-case` permite follow-ups desse lote aprovado. Proativo genérico segue bloqueado. Crons em risco que continuam habilitados mas inofensivos enquanto o guard ativo: `RH Compliance Check` (diário 19h BRT), `Monitor Ponto Semanal` (segundas 10h BRT), `Ponto Certo - QR Code Refresh` (diário 03h, não envia WhatsApp). Validado: proativo → `BLOCKED_RH`; reply → `SENT`; caso aprovado → `SENT`.
 - [ ] **Ponto Certo — deploy produção do módulo Conversas RH** se ainda estiver apenas local: build, publicar na VPS e reiniciar PM2 `ponto-certo`.
 - [ ] **RH — acompanhar feedback da Yasmin** sobre recebimento correto dos 2 chunks da mensagem inaugural reenviada com `linkPreview: false`.
@@ -74,7 +75,7 @@ _Atualizado: 2026-05-15 18:46 BRT — tópico Alertas roteado_
 
 ## 🚨 Gestão / Jurídico / Contratos
 
-- [ ] **Daily Sales Report v2 — monitorar próxima execução real do wrapper**: cron 06:50 BRT usa `send-daily-sales-v2-slack-funcionarios.py`. Validar Lucas/Shopee com Consolidadora Shopee/Camada 6B ativa, Yasmin/ML e Leonardo/Amazon sem reintroduzir template antigo, SKU cru, análise rasa, Atacado/Bling ou seções genéricas.
+- [ ] **Daily Sales Report v2 — monitorar primeira execução Pedro-only com LLM principal**: cron 06:50 BRT roda o pipeline DSA com LLM como caminho principal para Lucas/Shopee, Yasmin/ML e Leonardo/Amazon, `fallback_deterministic_allowed=false`, e entrega temporariamente apenas no Slack pessoal do Pedro. Envio para funcionários segue bloqueado até liberação explícita. Validar Consolidadora Shopee/Camada 6B, ranking por variação vendável/SKU pai, nomes comerciais, ausência de SKU cru/análise rasa/Atacado/Bling/seções genéricas e bloqueio correto se alguma camada LLM falhar.
 - [ ] **Daily Sales Report v2 — finalizar validação Shopee multi-conta em produção**: garantir que Budamix Store, Budamix Oficial e Budamix Shop passam por condensadoras individuais; a Consolidadora Shopee gera `ANÁLISE DAS CONTAS`; Slack Writer apenas formata no layout aprovado do print do Lucas.
 - [ ] **Daily Sales Report v2 — finalizar shadow completo da Fase 3 para Yasmin e Leonardo**: Lucas/Shopee já fechou com aprovação e ressalvas; falta concluir o shadow por destinatário de Yasmin/ML e Leonardo/Amazon, salvar comparativos lado a lado e consolidar o veredito para abrir a Fase 4 de decisão do Pedro.
 
@@ -113,7 +114,7 @@ _Atualizado: 2026-05-15 18:46 BRT — tópico Alertas roteado_
 - [ ] **Mission Control — refinamentos pós-14/05**: KG sync Mac→VPS via cron rsync 1h para liberar busca semântica; filtro `/memory?agent=`; refinar regex de detecção de `botToken` em `auth-profiles.json`.
 
 - [ ] **OpenClaw fallback — adicionar Anthropic como 3º fallback**: `anthropic:default` está configurado, mas fora de `agents.defaults.model.fallbacks`; após upgrade para ChatGPT Pro não é urgente, mas evita queda total se o mesmo auth profile OpenAI estourar em pico.
-- [ ] **Bling Token Refresh — Filial com erro 403/inativa no Bling**: heartbeat de 08/05 10:01 BRT confirmou Matriz OK e Filial com `403 — empresa vinculada ao token está inativa`. Impacto provável: refresh/conexão da Filial pode falhar até corrigir empresa/token no Bling. Verificar antes de depender de emissão fiscal pela Filial.
+- [ ] **Bling Token Refresh — Filial com erro 403/inativa no Bling**: digest Fisco de 15/05 reforçou recorrência do problema; Matriz OK, Filial retorna `403 — empresa vinculada ao token está inativa`. Impacto: não avançar drafts/emissões/fluxos fiscais que dependam da Filial até corrigir vínculo/status/token no Bling. Ajustar também o cron de refresh para não depender de aprovação interativa e validar canal de alerta.
 - [ ] **Security Audit / Firewall VPS** — auditoria de 10/05 06:01 BRT executou e substituiu a pendência antiga de timeout. Achados: `ufw` não instalado/disponível; Fail2ban OK (`sshd`, maxretry=5); SSH sem senha; portas públicas além de 22/80/443 incluem 3000, 3050, 3091, 8084 e 8090. Próximo passo: definir política de firewall/Traefik sem risco de lockout antes de qualquer mudança.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.

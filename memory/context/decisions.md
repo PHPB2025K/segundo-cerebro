@@ -384,3 +384,16 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - Todo assunto específico da automação do WhatsApp **Pedidos de Venda - GB** / pedidos de atacado deve ser tratado obrigatoriamente no tópico Telegram **Pedidos Atacado Automação** (`thread_id 10494`).
 - A regra inclui: desenho da automação, testes controlados, N8N, Evolution API, Bling Matriz, PDF oficial do pedido, parser/validação, webhook, bloqueios, previews, alertas e retomadas dessa rotina.
 - Não misturar essa frente em Marketplaces, Operacional & Sistema, Estoque, Daily Sales Report - SLACK ou Gestão de Funcionários, salvo se Pedro mandar explicitamente mudar de tópico.
+
+## 2026-05-15 — Daily Sales Report Slack / LLM principal com produção Pedro-only
+
+- LLM passa a ser o caminho principal tecnicamente aprovado para os três reports individuais do Daily Sales v2: Lucas/Shopee, Yasmin/Mercado Livre e Leonardo/Amazon.
+- Fallback determinístico não pode mascarar falha de camada LLM durante a promoção; se uma camada LLM falhar com fallback desabilitado, o recipient deve ficar bloqueado.
+- Enquanto valida, as três mensagens reais devem ser enviadas apenas ao Slack pessoal do Pedro. Envio para Lucas, Yasmin e Leonardo depende de nova liberação explícita.
+- O cron das 06:50 BRT pode rodar em modo Pedro-only para validar o pipeline completo, sem promover envio aos funcionários.
+
+## 2026-05-15 — Telegram / Gestão de Funcionários
+
+- Todo assunto relacionado à gestão específica de funcionários deve ir obrigatoriamente no tópico Telegram **Gestão de Funcionários**, thread **10469**.
+- A rotina semanal de atas do Slack não deve mais anunciar no tópico Financeiro.
+

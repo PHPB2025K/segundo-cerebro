@@ -731,3 +731,14 @@ _Consolidação Profunda executada em 2026-05-15 04:00 BRT._
 ### [TÁTICA] Daily Sales shadow multi-destinatário deve quebrar por destinatário quando uma camada trava (2026-05-15)
 **Lição:** Em shadow de promoção do Daily Sales Report com Lucas/Yasmin/Leonardo, se uma camada LLM travar em um destinatário, não deixar o lote inteiro preso. Encerrar a execução parcial, preservar os artefatos já válidos e retomar por destinatário com timeout isolado para fechar o comparativo sem perder a sessão toda.
 **Expira:** 2026-06-14
+
+
+### [TÁTICA] Daily Sales LLM: promoção para caminho principal precisa ser fail-closed (2026-05-15)
+**Contexto:** Na promoção do Daily Sales Report Slack, Pedro aprovou LLM como caminho principal para Lucas/Shopee, Yasmin/ML e Leonardo/Amazon, mas o objetivo era validar qualidade LLM, não aceitar fallback determinístico silencioso.
+**Lição:** Quando uma rotina recorrente está sendo promovida para LLM principal, fallback determinístico pode existir como contingência explícita, mas não pode mascarar falha da camada promovida. Se LLM falhar durante validação/produção controlada, bloquear o recipient e alertar; não enviar como se estivesse aprovado.
+**Expira:** 2026-06-14
+
+### [TÁTICA] Daily Sales Top Produtos: ranking deve seguir unidade vendável real (2026-05-15)
+**Contexto:** Pedro corrigiu que Top Produtos não pode consolidar família inteira quando existem variações vendáveis relevantes, como IMB501P/IMB501C/IMB501V.
+**Lição:** Em relatório operacional, consolidar filhos/listings por variação vendável/SKU pai da variação. Família comercial ampla demais distorce ação, estoque, compra e responsabilidade do analista.
+**Expira:** 2026-06-14

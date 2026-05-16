@@ -1,11 +1,11 @@
 # Preview para Kobe — 2026-05-15
-**Gerado em:** 2026-05-16T14:48:27.593656+00:00
+**Gerado em:** 2026-05-16T15:35:02.788161+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
-**Global Status:** BLOCKED
+**Global Status:** PARTIAL
 **Prompt Version:** v3.0
-**Data Builder Version:** v1.2
-**LLM Used:** False
+**Data Builder Version:** v1.3
+**LLM Used:** True
 
 ## Protecoes Ativas
 - send_real_enabled=false in config
@@ -16,8 +16,16 @@
 ### Lucas (shopee)
 - **Status:** BLOCKED
 - **send_allowed:** False
-- **llm_used:** False
-- **Aviso:** Artefatos placeholder deterministicos gerados para auditoria.
+- **llm_used:** True
+  - 01-estrategica: LLM
+  - 02-tatica: LLM
+  - 03-operacional: LLM
+  - 04-granular: LLM
+  - 05-condensadora: FALLBACK
+  - 06b-shopee-consolidator: LLM
+  - 06-slack-preview: LLM
+  - 07-qa: LLM
+- **Aviso:** LLM obrigatório: fallback determinístico não é caminho aprovado.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-15/lucas/00-data-package.json`
@@ -26,15 +34,22 @@
   - `layer3_operacional`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-15/lucas/03-operacional.md`
   - `layer4_granular`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-15/lucas/04-granular.json`
   - `layer5_condensadora`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-15/lucas/05-condensadora.json`
-  - `layer6b_shopee_consolidator`: ``
+  - `layer6b_shopee_consolidator`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-15/lucas/06b-shopee-consolidator.json`
   - `layer6_slack_writer`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-15/lucas/06-slack-preview.md`
   - `layer7_qa_gate`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-15/lucas/07-qa.json`
 
 ### Yasmin (mercado_livre)
 - **Status:** BLOCKED
 - **send_allowed:** False
-- **llm_used:** False
-- **Aviso:** Artefatos placeholder deterministicos gerados para auditoria.
+- **llm_used:** True
+  - 01-estrategica: LLM
+  - 02-tatica: LLM
+  - 03-operacional: LLM
+  - 04-granular: LLM
+  - 05-condensadora: LLM
+  - 06-slack-preview: LLM
+  - 07-qa: FALLBACK
+- **Aviso:** LLM obrigatório: fallback determinístico não é caminho aprovado.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-15/yasmin/00-data-package.json`
@@ -48,10 +63,17 @@
   - `layer7_qa_gate`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-15/yasmin/07-qa.json`
 
 ### Leonardo (amazon)
-- **Status:** BLOCKED
+- **Status:** APPROVED_WITH_REMARKS
 - **send_allowed:** False
-- **llm_used:** False
-- **Aviso:** Artefatos placeholder deterministicos gerados para auditoria.
+- **llm_used:** True
+  - 01-estrategica: LLM
+  - 02-tatica: LLM
+  - 03-operacional: LLM
+  - 04-granular: LLM
+  - 05-condensadora: LLM
+  - 06-slack-preview: LLM
+  - 07-qa: LLM
+- **Aviso:** Analise LLM executada. Verificar artefatos para qualidade.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-15/leonardo/00-data-package.json`

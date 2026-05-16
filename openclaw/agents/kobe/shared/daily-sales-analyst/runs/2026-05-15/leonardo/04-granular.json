@@ -1,10 +1,104 @@
 {
-  "layer": "04-granular",
-  "recipient": "leonardo",
-  "status": "BLOCKED",
-  "reason": "Layer 0/Data Readiness blocked. Checks failed: product_identity_contract: Layer 0 package schema antigo; exige daily-sales-data-package/v1.2",
-  "date": "2026-05-15",
-  "investigations": [],
-  "fallback": true,
-  "llm_used": false
+  "camada": "04-granular",
+  "recipient": "Leonardo",
+  "platform": "amazon",
+  "data": "2026-05-15",
+  "respostas_operacional": [
+    {
+      "pergunta": "Qual o ticket unitário dos pedidos de Jarra Medidora e Suporte Controle Gamer ontem?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote de dados não contém receita desagregada por ASIN ou por pedido individual. Disponível: GMV total R$878 para 27 pedidos (ticket médio agregado R$32,52) e contagem de pedidos por produto. Produto visível: 'Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas' — ASIN/platform_item_id: B0G2CWWMGK — SKU interno: CK4742 — Fonte: top_products/orderItems — 7 pedidos, 7 itens. Produto visível: 'Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto - Organizador de Mesa Gamer 2 em 1 - Compatível Nintendo Switch Pro - Budamix' — ASIN/platform_item_id: B0GH2BTQFJ — SKU interno: SPC002 — Fonte: top_products/orderItems — 5 pedidos, 5 itens. Sem dado de receita por produto, impossível calcular ticket unitário de cada ASIN.",
+      "leitura": "A hipótese de que esses dois ASINs comprimem o ticket médio é estruturalmente plausível: 12 pedidos de 27 (44%) concentrados nos dois líderes, com ticket médio do dia em R$32,52 contra histórico de R$40-43. Mas o valor unitário por ASIN não pode ser calculado ou confirmado com os dados disponíveis. A hipótese de mix-do-dia é consistente com o dado, não provada por ele.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Os ASINs B0G2CWWMGK (Jarra Medidora) e B0GH2BTQFJ (Suporte Gamer) estavam com Buy Box ativa e FBA disponível ontem?",
+      "status": "parcialmente respondida",
+      "evidencia": "FBA agregado: campo fulfillment mostra amazon_fba: 27, amazon_fbm: 0 — todos os 27 pedidos do dia foram processados via FBA, sem exceção. Produto visível: 'Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas' — ASIN: B0G2CWWMGK — 7 pedidos via FBA (inferência por agregado). Produto visível: 'Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto' — ASIN: B0GH2BTQFJ — 5 pedidos via FBA (inferência por agregado). Buy Box por ASIN: campo não presente no pacote. Não há buy_box_status por produto, por pedido ou por ASIN no Layer 0.",
+      "leitura": "FBA estava operacional para ambos os ASINs no dia — evidência indireta: pedidos foram recebidos, processados e reconciliados sem cancelamento. A infraestrutura FBA não apresentou ruptura. Contudo, a Buy Box por ASIN específico não pode ser confirmada ou negada com o dado disponível — a pergunta da Tática sobre pré-requisito de Buy Box antes de decisão sobre ADS permanece sem resposta granular e requer verificação direta de Leonardo na plataforma Amazon Seller Central.",
+      "conclusao_granular": "parcialmente confirma — FBA ativo confirmado por agregado; Buy Box por ASIN não respondida por ausência de dado",
+      "confianca": "média"
+    },
+    {
+      "pergunta": "A distribuição horária de hoje (pico em 10h e 18-19h, sem concentração forte à noite) é típica das últimas quintas nessa conta?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote histórico disponível (avg_7d, avg_30d, avg_60d, same_weekday_last_4) não inclui distribuição horária de dias anteriores. Nenhum campo de hour_distribution histórico por dia da semana está presente. O único dado horário disponível é o de hoje: 7h(2), 8h(2), 9h(1), 10h(4), 11h(1), 12h(1), 13h(1), 16h(1), 17h(1), 18h(3), 19h(3), 20h(2), 21h(2), 22h(2), 23h(1).",
+      "leitura": "Impossível avaliar se o padrão horário de hoje é típico ou atípico para quintas. A hipótese levantada pela Operacional sobre possível perda de exposição noturna não pode ser confirmada nem descartada. Sem comparável histórico horário, o padrão de hoje fica registrado como dado-base para futuras comparações.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Divergência entre display_name e raw_title nos produtos TL250P e TL6250",
+      "origem": "risco de identificação",
+      "evidencia": "TL250P — Produto visível pelo raw_title do pedido: 'Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável Ideal para Chocolate Quente e Café Expresso Preto' — ASIN/platform_item_id: B0GGTY2BLT — SKU interno: TL250P — Fonte: orderItems. display_name atribuído no mapeamento interno: 'Tigela de Vidro 250ml'. TL6250 — Produto visível pelo raw_title do pedido: 'Budamix Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Café Chá Xícara Presente Casa Cozinha' — ASIN/platform_item_id: B0GFPQD4G9 — SKU interno: TL6250 — Fonte: orderItems. display_name atribuído no mapeamento interno: 'Kit 6 Tigelas de Vidro 250ml'. Em ambos: raw_title descreve canecas de porcelana; display_name descreve tigelas de vidro. Produtos com material e categoria distintos.",
+      "leitura": "O prefixo de SKU 'TL' foi mapeado para 'Tigela' no sistema de display_name, mas os produtos vendidos são canecas/xícaras de porcelana — não tigelas de vidro. O raw_title é a fonte primária (pedido real); o display_name está incorreto. Qualquer referência ao display_name desses SKUs no Slack publicaria produto errado. Volume hoje: 1 pedido cada — impacto corrente baixo. Risco aumenta se esses produtos crescerem em relevância.",
+      "conclusao_granular": "divergência confirmada — display_name não representa o produto real do pedido",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Concentração e espessura da cauda — dependência no ASIN líder",
+      "origem": "anomalia identificada pela Estratégica",
+      "evidencia": "Top 1 (CK4742 — Jarra Medidora): 7 pedidos = 25,9% dos pedidos do dia. Top 3 (CK4742 + SPC002 + IMB501P): 16 pedidos = 59,3%. Produtos 4 a 10: 7 produtos com 1 pedido cada = 7 pedidos = 25,9%. Exceção na cauda: XCP002 — 1 pedido, 2 itens (único produto com quantity maior que orders). Cauda de 7 SKUs representa 40,7% dos pedidos em contagem, mas densidade média de 1 pedido/produto — nenhum produto da cauda alcançou 2 pedidos.",
+      "leitura": "A cauda girou (7 produtos diferentes ativos), o que indica presença de catálogo diverso. Contudo, a cauda não tem espessura: qualquer variação no ASIN líder (26% do volume sozinho) impacta diretamente o resultado do dia sem amortecimento. A dependência estrutural levantada pela Estratégica é confirmada pelo dado granular de hoje — e não é ambígua.",
+      "conclusao_granular": "confirma risco de dependência estrutural nos ASINs líderes; cauda ativa mas sem capacidade de absorção",
+      "confianca": "alta"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "médio",
+    "fontes_de_risco": [
+      "display_name divergente do raw_title em TL250P e TL6250 — material e categoria incorretos no mapeamento interno",
+      "mapping_status mapped_generic_sku em SPC013 e KJP0041 — confidence medium, mapeamento via SKU normalizado sem revisão confirmada",
+      "display_name truncado em SPC013"
+    ],
+    "explicacao": "O risco principal está em TL250P e TL6250: o display_name descreve 'tigela de vidro' mas o raw_title do pedido real identifica canecas de porcelana tulipa — erro de categoria e material. Como esses produtos têm confidence 'high' no mapeamento (reviewed_sku_display_map), o sistema não sinaliza problema, mas a divergência é real e confirmada pelo raw_title. Volume hoje é baixo (1 pedido cada), portanto o risco de contaminação do Slack hoje é limitado. Os top 3 produtos que carregam o resultado do dia (CK4742, SPC002, IMB501P) têm confidence high com mapeamento revisado e raw_title coerente com display_name — risco de identificação baixo para os produtos que efetivamente movem o canal. SPC013 e KJP0041 têm confidence medium mas raw_title presente e ASIN disponível — identificação aceitável com ressalva. Nível geral: médio, puxado pela divergência de display_name nos TL, não pelos produtos líderes."
+  },
+  "divergencia_entre_fontes": {
+    "divergencias": [
+      {
+        "divergencia": "display_name do sistema mostra 'Tigela de Vidro 250ml' para TL250P e 'Kit 6 Tigelas de Vidro 250ml' para TL6250; raw_title do pedido real mostra 'Budamix Kit 6 Canecas de Porcelana Tulipa 250ml' e 'Budamix Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas' respectivamente.",
+        "resolucao": "raw_title do pedido real prevalece (regra: Amazon — pedido real > alias/catálogo/display_name interno). Produtos identificados corretamente como canecas de porcelana tulipa, não tigelas de vidro.",
+        "impacto": "Se a Condensadora usar display_name como referência, publicará produto errado no Slack. Impacto de volume baixo hoje (1 pedido cada), mas o erro de mapeamento persiste e deve ser corrigido no sistema antes que esses SKUs cresçam em relevância."
+      }
+    ]
+  },
+  "detalhe_condensadora": [
+    {
+      "detalhe": "A hipótese de que a compressão de ticket foi causada por mix-do-dia (Jarra Medidora e Suporte Gamer como líderes) é plausível e consistente com o dado, mas não está provada — o pacote não tem receita desagregada por ASIN. A Condensadora não pode afirmar 'compressão de ticket confirmada por mix'; o correto é 'hipótese de mix consistente com os dados, sem confirmação por receita por produto'.",
+      "por_que_importa": "Apresentar a hipótese como conclusão seria afirmar mais do que a evidência suporta — especialmente relevante porque a Tática usou essa hipótese como base para a postura de observação dos próximos 2 dias.",
+      "confianca": "média"
+    },
+    {
+      "detalhe": "A checagem de Buy Box por ASIN solicitada pela Tática como pré-requisito antes de qualquer decisão sobre ADS não está resolvida pelo dado disponível. FBA 100% está confirmado, mas Buy Box por ASIN requer verificação direta de Leonardo na plataforma — não é uma checagem que o pacote de dados responde.",
+      "por_que_importa": "Se a Condensadora não deixar claro que Buy Box por ASIN ainda está pendente de verificação manual, a mensagem pode passar a impressão de que o pré-requisito foi checado e está ok — o que não é verdade.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "TL250P e TL6250 têm display_name incorreto no mapeamento interno: 'tigela de vidro' para produtos que são, pelo raw_title do pedido real, canecas de porcelana tulipa. O erro existe independentemente do volume de hoje.",
+      "por_que_importa": "Não deve ir para Slack hoje (volume irrelevante), mas o erro de mapeamento deve ser registrado para correção no sistema — se esses produtos crescerem, o erro será amplificado.",
+      "confianca": "alta"
+    }
+  ],
+  "memoria_interna": [
+    "ASIN Jarra Medidora: B0G2CWWMGK — raw_SKU CK4742_BB — 7 pedidos, 7 itens — produto líder do dia (25,9% dos pedidos)",
+    "ASIN Suporte Gamer Preto: B0GH2BTQFJ — SKU SPC002 — 5 pedidos, 5 itens",
+    "ASIN Conjunto Potes Tampa Preta: B0DCP9TBTM — raw_SKU IMB501P_T — 4 pedidos, 4 itens",
+    "ASIN Xícaras Paris Colorido: B0GGTRQPRC — SKU XCP002 — 1 pedido, 2 itens (único com quantity > orders no dia)",
+    "ASIN Suporte Gamer Cru: B0GTQXRDTM — SKU SPC013 — 1 pedido — confidence medium — display_name truncado",
+    "ASIN Kit Canecas Porcelana Tulipa 250ml Preto (ERRO display_name 'Tigela de Vidro 250ml'): B0GGTY2BLT — SKU TL250P — 1 pedido",
+    "ASIN Kit Canecas Porcelana Tulipa 250ml Coloridas (ERRO display_name 'Kit 6 Tigelas de Vidro 250ml'): B0GFPQD4G9 — SKU TL6250 — 1 pedido",
+    "ASIN Kit Jardinagem 3 Peças: B0GN336FJY — SKU KJP0041 — 1 pedido — confidence medium",
+    "ASIN Kit Panos Microfibra Azul: B0DCWLMD5G — raw_SKU KIT2PANO800AZ_T — 1 pedido — confidence medium",
+    "ASIN Kit 2 Potes Vidro Hermético 1050ml: B0FB1523N3 — SKU KIT2YW1050 — 1 pedido",
+    "Distribuição horária completa 2026-05-15: 7h(2), 8h(2), 9h(1), 10h(4), 11h(1), 12h(1), 13h(1), 16h(1), 17h(1), 18h(3), 19h(3), 20h(2), 21h(2), 22h(2), 23h(1)",
+    "Concentração: top-1 25,9% — top-3 59,3% — top-5 66,7% — cauda 6-10 33,3% (7 SKUs, 1 pedido cada)",
+    "ERRO DE MAPEAMENTO REGISTRADO: TL250P e TL6250 com display_name referenciando 'tigela de vidro' mas raw_title do pedido indica canecas de porcelana tulipa — corrigir no sistema de mapeamento antes que esses SKUs ganhem volume relevante",
+    "Buy Box por ASIN: dado ausente no pacote — checagem pendente de ação manual de Leonardo na plataforma"
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

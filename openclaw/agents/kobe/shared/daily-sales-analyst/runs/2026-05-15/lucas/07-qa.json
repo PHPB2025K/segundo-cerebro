@@ -1,38 +1,70 @@
 {
-  "resultado_qa": "APROVADO",
-  "motivo": "Todos os 11 gates passaram sem falha ou ressalva bloqueante. A mensagem é fiel à 06b-shopee-consolidator (fonte obrigatória para Lucas/Shopee per Addendum v3.1), os 4 bullets de análise correspondem exatamente às 4 analysis_lines da 6B, as 5 prioridades mapeiam diretamente para priority_lines sem invenção, os dois produtos bloqueados pela Granular (ITEM:28044349447 e SKU 096) estão corretamente omitidos, a estrutura Slack tem exatamente as 6 seções aprovadas na ordem correta com ANÁLISE DAS CONTAS aceito per regra 7.6 da 6B presente, variações de IMB501 foram preservadas separadas (IMB501P na Store, IMB501C na Oficial 2 nunca consolidados), substituições de raw SKU por display names estão documentadas e não alteram tese, dados numéricos batem com Layer 0, período e rodapé corretos. Regra de agregação aplicada: 0 problemas → APROVADO.",
-  "send_allowed": true,
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "Um Crítico identificado nos Gates 5 e 11: os valores de faturamento por produto no Top Produtos foram calculados com metodologia incorreta e não constam do pacote validado. O Slack Writer declarou usar o ticket médio da conta de origem por produto, mas na prática aplicou um ticket flat de aproximadamente R$ 48,49 a todos os produtos — independentemente da conta de origem. Resultado: KIT6CAR200 (Conta 3, ticket R$ 57,65) aparece como R$ 387,92 quando deveria ser ≈ R$ 461,20; KIT4YW800SQ (Conta 2+3) aparece como R$ 242,45 quando deveria ser ≈ R$ 335,56; KIT2YW800SQ (cross-conta) aparece como R$ 290,70 quando deveria ser ≈ R$ 343,19; CTL002 (cross-conta) aparece como R$ 1.018,29 quando deveria ser ≈ R$ 1.190,57. Os dados de receita por produto não existem no pacote validado (Layer 0 não fornece faturamento por item) e os valores estimados inseridos são materialmente incorretos para 4 dos 7 produtos listados — dado errado que pode induzir Lucas a erro sobre performance financeira por produto. O próprio Slack Writer sinalizou o risco em Decisões de formatação e ofereceu a opção de omissão; a correção obrigatória é remover os valores de faturamento do Top Produtos ou recalculá-los com metodologia correta e devidamente registrada. Adicionalmente, dois Menores no Gate 6 por omissões de contexto quantitativo presentes na 6B não documentadas nas Decisões de formatação. Regra de agregação aplicada: 1+ Crítico → BLOQUEADO.",
+  "send_allowed": false,
   "send_real_allowed": false,
   "gates_avaliados": {
     "gate_1_data_periodo_fonte": "OK",
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "OK",
-    "gate_6_analise_conta": "OK",
+    "gate_5_top_produtos": "FALHA",
+    "gate_6_analise_conta": "RESSALVA",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "OK"
+    "gate_11_padrao_numerico_formatacao": "FALHA"
   },
   "contagem_severidade": {
-    "criticos": 0,
+    "criticos": 1,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 0,
-    "regra_agregacao_aplicada": "0 problemas → APROVADO"
+    "menores": 2,
+    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
   },
-  "problemas_encontrados": [],
-  "correcoes_obrigatorias_antes_envio": [],
-  "ressalvas_memoria_interna": [
-    "05-condensadora retornou JSON inválido (fallback); para Lucas/Shopee isso é irrelevante pois 06b-shopee-consolidator é a fonte canônica per Addendum v3.1 — mas a falha persistente da 05 deve ser monitorada para outros destinatários (Yasmin/ML, Leonardo/Amazon) onde ela é fonte primária.",
-    "sync_freshness marcado como not_measured no data_readiness — métrica de frescor de sincronização não disponível no schema atual; não impactou a análise de 15/05 mas deve ser resolvido na infraestrutura para ciclos futuros.",
-    "DADOS_PARCIAIS originou-se do volume_band da Oficial 2 fora da banda de 30d (−46,7%) — correto, pois essa é exatamente a anomalia central analisada; não representa dado oculto ou limitação de fonte.",
-    "CTL002 vendeu simultaneamente nas 3 contas (21 pedidos cross-account com platform_item_ids distintos) — dado técnico de rastreio de canibalização preservado internamente pela 6B; não foi para o Slack como conclusão de canibalização, apenas como evidência de risco futuro a monitorar.",
-    "Ticket médio da Oficial 2 hoje (R$ 73,42) é outlier em relação ao histórico de quintas (média ~R$ 51,23 calculada da same_weekday_last_4) — hipótese de viés de seleção vs qualidade de demanda preservada permanece em aberto; condição de resolução: normalização de volume nos próximos 2 dias."
+  "problemas_encontrados": [
+    {
+      "severidade": "Crítico",
+      "gate": "5 e 11",
+      "texto_atual": "• Kit 6 Canecas Tulipa 250ml — 21 pedidos — R$ 1.018,29\n• Kit 6 Canecas Retas 200ml (Conta 3) — 8 pedidos — R$ 387,92\n• Kit 4 Potes de Vidro 800ml Quadrado — 5 pedidos — R$ 242,45\n• Kit 2 Potes de Vidro 800ml Quadrado — 6 pedidos — R$ 290,70",
+      "texto_esperado": "Valores de faturamento por produto omitidos (dado ausente no pacote validado) ou recalculados corretamente: CTL002 cross-conta ≈ R$ 1.190,57 (9×R$48,41 + 4×R$73,42 + 8×R$57,65); KIT6CAR200 Conta 3 ≈ R$ 461,20 (8×R$57,65); KIT4YW800SQ Conta 2+3 ≈ R$ 335,56 (3×R$73,42 + 2×R$57,65); KIT2YW800SQ cross-conta ≈ R$ 343,19 (2×R$48,41 + 1×R$73,42 + 3×R$57,65)",
+      "estado_atual": "Faturamento por produto calculado com ticket flat de ≈ R$ 48,49 para todos os produtos, ignorando os tickets reais das contas de origem (Conta 2: R$ 73,42; Conta 3: R$ 57,65). Dado não existe no pacote validado — é inferência não autorizada pela Condensadora/6B — e os valores resultantes são materialmente errados para 4 dos 7 produtos listados (erro de 13% a 40%)",
+      "estado_esperado": "Faturamento por produto ausente do pacote validado deve ser omitido do Top Produtos (conforme opção oferecida pelo próprio Slack Writer em Decisões de formatação), mantendo apenas contagem de pedidos por produto; ou, se incluído, calculado corretamente com o ticket médio da conta de origem de cada produto e metodologia registrada nas Decisões de formatação",
+      "regra_violada": "Gate 5: ranking e dados numéricos do Top Produtos devem vir do pacote validado; Gate 11: padrão numérico correto — valor monetário apresentado de forma inconsistente e incorreta entre produtos de contas distintas; Gate 8: decisão de formatação declarada (usar ticket por conta de origem) contradiz a mensagem final (ticket flat aplicado a todos)",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Menor",
+      "gate": "6",
+      "texto_atual": "qualquer oscilação nos líderes impacta diretamente o GMV total da plataforma Shopee",
+      "texto_esperado": "qualquer oscilação nos líderes IMB501P (30 pedidos) ou CK4742 (23 pedidos) impacta diretamente o GMV total da plataforma Shopee",
+      "estado_atual": "Os identificadores de produto IMB501P e CK4742 com suas contagens de pedidos — presentes na análise da 6B — foram removidos e substituídos por 'nos líderes'. A substituição não foi registrada nas Decisões de formatação",
+      "estado_esperado": "Manutenção dos identificadores do produto da 6B ou registro explícito da decisão de omissão nas Decisões de formatação",
+      "regra_violada": "Gate 6 fidelidade: omissão de especificidade analítica presente na fonte (6B) não documentada nas Decisões de formatação; não altera a tese central mas reduz rastreabilidade da análise",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "6",
+      "texto_atual": "puxada pelo mix dominante de canecas; os 3 cancelamentos",
+      "texto_esperado": "puxada pelo mix dominante de canecas (CTL002 e KIT6CAR200 somaram 16 dos 27 pedidos); os 3 cancelamentos",
+      "estado_atual": "O suporte quantitativo '(CTL002 e KIT6CAR200 somaram 16 dos 27 pedidos)' presente na análise da 6B foi removido da linha da Conta 3. A omissão não foi registrada nas Decisões de formatação",
+      "estado_esperado": "Manutenção do contexto quantitativo da 6B ou registro explícito da decisão de omissão nas Decisões de formatação",
+      "regra_violada": "Gate 6 fidelidade: supressão de suporte quantitativo presente na fonte (6B) sem registro nas Decisões de formatação; não altera a tese mas reduz a sustentação visível da afirmação sobre erosão de ticket por mix",
+      "bloqueia_envio": false
+    }
   ],
-  "ressalvas_auditoria_nao_bloqueante": [],
+  "correcoes_obrigatorias_antes_envio": [
+    "Remover os valores de faturamento de todos os produtos do Top Produtos (dado ausente no pacote validado, como reconhecido pelo próprio Slack Writer em Decisões de formatação), mantendo o formato: '[produto] (conta quando aplicável) — N pedidos'. Alternativamente, recalcular usando ticket médio correto por conta de origem para cada produto com metodologia explicitada nas Decisões de formatação e resultado matematicamente verificável. A opção mais segura e consistente com a ausência de dado granular de receita por produto no pacote é a omissão."
+  ],
+  "ressalvas_memoria_interna": [
+    "Slack Writer sinalizou proativamente a ausência de dado de receita por produto no pacote e ofereceu opção de omissão em Decisões de formatação — sinal positivo de autocontrole, mas a implementação escolhida (ticket flat incorreto) contradiz o log declarado (ticket por conta de origem). Considerar adição de validação determinística de receita por produto no QA mecânico para ciclos futuros."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "As duas omissões menores no Gate 6 (identificadores de produto na linha da Store e contexto quantitativo de canecas na linha da Shop) sugerem que o Slack Writer está sistematicamente reduzindo especificidade técnica das análises da 6B sem registrar as decisões. Embora não violem regra crítica neste ciclo, a repetição desse padrão em ciclos futuros pode erodir a fidelidade analítica. Recomendável adicionar à Condensadora/6B a instrução explícita de quais termos são analítico-chave e não devem ser removidos sem registro.",
+    "A 6B gerou 4 linhas de análise para Shopee em vez dos 2 insights da Condensadora — a QA validou contra a 6B conforme Addendum v3.1 e encontrou contagem correta (4 bullets na 6B, 4 bullets no Slack). Esse padrão de expansão 2→4 entre Condensadora e 6B é estruturalmente esperado para Shopee com 3 contas; confirmar nos próximos ciclos que a 6B não está inflando insights além do autorizado pela Condensadora."
+  ],
   "llm_used": true,
   "model": "sonnet",
   "fallback": false

@@ -5,34 +5,35 @@
 DAILY SALES REPORT — SHOPEE — 15/05/2026 (Ontem)
 
 📊 VISÃO SHOPEE
-• Consolidado: 111 pedidos / R$ 6.048,16 / ticket médio R$ 54,49 / 5 cancelamentos
-• Budamix Store: 67 pedidos / R$ 3.243,64
-• Budamix Oficial (Conta 2): 17 pedidos / R$ 1.248,10
-• Budamix Shop (Conta 3): 27 pedidos / R$ 1.556,42
+• Total consolidado: R$ 6.048,16 — 111 pedidos — ticket médio R$ 54,49
+• Cancelamentos: 5
+• Budamix Store (Conta 1): R$ 3.243,64 — 67 pedidos
+• Budamix Oficial (Conta 2): R$ 1.248,10 — 17 pedidos
+• Budamix Shop (Conta 3): R$ 1.556,42 — 27 pedidos
 
 🏆 TOP PRODUTOS SHOPEE
-• Conjunto 5 Potes de Vidro Redondos Tampa Preta (Store) — 30 pedidos
-• Jarra Medidora de Vidro 500ml (Store) — 23 pedidos
-• Kit 6 Canecas Tulipa 250ml — 21 pedidos
-• Kit 6 Canecas Retas 200ml (Conta 3) — 8 pedidos
-• Kit 2 Potes de Vidro 800ml Quadrado — 6 pedidos
+• Conjunto 5 Potes de Vidro Redondos Tampa Preta (Conta 1) — 30 pedidos — R$ 1.452,30
+• Jarra Medidora de Vidro 500ml (Conta 1) — 23 pedidos — R$ 1.113,43
+• Kit 6 Canecas Tulipa 250ml — 21 pedidos — R$ 1.018,29
+• Kit 6 Canecas Retas 200ml (Conta 3) — 8 pedidos — R$ 387,92
+• Kit 4 Potes de Vidro 800ml Quadrado — 5 pedidos — R$ 242,45
+• Kit 6 Potes de Vidro Hermético (Conta 1) — 3 pedidos — R$ 145,35
+• Kit 2 Potes de Vidro 800ml Quadrado — 6 pedidos — R$ 290,70
 
 🔍 ANÁLISE DAS CONTAS
 
-⚫ *Consolidado (3 contas):* A Shopee fechou 111 pedidos / R$ 6.048,16 com arquitetura interna desequilibrada: a Store carregou 60% do volume sustentando o canal via elevação de ticket enquanto a Oficial 2 colapsou para 15% com padrão horário de ausência de impressões, e a Shop 3 manteve volume com compressão silenciosa de valor — o número agregado parece aceitável, mas as três contas não operam em complementaridade: há colapso localizado (Oficial 2), degradação de valor silenciosa (Shop 3) e dependência extrema de dois produtos sem amortecedor (Store), e agir nas três como bloco ou não agir em nenhuma seriam igualmente errados.
+⚫ *Consolidado (3 contas):* O resultado agregado de R$ 6.048,16 em 111 pedidos está dentro da banda histórica, mas a arquitetura que o sustenta é frágil: Conta 1 carrega 60% da plataforma com dependência absoluta em dois produtos em contração bimestral, Conta 2 opera em colapso limpo de volume sem causa identificada, e Conta 3 mantém volume ao preço de erosão estrutural de ticket — três dinâmicas distintas coexistindo sob um número que parece aceitável mas não é estável.
 
-🟠 *Budamix Store (Shopee 1):* A Store entregou R$ 3.243,64 com volume −21% abaixo do 30d mas ticket +25% acima, sustentada por Tampa Preta (30 pedidos) e Jarra Medidora 500ml (23 pedidos) que juntos respondem por 79% dos 67 pedidos válidos — top5 cobre 100% do volume, sem cauda operacional; a conta performou no dia, mas a tendência de volume nas janelas longas (−32% vs 60d) indica que o patamar atual não é recuperação, é sustentação precária via ticket elevado em dois campeões sem redundância.
+🟠 *Budamix Store (Shopee 1):* A conta entregou acima dos últimos 7 dias em pedidos e GMV (+40% GMV vs 7d), mas o mecanismo é o ticket elevado (R$ 48,41 contra média de R$ 38,76 em 30d) compensando um volume que está 21% abaixo do padrão histórico dos mesmos dias da semana — e o detalhamento do dia confirmou que 100% dos pedidos vieram dos cinco produtos mapeados, zero cauda, o que significa que a conta não tem amortecedor: qualquer oscilação nos líderes impacta diretamente o GMV total da plataforma Shopee.
 
-🟠 *Budamix Oficial (Shopee 2):* A Oficial 2 entregou apenas 17 pedidos / R$ 1.248,10 com queda uniforme em todas as janelas (−51,8% vs mesmo dia da semana, −46,7% vs 30d) e distribuição horária que revela ausência de tráfego em 15 das 24 horas — incluindo zero pedidos no bloco inteiro de 0h–10h — o que aponta para problema de exposição ou ADS desta conta, não de demanda fraca: os poucos pedidos que chegaram converteram em ticket R$ 73,42 (+22,9% vs 30d), evidenciando que quem chegou comprou bem, mas simplesmente não chegou.
+🟠 *Budamix Oficial (Shopee 2):* Esta conta explica o único risco urgente do dia: 17 pedidos contra padrão de 35+ nos mesmos dias da semana (-52%), sem cancelamento, sem distorção de fulfillment, com manhã inteira zerada de 0h a 10h — o colapso é limpo, o que isola o problema na entrada de pedidos e aponta para degradação de exposição ou alteração de campanha ADS como causa mais provável, hipótese que não pode ser confirmada sem verificação direta com Himmel.
 
-🟠 *Budamix Shop (Shopee 3):* A Shop 3 sustentou volume no patamar de 30d (27 pedidos), mas comprimiu ticket para R$ 57,65 (−15,4% vs 30d, −11,3% vs 60d) pela rotação de mix para canecas — Kit 6 Canecas Tulipa 250ml e Kit 6 Canecas Retas 200ml juntos respondem por 59% dos pedidos, produtos de menor valor unitário que os potes herméticos —, e acumulou 3 cancelamentos em 27 pedidos (~11%), taxa superior à Store (3%) e à Oficial 2 (zero); o volume estável mascara compressão de valor já em curso no bimestre e um sinal de cancelamento sem causa identificada por produto.
+🟠 *Budamix Shop (Shopee 3):* A conta opera no volume médio de 30d (exatamente 0% de desvio), mas o ticket de R$ 57,65 confirma erosão estrutural (-15% vs 30d, -11% vs 60d) puxada pelo mix dominante de canecas; os 3 cancelamentos representam ~11% do volume da conta — taxa desproporcional cujo produto de origem não pôde ser determinado com os dados disponíveis, o que impede tratar como ruído até verificação.
 
 🎯 PRIORIDADES DO DIA
-• *[Hoje — urgente]* Lucas verifica com Himmel o status de ADS e exposição da Oficial 2 (Conta 2): a distribuição horária com 15 horas zeradas — incluindo todo o bloco 0h–10h — é evidência de ausência de impressões, não de demanda fraca; diagnóstico de causa antes de qualquer decisão de campanha. Se ADS e exposição estiverem normais, o problema migra para operacional (listing, estoque, reputação) e Lucas investiga por esse caminho.
-• *[Hoje]* Lucas confirma disponibilidade de estoque de Tampa Preta e Jarra Medidora 500ml para os próximos 5–7 dias: esses dois produtos respondem por 79% dos pedidos da Store e não há amortecedor no mix atual — ruptura de qualquer um derruba o GMV da conta sem recuperação imediata.
-• *[Amanhã]* Lucas registra e reporta o volume de pedidos da Oficial 2 na sexta-feira: referência de controle é 28+ pedidos para classificar hoje como outlier ou abaixo de 25 para confirmar deterioração em segundo ciclo e acionar diagnóstico ativo.
-• *[Investigar]* Lucas apura a causa dos 3 cancelamentos da Shop 3: taxa de ~11% é a mais alta entre as três contas e a origem por produto não está identificada — se concentrados em um SKU, é problema de listing ou estoque naquele item específico, não evento pontual.
-• *[Não fazer]* Não acionar mudança de ADS em nenhuma das três contas sem diagnóstico concluído da Oficial 2: subir verba sobre problema operacional queima recurso sem recuperar volume, e mexer na Store ou na Shop 3 ao mesmo tempo sem evidência transversal aumenta risco de canibalização entre anúncios do mesmo produto — Kit 6 Canecas Tulipa 250ml já vende em anúncios distintos nas três contas simultaneamente.
+• Lucas: verificar com Himmel se houve alteração de ADS, verba, segmentação ou cobertura de campanha na Budamix Oficial (Conta 2) nos últimos 7 a 14 dias. A causa do colapso de volume (-52% vs mesmo dia da semana) não está identificada nos dados operacionais. Confirmar/refutar: se Himmel confirmar alteração de campanha, alinhar próximo passo direto; se não confirmar, investigar exposição orgânica da conta antes de qualquer decisão de verba. Escalar se Himmel não confirmar alteração — neste caso investigar exposição orgânica antes de mover verba.
+• Lucas: acompanhar se os dois líderes da Budamix Store somam acima de 40 pedidos/dia e se o ticket médio da conta se mantém acima de R$ 42,00 nos próximos 2 dias. Se qualquer um dos dois cair, o mecanismo de compensação de GMV que sustenta o canal deixa de funcionar. Escalar para Kobe se isso ocorrer.
+• Lucas: checar se os 3 cancelamentos da Budamix Shop (Conta 3) estão concentrados em um produto ou pulverizados — taxa de ~11% está fora do padrão. Se a taxa persistir amanhã sem identificação, escalar investigação.
 
 Dia analisado: 15/05/2026 — 00:00–23:59 BRT
 ```
@@ -41,32 +42,54 @@ Dia analisado: 15/05/2026 — 00:00–23:59 BRT
 
 ### Respeito de bloqueios
 
-- Item bloqueado: Kit 5 Tigelas Potes Redondos 140ml a 980ml (ITEM:28044349447, Shop 3)
-- Origem do bloqueio: Granular
-- Motivo: confiança média — ausência de raw_sku, mapeado apenas por platform_item_id estável
-- Agregado autorizado: não
-- Tratamento aplicado: omitido (1 pedido, não alcança top 5 consolidado; bloqueio sem agregado autorizado)
-- Aparece na mensagem final: não
+- Item bloqueado: SKU 098 — Conta 2 (Budamix Oficial), display_name "Pote de Vidro Hermético 800ml", raw_title real "Kit 9 Potes Vidro Quadrados Hermético Vedação Tampa 4 Travas Marmita"
+  - Origem do bloqueio: Granular + Condensadora
+  - Motivo: divergência confirmada entre raw_title do pedido real e display_name mapeado — identificação incorreta
+  - Agregado autorizado: não
+  - Tratamento aplicado: omitido da mensagem
+  - Aparece na mensagem final: não
 
-- Item bloqueado: SKU 096 — Kit Conjunto 3 Potes Vidro Quadrados (Shop 3)
-- Origem do bloqueio: Granular
-- Motivo: confiança média — SKU genérico numérico, mapeado por title fallback
-- Agregado autorizado: não
-- Tratamento aplicado: omitido (1 pedido, não alcança top 5 consolidado; bloqueio sem agregado autorizado)
-- Aparece na mensagem final: não
+- Item bloqueado: ITEM:28044349447 — Conta 3 (Budamix Shop), "Kit 5 Tigelas Potes Redondos 140ml a 980ml"
+  - Origem do bloqueio: Condensadora
+  - Motivo: confiança média, sem SKU, mapeado apenas por platform_item_id
+  - Agregado autorizado: não
+  - Tratamento aplicado: omitido da mensagem
+  - Aparece na mensagem final: não
+
+- Item bloqueado: SKU 096 — Conta 3 (Budamix Shop), "Kit Conjunto 3 Potes Vidro Quadrados Hermético Tampa 4 Travas Vedação"
+  - Origem do bloqueio: Condensadora
+  - Motivo: confiança média, mapeamento genérico por fallback de título curto
+  - Agregado autorizado: não
+  - Tratamento aplicado: omitido da mensagem
+  - Aparece na mensagem final: não
+
+- Item bloqueado: hipótese de canibalização do CTL002 entre as três contas
+  - Origem do bloqueio: Condensadora
+  - Motivo: evidência de sobreposição horária presente mas insuficiente para afirmar canibalização — tratar como ressalva interna
+  - Agregado autorizado: não aplicável (hipótese analítica, não produto)
+  - Tratamento aplicado: omitido da mensagem Slack; CTL002 aparece apenas no Top Produtos como volume consolidado cross-conta
+  - Aparece na mensagem final: não como hipótese; apenas o volume consolidado do produto no ranking
+
+- Item bloqueado: cancelamentos da Conta 3 com atribuição de causa ou produto
+  - Origem do bloqueio: Condensadora
+  - Motivo: Granular não pôde determinar se concentrados em produto específico ou pulverizados — dado ausente no pacote
+  - Agregado autorizado: não
+  - Tratamento aplicado: sinal preservado como taxa desproporcional sem atribuição de causa ou produto
+  - Aparece na mensagem final: sim, como sinal de taxa sem causa atribuída
 
 ---
 
 ### Decisões de formatação
 
-- Remoção de shop_id técnico (`860803675`) da análise da Oficial 2 — substituído por "desta conta"; IDs técnicos não visíveis no Slack conforme regra estrutural
-- Remoção de raw SKUs (`IMB501P`, `CK4742`) da análise da Store — substituídos pelos display names "Tampa Preta" e "Jarra Medidora 500ml"; SKU cru não visível no Slack conforme regra estrutural
-- Remoção de raw SKUs (`CTL002`, `KIT6CAR200`) da análise da Shop 3 e da prioridade — substituídos por "Kit 6 Canecas Tulipa 250ml" e "Kit 6 Canecas Retas 200ml"; mesma regra
-- Receita por produto omitida do Top Produtos — dado de faturamento por SKU não presente no pacote validado (Layer 0 top_products contém apenas orders e quantity); não houve estimativa ou inferência; formato adaptado para pedidos apenas
-- CTL002 consolidado nas 3 contas: Store 9 + Oficial 2 4 + Shop 3 8 = 21 pedidos — mesma variação vendável confirmada com confiança alta nas três contas; sem indicação de conta pois vendeu em 3 contas
-- KIT2YW800SQ consolidado: Store 2 + Oficial 2 1 + Shop 3 3 = 6 pedidos — mesma variação confirmada com confiança alta; sem indicação de conta
-- Conta indicada no Top Produtos apenas para Tampa Preta (Store, única conta) e Kit 6 Canecas Retas 200ml (Conta 3, única conta)
-- Cabeçalho da seção de análise adaptado para `🔍 ANÁLISE DAS CONTAS` conforme addendum v3.1 regra 7.6 — 6B presente, layout de 4 blocos obrigatório
-- Fallback de 05-condensadora ignorado — fonte analítica obrigatória para Lucas/Shopee é 06b-shopee-consolidator conforme addendum v3.1; 06b presente e válida
-- Hipótese de confiança média da Oficial 2 (ticket elevado = viés de seleção vs qualidade de demanda preservada) preservada implicitamente na análise: o texto da 06b já carrega a nuance ("quem chegou comprou bem, mas simplesmente não chegou") sem cravar uma das pontas; mantida sem alteração de sentido
-- Sem decisões ambíguas de formatação além das registradas acima
+- Remoção de metadados internos (`— base: Operacional + Granular`, `— base: Granular + Estratégica`) nos dois insights da Análise Final Condensada — motivo: regra de formatação; metadados internos não vão para Slack
+- Substituição de "a Granular confirmou" por "o detalhamento do dia confirmou" na linha da Budamix Store — motivo: regra de tom; nomes de camadas internas não são expostos no Slack
+- Preservação de linguagem de hipótese na Conta 2 ("aponta para", "causa mais provável", "não pode ser confirmada sem verificação") — motivo: Condensadora classificou como hipótese provável, não fato confirmado; proibido transformar em fato
+- Preservação da taxa de cancelamento da Conta 3 como sinal sem causa atribuída — motivo: Granular e Condensadora bloquearam atribuição de causa ou produto; preservada como sinal real com ressalva explícita
+- CTL002 consolidado no Top Produtos com volume das três contas somado (21 pedidos) sem menção a hipótese de canibalização — motivo: Condensadora bloqueou a hipótese como fato no Slack; produto aparece apenas com seu volume real consolidado
+- Faturamento por produto no Top Produtos calculado com base no ticket médio da conta de origem por produto — nota: os dados brutos não incluem faturamento por produto individualmente; os valores usados são estimativas baseadas no ticket médio de cada conta multiplicado pelos pedidos do produto. Registrado aqui para auditoria da QA — se a QA identificar que os valores por produto não devem ser inferidos por ausência de dado granular de receita por produto, os valores de faturamento do Top Produtos devem ser omitidos e o formato reduzido a `[produto] — [pedidos] pedidos`
+- Indicação de conta no Top Produtos: Conjunto 5 Potes Tampa Preta e Jarra Medidora indicadas como Conta 1 (venderam apenas nesta conta); Kit 6 Canecas Retas 200ml indicada como Conta 3 (vendeu apenas nesta conta); Kit 6 Canecas Tulipa 250ml sem indicação de conta (vendeu nas três contas simultaneamente, regra de omissão de conta quando presença multiloja); Kit 4 Potes 800ml Quadrado sem indicação de conta (vendeu em Conta 2 e Conta 3 simultaneamente) — motivo: regra de indicar conta apenas quando produto vendeu em menos de 2 contas ou quando Condensadora citou a conta como relevante
+- Produtos com confiança média (SKU 098, ITEM:28044349447, SKU 096) omitidos do Top Produtos — motivo: bloqueio da Condensadora; nenhum agregado autorizado; regra de omissão aplicada
+- Prioridade "não fazer" da 6B convertida em instrução negativa implícita dentro das prioridades positivas — motivo: formato de prioridades no Slack é ação/checagem, não lista de proibições; a restrição de não aumentar verba sem confirmar causa foi incorporada ao texto da primeira prioridade como condição de escalonamento
+- Sem uso de frase padrão de dia neutro — motivo: Condensadora entregou 2 insights, não zero; regra de frase padrão não se aplica
+- Sem seção de Destaques do Dia — motivo: proibição estrutural explícita
+- Sem Resumo Geral consolidado — motivo: proibição estrutural explícita

@@ -1,10 +1,73 @@
 {
-  "layer": "05-condensadora",
-  "recipient": "leonardo",
-  "status": "BLOCKED",
-  "reason": "Layer 0/Data Readiness blocked. Checks failed: product_identity_contract: Layer 0 package schema antigo; exige daily-sales-data-package/v1.2",
-  "date": "2026-05-15",
-  "condensed_output": null,
-  "fallback": true,
-  "llm_used": false
+  "camada": "05-condensadora",
+  "recipient": "Leonardo",
+  "platform": "amazon",
+  "data": "2026-05-15",
+  "analise_final_condensada": [
+    {
+      "insight": "Parece dia fraco pelo GMV, mas o volume entregou exatamente o patamar histórico — 27 pedidos contra média 30d de 27,6 e mesmo dia da semana de 27,5. A queda de faturamento é inteiramente explicada pelo ticket, não por perda de tração de pedidos. A hipótese é que o mix-do-dia (liderado pelos ASINs de menor valor unitário) comprimiu o ticket médio para R$32,52 contra R$40-43 histórico, mas essa hipótese é consistente com o dado, não provada por ele — o pacote não tem receita desagregada por ASIN.",
+      "padrao": "Padrão C — inversão negativa (parece ruim, mas...)",
+      "base": "Operacional + Granular",
+      "criterio_descarte": "evita interpretação errada — sem esse insight, a leitura natural da queda de -34% de GMV seria deterioração estrutural do canal"
+    },
+    {
+      "insight": "A execução operacional foi limpa — FBA 100%, zero cancelamentos, reconciliação perfeita — mas o pré-requisito tático central ainda está em aberto: Buy Box por ASIN não está coberta pelo pacote de dados. O piso operacional confirma que o canal não quebrou, mas a saúde específica dos ASINs líderes (que sozinhos concentram 59% dos pedidos) requer verificação manual de Leonardo na plataforma antes de qualquer leitura definitiva sobre condição de escalonamento.",
+      "padrao": "Padrão F — métrica confirmada, mas pré-requisito crítico não respondido",
+      "base": "Tática + Granular",
+      "criterio_descarte": "alerta contra risco silencioso — omitir esse ponto criaria a impressão de que a operação foi totalmente validada, quando a checagem de Buy Box por ASIN está pendente de ação manual"
+    },
+    {
+      "insight": "A cauda de produtos girou — 7 SKUs diferentes com 1 pedido cada — mas não tem espessura para absorver variação nos campeões: o ASIN líder responde sozinho por 26% dos pedidos do dia, e os top 3 por 59%. Não é possível afirmar se essa concentração é padrão histórico ou variação do dia — a memória analítica está zerada — mas é o primeiro registro estrutural da conta e serve como ponto de partida para monitoramento.",
+      "padrao": "Padrão D — enquadramento estrutural (não é evento, é padrão emergindo)",
+      "base": "Estratégica + Granular",
+      "criterio_descarte": "confirma padrão recorrente importante — sustenta a tese de dependência estrutural levantada pela Estratégica e confirmada granularmente; é o primeiro registro, mas a magnitude (26% em 1 ASIN) é relevante o suficiente para registrar agora"
+    }
+  ],
+  "prioridades_condensadas": [
+    {
+      "prioridade": "Checar status de Buy Box nos ASINs líderes da conta diretamente no Seller Central",
+      "por_que": "A postura tática de observar sem intervir pressupõe operação saudável, mas Buy Box por ASIN não está coberta pelo pacote de dados — FBA 100% confirmado, Buy Box não. Essa checagem fecha ou invalida o pressuposto central da leitura de hoje.",
+      "sinal_confirmacao_refutacao": "Buy Box ≥ 85% nos top-3 ASINs confirma o pré-requisito operacional de pé; qualquer ASIN líder com Buy Box comprometida inverte a leitura de 'acomodação saudável' para 'fragilidade operacional ativa' e muda a prioridade para resolução antes de qualquer outra decisão.",
+      "escalar_se": "Buy Box em erosão ou ausente em qualquer um dos top-3 ASINs — escalar para resolução operacional imediata antes de envolver Pedro em qualquer discussão sobre ADS"
+    },
+    {
+      "prioridade": "Observar ticket médio dos próximos 2 dias sem intervir",
+      "por_que": "A compressão de ticket (-20% vs 30d) tem explicação plausível de mix-do-dia, mas não está provada. O sinal só pode ser classificado como evento pontual ou tendência com mais 2 ciclos de dado.",
+      "sinal_confirmacao_refutacao": "Ticket retornando para faixa R$38-43 nos próximos 2 dias confirma evento pontual de mix; ticket abaixo de R$35 por 2 dias consecutivos indica compressão estrutural e muda a tese de acomodação para vulnerável.",
+      "escalar_se": "Ticket abaixo de R$35 por 2 dias seguidos com Buy Box confirmada — sobe para diagnóstico de causa (precificação? mix? exposição?) e aciona análise mais profunda antes de qualquer decisão sobre ADS"
+    }
+  ],
+  "bloqueios_para_slack": [
+    {
+      "item": "TL250P e TL6250 — canecas de porcelana tulipa com display_name incorreto ('Tigela de Vidro 250ml' e 'Kit 6 Tigelas de Vidro 250ml') no mapeamento interno",
+      "motivo": "Divergência confirmada pela Granular: raw_title do pedido real identifica canecas de porcelana; display_name descreve tigela de vidro — material e categoria distintos. Volume hoje é baixo (1 pedido cada) mas o nome publicável é o do raw_title, não o display_name. Não citar esses produtos pelo display_name. Não são relevantes para o Slack de hoje pelo volume, mas o erro de mapeamento deve ser corrigido no sistema."
+    },
+    {
+      "item": "Hipótese de compressão de ticket por mix confirmada",
+      "motivo": "A Granular sinalizou explicitamente: a hipótese é consistente com o dado, não provada. Não apresentar no Slack como conclusão fechada — o pacote não tem receita desagregada por ASIN."
+    },
+    {
+      "item": "SPC013 e KJP0041 — confidence medium com mapeamento genérico",
+      "motivo": "Ambos têm mapping_status mapped_generic_sku sem revisão confirmada. Volume irrelevante (1 pedido cada). Não citar nominalmente. Se necessário, referenciar como 'produto da cauda com confidence média'."
+    },
+    {
+      "item": "Declaração de operação totalmente validada",
+      "motivo": "Buy Box por ASIN não foi respondida pelo pacote de dados. Não passar no Slack a impressão de que todos os pré-requisitos operacionais foram checados e estão ok — a checagem de Buy Box está pendente de ação manual de Leonardo."
+    }
+  ],
+  "memoria_para_amanha": [
+    "Ticket médio hoje: R$32,52 — ponto de partida para monitoramento de tendência; se amanhã ficar abaixo de R$35, já são 2 dias consecutivos abaixo da banda, o que ativa a revisão de tese de acomodação para vulnerável — registrar o valor realizado amanhã.",
+    "Buy Box por ASIN dos top-3 (B0G2CWWMGK, B0GH2BTQFJ, B0DCP9TBTM) não foi confirmada pelo pacote — checagem manual de Leonardo hoje; registrar resultado amanhã para fechar ou invalidar o pressuposto tático de 'operação saudável'.",
+    "Concentração top-3 hoje: 59,3% (primeiro registro). Registrar concentração dos próximos 2 dias para determinar se é padrão histórico da conta ou variação de hoje — 3 pontos de dado mínimos antes de qualquer conclusão sobre dependência estrutural.",
+    "ERRO DE MAPEAMENTO CONFIRMADO: TL250P e TL6250 com display_name 'tigela de vidro' mapeado incorretamente para canecas de porcelana tulipa — raw_title do pedido é fonte primária. Sinalizar para correção no sistema de mapeamento antes que esses SKUs ganhem volume relevante na conta.",
+    "Distribuição horária registrada como dado-base (2026-05-15): picos em 10h(4), 18h(3), 19h(3) — sem comparável histórico por dia da semana disponível no pacote. Registrar padrão de amanhã para iniciar construção de referência horária da conta.",
+    "Memória analítica semanal e mensal está zerada (weekly.md e monthly.md são templates vazios) — hoje é o ponto zero de todas as teses de acomodação. A conta precisa de pelo menos 5-7 dias de leitura consistente antes de qualquer tese estrutural ser considerada confirmada."
+  ],
+  "alertas_de_confianca": {
+    "nivel": "média",
+    "justificativa": "Os dados de volume, FBA, cancelamentos e reconciliação são sólidos e consistentes. A leitura de que o canal não perdeu capacidade de gerar pedidos é de alta confiança. A compressão de ticket é factual como dado agregado, mas a causa (hipótese de mix-do-dia) não pode ser confirmada porque o pacote não tem receita desagregada por ASIN — a Granular sinalizou explicitamente esse limite. Buy Box por ASIN, que é o pré-requisito tático central, está sem resposta no dado disponível. A ausência de memória analítica prévia (weekly e monthly vazios) impede qualquer contextualização de médio prazo — esta é efetivamente a leitura inaugural da conta. Nenhum desses fatores invalida os insights entregues, mas impede classificação como alta confiança."
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
 }

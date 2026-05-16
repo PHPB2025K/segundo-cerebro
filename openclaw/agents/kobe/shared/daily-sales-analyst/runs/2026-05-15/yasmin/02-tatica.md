@@ -1,38 +1,38 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Decisão tática
 
-- **Dado que a tese é "em ganho de patamar"**, a força de hoje reforça a trajetória — mas ainda não confirma isoladamente. O recuo da média 7d (de volta ao patamar 60d) é sinal de que a semana anterior foi fraca; hoje pode ser bounce ou retomada real. A decisão correta é **observar** por mais 2-3 dias antes de qualquer movimento operacional.
+- **Dado que a tese é ganho de patamar com confiança moderada**, a decisão correta para os próximos dias é proteger a posição dos anúncios líderes das famílias KIT2YW e IMB501, sem tentar amplificar o resultado de hoje — um único dia forte não justifica alterar a operação que está produzindo o crescimento.
 
-- **Dado que o risco estrutural é concentração nos produtos líderes**, o dia forte carrega em sua maioria os mesmos campeões de sempre (KIT2YW + IMB501). Isso exige que Yasmin **proteja** esses produtos antes de qualquer teste de segundo vetor — ranking, exposição e estoque saudáveis nos líderes é pré-condição para capturar o patamar descrito pela Estratégica.
+- **Dado que os vetores de exposição estão opacos** (reputação, posição de anúncio, Full e ADS ML não disponíveis no pacote), Yasmin não tem como distinguir se o ganho de hoje é orgânico, puxado por ADS Himmel, ou por melhora de ranking — e essa distinção importa antes de qualquer ação sobre verba ou mix.
 
-- **Se o risco de concentração for verdadeiro**, uma perturbação nos campeões hoje produziria impacto desproporcional — e não haveria produto secundário para amortizar. Portanto, a ação urgente não é testar crescimento, é **confirmar que os líderes estão íntegros** enquanto o canal opera no alto.
+- **Dado que a concentração top-3 está em 55,7% com um único produto respondendo por ~28% dos pedidos**, a conta tem dependência estrutural de poucas SKUs; o risco não é hoje — é se um dos campeões perder exposição ou competitividade sem que a cauda absorva. A postura correta é monitorar essa concentração ao longo da semana, não agir sobre ela hoje.
 
-- **Não há sinal de risco operacional iminente** (cancelamentos em 4, volume reconciliado, memória parcial mas funcional). A postura é de coleta de evidência, não de intervenção.
+- **Dado que a memória histórica narrativa está vazia**, esta é a leitura inaugural da conta no sistema — o que torna arriscada qualquer ação forte baseada em comparativo de um dia, mesmo que positivo. A tática desta janela é coletar evidência sem alterar a operação.
 
 ---
 
 ### O que fazer hoje
 
-- **Yasmin:** verificar posição e status de exposição dos anúncios líderes (família KIT2YW e família IMB501) no painel ML — dado que a tese aponta dependência concentrada nesses produtos e o dia foi excepcionalmente forte, confirmar que o ranking e a visibilidade dos campeões estão saudáveis antes de qualquer outra decisão — sinal de resultado: posição dos líderes estável ou melhor que 7 dias atrás confirma que o desempenho de hoje tem base de exposição sólida; queda de posição em 2+ anúncios líderes após dia forte indica problema de exposição e Yasmin alinha com Himmel.
+- **Yasmin:** verificar posição dos anúncios líderes das famílias KIT2YW e IMB501 no Mercado Livre e comparar com a referência visual de 7 dias atrás — dado que os vetores de exposição estão opacos e a tese de ganho de patamar depende de saber se o crescimento é sustentável ou circunstancial — se a posição dos anúncios líderes estiver estável ou melhor do que há 7 dias, o ganho tem componente orgânico; se a posição caiu em 2 ou mais anúncios relevantes, a tese de sustentabilidade enfraquece e Yasmin alinha preventivamente com Himmel sobre ADS ML.
 
-- **Yasmin:** registrar os três sinais de confirmação entregues pela Estratégica como checagem ativa para os próximos 3-5 dias — GMV > R$4.800 por 3 dias consecutivos, ticket acima de R$45 por 5 dias, e volume do campeão de potes 1520ml acima de 20 pedidos/dia — a tese de ganho de patamar só transita de hipótese para base de decisão quando ao menos dois desses sinais aparecerem juntos — sinal de resultado: ao final de 3 dias, se dois sinais confirmados, postura muda de "observar" para "proteger crescimento"; se nenhum confirmado, a semana fraca anterior pode ter sido a tendência real.
+- **Yasmin:** registrar o resultado de hoje (115 pedidos, R$5.495, ticket R$47,78, concentração top-3 ~55%) como ponto de partida na memória da conta — dado que a memória histórica narrativa está vazia, esta entrada estabelece a linha de base para comparar os próximos ciclos e tornar a tese de ganho de patamar falsificável — sinal de resultado: se nos próximos 7 dias a média de pedidos ficar consistentemente acima de 95, a linha de base confirma o patamar; abaixo disso, hoje foi pico isolado.
 
-- **Yasmin:** observar se o comportamento dos horários de pico de hoje (9h, 15-17h com 11-12 pedidos/hora cada) se repete nos próximos 2 dias no mesmo nível — dado que a Estratégica identifica o dia como potencial bounce pós-semana fraca, confirmar padrão de horário é a menor checagem que distingue retomada estrutural de evento pontual — sinal de resultado: concentração de 30%+ dos pedidos nos horários de pico por 2 dias seguidos reforça tese de retomada; dispersão ou queda nos horários fortes enfraquece.
+- **Yasmin:** observar se o padrão do dia de hoje se repete ou se aproxima na próxima quinta-feira (2026-05-22) — dado que a série das quintas mostra trajetória ascendente (70 → 76 → 83 → 115) e a tese de ganho estrutural precisa de confirmação em mais de um ciclo — se a próxima quinta registrar acima de 100 pedidos, a ascensão da série semanal se confirma como tendência; abaixo de 90, o dia de hoje fica como ponto alto dentro de banda sem direção clara.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Himmel para ajuste de ADS ML.** Um dia forte não é sinal de que a exposição precisa ser alterada. A Estratégica aponta que a semana anterior foi fraca — e hoje pode ser bounce. Mexer em ADS após um único dia excepcional, sem confirmação de 2+ ciclos, é precipitado e pode inflar custo em momento de oscilação normal.
+- **Não acionar Himmel para aumentar verba ou expandir segmentação de ADS ML agora.** O resultado de hoje é forte, mas a causa é opaca — sem dado de posição de anúncio, reputação ou histórico de ADS disponível no pacote, escalar verba pode sobrepor investimento sobre movimento que já está acontecendo por razão independente, sem produzir retorno incremental real. A condição para acionar Himmel é: queda de posição dos anúncios líderes confirmada em 2+ dias seguidos, ou próxima quinta abaixo de 90 pedidos com posição estável (sinal de problema de exposição, não de acomodação).
 
-- **Não testar produto secundário ou expandir mix agora.** A tese de concentração de risco significa que o segundo vetor deve ser testado com os líderes protegidos — e a proteção dos líderes ainda precisa ser confirmada (ver ação 1). Iniciar teste de expansão de mix antes de confirmar a saúde dos campeões em um período de incerteza (semana fraca → dia forte) aumenta exposição sem respaldo.
+- **Não tratar a concentração em KIT2YW e IMB501 como problema a ser resolvido agora.** A concentração top-3 em 55,7% é um risco estrutural para ser monitorado ao longo de 7 dias — não é gatilho de ação hoje. Mexer em mix ou dar visibilidade forçada a SKUs da cauda sem entender a demanda orgânica pode diluir o resultado dos campeões sem substituição efetiva.
 
-- **Não tratar hoje como confirmação do novo patamar.** A ausência de memória histórica estruturada (weekly/monthly são templates vazios) e o recuo da 7d impedem que um único dia, mesmo expressivo, confirme a tese. Decisões que dependem de "novo patamar confirmado" — como comunicar crescimento, redirecionar verba ou alterar mix estrutural — precisam aguardar ao menos 3 dias de evidência acumulada.
+- **Não interpretar o ticket médio alto (R$47,78) como sinal para testar precificação.** Não há dado de margem ou custo disponível para sustentar qualquer movimento de preço. Ticket em alta junto com volume é sinal de saúde — qualquer ajuste de preço agora é especulação sobre elasticidade sem base para calibrar o risco de queda de conversão.
 
 ---
 
 ### Escalonamento
 
-**Observar** — sem ação de escalonamento por ora.
+**observar** — Yasmin resolve.
 
-A Estratégica entrega tese de ganho de patamar com confiança moderada-alta, mas o recuo da 7d e a ausência de memória histórica estruturada introduzem incerteza suficiente para que nenhuma ação forte seja justificada agora. O canal não apresenta risco operacional iminente (cancelamentos baixos, reconciliação ok, produtos líderes funcionando). A postura correta é Yasmin coletar evidência pelos próximos 2-3 dias usando os três sinais listados pela Estratégica. Se ao final de 3 dias dois sinais se confirmarem (GMV > R$4.800 sustentado + ticket > R$45 + campeão estável), a postura muda para "proteger crescimento" e Yasmin avalia se exposição dos líderes justifica alinhamento com Himmel. Se o sinal for ambíguo ou negativo, o recuo da 7d pode ser a tendência real, e a tese precisa ser revisada com base nas novas janelas.
+A tese é positiva mas a confiança é moderada, a memória histórica está vazia e os vetores de exposição estão opacos. Não há risco operacional iminente, não há queda confirmada, e não há hipótese de exposição validada que exija decisão sobre ADS. A postura correta para os próximos 2-3 dias é coletar evidência sem alterar a operação: Yasmin verifica posição dos anúncios líderes hoje, registra a linha de base e observa a próxima quinta. O escalonamento muda para **alinhar com Himmel** se a posição dos anúncios líderes cair em 2+ anúncios relevantes por 2 dias seguidos, ou se a próxima quinta fechar abaixo de 90 pedidos com posição estável — o que transformaria o sinal de acomodação em problema de exposição que justifica intervenção em ADS ML.

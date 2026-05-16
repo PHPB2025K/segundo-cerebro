@@ -1,40 +1,128 @@
 {
-  "respostas_operacional": [
-    {
-      "pergunta": "Os 3 cancelamentos da Conta 3 estão concentrados em qual produto ou são pulverizados entre pedidos distintos?",
-      "status": "nao_respondida_por_falta_de_dado",
-      "evidencia": "O pacote informa 3 cancelamentos na Conta 3 (shop_id 442066454) como métrica agregada. Não há campo de cancelamentos discriminado por produto, SKU ou platform_item_id no Layer 0. Os top_products da conta listam apenas pedidos válidos, sem cruzamento com cancelamentos.",
-      "leitura": "Impossível determinar se os cancelamentos estão concentrados em produto específico (indicativo de problema de listing ou estoque) ou pulverizados (ruído normal) com os dados disponíveis.",
-      "conclusao_granular": "inconclusivo_por_falta_de_dado",
-      "confianca": "baixa"
+  "layer": "04-granular",
+  "date": "2026-05-15",
+  "recipient": "Lucas",
+  "platform": "shopee",
+  "content": {
+    "respostas_operacional": [
+      {
+        "pergunta": "Os 3 cancelamentos da Conta 3 estão concentrados em um produto específico ou distribuídos entre SKUs distintos?",
+        "status": "não respondida por falta de dado",
+        "evidencia": "O pacote de dados lista top_products da Conta 3 com orders e quantity de pedidos válidos, mas não atribui cancelamentos a SKUs individuais. Os 3 cancelamentos constam no campo metrics.cancelamentos da conta, sem detalhamento por produto. Conta 3 — shop_id: 442066454 — 27 pedidos válidos, 3 cancelamentos, 9 produtos no top_products. Nenhum campo no pacote associa os cancelamentos a product/SKU específico.",
+        "leitura": "Impossível determinar se os cancelamentos estão concentrados ou distribuídos. A pergunta motivadora da Operacional — taxa de ~11% sugerindo possível problema localizado — permanece sem resposta granular. O único dado disponível é o total de 3 cancelamentos para a conta inteira.",
+        "conclusao_granular": "inconclusivo por falta de dado",
+        "confianca": "baixa"
+      },
+      {
+        "pergunta": "Qual foi a distribuição horária de pedidos da Conta 2 nos mesmos dias da semana das últimas 3 semanas? A ausência de manhã é padrão recorrente ou nova neste dia?",
+        "status": "parcialmente respondida",
+        "evidencia": "Distribuição horária de hoje na Conta 2 (shop_id: 860803675): {11:1, 12:1, 15:4, 16:1, 18:2, 19:1, 21:2, 22:1, 23:4} — zero pedidos de 0h a 10h confirmado. Histórico disponível nos dados: same_weekday_last_4 registra volumes totais (39, 43, 33, 26 pedidos) para 2026-05-08, 2026-05-01, 2026-04-24, 2026-04-17 respectivamente, mas sem distribuição horária para esses dias. O pacote não inclui hour_distribution histórico por conta.",
+        "leitura": "A ausência matinal de hoje (0h–10h zerado) é evidenciada pelo hour_distribution do dia. A pergunta sobre recorrência — se é padrão estrutural da Conta 2 ou desvio deste dia — não pode ser respondida: o pacote só contém distribuição horária para o dia atual, não para os quatro mesmos dias da semana anteriores. A hipótese da Operacional (perda de exposição em janela matinal) permanece candidata, não confirmada nem descartada.",
+        "conclusao_granular": "parcialmente respondida — ausência matinal de hoje confirmada; recorrência histórica indeterminável com os dados disponíveis",
+        "confianca": "baixa"
+      },
+      {
+        "pergunta": "Os 21 pedidos de CTL002 distribuídos entre as três contas (9 na Store, 4 na Conta 2, 8 na Conta 3) têm concentração horária que permita ver sobreposição de janela de exposição?",
+        "status": "parcialmente respondida",
+        "evidencia": "Distribuições horárias totais disponíveis por conta:\n- Store (shop_id 448649947): picos em 12h(8), 23h(6), 0h(3), 22h(5), 19h(5), 13h(5), 15h(5)\n- Conta 2 (shop_id 860803675): picos em 15h(4), 23h(4), 18h(2), 21h(2)\n- Conta 3 (shop_id 442066454): picos em 15h(4), 16h(4), 11h(3), 8h(2), 9h(2)\nCTL002 — Produto visível: Kit 6 Canecas Tulipa 250ml — aparece nas três contas: Store platform_item_id 45554989236 (9 pedidos), Conta 2 platform_item_id 46154989273 (4 pedidos), Conta 3 platform_item_id 50954968481 (8 pedidos). A distribuição horária disponível é da conta inteira — não há granularidade horária por produto dentro de cada conta.",
+        "leitura": "Sobreposição temporal identificável em nível de conta: o horário 15h é pico simultâneo na Conta 2 (4 pedidos, máximo do dia) e na Conta 3 (4 pedidos, máximo empatado do dia), enquanto a Store não tem destaque particular nesse horário. A Store concentra seu pico no meio-dia (12h: 8 pedidos). Isso é indício — não prova — de que CTL002 pode ter tido janelas de exposição sobrepostas entre Conta 2 e Conta 3 às 15h, com a Store operando em janela temporal diferente (pico ao meio-dia). Sem granularidade horária por produto, a hipótese de sobreposição de exposição no mesmo horário 15h permanece candidata plausível mas não confirmada.",
+        "conclusao_granular": "parcialmente respondida — sobreposição de pico às 15h entre Conta 2 e Conta 3 é indício de janela de exposição compartilhada; Store opera em janela temporal distinta (12h); confirmação requer distribuição horária por produto",
+        "confianca": "baixa"
+      },
+      {
+        "pergunta": "O produto líder da Store (Conjunto 5 Potes Redondos Tampa Preta) teve distribuição horária de pedidos uniforme ao longo do dia ou concentrada em poucas janelas?",
+        "status": "não respondida por falta de dado",
+        "evidencia": "Produto visível: Conjunto 5 Potes de Vidro Redondos Tampa Preta — Conta: Budamix Store — shop_id: 448649947 — platform_item_id: 22393168887 — Fonte: top_products / pedido real. O produto representa 30 pedidos em 67 da conta (44.8%). Distribuição horária da Store (conta total): 0h(3), 1h(2), 2h(2), 7h(2), 8h(4), 9h(1), 10h(4), 11h(4), 12h(8), 13h(5), 14h(3), 15h(5), 16h(1), 17h(1), 18h(1), 19h(5), 20h(1), 21h(4), 22h(5), 23h(6). O pacote não oferece distribuição horária por produto dentro da conta.",
+        "leitura": "Com 30/67 pedidos (44.8%) do produto líder, a distribuição horária da conta é influenciada significativamente pelo produto líder, mas não é equivalente a ela. Uma inferência possível: se o produto líder seguir a distribuição da conta, seus pedidos se concentrariam em 12h (~3-4 pedidos), 23h (~2-3) e 0h (~1-2). Porém, isso é inferência estatística, não evidência por produto. A pergunta da Operacional — exposição contínua vs pontual — não pode ser respondida sem granularidade horária por SKU.",
+        "conclusao_granular": "não respondida por falta de dado — distribuição horária por produto não disponível no pacote",
+        "confianca": "baixa"
+      }
+    ],
+    "investigacoes_proprias": [
+      {
+        "investigacao": "Divergência entre display_name e raw_title do SKU '098' na Conta 2",
+        "origem": "risco de identificação",
+        "evidencia": "SKU: 098 — Conta: Budamix Oficial / Conta 2 — shop_id: 860803675 — platform_item_id: 23198542584 — Fonte: top_products / pedido real.\nraw_title do pedido: 'Kit 9 Potes Vidro Quadrados Hermético Vedação Tampa 4 Travas Marmita'\ndisplay_name mapeado: 'Pote de Vidro Hermético 800ml'\nmapping_status: mapped | mapping_reason: reviewed_sku_display_map | confidence: high\nDivergência: raw_title descreve kit de 9 potes quadrados sem menção a 800ml; display_name descreve pote unitário 800ml — produtos de natureza distinta (kit vs unitário) e contagem distinta (9 vs 1). O pedido real (raw_title) e o nome de exibição interno (display_name) não convergem. 1 pedido afetado na Conta 2.",
+        "leitura": "O SKU '098' está marcado como high confidence no mapeamento reviewed_sku_display_map, mas a divergência entre o que o cliente comprou (kit 9 potes quadrados) e o nome de display interno (pote 800ml unitário) é substantiva. Pode indicar que o display_map associou o SKU numérico '098' ao produto errado, ou que o listing combina produtos sob o mesmo SKU. Com apenas 1 pedido, o impacto no resultado do dia é zero — mas o risco de identificação existe para usos futuros deste SKU em análises de produto.",
+        "conclusao_granular": "complica — produto provavelmente mal nomeado no display_map interno; raw_title do pedido real é a fonte primária e descreve kit de 9 potes, não pote unitário 800ml",
+        "confianca": "média"
+      },
+      {
+        "investigacao": "SKU 'ITEM:28044349447' na Conta 3 — produto sem SKU interno mapeado por platform_item_id",
+        "origem": "risco de identificação",
+        "evidencia": "Produto visível: 'Kit 5 Tigelas Potes Redondos 140ml a 980ml Jogo de Pote Hermético Cozinha' — Conta: Budamix Shop / Conta 3 — shop_id: 442066454 — platform_item_id: 28044349447 — Fonte: top_products / pedido real.\nmapping_status: mapped_platform_item_id | mapping_reason: missing_sku_mapped_by_stable_platform_item_id | confidence: medium\nhas_raw_sku: false | raw_skus: [] — produto sem SKU interno, identificado exclusivamente pelo platform_item_id. 1 pedido na Conta 3.",
+        "leitura": "O produto não possui SKU interno cadastrado — foi mapeado apenas pelo platform_item_id estável. A identificação pelo título real do pedido é válida ('Kit 5 Tigelas Potes Redondos 140ml a 980ml'), mas a ausência de SKU interno impede rastreio cruzado com estoque ou outros sistemas internos. 1 pedido afetado, sem impacto no resultado do dia, mas risco de identificação médio registrado.",
+        "conclusao_granular": "inconclusivo — identificação por platform_item_id é válida para este pedido; ausência de SKU interno é gap de catálogo, não erro de análise",
+        "confianca": "média"
+      },
+      {
+        "investigacao": "Comportamento de CTL002 como único SKU com presença nas três contas simultaneamente — peso relativo por conta",
+        "origem": "anomalia / hipótese da Estratégica",
+        "evidencia": "CTL002 (Kit 6 Canecas Tulipa 250ml) — plataforma_item_ids distintos por conta:\n- Store (shop_id 448649947): platform_item_id 45554989236 — 9 pedidos em 67 totais = 13.4% da conta — 3º produto\n- Conta 2 (shop_id 860803675): platform_item_id 46154989273 — 4 pedidos em 17 totais = 23.5% da conta — 2º produto (empatado)\n- Conta 3 (shop_id 442066454): platform_item_id 50954968481 — 8 pedidos em 27 totais = 29.6% da conta — 1º produto (líder absoluto)\nTotal cross-conta: 21 pedidos. Os três platform_item_ids são distintos — listings separados nas três lojas, confirmado pelo pacote.",
+        "leitura": "CTL002 tem peso crescente conforme a conta é menor: 13.4% na Store (conta maior), 23.5% na Conta 2, 29.6% na Conta 3 onde é líder. Isso significa que as contas menores dependem mais deste SKU do que a Store — não é distribuição proporcional. A Conta 3, que já mostra erosão de ticket nas janelas de 30d/60d, tem como líder absoluto um produto de canecas (ticket menor que potes herméticos), o que é coerente com a acomodação descendente de receita identificada pela Estratégica. A sobreposição de listings nas três contas com platform_item_ids distintos confirma que são anúncios independentes competindo no mesmo marketplace pelo mesmo produto.",
+        "conclusao_granular": "confirma — CTL002 tem peso desproporcional nas contas menores; a Conta 3 sendo liderada por produto de canecas (ticket menor) é evidência granular direta da erosão de receita por unidade apontada pela Estratégica; os três listings independentes sustentam o risco de canibalização como hipótese ativa",
+        "confianca": "média"
+      }
+    ],
+    "risco_identificacao": {
+      "nivel": "médio",
+      "fontes": [
+        "SKU '098' na Conta 2: divergência entre display_name ('Pote de Vidro Hermético 800ml') e raw_title do pedido real ('Kit 9 Potes Vidro Quadrados Hermético') — mapping confidence high mas títulos incompatíveis; risco de produto mal nomeado no display_map",
+        "ITEM:28044349447 na Conta 3: missing_sku, mapeado exclusivamente por platform_item_id estável — confidence medium, ausência de SKU interno",
+        "SKU '096' na Conta 3: mapping_status mapped_generic_sku, mapping_reason raw_sku_normalized_with_short_title_fallback — confidence medium; display_name igual ao raw_title (fallback de título curto)"
+      ],
+      "explicacao": "O nível de risco é médio, não alto, porque os três produtos com identificação não-plena representam 1 pedido cada (3 pedidos totais em 111 da plataforma) e todos os produtos líderes que sustentam as leituras das camadas anteriores têm confidence high com has_raw_sku + has_title + has_platform_item_id confirmados. O risco médio se aplica especificamente ao SKU '098' da Conta 2 — onde a divergência entre display_name e raw_title do pedido é substantiva o suficiente para comprometer usos futuros desse SKU em análises de produto. Para o resultado de hoje, o impacto é marginal (1 pedido). Nenhum item entra em BLOQUEIO PARA SLACK: as evidências que sustentam as leituras principais usam produtos com identificação alta. A Condensadora deve preservar a ressalva sobre '098' apenas em memória interna técnica.",
+      "bloqueios_slack": []
     },
-    {
-      "pergunta": "Os pedidos dos dois líderes da Conta 1 (Conjunto 5 Potes Tampa Preta e Jarra Medidora 500ml) vieram distribuídos ao longo do dia ou concentrados em janelas específicas?",
-      "status": "parcialmente_respondida",
-      "evidencia": {
-        "lider_1": {
-          "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
-          "conta": "Budamix Store",
-          "shop_id": "448649947",
-          "platform_item_id": "22393168887",
-          "orders": 30,
-          "pct_conta": "44.8%",
-          "fonte": "orderItems / pedido real"
-        },
-        "lider_2": {
-          "produto_visivel": "Jarra Medidora de Vidro 500ml",
-          "conta": "Budamix Store",
-          "shop_id": "448649947",
-          "platform_item_id": "23993264258",
-          "orders": 23,
-          "pct_conta": "34.3%",
-          "fonte": "orderItems / pedido real"
-        },
-        "dois_lideres_combinados": {
-          "orders": 53,
-          "pct_conta": "79.1%"
-        },
-        "distribuicao_horaria_conta_1_agregada": {
+    "divergencia_fontes": null,
+    "evidencia_conflitante": null,
+    "detalhe_condensadora": [
+      {
+        "detalhe": "A Conta 2 (Budamix Oficial, shop_id 860803675) teve zero pedidos entre 0h e 10h — todos os 17 pedidos ocorreram a partir das 11h, com dois blocos isolados às 15h (4 pedidos) e 23h (4 pedidos) sem continuidade entre eles. O dado horário de hoje não pode ser comparado com histórico (pacote não inclui hour_distribution de dias anteriores), mas o padrão de hoje é qualitativamente diferente de 'conta pequena com volume baixo' — é uma conta que perdeu acesso à janela matinal de tráfego, o que aponta para hipótese de perda de exposição/ranking nessa janela, não queda proporcional de demanda. A mensagem não pode tratar Conta 2 apenas como número de pedidos sem mencionar esse comportamento horário.",
+        "importancia": "Se a mensagem disser 'Conta 2 vendeu 17 pedidos (queda de 51.8% vs mesmo dia)', está tecnicamente correta mas omite o dado qualitativo mais relevante: a conta operou em dois blocos isolados no período vespertino/noturno, ausente de manhã — o que muda completamente o diagnóstico a ser levado a Himmel quando o gatilho de observação da Tática for atingido.",
+        "confianca": "média"
+      },
+      {
+        "detalhe": "CTL002 (Kit 6 Canecas Tulipa 250ml) é o único produto com presença simultânea nas três contas (9 pedidos na Store, 4 na Conta 2, 8 na Conta 3 = 21 pedidos totais), com listings independentes (platform_item_ids distintos: 45554989236, 46154989273, 50954968481). Na Conta 3, é o líder absoluto com 29.6% dos pedidos. O domínio de CTL002 como líder na Conta 3 é a evidência granular que explica a erosão de ticket da conta: canecas têm ticket menor que potes herméticos, e a conta está sendo liderada por canecas.",
+        "importancia": "Sem esse detalhe, a mensagem não consegue explicar por que a Conta 3 mantém volume mas perde GMV — a resposta está no produto que lidera (CTL002 + KIT6CAR200 = 59% dos pedidos, produtos de ticket menor). Além disso, a sobreposição do SKU nas três contas com listings independentes sustenta a hipótese de canibalização como candidata ativa — omitir esse fato impede Lucas de entender o risco de fragmentação de exposição entre lojas.",
+        "confianca": "média"
+      },
+      {
+        "detalhe": "Os 3 cancelamentos da Conta 3 (shop_id 442066454) em 27 pedidos válidos representam taxa de ~11% — o pacote de dados não permite atribuir os cancelamentos a produto específico. A taxa é elevada para o porte da conta, mas a ausência de granularidade por SKU impede determinar se é problema localizado ou distribuído. A Condensadora deve registrar o fato com a ressalva de indeterminação.",
+        "importancia": "Se a mensagem omitir os cancelamentos da Conta 3, a leitura de 'volume estável' fica incompleta. A taxa de ~11% é suficientemente elevada para ser mencionada — com a ressalva explícita de que a distribuição por produto não está disponível neste ciclo e deve ser investigada no próximo pacote.",
+        "confianca": "média"
+      }
+    ],
+    "memoria_interna": {
+      "shop_ids": {
+        "budamix_store": "448649947",
+        "budamix_oficial_conta2": "860803675",
+        "budamix_shop_conta3": "442066454"
+      },
+      "platform_item_ids_lideres": {
+        "store_IMB501P": "22393168887",
+        "store_CK4742": "23993264258",
+        "store_CTL002": "45554989236",
+        "conta2_IMB501C": "23593154831",
+        "conta2_CTL002": "46154989273",
+        "conta3_CTL002": "50954968481",
+        "conta3_KIT6CAR200": "57756043479"
+      },
+      "divergencia_tecnica_registrada": "SKU '098' na Conta 2: display_name 'Pote de Vidro Hermético 800ml' vs raw_title do pedido 'Kit 9 Potes Vidro Quadrados Hermético Vedação Tampa 4 Travas Marmita' — mapping reviewed_sku_display_map confidence high mas títulos incompatíveis; requer revisão do display_map para este SKU em próximo ciclo de QA",
+      "produtos_sem_sku_interno": [
+        "ITEM:28044349447 (Conta 3) — Kit 5 Tigelas Potes Redondos 140ml a 980ml — mapeado por platform_item_id 28044349447"
+      ],
+      "produtos_mapping_generico": [
+        "SKU '096' (Conta 3) — platform_item_id 22494052928 — mapped_generic_sku — 1 pedido"
+      ],
+      "CTL002_distribuicao_cross_conta": {
+        "store_pedidos": 9,
+        "conta2_pedidos": 4,
+        "conta3_pedidos": 8,
+        "total": 21
+      },
+      "contagem_horaria_completa": {
+        "store": {
           "0": 3,
           "1": 2,
           "2": 2,
@@ -56,203 +144,39 @@
           "22": 5,
           "23": 6
         },
-        "nota": "Breakdown horário disponível apenas no agregado da conta (67 pedidos totais). Não há separação horária por produto individual no pacote."
-      },
-      "leitura": "Como os dois líderes representam 79,1% do volume da conta, o padrão horário da conta é proxy razoável — não confirmação direta — do padrão dos líderes. O padrão mostra distribuição ao longo do dia sem concentração extrema em janela única: picos em 12h (8), 23h (6), e atividade sustentada em 13h/15h/19h/22h (5 cada). Janela 16h-18h é notavelmente fraca (3 pedidos total). Não há colapso horário visível — o volume se distribui sem apagão dentro do dia.",
-      "conclusao_granular": "parcialmente_confirmado_distribuicao_aparentemente_espalhada_sem_janela_de_colapso_identificada",
-      "confianca": "media",
-      "ressalva": "Confiança limitada a inferência via peso percentual. Breakdown horário por produto individual necessário para resposta definitiva."
-    },
-    {
-      "pergunta": "O CTL002 (Kit 6 Canecas Tulipa) vendeu nas três contas — em qual conta a concentração foi maior por hora e há sobreposição de horário entre as contas?",
-      "status": "parcialmente_respondida",
-      "evidencia": {
-        "ctl002_por_conta": [
-          {
-            "produto_visivel": "Kit 6 Canecas Tulipa 250ml",
-            "conta": "Budamix Store",
-            "shop_id": "448649947",
-            "platform_item_id": "45554989236",
-            "orders": 9,
-            "pct_da_conta": "13.4%",
-            "fonte": "orderItems / pedido real"
-          },
-          {
-            "produto_visivel": "Kit 6 Canecas Tulipa 250ml",
-            "conta": "Budamix Oficial / Conta 2",
-            "shop_id": "860803675",
-            "platform_item_id": "46154989273",
-            "orders": 4,
-            "pct_da_conta": "23.5%",
-            "fonte": "orderItems / pedido real"
-          },
-          {
-            "produto_visivel": "Kit 6 Canecas Tulipa 250ml",
-            "conta": "Budamix Shop / Conta 3",
-            "shop_id": "442066454",
-            "platform_item_id": "50954968481",
-            "orders": 8,
-            "pct_da_conta": "29.6%",
-            "fonte": "orderItems / pedido real"
-          }
-        ],
-        "total_ctl002_plataforma": 21,
-        "maior_concentracao_relativa": "Conta 3 (29,6% dos pedidos da conta)",
-        "maior_volume_absoluto": "Conta 1 (9 pedidos)",
-        "sobreposicao_horaria_nivel_conta": {
-          "horas_com_atividade_nas_tres_contas_simultaneamente": [
-            12,
-            15
-          ],
-          "hora_pico_sobreposicao": "15h — Conta 1: 5 pedidos totais; Conta 2: 4 pedidos totais; Conta 3: 4 pedidos totais",
-          "nota": "Sobreposição calculada no agregado da conta. Breakdown horário por CTL002 especificamente não disponível no pacote."
+        "conta2": {
+          "11": 1,
+          "12": 1,
+          "15": 4,
+          "16": 1,
+          "18": 2,
+          "19": 1,
+          "21": 2,
+          "22": 1,
+          "23": 4
+        },
+        "conta3": {
+          "2": 1,
+          "6": 1,
+          "8": 2,
+          "9": 2,
+          "10": 1,
+          "11": 3,
+          "12": 1,
+          "13": 1,
+          "14": 1,
+          "15": 4,
+          "16": 4,
+          "17": 1,
+          "18": 1,
+          "19": 1,
+          "20": 1,
+          "21": 1,
+          "22": 1
         }
-      },
-      "leitura": "CTL002 é produto cross-conta com evidência multiloja: 21 pedidos distribuídos pelas três contas. Concentração relativa maior na Conta 3 (29,6%) — é o líder dessa conta; menor na Conta 1 (13,4%) — é o terceiro produto. Sobreposição horária entre as três contas existe às 12h e 15h no nível agregado de conta. A coincidência de pico às 15h nas três contas simultaneamente (13 pedidos no total do período entre as três) é o sinal mais relevante — sugere possível impulsionamento simultâneo por campanha Himmel ou alcance de comprador sobreposto. Sem breakdown horário por CTL002 especificamente, a hipótese de canibalização não é confirmada nem descartada.",
-      "conclusao_granular": "sinal_de_sobreposicao_horaria_em_nivel_de_conta_presente_hipotese_de_canibalizacao_nao_confirmada",
-      "confianca": "media",
-      "ressalva": "Sobreposição horária analisada no agregado da conta. Confirmar canibalização exigiria breakdown horário por produto por conta — dado ausente no pacote atual."
-    },
-    {
-      "pergunta": "Quais foram os horários com zero pedido na Conta 2 que nos mesmos dias da semana anteriores (08/05, 01/05) registravam volume?",
-      "status": "nao_respondida_por_falta_de_dado",
-      "evidencia": "O pacote inclui totais diários dos mesmos dias da semana (08/05: 39 pedidos; 01/05: 43 pedidos; 24/04: 33 pedidos; 17/04: 26 pedidos) mas não inclui distribuição horária histórica por conta. Apenas o total agregado das datas de referência está disponível, sem granularidade horária.",
-      "leitura": "Impossível localizar qual janela horária colapsou comparativamente ao histórico. Sabe-se que o total diário de hoje (17 pedidos) está muito abaixo das referências (26-43 pedidos nos mesmos dias anteriores), mas onde dentro do dia ocorreu a perda de volume não pode ser determinado.",
-      "conclusao_granular": "inconclusivo_por_falta_de_dado",
-      "confianca": "baixa"
+      }
     }
-  ],
-  "investigacoes_proprias": [
-    {
-      "investigacao": "Divergência entre raw_title e display_name do SKU 098 na Conta 2",
-      "origem": "risco_de_identificacao",
-      "evidencia": {
-        "produto_visivel": "Pote de Vidro Hermético 800ml",
-        "sku": "098",
-        "raw_title_do_pedido": "Kit 9 Potes Vidro Quadrados Hermético Vedação Tampa 4 Travas Marmita",
-        "display_name_mapeado": "Pote de Vidro Hermético 800ml",
-        "platform_item_id": "23198542584",
-        "conta": "Budamix Oficial / Conta 2",
-        "shop_id": "860803675",
-        "orders": 1,
-        "quantity": 2,
-        "fonte": "orderItems / pedido real"
-      },
-      "leitura": "O raw_title do pedido real descreve um kit com 9 potes quadrados. O display_name mapeado refere um produto singular (pote único, 800ml) sem indicação de kit. São descrições incompatíveis. O SKU 098 pode estar agregando produtos distintos ou o mapeamento de display_name está incorreto para este SKU. Volume mínimo (1 pedido, 2 unidades) — impacto nulo nas leituras de concentração ou GMV — mas o mapeamento incorreto pode gerar erro em análises futuras quando este produto ganhar volume.",
-      "conclusao_granular": "risco_de_identificacao_medio_divergencia_confirmada_entre_titulo_real_e_display_name_mapeado",
-      "confianca": "media"
-    },
-    {
-      "investigacao": "Verificação de cauda real da Conta 1 — top 5 concentration de 100%",
-      "origem": "anomalia",
-      "evidencia": {
-        "conta": "Budamix Store",
-        "shop_id": "448649947",
-        "top3_concentration": "92.5%",
-        "top5_concentration": "100.0%",
-        "pedidos_validos": 67,
-        "pedidos_em_top5": 67,
-        "pedidos_fora_top5": 0,
-        "quality_flag_ativo": "high_top3_concentration",
-        "detalhe_top5": [
-          {
-            "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
-            "platform_item_id": "22393168887",
-            "orders": 30
-          },
-          {
-            "produto_visivel": "Jarra Medidora de Vidro 500ml",
-            "platform_item_id": "23993264258",
-            "orders": 23
-          },
-          {
-            "produto_visivel": "Kit 6 Canecas Tulipa 250ml",
-            "platform_item_id": "45554989236",
-            "orders": 9
-          },
-          {
-            "produto_visivel": "Kit 6 Potes de Vidro Hermético",
-            "platform_item_id": "23094203124",
-            "orders": 3
-          },
-          {
-            "produto_visivel": "Kit 2 Potes de Vidro 800ml Quadrado",
-            "platform_item_id": "22593169868",
-            "orders": 2
-          }
-        ]
-      },
-      "leitura": "A Operacional e a Estratégica descreveram a dependência da Conta 1 como 'quase absoluta'. O dado concreto é mais severo: a concentração top 5 é exatamente 100,0% — zero pedidos registrados fora dos cinco produtos mapeados. Não existe cauda operacional presente hoje nesta conta. Qualquer oscilação nos 5 produtos, por menor que seja, impacta a totalidade do volume da conta. Isso não é hipótese de risco — é condição operacional confirmada.",
-      "conclusao_granular": "confirma_risco_estrutural_com_evidencia_mais_severa_que_descrita_pelas_camadas_anteriores_zero_cauda_absoluta",
-      "confianca": "alta"
-    },
-    {
-      "investigacao": "Produtos com confiança média na Conta 3 — impacto em leituras",
-      "origem": "risco_de_identificacao",
-      "evidencia": {
-        "produto_1": {
-          "sku_usado": "ITEM:28044349447",
-          "raw_sku": "",
-          "raw_title": "Kit 5 Tigelas Potes Redondos 140ml a 980ml Jogo de Pote Hermético Cozinha",
-          "platform_item_id": "28044349447",
-          "conta": "Budamix Shop / Conta 3",
-          "shop_id": "442066454",
-          "mapping_status": "mapped_platform_item_id",
-          "confidence": "medium",
-          "orders": 1,
-          "fonte": "orderItems / pedido real"
-        },
-        "produto_2": {
-          "sku": "096",
-          "raw_title": "Kit Conjunto 3 Potes Vidro Quadrados Hermético Tampa 4 Travas Vedação",
-          "platform_item_id": "22494052928",
-          "conta": "Budamix Shop / Conta 3",
-          "shop_id": "442066454",
-          "mapping_status": "mapped_generic_sku",
-          "confidence": "medium",
-          "orders": 1,
-          "fonte": "orderItems / pedido real"
-        },
-        "representacao_no_volume_conta3": "2 de 27 pedidos = 7.4%"
-      },
-      "leitura": "Dois produtos de confiança média na Conta 3, ambos com 1 pedido. Representam 7,4% do volume da conta. Os produtos que explicam a concentração e as leituras da conta (CTL002, KIT6CAR200, KIT2YW800SQ) têm todos confiança alta. O risco de identificação nesses dois itens não afeta as leituras de produto líder, concentração ou mix da conta.",
-      "conclusao_granular": "risco_presente_mas_impacto_minimo_nao_afeta_leituras_de_concentracao_ou_produto_lider_da_conta_3",
-      "confianca": "alta"
-    }
-  ],
-  "risco_identificacao": {
-    "nivel": "medio",
-    "fontes_de_risco": [
-      "divergencia_raw_title_vs_display_name_sku_098_conta_2",
-      "sku_ausente_mapeado_por_platform_item_id_item_28044349447_conta_3",
-      "sku_generico_096_conta_3"
-    ],
-    "explicacao": "O risco médio é motivado por três itens pontuais com identificação não-alta: SKU 098 na Conta 2 com divergência clara entre raw_title do pedido real (kit de 9 potes quadrados) e display_name mapeado (pote singular); ITEM:28044349447 na Conta 3 sem SKU, mapeado apenas por platform_item_id estável; SKU 096 na Conta 3 com mapeamento genérico por fallback de título curto. Esses três itens somam 3 pedidos de um total de 111 na plataforma — impacto mínimo em volume. Todo o núcleo de análise de alto volume — os líderes de cada conta, os produtos que explicam concentração — tem confiança alta com raw_sku, title e platform_item_id presentes e coerentes. O risco médio não contamina as leituras de concentração, dependência ou performance de canal. Investigações sobre produto líder ou mix central permanecem com confiança alta; os três itens pontuais ficam em confiança média e não devem ser citados como fato definido."
   },
-  "detalhe_condensadora": [
-    {
-      "detalhe": "Conta 1 tem top 5 concentration de 100,0% — não existe nenhum pedido fora dos cinco produtos mapeados; a descrição das camadas anteriores como 'quase absoluta' subestima o dado real: é dependência absoluta hoje",
-      "importancia": "Se a mensagem sugerir que Conta 1 tem alguma cauda ou segundo vetor emergente, está errada; a condição operacional concreta é que qualquer oscilação nos 5 produtos impacta 100% do volume da conta sem amortecedor",
-      "confianca": "alta"
-    },
-    {
-      "detalhe": "CTL002 (Kit 6 Canecas Tulipa 250ml) somou 21 pedidos distribuídos nas três contas Shopee simultaneamente (Conta 1: 9, Conta 2: 4, Conta 3: 8), com sobreposição horária confirmada às 15h nas três contas ao mesmo tempo",
-      "importancia": "Se a mensagem tratar o CTL002 como resultado isolado de uma conta, está errada; o produto tem presença multiloja simultânea e a sobreposição horária às 15h é o sinal mais próximo de evidência de possível canibalização ou impulsionamento transversal por Himmel — a hipótese não está confirmada mas precisa ser preservada como ressalva, não silenciada",
-      "confianca": "media"
-    },
-    {
-      "detalhe": "Os 3 cancelamentos da Conta 3 representam ~11% do volume da conta mas a causa (concentrado ou pulverizado) não pôde ser determinada — dado de cancelamento por produto ausente no pacote",
-      "importancia": "A mensagem não pode afirmar que cancelamentos foram em produto específico nem que foram ruído pulverizado; ambas seriam invenção; o correto é preservar o sinal como taxa elevada sem causa identificada nos dados disponíveis",
-      "confianca": "alta"
-    }
-  ],
-  "memoria_interna": [
-    "Conta 1 shop_id 448649947 — top5_concentration 100.0% em 2026-05-15; pedidos_fora_top5 = 0; confirmar em análises futuras se cauda zero é padrão crônico ou específico deste dia",
-    "CTL002 platform_item_ids por conta em 2026-05-15: Conta 1 = 45554989236 (9 pedidos); Conta 2 = 46154989273 (4 pedidos); Conta 3 = 50954968481 (8 pedidos); total plataforma = 21 pedidos; sobreposição horária às 12h e 15h no agregado",
-    "SKU 098 Conta 2 platform_item_id 23198542584 — raw_title 'Kit 9 Potes Vidro Quadrados Hermético Vedação Tampa 4 Travas Marmita' vs display_name 'Pote de Vidro Hermético 800ml'; divergência confirmada; 1 pedido/2 unidades em 15/05; registrar para revisão de mapeamento",
-    "Conta 2 shop_id 860803675 — distribuição horária 15/05: pedidos apenas em 11h(1), 12h(1), 15h(4), 16h(1), 18h(2), 19h(1), 21h(2), 22h(1), 23h(4); manhã inteira zerada (0h-10h); referência base para próxima comparação de padrão horário",
-    "ITEM:28044349447 Conta 3 — sem SKU, mapeado por platform_item_id, confiança média, 1 pedido; SKU 096 Conta 3 platform_item_id 22494052928 — mapeamento genérico, confiança média, 1 pedido"
-  ],
   "llm_used": true,
   "model": "sonnet",
   "fallback": false

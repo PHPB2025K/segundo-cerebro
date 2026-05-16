@@ -29,8 +29,8 @@ import re
 # Constants
 # ---------------------------------------------------------------------------
 
-DATA_BUILDER_VERSION = "v1.1"
-SCHEMA_VERSION = "daily-sales-data-package/v1.1"
+DATA_BUILDER_VERSION = "v1.2"
+SCHEMA_VERSION = "daily-sales-data-package/v1.2"
 BRT = timezone(timedelta(hours=-3))
 
 WORKSPACE = Path(__file__).resolve().parent.parent
@@ -244,28 +244,74 @@ def fetch_same_weekday(sb, date_str: str, account_slug: str, count: int = 4) -> 
 
 SKU_SUFFIX_RE = re.compile(r"(_T|_BB|_B2|_B|_BAP)$", re.I)
 
+# Nome comercial curto revisado. Este mapa é a fonte determinística da Layer 0
+# para impedir que título SEO longo ou SKU cru chegue nas camadas analíticas.
+PRODUCT_DISPLAY_NAMES: dict[str, str] = {
+    "IMB501P": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+    "IMB501C": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+    "IMB501V": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+    "IMB501PT": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+    "IMB501T-PRETO": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+    "IMB501T-CINZA": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+    "CK4742": "Jarra Medidora de Vidro 500ml",
+    "KIT2YW800SQ": "Kit 2 Potes de Vidro 800ml Quadrado",
+    "KIT4YW800SQ": "Kit 4 Potes de Vidro 800ml Quadrado",
+    "KIT2YW1050": "Kit 2 Potes de Vidro 1050ml Retangular",
+    "KIT4YW1050": "Kit 4 Potes de Vidro 1050ml Retangular",
+    "KIT2YW1520": "Kit 2 Potes de Vidro 1520ml Retangular",
+    "KIT4YW1520": "Kit 4 Potes de Vidro 1520ml Retangular",
+    "KIT2YW520SQ": "Kit 2 Potes de Vidro 520ml Quadrado",
+    "KIT2YW320": "Kit 2 Potes de Vidro 320ml Retangular",
+    "KIT6S097": "Kit 6 Potes de Vidro Hermético",
+    "KIT3S099": "Kit 3 Potes de Vidro Hermético",
+    "914C": "Kit 6 Canequinhas 100ml",
+    "CTL002": "Kit 6 Canecas Tulipa 250ml",
+    "CLR002": "Kit 6 Canecas Lisas 200ml",
+    "KIT6CAR200": "Kit 6 Canecas Retas 200ml",
+    "K6CAN250": "Kit 6 Canecas 250ml",
+    "XCP002": "Kit 6 Xícaras Porcelana Paris 170ml",
+    "SPC002": "Suporte Controle Gamer",
+    "PCM001": "Porta-Copos MDF",
+    "TL250": "Tigela de Vidro 250ml",
+    "TL250B": "Tigela de Vidro 250ml",
+    "TL250P": "Tigela de Vidro 250ml",
+    "TL6250": "Kit 6 Tigelas de Vidro 250ml",
+    "098": "Pote de Vidro Hermético 800ml",
+    "097": "Pote de Vidro Hermético 600ml",
+    "008": "Pote de Vidro Hermético Pequeno",
+}
+
 PRODUCT_VARIATION_MAP: dict[str, dict[str, Any]] = {
-    # Conjunto de 5 Potes Redondos de Vidro — variações por cor da tampa.
-    # Regra Pedro 2026-05-15: não consolidar a família inteira em uma linha.
-    # Consolidar SKUs filhos por variação vendável: IMB501P / IMB501C / IMB501V.
     "IMB501P": {
         "family": "IMB501",
         "variation_sku": "IMB501P",
-        "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+        "display_name": PRODUCT_DISPLAY_NAMES["IMB501P"],
         "color_terms": ["preto", "preta"],
     },
     "IMB501C": {
         "family": "IMB501",
         "variation_sku": "IMB501C",
-        "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+        "display_name": PRODUCT_DISPLAY_NAMES["IMB501C"],
         "color_terms": ["cinza"],
     },
     "IMB501V": {
         "family": "IMB501",
         "variation_sku": "IMB501V",
-        "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+        "display_name": PRODUCT_DISPLAY_NAMES["IMB501V"],
         "color_terms": ["vermelho", "vermelha"],
     },
+}
+
+IMB501_SKU_ALIASES: dict[str, str] = {
+    "IMB501P": "IMB501P",
+    "IMB501PT": "IMB501P",
+    "IMB501T-PRETO": "IMB501P",
+    "IMB501T-PRETA": "IMB501P",
+    "IMB501C": "IMB501C",
+    "IMB501T-CINZA": "IMB501C",
+    "IMB501V": "IMB501V",
+    "IMB501T-VERMELHO": "IMB501V",
+    "IMB501T-VERMELHA": "IMB501V",
 }
 
 
@@ -276,41 +322,178 @@ def normalize_sku(raw_sku: str) -> str:
     return SKU_SUFFIX_RE.sub("", sku)
 
 
+def clean_marketplace_title(title: str, *, max_len: int = 72) -> str:
+    """Condense marketplace SEO title into a short readable commercial name."""
+    text = re.sub(r"\s+", " ", (title or "").strip())
+    if not text:
+        return ""
+    text = re.split(r"\s+-\s+Budamix\b", text, maxsplit=1)[0]
+    text = re.sub(r"\s+Budamix\b.*$", "", text).strip()
+    text = re.sub(r"\s+(?:para|ideal para)\s+.*$", "", text, flags=re.I).strip()
+    if len(text) > max_len:
+        text = text[: max_len - 3].rstrip() + "..."
+    return text
+
+
+def humanize_sku(canon: str) -> str:
+    if not canon:
+        return "Produto não identificado"
+    if canon.startswith("KIT"):
+        return f"Kit de Produtos ({canon})"
+    return f"Produto Budamix ({canon})"
+
+
 def title_has_color(title_l: str, variation_sku: str) -> bool:
     return any(re.search(rf"\b{re.escape(term)}\b", title_l) for term in PRODUCT_VARIATION_MAP[variation_sku]["color_terms"])
 
 
-def product_variation_key(raw_sku: str, title: str = "") -> dict[str, Any]:
-    """Return canonical sellable-variation key for product ranking.
+def infer_imb501_from_sku(raw_upper: str, sku: str) -> str:
+    for alias, variation in IMB501_SKU_ALIASES.items():
+        if alias in raw_upper or alias == sku:
+            return variation
+    if re.search(r"IMB501[^A-Z0-9]*C\b", raw_upper):
+        return "IMB501C"
+    if re.search(r"IMB501[^A-Z0-9]*V\b", raw_upper):
+        return "IMB501V"
+    if re.search(r"IMB501[^A-Z0-9]*(P|PT)\b", raw_upper):
+        return "IMB501P"
+    return ""
 
-    Important: this intentionally groups children that represent the same
-    sellable variation, but never collapses all color variations into one
-    product family line. Example: IMB501P_T and KITIMB501P_T map to IMB501P;
-    IMB501C_T maps to IMB501C; IMB501V_T maps to IMB501V.
+
+def infer_imb501_from_title(title_l: str) -> str:
+    matches = [v for v in ("IMB501P", "IMB501C", "IMB501V") if title_has_color(title_l, v)]
+    if len(matches) == 1:
+        return matches[0]
+    return ""
+
+
+def product_variation_key(raw_sku: str, title: str = "", platform: str = "", account_slug: str = "") -> dict[str, Any]:
+    """Return canonical product identity for product ranking.
+
+    Layer 0 contract:
+    - raw SKU/title are evidence only;
+    - mapped_variation_sku is the sellable variation used for grouping;
+    - short_product_name is the only product name downstream layers may show;
+    - ambiguous/conflicting mappings are explicit and fail closed in QA/readiness.
     """
-    sku = normalize_sku(raw_sku)
-    raw_upper = (raw_sku or "").strip().upper()
-    title_l = (title or "").lower()
+    raw_sku_clean = (raw_sku or "").strip()
+    raw_upper = raw_sku_clean.upper()
+    sku = normalize_sku(raw_sku_clean)
+    title_clean = re.sub(r"\s+", " ", (title or "").strip())
+    title_l = title_clean.lower()
 
-    if "IMB501" in raw_upper or "IBM501" in raw_upper:
-        # SKU is the strongest signal for this family. Color in title is only
-        # fallback when SKU is generic/legacy.
-        if "C" in sku[-3:] or title_has_color(title_l, "IMB501C"):
-            return {**PRODUCT_VARIATION_MAP["IMB501C"], "key": "IMB501C"}
-        if "V" in sku[-3:] or title_has_color(title_l, "IMB501V"):
-            return {**PRODUCT_VARIATION_MAP["IMB501V"], "key": "IMB501V"}
-        # PT, P, PRETO and unknown legacy variants default to black only when
-        # the SKU itself belongs to the IMB501 family and does not signal C/V.
-        return {**PRODUCT_VARIATION_MAP["IMB501P"], "key": "IMB501P"}
-
-    return {
-        "key": sku or (title or "unknown"),
-        "family": sku or "unknown",
-        "variation_sku": sku,
-        "display_name": "",
+    base = {
+        "raw_sku": raw_sku_clean,
+        "raw_title": title_clean,
+        "platform": platform,
+        "account_slug": account_slug,
+        "source_signals": {
+            "has_raw_sku": bool(raw_sku_clean),
+            "has_title": bool(title_clean),
+            "sku_normalized": sku,
+        },
     }
 
-def compute_metrics(orders: list[dict], cancelled: list[dict]) -> dict[str, Any]:
+    sku_signal = infer_imb501_from_sku(raw_upper, sku) if ("IMB501" in raw_upper or "IBM501" in raw_upper) else ""
+    title_signal = infer_imb501_from_title(title_l) if ("pote" in title_l and "vidro" in title_l) else ""
+    if sku_signal or title_signal:
+        if sku_signal and title_signal and sku_signal != title_signal:
+            return {
+                **base,
+                "key": f"AMBIGUOUS:{raw_upper or title_clean}",
+                "sku": raw_sku_clean or "AMBIGUOUS",
+                "family": "IMB501",
+                "parent_family": "IMB501",
+                "variation": "ambiguous",
+                "variation_sku": "",
+                "mapped_variation_sku": "",
+                "display_name": "",
+                "short_product_name": "",
+                "title": title_clean,
+                "confidence": "low",
+                "mapping_status": "ambiguous",
+                "mapping_reason": f"sku/title conflict: sku={sku_signal}, title={title_signal}",
+            }
+        variation = sku_signal or title_signal
+        meta = PRODUCT_VARIATION_MAP[variation]
+        reason = "sku_alias_high_confidence" if sku_signal else "title_variation_high_confidence"
+        return {
+            **base,
+            **meta,
+            "key": variation,
+            "sku": variation,
+            "parent_family": meta["family"],
+            "variation": variation,
+            "mapped_variation_sku": variation,
+            "short_product_name": meta["display_name"],
+            "title": meta["display_name"],
+            "confidence": "high",
+            "mapping_status": "mapped",
+            "mapping_reason": reason,
+        }
+
+    # Known reviewed SKU map for the broader catalog.
+    if raw_upper in PRODUCT_DISPLAY_NAMES or sku in PRODUCT_DISPLAY_NAMES:
+        mapped = raw_upper if raw_upper in PRODUCT_DISPLAY_NAMES else sku
+        short_name = PRODUCT_DISPLAY_NAMES[mapped]
+        family = re.sub(r"\d+$", "", mapped) or mapped
+        return {
+            **base,
+            "key": mapped,
+            "sku": mapped,
+            "family": family,
+            "parent_family": family,
+            "variation": mapped,
+            "variation_sku": mapped,
+            "mapped_variation_sku": mapped,
+            "display_name": short_name,
+            "short_product_name": short_name,
+            "title": short_name,
+            "confidence": "high",
+            "mapping_status": "mapped",
+            "mapping_reason": "reviewed_sku_display_map",
+        }
+
+    # Generic SKU fallback: still deterministic and never collapses to a broad family.
+    if sku:
+        short_name = clean_marketplace_title(title_clean) or humanize_sku(sku)
+        return {
+            **base,
+            "key": sku,
+            "sku": sku,
+            "family": sku,
+            "parent_family": sku,
+            "variation": sku,
+            "variation_sku": sku,
+            "mapped_variation_sku": sku,
+            "display_name": short_name,
+            "short_product_name": short_name,
+            "title": short_name,
+            "confidence": "medium",
+            "mapping_status": "mapped_generic_sku",
+            "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+        }
+
+    # No SKU: title can be shown only as insecure evidence, not trusted mapping.
+    short_name = clean_marketplace_title(title_clean)
+    return {
+        **base,
+        "key": f"UNMAPPED:{short_name or title_clean or 'unknown'}",
+        "sku": "",
+        "family": "unknown",
+        "parent_family": "unknown",
+        "variation": "unknown",
+        "variation_sku": "",
+        "mapped_variation_sku": "",
+        "display_name": short_name,
+        "short_product_name": short_name,
+        "title": short_name or title_clean,
+        "confidence": "low",
+        "mapping_status": "unmapped_title_only",
+        "mapping_reason": "missing_raw_sku_title_only_insecure",
+    }
+
+def compute_metrics(orders: list[dict], cancelled: list[dict], platform: str = "", account_slug: str = "") -> dict[str, Any]:
     n = len(orders)
     gmv = sum(float(o.get("total_amount") or 0) for o in orders)
     ticket = gmv / n if n else 0
@@ -326,19 +509,29 @@ def compute_metrics(orders: list[dict], cancelled: list[dict]) -> dict[str, Any]
             total_items += qty
             raw_sku = item.get("sku") or ""
             title = item.get("title") or item.get("name") or ""
-            variation = product_variation_key(raw_sku, title)
+            variation = product_variation_key(raw_sku, title, platform=platform, account_slug=account_slug)
             key = variation["key"]
             product_counter[key] += qty
             product_order_ids[key].add(order_id)
             if key not in product_meta:
                 product_meta[key] = {
-                    "sku": variation.get("variation_sku") or raw_sku or key,
+                    "sku": variation.get("mapped_variation_sku") or variation.get("variation_sku") or raw_sku or key,
+                    "raw_sku": variation.get("raw_sku") or raw_sku,
+                    "raw_title": variation.get("raw_title") or title,
                     "family": variation.get("family") or variation.get("variation_sku") or key,
+                    "parent_family": variation.get("parent_family") or variation.get("family") or key,
+                    "variation": variation.get("variation") or variation.get("variation_sku") or key,
                     "variation_sku": variation.get("variation_sku") or raw_sku or key,
-                    "display_name": variation.get("display_name") or "",
+                    "mapped_variation_sku": variation.get("mapped_variation_sku") or variation.get("variation_sku") or raw_sku or key,
+                    "display_name": variation.get("display_name") or variation.get("short_product_name") or "",
+                    "short_product_name": variation.get("short_product_name") or variation.get("display_name") or "",
+                    "confidence": variation.get("confidence") or "low",
+                    "mapping_status": variation.get("mapping_status") or "unknown",
+                    "mapping_reason": variation.get("mapping_reason") or "not_provided",
+                    "source_signals": variation.get("source_signals") or {},
                     "raw_skus": [],
                     "platform_item_id": item.get("platform_item_id") or item.get("asin") or "",
-                    "title": variation.get("display_name") or title,
+                    "title": variation.get("short_product_name") or variation.get("display_name") or title,
                 }
             if raw_sku and raw_sku not in product_meta[key]["raw_skus"]:
                 product_meta[key]["raw_skus"].append(raw_sku)
@@ -501,9 +694,24 @@ def compute_quality_flags(acct: dict, metrics: dict, recon: dict, memory_ctx: di
     if metrics.get("top3_concentration", 0) >= 70:
         flags.append({"level": "warning", "code": "high_top3_concentration", "message": "Alta concentracao nos top 3 produtos (>=70%)."})
 
+    insecure_products = []
+    for product in metrics.get("top_products", [])[:10]:
+        status = product.get("mapping_status")
+        confidence = product.get("confidence")
+        short_name = (product.get("short_product_name") or "").strip()
+        if status in {"ambiguous", "unmapped_title_only"} or confidence == "low" or not short_name:
+            insecure_products.append(product.get("raw_sku") or product.get("raw_title") or product.get("sku") or "unknown")
+    if insecure_products:
+        flags.append({
+            "level": "critical",
+            "code": "product_identity_insecure",
+            "message": "Top Produto com variação/nome curto inseguro na Layer 0.",
+            "examples": insecure_products[:3],
+        })
+
     if acct["platform"] == "amazon":
         for product in metrics.get("top_products", []):
-            if not product.get("platform_item_id") and not product.get("title"):
+            if not product.get("platform_item_id") and not product.get("raw_title") and not product.get("short_product_name"):
                 flags.append({"level": "critical", "code": "amazon_product_identity_missing", "message": "Produto Amazon sem ASIN e sem titulo real."})
                 break
 
@@ -701,13 +909,30 @@ def evaluate_readiness(
                 "detail": "Reconciliation OK",
             })
 
-    # --- Check 6: Amazon product identity ---
+    # --- Check 6: Product identity contract for all accounts ---
+    identity_issues: list[str] = []
+    for slug, acct_data in accounts_data.items():
+        for p in acct_data.get("metrics", {}).get("top_products", [])[:10]:
+            status = p.get("mapping_status")
+            confidence = p.get("confidence")
+            short_name = (p.get("short_product_name") or "").strip()
+            if status in {"ambiguous", "unmapped_title_only"} or confidence == "low" or not short_name:
+                identity_issues.append(f"{slug}:{p.get('raw_sku') or p.get('raw_title') or p.get('sku') or 'unknown'}:{status}/{confidence}")
+    checks.append({
+        "check": "product_identity_contract",
+        "status": "ok" if not identity_issues else "fail",
+        "detail": "Top products mapped to sellable variation + short name" if not identity_issues else f"Insecure product identity: {identity_issues[:5]}",
+    })
+    if identity_issues:
+        has_critical = True
+
+    # --- Check 7: Amazon product identity ---
     amazon_data = accounts_data.get("amazon", {})
     amazon_metrics = amazon_data.get("metrics", {})
     top_products = amazon_metrics.get("top_products", [])
     amazon_identity_ok = True
     for p in top_products[:5]:
-        if not p.get("platform_item_id") and not p.get("title"):
+        if not p.get("platform_item_id") and not p.get("raw_title") and not p.get("short_product_name"):
             amazon_identity_ok = False
             break
     checks.append({
@@ -718,7 +943,7 @@ def evaluate_readiness(
     if not amazon_identity_ok:
         has_critical = True
 
-    # --- Check 7: Sync freshness (not measurable from DB alone) ---
+    # --- Check 8: Sync freshness (not measurable from DB alone) ---
     checks.append({
         "check": "sync_freshness",
         "status": "not_measured",
@@ -754,7 +979,7 @@ def build_account_data(sb, date_str: str, slug: str, canonical: dict) -> tuple[d
     """
     acct = ACCOUNTS[slug]
     orders, cancelled = fetch_orders(sb, date_str, slug)
-    metrics = compute_metrics(orders, cancelled)
+    metrics = compute_metrics(orders, cancelled, platform=acct["platform"], account_slug=slug)
 
     hist7 = fetch_historical(sb, date_str, 7, slug)
     hist30 = fetch_historical(sb, date_str, 30, slug)

@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-15
-**Gerado em:** 2026-05-16T20:44:39.464616+00:00
+**Gerado em:** 2026-05-16T21:05:39.434346+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS

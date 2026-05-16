@@ -17,13 +17,19 @@ DAILY SALES REPORT — MERCADO LIVRE — 15/05/2026 (Ontem)
 - Conjunto 5 Potes de Vidro Redondos Tampa Cinza — 9 pedidos
 - Kit 2 Potes de Vidro 1050ml Retangular — 9 pedidos
 - Kit 6 Canequinhas 100ml — 7 pedidos
+- Kit 4 Potes de Vidro 640ml — 3 pedidos
+- Kit 4 Potes de Vidro 320ml — 3 pedidos
+- Kit 4 Potes de Vidro 1050ml Retangular — 3 pedidos
+- Kit 4 Potes de Vidro 1520ml Retangular — 2 pedidos
 
 🔍 ANÁLISE DA CONTA
-- O resultado é genuíno — volume e ticket subiram juntos e a conta produziu o melhor resultado de quinta-feira em quatro semanas — mas o crescimento passou por dois anúncios-âncora, não três produtos distintos: o Kit 2 Potes 1520ml e o anúncio de potes redondos (que abriga duas cores sob o mesmo anúncio) respondem juntos por 55,7% dos pedidos do dia. O que parece diversificação de top 3 é na prática dependência em dois listings críticos — qualquer problema operacional em qualquer um deles teria mudado o resultado materialmente.
-- A trajetória de quinta-feira nas últimas quatro semanas (excluindo feriado) mostra aceleração consistente, e o ticket em alta há pelo menos duas janelas temporais sustenta que o GMV está crescendo por mix qualificado, não apenas por volume. Hoje confirma a trajetória — não é outlier.
+- O ticket elevado de R$47,78 tem base real no mix — os kits de maior volume (1520ml e conjuntos de 5 peças) responderam por 65% dos pedidos do dia, o que explica o ticket sem precisar de cuponagem ou evento de preço. A confirmação exige mais 2-3 dias com ticket na mesma faixa.
+- A dependência estrutural nas duas famílias líderes não está colapsada em um único anúncio: dois anúncios operam em patamar equivalente, cada um com aproximadamente 28% do volume. Perda de posição em qualquer um impacta cerca de 28% da conta — mas a checagem precisa cobrir os dois, não só um.
+- O dia converge com todas as janelas históricas acima dos benchmarks, o que sugere hipótese de patamar em formação, não pico isolado. A ressalva é real: a memória da conta ainda é rasa e os próximos dois mesmos dias da semana (22 e 29/05) são o teste decisivo.
 
 🎯 PRIORIDADES DO DIA
-- Yasmin: checar estoque e ranking dos dois anúncios-âncora que sustentaram o resultado — não a família em bloco, mas os dois listings específicos que juntos responderam por mais da metade do volume do dia. Por quê: 55,7% dos pedidos passaram por dois anúncios reais; qualquer instabilidade em qualquer um deles é o principal vetor de reversão do patamar identificado. Confirmar/refutar por: se ranking e estoque dos dois anúncios principais estiverem preservados, nenhuma ação adicional; se algum dos dois apresentar ranking em queda ou estoque no limite, acionar protocolo de proteção do campeão antes de qualquer outra decisão. Escalar se: ranking em queda ou estoque crítico persistindo por 2+ dias — alinhamento preventivo com Himmel sobre ADS ML antes do próximo ciclo.
+- Yasmin: verificar posição dos dois anúncios líderes no ML — potes retangulares (Kit 2 Potes 1520ml) e potes redondos com tampas preta e vermelha — e comparar com 7 dias atrás. Posição estável ou em melhora nos dois confirma suporte operacional para a tese de patamar; queda em qualquer um, registrar e monitorar por mais 2 dias. Escalar se: queda simultânea nos dois por 2 dias seguidos → alinhar com Himmel sobre exposição.
+- Yasmin: observar ticket médio amanhã e depois. Ticket ≥ R$45 por dois dias seguidos confirma deslocamento de mix como padrão; queda abaixo de R$42 por dois dias indica que o ticket de ontem foi evento pontual.
 
 Dia analisado: 15/05/2026 — 00:00–23:59 BRT
 ```
@@ -32,60 +38,21 @@ Dia analisado: 15/05/2026 — 00:00–23:59 BRT
 
 ### Respeito de bloqueios
 
-- Item bloqueado: IDs técnicos de listing (MLBs — MLB5322494954, MLB3288536143, MLB4535865311, etc.)
-- Origem do bloqueio: Condensadora
-- Motivo: desnecessários na mensagem final
-- Agregado autorizado: sim — "anúncio líder", "anúncio de potes redondos", "dois anúncios-âncora"
-- Tratamento aplicado: substituídos pelos agregados autorizados
-- Aparece na mensagem final: sim, como agregados "Kit 2 Potes 1520ml" (produto líder) e "anúncio de potes redondos"
-
-- Item bloqueado: afirmação sobre origem dos 4 cancelamentos por produto
-- Origem do bloqueio: Condensadora
-- Motivo: dado ausente no pacote; não é possível afirmar que foram pulverizados
-- Agregado autorizado: não
-- Tratamento aplicado: cancelamentos citados apenas como total objetivo na seção VISÃO (4 cancelamentos), sem qualquer qualificação de origem ou inocuidade
-- Aparece na mensagem final: sim, apenas como dado bruto na VISÃO
-
-- Item bloqueado: afirmação de que IMB501P e IMB501V compartilham o mesmo listing internamente
-- Origem do bloqueio: Condensadora (confiança média, não confirmada por dado de catálogo)
-- Motivo: estrutura de variação vs listings separados não confirmada por dado de catálogo no pacote
-- Agregado autorizado: sim — "anúncio de potes redondos" sem afirmar estrutura interna
-- Tratamento aplicado: os dois produtos foram listados como linhas separadas no Top Produtos (por variação vendável, com pedidos próprios) e a ANÁLISE usa "anúncio de potes redondos" sem afirmar compartilhamento estrutural
-- Aparece na mensagem final: sim, como linhas separadas por variação em Top Produtos; como agregado autorizado na ANÁLISE
-
-- Item bloqueado: KIT4YW640 e KIT4YW320 — mapeamento de confiança média com título truncado
-- Origem do bloqueio: Condensadora
-- Motivo: não nomear nominalmente por confiança de mapeamento média
-- Agregado autorizado: não
-- Tratamento aplicado: omitidos do Top Produtos
-- Aparece na mensagem final: não
-
-- Item bloqueado: dado de fulfillment ML Full
-- Origem do bloqueio: Condensadora
-- Motivo: ausente no pacote (classificado como "other")
-- Agregado autorizado: não aplicável
-- Tratamento aplicado: não citado
-- Aparece na mensagem final: não
-
-- Item bloqueado: distribuição horária intraday por produto
-- Origem do bloqueio: Condensadora
-- Motivo: dado não disponível no pacote
-- Agregado autorizado: não aplicável
-- Tratamento aplicado: não citado
-- Aparece na mensagem final: não
+- Sem bloqueios recebidos. A Granular definiu risco de identificação como baixo e não emitiu BLOQUEIO PARA SLACK para nenhum item. Todos os produtos do ranking foram tratados conforme as restrições de confiança descritas nas Decisões de formatação.
 
 ---
 
 ### Decisões de formatação
 
-- Remoção de metadados internos ("base: Granular + Operacional + Estratégica", "padrão F", "critério de descarte") — não pertencem à mensagem Slack
-- Top Produtos: KIT4YW640 e KIT4YW320 omitidos — mapeamento de confiança média; os produtos de posição 7 a 10 com 2–3 pedidos e confiança high foram também omitidos por volume residual sem autorização explícita de inclusão
-- Top Produtos: Kit 6 Canequinhas 100ml incluído (posição 6, confiança high, 7 pedidos) — único candidato a terceiro vetor com volume acima de 5 pedidos e mapeamento high confidence
-- Top Produtos: IMB501P e IMB501V mantidos como linhas separadas por variação vendável (Tampa Preta / Tampa Vermelha), não consolidados — variações distintas com pedidos próprios; a consolidação seria inválida por regra de variação vendável real
-- Preservação de ressalva de confiança média na ANÁLISE: a referência ao anúncio de potes redondos usa "anúncio de potes redondos (que abriga duas cores sob o mesmo anúncio)" sem afirmar estrutura interna de catálogo confirmada
-- Preservação de conectivos analíticos da Condensadora: "mas", "não", "na prática" — nenhum conectivo trocado
-- Agregado "dois anúncios-âncora" usado em lugar de MLBs — autorizado pela Condensadora
-- Prioridade do dia preservada com estrutura completa: ação + por quê + sinal de confirmação/refutação + condição de escalonamento
-- Escalonamento via Himmel preservado — veio da Condensadora via Tática como condição ("alinhamento preventivo com Himmel sobre ADS ML")
-- Seção VISÃO sem comparação temporal — dados objetivos do dia apenas; comparações pertencem à ANÁLISE
-- Sem dado de Full/FBA na VISÃO — ausente no pacote conforme bloqueio da Condensadora
+- `KIT4YW640 referenciado como "Kit 4 Potes de Vidro 640ml"` — motivo: confiança média, mapeamento genérico e título truncado no pacote; Condensadora explicitou não afirmar cor ou especificação exata para esse item
+- `KIT4YW320 referenciado como "Kit 4 Potes de Vidro 320ml"` — motivo: mesma condição do KIT4YW640; nome sem cor ou detalhe adicional
+- `IMB501P e IMB501V mantidos como linhas separadas no ranking` — motivo: são variações vendáveis distintas (tampa preta vs. tampa vermelha); consolidar como família única seria inválido conforme regra de variação vendável; compartilhamento de platform_item_id (MLB3288536143) é comportamento padrão de variação ML, não justifica colapso de linha
+- `Compartilhamento de platform_item_id entre IMB501P e IMB501V não citado no Slack` — motivo: Condensadora classificou como risco latente e comportamento padrão ML, não anomalia ativa; risco monitorável internamente, sem evidência de erro no pacote atual
+- `"Produto líder" não usado no singular` — motivo: Granular confirmou dois anúncios em patamar equivalente (~28% cada); uso do singular seria impreciso e contradiria alerta explícito da Condensadora
+- `Ticket elevado tratado como confirmado com ressalva, não como incerteza total nem certeza plena` — motivo: Condensadora classificou confiança média para o dado de mix da Granular (87% do volume coberto, 13% inconclusivo); preservada ressalva de confirmação por 2-3 dias
+- `Hipótese de patamar preservada como hipótese, não fato` — motivo: Condensadora explicitou que confirmação exige os próximos dois mesmos dias da semana; proibido transformar hipótese em fato
+- `Fulfillment não citado` — motivo: Condensadora bloqueou; pacote registra inconsistência (subcampos zerados com total=115); ML Full não pode ser confirmado ou descartado
+- `Cancelamentos citados apenas como dado agregado na seção VISÃO` — motivo: Condensadora bloqueou distribuição por produto; dado sem rastreabilidade por SKU no pacote; qualquer afirmação de concentração por variação seria invenção
+- `Kit de Canequinhas não caracterizado como segundo vetor` — motivo: Condensadora bloqueou; 7 pedidos (6,1%) representam presença real mas insuficiente para vetor funcional; diagnóstico sustentado pela Granular
+- `Metadados internos removidos (base: Estratégica/Tática/Granular etc.)` — motivo: padrão de formatação Slack; teses e nuances mantidas intactas, apenas referências ao pipeline removidas
+- `Escalonamento para Himmel condicionado a critério explícito` — motivo: Condensadora estabeleceu gatilho claro (queda simultânea nos dois anúncios por 2 dias); não antecipar alinhamento sem esse critério atingido

@@ -1,35 +1,38 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Decisão tática
 
-- **Dado que a tese é ganho de patamar em consolidação**, a decisão correta é proteger o que está funcionando — não testar segundo vetor nem mexer em ADS enquanto o sinal ainda está se afirmando. Um resultado de quinta-feira 38% acima da média dos pares não justifica intervenção, justifica observação com condição falsificável.
-- **Dado que o risco principal é dependência estreita em dois grupos de família**, a ação tática não é corrigir o mix hoje — é entender se a concentração atual é padrão crônico ou estreitamento recente. Isso exige confirmar a concentração do top 3 nos próximos 2 ciclos semanais antes de qualquer movimento de mix.
-- **Dado que a ausência de memória semanal/mensal impede ancoragem histórica**, a postura é coletar evidência sem alterar a operação. Hoje é âncora, não confirmação — e ação forte sobre âncora única é precipitada.
-- **Dado que não há sinal de perda de exposição, ranking ou reputação no pacote disponível**, não há base para acionar Himmel. A expansão de ADS sobre operação em aceleração sem sinal de gargalo estrutural aumenta custo sem adicionar diagnóstico.
+- **Dado que a tese é ganho de patamar com confiança moderada**, a postura correta é proteger o que gerou o resultado — não amplificar com ADS antes de confirmar que o nível se sustenta. Um único dia forte, mesmo convergindo com todas as janelas, não justifica mexer em verba ou segmentação.
+
+- **O risco estrutural principal é dependência em KIT2YW e IMB501** (~71% dos pedidos). Qualquer checagem relevante hoje começa pelos anúncios líderes dessas famílias: se a posição está sólida, o resultado de ontem tem fundação operacional; se a posição escorregou, o crescimento pode não se repetir.
+
+- **O ticket elevado (R$47.78 vs R$41.87 no 60d) é o sinal mais valioso e menos explicado.** Antes de comemorar deslocamento de mix, Yasmin precisa confirmar se os kits maiores (1520ml, formatos de 4-5 peças) realmente cresceram em proporção — ou se foi evento de preço/cupom que não se repete.
+
+- **A ausência de dados de reputação, ranking e Full é lacuna relevante.** Não há sinal de problema ativo nessas dimensões, mas também não há confirmação de que estão saudáveis. A checagem de posição dos anúncios líderes endereça parte disso indiretamente.
 
 ---
 
 ### O que fazer hoje
 
-- **Yasmin:** confirmar se os produtos líderes das famílias KIT2YW e IMB501 estão com estoque disponível e ranking estável nos anúncios principais — dado que a tese é consolidação de patamar sobre base estreita, qualquer ruptura nesses anúncios seria o principal vetor de reversão — sinal de resultado: se ranking e estoque estiverem preservados, nenhuma ação adicional; se algum anúncio líder estiver com ranking em queda ou estoque no limite, Yasmin aciona protocolo de proteção do campeão antes de qualquer teste de mix.
+- **Yasmin:** verificar posição dos anúncios líderes das famílias KIT2YW e IMB501 no Mercado Livre e comparar com 7 dias atrás — dado que a tese é ganho de patamar sustentado por essas famílias, se a posição desses anúncios caiu, o crescimento de ontem pode ter sido residual de exposição anterior, não sinal de patamar novo; se a posição está estável ou melhor, a tese ganha suporte operacional — sinal de resultado: posição estável ou em melhora em ≥2 dos anúncios líderes dessas famílias confirma que o resultado tem base; queda de posição em ≥2 acende alerta e Yasmin registra para acompanhar nos próximos 2 dias antes de qualquer alinhamento com Himmel.
 
-- **Yasmin:** registrar se o padrão de distribuição horária de hoje (picos em 9h, 15–17h) se repete na próxima quinta-feira — dado que não há memória semanal ativa, esse é o primeiro ciclo de observação para saber se o comportamento intraday é estrutural da conta ou variação pontual — sinal de resultado: repetição do padrão em 2 quintas-feiras consecutivas passa a ser referência operacional para avaliar queda de exposição intraday.
+- **Yasmin:** observar se o mix de amanhã e depois sustenta ticket ≥ R$45 — dado que o ticket elevado de ontem é o sinal mais estratégico do dia e ainda sem explicação consolidada, confirmar por 2-3 dias se o deslocamento para kits maiores é padrão ou evento isolado — sinal de resultado: ticket ≥ R$45 por dois dias seguidos indica deslocamento real de mix; queda abaixo de R$42 por dois dias indica que o ticket de ontem foi pontual e não deve ser tratado como novo patamar.
 
-- **Yasmin:** anotar o resultado de hoje (115 pedidos / R$ 5.494 / ticket R$ 47,78) como âncora de quinta-feira para uso na leitura da semana que vem — dado que weekly e monthly estão vazios, a conta não tem baseline de memória operacional consolidado — sinal de resultado: em 2–3 quintas-feiras acumuladas, a Estratégica terá série suficiente para emitir hipótese com mais confiança sobre patamar da conta.
+- **Yasmin:** registrar o resultado de 2026-05-15 como ponto de partida do histórico qualitativo da conta (primeiro weekly.md e monthly.md com dados reais) — dado que a memória qualitativa é rasa e a Estratégica apontou isso como limitador de confiança, documentar a tese corrente, a concentração observada e os sinais a confirmar reduz a incerteza estrutural das próximas leituras — sinal de resultado: próximas análises têm âncora de tese, permitindo confirmar ou refutar ganho de patamar com base acumulada.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Himmel para mexer em ADS ML.** A conta está em aceleração — GMV +33% vs 30d, melhor quinta-feira em quatro semanas. Aumentar ADS sobre sinal positivo sem dado de gargalo (queda de tráfego orgânico, perda de ranking) é custo sem diagnóstico. Himmel só entra quando houver sinal confirmado de perda de exposição, não quando o canal está performando acima da banda.
+- **Não acionar Himmel para aumentar verba ou ajustar segmentação de ADS ML.** A conta cresceu sem intervenção em ADS — não há dado que aponte falta de exposição como limitador. Aumentar verba antes de entender se o patamar se sustenta é amplificar sobre hipótese não confirmada, e pode inflar custo sem ganho proporcional. O critério de persistência para investigar exposição exige 2+ dias seguidos ou repetição no próximo mesmo dia da semana; ontem é o único ponto.
 
-- **Não testar segundo vetor de produto agora.** O risco de mix estreito é real, mas o momento de intervenção não é durante aceleração de patamar — é após confirmação de que a concentração é crônica (dois ciclos semanais com top 3 acima de 60%). Introduzir produto novo ou redistribuir exposição durante um dia de pico pode contaminar o sinal e dificultar o diagnóstico da próxima leitura.
+- **Não tratar o ticket de R$47.78 como novo patamar de referência.** Sem dois ou mais dias consecutivos acima de R$45, o ticket elevado pode ser evento de mix pontual, cuponagem ou composição de pedido atípica. Usar esse ticket como referência para projeções ou decisões de pricing antes de confirmar padrão é precipitado.
 
-- **Não tratar o resultado de hoje como baseline consolidado.** 115 pedidos é a leitura mais alta de quinta-feira em quatro semanas — mas é um único ponto. A memória semanal/mensal está vazia. Usar hoje como referência para decisões de verba, mix ou expansão seria precipitado. O baseline só se consolida após 2–3 ciclos semanais acima do mesmo nível.
+- **Não concluir que o ganho de patamar está confirmado.** A convergência de todas as janelas é sinal forte, mas a memória qualitativa é rasa — não há registro de episódios anteriores similares que se dissiparam. A confirmação exige que os próximos dois mesmos dias da semana (2026-05-22 e 2026-05-29) mantenham ≥100 pedidos e GMV ≥ R$4.800. Declarar patamar antes disso é antecipar diagnóstico que a Estratégica explicitamente marcou como moderado.
 
 ---
 
 ### Escalonamento
 
-**não escalar** — Yasmin resolve no nível operacional.
+**Não escalar** — Yasmin resolve no nível operacional.
 
-A conta está em trajetória positiva sem sinal de risco operacional iminente — sem perda de reputação, sem ruptura de estoque identificada, sem queda de exposição, sem cancelamentos sistêmicos (4 cancelamentos em 115 pedidos, taxa irrelevante). O único risco ativo (dependência de mix estreito) não tem condição de acionamento cumprida ainda: precisa de confirmação em dois ciclos semanais. Se na próxima quinta-feira a concentração do top 3 for confirmada acima de 60% pelo segundo ciclo consecutivo, Yasmin registra o padrão como crônico e avalia com Kobe se a decisão de mix extrapola o nível tático. Se em algum dos próximos dias aparecer sinal de perda de ranking nos anúncios líderes persistindo por 2+ dias, Yasmin alinha com Himmel preventivamente sobre ADS ML.
+O dia foi positivo e sem sinal de crise. A ação correta é checagem de posição dos anúncios líderes e observação de 2-3 ciclos para confirmar tese de patamar. Não há elemento que justifique envolver Himmel agora: a conta cresceu sem intervenção, não há dado de queda de exposição, e o critério de persistência para alinhamento com ADS ML não foi atingido. Se nos próximos 2 dias seguidos o resultado cair expressivamente (pedidos < 80, GMV < R$3.800) e a posição dos anúncios líderes mostrar recuo, Yasmin alinha com Himmel preventivamente sobre exposição. Se os próximos dois mesmos dias da semana confirmarem ≥100 pedidos, a tese de patamar transita para confirmada e a decisão de expansão de verba passa a ter fundamento.

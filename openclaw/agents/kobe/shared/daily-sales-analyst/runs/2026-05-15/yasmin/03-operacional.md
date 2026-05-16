@@ -1,48 +1,44 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Leitura operacional do dia
 
-- O volume do dia foi sustentado por força real de pedidos — 115 pedidos contra média de 83 nos mesmos dias da semana anteriores (excluindo feriado de 01/05), com ticket também acima do padrão histórico. O crescimento de GMV não foi mascarado por ticket compensando volume fraco: ambos subiram juntos, o que confirma operacionalmente a tese estratégica de ganho de patamar, não acomodação.
+- O dia operou com volume e ticket elevando juntos — o GMV não foi sustentado por um fator compensando o outro, mas por ambos reforçando ao mesmo tempo. 115 pedidos com ticket R$47,78 sobre uma média 60d de R$41,87 indica que a composição do pedido médio mudou, não que a conta simplesmente recebeu mais pedidos do mesmo tipo. Isso confirma operacionalmente a hipótese da Estratégica de deslocamento de mix para itens de maior valor.
 
-- A distribuição horária mostra três picos definidos (9h, 15–17h, com atividade residual em 19–22h) sem colapso em nenhuma janela relevante, indicando exposição sustentada ao longo do dia — o canal não dependeu de um único momento para performar. Isso reforça a leitura estratégica de que o resultado é estrutural, não pontual.
+- A dependência operacional nas duas famílias líderes está numericamente mais pronunciada do que a Estratégica estimou como risco: KIT2YW e IMB501 juntos respondem por ~71% dos pedidos do dia, com o Kit 2 Potes 1520ml sozinho em ~28% do total. O resultado do dia foi entregue por essas famílias — sem elas, o canal não exibe o número. Isso não é anomalia para hoje; é o modo de operação da conta. Mas o risco de dependência levantado pela Estratégica se confirma com evidência direta do dia.
 
-- O resultado foi construído sobre concentração alta de mix: top 3 em 55,7% e top 5 em 71,3%, com o Kit 2 Potes 1520ml respondendo sozinho por 27,8% dos pedidos. A conta performou acima da banda histórica, mas apoiada nos mesmos dois grupos de família (KIT2YW + IMB501), confirmando operacionalmente o risco estrutural de dependência identificado pela Estratégica — o dia foi bom exatamente porque esses produtos funcionaram, não porque o mix foi mais largo.
+- A distribuição horária não mostra anomalia — há dois blocos de pico (manhã: 9h-10h, tarde: 15h-17h) com atividade residual distribuída no restante do dia. Não há concentração em janela única, nem perda visível de tração em horário que historicamente deveria ser forte. A operação do dia foi fluida do ponto de vista de entrada de pedidos.
 
-- Cancelamentos (4 em 115 pedidos, 3,5%) ficaram bem abaixo de qualquer limiar operacional relevante. Não há sinal de problema concentrado — mas o pacote não permite confirmar se os 4 cancelamentos compartilham produto ou origem, o que impede descartar concentração silenciosa.
+- Cancelamentos (4 de 115 = 3,5%) não pesaram no resultado e estão em banda aceitável. O dado bruto não traz distribuição por produto — o que impede afirmar se são pulverizados ou concentrados. A Tática não identificou sinal de operação frágil nesse eixo, e o volume de cancelamentos isoladamente não muda a leitura.
 
 ---
 
 ### Sinais operacionais relevantes
 
-- **Sinal:** top 3 com 55,7% de concentração em dia de volume acima da banda — **interpretação operacional:** a conta ganhou volume e ticket ao mesmo tempo, mas o veículo do crescimento são os mesmos produtos líderes. O mix não alargou com o crescimento; o que acelerou foi a demanda pelos mesmos anúncios. Confirma que o risco de dependência apontado pela Estratégica não está sendo diluído pela aceleração.
+- **Sinal:** a família IMB501 (três variações de tampa: preta, vermelha, cinza) somou 41 pedidos — mesma quantidade que a família KIT2YW (1520ml + 1050ml juntos) — **interpretação operacional:** a dependência não está polarizada em um único produto líder, mas distribuída por variações de cor dentro de duas famílias. Isso significa que a conta precisa de múltiplos anúncios saudáveis dentro do mesmo escopo de produto, não de um único campeão — se uma variação perder posição ou estoque, parte do volume tende a redistributir para as outras dentro da família, o que é amortecedor parcial.
 
-- **Sinal:** Kit 2 Potes 1520ml com 32 pedidos (27,8% do total) em dia de pico — **interpretação operacional:** se esse anúncio tivesse qualquer problema de ranking, estoque ou listing ontem, o GMV do dia seria significativamente diferente. A concentração nesse nível significa que o resultado do canal passou por um único produto, o que é o argumento mais direto para a checagem operacional que a Tática indicou.
+- **Sinal:** ticket médio de R$47,78 acima de todas as janelas históricas disponíveis (R$41,99 no 30d, R$41,87 no 60d), sem dado de cupom ou evento de preço no pacote — **interpretação operacional:** sem evidência de campanha que explique o ticket elevado, a hipótese operacional mais plausível é que os kits de maior volume (1520ml e formatos de 5 peças) tiveram participação relativa maior hoje. A Tática já sinalizou a necessidade de confirmar isso por 2-3 dias; operacionalmente, o dia não traz dado que refute a hipótese, mas também não a confirma definitivamente.
 
-- **Sinal:** três variações da família IMB501 somam 41 pedidos (35,7%) — **interpretação operacional:** a família funciona de forma distribuída entre cores, o que é operacionalmente mais saudável do que dependência em uma única variação. Mas como são variações do mesmo anúncio/família, qualquer problema de listing no produto-pai afeta as três — concentração não é tão pulverizada quanto parece na leitura superficial.
+- **Sinal:** os dados de fulfillment mostram 100% das 115 vendas classificadas como "other", sem nenhum registro de Full ML — **interpretação operacional:** a ausência de dado de Full impede avaliar se o canal está operando com ou sem esse suporte logístico, o que seria relevante para interpretar competitividade de entrega e visibilidade. O dado não indica problema, mas é lacuna operacional que limita leitura de exposição.
 
-- **Sinal:** picos em 9h e 15–17h com queda perceptível entre 12–14h — **interpretação operacional:** há dois momentos fortes de tração separados por janela de menor intensidade no meio do dia. Sem memória semanal ativa, não é possível confirmar se esse bimodal é padrão recorrente da conta. A Tática indicou registrar esse padrão intraday — este é o ponto de partida.
-
-- **Sinal:** fulfillment sem dado de Full/FBA (classificado como "other" em 115 pedidos) — **interpretação operacional:** sem dado de fulfillment, não é possível avaliar se ML Full contribuiu ou limitou o resultado. A ausência desse dado é lacuna operacional — não foi anomalia observada, mas é variável não lida.
+- **Sinal:** a sexta posição do ranking de produtos do dia (Kit 6 Canequinhas 100ml, 7 pedidos) representa uma família diferente das duas dominantes — **interpretação operacional:** há presença marginal de produtos fora do núcleo KIT2YW/IMB501, mas em volume insuficiente para caracterizar segundo vetor. Confirma operacionalmente o diagnóstico da Estratégica de ausência de vetor alternativo consolidado.
 
 ---
 
 ### Anomalias ou ausência de anomalia
 
-**Anomalia leve.**
+**Sem anomalia relevante.**
 
-O dia não apresentou desvio operacional crítico: cancelamentos irrelevantes, distribuição horária funcional, sem sinal de perda de exposição ou listing comprometido no pacote disponível. A classificação como "sem anomalia" seria inadequada, porém, porque a concentração de 55,7% no top 3 em dia de volume acima da banda não é operação normal distribuída — é execução que funcionou por dependência alta de poucos anúncios. Isso não é problema de execução do dia, mas é desvio operacional perceptível em relação a uma operação saudável de mix. O que elevaria para "moderada" seria evidência de que o produto líder apresentou instabilidade intraday (picos e vales de pedido concentrados no mesmo anúncio) ou cancelamento relacionado a esse SKU — dados não disponíveis no pacote atual.
+O dia apresentou volume e ticket acima de todas as janelas históricas, mas sem desvio que indique problema operacional. A distribuição horária é fluida, cancelamentos estão em banda, a composição de produtos segue o perfil esperado da conta. A base quantitativa (7d, 30d, 60d disponíveis e sem ruptura conhecida) sustenta essa classificação. O único elemento que poderia elevar o grau de classificação é a ausência de dado de fulfillment/Full — mas a ausência de dado não é evidência de problema operacional, apenas lacuna de leitura. Para subir para anomalia leve, seria necessário: cancelamentos com concentração em produto específico, queda identificável em horário que historicamente é forte, ou sinal de posição de anúncio em recuo. Nenhum desses elementos está presente no pacote do dia.
 
 ---
 
 ### O que precisa ser investigado pela Granular
 
-- **Pergunta:** os 4 cancelamentos estão concentrados em algum produto ou são pulverizados entre SKUs diferentes? — **motivada por:** cancelamentos ficaram abaixo do limiar operacional, mas o pacote não permite confirmar se há concentração silenciosa em algum dos produtos líderes, especialmente no Kit 2 Potes 1520ml que respondeu por 27,8% do volume.
+- **Pergunta:** os 4 cancelamentos estão concentrados em alguma variação de produto específica ou distribuídos? — **motivada por:** cancelamentos em banda aceitável (3,5%), mas sem dado de distribuição por SKU; se concentrados na mesma variação, podem indicar problema de listing ou estoque pontual que não aparece no volume agregado.
 
-- **Pergunta:** o Kit 2 Potes 1520ml manteve volume distribuído ao longo do dia ou houve concentração horária atípica nos seus pedidos? — **motivada por:** com 32 pedidos em produto único, qualquer instabilidade intraday nesse anúncio poderia ter impactado o resultado total; o pacote agrega horário por conta, não por produto.
-
-- **Pergunta:** as três variações da família IMB501 (Tampa Preta, Vermelha, Cinza) são variações do mesmo anúncio/listing ou listings separados? — **motivada por:** a distribuição entre cores sugere exposição pulverizada, mas se forem variações de um anúncio-pai, um problema de listing afeta as três simultaneamente — a interpretação de risco muda conforme a resposta.
+- **Pergunta:** qual foi a participação relativa dos kits de maior volume (1520ml e conjuntos de 5 peças) vs versões menores (1050ml, conjuntos de 2 peças) nos pedidos de ontem? — **motivada por:** ticket médio elevado sem explicação de campanha ou cuponagem sugere mix mais pesado para itens de ticket maior; confirmar ou refutar isso no detalhe de SKU sustenta (ou não) a hipótese de deslocamento de mix apontada pela Estratégica e que a Tática pediu para observar.
 
 ---
 
 ### Destaque para a Condensadora
 
-O fato operacional mais importante do dia não é o volume — é que o crescimento real (volume + ticket acima da banda histórica) foi integralmente construído sobre os mesmos dois grupos de família, sem evidência de alargamento de mix. A conta acelerou sem diversificar, o que torna o ganho de patamar identificado pela Estratégica dependente da continuidade de poucos anúncios específicos. Se o Kit 2 Potes 1520ml tivesse qualquer problema operacional ontem, o dia seria materialmente diferente — e essa vulnerabilidade não aparece no número total. A Condensadora deve carregar esse ponto: o resultado é positivo e genuíno, mas está apoiado em base estreita que a checagem de estoque e ranking pela Yasmin (indicada pela Tática) não é precaução genérica — é o único controle operacional disponível para proteger o que está sustentando o crescimento.
+O fato operacional mais importante do dia não é o volume em si — é que volume e ticket subiram juntos, e as duas famílias líderes (KIT2YW e IMB501) entregaram esse resultado de forma equilibrada entre si, sem polarização em um único anúncio. Isso confirma operacionalmente a tese de ganho de patamar com o qualificador correto: a conta cresceu, mas sobre a mesma base estrutural de dependência. O risco não aumentou hoje — mas também não diminuiu. A Condensadora deve carregar o crescimento como sinal positivo e a dependência como ressalva de contexto, sem minimizar nem inflar nenhum dos dois. O dado de fulfillment ausente não merece destaque na mensagem final — é lacuna de dado, não sinal operacional.

@@ -1,6 +1,6 @@
 {
-  "resultado_qa": "APROVADO",
-  "motivo": "Todos os 11 gates foram aprovados sem violação de regra objetiva. Data, período BRT, destinatário (Yasmin/ML), estrutura Slack em ordem exata, visão da plataforma com dados objetivos, top produtos por variação vendável, análise fiel à Condensadora com contagem correta de 2 bullets, prioridade completa (ação + evidência + gatilho + escalonamento), bloqueios todos respeitados e documentados, consistência entre camadas preservada, tom operacional e padrão numérico corretos. Uma inconsistência interna da própria Condensadora — seu insight text contém afirmação de estrutura que o próprio campo o_que_nao_pode_ir_para_slack instrui omitir — foi registrada como ressalva de auditoria; a Slack Writer seguiu o texto do insight como fonte primária para ANÁLISE, comportamento correto na hierarquia de camadas.",
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem é fiel à Condensadora nos pontos centrais, respeita todos os bloqueios explícitos, está estruturalmente correta nas 6 seções obrigatórias e é operacionalmente útil. Não há Críticos nem Maiores. Cinco Menores foram identificados: três ocorrências de percentuais sem 1 casa decimal na seção Análise (Gate 11), uma omissão do qualificador moderador 'não há um único ponto de falha catastrófico' do Insight 2 da Condensadora sem registro nas Decisões de formatação (Gate 6), e uma mudança modal leve de 'qualifica o movimento como hipótese' para 'sugere hipótese' no Insight 3 (Gate 6). Nenhum dos cinco Menores, isolados ou em conjunto, prejudica clareza, tom ou consistência operacional da mensagem. Regra aplicada: 0 Maiores + 5 Menores → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -9,26 +9,83 @@
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
     "gate_5_top_produtos": "OK",
-    "gate_6_analise_conta": "OK",
+    "gate_6_analise_conta": "RESSALVA",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "OK"
+    "gate_11_padrao_numerico_formatacao": "RESSALVA"
   },
   "contagem_severidade": {
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 0,
-    "regra_agregacao_aplicada": "0 problemas → APROVADO"
+    "menores": 5,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 5 Menores → APROVADO COM RESSALVA. Limiar de degradação sistêmica não atingido: os 5 Menores são isolados entre si, não prejudicam clareza, tom nem consistência da mensagem e não induzem erro operacional."
   },
-  "problemas_encontrados": [],
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "Gate 11",
+      "texto_atual": "responderam por 65% dos pedidos do dia",
+      "texto_esperado": "responderam por 65,0% dos pedidos do dia",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Percentuais devem ser formatados com vírgula e 1 casa decimal quando aparecerem na mensagem Slack. '65%' viola esse padrão.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 11",
+      "texto_atual": "cada um com aproximadamente 28% do volume",
+      "texto_esperado": "cada um com aproximadamente 28,0% do volume",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Percentuais devem ser formatados com vírgula e 1 casa decimal. '28%' viola esse padrão. Nota: o número foi reproduzido diretamente da Condensadora, que também não usou decimal — o problema está na cadeia, não apenas na Slack Writer.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 11",
+      "texto_atual": "Perda de posição em qualquer um impacta cerca de 28% da conta",
+      "texto_esperado": "Perda de posição em qualquer um impacta cerca de 28,0% da conta",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Segunda ocorrência de percentual sem 1 casa decimal no mesmo bullet. Mesma regra do Gate 11.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6",
+      "texto_atual": "Perda de posição em qualquer um impacta cerca de 28% da conta — mas a checagem precisa cobrir os dois, não só um.",
+      "texto_esperado": "Preservar o qualificador moderador da Condensadora: 'mas também significa que não há um único ponto de falha catastrófico', que modera o alarme do risco de dependência.",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Nenhum termo analítico-chave deve ser removido; contraste e enquadramento da Condensadora devem ser preservados. A Condensadora usou estrutura 'mas' com qualificador explícito de que o risco não é catastrófico — essa nuance foi omitida e substituída por instrução de ação sem registro nas Decisões de formatação.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6",
+      "texto_atual": "o que sugere hipótese de patamar em formação, não pico isolado",
+      "texto_esperado": "o que qualifica o movimento como hipótese de patamar em formação, não pico isolado",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Mesmo verbo modal deve ser preservado. 'Qualifica' (a convergência de janelas históricas garante o enquadramento como hipótese — Padrão D da Condensadora) foi substituído por 'sugere' (implica menor sustentação evidencial). A hipótese foi preservada, mas a força do argumento foi levemente diluída. Mudança não registrada nas Decisões de formatação.",
+      "bloqueia_envio": false
+    }
+  ],
   "correcoes_obrigatorias_antes_envio": [],
-  "ressalvas_memoria_interna": [],
+  "ressalvas_memoria_interna": [
+    "Os três percentuais na seção Análise (65%, 28%, 28%) foram reproduzidos diretamente da Condensadora sem casa decimal. O problema existe na cadeia: a Condensadora deve adotar padrão numérico com 1 casa decimal em percentuais para evitar cascata no próximo ciclo.",
+    "A omissão de 'não há um único ponto de falha catastrófico' (qualificador do Insight 2) não está registrada nas Decisões de formatação da Slack Writer. Omissão de qualificador analítico relevante deve ser documentada explicitamente.",
+    "A substituição modal 'qualifica → sugere' também não foi registrada nas Decisões de formatação. Mudanças modais, mesmo leves, merecem registro para rastreabilidade de auditoria."
+  ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "Inconsistência interna na Condensadora entre insight text e bloqueio: o campo analise_final_condensada inclui no primeiro insight a locução '(que abriga duas cores sob o mesmo anúncio)', que afirma a estrutura interna do listing MLB3288536143 — mas o campo o_que_nao_pode_ir_para_slack instrui 'comunicar como anúncio de potes redondos sem afirmar estrutura interna' (confiança média, não confirmada por dado de catálogo). A Slack Writer seguiu o texto do insight como fonte primária para ANÁLISE, trocou 'listing de Potes Redondos' por 'anúncio de potes redondos' (respeitando o bloqueio quanto ao termo) e preservou o parêntese (respeitando o texto aprovado pela Condensadora). Não é erro da Slack Writer — é ambiguidade originada na própria Condensadora. Sinal para o próximo ciclo: quando o campo o_que_nao_pode_ir_para_slack bloqueia uma afirmação, o texto correspondente em analise_final_condensada deve já estar escrito na forma hedgeada autorizada pelo bloqueio, eliminando a tensão entre as duas fontes.",
-    "Top Produtos omitiu KIT4YW1050 (3 pedidos, confiança high, posição 9) e KIT4YW1520 (2 pedidos, confiança high, posição 10) por volume residual, sem bloqueio explícito da Condensadora para esses itens. A decisão foi documentada nas Decisões de formatação e não induz erro operacional — os dois produtos têm volume incompatível com relevância de ranking e a omissão é segura. Para precisão futura, recomendar que a Condensadora explicite o corte de volume autorizado para o Top Produtos ML, evitando que a Slack Writer tome essa decisão de forma implícita."
+    "O escalonamento na Prioridade 1 nomeia 'Himmel' como destinatário do alinhamento preventivo, embora a Condensadora tenha dito apenas 'alinhar preventivamente sobre exposição' sem nomear o destinatário. A nomeação de Himmel é consistente com o contexto operacional (responsável ADS ML acionado via Yasmin) e não induz erro, mas foi acréscimo da Slack Writer não documentado nas Decisões de formatação.",
+    "A listagem de 10 produtos no Top Produtos é completa e fiel ao pacote validado. Não há limite explícito de itens definido para ML no prompt; a listagem integral dos 10 produtos mapeados é adequada e não viola nenhuma regra.",
+    "O compartilhamento de platform_item_id entre IMB501P (MLB3288536143, 20 pedidos) e IMB501V (MLB3288536143, 12 pedidos) é risco latente corretamente suprimido da mensagem. Se em ciclos futuros o raw_sku de variação vier ausente ou incorreto num pedido desse MLB, a atribuição entre tampa preta e vermelha ficará ambígua. Monitorar.",
+    "Weekly.md e monthly.md são templates sem entradas. A primeira entrada real depende de ação de Yasmin após receber esta mensagem. O pipeline não pode forçar o preenchimento; a Condensadora já incluiu instrução correta em memoria_para_amanha."
   ],
   "llm_used": true,
   "model": "sonnet",

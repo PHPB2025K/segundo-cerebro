@@ -24,7 +24,7 @@ from pathlib import Path
 BRT = timezone(timedelta(hours=-3))
 WORKSPACE = Path(__file__).resolve().parent.parent
 ANALYZER = WORKSPACE / "scripts" / "daily-sales-v2-analyzer.py"
-BUILD_PACKAGE = WORKSPACE / "scripts" / "daily-sales-v2-build-package.py"
+BUILD_PACKAGE = WORKSPACE / "scripts" / "daily-sales-data-builder.py"
 DSA_RUNNER = WORKSPACE / "scripts" / "daily-sales-analyst-runner.py"
 DSA_PEDRO_SLACK = WORKSPACE / "scripts" / "daily-sales-dsa-send-slack-pedro.py"
 

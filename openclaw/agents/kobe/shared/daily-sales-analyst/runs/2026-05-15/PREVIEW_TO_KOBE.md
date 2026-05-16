@@ -1,10 +1,10 @@
 # Preview para Kobe — 2026-05-15
-**Gerado em:** 2026-05-16T09:51:02.395705+00:00
+**Gerado em:** 2026-05-16T14:48:27.593656+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** BLOCKED
 **Prompt Version:** v3.0
-**Data Builder Version:** v1.0
+**Data Builder Version:** v1.2
 **LLM Used:** False
 
 ## Protecoes Ativas

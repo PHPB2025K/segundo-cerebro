@@ -145,8 +145,8 @@ def product_display_name(product):
 def validate_layer0_product_contract(package):
     """Fail closed if Layer 0 did not provide sellable variation + short name."""
     blockers = []
-    if package.get("schema_version") != "daily-sales-data-package/v1.2":
-        blockers.append("Layer 0 package schema antigo; exige daily-sales-data-package/v1.2")
+    if package.get("schema_version") != "daily-sales-data-package/v1.3":
+        blockers.append("Layer 0 package schema antigo; exige daily-sales-data-package/v1.3")
 
     for slug, account in (package.get("platforms") or {}).items():
         for idx, product in enumerate(account.get("metrics", {}).get("top_products", [])[:10], 1):

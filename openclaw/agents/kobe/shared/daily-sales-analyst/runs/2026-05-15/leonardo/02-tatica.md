@@ -1,5 +1,5 @@
 # Camada 2 — Analise Tatica: Leonardo
 ## Status: BLOCKED
-**Motivo:** Data Readiness NOT_READY. Checks failed: 
+**Motivo:** Layer 0/Data Readiness blocked. Checks failed: product_identity_contract: Layer 0 package schema antigo; exige daily-sales-data-package/v1.2
 
 > Analise bloqueada. Placeholder deterministico.

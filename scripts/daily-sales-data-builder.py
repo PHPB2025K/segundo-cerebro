@@ -29,8 +29,8 @@ import re
 # Constants
 # ---------------------------------------------------------------------------
 
-DATA_BUILDER_VERSION = "v1.2"
-SCHEMA_VERSION = "daily-sales-data-package/v1.2"
+DATA_BUILDER_VERSION = "v1.3"
+SCHEMA_VERSION = "daily-sales-data-package/v1.3"
 BRT = timezone(timedelta(hours=-3))
 
 WORKSPACE = Path(__file__).resolve().parent.parent
@@ -367,7 +367,7 @@ def infer_imb501_from_title(title_l: str) -> str:
     return ""
 
 
-def product_variation_key(raw_sku: str, title: str = "", platform: str = "", account_slug: str = "") -> dict[str, Any]:
+def product_variation_key(raw_sku: str, title: str = "", platform: str = "", account_slug: str = "", platform_item_id: str = "") -> dict[str, Any]:
     """Return canonical product identity for product ranking.
 
     Layer 0 contract:
@@ -387,9 +387,11 @@ def product_variation_key(raw_sku: str, title: str = "", platform: str = "", acc
         "raw_title": title_clean,
         "platform": platform,
         "account_slug": account_slug,
+        "platform_item_id": str(platform_item_id or ""),
         "source_signals": {
             "has_raw_sku": bool(raw_sku_clean),
             "has_title": bool(title_clean),
+            "has_platform_item_id": bool(platform_item_id),
             "sku_normalized": sku,
         },
     }
@@ -474,7 +476,31 @@ def product_variation_key(raw_sku: str, title: str = "", platform: str = "", acc
             "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
         }
 
-    # No SKU: title can be shown only as insecure evidence, not trusted mapping.
+    # No SKU but stable marketplace item id: use the listing/ASIN id as the
+    # deterministic sellable identity. This is not a guessed SKU; it is the
+    # platform-native product identity for the sold variation/listing.
+    platform_item = str(platform_item_id or "").strip()
+    if platform_item and title_clean:
+        short_name = clean_marketplace_title(title_clean, max_len=64)
+        mapped = f"ITEM:{platform_item}"
+        return {
+            **base,
+            "key": mapped,
+            "sku": mapped,
+            "family": mapped,
+            "parent_family": mapped,
+            "variation": mapped,
+            "variation_sku": mapped,
+            "mapped_variation_sku": mapped,
+            "display_name": short_name,
+            "short_product_name": short_name,
+            "title": short_name,
+            "confidence": "medium",
+            "mapping_status": "mapped_platform_item_id",
+            "mapping_reason": "missing_sku_mapped_by_stable_platform_item_id",
+        }
+
+    # No SKU and no stable item id: title remains insecure evidence.
     short_name = clean_marketplace_title(title_clean)
     return {
         **base,
@@ -490,7 +516,7 @@ def product_variation_key(raw_sku: str, title: str = "", platform: str = "", acc
         "title": short_name or title_clean,
         "confidence": "low",
         "mapping_status": "unmapped_title_only",
-        "mapping_reason": "missing_raw_sku_title_only_insecure",
+        "mapping_reason": "missing_raw_sku_and_platform_item_id_title_only_insecure",
     }
 
 def compute_metrics(orders: list[dict], cancelled: list[dict], platform: str = "", account_slug: str = "") -> dict[str, Any]:
@@ -509,7 +535,7 @@ def compute_metrics(orders: list[dict], cancelled: list[dict], platform: str = "
             total_items += qty
             raw_sku = item.get("sku") or ""
             title = item.get("title") or item.get("name") or ""
-            variation = product_variation_key(raw_sku, title, platform=platform, account_slug=account_slug)
+            variation = product_variation_key(raw_sku, title, platform=platform, account_slug=account_slug, platform_item_id=item.get("platform_item_id") or item.get("asin") or "")
             key = variation["key"]
             product_counter[key] += qty
             product_order_ids[key].add(order_id)

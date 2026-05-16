@@ -1,45 +1,53 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Qualidade da base
 
-Weekly.md e monthly.md são templates vazios — nenhuma consolidação semanal ou tese mensal madura disponível. Os dados quantitativos cobrem janelas de 7d, 30d e 60d com integridade confirmada, mas não há hipóteses ativas anteriores para confirmar ou refutar. A leitura de hoje serve como âncora, não como confirmação de tese.
+Weekly.md e monthly.md são templates sem entradas — sem tese semanal ou mensal acumulada, sem hipóteses ativas transitando de sessões anteriores. Esta leitura serve como ponto de partida para a conta, não como confirmação de tese prévia. As três janelas temporais (7d, 30d, 60d) estão disponíveis com dados sólidos e sem ruptura conhecida; a base quantitativa é robusta, mas a memória qualitativa é rasa.
 
 ---
 
 ### Leitura temporal
 
-- **60d → 30d (mudança de patamar):** A média de 30d (98,3 pedidos / R$ 4.126) está ~18% acima da média de 60d (83,0 pedidos / R$ 3.474) — sinal consistente de que a conta ganhou patamar no último mês, não apenas oscilou dentro da banda anterior.
-- **7d abaixo do 30d (ruído ou acomodação):** A média de 7d (83,3 pedidos / R$ 3.736) ficou abaixo da média de 30d, o que inicialmente sugere desaceleração recente — mas o 01/05 (134 pedidos, feriado Dia do Trabalho) infla o 30d artificialmente. O 7d sem esse outlier é mais representativo do comportamento operacional cotidiano.
-- **Mesmos dias da semana — quinta-feira:** Excluindo 01/05, a série é 70 → 76 → 83 → 115 — aceleração visível ao longo dos quatro ciclos. Hoje (115) não é ruído: é a leitura mais alta de quinta-feira em quatro semanas, e está 38% acima da média dos pares (90,75 pedidos).
-- **Ticket médio em alta estrutural:** R$ 47,78 vs R$ 41,87 no 60d (+14,1%) e R$ 41,99 no 30d (+13,8%). O GMV está crescendo mais rápido que o volume em todas as janelas, o que indica mudança de mix para produtos de ticket maior (kits maiores e conjuntos maiores dominando o top).
+- **vs 60d e 30d — patamar:** O dia de 2026-05-15 ficou +38.6% em pedidos e +58.2% em GMV acima da média do bimestre (83 pedidos / R$3.474), e +17% em pedidos e +33.2% em GMV acima da média do mês (98.3 pedidos / R$4.126). Nenhuma das duas janelas está contaminada. O ticket do dia (R$47.78) supera as duas médias históricas (R$41.87/60d e R$41.99/30d), indicando que não é só volume que puxou o GMV — o mix está mais pesado.
+
+- **vs 7d — aceleração recente:** A média da última semana é de 83.3 pedidos / R$3.736. O dia ficou +38.1% em pedidos e +47.1% em GMV acima desse intervalo mais recente — sugerindo que o dia não foi apenas forte em relação ao patamar histórico, mas também em relação ao comportamento da própria semana corrente.
+
+- **vs mesmos dias da semana — tendência subjacente:** Os quatro mesmos dias da semana anteriores mostram trajetória ascendente clara nos dados disponíveis (excluindo 2026-05-01, que tem perfil de feriado nacional): 70 → 76 → 83 → 115 pedidos. O resultado de hoje não é só acima da média do período (90.75 pedidos) — é o ponto mais alto da série regular. Isso qualifica o movimento como tendência em formação, não como outlier isolado.
+
+- **hipóteses anteriores:** Sem hipóteses ativas registradas em memória. Primeira leitura estratégica documentada da conta.
 
 ---
 
 ### Leitura estratégica
 
-- **O ganho de patamar do 30d sobre o 60d se confirma hoje.** A conta não só sustenta o patamar mais alto — ela produz seu melhor resultado de quinta-feira em ao menos quatro semanas. Isso transforma o que poderia ser acomodação em ganho de patamar em consolidação.
-- **O ticket é o segundo vetor de crescimento.** GMV crescendo +33% vs 30d e +58% vs 60d, enquanto pedidos crescem +17% e +39% respectivamente, evidencia que o mix se deslocou para produtos de maior valor unitário. Kit 2 Potes 1520ml (R$ ~47–50 por kit) como líder absoluto (32 pedidos, 27,8% do total) é coerente com esse padrão.
-- **A família IMB501 funciona como segundo vetor, mas dentro de um mix estreito.** Potes Redondos em três cores somam 41 pedidos (35,7%), enquanto a família KIT2YW soma ~46 pedidos (40%). Dois grupos de família respondem por ~75% do volume — é diversificação de variação, não de categoria. A conta não tem ainda um terceiro produto com tração significativa visível.
-- **A ausência de memória semanal/mensal impede saber se essa concentração é padrão crônico ou recente.** Sem esse contexto, não é possível afirmar se o mix estreito é estrutural consolidado ou se houve estreitamento recente — o que muda o nível de urgência do risco.
+- **O dia de 2026-05-15 é consistente com uma mudança de patamar em curso, não com um pico isolado.** Quando GMV e pedidos superam simultaneamente 7d, 30d, 60d *e* mesmos dias da semana — e o ticket sobe junto — o resultado não é ruído. A convergência de janelas sugere que a conta pode estar operando em nível superior ao bimestre anterior. A ressalva é que, sem memória acumulada, é impossível saber se já houve episódios semelhantes que se dissiparam.
+
+- **O ticket médio em elevação é o sinal mais estratégico do dia.** Passar de ~R$42 (média 60d) para R$47.78 sem volume artificial significa que o mix está se deslocando para itens de maior valor unitário. Isso pode indicar que os kits maiores (1520ml, configurações de 4 ou 5 peças) estão ganhando tração relativa — o que, se sustentado, é positivo tanto para GMV quanto para margem.
+
+- **A conta opera com concentração crônica em duas famílias de produto.** A família KIT2YW (potes retangulares) e a família IMB501 (potes redondos) juntas respondem por ~71% dos pedidos do dia, alinhado com a concentração de top 5 (71.3%). Essa dependência é estrutural — qualquer oscilação nos campeões dessas famílias se traduz diretamente em resultado de conta. A ausência de um segundo vetor consolidado não é observação de um dia; é o perfil atual da conta.
+
+- **O crescimento não encontra fricção aparente nos dados disponíveis.** Cancelamentos (4 em 115 pedidos = 3.5%) estão dentro de banda aceitável. A distribuição horária mostra atividade distribuída ao longo do dia, com picos no final da manhã (9h-10h) e fim de tarde (15h-17h), sem concentração anômala. Reputação, Full e dados de exposição/posição não estão disponíveis no pacote — qualquer leitura sobre esses fatores permanece suspensa.
 
 ---
 
 ### Tese da conta
 
-**Em ganho de patamar.** A comparação 30d vs 60d mostra deslocamento estrutural para cima — não flutuação dentro da mesma banda. O resultado de hoje, ao superar o 30d e ao se posicionar como o melhor resultado de quinta-feira em quatro semanas (excluindo feriado), confirma a trajetória em vez de contrariá-la. O ticket em alta há pelo menos duas janelas temporais amplifica o efeito no GMV. A confiança nesta classificação é moderada: base quantitativa sustenta, mas a ausência de memória semanal/mensal impede ancoragem histórica mais fina.
+**Em ganho de patamar** — com confiança moderada, dado que a memória qualitativa é rasa. A convergência de todas as janelas temporais (7d, 30d, 60d, mesmos dias da semana) acima dos benchmarks, combinada com ticket em elevação e trajetória ascendente nos mesmos dias da semana dos últimos três a quatro ciclos, sustenta a hipótese de que a conta está operando em nível superior ao bimestre anterior. O qualificador de confiança moderada se deve à ausência de weekly/monthly consolidados: sem âncoras de tese histórica, não é possível confirmar se esse patamar representa ruptura estrutural ou oscilação de ciclo que já se dissipou antes. Os próximos dois a três ciclos semanais são o teste decisivo.
 
 ---
 
 ### Risco estrutural principal
 
-- **Risco:** Dependência concentrada em dois grupos de família (KIT2YW + IMB501) sem terceiro produto com tração significativa. Top 5 responde por 71,3% do volume; o produto líder isolado (Kit 2 Potes 1520ml) representa 27,8% dos pedidos do dia.
-- **Por que importa:** Qualquer interrupção nesses produtos — estoque, competitividade de preço, perda de exposição/ranking no ML — impacta imediatamente o faturamento sem segundo vetor de compensação. Em momentos de aceleração de patamar como o atual, a dependência é mais crítica porque o crescimento está sendo construído sobre base estreita.
-- **Histórico:** Sem weekly/monthly preenchidos, não é possível determinar se essa concentração é crônica ou se se acentuou recentemente. Hipótese em aberto.
-- **Sinal de confirmação:** Concentração do top 3 acima de 60% por dois ciclos semanais consecutivos confirma a dependência como padrão estrutural da conta, não oscilação pontual de mix.
+- **Risco:** Dependência estrutural em duas famílias de produto (KIT2YW e IMB501) sem segundo vetor consolidado. As duas famílias sustentam ~71% dos pedidos; o Kit 2 Potes 1520ml sozinho representa ~28% do total de pedidos do dia.
+- **Por que importa:** Uma queda de exposição, ruptura de estoque, perda de competitividade de preço ou desindexação em qualquer um dos SKUs líderes dessas famílias produz impacto imediato e desproporcional no GMV da conta. O canal não tem amortecedor: sem segundo vetor, não há redistribuição natural do volume.
+- **Histórico:** Não há registro de análise anterior para comparação. Essa concentração pode ser padrão crônico da conta — hipótese mais provável dado o perfil de produto — mas não há confirmação histórica na memória disponível.
+- **Sinal de confirmação:** Se o Kit 2 Potes 1520ml e os Conjuntos IMB501 somados caírem para menos de 55% dos pedidos por dois ciclos semanais consecutivos sem queda de GMV, a conta começou a construir segundo vetor. Se mantiverem acima de 70% por mais quatro semanas, a dependência é crônica e o risco se torna estrutural documentado.
 
 ---
 
 ### Sinais a observar
 
-1. **Confirmação de patamar:** GMV acima de R$ 4.500 em ao menos 3 dos próximos 5 dias consolidaria o ganho de patamar do 30d como novo baseline — abaixo desse nível por mais de 2 dias seguidos reabre a hipótese de que hoje foi outlier positivo, não tendência.
-2. **Ticket médio:** Ticket abaixo de R$ 43 por dois dias consecutivos indicaria reversão do mix para produtos menores e fragilizaria a tese de crescimento de GMV sustentado por valor unitário — não por volume.
-3. **Concentração do top 3:** Concentração acima de 60% no acumulado da semana, confirmada por dois ciclos semanais, valida o risco estrutural como crônico e ativa necessidade de análise de cauda (se disponível no pacote das próximas leituras).
+1. **Confirmação de patamar:** Se os próximos dois mesmos dias da semana (2026-05-22 e 2026-05-29) mantiverem ≥100 pedidos e GMV ≥ R$4.800, a mudança de patamar transita de hipótese para tese confirmada. Um único ponto abaixo não refuta — dois consecutivos abaixo sim.
+
+2. **Sustentação do ticket:** Se o ticket médio permanecer acima de R$45 por cinco ou mais dos próximos sete dias com dados disponíveis, o deslocamento de mix para itens de maior valor é estrutural, não pontual. Queda abaixo de R$42 por dois dias consecutivos indica que o ticket elevado de hoje foi evento, não tendência.
+
+3. **Concentração no carro-chefe:** Se o Kit 2 Potes 1520ml cair para menos de 15% dos pedidos por dois dias seguidos sem crescimento compensatório de outros SKUs, o risco de dependência se ativou. Este sinal depende de dados de produto disponíveis no pacote de cada dia.

@@ -437,6 +437,44 @@ def validate_slack_writer_output(text, package, recipient_name):
     return errors
 
 
+def validate_condensadora_output(parsed, recipient_name):
+    """Mechanical guard for Condensadora internal contradictions.
+
+    If the Condensadora blocks assertions about internal listing/variation structure,
+    it cannot also place those same assertions in insights/priorities/memory.
+    """
+    errors = []
+    if not isinstance(parsed, dict):
+        return errors
+    blocked_text = " ".join(str(x) for x in parsed.get("o_que_nao_pode_ir_para_slack", [])).lower()
+    blocks_internal_listing = any(term in blocked_text for term in [
+        "sem afirmar estrutura interna",
+        "não afirmar estrutura interna",
+        "compartilham o mesmo listing",
+        "hipótese de que",
+    ])
+    if not blocks_internal_listing:
+        return errors
+    fields = [
+        "analise_final_condensada",
+        "prioridades_condensadas",
+        "prioridades_condensadas_para_slack",
+        "memoria_para_amanha",
+        "alertas_de_confianca",
+    ]
+    public_text = " ".join(json.dumps(parsed.get(field, ""), ensure_ascii=False) for field in fields).lower()
+    forbidden_patterns = [
+        r"abriga\s+duas\s+cores",
+        r"compartilh\w*\s+o\s+mesmo\s+listing",
+        r"mesmo\s+listing",
+        r"duas\s+cores\s+sob\s+o\s+mesmo\s+an[úu]ncio",
+    ]
+    for pattern in forbidden_patterns:
+        if re.search(pattern, public_text):
+            errors.append(f"Condensadora contradiz bloqueio de estrutura interna de listing: {pattern}")
+    return errors
+
+
 # --- Contamination Detection (Phase 7.1) ---
 
 CONTAMINATION_PATTERNS = [
@@ -893,6 +931,21 @@ def run_llm_layers(package, run_dir, recipient_name, config, prompt_version,
                 parsed = repaired
                 repaired_by_llm = True
                 print(f"OK (repair={repair_model})")
+
+            if output_name == "05-condensadora":
+                condensadora_errors = validate_condensadora_output(parsed, recipient_name)
+                if condensadora_errors:
+                    err = "; ".join(condensadora_errors[:3])
+                    print(f"FALLBACK (condensadora guard: {err})")
+                    layer_results[output_name] = {
+                        "path": str(output_path),
+                        "llm_used": False,
+                        "model": model_used,
+                        "fallback": True,
+                        "error": f"Condensadora guard failed: {err}",
+                    }
+                    previous_outputs[output_name] = f"[FALLBACK - Condensadora contradisse bloqueios: {err}]"
+                    continue
 
             # Enrich JSON with metadata
             if isinstance(parsed, dict):

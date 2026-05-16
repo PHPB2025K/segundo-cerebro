@@ -149,6 +149,8 @@ Regras absolutas:
 - Se há divergência resolvida pela Granular, use a fonte primária definida por ela (pedido real > alias/catálogo; shop_id > agregado Shopee).
 - Se há evidência conflitante declarada pela Granular, **preserve a incerteza ou omita do Slack**. Nunca escolha uma das pontas.
 - Não reintroduza alias manual, SKU cru ou nome de produto inseguro.
+- **Consistência interna obrigatória:** nenhum texto em `analise_final_condensada`, `prioridades_condensadas`, `memoria_para_amanha` ou `alertas_de_confianca` pode afirmar algo que você também colocou em `o_que_nao_pode_ir_para_slack`. Se uma informação é bloqueada, ela precisa ser removida ou reescrita em forma autorizada antes da saída final.
+- **Regra ML/listing compartilhado:** se o pacote não confirma dado de catálogo/estrutura de variação, não afirmar que duas cores/SKUs “compartilham”, “estão no mesmo listing”, “o listing abriga duas cores” ou equivalente. Use formulação neutra: “vetor de potes redondos”, “grupo de variações de potes redondos” ou “anúncio/grupo de potes redondos”, sem descrever a estrutura interna.
 
 **Caso especial — colisão Tática × Granular:** se a Tática recomenda agir sobre um item que a Granular bloqueou, a Condensadora **preserva a intenção da ação, mas remove o nome específico**. Exemplo: Tática diz "Lucas checar produto X na Conta 2", Granular bloqueia produto X — a saída fica "Lucas checar o líder atual da Conta 2".
 

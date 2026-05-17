@@ -1,61 +1,37 @@
-<!-- llm_used=true model=sonnet fallback=false -->
+<!-- llm_used=true model=sonnet fallback=false rerun_layer=06_only simplified_communication=true -->
 ### Mensagem Slack
 
 ```
 DAILY SALES REPORT — MERCADO LIVRE — 16/05/2026 (Ontem)
 
 📊 VISÃO MERCADO LIVRE
-- Faturamento: R$ 7.085,60
-- Pedidos: 185 pedidos
-- Ticket médio: R$ 38,30
-- Cancelamentos: 4
+• Faturamento: R$ 7.085,60
+• Pedidos: 185 pedidos
+• Ticket médio: R$ 38,30
+• Cancelamentos: 4
 
 🏆 TOP PRODUTOS MERCADO LIVRE
-- Anúncio líder de canequinhas 100ml (variação 1) — 41 pedidos
-- Anúncio líder de canequinhas 100ml (variação 2) — 32 pedidos
-- Conjunto 5 Potes de Vidro Redondos Tampa Preta — 25 pedidos
-- Kit 2 Potes de Vidro 1520ml Retangular — 21 pedidos
-- Conjunto 5 Potes de Vidro Redondos Tampa Vermelha — 10 pedidos
-- Conjunto 5 Potes de Vidro Redondos Tampa Cinza — 10 pedidos
-- Kit 4 Potes de Vidro 1050ml Retangular — 9 pedidos
+• Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico (variações) — 73 pedidos
+• Conjunto 5 Potes de Vidro Redondos Tampa Preta — 25 pedidos
+• Kit 2 Potes de Vidro 1520ml Retangular — 21 pedidos
+• Conjunto 5 Potes de Vidro Redondos Tampa Vermelha — 10 pedidos
+• Conjunto 5 Potes de Vidro Redondos Tampa Cinza — 10 pedidos
 
 🔍 ANÁLISE DA CONTA
-- O volume de 185 pedidos provavelmente não indica patamar novo: quase metade dos pedidos veio em uma janela de 5 horas à noite, perfil operacionalmente inconsistente com tração orgânica. A leitura mais provável é de evento ADS ou campanha pontual — sem confirmar isso, o número do dia não pode ser usado como referência de nível da conta.
-- A dependência da conta não está em 5 produtos — está em 2 anúncios: os dois listings líderes concentraram ~64% do volume do dia, cada um operando com múltiplas variações de SKU em uma única URL. Se qualquer um perder posição ou for penalizado, o impacto é imediato e a conta não tem cauda capaz de compensar.
+• O volume de 185 pedidos provavelmente não indica patamar novo: quase metade dos pedidos veio em uma janela de 5 horas à noite, perfil inconsistente com tração orgânica. A leitura mais provável é de evento ADS ou campanha pontual. Sem confirmar isso, o número do dia não pode ser usado como referência de nível da conta.
+• A dependência da conta não está em 5 produtos — está em 2 anúncios: os dois anúncios líderes concentraram ~64% do volume, cada um com múltiplas variações em uma única URL. Se qualquer um perder posição ou for penalizado, o impacto é imediato e a conta não tem cauda capaz de compensar.
 
 🎯 PRIORIDADES DO DIA
-- Yasmin: verificar se havia campanha, cupom ou ADS ativo na conta ML entre 18h e 22h do dia 16/05. Com quase metade do volume concentrado nessa janela, a resposta determina se o dia foi evento isolado ou indício de patamar — muda o que monitorar nos próximos dias. Confirmar: próximos 3 dias sem campanha retornam à banda de 70–110 pedidos? Se Yasmin não localizar dado de campanha/ADS, a hipótese fica aberta por mais 2 dias úteis. Escalar com Himmel se os próximos 3 dias confirmarem acima de 120 pedidos com ticket se recuperando para R$ 41+.
-- Yasmin: revisar a posição dos dois anúncios líderes da conta e comparar com os últimos 7 dias. Com 64% do volume em 2 listings, qualquer deterioração de posição afeta diretamente o resultado — e um dia de volume alto com ticket comprimido pode ter distorcido métricas de qualidade. Sinal de ação: queda de posição em qualquer um dos dois anúncios líderes nas próximas 48h. Escalar com Himmel se a queda persistir por 2 dias consecutivos.
+• Yasmin: verificar se havia campanha, cupom ou ADS ativo na conta ML entre 18h e 22h do dia 16/05. Com campanha confirmada, observar se os próximos 3 dias sem campanha retornam à banda de 70–110 pedidos; sem confirmação, hipótese continua aberta por mais 2 dias. Escalar para Himmel (via Yasmin) se os próximos 3 dias confirmarem volume acima de 120 pedidos com ticket se recuperando para R$ 41+.
+• Yasmin: revisar a posição dos dois anúncios líderes da conta e comparar com os últimos 7 dias. Posição estável ou melhor confirma que o spike não degradou ranqueamento. Escalar para Himmel (via Yasmin) se houver queda de posição persistente por 2 dias consecutivos em qualquer um dos dois anúncios líderes.
 
 Dia analisado: 16/05/2026 — 00:00–23:59 BRT
 ```
 
----
-
 ### Respeito de bloqueios
 
-- Item bloqueado: Família Canequinhas com nome comercial específico (SKUs 914C_BAV / 914C_BAB)
-- Origem do bloqueio: Condensadora
-- Motivo: confidence medium por mapeamento genérico de SKU; Condensadora orientou usar formulação de "anúncio líder de canequinhas" ou "grupo de canequinhas" em vez de nome específico se houver risco de ambiguidade
-- Agregado autorizado: sim — "anúncio líder de canequinhas" / "grupo de canequinhas"
-- Tratamento aplicado: substituído por formulação agregada segura, sem nome completo do listing e sem códigos internos opacos
-- Aparece na mensagem final: sim, como `Anúncio líder de canequinhas 100ml (variação 1/2)`
-
----
+- Rerun layer 06 only; manter log anterior no arquivo raw para auditoria.
 
 ### Decisões de formatação
 
-- Remoção de metadados internos (`— base: Operacional + Granular`, `— base: Granular + Estratégica`) dos insights da Condensadora — metadados de pipeline não pertencem ao Slack
-- Quebra de frase longa no insight 2 da análise — frase original era densa; quebrada em dois períodos mantendo todos os termos analíticos (`operacionalmente`, `variações de SKU`) e a tese intacta, sem mudar conectivos
-- Preservação do "provavelmente" e da estrutura condicional no insight 1 — a Condensadora classificou como hipótese; linguagem de indício mantida
-- Preservação do "não tem cauda capaz de compensar" no insight 2 — alerta direto da Condensadora; não suavizado
-- Estimativa de ~98 pedidos como volume basal omitida da análise — a Condensadora bloqueou explicitamente por ser hipótese inferencial sem dado primário confirmado
-- Distribuição horária detalhada omitida — a Condensadora marcou como dado técnico interno; a concentração noturna foi referenciada em forma narrativa ("quase metade dos pedidos veio em uma janela de 5 horas à noite")
-- Detalhamento dos 4 cancelamentos por produto omitido — sem dado disponível no pacote; Condensadora instruiu não citar
-- IDs técnicos de listing (MLBs) omitidos — a Condensadora marcou como detalhe interno desnecessário ao receptor
-- SKUs brutos e códigos internos opacos omitidos — família Canequinhas substituída por agregado autorizado `Anúncio líder de canequinhas 100ml (variação 1/2)`
-- Top Produtos: variações da família IMB501 mantidas separadas por cor de tampa (Preta, Vermelha, Cinza) — são variações vendáveis distintas; consolidar seria erro per regra de variação
-- Top Produtos: família Canequinhas mantida como duas linhas distintas por volume do anúncio líder, mas sem BAV/BAB e sem nome específico que a Condensadora orientou evitar
-- Condições de confirmação/refutação e escalonamento preservadas em ambas as prioridades — prioridade 1 mantém a regra de que, sem confirmação de dado de campanha/ADS, a hipótese permanece aberta por mais 2 dias úteis
-- Seção VISÃO sem comparação temporal — comparações pertencem à análise; dados objetivos apenas
-- Condensadora entregou 2 insights; usados 2 — sem preenchimento adicional, sem corte
+- Mensagem final regenerada só na camada Slack Writer com foco em comunicação mais simples, sem alterar as camadas anteriores.

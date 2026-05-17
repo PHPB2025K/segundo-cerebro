@@ -1,0 +1,76 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "Gate 5 falhou com dois problemas de nível Maior localizados no mesmo gate: (1) Kit 4 Potes de Vidro 800ml Quadrado (8 pedidos consolidados) foi posicionado em 2º lugar no Top Produtos, acima de Kit 6 Canecas Tulipa 250ml (11 pedidos) e Jarra Medidora de Vidro 500ml (11 pedidos) — ranking não segue ordem de volume consolidado; (2) KIT2YW800SQ não foi consolidado entre Store (2 pedidos) e Conta 3 (7 pedidos), apresentando total de 7 ao invés dos 9 corretos, enquanto KIT4YW800SQ recebeu consolidação idêntica entre Conta 2 e Conta 3 — inconsistência de aplicação da regra de equivalentes. Gate 6 apresenta um Menor: log da Slack Writer declara extração 'literal' da 6B, mas o trecho '(KIT4YW800SQ)' presente no insight da Oficial-2 foi removido sem registro explícito da decisão. Os 2 Maiores estão ambos no Gate 5 (1 gate único), não ativando a regra de bloqueio de 2+ Maiores em gates diferentes. Regra de agregação aplicada: 1 gate com Maiores + 1 Menor → APROVADO COM RESSALVA. A análise (Gate 6), prioridades (Gate 7) e todos os demais gates passaram sem falha.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "FALHA",
+    "gate_6_analise_conta": "RESSALVA",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 2,
+    "maiores_gates_distintos": 1,
+    "menores": 1,
+    "regra_agregacao_aplicada": "2 Maiores no Gate 5 (mesmo gate) = 1 gate com Maiores. Regra '2+ Maiores em gates diferentes → BLOQUEADO' não ativada. Regra aplicada: '1 Maior + qualquer número de Menores → APROVADO COM RESSALVA'."
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Maior",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "• Kit 4 Potes de Vidro 800ml Quadrado — 8 pedidos (Conta 2: 7 + Conta 3: 1)\n• Kit 6 Canecas Tulipa 250ml — 11 pedidos (Store: 6 + Conta 2: 4 + Conta 3: 1)\n• Kit 2 Potes de Vidro 800ml Quadrado — 7 pedidos (Conta 3)\n• Jarra Medidora de Vidro 500ml — 11 pedidos (Store)",
+      "texto_esperado": "• Kit 6 Canecas Tulipa 250ml — 11 pedidos (Store: 6 + Conta 2: 4 + Conta 3: 1)\n• Jarra Medidora de Vidro 500ml — 11 pedidos (Store)\n• Kit 2 Potes de Vidro 800ml Quadrado — 9 pedidos (Store: 2 + Conta 3: 7)\n• Kit 4 Potes de Vidro 800ml Quadrado — 8 pedidos (Conta 2: 7 + Conta 3: 1)",
+      "estado_atual": "Kit 4 Potes de Vidro 800ml Quadrado (8 pedidos consolidados) ocupa a 2ª posição no ranking, acima de dois produtos com 11 pedidos cada. O ranking não está ordenado por volume consolidado descendente.",
+      "estado_esperado": "Ranking deve seguir total consolidado de pedidos por variação vendável em ordem decrescente. CK4742 (11, Store) e CTL002 (11, cross-conta) devem preceder KIT4YW800SQ (8).",
+      "regra_violada": "Gate 5: 'ranking vem do pacote validado'. Produto com 8 pedidos não pode preceder produtos com 11 pedidos no ranking consolidado.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Maior",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "• Kit 2 Potes de Vidro 800ml Quadrado — 7 pedidos (Conta 3)",
+      "texto_esperado": "• Kit 2 Potes de Vidro 800ml Quadrado — 9 pedidos (Store: 2 + Conta 3: 7)",
+      "estado_atual": "KIT2YW800SQ aparece em Store com 2 pedidos (rank 4 da conta, platform_item_id 22593169868) e em Conta 3 com 7 pedidos (rank 1 da conta, platform_item_id 23298676159). A Slack Writer consolidou KIT4YW800SQ entre Conta 2 (7 pedidos) e Conta 3 (1 pedido) pelo critério de SKU idêntico, mas não aplicou a mesma lógica a KIT2YW800SQ entre Store e Conta 3. Total apresentado: 7; total correto: 9.",
+      "estado_esperado": "KIT2YW800SQ deve ser consolidado entre Store (2 pedidos) e Conta 3 (7 pedidos), totalizando 9 pedidos, com atribuição explícita por conta, aplicando a mesma regra de equivalentes usada para KIT4YW800SQ. Isso corrige também o ranking: KIT2YW800SQ (9) deve preceder KIT4YW800SQ (8).",
+      "regra_violada": "Gate 5 Shopee: 'produtos equivalentes consolidados nas 3 contas quando aplicável, somente dentro da mesma variação vendável'. Inconsistência de aplicação: KIT4YW800SQ consolidado entre contas, KIT2YW800SQ não consolidado apesar de mesma SKU em contas distintas. Contagem apresentada incorreta por omissão de 2 pedidos da Store.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta / Gate 8 — Bloqueios e Logs",
+      "texto_atual": "Kit 4 Potes 800ml Quadrado liderando com 7 de 22 pedidos",
+      "texto_esperado": "Kit 4 Potes 800ml Quadrado (KIT4YW800SQ) liderando com 7 de 22 pedidos",
+      "estado_atual": "Decisões de Formatação declaram que os quatro blocos de análise foram 'extraídos literalmente da 6B sem reescrita'. A 6B contém explicitamente '(KIT4YW800SQ)' após 'Kit 4 Potes 800ml Quadrado' no insight da Oficial-2. O identificador foi removido na mensagem final sem registro explícito desta decisão no log.",
+      "estado_esperado": "Se extração foi 'literal', o SKU deve constar; ou a remoção do SKU deve ser registrada explicitamente como decisão de formatação (ex: 'SKU removido do corpo da análise para limpeza visual — não altera tese').",
+      "regra_violada": "Gate 8: 'decisão de formatação ambígua não registrada'. Log afirma extração literal mas realizou supressão de elemento textual da fonte. Não altera tese nem induz erro — Menor.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [
+    "Corrigir ranking do Top Produtos para ordenar por total consolidado de pedidos descendente: Kit 6 Canecas Tulipa 250ml (11 pedidos) e Jarra Medidora de Vidro 500ml (11 pedidos) devem preceder Kit 4 Potes de Vidro 800ml Quadrado (8 pedidos).",
+    "Consolidar KIT2YW800SQ entre Store (2 pedidos, platform_item_id 22593169868) e Conta 3 (7 pedidos, platform_item_id 23298676159), apresentando '9 pedidos (Store: 2 + Conta 3: 7)' e reposicionando no ranking acima de KIT4YW800SQ (8 pedidos)."
+  ],
+  "ressalvas_memoria_interna": [
+    "Após correção do Top Produtos, verificar se o ranking atualizado não sobe produtos de cauda com confidence medium para posições que exijam citação nominal — nenhum produto de cauda com confidence medium atinge volume suficiente para entrar no top com a correção proposta.",
+    "A inconsistência de consolidação entre KIT4YW800SQ (consolidado) e KIT2YW800SQ (não consolidado) indica que o processo de detecção de produtos cross-conta no pipeline deve ser sistematizado para garantir aplicação uniforme da regra de equivalentes — sugestão de melhoria para próximo ciclo.",
+    "Granular não listou KIT2YW800SQ no campo memory_interna de cross-conta (listou CTL002, KIT4YW800SQ e KIT3S099), o que pode ter contribuído para o miss da Slack Writer. Solicitar ao pipeline que o campo cross-conta da Granular seja exaustivo por SKU, não apenas pelos mais relevantes analiticamente."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "A formulação 'hipótese de retirada de mecanismo de suporte de baixo ticket (cupom ou ADS)' na análise da Oficial-2 preserva corretamente o nível de confiança médio da Condensadora — não é fato afirmado como certeza.",
+    "A formulação 'o padrão é evidência de um dia' na análise de Shop-3 preserva corretamente a ressalva da Condensadora sobre recorrência histórica não verificável — compressão horária tratada como hipótese conforme exigido.",
+    "IMB501C (Conjunto 5 Potes Tampa Cinza, 5 pedidos, Conta 2) e KIT6CAR200 (Kit 6 Canecas Retas 200ml, 5 pedidos, Conta 3) estão empatados em pedidos na cauda do Top Produtos — a ordem entre eles não tem impacto analítico.",
+    "Weekly.md e monthly.md das três contas são templates vazios (primeira leitura estruturada) — a mensagem não menciona isso explicitamente, o que está dentro das regras; a confiança média da Condensadora foi preservada na formulação da análise de Shop-3."
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

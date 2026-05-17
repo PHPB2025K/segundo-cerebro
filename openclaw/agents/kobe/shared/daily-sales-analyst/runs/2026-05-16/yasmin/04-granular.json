@@ -1,0 +1,210 @@
+{
+  "camada": "04-granular",
+  "data": "2026-05-16",
+  "recipient": "Yasmin",
+  "platform": "mercado_livre",
+  "respostas_operacional": [
+    {
+      "pergunta": "O bloco de 18–22h (87 pedidos, ~47% do dia) coincide com janela de campanha ou ADS ativo no dia 16/05?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote contém apenas a distribuição horária de pedidos (18h=13, 19h=32, 20h=20, 21h=10, 22h=12, total bloco=87). Nenhum dado de campanha, cupom ou ADS ativo está disponível no pacote para o dia 16/05.",
+      "leitura": "A concentração horária é confirmada pelo dado bruto — 87 pedidos em 5 horas é evidência operacional de concentração — mas a causa (evento vs. tração orgânica) não pode ser verificada sem dado externo de ADS ou campanha.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Os 4 cancelamentos estão concentrados em um único produto ou distribuídos entre múltiplos SKUs?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote fornece apenas o total agregado de 4 cancelamentos. Não há detalhamento por SKU, platform_item_id, horário ou motivo de cancelamento disponível no pacote.",
+      "leitura": "Impossível determinar concentração ou dispersão dos cancelamentos sem os dados granulares por pedido cancelado. O volume total (4 sobre 185, ~2,2%) é operacionalmente residual, mas a ausência de dado impede confirmar ou descartar padrão de produto específico.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "A família Canequinhas (914C_BAV + 914C_BAB, 73 pedidos somados) possui anúncios distintos ou opera sob o mesmo listing MLB4410218897 com variações?",
+      "status": "respondida",
+      "evidencia": {
+        "produto_1": {
+          "produto_visivel": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico",
+          "platform_item_id_mlb": "MLB4410218897",
+          "sku_interno": "914C_BAV",
+          "pedidos": 41,
+          "itens": 43,
+          "fonte": "orderItems / top_products"
+        },
+        "produto_2": {
+          "produto_visivel": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico",
+          "platform_item_id_mlb": "MLB4410218897",
+          "sku_interno": "914C_BAB",
+          "pedidos": 32,
+          "itens": 32,
+          "fonte": "orderItems / top_products"
+        },
+        "observacao": "Ambas as variações compartilham exatamente o mesmo platform_item_id MLB4410218897 e o mesmo título de anúncio. São variações distintas de SKU dentro de um único listing."
+      },
+      "leitura": "Os 73 pedidos da família Canequinhas estão integralmente concentrados em um único listing (MLB4410218897), operando com duas variações de SKU. Toda a dependência dessa família — ~39% do volume do dia — está ancorada na saúde operacional de um único anúncio no Mercado Livre.",
+      "conclusao_granular": "confirma — a dependência não está em dois produtos distintos, mas em dois SKUs de um único listing; risco de exposição é mais concentrado do que a leitura por produto sugere",
+      "confianca": "média",
+      "ressalva": "Mapping_status 'mapped_generic_sku' com confidence 'medium' para ambas as variações — o mapeamento foi inferido por normalização de SKU com fallback de título, não por mapeamento revisado. No entanto, o platform_item_id idêntico nos dois SKUs é evidência primária forte que ancora a identificação do listing único."
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Família IMB501 (Potes de Vidro) também concentrada em único listing MLB3288536143 — 3 variações, 45 pedidos",
+      "origem": "risco de identificação / extensão do padrão de concentração em listing único identificado na família Canequinhas",
+      "evidencia": {
+        "produto_1": {
+          "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+          "platform_item_id_mlb": "MLB3288536143",
+          "sku_interno": "IMB501P",
+          "pedidos": 25,
+          "fonte": "orderItems / top_products"
+        },
+        "produto_2": {
+          "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+          "platform_item_id_mlb": "MLB3288536143",
+          "sku_interno": "IMB501V",
+          "pedidos": 10,
+          "fonte": "orderItems / top_products"
+        },
+        "produto_3": {
+          "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+          "platform_item_id_mlb": "MLB3288536143",
+          "sku_interno": "IMB501C",
+          "pedidos": 10,
+          "fonte": "orderItems / top_products"
+        },
+        "total_familia_pedidos": 45,
+        "nota_identificacao": "IMB501P, IMB501V e IMB501C têm confidence 'high' e mapping_status 'mapped' via sku_alias_high_confidence — identificação confiável"
+      },
+      "leitura": "As 3 variações da família IMB501 operam sob um único listing MLB3288536143, somando 45 pedidos (~24% do dia). Combinado com o listing MLB4410218897 da família Canequinhas (73 pedidos), os 2 listings juntos sustentam 118 pedidos (~64% do dia). A dependência estrutural de 64% do volume está em exatamente 2 URLs de anúncio — não em uma diversidade de produtos como a contagem de SKUs poderia sugerir.",
+      "conclusao_granular": "confirma e aprofunda — o risco de concentração levantado pela Estratégica e Operacional está em 2 listings, não em 5 produtos; a vulnerabilidade operacional é de anúncio, não de catálogo",
+      "confianca": "média",
+      "ressalva": "Confiança máxima é média por base marcada como DADOS_PARCIAIS na checagem volume_band_mercado-livre."
+    },
+    {
+      "investigacao": "Estimativa de volume basal excluindo o bloco 18–22h: quanto a conta teria vendido sem o pico noturno",
+      "origem": "anomalia — concentração horária extrema levantada pela Operacional; investigação motivada pela hipótese de evento ADS/campanha",
+      "evidencia": {
+        "total_dia": 185,
+        "bloco_18_22h": 87,
+        "volume_fora_bloco_noturno": 98,
+        "media_30d": 95.2,
+        "media_mesmo_dia_semana_4_sabados": 77.0,
+        "nota_calculo": "Subtração direta do bloco horário 18h+19h+20h+21h+22h (13+32+20+10+12=87) do total de 185"
+      },
+      "leitura": "Se o bloco 18–22h for confirmado como evento pontual, o volume estimado do dia fora do impulso seria ~98 pedidos — dentro da banda histórica de 30d (95,2) e acima da média dos últimos 4 sábados (77). Isso indica que o desempenho da conta durante o dia foi normal; o spike é exclusivamente noturno e provavelmente impulsionado.",
+      "conclusao_granular": "hipótese em aberto — se confirmado evento noturno, o dia não representa patamar novo; o volume de ~98 pedidos fora do bloco seria a referência real do canal neste sábado",
+      "confianca": "baixa",
+      "ressalva": "Esta é estimativa inferencial baseada em subtração de bloco horário, sem dado primário de causa. Não usar como fato — usar como hipótese a ser verificada por Yasmin junto ao dado de campanha."
+    },
+    {
+      "investigacao": "Saúde e composição da cauda: os produtos abaixo do top 4 têm volume investigável ou são ruído irrelevante?",
+      "origem": "risco estrutural de cauda fina confirmado pela Operacional",
+      "evidencia": {
+        "top_4_pedidos": 144,
+        "top_4_percentual": 77.8,
+        "cauda_posicoes_5_a_10": {
+          "IMB501V": 10,
+          "IMB501C": 10,
+          "KIT4YW1050": 9,
+          "KIT4YW320": 5,
+          "KIT4YW640": 4,
+          "KIT2YW1050": 3
+        },
+        "total_cauda_pedidos": 41,
+        "percentual_cauda": 22.2,
+        "media_pedidos_por_produto_na_cauda": 6.8,
+        "nota": "IMB501V e IMB501C são variações da família IMB501 já presente no top 3 — a cauda de famílias distintas começa em KIT4YW1050 com apenas 9 pedidos"
+      },
+      "leitura": "A cauda (posições 5–10) representa 41 pedidos em 6 produtos, mas 2 deles (IMB501V e IMB501C) são variações do mesmo listing MLB3288536143 do top 3 — não são produtos independentes. A cauda de famílias genuinamente distintas (KIT4YW e KIT2YW) soma apenas 21 pedidos em 4 SKUs, média de 5,3 pedidos por produto. Essa cauda existe mas é operacionalmente incapaz de compensar qualquer oscilação nos 2 listings líderes.",
+      "conclusao_granular": "confirma — a cauda tem atividade mas não tem peso; a dependência estrutural nos 2 listings não é compensada pela cauda, que em famílias distintas representa apenas ~11% do volume do dia",
+      "confianca": "alta"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "médio",
+    "fontes_de_risco": [
+      "mapping_status 'mapped_generic_sku' para 914C_BAV e 914C_BAB (confidence medium) — mapeamento inferido, não revisado",
+      "mapping_status 'mapped_generic_sku' para KIT4YW320 e KIT4YW640 (confidence medium)",
+      "Título truncado nos produtos KIT4YW320 e KIT4YW640 — display_name termina com reticências, produto não totalmente identificável pelo nome"
+    ],
+    "explicacao": "Os dois produtos líderes do dia (914C_BAV e 914C_BAB, ~39% do volume) têm confidence 'medium' por mapeamento genérico de SKU. O risco é médio — não alto — porque o platform_item_id MLB4410218897 é idêntico para ambos e está disponível no pacote, ancorando a identificação no listing mesmo sem mapeamento revisado. Para os produtos da cauda com título truncado (KIT4YW320, KIT4YW640) o risco se aplica mas seu volume combinado é de apenas 9 pedidos (~5% do dia), sem impacto material na leitura. Confiança máxima possível neste pacote é média, em linha com a marcação de DADOS_PARCIAIS no check de volume do ML.",
+    "bloqueio_para_slack": "nenhum produto entra em bloqueio total — risco médio não bloqueia; a Condensadora deve preservar a ressalva ao citar a família Canequinhas: identificação via mapeamento genérico de SKU, não por mapeamento revisado de alta confiança"
+  },
+  "detalhes_para_condensadora": [
+    {
+      "detalhe": "Os 73 pedidos da família Canequinhas (~39% do dia) estão integralmente concentrados em um único listing MLB4410218897 com duas variações de SKU — não são dois anúncios distintos. Se esse anúncio perder posição, for penalizado ou pausado, quase 40% do volume do dia some de uma única URL.",
+      "por_que_importa": "A mensagem que disser 'dois produtos líderes' estará incompleta se não deixar claro que esses dois produtos são variações de um único listing — o risco operacional real é de listing, não de produto, e é 2x mais concentrado do que a leitura superficial sugere.",
+      "confianca": "média"
+    },
+    {
+      "detalhe": "Os 2 listings que sustentaram o dia (MLB4410218897 com 73 pedidos e MLB3288536143 com 45 pedidos) juntos respondem por 118 pedidos — ~64% do volume total do dia em exatamente 2 anúncios do Mercado Livre.",
+      "por_que_importa": "Sem esse detalhe, a mensagem pode transmitir diversificação em 5 produtos relevantes. Na realidade, a dependência é de 2 listings, não de 5 produtos — a vulnerabilidade é estruturalmente mais concentrada do que o ranking de SKUs indica.",
+      "confianca": "média"
+    },
+    {
+      "detalhe": "Se o bloco noturno 18–22h (87 pedidos) for confirmado como evento ADS/campanha por Yasmin, o volume basal estimado do dia seria ~98 pedidos — dentro da banda histórica de 30d — o que transforma o resultado de 185 em 'dia normal com boost noturno', não em evidência de patamar novo.",
+      "por_que_importa": "A mensagem final não pode usar 185 pedidos como referência de patamar sem a ressalva de que o número pode ser artefato de evento; o dado de campanha que Yasmin precisa verificar é pré-requisito para qualquer leitura definitiva do dia.",
+      "confianca": "baixa"
+    }
+  ],
+  "memoria_interna": {
+    "ids_listings_dia": {
+      "MLB4410218897": "Família Canequinhas 914C (variações BAV + BAB) — 73 pedidos",
+      "MLB3288536143": "Família Potes IMB501 (variações P + V + C) — 45 pedidos",
+      "MLB5322494954": "KIT2YW1520 — 21 pedidos",
+      "MLB4073003575": "KIT4YW1050 — 9 pedidos",
+      "MLB4073064873": "KIT4YW320 — 5 pedidos",
+      "MLB5402326666": "KIT4YW640 — 4 pedidos",
+      "MLB6518176572": "KIT2YW1050 — 3 pedidos"
+    },
+    "skus_internos_volume": {
+      "914C_BAV": 41,
+      "914C_BAB": 32,
+      "IMB501P": 25,
+      "KIT2YW1520": 21,
+      "IMB501V": 10,
+      "IMB501C": 10,
+      "KIT4YW1050": 9,
+      "KIT4YW320": 5,
+      "KIT4YW640": 4,
+      "KIT2YW1050": 3
+    },
+    "distribuicao_horaria_completa": {
+      "0": 1,
+      "1": 2,
+      "2": 2,
+      "4": 1,
+      "6": 3,
+      "7": 1,
+      "8": 6,
+      "9": 7,
+      "10": 15,
+      "11": 3,
+      "12": 5,
+      "13": 12,
+      "14": 6,
+      "15": 4,
+      "16": 7,
+      "17": 15,
+      "18": 13,
+      "19": 32,
+      "20": 20,
+      "21": 10,
+      "22": 12,
+      "23": 8
+    },
+    "blocos_calculados": {
+      "bloco_18_22h": 87,
+      "volume_fora_bloco_noturno": 98,
+      "pico_isolado_19h": 32,
+      "segundo_pico_10h": 15,
+      "segundo_pico_17h": 15
+    },
+    "nota": "IDs de listing, SKUs internos, distribuição horária completa e cálculos de bloco são memória técnica interna. Não citar nominalmente no Slack. A Condensadora usa apenas os três detalhes sinalizados acima, com as ressalvas de confiança registradas."
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

@@ -131,6 +131,21 @@ Bloquear como **Crítico** quando qualquer uma destas conversões acontecer:
 - 7.7: conferir que Slack Writer não rediagnosticou.
 - 7.8: manter QA LLM como gate de auditoria e QA determinístico como trava mecânica posterior.
 
+### Diretriz Pedro 2026-05-17 — densidade interpretativa
+
+A seção `🔍 ANÁLISE DA CONTA` deve ser validada como leitura sênior, não como resumo. O leitor já viu dados objetivos e Top Produtos; a análise precisa entregar tese, implicação e entendimento profundo.
+
+Marcar como **Maior** quando a análise:
+- repetir pedidos, GMV, ticket, percentuais, ranking ou produtos já apresentados em outras seções sem transformar isso em interpretação;
+- soar como resumo automático do dia;
+- descrever “o que aconteceu” sem explicar “o que isso significa”;
+- não conectar o comportamento do dia com histórico, continuidade provável, risco ou próximo enquadramento;
+- usar métrica como abertura/manchete do insight.
+
+Marcar como **Crítico** quando a seção inteira for majoritariamente descritiva e não houver leitura sênior suficiente para orientar o responsável.
+
+Critério de aprovação: cada insight da análise deve sobreviver sem depender de repetir os números. Ele pode conter métrica mínima se indispensável, mas a frase principal precisa ser tese de negócio.
+
 ### Limite de atuação
 
 A QA não melhora texto e não reescreve análise. Se houver bloqueio, informe o trecho atual, o esperado e a regra violada. Se for apenas discordância analítica sem violação objetiva, registre em ressalva de auditoria, não bloqueie.
@@ -152,6 +167,7 @@ Use apenas quando:
 - estrutura Slack tem exatamente as 6 seções aprovadas;
 - Top Produtos está seguro;
 - análise está fiel à Condensadora;
+- análise entrega densidade interpretativa, sem repetir visão/top produtos como resumo numérico;
 - prioridades vêm da Condensadora;
 - bloqueios foram respeitados;
 - logs da Slack Writer são coerentes;

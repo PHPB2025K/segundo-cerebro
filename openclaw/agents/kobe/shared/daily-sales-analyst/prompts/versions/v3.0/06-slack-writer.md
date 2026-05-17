@@ -274,6 +274,8 @@ Regras gerais:
 
 Esta seção vem da `Análise Final Condensada`.
 
+Diretriz Pedro 2026-05-17: esta seção é o ouro do report. Não é resumo, não é repetição, não é segunda leitura das métricas. O leitor já viu `VISÃO` e `TOP PRODUTOS`; aqui ele precisa receber a interpretação sênior: o enquadramento que simplifica o complexo, transmite domínio da conta e conecta comportamento histórico com projeção plausível.
+
 Regras de fidelidade:
 - usar no máximo 3 insights;
 - se a Condensadora entregou 1 insight, usar 1;
@@ -285,6 +287,13 @@ Regras de fidelidade:
 - não incluir nomes das camadas internas;
 - não colar `— base: Estratégica/Tática/etc.` no Slack;
 - remover apenas metadados internos, mantendo a tese.
+
+Regras de densidade interpretativa:
+- preservar a tese como leitura de negócio, não como descrição de dados;
+- não reintroduzir números, percentuais, pedidos, GMV, ticket ou ranking já apresentados em seções anteriores, salvo se vierem da Condensadora e forem indispensáveis para sustentar a tese;
+- se o insight da Condensadora vier com métrica de apoio, manter a implicação como frase principal e a métrica como bastidor mínimo, nunca como abertura;
+- a análise precisa responder “o que isso significa para a conta?” e não “o que aconteceu?”;
+- bloquear qualquer tendência a repetir `VISÃO`/`TOP PRODUTOS` com outra redação.
 
 #### Formatação mínima permitida
 
@@ -299,6 +308,7 @@ Você não pode:
 - mudar verbo principal ou termo analítico-chave;
 - mudar a posição da tese na frase;
 - adicionar métrica que a Condensadora não trouxe;
+- transformar a análise em descrição numérica ou repetição de dado já exibido;
 - inserir produto bloqueado;
 - transformar “parece/sugere” em “é”;
 - trocar conectivo que muda nuance. Ex.: `mas` → `e`, `apesar de` → `com`.

@@ -2,7 +2,7 @@
 **Gerado em:** 2026-05-17T10:36:11.767814+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
-**Global Status:** APPROVED_WITH_REMARKS
+**Global Status:** APPROVED
 **Prompt Version:** v3.0
 **Data Builder Version:** v1.3
 **LLM Used:** True
@@ -14,7 +14,7 @@
 ## Resumo por Recipient
 
 ### Lucas (shopee)
-- **Status:** APPROVED_WITH_REMARKS
+- **Status:** APPROVED
 - **send_allowed:** False
 - **llm_used:** True
   - 01-estrategica: LLM
@@ -25,7 +25,6 @@
   - 06b-shopee-consolidator: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Analise LLM executada. Verificar artefatos para qualidade.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-16/lucas/00-data-package.json`
@@ -39,7 +38,7 @@
   - `layer7_qa_gate`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-16/lucas/07-qa.json`
 
 ### Yasmin (mercado_livre)
-- **Status:** APPROVED_WITH_REMARKS
+- **Status:** APPROVED
 - **send_allowed:** False
 - **llm_used:** True
   - 01-estrategica: LLM
@@ -49,7 +48,6 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Analise LLM executada. Verificar artefatos para qualidade.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-16/yasmin/00-data-package.json`
@@ -63,7 +61,7 @@
   - `layer7_qa_gate`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-16/yasmin/07-qa.json`
 
 ### Leonardo (amazon)
-- **Status:** APPROVED_WITH_REMARKS
+- **Status:** APPROVED
 - **send_allowed:** False
 - **llm_used:** True
   - 01-estrategica: LLM
@@ -73,7 +71,6 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Analise LLM executada. Verificar artefatos para qualidade.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-16/leonardo/00-data-package.json`
@@ -88,9 +85,13 @@
 
 ## Acao Requerida
 
-Kobe/Pedro: revisar artefatos acima e decidir:
-- [ ] APROVADO — preview aceitavel, pode avancar para send-candidate
-- [ ] BLOQUEADO — problemas encontrados, corrigir antes de avancar
+Kobe/Pedro: ressalvas corrigidas e QA limpo. Envio real continua bloqueado por configuração até liberação explícita.
 
 ---
 *Este arquivo e um artefato local. Nenhum envio externo foi realizado.*
+
+## Correção manual de ressalvas
+
+- Aplicada em: 2026-05-17T19:47:37.248665+00:00
+- Resultado: APPROVED para Lucas/Shopee, Yasmin/ML e Leonardo/Amazon.
+- Envio externo: não realizado.

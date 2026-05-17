@@ -201,6 +201,38 @@ def read_file_safe(path):
         return ""
 
 
+def read_qa_verdict(path):
+    """Normalize Layer 7 QA output into manifest status fields."""
+    try:
+        with open(path) as f:
+            qa = json.load(f)
+    except Exception:
+        return None
+
+    raw = (qa.get("resultado_qa") or qa.get("verdict") or "").upper()
+    blockers = qa.get("blockers") or qa.get("bloqueios") or qa.get("correcoes_obrigatorias_antes_envio") or []
+    problems = qa.get("problemas_encontrados") or []
+    counts = qa.get("contagem_severidade") or {}
+    remarks = qa.get("remarks") or qa.get("ressalvas_memoria_interna") or qa.get("ressalvas_auditoria_nao_bloqueante") or []
+
+    if "BLOQUE" in raw or blockers:
+        status = "BLOCKED"
+    elif "RESSALVA" in raw or counts.get("maiores") or counts.get("menores") or problems or remarks:
+        status = "APPROVED_WITH_REMARKS"
+    elif "APROV" in raw or "APPROVED" in raw:
+        status = "APPROVED"
+    else:
+        status = None
+
+    return {
+        "status": status,
+        "verdict": status or raw or "APPROVED_WITH_REMARKS",
+        "blockers": blockers if isinstance(blockers, list) else [str(blockers)],
+        "remarks": remarks if isinstance(remarks, list) else [str(remarks)],
+        "problems": problems if isinstance(problems, list) else [str(problems)],
+    }
+
+
 # --- LLM Backend ---
 
 def load_context_files():
@@ -1279,13 +1311,22 @@ def run(date_str, mode, recipients, config, package_path=None,
             blockers = llm_strict_blockers
             warnings = ["LLM obrigatório: fallback determinístico não é caminho aprovado."]
         else:
-            status = "APPROVED_WITH_REMARKS"
-            qa_verdict = "APPROVED_WITH_REMARKS"
-            blockers = []
-            if recipient_llm_used:
-                warnings = ["Analise LLM executada. Verificar artefatos para qualidade."]
+            qa_summary = read_qa_verdict(paths.get("07-qa", ""))
+            if qa_summary and qa_summary.get("status"):
+                status = qa_summary["status"]
+                qa_verdict = qa_summary["verdict"]
+                blockers = qa_summary.get("blockers", [])
+                warnings = qa_summary.get("remarks", [])
+                if status == "APPROVED_WITH_REMARKS" and not warnings:
+                    warnings = qa_summary.get("problems", []) or ["QA aprovou com ressalvas; revisar artefato 07-qa.json."]
             else:
-                warnings = ["Fallback deterministico: sem analise LLM profunda."]
+                status = "APPROVED_WITH_REMARKS"
+                qa_verdict = "APPROVED_WITH_REMARKS"
+                blockers = []
+                if recipient_llm_used:
+                    warnings = ["Analise LLM executada. Verificar artefatos para qualidade."]
+                else:
+                    warnings = ["Fallback deterministico: sem analise LLM profunda."]
 
         recipient_results[r] = {
             "platform": RECIPIENT_PLATFORM.get(r, "unknown"),

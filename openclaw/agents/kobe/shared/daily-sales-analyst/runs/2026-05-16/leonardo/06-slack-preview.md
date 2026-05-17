@@ -55,12 +55,39 @@ Dia analisado: 16/05/2026 — 00:00–23:59 BRT
 
 ---
 
+- Item bloqueado: afirmação de status de Buy Box dos ASINs líderes
+- Origem do bloqueio: Condensadora
+- Motivo: dado de Buy Box não disponível no pacote; proibido afirmar ou implicar condição atual de Buy Box
+- Agregado autorizado: sim — checagem operacional de Buy Box como pré-requisito
+- Tratamento aplicado: nenhuma afirmação de estado atual; Buy Box aparece apenas como checagem/pré-requisito nas prioridades
+- Aparece na mensagem final: sim, apenas como ação de checagem, não como diagnóstico
+
+---
+
+- Item bloqueado: afirmação de cobertura/suficiência FBA dos top ASINs
+- Origem do bloqueio: Condensadora
+- Motivo: cobertura de estoque FBA não disponível no pacote; proibido afirmar suficiência ou risco de ruptura
+- Agregado autorizado: não
+- Tratamento aplicado: FBA aparece somente como fulfillment objetivo da conta; nenhuma conclusão de suficiência/ruptura foi feita
+- Aparece na mensagem final: sim, apenas como dado objetivo `Fulfillment: 100% FBA`
+
+---
+
+- Item bloqueado: crescimento de volume como positivo incondicional
+- Origem do bloqueio: Condensadora
+- Motivo: sem Buy Box validada e sem mix saudável confirmado, crescimento é real mas não qualifica saúde da conta sozinho
+- Agregado autorizado: sim — formulação com ressalva
+- Tratamento aplicado: análise preserva contraste: crescimento de volume real, mas sem crescimento proporcional de GMV e com compressão de mix
+- Aparece na mensagem final: sim, com ressalva explícita
+
+---
+
 ### Decisões de formatação
 
 - Remoção de metadados internos (`— base: Estratégica + Granular`) de ambos os insights da Condensadora — metadados internos não pertencem ao Slack
 - TL6250 substituído pelo título real do pedido (`Kit 6 Canecas Porcelana Tulipa Lisa 250ml`) em vez do display_name bloqueado — autorizado pela Condensadora
 - TL250P omitido do Top Produtos — 1 pedido, display_name bloqueado, título real não incluso no ranking de forma destacável sem risco; omissão preferida à citação com nome errado
-- ASIN não exibido para nenhum produto — todos os top ASINs têm título real identificável e a Granular não marcou risco médio de identificação nos líderes; exibição de ASIN seria desnecessária e poluiria o Slack
+- ASIN não exibido para nenhum produto — os produtos de maior volume têm título real identificável; EMB01TT e 096 têm confidence medium metodológico, mas seus títulos visíveis são concretos o suficiente para Leonardo identificar sem ASIN, então a decisão foi documentada explicitamente e mantida para limpeza visual
 - Faturamento total apresentado com duas casas decimais: R$ 1.238,10 — padrão numérico obrigatório
 - Seção VISÃO sem comparações temporais — dados objetivos do dia apenas; comparações ficam na análise
 - Prioridades com atribuição a Leonardo (Amazon) conforme responsável do canal

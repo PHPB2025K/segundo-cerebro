@@ -233,6 +233,8 @@ Regras gerais:
 - se o log de Decisões de formatação disser que um dado foi removido, esse dado não pode aparecer na mensagem final. Log e output precisam ser consistentes.
 - produtos com variações vendáveis reais devem aparecer no nível da **variação**, não no nível da família.
 - se a Condensadora/6B autorizar “agregado” mas esse agregado esmagar variações reais, a autorização é inválida e deve ser recusada.
+- ranking deve ficar sempre em ordem decrescente pelo total consolidado de pedidos da variação vendável; produto com menos pedidos nunca pode aparecer acima de produto com mais pedidos.
+- se a mesma variação vendável/SKU aparecer em múltiplas contas, consolidar de forma uniforme em todos os casos; não consolidar uma SKU cross-conta e deixar outra SKU idêntica separada sem motivo documentado.
 - exemplo crítico obrigatório em qualquer plataforma: `Conjunto de 5 Potes de Vidro Redondos` não pode virar uma linha única quando há tampa preta/cinza/vermelha. As linhas corretas são por variação vendável: `Tampa Preta`, `Tampa Cinza`, `Tampa Vermelha`, cada uma somente com seu volume próprio.
 
 #### Shopee
@@ -249,6 +251,7 @@ Regras gerais:
 #### Mercado Livre
 
 - Usar o ranking seguro vindo do pacote validado.
+- se a Condensadora orientar formulação agregada por confiança média/risco de ambiguidade, obedecer literalmente; não usar nome completo do listing nem códigos internos opacos (ex.: BAV/BAB) se eles não forem atributo visível para o responsável.
 - Consolidar SKUs filhos apenas até o nível de **variação vendável/SKU pai da variação**, nunca até a família inteira quando existem variações reais.
 - Exemplo obrigatório: `Conjunto de 5 Potes Redondos de Vidro` não vira uma linha única. Separar por cor da tampa: `IMB501P` tampa preta, `IMB501C` tampa cinza, `IMB501V` tampa vermelha. Cada variação só aparece se seu volume próprio entrar no ranking.
 - Se vários SKUs filhos/listings representam a mesma variação, somar na variação correta; se representam cores diferentes, manter linhas diferentes.
@@ -263,6 +266,7 @@ Regras gerais:
   - o título for ambíguo, com mesmo título para produtos diferentes; ou
   - a Granular marcou risco médio de identificação para aquele item.
 - Quando ASIN aparecer, formato: `[título real] (ASIN: B08XXX)`.
+- Se optar por omitir ASIN de item com confidence medium/risco médio porque o título é suficientemente identificável, registrar essa decisão item a item em `Decisões de formatação`.
 - Alias manual nunca aparece na mensagem — apenas como fallback interno se título e ASIN forem ausentes.
 - Se título e ASIN são ausentes, o item não pode aparecer nominalmente. Use agregado autorizado pela Condensadora ou omita o item do ranking.
 
@@ -378,6 +382,8 @@ Proibido:
 ## Tratamento de bloqueios e confiança
 
 ### Bloqueio para Slack
+
+Todo item listado pela Granular/Condensadora em `O que não pode ir para Slack`, `nao_pode_ir_para_slack`, bloqueios de dado indisponível, bloqueios de formulação ou bloqueios de confiança precisa aparecer no bloco `Respeito de bloqueios`, mesmo quando o conteúdo final já respeitou o bloqueio.
 
 Se a Condensadora ou Granular marcou `BLOQUEIO PARA SLACK`:
 - não cite o item nominalmente;

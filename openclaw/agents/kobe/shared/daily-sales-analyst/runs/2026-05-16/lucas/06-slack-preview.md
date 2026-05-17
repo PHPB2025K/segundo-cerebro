@@ -13,10 +13,10 @@ DAILY SALES REPORT — SHOPEE — 16/05/2026 (Ontem)
 
 🏆 TOP PRODUTOS SHOPEE
 • Conjunto 5 Potes de Vidro Redondos Tampa Preta — 31 pedidos (Store)
-• Kit 4 Potes de Vidro 800ml Quadrado — 8 pedidos (Conta 2: 7 + Conta 3: 1)
 • Kit 6 Canecas Tulipa 250ml — 11 pedidos (Store: 6 + Conta 2: 4 + Conta 3: 1)
-• Kit 2 Potes de Vidro 800ml Quadrado — 7 pedidos (Conta 3)
 • Jarra Medidora de Vidro 500ml — 11 pedidos (Store)
+• Kit 2 Potes de Vidro 800ml Quadrado — 9 pedidos (Store: 2 + Conta 3: 7)
+• Kit 4 Potes de Vidro 800ml Quadrado — 8 pedidos (Conta 2: 7 + Conta 3: 1)
 • Kit 6 Canecas Retas 200ml — 5 pedidos (Conta 3)
 • Conjunto 5 Potes de Vidro Redondos Tampa Cinza — 5 pedidos (Conta 2)
 
@@ -57,8 +57,10 @@ Dia analisado: 16/05/2026 — 00:00–23:59 BRT
 
 - Remoção de metadados internos (`— base: Estratégica + Granular`, referências a camadas) em toda a seção de análise — conformidade com regra de tom; nomes de camadas internas não vão para Slack
 - Seção `🔍 ANÁLISE DA CONTA` renomeada visualmente para `🔍 ANÁLISE DAS CONTAS` — conforme regra 7.6 e layout aprovado para Lucas/Shopee quando a 6B existe
-- Quatro blocos de análise (⚫ Consolidado + 3 🟠 contas) extraídos literalmente da 6B sem reescrita — conformidade com regra de não-rediagnóstico e fonte hierárquica obrigatória para Shopee
+- Quatro blocos de análise (⚫ Consolidado + 3 🟠 contas) extraídos da 6B sem rediagnóstico; SKU interno removido do corpo da análise por limpeza visual e para evitar ID técnico no Slack, sem alterar tese nem produto citado
 - Comparações temporais (`+21,4% vs 7d`, `+35,1% vs 60d`, `-42,6% vs 30d`) preservadas na seção `🔍 ANÁLISE DAS CONTAS` e ausentes da seção `📊 VISÃO SHOPEE` — comparações são interpretação e pertencem à análise, não à visão objetiva
+- Top Produtos: ranking reordenado por volume consolidado descendente após consolidação cross-conta por SKU/variação vendável — produtos com 11 pedidos precedem produtos com 9 e 8 pedidos
+- Top Produtos: KIT2YW800SQ consolidado entre Store (2 pedidos) e Shop-3 (7 pedidos), totalizando 9 pedidos — mesma variação vendável confirmada por SKU idêntico
 - Top Produtos: KIT4YW800SQ consolidado nas duas contas onde apareceu (Oficial-2 com 7 pedidos + Shop-3 com 1 pedido = 8 pedidos totais) — mesma variação vendável confirmada por SKU idêntico; consolidação autorizada pela regra de equivalentes
 - Top Produtos: CTL002 (Kit 6 Canecas Tulipa 250ml) consolidado nas três contas (Store 6 + Oficial-2 4 + Shop-3 1 = 11 pedidos) — mesma variação vendável confirmada por SKU idêntico e citado pela Granular como único produto cross-conta rastreável
 - Top Produtos: contas indicadas em todos os produtos — produto vendeu em menos de 3 contas na maioria dos casos; CTL002 consolidado como cross-conta com contagem explícita por conta

@@ -1,6 +1,6 @@
 # Pendências — RH
 
-_Atualizado: 2026-05-15_
+_Atualizado: 2026-05-16_
 
 ## 🔴 Prioridade Alta
 - [ ] Mateus: regularizar pendências da semana 04/05–09/05 e verificar saída ausente em 15/05.
@@ -10,6 +10,7 @@ _Atualizado: 2026-05-15_
 - [ ] Leonardo: concluir pendência de 04/05 considerando jornada especial; confirmar dias de faculdade para evitar falsos positivos recorrentes.
 - [ ] Compliance 15/05: tratar intervalos de almoço abaixo de 1h identificados em Geziele, Guilherme, Leonardo e Lucas.
 - [ ] Lucas: ajuste de saída de 05/05 às 16:30 segue pendente de validação do Pedro no Ponto Certo.
+- [ ] Política sábado/domingo: criar ou corrigir documento canônico referenciado pelo RH; regra existe em materiais operacionais, mas a referência principal está ausente.
 
 ## 🟢 Backlog
 - [ ] Confirmar formato aceito pela contabilidade para espelho mensal de ponto.

@@ -1,6 +1,10 @@
 # Lições — RH
 
-_Atualizado: 2026-05-15_
+_Atualizado: 2026-05-16_
+
+## 2026-05-16
+- Compliance de sábado precisa diferenciar “sem registros por dia não útil” de “falta completa”; sem escala específica ou trabalho registrado, não cobrar automaticamente.
+- Referências canônicas de knowledge precisam existir de fato: política sábado/domingo está citada como fonte do RH, mas a consolidação encontrou lacuna que pode gerar ambiguidade futura.
 
 ## 2026-05-15
 - O compliance diário não deve depender apenas do relatório de saída; para cobrir CLT, é necessário validar intervalos de almoço e jornada total diretamente nos registros do dia.

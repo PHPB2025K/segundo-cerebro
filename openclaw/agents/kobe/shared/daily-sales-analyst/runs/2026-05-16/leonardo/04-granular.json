@@ -1,0 +1,152 @@
+{
+  "camada": "04-granular",
+  "data": "2026-05-16",
+  "recipient": "Leonardo",
+  "plataforma": "amazon",
+  "respostas_operacional": [
+    {
+      "pergunta": "O ASIN da Jarra Medidora 500ml (B0G2CWWMGK) estava com Buy Box estável durante o dia?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "Buy Box não está presente no pacote de dados. Identificação do produto confirmada por pedido real: Produto visível: Jarra Medidora de Vidro 500ml Resistente com Alça para Receitas | ASIN/platform_item_id: B0G2CWWMGK | SKU interno: CK4742_BB | Fonte: orderItems / pedido real. O produto registrou 11 pedidos via FBA, mas nenhuma janela de status de Buy Box está disponível no pacote.",
+      "leitura": "A presença de 11 pedidos FBA confirma que o produto estava elegível e com estoque disponível durante o dia, mas FBA ativo não implica Buy Box garantida em 100% das janelas. Não é possível distinguir se o tráfego chegou via Buy Box própria ou via posição residual.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Qual era o ticket médio dos pedidos excluindo a Jarra Medidora?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote não contém receita por produto ou por ASIN — apenas GMV total agregado (R$1.238,10) e contagem de pedidos por produto. Sem receita unitária por orderItem, o cálculo de ticket excluindo CK4742 não é realizável com os dados disponíveis.",
+      "leitura": "O que pode ser inferido sem cálculo direto: 36 pedidos totais, 11 da Jarra Medidora — restam 25 pedidos de outros produtos. Se o ticket médio geral é R$34,39 e a Jarra Medidora tem ticket tipicamente menor que a média, o ticket do restante da conta deveria estar acima de R$34,39 — mas a magnitude exata dessa diferença não é calculável sem receita por produto. A hipótese de compressão por mix permanece sustentada por evidência indireta, não confirmada granularmente.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Os outros ASINs do top 5 (Potes Tampa Preta, Suporte Gamer, Potes Tampa Cinza) estavam com cobertura FBA sem risco de ruptura?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "Produto visível: Conjunto 5 Potes de Vidro Redondos Tampa Preta | ASIN: B0GSWJ91JM | SKU: IMB501T-preto | 6 pedidos FBA. Produto visível: Suporte de Controle PS5 PS4 Xbox Series X/S One e Headset Preto - Organizador de Mesa Gamer 2 em 1 | ASIN: B0GH2BTQFJ | SKU: SPC002 | 5 pedidos FBA. Produto visível: Conjunto de 5 Potes de Vidro Redondos (cinza) | ASIN: B0GSWRMDRG | SKU: IMB501T-cinza | 3 pedidos FBA. Dados de estoque FBA, dias de cobertura e alertas de ruptura não estão no pacote.",
+      "leitura": "Os três ASINs geraram pedidos FBA no dia — evidência indireta de estoque positivo durante o período de venda, mas não quantifica cobertura residual. Ruptura intraday ou margem crítica de cobertura não são detectáveis pelos dados disponíveis.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Divergência entre concentração reportada por GMV e concentração calculável por pedidos",
+      "origem": "divergência",
+      "evidencia": "top3_concentration no pacote: 57,9% (por GMV). Calculado por pedidos reais: (11+6+5)/36 = 61,1%. top5_concentration no pacote: 76,3% (por GMV). Calculado por pedidos reais: (11+6+5+4+3)/36 = 80,6%. Em ambos os cortes, a concentração por pedidos é maior que a concentração por GMV.",
+      "leitura": "Se os top 3 produtos concentram 61,1% dos pedidos mas apenas 57,9% do GMV, o ticket médio dos ASINs líderes está abaixo do ticket médio geral da conta. A divergência entre as duas métricas de concentração é a prova granular do mecanismo de compressão identificado pela Estratégica: os ASINs que ganham volume têm ticket unitário abaixo da média, e isso comprime o GMV por pedido sistematicamente enquanto o volume avança. O risco de dependência operacional está subestimado em 3,2 pontos percentuais se a leitura usar apenas o campo top3_concentration por GMV.",
+      "conclusao_granular": "confirma",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "Família IMB501 como segundo maior grupo do dia — concentração oculta pela separação de variações no ranking",
+      "origem": "risco de identificação",
+      "evidencia": "Produto visível: Conjunto de 5 Potes de Vidro Redondos Tampa Preta | ASIN: B0GSWJ91JM | SKU: IMB501P | 6 pedidos | Fonte: orderItems. Produto visível: Conjunto de 5 Potes de Vidro Redondos Tampa Cinza | ASIN: B0GSWRMDRG | SKU: IMB501C | 3 pedidos | Fonte: orderItems. Família IMB501 total: 9 pedidos = 25,0% do volume do dia. Aparecem em 2° e 5° lugar no ranking de variações individuais.",
+      "leitura": "Lendo por família, o top 2 real do dia é: CK4742 (30,6%) e IMB501 (25,0%) — juntos sustentando 55,6% do volume. Se ambas as famílias tiverem qualquer questão simultânea de Buy Box, estoque ou listing, a conta perde mais da metade do volume do dia. A leitura de concentração baseada em variações individuais fragmenta o sinal de dependência real: o risco está em duas famílias, não em um produto líder + cauda distribuída.",
+      "conclusao_granular": "complica",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Discrepância entre items_vendidos (38) e soma de quantities dos top_products (36)",
+      "origem": "divergência",
+      "evidencia": "items_vendidos no pacote: 38. Soma das quantities dos 10 produtos listados: 11+6+5+4+3+2+2+1+1+1 = 36. Diferença: 2 itens não representados na lista de top_products.",
+      "leitura": "Há 2 itens vendidos sem representação na lista entregue — provavelmente cauda de produtos não incluída no top_products ou variações não mapeadas. Impacto em volume é pequeno (2/38 = 5,3% dos itens) e não altera as leituras de concentração dos líderes. Para Slack, a leitura permanece válida. Para rastreio interno, o universo de produtos do dia é ligeiramente maior que o listado.",
+      "conclusao_granular": "complica",
+      "confianca": "média"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "médio",
+    "fontes": [
+      "display_name diverge do raw_title do pedido real para TL6250: raw_title 'Budamix Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas' vs display_name 'Kit 6 Tigelas de Vidro 250ml' — produtos de categoria diferente com nome mapeado incorretamente no catálogo interno",
+      "display_name diverge do raw_title do pedido real para TL250P: raw_title 'Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável' vs display_name 'Tigela de Vidro 250ml'",
+      "EMB01TT e 096 com mapping_status 'mapped_generic_sku' e confidence 'medium' — identificação por fallback de título curto, não por mapeamento revisado",
+      "2 itens em items_vendidos sem correspondência nas quantities de top_products"
+    ],
+    "explicacao": "O risco médio é motivado pela divergência de naming em TL6250 e TL250P — o display_name 'Tigelas de Vidro' não corresponde ao raw_title dos pedidos reais ('Canecas Porcelana Tulipa'), indicando mapeamento incorreto no catálogo interno. Para os top 3 ASINs (CK4742, IMB501P, SPC002), raw_title do pedido e platform_item_id estão presentes com confidence 'high' — a identificação desses líderes é confiável e a confiança para análise granular deles é alta. O risco está localizado em produtos de cauda (TL6250 com 4 pedidos, TL250P com 1 pedido) e não contamina a leitura dos líderes. Confiança máxima para top 3 ASINs: alta. Para TL6250 e TL250P: bloqueio de nome para Slack.",
+    "bloqueio_slack": [
+      "BLOQUEIO PARA SLACK: TL6250 não pode ser citado como 'Kit 6 Tigelas de Vidro' — raw_title do pedido real indica 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas'; usar title real do pedido ou omitir produto nominalmente",
+      "BLOQUEIO PARA SLACK: TL250P não pode ser citado como 'Tigela de Vidro' — raw_title do pedido real indica 'Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável'"
+    ]
+  },
+  "divergencia_entre_fontes": {
+    "divergencias": [
+      {
+        "divergencia": "top3_concentration e top5_concentration no pacote (57,9% e 76,3%) calculados por GMV; concentração calculável por pedidos reais: 61,1% e 80,6%",
+        "resolucao": "Ambas as métricas são válidas com finalidades distintas. Para leitura de dependência operacional por ASIN: cálculo por pedido real prevalece sobre métrica agregada de GMV (regra: top produtos — cálculo a partir dos pedidos reais vence ranking de dashboard quando há divergência).",
+        "impacto": "Concentração real por pedidos (61,1% top 3) é maior que concentração por GMV (57,9%). A leitura de dependência operacional deve usar pedidos reais como fonte primária. O risco de dependência está subestimado em 3,2 pontos percentuais se usar o campo top3_concentration direto para decisão de gestão de ASIN."
+      }
+    ]
+  },
+  "detalhe_condensadora": [
+    {
+      "detalhe": "A família IMB501 (Tampa Preta + Tampa Cinza) totalizou 9 pedidos (25% do volume) e é o segundo maior grupo do dia — mas aparece fragmentada em 2° e 5° lugar no ranking de variações individuais. O risco real de concentração é: CK4742 (30,6%) + IMB501 (25,0%) = 55,6% do volume em duas famílias, não apenas a Jarra Medidora como líder isolado.",
+      "por_que_importa": "Se a mensagem final destacar apenas a Jarra Medidora como concentração dominante, subestima o risco real. Duas famílias sustentam mais da metade do dia — e qualquer evento simultâneo em ambas elimina o volume principal da conta.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "A concentração por pedidos (61,1% top 3) é maior que a concentração por GMV (57,9%) — os ASINs líderes têm ticket abaixo da média da conta. Isso é a prova granular do mecanismo de compressão de ticket: os produtos que crescem em volume têm ticket unitário menor, comprimindo o GMV por pedido enquanto o volume avança.",
+      "por_que_importa": "A Condensadora não deve tratar o ticket comprimido de R$34,39 como fenômeno separado do volume forte. São o mesmo mecanismo — e a evidência está na divergência entre concentração por pedido e por GMV. Sem esse dado, a compressão de ticket parece coincidência; com ele, é estrutural.",
+      "confianca": "média"
+    },
+    {
+      "detalhe": "TL6250 está mapeado como 'Kit 6 Tigelas de Vidro 250ml' no display_name, mas o raw_title do pedido real é 'Budamix Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Café Chá Xícara Presente Casa Cozinha' — produto de categoria diferente. BLOQUEIO PARA SLACK já registrado.",
+      "por_que_importa": "Se a Condensadora usar o display_name do catálogo interno como referência, cita produto errado. O produto com 4 pedidos no dia (4° lugar) é Canecas Porcelana Tulipa, não Tigelas de Vidro. A distinção importa para qualquer leitura de mix ou categoria.",
+      "confianca": "alta"
+    }
+  ],
+  "memoria_interna": {
+    "asins_do_dia": {
+      "CK4742": "B0G2CWWMGK",
+      "IMB501P": "B0GSWJ91JM",
+      "SPC002": "B0GH2BTQFJ",
+      "TL6250": "B0GFPQD4G9",
+      "IMB501C": "B0GSWRMDRG",
+      "914C": "B0G2SV7NR1",
+      "EMB01TT": "B0G61FJG5S",
+      "096": "B0FB124QTV",
+      "TL250P": "B0GGTY2BLT",
+      "KIT2YW320": "B0FB17CGD5"
+    },
+    "distribuicao_horaria_completa": {
+      "0": 1,
+      "1": 2,
+      "3": 1,
+      "9": 5,
+      "10": 1,
+      "12": 3,
+      "13": 3,
+      "14": 1,
+      "16": 3,
+      "17": 2,
+      "18": 2,
+      "19": 2,
+      "20": 2,
+      "21": 3,
+      "22": 2,
+      "23": 3
+    },
+    "concentracao_por_pedidos": {
+      "top1_CK4742_pct": 30.6,
+      "top2_IMB501P_pct": 16.7,
+      "top3_SPC002_pct": 13.9,
+      "top4_TL6250_pct": 11.1,
+      "top5_IMB501C_pct": 8.3,
+      "familia_IMB501_total_pct": 25.0,
+      "top3_por_pedidos_pct": 61.1,
+      "top5_por_pedidos_pct": 80.6
+    },
+    "items_nao_identificados_no_pacote": 2,
+    "divergencia_naming_confirmada": [
+      "TL6250: display_name=Kit 6 Tigelas de Vidro 250ml | raw_title=Budamix Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Café Chá Xícara Presente Casa Cozinha",
+      "TL250P: display_name=Tigela de Vidro 250ml | raw_title=Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável Ideal para Chocolate Quente e Café Expresso Preto"
+    ],
+    "itens_em_bloqueio_slack": [
+      "TL6250 — citar apenas como Canecas Porcelana Tulipa Lisa 250ml ou omitir",
+      "TL250P — citar apenas como Canecas de Porcelana Tulipa 250ml ou omitir"
+    ]
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

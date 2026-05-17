@@ -1,0 +1,82 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem está factualmente correta, estruturalmente conforme, com análise fiel à Condensadora, bloqueios de produto respeitados no conteúdo e prioridades bem fundamentadas. O gate 8 falhou por incompletude do log: três bloqueios explícitos da Condensadora (status de Buy Box, cobertura FBA e formulação de crescimento não incondicional) foram respeitados no conteúdo da mensagem mas não registrados no campo 'Respeito de bloqueios' da Slack Writer, violando a regra que exige log para cada bloqueio da Granular/Condensadora. Regra de agregação aplicada: 3 Maiores em gate único (Gate 8) + 1 Menor (Gate 5) não atingem o limiar de 2+ Maiores em gates diferentes exigido para bloqueio; resultado é APROVADO COM RESSALVA.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "FALHA",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 3,
+    "maiores_gates_distintos": 1,
+    "menores": 1,
+    "regra_agregacao_aplicada": "3 Maiores em 1 gate distinto (Gate 8) + 1 Menor em Gate 5. Regra aplicada: 1 Maior + qualquer número de Menores → APROVADO COM RESSALVA. Limiar de bloqueio (2+ Maiores em gates diferentes) não atingido."
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Maior",
+      "gate": "8 — Bloqueios, confiança e logs",
+      "texto_atual": "Log 'Respeito de bloqueios' cobre apenas TL6250 e TL250P. Bloqueio da Condensadora — 'Status de Buy Box de qualquer ASIN — dado não disponível no pacote; não afirmar nem implicar nenhuma condição de Buy Box' — ausente do log.",
+      "texto_esperado": "Entrada no log: 'Item bloqueado: afirmação de status de Buy Box | Origem: Condensadora | Motivo: dado não disponível no pacote | Tratamento: nenhuma afirmação de Buy Box na mensagem; Buy Box citada apenas como pré-requisito de checagem e risco hipotético | Aparece na mensagem final: não como afirmação de estado'",
+      "estado_atual": "Bloqueio existe em 'o_que_nao_pode_ir_para_slack' da Condensadora (item 3) mas não aparece no campo 'Respeito de bloqueios' da Slack Writer",
+      "estado_esperado": "Cada bloqueio da Granular/Condensadora deve aparecer no log com origem, motivo, tratamento aplicado e presença ou ausência confirmada na mensagem final",
+      "regra_violada": "Gate 8 — Passo 2: 'Cada bloqueio da Granular/Condensadora deve aparecer no log'; Passo 4: 'Bloqueio existe na Granular/Condensadora mas não aparece no log → BLOQUEIO'",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Maior",
+      "gate": "8 — Bloqueios, confiança e logs",
+      "texto_atual": "Log 'Respeito de bloqueios' cobre apenas TL6250 e TL250P. Bloqueio da Condensadora — 'Cobertura FBA dos top ASINs — dado não disponível; não afirmar suficiência ou risco de ruptura de estoque' — ausente do log.",
+      "texto_esperado": "Entrada no log: 'Item bloqueado: afirmação de cobertura FBA | Origem: Condensadora | Motivo: dado não disponível no pacote | Tratamento: FBA citado apenas como dado objetivo de fulfillment (100% FBA na VISÃO); suficiência de estoque não afirmada | Aparece na mensagem final: não como afirmação de suficiência'",
+      "estado_atual": "Bloqueio existe em 'o_que_nao_pode_ir_para_slack' da Condensadora (item 4) mas não aparece no campo 'Respeito de bloqueios' da Slack Writer. Conteúdo da mensagem respeitou o bloqueio.",
+      "estado_esperado": "Cada bloqueio deve aparecer no log com origem, motivo, tratamento e confirmação de presença correta na mensagem final",
+      "regra_violada": "Gate 8 — Passo 2: 'Cada bloqueio da Granular/Condensadora deve aparecer no log'; Passo 4: 'Bloqueio existe na Granular/Condensadora mas não aparece no log → BLOQUEIO'",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Maior",
+      "gate": "8 — Bloqueios, confiança e logs",
+      "texto_atual": "Log 'Respeito de bloqueios' cobre apenas TL6250 e TL250P. Bloqueio da Condensadora — 'Crescimento de volume tratado como positivo incondicional — usar formulação que preserve a ressalva' — ausente do log.",
+      "texto_esperado": "Entrada no log: 'Item bloqueado: crescimento de volume como positivo incondicional | Origem: Condensadora | Motivo: sem Buy Box validada e sem mix saudável confirmado, crescimento é real mas não qualificado | Tratamento: formulação da Análise usa conectivo adversativo (\"mas não se traduziu em crescimento proporcional de GMV\") e \"A conta cresce por quantidade, ainda não por qualidade de mix\" | Aparece na mensagem final: ressalva preservada'",
+      "estado_atual": "Bloqueio existe em 'o_que_nao_pode_ir_para_slack' da Condensadora (item 5) mas ausente do log. Conteúdo da mensagem respeitou o bloqueio com formulação correta que preserva a ressalva.",
+      "estado_esperado": "Cada bloqueio deve aparecer no log com origem, motivo, tratamento e confirmação de que a formulação com ressalva foi aplicada",
+      "regra_violada": "Gate 8 — Passo 2: 'Cada bloqueio da Granular/Condensadora deve aparecer no log'; Passo 4: 'Bloqueio existe na Granular/Condensadora mas não aparece no log → BLOQUEIO'",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "5 — Top Produtos",
+      "texto_atual": "ASIN omitido uniformemente para todos os produtos, incluindo EMB01TT (Saco Plástico PP 78 Unidades, confidence medium, mapping_status mapped_generic_sku) e 096 (Kit Conjunto 3 Potes Vidro Hermético, confidence medium, mapping_status mapped_generic_sku).",
+      "texto_esperado": "Gate 5 Amazon: 'ASIN aparece só quando necessário: título ambíguo ou risco médio de identificação'. Granular classificou risco_identificacao da conta como 'médio' e listou EMB01TT e 096 entre os fatores de risco por mapeamento via fallback de título curto, não por mapeamento revisado.",
+      "estado_atual": "Slack Writer justificou omissão de ASIN para todos os produtos com argumento de que 'todos os top ASINs têm título real identificável'. Argumentação defensável — raw_titles de EMB01TT e 096 são concretos e não-ambíguos — mas inconsistente com o nível de risco médio classificado explicitamente pela Granular para esses itens. A decisão de formatação registrou o critério geral, mas não endereçou especificamente esses dois produtos de confidence medium.",
+      "estado_esperado": "Log de 'Decisões de formatação' deveria conter entrada específica para EMB01TT e 096 explicando por que seus títulos são suficientemente identificáveis apesar de confidence medium, ou alternativamente exibir o ASIN para esses dois itens de cauda.",
+      "regra_violada": "Gate 5 Amazon: 'ASIN aparece só quando necessário: título ambíguo ou risco médio de identificação'. Menor porque não induz erro para Leonardo (títulos são reconhecíveis), mas a decisão poderia estar mais explicitamente documentada dado o risco médio da Granular.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "Log 'Respeito de bloqueios' da Slack Writer deve cobrir todos os itens de 'o_que_nao_pode_ir_para_slack' da Condensadora nos próximos ciclos, não apenas bloqueios de nome/produto nominal. Os itens de dado indisponível (Buy Box, FBA) e de formulação (crescimento não incondicional) são bloqueios funcionais que exigem registro mesmo quando respeitados no conteúdo.",
+    "Para produtos com confidence 'medium' e mapping_status 'mapped_generic_sku', incluir entrada explícita no log de 'Decisões de formatação' justificando omissão de ASIN por identificabilidade do título, mesmo quando a Granular classificou risco médio geral para a conta.",
+    "Weekly e monthly da conta Amazon estão com templates vazios — hoje é a primeira leitura com memória ativa. Nas próximas 2-3 leituras, os padrões de ticket e concentração de família devem começar a preencher a memória para que o QA possa validar consistência com tese acumulada."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "Gate 8 — log incompleto (3 Maiores, 1 gate): os três bloqueios da Condensadora relativos a Buy Box, cobertura FBA e formulação de crescimento foram todos respeitados no conteúdo da mensagem. O risco de induzir erro em Leonardo é zero. O problema é exclusivamente de rastreabilidade interna do pipeline — o log não documenta como cada restrição da Condensadora foi tratada pela Slack Writer. Melhoria sistêmica para o próximo ciclo: expandir o template do campo 'Respeito de bloqueios' para cobrir todos os 5 itens de 'o_que_nao_pode_ir_para_slack', não apenas os bloqueios de produto nominal.",
+    "Gate 5 — ASIN em cauda com medium confidence (1 Menor): EMB01TT e 096 totalizam 3 pedidos (8,3% do dia) com títulos identificáveis a partir do raw_title. O risco de confusão operacional para Leonardo é baixo. Melhoria: documentar no log a decisão específica para esses dois produtos, distinguindo 'risco médio de mapeamento metodológico' de 'ambiguidade de título' como critério de dispensa de ASIN.",
+    "Análise de consistência cross-gate: a omissão de TL250P (1 pedido, display_name bloqueado) foi corretamente documentada e autorizada pela Condensadora. A substituição de TL6250 pelo título real do pedido ('Kit 6 Canecas Porcelana Tulipa Lisa 250ml') foi corretamente registrada e a mensagem reflete o título real. Os dois únicos bloqueios de produto da Granular/Condensadora foram tratados e documentados adequadamente — a falha de log está exclusivamente nos três itens de dado indisponível e formulação."
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

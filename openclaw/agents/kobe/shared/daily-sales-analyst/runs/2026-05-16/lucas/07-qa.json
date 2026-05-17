@@ -1,6 +1,6 @@
 {
-  "resultado_qa": "APROVADO",
-  "motivo": "Ressalvas do preview original foram corrigidas diretamente nos artefatos: Top Produtos Shopee reordenado e consolidado corretamente, Canequinhas ML substituídas por formulação agregada segura, condições da Condensadora preservadas, logs de bloqueios Amazon completos e decisões de formatação documentadas. Sem críticos, maiores ou menores remanescentes nas ressalvas conhecidas.",
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "Todos os 11 gates foram avaliados sem violações críticas ou maiores. A mensagem é fiel à fonte analítica (06b-shopee-consolidator), respeita todos os bloqueios da Condensadora e Granular, tem estrutura Slack correta com 'ANÁLISE DAS CONTAS' aceito por existência da 6B, destinatário e plataforma corretos, Top Produtos com variações separadas e números verificados, e prioridades com condição e gatilho preservados. Foram identificados 3 problemas menores no Gate 11: valores monetários aproximados em progressões de ticket (R$ 53, R$ 60, R$ 72 na Oficial 2 e R$ 52, R$ 65-67 na Shop 3) sem casas decimais, e range percentual '-30% a -40%' sem decimal — todos herdados da 06b-shopee-consolidator, sem risco de induzir erro dado o contexto de aproximação. Regra de agregação aplicada: 0 Críticos + 0 Maiores + 3 Menores → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -14,22 +14,61 @@
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "OK"
+    "gate_11_padrao_numerico_formatacao": "RESSALVA"
   },
   "contagem_severidade": {
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 0,
-    "regra_agregacao_aplicada": "0 problemas remanescentes → APROVADO"
+    "menores": 3,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 3 Menores (não sistêmicos) → APROVADO COM RESSALVA"
   },
-  "problemas_encontrados": [],
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "11",
+      "texto_atual": "A progressão de ticket nas janelas (60d R$ 53 → 30d R$ 60 → hoje R$ 72)",
+      "texto_esperado": "60d R$ 53,24 → 30d R$ 59,73 → hoje R$ 71,93 — ou ao menos R$ 53,00 → R$ 60,00 → R$ 72,00 para manter o padrão de moeda com decimais",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Gate 11: moeda no formato R$ 1.234,56; ticket médio no formato de moeda. Valores aproximados de ticket na progressão da Oficial 2 sem casas decimais. Origem: herdado da 06b-shopee-consolidator.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "11",
+      "texto_atual": "ticket comprimindo para R$ 52 contra média histórica de R$ 65-67",
+      "texto_esperado": "R$ 52,03 contra média histórica de R$ 65,00–R$ 67,00 (ou valores com decimais)",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Gate 11: moeda no formato R$ 1.234,56. Valores de ticket da Shop 3 sem casas decimais. Origem: herdado da 06b-shopee-consolidator.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "11",
+      "texto_atual": "A queda de patamar Shopee é transversal (-30% a -40% vs 30d em todas as três contas)",
+      "texto_esperado": "-30,0% a -40,0% vs 30d",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Gate 11: percentuais com vírgula e 1 casa quando aparecerem. Range percentual aproximado sem decimais no consolidado. Origem: herdado da 06b-shopee-consolidator.",
+      "bloqueia_envio": false
+    }
+  ],
   "correcoes_obrigatorias_antes_envio": [],
-  "ressalvas_memoria_interna": [],
-  "ressalvas_auditoria_nao_bloqueante": [],
+  "ressalvas_memoria_interna": [
+    "Os 3 Menores do Gate 11 têm origem na 06b-shopee-consolidator que já usava aproximações sem decimais em progressões de ticket e ranges percentuais. A correção estrutural deve ocorrer na camada 6B (Shopee Consolidator), não apenas na Slack Writer. Considerar padronizar uso de decimais em progressões de ticket e ranges percentuais na 6B para ciclos futuros.",
+    "Top Produtos verificado numericamente contra dados brutos: IMB501P 31 (Store), CK4742 11 (Store), CTL002 11 (Store 6 + Conta 2 4 + Conta 3 1), KIT2YW800SQ 9 (Store 2 + Conta 3 7), KIT4YW800SQ 8 (Conta 2 7 + Conta 3 1), KIT6CAR200 5 (Conta 3), IMB501C 5 (Conta 2) — todos corretos."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "Fidelidade total à 06b-shopee-consolidator confirmada: 4 analysis_lines na 6B = 4 parágrafos na seção ANÁLISE DAS CONTAS. Tese central, conectivos, verbos modais, termos analíticos-chave e enquadramentos preservados em todos os 4 segmentos.",
+    "Substituição de SKUs crus por nomes de produto ('IMB501P' → 'Conjunto 5 Potes Redondos Tampa Preta'; 'KIT4YW800SQ' → 'Kit 4 Potes de Vidro 800ml Quadrado') e substituição de referência de camada ('pela Granular' → 'no detalhamento do dia') são decisões de formatação corretas, devidamente registradas no log da Slack Writer, sem alteração de sentido ou tese.",
+    "Variações IMB501P (Tampa Preta) e IMB501C (Tampa Cinza) corretamente separadas no ranking Top Produtos — não foram esmagadas em família genérica IMB501. Regra de variação vendável respeitada. IMB501P aparece com (Store), IMB501C aparece com (Conta 2) — corretos por volume de uma conta cada.",
+    "Confiança preservada: linguagem de indício ('sugere mix shift gradual', 'o sinal ainda é frágil', 'se o padrão não se confirmar') mantida intacta da 6B. Nenhuma hipótese foi convertida em fato.",
+    "Todos os 6 bloqueios da Condensadora estão no log da Slack Writer com origem, motivo e tratamento, e nenhum aparece nominalmente na mensagem final. Cruzamento de bloqueios confirmado.",
+    "VISÃO correta: dado objetivo sem interpretação; análise e comparação temporal contidas na seção ANÁLISE DAS CONTAS conforme origem da Condensadora/6B."
+  ],
   "llm_used": true,
   "model": "sonnet",
-  "fallback": false,
-  "manual_correction_applied_at_utc": "2026-05-17T19:47:37.246668+00:00",
-  "manual_correction_scope": "Correção das ressalvas específicas do preview 2026-05-16 solicitada por Pedro em 2026-05-17. Nenhum envio externo realizado."
+  "fallback": false
 }

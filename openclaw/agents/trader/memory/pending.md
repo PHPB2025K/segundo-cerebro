@@ -1,12 +1,16 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-15_
+_Atualizado: 2026-05-16_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
-- [ ] Daily Sales Report v2: validar pós-promoção técnica LLM dos três recipients (Lucas/Shopee, Yasmin/ML, Leonardo/Amazon); envio real segue bloqueado até autorização explícita de Pedro/Kobe.
+- [ ] Daily Sales Report v2: validar pós-promoção técnica LLM dos três recipients (Lucas/Shopee, Yasmin/ML, Leonardo/Amazon); preview de 15/05/2026 BRT ficou aprovado com ressalvas nos três recipients, e envio real segue bloqueado até autorização explícita de Pedro/Kobe.
 - [ ] Monitorar primeira execução real/autorizada do wrapper v2 e garantir que análise por conta use memória diária/semanal/mensal, nome comercial e sem SKU cru; se LLM falhar, bloquear recipient em vez de fallback.
+- [ ] Corrigir cadeia de formatação do Daily Sales v2 para percentuais com 1 casa decimal e valores monetários com centavos em texto analítico.
+- [ ] Tornar obrigatório no log da Slack Writer o registro formal de todos os itens “não pode ir para Slack”, inclusive regras gerais e restrições de inferência.
+- [ ] Revisar mapeamento/nome comercial Amazon quando o display name adiciona atributo não verificável pelo título real do pedido.
+- [ ] Monitorar Shopee Conta 2 por queda relevante de pedidos vs média 30d e recorrência de concentração nos top produtos das contas Shopee.
 
 ### Relatório mensal
 - [ ] **Relatório mensal abril — reexecutar job direto do Trader**: validar geração dos 3 artefatos finais, corrigir caminho Shopee e avisar conclusão/falha no tópico Marketplaces do Telegram.

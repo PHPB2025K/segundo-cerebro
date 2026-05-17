@@ -61,3 +61,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 ### [ESTRATÉGICA] Daily Sales v2: fallback determinístico não pode maquiar falha LLM (2026-05-15)
 **Contexto:** Na promoção técnica do Slack Writer LLM + QA Gate LLM para Lucas/Shopee, Yasmin/Mercado Livre e Leonardo/Amazon, os três recipients foram aprovados com ressalvas, mas o envio real permaneceu bloqueado.
 **Lição:** Quando LLM for caminho principal aprovado, falha de camada LLM deve bloquear o recipient; fallback determinístico serve para validação mecânica/segurança, não para produzir aparência de aprovação.
+
+### [TÁTICA] Daily Sales v2: QA deve bloquear propagação de formato/log incompleto entre camadas (2026-05-16)
+**Contexto:** Preview de 15/05/2026 BRT foi aprovado com ressalvas nos três recipients, com problemas menores herdados da cadeia: percentuais sem 1 casa decimal, moeda em texto sem centavos, mudanças modais sem registro e itens “não pode ir para Slack” sem log formal completo.
+**Lição:** A Condensadora/6B e a Slack Writer precisam padronizar números e registrar todos os bloqueios/restrições analíticas antes do QA final. Ressalva menor não bloqueia envio, mas deve virar correção de prompt para não acumular degradação sistêmica.
+**Expira:** 2026-06-15

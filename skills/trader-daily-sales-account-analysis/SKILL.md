@@ -69,7 +69,7 @@ A Camada Condensadora deve entregar:
 
 Para o Slack, `🔍 ANÁLISE DA CONTA` deve ser o **ouro condensado**: no máximo 3 insights curtos, fáceis de entender, sem despejar métricas ou comparativos numéricos. Os números ficam na análise interna; o Slack recebe apenas a interpretação inteligente do que eles significam. Para Shopee, os 3 insights devem consolidar as 3 contas, não repetir 3 insights por conta.
 
-Diretriz Pedro 2026-05-17: elevar densidade interpretativa. A análise final para Slack não pode ser resumo nem repetição; deve ser a leitura sênior que simplifica o complexo, transmite domínio da conta e conecta comportamento histórico com projeção plausível. Evitar mencionar métricas, números ou dados já apresentados nas outras seções do report; o leitor já viu os dados e precisa do significado.
+Diretriz Pedro 2026-05-17 corrigida: a análise final para Slack deve continuar no mesmo formato e com a mesma profundidade. A melhoria é simplificar a comunicação: frases mais diretas, linguagem operacional e leitura fácil. Não transformar em tese abstrata; manter números quando ajudam a clareza e remover apenas repetição desnecessária.
 
 A análise também deve conter:
 - hipóteses anteriores lidas;

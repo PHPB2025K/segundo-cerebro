@@ -46,18 +46,18 @@ Para cada conta, priorize o que muda ação hoje:
 
 Se algo não muda ação, não entra no Slack.
 
-## Diretriz de análise sênior — Pedro 2026-05-17
+## Diretriz de comunicação simples — Pedro 2026-05-17
 
-A seção `ANÁLISE DA CONTA` / `ANÁLISE DAS CONTAS` deve ser a destilação final da investigação. Não é resumo, não é repetição de métrica e não é descrição do Top Produtos.
+A seção `ANÁLISE DA CONTA` / `ANÁLISE DAS CONTAS` deve continuar no mesmo formato aprovado. A melhoria necessária é apenas de comunicação: explicar a mesma análise de forma mais simples e fácil de entender.
 
-O leitor já viu os dados. A análise deve entregar o raciocínio que só aparece depois das camadas de investigação:
-- simplificar o complexo em uma tese clara;
-- transmitir domínio da conta;
-- explicar o que o comportamento significa, não apenas o que aconteceu;
-- conectar histórico com projeção plausível, risco ou continuidade;
-- evitar números, pedidos, GMV, ticket, percentuais e rankings já apresentados, salvo quando indispensáveis para sustentar a tese.
+A análise deve:
+- manter a estrutura atual;
+- preservar a mesma tese e a mesma profundidade;
+- usar frases mais diretas;
+- traduzir termos técnicos em linguagem operacional;
+- manter números quando eles ajudam a clareza e remover apenas repetição desnecessária.
 
-Bloquear e reescrever se a análise parecer resumo automático ou repetir `VISÃO`/`TOP PRODUTOS` com outra redação.
+Bloquear e reescrever se a análise ficar abstrata, difícil de entender ou parecer “consultoria” em vez de orientação prática para Lucas/Yasmin/Leonardo.
 
 ## Regras por responsável
 ### Lucas — Shopee
@@ -99,7 +99,7 @@ Bloquear e reescrever se a análise parecer resumo automático ou repetir `VISÃ
 ## Régua mínima de mensagem aceitável
 Bloquear e reescrever se a mensagem parecer resumo automático. Cada mensagem precisa conter:
 - diagnóstico que explique **causa provável + evidência + risco**;
-- análise com leitura sênior: tese + implicação + comportamento provável, não descrição numérica;
+- análise com comunicação simples: mesma tese, frases diretas e consequência prática clara;
 - prioridades com **ação + motivo + critério de acompanhamento**;
 - produtos por **nome comercial**, nunca SKU;
 - título de seção com emoji + uppercase e rich_text bold+underline;

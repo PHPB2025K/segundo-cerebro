@@ -77,7 +77,7 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 - O relatório deve consolidar vendas/pedidos do dia anterior completo (00:00–23:59 BRT) de **Mercado Livre**, **Shopee 3 contas**, **Amazon BR** e pedidos do Bling Matriz como canal nomeado exatamente **Atacado - GB Matriz**.
 - O report deve ser conciso, estilo Daily Briefing, focado em vendas geradas/pedidos do dia; não deve misturar settlement, extrato financeiro ou DRE com faturamento de pedidos.
 - Se alguma fonte falhar, o Trader deve gerar relatório parcial, marcar a fonte como indisponível e não estimar números.
-- Diretriz Pedro 2026-05-17 para Daily Sales Slack: a seção de análise deve ser a leitura sênior/destilação final, não resumo. O leitor já viu os dados; a análise deve simplificar o complexo, transmitir domínio da conta, entregar interpretação profunda e conectar histórico com projeção plausível, evitando repetir métricas, números ou dados já apresentados em Visão/Top Produtos.
+- Diretriz Pedro 2026-05-17 corrigida para Daily Sales Slack: manter o mesmo formato, a mesma lógica e a mesma profundidade das análises; melhorar apenas a comunicação, deixando o texto mais simples, direto e fácil de entender. Não transformar a seção em tese abstrata, não mudar estrutura aprovada e não remover números que ajudam a clareza.
 
 ## 2026-05-09 — Tom de comunicação do Pedro em qualquer canal
 

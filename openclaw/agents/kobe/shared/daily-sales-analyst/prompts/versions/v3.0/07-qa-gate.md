@@ -131,20 +131,20 @@ Bloquear como **Crítico** quando qualquer uma destas conversões acontecer:
 - 7.7: conferir que Slack Writer não rediagnosticou.
 - 7.8: manter QA LLM como gate de auditoria e QA determinístico como trava mecânica posterior.
 
-### Diretriz Pedro 2026-05-17 — densidade interpretativa
+### Diretriz Pedro 2026-05-17 — comunicação simples sem mudar formato
 
-A seção `🔍 ANÁLISE DA CONTA` deve ser validada como leitura sênior, não como resumo. O leitor já viu dados objetivos e Top Produtos; a análise precisa entregar tese, implicação e entendimento profundo.
+A seção `🔍 ANÁLISE DA CONTA` deve manter o mesmo formato, a mesma lógica e a mesma profundidade. A QA deve validar principalmente se a comunicação ficou simples, clara e fácil de entender para o responsável da conta.
 
 Marcar como **Maior** quando a análise:
-- repetir pedidos, GMV, ticket, percentuais, ranking ou produtos já apresentados em outras seções sem transformar isso em interpretação;
-- soar como resumo automático do dia;
-- descrever “o que aconteceu” sem explicar “o que isso significa”;
-- não conectar o comportamento do dia com histórico, continuidade provável, risco ou próximo enquadramento;
-- usar métrica como abertura/manchete do insight.
+- usar frase longa ou abstrata demais, exigindo releitura;
+- transformar a interpretação em linguagem de consultoria em vez de operação;
+- trocar clareza por “sofisticação”;
+- remover número ou referência que era necessário para o responsável entender a ação;
+- mudar o formato aprovado da seção.
 
-Marcar como **Crítico** quando a seção inteira for majoritariamente descritiva e não houver leitura sênior suficiente para orientar o responsável.
+Marcar como **Crítico** quando a seção ficar difícil de entender como um todo ou quando a busca por densidade mudar a lógica/estrutura aprovada do report.
 
-Critério de aprovação: cada insight da análise deve sobreviver sem depender de repetir os números. Ele pode conter métrica mínima se indispensável, mas a frase principal precisa ser tese de negócio.
+Critério de aprovação: cada insight deve dizer a mesma coisa da Condensadora, no mesmo formato, mas em linguagem mais simples e operacional.
 
 ### Limite de atuação
 
@@ -167,7 +167,7 @@ Use apenas quando:
 - estrutura Slack tem exatamente as 6 seções aprovadas;
 - Top Produtos está seguro;
 - análise está fiel à Condensadora;
-- análise entrega densidade interpretativa, sem repetir visão/top produtos como resumo numérico;
+- análise mantém o formato aprovado e comunica a interpretação de forma simples, direta e fácil de entender;
 - prioridades vêm da Condensadora;
 - bloqueios foram respeitados;
 - logs da Slack Writer são coerentes;

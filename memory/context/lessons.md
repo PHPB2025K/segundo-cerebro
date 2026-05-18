@@ -742,3 +742,5 @@ _Consolidação Profunda executada em 2026-05-15 04:00 BRT._
 **Contexto:** Pedro corrigiu que Top Produtos não pode consolidar família inteira quando existem variações vendáveis relevantes, como IMB501P/IMB501C/IMB501V.
 **Lição:** Em relatório operacional, consolidar filhos/listings por variação vendável/SKU pai da variação. Família comercial ampla demais distorce ação, estoque, compra e responsabilidade do analista.
 **Expira:** 2026-06-14
+
+- [TÁTICA] 2026-05-18 — RH: guard de WhatsApp/follow-up não pode depender só de prompt ou decisão registrada. Todo fluxo que responde inbound ou manda follow-up precisa de pré-checagem determinística de cobertura do caso aberto antes de chamar agente/LLM: se ajuste, justificativa ou batida real já cobre a pendência, fechar/limitar o caso e nunca cobrar item coberto.

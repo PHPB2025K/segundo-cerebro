@@ -1,6 +1,11 @@
 # Lições — Fisco
 
-_Atualizado: 2026-05-16_
+_Atualizado: 2026-05-17_
+
+## 2026-05-17
+- Persistência do HTTP 403 da Filial por três dias confirma bloqueio operacional de cadastro/vínculo/token; qualquer fluxo Filial → Simples deve continuar parado até correção formal.
+- A automação do refresh ainda tem dois riscos independentes: falha fiscal-operacional da Filial e bloqueio eventual por allowlist, que pode impedir até a checagem.
+- Alerta WhatsApp permanece falhando com HTTP 403 quando o refresh detecta erro, então a visibilidade automática do problema não é confiável.
 
 ## 2026-05-16
 - Repetição do HTTP 403 da Filial em todas as execuções observadas confirma bloqueio persistente de cadastro/vínculo/token; não tratar como oscilação de API.

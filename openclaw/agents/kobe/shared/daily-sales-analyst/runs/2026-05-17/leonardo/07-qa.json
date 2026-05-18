@@ -1,0 +1,63 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem passou em todos os gates críticos sem falha. Dois problemas menores foram identificados: (1) o percentual '36%' na seção ANÁLISE DA CONTA não segue o padrão aprovado de vírgula e 1 casa decimal — o valor real é 16/44 = 36,4% — Gate 11; (2) o log de decisões de formatação registra 'quebra de frase com ponto aplicada ao segundo insight da ANÁLISE', mas o texto da mensagem é idêntico ao da Condensadora, sem quebra visível — inconsistência entre log e saída real — Gate 8. Nenhum Crítico. Nenhum Maior. Regra de agregação aplicada: 0 Críticos + 0 Maiores + 2 Menores = APROVADO COM RESSALVA.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "RESSALVA",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "RESSALVA"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 2 Menores → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "a Jarra Medidora de Vidro 500ml sustentou 36% dos pedidos",
+      "texto_esperado": "a Jarra Medidora de Vidro 500ml sustentou 36,4% dos pedidos",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Percentuais com vírgula e 1 casa decimal quando aparecerem. O valor exato é 16/44 = 36,36%, que arredondado a 1 casa é 36,4%. A forma '36%' suprime a casa decimal exigida pelo padrão aprovado. O erro é herdado da Condensadora — que também usou 36% — mas a forma final na mensagem Slack deve respeitar o padrão numérico independentemente da origem.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "8 — Bloqueios, confiança e logs da Slack Writer",
+      "texto_atual": "Decisão de formatação registrada: 'Quebra de frase no segundo insight da ANÁLISE — motivo: frase original era longa; aplicada quebra com ponto, mantendo todos os termos e a tese intacta'",
+      "texto_esperado": "Log coerente com o output real: ou evidência de quebra na mensagem (ponto separando duas sentenças), ou registro no log de que o texto foi preservado como recebido sem quebra",
+      "estado_atual": "O bullet 2 da ANÁLISE é textualmente idêntico ao insight 2 da Condensadora; nenhuma quebra com ponto é visível — a frase ainda usa '—' como único divisor, mesma estrutura da Condensadora",
+      "estado_esperado": "Se quebra foi aplicada, ela deve ser visível na mensagem; se não foi aplicada, o log não deve afirmar que foi",
+      "regra_violada": "Decisão de formatação registrada deve ser coerente com a mensagem final. Divergência entre o que o log afirma ter feito e o que a mensagem mostra é inconsistência documental no Gate 8, mesmo que o conteúdo analítico esteja correto.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "Display_name incorreto de TL250B ('Tigela de Vidro 250ml') e TL250P ('Tigela de Vidro 250ml') persiste no catálogo interno — produto real é Kit 6 Canecas de Porcelana Tulipa 250ml; erro confirmado por raw_title e ASIN dos pedidos reais; deve ser corrigido na fonte para evitar contaminação em ciclos futuros.",
+    "TL250R com mapeamento por fallback (confidence medium, mapped_generic_sku) continua requerendo tratamento de cautela até revisão do mapeamento para reviewed_sku_display_map.",
+    "As três perguntas operacionais críticas — cancelamentos por ASIN, Buy Box da Jarra Medidora (B0G2CWWMGK), cobertura FBA dos Top 3 — não foram respondidas neste ciclo por ausência de dado no pacote. Leonardo deve consultar Seller Central e trazer os dados para o próximo ciclo; sem isso a análise operacional do próximo dia parte da mesma lacuna.",
+    "Hipótese de ganho de patamar inaugurada neste ciclo (44 pedidos, R$ 2.091,77, +93% vs mesmos sábados). Próximos 2–3 dias são determinantes: volume acima de 35 pedidos confirma; retorno à banda 28–32 encerra a hipótese."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "Os três bullets de ANÁLISE são cópias quase literais dos insights da Condensadora, sem simplificação adicional de linguagem. A Diretriz Pedro 2026-05-17 orienta que cada insight diga a mesma coisa da Condensadora 'em linguagem mais simples e operacional'. O segundo bullet em particular — 'o dia é mais coerente com uma aceleração em curso do que com um evento aleatório' — usa estrutura analítica em vez de operacional direta. Não constitui violação objetiva pois tese, conectivo e todos os termos-chave foram preservados com fidelidade total, mas ciclos futuros da Slack Writer devem incorporar simplificação ativa em vez de cópia literal quando a Condensadora entregar linguagem densa.",
+    "A omissão de TL250B (3 pedidos) desloca K6CAN250 para posição 4 com volume igual ao do produto bloqueado. Sem risco na mensagem atual, mas quando o display_name de TL250B for corrigido na fonte, o produto voltará ao ranking — o posicionamento do Kit 6 Canecas 250ml pode mudar na próxima aparição. Atenção na Granular do próximo ciclo.",
+    "Prioridade 2 ('registrar e acompanhar') não inclui menção explícita de 'Escalar se: não aplicável' — a Condensadora marcou esse campo como não aplicável e a Slack Writer não o registrou na mensagem. Comportamento correto (não há o que escalar), mas o log de decisões poderia ter documentado explicitamente que a ausência de escalonamento foi intencional e não omissão."
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

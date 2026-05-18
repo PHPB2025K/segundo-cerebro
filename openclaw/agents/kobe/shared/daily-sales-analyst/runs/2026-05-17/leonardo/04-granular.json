@@ -1,0 +1,186 @@
+{
+  "layer": "04-granular",
+  "date": "2026-05-17",
+  "recipient": "Leonardo",
+  "platform": "amazon",
+  "respostas_operacional": [
+    {
+      "pergunta": "Os 2 cancelamentos estão concentrados em qual ASIN?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote contém apenas o total de cancelamentos (2) nas métricas agregadas da conta. Não há registro de cancelamentos por pedido, por ASIN ou por produto nos dados disponíveis. Os top_products listam apenas pedidos válidos sem discriminar cancelamentos por SKU ou ASIN.",
+      "leitura": "Impossível determinar se os 2 cancelamentos estão concentrados na Jarra Medidora de Vidro 500ml (B0G2CWWMGK) ou distribuídos por outros ASINs. A hipótese da Operacional — cancelamento concentrado no produto líder como sinal de fragilidade FBA — não pode ser confirmada nem descartada com os dados disponíveis.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "A Jarra Medidora de Vidro 500ml (B0G2CWWMGK) manteve Buy Box estável ao longo do dia?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "Nenhum campo de Buy Box presente no pacote — nem por ASIN, nem agregado. Produto em questão: Jarra Medidora de Vidro 500ml | ASIN: B0G2CWWMGK | SKU interno: CK4742 | raw_SKU: CK4742_BB | Fonte: top_products / pedidos reais. A distribuição horária mostra atividade em 15 das 24 horas, com vendas contínuas das 9h às 23h, sem gap anômalo visível — dado indireto favorável, mas insuficiente como proxy de Buy Box.",
+      "leitura": "A continuidade horária sem gap é indício de que o listing operou sem interrupção total, mas Buy Box pode ter sido perdida e recuperada em janelas curtas sem que o volume zero apareça na distribuição por hora. Com 16 pedidos nesse único ASIN em um dia de volume elevado, a estabilidade de Buy Box permanece como pré-requisito não validado.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Qual é a cobertura de estoque FBA atual dos 3 ASINs líderes (Jarra Medidora, Suporte Controle Gamer, Conjunto Potes Preto)?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "Nenhum dado de estoque FBA, cobertura em dias ou inventário disponível por ASIN no pacote. O pacote confirma 100% FBA nos 44 pedidos (fulfillment.amazon_fba = 44, amazon_fbm = 0), mas não contém informação de inventário. Produtos líderes relevantes: (1) Jarra Medidora de Vidro 500ml — ASIN B0G2CWWMGK, 16 pedidos, 16 itens; (2) Suporte Controle Gamer — ASIN B0GH2BTQFJ, 6 pedidos, 6 itens; (3) Conjunto 5 Potes de Vidro Redondos Tampa Preta — ASIN B0DCP9TBTM, 5 pedidos, 6 itens. Fonte: top_products / pedidos reais.",
+      "leitura": "O volume do dia (44 pedidos vs média 30d de 28) foi 57% acima da média — acelerou o consumo de estoque FBA. Sem dado de cobertura, não é quantificável se os líderes absorvem os próximos 7–10 dias com volume similar. A lacuna persiste como risco operacional não dimensionado.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Divergência entre display_name e raw_title nos SKUs TL250B e TL250P — risco de citação de produto errado",
+      "origem": "risco de identificação",
+      "evidencia": "SKU TL250B: raw_title = 'Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Jogo de Caneca Grande Empilhável Ideal para Chocolate Quente e Café Expresso Budamix Branco'; display_name = 'Tigela de Vidro 250ml'. ASIN: B0GGTTMD4H. 3 pedidos / 3 itens. SKU TL250P: raw_title = 'Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável Ideal para Chocolate Quente e Café Expresso Preto'; display_name = 'Tigela de Vidro 250ml'. ASIN: B0GGTY2BLT. 1 pedido / 1 item. Ambos com mapping_status 'mapped' e confidence 'high' — o mapeamento foi revisado, mas o display_name registrado é factualmente incorreto para o produto descrito no raw_title. Fonte: top_products / pedidos reais.",
+      "leitura": "O display_name 'Tigela de Vidro 250ml' não descreve o produto real vendido (kit de canecas de porcelana tulipa). O erro não compromete a contagem de pedidos nem a identificação por ASIN, mas qualquer uso do display_name como referência de produto — inclusive em comunicações — vai citar produto errado. Os dois SKUs somam 4 pedidos no dia, volume baixo, mas o erro de nomenclatura é concreto e confirmado pelo raw_title do pedido real.",
+      "conclusao_granular": "risco de identificação confirmado: display_name incorreto em TL250B e TL250P — produto real é kit de canecas de porcelana, não tigela de vidro",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Família IMB501 como segundo vetor quando agregada por família — leitura de concentração pode estar subestimando a cauda",
+      "origem": "anomalia",
+      "evidencia": "A família IMB501 aparece em 3 variações no top_products: IMB501P / Tampa Preta / ASIN B0DCP9TBTM — 5 pedidos / 6 itens (mapping: sku_alias_high_confidence); IMB501C / Tampa Cinza / ASIN B0GSWRMDRG — 2 pedidos / 2 itens (mapping: sku_alias_high_confidence); IMB501V / Tampa Vermelha / ASIN B0GSWLK5F3 — 2 pedidos / 2 itens (mapping: sku_alias_high_confidence). Total consolidado da família: 9 pedidos / 10 itens. Fonte: top_products / pedidos reais.",
+      "leitura": "Individualmente, nenhuma variação da IMB501 aparece como segundo vetor isolado (máximo 5 pedidos). Agregada por família, a IMB501 soma 9 pedidos — posição de segundo vetor real, atrás apenas da Jarra Medidora (16 pedidos) e à frente do Suporte Controle Gamer (6 pedidos). A leitura das camadas anteriores de 'segundo vetor ausente' estava correta por variação individual, mas a família como unidade tem presença mais robusta do que a leitura granular por SKU sugere. O mix por cor (preta dominante, cinza e vermelha como cauda) indica que há diversificação dentro da família.",
+      "conclusao_granular": "complica: a dependência no produto líder é severa, mas a família IMB501 como segundo vetor agregado é mais presente do que a leitura por variação individual indica — a Condensadora deve preservar a nuance",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "SKU TL250R com mapeamento por fallback (confidence medium) — verificação de risco de identificação",
+      "origem": "risco de identificação",
+      "evidencia": "SKU TL250R: mapping_status = 'mapped_generic_sku', mapping_reason = 'raw_sku_normalized_with_short_title_fallback', confidence = 'medium'. Raw title disponível no pedido: 'Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável Ideal para Chocolate Quente e Café Expresso Rosa'. ASIN: B0GGTVQQCJ. 1 pedido / 3 itens. Fonte: top_products / pedidos reais.",
+      "leitura": "O raw_title do pedido é suficientemente descritivo e o ASIN está presente, o que mitiga o risco. Porém, o mapeamento foi feito por fallback de título curto, não por mapa revisado — a identificação deve ser tratada como 'provável' e não como confirmada com a robustez dos SKUs com mapping_reason = 'reviewed_sku_display_map'. Volume baixo (1 pedido, 3 itens) limita o impacto na leitura geral do dia.",
+      "conclusao_granular": "risco médio de identificação — produto provável com raw_title descritivo e ASIN presente, mas mapeamento por fallback reduz certeza; volume baixo contém o impacto",
+      "confianca": "média"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "médio",
+    "fontes_de_risco": [
+      "display_name incorreto nos SKUs TL250B e TL250P: descrevem 'Tigela de Vidro 250ml' quando o raw_title real é 'Kit 6 Canecas de Porcelana Tulipa 250ml'",
+      "mapeamento por fallback no SKU TL250R: mapping_status = 'mapped_generic_sku', confidence medium"
+    ],
+    "explicacao": "O risco de identificação é médio, não alto. Os produtos que respondem pelo grosso do volume — Jarra Medidora CK4742 (16 pedidos), Suporte Controle Gamer SPC002 (6 pedidos), família IMB501 (9 pedidos agregados), Kit 6 Canecas K6CAN250 (3 pedidos) — têm mapeamento revisado, confidence high, ASIN e raw_title presentes nos pedidos reais. O risco se concentra em dois grupos de impacto baixo: (1) TL250B e TL250P, onde o display_name está factualmente errado mas o raw_title e ASIN do pedido real identificam corretamente o produto; o erro não compromete a contagem, compromete a nomenclatura se o display_name for usado como referência de comunicação; (2) TL250R, com mapeamento por fallback e 1 pedido. A condição DADOS_PARCIAIS marcada pelo sistema de qualidade aplica: confiança máxima nas respostas às perguntas da Operacional é baixa (dados primários ausentes). Para os demais itens granulares baseados em pedidos reais disponíveis, a confiança varia entre média e alta conforme especificado.",
+    "bloqueios_para_slack": [
+      "TL250B e TL250P não devem ser citados como 'Tigela de Vidro 250ml' — se esses produtos precisarem aparecer na mensagem final, usar raw_title ('Kit 6 Canecas de Porcelana Tulipa 250ml Branco/Preto') ou omitir; volume baixo (4 pedidos) permite omissão sem perda de leitura principal"
+    ]
+  },
+  "divergencia_entre_fontes": {
+    "divergencias": [
+      {
+        "divergencia": "display_name dos SKUs TL250B e TL250P ('Tigela de Vidro 250ml') diverge do raw_title real nos pedidos ('Kit 6 Canecas de Porcelana Tulipa 250ml Branco' e '... Preto')",
+        "resolucao": "Título real do pedido (raw_title) prevalece sobre display_name (regra: pedido real vence alias/catálogo para identificação de produto Amazon)",
+        "impacto": "Nomenclatura incorreta nos dois SKUs. Se display_name for usado como referência de produto — em qualquer camada ou comunicação — cita categoria diferente da que foi vendida. Os 4 pedidos desses SKUs são de kits de canecas de porcelana, não de tigelas de vidro. Não altera contagem de pedidos nem GMV."
+      }
+    ]
+  },
+  "evidencia_conflitante": null,
+  "detalhes_para_condensadora": [
+    {
+      "detalhe": "As 3 perguntas da Operacional (cancelamentos por ASIN, Buy Box do líder, cobertura FBA dos Top 3) ficaram sem resposta — dados granulares necessários estavam ausentes do pacote; as lacunas operacionais apontadas pela Tática persistem abertas e não foram fechadas neste ciclo",
+      "por_que_importa": "Se a mensagem final não registrar que essas lacunas continuam abertas, pode parecer que o dia foi validado operacionalmente — quando na verdade os pré-requisitos da Tática (Buy Box e FBA do líder) ainda não foram verificados por nenhuma camada; Leonardo precisa fechar isso via console Amazon",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Display_name de TL250B e TL250P está factualmente errado: ambos aparecem no sistema como 'Tigela de Vidro 250ml', mas o produto real vendido é 'Kit 6 Canecas de Porcelana Tulipa 250ml' — confirmado pelo raw_title dos pedidos reais e pelos ASINs B0GGTTMD4H e B0GGTY2BLT",
+      "por_que_importa": "Qualquer citação desses produtos usando display_name vai comunicar categoria errada ao destinatário; dado que somam apenas 4 pedidos, a solução mais segura é omiti-los da mensagem ou usar o raw_title correto",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "A família IMB501 (potes de vidro em 3 variações de cor) soma 9 pedidos agregados — posicionando-se como segundo vetor real da conta, acima do Suporte Controle Gamer (6 pedidos isolado), mais robusto do que a leitura por variação individual sugeria",
+      "por_que_importa": "A narrativa de 'segundo vetor ausente' precisa de nuance: a dependência no produto líder é real e severa, mas a família IMB501 como bloco tem presença que a leitura SKU a SKU obscurece; isso não elimina o risco de concentração, mas muda levemente o retrato de saúde da cauda",
+      "confianca": "média"
+    }
+  ],
+  "memoria_interna": {
+    "asins_por_sku": {
+      "CK4742": "B0G2CWWMGK",
+      "SPC002": "B0GH2BTQFJ",
+      "IMB501P": "B0DCP9TBTM",
+      "K6CAN250": "B0GFPF42HC",
+      "TL250B": "B0GGTTMD4H",
+      "914C": "B0G2SV7NR1",
+      "IMB501C": "B0GSWRMDRG",
+      "IMB501V": "B0GSWLK5F3",
+      "TL250R": "B0GGTVQQCJ",
+      "TL250P": "B0GGTY2BLT"
+    },
+    "familia_imb501_detalhe": {
+      "IMB501P": {
+        "cor": "preta",
+        "pedidos": 5,
+        "itens": 6,
+        "asin": "B0DCP9TBTM"
+      },
+      "IMB501C": {
+        "cor": "cinza",
+        "pedidos": 2,
+        "itens": 2,
+        "asin": "B0GSWRMDRG"
+      },
+      "IMB501V": {
+        "cor": "vermelha",
+        "pedidos": 2,
+        "itens": 2,
+        "asin": "B0GSWLK5F3"
+      },
+      "total_familia": {
+        "pedidos": 9,
+        "itens": 10
+      }
+    },
+    "raw_skus_tecnicos": {
+      "CK4742": "CK4742_BB",
+      "SPC002": "SPC002",
+      "IMB501P": [
+        "IMB501P_T",
+        "IMB501T-preto"
+      ],
+      "IMB501C": "IMB501T-cinza",
+      "IMB501V": "IMB501T-vermelho",
+      "K6CAN250": "K6CAN250",
+      "TL250B": "TL250B",
+      "914C": "914C_BB",
+      "TL250R": "TL250R",
+      "TL250P": "TL250P"
+    },
+    "erros_de_display_name_confirmados": {
+      "TL250B": {
+        "display_name_incorreto": "Tigela de Vidro 250ml",
+        "raw_title_correto": "Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Jogo de Caneca Grande Empilhável Ideal para Chocolate Quente e Café Expresso Budamix Branco",
+        "asin": "B0GGTTMD4H"
+      },
+      "TL250P": {
+        "display_name_incorreto": "Tigela de Vidro 250ml",
+        "raw_title_correto": "Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável Ideal para Chocolate Quente e Café Expresso Preto",
+        "asin": "B0GGTY2BLT"
+      }
+    },
+    "distribuicao_horaria_completa": {
+      "0": 1,
+      "8": 1,
+      "9": 2,
+      "11": 5,
+      "12": 4,
+      "13": 3,
+      "14": 3,
+      "15": 2,
+      "16": 4,
+      "17": 3,
+      "18": 1,
+      "19": 3,
+      "20": 3,
+      "21": 4,
+      "22": 3,
+      "23": 2
+    },
+    "status_perguntas_operacional": "todas_sem_resposta_por_falta_de_dado — dados de cancelamento por ASIN, Buy Box por ASIN e estoque FBA por ASIN ausentes do pacote; fechamento requer consulta direta ao console Amazon/Seller Central por Leonardo",
+    "skus_com_mapeamento_nao_revisado": [
+      "TL250R"
+    ]
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

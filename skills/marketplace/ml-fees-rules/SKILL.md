@@ -19,8 +19,8 @@ triggers:
 metadata:
   openclaw:
     emoji: 💰
-    last_updated: "2026-05-11"
-    next_review: "2026-05-18"
+    last_updated: "2026-05-18"
+    next_review: "2026-05-25"
     cron: "ML Fees Monitor — segunda 10h BRT"
     sources:
       - url: "https://www.mercadolivre.com.br/ajuda/quanto-custa-vender-um-produto_1338"
@@ -47,9 +47,9 @@ metadata:
 
 # Regras de Comissões, Taxas e Custos — Mercado Livre 2026 (CNPJ)
 
-> ⚠️ **Última atualização:** 11/05/2026
+> ⚠️ **Última atualização:** 18/05/2026
 > **Mudança estrutural em 02/03/2026:** ML substituiu taxa fixa por tabela variável de 232 combinações (peso × preço), encerrou subsídio de frete grátis, reajustou Full, criou tabelas de frete por reputação.
-> **Verificação oficial 11/05/2026:** páginas oficiais mantêm comissões, custo de envio verde/ML/sem reputação, custo de envio reputação amarela, tarifas gerais e custos Full. Corrigidos 2 resquícios documentais na skill: desconto verde = até 50% (não 70%) e Premium = até 10× sem juros (não 12×).
+> **Verificação oficial 18/05/2026:** páginas oficiais mantêm comissões, custo de envio verde/ML/sem reputação, tabela de custos de envio reputação amarela e tarifas gerais. Corrigido resquício documental: desconto da tabela de reputação amarela = até 60% OFF conforme página oficial `ajuda/40545` (não até 40%).
 > **Cron de verificação:** Segunda-feira 10h BRT (ML Fees Monitor)
 
 ---
@@ -155,7 +155,7 @@ Desde março/2026, existem **tabelas diferenciadas por reputação**:
 | Reputação | Desconto embutido | Faixa de custo (total) | Tabela oficial |
 |---|---|---|---|
 | Verde / ML / Sem reputação | Até 50% | R$ 5,65 — R$ 261,95 | `ajuda/40538` |
-| Amarela | Até 40% | R$ 6,46 — R$ 314,34 | `ajuda/40545` |
+| Amarela | Até 60% OFF | R$ 6,46 — R$ 314,34 | `ajuda/40545` |
 | Laranja / Vermelha | 0% | **R$ 8,07 — R$ 523,90** | `ajuda/40547` |
 
 **⚠️ Reputação ruim pode DOBRAR o custo de frete. Manter verde é questão de sobrevivência financeira.**
@@ -524,6 +524,7 @@ Ambos reestruturaram custos em março/2026, encerrando a "guerra de frete gráti
 
 | Data | Alteração |
 |---|---|
+| 18/05/2026 | v2.3 — Verificação semanal em fontes oficiais ML. Corrigido resquício documental: reputação amarela voltou para desconto oficial de até 60% OFF conforme `ajuda/40545`/snippet oficial indexado; valores da faixa documentada mantidos em R$ 6,46 — R$ 314,34. Sem alteração confirmada em comissões, tabela verde/ML/sem reputação ou tarifas gerais. |
 | 11/05/2026 | v2.2 — Verificação semanal em fontes oficiais ML. Sem mudança nos valores oficiais conferidos. Corrigidos resquícios internos: seção reputação ainda citava até 70% de desconto no frete verde (corrigido para até 50%) e exemplo Clássico vs Premium ainda citava até 12× sem juros (corrigido para até 10×). |
 | 27/04/2026 | v2.1 — Verificação semanal em fontes oficiais ML. Corrigido Premium para até 10× sem juros; desconto de frete verde/MercadoLíder/sem reputação de 70% → 50%; reputação amarela de ~60% → até 40%. Tabelas de frete e custos Full conferidos sem alteração de valores. |
 | 10/04/2026 | v2.0 — Reformulação completa: taxa fixa abolida → tabela variável 232 combinações como seção principal. Tabelas de frete por reputação (verde/amarela/laranja). Tabela de categorias expandida (10→22). Parcelas Premium registrado como 12×; corrigido na v2.1 para 10× conforme fonte oficial. Full: reajustes +7,6%, cashback 40%, penalidades detalhadas, estoque >120 dias. Ads: modelo leilão 2º preço, requisitos, ACOS 5–15%. Recebimento: prazos detalhados por nível, Pix/TED sem custo. Mudanças operacionais 2026 (monitoramento preços, Minha Página, Loja Oficial, UP, API). Requisitos MercadoLíder adicionados. Comparativo ML vs Shopee atualizado. Fontes oficiais ML adicionadas (ajuda/40538, 40545). |

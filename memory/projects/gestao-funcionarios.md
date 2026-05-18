@@ -148,3 +148,36 @@ Toda sexta-feira no fim do dia:
 
 #### Ponto sistêmico
 - O padrão `#ata-reuniao Nome AAAA-MM-DD` funcionou bem para Leonardo e deve ser obrigatório. Para Yasmin, a falha de gravação mostrou a necessidade de plano B: quando não houver Granola/PLAUD, a própria pessoa envia no Slack uma síntese manual curta no mesmo dia.
+
+
+### 2026-W21 — Coleta parcial Slack (18/05)
+
+**Fonte consultada:** Slack read-only, DMs de Yasmin, Lucas e Leonardo no dia 18/05/2026. Esta coleta não substitui a rotina semanal completa; registra os principais acordos e acompanhamentos do dia.
+
+#### Yasmin
+- **Tema central:** cadastro da Casinha de Bonecas/Mansão 3 andares em MDF 3mm com kit de móveis, além de revisão de preços finais dos produtos MDF no Mercado Livre.
+- **Pontos tratados:** Pedro orientou cadastrar a casinha pronta, tirar fotos se necessário, incluir imagem explicando os móveis inclusos, informar manual detalhado de montagem e cola, usar concorrentes do Mercado Livre como referência e seguir o FUNIL. Pedro enviou lista detalhada dos móveis e um briefing completo de cadastro. Yasmin pediu lista de móveis e depois preço de custo da casinha.
+- **Acordos/execução:** Yasmin publicou/enviou o anúncio da casinha no Mercado Livre e informou que colocou preço igual ao concorrente por enquanto. Pedro aprovou o resultado geral (“ficou show”) e pediu ajustes nas imagens: incluir criança brincando, móveis fora da casa e mais contexto de uso, mantendo as imagens já geradas.
+- **Preços MDF ML:** Pedro pediu lista de preços finais dos produtos MDF no Mercado Livre e depois orientou alterar vários itens para preços finais agressivos, incluindo 10,88, 14,88, 9,90, 18,90 e 12,88 em itens específicos, mantendo alguns conforme estavam.
+- **Alertas:** Yasmin ainda depende de Pedro para alguns dados de custo/lista quando o produto é novo; vale padronizar checklist mínimo de produto MDF novo antes de solicitar cadastro.
+- **Pendências para Pedro cobrar:** confirmar se as imagens da casinha foram ajustadas com criança/móveis externos; validar se preço/custo/margem da casinha ficou aceitável; conferir se os preços finais MDF no ML foram aplicados exatamente como pedido.
+
+#### Lucas
+- **Tema central:** precificação agressiva e cadastro dos produtos MDF nas três lojas Shopee.
+- **Pontos tratados:** Pedro pediu verificar se todos os jogos da memória estavam cadastrados nas três Shopees, listar preço base, promoções, tipo de promoção e preço final. Lucas identificou que estavam cadastrados, mas Shopee 1 tinha preço promocional errado. Pedro direcionou teste de preço final mais agressivo para gerar tração.
+- **Acordos/execução jogos da memória:** preço base mantido em 25,90; Shopee 1 e 2 com desconto para chegar a 10,90 final com cupom de 2%; Shopee 3 usando oferta relâmpago para chegar a 10,90 final, com início em 19/05 às 00:00. Lucas confirmou finalização.
+- **Outros MDF Shopee:** Lucas listou preços finais de porta-copos, descansos de panela e suporte gamer. Pedro pediu alterar porta-copos e descansos para 10,90 final e manter suporte gamer. Lucas confirmou feito.
+- **Cadastro pendente:** Pedro apontou falta de cadastro do Quebra-cabeça Animais nas três Shopees e pediu puxar o anúncio criado pela Yasmin no Upseller. Preços finais definidos: Kit 10 por 14,90; Kit 5 por 9,90; Kit 20 por 18,90.
+- **Outros pontos:** Lucas perguntou se deveria lançar abraçadeiras recém-chegadas no estoque; Pedro disse que não precisa.
+- **Pendências para Pedro cobrar:** confirmar se Quebra-cabeça Animais foi cadastrado nas três Shopees; checar se a oferta relâmpago da Shopee 3 entrou corretamente em 19/05; medir se preço final 10,90 gera primeiras vendas antes de reajustar.
+
+#### Leonardo
+- **Tema central:** preços finais de MDF na Amazon e ajuste de agenda.
+- **Pontos tratados:** Pedro pediu lista dos produtos MDF cadastrados na Amazon, com preço final e promoções/cupons. Leonardo enviou lista de jogos da memória, descanso de panela, porta-copos e suporte, indicando ofertas e links de SKUs quando aplicável.
+- **Acordos/execução:** Pedro pediu jogos da memória a 10,90 final via desconto/cupom; descansos de panela a 12,90 final; porta-copos a 12,90 final; suporte gamer mantido como estava. Leonardo confirmou. Também confirmou que reduziu suportes crus, deixando apenas 18.
+- **Agenda:** reunião prevista para 15h foi adiada para o dia seguinte cedo porque Pedro atrasou. Leonardo também pediu alteração excepcional de almoço na quarta por consulta odontológica; Pedro autorizou e pediu atestado.
+- **Pendências para Pedro cobrar:** verificar se os preços finais Amazon foram realmente aplicados em todos os SKUs MDF; fazer a reunião remarcada com Leonardo no dia seguinte cedo; cobrar planilha/visão objetiva se surgirem novos excessos ou ajustes de Amazon.
+
+#### Ponto sistêmico
+- O dia teve muita orientação operacional de preço/cadastro, mas não houve ata formal de reunião. Para a memória de gestão, isso entra como coleta parcial de acompanhamento diário, não como ata semanal.
+- A frente MDF ficou alinhada entre canais: Yasmin/ML, Lucas/Shopee e Leonardo/Amazon, com preço de entrada agressivo para jogos da memória e ajustes por marketplace.

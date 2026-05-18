@@ -66,3 +66,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 **Contexto:** Preview de 15/05/2026 BRT foi aprovado com ressalvas nos três recipients, com problemas menores herdados da cadeia: percentuais sem 1 casa decimal, moeda em texto sem centavos, mudanças modais sem registro e itens “não pode ir para Slack” sem log formal completo.
 **Lição:** A Condensadora/6B e a Slack Writer precisam padronizar números e registrar todos os bloqueios/restrições analíticas antes do QA final. Ressalva menor não bloqueia envio, mas deve virar correção de prompt para não acumular degradação sistêmica.
 **Expira:** 2026-06-15
+
+### [TÁTICA] Daily Sales v2 Shopee: correção numérica precisa nascer na consolidação 6B (2026-05-17)
+**Contexto:** Preview de 16/05/2026 BRT deixou Lucas/Shopee aprovado com ressalva por tickets e range percentual aproximados sem decimais, herdados da camada Shopee Consolidator; Slack Writer preservou fielmente a origem.
+**Lição:** Quando a mensagem Shopee consolidada tiver layer 6B, padronizar moeda/ticket/percentual nessa camada antes da Slack Writer. Corrigir só na saída final melhora aparência, mas não remove a fonte da ressalva e enfraquece auditabilidade.
+**Expira:** 2026-06-16

@@ -1,6 +1,6 @@
 # Pendências — RH
 
-_Atualizado: 2026-05-16_
+_Atualizado: 2026-05-17_
 
 ## 🔴 Prioridade Alta
 - [ ] Mateus: regularizar pendências da semana 04/05–09/05 e verificar saída ausente em 15/05.

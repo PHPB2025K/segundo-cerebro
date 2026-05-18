@@ -1,6 +1,9 @@
 # Lições — RH
 
-_Atualizado: 2026-05-16_
+_Atualizado: 2026-05-17_
+
+## 2026-05-17
+- Nenhuma lição nova registrada; riscos e aprendizados anteriores permanecem válidos.
 
 ## 2026-05-16
 - Compliance de sábado precisa diferenciar “sem registros por dia não útil” de “falta completa”; sem escala específica ou trabalho registrado, não cobrar automaticamente.

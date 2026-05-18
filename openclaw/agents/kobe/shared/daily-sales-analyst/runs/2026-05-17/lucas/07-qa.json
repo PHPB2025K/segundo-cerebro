@@ -1,0 +1,62 @@
+{
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "Gate 5 falhou por violação crítica: o produto CTL002 (Kit 6 Canecas Tulipa 250ml) aparece duas vezes no Top Produtos — uma vez consolidado com 14 pedidos (Store + Conta 2 + Conta 3) e uma segunda vez como linha individual de Conta 3 com 3 pedidos. Os 3 pedidos da Conta 3 já estão incluídos no total consolidado de 14, tornando a segunda linha um dado sobreposto que pode induzir Lucas a interpretar o volume total como 17 pedidos ou a distorcer o ranking de produto. A Slack Writer explicitamente flagou a ambiguidade nas Decisões de Formatação ('reconsideração: linha duplicada pode confundir — linha de Conta 3 removível') mas não removeu a linha e deixou o conflito não resolvido na mensagem final. Regra de agregação: 1+ Crítico → BLOQUEADO.",
+  "send_allowed": false,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "FALHA",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "RESSALVA",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 1,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 1,
+    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Crítico",
+      "gate": "5 — Top Produtos",
+      "texto_atual": "• Kit 6 Canecas Tulipa 250ml (Store + Conta 2 + Conta 3) — 14 pedidos consolidados\n[...linhas intermediárias...]\n• Kit 6 Canecas Tulipa 250ml (Conta 3) — 3 pedidos",
+      "texto_esperado": "• Kit 6 Canecas Tulipa 250ml (Store + Conta 2 + Conta 3) — 14 pedidos consolidados\n[sem linha adicional para CTL002 Conta 3]",
+      "estado_atual": "CTL002 aparece duas vezes no Top Produtos: primeiro consolidado em 14 pedidos (3 contas) e depois como entrada individual de Conta 3 com 3 pedidos. Os 3 pedidos da Conta 3 já estão contabilizados no consolidado de 14. A linha duplicada cria volume sobreposto e risco real de Lucas interpretar o total do produto como 17 pedidos ou ler o ranking como se CTL002 da Conta 3 fosse um produto distinto do consolidado.",
+      "estado_esperado": "CTL002 aparece uma única vez, como entrada consolidada de 14 pedidos com indicação das 3 contas. A linha individual de Conta 3 é removida pois representa exatamente os mesmos 3 pedidos já contidos no consolidado.",
+      "regra_violada": "Gate 5 — Shopee: dado errado / risco de induzir alguém a erro; Top Produtos não pode apresentar volumes sobrepostos para o mesmo produto na mesma variação vendável. Gate 8: a Slack Writer registrou nas Decisões de Formatação que a linha era candidata à remoção ('linha duplicada pode confundir — linha de Conta 3 removível se QA entender que o consolidado já representa'), sinalizando a decisão ao QA sem resolver o conflito, e o log de bloqueios não registra a decisão final sobre esse item.",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Menor",
+      "gate": "10 — Tom e utilidade",
+      "texto_atual": "apoiado em IMB501P (Tampa Preta, 36 pedidos, ~49% do total) e nos top 3 respondendo por 89%; se esse produto oscilar, o segundo vetor (CK4742, 21 pedidos)",
+      "texto_esperado": "apoiado no Conjunto 5 Potes de Vidro Redondos Tampa Preta (36 pedidos, ~49% do total) e nos top 3 respondendo por 89%; se esse produto oscilar, o segundo vetor (Jarra Medidora de Vidro 500ml, 21 pedidos)",
+      "estado_atual": "Os variation_skus IMB501P e CK4742 aparecem na análise. IMB501P está acompanhado da cor '(Tampa Preta)', fornecendo contexto; CK4742 aparece isolado, sem nome do produto ao lado, exigindo que Lucas conheça o catálogo interno para identificar o produto. Esses são variation_skus (não raw_skus nem platform_item_ids) usados literalmente da 6B, portanto não violam o bloqueio explícito da Condensadora. Classificado como Menor de clareza.",
+      "estado_esperado": "Referências a produtos na análise usam os display_names completos para dispensar dependência de conhecimento de catálogo interno.",
+      "regra_violada": "Gate 10: 'não usa IDs técnicos indevidos'. CK4742 sem nome acompanhante é identificador técnico que reduz clareza para o responsável operacional. Não bloqueia individualmente — registrado como sinal para evolução da camada 6B.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [
+    "Remover a linha '• Kit 6 Canecas Tulipa 250ml (Conta 3) — 3 pedidos' do Top Produtos. Os 3 pedidos da Conta 3 já estão representados na linha consolidada '• Kit 6 Canecas Tulipa 250ml (Store + Conta 2 + Conta 3) — 14 pedidos consolidados'. O Top Produtos resultante terá 9 linhas únicas sem sobreposição de dados."
+  ],
+  "ressalvas_memoria_interna": [
+    "A Slack Writer identificou corretamente a ambiguidade da linha duplicada nas Decisões de Formatação e delegou a decisão ao QA. Para ciclos futuros, a Slack Writer deve resolver internamente conflitos de duplicação de produto antes de passar ao QA — a Decisão de Formatação deve registrar a resolução, não a dúvida.",
+    "Gate 8 — RESSALVA de log: o bloco Respeito de Bloqueios declara 'Aparece na mensagem final: não' para platform_item_ids e raw_skus técnicos. Os raw_skus (IMB501P_T, CK4742_B) de fato não aparecem; os variation_skus (IMB501P, CK4742) aparecem vindos da 6B. O log não distingue explicitamente raw_sku de variation_sku, gerando imprecisão interna. Não é bloqueante (a 6B é a fonte autorizada e a Condensadora não bloqueou variation_skus), mas o log deve ser mais preciso em ciclos futuros."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "Os variation_skus IMB501P e CK4742 aparecem na análise copiados literalmente da 6B. A Condensadora bloqueou apenas 'raw_skus técnicos' (IMB501P_T, CK4742_B) e platform_item_ids, não variation_skus. A presença desses códigos não viola regra objetiva — registrado como sinal para evolução da 6B: substituir variation_skus por display_names nos analysis_lines para eliminar dependência de catálogo interno e melhorar clareza para o responsável operacional.",
+    "A fidelidade geral da Slack Writer à 6B e à Condensadora é alta: os 4 bullets de análise são cópias literais da 6B, os bloqueios de causa aberta foram preservados como incerteza, os produtos com confiança média foram corretamente omitidos, e as prioridades preservam ação, evidência, gatilho e condição de escalonamento. O único problema real é a duplicação não resolvida de CTL002 no Top Produtos."
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

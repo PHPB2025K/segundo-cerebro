@@ -10,7 +10,7 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-05-16_
+_Atualizado: 2026-05-17_
 
 ## 🔴 Prioridade Alta
 
@@ -38,7 +38,8 @@ _Atualizado: 2026-05-16_
 - [ ] Suite mínima de testes nos caminhos que mexem com dinheiro.
 
 ### Mission Control
-- [ ] Implementar 12 módulos restantes: Tasks, Agents detail, Logs, Terminal, Git, Workflows, Search, Analytics, Reports, Settings, Calendar e About/Actions.
+- [ ] Ativar Daily Sales Pipeline Panel em produção com restart controlado e smoke test da página/APIs.
+- [ ] Implementar 11 módulos restantes: Tasks, Agents detail, Logs, Terminal, Git, Workflows, Search, Analytics, Settings, Calendar e About/Actions.
 - [ ] Implementar n8n usage tracking em `/costs` com saveDataSuccessExecution, coletor 15min e pricing real.
 
 ### Infra OpenClaw / Agentes

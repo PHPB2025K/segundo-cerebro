@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-16 23:45 BRT — consolidação diária em camadas_
+_Atualizado: 2026-05-17 23:45 BRT — consolidação diária em camadas_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -79,7 +79,7 @@ _Atualizado: 2026-05-16 23:45 BRT — consolidação diária em camadas_
 
 ## 🚨 Gestão / Jurídico / Contratos
 
-- [ ] **Daily Sales Report v2 — aguardar liberação explícita para envio real aos funcionários**: preview de 16/05 foi corrigido em 17/05 a pedido do Pedro e passou para `APPROVED` em Lucas/Shopee, Yasmin/ML e Leonardo/Amazon. Ressalvas limpas: ranking/consolidação Shopee, formulação segura das Canequinhas no ML, preservação de condição de hipótese aberta, logs completos de bloqueios Amazon e documentação de decisões de formatação. Nenhum envio externo foi realizado. Envio para funcionários continua bloqueado até liberação explícita; manter `fallback_deterministic_allowed=false` e bloqueio fail-closed se camada LLM falhar.
+- [ ] **Daily Sales Report v2 — aguardar liberação explícita para envio real aos funcionários**: preview de 16/05 foi corrigido em 17/05 a pedido do Pedro e passou para `APPROVED` em Yasmin/ML e Leonardo/Amazon; Lucas/Shopee ficou `APPROVED_WITH_REMARKS` apenas por ressalva numérica menor na 6B após rerun completo Shopee. Pedro recebeu os blocos finais no Slack pessoal e corrigiu a diretriz: manter formato/profundidade, simplificar apenas a comunicação. Nenhum envio externo foi realizado. Envio para funcionários continua bloqueado até liberação explícita; manter `fallback_deterministic_allowed=false` e bloqueio fail-closed se camada LLM falhar.
 - [ ] **Daily Sales Report v2 — finalizar validação Shopee multi-conta em produção**: garantir que Budamix Store, Budamix Oficial e Budamix Shop passam por condensadoras individuais; a Consolidadora Shopee gera `ANÁLISE DAS CONTAS`; Slack Writer apenas formata no layout aprovado do print do Lucas.
 
 - [ ] **Adapta — aguardar retorno sobre cobranças recorrentes**: Pedro recebeu mensagem pronta em 07/05 para enviar como PEDRO HENRIQUE PERON BROGLIO. Se a empresa negar cancelamento/estorno, próxima frente é contestação pelo banco/cartão usando descritor `TAR PLANO ADAPT` e valores R$ 497,00/R$ 126,75.
@@ -113,6 +113,7 @@ _Atualizado: 2026-05-16 23:45 BRT — consolidação diária em camadas_
 ## 🚨 Infraestrutura e autenticações degradadas
 
 - [ ] **Mission Control — n8n usage tracking em `/costs` (retomar 15/05)**: investigação de 14/05 confirmou que OpenClaw/GPT-5.x roda via subscription Pro 5x, mas n8n usa API keys reais. Próximos passos: habilitar `saveDataSuccessExecution='all'` nos 3 workflows LLM, criar coletor `collect-n8n-usage` com cron 15min, adicionar pricing de `gpt-5.2`, `text-embedding-3-small`, `tts-1-hd` e `claude-sonnet-4-6`, e criar categoria n8n em `/costs`.
+- [ ] **Mission Control — ativar painel Daily Sales Pipeline em produção**: Builder concluiu em 17/05 painel visual para o pipeline Daily Sales v2/Slack com timeline de 9 etapas, filtros por data/recipient, visualização prompt/output, edição segura allowlisted com backup e auto-refresh. Build validado; falta restart controlado do Mission Control e smoke test das rotas novas.
 - [ ] **Mission Control — 12 módulos restantes sem PRD próprio**: após 14/05, 11/23 módulos estão fechados (Dashboard, System, Files, Agents, Memory, Office 3D, Activity, Cron, Sessions, Skills, Costs). Restam: Tasks, Agents detail, Logs, Terminal, Git, Workflows, Search, Analytics, Reports, Settings, Calendar, About/Actions.
 - [ ] **Mission Control — refinamentos pós-14/05**: KG sync Mac→VPS via cron rsync 1h para liberar busca semântica; filtro `/memory?agent=`; refinar regex de detecção de `botToken` em `auth-profiles.json`.
 
@@ -157,4 +158,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-05-16 23:45 BRT._
+_Última organização: 2026-05-17 23:45 BRT._

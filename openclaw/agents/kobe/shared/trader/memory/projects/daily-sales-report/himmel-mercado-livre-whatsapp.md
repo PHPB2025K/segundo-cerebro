@@ -169,3 +169,22 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 **Status:** aberto — aguardando conteúdo decisório da call.
 
+### 2026-05-19 15:22 BRT — Call ML da tarde não ocorreu no horário e precisa ser remarcada
+
+**Participantes:** Kauana/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Reagendamento da call da tarde.
+
+**Contexto registrado:**
+- Kauana informou que a Himmel aguardou até aquele momento e pediu para ser avisada quando fosse possível falar, para remarcar a conversa.
+- Não houve decisão operacional, SKU, campanha, verba ou plano registrado nessa mensagem.
+
+**Impacto esperado:**
+- A call ML da tarde de **2026-05-19** provavelmente não gerou alinhamento no horário previsto; não atribuir mudanças de ADS/vendas a essa call sem transcrição, ata ou mensagem posterior com decisões.
+- Há pendência implícita de reagendamento/retomada do alinhamento com a Himmel.
+
+**Como validar nos dados:**
+- Procurar mensagens posteriores ou Granola confirmando nova call e eventuais decisões.
+- Se houver variação relevante no ML a partir de **20/05**, priorizar como causa conhecida as otimizações de ADS registradas às **10:41 BRT**, não a call da tarde, salvo novo contexto.
+
+**Status:** aberto — aguardando remarcação ou conteúdo decisório posterior.

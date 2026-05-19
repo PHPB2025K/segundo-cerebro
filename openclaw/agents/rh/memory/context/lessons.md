@@ -1,6 +1,10 @@
 # Lições — RH
 
-_Atualizado: 2026-05-17_
+_Atualizado: 2026-05-18_
+
+## 2026-05-18
+- O script de saída do compliance identifica batidas incompletas, mas a validação detalhada dos registros continua necessária para encontrar intervalo <1h e jornada >10h.
+- Pendências recorrentes com comunicação anterior >72h devem ser tratadas como risco de acompanhamento interno e aprovação do Pedro, não como motivo para aumentar pressão via WhatsApp fora do fluxo aprovado.
 
 ## 2026-05-17
 - Nenhuma lição nova registrada; riscos e aprendizados anteriores permanecem válidos.

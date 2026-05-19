@@ -93,3 +93,21 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 **Status:** aberto — aguardando conteúdo/resultado da reunião para transformar em hipótese operacional validável.
 
+### 2026-05-19 09:46 BRT — Link enviado e reunião ML iniciando
+
+**Participantes:** Cláudio Manrique Junior/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Confirmação operacional da reunião das 10h.
+
+**Contexto registrado:**
+- Cláudio enviou o link do Google Meet para a reunião **BUDAMIX** marcada para **2026-05-19, 10h–11h BRT**.
+- Em seguida, avisou que a reunião começaria em instantes.
+
+**Impacto esperado:**
+- Confirma que o alinhamento ML das **10h BRT** efetivamente avançou para início; buscar ata/transcrição ou mensagens posteriores antes de atribuir mudanças de campanhas, verba, produtos priorizados ou performance do dia a essa reunião.
+
+**Como validar nos dados:**
+- Procurar registros posteriores no WhatsApp/Granola com decisões da reunião.
+- Se houver variação relevante no Daily Sales Report de 19/05 ou 20/05, cruzar com eventuais ações definidas nessa reunião.
+
+**Status:** aberto — reunião confirmada, conteúdo decisório ainda não registrado.

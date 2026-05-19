@@ -14,19 +14,21 @@ DAILY SALES REPORT — MERCADO LIVRE — 18/05/2026 (Ontem)
 • Conjunto 5 Potes de Vidro Redondos Tampa Preta — 35 pedidos
 • Conjunto 5 Potes de Vidro Redondos Tampa Cinza — 16 pedidos
 • Conjunto 5 Potes de Vidro Redondos Tampa Vermelha — 9 pedidos
-• Suporte Gamer 2 Controles e Headset Mesa Ps5 Ps4 Preto — 4 pedidos
+• Suporte Gamer 2 Controles e Headset Mesa Organizador — 4 pedidos
 • Kit 4 Potes de Vidro 1050ml Retangular — 4 pedidos
 • Kit 6 Canequinhas 100ml — 3 pedidos
 • Kit 6 Xícaras Porcelana Paris 170ml — 3 pedidos
+• Kit 4 Potes de Vidro 320ml Hermético — 3 pedidos
+• Kit 4 Potes de Vidro 640ml Hermético — 3 pedidos
+• Kit 6 Canequinhas 100ml (variação adicional) — 3 pedidos
 
 🔍 ANÁLISE DA CONTA
-• O resultado parece fraco por causa da comparação com os últimos 7 dias (-14,6%), mas a leitura correta é outra: a média de 7d foi puxada para cima por dias úteis recentemente mais fortes. Comparado com os últimos quatro domingos, hoje ficou acima: +3% GMV e +0,8% pedidos. Domingo é estruturalmente mais lento nesta conta; o resultado está dentro do esperado, não abaixo.
-• A conta entregou um domingo sólido, mas inteiramente apoiada em um único listing com três variações de cor que concentra 62,5% dos pedidos — e dentro desse listing, a variação Tampa Preta responde sozinha por mais de um terço do volume total da conta. O restante do mix está pulverizado em sete produtos com 3 a 4 pedidos cada, sem nenhum candidato visível a segundo vetor. Se esse listing perder ranking, exposição ou tiver problema de estoque, não há nada no mix que absorva o impacto.
+• O desvio de -14,6% vs últimos 7 dias parece queda, mas é artefato: a janela foi inflada pelo domingo excepcional de 04/05. Quando comparado com os mesmos domingos históricos, hoje está +3% acima da média. A conta não caiu — está dentro do patamar esperado.
+• O risco de concentração é mais estreito do que parece: os Conjuntos de Potes Redondos dependem de um único anúncio no ML. Qualquer evento sobre esse listing — queda de ranking, penalidade, suspensão — afeta as três cores ao mesmo tempo e derruba mais de 60% do volume da conta de uma vez. Não é risco distribuído por família; é ponto único de falha.
 
 🎯 PRIORIDADES DO DIA
-• Yasmin: verificar posição e saúde dos anúncios líderes do grupo de potes redondos nos próximos 2 dias. 62,5% do volume saiu de um único listing — se a posição estiver caindo, não há segundo vetor para compensar. Confirmar: posição estável em 3+ anúncios da família dentro de 48h → campeão sustentado, nenhuma ação adicional. Refutar: posição caiu em 2+ anúncios líderes → alinhar com Himmel sobre ADS ML.
-• Yasmin: checar status de Full ML para os anúncios líderes do grupo de potes redondos. Sem esse dado, não é possível saber se a competitividade do campeão da conta está sustentada por fulfillment ou apenas por posição orgânica. Full ativo e estável → fecha a dúvida; Full inativo ou parcial → abre investigação de competitividade.
-• Yasmin: observar nos próximos dias se algum produto fora do grupo de potes redondos aparece com 5+ pedidos por 2 dias seguidos. A cauda atual está pulverizada: sete produtos entre 3 e 4 pedidos cada, sem candidato emergindo. Se a dispersão se repetir → confirma dependência crônica e o risco sobe de prioridade para a semana. Se concentração acima de 60% confirmar por 3 dias consecutivos sem candidato emergente → escalar para Kobe.
+• Yasmin: verificar posição e saúde do anúncio dos Conjuntos de Potes Redondos diretamente no painel ML — essa checagem não pôde ser feita pelo dado automatizado. O anúncio responde por mais de 60% do volume em ponto único de falha; confirmar que a posição está estável é o dado que falta para validar que o dia foi normal. Confirmar se posição dos últimos 7 dias está estável; se posição em queda em 2 ou mais dias, alinhar com Himmel sobre ADS ML.
+• Yasmin: registrar a concentração de hoje dos Conjuntos de Potes Redondos (62,5% do volume) como referência e comparar com o próximo domingo. Próximo domingo abaixo de 55% enfraquece a hipótese de dependência crônica; acima de 60% pela segunda vez consecutiva, sinalizar para Kobe que o mix estrutural precisa de avaliação.
 
 Dia analisado: 18/05/2026 — 00:00–23:59 BRT
 ```
@@ -35,84 +37,76 @@ Dia analisado: 18/05/2026 — 00:00–23:59 BRT
 
 ### Respeito de bloqueios
 
-- Item bloqueado: platform_item_id MLB3288536143
+- Item bloqueado: MLBs e IDs técnicos de listing (MLB3288536143 e demais)
 - Origem do bloqueio: Condensadora
-- Motivo: detalhe técnico interno, não necessário para a leitura operacional
-- Agregado autorizado: não
-- Tratamento aplicado: omitido
+- Motivo: dados internos, não devem aparecer nominalmente na mensagem
+- Agregado autorizado: não aplicável — bloqueio de IDs técnicos, não de produto
+- Tratamento aplicado: omitidos em toda a mensagem; produtos referenciados apenas por nome legível
 - Aparece na mensagem final: não
 
-- Item bloqueado: raw_skus das variações (IMB501P_T, KITIMB501P_T, IMB501PT, etc.)
+- Item bloqueado: Raw SKUs (IMB501P_T, KITIMB501P_T, etc.)
 - Origem do bloqueio: Condensadora
-- Motivo: nível técnico de mapeamento, não acionável pela Yasmin
-- Agregado autorizado: não
-- Tratamento aplicado: omitido
-- Aparece na mensagem final: não
-
-- Item bloqueado: distribuição horária detalhada
-- Origem do bloqueio: Condensadora
-- Motivo: nenhuma anomalia de janela identificada, dado não muda a leitura
-- Agregado autorizado: não
-- Tratamento aplicado: omitido
-- Aparece na mensagem final: não
-
-- Item bloqueado: SPC0111, KIT4YW320, KIT4YW640, 914C_BAV (nomes individuais com mapeamento medium confidence)
-- Origem do bloqueio: Condensadora
-- Motivo: mapeamento medium confidence; instrução é usar "demais produtos da cauda" sem nomear individualmente se necessário
-- Agregado autorizado: sim, "demais produtos da cauda" — mas a prioridade não exigiu nomeação individual; os itens foram simplesmente omitidos do corpo analítico
-- Tratamento aplicado: omitidos da seção de análise; não aparecem nas prioridades; aparecem no Top Produtos apenas os produtos com mapeamento high confidence (IMB501P, IMB501C, IMB501V, KIT4YW1050, 914C, XCP002) e SPC0111 (medium, mas com título suficientemente identificável e volume de 4 pedidos — ver Decisões de formatação)
-- Aparece na mensagem final: SPC0111 aparece no Top Produtos (ver decisão abaixo); KIT4YW320, KIT4YW640, 914C_BAV omitidos do Top Produtos
-
-- Item bloqueado: detalhe dos 13 pedidos além do top 10 não identificados individualmente
-- Origem do bloqueio: Condensadora
-- Motivo: dado incompleto, não acionável
-- Agregado autorizado: não
-- Tratamento aplicado: omitido
-- Aparece na mensagem final: não
-
-- Item bloqueado: 914C e 914C_BAV compartilham platform_item_id — detalhe de estrutura de listing
-- Origem do bloqueio: Condensadora
-- Motivo: detalhe técnico não acionável no Slack
-- Agregado autorizado: não
-- Tratamento aplicado: omitido da análise; 914C aparece no Top Produtos como "Kit 6 Canequinhas 100ml" apenas pelo volume de 3 pedidos; 914C_BAV omitido (medium confidence, mesmo listing, evita duplicação)
-- Aparece na mensagem final: 914C aparece como "Kit 6 Canequinhas 100ml — 3 pedidos"; 914C_BAV não aparece
-
-- Item bloqueado: cancelamento único sem dado de produto associado
-- Origem do bloqueio: Condensadora
-- Motivo: irrelevante e sem evidência para citar no corpo analítico
-- Agregado autorizado: não aplicável — número de cancelamentos (1) aparece na VISÃO como dado objetivo; a análise do cancelamento foi omitida
-- Tratamento aplicado: número registrado na VISÃO como dado factual; nenhuma análise sobre o cancelamento incluída
-- Aparece na mensagem final: sim, como dado objetivo na VISÃO (1 cancelamento)
-
-- Item bloqueado: dado de Full ML ausente descrito como falha técnica do pacote
-- Origem do bloqueio: Condensadora
-- Motivo: a mensagem deve ser a checagem recomendada, não a ausência como problema de dados
+- Motivo: usar apenas nomes legíveis de produto
 - Agregado autorizado: não aplicável
-- Tratamento aplicado: a prioridade foi formulada como ação de checagem de Yasmin, sem mencionar ausência de dado no pacote
-- Aparece na mensagem final: não como falha técnica; sim como checagem ativa
+- Tratamento aplicado: omitidos; produtos citados por display_name
+- Aparece na mensagem final: não
 
-- Item bloqueado: status interno de mapeamento de SKUs e confiança de identificação
+- Item bloqueado: Desvio de -14,6% vs 7d como sinal de deterioração
 - Origem do bloqueio: Condensadora
-- Motivo: metadado interno, não necessário no Slack
+- Motivo: é artefato do pico de 04/05 e induziria leitura errada
+- Agregado autorizado: não se aplica — dado não entra; a correção pelo par sazonal (+3%) é o que vai para Slack
+- Tratamento aplicado: mencionado na análise com correção explícita, não como sinal de queda
+- Aparece na mensagem final: sim, como inversão negativa corrigida (padrão C da Condensadora)
+
+- Item bloqueado: Proporção interna de cores da família (58% preta, 27% cinza, 15% vermelha)
+- Origem do bloqueio: Condensadora
+- Motivo: granularidade excessiva para Slack; ponto relevante é o ponto único de falha, não a distribuição de cor
+- Agregado autorizado: não
+- Tratamento aplicado: omitida; análise referencia o anúncio como ponto único de falha sem detalhar proporções de cor
+- Aparece na mensagem final: não
+
+- Item bloqueado: Produto do cancelamento único
+- Origem do bloqueio: Condensadora
+- Motivo: não identificado no pacote; 1 cancelamento em 96 pedidos sem padrão relevante
+- Agregado autorizado: não
+- Tratamento aplicado: cancelamento exibido apenas como número absoluto na VISÃO, sem associação a produto
+- Aparece na mensagem final: apenas o total (1 cancelamento) na seção VISÃO
+
+- Item bloqueado: Taxa de cancelamento (~1%) como dado isolado
+- Origem do bloqueio: Condensadora
+- Motivo: operacionalmente irrelevante e desnecessário no Slack
+- Agregado autorizado: não
+- Tratamento aplicado: omitida a taxa percentual; exibido apenas o número absoluto
+- Aparece na mensagem final: não (apenas número absoluto)
+
+- Item bloqueado: Ausência de weekly.md e monthly.md preenchidos
+- Origem do bloqueio: Condensadora
+- Motivo: limitação interna de memória, não informação para o responsável da conta
 - Agregado autorizado: não
 - Tratamento aplicado: omitido
 - Aparece na mensagem final: não
+
+- Item bloqueado: Produtos confidence medium com MLBs específicos (SPC0111, KIT4YW320, KIT4YW640, 914C_BAV)
+- Origem do bloqueio: Condensadora
+- Motivo: baixo volume, risco contido, nível de detalhe de MLB inadequado para mensagem
+- Agregado autorizado: produtos podem aparecer por nome sem MLB
+- Tratamento aplicado: produtos citados por nome legível sem MLB; incluídos no Top Produtos por ordem de volume
+- Aparece na mensagem final: sim, por nome legível sem ID técnico
 
 ---
 
 ### Decisões de formatação
 
-- Remoção do trecho `— base: Estratégica + Operacional` e `— base: Granular + Operacional + Estratégica` dos insights — metadados internos de camadas, proibidos no Slack
-- Remoção do padrão classificatório interno (C — inversão negativa, B — inversão positiva, F — métrica ok) — nomenclatura interna de pipeline
-- Preservação integral da tese de ambos os insights da Condensadora, incluindo conectivos e nuances ("mas", "inteiramente apoiada", "não há nada no mix que absorva") — proibido trocar conectivos que mudam nuance
-- SPC0111 incluído no Top Produtos com 4 pedidos, apesar de confidence medium — decisão: o título "Suporte Gamer 2 Controles e Headset Mesa Ps5 Ps4 Preto" é suficientemente identificável e o volume (4 pedidos, empatado com KIT4YW1050) justifica inclusão; registrado aqui para QA
-- KIT4YW320, KIT4YW640, 914C_BAV omitidos do Top Produtos — confidence medium, volume de 3 pedidos cada, não determinantes para a leitura; a Condensadora bloqueou nomeação individual de itens medium confidence na análise; mesma cautela aplicada ao Top Produtos para itens com título truncado ou ambíguo
-- 914C aparece como "Kit 6 Canequinhas 100ml" no Top Produtos (high confidence, 3 pedidos); 914C_BAV omitido — mesmo platform_item_id MLB4410218897, medium confidence; consolidar os dois seria somar variações possivelmente distintas sem autorização explícita; manter só o high confidence
-- Top Produtos em ordem decrescente de pedidos: 35, 16, 9, 4, 4, 3, 3 — ranking preservado; empate 4+4 (SPC0111 e KIT4YW1050) mantido na ordem do pacote validado
-- KIT4YW1050 com display_name "Kit 4 Potes de Vidro 1050ml Retangular" usado no lugar do raw_title — high confidence, revisado, mais claro para o destinatário
-- Faturamento por produto omitido de todo o Top Produtos — o pacote não traz receita validada por variação; proibido calcular, estimar ou aproximar
-- Seção VISÃO sem comparação temporal — dados objetivos do dia apenas, conforme regra
-- Prioridades com estrutura ação + por quê + confirmar/refutar + escalar se — preservadas da Condensadora, com linguagem direta para Yasmin
-- Ausência de Full ML formulada como checagem ativa, não como falha de dado — conforme instrução da Condensadora
-- Condensadora entregou 2 insights; ambos usados — dentro do limite de até 3; nenhum insight de enchimento adicionado
-- Metadado `send_real_allowed = false` não incluído na mensagem — é instrução de execução, não conteúdo Slack
+- Remoção de todos os MLBs e raw SKUs da mensagem final — bloqueio da Condensadora; nenhum ID técnico visível
+- Preservação da inversão negativa no insight 1 (parece queda, mas não é) — padrão C da Condensadora mantido integralmente; conectivo "mas" preservado
+- Preservação do alerta de ponto único de falha no insight 2 — linguagem direta da Condensadora mantida sem suavização; "não é risco distribuído por família; é ponto único de falha" reproduzido fielmente
+- Proporção interna de cores (58%/27%/15%) omitida da análise — bloqueio da Condensadora; o ponto único de falha é citado sem granularidade de cor
+- Prioridade 1 mantida com sinal de confirmação e condição de escalonamento (alinhar com Himmel) — vindos diretamente das Prioridades Condensadas
+- Prioridade 2 mantida com sinal de confirmação e condição de escalonamento (sinalizar para Kobe) — vindos diretamente das Prioridades Condensadas
+- Top Produtos em ordem decrescente por pedidos — ranking respeitado; Tampa Preta (35) > Tampa Cinza (16) > Tampa Vermelha (9) > demais com 4 e 3 pedidos
+- Variações IMB501 mantidas separadas por cor — regra de variação vendável; "Conjunto 5 Potes de Vidro Redondos" não consolidado como linha única
+- 914C e 914C_BAV mantidos como linhas separadas — SKUs distintos no pacote validado com platform_item_id idêntico (MLB4410218897); sem autorização explícita da Condensadora para consolidar; decisão: manter separados com nome legível, sem IDs técnicos; registrado aqui para QA validar se consolidação seria mais precisa
+- Desvio vs 7d apresentado como artefato corrigido, não como sinal negativo — seguindo instrução explícita da Condensadora de não usar o -14,6% como sinal de deterioração
+- Confiança alta da Condensadora: nenhuma ressalva de confiança baixa inserida; linguagem sem hedge desnecessário
+- Seção VISÃO sem comparações temporais — padrão numérico obrigatório; dados objetivos do dia apenas
+- Full ML: dado de fulfillment não disponível (todos categorizados como "other") — omitido da VISÃO por ausência de dado válido; não inferido

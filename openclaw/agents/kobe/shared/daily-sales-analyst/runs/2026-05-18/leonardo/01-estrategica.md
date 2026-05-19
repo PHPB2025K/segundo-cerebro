@@ -1,58 +1,45 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Qualidade da base
 
-Weekly.md e monthly.md são templates vazios sem nenhuma entrada acumulada — não há tese semanal, tese mensal, hipóteses ativas nem padrões registrados para confirmar ou refutar. A base numérica (7d/30d/60d, mesmo dia da semana) está disponível e populada com 60 dias de histórico, o que sustenta leitura temporal sólida. O data quality check flagou o volume Amazon como "partial" por spike positivo atípico — não é bloqueio, mas reduz a confiança em leituras de curtíssimo prazo. Sem memória interpretativa acumulada, esta leitura serve como ponto de partida, não como confirmação de tese pré-existente.
+weekly.md e monthly.md são templates vazios — sem consolidação prévia, sem tese mensal ou semanal madura, sem hipóteses ativas transitando. Todas as janelas temporais (7d, 30d, 60d, mesmos dias da semana) estão disponíveis e com dados completos. A leitura de hoje parte do zero como memória estruturada — sem histórico consolidado para confirmar ou refutar; a tese é construída exclusivamente das séries numéricas. Confiança ajustada: boa para patamar e trajetória, limitada para interpretação causal.
 
 ---
 
 ### Leitura temporal
 
-- **Trajetória progressiva entre janelas:** A média de pedidos segue escada consistente — 60d: 26,6 → 30d: 28,5 → 7d: 34,9 → hoje: 45. Cada janela está acima da anterior. Esse padrão cruzado em três horizontes distintos é o sinal mais robusto disponível e sugere aceleração sustentada, não oscilação.
-
-- **Mesmo dia da semana reforça o sinal:** As quatro últimas segundas-feiras (22, 24, 33, 29) têm média de 27 pedidos e mostram tendência de alta nas duas mais recentes (33 e 29). Hoje, com 45, está 67% acima da média dos pares sazonais — expressivo, e coerente com a aceleração observada nas janelas maiores.
-
-- **Ticket estável em todas as janelas (~R$40-41):** O crescimento de GMV está sendo inteiramente conduzido por volume, sem mudança de mix de preço. Isso é relevante: o ticket não está comprimindo (o que sinalizaria problema de composição) nem inflado (o que sinalizaria evento pontual de produto caro).
-
-- **Sem hipóteses anteriores para testar:** A ausência de weekly/monthly impede confirmar ou refutar qualquer tese pré-existente. As leituras que seguem são construção primária, não validação.
+- **Trajetória ascendente em todas as janelas:** média 60d (26,6 pedidos / R$1.069) → média 30d (28,5 / R$1.142) → média 7d (34,9 / R$1.423) → hoje (45 / R$1.840). O escalonamento é progressivo e consistente — não é pico isolado sobre base estável, é o topo de uma curva que vem subindo há pelo menos 30 dias.
+- **Comparativo por dia da semana reforça o sinal:** os últimos 4 registros da mesma segunda-feira somam média de 27 pedidos e R$1.081. Hoje ficou +66,7% em pedidos e +70,2% em GMV sobre esse controle sazonal — o dia não foi forte "para o patamar ruim" de outras segundas; foi excepcional mesmo descontando sazonalidade.
+- **Ticket estável ao longo de toda a série:** R$40,03 (30d) → R$40,15 (60d) → R$40,82 (7d) → R$40,88 (hoje). O crescimento é inteiramente volume — nenhuma alteração de mix-preço sustentando o número.
+- **Sem hipóteses anteriores ativas** para confirmar ou refutar — memória começa hoje.
 
 ---
 
 ### Leitura estratégica
 
-- **A aceleração entre janelas tem consistência suficiente para ser lida como trajetória.** Quando 7d > 30d > 60d de forma monotônica — em pedidos, GMV e mesmo dia da semana — o movimento deixa de ser ruído e começa a parecer mudança de patamar. Um único dia atípico num histórico de média estável seria ponto fora; aqui, o próprio histórico recente já estava elevado antes de hoje.
-
-- **A conta está sendo sustentada por dois produtos.** Conjunto 5 Potes Preta e Jarra Medidora de Vidro 500ml somam 24 dos 45 pedidos (~53%), com concentração top-3 em 60%. Isso não é leitura negativa do dia — é a estrutura da conta. Em qualquer cenário de crescimento, essa dependência significa que o patamar alto é frágil por construção: pertence aos dois campeões, não à conta.
-
-- **100% FBA com ticket estável é o lado operacionalmente saudável desse quadro.** Sem fragmentação entre FBA/FBM, sem compressão de ticket, sem cancelamentos relevantes (2 de 47 transações). A operação não está pressionada onde os dados conseguem enxergar.
-
-- **A ausência de memória interpretativa é, por si só, um dado.** Sem registro de como a conta chegou a esse patamar, não é possível distinguir se a aceleração é recente, se já foi mais alta antes, ou se há ciclos sazonais documentados. A leitura de hoje é a primeira âncora interpretativa da série.
+- A conta saiu de um patamar de ~26-28 pedidos/dia (60-30d) e está operando em faixa estruturalmente diferente nos últimos 7 dias (34,9/dia), com hoje como pico desta janela. A distância entre o patamar de 60d e o de 7d é grande demais e consistente demais para ser ruído: hipótese de mudança real de patamar é a mais plausível, mas carece de mais dias para confirmação por não haver memória prévia que documente o catalisador.
+- O crescimento é limpo de distorção de ticket — isso é relevante porque descarta mix inflado ou promoção de valor alto mascarando queda de volume. A saúde operacional do dia é transparente: 45 pedidos, ticket de R$40, 100% FBA, 2 cancelamentos (4,4%).
+- A concentração estrutural dos Potes de Vidro (IMB501P + IMB501C combinados = 15 pedidos, 33%) e da Jarra Medidora (CK4742 = 12 pedidos, 27%) representa 60% dos pedidos em dois produtos da mesma categoria de armazenamento doméstico. Esse padrão de alta concentração é visível hoje e, pela ausência de memória prévia, não é possível afirmar se é crônico ou emergente — mas a magnitude sugere que é estrutural, não acidental.
+- Sem dado de Buy Box disponível no pacote, não é possível avaliar se o ganho de volume está apoiado em base orgânica estável ou em ADS sobre exposição instável. Esse é o ponto cego central desta leitura.
 
 ---
 
 ### Tese da conta
 
-**Em ganho de patamar — confiança moderada.**
-
-A conta apresenta sinal consistente de subida estrutural visível em 60d, 30d, 7d e mesmo dia da semana — quatro janelas que convergem na mesma direção, com ticket estável e operação FBA íntegra. A tese de ganho de patamar é a mais honesta com os dados disponíveis. A confiança é moderada (não alta) porque a memória interpretativa está zerada — não há registro de como se chegou aqui, se isso já aconteceu antes ou se existe um teto observado no histórico que o dado numérico puro não revela.
+**Em ganho de patamar** — a trajetória ascendente cruzando 60d → 30d → 7d com consistência de volume e ticket estável aponta para mudança real de patamar, não flutuação dentro de banda histórica. O sinal mais robusto é que a média de 7d (34,9) já supera em 30% a média de 30d, e hoje ultrapassa a 7d — o que configura aceleração ainda em curso. A ressalva central é a ausência de memória prévia que permita identificar o catalisador (ativação de listing, campanha ADS, sazonalidade pontual, novo produto entrando em exposição) — sem esse contexto, a tese de ganho de patamar é plausível mas ainda não confirmada estruturalmente. Próximos 3-5 dias são decisivos para consolidar ou reclassificar.
 
 ---
 
 ### Risco estrutural principal
 
-**Risco:** Concentração estrutural em dois ASINs (Conjunto 5 Potes Tampa Preta + Jarra Medidora 500ml) que respondem por ~53% dos pedidos do dia, dentro de um top-5 que concentra 71% do volume.
-
-**Por que importa:** O patamar de crescimento que a tese identifica não pertence à conta de forma distribuída — pertence a dois produtos. Qualquer disrução em Buy Box, FBA, estoque ou listing de um desses ASINs derruba o patamar diretamente, sem segundo vetor que absorva. Crescimento sobre base concentrada é frágil por definição.
-
-**Histórico:** Não há registro anterior para determinar se essa concentração é padrão crônico da conta ou aumento recente. Este é o primeiro registro.
-
-**Sinal de confirmação:** Se a concentração dos top-2 se mantiver acima de 50% dos pedidos por mais dois ciclos semanais (próximas duas segundas), a dependência deixa de ser leitura de um dia e passa a ser padrão documentado da conta.
+- **Risco:** Dependência excessiva em dois produtos (Conjunto Potes Vidro IMB501 e Jarra Medidora CK4742), que juntos representam ~60% dos pedidos do dia, sem segundo vetor comprovado na cauda.
+- **Por que importa:** Qualquer interrupção nesses dois ASINs — perda de Buy Box, problema de estoque FBA, listing indisponível, entrada de concorrente competitivo — derruba diretamente o patamar conquistado. O crescimento de volume recente está concentrado exatamente nos produtos mais expostos. Se o patamar for sustentado por ADS sobre esses dois ASINs sem base orgânica, a fragilidade é dupla.
+- **Histórico:** Não há memória anterior para classificar se essa concentração é crônica ou nova. Pela ausência de dados históricos que mostrem cauda ativa, hipótese de que a concentração é padrão da conta — não anomalia pontual.
+- **Sinal de confirmação:** Se nos próximos 7 dias IMB501P e CK4742 juntos representarem acima de 55% dos pedidos em 4 ou mais dias, a dependência está confirmada como estrutural — não como artefato de um dia forte.
 
 ---
 
 ### Sinais a observar
 
-1. **Sustentação da trajetória na semana:** Se o GMV diário se mantiver acima de R$1.400 por pelo menos 4 dos próximos 6 dias, a tese de ganho de patamar se consolida — deixando de ser padrão emergente para ser nova linha de base da conta.
-
-2. **Concentração dos campeões:** Se Conjunto 5 Potes Preta e Jarra Medidora continuarem acima de 10 pedidos combinados por mais 2 dias nos próximos 5, a dependência estrutural nos dois ASINs fica confirmada como característica da conta, não evento do dia.
-
-3. **Buy Box e disponibilidade dos ASINs líderes (se disponível no pacote):** Qualquer degradação de Buy Box abaixo de 85% nos dois ASINs campeões por 2 dias consecutivos constitui risco imediato ao patamar identificado — e inviabiliza qualquer discussão de escala de ADS antes de resolução.
+1. **Volume acima de 35 pedidos/dia por 3 dos próximos 5 dias** confirma que o ganho de patamar é consistente, não pico isolado sobre base fraca — reclassifica de "em ganho" para "patamar estabelecido".
+2. **Buy Box dos ASINs IMB501P (B0GSWJ91JM) e CK4742 (B0G2CWWMGK) abaixo de 85% em 2 dias consecutivos** indica que o volume está sendo sustentado por exposição instável — risco de colapso se ADS for reduzido ou se Buy Box erodir (condicionado a Buy Box disponível no pacote).
+3. **Queda combinada de IMB501P + CK4742 para menos de 10 pedidos totais em qualquer dia dos próximos 5** — com volume geral abaixo de 25 — indicaria que o patamar atual depende desses dois produtos operando em janela de alta exposição momentânea, não em demanda orgânica sustentada.

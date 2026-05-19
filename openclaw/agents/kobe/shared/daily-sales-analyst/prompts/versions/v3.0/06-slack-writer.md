@@ -406,11 +406,13 @@ Se a Condensadora ou Granular marcou `BLOQUEIO PARA SLACK`:
 
 Regra dura: se a Condensadora marcou bloqueio mas não autorizou agregado, você não pode inferir agregado por conta própria.
 
+Regra dura adicional: produto bloqueado não pode aparecer em `Top Produtos`, prioridades, análise da conta, título, nota ou qualquer outro trecho da Mensagem Slack. Se um produto bloqueado vier de camadas anteriores com pedidos/unidades, remova-o da lista e mantenha apenas os itens liberados.
+
 Opções permitidas:
 - omitir o item da mensagem;
 - registrar no bloco de log: `bloqueio recebido sem agregado autorizado; item omitido`.
 
-Nunca inventar agregado novo.
+Nunca inventar agregado novo. Nunca sobrepor bloqueio da Condensadora por julgamento próprio de identificabilidade, relevância, clareza ou formatação.
 
 ### Confiança baixa
 

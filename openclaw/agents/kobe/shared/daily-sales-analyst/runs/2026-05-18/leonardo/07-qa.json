@@ -1,0 +1,62 @@
+{
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "Dois Críticos identificados em gates distintos. Gate 7: a seção PRIORIDADES usa '60%' para os 'dois ASINs líderes', mas a Condensadora especifica explicitamente '53% do volume do dia' para essa relação — a Slack Writer mesclou o percentual do grupo familiar ampliado (Tampa Preta 12 + Tampa Cinza 3 + Jarra Medidora 12 = 27/45 = 60%, insight 2) com os dois ASINs líderes individuais para verificação de Buy Box/FBA (IMB501P + CK4742 = 24/45 = 53%, prioridade). Gate 8: três bloqueios analíticos do campo 'o_que_nao_pode_ir_para_slack' da Condensadora estão ausentes do log de Respeito de Bloqueios — status de Buy Box/FBA dos ASINs líderes, origem dos cancelamentos e crescimento como patamar confirmado. O conteúdo da mensagem respeita os três, mas a regra do Gate 8 é mecânica: bloqueio que existe na Condensadora mas não aparece no log → BLOQUEADO. Regra de agregação aplicada: 2 Críticos → BLOQUEADO (1+ Crítico → BLOQUEADO).",
+  "send_allowed": false,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "FALHA",
+    "gate_8_bloqueios_confianca_logs": "FALHA",
+    "gate_9_consistencia_camadas": "FALHA",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 2,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 0,
+    "regra_agregacao_aplicada": "2 Críticos → BLOQUEADO (regra: 1+ Crítico → BLOQUEADO)"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Crítico",
+      "gate": "7 — Prioridades do Dia",
+      "texto_atual": "Eles sustentam 60% do volume do dia",
+      "texto_esperado": "Eles sustentam 53% do volume do dia",
+      "estado_atual": "A prioridade atribui 60% do volume aos 'dois ASINs líderes (Potes Redondos e Jarra Medidora)'. O percentual 60% pertence ao grupo familiar ampliado — Tampa Preta (12) + Tampa Cinza (3) + Jarra Medidora (12) = 27/45 pedidos — e é o número do insight 2 da Condensadora. Os 'dois ASINs líderes' que a Condensadora identifica para verificação de Buy Box/FBA são IMB501P e CK4742 = 24/45 = 53%. A Slack Writer misturou os dois percentuais sem registro em Decisões de Formatação.",
+      "estado_esperado": "Percentual fiel à Condensadora: '53%' para os dois ASINs líderes. Alternativamente, se a intenção era ampliar o escopo para incluir a família IMB501, isso exigiria reformular a prioridade para 'três ASINs/família + Jarra' — o que não está autorizado pela Condensadora, que define a prioridade como verificação dos 'dois ASINs líderes'.",
+      "regra_violada": "Gate 7: prioridade deve usar apenas o conteúdo autorizado pela Condensadora, incluindo números; Gate 9: Slack Writer não respeitou dado numérico da Condensadora; dado errado → Crítico.",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Crítico",
+      "gate": "8 — Bloqueios, confiança e logs da Slack Writer",
+      "texto_atual": null,
+      "texto_esperado": null,
+      "estado_atual": "O log 'Respeito de bloqueios' documenta apenas 3 dos 6 itens do campo 'o_que_nao_pode_ir_para_slack' da Condensadora: TL250B, TL6250 e JMOCE. Três bloqueios analíticos estão ausentes do log: (1) 'Status de Buy Box e FBA dos ASINs líderes: dado ausente — não afirmar que a operação está íntegra nos campeões'; (2) 'Origem dos 2 cancelamentos: dado ausente — não afirmar que são de cauda ou irrelevantes; sinal permanece aberto'; (3) 'Crescimento como patamar confirmado: tese é moderada, não consolidada — não comunicar como fato fechado'. O conteúdo da mensagem respeita todos os três no texto, mas a regra do Gate 8 exige que cada bloqueio da Condensadora apareça explicitamente no log.",
+      "estado_esperado": "Todos os 6 itens de 'o_que_nao_pode_ir_para_slack' da Condensadora devem constar no log com: origem, motivo, tratamento aplicado (ex: 'linguagem de indício preservada', 'não citado nas prioridades', 'análise não afirma integridade operacional') e confirmação de presença/ausência na mensagem final.",
+      "regra_violada": "Gate 8, Passo 4: 'Bloqueio existe na Granular/Condensadora mas não aparece no log → BLOQUEADO'.",
+      "bloqueia_envio": true
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [
+    "Gate 7: substituir '60%' por '53%' na frase 'Eles sustentam 60% do volume do dia' nas PRIORIDADES DO DIA. O percentual correto para os dois ASINs líderes individuais (IMB501P + CK4742 = 24/45 pedidos) é 53%, conforme registrado na Condensadora no campo 'por_que' da prioridade. Se o escopo for ampliado para incluir a família IMB501 completa, a Condensadora deve autorizar explicitamente essa reformulação antes do próximo ciclo.",
+    "Gate 8: complementar o log 'Respeito de bloqueios' com os três bloqueios analíticos ausentes da Condensadora: (1) Status de Buy Box/FBA dos ASINs líderes — dado ausente, tratamento aplicado: análise diz 'são desconhecidos' e não afirma integridade operacional, ausente da mensagem como fato; (2) Origem dos cancelamentos — dado ausente, tratamento aplicado: cancelamentos citados apenas na VISÃO como dado objetivo (2 cancelamentos), não interpretados na análise; (3) Crescimento como patamar confirmado — tratamento aplicado: linguagem de indício preservada no insight 1 ('não está operacionalmente ancorado'), crescimento não comunicado como fato fechado."
+  ],
+  "ressalvas_memoria_interna": [],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "O conteúdo da mensagem respeita os seis bloqueios da Condensadora no texto; o Gate 8 falhou exclusivamente por incompletude documental do log, não por violação de conteúdo — após complementação do log, nenhuma alteração de texto da mensagem é necessária para este gate.",
+    "Gate 6 aprovado sem ressalva: os dois insights da Condensadora foram reproduzidos com fidelidade integral — tese central, conectivos, verbos modais, termos analíticos-chave (Buy Box, cobertura FBA, 53%, patamar de crescimento, operacionalmente ancorado, família IMB501, Tampa Preta + Tampa Cinza, 33%, 60%, dois vetores, fulfillment) todos preservados. As duas decisões de formatação registradas (remoção de 'o pacote não contém esses dados' e remoção do nome Leonardo na análise) são coerentes e não alteram tese.",
+    "Gate 5 aprovado: variações IMB501P (Tampa Preta) e IMB501C (Tampa Cinza) mantidas separadas; TL250B e TL6250 citados com títulos reais derivados de raw_title em substituição aos display_names bloqueados; JMOCE omitido conforme bloqueio da Condensadora; ASINs ausentes sem caso de ambiguidade identificável nos produtos listados.",
+    "A consistência numérica da seção ANÁLISE DA CONTA está correta: '53%' no insight 1 e '33%' e '60%' no insight 2 são todos fiéis à Condensadora e matematicamente verificáveis pelos dados brutos."
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

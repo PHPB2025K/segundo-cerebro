@@ -1,0 +1,256 @@
+{
+  "respostas_operacional": [
+    {
+      "pergunta": "Os 2 cancelamentos do dia estão concentrados no Conjunto 5 Potes Tampa Preta (ASIN B0GSWJ91JM) ou na Jarra Medidora 500ml (ASIN B0G2CWWMGK), ou estão em produtos de cauda?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote de dados reporta 2 cancelamentos no total (campo metrics.cancelamentos = 2), mas não há breakdown de cancelamentos por ASIN, por SKU ou por pedido individual no layer de dados recebido. A reconciliação confirma 45 pedidos válidos e R$1.839,70 sem divergência, mas o dado granular de origem dos cancelamentos não está disponível.",
+      "leitura": "Impossível determinar se os 2 cancelamentos estão nos ASINs campeões ou na cauda. O sinal permanece aberto conforme a Tática antecipou.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "O Conjunto 5 Potes Tampa Preta (ASIN B0GSWJ91JM) e a Jarra Medidora 500ml (ASIN B0G2CWWMGK) estavam com Buy Box ativa e FBA sem alerta de cobertura de estoque no dia 2026-05-18?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote de dados não contém campos de Buy Box (percentual, status ativo/inativo) nem de cobertura de estoque FBA para nenhum ASIN. Os quality_flags estão vazios e nenhum check de Buy Box ou listing foi executado no data_readiness. A verificação de fulfillment confirma 100% FBA operando nos 45 pedidos válidos, mas isso prova que o FBA processou os pedidos — não que o estoque estava saudável ou que a Buy Box estava íntegra em termos percentuais.",
+      "leitura": "A pré-condição operacional definida pela Tática como bloqueante para discussão de ADS não pode ser verificada com os dados do pacote. A Tática sinalizou explicitamente que essa verificação deve ser feita por Leonardo diretamente na plataforma.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Divergência entre título real do pedido e display_name no mapeamento de TL250B e TL6250 — risco de produto identificado errado nas camadas anteriores",
+      "origem": "risco de identificação",
+      "evidencia": {
+        "TL250B": {
+          "produto_visivel_pedido": "Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Jogo de Caneca Grande Empilhável Ideal para Chocolate Quente e Café Expresso Budamix Branco",
+          "asin_platform_item_id": "B0GGTTMD4H",
+          "sku_interno": "TL250B",
+          "display_name_usado": "Tigela de Vidro 250ml",
+          "fonte": "orderItems / pedido real",
+          "conflito": "raw_title descreve canecas de porcelana (Tulipa 250ml); display_name reporta como 'Tigela de Vidro 250ml' — produto diferente, material diferente, categoria diferente",
+          "orders": 3,
+          "quantity": 5
+        },
+        "TL6250": {
+          "produto_visivel_pedido": "Budamix Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Café Chá Xícara Presente Casa Cozinha",
+          "asin_platform_item_id": "B0GFPQD4G9",
+          "sku_interno": "TL6250",
+          "display_name_usado": "Kit 6 Tigelas de Vidro 250ml",
+          "fonte": "orderItems / pedido real",
+          "conflito": "raw_title descreve canecas de porcelana coloridas; display_name reporta como 'Kit 6 Tigelas de Vidro 250ml' — mesma distorção: porcelana → vidro, canecas → tigelas",
+          "orders": 2,
+          "quantity": 2
+        }
+      },
+      "leitura": "Dois SKUs do portfólio Amazon (TL250B e TL6250) têm mapeamento de display_name que não corresponde ao título real do pedido. Ambos os raw_titles descrevem canecas de porcelana da linha Tulipa; ambos os display_names os chamam de 'tigelas de vidro'. O impacto no volume total do dia é baixo (5 pedidos, ~11%), mas o risco é estrutural: qualquer análise de categoria, mix ou comparativo que use display_name para esses SKUs estará identificando produto errado. O mapping_reason de TL250B é 'raw_sku_normalized_with_short_title_fallback' (confidence medium) e de TL6250 é 'reviewed_sku_display_map' (confidence high) — o segundo é mais preocupante porque o mapeamento está marcado como revisado e ainda assim está incorreto.",
+      "conclusao_granular": "complica",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Saúde da cauda: volume e distribuição fora dos dois ASINs campeões",
+      "origem": "hipótese da Estratégica (risco de concentração estrutural)",
+      "evidencia": {
+        "top_2": {
+          "produtos": [
+            "Conjunto 5 Potes de Vidro Redondos Tampa Preta (IMB501P, ASIN B0GSWJ91JM)",
+            "Jarra Medidora de Vidro 500ml (CK4742, ASIN B0G2CWWMGK)"
+          ],
+          "pedidos": 24,
+          "share_do_dia": "53.3%"
+        },
+        "posicao_3_a_5": {
+          "produtos": [
+            {
+              "nome": "Kit 6 Canecas de Porcelana Tulipa 250ml Branco (TL250B, ASIN B0GGTTMD4H)",
+              "pedidos": 3
+            },
+            {
+              "nome": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza (IMB501C, ASIN B0GSWRMDRG)",
+              "pedidos": 3
+            },
+            {
+              "nome": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas (TL6250, ASIN B0GFPQD4G9)",
+              "pedidos": 2
+            }
+          ],
+          "pedidos_total": 8,
+          "share_do_dia": "17.8%",
+          "nota": "IMB501C é variação cinza do mesmo produto campeão (família IMB501) — os 3 pedidos de Tampa Cinza somados aos 12 de Tampa Preta elevam a família IMB501 para 15 pedidos (33% do dia)"
+        },
+        "posicao_6_em_diante": {
+          "pedidos_estimados": 13,
+          "share_do_dia": "28.9%",
+          "produtos_identificados": [
+            "SPC002 Suporte Controle Gamer (2 pedidos)",
+            "XCP002 Kit 6 Xícaras Porcelana Paris 170ml (2 pedidos)",
+            "JMOCE Jogo da Memória MDF Oceano (1 pedido)",
+            "914C Kit 6 Canequinhas 100ml (1 pedido)",
+            "K6CAN250 Kit 6 Canecas 250ml (1 pedido)"
+          ],
+          "produtos_nao_listados": "top_products lista 10 SKUs com total de 30 pedidos; restantes 15 pedidos não mapeados individualmente"
+        }
+      },
+      "leitura": "A cauda tem presença real (pelo menos 7 SKUs na lista de top-10 com 1-2 pedidos cada), mas 15 pedidos não mapeados individualmente impedem confirmar se a cauda é saudável ou se há concentração adicional oculta. O achado crítico é que a família IMB501 (Tampa Preta + Tampa Cinza) soma 15 pedidos (33% do dia) — a dependência da conta é ainda mais profunda do que a leitura de dois produtos separados sugeria: na prática, o risco está concentrado em uma única família de produto.",
+      "conclusao_granular": "complica",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "Distribuição horária: existência de pico concentrado ou padrão distribuído",
+      "origem": "sinal operacional (Operacional reportou dois blocos contínuos 8-12h e 17-22h)",
+      "evidencia": {
+        "bloco_manha": {
+          "horas": "8h-12h",
+          "pedidos": 20,
+          "share": "44.4%",
+          "pico_hora": "10h com 5 pedidos"
+        },
+        "bloco_tarde_noite": {
+          "horas": "17h-22h",
+          "pedidos": 15,
+          "share": "33.3%",
+          "pico_hora": "17h com 4 pedidos"
+        },
+        "horas_isoladas": {
+          "1h": 1,
+          "7h": 1,
+          "14h": 2,
+          "15h": 2
+        },
+        "total_horas_ativas": 16,
+        "hora_sem_pedido": "2h, 3h, 4h, 5h, 6h, 16h"
+      },
+      "leitura": "O bloco da manhã (8-12h) concentra 44% dos pedidos do dia com 10h como pico isolado. Não há concentração atípica em janela única de 1-2 horas — a exposição se distribuiu ao longo de 16 horas, o que é operacionalmente neutro e consistente com FBA 100% sem ruptura. Não há sinal de pico artificial nem de queda de tração em horário específico.",
+      "conclusao_granular": "confirma",
+      "confianca": "alta"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "médio",
+    "fontes_de_risco": [
+      "display_name incorreto em TL250B (mapping_reason: raw_sku_normalized_with_short_title_fallback, confidence: medium) — produto identificado como 'Tigela de Vidro 250ml' quando o título real do pedido descreve 'Kit 6 Canecas de Porcelana Tulipa 250ml'",
+      "display_name incorreto em TL6250 (mapping_reason: reviewed_sku_display_map, confidence: high) — produto identificado como 'Kit 6 Tigelas de Vidro 250ml' quando o título real do pedido descreve 'Budamix Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas'",
+      "JMOCE com mapping_status 'mapped_generic_sku' e confidence 'medium' — identificação por fallback, não por mapeamento primário"
+    ],
+    "explicacao": "O risco é médio, não alto, porque os dois ASINs campeões que sustentam 53% do volume (IMB501P e CK4742) têm identificação de alta confiança com título real confirmado por pedido e ASIN presente. Os SKUs com problema de mapeamento (TL250B, TL6250) representam apenas 5 pedidos (~11% do dia) e não são citados em nenhuma tese crítica das camadas anteriores. O impacto do risco está localizado: qualquer análise que use display_name para esses SKUs cometerá erro de categoria (canecas de porcelana sendo chamadas de tigelas de vidro), o que afeta leitura de mix, categorização e comunicação futura — mas não invalida a tese de concentração nem o diagnóstico operacional do dia. A Condensadora pode usar os campeões com confiança; deve evitar citar TL250B e TL6250 pelo display_name atual.",
+    "bloqueio_slack": [
+      "TL250B: não citar como 'Tigela de Vidro 250ml' — o display_name está errado; usar título real do pedido se necessário citar",
+      "TL6250: não citar como 'Kit 6 Tigelas de Vidro 250ml' — mesmo problema; o produto é canecas de porcelana, não tigelas de vidro"
+    ]
+  },
+  "detalhe_condensadora": [
+    {
+      "detalhe": "A dependência da conta não está em dois produtos separados — está em uma família: IMB501 (Tampa Preta + Tampa Cinza) soma 15 pedidos (33% do dia); somada à Jarra Medidora (12 pedidos), dois vetores respondem por 60% do volume. A família IMB501 com Tampa Cinza inclui apenas 3 pedidos, mas o produto é a mesma família do campeão — qualquer disrução no ASIN pai ou no fulfillment da família IMB501 afeta ambas as variações simultaneamente.",
+      "por_que_importa": "Se a mensagem disser 'dois produtos' sem identificar que são três ASINs da mesma família + um ASIN separado, a leitura de risco de concentração fica incompleta. A fragilidade real é mais profunda do que 'dois ASINs independentes'.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "As duas perguntas prioritárias da Operacional — origem dos cancelamentos e status de Buy Box/FBA dos campeões — não puderam ser respondidas por ausência de dado no pacote. Isso não é ruído técnico: é a lacuna operacional central do diagnóstico. O patamar de crescimento identificado pela Estratégica e a decisão da Tática de validar antes de escalar ADS ficam sem resposta granular. A validação precisa ser feita por Leonardo diretamente na plataforma.",
+      "por_que_importa": "Se a Condensadora comunicar o crescimento sem sinalizar que a condição de Buy Box/FBA dos campeões é desconhecida, a mensagem passará uma certeza operacional que os dados não sustentam.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "TL250B e TL6250 têm display_name errado no mapeamento — estão sendo chamados de 'tigelas de vidro' quando os títulos reais dos pedidos descrevem canecas de porcelana (linha Tulipa). O erro está no mapeamento reviewed_sku_display_map, marcado como high confidence, o que torna a correção urgente para os próximos ciclos.",
+      "por_que_importa": "Qualquer análise futura de mix, categoria ou comparativo de portfólio que use esses display_names estará identificando produto errado — erro silencioso que se acumula com o tempo sem alerta visível.",
+      "confianca": "alta"
+    }
+  ],
+  "memoria_interna": {
+    "asins_e_skus": [
+      {
+        "sku": "IMB501P",
+        "asin": "B0GSWJ91JM",
+        "pedidos": 12,
+        "quantidade": 16
+      },
+      {
+        "sku": "CK4742",
+        "asin": "B0G2CWWMGK",
+        "pedidos": 12,
+        "quantidade": 12
+      },
+      {
+        "sku": "TL250B",
+        "asin": "B0GGTTMD4H",
+        "pedidos": 3,
+        "quantidade": 5,
+        "alerta": "display_name incorreto — canecas de porcelana, não tigela de vidro"
+      },
+      {
+        "sku": "IMB501C",
+        "asin": "B0GSWRMDRG",
+        "pedidos": 3,
+        "quantidade": 3
+      },
+      {
+        "sku": "TL6250",
+        "asin": "B0GFPQD4G9",
+        "pedidos": 2,
+        "quantidade": 2,
+        "alerta": "display_name incorreto — canecas de porcelana, não tigelas de vidro"
+      },
+      {
+        "sku": "SPC002",
+        "asin": "B0GH2BTQFJ",
+        "pedidos": 2,
+        "quantidade": 2
+      },
+      {
+        "sku": "XCP002",
+        "asin": "B0GGTRQPRC",
+        "pedidos": 2,
+        "quantidade": 2
+      },
+      {
+        "sku": "JMOCE",
+        "asin": "B0GZRJN77L",
+        "pedidos": 1,
+        "quantidade": 2,
+        "alerta": "confidence medium, mapped_generic_sku"
+      },
+      {
+        "sku": "914C",
+        "asin": "B0G2SV7NR1",
+        "pedidos": 1,
+        "quantidade": 2
+      },
+      {
+        "sku": "K6CAN250",
+        "asin": "B0GFPF42HC",
+        "pedidos": 1,
+        "quantidade": 1
+      }
+    ],
+    "distribuicao_horaria_detalhada": {
+      "1h": 1,
+      "7h": 1,
+      "8h": 4,
+      "9h": 4,
+      "10h": 5,
+      "11h": 3,
+      "12h": 4,
+      "13h": 4,
+      "14h": 2,
+      "15h": 2,
+      "17h": 4,
+      "18h": 2,
+      "19h": 2,
+      "20h": 2,
+      "21h": 3,
+      "22h": 2
+    },
+    "dados_ausentes_para_proxima_investigacao": [
+      "cancelamentos por ASIN — nenhum campo granular disponível no pacote atual",
+      "Buy Box percentual por ASIN — não disponível no schema atual",
+      "cobertura FBA por ASIN — não disponível no schema atual",
+      "15 pedidos da cauda não mapeados individualmente no top_products (top_products lista 10 SKUs com 30 pedidos dos 45 totais)"
+    ],
+    "alerta_mapeamento_sku": {
+      "TL250B": "display_name 'Tigela de Vidro 250ml' deve ser corrigido para refletir o título real: Kit 6 Canecas de Porcelana Tulipa 250ml; mapping_reason é raw_sku_normalized_with_short_title_fallback",
+      "TL6250": "display_name 'Kit 6 Tigelas de Vidro 250ml' deve ser corrigido para refletir o título real: Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas; mapping_reason é reviewed_sku_display_map marcado como high confidence — requer correção no catálogo interno"
+    }
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

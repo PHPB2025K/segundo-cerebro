@@ -1,61 +1,72 @@
 {
-  "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem está substancialmente fiel à Condensadora, respeita todos os bloqueios, tem estrutura correta, dados verificados e prioridades originadas da fonte analítica. Foi identificado 1 Maior no Gate 6: o bullet 3 da Análise omitiu o enquadramento contraste 'não é impressão do dia —' do Insight 3 da Condensadora, que implementava o padrão D explicitamente escolhido ('não é evento do dia, é ausência estrutural de redundância') e distinguia a leitura como estrutural versus efêmera. Adicionalmente, 1 Menor no Gate 5: o agregado de Canequinhas (914C + 914C_BAV, mesmo listing MLB4410218897) foi exibido com 3 pedidos em vez dos 6 combinados do anúncio real — decisão documentada, mas que subestima o volume do produto. Regra aplicada: 1 Maior + 1 Menor → APROVADO COM RESSALVA. Nenhum Crítico detectado. A mensagem pode ser enviada com as ressalvas registradas.",
-  "send_allowed": true,
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "Gate 5 e Gate 8 falham por Crítico: SPC0111 aparece nominalmente no Top Produtos ('Suporte Gamer 2 Controles e Headset Mesa Ps5 Ps4 Preto — 4 pedidos') apesar de estar listado explicitamente em 'o_que_nao_pode_ir_para_slack' da Condensadora. A Slack Writer reconheceu a restrição no log de bloqueios e nas Decisões de Formatação, mas optou por sobrepor o bloqueio com julgamento próprio sobre identificabilidade do título — isso constitui violação direta de bloqueio da camada hierarquicamente superior. Gate 9 falha pela mesma raiz: item da lista de bloqueios da Condensadora reapareceu nominalmente na mensagem. Regra de agregação aplicada: 1 Crítico → BLOQUEADO. Dois Menores adicionais (Gate 6: suavização de fraseado; Gate 11: percentual sem casa decimal) não alteram o veredito.",
+  "send_allowed": false,
   "send_real_allowed": false,
   "gates_avaliados": {
     "gate_1_data_periodo_fonte": "OK",
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "RESSALVA",
+    "gate_5_top_produtos": "FALHA",
     "gate_6_analise_conta": "RESSALVA",
     "gate_7_prioridades": "OK",
-    "gate_8_bloqueios_confianca_logs": "OK",
-    "gate_9_consistencia_camadas": "RESSALVA",
+    "gate_8_bloqueios_confianca_logs": "FALHA",
+    "gate_9_consistencia_camadas": "FALHA",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "OK"
+    "gate_11_padrao_numerico_formatacao": "RESSALVA"
   },
   "contagem_severidade": {
-    "criticos": 0,
-    "maiores": 1,
-    "maiores_gates_distintos": 1,
-    "menores": 1,
-    "regra_agregacao_aplicada": "1 Maior em 1 gate + 1 Menor → APROVADO COM RESSALVA"
+    "criticos": 1,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 2,
+    "regra_agregacao_aplicada": "1 Crítico → BLOQUEADO"
   },
   "problemas_encontrados": [
     {
-      "severidade": "Maior",
-      "gate": "6 — Análise da Conta",
-      "texto_atual": "A ausência de segundo vetor foi confirmada produto a produto: nenhum item tem volume ou trajetória para compensar o campeão se ele travar.",
-      "texto_esperado": "A ausência de segundo vetor não é impressão do dia — foi confirmada produto a produto: nenhum item tem volume ou trajetória para compensar o campeão se ele travar.",
-      "estado_atual": "Bullet 3 omite o trecho 'não é impressão do dia —', que implementava o Padrão D escolhido pela Condensadora ('não é evento do dia, é ausência estrutural de redundância'), perdendo o enquadramento contraste que distingue a leitura como estrutural versus efêmera.",
-      "estado_esperado": "O enquadramento contraste 'não é impressão do dia —' deve estar presente antes de 'foi confirmada produto a produto', conforme estrutura do Insight 3 da Condensadora e da regra 'Contraste/inversão/enquadramento preservados'.",
-      "regra_violada": "Gate 6 — Checklist de fidelidade: 'Contraste/inversão/enquadramento preservados — se a Condensadora usou padrão não é X, é Y, o Slack mantém a estrutura.' Addendum 7.5: 'Fato/hipótese/risco latente sobreviveram intactos.' O padrão D foi explicitamente declarado na Condensadora e o trecho de contraste é o veículo que o implementa.",
+      "severidade": "Crítico",
+      "gate": "Gate 5 / Gate 8 / Gate 9",
+      "texto_atual": "• Suporte Gamer 2 Controles e Headset Mesa Ps5 Ps4 Preto — 4 pedidos",
+      "texto_esperado": "Item omitido do Top Produtos. Se necessário referenciar produtos de cauda medium confidence, usar 'demais produtos da cauda' sem nomear individualmente — conforme instrução explícita da Condensadora.",
+      "estado_atual": "SPC0111 aparece nominalmente no Top Produtos com título completo, apesar de estar listado em 'o_que_nao_pode_ir_para_slack' da Condensadora. A Slack Writer registrou a decisão de incluí-lo nas Decisões de Formatação com base em julgamento próprio sobre identificabilidade do título, mas esse julgamento não tem autoridade para sobrepor bloqueio da Condensadora.",
+      "estado_esperado": "SPC0111 não deve aparecer nominalmente em nenhuma seção do Slack. O log deve registrar o item como omitido, não como 'incluído por decisão de formatação'.",
+      "regra_violada": "Condensadora ('o_que_nao_pode_ir_para_slack'): 'Nomes individuais dos produtos de cauda com mapeamento medium confidence (SPC0111, KIT4YW320, KIT4YW640, 914C_BAV) — se precisar referenciar, usar demais produtos da cauda sem nomear individualmente'. QA Gate 5: 'produto bloqueado não aparece nominalmente'. QA Gate 8, Passo 4: 'Bloqueio aparece no log mas item ainda está nominalmente na mensagem → BLOQUEIO'. QA Gate 9: 'item bloqueado voltou → BLOQUEIO'.",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6",
+      "texto_atual": "mas a leitura correta é outra",
+      "texto_esperado": "mas essa leitura está errada",
+      "estado_atual": "A Slack Writer suavizou a expressão da Condensadora: 'essa leitura está errada' foi reescrito como 'a leitura correta é outra'. A tese central (não usar -14,6% vs 7d como sinal de deterioração) está preservada, mas o enquadramento diagnóstico ficou levemente menos assertivo.",
+      "estado_esperado": "Preservação do fraseado original da Condensadora, que usou linguagem direta de correção de leitura errada — mais alinhado com o padrão de comunicação operacional aprovado.",
+      "regra_violada": "QA Gate 6: 'mesmo verbo modal — indício não virou certeza; contraste/inversão/enquadramento preservados'. A mudança não inverte a tese mas altera o enquadramento do insight de 'diagnóstico de erro de leitura' para 'redirecionamento suave'. Não bloqueia sozinho.",
       "bloqueia_envio": false
     },
     {
       "severidade": "Menor",
-      "gate": "5 — Top Produtos",
-      "texto_atual": "Kit 6 Canequinhas 100ml — 3 pedidos",
-      "texto_esperado": "Kit 6 Canequinhas 100ml — 6 pedidos (ou volume combinado equivalente)",
-      "estado_atual": "914C e 914C_BAV compartilham o mesmo listing MLB4410218897 e somam 6 pedidos combinados. O agregado 'canequinhas' foi exibido com apenas 3 pedidos (apenas 914C), subestimando o volume real do anúncio. A decisão está documentada no log como conservadora por ausência de validação explícita da Condensadora para a soma combinada.",
-      "estado_esperado": "O agregado autorizado pela Condensadora ('canequinhas') deveria refletir o volume total do listing combinado (6 pedidos), conforme identificado pela Granular: 'Canequinhas somam 6 pedidos (não 3+3 separados) se tratadas como mesmo listing'. Mostrar 3 distorce levemente o ranking da cauda.",
-      "regra_violada": "Gate 5 — 'ranking vem do pacote validado'; Granular registrou explicitamente 6 pedidos combinados para MLB4410218897. Não há bloqueio que impeça a soma — o bloqueio era apenas contra mostrá-los como dois produtos distintos.",
+      "gate": "Gate 11",
+      "texto_atual": "+3% GMV e +0,8% pedidos",
+      "texto_esperado": "+3,0% GMV e +0,8% pedidos",
+      "estado_atual": "Percentual '+3%' sem casa decimal, inconsistente com padrão 'vírgula e 1 casa'. O número vem da Condensadora que também usou '+3%' — a Slack Writer preservou o fraseado da fonte. Inconsistência mínima sem risco de interpretação errada.",
+      "estado_esperado": "'+3,0%' para consistência com padrão numérico aprovado do sistema.",
+      "regra_violada": "Gate 11: 'percentuais com vírgula e 1 casa quando aparecerem'. Não bloqueia sozinho.",
       "bloqueia_envio": false
     }
   ],
-  "correcoes_obrigatorias_antes_envio": [],
+  "correcoes_obrigatorias_antes_envio": [
+    "Remover 'Suporte Gamer 2 Controles e Headset Mesa Ps5 Ps4 Preto — 4 pedidos' do Top Produtos. SPC0111 é produto de cauda com mapeamento medium confidence listado explicitamente em 'o_que_nao_pode_ir_para_slack' da Condensadora. O Top Produtos corrigido deve conter os 6 itens restantes com mapeamento aprovado: Conjunto 5 Potes de Vidro Redondos Tampa Preta (35 pedidos), Conjunto 5 Potes de Vidro Redondos Tampa Cinza (16 pedidos), Conjunto 5 Potes de Vidro Redondos Tampa Vermelha (9 pedidos), Kit 4 Potes de Vidro 1050ml Retangular (4 pedidos), Kit 6 Canequinhas 100ml (3 pedidos), Kit 6 Xícaras Porcelana Paris 170ml (3 pedidos). Após correção, resubmeter para nova rodada de QA antes do envio."
+  ],
   "ressalvas_memoria_interna": [
-    "Gate 6 / Insight 3: na próxima execução, a Slack Writer deve preservar o trecho 'não é impressão do dia —' quando a Condensadora usar Padrão D. O enquadramento contraste que posiciona o achado como estrutural vs. efêmero deve sobreviver intacto ao simplificar a redação.",
-    "Gate 5 / 914C + 914C_BAV: quando a Condensadora bloquear dois SKUs como 'mesmo listing' e autorizar agregado, o volume a exibir deve ser a soma combinada dos pedidos do listing. A ausência de validação explícita para soma não é bloqueio à soma — é o padrão correto quando o MLB é o mesmo.",
-    "Pipeline: três dimensões solicitadas pela Tática ficaram sem dado granular neste ciclo — posição/ranking de anúncio ML por MLB, hour_distribution histórica por dia da semana, e atributo de produto em pedidos cancelados. Solicitação de inclusão no pacote de dados deve ser registrada para ciclos futuros.",
-    "Weekly e monthly de Mercado Livre estão sem conteúdo (templates vazios). Yasmin deve registrar esta semana: patamar (média 7d ~112 pedidos / ~R$5.001; vs 60d +8,6%), concentração MLB3288536143 (~62,5%) e ausência de segundo vetor confirmada pela Granular."
+    "Mensagem bloqueada por 1 Crítico (SPC0111 em Top Produtos). O bloqueio é de regra, não de esquecimento — a Slack Writer registrou a decisão conscientemente nas Decisões de Formatação. Isso indica necessidade de reforço na arquitetura da Slack Writer: bloqueios da Condensadora em 'o_que_nao_pode_ir_para_slack' são invioláveis e não podem ser sobrescritos por julgamento de formatação, independentemente da seção da mensagem.",
+    "Após remoção de SPC0111 e nova rodada de QA, os dois Menores remanescentes (fraseado Gate 6 e decimal Gate 11) resultariam em 'APROVADO COM RESSALVA' sob a regra de agregação (0 Maiores + 2 Menores)."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "A confiança geral declarada pela Condensadora é 'média' (por ausência de dado granular nas três perguntas da Tática e memória narrativa vazia), mas a mensagem não sinaliza explicitamente limitação de confiança para Yasmin. Os três insights apresentados têm base sólida (reconciliação zerada, MLBs confirmados por pedido real, variações com confiança alta), e as dimensões não verificadas foram corretamente bloqueadas — portanto a ausência de sinalização explícita de confiança média não configura violação objetiva neste caso. Registrado para avaliação de regra futura: vale considerar se mensagens com confiança global média devem ter uma linha de contexto em PRIORIDADES ou ANÁLISE.",
-    "A Condensadora não explicitou se o volume combinado de 914C + 914C_BAV (6 pedidos) deveria ou não ser somado ao exibir o agregado 'canequinhas'. A decisão conservadora da Slack Writer (mostrar apenas 3) é defensável, mas a ambiguidade deve ser resolvida com regra explícita: quando a Condensadora bloqueia dois SKUs como mesmo listing e autoriza agregado, o volume exibido é a soma dos pedidos do MLB.",
-    "O pico de 14h não aparece na mensagem (bloqueio correto), mas a Tática havia solicitado verificação nos próximos dias úteis. Yasmin não foi orientada a monitorar o perfil horário nos próximos 2 dias úteis — isso estava na Tática como ação de observação, mas a Condensadora não converteu em prioridade e a Slack Writer corretamente não inventou ação não autorizada. Não é bloqueio; é sinal de que a Tática identificou uma observação que a Condensadora optou por não priorizar neste ciclo."
+    "Softening 'essa leitura está errada' → 'a leitura correta é outra' (Gate 6 / Menor): tese central preservada; a mudança pode ser interpretada como alinhamento com a Diretriz Pedro 2026-05-17 de comunicação simples, mas o original era mais operacionalmente preciso ao nomear diretamente o erro de leitura. Recomenda-se manter o fraseado original da Condensadora em futuras versões da Slack Writer para esta classe de insight.",
+    "'+3%' sem casa decimal (Gate 11 / Menor): inconsistência mínima sem risco interpretativo. O número vem da Condensadora que usou '+3%' sem decimal — a inconsistência está na cadeia upstream. Considerar padronizar percentuais com 1 casa decimal na Condensadora para garantir consistência end-to-end.",
+    "914C e 914C_BAV: decisão da Slack Writer de usar apenas 914C (high confidence, 3 pedidos) e omitir 914C_BAV (medium confidence, mesmo platform_item_id MLB4410218897) foi correta e bem registrada. Somar os dois daria 6 pedidos/7 unidades — não muda a leitura central, mas é detalhe relevante para auditoria futura de consolidação de variações.",
+    "Confiança geral da Condensadora (média) adequadamente refletida na mensagem: Full ML formulado como checagem ativa sem assertiva de status, segundo vetor como observação prospectiva sem conclusão antecipada. Sem violação de trava hipótese/fato."
   ],
   "llm_used": true,
   "model": "sonnet",

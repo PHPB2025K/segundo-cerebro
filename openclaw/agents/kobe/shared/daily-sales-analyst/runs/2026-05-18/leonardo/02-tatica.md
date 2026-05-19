@@ -1,35 +1,35 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Decisão tática
 
-- Dado que a tese estratégica é ganho de patamar em volume — ainda sem weekly/monthly consolidados —, a postura correta é **proteger os pré-requisitos operacionais** dos ASINs líderes antes de qualquer movimento em tráfego pago; celebrar o volume sem validar a base operacional é precipitar conclusão que os dados não sustentam.
-- Dado que o risco estrutural principal é dependência de dois produtos (~53% do volume) sem segundo vetor consolidado, **checar a saúde operacional desses ASINs** (Buy Box, cobertura FBA) é mais urgente do que qualquer decisão de ADS — uma falha nesses produtos não é correção, é colapso de patamar.
-- Dado que Buy Box não está disponível no pacote de dados e as rules.md da conta exigem sua validação como pré-requisito explícito, **não há base para recomendar escalada de ADS hoje** — a ausência do dado não é neutro, é bloqueio de decisão.
-- Dado que a tese precisa de 3 a 5 dias adicionais para sair de hipótese em construção para tese consolidada, **o movimento correto é confirmar, não avançar** — qualquer ação forte agora opera sobre uma única janela de referência.
+- **Dado que a tese é ganho de patamar com confiança moderada**, a decisão correta é **proteger antes de escalar**: validar que os dois ASINs campeões estão operacionalmente aptos (Buy Box, FBA, estoque) antes de qualquer conversa sobre aumentar tráfego pago.
+- **Dado que a memória interpretativa está zerada**, a decisão é **não tratar hoje como confirmação suficiente para ação forte** — é o primeiro ponto âncora da série, não o terceiro ciclo confirmando a mesma tese.
+- **Dado que o risco estrutural principal é concentração em dois produtos**, a decisão é **checar a saúde operacional dos campeões hoje** — se eles caírem, o patamar cai junto, e qualquer ADS ativo nesse cenário amplifica o problema.
+- **Dado que o ticket está estável e FBA está 100%**, não há sinal de pressão operacional que exija ação corretiva imediata — a postura é verificação de pré-condições, não intervenção.
 
 ---
 
 ### O que fazer hoje
 
-- **Leonardo:** checar Buy Box dos ASINs líderes (família IMB501 e Jarra Medidora) — Buy Box não está no pacote de dados e é pré-requisito incontornável para qualquer decisão de ADS Amazon; a tese de ganho de patamar é sustentada inteiramente por FBA, mas FBA estruturado não garante Buy Box saudável — Buy Box ≥85% nos dois produtos líderes libera Leonardo para consolidar diagnóstico e acionar Pedro; abaixo disso, pausa em qualquer escalada de ADS até recuperação.
+- **Leonardo:** checar Buy Box e cobertura FBA dos dois ASINs líderes (Conjunto 5 Potes Tampa Preta e Jarra Medidora 500ml) — eles respondem por ~53% dos pedidos e sustentam a tese de patamar; qualquer fragilidade neles invalida a leitura de crescimento e inviabiliza discussão de ADS — se Buy Box ≥85% e FBA sem alerta de estoque crítico nos dois, a base está saudável e a conversa com Pedro sobre ADS passa a ser pertinente; se Buy Box degradada ou cobertura FBA curta em qualquer um dos dois, Leonardo resolve operacional antes de qualquer passo em tráfego pago.
 
-- **Leonardo:** confirmar cobertura de estoque FBA dos produtos líderes para os próximos 7–10 dias — o volume atual (~45 pedidos/dia) exige estoque robusto nos dois ASINs que sustentam mais da metade do GMV; ruptura aqui colapsa o patamar, não o corrige — cobertura suficiente para a semana valida a continuidade; cobertura abaixo de 5–7 dias exige reposição urgente antes de qualquer decisão de ADS.
+- **Leonardo:** observar se o volume diário se sustenta acima de ~35 pedidos nos próximos 2-3 dias (linha de base da janela 7d atual) — a aceleração de hoje está 67% acima da média dos pares sazonais; um único ponto não ancora tese; confirmar sustentação em 2-3 dias transforma a leitura de patamar de moderada para alta — se os próximos 2 dias ficarem acima de 35, a tese se consolida e Leonardo pode acionar Pedro para conversa sobre ADS com diagnóstico fechado; se o volume cair para a banda 28-30 (média 30d), a aceleração foi evento, não patamar.
 
-- **Leonardo:** observar distribuição de pedidos entre os produtos líderes e o restante do catálogo por mais 2–3 dias — a concentração atual pode ser acidente do dia ou padrão estrutural; se top 2 cair abaixo de 45% por dois dias consecutivos, surge segundo vetor; se mantiver acima de 50%, a dependência é estrutural e deve ser registrada como risco permanente na memória da conta.
+- **Leonardo:** verificar os 2 cancelamentos registrados — sem histórico interpretativo, não é possível saber se cancelamento é padrão crônico ou sinal novo; se os cancelamentos se concentrarem em um dos dois ASINs campeões, vira dado relevante para a leitura de fragilidade operacional; se forem em produtos de cauda, é ruído normal — se o padrão de cancelamento não tiver causa identificável (produto indisponível, listing com problema, reclamação sistêmica), registrar como observação para o próximo ciclo.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Pedro para escalar ADS Amazon** — Buy Box não está confirmado e a tese de ganho de patamar não tem weekly consolidado; escalar tráfego pago sobre operação sem Buy Box validado amplifica risco operacional, não potencializa ganho.
+- **Não acionar Pedro para escalar ADS Amazon agora:** a tese de ganho de patamar tem confiança moderada e a memória da conta está zerada — um dia 67% acima dos pares sazonais é sinal forte, mas não é o segundo ou terceiro ciclo confirmando a mesma direção; escalar ADS antes de validar Buy Box/FBA e antes de confirmar sustentação por 2-3 dias é precipitado; se Buy Box estiver degradada, escalar ADS seria amplificar um problema operacional.
 
-- **Não tratar o resultado de hoje como tese consolidada ou base para decisão permanente** — sem memória semanal e mensal prévia, hoje é o primeiro ponto estruturado de referência; uma decisão permanente sobre patamar, catálogo ou verba baseada em um único dia forte viola a regra de não agir sobre ciclo único.
+- **Não interpretar a aceleração de hoje como teto de patamar atingido:** 45 pedidos é o número mais alto visível na série disponível, mas a ausência de weekly/monthly impede saber se a conta já esteve aqui antes e acomodou; tratar hoje como "novo normal confirmado" e tomar decisão de mix ou catálogo com base nisso seria ancorar em dado único sem contexto histórico suficiente.
 
-- **Não deslocar atenção para segundo vetor ou produtos secundários enquanto a saúde operacional dos líderes não estiver validada** — testar exposição de produtos de menor volume antes de confirmar Buy Box e FBA dos ASINs que sustentam 53% do volume inverte a prioridade operacional e cria risco desnecessário.
+- **Não propor alteração de mix ou segundo vetor antes de 2-3 ciclos:** a concentração nos dois campeões é risco real, mas a forma de endereçar concentração é testar um segundo vetor *depois* de confirmar que o patamar do primeiro está estável — testar novo produto agora, com base operacional ainda não confirmada, divide atenção sem necessidade.
 
 ---
 
 ### Escalonamento
 
-**Observar** — com gatilho explícito para escalar para Pedro.
+**Observar** — sem ação estrutural, coletar mais 2-3 ciclos antes de decidir sobre ADS ou mix.
 
-A conta está em trajetória positiva e os dados quantitativos sustentam a tese, mas os pré-requisitos para ação forte ainda não foram validados. Leonardo resolve a fase atual por conta própria: checar Buy Box, confirmar cobertura FBA, observar distribuição de mix por 2–3 dias. O gatilho de mudança de classificação é direto: se Buy Box dos dois ASINs líderes estiver ≥85% e cobertura FBA saudável após a checagem, Leonardo consolida o diagnóstico e aciona Pedro com base fechada — não com pedido aberto. Se a média 7d sustentar acima de 33 pedidos após absorver os próximos dias e Buy Box confirmado, a tese de ganho de patamar se consolida e a decisão de ADS Amazon passa a ter fundamento operacional.
+A tese de ganho de patamar é consistente com os dados, mas a confiança moderada + memória zerada justificam postura de verificação antes de qualquer movimento em tráfego pago. Leonardo valida Buy Box e FBA hoje — se a operação estiver íntegra e o volume se sustentar acima da banda 7d por 2-3 dias, o escalonamento natural é **escalar para Pedro** com diagnóstico fechado: pré-requisitos validados, tese confirmada em múltiplos ciclos, pedido específico de avaliação de ADS. Se Buy Box mostrar degradação nos ASINs líderes, o escalonamento passa a ser resolução operacional antes de qualquer conversa com Pedro. Kobe não é acionado neste ciclo — a decisão está no nível operacional da conta.

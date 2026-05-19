@@ -1,46 +1,44 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Leitura operacional do dia
 
-- O volume expressivo (+57,9% vs 30d) não é fenômeno isolado do dia — a média de 7d já estava em 34,9 pedidos antes de hoje, o que significa que a conta chegou nesse resultado sobre uma semana já elevada. Isso confirma a leitura estratégica de que o movimento é de aceleração acumulada, não pico pontual.
+- O dia entregou volume real acima do padrão — 45 pedidos com ticket absolutamente estável (R$40,88 frente a R$40,84 na 7d), o que significa que o GMV de R$1.839 foi construído por pedidos, não por inflação de mix. Isso confirma a leitura da Estratégica de que a aceleração é conduzida por volume, não por evento de produto caro.
 
-- A dependência dos dois produtos líderes — Conjunto 5 Potes Tampa Preta (IMB501P) e Jarra Medidora 500ml (CK4742) — não é risco teórico: os dois sozinhos responderam por 53% dos pedidos do dia, enquanto os oito produtos restantes no top 10 fragmentaram os outros 47% sem que nenhum individual ultrapassasse 7%. O risco estrutural levantado pela Estratégica se materializou na execução real.
+- A conta operou com os dois ASINs campeões (Conjunto 5 Potes Tampa Preta e Jarra Medidora 500ml) respondendo por exatamente 24 dos 45 pedidos — 53% do dia sobre dois produtos, dentro de um top-5 que concentra 71%. Isso não é anomalia do dia: é a confirmação operacional direta do risco estrutural de dependência identificado pela Estratégica. O patamar de crescimento pertence a esses dois ASINs, não à conta de forma distribuída.
 
-- O ticket médio (R$ 40,88) praticamente não se moveu em relação às janelas históricas (R$ 40,04 no 30d, R$ 40,15 no 60d) — o dia cresceu inteiramente por volume, sem expansão de mix ou preço. Isso é coerente com o que a Estratégica identificou: o ganho é volumétrico e portanto dependente de manutenção do tráfego nos ASINs que o sustentam.
+- O FBA sustentou 100% do volume sem fragmentação e sem sinal de ruptura visível nos dados — nenhum pedido foi atendido fora do FBA, o que operacionalmente significa que o fulfillment não limitou nem distorceu o resultado. Isso adiciona evidência à avaliação da Tática de que a operação não está sob pressão onde os dados conseguem enxergar.
 
-- A distribuição horária dos pedidos foi equilibrada ao longo do dia, sem concentração noturna exagerada nem gap de tração em blocos específicos — comportamento compatível com tráfego pago cobrindo múltiplas janelas ou demanda orgânica distribuída; não há sinal de colapso de exposição em janela específica.
+- Os 2 cancelamentos (4,3% do total de transações) são numericamente baixos, mas a ausência de identificação de origem impede descartá-los — a Tática já sinalizou que cancelamentos concentrados nos ASINs campeões viram dado de fragilidade operacional. Sem essa leitura, seguem como ruído provável, não confirmado.
 
 ---
 
 ### Sinais operacionais relevantes
 
-- **Sinal:** concentração dos dois ASINs líderes em 53% dos pedidos, com o restante do catálogo fragmentado sem produto de 2ª posição consolidado — **interpretação operacional:** a conta está operando hoje sem rede de segurança de volume; qualquer evento nos líderes (Buy Box, ruptura FBA, listing instável) não encontra amortecimento no restante do catálogo, o que adiciona evidência direta ao risco estrutural apontado pela Estratégica.
+- **Sinal:** Conjunto 5 Potes Tampa Preta e Jarra Medidora 500ml combinaram 24 pedidos (53% do dia) dentro de um top-3 com concentração de 60% — **interpretação operacional:** confirma operacionalmente o risco estrutural apontado pela Estratégica; o patamar de crescimento está localizado nesses dois ASINs; qualquer degradação de Buy Box, FBA ou listing neles compromete o resultado de forma direta e imediata.
 
-- **Sinal:** FBA 100% dos pedidos com Buy Box não disponível no pacote de dados — **interpretação operacional:** o fulfillment está estruturado, mas não é possível confirmar se os ASINs líderes estão com Buy Box saudável; volume alto sobre Buy Box fragilizada amplificaria problema operacional, não sinalizaria desempenho real — esta é exatamente a condição que a Tática identificou como pré-requisito incontornável antes de qualquer decisão de ADS.
+- **Sinal:** ticket manteve-se em R$40,88, linha de base de todas as janelas históricas, enquanto o volume cresceu 67% frente aos pares sazonais — **interpretação operacional:** o crescimento não veio de produto mais caro ou evento de mix; é demanda real sobre o portfólio habitual; isso é operacionalmente saudável mas também significa que o único vetor de crescimento disponível é volume — qualquer queda de demanda não tem amortecedor de ticket.
 
-- **Sinal:** 2 cancelamentos em 45 pedidos (4,4%), sem dado de qual produto ou ASIN — **interpretação operacional:** proporção baixa dentro do volume, mas concentração em produto líder mudaria o peso interpretativo; sem detalhamento, não é possível descartar cancelamento associado a problema pontual de listing ou estoque.
+- **Sinal:** horário de venda distribuído em dois blocos contínuos (8-12h e 17-22h) com pedidos em praticamente todas as horas do dia (16 horas com ao menos 1 pedido) — **interpretação operacional:** não há concentração atípica em janela única; a exposição parece estável ao longo do dia, sem sinal de pico artificial ou queda de tração em horário historicamente forte — esse comportamento não contradiz nem confirma a tese da Estratégica, é operacionalmente neutro.
 
-- **Sinal:** família IMB501 (Tampa Preta + Tampa Cinza) responde por 33% dos pedidos somada, com IMB501P e IMB501C agindo como variações do mesmo produto — **interpretação operacional:** a dependência real pode ser ainda mais concentrada do que o número de ASINs distintos sugere; se o listing-pai da família tiver instabilidade, o impacto dobra.
+- **Sinal:** 2 cancelamentos sem origem identificável no pacote de dados — **interpretação operacional:** volume baixo em termos absolutos, mas a Tática destacou explicitamente que cancelamentos concentrados nos ASINs campeões mudam a leitura de fragilidade operacional; enquanto a origem não for verificada na Granular, o sinal permanece aberto.
 
 ---
 
 ### Anomalias ou ausência de anomalia
 
-**Anomalia leve (positiva).**
+**Anomalia leve.**
 
-O volume de 45 pedidos está fora da banda esperada pelo 30d (+57,9%) e foi marcado com confiança parcial no data quality check. No entanto, a trajetória das janelas (7d > 30d > 60d) e a série dos mesmos dias da semana confirmam que o resultado não é ruído — é o ponto mais alto de uma tendência ascendente estruturada, não uma exceção sem contexto. O que impede classificar como "sem anomalia" é justamente a ausência de Buy Box e de memória semanal/mensal estruturada: não é possível afirmar que o volume veio sobre base operacional sólida. O que faria subir para anomalia moderada: identificar que Buy Box dos líderes está degradado ou que os cancelamentos estão concentrados no ASIN principal. O que confirmaria ausência de anomalia: Buy Box ≥85% nos dois ASINs líderes e cancelamentos pulverizados ou fora dos produtos dominantes.
+O volume do dia (45 pedidos, +67% frente aos pares sazonais) é um desvio positivo expressivo que não encontra explicação trivial no padrão histórico disponível. O data quality check registrou "partial confidence" para Amazon exatamente por esse spike — não é bloqueio de dado, mas indica que o nível de hoje está fora da banda habitual para cima. O ticket estável e o FBA 100% operando sem ruptura afastam a hipótese de que o número seja distorcido por evento de fulfillment ou por produto atípico. O dia não mostra nenhum sinal de fragilidade operacional nos dados visíveis — o desvio, nesse caso, é de volume real acima do esperado, não de ruptura. O que subiria para anomalia moderada: se os cancelamentos se concentrarem nos ASINs campeões ou se o buy box mostrar instabilidade — ambos ausentes no pacote atual. O que baixaria para sem anomalia: sustentação do mesmo patamar por 2-3 dias adicionais transformaria o desvio em nova linha de base.
 
 ---
 
 ### O que precisa ser investigado pela Granular
 
-- **Pergunta:** os 2 cancelamentos estão concentrados em qual ASIN? — **motivada por:** proporção baixa, mas cancelamento no IMB501P ou CK4742 num dia de volume alto muda o peso operacional — sinaliza problema pontual de listing ou ruptura localizada, não falha sistêmica.
+- **Pergunta:** os 2 cancelamentos do dia estão concentrados no Conjunto 5 Potes Tampa Preta ou na Jarra Medidora 500ml, ou estão em produtos de cauda? — **motivada por:** a Tática sinalizou que cancelamento nesses dois ASINs vira indicador de fragilidade operacional nos produtos que sustentam 53% do volume; enquanto a origem não for identificada, o sinal permanece aberto.
 
-- **Pergunta:** a família IMB501 (variações Preta e Cinza) opera sob o mesmo listing-pai ou são ASINs completamente independentes? — **motivada por:** IMB501P e IMB501C somados chegam a 33% do volume; instabilidade no produto-pai afeta as duas variações simultaneamente, concentrando o risco mais do que a separação por variação sugere.
-
-- **Pergunta:** há algum produto no top 10 com pedidos registrados fora do FBA (FBM ou elegibilidade restrita)? — **motivada por:** FBA 100% no total não garante que todos os ASINs do top 10 estejam em FBA elegível; produto com FBM num dia de demanda alta opera com visibilidade reduzida e não teria Buy Box automático.
+- **Pergunta:** o Conjunto 5 Potes Tampa Preta (ASIN B0GSWJ91JM) e a Jarra Medidora 500ml (ASIN B0G2CWWMGK) estavam com Buy Box ativa e FBA sem alerta de cobertura de estoque no dia 2026-05-18? — **motivada por:** os dois ASINs concentraram 53% dos pedidos e sustentam a tese de ganho de patamar; a Estratégica identificou que qualquer fragilidade neles derruba o patamar diretamente; a Tática definiu essa verificação como pré-requisito antes de qualquer discussão de ADS.
 
 ---
 
 ### Destaque para a Condensadora
 
-O fato operacional mais importante do dia não é o volume em si — é que a dependência dos dois ASINs líderes deixou de ser hipótese e se materializou na execução: 53% dos pedidos vieram de dois produtos, sem segundo vetor consolidado absorvendo o restante. A Estratégica identificou esse risco; hoje ele operou em produção. O que a Condensadora precisa carregar é que o bom resultado e o risco principal coexistem no mesmo fato: o volume que sustenta a tese de ganho de patamar é o mesmo que ficaria exposto se qualquer evento operacional atingir IMB501P ou CK4742. A ausência de Buy Box no pacote não é detalhe técnico — é a lacuna que impede saber se o resultado veio sobre base sólida ou sobre estrutura frágil. Esse ponto não pode se perder na narrativa de volume positivo.
+O fato operacional central do dia é que o crescimento de volume é real e distribuído ao longo do dia via FBA 100%, mas está inteiramente localizado em dois ASINs — e isso é simultaneamente o que explica o resultado e o que o torna frágil. A Condensadora deve carregar essa leitura não como "a conta cresceu bem", mas como: **a conta cresceu nos dois produtos certos, e enquanto esses dois não tiverem Buy Box e FBA confirmados, o patamar não está operacionalmente ancorado**. O risco silencioso que pode passar despercebido em leitura de métrica agregada é exatamente esse — GMV de R$1.839 com operação que, sem validação de Buy Box nos campeões, pode estar crescendo sobre uma base mais frágil do que o número sugere.

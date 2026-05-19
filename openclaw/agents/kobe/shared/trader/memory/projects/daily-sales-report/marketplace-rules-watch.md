@@ -2,7 +2,7 @@
 
 Registro operacional de mudanças/revisões de regras, políticas e taxas que podem impactar vendas, margem, exposição, frete, campanhas ou interpretação do Daily Sales Report v2.
 
-_Atualizado em 2026-05-18 10:05 BRT pelo ML Fees Monitor._
+_Atualizado automaticamente em 2026-05-19 06:23 BRT por `daily-sales-v2-marketplace-rules-watch.py`._
 
 ## Como usar no Daily Sales Report v2
 - Usar como contexto causal/hipótese, não como explicação automática.
@@ -11,18 +11,16 @@ _Atualizado em 2026-05-18 10:05 BRT pelo ML Fees Monitor._
 - Fonte de verdade das regras detalhadas continua sendo a skill específica de cada plataforma.
 
 ## Mercado Livre
-- **Status:** ✅ revisado em 2026-05-18
+- **Status:** ✅ revisão vigente até 2026-05-25
 - **Última atualização da skill:** 2026-05-18
 - **Próxima revisão prevista:** 2026-05-25
 - **Cron/revisão profunda:** ML Fees Monitor — segunda 10h BRT
 - **Skill fonte:** `skills/marketplace/ml-fees-rules/SKILL.md`
 - **Resumo vigente:** ⚠️ **Última atualização:** 18/05/2026
-- **Mudança detectada:** resquício documental corrigido na tabela de reputação: reputação amarela = desconto oficial de até 60% OFF conforme `ajuda/40545`, não até 40%. Valores de faixa documentados seguem R$ 6,46 — R$ 314,34.
 - **Impacto operacional para reports:**
   - Custos ML impactam margem, decisão Clássico/Premium, frete grátis, Full e competitividade de preço.
   - Mudanças em frete/reputação podem explicar queda de conversão mesmo com demanda estável.
   - Diferença Clássico vs Premium deve ser considerada quando exposição/parcelamento mudar performance.
-  - A correção de 18/05 é documental; não muda automaticamente preço/margem, pois os valores da tabela amarela já estavam preservados.
 
 ## Shopee
 - **Status:** ⚠️ revisão vencida desde 2026-05-06

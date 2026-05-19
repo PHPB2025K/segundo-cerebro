@@ -445,6 +445,35 @@ def validate_json_output(text):
         return None, str(e)
 
 
+def repair_json_with_llm(raw_output, json_error, config):
+    """Repair invalid LLM JSON with another LLM pass; never falls back deterministically."""
+    prompt = f"""
+Voce e um reparador estrito de JSON.
+
+O texto abaixo deveria ser JSON valido, mas falhou com este erro:
+{json_error}
+
+Regras:
+- Responda somente com JSON valido.
+- Nao adicione markdown, comentarios ou texto fora do JSON.
+- Preserve o conteudo e a estrutura pretendida tanto quanto possivel.
+- Corrija apenas sintaxe JSON: aspas, virgulas, escapes, chaves/colchetes.
+
+TEXTO ORIGINAL:
+{raw_output}
+""".strip()
+
+    repaired_text, model_used, call_error = call_llm(prompt, config)
+    if call_error or not repaired_text:
+        return None, model_used, call_error or "empty repair output"
+
+    parsed, repaired_error = validate_json_output(repaired_text)
+    if repaired_error:
+        return None, model_used, repaired_error
+
+    return parsed, model_used, None
+
+
 def validate_slack_writer_output(text, package, recipient_name):
     """Mechanical guard for Slack Writer output before QA.
 

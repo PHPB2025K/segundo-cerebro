@@ -111,3 +111,41 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Se houver variação relevante no Daily Sales Report de 19/05 ou 20/05, cruzar com eventuais ações definidas nessa reunião.
 
 **Status:** aberto — reunião confirmada, conteúdo decisório ainda não registrado.
+
+### 2026-05-19 10:41 BRT — Otimizações ADS ML pós-alinhamento
+
+**Participantes:** Cláudio Manrique Junior/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Movimentações de campanhas e produtos com TACoS elevado movidos para Balance.
+
+**Contexto registrado:**
+- Himmel informou otimizações realizadas em **2026-05-19** para campanhas ML/Budamix, com ajuste de metas de ROAS/ACoS e verba:
+  - **[HML] ACELERAÇÃO | ACOS:** ROAS alvo de **9,09x para 8x**.
+  - **[HML] CA1 | PFT | CORE | ACOS:** ROAS alvo de **10x para 13x**.
+  - **[HML] CA2 | RMP | GWTH | ACOS:** ROAS alvo de **8x para 10x**.
+  - **[HML] CA3 | PFT | ACOS:** ROAS alvo de **7x para 9,09x**.
+  - **[HML] CB1 | GWTH | VSL | ACOS:** ROAS alvo de **5,5x para 8x** e investimento de **R$ 30 para R$ 50**.
+  - **[HML] CB2 | RMP | ACOS:** ROAS alvo de **13x para 16x**.
+  - **[HML] MDF | GWTH | VSL | ACOS:** ROAS alvo de **5x para 4x**.
+- Himmel moveu anúncios com **TACoS elevado** para **Balance**, com orientação explícita de verificar e executar ações orgânicas.
+- Anúncios citados para checagem orgânica/Balance:
+  - MLB6739241224
+  - MLB6739252838
+  - MLB6754646152
+  - MLB6754669844
+  - MLB4573223951
+  - MLB5406503442
+
+**Impacto esperado:**
+- A partir de **19/05**, variações de vendas, gasto e eficiência em Mercado Livre podem refletir mudanças ativas de campanha, não apenas sazonalidade ou orgânico.
+- Campanhas CA1/CA2/CA3/CB1/CB2 ficaram mais restritivas em ROAS alvo, exceto ACELERAÇÃO e MDF, onde a leitura sugere maior abertura para escala/volume.
+- CB1 teve aumento direto de investimento, então deve ser monitorada por incremento de receita, ACOS/TACoS e margem.
+- Anúncios movidos para Balance exigem ação orgânica: revisar título, preço, fotos, reputação, estoque, conversão e ranking antes de atribuir queda só ao ADS.
+
+**Como validar nos dados:**
+- No Daily Sales Report de **20/05 em diante**, comparar vendas, investimento, ACOS/TACoS e ROAS das campanhas afetadas contra 7/14 dias anteriores.
+- Verificar se os anúncios listados em Balance têm queda de exposição/conversão ou TACoS alto persistente.
+- Separar o efeito de campanhas MDF, já que o ROAS alvo foi afrouxado de 5x para 4x e pode buscar mais tração.
+- Para CB1, validar se o aumento de verba de R$ 30 para R$ 50 gerou venda incremental suficiente.
+
+**Status:** aberto — validar entre **2026-05-20 e 2026-05-26** nos dados de Mercado Livre/ADS.

@@ -19,7 +19,8 @@ Status: primeira rodada manual executada antes da criação do Agente de Compras
 - A análise não tinha sido rodada antes; esta é a primeira versão manual.
 - Foram analisados 27.727 pedidos; 3.433 pedidos tinham itens das famílias de canecas; 3.646 itens normalizados.
 - Recomendações estão em unidades de caneca, não kits.
-- Regra usada: kit cor única = 6 unidades daquela cor; kit colorido = 1 unidade por cor.
+- Regra usada: kit cor única = 6 unidades daquela cor; kit colorido = 1 unidade por cor do respectivo modelo.
+- Regra confirmada pelo Pedro: existe apenas um tipo de kit colorido por modelo, sempre com a mesma combinação das seis cores: rosa, preto, branco, azul, verde e amarelo.
 - Compra semanal sugerida conservadora pelos dados atuais:
   - Tulipa: comprar rosa, preto e branco.
   - Paris: só preto aparece como compra agora, mas depende de validar se o estoque Shopee/Full não está duplicado.
@@ -68,7 +69,7 @@ Status: primeira rodada manual executada antes da criação do Agente de Compras
 Transformar este método em playbook:
 1. normalização SKU → modelo/cor;
 2. venda real 90/30 dias;
-3. conversão kit → unidade;
+3. conversão kit → unidade, usando a regra fixa: colorido = 1 unidade de cada uma das seis cores do modelo;
 4. estoque físico + Full/FBA separado;
 5. recomendação semanal com lead time pessimista de 8 dias;
 6. comparação contra projeção humana por marketplace.

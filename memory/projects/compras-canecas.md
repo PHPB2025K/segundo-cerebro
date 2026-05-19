@@ -35,6 +35,8 @@ Cores por modelo:
 
 Granularidade esperada: modelo × cor × marketplace.
 
+Regra operacional confirmada pelo Pedro em 18/05/2026: existe apenas um tipo de kit colorido por modelo de caneca, e todos os kits coloridos usam a mesma combinação das seis cores: rosa, preto, branco, azul, verde e amarelo. Portanto, todo kit colorido vendido deve ser desmembrado em 1 unidade de cada cor do respectivo modelo. Não tratar como hipótese nem como variação incerta.
+
 Responsáveis por plataforma:
 - Yasmin: Mercado Livre
 - Lucas: Shopee
@@ -73,10 +75,11 @@ Para cada SKU/cor/modelo:
 
 1. Receber as planilhas/projeções de Yasmin, Lucas e Leonardo.
 2. Normalizar nomes de modelo/cor/SKU entre plataformas.
-3. Cruzar com dados reais disponíveis de marketplaces e estoque.
-4. Produzir uma versão independente do Kobe/Trader.
-5. Comparar divergências relevantes entre equipe vs dados.
-6. Entregar recomendação consolidada em formato executivo, com tabela final de compra semanal por modelo/cor.
+3. Converter todo pedido para cabeças unitárias antes de calcular demanda: kit cor única = 6 unidades da mesma cor/modelo; kit colorido = 1 unidade de cada uma das seis cores do respectivo modelo.
+4. Cruzar com dados reais disponíveis de marketplaces e estoque.
+5. Produzir uma versão independente do Kobe/Trader.
+6. Comparar divergências relevantes entre equipe vs dados.
+7. Entregar recomendação consolidada em formato executivo, com tabela final de compra semanal por modelo/cor.
 
 ## Agente de Compras
 

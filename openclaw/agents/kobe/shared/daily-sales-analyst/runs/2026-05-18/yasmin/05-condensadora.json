@@ -1,0 +1,63 @@
+{
+  "camada": "condensadora",
+  "data": "2026-05-18",
+  "recipient": "Yasmin",
+  "plataforma": "mercado_livre",
+  "analise_final_condensada": [
+    {
+      "insight": "A dependência de 62,5% do volume no grupo de potes redondos não está distribuída em 3 produtos — está concentrada em 1 único anúncio com 3 variações de cor. Qualquer problema de ranking, listing ou estoque nesse anúncio afeta as 3 variações ao mesmo tempo, sem nenhum produto na cauda capaz de compensar. O risco é mais concentrado do que o percentual por família sugere.",
+      "padrao": "E — localização: o problema não é a família, é 1 ponto único de entrada",
+      "criterio": "risco silencioso que pode gerar decisão errada",
+      "base": "Granular + Estratégica"
+    },
+    {
+      "insight": "A queda de –15% contra a média de 7 dias não é deterioração — comparado com os domingos recentes, o dia ficou dentro da banda esperada (+0,8% em pedidos, +3% em GMV). O gap com o 7d é explicado por dias de semana mais fortes puxando a média para cima, não por perda de patamar.",
+      "padrao": "C — inversão negativa: parece ruim, mas é variação esperada do dia da semana",
+      "criterio": "correção de leitura falsa",
+      "base": "Estratégica + Operacional"
+    },
+    {
+      "insight": "Fora do anúncio principal de potes redondos, a conta tem 36 pedidos espalhados em 6 anúncios distintos, nenhum chegando a 5 pedidos. A ausência de segundo vetor não é impressão do dia — foi confirmada produto a produto: nenhum item tem volume ou trajetória para compensar o campeão se ele travar.",
+      "padrao": "D — enquadramento estrutural: não é evento do dia, é ausência estrutural de redundância",
+      "criterio": "confirma padrão recorrente importante e alerta risco silencioso",
+      "base": "Granular + Estratégica"
+    }
+  ],
+  "prioridades_condensadas": [
+    {
+      "prioridade": "Verificar no painel do vendedor ML a posição do anúncio principal de potes redondos nos últimos 7 dias",
+      "por_que": "62,5% do volume depende de 1 único anúncio; o pipeline não tem dado de posição — a checagem manual no painel ML é o único caminho para saber se a exposição está estável ou em erosão silenciosa",
+      "sinal_de_confirmacao_refutacao": "Posição estável ou crescente confirma que o volume está ancorado em exposição ativa; queda de posição com volume ainda sustentado abre alerta para alinhar com Himmel sobre ADS ML",
+      "escalar_se": "Posição caiu em 2 ou mais dias da última semana com volume ainda sustentado"
+    },
+    {
+      "prioridade": "Registrar na memória semanal o patamar atual da conta e a concentração observada hoje",
+      "por_que": "Weekly e monthly estão sem conteúdo; sem esse registro, os próximos ciclos de análise partem de zero e não conseguem detectar mudança de padrão ou confirmar a tese de dependência estrutural",
+      "sinal_de_confirmacao_refutacao": "weekly.md com entrada desta semana nas próximas 24h",
+      "escalar_se": "Não aplicável"
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [
+    "Código interno do anúncio de potes redondos (MLB3288536143) — usar 'anúncio principal de potes redondos' ou 'o anúncio do grupo de potes redondos'",
+    "SKUs crus de qualquer produto — usar nome de display ou referência agregada",
+    "Pico das 14h como padrão verificado: não foi confirmado pela Granular por ausência de histórico horário — não reportar como checado nem como anomalia confirmada",
+    "Cancelamento único: produto não rastreável neste ciclo — não citar em nenhuma hipótese",
+    "Posição e ranking dos anúncios como dado verificado: não está no pipeline — citar apenas como checagem a realizar manualmente",
+    "Canequinhas como dois produtos distintos: 914C e 914C_BAV compartilham o mesmo anúncio; se citadas, usar apenas 'canequinhas' como agregado",
+    "Qualquer afirmação sobre fulfillment ou dependência de Mercado Livre Full: dado ausente, dimensão opaca neste ciclo"
+  ],
+  "memoria_para_amanha": [
+    "Anúncio principal de potes redondos (3 variações de cor: preta, cinza, vermelha) concentrou 62,5% do dia em 1 único listing — monitorar se a concentração se mantém acima de 60% nos próximos dias úteis para confirmar ou refutar dependência estrutural crônica",
+    "Pipeline não tem campo de posição ou ranking de anúncio ML — checagem de posição deve ser feita manualmente por Yasmin no painel do vendedor; solicitar inclusão desse campo no pacote de dados para ciclos futuros",
+    "Histórico horário por domingo não está no pacote — pico das 14h (horário mais forte do dia) não pôde ser validado como padrão ou desvio; solicitar hour_distribution histórica por dia da semana no pacote de dados futuros",
+    "Cancelamento do dia sem atributo de produto — não rastreável neste ciclo; se cancelamentos acumularem, solicitar campo de product_id no registro de cancelamento para viabilizar rastreio",
+    "Weekly e monthly estão vazios — Yasmin deve registrar nesta semana: patamar atual (média 7d: ~112 pedidos, ~R$5.000; vs 60d: +8,6%), concentração do anúncio de potes redondos (~62%) e ausência de segundo vetor confirmada pela Granular"
+  ],
+  "alertas_de_confianca": {
+    "nivel": "média",
+    "justificativa": "Os dados quantitativos são sólidos: reconciliação zerada, sete janelas temporais íntegras, produtos de maior peso com confiança alta e MLBs confirmados por pedido real. A Granular validou as leituras centrais com evidência direta. A confiança é média — não alta — porque as três perguntas motivadas pela Tática ficaram sem resposta por ausência de dado granular (posição de anúncio, histórico horário, produto do cancelamento), e a memória narrativa está vazia, impedindo validação da tese contra histórico contextual. Os três insights entregues têm base segura; as dimensões não verificadas estão explicitamente bloqueadas do Slack."
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

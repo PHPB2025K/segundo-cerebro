@@ -139,9 +139,10 @@ _Atualizado: 2026-05-18 23:45 BRT — consolidação diária em camadas_
 
 
 ## Nota para briefing matinal — itens estagnados >7 dias
-_Gerado pela organização noturna de 16/05 02:00 BRT._
+_Gerado pela organização noturna de 19/05 02:00 BRT._
 
-- Revalidar no briefing apenas os itens que continuam bloqueados por decisão/input do Pedro: Estoque Budamix deploy/credencial GitHub, Social Studio Meta App/secrets, Canggu senha/admin + smoke real, DRE abril U15, Guarani distrato, Bling Filial 403, firewall VPS e rotação de tokens expostos.
+- Revalidar no briefing apenas os itens que continuam bloqueados por decisão/input do Pedro: reposição de canecas/Agente de Compras, Pedidos Atacado/PDF oficial Bling, Meta Business Segunda Venda, grupo OS/OSA com Davi, Estoque Budamix deploy/credencial GitHub, Social Studio Meta App/secrets, Canggu senha/admin + smoke real, DRE abril U15, Guarani distrato, Bling Filial 403, firewall VPS e rotação de tokens expostos.
+- Crons recorrentes mais recentes checados em 19/05 02:00 BRT sem falha nova; não criar pendência técnica por saúde de cron nesta rodada.
 - Não reabrir pendências antigas de abril/2026 que Pedro já mandou limpar; manter histórico fora da fila ativa.
 
 ## Backlog Estagnado
@@ -158,4 +159,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-05-18 23:45 BRT._
+_Última organização: 2026-05-19 02:00 BRT._

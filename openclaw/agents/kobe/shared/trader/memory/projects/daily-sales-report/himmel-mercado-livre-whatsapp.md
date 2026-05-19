@@ -188,3 +188,24 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Se houver variação relevante no ML a partir de **20/05**, priorizar como causa conhecida as otimizações de ADS registradas às **10:41 BRT**, não a call da tarde, salvo novo contexto.
 
 **Status:** aberto — aguardando remarcação ou conteúdo decisório posterior.
+
+### 2026-05-19 17:28 BRT — Convite Himmel para imersão de construção de marca
+
+**Participantes:** Fabio Schwichtemberg/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix, contexto indireto de marca/posicionamento.  
+**Tema:** Evento pago “Construindo Marcas by HimmelCorp”.
+
+**Contexto registrado:**
+- Himmel divulgou imersão para clientes sobre transição de seller para marca reconhecida, com foco em percepção, autoridade, conexão e posicionamento além de anúncios de produto.
+- Evento marcado para **2026-05-26, 10h–17h BRT**, na XP Investimentos — Vila Olímpia/SP.
+- A mensagem é majoritariamente promocional; não trouxe decisão operacional sobre campanhas, verba, SKU, produto ou conta Budamix.
+
+**Impacto esperado:**
+- Baixo impacto direto no Daily Sales Report v2.
+- Pode virar insumo estratégico se Pedro/equipe decidir participar ou se sair alguma orientação concreta de branding, conteúdo, diferenciação de anúncios, posicionamento de marca ou marketplace.
+
+**Como validar nos dados:**
+- Não usar como causa de variação de vendas/ADS.
+- Só reabrir nos reports se houver decisão posterior de participação ou ações derivadas aplicáveis a Mercado Livre/Budamix.
+
+**Status:** informativo — sem ação operacional registrada.

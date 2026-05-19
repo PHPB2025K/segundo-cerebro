@@ -1,6 +1,6 @@
 # Pendências — Spark
 
-_Atualizado: 2026-05-16_
+_Atualizado: 2026-05-18_
 
 ## 🔴 Prioridade Alta
 
@@ -19,7 +19,7 @@ _Atualizado: 2026-05-16_
 - [ ] Armazenar credenciais finais no 1Password (vault OpenClaw) e validar via chamada real.
 
 ### Meta Ads — Token
-- [ ] Renovar token antes de ~2026-05-18 — cron agendado, verificar se está funcional.
+- [ ] Verificar renovação/funcionamento do token Meta Ads — data estimada de expiração atingida em 2026-05-18; se falhar, escalar risco operacional.
 
 ## 🟡 Prioridade Média
 

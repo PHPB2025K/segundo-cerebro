@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Spark
 
-_Último update: 2026-05-15_
+_Último update: 2026-05-18_
 _Versão: 2.0_
 
 ---
@@ -19,6 +19,7 @@ _Versão: 2.0_
 
 - Amazon Ads/BidSpark agora usa protocolo de 5 camadas antes de qualquer recomendação.
 - Pendência crítica: corrigir auditoria `amazon_ads_actions_log` e seguir com Potes Redondos/Jarra/Potes Vidro após Tulipa e Suporte Gamer.
+- Meta Ads entrou na data estimada de expiração do token em 2026-05-18; validar renovação/funcionamento antes de depender da API.
 
 ## 1. Quem Sou
 

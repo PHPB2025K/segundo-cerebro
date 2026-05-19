@@ -71,3 +71,25 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Acompanhar SKUs MDF no ML: vendas, conversão, impressões, investimento, ROAS/ACoS, margem e estoque.
 
 **Status:** aberto — usar nos próximos Daily Sales Reports/diagnósticos de Mercado Livre até o fechamento de maio confirmar ou refutar a projeção.
+
+### 2026-05-19 09:36–09:45 BRT — Reunião ML mantida às 10h
+
+**Participantes:** Cláudio Manrique Junior/Himmel; Yasmin Oscarlino.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Alinhamento operacional/reunião do dia.
+
+**Contexto registrado:**
+- Himmel sugeriu juntar a reunião das 10h com uma reunião de alinhamento marcada para **15h** com Pedro.
+- Yasmin informou que provavelmente não participaria da reunião das 15h e pediu para manter a conversa às **10h**.
+- Cláudio confirmou sem objeção e ficou de enviar o link no grupo.
+
+**Impacto esperado:**
+- Há uma reunião/alinhamento ML separada com Yasmin em **2026-05-19 às 10h BRT**; contexto ou decisões dessa conversa devem ser buscados em mensagens/transcrições posteriores antes de interpretar mudanças de ADS ou vendas do dia.
+- A reunião das **15h BRT** com Pedro pode existir em paralelo, mas não substituiu o alinhamento operacional com Yasmin.
+
+**Como validar nos dados:**
+- Verificar mensagens posteriores do grupo ou Granola para decisões de campanha, verba, produtos priorizados ou pendências saídas da reunião das 10h.
+- Se houver alteração em performance ML no Daily Sales Report de 19/05 ou 20/05, checar se houve ação definida nessa reunião antes de atribuir causa.
+
+**Status:** aberto — aguardando conteúdo/resultado da reunião para transformar em hipótese operacional validável.
+

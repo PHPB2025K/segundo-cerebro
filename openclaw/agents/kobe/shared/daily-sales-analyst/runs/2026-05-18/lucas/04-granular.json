@@ -1,0 +1,143 @@
+{
+  "layer": "04-granular",
+  "data": "2026-05-18",
+  "recipient": "Lucas",
+  "platform": "shopee",
+  "respostas_operacional": [
+    {
+      "pergunta": "Os 3 cancelamentos da Budamix Store estão concentrados em qual produto (ou são pulverizados)?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote registra 3 cancelamentos na Budamix Store (shop_id: 448649947) e 0 nas demais contas. O campo top_products lista exclusivamente pedidos válidos. Não há campo de cancelamentos discriminado por produto, SKU ou platform_item_id no pacote disponível. Os dados horários da Store tampouco permitem inferir produto por cancelamento.",
+      "leitura": "Impossível determinar concentração ou pulverização dos cancelamentos. A pergunta não pode ser respondida com os dados fornecidos.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "O padrão de ausência de pedidos da Conta 2 após 14h é recorrente nos últimos dias ou foi específico de ontem?",
+      "status": "parcialmente respondida",
+      "evidencia": "Distribuição horária da Conta 2 (shop_id: 860803675) no pacote: {4:1, 8:2, 9:4, 10:1, 11:1, 12:2, 13:1, 14:3, 17:1}. Há 1 pedido registrado na hora 17 — a última atividade do dia foi às 17h, não às 14h como indicado pela Operacional. A inatividade real é das 18h às 23h (6 horas consecutivas), não das 15h às 23h. Quanto à recorrência: os diários anteriores desta conta não estão no pacote com dados horários — weekly e monthly são templates vazios, sem entradas históricas. Recorrência não pode ser verificada.",
+      "leitura": "A premissa da Operacional tem erro de 3 horas na última venda (14h vs 17h real). O sinal de inatividade tarde/noite permanece válido, mas a janela é de 6h (18h-23h), não de 7-9h. A questão de recorrência permanece sem resposta por ausência de dados históricos horários desta conta.",
+      "conclusao_granular": "complica",
+      "confianca": "média"
+    },
+    {
+      "pergunta": "Na Conta 3, os 4 pedidos do Kit 6 Canecas Tulipa (CTL002) vieram em horários próximos ou distribuídos ao longo do dia?",
+      "status": "parcialmente respondida",
+      "evidencia": "Produto visível: Kit 6 Canecas Tulipa 250ml | Conta: Budamix Shop (Conta 3) | shop_id: 442066454 | platform_item_id: 50954968481 | Fonte: orderItems. A distribuição horária da Conta 3 mostra exatamente 9 pedidos em 9 horas distintas (0h, 4h, 8h, 10h, 14h, 15h, 16h, 20h, 23h) — 1 pedido por hora, sem exceção. Com 4 dos 9 pedidos sendo CTL002, eles necessariamente ocupam 4 horas distintas dessas 9. O pacote não discrimina qual produto foi vendido em qual hora específica. O que pode ser afirmado estruturalmente: dado que cada hora tem exatamente 1 pedido, é matematicamente impossível que CTL002 tenha gerado 2 pedidos no mesmo horário — não houve cluster em nenhuma janela.",
+      "leitura": "CTL002 foi o produto líder da Conta 3 e mesmo ele não gerou concentração horária. Seus 4 pedidos estão distribuídos em 4 horas separadas. Isso confirma a leitura operacional: a conta não teve tração em nenhum momento do dia, incluindo o produto campeão.",
+      "conclusao_granular": "confirma",
+      "confianca": "média"
+    },
+    {
+      "pergunta": "Na Budamix Store, os 27 pedidos do IMB501P e os 18 do CK4742 vieram concentrados em alguma janela horária específica ou distribuídos ao longo do dia?",
+      "status": "parcialmente respondida",
+      "evidencia": "Produto 1: Conjunto 5 Potes de Vidro Redondos Tampa Preta | Conta: Budamix Store | shop_id: 448649947 | platform_item_id: 22393168887 | 27 pedidos | Fonte: orderItems. Produto 2: Jarra Medidora de Vidro 500ml | Conta: Budamix Store | shop_id: 448649947 | platform_item_id: 23993264258 | 18 pedidos | Fonte: orderItems. Distribuição horária da Store (59 pedidos totais): três picos identificados — manhã: 9h (6 pedidos); tarde: 12h (5), 13h (4), 14h (6); noite: 20h (6), 21h (5). Nenhuma hora ultrapassa 10% do total diário (máximo = 10,2% às 9h/14h/20h). IMB501P + CK4742 somam 45 pedidos (76,3% do total). Com 76% dos pedidos e 3 picos bem distribuídos ao longo do dia, a presença desses dois produtos nos 3 picos principais é matematicamente certa — não poderiam estar concentrados em uma única janela sem distorcer radicalmente a distribuição horária observada. O pacote não discrimina hora por produto, portanto a distribuição exata não é rastreável.",
+      "leitura": "A Store não tem dependência de janela horária além da já documentada dependência de produto. Os dois campeões sustentaram os três picos do dia. O perfil horário da Store é normal e distribuído — não há concentração de risco temporal adicional ao risco de concentração de produto já identificado pelas camadas anteriores.",
+      "conclusao_granular": "inconclusivo",
+      "confianca": "média"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Discrepância entre display_name e raw_title do SKU 098 na Conta 2",
+      "origem": "risco de identificação",
+      "evidencia": "Produto visível: Kit 9 Potes Vidro Quadrados Hermético Vedação Tampa 4 Travas Marmita (raw_title) | Conta: Budamix Oficial (Conta 2) | shop_id: 860803675 | platform_item_id: 23198542584 | SKU: 098 | 3 pedidos, 3 itens | Fonte: orderItems. O display_name mapeado é 'Pote de Vidro Hermético 800ml' (produto individual, 800ml). O raw_title do pedido é 'Kit 9 Potes Vidro Quadrados Hermético'. São produtos fundamentalmente distintos em quantidade e composição. Mapping_status: 'mapped', mapping_reason: 'reviewed_sku_display_map', confidence: 'high' — o mapeamento foi revisado, mas o display_name não corresponde ao produto descrito no título do pedido real.",
+      "leitura": "O display_name do SKU 098 não representa o produto real do pedido. Se relatórios ou mensagens usarem o nome comercial exibido ('Pote de Vidro Hermético 800ml'), estarão descrevendo um produto diferente do que foi realmente vendido ('Kit 9 Potes'). Impacto em volume: baixo (3 pedidos em 84). Impacto em identificação: médio — o erro de nome é substancial.",
+      "conclusao_granular": "complica",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "CTL002 como produto cross-conta com perfil de comportamento distinto por conta",
+      "origem": "anomalia",
+      "evidencia": "Conta Store: Kit 6 Canecas Tulipa 250ml | shop_id: 448649947 | platform_item_id: 45554989236 | 7 pedidos, 7 itens | título real: 'Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha' | Posição: 3º produto | Fonte: orderItems. Conta 2: Kit 6 Canecas Tulipa 250ml | shop_id: 860803675 | platform_item_id: 46154989273 | 4 pedidos, 7 itens | título real: 'Conjunto 6 Canecas Tulipa em Porcelana 250ml Coloridas para Café e Chá' | Posição: 1º produto | média 1,75 itens/pedido | Fonte: orderItems. Conta 3: Kit 6 Canecas Tulipa 250ml | shop_id: 442066454 | platform_item_id: 50954968481 | 4 pedidos, 4 itens | título real: 'Kit 6 Canecas Tulipa Porcelana 250ml Coloridas Café Chá Xícaras Conjunto Mesa Cozinha' | Posição: 1º produto | média 1 item/pedido | Fonte: orderItems. Total cross-conta: 15 pedidos, 18 itens. CTL002 é o único produto que aparece com relevância de top3 nas 3 contas simultaneamente.",
+      "leitura": "CTL002 é o único produto com sinal cross-conta consistente no dia. Na Conta 2, o comportamento de multi-item (1,75 itens/pedido) é evidência granular que contribui parcialmente para o ticket elevado dessa conta. Na Conta 3, CTL002 sustenta 44% dos pedidos (4 de 9) — é o único vetor da conta. A presença cross-conta não confirma canibalização, mas é estrutura que merece monitoramento contínuo — se os três anúncios competem pelo mesmo comprador no Shopee, a Conta 3 e a Conta 2 podem estar capturando tráfego que seria da Store, ou vice-versa.",
+      "conclusao_granular": "complica",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "FITA500M na Budamix Store — produto fora da categoria principal",
+      "origem": "risco de identificação",
+      "evidencia": "Produto visível: Kit 6/12 Rolos De Fita Adesiva Transparente 45mm X 500 Metros Embalagem Resistente Larga Embalar | Conta: Budamix Store | shop_id: 448649947 | platform_item_id: 22398347517 | SKU: FITA500M | 1 pedido, 1 item | confidence: 'medium' | mapping_reason: 'raw_sku_normalized_with_short_title_fallback' | Fonte: orderItems. Produto de fita adesiva industrial em conta de utensílios domésticos (vidro, porcelana).",
+      "leitura": "1 pedido de produto fora de categoria com mapeamento por fallback (confiança média). Impacto em volume: irrelevante (1 de 59 pedidos). O risco principal não é o pedido em si, mas a existência de listing ativo de produto de categoria diferente na conta — pode gerar tráfego irrelevante e prejudicar métricas de conversão da Store. Não há base para conclusão além de 1 pedido isolado.",
+      "conclusao_granular": "inconclusivo",
+      "confianca": "baixa"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "médio",
+    "fontes_de_risco": [
+      "ITEM:57356981475 — Store, 1 pedido, sem raw_sku, mapeado por platform_item_id (confidence medium)",
+      "FITA500M — Store, 1 pedido, mapeamento por short_title_fallback (confidence medium)",
+      "SKU 098 — Conta 2, 3 pedidos, discrepância display_name vs raw_title (confidence high no mapeamento, mas nome exibido diverge do produto real)"
+    ],
+    "descricao": "O risco médio é sustentado por três produtos com ressalva de identificação, todos de volume baixo (1 a 3 pedidos). Os produtos de alto volume que sustentam o GMV do dia — IMB501P (27 pedidos), CK4742 (18 pedidos), CTL002 cross-conta (15 pedidos), KIT4YW800SQ Conta 2 (4 pedidos) — têm identificação de alta confiança, com raw_sku, título real e platform_item_id presentes e consistentes. Nenhum produto de volume relevante tem risco alto de identificação. A base de memória qualitativa é zero (weekly e monthly são templates vazios), o que impede ancoragem histórica de nome de produto — mas isso não se traduz em risco de identificação granular para os pedidos do pacote atual.",
+    "bloqueios_slack": []
+  },
+  "divergencia_fontes": [
+    {
+      "divergencia": "Operacional indicou 'Conta 2 sem nenhum pedido das 15h às 23h, última venda às 14h'. Os dados horários da Conta 2 (shop_id: 860803675) registram 1 pedido na hora 17.",
+      "resolucao": "Dado do pacote (hora 17: 1 pedido) prevalece sobre leitura da Operacional (regra: fonte canônica de dados BRT vence interpretação de camada downstream).",
+      "impacto": "A inatividade real da Conta 2 é das 18h às 23h (6 horas consecutivas), não das 15h às 23h. O sinal operacional de ausência tarde/noite permanece válido e relevante, mas a janela é menor do que descrito. A pergunta da Operacional sobre recorrência permanece pertinente com essa premissa corrigida."
+    }
+  ],
+  "evidencia_conflitante": null,
+  "detalhes_condensadora": [
+    {
+      "detalhe": "Os cancelamentos da Budamix Store não foram atribuídos a produto específico — o pacote não discrimina produto por cancelamento. A mensagem final não deve afirmar que cancelamentos estão concentrados em nenhum produto nem que são pulverizados; a informação simplesmente não está disponível",
+      "importancia": "Sem essa ressalva, a mensagem final pode inventar atribuição de cancelamento que não tem base nos dados",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "CTL002 (Kit 6 Canecas Tulipa 250ml) é o único produto com sinal relevante nas 3 contas simultaneamente: top3 na Store (7 pedidos), líder da Conta 2 (4 pedidos, 7 itens, ticket elevado), líder da Conta 3 (4 pedidos, único vetor com mais de 1 pedido). Total: 15 pedidos, 18 itens cross-conta",
+      "importancia": "Se a mensagem tratar cada conta isoladamente sem mencionar esse padrão, oculta o único produto com comportamento sistêmico no dia — e perde a evidência granular que explica parcialmente o ticket elevado da Conta 2 (multi-item no CTL002)",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "A inatividade da Conta 2 tarde/noite começa às 18h (última venda: 17h), não às 15h como indicado pela Operacional — janela real de ausência: 18h-23h (6 horas), não 7-9 horas",
+      "importancia": "A mensagem final deve usar a janela correta; inflar a ausência para 9h cria percepção de gravidade maior do que os dados sustentam — o sinal é real, mas a magnitude precisa ser fiel ao pacote",
+      "confianca": "alta"
+    }
+  ],
+  "memoria_interna": {
+    "nota": "Itens abaixo são referência técnica para log e investigação futura. Não devem ir para Slack.",
+    "shop_ids": {
+      "budamix_store": "448649947",
+      "budamix_oficial_2": "860803675",
+      "budamix_shop_3": "442066454"
+    },
+    "platform_item_ids_lideres": {
+      "IMB501P_store": "22393168887",
+      "CK4742_store": "23993264258",
+      "CTL002_store": "45554989236",
+      "CTL002_conta2": "46154989273",
+      "CTL002_conta3": "50954968481",
+      "KIT4YW800SQ_conta2": "22097667091"
+    },
+    "distribuicao_horaria_store_picos": "9h (6), 12h (5), 13h (4), 14h (6), 20h (6), 21h (5)",
+    "distribuicao_horaria_conta2": "ativo: 4h-17h com pico às 9h (4) e 14h (3); inativo: 18h-23h",
+    "distribuicao_horaria_conta3": "1 pedido/hora em 9 horas distintas — 0h, 4h, 8h, 10h, 14h, 15h, 16h, 20h, 23h — sem cluster",
+    "skus_com_ressalva": {
+      "ITEM:57356981475": {
+        "conta": "Store",
+        "pedidos": 1,
+        "risco": "sem raw_sku, mapeado por platform_item_id",
+        "confidence": "medium"
+      },
+      "FITA500M": {
+        "conta": "Store",
+        "pedidos": 1,
+        "risco": "short_title_fallback, produto fora de categoria",
+        "confidence": "medium"
+      },
+      "098": {
+        "conta": "Conta 2",
+        "pedidos": 3,
+        "risco": "display_name diverge do raw_title — Kit 9 Potes vs Pote 800ml individual",
+        "confidence": "high no mapeamento, inconsistência de nome"
+      }
+    }
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

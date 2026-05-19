@@ -71,3 +71,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 **Contexto:** Preview de 16/05/2026 BRT deixou Lucas/Shopee aprovado com ressalva por tickets e range percentual aproximados sem decimais, herdados da camada Shopee Consolidator; Slack Writer preservou fielmente a origem.
 **Lição:** Quando a mensagem Shopee consolidada tiver layer 6B, padronizar moeda/ticket/percentual nessa camada antes da Slack Writer. Corrigir só na saída final melhora aparência, mas não remove a fonte da ressalva e enfraquece auditabilidade.
 **Expira:** 2026-06-16
+
+### [TÁTICA] Daily Sales v2 Shopee: Top Produtos não pode duplicar consolidado + conta individual (2026-05-18)
+**Contexto:** Cron de 06:50 BRT analisando 17/05/2026 BRT bloqueou Lucas/Shopee no QA porque `Kit 6 Canecas Tulipa 250ml` apareceu como linha consolidada das 3 contas e também como linha individual da Conta 3, já contida no consolidado.
+**Lição:** Quando a Shopee tiver linha consolidada por variação vendável nas 3 contas, não manter também linha individual de conta que compõe o mesmo volume. A 06B/Slack Writer deve resolver a duplicidade antes do QA; QA deve bloquear se houver risco de dupla contagem para o leitor.
+**Expira:** 2026-06-17

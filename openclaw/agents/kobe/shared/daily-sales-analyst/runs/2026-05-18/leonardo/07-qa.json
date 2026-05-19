@@ -1,7 +1,7 @@
 {
-  "resultado_qa": "BLOQUEADO",
-  "motivo": "Dois Críticos identificados em gates distintos. Gate 7: a seção PRIORIDADES usa '60%' para os 'dois ASINs líderes', mas a Condensadora especifica explicitamente '53% do volume do dia' para essa relação — a Slack Writer mesclou o percentual do grupo familiar ampliado (Tampa Preta 12 + Tampa Cinza 3 + Jarra Medidora 12 = 27/45 = 60%, insight 2) com os dois ASINs líderes individuais para verificação de Buy Box/FBA (IMB501P + CK4742 = 24/45 = 53%, prioridade). Gate 8: três bloqueios analíticos do campo 'o_que_nao_pode_ir_para_slack' da Condensadora estão ausentes do log de Respeito de Bloqueios — status de Buy Box/FBA dos ASINs líderes, origem dos cancelamentos e crescimento como patamar confirmado. O conteúdo da mensagem respeita os três, mas a regra do Gate 8 é mecânica: bloqueio que existe na Condensadora mas não aparece no log → BLOQUEADO. Regra de agregação aplicada: 2 Críticos → BLOQUEADO (1+ Crítico → BLOQUEADO).",
-  "send_allowed": false,
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem passou em todos os 11 gates sem nenhum Crítico e sem nenhum Maior. O único desvio encontrado é um Menor no Gate 8: o log de Decisões de Formatação registrou explicitamente a omissão de JMOCE e KIT2CK4742 (confiança média, 1 pedido cada) mas não registrou a exclusão de 914C (Kit 6 Canequinhas 100ml, 1 pedido, confiança alta), produto corretamente ausente da mensagem. A lista ordenada do Top Produtos estabelece implicitamente corte em 2 pedidos, tornando a omissão de 914C rastreável por inferência, mas não por registro explícito. Fidelidade à Condensadora, bloqueios, estrutura Slack, dados, destinatário, padrão numérico e tom: todos corretos. Regra aplicada: 0 Maiores + 1 Menor → APROVADO COM RESSALVA.",
+  "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
     "gate_1_data_periodo_fonte": "OK",
@@ -10,51 +10,41 @@
     "gate_4_visao_plataforma": "OK",
     "gate_5_top_produtos": "OK",
     "gate_6_analise_conta": "OK",
-    "gate_7_prioridades": "FALHA",
-    "gate_8_bloqueios_confianca_logs": "FALHA",
-    "gate_9_consistencia_camadas": "FALHA",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "RESSALVA",
+    "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
     "gate_11_padrao_numerico_formatacao": "OK"
   },
   "contagem_severidade": {
-    "criticos": 2,
+    "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 0,
-    "regra_agregacao_aplicada": "2 Críticos → BLOQUEADO (regra: 1+ Crítico → BLOQUEADO)"
+    "menores": 1,
+    "regra_agregacao_aplicada": "0 Maiores + 1 Menor → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
-      "severidade": "Crítico",
-      "gate": "7 — Prioridades do Dia",
-      "texto_atual": "Eles sustentam 60% do volume do dia",
-      "texto_esperado": "Eles sustentam 53% do volume do dia",
-      "estado_atual": "A prioridade atribui 60% do volume aos 'dois ASINs líderes (Potes Redondos e Jarra Medidora)'. O percentual 60% pertence ao grupo familiar ampliado — Tampa Preta (12) + Tampa Cinza (3) + Jarra Medidora (12) = 27/45 pedidos — e é o número do insight 2 da Condensadora. Os 'dois ASINs líderes' que a Condensadora identifica para verificação de Buy Box/FBA são IMB501P e CK4742 = 24/45 = 53%. A Slack Writer misturou os dois percentuais sem registro em Decisões de Formatação.",
-      "estado_esperado": "Percentual fiel à Condensadora: '53%' para os dois ASINs líderes. Alternativamente, se a intenção era ampliar o escopo para incluir a família IMB501, isso exigiria reformular a prioridade para 'três ASINs/família + Jarra' — o que não está autorizado pela Condensadora, que define a prioridade como verificação dos 'dois ASINs líderes'.",
-      "regra_violada": "Gate 7: prioridade deve usar apenas o conteúdo autorizado pela Condensadora, incluindo números; Gate 9: Slack Writer não respeitou dado numérico da Condensadora; dado errado → Crítico.",
-      "bloqueia_envio": true
-    },
-    {
-      "severidade": "Crítico",
-      "gate": "8 — Bloqueios, confiança e logs da Slack Writer",
-      "texto_atual": null,
-      "texto_esperado": null,
-      "estado_atual": "O log 'Respeito de bloqueios' documenta apenas 3 dos 6 itens do campo 'o_que_nao_pode_ir_para_slack' da Condensadora: TL250B, TL6250 e JMOCE. Três bloqueios analíticos estão ausentes do log: (1) 'Status de Buy Box e FBA dos ASINs líderes: dado ausente — não afirmar que a operação está íntegra nos campeões'; (2) 'Origem dos 2 cancelamentos: dado ausente — não afirmar que são de cauda ou irrelevantes; sinal permanece aberto'; (3) 'Crescimento como patamar confirmado: tese é moderada, não consolidada — não comunicar como fato fechado'. O conteúdo da mensagem respeita todos os três no texto, mas a regra do Gate 8 exige que cada bloqueio da Condensadora apareça explicitamente no log.",
-      "estado_esperado": "Todos os 6 itens de 'o_que_nao_pode_ir_para_slack' da Condensadora devem constar no log com: origem, motivo, tratamento aplicado (ex: 'linguagem de indício preservada', 'não citado nas prioridades', 'análise não afirma integridade operacional') e confirmação de presença/ausência na mensagem final.",
-      "regra_violada": "Gate 8, Passo 4: 'Bloqueio existe na Granular/Condensadora mas não aparece no log → BLOQUEADO'.",
-      "bloqueia_envio": true
+      "severidade": "Menor",
+      "gate": "Gate 8 — Bloqueios, confiança e logs da Slack Writer",
+      "texto_atual": "Decisões de formatação registra: 'JMOCE e KIT2CK4742 omitidos do Top Produtos — confiança média por mapped_generic_sku e volume de 1 pedido cada' — sem menção a 914C (Kit 6 Canequinhas 100ml, 1 pedido, confidence high), também ausente da mensagem.",
+      "texto_esperado": "Log deveria incluir decisão explícita sobre 914C: razão de exclusão documentada (ex: 1 pedido, abaixo do limiar de 2 pedidos definido para relevância de volume, corte consistente com os demais itens de 1 pedido).",
+      "estado_atual": "914C omitido corretamente da mensagem final, mas decisão de exclusão não documentada no log por nome. JMOCE e KIT2CK4742, de mesmo volume e excluídos pelo mesmo threshold, foram explicitamente registrados por terem motivação de confiança — 914C, com confiança alta mas mesmo volume de 1 pedido, ficou sem registro.",
+      "estado_esperado": "914C com entrada explícita no log de Decisões de Formatação identificando razão de exclusão, garantindo rastreabilidade completa das omissões do Top Produtos.",
+      "regra_violada": "Gate 8 exige que o bloco Decisões de Formatação registre decisões relevantes de omissão. Quando produtos de mesmo volume mas características distintas (confiança média vs. alta) são tratados de formas diferentes no log, o produto de confiança alta omitido sem registro cria lacuna de auditoria.",
+      "bloqueia_envio": false
     }
   ],
-  "correcoes_obrigatorias_antes_envio": [
-    "Gate 7: substituir '60%' por '53%' na frase 'Eles sustentam 60% do volume do dia' nas PRIORIDADES DO DIA. O percentual correto para os dois ASINs líderes individuais (IMB501P + CK4742 = 24/45 pedidos) é 53%, conforme registrado na Condensadora no campo 'por_que' da prioridade. Se o escopo for ampliado para incluir a família IMB501 completa, a Condensadora deve autorizar explicitamente essa reformulação antes do próximo ciclo.",
-    "Gate 8: complementar o log 'Respeito de bloqueios' com os três bloqueios analíticos ausentes da Condensadora: (1) Status de Buy Box/FBA dos ASINs líderes — dado ausente, tratamento aplicado: análise diz 'são desconhecidos' e não afirma integridade operacional, ausente da mensagem como fato; (2) Origem dos cancelamentos — dado ausente, tratamento aplicado: cancelamentos citados apenas na VISÃO como dado objetivo (2 cancelamentos), não interpretados na análise; (3) Crescimento como patamar confirmado — tratamento aplicado: linguagem de indício preservada no insight 1 ('não está operacionalmente ancorado'), crescimento não comunicado como fato fechado."
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "914C (Kit 6 Canequinhas 100ml, B0G2SV7NR1, 1 pedido, 2 unidades, confiança alta) foi corretamente omitido do Top Produtos por volume abaixo do limiar de relevância (corte em 2 pedidos), mas a decisão não foi documentada explicitamente no log da Slack Writer. Sinalizar para o próximo ciclo que o log deve cobrir todos os produtos omitidos por nome, especialmente os de confiança alta.",
+    "Três dados operacionais críticos ficaram sem resposta por ausência no pacote de 2026-05-18: (1) Buy Box de IMB501P (B0GSWJ91JM) e CK4742 (B0G2CWWMGK), (2) cobertura FBA por ASIN, (3) atribuição de cancelamentos por produto. Leonardo deve preencher essas lacunas operacionalmente hoje. O próximo ciclo deve checar se o pacote passou a incluir esses campos.",
+    "TL250B e TL6250 têm display_name incorreto no sistema (canecas de porcelana mapeadas como tigelas de vidro). A Slack Writer corrigiu via raw_title corretamente, mas o erro de catálogo persiste e deve ser corrigido na base de dados para evitar contaminação silenciosa em análises futuras de mix de categoria.",
+    "Família IMB501 respondeu por 33% do canal em dois ASINs distintos (B0GSWJ91JM tampa preta 12 pedidos, B0GSWRMDRG tampa cinza 3 pedidos) com estoque FBA separado. Monitorar nos próximos ciclos se a proporção preta/cinza se mantém ou se a cinza começa a ganhar tração — crescimento da cinza mitiga parcialmente o risco de ruptura unitária da família."
   ],
-  "ressalvas_memoria_interna": [],
   "ressalvas_auditoria_nao_bloqueante": [
-    "O conteúdo da mensagem respeita os seis bloqueios da Condensadora no texto; o Gate 8 falhou exclusivamente por incompletude documental do log, não por violação de conteúdo — após complementação do log, nenhuma alteração de texto da mensagem é necessária para este gate.",
-    "Gate 6 aprovado sem ressalva: os dois insights da Condensadora foram reproduzidos com fidelidade integral — tese central, conectivos, verbos modais, termos analíticos-chave (Buy Box, cobertura FBA, 53%, patamar de crescimento, operacionalmente ancorado, família IMB501, Tampa Preta + Tampa Cinza, 33%, 60%, dois vetores, fulfillment) todos preservados. As duas decisões de formatação registradas (remoção de 'o pacote não contém esses dados' e remoção do nome Leonardo na análise) são coerentes e não alteram tese.",
-    "Gate 5 aprovado: variações IMB501P (Tampa Preta) e IMB501C (Tampa Cinza) mantidas separadas; TL250B e TL6250 citados com títulos reais derivados de raw_title em substituição aos display_names bloqueados; JMOCE omitido conforme bloqueio da Condensadora; ASINs ausentes sem caso de ambiguidade identificável nos produtos listados.",
-    "A consistência numérica da seção ANÁLISE DA CONTA está correta: '53%' no insight 1 e '33%' e '60%' no insight 2 são todos fiéis à Condensadora e matematicamente verificáveis pelos dados brutos."
+    "A Condensadora formulou o primeiro insight como 'Agir como se o patamar estivesse consolidado — especialmente acionar escalonamento de ADS — é precipitado'. A Slack Writer simplificou para 'Acionar escalonamento de ADS agora é precipitado'. A tese central e o alerta operacional estão intactos; o enquadramento mais amplo ('agir como se o patamar estivesse consolidado') foi absorvido pela frase anterior do insight que já diz 'não pode ser tratada como patamar confirmado'. Sem violação de regra objetiva. Registrado como sinal de evolução: avaliar se o enquadramento geral deve ser explicitamente preservado na próxima versão da Condensadora.",
+    "A simplificação 'do mesmo nicho de armazenamento doméstico' → 'do mesmo nicho' no segundo insight remove o qualificador de categoria. A tese de concentração em dois vetores do mesmo nicho permanece intacta. Consistente com a Diretriz Pedro 2026-05-17 de comunicação simples sem perda de significado operacional."
   ],
   "llm_used": true,
   "model": "sonnet",

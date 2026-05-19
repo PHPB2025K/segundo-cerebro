@@ -149,3 +149,23 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Para CB1, validar se o aumento de verba de R$ 30 para R$ 50 gerou venda incremental suficiente.
 
 **Status:** aberto — validar entre **2026-05-20 e 2026-05-26** nos dados de Mercado Livre/ADS.
+
+### 2026-05-19 14:57 BRT — Link para call ML da tarde enviado
+
+**Participantes:** Kauana/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Confirmação operacional da call da tarde.
+
+**Contexto registrado:**
+- Kauana enviou o link do Google Meet para a call da tarde no grupo **💎 [HML*] BUDAMIX**.
+- A mensagem não trouxe decisão, SKU, campanha, verba ou plano operacional; apenas confirmou que havia uma conversa em andamento/iminente.
+
+**Impacto esperado:**
+- Tratar como marcador de que houve uma call ML em **2026-05-19 à tarde**; buscar transcrição/ata/mensagens posteriores antes de usar como causa para mudanças de ADS, vendas ou exposição.
+
+**Como validar nos dados:**
+- Procurar registros posteriores da call com decisões de campanha, produtos priorizados, responsáveis ou janelas de validação.
+- Se houver mudança relevante no Daily Sales Report de **20/05 em diante**, cruzar com eventuais decisões dessa call antes de atribuir causa.
+
+**Status:** aberto — aguardando conteúdo decisório da call.
+

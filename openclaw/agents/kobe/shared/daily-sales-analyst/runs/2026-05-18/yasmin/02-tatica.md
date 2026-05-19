@@ -1,38 +1,33 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Decisão tática
 
-- **Proteger e observar, não intervir.** Dado que a tese estratégica é acomodação com ganho de patamar confirmado no bimestre, o resultado de hoje (dentro da banda 30d, acima do esperado para domingo) não justifica nenhuma ação corretiva. Intervir agora seria responder ao dado errado — a divergência vs 7d é artefato de dias úteis recentemente mais fortes, não sinal de deterioração.
-
-- **Monitorar o risco estrutural de concentração.** Se o risco principal é a dependência da família IMB501 sem segundo vetor identificado, a decisão tática correta é iniciar a observação dirigida agora — não esperar que o risco se materialize para diagnosticá-lo. A concentração de 62,5% observada hoje precisa de confirmação de padrão nos próximos dias para qualificar a resposta.
-
-- **Não acionar Himmel.** A queda vs 7d e o resultado abaixo da média semanal recente podem criar pressão para mexer em ADS ML — mas a Estratégica já identificou que a média de 7d está inflada por dias úteis mais fortes, e o mesmo-dia-da-semana (domingo) confirma resultado acima da média histórica. Acionar ADS neste cenário seria misinterpretar acomodação cíclica como problema de exposição.
-
-- **Endereçar a lacuna de Full ML.** A ausência de dado de fulfillment no pacote é hipótese em aberto que impede avaliar se a competitividade do ML está sustentada. Yasmin precisa ter esse dado antes de qualquer decisão de exposição ou ADS — sem ele, qualquer análise de posição é incompleta.
+- **Dado que a tese é acomodação no patamar ganho** — e que hoje está +0,8%/+3,0% acima da média histórica de domingo — a postura correta é proteger a operação atual sem intervenção, não buscar crescimento.
+- **Se o risco principal é a dependência estrutural da família IMB501** — concentrando 62,5% dos pedidos do dia sem segundo vetor visível — a decisão tática é confirmar que o campeão está com posição e exposição estáveis antes de qualquer movimento de mix ou ADS.
+- **Dado que a memória qualitativa (weekly/monthly) está zerada** — sem hipóteses anteriores para confirmar ou refutar — qualquer ação forte seria precipitada: a base histórica interpretativa não existe para sustentar diagnóstico mais profundo além do que as janelas numéricas entregam.
+- **Se a lacuna 7d (–14,6%) fosse tratada como sinal real** — e não como artefato do domingo inflado de 04/05 — a ação seria precipitada: a Estratégica já controla isso pelo mesmo-dia-da-semana, que não confirma deterioração.
 
 ---
 
 ### O que fazer hoje
 
-- **Yasmin:** verificar posição e saúde dos anúncios líderes da família IMB501 nos próximos 2 dias (hoje e amanhã) — dado que o risco estrutural é dependência nessa família sem segundo vetor, checar se a posição está estável ou se há sinal de queda de ranking/exposição é a menor checagem que protege o cerne da conta — se posição estável em 3+ anúncios desta família, confirma que o patamar está sustentado e nenhuma ação adicional é necessária; se posição caiu em 2+ anúncios líderes, Yasmin alinha com Himmel sobre ADS ML.
+- **Yasmin:** checar posição dos anúncios líderes da família IMB501 e comparar com os últimos 7 dias — dado que 62,5% do GMV está concentrado nessa família, perda de posição do campeão é o único risco que justifica ação imediata — se posição estável em 2+ anúncios da família, mantém observação sem mexer; se posição caiu em 2+ anúncios líderes da família, Yasmin alinha com Himmel sobre exposição ADS ML.
 
-- **Yasmin:** identificar se existe produto candidato a segundo vetor no mix atual — dado que a concentração em IMB501 é o risco estrutural e não há histórico acumulado de segundo vetor, mapear quais produtos fora da família IMB501 aparecem com consistência mínima nos dados (3+ pedidos hoje, com tendência observável) é ação de diagnóstico, não de intervenção — sinal de resultado: se existir 1–2 candidatos com padrão mínimo, isso alimenta a hipótese de segundo vetor para observação nos próximos dias; se não existir, confirma dependência crônica e o risco sobe de prioridade para a semana.
+- **Yasmin:** observar comportamento nos horários fortes dos próximos 2 dias (foco em 14h e 19–22h, que concentraram ~40% dos pedidos hoje) — tese é acomodação saudável, e padrão horário funcionou normalmente hoje; se nos próximos dias os horários fortes enfraquecerem enquanto horários secundários se mantêm, sinaliza problema de exposição, não de volume absoluto — sinal de resultado: pico horário mantido nos mesmos blocos confirma acomodação; queda nos picos com volume deslocado para horários fracos abre investigação de ranking/exposição.
 
-- **Yasmin:** checar status de Full ML para os anúncios líderes da família IMB501 — dado que a ausência desse dado foi registrada como hipótese em aberto pela Estratégica, e que Full afeta visibilidade e competitividade diretamente — sinal de resultado: se Full ativo e estável, elimina essa hipótese e o contexto de exposição fica mais claro; se Full inativo ou parcial nos líderes, abre vetor de investigação de competitividade.
+- **Yasmin:** registrar a concentração de hoje da família IMB501 (62,5%) como baseline e comparar com o próximo domingo — o sinal de confirmação do risco estrutural depende de 2 domingos consecutivos acima de 60% (Estratégica); hoje é o primeiro registro — se próximo domingo ficar abaixo de 55%, o risco de dependência crônica se enfraquece; se ficar acima de 60% novamente, Yasmin sinaliza para Kobe que o mix estrutural precisa de avaliação.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Himmel para mexer em ADS ML.** O resultado de hoje está dentro da banda 30d (−2,2% GMV) e acima do esperado para domingo (+3,0% vs mesmo dia da semana). Não há sinal de perda de exposição confirmado — acionar ADS agora seria resposta a variação cíclica normal, com risco de aumentar custo sem retorno mensurável.
+- **Não acionar Himmel para ajuste de ADS ML** — o desvio vs 7d é artefato do pico de 04/05, e hoje está dentro da banda 30d e acima da média histórica de domingo; acionar ADS sobre acomodação normal é queimar verba sem sinal confirmado de perda de exposição.
 
-- **Não tratar a queda vs 7d como alerta de queda da conta.** A média de 7d está inflada por dias úteis mais fortes. Usar esse comparativo como gatilho de ação forte (preço, ADS, mix) seria misinterpretar o contexto temporal — a leitura correta requer pelo menos 2–3 dias úteis da semana atual para avaliar se o momento forte dos últimos dias se sustenta ou foi pulso pontual.
+- **Não tentar diversificar mix ou empurrar produto secundário** — a concentração IMB501 é um risco identificado, mas ainda não há evidência de que seja crônica nem de que os candidatos secundários (produtos com 3–4 pedidos cada) tenham capacidade de âncora; testar segundo vetor sem ter o campeão protegido e sem segundo domingo de dado é prematuro.
 
-- **Não testar segundo vetor antes de confirmar estabilidade do campeão.** Sem memória semanal/mensal consolidada e sem histórico de segundo vetor, iniciar qualquer teste de exposição ou promoção em produto secundário agora seria agir sem base suficiente — o risco é de canibalização interna sem diagnóstico fechado. A sequência correta é: confirmar que IMB501 está estável (próximos 2 dias) → então avaliar teste de segundo vetor.
+- **Não tratar a lacuna de 7d como sinal de deterioração** — –14,6% vs 7d não tem base analítica sólida dada a inflação do domingo de 04/05; usar essa referência para tomar decisão seria agir sobre ruído, não sobre sinal.
 
 ---
 
 ### Escalonamento
 
-**observar**
-
-A tese estratégica é sólida o suficiente para guiar a semana sem decisão estrutural. O resultado de hoje não contraria o ganho de patamar do bimestre, e o risco principal (concentração IMB501) ainda está em fase de confirmação — não de intervenção. Yasmin resolve as checagens descritas acima de forma autônoma. O escalonamento sobe para **alinhar com Himmel** se: (a) Yasmin identificar queda de posição em 2+ anúncios líderes da família IMB501, ou (b) o GMV cair abaixo de R$ 3.700 em algum dia útil da semana e repetir o sinal no dia seguinte. Sobe para **escalar para Kobe** apenas se a concentração em IMB501 confirmar padrão crônico (60%+ por 3+ dias) sem candidato a segundo vetor identificado — o que qualificaria o risco como estrutural com decisão de catálogo a tomar.
+**observar** — a conta está em acomodação dentro do patamar ganho, com hoje acima do par sazonal e dentro da banda 30d. Não há sinal confirmado que justifique acionamento de Himmel, Pedro ou Kobe. Yasmin resolve com checagens dirigidas no nível do canal. O escalonamento sobe para **alinhar com Himmel** se a checagem de posição dos anúncios líderes da família IMB501 revelar queda em 2+ anúncios, ou se os horários fortes caírem por 2 dias seguidos; sobe para **escalar para Kobe** se o próximo domingo confirmar concentração acima de 60% pela segunda vez consecutiva, consolidando a dependência estrutural como padrão crônico que extrapola decisão tática de canal.

@@ -1,50 +1,50 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Qualidade da base
 
-weekly.md e monthly.md estão preenchidos apenas com template — sem entradas reais acumuladas. Não há hipóteses ativas, tese semanal consolidada ou tese mensal para confirmar ou refutar. As três janelas temporais (7d, 30d, 60d) estão disponíveis e completas (7, 30 e 60 dias de dado); mesmos dias da semana disponíveis com 4 pontos. A leitura de hoje serve como ponto de referência histórico inicial, não como confirmação de tese anterior.
+`weekly.md` e `monthly.md` estão presentes mas são templates sem conteúdo — não há consolidação semanal nem tese mensal acumulada. Não existem hipóteses ativas transitando de dias anteriores para confirmar ou refutar. As janelas quantitativas (7d, 30d, 60d, mesmos dias da semana) estão todas disponíveis com dados suficientes; a fraqueza é inteiramente qualitativa — memória histórica interpretativa zerada. Tese ajustada para confiança moderada, sustentada apenas pelas janelas numéricas.
 
 ---
 
 ### Leitura temporal
 
-- **vs 60d (+13,6% GMV, +8,6% pedidos):** o patamar da conta subiu de forma consistente no bimestre — a média de 60d era R$ 3.682 e a de 30d já está em R$ 4.280, indicando que a conta ganhou nível estrutural ao longo de maio/abril.
-- **vs 30d (−2,2% GMV, −3,0% pedidos):** hoje ficou essencialmente dentro da banda do mês, sem afastamento relevante. O ticket segurou (+0,9% vs 30d), o que afasta leitura de deterioração de preço ou mix.
-- **vs 7d (−16,3% GMV, −14,6% pedidos):** a média dos últimos 7 dias (R$ 5.001, 112 pedidos) está claramente acima da de 30d, o que sugere que dias de semana recentes foram mais fortes e puxaram a média para cima — o resultado de hoje parece pullback cíclico, não queda.
-- **vs mesmos domingos (+3,0% GMV, +0,8% pedidos):** controlando o dia da semana, hoje ficou acima da média de quatro domingos anteriores (R$ 4.061). Domingo é estruturalmente mais fraco que a média mensal nesta conta; o resultado de hoje está dentro do comportamento esperado para o dia.
+- **60d → 30d (patamar):** média passou de ~88 pedidos e R$3.683 para ~99 pedidos e R$4.280 — crescimento de ~12% em volume e ~16% em GMV ao longo do bimestre. Sinal consistente de patamar ganho em duas janelas distintas.
+- **Hoje vs 30d:** –3% pedidos, –2,2% GMV — margem de ruído, dentro da banda normal do mês. Ticket levemente acima (+0,9%), sem corrosão de mix.
+- **Hoje vs 7d:** –14,6% pedidos, –16,3% GMV — desvio aparentemente forte, mas a janela de 7d foi inflada pelo pico de 04/05 (115 pedidos, R$5.208). A referência 7d não é limpa para hoje.
+- **Hoje vs mesmos dias da semana (domingos):** +0,8% pedidos, +3,0% GMV sobre média histórica de R$4.062 — hoje está ligeiramente acima do seu par sazonal. A fraqueza vs 7d não se reproduz quando o controle de sazonalidade é aplicado.
 
 ---
 
 ### Leitura estratégica
 
-- A conta ganhou patamar no bimestre — a distância entre a média de 60d e a de 30d (+16,2% GMV) é o sinal mais relevante desta leitura, não o dia. O resultado de hoje não ameaça esse ganho; está alinhado com o 30d e acima do 60d.
-- A divergência entre 7d e 30d não é alarme — é provável reflexo de dias de semana mais fortes nos últimos dias, com domingo naturalmente retraindo. O mesmo-dia-da-semana confirma essa leitura: hoje foi um domingo acima da média dos últimos quatro domingos.
-- A concentração na família Potes de Vidro Redondos (IMB501) é estrutural: as três variações de cor somaram 60 dos 96 pedidos (62,5%). Sem histórico semanal/mensal acumulado, não é possível afirmar se essa dependência cresceu, mas o nível observado hoje coloca a conta em situação de vulnerabilidade latente — qualquer instabilidade nessa família (estoque, listing, competição) afeta diretamente o resultado geral.
-- A ausência de dado de Full ML no pacote impede avaliar se a visibilidade e competitividade estão sustentadas por fulfillment — hipótese em aberto para acompanhar quando o dado estiver disponível.
+- O desvio vs 7d é ilusório: a janela foi puxada por um domingo excepcionalmente forte (04/05) que não representa o comportamento típico da conta. O referencial relevante — mesmos dias da semana e média 30d — posiciona hoje dentro do padrão esperado, não abaixo dele.
+- A trajetória de dois meses (60d → 30d) é o sinal mais robusto disponível: a conta subiu de patamar de forma consistente em volume e GMV simultaneamente, sem sacrifício de ticket — o que descarta deságio de preço como motor e sugere ganho real de exposição ou mix.
+- A concentração na família IMB501 (Conjunto 5 Potes de Vidro Redondos) responde por 62,5% dos pedidos do dia, com três variações de cor ocupando as três primeiras posições. Não há segundo vetor estrutural visível no top 10 — os demais produtos aparecem com 3–4 pedidos cada, sem um candidato a âncora secundária.
+- Ticket acima de 60d (+4,6%) e estável vs 30d (+0,9%) indica que o patamar ganho não está sendo sustentado por erosão de preço — sinal de solidez estrutural no mix, mesmo com concentração alta.
 
 ---
 
 ### Tese da conta
 
-**Em acomodação, com ganho de patamar confirmado no bimestre.**
-
-A conta subiu de nível entre março/abril e maio — a média de 30d está ~16% acima da de 60d em GMV. O resultado de hoje não contraria essa trajetória: está dentro da banda do mês e acima do esperado para um domingo. A queda vs 7d é artefato de um final de semana mais fraco num contexto em que os dias úteis recentes foram mais fortes. Sem memória semanal/mensal consolidada, a confiança nessa tese é moderada — ela é construída apenas sobre as janelas quantitativas, sem âncoras de contexto acumulado.
+**Em acomodação** — a conta opera dentro do patamar que ganhou ao longo dos últimos dois meses. Hoje está marginalmente abaixo da média 30d e ligeiramente acima da média histórica de domingo, o que caracteriza variação normal dentro da nova banda, não deterioração. A ausência de memória qualitativa (weekly/monthly zerados) impede confirmar se esse patamar foi conquistado por ação deliberada ou por movimento de mercado, mas as três janelas numéricas disponíveis apontam na mesma direção: a conta está operando em nível estruturalmente superior ao bimestre anterior.
 
 ---
 
 ### Risco estrutural principal
 
-**Risco:** Dependência concentrada na família IMB501 (Conjunto 5 Potes de Vidro Redondos) — 62,5% dos pedidos do dia originados de uma única família de produto, em três variações de cor.
+**Risco:** Dependência da família IMB501 sem segundo vetor estrutural — 62,5% dos pedidos concentrados em variações de um único produto (Conjunto 5 Potes de Vidro Redondos), sem candidato claro a âncora secundária no top 10.
 
-**Por que importa:** Sem segundo vetor relevante, qualquer ruptura operacional nessa família — ruptura de estoque, queda de ranking/exposição, entrada de competidor com preço agressivo, ou problema de listing — reduz o resultado da conta de forma imediata e não compensável pelo restante do mix.
+**Por que importa:** Qualquer choque sobre os potes de vidro redondos — problema de estoque, queda de ranking, perda de competitividade de preço, mudança de sazonalidade — impacta diretamente mais de 60% do GMV da conta, sem buffer de outro produto para absorver. A conta não tem profundidade suficiente no mix para suportar uma oscilação do campeão sem sentir no total.
 
-**Histórico:** Sem memória anterior consolidada, não é possível afirmar se essa concentração é crônica ou se está aumentando. A ausência de histórico é, ela mesma, um sinal de atenção — não há evidência de segundo vetor estabelecido.
+**Histórico:** Sem memória qualitativa acumulada, não é possível afirmar se essa dependência é crônica ou recente. Os dados de hoje a registram como estado atual — ponto de partida, não confirmação de tendência.
 
-**Sinal de confirmação:** Concentração dos top 3 acima de 60% em pelo menos 3 dos próximos 5 dias confirma dependência crônica, não oscilação pontual.
+**Sinal de confirmação:** Concentração da família IMB501 acima de 60% por mais dois ciclos semanais consecutivos confirma dependência como padrão estrutural estabelecido da conta, não evento pontual.
 
 ---
 
 ### Sinais a observar
 
-1. **Concentração IMB501 acima de 60% por 3 dias seguidos nos próximos 5 dias** — confirma dependência estrutural crônica da família; ausência de segundo vetor é padrão, não anomalia.
-2. **GMV abaixo de R$ 3.700 em qualquer dia útil (seg–sex) nos próximos 7 dias** — sinalizaria que o patamar ganho no bimestre está sob pressão real, não apenas oscilação de fim de semana; confirmaria reversão de tendência se ocorrer por 2 dias consecutivos.
-3. **7d avg voltando para abaixo da linha de 30d (hoje: 112 vs 99)** — se a média de 7 dias começar a convergir para baixo da de 30d ao longo da semana, o momento recente que parecia forte se revelaria pulso pontual, não aceleração sustentada.
+1. **Concentração IMB501 acima de 60% pelo segundo domingo consecutivo** — confirmaria que a dependência é padrão crônico da conta e não reflexo de um dia específico; necessário para elevar o risco de hipótese a estrutural confirmado.
+
+2. **GMV abaixo de R$3.900 por 2 dias seguidos (qualquer dia da semana)** — reverteria a leitura de patamar estabilizado e sinalizaria início de deterioração real; seria o primeiro sinal de que o ganho 60d→30d está sendo corroído.
+
+3. **Pedidos abaixo de 85 em 2 dos próximos 3 domingos** — enfraqueceria a tese de acomodação no patamar ganho e abriria espaço para reclassificação como vulnerável; se o mesmo-dia-da-semana começar a ceder, o referencial mais limpo deixa de sustentar a leitura atual.

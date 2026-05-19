@@ -405,6 +405,17 @@ _Última Consolidação Profunda: 2026-05-01_
 **Lição:** Quando uma página web precisa listar crons/sessões/skills, preferir leitura direta de arquivos/caches internos (`jobs.json`, `jobs-state.json`, `sessions.json`, diretórios de skills) com parser próprio e cache curto. `execSync(openclaw ... --json)` dentro do PM2 travou ou rejeitou argumentos e derrubou páginas inteiras.
 **Expira:** 2026-06-13
 
+
+### [TÁTICA] Daily Sales v2 Shopee: Top Produtos não pode duplicar consolidado + conta individual (2026-05-18)
+**Lição:** No Daily Sales v2 de Lucas/Shopee, a visão de Top Produtos deve escolher uma granularidade visível única. Se houver linha consolidada das 3 contas por variação vendável, não exibir também uma linha individual de conta que já está contida nesse consolidado; isso cria risco de dupla contagem e deve bloquear no QA.
+**Ação:** Ajustar Slack Writer/Consolidadora 6B para deduplicar antes do QA, priorizar nome comercial curto e reexecutar apenas Lucas/Shopee quando a falha for localizada.
+**Expira:** 2026-06-17
+
+### [TÁTICA] RH/Ponto Certo: checar cobertura real antes de cobrar follow-up (2026-05-18)
+**Lição:** Antes de qualquer follow-up de RH sobre ponto, validar deterministicamente se a pendência já foi coberta por ajuste, justificativa ou batida real. Item coberto não pode ser reenviado ao agente para cobrança; caso parcialmente coberto deve separar explicitamente itens COBERTOS vs ABERTOS.
+**Ação:** Manter pré-checagem de cobertura no processador/follow-up e usar batidas reais (`time_records`) além de ajustes/justificativas.
+**Expira:** 2026-06-17
+
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 
 ### Duplicatas removidas nesta consolidação:

@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-17 23:45 BRT — consolidação diária em camadas_
+_Atualizado: 2026-05-18 23:45 BRT — consolidação diária em camadas_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -21,6 +21,7 @@ _Atualizado: 2026-05-17 23:45 BRT — consolidação diária em camadas_
 - [ ] **Automação Pedidos de Venda GB — retomar teste controlado amanhã**: tratar obrigatoriamente no tópico Telegram **Pedidos Atacado Automação** (`thread_id 10494`). Workflow N8N `T7WT4vGaRuWd0N0Q` está pausado/inativo; Evolution do WhatsApp Kobe segue configurada para o webhook. Pedido teste real **954** foi criado no Bling Matriz e excluído com sucesso (DELETE 204; verificação 404). Correção já aplicada: N8N envia texto bruto, Fisco/LLM interpreta com mapa SKU/aliases e prompt reforçado para opções marcadas com `(x)`; dry-run posterior confirmou `Estoque 2025`, `Caixa de fita 300` → `CXFIT300M`, cliente/produto encontrados. Amanhã: reativar workflow só quando Pedro pedir, mandar novo teste real, validar estoque/checkbox, alias SKU e resposta no grupo para bloqueios; ampliar `sku-aliases.json` antes de produção contínua.
 - [ ] **Meta Business — finalizar configuração da Segunda Venda**: Pedro precisa configurar no Meta Business o número de WhatsApp que será usado com a empresa **Segunda Venda**. Onboarding em andamento; fazer o quanto antes amanhã pela manhã para dar sequência.
 - [ ] **Instagram Budamix — finalizar carrosséis fixos no Canva**: concluir os carrosséis fixos que vão no Instagram da Budamix e que já estão sendo feitos pelo Canva.
+- [ ] **Corretora OS/OSA — criar grupo WhatsApp com Davi para teste de câmbio**: reunião Granola de 18/05 apresentou corretora com spread abaixo de 1%, atendimento até 21h e Swift/contrato no mesmo dia. Próximo passo combinado: criar grupo WhatsApp com Davi e testar operações menores antes de migrar volume relevante de importação.
 
 ## 🚨 URGENTE — Operação / Dados
 
@@ -38,7 +39,7 @@ _Atualizado: 2026-05-17 23:45 BRT — consolidação diária em camadas_
 
 ## 🚨 Amazon Ads / BidSpark
 
-- [ ] **Meta Ads — renovar token antes de 18/05/2026**: digest Spark de 16/05 manteve risco operacional de expiração estimada do token Meta Ads em 18/05. Renovar antes da data para evitar queda de automações/análises dependentes.
+- [ ] **Meta Ads — validar renovação/funcionamento após 18/05/2026**: digest Spark de 18/05 registrou que a data estimada de expiração do token Meta Ads foi atingida. Antes de depender da API para análise/automação, validar se o token foi renovado/segue funcional; se falhar, escalar correção de autenticação.
 
 - [ ] **Amazon Ads/BidSpark — corrigir auditoria interna de ações**: execução Tulipa 12/05 deu 7/7 success na API, mas `amazon_ads_actions_log` falhou por FK/constraints (`round_id`/`entity_id`). Corrigir fluxo/schema antes da próxima rodada manual para não perder trilha oficial no BidSpark.
 
@@ -68,7 +69,7 @@ _Atualizado: 2026-05-17 23:45 BRT — consolidação diária em camadas_
 
 - [ ] **RH — criar/corrigir política canônica de sábado/domingo**: digest RH de 16/05 apontou que a regra de sábado/domingo está sendo confirmada por materiais operacionais alternativos, mas o documento canônico não está disponível. Formalizar quando a frente de governança RH entrar no bloco.
 
-- [ ] **RH — acompanhar lote aprovado do Monitor Ponto Semanal 11/05**: Fran, Leonardo, Lucas, Mateus e Sandra; follow-up diário 10h BRT até todos resolverem ou até 19/05; escalar ao Pedro após 5 dias úteis sem retorno. Digest RH de 15/05 acrescentou atenção especial a Mateus (sem saída em 15/05 + pendências), Sandra (sem marcações/sem resposta) e Leonardo (jornada especial/faculdade). Se inbounds continuarem invisíveis mesmo após suporte `@lid`, investigar sincronização da instância Evolution RH.
+- [ ] **RH — acompanhar lote aprovado do Monitor Ponto Semanal 11/05 e casos bloqueados 18/05**: follow-up deve cobrar apenas itens realmente abertos após pré-checagem de cobertura por ajuste, justificativa ou batida real. Em 18/05, validação indicou Leonardo 1/2 coberto, Mateus 5/6 coberto e Sandra 0/5 coberto; digest RH também registrou Guilherme, Lucas, Mateus e Sandra bloqueados para contato semanal até orientação/aprovação do Pedro. Se inbounds continuarem invisíveis mesmo após suporte `@lid`, investigar sincronização da instância Evolution RH.
 - [ ] **RH — compliance 15/05 intervalos abaixo de 1h**: Geziele, Guilherme, Leonardo e Lucas tiveram intervalo de almoço abaixo de 1h no check de 15/05; tratar como risco trabalhista/operacional no acompanhamento, sem liberar WhatsApp proativo genérico.
 - [ ] **RH — guard de WhatsApp proativo ESTENDIDO INDEFINIDAMENTE (até 2027-01-01)** em `/tmp/rh-whatsapp-block.json`. Pedro pediu 05/05 14:04 BRT que nenhum cron/agente RH dispare proativos a funcionários até liberação explícita. Em 11/05 10:15 BRT, Pedro liberou **apenas o escopo específico** dos problemas de ponto reportados no Monitor Ponto Semanal de 11/05 sobre a semana 04/05–09/05, até resolução completa com Fran, Leonardo, Lucas, Mateus e Sandra. Exceções técnicas: `--allow-rh-reply` permite respostas inbound; `--allow-rh-approved-case` permite follow-ups desse lote aprovado. Proativo genérico segue bloqueado. Crons em risco que continuam habilitados mas inofensivos enquanto o guard ativo: `RH Compliance Check` (diário 19h BRT), `Monitor Ponto Semanal` (segundas 10h BRT), `Ponto Certo - QR Code Refresh` (diário 03h, não envia WhatsApp). Validado: proativo → `BLOCKED_RH`; reply → `SENT`; caso aprovado → `SENT`.
 - [ ] **Ponto Certo — deploy produção do módulo Conversas RH** se ainda estiver apenas local: build, publicar na VPS e reiniciar PM2 `ponto-certo`.
@@ -80,7 +81,7 @@ _Atualizado: 2026-05-17 23:45 BRT — consolidação diária em camadas_
 ## 🚨 Gestão / Jurídico / Contratos
 
 - [ ] **Daily Sales Report v2 — aguardar liberação explícita para envio real aos funcionários**: preview de 16/05 foi corrigido em 17/05 a pedido do Pedro e passou para `APPROVED` em Yasmin/ML e Leonardo/Amazon; Lucas/Shopee ficou `APPROVED_WITH_REMARKS` apenas por ressalva numérica menor na 6B após rerun completo Shopee. Pedro recebeu os blocos finais no Slack pessoal e corrigiu a diretriz: manter formato/profundidade, simplificar apenas a comunicação. Nenhum envio externo foi realizado. Envio para funcionários continua bloqueado até liberação explícita; manter `fallback_deterministic_allowed=false` e bloqueio fail-closed se camada LLM falhar.
-- [ ] **Daily Sales Report v2 — finalizar validação Shopee multi-conta em produção**: garantir que Budamix Store, Budamix Oficial e Budamix Shop passam por condensadoras individuais; a Consolidadora Shopee gera `ANÁLISE DAS CONTAS`; Slack Writer apenas formata no layout aprovado do print do Lucas.
+- [ ] **Daily Sales Report v2 — corrigir Lucas/Shopee bloqueado no QA em 18/05**: cron 06:50 BRT analisando 17/05 não entregou Pedro-only porque Top Produtos duplicou `Kit 6 Canecas Tulipa 250ml` como consolidado das 3 contas e como linha individual da Conta 3. Corrigir Slack Writer/Consolidadora 6B para remover duplicidade, trocar códigos de variação por nomes comerciais, reexecutar apenas Lucas/Shopee com merge-existing e só então tentar nova entrega Pedro-only. Manter fail-closed: fallback determinístico não deve maquiar falha LLM.
 
 - [ ] **Adapta — aguardar retorno sobre cobranças recorrentes**: Pedro recebeu mensagem pronta em 07/05 para enviar como PEDRO HENRIQUE PERON BROGLIO. Se a empresa negar cancelamento/estorno, próxima frente é contestação pelo banco/cartão usando descritor `TAR PLANO ADAPT` e valores R$ 497,00/R$ 126,75.
 - [ ] **Guarani Sistemas — preparar minuta de distrato e só pagar após aceite/assinatura**: em 13/05, Guarani aceitou a proposta global de **R$ 7.500,00 à vista** e confirmou baixa/quitação dos 7 títulos/NFs em aberto, sem protesto/negativação/cobrança externa, com isenção do aviso prévio. Próximo passo: enviar minuta de distrato para análise. Ponto crítico: a minuta deve preservar **quitação integral e definitiva**, **sem saldo remanescente/cobrança futura**, **sem reconhecimento de dívida**, e evitar que a cláusula “distrato parte da sua empresa por ausência de mão de obra” vire admissão ampla de culpa. Recomendação: não pagar antes de distrato aprovado/assinado ou, no mínimo, aceite escrito inequívoco dos termos finais.
@@ -127,7 +128,6 @@ _Atualizado: 2026-05-17 23:45 BRT — consolidação diária em camadas_
 
 ## 🟡 Observação / estabilidade
 
-- [ ] **Consolidação em camadas — investigar digests ausentes no fechamento 16/05 00:05 BRT**: fechamento técnico registrou ausência dos digests Trader, Spark, Builder, Fisco e RH em `memory/agent-digests/2026-05-15/`. Não gerar digest substituto pelo Kobe; validar se os crons dos agentes rodaram, se houve race/path errado ou atraso antes da consolidação Kobe/fechamento técnico.
 
 - [ ] **Watchdog/Monitor Ponto/RH crons** — revisar timeouts/fallbacks em jobs com histórico de falha por timeout/model not found.
 
@@ -158,4 +158,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-05-17 23:45 BRT._
+_Última organização: 2026-05-18 23:45 BRT._

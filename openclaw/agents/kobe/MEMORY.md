@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-17 23:45 BRT (consolidação diária em camadas)._
+_Último update: 2026-05-18 23:45 BRT (consolidação diária em camadas)._
 
 ---
 
@@ -134,12 +134,12 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (17/05/2026 23:45 BRT — consolidação diária em camadas)
+## Status do Sistema (18/05/2026 23:45 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
 - **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; todo conteúdo relacionado a alertas deve ir para lá (watchdogs, guards, audits, monitores, failure alerts, resumos e avisos de risco/problema). Thread 8 permanece Urgente e não deve receber alertas técnicos de rotina.
 - **Planejamento de reposição das canecas:** prioridade máxima do próximo bloco operacional. Primeira rodada será manual pelo Kobe e servirá de piloto para o futuro Agente de Compras; todo assunto de compras vai no tópico Compras.
-- **Daily Sales Report Slack:** LLM é o caminho principal aprovado tecnicamente para Lucas/Shopee, Yasmin/ML e Leonardo/Amazon, com fallback determinístico desabilitado. Em 17/05, Pedro validou os blocos finais no Slack pessoal, corrigiu a diretriz para manter formato/profundidade e simplificar apenas a comunicação; envio real para funcionários segue bloqueado até liberação explícita.
+- **Daily Sales Report Slack:** LLM é o caminho principal aprovado tecnicamente para Lucas/Shopee, Yasmin/ML e Leonardo/Amazon, com fallback determinístico desabilitado. Em 18/05, o cron 06:50 não entregou Pedro-only porque Lucas/Shopee foi bloqueado corretamente no QA por duplicidade em Top Produtos; Yasmin/ML e Leonardo/Amazon concluíram até QA com ressalvas. Envio real para funcionários segue bloqueado até liberação explícita.
 - **Estoque Budamix:** PR1+PR2+PR3a seguem no repo, mas produção ainda roda build rsync de 13/04; remediação continua pausada no `git fetch` por falta de credencial GitHub na VPS. Próxima decisão: Deploy Key SSH read-only (recomendado) vs PAT vs rsync.
 - **DRE Abril:** U15 Descontos Concedidos continua prioridade antes da U44 v4 limpa. ML aceito em R$ 5.061,14; Amazon precisa fechar item-promotion sem frete promocional; Shopee segue suspeita/reclassificação.
 - **Mission Control:** 11/23 módulos fechados; Builder concluiu painel Daily Sales Pipeline em 17/05, pendente de restart controlado/smoke para ativar produção. Próxima prioridade técnica segue n8n usage tracking em `/costs` e PRDs dos módulos restantes.
@@ -147,13 +147,13 @@ skills/
 - **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
 
 ### ⚠️ Importante
-- **Meta Ads:** token com expiração estimada em 18/05/2026 precisa ser renovado antes da data para evitar degradação de rotinas/análises dependentes.
+- **Meta Ads:** token atingiu a data estimada de expiração em 18/05/2026; antes de depender da API, validar renovação/funcionamento e escalar correção se falhar.
 - **Canggu/Ana:** repo canônico `PHPB2025K/canguu` reconciliado após hotfix ML; guard determinístico antes do POST no ML ativo contra “entre em contato/fale conosco”. Pendente cleanup TS menor, correção manual da resposta ML antiga, feedback 👎, redirect www↔apex e resiliência restante.
 - **RH/Ponto Certo:** `ponto.budamix.com.br` ativo com SSL; WhatsApp RH proativo bloqueado indefinidamente até liberação explícita, inbound permitido.
 - **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2.
 - **Amazon Ads:** rodada D+7 avançou em 13/05 com múltiplas execuções e tracking ASIN-level validado; pendem grupos de baixo gasto/inativos e auditorias/logs específicos.
 - **Bling/Fisco:** Filial segue com HTTP 403/empresa-token inativo no refresh OAuth; alerta WhatsApp do refresh também falhou com HTTP 403. Não avançar fluxos fiscais que dependam da Filial antes de corrigir vínculo/status/token e validar canal de alerta.
-- **RH/Ponto Certo:** compliance de 15/05 apontou Mateus/Sandra com pendências relevantes e intervalos <1h para Geziele, Guilherme, Leonardo e Lucas; follow-up deve respeitar apenas o lote aprovado, sem proativo genérico.
+- **RH/Ponto Certo:** follow-up agora tem pré-checagem determinística de cobertura por ajuste, justificativa ou batida real. Em 18/05, Guilherme, Lucas, Mateus e Sandra ficaram bloqueados para orientação/aprovação do Pedro antes de novos contatos semanais; compliance também apontou Mateus com almoço incompleto e Guilherme/Lucas/Leonardo com intervalo <1h.
 - **Blog Budamix Pipeline v2:** em produção; resta inspeção visual humana do post de teste e cleanup.
 
 ### ✅ Operacional
@@ -169,6 +169,13 @@ skills/
 - Decisões/lessons perdidas promovidas: Amazon Ads em 5 camadas, Guarani aceite do acordo final, n8n usage tracking e Mission Control/PWA network-first.
 - Agent memories de Trader, Spark e Builder atualizadas para refletir Daily Sales v2, Amazon Ads 5 camadas, Mission Control/Social Studio Reborn/Canggu.
 
+
+
+## Qualidade da Memória (Consolidação Diária em Camadas 18/05 — 23:45 BRT)
+- Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
+- Digests lidos: Trader, Spark, Builder, Fisco e RH. Nenhum digest ausente neste fechamento.
+- Marcos globais incorporados: reunião OS/OSA de câmbio para importação; diagnóstico do Daily Sales v2 com bloqueio correto de Lucas/Shopee por duplicidade de Top Produtos; correção RH contra cobrança de pendências já cobertas; Meta Ads atingiu janela estimada de expiração do token; Bling Filial 403 persistiu.
+- Riscos críticos vindos dos digests: envio Daily Sales para funcionários ainda bloqueado; Lucas/Shopee precisa reexecução localizada antes de nova tentativa Pedro-only; Meta Ads precisa validação de token; Bling Filial segue impedindo fluxos fiscais dependentes; RH precisa decisão do Pedro para Guilherme, Lucas, Mateus e Sandra.
 
 ## Qualidade da Memória (Consolidação Diária em Camadas 17/05 — 23:45 BRT)
 - Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
@@ -203,6 +210,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-18:** Daily Sales v2 falhou de forma segura no cron 06:50: Lucas/Shopee bloqueou no QA por duplicidade de Top Produtos, enquanto Yasmin/ML e Leonardo/Amazon chegaram ao QA com ressalvas; próximo passo é corrigir/reexecutar apenas Lucas. RH recebeu trava determinística contra cobrança de pendências já cobertas. Reunião OS/OSA abriu possível alternativa de câmbio para importações. Meta Ads precisa validação pós-expiração estimada do token; Bling Filial 403 segue bloqueante.
 - **2026-05-17:** Daily Sales v2 avançou em validação controlada: Pedro recebeu versões finais no Slack pessoal, corrigiu a diretriz para manter formato/profundidade e simplificar a comunicação, e o rerun completo Shopee ficou aprovado com ressalva numérica menor. Mission Control ganhou painel visual do pipeline Daily Sales; Spark/RH ficaram quietos; Fisco manteve Bling Filial 403; envio real aos funcionários segue bloqueado.
 - **2026-05-16:** Consolidação em camadas rodou com os 5 digests presentes. Daily Sales v2 teve preview dos três reports aprovado com ressalvas, sem envio externo e sem liberação para funcionários; Spark manteve risco de token Meta Ads expirar em 18/05; Fisco confirmou Bling Filial 403 recorrente e alerta WhatsApp degradado; RH não trouxe violação nova no sábado, mas apontou lacuna de política canônica sábado/domingo.
 - **2026-05-15:** Consolidação diária em camadas entrou em operação com digests dos 5 agentes diretos. Alertas técnicos foram fixados no tópico Alertas (thread 10204); Daily Sales Report Slack ganhou tópico próprio (10222), LLM como caminho principal aprovado tecnicamente para os 3 recipients e produção temporária Pedro-only; Compras/Agente de Compras nasceu com piloto de reposição das canecas; Gestão de Funcionários (10469) e Pedidos Atacado Automação (10494) ganharam tópicos dedicados; WhatsApp Himmel/ML passou a alimentar contexto read-only do Trader.
@@ -237,7 +245,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) planejar reposição de canecas e estruturar piloto do Agente de Compras, (2) decidir liberação do Daily Sales v2 para funcionários ou exigir ciclo Shopee limpo sem ressalva, (3) validar/renovar token Meta Ads na janela de 18/05, (4) corrigir Bling Filial 403 e alerta do refresh, (5) ativar painel Daily Sales Pipeline no Mission Control e retomar n8n usage tracking, (6) acompanhar lote RH aprovado._
+_Próximas ações: (1) corrigir/reexecutar Lucas/Shopee no Daily Sales v2 antes de nova entrega Pedro-only, (2) planejar reposição de canecas e estruturar piloto do Agente de Compras, (3) validar token Meta Ads pós-18/05, (4) orientar RH sobre Guilherme/Lucas/Mateus/Sandra, (5) corrigir Bling Filial 403 e alerta do refresh, (6) ativar painel Daily Sales Pipeline no Mission Control e retomar n8n usage tracking._
 
 ---
 ## Contexto

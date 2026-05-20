@@ -1,0 +1,57 @@
+{
+  "camada": "05-condensadora",
+  "data": "2026-05-19",
+  "plataforma": "ml",
+  "conta": "mercado-livre",
+  "recipient": "Yasmin",
+  "analise_final_condensada": [
+    {
+      "insight": "O risco de concentração não está disperso pela família de potes redondos — está em um único anúncio que hospeda Tampa Preta e Tampa Vermelha juntos, respondendo por 39% dos pedidos do dia em um único ponto de falha. Tratar isso como dependência da família subestima o problema: qualquer perturbação de ranking, reputação ou visibilidade nesse anúncio afeta os dois produtos ao mesmo tempo, amplificando o impacto bem além do que a análise por variação isolada indica.",
+      "padrao": "E — Localização (o risco não é a família, é o anúncio único)",
+      "criterio_descarte": "alerta contra risco silencioso; muda a prioridade — o baseline que precisa ser construído é por anúncio específico, não por variação",
+      "base": "Operacional + Granular",
+      "confianca": "alta"
+    },
+    {
+      "insight": "O GMV cresceu bem, mas o motor foi o ticket — não chegaram mais compradores, cada comprador pagou mais. Como praticamente não há venda de mais de um item por pedido, o ticket depende inteiramente de quais produtos entraram no mix hoje. Se os kits de maior valor saírem da composição nos próximos dias, o GMV recua sem que o número de pedidos dê qualquer sinal de alerta com antecedência.",
+      "padrao": "B — Inversão positiva (parece crescimento sólido, mas é frágil a mudança de mix)",
+      "criterio_descarte": "corrige leitura falsa potencial (volume levemente abaixo do 7d poderia sugerir queda, mas o real é motor de ticket); muda como se lê o crescimento e o risco de reversão",
+      "base": "Estratégica + Operacional + Granular",
+      "confianca": "média"
+    }
+  ],
+  "prioridades_condensadas": [
+    {
+      "prioridade": "Verificar a posição e o ranking do anúncio principal dos potes redondos (o que hospeda Tampa Preta e Tampa Vermelha juntas) no painel do Mercado Livre e registrar como baseline",
+      "por_que": "Esse anúncio concentra 39% dos pedidos do dia. A conta não tem histórico narrativo acumulado de posição — sem o registro desta semana, qualquer queda futura de ranking só será percebida quando já aparecer no GMV, tarde demais para ação preventiva",
+      "sinal_confirmacao_refutacao": "Posição estável vs semana anterior confirma que o crescimento de ticket não está sendo acompanhado por perda de visibilidade; posição em queda detectada em 2+ anúncios da família acende alerta antes de aparecer no resultado",
+      "escalar_se": "Posição em queda em 2+ anúncios da família de potes redondos — alinhar com Himmel sobre exposição dos anúncios líderes, não sobre aumento de verba"
+    },
+    {
+      "prioridade": "Registrar o ticket médio de hoje (R$54,12) e acompanhar se se mantém acima de R$50 nos próximos 3 dias úteis",
+      "por_que": "O GMV cresceu inteiramente pelo ticket, não pelo volume. Confirmar se a elevação é estrutural ou foi composição de mix pontual define se a trajetória da conta é de ganho real de patamar ou de resultado volátil",
+      "sinal_confirmacao_refutacao": "Ticket igual ou acima de R$50 em 3 dos próximos 5 dias úteis confirma elevação estrutural; ticket voltando à faixa R$43-48 indica que hoje foi composição específica de mix, não consolidação",
+      "escalar_se": "Ticket abaixo de R$48 por 2 dias consecutivos combinado com volume abaixo de 90 pedidos — hipótese de ganho de patamar enfraquece, alinhar com Himmel para revisar exposição dos anúncios líderes de forma preventiva"
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [
+    "Display name 'Tigelas de Vidro' para o produto TL6250 — o título real do pedido é 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml', produto materialmente diferente em material e uso; citar o display_name registrado gera identificação incorreta com Yasmin",
+    "Distribuição dos 6 cancelamentos por produto ou anúncio — dado não disponível no pacote atual; não é possível afirmar que foram ruído pulverizado nem que foram concentrados em algum anúncio específico; qualquer afirmação nesse sentido seria conclusão sem evidência",
+    "Nomes nominais definitivos de KIT10YW1050, 914C_BAV e KIT4YW640 — confidence=medium por fallback de short_title; os identificadores de listing são confiáveis para análise de volume, mas os nomes comerciais carregam incerteza e não devem ser citados como fato",
+    "Identificador técnico do anúncio (MLB3288536143) — usar formulação descritiva como 'anúncio principal dos potes redondos' ou 'o anúncio que concentra Tampa Preta e Tampa Vermelha' no Slack"
+  ],
+  "memoria_para_amanha": [
+    "Anúncio dos potes redondos (Tampa Preta + Tampa Vermelha juntas) = 39% do volume hoje — verificar se Yasmin registrou baseline de posição; se não registrou, renovar a prioridade com urgência maior no próximo ciclo",
+    "Ticket médio hoje: R$54,12 — dia 1 da série de confirmação; acompanhar por mais 4 dias (meta: igual ou acima de R$50 em 3 de 5 dias para confirmar tese de ganho de patamar estrutural; abaixo de R$48 em 2 dias consecutivos enfraquece a tese)",
+    "TL6250 — flag de catálogo aberta: display_name 'Tigelas de Vidro' diverge do produto real registrado no pedido 'Canecas Porcelana Tulipa Lisa 250ml'; requer correção no mapa SKU→display_name antes de próximas citações nominais",
+    "Cancelamentos (6 no total) sem breakdown por produto — estrutura atual de dados não permite qualificar; se o anúncio dos potes redondos eventualmente perder posição, cruzar com dado de cancelamento dessa linha torna-se prioritário dado o volume concentrado",
+    "Weekly.md e monthly.md são templates vazios — hoje é o dia zero da base narrativa da conta; a tese de 'ganho de patamar' está apoiada em três janelas quantitativas convergentes (60d, 30d, 7d) mas sem confirmação narrativa acumulada; os próximos 5 dias são críticos para solidificar ou rever a tese"
+  ],
+  "alertas_de_confianca": {
+    "nivel": "média",
+    "explicacao": "Os dados operacionais do ML estão sólidos — reconciliação ok, sem quality flags, sem conflito de fonte relevante nas camadas, top 10 com 67% do volume em produtos high confidence. A confiança média decorre de três vetores: (1) as perguntas da Operacional sobre ranking/posição dos anúncios e distribuição dos cancelamentos não puderam ser respondidas pela Granular por ausência de dado no pacote — são lacunas que não invalidam a leitura central, mas reduzem a completude do diagnóstico; (2) a tese de ticket estrutural é baseada em três janelas quantitativas convergentes, mas hoje é o primeiro dia de registro narrativo da conta — sem confirmação de ciclos anteriores, a tese é consistente mas ainda não consolidada; (3) a contribuição dos kits de maior valor para o ticket elevado foi parcialmente sustentada pela Granular (presença no mix, confidence média), mas sem preços individuais não é possível quantificar o quanto cada produto pesou. A condensação é segura para orientar Yasmin sem ressalva explícita na mensagem Slack, mas os dois sinais-chave (ticket estrutural e posição dos anúncios) precisam de confirmação nos próximos ciclos para elevar a confiança a alta."
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

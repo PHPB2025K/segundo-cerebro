@@ -1,55 +1,55 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Qualidade da base
 
-Memória estruturalmente presente (weekly.md, monthly.md, rules.md carregados para todas as 3 contas), mas os arquivos são templates vazios — sem teses semanais/mensais preenchidas, sem hipóteses ativas, sem padrões acumulados registrados. Não há histórico de leitura estratégica prévia para confirmar ou refutar. Esta análise funciona como ponto de partida, não como confirmação de tendência estabelecida. As janelas quantitativas (7d, 30d, 60d, mesmos dias da semana) estão disponíveis e consistentes — a fragilidade é na memória qualitativa, não nos dados.
+Weekly.md e monthly.md das três contas são templates vazios — sem tese semanal preenchida, sem hipóteses ativas, sem padrões registrados. Não há histórico analítico acumulado para confrontar com o comportamento de ontem. As janelas quantitativas (7d, 30d, 60d, mesmos dias da semana) estão disponíveis e são a única âncora histórica confiável. Tese construída exclusivamente sobre os números — sem memória qualitativa anterior para confirmar ou refutar.
 
 ---
 
 ### Leitura temporal
 
-- **Trajetória 60d→30d→7d→hoje (as 3 contas):** A deterioração não é evento de ontem — é movimento escalonado e contínuo. Store: 93,5 → 79,3 → 59,9 → 45 pedidos/dia. Oficial-2: 35,6 → 29,3 → 17,9 → 14. Shop-3: 31,4 → 26,0 → 19,1 → 15. Cada janela mais curta está abaixo da anterior. O dia de ontem é o ponto mais baixo de uma descida que já dura dois meses.
+- **Trajetória de volume é consistentemente descendente nas três contas em todas as janelas**: Store (60d: 93,5 → 30d: 79,3 → 7d: 59,9 → hoje: 45), Oficial (60d: 35,6 → 30d: 29,3 → 7d: 17,9 → hoje: 14), Shop-3 (60d: 31,4 → 30d: 26,0 → 7d: 19,1 → hoje: 15). Não é queda de um dia — a desaceleração está sendo construída semana a semana ao longo de pelo menos dois meses.
 
-- **Mesmos dias da semana:** Store com média de 105 pedidos nas últimas 4 segundas-feiras (variando entre 75 e 130) registrou 45 hoje — abaixo até do pior dos últimos 4 ciclos (75 em 12/05). Oficial-2 e Shop-3 também abaixo de todos os pares semanais recentes. O dia não é fraco só em termos absolutos; é fraco contra seus pares sazonais.
+- **Comparação com mesmos dias da semana reforça e amplifica o sinal**: Store entregou 45 pedidos contra média histórica de 105 nas últimas quatro segundas (-57%), Oficial 14 contra 28 (-50%), Shop-3 15 contra 28 (-46%). Controlando sazonalidade, o dia foi expressivamente mais fraco do que o padrão do dia da semana — e o padrão é idêntico nas três contas.
 
-- **Comportamento do ticket por conta:** Store e Oficial-2 mostram ticket elevado (+20-38% vs 30d e 60d) enquanto volume despenca — indicativo de mix deslocado para produtos de maior valor unitário, hipótese compatível com exposição reduzida filtrando para pedidos com intenção de compra mais definida. Shop-3 apresenta dinâmica oposta: ticket comprimido (-7-10% vs 30d e 60d) com volume também em queda — deterioração mais ampla sem compensação de mix.
+- **Ticket médio diverge entre contas e é dado relevante**: Store e Oficial apresentam tickets crescentes ao longo de todas as janelas (Store: R$ 37,80 → R$ 47,11; Oficial: R$ 53,92 → R$ 74,72), sugerindo que o mix está se deslocando para produtos de maior valor à medida que o volume cai. Shop-3 vai na direção oposta (R$ 64,80 → R$ 60,29), sem o efeito compensatório — o que se traduz em queda de GMV proporcionalmente maior que nas outras duas contas.
 
-- **Simetria entre as 3 contas:** Todas mostram quedas de magnitude similar e simultânea em todas as janelas. Isso afasta causas isoladas de account management e aponta para pressão de categoria ou plataforma — hipótese, não fato confirmado, dado que a memória não registra eventos externos.
+- **Sem hipóteses anteriores registradas**: o comportamento de hoje não confirma nem refuta nenhuma tese preexistente. Esta leitura é ponto de partida do histórico analítico, não confirmação de trajetória já documentada.
 
 ---
 
 ### Leitura estratégica
 
-- **O patamar da plataforma caiu.** A queda não é concentrada em uma conta: as três registram o mesmo padrão de stepdown sequencial ao longo de 60 dias. Isso significa que tratar qualquer conta isolada como "problema individual" seria erro de leitura — o fenômeno é transversal, e a causa provável é externa às contas (categoria, sazonalidade estrutural, mudança de exposição no marketplace), mas sem memória prévia não há como saber se isso já foi identificado e aceito ou se é novo.
+- **O sinal não é isolado a uma conta nem a um dia**: o declínio simultâneo e gradual das três contas — visível em todas as janelas quantitativas disponíveis — afasta a hipótese de problema específico de uma loja e aponta para fator sistêmico no canal Shopee. Exposição, algoritmo, ADS/cupons, sazonalidade de categoria ou competitividade de preço são candidatos — nenhum pode ser confirmado ou descartado sem memória qualitativa ou dado externo, mas a estrutura do sinal é consistente com causa de canal, não de operação individual.
 
-- **Concentração extrema amplifica a queda.** Todas as 3 contas operam com top-3 acima de 78% (Store: 84,8%; Shop-3: 93,3%). Em um contexto de volume comprimido, qualquer oscilação nos campeões — IMB501P e CK4742 na Store, KIT6CAR200 e KIT2YW800SQ na Shop-3 — determina o resultado da conta inteira. A concentração não é nova (é estrutural de contas pequenas), mas em trajetória de queda ela retira margem de absorção.
+- **A elevação de ticket em Store e Oficial enquanto o volume cai é hipótese de estreitamento de mix pelo topo**: os produtos de entrada ou de ticket mais baixo parecem estar perdendo exposição ou competitividade, enquanto os produtos de maior valor resistem. Se confirmado ao longo dos próximos dias, isso reduz a base de consumidores atingíveis e fragiliza a sustentabilidade do canal a médio prazo — porque o crescimento de ticket decorrente de perda de mix de entrada não é crescimento saudável, é compressão.
 
-- **Store sustenta o volume da plataforma; as outras duas são frágeis.** Store representa 61% dos pedidos e 52% do GMV Shopee do dia. Oficial-2 e Shop-3 juntas contribuem com 39 pedidos sobre um total de 74. A dependência da Store como âncora da plataforma é real e não tem segundo vetor de sustentação visível nos dados.
+- **Shop-3 é a conta mais vulnerável da tríade neste ciclo**: queda de volume comparável às outras sem efeito compensatório no ticket resulta em queda de GMV proporcionalmente maior (-48,5% vs 30d, -55,5% vs 60d) e concentração de 93,3% nos top 3 produtos — a menor capacidade de absorção de choque entre as três lojas.
 
-- **A elevação de ticket em Store e Oficial-2 atenua o GMV, mas não resolve o problema de volume.** O ticket mais alto pode estar mascarando parcialmente a queda de exposição — menos pedidos, mas pedidos de maior valor unitário. Shop-3 não tem essa compensação, o que torna seu sinal o mais limpo de deterioração real.
+- **A concentração elevada nas três contas (84,8% / 78,6% / 93,3%) é estrutural, não conjuntural**: qualquer oscilação adicional nos campeões (Conjunto 5 Potes Redondos, Jarra Medidora, Canecas Tulipa) se transmite diretamente ao GMV sem segundo vetor para amortecer. Esse padrão aparece em todas as contas independentemente do seu estágio de declínio — não é consequência da queda, é a condição de base que a amplifica.
 
 ---
 
 ### Tese da conta
 
-**Em queda real — transversal às 3 contas, sustentada ao longo de 60 dias.**
+**Shopee (três contas) — em queda real.**
 
-A convergência de todas as janelas temporais (60d, 30d, 7d, mesmos dias da semana) aponta deterioração estrutural de volume — não flutuação, não ruído de dia. O dia de 19/05 é o ponto mais recente de uma tendência que já estava inscrita nos dados de 30d e 60d. O diagnóstico de "queda real" é sustentado pela consistência do padrão entre janelas e entre contas — com a ressalva de que a causa (categoria, algoritmo, sazonalidade, exposição) permanece como hipótese, não fato, porque a memória qualitativa está vazia e não há contexto de eventos externos documentado.
+A trajetória de volume das três contas é descendente em todas as janelas disponíveis (60d → 30d → 7d → hoje), com queda confirmada inclusive na comparação com mesmos dias da semana, o que afasta explicação puramente sazonal. O declínio é simultâneo e proporcional nas três lojas — padrão inconsistente com problema localizado de gestão ou mix individual, e consistente com fator de canal. A ausência de memória analítica prévia impede identificar a causa (mudança de algoritmo, redução de ADS/cupons, sazonalidade de categoria, competitividade de preço) — essa causa permanece hipótese aberta. Mas os dados quantitativos, em múltiplas janelas e múltiplas contas, sustentam a classificação. O ticket crescente em Store e Oficial não reverte a tese — é sintoma da compressão, não sinal de recuperação.
 
 ---
 
 ### Risco estrutural principal
 
-- **Risco:** Deterioração contínua de volume em plataforma com concentração extrema de mix — sem segundo vetor de sustentação entre contas ou entre produtos.
-- **Por que importa:** Com top-3 acima de 80% em todas as contas e o patamar de pedidos em queda sequencial há 60 dias, qualquer pressão adicional sobre os SKUs líderes (ruptura de estoque, perda de posição de anúncio, mudança de algoritmo Shopee) pode colapsar o resultado da plataforma inteira sem amortecimento. A cauda de produtos existe, mas não tem volume suficiente para compensar.
-- **Histórico:** Não há registro prévio — a memória qualitativa está vazia. Não é possível afirmar se esse risco foi identificado e aceito em ciclos anteriores ou se é nova deterioração.
-- **Sinal de confirmação:** Pedidos totais da plataforma Shopee abaixo de 70/dia por 3 dias consecutivos nos próximos 7 dias, com os 2 SKUs líderes da Store (Conjunto 5 Potes Redondos Tampa Preta e Jarra Medidora 500ml) somando menos de 25 pedidos/dia em combinação — confirma erosão estrutural do mix, não sazonalidade pontual.
+- **Risco:** Declínio de volume sistêmico no canal Shopee sem segundo vetor de sustentação — as três contas dependem de 2-3 produtos para 80-93% dos pedidos, e o volume geral está em trajetória descendente confirmada em múltiplas janelas temporais.
+- **Por que importa:** Se o declínio continuar, não há mix diversificado para absorver a queda dos campeões. Qualquer perda adicional de exposição ou competitividade dos produtos líderes colapsa o GMV das três lojas de forma sincronizada, sem amortecedor. A concentração alta não é nova — é a condição de base que transforma qualquer deterioração de canal em problema estrutural imediato.
+- **Histórico:** Memória qualitativa está zerada. Com base exclusivamente nos dados quantitativos, a tendência descendente está documentada ao longo de pelo menos 60 dias (60d avg > 30d avg > 7d avg > hoje, nas três contas).
+- **Sinal de confirmação:** 7d avg de pedidos da Store abaixo de 55/dia ao longo da semana que vem, e Shop-3 abaixo de 20/dia, confirmam novo patamar estruturalmente inferior — não flutuação dentro da banda histórica.
 
 ---
 
 ### Sinais a observar
 
-1. **Trajetória de volume da Store nas próximas segundas-feiras:** Se a Store registrar menos de 60 pedidos nas próximas 2 segundas-feiras, o patamar semanal estará abaixo do piso histórico (75 em 12/05) por três ciclos consecutivos — confirmando que o stepdown de 60d→30d→7d não é reversão espontânea e a queda é tendência estabelecida.
+1. **GMV consolidado das 3 contas abaixo de R$ 4.500 por 3 dias seguidos nos próximos 7 dias** confirma que o patamar de operação caiu estruturalmente e que o canal está em deterioração real, não em ciclo ou sazonalidade pontual.
 
-2. **Comportamento de ticket na Shop-3 por 3 dias seguidos:** Shop-3 é a única conta sem compensação de ticket. Se o ticket médio permanecer abaixo de R$60 por 3 dias consecutivos enquanto o volume continua abaixo da média de 7d (19,1 pedidos), isso distingue a Shop-3 como conta em deterioração mais profunda que as outras duas — e muda a leitura de "queda uniforme de plataforma" para "queda desigual com Shop-3 liderando o piso".
+2. **Ticket da Store acima de R$ 45 pelo segundo ciclo semanal consecutivo** — se mantido enquanto o volume de pedidos continua abaixo da média de 7d, fortalece a hipótese de estreitamento de mix pelo topo; se o ticket recuar junto com o volume nas próximas leituras, indica deterioração mais ampla sem compensação.
 
-3. **Concentração dos top-2 produtos da Store acima de 75% por 2 ciclos semanais consecutivos:** Se Potes Redondos Tampa Preta + Jarra Medidora somarem acima de 75% dos pedidos da Store na próxima semana, confirma que a cauda não está se desenvolvendo mesmo com volume comprimido — e a dependência estrutural dos campeões está se aprofundando, não se distribuindo.
+3. **Shop-3 com GMV abaixo de R$ 800 por 2 dias seguidos** confirma que é a conta com maior deterioração relativa da tríade e que o diferencial de queda entre ela e as outras duas está se acentuando — não apenas variação de escala.

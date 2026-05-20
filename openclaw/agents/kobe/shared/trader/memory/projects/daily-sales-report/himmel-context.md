@@ -13,6 +13,7 @@ Himmel é o agente responsável por gerenciar campanhas de ADS nas plataformas S
 - Quando houver mudança significativa em vendas, verificar se houve alteração de campanha.
 - Pontos relevantes de ADS devem ser registrados na análise diária.
 - Para Mercado Livre, consultar também a memória dedicada do grupo WhatsApp `himmel-mercado-livre-whatsapp.md`, que registra interações operacionais contínuas com a Himmel.
+- Para Shopee, consultar também a memória dedicada do grupo WhatsApp `himmel-shopee-whatsapp.md`, que registra interações operacionais contínuas do grupo `[SHOPEE] BUDAMIX + 2` e deve ser tratada como contexto consolidado das 3 contas quando não houver conta específica.
 
 ## Amazon
 - ADS da Amazon é gerido por **Pedro** diretamente, não por Himmel.

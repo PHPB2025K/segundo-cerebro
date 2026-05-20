@@ -1,6 +1,6 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-18_
+_Atualizado: 2026-05-19_
 
 ## 🔴 Prioridade Alta
 
@@ -10,9 +10,10 @@ _Atualizado: 2026-05-18_
 - [ ] Ajustar Slack Writer/06B de Shopee para trocar códigos de variação por nomes comerciais em texto visível e resolver duplicidades antes do QA.
 - [ ] Monitorar primeira execução real/autorizada do wrapper v2 e garantir que análise por conta use memória diária/semanal/mensal, nome comercial e sem SKU cru; se LLM falhar, bloquear recipient em vez de fallback.
 - [ ] Validar no próximo ciclo se os ajustes de prompt eliminam as ressalvas numéricas da camada Shopee Consolidator: percentuais com 1 casa decimal e valores monetários/tickets com centavos quando citados em texto analítico.
-- [ ] Tornar obrigatório no log da Slack Writer o registro formal de todos os itens “não pode ir para Slack”, inclusive regras gerais e restrições de inferência.
-- [ ] Revisar mapeamento/nome comercial Amazon quando o display name adiciona atributo não verificável pelo título real do pedido.
-- [ ] Monitorar Shopee nas 3 contas por queda transversal vs média 30d, concentração dos top produtos e possível canibalização interna entre lojas.
+- [ ] Tornar obrigatório no log da Slack Writer o registro formal de todos os itens “não pode ir para Slack”, inclusive regras gerais e restrições de inferência; após 18/05, incluir também toda omissão de Top Produtos por nome, mesmo item de 1 pedido com confiança alta.
+- [ ] Corrigir mapeamentos/nome comercial que contaminam Daily Sales: Amazon TL250B/TL6250 não podem aparecer como tigelas de vidro; Shopee SKU 098 deve usar raw_title/descrição correta; ML 914C_BAV não deve receber rótulo inventado.
+- [ ] Incluir/validar no pacote Daily Sales: Shopee Full real por conta, Buy Box e cobertura FBA por ASIN na Amazon, atribuição de cancelamentos por produto quando disponível.
+- [ ] Monitorar Shopee nas 3 contas por queda transversal vs média 30d, concentração dos top produtos e possível canibalização interna entre lojas; atenção imediata se Shop 3 ficar abaixo de 15 pedidos pelo segundo dia consecutivo ou Oficial 2 sustentar ticket > R$ 90 com volume < 20.
 - [ ] Revisar Shopee Rules Watch, vencido desde 06/05/2026, antes de usar regra/taxa como hipótese causal forte no Daily Sales.
 - [ ] Registrar/obter definição dos produtos prioritários Shopee de maio por Lucas; sem isso, recomendações de ADS/mix ficam parcialmente condicionadas.
 - [ ] Monitorar Mercado Livre após pico de 16/05/2026 BRT; 17/05 normalizou perto da média, então tratar 16/05 como pico pontual até nova repetição.

@@ -76,3 +76,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 **Contexto:** Cron de 06:50 BRT analisando 17/05/2026 BRT bloqueou Lucas/Shopee no QA porque `Kit 6 Canecas Tulipa 250ml` apareceu como linha consolidada das 3 contas e também como linha individual da Conta 3, já contida no consolidado.
 **Lição:** Quando a Shopee tiver linha consolidada por variação vendável nas 3 contas, não manter também linha individual de conta que compõe o mesmo volume. A 06B/Slack Writer deve resolver a duplicidade antes do QA; QA deve bloquear se houver risco de dupla contagem para o leitor.
 **Expira:** 2026-06-17
+
+### [TÁTICA] Daily Sales v2: labels e omissões precisam ser rastreáveis (2026-05-19)
+**Contexto:** Preview de 18/05/2026 BRT passou com ressalvas: ML usou rótulo inventado para diferenciar 914C_BAV, Amazon omitiu 914C do Top Produtos sem registrar a decisão por nome, e alguns nomes comerciais vieram de mapeamento divergente.
+**Lição:** Slack Writer não deve inventar label para diferenciar variações/listings quando a Condensadora ou pacote não autorizam. Toda omissão relevante do Top Produtos deve ter motivo registrado por nome, inclusive itens de 1 pedido com confiança alta.
+**Expira:** 2026-06-18

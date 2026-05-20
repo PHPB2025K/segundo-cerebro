@@ -1,6 +1,11 @@
 # Lições — RH
 
-_Atualizado: 2026-05-18_
+_Atualizado: 2026-05-19_
+
+## 2026-05-19
+- Um dia pode ter novos riscos de compliance mesmo sem conversa RH ou comunicação criada; a consolidação precisa olhar registros do Ponto Certo quando não houver sessões visíveis.
+- Marcações extras no horário de saída podem parecer pendência humana, mas devem ser tratadas primeiro como possível inconsistência técnica para evitar cobrança indevida.
+- Timeout isolado no detector de stuck messages merece observação, mas não deve ser escalado como incidente sem recorrência ou impacto em inbound real.
 
 ## 2026-05-18
 - O script de saída do compliance identifica batidas incompletas, mas a validação detalhada dos registros continua necessária para encontrar intervalo <1h e jornada >10h.

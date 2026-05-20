@@ -1,6 +1,11 @@
 # Decisões — RH
 
-_Atualizado: 2026-05-18_
+_Atualizado: 2026-05-19_
+
+## 2026-05-19
+- Nenhuma decisão nova de política RH registrada.
+- Mantido bloqueio: consolidação diária de memória não autoriza envio proativo a funcionários.
+- Pontos de compliance de 19/05 devem ser tratados como validação interna até confirmação por fluxo autorizado ou orientação do Pedro.
 
 ## 2026-05-18
 - Casos semanais de Guilherme, Lucas, Mateus e Sandra da semana 11/05–16/05 foram mantidos em espera por aprovação/orientação do Pedro antes de qualquer novo WhatsApp.

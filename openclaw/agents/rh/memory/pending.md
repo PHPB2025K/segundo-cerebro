@@ -1,18 +1,20 @@
 # Pendências — RH
 
-_Atualizado: 2026-05-18_
+_Atualizado: 2026-05-19_
 
 ## 🔴 Prioridade Alta
-- [ ] Pedro aprovar/orientar próximos passos para Guilherme: pendências semanais de 11/05 e 13/05, com comunicação anterior pendente >72h.
-- [ ] Pedro aprovar/orientar próximos passos para Lucas: pendência semanal de 11/05 e recorrência em semanas consecutivas; ajuste antigo de 05/05 segue pendente de validação no Ponto Certo.
-- [ ] Mateus: regularizar pendências da semana 04/05–09/05, pendências semanais de 11/05–16/05 e batidas incompletas de almoço em 18/05.
+- [ ] Pedro aprovar/orientar próximos passos para Guilherme: pendências semanais de 11/05 e 13/05, comunicação anterior pendente >72h e, em 19/05, apenas entrada registrada até o fechamento da consolidação.
+- [ ] Pedro aprovar/orientar próximos passos para Lucas: pendência semanal de 11/05, recorrência em semanas consecutivas, novo intervalo <1h em 19/05 e ajuste antigo de 05/05 pendente de validação no Ponto Certo.
+- [ ] Mateus: regularizar pendências da semana 04/05–09/05, pendências semanais de 11/05–16/05 e batidas incompletas de almoço em 18/05; 19/05 teve registros completos, mas almoço próximo do limite.
 - [ ] Sandra: obter retorno/aprovação sobre ausência total de marcações antigas e pendências semanais de 11/05–16/05.
 
 ## 🟡 Prioridade Média
+- [ ] Compliance 19/05: validar Guilherme com marcações incompletas, Lucas/Leonardo com intervalo de almoço abaixo de 1h e Franciele com marcações adicionais atípicas no horário da saída.
 - [ ] Compliance 18/05: tratar intervalos de almoço abaixo de 1h identificados em Guilherme, Lucas e Leonardo.
 - [ ] Leonardo: concluir pendência de 04/05 considerando jornada especial; confirmar dias de faculdade para evitar falsos positivos recorrentes.
 - [ ] Compliance 15/05: tratar intervalos de almoço abaixo de 1h identificados em Geziele, Guilherme, Leonardo e Lucas.
 - [ ] Política sábado/domingo: criar ou corrigir documento canônico referenciado pelo RH; regra existe em materiais operacionais, mas a referência principal está ausente.
+- [ ] Observar detector de mensagens stuck após timeout transitório em 19/05; escalar apenas se houver recorrência ou impacto em inbound real.
 
 ## 🟢 Backlog
 - [ ] Confirmar formato aceito pela contabilidade para espelho mensal de ponto.

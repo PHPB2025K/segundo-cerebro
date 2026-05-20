@@ -1,60 +1,69 @@
 {
-  "resultado_qa": "BLOQUEADO",
-  "motivo": "Dois Maiores em gates distintos acionaram bloqueio pela regra de agregação (2+ Maiores em gates diferentes → BLOQUEADO). Gate 5: 914C_BAV (6 pedidos, posição #7 no ranking do pacote validado, empatado com 914C) está ausente do Top Produtos da mensagem final, contrariando o ranking entregue pelo pacote. Gate 8: as Decisões de Formatação declaram explicitamente 'Produto 914C (Kit 6 Canequinhas 100ml, confidence=high, 6 pedidos) e 914C_BAV (confidence=medium, 6 pedidos) mantidos como linhas separadas', mas 914C_BAV não aparece na mensagem — contradição direta entre decisão registrada e artefato entregue. Todos os demais gates passaram sem falha.",
-  "send_allowed": false,
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "Gate 6 apresenta 1 Maior: o insight 3 da Condensadora foi formatado com Padrão B (inversão positiva — 'a conta parece saudável, mas os pontos de fragilidade permanecem sem resposta'), e a Slack Writer substituiu essa estrutura contrastiva por conector temporal ('Enquanto essas verificações não são feitas, os pontos de fragilidade mais relevantes da conta permanecem sem resposta'), removendo a frase 'a conta parece saudável, mas' — framing operacionalmente relevante para que Yasmin não interprete o dia como encerrado só porque os números parecem positivos. A tese central está preservada, mas o enquadramento inversão positiva foi perdido. Os demais 10 gates passaram sem falha. Com 1 Maior e 2 Menores, a regra de agregação impõe APROVADO COM RESSALVA.",
+  "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
     "gate_1_data_periodo_fonte": "OK",
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "FALHA",
-    "gate_6_analise_conta": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "RESSALVA",
     "gate_7_prioridades": "OK",
-    "gate_8_bloqueios_confianca_logs": "FALHA",
+    "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
     "gate_11_padrao_numerico_formatacao": "OK"
   },
   "contagem_severidade": {
     "criticos": 0,
-    "maiores": 2,
-    "maiores_gates_distintos": 2,
-    "menores": 0,
-    "regra_agregacao_aplicada": "2+ Maiores em gates diferentes → BLOQUEADO"
+    "maiores": 1,
+    "maiores_gates_distintos": 1,
+    "menores": 2,
+    "regra_agregacao_aplicada": "1 Maior + Menores → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
       "severidade": "Maior",
-      "gate": "Gate 5 — Top Produtos",
-      "texto_atual": "Top Produtos lista 9 produtos: IMB501P (32), IMB501V (10), KIT10YW1050 (9), KIT4YW1050 (8), IMB501C (7), TL6250/Canecas Porcelana (7), 914C/Kit 6 Canequinhas 100ml (6), SPC0111 (5), KIT4YW640 (4)",
-      "texto_esperado": "Top Produtos deve listar os 10 produtos do pacote validado, incluindo 914C_BAV (Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico — 6 pedidos, #7 no ranking) como linha separada de 914C, conforme ordem decrescente de pedidos do pacote",
-      "estado_atual": "914C_BAV ausente do Top Produtos final — 9 linhas em vez de 10",
-      "estado_esperado": "914C_BAV presente em Top Produtos com display_name disponível do pacote, como linha separada de 914C (ambos com 6 pedidos)",
-      "regra_violada": "Gate 5 ML: ranking vem do pacote validado; produto com pedidos confirmados no top_products do pacote deve aparecer no ranking da mensagem final",
-      "bloqueia_envio": true
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "Enquanto essas verificações não são feitas, os pontos de fragilidade mais relevantes da conta permanecem sem resposta.",
+      "texto_esperado": "Sem essas verificações, a conta parece saudável, mas os pontos de fragilidade mais relevantes permanecem sem resposta.",
+      "estado_atual": "Conector temporal 'Enquanto' substituiu a estrutura contrastiva condicional da Condensadora; a frase 'a conta parece saudável, mas' foi removida, eliminando o Padrão B (inversão positiva) que orienta Yasmin a não encerrar o dia como positivo antes das checagens.",
+      "estado_esperado": "Preservação da estrutura 'parece saudável, mas' que sinaliza que o aspecto positivo do dia é superficial — o framing é operacionalmente necessário para que a urgência das prioridades seja interpretada corretamente.",
+      "regra_violada": "Gate 6 — Contraste/inversão/enquadramento preservados: se a Condensadora usou padrão 'parece bom, mas...', o Slack mantém a estrutura. Addendum v3.1 §7.5: fato/hipótese/risco latente devem sobreviver intactos.",
+      "bloqueia_envio": false
     },
     {
-      "severidade": "Maior",
-      "gate": "Gate 8 — Bloqueios, confiança e logs",
-      "texto_atual": "Decisões de Formatação registram: 'Produto 914C (Kit 6 Canequinhas 100ml, confidence=high, 6 pedidos) e 914C_BAV (confidence=medium, 6 pedidos) mantidos como linhas separadas'. Mensagem final contém apenas 914C; 914C_BAV ausente.",
-      "texto_esperado": "Mensagem final consistente com a decisão declarada: ambos os produtos presentes como linhas separadas em Top Produtos",
-      "estado_atual": "Decisão registrada ('mantidos como linhas separadas') contradiz o artefato entregue — 914C_BAV declarado como incluído mas ausente da mensagem",
-      "estado_esperado": "Artefato final alinhado com o log de Decisões de Formatação — 914C_BAV presente onde o log diz que foi mantido",
-      "regra_violada": "Gate 8: decisão registrada contradiz a mensagem final → BLOQUEIO",
-      "bloqueia_envio": true
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "O dia pode parecer fraco em pedidos, mas o resultado foi positivo",
+      "texto_esperado": "O dia parece fraco em pedidos, mas o resultado foi positivo",
+      "estado_atual": "Adição de 'pode' introduz modalização extra ausente na Condensadora — 'parece' já carregava o indício; 'pode parecer' adiciona distância desnecessária.",
+      "estado_esperado": "Manter 'parece' sem 'pode' — a Condensadora não usou verbo modal duplo e o padrão C (inversão negativa) não requer essa atenuação adicional.",
+      "regra_violada": "Gate 6 — Mesmo verbo modal: 'parece' continua 'parece', indício não vira modalização dupla.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "opera sobre base mais estreita do que os números sugerem",
+      "texto_esperado": "opera sobre uma base mais estreita do que os números sugerem",
+      "estado_atual": "Artigo 'uma' suprimido — ajuste cosmético sem impacto na tese, mas diverge literalmente da Condensadora.",
+      "estado_esperado": "Manter 'uma base' conforme formulação original da Condensadora.",
+      "regra_violada": "Gate 6 — Fidelidade literal a termos analíticos-chave quando a supressão é desnecessária.",
+      "bloqueia_envio": false
     }
   ],
-  "correcoes_obrigatorias_antes_envio": [
-    "Inserir 914C_BAV (Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico — 6 pedidos) no Top Produtos como linha separada de 914C, em posição correspondente ao ranking do pacote validado (empatado em 6 pedidos; 914C_BAV antecede 914C conforme ordem original do pacote). Após inserção, re-validar contagem total de linhas (deve ser 10)."
-  ],
+  "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Weekly.md e monthly.md são templates vazios — hoje é o dia zero da base narrativa da conta; tese de ganho de patamar apoiada em três janelas quantitativas convergentes mas sem confirmação narrativa acumulada; os próximos 5 dias são críticos para solidificar ou rever a tese",
-    "Cancelamentos (6 total) sem breakdown por produto ou listing — estrutura atual de dados não permite qualificação; ausência de qualificação na mensagem está correta",
-    "TL6250: flag de catálogo aberta — raw_title do pedido real ('Kit 6 Canecas Porcelana Tulipa Lisa 250ml') diverge do display_name ('Kit 6 Tigelas de Vidro 250ml'); Slack Writer usou título real corretamente, mas a divergência persiste no mapa SKU→display_name e requer correção no ciclo de catálogo antes do próximo reporte"
+    "Slack Writer perdeu o framing Padrão B no insight 3 ao simplificar a frase final. Nas próximas execuções da camada 6, garantir que conectivos contrastivos e a frase positiva do padrão de inversão não sejam removidos na busca por brevidade — a inversion 'parece bom, mas' tem função operacional, não estética.",
+    "A frase 'Sem essas verificações, a conta parece saudável, mas...' deve ser tratada como âncora de framing em insights de Padrão B, não como detalhe suprimível. O Slack Writer a substituiu por 'Enquanto...' sem registrar a decisão nas Decisões de Formatação — lacuna de documentação menor."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "Os dois bullets da ANÁLISE DA CONTA são transcrições quase literais dos insights da Condensadora — fidelidade perfeita. Sob a Diretriz Pedro 2026-05-17, há espaço para simplificação de linguagem em ciclo futuro (bullets longos e densos para comunicação operacional de Slack), mas nenhuma regra objetiva foi violada hoje; registrado para evolução do sistema na próxima revisão de prompt da Slack Writer"
+    "KIT10YW1050 incluído em Top Produtos com confiança média (mapped_generic_sku). A Condensadora não formalizou bloqueio para Top Produtos — apenas para uso como fonte analítica. A Slack Writer documentou a decisão nas Decisões de Formatação com justificativa. Registrado como ressalva de auditoria: se o mapeamento do catálogo não for revisado, produtos com confiança média continuarão aparecendo no top sem garantia de nome comercial preciso.",
+    "A decisão de formatação de omitir a variação de confiança baixa da distribuição horária (confirmada sem anomalia pela Granular) está correta e documentada — sem risco para Yasmin.",
+    "Confiança geral da análise é 'média' per Condensadora, motivada por três perguntas da Operacional sem resposta no dado automatizado. A Slack Writer comunicou essa limitação operacionalmente via insight 3 e prioridades — forma preservada, sinal chegou, sem necessidade de marcador explícito de confiança na mensagem."
   ],
   "llm_used": true,
   "model": "sonnet",

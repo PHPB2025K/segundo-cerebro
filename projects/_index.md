@@ -36,7 +36,8 @@ tags:
 
 ## E-commerce
 
-- [[projects/budamix-ecommerce]] — E-commerce Budamix (React + Supabase + Mercado Pago)
+- [[projects/budamix-ecommerce]] — E-commerce Budamix (React + Supabase + Mercado Pago). 20/05 ganhou feature de variações estruturadas (atributos JSONB + galeria por variante)
+- [[projects/banner-triplo-budamix]] — Banner triplo Instagram 2000×2500 (HTML+Puppeteer) — entregue 20/05/2026
 - [[projects/social-studio-reborn]] — **Social Studio Reborn** (publicador + métricas Instagram, sem IA) — Fase A concluída 06/05, PR #3 aguardando merge. Próxima: Fase B (Composer + Agendador).
 - [[projects/social-studio-carrossel]] — ⚠️ DESCONTINUADO 06/05/2026 (módulo IA original, substituído pelo Reborn). Mantido como referência histórica.
 

@@ -1,6 +1,12 @@
 # Lições — Fisco
 
-_Atualizado: 2026-05-18_
+_Atualizado: 2026-05-19_
+
+## 2026-05-19
+- Persistência do HTTP 403 da Filial por cinco dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/token e teste controlado.
+- A automação do refresh tem três riscos independentes: Filial inacessível, alerta WhatsApp falhando e política de execução/allowlist bloqueando rodadas do cron.
+- Matriz segue majoritariamente renovando/conectando; um HTTP 403 pontual na validação da Matriz deve ser observado, mas ainda não muda o diagnóstico principal porque execuções posteriores conectaram normalmente.
+- Sessões abortadas após captura de erro podem deixar o cron sem resposta final consolidada; a consolidação diária precisa absorver tool output relevante mesmo quando a resposta do worker não completou.
 
 ## 2026-05-18
 - Persistência do HTTP 403 da Filial por quatro dias confirma bloqueio operacional contínuo; qualquer fluxo Filial → Simples deve continuar parado até correção formal e teste controlado.

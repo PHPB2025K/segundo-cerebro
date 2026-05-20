@@ -2,7 +2,7 @@
 title: "Briefing v2.3 — Adendo de Geração e Envio Automático do PDF do Pedido"
 type: briefing
 created: 2026-05-14
-status: draft-for-approval
+status: superseded
 owner: Pedro Broglio
 base_documents:
   - briefing-pipeline-pedidos-atacado-v2.md

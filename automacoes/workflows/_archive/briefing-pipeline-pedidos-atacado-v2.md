@@ -2,7 +2,7 @@
 title: "Briefing v2 — Pipeline Agente de Pedidos de Atacado"
 type: briefing
 created: 2026-05-14
-status: draft-for-approval
+status: superseded
 owner: Pedro Broglio
 tags:
   - atacado

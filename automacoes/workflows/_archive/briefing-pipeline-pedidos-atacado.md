@@ -2,7 +2,7 @@
 title: "Briefing — Pipeline Pedido de Atacado → Bling"
 type: briefing
 created: 2026-05-14
-status: draft-for-review
+status: superseded
 tags:
   - atacado
   - whatsapp

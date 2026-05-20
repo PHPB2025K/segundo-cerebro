@@ -2,7 +2,7 @@
 title: "Briefing v2.1 — Correções finais do Pipeline Agente de Pedidos de Atacado"
 type: briefing
 created: 2026-05-14
-status: draft-for-approval
+status: superseded
 owner: Pedro Broglio
 base_document: briefing-pipeline-pedidos-atacado-v2.md
 tags:

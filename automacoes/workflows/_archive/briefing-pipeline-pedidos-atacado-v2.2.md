@@ -2,7 +2,7 @@
 title: "Briefing v2.2 — Pipeline Agente de Pedidos de Atacado com Cadastro Automático de Cliente"
 type: briefing
 created: 2026-05-14
-status: draft-for-approval
+status: superseded
 owner: Pedro Broglio
 base_documents:
   - briefing-pipeline-pedidos-atacado-v2.md

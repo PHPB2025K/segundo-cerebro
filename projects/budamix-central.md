@@ -93,3 +93,11 @@ src/
 - [[memory/context/people]] — equipe
 - [[knowledge/concepts/stack-tecnico]] — stack
 - [[meta/mocs/MOC - Supabase Ecosystem]] — Supabase
+
+## Histórico de refactors concluídos (30/04/2026)
+
+Subprojetos arquivados, mantidos como referência técnica do que foi feito:
+
+- [[projects/budamix-central-refactor-full/00-mapeamento]] — Refactor Full (sync-costs + sync-inventory + planilha oficial). 202 registros, R$ 158.820 custo / R$ 486.566 venda.
+- [[projects/budamix-central-inventory-card/00-plano]] — Card FULL+FÍSICO+TOTAL na home (movido depois para /estoque/consolidado).
+- [[projects/budamix-central-estoque-modulo/00-plano]] — Módulo Estoque Fase 1 (3 abas: full/fisico/consolidado). Tag `v-estoque-modulo-fase1-20260430`.

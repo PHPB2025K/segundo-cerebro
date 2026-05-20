@@ -2,7 +2,8 @@
 title: "Módulo Estoque Dedicado — Plano"
 created: 2026-04-30
 type: plan
-status: active
+status: archived
+archived: 2026-05-20
 tags:
   - project
   - budamix-central

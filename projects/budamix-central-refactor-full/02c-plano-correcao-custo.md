@@ -2,7 +2,8 @@
 title: "Budamix Central Refactor Full — 02C Plano Correção sync-costs.py"
 created: 2026-04-29
 type: plan
-status: active
+status: archived
+archived: 2026-05-20
 tags:
   - project
   - budamix-central

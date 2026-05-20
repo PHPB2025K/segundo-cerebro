@@ -2,7 +2,8 @@
 title: "Budamix Central Refactor Full — 01 Plano Shopee"
 created: 2026-04-29
 type: plan
-status: active
+status: archived
+archived: 2026-05-20
 tags:
   - project
   - budamix-central

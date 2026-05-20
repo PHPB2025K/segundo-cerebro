@@ -397,4 +397,11 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
 
 - Todo assunto relacionado à gestão específica de funcionários deve ir obrigatoriamente no tópico Telegram **Gestão de Funcionários**, thread **10469**.
 - A rotina semanal de atas do Slack não deve mais anunciar no tópico Financeiro.
+## 2026-05-20 — Frequência da ingestão WhatsApp Himmel
+
+- Pedro definiu que a extração de mensagens dos dois grupos WhatsApp da Himmel deve rodar apenas **3 vezes ao dia**, não a cada 30 minutos.
+- Janelas configuradas em BRT, com horários quebrados e separados por grupo para evitar colisão com outros crons:
+  - Mercado Livre: 10:09, 12:09 e 19:09 BRT.
+  - Shopee: 10:26, 12:26 e 19:26 BRT.
+- A ingestão continua read-only, silenciosa e voltada apenas a contexto operacional útil para Trader/Daily Sales.
 

@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-19
-**Gerado em:** 2026-05-20T10:37:08.096692+00:00
+**Gerado em:** 2026-05-20T10:57:07.148365+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** PARTIAL
@@ -14,7 +14,7 @@
 ## Resumo por Recipient
 
 ### Lucas (shopee)
-- **Status:** APPROVED_WITH_REMARKS
+- **Status:** BLOCKED
 - **send_allowed:** False
 - **llm_used:** True
   - 01-estrategica: LLM
@@ -25,9 +25,9 @@
   - 06b-shopee-consolidator: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** A variação 'diagnosticar causa' vs 'diagnóstico' no bullet consolidado não altera o sentido e não induz erro, mas a Slack Writer não registrou a divergência nas Decisões de Formatação. Em ciclos futuros, qualquer alteração de redação em relação ao texto literal da 6B deve ser documentada no log de decisões.
-- **Aviso:** Prioridades expandidas além do texto literal da 6B com adição de estrutura 'Confirmar/refutar:' e 'Escalar se:' oriundas da Condensadora — decisão correta e documentada no log, mas que deve ser padronizada explicitamente nas regras da Slack Writer para Shopee para evitar variação entre ciclos.
-- **Aviso:** VISÃO por conta mostra apenas faturamento e pedidos, sem ticket médio individual — dado disponível no pacote; decisão de omitir é defensável (VISÃO é objetiva e análise já cobre ticket por conta), mas deve ser documentada formalmente nas Decisões de Formatação em ciclos futuros.
+- **Aviso:** KIT2YW800SQ aparece no Top Produtos apenas com a entrada da Conta 3 (6 pedidos). A Store tinha 2 pedidos do mesmo SKU que não foram exibidos separadamente nem consolidados com a Conta 3. O log de Decisões de Formatação diz 'mantido separado' mas apenas uma das duas entradas aparece na mensagem. Impacto mínimo no resultado dado o volume (2 pedidos), mas a inconsistência entre decisão registrada e execução deve ser corrigida no próximo ciclo.
+- **Aviso:** Os 5 Menores do Gate 6 indicam padrão sistemático de simplificação da Slack Writer em relação à 6B: contextos analíticos de apoio foram removidos em três dos quatro blocos de análise (Store, Oficial, Shop-3). Não configuram degradação sistêmica (abaixo do limiar de 6+) e não alteram teses, mas o padrão deve ser monitorado — se persistir nos próximos ciclos, indica tendência de erosão da profundidade analítica autorizada pela 6B.
+- **Aviso:** GMV consolidado de R$ 4.070,69 está abaixo do gatilho de intervenção de R$ 4.500. Se a mensagem corrigida for enviada e o GMV de amanhã ficar abaixo de R$ 4.500, será o segundo dia do contador — três dias consecutivos abaixo do gatilho acionam intervenção estruturada Lucas + Himmel.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-19/lucas/00-data-package.json`
@@ -41,7 +41,7 @@
   - `layer7_qa_gate`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-19/lucas/07-qa.json`
 
 ### Yasmin (mercado_livre)
-- **Status:** BLOCKED
+- **Status:** APPROVED_WITH_REMARKS
 - **send_allowed:** False
 - **llm_used:** True
   - 01-estrategica: LLM
@@ -51,9 +51,8 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Weekly.md e monthly.md são templates vazios — hoje é o dia zero da base narrativa da conta; tese de ganho de patamar apoiada em três janelas quantitativas convergentes mas sem confirmação narrativa acumulada; os próximos 5 dias são críticos para solidificar ou rever a tese
-- **Aviso:** Cancelamentos (6 total) sem breakdown por produto ou listing — estrutura atual de dados não permite qualificação; ausência de qualificação na mensagem está correta
-- **Aviso:** TL6250: flag de catálogo aberta — raw_title do pedido real ('Kit 6 Canecas Porcelana Tulipa Lisa 250ml') diverge do display_name ('Kit 6 Tigelas de Vidro 250ml'); Slack Writer usou título real corretamente, mas a divergência persiste no mapa SKU→display_name e requer correção no ciclo de catálogo antes do próximo reporte
+- **Aviso:** Slack Writer perdeu o framing Padrão B no insight 3 ao simplificar a frase final. Nas próximas execuções da camada 6, garantir que conectivos contrastivos e a frase positiva do padrão de inversão não sejam removidos na busca por brevidade — a inversion 'parece bom, mas' tem função operacional, não estética.
+- **Aviso:** A frase 'Sem essas verificações, a conta parece saudável, mas...' deve ser tratada como âncora de framing em insights de Padrão B, não como detalhe suprimível. O Slack Writer a substituiu por 'Enquanto...' sem registrar a decisão nas Decisões de Formatação — lacuna de documentação menor.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-19/yasmin/00-data-package.json`
@@ -77,10 +76,7 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Slack Writer optou por incluir ASIN para TL250P (B0GGTY2BLT), TL250B (B0GGTTMD4H) e TL6250 (B0GFPQD4G9) além do raw_title, com justificativa de identificabilidade após divergência de alias. Estritamente a regra exige ASIN apenas para título ambíguo ou risco médio — os raw_titles usados são unívocos. A decisão não induz erro, está documentada nas Decisões de Formatação e é defensável operacionalmente (Leonardo pode cruzar com Seller Central). Registrado como memória interna para calibrar critério em ciclos futuros.
-- **Aviso:** Simplificação 'breakdown por ASIN' → 'detalhamento por produto' na Análise da Conta é coerente com a Diretriz Pedro 2026-05-17 (linguagem operacional simples) e não altera a tese. Não é problema, mas registrado para rastreabilidade.
-- **Aviso:** Problema sistemático de alias na família TL (TL250P, TL250B, TL6250 mapeados como 'Tigela de Vidro' quando produto real é 'Caneca de Porcelana Tulipa') documentado pela Granular e pela Condensadora para correção no reviewed_sku_display_map antes do próximo ciclo.
-- **Aviso:** Weekly e monthly da conta Amazon contêm apenas templates sem conteúdo — toda análise estratégica partiu do zero. Primeiro registro real de 2026-05-19: 67 pedidos, R$2.472,80, 13 cancelamentos (~19% bruto), ticket R$36,91. Confirmar nos próximos 3–5 dias se GMV sustenta acima de R$1.800 com cancelamento abaixo de 15% para validar ganho de patamar.
+- **Aviso:** Log da Slack Writer contém entrada inconsistente para KIT2YW1050: registrado como 'omitido (0 pedidos)' com justificativa incorreta, mas item aparece corretamente na mensagem. Corrigir template/lógica de decisão da Slack Writer para o campo de ASIN/ranking na próxima execução: ao omitir 028, o sistema deve recalcular posições restantes antes de gerar os logs de formatação.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-19/leonardo/00-data-package.json`

@@ -1,6 +1,6 @@
 {
-  "resultado_qa": "APROVADO",
-  "motivo": "Todos os 11 gates passaram sem violação de regra objetiva. Dados, período, destinatário e plataforma corretos. Estrutura Slack na ordem exata aprovada. Visão com dados objetivos sem comparação temporal. Top Produtos com variações da família IMB501 separadas por cor conforme obrigatório; bloqueios de display_name para TL250P, TL250B e TL6250 respeitados com raw_title + ASIN documentados. Análise com 1 insight (contagem igual à Condensadora), tese central preservada com linguagem de indício e conectivo 'mas' intacto. Prioridades com ação, evidência, sinal de confirmação/refutação e condição de escalonamento. Cruzamento direto de bloqueios confirma que nenhum item bloqueado voltou nominalmente. Confiança baixa sinalizada ao longo da análise e das prioridades. Regra de agregação aplicada: 0 Críticos, 0 Maiores, 0 Menores.",
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem passou todos os gates críticos sem violação de regra objetiva. A única irregularidade detectada está no log de decisões de formatação da Slack Writer (Gate 8): o registro afirma que KIT2YW1050 foi 'omitido (0 pedidos no ranking após exclusão do 028)', mas o item aparece corretamente na mensagem com 1 pedido — valor confirmado no pacote de dados. A execução final está correta; o log é factualmente errado. A regra de agregação aplicada é: 0 Maiores + 1 Menor = APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -11,7 +11,7 @@
     "gate_5_top_produtos": "OK",
     "gate_6_analise_conta": "OK",
     "gate_7_prioridades": "OK",
-    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_8_bloqueios_confianca_logs": "RESSALVA",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
     "gate_11_padrao_numerico_formatacao": "OK"
@@ -20,19 +20,28 @@
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 0,
-    "regra_agregacao_aplicada": "0 problemas → APROVADO"
+    "menores": 1,
+    "regra_agregacao_aplicada": "0 Maiores + 1 Menor → APROVADO COM RESSALVA"
   },
-  "problemas_encontrados": [],
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "Gate 8 — Bloqueios, confiança e logs da Slack Writer",
+      "texto_atual": "KIT2YW1050/B0FB1523N3 — omitido (0 pedidos no ranking após exclusão do 028)",
+      "texto_esperado": "KIT2YW1050/B0FB1523N3 — incluído no ranking na posição 9 com 1 pedido; não bloqueado pela Condensadora; após exclusão de 028, ocupa a última posição do ranking por ordem decrescente",
+      "estado_atual": "O log da Slack Writer declara KIT2YW1050 como omitido com justificativa factualmente incorreta ('0 pedidos'), mas o item aparece na mensagem com 1 pedido — valor correto conforme o pacote de dados.",
+      "estado_esperado": "Log e mensagem devem ser coerentes: se o item aparece na mensagem (corretamente, com 1 pedido real), o log deve registrar 'incluído', não 'omitido'.",
+      "regra_violada": "Gate 8, Passo 3: 'Se o log diz omitido → item não pode aparecer na mensagem.' O log diz omitido, mas o item aparece. A mensagem está correta; o log está errado. Não induz erro a Leonardo.",
+      "bloqueia_envio": false
+    }
+  ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Slack Writer optou por incluir ASIN para TL250P (B0GGTY2BLT), TL250B (B0GGTTMD4H) e TL6250 (B0GFPQD4G9) além do raw_title, com justificativa de identificabilidade após divergência de alias. Estritamente a regra exige ASIN apenas para título ambíguo ou risco médio — os raw_titles usados são unívocos. A decisão não induz erro, está documentada nas Decisões de Formatação e é defensável operacionalmente (Leonardo pode cruzar com Seller Central). Registrado como memória interna para calibrar critério em ciclos futuros.",
-    "Simplificação 'breakdown por ASIN' → 'detalhamento por produto' na Análise da Conta é coerente com a Diretriz Pedro 2026-05-17 (linguagem operacional simples) e não altera a tese. Não é problema, mas registrado para rastreabilidade.",
-    "Problema sistemático de alias na família TL (TL250P, TL250B, TL6250 mapeados como 'Tigela de Vidro' quando produto real é 'Caneca de Porcelana Tulipa') documentado pela Granular e pela Condensadora para correção no reviewed_sku_display_map antes do próximo ciclo.",
-    "Weekly e monthly da conta Amazon contêm apenas templates sem conteúdo — toda análise estratégica partiu do zero. Primeiro registro real de 2026-05-19: 67 pedidos, R$2.472,80, 13 cancelamentos (~19% bruto), ticket R$36,91. Confirmar nos próximos 3–5 dias se GMV sustenta acima de R$1.800 com cancelamento abaixo de 15% para validar ganho de patamar."
+    "Log da Slack Writer contém entrada inconsistente para KIT2YW1050: registrado como 'omitido (0 pedidos)' com justificativa incorreta, mas item aparece corretamente na mensagem. Corrigir template/lógica de decisão da Slack Writer para o campo de ASIN/ranking na próxima execução: ao omitir 028, o sistema deve recalcular posições restantes antes de gerar os logs de formatação."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "A Condensadora entregou 1 insight com confiança baixa e tese inconclusiva. A Slack Writer preservou integralmente a ressalva e a linguagem de indício ('leitura positiva está suspensa', 'não há base para separar ganho de patamar de burst pontual', 'O sinal existe — mas precisa ser qualificado'). A mensagem está correta e operacionalmente útil, mas o valor analítico do ciclo é limitado pela ausência de memória acumulada e de dados de Buy Box — o próximo ciclo com checagem de Leonardo (Buy Box + cancelamentos) terá potencial analítico significativamente maior."
+    "Os dois insights da seção ANÁLISE DA CONTA são transcrições literais da Condensadora — fidelidade máxima atingida. Do ponto de vista da Diretriz Pedro 2026-05-17, os bullets são claros e acionáveis. No entanto, são frases longas e densas. Em ciclos futuros com memória acumulada, a Condensadora pode avaliar se a simplificação de linguagem é possível sem perda de nuance — isso não constitui violação hoje, pois o formato e a profundidade estão preservados conforme exigido.",
+    "As três perguntas operacionais críticas (cancelamentos por ASIN, Buy Box no pico, correspondência ADS) seguem sem resposta por ausência de dado no pacote — já registrado em memória_para_amanha da Condensadora. A mensagem trata corretamente essa lacuna como incerteza explícita. Para os próximos ciclos, a integração de dados de cancelamento por ASIN e Buy Box por ASIN no pacote reduziria a necessidade de prioridades investigativas recorrentes."
   ],
   "llm_used": true,
   "model": "sonnet",

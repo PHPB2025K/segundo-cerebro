@@ -209,3 +209,30 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Só reabrir nos reports se houver decisão posterior de participação ou ações derivadas aplicáveis a Mercado Livre/Budamix.
 
 **Status:** informativo — sem ação operacional registrada.
+
+### 2026-05-20 13:13 BRT — Alerta estratégico Himmel sobre El Niño/Super El Niño e antecipação de mix/estoque
+
+**Participantes:** Fabio Schwichtemberg/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix; contexto estratégico também aplicável ao planejamento comercial geral.  
+**Tema:** Risco climático 2026, antecipação de estoque, sazonalidade e adaptação de mix para cenário de calor extremo.
+
+**Contexto registrado:**
+- Himmel enviou alerta amplo aos clientes sobre risco elevado de El Niño/Super El Niño em 2026, citando **80%+ de chance** de um semestre muito quente no Brasil.
+- Orientação central: não reagir depois do problema; antecipar planejamento de estoque, logística e sortimento.
+- Para sellers do Sul, Fabio citou necessidade de pensar em estoque fora da região ou prepcenter alternativo; para outras regiões, foco em prever quais produtos tendem a ganhar demanda nos próximos meses.
+- Exemplo citado: enxovais devem vender mais no inverno antes do calor forte; ao chegar o super calor, criar/adaptar produtos para evitar despenco de faturamento.
+- A mensagem não trouxe campanha, SKU Budamix específico, verba ou decisão executiva; é um direcionamento estratégico preventivo.
+
+**Impacto esperado:**
+- Daily Sales Report v2 deve considerar clima/sazonalidade como hipótese macro se houver mudança de demanda em categorias sensíveis nos próximos meses.
+- Para Budamix, o ponto útil é revisar mix e estoque de produtos com potencial de uso em calor/primavera-verão, além de evitar excesso de aposta em itens menos aderentes ao período.
+- Não usar como causa direta de variação diária de vendas; tratar como insumo de planejamento comercial e ADS.
+
+**Como validar nos dados:**
+- Cruzar curva de vendas por categoria/produto com mudança de temperatura/sazonalidade entre inverno, primavera e verão.
+- Monitorar se produtos de uso doméstico mais aderentes a calor/organização/cozinha têm aceleração orgânica ou via ADS.
+- Verificar estoque/cobertura antes de escalar campanhas em itens que possam ganhar demanda sazonal.
+- Se a Himmel trouxer recomendações específicas de SKUs/campanhas derivadas desse estudo, registrar como decisão separada.
+
+**Status:** aberto — contexto estratégico a observar nos reports e planejamentos até a virada primavera/verão 2026.
+

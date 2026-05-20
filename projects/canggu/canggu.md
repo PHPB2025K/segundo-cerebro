@@ -34,6 +34,25 @@ fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 
 **Última grande sessão:** 2026-04-30 (maratona ~7-8h) — ver [[memory/sessions/2026-04-30]] seção "Maratona Canggu" + [[memory/context/decisoes/2026-04#[30/04 tarde/noite] Canggu — pipeline edge function canônico + mídia visível + repo único]].
 
+**O que mudou em 20/05 (auditoria ML + regra 17 "sceptical-but-gentle"):**
+
+Pedro pediu auditoria de TODAS as respostas geradas pela Ana no Mercado Livre — critério: cliente final não precisa saber NADA sobre cadastro, descrição ou processo interno. 25 respostas dos últimos 30 dias analisadas.
+
+- **3 padrões críticos identificados:** "Não temos no cadastro / Vamos verificar internamente" (6×), "Por favor entre em contato conosco" (7×, todas feedback='bad' já marcado), "Vamos verificar e atualizar o anúncio" (3×).
+- **Causa raiz:** trecho LITERAL no `agent_config.system_prompt` instruía a Ana a usar exatamente essa frase ruim quando spec técnica não confirmada. Ana só obedecia. Hard-block do validator pegava só horário, não cadastro.
+- **Aplicado em prod:** (a) substituição do bloco ruim por nova regra 17 "RESPOSTA CÉTICA MAS GENTIL — CLIENTE QUER SER OUVIDO" com 6 princípios + lista de frases proibidas (21.485 → 23.601 chars); (b) 3 correções modelo em `response_corrections` com embedding text-embedding-3-small via invocação manual de `process-correction-embedding` (tabela não tem trigger automático); (c) 3 perguntas originais marcadas como corrigida no painel Canggu via `marketplace_questions.feedback='bad'` + `feedback_at=NOW()`.
+- **Princípios da regra 17:** reconhecer dúvida em 1 frase curta, dar info técnica direta com razão concreta, focar no que o produto FAZ BEM, oferecer alternativa Budamix POR NOME quando faltar variação, fechar positivo, NUNCA prometer alteração de anúncio/verificação/devolução proativamente.
+- **Commits:** migration `0ea273c` (regra 17 + 3 correções) e `102f3b6` (mark questions como corrigida).
+
+**O que mudou em 17/05 (fix arquitetural do silêncio de 9 dias):**
+
+Apesar da rotação de chave Anthropic + Opus 4.6 em 13/05, monitoramento confirmou que a Ana CONTINUOU muda — zero `tokens_used > 0` em 11/05 a 17/05. Recovery anterior tratou sintoma hipotético, não o bug real.
+
+- **Causa raiz real:** `webhook-whatsapp/index.ts:446-455` fazia `fetch('/functions/v1/process-message')` fire-and-forget sem `EdgeRuntime.waitUntil()`. Edge runtime suspende função no instante que `return jsonResponse(...)` sai — cancela o fetch pendente antes do invoke chegar. Resultado: process-message NUNCA roda. Zero respostas, zero erros logados, zero escalations.
+- **Fix:** envolver o fetch em `EdgeRuntime.waitUntil()`. Adicionado log `invoke_process_message_ok` pra regressões futuras visíveis.
+- **Commit:** `f063738`, webhook-whatsapp v33, GitHub Actions cascade deploy em ~30s.
+- **Lição arquitetural:** todo `fetch()` lançado dentro de edge function sem `await` antes do response precisa de `EdgeRuntime.waitUntil()`.
+
 **O que mudou em 13/05 (recovery Ana 5 dias de silêncio):**
 
 Pedro reportou "Ana parou de responder após o poll automático". Diagnóstico forense confirmou que a **última resposta real da Ana foi em 2026-05-08 16:09 BRT** — 5 dias inteiros (11, 12, 13/05) com zero `messages.sender='agent' AND tokens_used>0`. Yasmin e equipe vinham cobrindo manualmente sem perceber que era falha total, porque o webhook continuava enviando o poll automático e retornando 200 OK pra Evolution.

@@ -1,50 +1,113 @@
 {
-  "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem passa todos os gates sem violação crítica ou maior. Os dados batem com o pacote validado, a estrutura Slack está correta (1 consolidado + 3 contas conforme addendum v3.1 com 6B presente), os bloqueios da Condensadora foram todos respeitados e documentados, as prioridades vêm fielmente da 6B + Condensadora com ação + evidência + sinal de confirmação/refutação + escalonamento, e nenhuma hipótese foi convertida em fato. Registrado 1 Menor: variação mínima de redação no bullet consolidado da análise ('diagnóstico antes de qualquer ação' → 'diagnosticar causa antes de qualquer ação') em relação ao texto literal da 6B — sem alteração de sentido. Regra de agregação aplicada: 0 Críticos + 0 Maiores + 1 Menor = APROVADO COM RESSALVA.",
-  "send_allowed": true,
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "O gate 5 (Top Produtos) apresenta 1 problema Crítico: o produto CTL002 (Kit 6 Canecas Tulipa 250ml) aparece duplicado no ranking — linha 7 como consolidado com 10 pedidos (Store 5 + Conta 2 3 + Conta 3 2) e linha 9 como Store-específico com 5 pedidos, sendo que os 5 da Store já estão incluídos nos 10 consolidados. Isso cria risco real de double-counting e indução a erro para Lucas. Há também 1 problema Maior no gate 5: o CTL002 (10 pedidos) foi posicionado no 7º lugar, após produtos com 6 e 4 pedidos, violando o ranking obrigatório por volume decrescente — e o log de Decisões de Formatação é internamente inconsistente ao afirmar que CTL002 seria inserido 'acima dos produtos de 4 pedidos' quando na execução foi inserido após eles. Com 1 Crítico presente, a regra de agregação dura determina BLOQUEADO independentemente das demais contagens.",
+  "send_allowed": false,
   "send_real_allowed": false,
   "gates_avaliados": {
     "gate_1_data_periodo_fonte": "OK",
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "OK",
+    "gate_5_top_produtos": "FALHA",
     "gate_6_analise_conta": "RESSALVA",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "OK"
+    "gate_11_padrao_numerico_formatacao": "RESSALVA"
   },
   "contagem_severidade": {
-    "criticos": 0,
-    "maiores": 0,
-    "maiores_gates_distintos": 0,
-    "menores": 1,
-    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 1 Menor → APROVADO COM RESSALVA"
+    "criticos": 1,
+    "maiores": 1,
+    "maiores_gates_distintos": 1,
+    "menores": 5,
+    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
   },
   "problemas_encontrados": [
     {
+      "severidade": "Crítico",
+      "gate": "5 — Top Produtos",
+      "texto_atual": "• Kit 6 Canecas Tulipa 250ml — 10 pedidos (Store 5 + Conta 2 3 + Conta 3 2)\n• Kit 4 Potes de Vidro 800ml Quadrado — 2 pedidos (Conta 2)\n• Kit 6 Canecas Tulipa 250ml — 5 pedidos (Store)",
+      "texto_esperado": "Apenas uma linha para CTL002, posicionada no 3º lugar: '• Kit 6 Canecas Tulipa 250ml — 10 pedidos (Store: 5 + Conta 2: 3 + Conta 3: 2)'. A linha '• Kit 6 Canecas Tulipa 250ml — 5 pedidos (Store)' deve ser integralmente removida — os 5 pedidos da Store já compõem os 10 consolidados.",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Mesmo produto CTL002 listado duas vezes no ranking: uma como consolidado (10 pedidos) e uma como Store-específico (5 pedidos). Os 5 da Store já integram os 10 da linha anterior. A duplicação cria aparência de 15 pedidos totais de CTL002 e risco concreto de induzir Lucas a erro sobre o volume real do produto no dia.",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Maior",
+      "gate": "5 — Top Produtos",
+      "texto_atual": "CTL002 posicionado na 7ª linha do ranking (após produtos com 6 e 4 pedidos), com nota no log: 'inserido após os produtos de conta única por clareza de atribuição' e 'o que o coloca acima dos produtos de 4 pedidos'",
+      "texto_esperado": "CTL002 com 10 pedidos deve ocupar a 3ª posição no ranking (após Tampa Preta 20 e Jarra Medidora 14, e antes dos produtos com 6 pedidos). O log de decisão deve ser coerente com a posição efetiva na mensagem.",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Ranking por volume decrescente é regra obrigatória no Top Produtos. CTL002 (10 pedidos) foi colocado após produtos com 6 pedidos (posições 3-4) e 4 pedidos (posições 5-6), distorcendo a hierarquia de importância dos produtos. Adicionalmente, o log de Decisões de Formatação afirma que a linha seria inserida 'acima dos produtos de 4 pedidos' — o que não foi cumprido na mensagem final, tornando o registro de decisão inconsistente com a execução.",
+      "bloqueia_envio": false
+    },
+    {
       "severidade": "Menor",
-      "gate": "Gate 6 — Análise da Conta",
-      "texto_atual": "a postura correta é diagnosticar causa antes de qualquer ação",
-      "texto_esperado": "a postura correta é diagnóstico antes de qualquer ação",
-      "estado_atual": "Bullet do consolidado tem variação mínima de redação em relação ao texto literal da 06b-shopee-consolidator",
-      "estado_esperado": "Bullet do consolidado reproduz o texto da 06b-shopee-consolidator sem alteração",
-      "regra_violada": "Gate 6: Slack Writer deve ser fiel ao texto da fonte analítica final (6B para Shopee); qualquer divergência de redação deve ser registrada e justificada nas Decisões de Formatação — esta variação não consta no log",
+      "gate": "6 — Análise da Conta (bloco Store)",
+      "texto_atual": "os seis produtos restantes dividiram 15% entre si.",
+      "texto_esperado": "os seis produtos restantes dividiram 15% entre si, o que significa que a métrica de concentração nos top 3 subestima a fragilidade real, que está em um único produto sem amortecedor simétrico.",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Termo analítico-chave da 6B removido: o enquadramento de que o top3_concentration (84,8%) mascara dependência primária de um único SKU foi omitido. Não altera a tese principal ('vitrine de dois SKUs') mas remove o contexto interpretativo que a 6B considerou necessário para Lucas entender a gravidade real da concentração.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "6 — Análise da Conta (bloco Store)",
+      "texto_atual": "O ticket subindo para R$ 47,11 não é sinal de força",
+      "texto_esperado": "O ticket subindo para R$ 47,11 (vs R$ 37,80 nos 60d) não é sinal de força",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Referência quantitativa da 6B removida. A comparação com a média 60d (R$ 37,80) âncora a magnitude da elevação do ticket e sustenta o argumento de compressão de mix. Sem a referência histórica, o valor absoluto R$ 47,11 não comunica por si só o desvio que justifica a interpretação.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "6 — Análise da Conta (bloco Oficial)",
+      "texto_atual": "porque seu mix deslocou completamente para produtos de maior valor. O risco imediato não é o volume em si",
+      "texto_esperado": "porque seu mix deslocou completamente para produtos de maior valor; KIT3S099 e IMB501C (Tampa Cinza) lideraram com 4 pedidos cada, e 100% das vendas ficaram nos top 5 SKUs. O risco imediato não é o volume em si",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Evidência específica que sustentava 'mix deslocou completamente para produtos de maior valor' foi removida. Sem os nomes dos produtos líderes e a concentração de 100% nos top 5, a afirmação fica menos ancorada — a 6B incluiu esse detalhe para tornar operacional a leitura da Oficial.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "6 — Análise da Conta (bloco Shop-3)",
+      "texto_atual": "é o único diferencial positivo da conta. Mas com 93,3%",
+      "texto_esperado": "é o único diferencial positivo da conta: são duas categorias distintas no topo e o Kit 6 Canecas Retas 200ml não apareceu nas outras contas no dia — ausência de canibalização nesse SKU específico. Mas com 93,3%",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Contexto da 6B que explica por que a co-liderança é um diferencial positivo foi removido. A ausência de canibalização do KIT6CAR200 entre contas é o argumento central do ponto positivo — sem ele, a afirmação 'único diferencial positivo' fica sem a evidência que a sustenta na 6B.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "Kit 6 Canecas Tulipa 250ml — 10 pedidos (Store 5 + Conta 2 3 + Conta 3 2)",
+      "texto_esperado": "Kit 6 Canecas Tulipa 250ml — 10 pedidos (Store: 5 + Conta 2: 3 + Conta 3: 2)",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "A notação 'Conta 2 3' e 'Conta 3 2' é ambígua: número de conta imediatamente seguido de volume sem separador pode ser lido como 'Conta 23' e 'Conta 32'. Dado objetivo deve ser apresentado de forma inequívoca para não gerar confusão de leitura.",
       "bloqueia_envio": false
     }
   ],
-  "correcoes_obrigatorias_antes_envio": [],
+  "correcoes_obrigatorias_antes_envio": [
+    "Remover integralmente a linha '• Kit 6 Canecas Tulipa 250ml — 5 pedidos (Store)' do Top Produtos — esses 5 pedidos já constam na linha consolidada de 10 pedidos e sua presença duplica o produto no ranking.",
+    "Reposicionar a linha consolidada do CTL002 (10 pedidos) para a 3ª posição no Top Produtos, após Tampa Preta (20 pedidos) e Jarra Medidora (14 pedidos), respeitando o ranking obrigatório por volume decrescente.",
+    "Corrigir a formatação da indicação de contas no CTL002 consolidado para eliminar ambiguidade: usar separador claro entre nome de conta e volume (ex: 'Store: 5 + Conta 2: 3 + Conta 3: 2')."
+  ],
   "ressalvas_memoria_interna": [
-    "A variação 'diagnosticar causa' vs 'diagnóstico' no bullet consolidado não altera o sentido e não induz erro, mas a Slack Writer não registrou a divergência nas Decisões de Formatação. Em ciclos futuros, qualquer alteração de redação em relação ao texto literal da 6B deve ser documentada no log de decisões.",
-    "Prioridades expandidas além do texto literal da 6B com adição de estrutura 'Confirmar/refutar:' e 'Escalar se:' oriundas da Condensadora — decisão correta e documentada no log, mas que deve ser padronizada explicitamente nas regras da Slack Writer para Shopee para evitar variação entre ciclos.",
-    "VISÃO por conta mostra apenas faturamento e pedidos, sem ticket médio individual — dado disponível no pacote; decisão de omitir é defensável (VISÃO é objetiva e análise já cobre ticket por conta), mas deve ser documentada formalmente nas Decisões de Formatação em ciclos futuros."
+    "KIT2YW800SQ aparece no Top Produtos apenas com a entrada da Conta 3 (6 pedidos). A Store tinha 2 pedidos do mesmo SKU que não foram exibidos separadamente nem consolidados com a Conta 3. O log de Decisões de Formatação diz 'mantido separado' mas apenas uma das duas entradas aparece na mensagem. Impacto mínimo no resultado dado o volume (2 pedidos), mas a inconsistência entre decisão registrada e execução deve ser corrigida no próximo ciclo.",
+    "Os 5 Menores do Gate 6 indicam padrão sistemático de simplificação da Slack Writer em relação à 6B: contextos analíticos de apoio foram removidos em três dos quatro blocos de análise (Store, Oficial, Shop-3). Não configuram degradação sistêmica (abaixo do limiar de 6+) e não alteram teses, mas o padrão deve ser monitorado — se persistir nos próximos ciclos, indica tendência de erosão da profundidade analítica autorizada pela 6B.",
+    "GMV consolidado de R$ 4.070,69 está abaixo do gatilho de intervenção de R$ 4.500. Se a mensagem corrigida for enviada e o GMV de amanhã ficar abaixo de R$ 4.500, será o segundo dia do contador — três dias consecutivos abaixo do gatilho acionam intervenção estruturada Lucas + Himmel."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "A análise da Conta 2 cita os SKUs 'KIT3S099' e 'IMB501C' pelo nome no body da análise (não no Top Produtos) — esses SKUs são de alta confiança e vêm de pedido real, portanto não há risco de identificação; a citação é consistente com a 6B e não viola nenhuma regra. Registrado apenas para auditoria.",
-    "A 6B utilizou emojis de status (⚫, 🟠) como marcadores dos bullets de análise — a Slack Writer preservou esses marcadores fielmente. O padrão não está explicitamente documentado no slack-format aprovado, mas está na 6B e não viola nenhuma regra estrutural. Sugere-se formalizar no template aprovado em próximo ciclo.",
-    "Bullet do consolidado e bullets por conta são longos (estrutura densa com múltiplos dados e conectivos) — conteúdo é fiel à 6B e operacionalmente claro; não atinge limiar de Maior per Diretriz Pedro 2026-05-17 porque os números são necessários para o responsável entender a ação e a densidade vem da fonte aprovada, não de elaboração da Slack Writer."
+    "A presença do CTL002 no Top Produtos com breakdown cross-conta explícito (Store 5 + Conta 2 + Conta 3) pode tangenciar o diagnóstico de canibalização bloqueado pela Condensadora, mesmo sem usar o termo. A QA considera aceitável como dado objetivo na seção de produtos, em linha com a decisão de formatação registrada, mas recomenda que a Condensadora avalie se o formato de apresentação cross-conta deve ser bloqueado também nos próximos ciclos ou se o dado objetivo pode permanecer.",
+    "A seção de análise reproduz de forma quase integral o texto da 6B em todos os quatro blocos. Os parágrafos são densos. Nenhum bullet viola o critério Maior individualmente (a informação é operacional e clara), mas a tendência de preservar o texto completo da 6B sem compressão pode comprometer a legibilidade no Slack ao longo do tempo — a Diretriz Pedro 2026-05-17 pede linguagem mais simples e direta, e as simplificações feitas pela Slack Writer (que originaram os 5 Menores do Gate 6) estavam na direção correta, apenas foram insuficientes ou mal executadas."
   ],
   "llm_used": true,
   "model": "sonnet",

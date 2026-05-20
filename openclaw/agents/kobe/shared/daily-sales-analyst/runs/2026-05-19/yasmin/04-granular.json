@@ -1,182 +1,107 @@
 {
-  "camada": "04-granular",
-  "data": "2026-05-19",
-  "plataforma": "ml",
-  "conta": "mercado-livre",
+  "layer": "04-granular",
+  "date": "2026-05-19",
   "recipient": "Yasmin",
+  "platform": "ml",
   "respostas_operacional": [
     {
-      "pergunta": "Os 6 cancelamentos estão concentrados em algum produto ou anúncio específico, ou são pulverizados entre diferentes SKUs?",
-      "status": "nao_respondida_por_falta_de_dado",
-      "evidencia": "O pacote de dados disponibiliza apenas o total agregado de 6 cancelamentos nas métricas da conta (campo metrics.cancelamentos). Não há breakdown por produto, SKU ou platform_item_id na estrutura de dados recebida. Os top_products listados representam pedidos válidos sem campo de cancelamento por variação.",
-      "leitura": "Impossível determinar distribuição dos cancelamentos por produto ou listing com os dados disponíveis. Não é possível confirmar ou descartar concentração em MLB3288536143 ou em qualquer outro produto.",
+      "pergunta": "Os 6 cancelamentos estão concentrados em um único produto ou pulverizados entre diferentes SKUs?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote registra cancelamentos como métrica agregada (pedidos_validos: 107; cancelamentos: 6). Não há campo de ordem cancelada individual, atribuição de produto, SKU, horário ou motivo de cancelamento nos dados entregues.",
+      "leitura": "Impossível classificar os cancelamentos como concentrados ou pulverizados. A pergunta é operacionalmente relevante — dada a concentração de ~30% dos pedidos válidos no IMB501P, cancelamento concentrado nesse produto elevaria o risco de dependência para operacional agudo — mas o dado necessário não está no pacote.",
       "conclusao_granular": "inconclusivo por falta de dado",
       "confianca": "baixa"
     },
     {
-      "pergunta": "Qual a posição atual (ranking e exposição) do anúncio MLB3288536143 no Mercado Livre comparada à semana anterior?",
-      "status": "nao_respondida_por_falta_de_dado",
-      "evidencia": "O pacote de dados não inclui métricas de posição, ranking ou exposição de anúncios. Não há dados de painel ML integrados ao pacote de dados. O platform_item_id=MLB3288536143 está confirmado como identificador do listing, mas sem dado de ranking ou impressões.",
-      "leitura": "A checagem de baseline de posição para MLB3288536143, identificada pela Tática como prioridade desta semana, não pode ser realizada pela Granular com os dados disponíveis. Requer acesso direto ao painel ML ou integração futura de dados de ranking.",
+      "pergunta": "A variação IMB501P (Tampa Preta) tem estoque ativo e quantidade disponível nos anúncios?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote não contém informação de estoque, cobertura de dias, quantidade disponível em anúncio ou status de listing para nenhum produto. O platform_item_id do IMB501P está confirmado (MLB3288536143). A conversão de 32 pedidos no dia prova que o anúncio estava ativo ao longo do dia, mas não informa sobre cobertura restante após esses pedidos.",
+      "leitura": "Não é possível confirmar ou descartar risco de ruptura iminente. O fato de 32 pedidos terem sido convertidos hoje evidencia elegibilidade durante o dia — não é evidência de estoque confortável nos dias seguintes.",
       "conclusao_granular": "inconclusivo por falta de dado",
       "confianca": "baixa"
     },
     {
-      "pergunta": "O ticket médio elevado (R$54,12) está distribuído entre diferentes produtos ou vem majoritariamente de um produto de preço unitário mais alto que vendeu mais hoje?",
-      "status": "parcialmente_respondida",
-      "evidencia": [
-        {
-          "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
-          "platform_item_id_mlb": "MLB3288536143",
-          "fonte": "top_products / pedidos reais",
-          "pedidos": 32,
-          "posicao_ranking": 1
-        },
-        {
-          "produto_visivel": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas",
-          "platform_item_id_mlb": "MLB4676726433",
-          "fonte": "top_products / pedidos reais",
-          "pedidos": 9,
-          "posicao_ranking": 3,
-          "nota": "confidence=medium — mapping por raw_sku_normalized_with_short_title_fallback"
-        },
-        {
-          "produto_visivel": "Kit 4 Potes de Vidro 1050ml Retangular",
-          "platform_item_id_mlb": "MLB4073003575",
-          "fonte": "top_products / pedidos reais",
-          "pedidos": 8,
-          "posicao_ranking": 4
-        }
-      ],
-      "dado_ausente": "Preço unitário por produto não está no pacote de dados. Sem preços individuais, não é possível isolar qual produto ou grupo contribui quantitativamente mais para o ticket médio elevado.",
-      "leitura": "O mix do dia inclui produtos de diferentes faixas de valor presumido: a família IMB501 (potes 5 peças redondos) domina em volume com 49 pedidos (~45,8%), enquanto kits maiores — KIT10YW1050 (10 potes herméticos, #3) e KIT4YW1050 (4 potes 1050ml, #4) — somam 17 pedidos em posições intermediárias. A presença de kits maiores nas posições #3 e #4 sugere contribuição de produtos de maior valor agregado para elevar o ticket, mas sem preços individuais não é possível quantificar essa contribuição. Itens/pedido de 1,056 confirma ausência total de cross-sell — o ticket vem inteiramente do preço unitário do produto, não de composição de cesta.",
-      "conclusao_granular": "parcialmente confirmado — o mix inclui produtos de maior valor agregado (kits maiores) que provavelmente contribuem para o ticket elevado, mas sem preços individuais não é possível confirmar se a elevação está concentrada em produto específico ou distribuída; risco de reversão existe se kits maiores saírem do mix",
-      "confianca": "media"
+      "pergunta": "O ML Full está ativo ou inativo para os anúncios da família IMB501?",
+      "status": "parcialmente respondida",
+      "evidencia": "Bloco de fulfillment retornou: shopee_full=0, amazon_fba=0, amazon_fbm=0, other=0, total=107. Os 107 pedidos válidos existem no total mas nenhum foi alocado às categorias discriminadas no schema. O pacote não possui campo específico para ml_full ou mercado_livre_full — a ausência é estrutural no schema, não resultado de ML Full inativo. Nota de divergência menor: a Operacional descreveu o bloco como '107 pedidos em other'; o dado bruto mostra other=0 com total=107 — a conclusão funcional é idêntica (ML Full não discriminado), mas a leitura do campo 'other' diverge entre camadas.",
+      "leitura": "Não é possível afirmar se ML Full está ativo, inativo ou parcialmente ativo. O schema atual não discrimina ML Full como categoria separada. A checagem solicitada pela Tática (posição dos anúncios líderes IMB501) não pode ser respondida por dados automatizados — requer acesso manual ao painel ML.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
     }
   ],
   "investigacoes_proprias": [
     {
-      "investigacao": "MLB3288536143 hospeda duas variações distintas (Tampa Preta e Vermelha) — concentração por listing é maior do que a concentração por variação líder indica",
-      "origem": "anomalia",
-      "evidencia": [
-        {
-          "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
-          "platform_item_id_mlb": "MLB3288536143",
-          "fonte": "top_products / pedidos reais",
-          "pedidos": 32
-        },
-        {
-          "produto_visivel": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
-          "platform_item_id_mlb": "MLB3288536143",
-          "fonte": "top_products / pedidos reais",
-          "pedidos": 10
-        }
-      ],
-      "calculo": "42 pedidos combinados em MLB3288536143 = 39,3% dos 107 pedidos do dia",
-      "leitura": "A Estratégica calculou concentração por variação (Tampa Preta = ~30%); a Operacional já sinalizou o risco. A evidência granular confirma e precisiona: o risco não é da variação líder — é do listing único que hospeda dois dos três maiores produtos da conta. Qualquer perturbação em MLB3288536143 (queda de ranking, problema de reputação, suspensão) afeta Tampa Preta e Vermelha simultaneamente, amplificando o impacto em ~10 pontos percentuais além do que a análise por variação individual indica.",
-      "conclusao_granular": "confirma e precisiona o risco estrutural identificado pela Operacional — a unidade de risco crítica é o listing MLB3288536143, não as variações separadas",
+      "investigacao": "Verificação da concentração real da família IMB501 por pedidos reais e identificação do anúncio-pai compartilhado entre variações",
+      "origem": "risco de identificação",
+      "evidencia": "Por pedidos reais: IMB501P (MLB3288536143) = 32 pedidos; IMB501V (MLB3288536143) = 10 pedidos; IMB501C (MLB4535865311) = 7 pedidos. Total família IMB501 = 49 pedidos / 107 = 45,8%. Ponto crítico de identificação: IMB501P e IMB501V compartilham o mesmo platform_item_id (MLB3288536143), sendo variações de cor do mesmo anúncio-pai no ML — diferenciadas por raw_sku (IMB501P_T vs IMB501V_T) com mapeamento sku_alias_high_confidence. Isso implica que o anúncio MLB3288536143 responde por 42 pedidos (39,3% do total do dia) — o anúncio-pai mais concentrado da conta.",
+      "leitura": "A concentração familiar de 45,8% confirma-se por pedidos reais. O dado relevante para a Condensadora é que dois SKUs críticos (Tampa Preta e Tampa Vermelha) dividem um único anúncio ML — não são anúncios independentes. Qualquer interrupção no anúncio MLB3288536143 (ranking, elegibilidade, estoque de qualquer variação) afeta as duas variações simultaneamente, elevando o risco de dependência além do que aparece ao separar os SKUs.",
+      "conclusao_granular": "confirma",
       "confianca": "alta"
     },
     {
-      "investigacao": "Discrepância material entre raw_title do pedido real e display_name no produto TL6250",
-      "origem": "risco de identificacao",
-      "evidencia": {
-        "produto_visivel_pedido_real": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
-        "display_name": "Kit 6 Tigelas de Vidro 250ml",
-        "platform_item_id_mlb": "MLB6167272090",
-        "raw_sku": "TL6250",
-        "mapping_status": "mapped",
-        "mapping_reason": "reviewed_sku_display_map",
-        "confidence": "high",
-        "fonte": "top_products / pedidos reais",
-        "pedidos": 7,
-        "nota": "raw_title descreve 'Canecas Porcelana Tulipa' — produto em porcelana para café/xícara; display_name descreve 'Tigelas de Vidro' — produto em vidro para tigela; são materiais e usos distintos"
-      },
-      "leitura": "O mapeamento foi marcado como reviewed e high confidence, mas o título real do pedido e o display_name descrevem produtos materialmente diferentes: canecas de porcelana (produto cerâmico, uso como xícara) versus tigelas de vidro (produto vítreo, uso como tigela). A fonte primária é o título real do pedido — o produto vendido é 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml'. O display_name aparenta estar incorreto para este SKU ou foi indevidamente unificado com outra linha de produto.",
-      "conclusao_granular": "complica — o produto visível no pedido real é 'Canecas Porcelana', não 'Tigelas de Vidro'; display_name registrado para TL6250 diverge do produto real; citar o display_name em relatórios gera identificação errada",
-      "confianca": "media"
+      "investigacao": "Presença e peso de produtos com mapeamento de confiança média no top 10 — risco de identificação nos produtos secundários",
+      "origem": "risco de identificação",
+      "evidencia": "Dos 10 produtos no top 10, quatro têm mapeamento mapped_generic_sku com confiança média: KIT10YW1050 (9 pedidos, MLB4676726433), 914C_BAV (6 pedidos, MLB4410218897), SPC0111 (5 pedidos, MLB6661811594), KIT4YW640 (4 pedidos, MLB5402326666). Somam 24 pedidos = 22,4% do total. Todos têm platform_item_id confirmado e raw_title presente — o risco é de correspondência de nome comercial interno genérico, não de produto errado no pedido. Adicionalmente, TL6250 (confiança alta, 7 pedidos) apresenta divergência entre raw_title ('Kit 6 Canecas Porcelana Tulipa Lisa 250ml') e display_name ('Kit 6 Tigelas de Vidro 250ml') — materiais distintos (porcelana vs vidro). O mapeamento foi marcado como reviewed_sku_display_map, sugerindo revisão humana, mas a divergência de material é relevante para identificação.",
+      "leitura": "Os quatro produtos de confiança média podem ser citados com ressalva de nome comercial interno. A divergência em TL6250 não bloqueia para Slack mas deve ser registrada para revisão futura do catálogo — o raw_title indica produto diferente do display_name.",
+      "conclusao_granular": "complica",
+      "confianca": "média"
     },
     {
-      "investigacao": "Mapeamento de produtos com confidence=medium no top 10 — impacto na leitura de concentração nominal",
-      "origem": "risco de identificacao",
-      "evidencia": [
-        {
-          "sku": "KIT10YW1050",
-          "confidence": "medium",
-          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
-          "platform_item_id_mlb": "MLB4676726433",
-          "pedidos": 9
-        },
-        {
-          "sku": "914C_BAV",
-          "confidence": "medium",
-          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
-          "platform_item_id_mlb": "MLB4410218897",
-          "pedidos": 6
-        },
-        {
-          "sku": "KIT4YW640",
-          "confidence": "medium",
-          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
-          "platform_item_id_mlb": "MLB5402326666",
-          "pedidos": 4
-        }
-      ],
-      "calculo": "19 pedidos com confidence=medium = 17,8% do volume do dia; 7 produtos com confidence=high cobrem ~72 pedidos = 67,3%; TL6250 com divergência raw_title/display_name = 7 pedidos = 6,5% adicional em risco de citação nominal",
-      "leitura": "O risco de identificação nos produtos medium-confidence está no display_name, não no platform_item_id. Os MLB IDs são confiáveis e suficientes para análise de concentração por listing. O problema é citação nominal: os nomes comerciais desses 3 produtos (19 pedidos) não têm garantia de correspondência exata com o produto real do pedido. Isso não invalida leituras de volume ou concentração por listing, mas impõe ressalva em qualquer citação nominal para Yasmin.",
-      "conclusao_granular": "complica parcialmente — leituras de volume e concentração por platform_item_id permanecem válidas; nomes comerciais de produtos medium-confidence não devem ser citados como fato definitivo",
-      "confianca": "media"
+      "investigacao": "Distribuição horária — verificação de horário forte ou fraco localizado vs. distribuição espalhada",
+      "origem": "anomalia",
+      "evidencia": "Distribuição por pedidos reais: picos em 12h (11 pedidos = 10,3%), 10h (8 pedidos = 7,5%), 20h (8 pedidos = 7,5%), 9h (7 pedidos = 6,5%), 15h (7 pedidos = 6,5%). Janela noturna (0h-7h): 15 pedidos = 14,0%. Nenhuma janela de 3 horas consecutivas concentra mais de 22% dos pedidos. Horas mais fracas na janela comercial (9h-21h): 11h (4 pedidos) e 17h (4 pedidos) — variação esperada, sem ruptura.",
+      "leitura": "Não há horário forte nem fraco localizado que mereça investigação. A distribuição é genuinamente espalhada ao longo do dia, sem ruptura de período. O pico de 12h é o único destaque leve, compatível com horário de almoço. Nenhum sinal de perda de exposição por janela horária específica.",
+      "conclusao_granular": "confirma",
+      "confianca": "alta"
     }
   ],
   "risco_identificacao": {
-    "nivel": "medio",
-    "fontes_de_risco": [
-      "display_name vs raw_title divergente em TL6250 — 'Canecas Porcelana Tulipa' (pedido real) vs 'Tigelas de Vidro' (display_name) — produtos materialmente distintos",
-      "confidence=medium em 3 produtos do top 10 (KIT10YW1050, 914C_BAV, KIT4YW640) — mapping por raw_sku_normalized_with_short_title_fallback, 19 pedidos = 17,8% do volume"
+    "nivel": "médio",
+    "fontes": [
+      "mapeamento_generico_sku: KIT10YW1050, 914C_BAV, SPC0111, KIT4YW640 — mapped_generic_sku com confiança média (22,4% dos pedidos)",
+      "divergencia_material_TL6250: raw_title 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml' vs display_name 'Kit 6 Tigelas de Vidro 250ml' — materiais distintos; mapeamento revisado mas divergência de produto não resolvida"
     ],
-    "explicacao": "O risco é médio por dois vetores. Primeiro, TL6250 apresenta divergência material entre o título real do pedido ('Kit 6 Canecas Porcelana Tulipa Lisa 250ml') e o display_name ('Kit 6 Tigelas de Vidro 250ml') — o mapeamento foi revisado mas a divergência persiste; qualquer citação nominal desse produto pelo display_name é potencialmente incorreta. Segundo, três produtos no top 10 têm confidence=medium por fallback de short_title — os platform_item_ids são confiáveis para análise de volume e concentração por listing, mas os nomes comerciais carregam incerteza. O restante do top 10 (7 produtos, ~67% do volume) tem confidence=high com raw_sku ou título confirmado. O risco médio não afeta as leituras de concentração por listing (que usam MLB como identificador primário), mas impõe ressalva obrigatória em citações nominais de produtos medium-confidence e de TL6250.",
-    "bloqueio_slack": null
+    "explicacao": "O risco médio é motivado por dois fatores: (1) quatro produtos com mapeamento genérico de SKU (22,4% dos pedidos) cujo platform_item_id ancora a identificação no anúncio real, mas cujo nome comercial interno pode ser impreciso; (2) divergência de material no TL6250 (porcelana vs vidro) que o mapeamento reviewed não endereça. Os produtos que concentram a análise — toda a família IMB501, responsável por 45,8% dos pedidos — têm confiança alta. O risco médio não bloqueia citação nominal no Slack, mas a Condensadora deve preservar ressalva para os quatro produtos de confiança média quando citados pelo nome comercial. Nenhum produto está em risco alto.",
+    "bloqueio_slack": []
   },
   "divergencia_fontes": {
-    "divergencias": [
-      {
-        "divergencia": "display_name do TL6250 ('Kit 6 Tigelas de Vidro 250ml') diverge do raw_title do pedido real ('Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara')",
-        "resolucao": "Título real do pedido (raw_title) prevalece como identificador do produto visível — regra: pedido real > display_name / catálogo interno",
-        "impacto": "Produto deve ser referenciado pelo título real do pedido ('Kit 6 Canecas Porcelana Tulipa Lisa 250ml') quando citado nominalmente; display_name 'Tigelas de Vidro' não reflete o produto do pedido real e gera identificação incorreta"
-      }
-    ]
+    "divergencia": "Bloco de fulfillment: Operacional descreveu '107 pedidos em other'; dado bruto do pacote mostra other=0, total=107.",
+    "resolucao": "Dado bruto do pacote (fonte primária) prevalece. A leitura correta: 107 pedidos existem mas nenhum foi alocado às categorias discriminadas no schema (shopee_full, amazon_fba, amazon_fbm, other=0). Conclusão funcional idêntica à da Operacional — ML Full não discriminado — mas o campo 'other' está zerado, não em 107.",
+    "impacto": "Divergência menor de leitura de campo. Não altera a conclusão sobre ML Full nem afeta nenhuma outra leitura da análise. Registrado para integridade entre camadas."
   },
-  "evidencia_conflitante": null,
   "detalhe_condensadora": [
     {
-      "detalhe": "MLB3288536143 concentra 39,3% do volume do dia (42 pedidos de Tampa Preta + Vermelha no mesmo listing único) — a dependência estrutural identificada pela Estratégica por família IMB501 é, na granularidade de listing, uma dependência de anúncio único; citar 'concentração na família IMB501' ou 'produto líder representa 30%' subestima o risco real, que é de 39% do volume exposto a um único ponto de falha",
-      "importancia": "sem essa precisão, a mensagem para Yasmin trata o risco como disperso entre variações quando operacionalmente 39% do volume está em 1 listing — o trabalho de baseline de posição deve focar MLB3288536143 como unidade, não as variações separadas",
+      "detalhe": "IMB501P e IMB501V compartilham o mesmo anúncio-pai no ML (MLB3288536143) — juntos somam 42 pedidos (39,3% do total); qualquer interrupção nesse único anúncio (ranking, elegibilidade, estoque de qualquer variação) afeta as duas variações simultaneamente.",
+      "por_que_importa": "A Condensadora pode citar concentração na 'família IMB501' ou no 'produto Tampa Preta' sem registrar que dois SKUs críticos dividem um único anúncio ML. Sem esse contexto, a mensagem subestima a dependência real — não são dois vetores independentes, é um único ponto de falha com duas variações.",
       "confianca": "alta"
     },
     {
-      "detalhe": "TL6250 (7 pedidos, #6 no ranking do dia) tem divergência material entre o produto real do pedido ('Kit 6 Canecas Porcelana Tulipa Lisa 250ml') e o display_name registrado ('Kit 6 Tigelas de Vidro 250ml') — são produtos distintos em material e uso",
-      "importancia": "citar 'tigelas de vidro' quando o pedido diz 'canecas porcelana' é erro de identificação que pode gerar confusão com Yasmin; a Condensadora deve usar o título real do pedido se citar esse produto, ou omitir a citação nominal",
-      "confianca": "media"
+      "detalhe": "As três perguntas da Operacional (cancelamentos por produto, estoque IMB501P, status ML Full) ficaram sem resposta por ausência de dado no pacote — os três pontos mais críticos para checagem do risco operacional identificado permanecem abertos e requerem acesso manual ao painel ML.",
+      "por_que_importa": "Se a Condensadora não sinalizar para Yasmin que essas checagens são externas ao dado automatizado, a urgência operacional não chega — Yasmin pode interpretar silêncio como dado verificado e seguro, quando na verdade são lacunas não resolvidas.",
+      "confianca": "alta"
     },
     {
-      "detalhe": "Os 6 cancelamentos (5,3% do total) não puderam ser qualificados por produto ou listing por ausência de dado granular no pacote — a distribuição dos cancelamentos é desconhecida; a Condensadora não pode afirmar que foram ruído pulverizado nem que foram concentrados",
-      "importancia": "afirmar que cancelamentos foram ruído seria conclusão sem evidência; a ausência de dado deve ser preservada ou os cancelamentos devem ser omitidos da narrativa final sem qualificação",
-      "confianca": "baixa"
+      "detalhe": "A distribuição horária foi genuinamente espalhada ao longo do dia, sem ruptura de período — nenhuma janela de 3 horas consecutivas concentrou mais de 22% dos pedidos.",
+      "por_que_importa": "Confirma operacionalmente que não houve perda de exposição localizada por horário. A Condensadora pode afirmar que o fluxo de demanda se manteve consistente ao longo do dia sem precisar ressalvar horário problemático.",
+      "confianca": "alta"
     }
   ],
-  "memoria_interna": {
-    "nota": "Itens para log e investigações futuras — não usar nominalmente no Slack",
-    "itens": [
-      "platform_item_ids top 10: IMB501P=MLB3288536143, IMB501V=MLB3288536143, KIT10YW1050=MLB4676726433, KIT4YW1050=MLB4073003575, IMB501C=MLB4535865311, TL6250=MLB6167272090, 914C_BAV=MLB4410218897, 914C=MLB3343832496, SPC0111=MLB6661811594, KIT4YW640=MLB5402326666",
-      "MLB3288536143 hospeda IMB501P (32 pedidos) e IMB501V (10 pedidos) — total 42 pedidos = 39,3% do volume; ponto único de falha mais crítico da conta",
-      "raw_skus produtos medium-confidence: KIT10YW1050 (raw=KIT10YW1050), 914C_BAV (raw=914C_BAV), KIT4YW640 (raw=KIT4YW640) — mapping via raw_sku_normalized_with_short_title_fallback",
-      "TL6250 — flag para equipe de catálogo: raw_title do pedido real ('Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara') diverge materialmente do display_name ('Kit 6 Tigelas de Vidro 250ml'); mapping marcado reviewed mas divergência persiste; requer correção no mapa SKU→display_name",
-      "cancelamentos (6 total) sem breakdown por produto ou listing disponível no pacote atual — investigação requer evolução na estrutura de dados ou consulta direta ao painel ML",
-      "itens/pedido = 1,056 (113 itens / 107 pedidos) — ausência completa de cross-sell confirmada; ticket inteiramente determinado por preço unitário do produto",
-      "distribuição horária: pico almoço 12h=11 pedidos, pico noturno 20h=8 pedidos, manhã 9h=7 e 10h=8; madrugada 0h-6h com 1-4 pedidos/hora; sem janela dominante nem buraco de tração",
-      "families no top 10: IMB501 (3 variações, 49 pedidos = 45,8%), KIT4YW (2 variações via KIT4YW1050+KIT4YW640, 12 pedidos = 11,2%), 914C (2 variações via 914C+914C_BAV, 12 pedidos = 11,2%), restantes individuais"
-    ]
-  },
+  "memoria_interna": [
+    "IMB501P platform_item_id: MLB3288536143 (variação Tampa Preta, raw_sku IMB501P_T) — 32 pedidos",
+    "IMB501V platform_item_id: MLB3288536143 (variação Tampa Vermelha, raw_sku IMB501V_T) — 10 pedidos — mesmo anúncio-pai do IMB501P",
+    "IMB501C platform_item_id: MLB4535865311 (variação Tampa Cinza, raw_sku IMB501CT) — 7 pedidos",
+    "KIT10YW1050 platform_item_id: MLB4676726433 — 9 pedidos — confiança média (mapped_generic_sku)",
+    "KIT4YW1050 platform_item_id: MLB4073003575 — 8 pedidos — confiança alta",
+    "TL6250 platform_item_id: MLB6167272090 — 7 pedidos — confiança alta (reviewed_sku_display_map); divergência registrada: raw_title 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml' vs display_name 'Kit 6 Tigelas de Vidro 250ml' — materiais distintos; investigar revisão de catálogo",
+    "914C_BAV platform_item_id: MLB4410218897 — 6 pedidos — confiança média",
+    "914C platform_item_id: MLB3343832496 — 6 pedidos — confiança alta",
+    "SPC0111 platform_item_id: MLB6661811594 — 5 pedidos — confiança média",
+    "KIT4YW640 platform_item_id: MLB5402326666 — 4 pedidos — confiança média",
+    "Distribuição horária completa: 0h=1, 1h=1, 2h=3, 3h=2, 4h=4, 5h=1, 6h=1, 7h=3, 8h=4, 9h=7, 10h=8, 11h=4, 12h=11, 13h=5, 14h=6, 15h=7, 16h=6, 17h=4, 18h=5, 19h=5, 20h=8, 21h=5, 22h=3, 23h=3",
+    "Fulfillment bloco bruto: shopee_full=0, amazon_fba=0, amazon_fbm=0, other=0, total=107 — ML Full ausente do schema",
+    "Cancelamentos: 6 pedidos cancelados — sem discriminação por produto, SKU, horário ou motivo no pacote",
+    "Concentração calculada por pedidos reais: IMB501 família = 49/107 = 45,8%; MLB3288536143 (anúncio-pai IMB501P+V) = 42/107 = 39,3%; top3 = 51/107 = 47,7%; top5 = 66/107 = 61,7%"
+  ],
   "llm_used": true,
   "model": "sonnet",
   "fallback": false

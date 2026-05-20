@@ -1,0 +1,117 @@
+{
+  "camada": "04-granular",
+  "data": "2026-05-19",
+  "recipient": "Leonardo",
+  "platform": "amazon",
+  "respostas_operacional": [
+    {
+      "pergunta": "Os 13 cancelamentos estão concentrados em qual ASIN ou janela de tempo?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote de dados contém exclusivamente o total de 13 cancelamentos no campo 'cancelamentos' da conta. Não há breakdown de cancelamentos por ASIN, platform_item_id, janela horária, fulfillment ou qualquer outra dimensão no pacote recebido. A única inferência estrutural possível: dado que 100% dos pedidos válidos são FBA (67 FBA, 0 FBM), os cancelamentos — se forem pedidos cancelados pós-confirmação — também teriam origem FBA. Isso é inferência estrutural, não dado granular.",
+      "leitura": "Impossível determinar concentração ou dispersão. A pergunta motivada operacionalmente permanece sem resposta granular. Sem esse dado, a taxa bruta de ~19% não pode ser qualificada como dispersa (aberração pontual, volume confiável) ou clustered (problema operacional no ASIN líder, volume real menor do que o aparente).",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "O ASIN da família IMB501 Tampa Preta (B0DCP9TBTM) estava com Buy Box estável e cobertura FBA confirmada durante o dia?",
+      "status": "parcialmente respondida",
+      "evidencia": "Buy Box: dado ausente no pacote — nenhum campo de Buy Box disponível em nenhuma fonte. FBA: fulfillment da conta é 100% FBA (67 pedidos FBA, 0 FBM, confirmado por reconciliação ok). Para o ASIN B0DCP9TBTM especificamente: 30 pedidos confirmados via pedido real com raw_sku IMB501P_T e IMB501T-preto, mapping_status mapped, confidence high, platform_item_id B0DCP9TBTM. A existência de 30 pedidos confirmados por pedido real indica que o ASIN estava operacional e com Buy Box ativo em ao menos parte do dia — sem Buy Box não haveria conversão FBA. Cobertura FBA (quantidade em estoque no CD Amazon) e percentual de Buy Box ao longo do dia: ausentes no pacote.",
+      "leitura": "A existência de 30 pedidos reais nesse ASIN é evidência indireta de que Buy Box estava disponível e FBA estava operacional em algum momento do dia. Não é possível confirmar estabilidade ao longo do dia, percentual de Buy Box ou margem de cobertura FBA. A ausência desse dado impede validar se os 13 cancelamentos têm relação com instabilidade de Buy Box ou ruptura de cobertura no ASIN líder.",
+      "conclusao_granular": "inconclusivo por falta de dado — operacionalidade parcialmente confirmada por pedidos reais; estabilidade de Buy Box e cobertura FBA não verificáveis",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "O burst de vendas concentrado entre 14h–15h tem causa identificável — ADS ativo, promoção aplicada ou exposição orgânica?",
+      "status": "parcialmente respondida",
+      "evidencia": "Burst confirmado por pedidos reais: hora 14h = 17 pedidos; hora 15h = 11 pedidos. Total 14h–15h = 28 pedidos = 41.8% do volume do dia (28/67). Contexto da janela: hora 11h = 5 pedidos, 12h = 3, 13h = 6 — a aceleração começa em 13h e pica em 14h, com declínio a partir de 16h (3 pedidos). Causa: sem dado de ADS (sem impressões, cliques ou verba por hora), sem registro de promoção aplicada, sem dado de ranking orgânico ou posição de anúncio no pacote.",
+      "leitura": "O burst de 14h–15h é real e expressivo — quase metade do dia em duas horas. O perfil horário (aceleração gradual 11h–13h, pico 14h–15h, declínio posterior) é compatível com ADS programado para esse horário, promoção relâmpago ou pico orgânico de navegação. Sem dado de tráfego, a distinção entre causa induzida (controlável, potencialmente repetível) e orgânica (menos controlável) não é determinável. O que é granularmente verificável: o burst não é ruído — 28 pedidos em 2 horas é dado estruturante do dia, não distribuição natural.",
+      "conclusao_granular": "inconclusivo por falta de dado — burst confirmado em granularidade horária; causa não determinável por ausência de dado de tráfego no pacote",
+      "confianca": "média"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Divergência entre display_name e raw_title para SKUs TL250P, TL250B e TL6250 — produto real não é 'Tigela de Vidro'",
+      "origem": "risco de identificação",
+      "evidencia": "TL250P — Produto visível: 'Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável Ideal para Chocolate Quente e Café Expresso Preto' / ASIN: B0GGTY2BLT / SKU interno: TL250P / Fonte: raw_title orderItems. display_name atribuído pelo mapeamento: 'Tigela de Vidro 250ml'. TL250B — Produto visível: 'Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Jogo de Caneca Grande Empilhável Ideal para Chocolate Quente e Café Expresso Budamix Branco' / ASIN: B0GGTTMD4H / SKU interno: TL250B / Fonte: raw_title orderItems. display_name atribuído: 'Tigela de Vidro 250ml'. TL6250 — Produto visível: 'Budamix Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Café Chá Xícara Presente Casa Cozinha' / ASIN: B0GFPQD4G9 / SKU interno: TL6250 / Fonte: raw_title orderItems. display_name atribuído: 'Kit 6 Tigelas de Vidro 250ml'. Os três raw_titles confirmam produto de porcelana (canecas Tulipa), não produto de vidro (tigelas). Mapping_reason para TL250P e TL250B: 'reviewed_sku_display_map' — alias manual criado incorretamente.",
+      "leitura": "Os display_names 'Tigela de Vidro 250ml' e 'Kit 6 Tigelas de Vidro 250ml' são factualmente incorretos. Os produtos reais são canecas de porcelana Tulipa — categoria, material e uso completamente distintos de tigelas de vidro. O impacto volumétrico é baixo (TL250P = 5 pedidos, TL6250 = 2, TL250B = 1 = 8 pedidos totais = 11.9% do dia), mas o risco de erro de produto no Slack é concreto se qualquer um desses SKUs for citado pelo display_name.",
+      "conclusao_granular": "confirma — divergência real entre alias manual e produto real identificado por pedido; raw_title prevalece",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Concentração total da família IMB501 (três variações de cor) e validade da diversificação aparente",
+      "origem": "hipótese da Estratégica",
+      "evidencia": "Família IMB501 por pedido real: IMB501P (Tampa Preta) — Produto visível: 'Kit Conjunto de 5 Potes de Vidro Redondo, Tampa Preta' / ASIN: B0DCP9TBTM / 30 pedidos, 38 itens / Confiança: high. IMB501C (Tampa Cinza) — Produto visível: 'Conjunto de 5 Potes de Vidro Redondos - Ideal para Alimentos e Refeições(cinza)' / ASIN: B0GSWRMDRG / 5 pedidos, 6 itens / Confiança: high. IMB501V (Tampa Vermelha) — Produto visível: 'Conjunto de 5 Potes de Vidro Redondos - Ideal para Alimentos e Refeições(vermelho)' / ASIN: B0GSWLK5F3 / 3 pedidos, 4 itens / Confiança: high. Total família: 38 pedidos de 67 = 56.7%. Tampa Preta isolada: 44.8%. As três variações compartilham family 'IMB501' e parent_family 'IMB501' — são variantes de cor do mesmo produto base.",
+      "leitura": "A concentração familiar de 56.7% confirma a hipótese da Estratégica. Mais relevante: as três variações são o mesmo produto com diferença de cor — a diversificação de SKU dentro da família não representa diversificação de risco. Um problema de Buy Box, ruptura FBA ou degradação de listing no ASIN B0DCP9TBTM (Tampa Preta) não é compensado pelas variações Cinza e Vermelha, que juntas somam apenas 8 pedidos. O segundo vetor real é CK4742 com 12 pedidos (17.9% do dia) — único produto fora da família IMB501 com volume expressivo. O restante da conta: 17 pedidos distribuídos em 8 SKUs (~25%).",
+      "conclusao_granular": "confirma — dependência estrutural na família IMB501 é real e mais aguda do que a contagem de SKUs sugere; variações de cor não constituem diversificação de risco",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Verificação de sanidade: soma de pedidos dos top products vs total declarado",
+      "origem": "divergência",
+      "evidencia": "Soma de pedidos nos 10 top products listados: 30+12+5+5+4+3+2+1+1+1 = 64. Total declarado da conta: 67. Delta: 3 pedidos. Reconciliação da conta: orders_count = 67, order_delta = 0, ok = true.",
+      "leitura": "O delta de 3 pedidos é esperado — a lista de top products cobre os 10 primeiros rankings e não é exaustiva do total de 67. Os 3 pedidos residuais pertencem a produtos abaixo do ranking top 10 e têm impacto negligenciável na leitura de concentração. Não há divergência real — é limitação de cobertura da lista, não inconsistência de dado.",
+      "conclusao_granular": "inconclusivo — delta esperado por cobertura parcial de top products; sem impacto na leitura principal",
+      "confianca": "alta"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "médio",
+    "fontes_de_risco": [
+      "display_name diverge de raw_title para TL250P, TL250B e TL6250 — alias manual identifica produto errado ('Tigela de Vidro') vs produto real confirmado por pedido ('Canecas de Porcelana Tulipa')",
+      "cancelamentos sem breakdown por ASIN, horário ou fulfillment — impossível identificar em qual produto os 13 cancelamentos ocorreram",
+      "SKU '028' com confidence medium (mapping_status: mapped_generic_sku, mapping_reason: raw_sku_normalized_with_short_title_fallback) — 1 pedido, identificação menos confiável"
+    ],
+    "explicacao": "O risco médio é motivado principalmente pela divergência de display_name nos SKUs TL250P, TL250B e TL6250 — os aliases manuais identificam produto errado em relação ao raw_title do pedido real. O segundo fator é a ausência total de breakdown dos 13 cancelamentos por ASIN: não há como afirmar se os cancelamentos estão no produto líder (o que mudaria a leitura do volume real) ou dispersos. Não sobe para alto porque os ASINs líderes — IMB501P (B0DCP9TBTM, 30 pedidos), CK4742 (B0G2CWWMGK, 12 pedidos) e IMB501C (B0GSWRMDRG, 5 pedidos) — têm identificação high confidence via raw_title e platform_item_id confirmados por pedido real, e a reconciliação da conta está ok sem delta.",
+    "bloqueios_para_slack": [
+      "TL250P NÃO pode ser citado como 'Tigela de Vidro 250ml' — produto real confirmado por pedido: 'Budamix Kit 6 Canecas de Porcelana Tulipa 250ml' (ASIN B0GGTY2BLT); usar raw_title ou omitir citação nominal",
+      "TL250B NÃO pode ser citado como 'Tigela de Vidro 250ml' — produto real confirmado por pedido: 'Kit 6 Canecas de Porcelana Tulipa 250ml Branco' (ASIN B0GGTTMD4H); usar raw_title ou omitir citação nominal",
+      "TL6250 NÃO pode ser citado como 'Kit 6 Tigelas de Vidro 250ml' — produto real confirmado por pedido: 'Budamix Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas' (ASIN B0GFPQD4G9); usar raw_title ou omitir citação nominal"
+    ]
+  },
+  "divergencia_fontes": [
+    {
+      "divergencia": "display_name/alias manual para TL250P mostra 'Tigela de Vidro 250ml'; raw_title do pedido real (ASIN B0GGTY2BLT) mostra 'Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável Ideal para Chocolate Quente e Café Expresso Preto'.",
+      "resolucao": "raw_title do pedido real prevalece (regra: Amazon — pedido real > alias/display_name manual). O produto é caneca de porcelana Tulipa preta, não tigela de vidro.",
+      "impacto": "Qualquer citação de TL250P como 'Tigela de Vidro' está factualmente incorreta — produto pertence à linha de canecas de porcelana, não à linha de potes/tigelas de vidro. 5 pedidos afetados. Bloqueio para Slack ativo."
+    },
+    {
+      "divergencia": "display_name/alias manual para TL250B mostra 'Tigela de Vidro 250ml'; raw_title do pedido real (ASIN B0GGTTMD4H) mostra 'Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Jogo de Caneca Grande Empilhável Ideal para Chocolate Quente e Café Expresso Budamix Branco'.",
+      "resolucao": "raw_title do pedido real prevalece (mesma regra). Produto é caneca de porcelana Tulipa branca, não tigela de vidro.",
+      "impacto": "1 pedido afetado. Divergência estrutural do mesmo tipo de TL250P. Bloqueio para Slack ativo."
+    },
+    {
+      "divergencia": "display_name para TL6250 mostra 'Kit 6 Tigelas de Vidro 250ml'; raw_title do pedido real (ASIN B0GFPQD4G9) mostra 'Budamix Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Café Chá Xícara Presente Casa Cozinha'.",
+      "resolucao": "raw_title do pedido real prevalece. Produto é caneca de porcelana Tulipa colorida, não tigela de vidro.",
+      "impacto": "2 pedidos afetados. Os três SKUs da linha TL (TL250P, TL250B, TL6250) têm o mesmo padrão de alias incorreto — indica problema sistemático no mapeamento de display_name para essa família de produtos. Bloqueio para Slack ativo."
+    }
+  ],
+  "detalhe_condensadora": [
+    {
+      "detalhe": "Os 13 cancelamentos não têm breakdown por ASIN no pacote — a qualidade real do volume de 67 pedidos não pode ser validada granularmente; taxa bruta de ~19% permanece sem qualificação",
+      "por_que_importa": "Se a Condensadora tratar o volume como validado sem essa ressalva, a mensagem estará incorreta — a leitura positiva do dia está formalmente suspensa até Leonardo mapear a origem dos cancelamentos; o resultado líquido real pode ser significativamente menor dependendo de onde os cancelamentos estão concentrados",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "As três variações da família IMB501 (Tampa Preta 44.8%, Cinza 7.5%, Vermelha 4.5%) são variantes de cor do mesmo produto base e juntas respondem por 56.7% dos pedidos — a diversificação de SKU dentro da família não é diversificação de risco operacional",
+      "por_que_importa": "Se a mensagem citar 'três produtos da família IMB501' como sinal de mix diversificado, estará errada — são variações de cor do mesmo produto; instabilidade no ASIN B0DCP9TBTM (Tampa Preta) compromete diretamente mais da metade do volume do dia sem amortecimento das outras variações",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "TL250P, TL250B e TL6250 são canecas de porcelana Tulipa (confirmado por raw_title do pedido real), não tigelas de vidro — os display_names estão incorretos e esses produtos NÃO podem ser citados pelo alias no Slack",
+      "por_que_importa": "Se a Condensadora usar display_name para citar qualquer desses produtos, errará o produto — porcelana vs vidro é distinção real de categoria; embora o impacto volumétrico seja baixo (8 pedidos = 11.9%), o erro de produto é silencioso e concreto; o problema de alias parece sistemático na família TL",
+      "confianca": "alta"
+    }
+  ],
+  "memoria_interna": [
+    "ASINs confirmados por pedido real — IMB501P: B0DCP9TBTM (30 pedidos, 38 itens); CK4742: B0G2CWWMGK (12 pedidos, 13 itens); IMB501C: B0GSWRMDRG (5 pedidos, 6 itens); TL250P: B0GGTY2BLT (5 pedidos, 5 itens); SPC002: B0GH2BTQFJ (4 pedidos, 4 itens); IMB501V: B0GSWLK5F3 (3 pedidos, 4 itens); TL6250: B0GFPQD4G9 (2 pedidos, 2 itens); TL250B: B0GGTTMD4H (1 pedido, 2 itens); 028: B0F2GHQHRN (1 pedido, 2 itens); KIT2YW1050: B0FB1523N3 (1 pedido, 1 item)",
+    "Distribuição horária completa: 0h=2, 4h=1, 7h=2, 8h=1, 9h=1, 11h=5, 12h=3, 13h=6, 14h=17, 15h=11, 16h=3, 17h=2, 19h=3, 20h=5, 22h=3, 23h=2",
+    "Delta top products vs total: soma top 10 = 64 pedidos; total conta = 67; 3 pedidos residuais em produtos fora do top 10 — sem impacto analítico",
+    "Problema sistemático de alias na família TL: TL250P, TL250B e TL6250 têm display_names categorizados como 'Tigela de Vidro' quando produto real é 'Caneca de Porcelana Tulipa' — corrigir mapeamento reviewed_sku_display_map para esses três SKUs",
+    "SKU 028 com confidence medium (mapped_generic_sku) — raw_title: 'Kit Conjunto 3 Potes de Vidro Herméticos Tampa Bambu com Vedação'; ASIN: B0F2GHQHRN; 1 pedido, identificação menos confiável por SKU genérico",
+    "Bloqueios para Slack registrados: TL250P ('Tigela de Vidro'), TL250B ('Tigela de Vidro'), TL6250 ('Kit 6 Tigelas de Vidro') — usar raw_title ou omitir citação nominal"
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

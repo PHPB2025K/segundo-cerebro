@@ -76,6 +76,11 @@ Toda sexta-feira no fim do dia:
 - Não copiar transcrição integral para memória; salvar síntese executiva e decisões/pontos de acompanhamento.
 - Não enviar mensagem no Slack sem autorização explícita do Pedro.
 
+
+
+## Memórias individuais
+- [[memory/projects/gestao-funcionarios-lucas|Lucas Laurentino]] — Shopee / estoque / anúncios / Ads / afiliados / evolução analítica.
+
 ## Histórico semanal
 
 ### 2026-W19
@@ -223,4 +228,5 @@ Toda sexta-feira no fim do dia:
 - **Como gerir daqui pra frente:** cobrar menos “fez/não fez” isolado e mais padrão de raciocínio. Toda semana pedir uma mini-análise com hipótese → métrica → teste → resultado → próxima ação. Esse ritual vai transformar Lucas no dono real da Shopee.
 - **Risco:** se ele continuar recebendo muitas frentes soltas — estoque, anúncios, live, afiliados, chat, agência, baixa, MDF, canecas — pode voltar para execução dispersa. Recomendo priorizar 3 blocos por semana: (1) produtos/anúncios prioritários; (2) saúde operacional da conta; (3) teste/hipótese granular.
 - **Próxima cobrança recomendada:** “Lucas, me traz na próxima reunião 3 análises de anúncio: MDF, pote/caneca novo e um item que caiu. Para cada um: impressões, cliques, vendas, preço/margem, capa, campanha ativa, hipótese e ação.”
+- **Memória individual:** detalhes, pauta da próxima reunião e ritual semanal foram promovidos para `memory/projects/gestao-funcionarios-lucas.md`.
 

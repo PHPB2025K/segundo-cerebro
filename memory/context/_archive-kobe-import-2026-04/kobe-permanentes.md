@@ -2,7 +2,7 @@
 title: "Decisões permanentes importadas do Kobe"
 created: 2026-04-28
 type: context
-status: active
+status: archived
 tags:
   - memory
   - context

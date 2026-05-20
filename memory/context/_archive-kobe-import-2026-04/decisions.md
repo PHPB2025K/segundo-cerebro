@@ -2,7 +2,7 @@
 title: "Decisões"
 created: 2026-05-01
 type: context
-status: active
+status: archived
 tags:
   - memory
   - context

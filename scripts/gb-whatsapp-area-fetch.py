@@ -18,8 +18,10 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-BASE_URL = "http://127.0.0.1:8084"
-INSTANCE = "pedro-wpp"
+BASE_URL = "https://trottingtuna-evolution.cloudfy.live"
+OP_ITEM = "Evolution API Cloudfy - WhatsApp Kobe"
+OP_VAULT = "OpenClaw"
+INSTANCE_FALLBACK = "WHATSAPP PRÓPRIO KOBE"
 STATE_DIR = Path("/root/segundo-cerebro/memory/projects/gb-whatsapp-areas/.state")
 BRT = dt.timezone(dt.timedelta(hours=-3))
 
@@ -34,12 +36,19 @@ AREAS: dict[str, dict[str, str]] = {
 }
 
 
-def get_api_key() -> str:
-    env = subprocess.check_output(["docker", "exec", "evolution-api", "printenv"], text=True, timeout=15)
-    match = re.search(r"^AUTHENTICATION_API_KEY=(.*)$", env, re.M)
-    if not match or not match.group(1):
-        raise RuntimeError("Evolution local API key not available")
-    return match.group(1)
+def load_credentials() -> tuple[str, str]:
+    raw = subprocess.check_output(
+        ["op", "item", "get", OP_ITEM, "--vault", OP_VAULT, "--format", "json"],
+        text=True,
+        timeout=15,
+    )
+    item = json.loads(raw)
+    fields = {field.get("label"): field.get("value") for field in item.get("fields", [])}
+    api_key = fields.get("API Key")
+    instance = fields.get("Instance Name") or INSTANCE_FALLBACK
+    if not api_key:
+        raise RuntimeError("API Key do WhatsApp Kobe não encontrada no 1Password")
+    return instance, api_key
 
 
 def request_json(method: str, path: str, api_key: str, payload: dict[str, Any] | None = None, timeout: int = 45) -> Any:
@@ -104,8 +113,8 @@ def normalize(s: str) -> str:
     return " ".join(s.casefold().strip().split())
 
 
-def resolve_group(api_key: str, group_name: str) -> tuple[str, str]:
-    inst = urllib.parse.quote(INSTANCE, safe="")
+def resolve_group(api_key: str, instance: str, group_name: str) -> tuple[str, str]:
+    inst = urllib.parse.quote(instance, safe="")
     data = request_json("GET", f"/group/fetchAllGroups/{inst}?getParticipants=false", api_key, timeout=60)
     groups = data if isinstance(data, list) else (data or {}).get("groups") or (data or {}).get("data") or []
     wanted = normalize(group_name)
@@ -131,9 +140,9 @@ def main() -> int:
     args = parser.parse_args()
 
     cfg = AREAS[args.area]
-    api_key = get_api_key()
-    jid, subject = resolve_group(api_key, cfg["group"])
-    inst = urllib.parse.quote(INSTANCE, safe="")
+    instance, api_key = load_credentials()
+    jid, subject = resolve_group(api_key, instance, cfg["group"])
+    inst = urllib.parse.quote(instance, safe="")
     payload = {"where": {"key": {"remoteJid": jid}}, "limit": max(args.limit, 1)}
     data = request_json("POST", f"/chat/findMessages/{inst}", api_key, payload, timeout=60)
     records = (data or {}).get("messages", {}).get("records", [])

@@ -79,7 +79,9 @@ Toda sexta-feira no fim do dia:
 
 
 ## Memórias individuais
+- [[memory/projects/gestao-funcionarios-yasmin|Yasmin Oscarlino]] — Mercado Livre / cadastros / imagens / precificação / concorrência / método de reunião.
 - [[memory/projects/gestao-funcionarios-lucas|Lucas Laurentino]] — Shopee / estoque / anúncios / Ads / afiliados / evolução analítica.
+- [[memory/projects/gestao-funcionarios-leonardo|Leonardo]] — Amazon / FBA / imagens / preço / avaliações / recomendação por SKU.
 
 ## Histórico semanal
 

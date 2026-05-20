@@ -416,6 +416,13 @@ _Última Consolidação Profunda: 2026-05-01_
 **Ação:** Manter pré-checagem de cobertura no processador/follow-up e usar batidas reais (`time_records`) além de ajustes/justificativas.
 **Expira:** 2026-06-17
 
+
+
+### [TÁTICA] Daily Sales v2: labels e omissões de Top Produtos precisam ser rastreáveis (2026-05-19)
+**Lição:** No Daily Sales v2, o Slack Writer não deve inventar rótulos de produto nem ocultar omissões sem registro. Labels visíveis e itens omitidos do Top Produtos precisam ser rastreáveis até a camada analítica/pacote autorizado, especialmente quando há confiança alta em item de baixo volume.
+**Ação:** Registrar logs de omissão por nome, validar nomes comerciais antes do Slack e bloquear quando a camada analítica não autorizar um rótulo confiável.
+**Expira:** 2026-06-18
+
 ## Auditoria de Qualidade — Consolidação Profunda 2026-04-04
 
 ### Duplicatas removidas nesta consolidação:

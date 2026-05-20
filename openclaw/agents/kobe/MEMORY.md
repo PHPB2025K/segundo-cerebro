@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-18 23:45 BRT (consolidação diária em camadas)._
+_Último update: 2026-05-19 23:45 BRT (consolidação diária em camadas)._
 
 ---
 
@@ -134,12 +134,12 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (18/05/2026 23:45 BRT — consolidação diária em camadas)
+## Status do Sistema (19/05/2026 23:45 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
 - **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; todo conteúdo relacionado a alertas deve ir para lá (watchdogs, guards, audits, monitores, failure alerts, resumos e avisos de risco/problema). Thread 8 permanece Urgente e não deve receber alertas técnicos de rotina.
 - **Planejamento de reposição das canecas:** prioridade máxima do próximo bloco operacional. Primeira rodada será manual pelo Kobe e servirá de piloto para o futuro Agente de Compras; todo assunto de compras vai no tópico Compras.
-- **Daily Sales Report Slack:** LLM é o caminho principal aprovado tecnicamente para Lucas/Shopee, Yasmin/ML e Leonardo/Amazon, com fallback determinístico desabilitado. Em 18/05, o cron 06:50 não entregou Pedro-only porque Lucas/Shopee foi bloqueado corretamente no QA por duplicidade em Top Produtos; Yasmin/ML e Leonardo/Amazon concluíram até QA com ressalvas. Envio real para funcionários segue bloqueado até liberação explícita.
+- **Daily Sales Report Slack:** LLM é o caminho principal aprovado tecnicamente para Lucas/Shopee, Yasmin/ML e Leonardo/Amazon, com fallback determinístico desabilitado. Em 19/05, o preview analisando 18/05 passou os três recipients no QA com ressalvas; a duplicidade crítica de Lucas/Shopee não se repetiu. Envio real para funcionários segue bloqueado até liberação explícita; próximo critério de decisão é aceitar `APPROVED_WITH_REMARKS` sem críticos/maiores ou exigir um ciclo `APPROVED` sem ressalvas.
 - **Estoque Budamix:** PR1+PR2+PR3a seguem no repo, mas produção ainda roda build rsync de 13/04; remediação continua pausada no `git fetch` por falta de credencial GitHub na VPS. Próxima decisão: Deploy Key SSH read-only (recomendado) vs PAT vs rsync.
 - **DRE Abril:** U15 Descontos Concedidos continua prioridade antes da U44 v4 limpa. ML aceito em R$ 5.061,14; Amazon precisa fechar item-promotion sem frete promocional; Shopee segue suspeita/reclassificação.
 - **Mission Control:** 11/23 módulos fechados; Builder concluiu painel Daily Sales Pipeline em 17/05, pendente de restart controlado/smoke para ativar produção. Próxima prioridade técnica segue n8n usage tracking em `/costs` e PRDs dos módulos restantes.
@@ -152,8 +152,8 @@ skills/
 - **RH/Ponto Certo:** `ponto.budamix.com.br` ativo com SSL; WhatsApp RH proativo bloqueado indefinidamente até liberação explícita, inbound permitido.
 - **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2.
 - **Amazon Ads:** rodada D+7 avançou em 13/05 com múltiplas execuções e tracking ASIN-level validado; pendem grupos de baixo gasto/inativos e auditorias/logs específicos.
-- **Bling/Fisco:** Filial segue com HTTP 403/empresa-token inativo no refresh OAuth; alerta WhatsApp do refresh também falhou com HTTP 403. Não avançar fluxos fiscais que dependam da Filial antes de corrigir vínculo/status/token e validar canal de alerta.
-- **RH/Ponto Certo:** follow-up agora tem pré-checagem determinística de cobertura por ajuste, justificativa ou batida real. Em 18/05, Guilherme, Lucas, Mateus e Sandra ficaram bloqueados para orientação/aprovação do Pedro antes de novos contatos semanais; compliance também apontou Mateus com almoço incompleto e Guilherme/Lucas/Leonardo com intervalo <1h.
+- **Bling/Fisco:** Filial segue com HTTP 403/empresa-token inativo no refresh OAuth; alerta WhatsApp do refresh também falhou com HTTP 403. Não avançar fluxos fiscais que dependam da Filial antes de corrigir vínculo/status/token, estabilizar o cron e validar canal de alerta.
+- **RH/Ponto Certo:** follow-up agora tem pré-checagem determinística de cobertura por ajuste, justificativa ou batida real. Em 19/05, a fila bloqueada ganhou risco novo: Guilherme com marcações incompletas, Lucas e Leonardo com intervalo <1h e Franciele com marcações atípicas a validar. Pedro precisa orientar Guilherme/Lucas antes de novos contatos.
 - **Blog Budamix Pipeline v2:** em produção; resta inspeção visual humana do post de teste e cleanup.
 
 ### ✅ Operacional
@@ -170,6 +170,14 @@ skills/
 - Agent memories de Trader, Spark e Builder atualizadas para refletir Daily Sales v2, Amazon Ads 5 camadas, Mission Control/Social Studio Reborn/Canggu.
 
 
+
+
+
+## Qualidade da Memória (Consolidação Diária em Camadas 19/05 — 23:45 BRT)
+- Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
+- Digests lidos: Trader, Spark, Builder, Fisco e RH. Nenhum digest ausente neste fechamento.
+- Marcos globais incorporados: Daily Sales v2 passou os três recipients no QA com ressalvas e removeu o bloqueio crítico anterior de Lucas/Shopee; Spark e Builder ficaram quietos; Fisco manteve Filial Bling 403 e alerta WhatsApp degradado; RH registrou novos riscos de compliance em 19/05.
+- Riscos críticos vindos dos digests: envio Daily Sales para funcionários ainda bloqueado; decisão pendente sobre aceitar `APPROVED_WITH_REMARKS` sem críticos/maiores; token Meta Ads ainda precisa validação; Filial Bling segue impedindo fluxos fiscais dependentes; RH precisa orientação do Pedro para Guilherme/Lucas e validação de marcações atípicas.
 
 ## Qualidade da Memória (Consolidação Diária em Camadas 18/05 — 23:45 BRT)
 - Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
@@ -210,6 +218,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-19:** Daily Sales v2 recuperou a falha de Lucas/Shopee do dia anterior e aprovou os três recipients com ressalvas em preview Pedro-only, sem envio real aos funcionários. Spark e Builder ficaram quietos; Fisco manteve Bling Filial 403 + alerta WhatsApp degradado; RH adicionou riscos de compliance para Guilherme/Lucas/Leonardo/Franciele.
 - **2026-05-18:** Daily Sales v2 falhou de forma segura no cron 06:50: Lucas/Shopee bloqueou no QA por duplicidade de Top Produtos, enquanto Yasmin/ML e Leonardo/Amazon chegaram ao QA com ressalvas; próximo passo é corrigir/reexecutar apenas Lucas. RH recebeu trava determinística contra cobrança de pendências já cobertas. Reunião OS/OSA abriu possível alternativa de câmbio para importações. Meta Ads precisa validação pós-expiração estimada do token; Bling Filial 403 segue bloqueante.
 - **2026-05-17:** Daily Sales v2 avançou em validação controlada: Pedro recebeu versões finais no Slack pessoal, corrigiu a diretriz para manter formato/profundidade e simplificar a comunicação, e o rerun completo Shopee ficou aprovado com ressalva numérica menor. Mission Control ganhou painel visual do pipeline Daily Sales; Spark/RH ficaram quietos; Fisco manteve Bling Filial 403; envio real aos funcionários segue bloqueado.
 - **2026-05-16:** Consolidação em camadas rodou com os 5 digests presentes. Daily Sales v2 teve preview dos três reports aprovado com ressalvas, sem envio externo e sem liberação para funcionários; Spark manteve risco de token Meta Ads expirar em 18/05; Fisco confirmou Bling Filial 403 recorrente e alerta WhatsApp degradado; RH não trouxe violação nova no sábado, mas apontou lacuna de política canônica sábado/domingo.
@@ -245,7 +254,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) corrigir/reexecutar Lucas/Shopee no Daily Sales v2 antes de nova entrega Pedro-only, (2) planejar reposição de canecas e estruturar piloto do Agente de Compras, (3) validar token Meta Ads pós-18/05, (4) orientar RH sobre Guilherme/Lucas/Mateus/Sandra, (5) corrigir Bling Filial 403 e alerta do refresh, (6) ativar painel Daily Sales Pipeline no Mission Control e retomar n8n usage tracking._
+_Próximas ações: (1) decidir critério de promoção do Daily Sales v2 após três recipients aprovados com ressalvas e ajustar rastreabilidade de labels/logs, (2) planejar reposição de canecas e estruturar piloto do Agente de Compras, (3) validar token Meta Ads pós-18/05, (4) orientar RH sobre Guilherme/Lucas e validar marcações atípicas de 19/05, (5) corrigir Bling Filial 403 e alerta do refresh, (6) ativar painel Daily Sales Pipeline no Mission Control e retomar n8n usage tracking._
 
 ---
 ## Contexto

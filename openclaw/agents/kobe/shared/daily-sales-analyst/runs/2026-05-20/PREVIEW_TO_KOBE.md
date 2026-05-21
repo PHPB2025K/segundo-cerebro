@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-20
-**Gerado em:** 2026-05-21T22:32:29.808281+00:00
+**Gerado em:** 2026-05-21T22:57:50.158022+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,10 +24,10 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Gate 5: display_name canônico do pacote para IMB501P é 'Conjunto 5 Potes de Vidro Redondos Tampa Preta' — a Condensadora e layers upstream devem padronizar o uso de 'Conjunto' vs 'Kit' para evitar divergência com o raw_title na próxima geração.
-- **Aviso:** Gate 11: Condensadora entregou percentuais sem decimal (32%, 56%, 60%, 74%) — regra de formatação de 1 casa decimal deve ser aplicada na Condensadora ou documentada como exceção para números redondos; a omissão de 'hoje' em '60% desse resultado passou por ADS' (vs Condensadora: 'passou por ADS hoje') também ocorreu na Gate 6.
-- **Aviso:** Gate 11: Identificador técnico '5_green/gold' oriundo da API ML foi reproduzido pela Condensadora e pelo Slack Writer — próximo ciclo deve avaliar substituição por nomenclatura de display ('verde/ouro' ou 'MercadoLíder Ouro') para aderência ao padrão de mensagem sem IDs técnicos.
-- **Aviso:** Diretriz Pedro 2026-05-17: troca de 'O problema é que' por 'O ponto de atenção:' é consistente com simplificação operacional pedida; ajuste aceitável para hipótese não confirmada, mas a tese da Condensadora usa 'O problema é que' com intenção — registrar para calibrar a Condensadora ML no próximo ciclo.
+- **Aviso:** Gate 4 — Fulfillment omitido da seção VISÃO MERCADO LIVRE: a Slack Writer justificou a omissão pela cobertura parcial do fulfillment_mix_yesterday_top10 (71 de 91 pedidos), decisão documentada e não indutora de erro. A Condensadora não autorizou nem proibiu explicitamente a exibição com ressalva de cobertura. Em ciclos futuros, avaliar se o mix Full/Cross-Docking (56,3% / 43,7% no top 10, divergindo +17,6pp do padrão 30d por efeito do campeão em Cross-Docking) deve aparecer na VISÃO com nota de cobertura parcial — a divergência produto-específica documentada pela L03 e L04 é contexto relevante para Yasmin entender a conta.
+- **Aviso:** Gate 6 — Insight 2: 'o snapshot do dia mostra' (Condensadora) simplificado para 'o snapshot mostra' (Slack Writer). Omissão de 'do dia' sem impacto semântico (há um único snapshot por ciclo). Registrado para consistência de linguagem entre camadas em ciclos futuros.
+- **Aviso:** Confiança geral média (conforme Condensadora): estruturalmente justificada por ausência de breakdown de ADS revenue por platform_item_id, ausência de série temporal de health (ciclo inaugural com pontos zero registrados para MLB4073003575 health=0,75 e MLB3288536143 health=0,71) e irrastreabilidade dos 3 cancelamentos por anúncio. A Slack Writer preservou corretamente todas as incertezas — hipótese qualificada no insight 3, condicional no insight 2, ausência de afirmação de direção de health. Nenhuma limitação foi convertida em certeza. Série temporal de health e ADS breakdown por item devem ser priorizados para os próximos ciclos para destravar o gatilho de escalonamento com Himmel.
+- **Aviso:** Gate 5 — KIT10YW1050 (confidence=medium, mapping_status=mapped_generic_sku) aparece como '4º produto' no Top com 5 pedidos. Risco formal de mapeamento médio, risco prático baixo por convergência de title ML e raw_title confirmada pela L04. Nenhuma ação necessária — registrado para monitoramento de recorrência do SKU na série.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/00-data-package.json`

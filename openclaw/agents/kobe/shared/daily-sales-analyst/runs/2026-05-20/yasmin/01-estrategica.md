@@ -1,56 +1,45 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Qualidade da base
 
-Janelas quantitativas completas — 7d com 7 dias, 30d com 30 dias, 60d com 60 dias, série de mesmos dias da semana com 4 observações. Base numérica sólida. weekly.md e monthly.md são templates vazios sem nenhuma entrada histórica registrada; nenhuma hipótese ativa para confirmar ou refutar. A leitura de hoje serve como ponto de partida da memória qualitativa, não como confirmação de tese prévia — a confiança da classificação está sustentada pelos dados quantitativos, não por padrão qualitativo acumulado.
+Weekly.md e monthly.md estão vazios (templates sem entradas). Não há hipóteses anteriores ativas, nem tese semanal ou mensal para confirmar ou refutar. Esta leitura serve como ponto de partida — baseline, não confirmação. As janelas temporais de 7d, 30d e 60d estão disponíveis e sem ruptura conhecida; todas as três podem ser usadas com confiança normal.
 
 ---
 
 ### Leitura temporal
 
-- **Patamar de longo prazo (60d e mesmos dias da semana):** 90 pedidos está na linha da média de 60d (91.2) e dos mesmos dias da semana (92.5) — volume estável e consistente com o histórico longo. O GMV de R$5.057 está 32.5% acima da média de 60d e 31.6% acima dos mesmos dias da semana. A divergência entre volume e faturamento é inequívoca e recorrente em todas as janelas: o patamar de GMV subiu sem que o volume de pedidos tenha subido.
-
-- **Posição no mês (30d):** GMV +15% acima da média mensal com pedidos -9.9% abaixo. Ticket médio de R$56.19 está 27.6% acima dos R$44 de média mensal. O padrão persiste na janela de 30d — não é flutuação de curto prazo.
-
-- **Curto prazo (7d):** Pedidos -21.8% abaixo da média de 7 dias (115.1), GMV apenas -4.9% abaixo. A semana recente teve mais pedidos a ticket menor; hoje inverte essa proporção. Sem memória qualitativa, não é possível atribuir causa — pode ser composição de dias da semana na janela 7d, mudança de mix em curso, ou ambos.
-
-- **Série de quartas-feiras:** Alta volatilidade em volume (65 → 87 → 134 → 84 → 90) e em GMV (R$2.984 → R$3.005 → R$5.618 → R$3.758 → R$5.057). O pico de 29/04 é outlier claro; excluindo-o, as últimas três quartas-feiras mostram GMV em elevação (R$3.005 → R$3.758 → R$5.057) com volume em leve alta (87 → 84 → 90) — trajetória consistente com expansão de ticket estrutural, não evento isolado.
+- **vs 60d:** volume praticamente estável (−1,3% em pedidos), mas GMV +32,5% e ticket +34,2%. A conta opera no mesmo patamar de pedidos do bimestre, mas com receita estruturalmente superior — padrão que não se explica por sazonalidade.
+- **vs 30d:** pedidos −9,9%, GMV +15,0%, ticket +27,6%. O afrouxamento de volume contra a janela mais recente é real, mas o ticket continua compensando com folga — o GMV absoluto do dia supera a média do mês.
+- **vs mesmos dias da semana (controle de sazonalidade):** pedidos −2,7% (essencialmente empatados com a média de quartas), GMV +31,6%. A elevação de ticket não é efeito de dia da semana — ela persiste mesmo com volume de pedidos análogo aos pares históricos.
+- **Trajetória de ticket:** R$41,86 (60d) → R$44,03 (30d) → R$46,17 (7d) → R$56,19 (hoje). A ascensão é consistente e progressiva em todas as janelas — não é pico isolado.
 
 ---
 
 ### Leitura estratégica
 
-- **O ticket médio é o vetor estrutural ativo da conta.** Expansão de +34% vs 60d e +35% vs mesmos dias da semana não se explica por flutuação diária — o patamar de ticket mudou. A hipótese mais provável é mix shift em direção a produtos de maior valor unitário: a família YW (potes retangulares 1050ml) responde por 21 pedidos hoje (KIT4YW1050 + KIT10YW1050 + KIT2YW1050) com tickets significativamente maiores que os líderes de volume. Esse deslocamento de mix sustenta GMV mesmo quando o volume total oscila, tornando a conta estruturalmente menos sensível a flutuações de conversão.
-
-- **A conta opera com dois vetores distintos.** Top 3 em 47.8% e top 5 em 58.9% — concentração real, mas com dois eixos separados: família IMB501 (potes redondos, tampos coloridos) como vetor de volume, família YW (potes retangulares 1050ml) como vetor de valor. Essa separação reduz o risco de colapso por produto único em comparação com contas de vetor único, mas não elimina a dependência estrutural dos líderes.
-
-- **Saúde degradada nos anúncios de maior valor é contradição interna.** KIT4YW1050 — segundo maior em pedidos e provavelmente o maior em GMV unitário — opera com health 0.75, abaixo do limiar crítico de 0.85. IMB501V está em 0.71. Saúde baixa no ML afeta posicionamento orgânico e elegibilidade de ADS sobre esses anúncios. A expansão de GMV via ticket pode estar mascarando perda de exposição que ainda não se traduziu em queda de volume — risco que só aparece quando a degradação atravessa um limiar de ranking.
-
-- **ADS opera com eficiência aparente (ACOS 4.33%), mas com peso relevante no resultado.** R$3.041 de GMV atribuído ao ADS sobre R$5.057 total (≈60%) indica dependência significativa do tráfego pago. Sem baseline orgânico histórico, não é possível avaliar se essa proporção é estrutural ou pontual — isso precisa ser calibrado nas próximas entradas de memória.
+- A conta está vivendo uma **transição de mix**: o volume de pedidos se mantém dentro da banda histórica, mas o ticket sobe de forma contínua e visível em três janelas independentes. Isso aponta para um deslocamento estrutural em direção a SKUs ou kits de maior valor — não para inflação de preço pontual nem para anomalia de um dia.
+- A **dependência de ADS é o elemento que precisa de escrutínio**: R$3.041,56 de receita atribuída a ADS contra GMV de R$5.057,51 representa aproximadamente 60% do faturamento viabilizado por mídia paga, com ACOS de 4,33%. A eficiência está alta — mas sem memória histórica de ADS, não é possível saber se essa proporção é estável ou recente. Canais onde tráfego pago sustenta 60% da receita carregam fragilidade latente: o desempenho é real, mas a base orgânica não é visível.
+- **Saúde do catálogo tem um ponto cego relevante:** 7 anúncios ativos com health abaixo de 0,85 e 63 sem dado de health disponível. Com 81 anúncios ativos, a visibilidade sobre qualidade de listing é baixa. Itens com health degradada tendem a perder exposição orgânica progressivamente — e sem dado, não dá para distinguir estável de erosão silenciosa.
+- **Risco de estoque pontual na cauda:** Kit 06 Canequinhas Acrílico com 3 unidades disponíveis, Kit 6 Tigelas 250ml e Kit 2 Potes 1050ml Retangular abaixo de 25 unidades. Esses itens não são campeões de volume, mas ruptura de estoque em anúncio Full ativo afeta métricas de reputação e pode contaminar o ranking do item.
 
 ---
 
 ### Tese da conta
 
-**Em ganho de patamar.** O GMV está consistentemente acima das janelas de 30d (+15%) e 60d (+32.5%), com volume de pedidos estável — o que configura elevação de patamar de faturamento via expansão de ticket, não via aceleração de volume. Reputação sólida (verde, gold), Full respondendo por 57-78% dos pedidos nas janelas recentes, cancelamentos baixos. A ausência de memória qualitativa prévia impede confirmar se esta trajetória é inflexão recente ou progressão esperada, mantendo a confiança em nível moderado: os dados sustentam a classificação, mas sem âncora histórica para calibrar a profundidade ou reversibilidade da mudança.
+**Em acomodação com ganho de ticket estrutural.** O volume de pedidos oscila dentro da banda dos últimos 60 dias, sem sinal consistente de crescimento nem de deterioração. O que muda é o ticket, que sobe progressivamente em todas as janelas e no controle de dia da semana — sugerindo deslocamento de mix para itens de maior valor, não crescimento de alcance. A base de memória está vazia, o que impede confirmação de tese anterior, mas a consistência da trajetória de ticket em três janelas independentes sustenta esta leitura com confiança moderada. O canal está saudável em reputação (verde, gold), operacionalmente estável e com ADS eficiente — mas estruturalmente dependente de mídia paga para sustentar o nível atual de GMV.
 
 ---
 
 ### Risco estrutural principal
 
-- **Risco:** Saúde degradada em anúncios líderes — KIT4YW1050 (health 0.75) e Conjunto 5 Potes Tampa Vermelha (health 0.71), ambos abaixo do limiar crítico de 0.85. Adicionalmente, 63 dos 81 anúncios ativos não têm dado de health disponível, o que impede avaliar a amplitude real do problema.
-
-- **Por que importa:** Health baixa no ML reduz elegibilidade para posições de destaque e pode comprometer a eficiência do ADS (campanhas sobre anúncios com health degradada têm menor retorno e menor alcance). Se o segundo maior vendedor da conta opera com health 0.75, a expansão de GMV sustentada pelo ticket pode ser corroída por perda silenciosa de exposição — deterioração que se acumula antes de aparecer no número de pedidos.
-
-- **Histórico:** Primeiro registro formal — não há memória anterior para determinar se essa degradação é nova ou crônica. Essa é a distinção mais importante a estabelecer nos próximos dias.
-
-- **Sinal de confirmação:** KIT4YW1050 com health abaixo de 0.80 por 3 ou mais dias consecutivos (se health disponível no pacote) confirma deterioração ativa; alternativamente, pedidos desse produto abaixo de 8/dia por 2 dias seguidos é sinal operacional de perda de exposição.
+- **Risco:** Concentração de receita em tráfego pago sem visibilidade da base orgânica. Aproximadamente 60% do GMV do dia é atribuído a ADS com ACOS de 4,33%. A eficiência é alta, mas o canal orgânico subjacente não é mensurável no pacote disponível.
+- **Por que importa:** Se a proporção ADS/orgânico for crescente (não estável), o ganho de GMV não reflete fortalecimento da conta — reflete aceleração de investimento. Qualquer pressão sobre verba, aumento de competição ou mudança de algoritmo de ranking pode reverter o ganho de ticket rapidamente, sem a âncora de um orgânico sólido.
+- **Histórico:** Sem memória anterior, não é possível afirmar se essa proporção é nova ou padrão recorrente da conta. Risco identificado pela primeira vez nesta leitura — candidato, não conclusão.
+- **Sinal de confirmação:** Se nos próximos 5 dias a proporção receita-ADS/GMV total se mantiver acima de 55% de forma consistente, a dependência estrutural de mídia paga se confirma como padrão da conta — não evento isolado.
 
 ---
 
 ### Sinais a observar
 
-1. **Ticket médio acima de R$52 por 3 dias consecutivos** — confirma que a expansão observada é patamar novo e não efeito de mix pontual, consolidando a tese de ganho de patamar. Ticket abaixo de R$48 em 2 dos próximos 5 dias enfraquece a tese e levanta hipótese de mix volátil.
-
-2. **Pedidos do KIT4YW1050 abaixo de 8/dia por 2 dias seguidos** — sinaliza que a health 0.75 está se traduzindo em perda real de exposição, não apenas métrica de qualidade sem efeito prático. Esse sinal ativa o risco estrutural identificado.
-
-3. **Ruptura de estoque do Kit 06 Canequinhas Suporte Acrílico (914C_BAV)** — com 3 unidades disponíveis e 3 pedidos registrados ontem, a ruptura é iminente. Out-of-stock em anúncio ativo no ML gera penalização de health e pode afetar o ranking do anúncio mesmo após reabastecimento. Sinal binário: se o anúncio aparecer como indisponível nos próximos 1-2 dias, o risco se materializou.
+1. **Ticket médio abaixo de R$48,00 por 2 dias seguidos** confirmaria que a elevação atual é ruído ou concentração pontual de SKU, enfraquecendo a tese de deslocamento estrutural de mix.
+2. **Proporção receita-ADS acima de 55% do GMV por 4 dos próximos 5 dias** (se dados de ADS disponíveis no pacote) confirmaria dependência estrutural de mídia paga — e transformaria o risco candidato em estrutural.
+3. **Ruptura de estoque nos três itens críticos de cauda** (Kit 06 Canequinhas Acrílico, Kit 6 Tigelas 250ml, Kit 2 Potes 1050ml) dentro de 3 dias confirmaria risco operacional pontual e acenderá sinal para Yasmin abastecer ou pausar anúncio antes de penalidade de reputação.

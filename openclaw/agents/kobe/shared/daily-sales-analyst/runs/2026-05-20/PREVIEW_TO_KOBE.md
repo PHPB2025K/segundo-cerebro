@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-20
-**Gerado em:** 2026-05-21T21:08:00.543494+00:00
+**Gerado em:** 2026-05-21T21:44:19.359721+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,8 +24,7 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Gate 5: KIT10YW1050 (MLB4676726433) — Slack Writer declarou nas Decisões de Formatação que usaria 'título real ML disponível e consistente com raw_title', mas usou o display_name truncado ('Kit 10 Potes Herméticos 1050ml Refratário 4 Travas') em vez do top_items_details.title completo ('Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades'). Inconsistência entre log declarado e prática aplicada. Não induz erro de identificação neste ciclo.
-- **Aviso:** Gate 6: Contraste analítico 'não são 2... são 4' da Condensadora não foi preservado. Para próximo ciclo: Slack Writer deve manter estruturas de enquadramento 'não é X, é Y' quando a Condensadora as usa explicitamente, mesmo ao simplificar linguagem.
+- **Aviso:** Inconsistência R$/R$ $ no texto inline da análise (Gate 11, Menor): corrigir no próximo ciclo padronizando espaçamento após símbolo de moeda em todo o corpo da mensagem, incluindo referências inline na seção ANÁLISE DA CONTA.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/00-data-package.json`

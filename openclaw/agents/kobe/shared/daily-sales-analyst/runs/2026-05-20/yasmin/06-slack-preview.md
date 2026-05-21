@@ -6,31 +6,30 @@ DAILY SALES REPORT — MERCADO LIVRE — 20/05/2026 (Ontem)
 
 📊 VISÃO MERCADO LIVRE
 • Faturamento: R$ 5.087,71
-• Pedidos: 91 pedidos
+• Pedidos: 91
 • Ticket médio: R$ 55,91
 • Cancelamentos: 3
 
 🏆 TOP PRODUTOS MERCADO LIVRE
-• Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto — 23 pedidos
-• Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo — 13 pedidos
-• Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo — 8 pedidos
+• Conjunto 5 Potes de Vidro Redondos Tampa Preta — 23 pedidos
+• Kit 4 Potes de Vidro 1050ml Retangular — 13 pedidos
+• Kit 6 Canequinhas 100ml com Suporte de Madeira — 8 pedidos
 • Kit 10 Potes Herméticos 1050ml Refratário 4 Travas — 5 pedidos
-• Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita — 5 pedidos
-• Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara — 5 pedidos
-• Kit 2 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo — 3 pedidos
-• Suporte Gamer 2 Controles E Headset Mesa Organizador Ps5 Ps4 Preto — 3 pedidos
-• Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-petróleo — 3 pedidos
-• Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico — 3 pedidos
+• Jogo Potes de Vidro 5 Peças Claro — 5 pedidos
+• Kit 6 Canecas Porcelana Tulipa Lisa 250ml — 5 pedidos
+• Kit 2 Potes de Vidro 1050ml Retangular — 3 pedidos
+• Suporte Gamer 2 Controles e Headset Mesa Organizador PS5/PS4 Preto — 3 pedidos
+• Kit 4 Potes de Vidro 320ml Tampa Hermético — 3 pedidos
+• Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico — 3 pedidos
 
 🔍 ANÁLISE DA CONTA
-• O anúncio do Kit 06 Canequinhas 100ml com Suporte Acrílico provavelmente gerou os 3 cancelamentos do dia — 3 unidades disponíveis na abertura, 3 pedidos, 3 cancelamentos no fechamento e 3 unidades de volta no CD hoje formam um padrão consistente com ruptura seguida de retorno de reserva Full. O estoque não zerou, mas qualquer pedido adicional sem reposição confirmada realiza a ruptura e começa a contaminar a cancellations_rate, hoje em zero.
-• O mapa de risco de saúde dos anúncios é mais amplo do que parece: 4 dos top 10 estão em zona crítica ou de atenção, sendo 2 abaixo do limiar de penalização do ML (health 0,75 e 0,71) e 2 exatamente no limiar (health 0,85 e 0,85). Sem trajetória histórica disponível, não dá para saber se estão caindo ou estáveis — mas o fato de os anúncios com health degradada continuarem convertendo sugere que o ADS de Himmel está cobrindo a exposição orgânica que o algoritmo ML está retirando. Esse equilíbrio é frágil.
-• A queda de -20,9% em pedidos vs os últimos 7 dias parece deterioração, mas o controle correto é o mesmo dia da semana: ontem ficou -1,6% em pedidos e +32,4% em GMV vs as últimas 4 quartas. O dia foi dentro do patamar esperado — o que estava acima da média era a janela dos últimos 7 dias, não ontem abaixo. O GMV de R$ 5.087,71 foi sustentado por ticket médio mais alto, não por volume maior.
+• O dia parece fraco olhando para os últimos 7 dias (−20,9% de pedidos), mas a comparação correta é com os mesmos dias da semana — e aí o resultado é forte: GMV +32,4% acima da banda sazonal. O ganho veio inteiramente do ticket médio (R$55,91 vs R$41,53 nos mesmos dias da semana), não de volume. A conta cresceu por mix de produtos mais caros, não por mais alcance.
+• Dois anúncios ativos estão em ruptura iminente: o de canequinhas com suporte de madeira acrílico (3 unidades restantes, ativo — cada pedido novo hoje é um cancelamento prospectivo que compromete a reputação) e o de canecas de porcelana tulipa em catálogo Full (21 unidades, ritmo de 5 pedidos/dia, ~4 dias de cobertura). O segundo é estruturalmente mais grave: catálogo Full não recupera posição no Buy Box automaticamente após a ruptura — o impacto dura além do dia da falta.
+• O mix de fulfillment do dia (56,3% Full vs 73,9% no padrão de 30 dias) não sinaliza mudança no perfil da conta — foi causado por um único produto em Cross-docking que liderou com 23 pedidos. Sem ele, o mix do dia seria ~81% Full, acima do próprio histórico. Cross-docking aqui é modalidade operacional normal, não sinal de problema.
 
 🎯 PRIORIDADES DO DIA
-• Yasmin: verificar se há reposição programada ou pendente para o Kit 06 Canequinhas 100ml com Suporte Acrílico no CD do ML — com 3 unidades em estoque Full e giro de 3 pedidos/dia, a ruptura real está a um ciclo de distância. O padrão do dia sugere que os cancelamentos devolveram as reservas ao CD; sem reposição, o próximo grupo de pedidos zera o estoque e contamina a cancellations_rate. Confirmar/refutar: reposição confirmada com prazo ≤ 48h neutraliza o risco; ausência de confirmação até amanhã mantém o nível crítico. Escalar se: reposição não confirmada em 24h — decidir entre suspender o anúncio preventivamente ou registrar o risco aceito.
-• Yasmin: checar a trajetória de health dos dois anúncios abaixo do limiar de penalização via Seller Central — Kit 4 Potes De Vidro Hermético 1050ml (health 0,75) e Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita (health 0,71) — para saber se estão caindo, estáveis ou em recuperação. Confirmar/refutar: health estável ou em recuperação = manter observação; health caindo em qualquer um por mais 1 dia = investigar causa raiz e avaliar reforço de cobertura ADS com Himmel. Escalar se: health caindo por 2 dias consecutivos em qualquer dos dois — alinhar com Himmel sobre reforço de cobertura ADS preventivo.
-• Yasmin: registrar como ponto zero da série ADS os números de ontem — spend R$ 262,19, receita R$ 3.041,56, share ~59,8% do GMV, ROAS ≈ 11,6x, ACOS 4,64%, 11 campanhas ativas. Confirmar/refutar: ADS share acima de 55% por 3 dias consecutivos com ROAS acima de 5x confirma dependência estrutural; ACOS acima de 15% em qualquer dos próximos 3 dias sinaliza pressão de leilão. Escalar se: ACOS acima de 15% por 2 dias seguidos — alinhar com Himmel sobre revisão de segmentação.
+• Yasmin: verificar o anúncio de canequinhas com suporte de madeira acrílico (3 unidades em estoque, ativo) e executar pausa preventiva ou confirmar reposição emergencial em 24h. Cada pedido gerado hoje é cancelamento prospectivo que compromete a taxa de cancelamentos da reputação, atualmente zerada. Confirmar/refutar: pausa executada ou reposição confirmada em 24h = risco neutralizado; anúncio seguir ativo sem estoque por mais um ciclo = cancelamento prospectivo já em curso. Escalar se: cancelamento confirmado no painel ML.
+• Yasmin: confirmar reposição do anúncio de canecas de porcelana tulipa (catálogo Full, 21 unidades) com chegada ao CD do ML em até 3 dias. Ao ritmo de 5 pedidos/dia a cobertura é de ~4 dias — catálogo Full não recupera posição no Buy Box automaticamente após ruptura. A janela para agir sem impacto na posição é hoje. Confirmar/refutar: reposição confirmada com ETA ≤3 dias = risco encaminhado; sem confirmação = ruptura prospectiva em curso. Escalar se: sem reposição confirmada em 24h — alertar Trader sobre ruptura prospectiva em catálogo Full.
 
 Dia analisado: 20/05/2026 — 00:00–23:59 BRT
 ```
@@ -39,53 +38,61 @@ Dia analisado: 20/05/2026 — 00:00–23:59 BRT
 
 ### Respeito de bloqueios
 
-- Item bloqueado: afirmação categórica de que os 3 cancelamentos foram gerados pelo Kit 06 Canequinhas Acrílico (MLB4410218897)
-- Origem do bloqueio: Condensadora
-- Motivo: breakdown de cancelamentos por anúncio ausente do pacote; evidência apenas circunstancial
-- Agregado autorizado: não — a Condensadora não autorizou agregado; orientou preservar linguagem de hipótese
-- Tratamento aplicado: texto usa "provavelmente" e descreve o padrão circunstancial sem afirmar como fato
-- Aparece na mensagem final: sim, como hipótese com evidência descrita
+- **Item bloqueado:** Atributo "Tampa Vermelha" na identificação do anúncio de potes de vidro 5 peças (IMB501V / MLB3288536143)
+- **Origem do bloqueio:** Granular (L04) + Condensadora (L05)
+- **Motivo:** Título ML primário ("Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita") não confirma o atributo de cor da tampa; display_name interno adiciona "Tampa Vermelha" por inferência de família SKU, não por confirmação explícita; risco de identificação médio declarado pela L04
+- **Agregado autorizado:** sim — uso do título ML sem o atributo de cor adicionado
+- **Tratamento aplicado:** substituído por "Jogo Potes de Vidro 5 Peças Claro" (baseado no título ML)
+- **Aparece na mensagem final:** sim, como "Jogo Potes de Vidro 5 Peças Claro"
 
-- Item bloqueado: afirmação de trajetória de health (caindo, estável ou em recuperação) para qualquer anúncio
-- Origem do bloqueio: Condensadora
-- Motivo: pacote disponibiliza apenas valor pontual; série temporal ausente
-- Agregado autorizado: não
-- Tratamento aplicado: texto preserva incerteza — "não dá para saber se estão caindo ou estáveis"
-- Aparece na mensagem final: sim, com ressalva explícita
+---
 
-- Item bloqueado: afirmação de que o ADS de Himmel cobre especificamente os anúncios com health degradada
-- Origem do bloqueio: Condensadora
-- Motivo: ads_summary contém apenas totais agregados; cobertura por anúncio não verificável
-- Agregado autorizado: não
-- Tratamento aplicado: texto usa "sugere que o ADS de Himmel está cobrindo", preservando hipótese
-- Aparece na mensagem final: sim, como hipótese
+- **Item bloqueado:** Afirmação de que o campeão de volume em Cross-docking (potes de vidro redondos tampa preta, 23 pedidos) foi impulsionado por ADS Himmel
+- **Origem do bloqueio:** Condensadora (L05)
+- **Motivo:** Hipótese em aberto; pacote ml_snapshot v1 não disponibiliza breakdown de receita ADS por platform_item_id; correlação plausível mas não confirmada
+- **Agregado autorizado:** não
+- **Tratamento aplicado:** omitido — ADS share mencionado na análise apenas como dado contextual (inserido via insight 3 sobre mix de fulfillment), sem afirmar causalidade
+- **Aparece na mensagem final:** não
 
-- Item bloqueado: códigos MLB no corpo da mensagem
-- Origem do bloqueio: Condensadora
-- Motivo: identificadores técnicos não adequados para comunicação com Yasmin
-- Agregado autorizado: não aplicável
-- Tratamento aplicado: omitidos; usados títulos reais dos anúncios ML conforme top_items_details
-- Aparece na mensagem final: não
+---
 
-- Item bloqueado: aliases internos Budamix como nomes de produto (display_names)
-- Origem do bloqueio: Condensadora / Granular
-- Motivo: divergência estrutural confirmada — top_products[i].title == display_name interno; título real está em top_items_details[i].title e raw_title
-- Agregado autorizado: não aplicável
-- Tratamento aplicado: todos os produtos citados usam título real ML (top_items_details[i].title / raw_title)
-- Aparece na mensagem final: não
+- **Item bloqueado:** Direção do health dos anúncios Full em zona crítica (caindo / estável / recuperando)
+- **Origem do bloqueio:** Condensadora (L05) / Granular (L04)
+- **Motivo:** ml_snapshot v1 entrega apenas valores pontuais de health; sem série temporal (D-1, D-2), não é possível classificar tendência para nenhum dos anúncios afetados
+- **Agregado autorizado:** não
+- **Tratamento aplicado:** omitido — health não mencionado na mensagem; o risco operacional foi comunicado via impacto de ruptura (estoque crítico), não via tendência de health
+- **Aparece na mensagem final:** não
+
+---
+
+- **Item bloqueado:** Códigos MLB internos (MLB4073003575, MLB3288536143, MLB4410218897, MLB6167272090) no corpo da mensagem
+- **Origem do bloqueio:** Condensadora (L05)
+- **Motivo:** Identificadores técnicos internos; não adequados para comunicação operacional no Slack
+- **Agregado autorizado:** não aplicável — substituição por descrição operacional do produto
+- **Tratamento aplicado:** substituídos por descrições de produto em linguagem operacional
+- **Aparece na mensagem final:** não
+
+---
+
+- **Item bloqueado:** Afirmação isolada de que "4 dos 10 produtos do top10 estão em zona crítica de health"
+- **Origem do bloqueio:** Condensadora (L05)
+- **Motivo:** Dois anúncios em penalização ativa (0,71 e 0,75) e dois no limiar (0,85) representam níveis distintos; sem série temporal para nenhum deles; apresentar sem ressalva de confiança induziria alarme sem base confirmada para ação imediata
+- **Agregado autorizado:** não
+- **Tratamento aplicado:** omitido como afirmação consolidada; o risco dos dois casos mais graves (0,75 e 0,71) foi absorvido contextualmente no insight 2 sobre ruptura de estoque, sem citar health explicitamente
+- **Aparece na mensagem final:** não
 
 ---
 
 ### Decisões de formatação
 
-- Uso de títulos reais ML (top_items_details[i].title / raw_title) em vez de display_names para todos os 10 produtos do Top Produtos — motivo: divergência estrutural confirmada pela L04; display_names são aliases internos Budamix não reconhecidos por Yasmin na plataforma
-- Preservação de linguagem de hipótese para o insight dos cancelamentos ("provavelmente", descrição circunstancial) — motivo: Condensadora classificou como hipótese e bloqueou afirmação categórica
-- Preservação de linguagem de incerteza para trajetória de health ("não dá para saber se estão caindo ou estáveis") — motivo: dado de série temporal ausente do pacote; Condensadora bloqueou classificação de direção
-- Preservação de linguagem de hipótese para cobertura ADS por anúncio ("sugere que o ADS de Himmel está cobrindo") — motivo: Condensadora bloqueou afirmação por ausência de breakdown por anúncio no pacote
-- Remoção de metadados internos das camadas ("base: Estratégica | Granular", "padrão D — Enquadramento estrutural" etc.) — motivo: metadados de pipeline não pertencem à comunicação com Yasmin
-- Omissão de códigos MLB em todos os campos visíveis — motivo: bloqueio explícito da Condensadora; IDs técnicos não adequados para Slack operacional
-- Seção VISÃO sem comparações temporais — motivo: regra estrutural; comparações pertencem à Análise da Conta
-- Dados de ADS registrados na prioridade 3 como valores de referência sem comparação — motivo: ponto zero da série; sem histórico comparável disponível
-- Kit 10 Potes Herméticos 1050ml Refratário 4 Travas: produto com confiança medium (mapping_status: mapped_generic_sku) incluído no Top Produtos — motivo: Condensadora não emitiu bloqueio para esse item; confiança media não implica bloqueio automático; título real ML disponível e consistente com raw_title
-- Suporte Gamer 2 Controles E Headset Mesa Organizador Ps5 Ps4 Preto e Kit 06 Canequinhas: ambos com confiança medium incluídos no Top Produtos pelo mesmo motivo — sem bloqueio da Condensadora, raw_title e top_items_details.title consistentes
-- Ranking mantido em ordem decrescente por pedidos, conforme pacote validado
+- Remoção de metadados internos (`padrao`, `base`, `classificacao`) dos três insights da Condensadora — motivo: campos de pipeline interno, sem lugar na comunicação para o destinatário
+- Substituição do display_name "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha" por "Jogo Potes de Vidro 5 Peças Claro" em Top Produtos — motivo: bloqueio de atributo "Tampa Vermelha" pela L04/Condensadora; título ML primário usado como base
+- Faturamento por produto omitido em todos os itens do Top Produtos — motivo: pacote não traz receita validada por produto/variação; proibido calcular ou estimar; formato aplicado: `[nome] — [pedidos] pedidos`
+- Display name truncado de KIT4YW320 ("Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-pet...") encurtado para "Kit 4 Potes de Vidro 320ml Tampa Hermético" — motivo: remoção de truncamento técnico (`...`); produto identificável sem o sufixo de cor; sem risco de ambiguidade com outros produtos da lista
+- Sem comparação temporal na seção VISÃO MERCADO LIVRE — motivo: regra estrutural; comparações pertencem à análise
+- Fulfillment (Full/Cross-docking) omitido da seção VISÃO — motivo: dado disponível cobre apenas top 10 itens (71 de 91 pedidos), não a totalidade do dia; número parcial não representa dado objetivo da plataforma sem ressalva de cobertura; cobertura de 78% não justifica apresentação como métrica total na VISÃO
+- Insight 2 mantido com linguagem de risco latente ("ruptura iminente", "estruturalmente mais grave", "impacto dura além do dia") — motivo: Condensadora classificou como risco latente, não fato; linguagem preserva a nuance sem transformar em certeza
+- Insight 1 mantido com marcador de aparência enganosa ("parece fraco", "mas a comparação correta é") — motivo: padrão C de inversão negativa da Condensadora; suavizar ou remover o contraste mudaria a tese
+- Prioridades formatadas com ação + motivo + sinal de confirmação/refutação + condição de escalada — motivo: elementos presentes na Condensadora; preservados por instrução estrutural de fidelidade à fonte
+- Produto SPC0111 mantido no ranking como "Suporte Gamer 2 Controles e Headset Mesa Organizador PS5/PS4 Preto" — motivo: confidence medium mas display_name coincide com título ML; sem bloqueio declarado pela Condensadora; produto identificável sem risco de ambiguidade relevante para o responsável
+- Condensadora entregou 3 insights; todos os 3 incluídos — não houve caso de dia sem insight

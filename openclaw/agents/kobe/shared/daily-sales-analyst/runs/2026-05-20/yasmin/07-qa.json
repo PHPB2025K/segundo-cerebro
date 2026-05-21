@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem passa em 9 dos 11 gates sem falha. Dois gates apresentam ressalvas: Gate 6 tem 1 violação Maior (contraste estrutural 'não são 2 anúncios em penalização — são 4 dos top10' foi removido da Slack Writer, violando a regra de enquadramento preservado) e 1 violação Menor ('retirando progressivamente' simplificado para 'retirando'); Gate 5 tem 1 violação Menor (KIT10YW1050 usa display_name truncado em vez do título real de top_items_details). Total: 1 Maior + 2 Menores. Regra de agregação: 1 Maior + Menores = APROVADO COM RESSALVA. Dados, período, destinatário, estrutura Slack, Top Produtos, prioridades, bloqueios, consistência entre camadas, tom e padrão numérico estão corretos.",
+  "motivo": "A mensagem passou todos os gates críticos sem falha. Data, período e rodapé corretos; destinatário Yasmin/ML correto; estrutura Slack com exatamente as 6 seções na ordem aprovada; VISÃO com dados objetivos do dia sem comparação temporal; Top Produtos fiel ao pacote validado por variação, com bloqueio de 'Tampa Vermelha' corretamente aplicado; Análise com exatamente 3 bullets correspondendo 1:1 aos 3 insights da Condensadora, teses e conectivos preservados, linguagem operacional clara; Prioridades com ação+motivo+sinal+escalonamento conforme Condensadora; todos os 5 bloqueios da Granular/Condensadora cruzados, logados e respeitados na mensagem final. Um único problema Menor foi identificado: inconsistência cosmética de espaçamento após símbolo R$ entre a seção VISÃO ('R$ 55,91') e o texto da análise ('R$55,91', 'R$41,53'). Regra de agregação aplicada: 0 Críticos + 0 Maiores + 1 Menor → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -8,62 +8,42 @@
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "RESSALVA",
-    "gate_6_analise_conta": "RESSALVA",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "OK",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "OK"
+    "gate_11_padrao_numerico_formatacao": "RESSALVA"
   },
   "contagem_severidade": {
     "criticos": 0,
-    "maiores": 1,
-    "maiores_gates_distintos": 1,
-    "menores": 2,
-    "regra_agregacao_aplicada": "1 Maior + Menores → APROVADO COM RESSALVA. Não há 2+ Maiores em gates diferentes, não há Crítico, não há degradação sistêmica por 6+ Menores."
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 1,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 1 Menor → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
-      "severidade": "Maior",
-      "gate": "Gate 6 — Análise da Conta",
-      "texto_atual": "O mapa de risco de saúde dos anúncios é mais amplo do que parece: 4 dos top 10 estão em zona crítica ou de atenção, sendo 2 abaixo do limiar de penalização do ML (health 0,75 e 0,71) e 2 exatamente no limiar (health 0,85 e 0,85).",
-      "texto_esperado": "O mapa de risco de health é mais amplo do que parece: não são 2 anúncios em penalização — são 4 dos top10 em zona crítica ou de atenção, com 2 abaixo do limiar de penalização ML (health 0,75 e 0,71) e 2 exatamente no limiar (health 0,85 e 0,85).",
-      "estado_atual": null,
-      "estado_esperado": null,
-      "regra_violada": "Gate 6 — Checklist de fidelidade: 'Contraste/inversão/enquadramento preservados — se a Condensadora usou padrão não é X, é Y [...] o Slack mantém a estrutura.' A Condensadora usou explicitamente o padrão 'não são 2 anúncios em penalização — são 4 dos top10', equivalente estrutural direto de 'não é X, é Y'. A Slack Writer substituiu esse enquadramento por afirmação direta sem contraste, removendo a ênfase de que a situação é pior do que parecia pela leitura anterior (2 anúncios). O dado numérico foi preservado, mas o enquadramento analítico que transfere o sinal de alerta ampliado foi perdido.",
-      "bloqueia_envio": false
-    },
-    {
       "severidade": "Menor",
-      "gate": "Gate 5 — Top Produtos",
-      "texto_atual": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas — 5 pedidos",
-      "texto_esperado": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades — 5 pedidos",
-      "estado_atual": null,
-      "estado_esperado": null,
-      "regra_violada": "Gate 5 — Top Produtos ML: produto deve usar título real do anúncio ML conforme top_items_details[i].title. A Condensadora bloqueou aliases internos Budamix e instruiu uso de top_items_details[i].title como título real. Para KIT10YW1050, o top_items_details.title é 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades'; a Slack Writer usou o display_name truncado ('Kit 10 Potes Herméticos 1050ml Refratário 4 Travas'), inconsistente com a própria Decisão de Formatação que declara usar 'título real ML'. O produto é identificável pela parte preservada; a violação é formal, não de identificação.",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "Gate 6 — Análise da Conta",
-      "texto_atual": "o ADS de Himmel está cobrindo a exposição orgânica que o algoritmo ML está retirando.",
-      "texto_esperado": "o ADS de Himmel está cobrindo a exposição orgânica que o algoritmo ML está retirando progressivamente",
-      "estado_atual": null,
-      "estado_esperado": null,
-      "regra_violada": "Gate 6 — Checklist de fidelidade: 'Nenhum termo analítico-chave removido.' O advérbio 'progressivamente' da Condensadora qualifica a natureza do processo (deterioração contínua, não pontual) e é relevante para o enquadramento do risco de health como estrutural. A remoção reduz levemente a especificidade sem alterar a tese central.",
+      "gate": "11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "R$55,91 vs R$41,53 (na seção 🔍 ANÁLISE DA CONTA, bullet 1)",
+      "texto_esperado": "R$ 55,91 vs R$ 41,53",
+      "estado_atual": "Valores monetários inline na análise omitem o espaço entre o símbolo R$ e o número, divergindo do padrão aplicado na seção VISÃO ('R$ 55,91', 'R$ 5.087,71')",
+      "estado_esperado": "Espaçamento uniforme após R$ em toda a mensagem, conforme padrão 'R$ X.XXX,XX' definido nas regras",
+      "regra_violada": "Padrão numérico consistente em toda a mensagem; Gate 11 exige que valores monetários sigam o formato 'R$ 1.234,56' com espaço entre símbolo e número",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Gate 5: KIT10YW1050 (MLB4676726433) — Slack Writer declarou nas Decisões de Formatação que usaria 'título real ML disponível e consistente com raw_title', mas usou o display_name truncado ('Kit 10 Potes Herméticos 1050ml Refratário 4 Travas') em vez do top_items_details.title completo ('Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades'). Inconsistência entre log declarado e prática aplicada. Não induz erro de identificação neste ciclo.",
-    "Gate 6: Contraste analítico 'não são 2... são 4' da Condensadora não foi preservado. Para próximo ciclo: Slack Writer deve manter estruturas de enquadramento 'não é X, é Y' quando a Condensadora as usa explicitamente, mesmo ao simplificar linguagem."
+    "Inconsistência R$/R$ $ no texto inline da análise (Gate 11, Menor): corrigir no próximo ciclo padronizando espaçamento após símbolo de moeda em todo o corpo da mensagem, incluindo referências inline na seção ANÁLISE DA CONTA."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "Insight 2 traduz 'health' para 'saúde dos anúncios' no título do bullet, mas preserva a notação técnica 'health 0,75' e 'health 0,71' nas referências numéricas. A decisão de formatação não registrou esta escolha. A inconsistência (saúde no título, health nos valores) não gera confusão para Yasmin mas poderia ser padronizada.",
-    "O nível de confiança 'média' declarado pela Condensadora para os alertas de confiança (alertas_de_confianca.nivel = média) foi tratado corretamente pela Slack Writer — linguagem hipotética preservada em todos os três insights. Nenhuma violação, mas o sinal de base parcial do pacote (DADOS_PARCIAIS) não é referenciado explicitamente na mensagem final. A Condensadora não instruiu mencioná-lo; ausência é coerente com os bloqueios definidos.",
-    "A nota da Granular sobre título correto do MLB3288536143 (IMB501V) para comunicação externa ('Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita', não 'Tampa Vermelha') foi respeitada corretamente tanto no Top Produtos quanto na prioridade P2. Nenhuma violação — registro apenas para confirmar que esta regra foi aplicada corretamente."
+    "Decisão de omitir mix de fulfillment da seção VISÃO (78% de cobertura, 71/91 pedidos) está devidamente documentada nas Decisões de Formatação e não configura violação de regra objetiva — o dado foi corretamente roteado para a seção de análise (insight 3). Registrar para revisão futura se cobertura do fulfillment_mix_yesterday_top10 puder ser expandida para 100% dos pedidos do dia.",
+    "Insight 2 classifica os dois anúncios como 'ruptura iminente' preservando linguagem de risco latente conforme a Condensadora. A Granular marcou confiança média para o anúncio de canequinhas acrílico (MLB4410218897) e confiança alta para o de canecas tulipa (MLB6167272090). A mensagem trata ambos com o mesmo grau de urgência, o que é conservador e não viola regra objetiva, mas a distinção de confiança entre os dois casos está documentada aqui para memória interna.",
+    "O campeão de volume em Cross-docking (Conjunto 5 Potes Tampa Preta, 23 pedidos, sold_quantity histórico de 323) tem origem de pico não confirmada (orgânico vs ADS Himmel). A hipótese foi corretamente bloqueada pela Condensadora e não aparece na mensagem. Registrar para o próximo ciclo: se breakdown de ADS por platform_item_id for disponibilizado no ml_snapshot v2+, essa pergunta pode ser respondida de forma definitiva.",
+    "Quatro anúncios do top10 com health em zona crítica ou no limiar (MLB4073003575=0,75; MLB3288536143=0,71; MLB3343832496=0,85; MLB4073064873=0,85) foram corretamente omitidos como afirmação consolidada conforme bloqueio da Condensadora. A abrangência real do risco de health é maior do que o comunicado operacionalmente na mensagem — contexto preservado aqui para série futura."
   ],
   "llm_used": true,
   "model": "sonnet",

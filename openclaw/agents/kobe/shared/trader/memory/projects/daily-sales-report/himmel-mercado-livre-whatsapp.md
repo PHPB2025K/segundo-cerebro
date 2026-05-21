@@ -257,3 +257,24 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 **Status:** aberto — aguardando confirmação de execução pela Himmel e validação nos dados de ML Ads.
 
+### 2026-05-21 13:00 BRT — Himmel confirma avaliação para campanha dedicada do anúncio MLB6167272090
+
+**Participantes:** Cláudio Manrique Junior/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Continuação da solicitação para acelerar anúncio específico.
+
+**Contexto registrado:**
+- Cláudio confirmou que vai avaliar o anúncio **MLB6167272090** e adicionar em uma campanha mais dedicada.
+- A mensagem indica intenção operacional da Himmel, mas ainda não informa campanha escolhida, verba, meta de ROAS/ACoS ou confirmação final de execução.
+
+**Impacto esperado:**
+- O anúncio **MLB6167272090** deve entrar no radar dos próximos reports como possível mudança de exposição/investimento a partir de **21/05**.
+- Tratar como etapa avançada da pendência aberta às **10:56–11:47 BRT**, ainda dependente de validação nos dados de ML Ads.
+
+**Como validar nos dados:**
+- Confirmar se **MLB6167272090** foi incluído em campanha dedicada/aceleração no Mercado Livre Ads.
+- Monitorar entre **2026-05-21 e 2026-05-28**: impressões, cliques, vendas, investimento, ACoS/TACoS, ROAS, estoque, preço e conversão.
+- Se houver aumento de gasto sem venda incremental, cobrar retorno sobre campanha usada e próximos ajustes.
+
+**Status:** aberto — Himmel assumiu avaliação/inclusão, execução e impacto ainda precisam ser confirmados nos dados.
+

@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-21 19:00 BRT — Fontes do e-commerce padronizadas (Antonio + Inter) + módulo preview mobile pendente_
+_Atualizado: 2026-05-21 22:30 BRT — Preview mobile entregue em prod + PDP polida (breadcrumb sem duplicidade, eyebrow removido, stock chip DNA Budamix)_
 
 ## 🟡 OpenClaw / Kobe — pendências da sessão de 07/05
 
@@ -33,7 +33,7 @@ _Atualizado: 2026-05-21 19:00 BRT — Fontes do e-commerce padronizadas (Antonio
 - [x] ~~**Estoque Budamix — retomar deploy em produção**~~ ✅ **Resolvido 20/05/2026.** Deploy via rsync direto (não GitHub). Commits `42dbeec` + `eeab9c5` + `9f980cc` + `2a38f57` em prod desde 19:11 BRT. Build via `--webpack` (turbopack quebra externals do pdf-parse). Checkpoint encerrado. → [[projects/estoque-budamix#Decisões-chave]]
 - [ ] **Estoque Budamix — limpar operações de teste do banco** (opcional, sem urgência): `DELETE FROM estoque_operations WHERE operation_name LIKE 'TESTE QA Claude%';` — 14 linhas geradas na validação end-to-end de 20/05.
 - [ ] **Estoque Budamix — webhook n8n descontinuado**: `trottingtuna-n8n.cloudfy.live/webhook/estoque-upload` substituído por parser local Next em 20/05/2026. Pode ser desativado no painel n8n sem impacto.
-- [ ] **Budamix E-commerce — módulo de preview mobile no admin** (pedido em 21/05): rota `/admin/preview-mobile` com `<iframe src="https://budamix.com.br">` enquadrado em mockup de dispositivo mobile (375×667 ou 390×844), barra de URL navegável, refresh manual, possíveis quick-links pra PDPs. Plano sugerido na sessão; aguardando aprovação antes de codar. → [[projects/budamix-ecommerce]]
+- ✅ ~~**Budamix E-commerce — módulo de preview mobile no admin**~~ → **ENTREGUE 21/05 noite** em prod. Rota `/admin/preview-mobile` com 3 devices (iPhone SE/14, Pixel 5), URL bar editável, refresh, atalhos pra rotas principais + 6 produtos ativos recentes. Entry points: sidebar + header dashboard + Ações Rápidas. Commit `a0f50e9`. → [[projects/budamix-ecommerce#Decisões-chave]]
 - [ ] **Banner triplo Budamix — Pedro escolher versão final da Capa 01**: `capa-01.png` (v1, 4 linhas) vs `capa-01-v2.png` (v2, 3 linhas). Output em `~/Documents/05-Projetos-Codigo/banner-triplo-budamix/output/`. Depois importar no Canva e inserir foto dos potes (Capa 2) + foto da Morgana (Capa 3) nos placeholders.
 - [ ] **Estoque Budamix — POT1BB duplicado na aba ESTOQUE da planilha de Precificação** (`1u74a...`): L8 com Trava est=24, L9 sem Trava est=2, mesmo SKU. `find()` sempre pega L8, baixas em "sem Trava" caem na linha errada. Solução proposta: renomear L9 → `POT1BB_ST`. Aguardando OK do Pedro pra aplicar via gspread.
 - [ ] **Estoque Budamix — lista de aliases editável em `/tmp/pr3-cadastro-cleanup.md`** (5 famílias: POT1BB, IMB501, YW, KIT, série 914). Pedro precisa preencher os termos coloquiais reais da equipe (anilão? montado? caneca bola?) e devolver pra aplicar.

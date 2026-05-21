@@ -67,3 +67,6 @@ Usar a biblioteca `requests` em vez de `urllib`. Por padrão envia UA `python-re
 ## Cross-refs
 
 - [[automacoes/scripts/rh-evolution-poller|rh-evolution-poller.py]] — primeiro caso documentado
+
+- [[knowledge/concepts/stack-tecnico]] — **ref**: Python na stack como linguagem para scripts
+- [[automacoes/workflows/budamix-whatsapp-ana]] — **ref**: Evolution Cloudfy é a infra do workflow Ana

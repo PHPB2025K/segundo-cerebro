@@ -175,3 +175,8 @@ Dica: ao criar produto novo na Matriz (como `POST /produtos` para YW1520RC), já
 - Skill transferência: `~/.openclaw/workspace/shared/fisco/skills/nf-transfer/SKILL.md` (VPS) — espelhada em `skills/fiscal/nf-transfer/`
 - Log de auditoria: `shared/fisco/memory/nfe-log.md` (VPS) — registra toda emissão
 - Fonte de verdade fiscal: [[business/importacao/estrategia-fiscal-gb]]
+
+- [[projects/financeflow]] — **dependência**: FinanceFlow consome Bling API v3 — aprendizados aplicam diretamente
+- [[openclaw/agents/fisco/IDENTITY]] — **executor**: Fisco é o agente que executa Bling
+- [[meta/mocs/MOC - Token Management]] — **tema**: OAuth Bling Matriz/Filial + refresh cron 5h
+- [[knowledge/concepts/credenciais-map]] — **ref**: Bling API - Matriz/Filial mapeados no 1Password

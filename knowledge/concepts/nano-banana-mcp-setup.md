@@ -75,3 +75,6 @@ Chama API REST diretamente via curl. Útil quando MCP não está conectado.
 - [[knowledge/concepts/claude-code-skills-inventario]] — inventário de skills e MCPs do Claude Code
 - [[meta/mocs/MOC - Token Management]] — governança de tokens API/MCP
 - [[knowledge/concepts/nano-banana-no-alpha-channel]] — limitação conhecida do Gemini imagem (sem canal alfa)
+
+- [[skills/marketing/image-prompt-generator/SKILL]] — **tema**: skill irmã de geração de imagens — Gemini vs gpt-image-2
+- [[business/marketing/marca/_index]] — **ref**: geração de imagens da marca Budamix passa por essas ferramentas

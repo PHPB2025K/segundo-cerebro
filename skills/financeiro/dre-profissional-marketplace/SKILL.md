@@ -156,3 +156,9 @@ Gerar pelo menos:
 
 Pedro rejeitou DRE v3 em 2026-05-01 por estar correto nos dados, mas incompleto e pouco profissional. O padrão mínimo aceito a partir disso é v4+: consolidado + marketplace + margens + premissas + Excel/HTML executivo.
 
+## Conectado a
+
+- [[business/financeiro/_index]] — **pai**: DRE pertence ao domínio financeiro
+- [[business/financeiro/dre-abril-2026-u15-u44-v4]] — **filho**: output concreto gerado pela skill
+- [[meta/mocs/MOC - Taxas e Precificacao]] — **autoridade**: taxas e fees por marketplace são input para U44
+- [[openclaw/agents/trader/IDENTITY]] — **executor**: Trader é o agente que aplica esta skill

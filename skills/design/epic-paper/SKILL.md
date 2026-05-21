@@ -262,3 +262,9 @@ If the design doesn't look right after screenshot:
 - After each slide/section: show the screenshot and give a quick design note
 - If the user wants changes: make them immediately, don't re-ask
 - Keep it moving — build momentum
+
+## Conectado a
+
+- [[business/marketing/marca/_index]] — **dependência**: skill usada para criar carrosséis Budamix conforme DNA visual
+- [[meta/mocs/MOC - Design Systems Budamix]] — **autoridade**: paleta v2.1 Floresta com Faísca + tokens Budamix são input
+- [[business/marketing/marca/templates-carrossel-paper]] — **filho**: templates concretos criados no Paper que esta skill manipula

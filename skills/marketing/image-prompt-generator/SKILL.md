@@ -108,3 +108,11 @@ Sempre entregue o resultado neste formato:
 ## Princípios gerais (sempre aplicar)
 
 Leia `references/fundamentals.md` se precisar de orientação sobre estrutura de prompt, especificidade, composição, texto em imagens, ou iteração. Para a maioria dos casos, os arquivos específicos já têm tudo que é necessário.
+
+## Conectado a
+
+- [[business/marketing/marca/_index]] — **dependência**: geração de imagens Budamix segue paleta+DNA da marca
+- [[meta/mocs/MOC - Design Systems Budamix]] — **autoridade**: tokens visuais aplicáveis aos prompts
+- [[knowledge/concepts/nano-banana-mcp-setup]] — **tema**: ferramenta irmã (Gemini); decisão entre os dois é caso-a-caso
+- [[knowledge/concepts/credenciais-map]] — **ref**: OpenAI API key mapeada
+- [[projects/social-studio-reborn]] — **consumidor**: publicador pode usar prompts gerados para criar assets

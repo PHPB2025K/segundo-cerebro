@@ -210,3 +210,7 @@ openclaw restart
 - [[automacoes/crons-index]] — índice de crons existentes
 - [[projects/openclaw-vps]] — infraestrutura VPS
 - [[knowledge/concepts/credenciais-map]] — credenciais 1Password
+
+- [[meta/mocs/MOC - Governanca OpenClaw]] — **autoridade**: MOC define leveling (L1/L2/L3/L4), heartbeats e protocolos
+- [[memory/context/business-context]] — **ref**: visão panorâmica do business que o novo agente precisa absorver
+- [[memory/context/people]] — **tema**: agentes existentes listados na seção Agentes AI

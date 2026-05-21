@@ -160,3 +160,7 @@ Sinal 30% → Numerário → 70% Balanço (cada um: pending → paid)
 - [[business/importacao/_index]] — índice importação
 - [[knowledge/concepts/credenciais-map]] — credenciais (7 items GB Import Hub)
 - [[memory/context/deadlines]] — prazos financeiros
+
+- [[business/importacao/estrategia-fiscal-gb]] — **autoridade**: NFs e documentos da importação seguem a regra fiscal v2.1 (90/10, sem destaque ICMS, IPI suspenso)
+- [[skills/gb-import-hub/SKILL]] — **dependência**: skill operacional que executa o SOP via API do Hub
+- [[meta/mocs/MOC - Supabase Ecosystem]] — **tema**: projeto Supabase do Import Hub aparece no MOC

@@ -214,3 +214,7 @@ Margem = (Lucro / Preço) × 100
 - [[meta/mocs/MOC - Listing Pipeline]] — pipeline de listings
 - [[meta/mocs/MOC - Taxas e Precificacao]] — taxas e precificação
 - [[automacoes/sops/criar-listing-amazon]] — SOP equivalente Amazon
+
+- [[business/marketplaces/_index]] — **pai**: índice de marketplaces inclui Shopee como canal
+- [[openclaw/agents/trader/IDENTITY]] — **executor**: Trader é o agente responsável por marketplaces
+- [[memory/context/people]] — **ref**: Lucas é focal point Shopee (validações operacionais)

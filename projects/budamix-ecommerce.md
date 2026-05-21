@@ -187,3 +187,31 @@ SUPABASE_ACCESS_TOKEN="$(op item get 'Supabase Access Token - CLI' --vault OpenC
 ## Notas relacionadas
 
 - [[memory/context/decisoes/2026-04|Decisões Abril 2026]]
+
+---
+
+## Atualização 2026-05-21 (tarde/noite)
+
+**Catálogo Tulipa reorganizado:** 7 produtos separados (1 por cor) + 8º **Brasil Copa** (clone Shopee). Cada um com 49 variantes, ~336 imagens, padrão V4 `Kit 6 Canecas 250ml Tulipa de Porcelana Budamix | [Cor]`. SKUs Amazon preservados (TL250Z/A/V/R/B/P/TL6250 + TL250BRCOPA).
+
+**Aba SITE na planilha de Precificação criada** como SSoT do estoque/precificação do site. Substitui aba ESTOQUE como fonte do cron `sync.py` (que agora propaga em **kits** em vez de unidades). 17 colunas, fórmulas MAP/SPLIT/XLOOKUP, formatação condicional na margem.
+
+**Sistema de cupons end-to-end (4 entregas):**
+- Schema banco + RPC `validate_coupon` + cupom **BUDAMIX10** (10%, sem mínimo, ilimitado)
+- Admin `/admin/cupons` (CRUD + stats)
+- Frontend Cart/Checkout (input + persistência + revalidação automática)
+- Edge functions `create-mp-payment` v11 + `mp-webhook` v12 (re-validação server-side + registro de redenção)
+
+**Precificação atualizada de 15 produtos não-Tulipa** (margem alvo 50% / posicionamento premium ~15% acima MELI quando margem ideal estoura mercado). Kit 6 Canequinhas Acrílico inativado (vendia em prejuízo).
+
+**Fixes:**
+- Bug capa errada nos cards (filtro `variant_id IS NULL` em 9 listagens)
+- Bug "tela em branco" no checkout (botão Finalizar Compra liberado sem CEP)
+- Preços Tulipa restaurados pra R$ 64,90 (estavam errados em R$ 55,90 — causa não identificada)
+- Home: 3 imagens grandes do EditorialSection + linha verde do BenefitsSection removidas
+- PDP mobile: checklist genérico ("Produção artesanal" / "Entrega em todo o Brasil" / "Troca fácil em 7 dias") removido
+
+**Commits**: `3d3b329`, `9a09b42`, `42f1c8f`, `56f3815`, `d14a34b`.
+**Edge functions**: `create-mp-payment@v11`, `mp-webhook@v12`.
+
+Detalhes completos em [[memory/sessions/2026-05-21]].

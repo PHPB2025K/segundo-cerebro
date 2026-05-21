@@ -149,6 +149,15 @@ _Atualizado: 2026-05-21 22:30 BRT — Preview mobile entregue em prod + PDP poli
 - [ ] **Budamix E-commerce — conteúdo real das páginas stub** `/faq`, `/contato`, `/termos`, `/trocas-e-devolucoes`; hoje são Coming Soon/noindex.
 - [ ] **Newsletter Budamix** — formulário ainda não persiste email; precisa backend real.
 
+## 🔥 Budamix E-commerce — pós-sessão 21/05 noite (cupons + catálogo Tulipa + aba SITE)
+
+- [ ] **Validar webhook MP em produção com BUDAMIX10** — quando alguém pagar usando o cupom, conferir se `coupon_redemptions` recebeu INSERT e `coupons.redemption_count` do BUDAMIX10 incrementou. Visível no `/admin/cupons` (3 cards de stats).
+- [ ] **Investigar causa do preço Tulipa ter virado R$ 55,90** (deveriam ser R$ 64,90; uma variante com R$ 55,91 — centavo solto sugere edição manual). Corrigido via SQL em 21/05, mas causa não identificada — risco de regredir.
+- [ ] **Hero por anúncio nos 6 produtos novos Tulipa** — cada um ainda usa o mesmo set de fotos gerais clonadas; substituir manualmente a hero de cada cor pelo destaque da cor do título.
+- [ ] **Trigger sync estoque por SKU compartilhado nos 7 Tulipa** — quando vender 1 kit Azul no anúncio "Azul", os outros 6 anúncios com mesmo SKU `TL250Z` não descontam. Implementar trigger `AFTER UPDATE` em `product_variants` que propaga `stock` por SKU.
+- [ ] **Conferir se Mercado Pago absorve juros do parcelamento** — col PARCELAMENTO da aba SITE assume 1,5% (mesma fórmula AMAZON). Se MP absorve, ajustar pra 0.
+- [ ] **Investigar quem desativou variantes "espelho" dos 6 Tulipa novos** entre 14:50–14:57 do dia 21/05. Reativadas via SQL — entender o caminho de edição pra não voltar a acontecer.
+
 ## 🚨 Jurídico / Contratos
 
 - [ ] **Guarani Sistemas — enviar o email formal de contestação/distrato** com pedido de suspensão de protesto, memória de cálculo aberta e proposta **sem reconhecimento de dívida**.

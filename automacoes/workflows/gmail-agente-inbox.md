@@ -58,3 +58,5 @@ Categoriza automaticamente emails recebidos em 9 categorias usando Claude AI com
 
 - [[projects/gmail-organizer]] — ficha do projeto
 - [[projects/n8n-builder]] — infraestrutura N8N
+
+- [[knowledge/concepts/credenciais-map]] — **ref**: Anthropic API + Gmail OAuth mapeados

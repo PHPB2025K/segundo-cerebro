@@ -98,3 +98,11 @@ O fluxo já está publicado no N8N, mas deve permanecer inativo até fechar a po
 - Desconto/bonificação só passa com justificativa comercial/fiscal explícita.
 - Idempotência por `message_id + número do pedido`.
 - Um pedido por execução; fila fica a cargo do N8N/Evolution e, se necessário, será evoluída para worker determinístico.
+
+## Conectado a
+
+- [[automacoes/workflows/briefing-pipeline-pedidos-atacado-v2.4]] — **pai**: briefing canônico que originou este workflow
+- [[projects/financeflow]] — **dependência**: FinanceFlow/Fisco cria pedido real no Bling
+- [[openclaw/agents/fisco/IDENTITY]] — **executor**: Fisco interpreta + valida + cria
+- [[projects/mission-control]] — **ref**: endpoint mission.budamix.com.br/api/fisco/pedidos-venda-gb
+- [[knowledge/concepts/bling-api-v3-aprendizados]] — **tema**: aprendizados Bling aplicam ao endpoint de pedidos

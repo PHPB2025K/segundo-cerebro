@@ -62,3 +62,6 @@ launchd não dispara timers durante sleep. Quando o Mac volta, o agente faz o pr
 - [[memory/sessions/2026-04-28]] — sessão que entregou o setup
 - [[memory/context/decisoes/2026-04#[28/04] Vault como SSoT — Fase 4 concluída + protocolo Git seguro]]
 - `meta/scripts/safe-write.sh` — script chamado pelo agente
+
+- [[meta/mocs/MOC - Governanca OpenClaw]] — **tema**: vault SSoT é parte da governança Kobe ↔ Mac
+- [[knowledge/concepts/stack-tecnico]] — **ref**: safe-write.sh sync + lockfile aparecem na stack de devops

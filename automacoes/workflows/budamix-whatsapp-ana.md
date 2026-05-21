@@ -62,3 +62,6 @@ Agente de atendimento WhatsApp "Ana" para a marca Budamix. Recebe mensagens via 
 
 - [[projects/canggu]] — ficha do projeto
 - [[projects/whatsapp-api]] — infraestrutura WhatsApp
+
+- [[knowledge/concepts/stack-tecnico]] — **ref**: Evolution API + Claude AI + Supabase na stack
+- [[knowledge/concepts/credenciais-map]] — **ref**: Anthropic API key + Evolution API mapeadas

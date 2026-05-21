@@ -72,3 +72,5 @@ Coach de corrida AI "Antonieta" analisa cada atividade do Strava. Pipeline: rece
 
 - [[projects/running-coach-ai]] — ficha do projeto
 - [[projects/n8n-builder]] — infraestrutura N8N
+
+- [[knowledge/concepts/credenciais-map]] — **ref**: Strava OAuth + Claude API

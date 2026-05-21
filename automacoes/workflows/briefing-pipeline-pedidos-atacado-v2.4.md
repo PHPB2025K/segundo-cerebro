@@ -179,3 +179,11 @@ Log registrado
 ```
 
 Sem PDF oficial do Bling, não existe go-live de criação real.
+
+## Conectado a
+
+- [[automacoes/workflows/pedidos-venda-gb-bling]] — **filho**: workflow N8N que implementa o briefing (rota /api/fisco/pedidos-venda-gb)
+- [[projects/financeflow]] — **dependência**: FinanceFlow agente Fisco cria o pedido no Bling Matriz
+- [[openclaw/agents/fisco/IDENTITY]] — **executor**: Fisco interpreta a mensagem com LLM + alias map e emite o pedido
+- [[knowledge/concepts/bling-api-v3-aprendizados]] — **tema**: API v3 do Bling tem comportamentos não-óbvios que afetam a obtenção do PDF
+- [[projects/mission-control]] — **ref**: rota /api/fisco/pedidos-venda-gb hospedada no Mission Control

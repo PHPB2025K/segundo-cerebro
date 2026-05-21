@@ -557,7 +557,7 @@ def compute_metrics(orders: list[dict], cancelled: list[dict], platform: str = "
                     "source_signals": variation.get("source_signals") or {},
                     "raw_skus": [],
                     "platform_item_id": item.get("platform_item_id") or item.get("asin") or "",
-                    "title": variation.get("short_product_name") or variation.get("display_name") or title,
+                    "title": title or variation.get("short_product_name") or variation.get("display_name") or "",
                 }
             if raw_sku and raw_sku not in product_meta[key]["raw_skus"]:
                 product_meta[key]["raw_skus"].append(raw_sku)

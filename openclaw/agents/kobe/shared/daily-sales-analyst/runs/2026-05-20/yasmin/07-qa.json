@@ -1,70 +1,59 @@
 {
-  "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem passou por todos os 11 gates sem violações críticas ou maiores. Foram identificados 3 problemas de severidade Menor, todos isolados e sem impacto na leitura operacional da mensagem: (1) o nome do KIT4YW320 no Top Produtos inclui 'Retangular', descritor ausente no raw_title da fonte canônica; (2) o insight 3 da análise omite o detalhe final 'com estoque disponível no CD' presente na Condensadora, sem alterar a tese central; (3) os percentuais 57% e 78% aparecem sem casa decimal, diferente do padrão de 1 casa aplicado ao -2,7% no mesmo bullet, embora sejam fiéis à formulação da Condensadora. Regra de agregação aplicada: 0 Maiores + 3 Menores não sistêmicos → APROVADO COM RESSALVA. Fidelidade à Condensadora preservada, bloqueios todos respeitados e documentados, estrutura Slack correta em ordem e seções, dados batem com pacote validado, responsável e plataforma corretos, sem prioridades inventadas.",
-  "send_allowed": true,
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "1 problema Crítico encontrado no Gate 8: as Decisões de Formatação registram explicitamente 'Insight 3 manteve abaixo do threshold de 0,85 com os valores de health', mas a mensagem final não contém os valores 0,75 e 0,71. Contradição direta entre log e mensagem. Adicionalmente, 1 problema Maior no Gate 6: os valores específicos de health (0,75 e 0,71) foram removidos do insight 3, violando a Diretriz Pedro 2026-05-17 — remoção de número necessário para que Yasmin entenda a gravidade da ação. Ambos derivam da mesma raiz. Agregação aplicada: 1+ Crítico → BLOQUEADO.",
+  "send_allowed": false,
   "send_real_allowed": false,
   "gates_avaliados": {
     "gate_1_data_periodo_fonte": "OK",
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "RESSALVA",
-    "gate_6_analise_conta": "RESSALVA",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "FALHA",
     "gate_7_prioridades": "OK",
-    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_8_bloqueios_confianca_logs": "FALHA",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "RESSALVA"
+    "gate_11_padrao_numerico_formatacao": "OK"
   },
   "contagem_severidade": {
-    "criticos": 0,
-    "maiores": 0,
-    "maiores_gates_distintos": 0,
-    "menores": 3,
-    "regra_agregacao_aplicada": "0 Maiores + 3 Menores não sistêmicos → APROVADO COM RESSALVA"
+    "criticos": 1,
+    "maiores": 1,
+    "maiores_gates_distintos": 1,
+    "menores": 0,
+    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
   },
   "problemas_encontrados": [
     {
-      "severidade": "Menor",
-      "gate": "5 — Top Produtos",
-      "texto_atual": "Kit 4 Potes de Vidro 320ml Retangular Azul-petróleo",
-      "texto_esperado": "Kit 4 Potes de Vidro 320ml Tampa Hermético 4 Travas Azul-petróleo (ou similar fiel ao raw_title, sem 'Retangular')",
-      "estado_atual": "",
-      "estado_esperado": "",
-      "regra_violada": "raw_title da fonte é 'Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-petróleo'; o Slack Writer adicionou 'Retangular' — descritor não presente na fonte canônica, nem no display_name, nem no short_product_name do pacote; produto permanece identificável mas contém atributo fabricado",
-      "bloqueia_envio": false
+      "severidade": "Crítico",
+      "gate": "8 — Bloqueios, confiança e logs da Slack Writer",
+      "texto_atual": "operam com health abaixo do threshold de 0,85",
+      "texto_esperado": "operam com health 0,75 e 0,71 — abaixo do threshold de 0,85",
+      "estado_atual": "Decisões de Formatação registram: 'Insight 3 manteve abaixo do threshold de 0,85 com os valores de health — motivo: métrica que apoia compreensão imediata da ação, não uso de métrica como manchete'. A mensagem final não contém os valores 0,75 e 0,71 em nenhuma parte do insight 3.",
+      "estado_esperado": "O log deve refletir fielmente a mensagem final, ou a mensagem final deve conter os valores de health conforme o log declara ter preservado.",
+      "regra_violada": "Gate 8 — 'Bloquear se: decisão registrada contradiz a mensagem final'",
+      "bloqueia_envio": true
     },
     {
-      "severidade": "Menor",
-      "gate": "6 — Análise da Conta",
-      "texto_atual": "Full dos produtos de maior valor rodou sem restrição.",
-      "texto_esperado": "Full dos produtos de maior valor rodou sem restrição, com estoque disponível no CD.",
-      "estado_atual": "",
-      "estado_esperado": "",
-      "regra_violada": "Insight 3 da Condensadora termina com 'com estoque disponível no CD'; Slack Writer omitiu esse detalhe de suporte sem justificativa registrada nas Decisões de Formatação; a tese central está preservada mas a omissão reduz a evidência que suporta a conclusão operacional",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "11 — Padrão numérico e formatação objetiva",
-      "texto_atual": "57% vs 78% em 7 dias",
-      "texto_esperado": "57,1% vs 77,7% em 7 dias (ou ao menos manter 1 casa decimal conforme padrão, ex: 57,0% vs 78,0%)",
-      "estado_atual": "",
-      "estado_esperado": "",
-      "regra_violada": "Padrão numérico da mensagem define percentuais com vírgula e 1 casa decimal; o mesmo bullet que usa '57% vs 78%' (sem decimal) é a mesma seção onde '-2,7%' segue o padrão correto — inconsistência de formatação; a origem está na Condensadora que também arredondou, mas o Slack Writer não corrigiu o padrão ao transcrever",
+      "severidade": "Maior",
+      "gate": "6 — Análise da Conta (fidelidade à Condensadora)",
+      "texto_atual": "o Kit 4 Potes 1050ml Retangular (2º em volume, 13 pedidos) e o Conjunto 5 Potes Tampa Vermelha (5º, 5 pedidos) operam com health abaixo do threshold de 0,85",
+      "texto_esperado": "o Kit 4 Potes 1050ml Retangular (2º em volume ontem, 13 pedidos) e o Conjunto 5 Potes Tampa Vermelha (5º, 5 pedidos) operam com health 0,75 e 0,71 — abaixo do threshold de 0,85",
+      "estado_atual": "Os valores específicos de health (0,75 para KIT4YW1050 e 0,71 para IMB501V) foram removidos do insight 3. A Condensadora entregou esses valores explicitamente como parte do insight.",
+      "estado_esperado": "Os valores 0,75 e 0,71 devem aparecer no bullet do insight 3, pois são os números que informam a Yasmin a gravidade exata da degradação e a urgência relativa da ação de checagem de health.",
+      "regra_violada": "Diretriz Pedro 2026-05-17 — 'remover número ou referência que era necessário para o responsável entender a ação' → Maior. Gate 6 — 'Nenhum termo analítico-chave removido'.",
       "bloqueia_envio": false
     }
   ],
-  "correcoes_obrigatorias_antes_envio": [],
-  "ressalvas_memoria_interna": [
-    "O produto TL6250 foi corretamente referenciado como 'Kit 6 Canecas Porcelana Tulipa 250ml' na mensagem final, respeitando o bloqueio da Granular e da Condensadora sobre o display_name interno incorreto. O alias interno 'Kit 6 Tigelas de Vidro 250ml' deve ser corrigido no mapeamento reviewed_sku_display_map antes de ser usado em análise de família ou mix histórico nas próximas entradas de memória.",
-    "O KIT4YW320 (MLB4073064873) tem confidence 'medium' e mapping_status 'mapped_generic_sku'; o uso de 'Retangular' no nome do Top Produtos é artefato de inferência familiar, não de fonte validada. Registrar para revisão do mapeamento.",
-    "O data readiness DADOS_PARCIAIS refere-se exclusivamente ao volume_band da conta Shopee (Budamix Store -43,2%), sem impacto na validade dos dados ML. A mensagem ML não menciona o status parcial porque não há dado ML com qualidade comprometida — comportamento correto."
+  "correcoes_obrigatorias_antes_envio": [
+    "Incluir os valores de health 0,75 e 0,71 no insight 3 da seção ANÁLISE DA CONTA, conforme a Condensadora entregou: 'operam com health 0,75 e 0,71 — abaixo do threshold de 0,85'. O trecho atual 'operam com health abaixo do threshold de 0,85' deve ser corrigido.",
+    "Alinhar o campo Decisões de Formatação com a mensagem final corrigida: o log deve refletir exatamente o que está na mensagem enviada."
   ],
+  "ressalvas_memoria_interna": [],
   "ressalvas_auditoria_nao_bloqueante": [
-    "A análise da conta apresenta 3 insights alinhados à Condensadora, sem geração de conteúdo adicional pela Slack Writer. Do ponto de vista analítico, o segundo insight ('três anúncios com estoque crítico') menciona os riscos de forma genérica sem identificar os produtos pelo nome, o que é operacionalmente correto dado que os nomes aparecem nas prioridades do dia. Não é violação de regra mas pode exigir que Yasmin cruce análise com prioridades para identificar os anúncios — aceitável dado o formato aprovado.",
-    "A omissão de 'para calcular impacto acumulado no health e no ranking' na Prioridade 1 (presente na Condensadora) é tecnicamente uma leve simplificação. A substância operacional da ação está preservada. Não bloqueia.",
-    "Os percentuais 57% e 78% são fiéis à formulação textual da Condensadora, que os arredondou a partir dos valores reais de 57,1% e 77,7%. O Slack Writer reproduziu fielmente a fonte. A divergência de formato numérico é sistêmica à camada 5, não introduzida pela camada 6."
+    "O percentual '57%' usado no insight 1 da ANÁLISE é arredondamento originado na própria Condensadora (Granular entregou 56,7%). A Slack Writer foi fiel à Condensadora. Não há falha da Slack Writer — mas a Condensadora deve considerar usar 1 casa decimal nos próximos ciclos para manter coerência com o padrão numérico aprovado.",
+    "A omissão de 'gold_special' e de 'no ciclo de hoje' no insight 2 são simplificações menores que não alteram tese, conectivo ou urgência do alerta. Sem impacto operacional.",
+    "914C_BAV citado em PRIORIDADES como 'Kit 06 Canequinhas Acrílico': uso legítimo — a Condensadora usou esse nome explicitamente em prioridades_condensadas, e a restrição de confidence medium aplica-se a análise de mix e Top Produtos, não a ações operacionais nomeadas pela própria Condensadora."
   ],
   "llm_used": true,
   "model": "sonnet",

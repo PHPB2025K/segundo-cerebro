@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-20
-**Gerado em:** 2026-05-21T13:53:06.922960+00:00
+**Gerado em:** 2026-05-21T14:36:47.884496+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** PARTIAL
@@ -14,7 +14,7 @@
 ## Resumo por Recipient
 
 ### Yasmin (mercado_livre)
-- **Status:** APPROVED_WITH_REMARKS
+- **Status:** BLOCKED
 - **send_allowed:** False
 - **llm_used:** True
   - 01-estrategica: LLM
@@ -24,9 +24,9 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** O produto TL6250 foi corretamente referenciado como 'Kit 6 Canecas Porcelana Tulipa 250ml' na mensagem final, respeitando o bloqueio da Granular e da Condensadora sobre o display_name interno incorreto. O alias interno 'Kit 6 Tigelas de Vidro 250ml' deve ser corrigido no mapeamento reviewed_sku_display_map antes de ser usado em análise de família ou mix histórico nas próximas entradas de memória.
-- **Aviso:** O KIT4YW320 (MLB4073064873) tem confidence 'medium' e mapping_status 'mapped_generic_sku'; o uso de 'Retangular' no nome do Top Produtos é artefato de inferência familiar, não de fonte validada. Registrar para revisão do mapeamento.
-- **Aviso:** O data readiness DADOS_PARCIAIS refere-se exclusivamente ao volume_band da conta Shopee (Budamix Store -43,2%), sem impacto na validade dos dados ML. A mensagem ML não menciona o status parcial porque não há dado ML com qualidade comprometida — comportamento correto.
+- **Aviso:** O percentual '57%' usado no insight 1 da ANÁLISE é arredondamento originado na própria Condensadora (Granular entregou 56,7%). A Slack Writer foi fiel à Condensadora. Não há falha da Slack Writer — mas a Condensadora deve considerar usar 1 casa decimal nos próximos ciclos para manter coerência com o padrão numérico aprovado.
+- **Aviso:** A omissão de 'gold_special' e de 'no ciclo de hoje' no insight 2 são simplificações menores que não alteram tese, conectivo ou urgência do alerta. Sem impacto operacional.
+- **Aviso:** 914C_BAV citado em PRIORIDADES como 'Kit 06 Canequinhas Acrílico': uso legítimo — a Condensadora usou esse nome explicitamente em prioridades_condensadas, e a restrição de confidence medium aplica-se a análise de mix e Top Produtos, não a ações operacionais nomeadas pela própria Condensadora.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/00-data-package.json`

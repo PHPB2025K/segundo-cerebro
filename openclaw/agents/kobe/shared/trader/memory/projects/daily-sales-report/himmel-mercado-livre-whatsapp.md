@@ -236,3 +236,24 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 **Status:** aberto — contexto estratégico a observar nos reports e planejamentos até a virada primavera/verão 2026.
 
+### 2026-05-21 10:56–11:47 BRT — Pedido para incluir anúncio em campanha de aceleração
+
+**Participantes:** Yasmin Oscarlino; Cláudio Manrique Junior/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Solicitação operacional de aceleração de anúncio específico.
+
+**Contexto registrado:**
+- Yasmin pediu à Himmel para incluir o anúncio **MLB6167272090** em alguma campanha de **aceleração**.
+- Cláudio respondeu em seguida apenas com saudação, sem confirmação explícita de execução, campanha escolhida, verba, ROAS/ACoS alvo ou prazo.
+
+**Impacto esperado:**
+- Se a inclusão for executada, o anúncio **MLB6167272090** pode ter alteração de exposição, investimento, vendas e eficiência a partir de **21/05**.
+- Como ainda não houve confirmação de ação, tratar como **pendência operacional**, não como mudança efetivada.
+
+**Como validar nos dados:**
+- Verificar se **MLB6167272090** passou a constar em campanha de aceleração no Mercado Livre Ads.
+- Monitorar entre **2026-05-21 e 2026-05-28**: impressões, cliques, vendas, investimento, ACoS/TACoS, ROAS, preço, estoque e conversão do anúncio.
+- Se houver alta de gasto sem venda incremental, cobrar ajuste de segmentação/meta ou retorno da Himmel sobre a campanha usada.
+
+**Status:** aberto — aguardando confirmação de execução pela Himmel e validação nos dados de ML Ads.
+

@@ -1,6 +1,11 @@
 # Lições — RH
 
-_Atualizado: 2026-05-19_
+_Atualizado: 2026-05-20_
+
+## 2026-05-20
+- O fechamento diário pode revelar novas violações mesmo em dia sem conversas RH; a consolidação deve continuar cruzando sessões com dados do Ponto Certo.
+- Intervalos abaixo de 1h estão recorrentes em Guilherme, Leonardo e Lucas; há risco de padrão trabalhista se não for tratado por orientação operacional.
+- Saídas ausentes no fechamento precisam ser validadas antes de qualquer correção ou cobrança; consolidação não substitui confirmação do funcionário.
 
 ## 2026-05-19
 - Um dia pode ter novos riscos de compliance mesmo sem conversa RH ou comunicação criada; a consolidação precisa olhar registros do Ponto Certo quando não houver sessões visíveis.

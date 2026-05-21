@@ -46,6 +46,7 @@ tags:
 - **[[estrategia-fiscal-gb|Estratégia Fiscal de Faturamento — v2.0 (modelo 90/10)]]** — fonte da verdade para transferência Matriz→Filial, distribuição entre CNPJs Simples, precificação interna e TTD 409. PDF oficial anexo.
 
 ## Notas relacionadas no vault
+- [[meta/mocs/MOC - Importacao GB]] — **hub** do ciclo completo de importação (regra fiscal + Hub + planejamento + SOPs + Fisco)
 - [[projects/simulimpor]]
 - [[openclaw/agents/trader/IDENTITY]]
 - [[openclaw/agents/fisco/IDENTITY]]

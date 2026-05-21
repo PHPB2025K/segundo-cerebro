@@ -80,4 +80,10 @@ tags:
 
 ---
 
+## Conectado a
+
+- [[meta/mocs/MOC - Gestao de Pessoas GB]] — **hub** que separa gestão de performance vs RH operacional (Ponto Certo)
+
+---
+
 *Atualizado: 22/04/2026 — Leonardo adicionado como focal point Amazon.*

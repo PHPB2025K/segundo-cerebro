@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem passou todos os 11 gates sem falha crítica ou maior. Um único problema Menor foi identificado no Gate 11: o percentual '+32% vs mesmas quartas' na seção ANÁLISE DA CONTA aparece sem casa decimal, violando o padrão obrigatório de vírgula + 1 casa (deveria ser '+32,4%'). O problema originou-se na Condensadora e foi reproduzido fielmente pela Slack Writer — não é falha de rediagnóstico, mas é falha objetiva de formato na mensagem final. Todos os bloqueios da Granular e da Condensadora foram respeitados com rastreabilidade completa nos logs. Os três insights são fiéis à Condensadora, conectivos de contraste preservados, linguagem de hipótese/indício mantida. As três prioridades reproduzem ação, motivo, sinal de confirmação/refutação e condição de escalonamento conforme prescrito. Regra de agregação: 0 Críticos + 0 Maiores + 1 Menor = APROVADO COM RESSALVA.",
+  "motivo": "A mensagem passa em 9 dos 11 gates sem falha. Dois gates apresentam ressalvas: Gate 6 tem 1 violação Maior (contraste estrutural 'não são 2 anúncios em penalização — são 4 dos top10' foi removido da Slack Writer, violando a regra de enquadramento preservado) e 1 violação Menor ('retirando progressivamente' simplificado para 'retirando'); Gate 5 tem 1 violação Menor (KIT10YW1050 usa display_name truncado em vez do título real de top_items_details). Total: 1 Maior + 2 Menores. Regra de agregação: 1 Maior + Menores = APROVADO COM RESSALVA. Dados, período, destinatário, estrutura Slack, Top Produtos, prioridades, bloqueios, consistência entre camadas, tom e padrão numérico estão corretos.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -8,43 +8,62 @@
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "OK",
-    "gate_6_analise_conta": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "RESSALVA",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "RESSALVA"
+    "gate_11_padrao_numerico_formatacao": "OK"
   },
   "contagem_severidade": {
     "criticos": 0,
-    "maiores": 0,
-    "maiores_gates_distintos": 0,
-    "menores": 1,
-    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 1 Menor → APROVADO COM RESSALVA"
+    "maiores": 1,
+    "maiores_gates_distintos": 1,
+    "menores": 2,
+    "regra_agregacao_aplicada": "1 Maior + Menores → APROVADO COM RESSALVA. Não há 2+ Maiores em gates diferentes, não há Crítico, não há degradação sistêmica por 6+ Menores."
   },
   "problemas_encontrados": [
     {
-      "severidade": "Menor",
-      "gate": "11 — Padrão numérico e formatação objetiva",
-      "texto_atual": "+32% vs mesmas quartas",
-      "texto_esperado": "+32,4% vs mesmas quartas",
+      "severidade": "Maior",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "O mapa de risco de saúde dos anúncios é mais amplo do que parece: 4 dos top 10 estão em zona crítica ou de atenção, sendo 2 abaixo do limiar de penalização do ML (health 0,75 e 0,71) e 2 exatamente no limiar (health 0,85 e 0,85).",
+      "texto_esperado": "O mapa de risco de health é mais amplo do que parece: não são 2 anúncios em penalização — são 4 dos top10 em zona crítica ou de atenção, com 2 abaixo do limiar de penalização ML (health 0,75 e 0,71) e 2 exatamente no limiar (health 0,85 e 0,85).",
       "estado_atual": null,
       "estado_esperado": null,
-      "regra_violada": "Percentuais devem aparecer com vírgula e 1 casa decimal quando exibidos. O dado bruto mostra gmv_vs_same_weekday_pct = 32.4; a Condensadora arredondou para +32% sem decimal, e a Slack Writer reproduziu fielmente. A falha de formato está na mensagem final independentemente da camada que a introduziu.",
+      "regra_violada": "Gate 6 — Checklist de fidelidade: 'Contraste/inversão/enquadramento preservados — se a Condensadora usou padrão não é X, é Y [...] o Slack mantém a estrutura.' A Condensadora usou explicitamente o padrão 'não são 2 anúncios em penalização — são 4 dos top10', equivalente estrutural direto de 'não é X, é Y'. A Slack Writer substituiu esse enquadramento por afirmação direta sem contraste, removendo a ênfase de que a situação é pior do que parecia pela leitura anterior (2 anúncios). O dado numérico foi preservado, mas o enquadramento analítico que transfere o sinal de alerta ampliado foi perdido.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas — 5 pedidos",
+      "texto_esperado": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades — 5 pedidos",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Gate 5 — Top Produtos ML: produto deve usar título real do anúncio ML conforme top_items_details[i].title. A Condensadora bloqueou aliases internos Budamix e instruiu uso de top_items_details[i].title como título real. Para KIT10YW1050, o top_items_details.title é 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades'; a Slack Writer usou o display_name truncado ('Kit 10 Potes Herméticos 1050ml Refratário 4 Travas'), inconsistente com a própria Decisão de Formatação que declara usar 'título real ML'. O produto é identificável pela parte preservada; a violação é formal, não de identificação.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "o ADS de Himmel está cobrindo a exposição orgânica que o algoritmo ML está retirando.",
+      "texto_esperado": "o ADS de Himmel está cobrindo a exposição orgânica que o algoritmo ML está retirando progressivamente",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Gate 6 — Checklist de fidelidade: 'Nenhum termo analítico-chave removido.' O advérbio 'progressivamente' da Condensadora qualifica a natureza do processo (deterioração contínua, não pontual) e é relevante para o enquadramento do risco de health como estrutural. A remoção reduz levemente a especificidade sem alterar a tese central.",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Percentual '+32%' na ANÁLISE DA CONTA originou-se no arredondamento da Condensadora (camada 05), não na Slack Writer. A Condensadora deve ser orientada a preservar 1 casa decimal em percentuais no próximo ciclo para evitar reincidência.",
-    "Inconsistência de mapping_confidence no data builder (TL6250 / MLB6167272090 fixado como 'high' via reviewed_sku_display_map com alias incorreto) não afetou esta mensagem — o bloqueio foi respeitado e o título correto foi usado — mas o erro persiste na origem e deve ser corrigido antes do próximo ciclo.",
-    "Data Readiness status DADOS_PARCIAIS (volume_band shopee-budamix-store em partial) não afetou esta mensagem ML, mas deve ser registrado como contexto do ciclo."
+    "Gate 5: KIT10YW1050 (MLB4676726433) — Slack Writer declarou nas Decisões de Formatação que usaria 'título real ML disponível e consistente com raw_title', mas usou o display_name truncado ('Kit 10 Potes Herméticos 1050ml Refratário 4 Travas') em vez do top_items_details.title completo ('Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades'). Inconsistência entre log declarado e prática aplicada. Não induz erro de identificação neste ciclo.",
+    "Gate 6: Contraste analítico 'não são 2... são 4' da Condensadora não foi preservado. Para próximo ciclo: Slack Writer deve manter estruturas de enquadramento 'não é X, é Y' quando a Condensadora as usa explicitamente, mesmo ao simplificar linguagem."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "Os três bullets da ANÁLISE DA CONTA são essencialmente reproduções literais da Condensadora com remoções mínimas de metadados internos. A Diretriz Pedro 2026-05-17 prescreve 'linguagem mais simples e operacional' em relação à Condensadora — a simplificação realizada foi marginal (remoção de '(confirmado pela API ML, corrigindo a análise estratégica)', troca de 'e sim de' por 'é de', remoção de 'grupo de' em prioridade 2). Isso não constitui violação objetiva porque a Condensadora já utilizava linguagem operacional direta; não há frase que exija releitura nem jargão de consultoria. Registrado como sinal para evolução da Slack Writer: maior atividade de simplificação em ciclos futuros quando a Condensadora entregar linguagem analítica mais densa.",
-    "A seção VISÃO MERCADO LIVRE não incluiu o mix de fulfillment (Full 56,3% / Cross-Docking 43,7% no top10 de ontem). O dado estava disponível e é relevante para contexto operacional. A Condensadora não prescreveu sua inclusão na VISÃO — portanto não é falha da Slack Writer — mas seria informação útil como dado objetivo do dia. Registrado como sugestão para a Condensadora avaliar inclusão em ciclos futuros quando o desvio de mix for significativo (>15pp vs média 30d).",
-    "As prioridades são extensas (4 componentes cada: ação + motivo + confirmar/refutar + escalar se). O comprimento é justificado pela prescrição explícita da Condensadora, mas a experiência de leitura no Slack pode ser melhorada com formatação em sub-bullets nos próximos ciclos sem alterar o conteúdo."
+    "Insight 2 traduz 'health' para 'saúde dos anúncios' no título do bullet, mas preserva a notação técnica 'health 0,75' e 'health 0,71' nas referências numéricas. A decisão de formatação não registrou esta escolha. A inconsistência (saúde no título, health nos valores) não gera confusão para Yasmin mas poderia ser padronizada.",
+    "O nível de confiança 'média' declarado pela Condensadora para os alertas de confiança (alertas_de_confianca.nivel = média) foi tratado corretamente pela Slack Writer — linguagem hipotética preservada em todos os três insights. Nenhuma violação, mas o sinal de base parcial do pacote (DADOS_PARCIAIS) não é referenciado explicitamente na mensagem final. A Condensadora não instruiu mencioná-lo; ausência é coerente com os bloqueios definidos.",
+    "A nota da Granular sobre título correto do MLB3288536143 (IMB501V) para comunicação externa ('Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita', não 'Tampa Vermelha') foi respeitada corretamente tanto no Top Produtos quanto na prioridade P2. Nenhuma violação — registro apenas para confirmar que esta regra foi aplicada corretamente."
   ],
   "llm_used": true,
   "model": "sonnet",

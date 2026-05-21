@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-20
-**Gerado em:** 2026-05-21T20:04:26.630478+00:00
+**Gerado em:** 2026-05-21T21:08:00.543494+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,9 +24,8 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Percentual '+32%' na ANÁLISE DA CONTA originou-se no arredondamento da Condensadora (camada 05), não na Slack Writer. A Condensadora deve ser orientada a preservar 1 casa decimal em percentuais no próximo ciclo para evitar reincidência.
-- **Aviso:** Inconsistência de mapping_confidence no data builder (TL6250 / MLB6167272090 fixado como 'high' via reviewed_sku_display_map com alias incorreto) não afetou esta mensagem — o bloqueio foi respeitado e o título correto foi usado — mas o erro persiste na origem e deve ser corrigido antes do próximo ciclo.
-- **Aviso:** Data Readiness status DADOS_PARCIAIS (volume_band shopee-budamix-store em partial) não afetou esta mensagem ML, mas deve ser registrado como contexto do ciclo.
+- **Aviso:** Gate 5: KIT10YW1050 (MLB4676726433) — Slack Writer declarou nas Decisões de Formatação que usaria 'título real ML disponível e consistente com raw_title', mas usou o display_name truncado ('Kit 10 Potes Herméticos 1050ml Refratário 4 Travas') em vez do top_items_details.title completo ('Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades'). Inconsistência entre log declarado e prática aplicada. Não induz erro de identificação neste ciclo.
+- **Aviso:** Gate 6: Contraste analítico 'não são 2... são 4' da Condensadora não foi preservado. Para próximo ciclo: Slack Writer deve manter estruturas de enquadramento 'não é X, é Y' quando a Condensadora as usa explicitamente, mesmo ao simplificar linguagem.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/00-data-package.json`

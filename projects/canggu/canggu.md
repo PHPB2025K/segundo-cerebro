@@ -6,9 +6,16 @@ tags:
   - canggu
   - moc
 criado: 2026-04-22
-atualizado: 2026-05-06
+atualizado: 2026-05-21
 fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 ---
+
+> ⚠️ **21/05/2026** — Ana voltou após 13 dias muda (08-21/05). Causa raiz exata
+> ainda desconhecida: `process-message` rejeitava `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`
+> com 401 no edge runtime. Bypass aplicado: secret `INTERNAL_DISPATCH_TOKEN` via
+> header `X-Internal-Token` + `verify_jwt=false` no `process-message`. Versões
+> atuais: `webhook-whatsapp` v36, `process-message` v42, `ml-webhook` v12 (refresh
+> proativo). Pós-mortem pendente. Ver [[memory/context/decisoes/2026-05]].
 
 # Canggu — Map of Content
 

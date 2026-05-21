@@ -12,7 +12,16 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-21 22:30 BRT — Preview mobile entregue em prod + PDP polida (breadcrumb sem duplicidade, eyebrow removido, stock chip DNA Budamix)_
+_Atualizado: 2026-05-21 22:30 BRT — Preview mobile entregue em prod + PDP polida (breadcrumb sem duplicidade, eyebrow removido, stock chip DNA Budamix). Ana voltou a responder após 13 dias muda (08-21/05): bypass JWT via X-Internal-Token + parser tolerante a typos._
+
+## 🔴 Canggu/Ana — pós-fix de 21/05 (Ana voltou, mas backlog crítico)
+
+- [ ] **Pós-mortem do JWT desalinhado** — `process-message` retornava 401 desde 08/05 mesmo recebendo `Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}` enviado pelo `webhook-whatsapp`. Hipótese de rotação de chave não bate com memória do Kobe (sem registro de rotação em 07-08/05). Causa raiz exata ainda desconhecida. Investigar: comparar `JWT_SECRET` do projeto vs `SUPABASE_SERVICE_ROLE_KEY` decodificado, ver se algum painel/Vault tocou key sem audit log. Bypass atual com X-Internal-Token é workaround.
+- [ ] **Trazer `verify_jwt=true` de volta no `process-message`** — depois do pós-mortem da causa raiz do 401. Hoje (21/05) está com `verify_jwt=false` + validação manual de `X-Internal-Token` (secret 384 bits em env `INTERNAL_DISPATCH_TOKEN`). Mesma postura do `ml-webhook`, segurança equivalente, mas idealmente JWT padrão deveria voltar.
+- [ ] **Health check Canggu — substituir N8N por script versionado na VPS** — workflow `DEjLkJcllQEmrcLF` (Budamix WhatsApp Health Check) parou de gravar em `whatsapp_health_checks` em 07/05 10:45 BRT após refactor não-comitado (11 nodes git → 2 nodes live). Kobe sem acesso ao N8N por Cloudflare 1010 + export sumiu do repo. Plano: Python/bash cron na VPS gravando direto no Supabase. Defaults sugeridos: Telegram alert + 15min. Bug de Ana muda só foi pego visualmente porque esse monitor estava cego.
+- [ ] **Validador automatizado pós-deploy de edge functions** — cada deploy deveria disparar teste sintético (mensagem fake → conferir resposta no banco em 30s). Cron 5min. Teria pegado o 401 em minutos, não 13 dias.
+- [ ] **WhatsApp Cloud API (Meta oficial) — discussão estratégica** — Pedro perguntou hoje se valia migrar. Decisão: NÃO migrar como reação ao caso da Edneia (bug era pipeline interno, não transporte). Mas vale como projeto deliberado de médio prazo (3-4 semanas) pela estabilidade + observabilidade. Reabrir discussão depois de Health Check + Validador resolvidos.
+- [ ] **Bling Filial OAuth — re-autorização** — adiado por decisão do Pedro (21/05): "não estou usando esse Bling de qualquer maneira". Confirmado refresh manual retorna 400 "client_id inválido" → app OAuth foi deletado/desativado no painel Bling. Quando retomar uso, criar novo app, atualizar `marketplace_tokens.platform='bling_filial'` com novo `app_id` + `client_secret`. Bling Matriz continua funcionando normal.
 
 ## 🟡 OpenClaw / Kobe — pendências da sessão de 07/05
 

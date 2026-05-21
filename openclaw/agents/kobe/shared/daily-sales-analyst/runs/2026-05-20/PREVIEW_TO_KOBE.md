@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-20
-**Gerado em:** 2026-05-21T15:43:59.452328+00:00
+**Gerado em:** 2026-05-21T15:54:27.284805+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,10 +24,10 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** DADOS_PARCIAIS declarado no Layer 0 por volume da Shopee-Budamix-Store fora da banda 30d (–45,8%) — não afeta a mensagem ML. Todos os checks relevantes para Mercado Livre retornaram OK: volume_band_mercado-livre OK, reconciliation_mercado-livre OK, timezone_brt OK, product_identity_contract OK.
-- **Aviso:** 4 perguntas operacionais enviadas pela camada 3 à camada 4 ficaram sem resposta por ausência de dado no pacote (atribuição ADS por produto, pedidos pendentes em processamento do 914C_BAV, status de reposição logística do TL6250 e do 914C_BAV, posição competitiva em catálogo do IMB501V). Os riscos correspondentes foram comunicados na mensagem com ressalvas de incerteza corretas, sem fabricação de dado — nenhum 'não respondido por falta de dado' foi convertido em conclusão.
-- **Aviso:** Sync freshness marcado como 'not_measured' no Layer 0 por limitação de esquema. Limitação registrada e sem impacto na validação da mensagem.
-- **Aviso:** Confiança declarada como 'média' pela Condensadora. A limitação é estrutural ao pacote ML deste ciclo e não viola nenhuma regra objetiva — comunicação preserva o grau correto de incerteza.
+- **Aviso:** Log de decisão de formatação (Gate 5) registrou incorretamente a ordem de produtos empatados — 'conforme posição no pacote validado (IMB501V antes de TL6250 antes de KIT10YW1050)' — quando o pacote tem KIT10YW1050 na posição 4 e IMB501V na posição 5. A inconsistência é entre log e realidade do pacote, não entre log e mensagem. Corrigir instrução de ordenação de empates para próximos ciclos.
+- **Aviso:** Sinais de refutação de P2 e P3 foram comprimidos na redação das prioridades. Versões futuras da Slack Writer devem incluir o critério de resolução/dissipação do risco junto à condição de escalonamento.
+- **Aviso:** Palavra 'narrow' em inglês foi preservada literalmente da Condensadora. A Condensadora deve avaliar substituição por equivalente em português nos próximos ciclos.
+- **Aviso:** Descritor 'Retangular' atribuído ao KIT4YW320 sem base explícita na fonte — verificar se o produto é de fato retangular e, se sim, atualizar o display_name no mapeamento interno para refletir isso.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/00-data-package.json`

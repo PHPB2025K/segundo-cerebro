@@ -1,6 +1,6 @@
 {
-  "resultado_qa": "APROVADO",
-  "motivo": "Todos os 11 gates foram aprovados sem problema de severidade Crítico ou Maior. A mensagem é fiel à Condensadora em dados, teses, conectivos, verbos modais e contagem de insights (3 da Condensadora → 3 bullets no Slack, sem divergência). Todos os 7 bloqueios documentados pela Granular e Condensadora foram cruzados com a mensagem final e respeitados. Estrutura Slack na ordem exata aprovada, sem seções proibidas e com rodapé correto. Top Produtos corretamente separado por variação vendável (IMB501P e IMB501V em entradas distintas; TL6250 corrigido para 'Kit 6 Canecas Porcelana Tulipa 250ml' conforme raw_title validado pela Granular com confiança alta). Prioridades com ação, evidência, sinal de confirmação/refutação e gatilho de escalonamento completos. Padrão numérico correto em toda a mensagem. Destinatário, plataforma e responsável corretos. Nenhum SKU cru, nenhum item bloqueado reintroduzido, nenhuma hipótese convertida em fato. Regra de agregação aplicada: 0 Críticos, 0 Maiores, 0 Menores → APROVADO.",
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem está estruturalmente correta, fiel à Condensadora e sem violações críticas. Destinatário, plataforma, período, bloqueios e insights estão em conformidade com as fontes primárias. Foram identificados 5 Menores isolados: dois em Gate 5 (ordem de produtos empatados diverge do pacote e descritor 'Retangular' extrapolado para KIT4YW320), dois em Gate 7 (sinais de refutação das prioridades P2 e P3 omitidos) e um em Gate 10 (palavra inglesa 'narrow' em texto português). Nenhum é sistêmico. Regra aplicada: 0 Maiores + 5 Menores → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -8,33 +8,84 @@
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "OK",
+    "gate_5_top_produtos": "RESSALVA",
     "gate_6_analise_conta": "OK",
-    "gate_7_prioridades": "OK",
+    "gate_7_prioridades": "RESSALVA",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
-    "gate_10_tom_utilidade": "OK",
+    "gate_10_tom_utilidade": "RESSALVA",
     "gate_11_padrao_numerico_formatacao": "OK"
   },
   "contagem_severidade": {
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 0,
-    "regra_agregacao_aplicada": "0 problemas → APROVADO"
+    "menores": 5,
+    "regra_agregacao_aplicada": "0 Maiores + 5 Menores isolados (não sistêmicos) → APROVADO COM RESSALVA"
   },
-  "problemas_encontrados": [],
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "4. Conjunto 5 Potes de Vidro Redondos Tampa Vermelha — 5 pedidos\n5. Kit 10 Potes Herméticos 1050ml Refratário 4 Travas — 5 pedidos",
+      "texto_esperado": "4. Kit 10 Potes Herméticos 1050ml Refratário 4 Travas — 5 pedidos\n5. Conjunto 5 Potes de Vidro Redondos Tampa Vermelha — 5 pedidos",
+      "estado_atual": "Produtos empatados em 5 pedidos aparecem em ordem invertida em relação ao pacote validado (pacote: KIT10YW1050 posição 4, IMB501V posição 5). Log de decisão afirma incorretamente que seguiu a ordem do pacote ('IMB501V antes de TL6250 antes de KIT10YW1050').",
+      "estado_esperado": "Itens empatados em posições 4-5 devem seguir a ordem do pacote: KIT10YW1050 antes de IMB501V. Ou o log deve registrar a decisão de inversão com justificativa.",
+      "regra_violada": "Gate 5: 'ranking vem do pacote validado'. Log de decisão registrou ordem diferente da aplicada, criando inconsistência entre log e mensagem.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "Kit 4 Potes de Vidro 320ml Retangular — 3 pedidos",
+      "texto_esperado": "Kit 4 Potes de Vidro 320ml Tampa Hermético 4 Travas — 3 pedidos (ou derivado do raw_title sem 'Retangular')",
+      "estado_atual": "Produto KIT4YW320 aparece com descritor 'Retangular' que não consta em nenhuma fonte primária: raw_title é 'Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-petróleo' e display_name está truncado sem mencionar forma. O descritor parece extrapolado do padrão de nomes KIT4YW1050/KIT2YW1050.",
+      "estado_esperado": "Nome derivado exclusivamente do raw_title ou display_name disponíveis, sem adicionar descritor ausente na fonte.",
+      "regra_violada": "Gate 5: nome de produto deve ser derivado do raw_title ou display_name do pacote validado, sem inferência de características não presentes na fonte.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 7 — Prioridades do Dia",
+      "texto_atual": "Yasmin: registrar o ADS share de ontem (~60% do GMV) como primeiro ponto da série e acompanhar nos próximos 2–3 dias. O ROAS está eficiente; o risco não é a campanha em si, é não saber ainda se há base orgânica sustentável por baixo. Se o share ficar acima de 55% por 3 dias seguidos e o GMV começar a cair abaixo de R$ 4.500, alinhar com Kobe.",
+      "texto_esperado": "Incluir sinal de refutação da Condensadora: 'Share abaixo de 35% com GMV acima de R$ 4.000 sustentado confirma base orgânica relevante e enfraquece o risco.'",
+      "estado_atual": "Prioridade 2 preserva apenas a condição de escalonamento, omitindo o sinal de refutação explícito que a Condensadora definiu como parte do critério de monitoramento.",
+      "estado_esperado": "Sinal de confirmação/refutação preservado conforme definido pela Condensadora: condição de encerramento do risco ('share abaixo de 35% + GMV acima de R$ 4.000') deve aparecer para que Yasmin saiba quando o risco se dissipa.",
+      "regra_violada": "Gate 7: 'preserva sinal de confirmação/refutação'. A omissão deixa a prioridade sem critério explícito de resolução do risco.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 7 — Prioridades do Dia",
+      "texto_atual": "Yasmin: registrar os health atuais dos dois campeões em Full (0,75 e 0,71 — ambos abaixo do threshold ML de 0,85) como baseline e calcular a direção no próximo ciclo. Se health cair nos dois por 2 leituras seguidas e GMV ficar abaixo de R$ 4.500, alinhar com Himmel.",
+      "texto_esperado": "Incluir sinal de refutação da Condensadora: 'Health estável ou em recuperação no próximo ciclo: observação sem ação.'",
+      "estado_atual": "Prioridade 3 omite o sinal de refutação positivo que indica quando o risco está se dissipando e a ação pode ser encerrada.",
+      "estado_esperado": "Sinal de refutação explícito ('health estável ou em recuperação → observação sem ação') deve estar presente para fechar o ciclo de monitoramento.",
+      "regra_violada": "Gate 7: 'preserva sinal de confirmação/refutação'.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 10 — Tom e utilidade",
+      "texto_atual": "o resultado é narrow e apoiado em estrutura frágil",
+      "texto_esperado": "o resultado é concentrado (ou: pouco diversificado / apoiado em base estreita) e apoiado em estrutura frágil",
+      "estado_atual": "Palavra inglesa 'narrow' está embutida em texto português no Slack operacional direcionado a Yasmin. Conforme diretriz Pedro 2026-05-17, a comunicação deve ser simples e fácil de entender sem exigir bilinguismo.",
+      "estado_esperado": "Equivalente em português preservando a mesma nuance ('estreito', 'concentrado', 'pouco diversificado') sem desviar da tese da Condensadora.",
+      "regra_violada": "Gate 10 / Diretriz Pedro 2026-05-17: linguagem deve ser simples, clara e fácil de entender para o responsável da conta. Termo em inglês em contexto operacional português pode exigir releitura.",
+      "bloqueia_envio": false
+    }
+  ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "DADOS_PARCIAIS declarado no Layer 0 por volume da Shopee-Budamix-Store fora da banda 30d (–45,8%) — não afeta a mensagem ML. Todos os checks relevantes para Mercado Livre retornaram OK: volume_band_mercado-livre OK, reconciliation_mercado-livre OK, timezone_brt OK, product_identity_contract OK.",
-    "4 perguntas operacionais enviadas pela camada 3 à camada 4 ficaram sem resposta por ausência de dado no pacote (atribuição ADS por produto, pedidos pendentes em processamento do 914C_BAV, status de reposição logística do TL6250 e do 914C_BAV, posição competitiva em catálogo do IMB501V). Os riscos correspondentes foram comunicados na mensagem com ressalvas de incerteza corretas, sem fabricação de dado — nenhum 'não respondido por falta de dado' foi convertido em conclusão.",
-    "Sync freshness marcado como 'not_measured' no Layer 0 por limitação de esquema. Limitação registrada e sem impacto na validação da mensagem.",
-    "Confiança declarada como 'média' pela Condensadora. A limitação é estrutural ao pacote ML deste ciclo e não viola nenhuma regra objetiva — comunicação preserva o grau correto de incerteza."
+    "Log de decisão de formatação (Gate 5) registrou incorretamente a ordem de produtos empatados — 'conforme posição no pacote validado (IMB501V antes de TL6250 antes de KIT10YW1050)' — quando o pacote tem KIT10YW1050 na posição 4 e IMB501V na posição 5. A inconsistência é entre log e realidade do pacote, não entre log e mensagem. Corrigir instrução de ordenação de empates para próximos ciclos.",
+    "Sinais de refutação de P2 e P3 foram comprimidos na redação das prioridades. Versões futuras da Slack Writer devem incluir o critério de resolução/dissipação do risco junto à condição de escalonamento.",
+    "Palavra 'narrow' em inglês foi preservada literalmente da Condensadora. A Condensadora deve avaliar substituição por equivalente em português nos próximos ciclos.",
+    "Descritor 'Retangular' atribuído ao KIT4YW320 sem base explícita na fonte — verificar se o produto é de fato retangular e, se sim, atualizar o display_name no mapeamento interno para refletir isso."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "Leve inconsistência de nome do produto 914C_BAV entre seções: aparece como 'Kit 06 Canequinhas 100ml Com Suporte De Madeira Acrílico' em Top Produtos e como 'Kit 06 Canequinhas Com Suporte De Madeira Acrílico' (sem '100ml') na análise e prioridades. A versão sem '100ml' é fiel à Condensadora; a versão com '100ml' no Top Produtos é mais próxima do raw_title. O produto é inequivocamente identificável em ambas as formas por Yasmin e não há risco de confusão com outro SKU. Registrado para evolução do mapeamento de display_name deste SKU no próximo ciclo.",
-    "KIT4YW320 exibido como 'Kit 4 Potes De Vidro 320ml Tampa Hermético 4 Travas' (sem 'Conjunto' e sem cor 'Azul-petróleo'), simplificação do display_name truncado do sistema. O produto permanece identificável e não há variação concorrente do mesmo SKU no top 10 que exija diferenciação por cor. Sem risco de confusão.",
-    "A análise preserva a confiança média declarada pela Condensadora, mas o dado de share de ADS (~60% do GMV) é referência agregada de campanhas — não atribuição por produto. A mensagem usa corretamente o agregado sem extrapolar para nível de anúncio. Sinal a acompanhar nos próximos ciclos conforme orientação da memória da Condensadora."
+    "A Slack Writer optou por preservação literal dos dois insights da Condensadora sem simplificação. A diretriz Pedro 2026-05-17 pede 'linguagem mais simples e operacional'; o primeiro insight é denso (múltiplas cláusulas encadeadas) e poderia ser redigido em dois bullets sem perder a tese. Não é violação objetiva — a Condensadora aprovou o nível de profundidade — mas é sinal de melhoria para próximos ciclos: a Slack Writer deve simplificar ativamente quando a fonte primária já é densa.",
+    "O primeiro ponto da série de ADS share (~60%) está registrado na mensagem como referência para monitoramento. Como é o ponto zero da memória, a Condensadora não tem histórico para comparar — este fato foi corretamente preservado na análise ('não saber ainda se há base orgânica'). A limitação de confiança está adequadamente sinalizada.",
+    "O dado de fulfillment mix ontem (56,3% Full vs 77,7% no 7d) foi corretamente explicado na análise como efeito de composição do campeão cross-docking, evitando interpretação de degradação de infraestrutura. Leitura operacional precisa e útil para Yasmin."
   ],
   "llm_used": true,
   "model": "sonnet",

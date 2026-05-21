@@ -405,3 +405,27 @@ _Este arquivo existe para cumprir o contrato operacional `memory/context/decisio
   - Shopee: 10:26, 12:26 e 19:26 BRT.
 - A ingestão continua read-only, silenciosa e voltada apenas a contexto operacional útil para Trader/Daily Sales.
 
+## 2026-05-20 — Canggu/Ana / atendimento sem bastidor interno
+
+- Ana/Canggu não deve expor ao cliente final linguagem de cadastro, processo interno, atualização de anúncio, equipe técnica ou “vamos verificar internamente” quando a dúvida é de uso/compra do produto.
+- A regra correta é responder de forma direta, gentil e útil ao cliente: reconhecer a dúvida, explicar o uso/limite conhecido, valorizar o que o produto faz bem e, quando faltar variação, oferecer alternativa Budamix por nome.
+- Frases como “não consta no cadastro”, “vamos atualizar o anúncio”, “entre em contato/fale conosco” e promessas proativas de troca/devolução/reembolso ficam proibidas como fallback de atendimento ML.
+
+## 2026-05-20 — Budamix E-commerce / variações estruturadas e kits desativados
+
+- Variações de produto no e-commerce Budamix seguem a Opção B: atributos estruturados em JSONB por variante, sem matriz relacional complexa neste momento.
+- Imagem por variante fica permitida por vínculo direto entre imagem e variante; galeria da PDP deve trocar quando a variante tiver imagens próprias e fazer fallback para imagens do produto pai quando não houver.
+- SKU de variante é manual; a verdade operacional continua sendo a planilha de Estoque/Precificação.
+- Os kits de potes 4 travas foram desativados temporariamente no e-commerce por decisão do Pedro em 20/05; devem permanecer fora do ar até liberação explícita de reativação.
+
+## 2026-05-20 — Estoque Budamix / deploy e parser PDF
+
+- Deploy do Estoque Budamix em produção passa a usar rsync direto, encerrando o checkpoint anterior de GitHub/Deploy Key na VPS para essa frente.
+- O webhook n8n de upload/parse de PDF do Estoque foi substituído por parser local no app, após teste real demonstrar erro grave de leitura de PDF.
+- Qualquer parser que dá baixa/entrada em estoque deve ser validado com documento real e teste reversível na planilha antes de ser considerado concluído.
+
+## 2026-05-20 — Gestão de Funcionários / memórias individuais
+
+- Acompanhamento de Yasmin, Lucas e Leonardo passa a ter memória individual por funcionário, conectada ao índice geral de Gestão de Funcionários.
+- Lucas deve trazer na próxima reunião 3 análises granulares de anúncio/SKU/campanha, além das cobranças operacionais de Shopee já registradas.
+

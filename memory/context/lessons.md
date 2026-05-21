@@ -762,3 +762,25 @@ _Consolidação Profunda executada em 2026-05-15 04:00 BRT._
 **Expira:** 2026-06-14
 
 - [TÁTICA] 2026-05-18 — RH: guard de WhatsApp/follow-up não pode depender só de prompt ou decisão registrada. Todo fluxo que responde inbound ou manda follow-up precisa de pré-checagem determinística de cobertura do caso aberto antes de chamar agente/LLM: se ajuste, justificativa ou batida real já cobre a pendência, fechar/limitar o caso e nunca cobrar item coberto.
+
+### [ESTRATÉGICA] Webhook serverless não pode depender de fire-and-forget puro (2026-05-20)
+**Contexto:** A Ana/Canggu ficou dias sem responder porque `webhook-whatsapp` retornava antes do processamento e o runtime cancelava a chamada assíncrona para `process-message`.
+**Lição:** Em Edge/serverless, toda chamada de processamento pós-resposta precisa usar mecanismo explícito de background/waitUntil, fila persistente ou job durável. `fetch()` solto antes/depois do return pode funcionar em teste e falhar silenciosamente em produção.
+**Ação:** Em webhooks de WhatsApp/marketplace, validar não só HTTP 200 do webhook, mas efeito final no banco e resposta gerada.
+
+### [ESTRATÉGICA] Atendimento ao cliente não deve expor bastidor de cadastro/processo interno (2026-05-20)
+**Contexto:** Prompt antigo da Ana instruía respostas como “essa informação não está confirmada no cadastro; vamos verificar internamente e atualizar”, exatamente o tipo de resposta que Pedro rejeitou no Mercado Livre.
+**Lição:** Cliente final quer resposta útil sobre compra/uso do produto, não transparência burocrática sobre cadastro, anúncio ou processo interno. Quando houver incerteza técnica, responder com cautela prática e foco no benefício/limite conhecido, sem prometer atualização interna.
+**Ação:** Prompts e correções de atendimento devem proibir linguagem de cadastro, verificação interna, equipe técnica, atualização de anúncio e “entre em contato” como fallback.
+
+### [TÁTICA] Parser de PDF operacional precisa de teste E2E reversível com documento real (2026-05-20)
+**Contexto:** O webhook n8n do Estoque dizia “Nenhum item encontrado” para PDF simples e interpretava título “Pedido 659” como SKU/quantidade, o que poderia dar baixa errada.
+**Lição:** Parser que altera estoque não pode ser aprovado só por parsing sintético. Validar com PDF real, snapshot antes/depois, baixa/entrada reversível e retorno bit a bit da planilha.
+**Ação:** Para Estoque/Pedidos, qualquer troca de parser exige teste reversível antes de produção contínua.
+**Expira:** 2026-06-19
+
+### [TÁTICA] Daily Sales v2 Shopee: consolidado cross-conta deve substituir componentes no Top Produtos (2026-05-20)
+**Lição:** Quando a análise Shopee consolida o mesmo produto nas 3 contas, a linha consolidada deve substituir integralmente as linhas componentes no ranking visível, respeitar ranking por volume total e mostrar breakdown por conta. Exibir consolidado + componente duplica leitura e deve bloquear no QA.
+**Ação:** Ajustar Consolidadora 6B/Slack Writer para deduplicar antes do QA e registrar breakdown autorizado.
+**Expira:** 2026-06-19
+

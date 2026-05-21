@@ -113,6 +113,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 15/05/2026 | Consolidação diária em camadas operacionalizada: agentes diretos geram digests e Kobe consolida só visão executiva. Daily Sales v2/Slack promoveu LLM como caminho principal em modo Pedro-only, Compras/Agente de Compras nasceu com piloto das canecas, e tópicos dedicados foram fixados para Alertas, Daily Sales Slack, Gestão de Funcionários, Compras e Pedidos Atacado. |
 | 15/05/2026 | Consolidação diária em camadas implantada: agentes diretos passam a consolidar suas próprias memórias e gerar digests para Kobe; watchdog do ciclo criado; Alertas técnicos corrigidos para não cair no antigo Urgente; Daily Sales Report Slack ganhou tópico dedicado e Consolidadora Shopee/Camada 6B. |
 | 17/05/2026 | Daily Sales v2 consolidou validação Pedro-only no Slack pessoal, com diretriz corrigida para comunicação mais simples sem mudar formato/profundidade; Mission Control ganhou painel visual do pipeline Daily Sales; envio real aos funcionários segue bloqueado até liberação explícita. |
+| 20/05/2026 | Canggu/Ana corrigiu silêncio de 9 dias com background seguro e regra 17 contra respostas de cadastro/processo interno; WhatsApp Himmel/Shopee entrou como fonte read-only 3x/dia; Estoque Budamix voltou a produção via rsync com parser PDF local validado; Budamix E-commerce ganhou variações estruturadas e kits 4 travas temporariamente desativados; Gestão de Funcionários ganhou memórias individuais; Daily Sales v2 ficou PARTIAL por bloqueio Lucas/Shopee. |
 
 ---
 

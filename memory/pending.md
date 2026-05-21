@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-20 02:00 BRT — organização noturna silenciosa_
+_Atualizado: 2026-05-20 23:45 BRT — consolidação diária em camadas_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -25,7 +25,8 @@ _Atualizado: 2026-05-20 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 URGENTE — Operação / Dados
 
-- [ ] **Estoque Budamix — retomar deploy em produção** (pause em 05/05 22h aguardando decisão de credencial GitHub na VPS). PR1+PR2+PR3a no repo `PHPB2025K/estoque-budamix` mas produção ainda roda build de 13/04. Backup feito em `/var/www/estoque-budamix.backup-20260505-2143/`, `.env` preservado, plano de remediação aprovado com 5 salvaguardas. Bloqueado no Bloco 4 (`git fetch` falhou com 403). Recomendação: Deploy Key SSH read-only no repo. Ver [[memory/sessions/2026-05-05]] Session Extract estoque-budamix + memory local `estoque_budamix_deploy_checkpoint.md`.
+- [ ] **Estoque Budamix — limpar ops de teste QA no Supabase se Pedro quiser**: teste E2E de 20/05 gerou 14 operações de auditoria reversível com nome `TESTE QA Claude%`; planilha voltou ao estado original, limpeza é opcional/estética.
+- [ ] **Estoque Budamix — desativar webhook n8n antigo de PDF quando conveniente**: parser PDF local já substituiu o endpoint n8n quebrado; webhook antigo pode ser pausado/removido no painel para evitar uso acidental.
 - [ ] **Estoque Budamix — POT1BB duplicado na aba ESTOQUE da planilha de Precificação** (`1u74a...`): L8 com Trava est=24, L9 sem Trava est=2, mesmo SKU. `find()` sempre pega L8, baixas em "sem Trava" caem na linha errada. Solução proposta: renomear L9 → `POT1BB_ST`. Aguardando OK do Pedro pra aplicar via gspread.
 - [ ] **Estoque Budamix — lista de aliases editável em `/tmp/pr3-cadastro-cleanup.md`** (5 famílias: POT1BB, IMB501, YW, KIT, série 914). Pedro precisa preencher os termos coloquiais reais da equipe (anilão? montado? caneca bola?) e devolver pra aplicar.
 - [ ] **Estoque Budamix — KFJ003 SKU não encontrado** apareceu 1x no histórico Supabase. Pedro vai consultar a equipe se é fantasma (excluir) ou cadastro retroativo necessário.
@@ -51,7 +52,7 @@ _Atualizado: 2026-05-20 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 Canggu / Ana
 
-- [ ] **Canggu/Ana — smoke test pós-recovery e corrigir fire-and-forget**: em 13/05, Ana estava sem responder desde 08/05; chave Anthropic dedicada foi rotacionada, modelo subiu para `claude-opus-4-6` e secret Supabase foi atualizado. Falta Pedro enviar mensagem real no WhatsApp para smoke test e corrigir arquitetura `webhook-whatsapp` com `EdgeRuntime.waitUntil()` para evitar cancelamento silencioso do `process-message`.
+- [ ] **Canggu/Ana — hard-block adicional e reauditoria pós-regra 17**: em 20/05, a causa raiz do silêncio foi corrigida com background seguro no webhook e a regra 17 substituiu o prompt ruim de cadastro/verificação interna. Pendências restantes: adicionar camada defensiva no validador contra frases tipo “cadastro do produto”, “verificar internamente” e “atualizar o anúncio”; considerar reauditoria semanal automática das respostas ML se Pedro aprovar.
 - [ ] **Canggu — manter repo canônico reconciliado após hotfix ML**: repo `PHPB2025K/canguu` recebeu commit `eb76d3f`; quando Pedro voltar o repo para privado, garantir que a VPS/token mantém acesso de leitura/escrita para próximos patches e CI/CD.
 - [ ] **Canggu — trocar senha temporária do admin** no login do admin. Ação do Pedro.
 - [ ] **Canggu — corrigir type TS pré-existente em `_shared/evolution-api.ts`**: `EvolutionMessageContent` é referenciado mas o tipo real chama `EvolutionMessageData`. Detectado no `deno check` durante incidente Ana 24/7; edge deploya mesmo com warning, mas limpar no próximo bloco Canggu.
@@ -69,7 +70,7 @@ _Atualizado: 2026-05-20 02:00 BRT — organização noturna silenciosa_
 
 - [ ] **RH — criar/corrigir política canônica de sábado/domingo**: digest RH de 16/05 apontou que a regra de sábado/domingo está sendo confirmada por materiais operacionais alternativos, mas o documento canônico não está disponível. Formalizar quando a frente de governança RH entrar no bloco.
 
-- [ ] **RH — acompanhar lote aprovado do Monitor Ponto Semanal 11/05 e casos bloqueados 18/05 + 19/05**: follow-up deve cobrar apenas itens realmente abertos após pré-checagem de cobertura por ajuste, justificativa ou batida real. Em 18/05, validação indicou Leonardo 1/2 coberto, Mateus 5/6 coberto e Sandra 0/5 coberto; digest RH também registrou Guilherme, Lucas, Mateus e Sandra bloqueados para contato semanal até orientação/aprovação do Pedro. Em 19/05, compliance adicionou Guilherme com marcações incompletas, Lucas e Leonardo com intervalo <1h e Franciele com marcações atípicas a validar. Se inbounds continuarem invisíveis mesmo após suporte `@lid`, investigar sincronização da instância Evolution RH.
+- [ ] **RH — acompanhar lote aprovado do Monitor Ponto Semanal 11/05 e casos bloqueados 18/05–20/05**: follow-up deve cobrar apenas itens realmente abertos após pré-checagem de cobertura por ajuste, justificativa ou batida real. Em 18/05, validação indicou Leonardo 1/2 coberto, Mateus 5/6 coberto e Sandra 0/5 coberto; digest RH também registrou Guilherme, Lucas, Mateus e Sandra bloqueados para contato semanal até orientação/aprovação do Pedro. Em 19/05, compliance adicionou Guilherme com marcações incompletas, Lucas e Leonardo com intervalo <1h e Franciele com marcações atípicas. Em 20/05, novas pendências: Franciele/Geziele/Guilherme sem saída registrada e Guilherme/Leonardo/Lucas com intervalo <1h. Se inbounds continuarem invisíveis mesmo após suporte `@lid`, investigar sincronização da instância Evolution RH.
 - [ ] **RH — compliance 15/05 intervalos abaixo de 1h**: Geziele, Guilherme, Leonardo e Lucas tiveram intervalo de almoço abaixo de 1h no check de 15/05; tratar como risco trabalhista/operacional no acompanhamento, sem liberar WhatsApp proativo genérico.
 - [ ] **RH — guard de WhatsApp proativo ESTENDIDO INDEFINIDAMENTE (até 2027-01-01)** em `/tmp/rh-whatsapp-block.json`. Pedro pediu 05/05 14:04 BRT que nenhum cron/agente RH dispare proativos a funcionários até liberação explícita. Em 11/05 10:15 BRT, Pedro liberou **apenas o escopo específico** dos problemas de ponto reportados no Monitor Ponto Semanal de 11/05 sobre a semana 04/05–09/05, até resolução completa com Fran, Leonardo, Lucas, Mateus e Sandra. Exceções técnicas: `--allow-rh-reply` permite respostas inbound; `--allow-rh-approved-case` permite follow-ups desse lote aprovado. Proativo genérico segue bloqueado. Crons em risco que continuam habilitados mas inofensivos enquanto o guard ativo: `RH Compliance Check` (diário 19h BRT), `Monitor Ponto Semanal` (segundas 10h BRT), `Ponto Certo - QR Code Refresh` (diário 03h, não envia WhatsApp). Validado: proativo → `BLOCKED_RH`; reply → `SENT`; caso aprovado → `SENT`.
 - [ ] **Ponto Certo — deploy produção do módulo Conversas RH** se ainda estiver apenas local: build, publicar na VPS e reiniciar PM2 `ponto-certo`.
@@ -80,8 +81,8 @@ _Atualizado: 2026-05-20 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 Gestão / Jurídico / Contratos
 
-- [ ] **Daily Sales Report v2 — aguardar liberação explícita para envio real aos funcionários**: preview de 19/05 analisando 18/05 BRT ficou com os três recipients `APPROVED_WITH_REMARKS` (Lucas/Shopee, Yasmin/ML e Leonardo/Amazon). A falha crítica de Lucas/Shopee por duplicidade de Top Produtos não se repetiu, mas ainda há ressalvas de rastreabilidade de labels/logs, nomes comerciais e lacunas de pacote. Nenhum envio externo foi realizado. Envio para funcionários continua bloqueado até liberação explícita; manter `fallback_deterministic_allowed=false` e bloqueio fail-closed se camada LLM falhar.
-- [ ] **Daily Sales Report v2 — decidir critério de promoção após previews com ressalvas**: Pedro/Kobe precisam decidir se o envio real pode ser ativado quando todos os recipients estiverem `APPROVED_WITH_REMARKS` sem críticos/maiores, ou se é obrigatório obter ao menos um ciclo `APPROVED` sem ressalvas antes da produção. Antes de qualquer envio real, ajustar logs de omissão do Top Produtos e validar nomes comerciais/lacunas operacionais do pacote.
+- [ ] **Daily Sales Report v2 — aguardar liberação explícita para envio real aos funcionários**: preview de 20/05 analisando 19/05 BRT ficou `PARTIAL`: Lucas/Shopee bloqueado por duplicidade CTL002/double-counting no Top Produtos; Yasmin/ML e Leonardo/Amazon aprovados com ressalva. Nenhum envio externo foi realizado. Envio para funcionários continua bloqueado até liberação explícita; manter `fallback_deterministic_allowed=false` e bloqueio fail-closed se camada LLM falhar.
+- [ ] **Daily Sales Report v2 — corrigir/reexecutar Lucas/Shopee e decidir critério de promoção**: remover duplicidade CTL002, ranquear CTL002 consolidado corretamente, corrigir breakdown por conta, preservar evidência operacional ao simplificar a 6B e decidir se produção exige ciclo `APPROVED` sem ressalvas ou aceita `APPROVED_WITH_REMARKS` sem críticos/maiores. Revalidar Shopee/Amazon Rules Watch antes de usar regra/taxa como causa forte.
 
 - [ ] **Adapta — aguardar retorno sobre cobranças recorrentes**: Pedro recebeu mensagem pronta em 07/05 para enviar como PEDRO HENRIQUE PERON BROGLIO. Se a empresa negar cancelamento/estorno, próxima frente é contestação pelo banco/cartão usando descritor `TAR PLANO ADAPT` e valores R$ 497,00/R$ 126,75.
 - [ ] **Guarani Sistemas — preparar minuta de distrato e só pagar após aceite/assinatura**: em 13/05, Guarani aceitou a proposta global de **R$ 7.500,00 à vista** e confirmou baixa/quitação dos 7 títulos/NFs em aberto, sem protesto/negativação/cobrança externa, com isenção do aviso prévio. Próximo passo: enviar minuta de distrato para análise. Ponto crítico: a minuta deve preservar **quitação integral e definitiva**, **sem saldo remanescente/cobrança futura**, **sem reconhecimento de dívida**, e evitar que a cláusula “distrato parte da sua empresa por ausência de mão de obra” vire admissão ampla de culpa. Recomendação: não pagar antes de distrato aprovado/assinado ou, no mínimo, aceite escrito inequívoco dos termos finais.
@@ -93,6 +94,8 @@ _Atualizado: 2026-05-20 02:00 BRT — organização noturna silenciosa_
 
 ## 🔥 PRIORIDADE IMEDIATA — Budamix E-commerce / Blog / Social Studio
 
+- [ ] **Budamix E-commerce — reativar kits de potes 4 travas quando Pedro liberar**: em 20/05 22:12 BRT, Pedro pediu para manter temporariamente desativados 8 kits de potes 4 travas no site. Reativar somente com liberação explícita, nos mesmos slugs/produtos.
+- [ ] **Banner triplo Instagram Budamix — Pedro escolher Capa 01 v1/v2 e inserir fotos no Canva**: projeto HTML/CSS foi criado com 3 capas 4:5; Capa 01 tem duas versões e Capa 02/03 aguardam fotos dos potes e da Morgana via Canva.
 - [ ] **Social Studio Reborn — Fase C C2**: construir página `/admin/social/conta` (status da conta, botão OAuth, callback handler). C1 já fechado em 07/05 (`d6384bd`).
 - [ ] **Social Studio Reborn — pré-requisitos Meta antes do C3**: Pedro criar App Business novo no Meta Developers, adicionar Instagram Graph API + Facebook Login, configurar redirect URIs/permissões e setar `META_APP_ID`/`META_APP_SECRET` nos Edge Secrets do Supabase. Kobe/CC deve guiar tela-a-tela quando Pedro chamar.
 - [ ] **Social Studio Reborn — Fase C publicação real**: C3-C8 (OAuth callback, executor Meta Graph, tick real com trava temporária `TESTE INTERNO`, C5b remove trava, UI pós-publicação, refresh token e smoke final).
@@ -161,4 +164,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-05-20 02:00 BRT._
+_Última consolidação: 2026-05-20 23:45 BRT._

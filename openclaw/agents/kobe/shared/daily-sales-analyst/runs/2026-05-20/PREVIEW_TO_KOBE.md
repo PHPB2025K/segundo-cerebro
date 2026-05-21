@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-20
-**Gerado em:** 2026-05-21T12:45:59.190665+00:00
+**Gerado em:** 2026-05-21T13:53:06.922960+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** PARTIAL
@@ -24,9 +24,9 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** KIT4YW320 usa 'Retangular' como convenção de família não validada por reviewed_sku_display_map — registrar para revisão do catálogo interno junto com a divergência já identificada para TL6250 (display_name interno errado, corrigido neste ciclo).
-- **Aviso:** 914C_BAV aparece no Top Produtos com listing pausado/estoque zerado — presença justificada pelos 3 pedidos capturados no pacote validado; Condensadora não bloqueou presença no ranking, apenas bloqueou SKU técnico e MLB. Lógica da Slack Writer correta.
-- **Aviso:** sync_freshness not_measured no pacote de dados — métrica de frescor de sincronização não disponível no schema atual; reconciliação ML ok (order_delta 0, revenue_delta 0,00); sem impacto na confiabilidade dos dados de pedidos e GMV.
+- **Aviso:** O produto TL6250 foi corretamente referenciado como 'Kit 6 Canecas Porcelana Tulipa 250ml' na mensagem final, respeitando o bloqueio da Granular e da Condensadora sobre o display_name interno incorreto. O alias interno 'Kit 6 Tigelas de Vidro 250ml' deve ser corrigido no mapeamento reviewed_sku_display_map antes de ser usado em análise de família ou mix histórico nas próximas entradas de memória.
+- **Aviso:** O KIT4YW320 (MLB4073064873) tem confidence 'medium' e mapping_status 'mapped_generic_sku'; o uso de 'Retangular' no nome do Top Produtos é artefato de inferência familiar, não de fonte validada. Registrar para revisão do mapeamento.
+- **Aviso:** O data readiness DADOS_PARCIAIS refere-se exclusivamente ao volume_band da conta Shopee (Budamix Store -43,2%), sem impacto na validade dos dados ML. A mensagem ML não menciona o status parcial porque não há dado ML com qualidade comprometida — comportamento correto.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/00-data-package.json`

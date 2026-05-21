@@ -2,53 +2,61 @@
   "camada": "05-condensadora",
   "data": "2026-05-20",
   "plataforma": "mercado_livre",
-  "recipient": "Yasmin",
   "analise_final_condensada": [
-    "A queda de pedidos vs 7d (-20.9%) parece deterioração, mas a comparação correta é a mesma quarta-feira — e ali o volume está flat (-1.6%); o GMV acima do histórico vem do ticket em elevação estrutural (R$40 na 60d, R$44 na 30d, R$55.80 hoje), não de força de volume; tratar o delta 7d como sinal de queda de demanda seria ler o dado errado. — base: Estratégica + Operacional",
-    "Um anúncio pausado com estoque zerado gerou 3 pedidos no dia — os 2 cancelamentos registrados hoje não refletem esse risco; se não houver ação, esses 3 pedidos viram cancelamentos planejáveis nos próximos dias, impactando a métrica de reputação sem aviso no agregado de hoje. — base: Granular + Operacional",
-    "O item com menor cobertura de estoque Full tem menos de 2 dias de unidades no CD do ML ao ritmo de ontem, e o listing é de catálogo — ruptura aqui não significa apenas venda perdida: significa perda de posição na página de catálogo do ML para outros sellers, com recuperação mais lenta do que em listing convencional. — base: Granular + Tática"
+    {
+      "insight": "O resultado do dia não é fraco — é um dia com volume dentro da banda histórica (mesmos dias da semana: -2.7%) e GMV acima das referências de 30d e 60d exclusivamente por ticket mais alto. A leitura correta é expansão de patamar via mix de maior valor, não queda de conversão disfarçada de dia normal.",
+      "base": "Estratégica + Operacional",
+      "padrao": "C — inversão negativa: parece dia fraco em pedidos, mas a estrutura mostra saúde"
+    },
+    {
+      "insight": "Três anúncios ativos estão com estoque crítico no CD do ML — todos em fulfillment, todos fora do controle direto da Budamix: o menor provavelmente já zerou hoje, os outros dois têm cobertura de 2 a 4 dias. Quando o fulfillment zera, o ML penaliza o health do anúncio automaticamente e o ranking cai sem ação manual possível. O dia fechou dentro do padrão, mas o risco operacional iminente não aparece nos números de ontem.",
+      "base": "Operacional + Granular",
+      "padrao": "B — inversão positiva: parece dia ok, mas três pontos de ruptura estão acumulando risco que vai aparecer como penalização de health e perda de ranking em 1-2 dias"
+    },
+    {
+      "insight": "A queda de fulfillment Full ontem (57% vs 78% em 7 dias) não indica problema logístico — o líder de volume do dia opera em cross-docking e representou 24% dos pedidos sozinho; quando esse produto domina, o mix puxa o cross-docking para cima do padrão. Full dos produtos de maior valor rodou sem restrição, com estoque disponível no CD.",
+      "base": "Granular",
+      "padrao": "A — contraste: não é falha de abastecimento, é artefato de composição de vendas"
+    }
   ],
   "prioridades_condensadas": [
     {
-      "prioridade": "Verificar os 3 pedidos do anúncio pausado com estoque zerado e acionar cancelamento controlado ou reposição de emergência antes que o marketplace cancele automaticamente",
-      "por_que": "Anúncio confirmado com status paused e available_quantity 0 no CD do ML gerou 3 pedidos; sem ação, são cancelamentos prospectivos que afetam a métrica de reputação — correlato direto do insight 2",
-      "sinal_de_confirmacao_refutacao": "Se nos próximos 2 dias aparecerem cancelamentos atribuídos a esse anúncio no painel ML, o risco se materializou; se os pedidos forem processados normalmente, confirmar com que estoque foram atendidos",
-      "escalar_se": "Não houver estoque disponível para atender os 3 pedidos — escalar para Kobe para decisão de reposição de emergência ou cancelamento controlado"
+      "prioridade": "Checar o anúncio com 3 unidades restantes em fulfillment — se ainda ativo, acionar reposição imediata; se já em out-of-stock, acionar reposição urgente e registrar a data de entrada em ruptura para calcular impacto acumulado no health e no ranking.",
+      "por_que": "Modalidade fulfillment significa que a ruptura ocorre no CD do ML sem controle local; cada dia em out-of-stock acumula penalização de health que persiste mesmo após reabastecimento — risco que não aparece no número do dia mas se traduz em perda de posição.",
+      "sinal_de_confirmacao_refutacao": "Anúncio aparece como indisponível ou health cai nos próximos 1-2 dias confirma materialização; reposição confirmada em trânsito até hoje refuta o risco imediato.",
+      "escalar_se": "Anúncio ficou mais de 2 dias em out-of-stock — registrar para Himmel avaliar impacto em ADS sobre esse anúncio."
     },
     {
-      "prioridade": "Confirmar previsão de reposição para o item de potes retangulares 1050ml em kit de 2 no CD do ML (menos de 2 dias de cobertura em itens, listing de catálogo)",
-      "por_que": "Cobertura estimada em menos de 2 dias ao ritmo de ontem; listing de catálogo agrava o risco porque ruptura pode resultar em perda de posição da página de produto para outros sellers — correlato direto do insight 3",
-      "sinal_de_confirmacao_refutacao": "Se reposição confirmada para antes do esgotamento, risco desativado; se sem previsão de entrada em 48h, ruptura é iminente",
-      "escalar_se": "Sem previsão de reposição em 48h — escalar para Kobe para decisão de urgência de abastecimento"
+      "prioridade": "Checar os dois anúncios com estoque entre 19 e 20 unidades em fulfillment e confirmar se há reposição em trânsito — sem reposição, ambos atingem ruptura em 2 a 4 dias.",
+      "por_que": "Mesma lógica de penalização automática de health em fulfillment; os dois produtos têm histórico de venda regular e a ruptura é evitável com ação preventiva agora.",
+      "sinal_de_confirmacao_refutacao": "Confirmação de reposição em trânsito ou pedido de transferência realizado refuta o risco; ausência de movimentação confirma risco ativo.",
+      "escalar_se": "Não aplicável — decisão operacional de reposição."
     },
     {
-      "prioridade": "Checar posição de ranking e situação de health do 2º produto mais vendido do dia (kit de 4 potes retangulares 1050ml em Full) — o dado atual mostra health abaixo do threshold, mas sem histórico para saber se está em deterioração ou patamar estabilizado",
-      "por_que": "Item responde por 14% dos pedidos do dia e sustenta parte do ticket elevado; health 0.75 abaixo do threshold de 0.85 sem histórico disponível impede confirmar ou descartar urgência — a incerteza, não a certeza de risco, justifica a checagem",
-      "sinal_de_confirmacao_refutacao": "Se health no painel ML estiver em queda nos últimos 7 dias ou posição média de ranking caiu, confirma deterioração ativa; se estável ou em recuperação, mantém observação sem ação",
-      "escalar_se": "Health abaixo de 0.70 ou queda de pedidos abaixo de 8/dia por 2 dias consecutivos — acionar revisão do anúncio e alinhar com Himmel sobre exposição"
+      "prioridade": "Registrar o ticket médio do dia até as 22h — hoje (R$56.19) é o primeiro ponto da série para validar a tese de ganho de patamar; a confirmação exige ticket acima de R$52 por 3 dias consecutivos.",
+      "por_que": "Sem essa coleta sistemática, não há como distinguir expansão estrutural de mix de flutuação pontual — a tese não se consolida sem série.",
+      "sinal_de_confirmacao_refutacao": "Ticket acima de R$52 nos próximos 2 dias confirma a tese; ticket abaixo de R$48 em 2 dos próximos 5 dias enfraquece e levanta hipótese de mix volátil.",
+      "escalar_se": "Não aplicável."
     }
   ],
   "o_que_nao_pode_ir_para_slack": [
-    "BLOQUEIO: não citar o 6º produto do ranking como 'Kit 6 Tigelas de Vidro 250ml' — o produto real é 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara'; divergência confirmada por raw_title e ml_snapshot; se citado, usar título real ou referência genérica ao produto",
-    "Não citar nenhum produto pelo display_name interno sem confirmar contra raw_title ou ml_snapshot — o display_name de TL6250 está categoricamente errado (canecas de porcelana identificadas como tigelas de vidro)",
-    "Não mencionar health score do KIT4YW1050 como confirmação de deterioração ativa — não há histórico de health no pacote; o correto é tratar como sinal não resolvido, não como fato confirmado",
-    "Não citar previsão de cobertura de estoque em dias como dado preciso — os cálculos são estimativas de 1 dia de volume; usar referência qualitativa ('poucos dias de cobertura', 'cobertura curta') sem número de dias específico",
-    "Não tratar a queda de -20.9% em pedidos vs 7d como deterioração de demanda — a comparação correta (mesmo dia da semana) é -1.6%; usar o delta 7d como sinal seria induzir Yasmin a erro",
-    "Não citar SKUs técnicos (KIT2YW1050, TL6250, 914C_BAV, IMB501P, KIT4YW1050) — usar descrições legíveis dos produtos ou referências genéricas (ex: 'kit de potes retangulares 1050ml em Full', 'anúncio pausado com estoque zerado')",
-    "Não citar platform_item_ids (MLB*) — são referências técnicas sem valor para a mensagem Yasmin",
-    "Não atribuir percentual de ADS sobre GMV como fato preocupante sem hipótese — os 60% de GMV atribuído a ADS com ACOS de 4.33% refletem campanhas bem calibradas, não dependência problemática"
+    "Display name interno do TL6250 ('Kit 6 Tigelas de Vidro 250ml') — identificação internamente incorreta; o produto real vendido é Kit 6 Canecas Porcelana Tulipa Lisa 250ml; qualquer referência ao produto deve usar o título real do anúncio.",
+    "Health do KIT4YW1050 (0.75) como alerta isolado e confirmado — sem snapshot anterior, é impossível distinguir patamar estável de deterioração ativa; citar apenas como risco a monitorar, não como sinal confirmado de queda.",
+    "Proporção de GMV via ADS (~60%) como anomalia ou benchmark — é o primeiro registro formal e não há baseline histórico para classificar como estrutural ou pontual.",
+    "IDs técnicos de MLB (platform_item_id) — desnecessários para mensagem operacional.",
+    "SKUs crus (TL6250, KIT2YW1050, 914C_BAV, etc.) — usar nomes dos produtos.",
+    "Afirmação de que health do IMB501P está degradada — pacote não tem dado de health para esse anúncio (health=null); não inferir problema onde não há dado."
   ],
   "memoria_para_amanha": [
-    "Ticket em R$55.80 hoje — se mantiver acima de R$50 nos próximos 2 dias úteis, a trajetória de ganho de patamar via ticket deixa de ser hipótese e vira tendência observada em 3 pontos; se cair abaixo de R$45 sem mudança de mix óbvia, a tese precisa ser revisitada",
-    "914C_BAV (anúncio de kit de canequinhas com suporte acrílico): 3 pedidos em risco de cancelamento capturados com listing pausado e estoque zerado — verificar amanhã se cancelamentos se materializaram e se o anúncio permanece pausado; histórico de 453 vendas indica produto com demanda real, não baixo giro",
-    "KIT2YW1050 (kit de potes retangulares 1050ml em kit de 2, listing de catálogo): cobertura estimada em menos de 2 dias no Full — verificar se reposição foi acionada; ruptura em listing de catálogo tem impacto além do volume direto (perda de posição para outros sellers)",
-    "Health score do 2º produto mais vendido (kit de 4 potes retangulares 1050ml Full): snapshot em 0.75 sem histórico disponível — amanhã checar se há tendência de queda no painel ML; sem esse dado, a urgência da ação tática não pode ser confirmada nem descartada",
-    "Divergência de mapeamento interno: display_name do produto TL6250 ('Kit 6 Tigelas de Vidro') está categoricamente errado — produto real é 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml'; registrar para correção do catálogo interno fora do ciclo de análise diária",
-    "Conta começa histórico analítico hoje — sem weekly ou monthly consolidados; tese de ganho de patamar via ticket é candidata, não confirmada; os próximos 2-3 ciclos são decisivos para transformar hipótese em padrão registrável"
+    "Três anúncios em estoque crítico (todos fulfillment — estoque no CD do ML): Kit 06 Canequinhas Suporte Acrílico (3 unidades, ruptura provável ou consumada), Kit 2 Potes 1050ml Retangular (19 unidades, cobertura 2-3 dias), Canecas Porcelana Tulipa 250ml (20 unidades, cobertura 4 dias) — verificar status de reposição e eventual penalização de health nos três anúncios.",
+    "KIT4YW1050 com health 0.75 — primeiro registro formal; verificar se o valor mudou em relação ao snapshot de hoje para começar série; limiar de alerta: health abaixo de 0.70 ou pedidos abaixo de 8/dia por 2 dias seguidos ativa risco de exposição real.",
+    "IMB501V com health 0.71 — abaixo do limiar crítico (0.85); mesma ausência de histórico que KIT4YW1050; construir série nos próximos dias antes de acionar Himmel.",
+    "Alias interno do TL6250 está errado — display_name 'Kit 6 Tigelas de Vidro 250ml' não corresponde ao produto real 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml'; corrigir no mapeamento reviewed_sku_display_map antes de usar em análise de família ou mix histórico.",
+    "Ticket médio de R$56.19 hoje — primeiro ponto da série para validar tese de ganho de patamar; tese confirma com R$52+ por 3 dias consecutivos; tese enfraquece com ticket abaixo de R$48 em 2 dos próximos 5 dias."
   ],
   "alertas_de_confianca": {
     "nivel": "media",
-    "explicacao": "Os dados de pedidos e GMV estão íntegros (reconciliação ok, bandas de volume dentro do esperado para ML). Os três insights da condensação têm base em evidência primária confirmada (914C_BAV com listing e estoque confirmados pela Granular; cobertura de estoque calculada sobre dado real do snapshot; leitura de ticket sustentada por três janelas temporais convergentes). As ressalvas que rebaixam de alta para média: (1) health score do 2º produto mais vendido não tem histórico — urgência da ação permanece em aberto, não resolvida; (2) previsão de reposição dos itens Full não está disponível no pacote — a urgência é estimada, não confirmada por dado logístico; (3) memória analítica da conta começa aqui — a tese de ganho de patamar via ticket é hipótese com 3 janelas temporais convergentes, mas sem ciclos anteriores para contraprova. Nenhum desses pontos gera risco de leitura falsa na mensagem — estão refletidos nos bloqueios e nas ressalvas das prioridades."
+    "explicacao": "A base quantitativa é sólida — reconciliação fecha sem delta, séries históricas completas nas janelas de 7d/30d/60d e mesmos dias da semana, top 10 com platform_item_id confirmado e risco de identificação médio (não alto). A confiança é média, não alta, por três razões: (1) weekly.md e monthly.md são templates vazios — este é o primeiro registro formal da conta, sem âncora qualitativa para calibrar profundidade ou reversibilidade das leituras; (2) health de 6 dos 10 produtos do top 10 sem dado disponível no pacote — limitação estrutural que impede avaliar degradação de exposição na maior parte da cauda ativa; (3) trajetória da health do KIT4YW1050 (0.75) inconclusiva por ausência de snapshot anterior para comparação."
   },
   "llm_used": true,
   "model": "sonnet",

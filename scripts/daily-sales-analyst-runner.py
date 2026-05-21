@@ -940,6 +940,17 @@ def run_llm_layers(package, run_dir, recipient_name, config, prompt_version,
             context_files, account_memory, previous_outputs
         )
 
+        # Persist EXACT input sent to LLM (pra Mission Control mostrar em tempo real)
+        input_path = output_path.with_suffix(output_path.suffix + ".input.txt") \
+            if not str(output_path).endswith(".input.txt") else output_path
+        # Mais simples: salva como {output_basename}.input.txt
+        input_persist_path = output_path.parent / f"{layer_num}-{layer_name}.input.txt"
+        try:
+            with open(input_persist_path, "w", encoding="utf-8") as f:
+                f.write(llm_input)
+        except Exception as e:
+            print(f"    ⚠ falha ao persistir input: {e}")
+
         # Call LLM
         output, model_used, error = call_llm(llm_input, config)
 

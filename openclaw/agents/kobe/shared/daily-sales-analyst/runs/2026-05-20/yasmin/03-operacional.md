@@ -1,44 +1,50 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Leitura operacional do dia
 
-- O dia sustentou GMV sólido via ticket elevado (R$55.80), com volume essencialmente flat vs mesmo dia da semana (−1.6%). Operacionalmente, o resultado foi composto por dois motores distintos: o produto líder (Conjunto 5 Potes Tampa Preta, 24% dos pedidos) rodando em cross_docking, enquanto os itens que puxam ticket médio para cima (KIT4YW1050, KIT10YW1050) operam em Full. Isso confirma a leitura da Estratégica — o ganho de GMV vem do mix de valor, não de força de volume.
+- O volume ficou dentro do padrão histórico longo (60d e mesmos dias da semana), mas o GMV rodou acima dessas referências exclusivamente por ticket elevado — o dia performou via qualidade do pedido, não via força de volume, confirmando a leitura estratégica de que a expansão de ticket é o vetor estrutural ativo da conta.
 
-- O mix Full ontem nos top 10 caiu para 57.1% ante 77.7% no 7d, reflexo direto do produto campeão de volume operar fora do Full. Não é desvio crítico, mas reforça o alerta estratégico: a vantagem competitiva de Full está concentrada nos itens de ticket, não no líder de pedidos — qualquer perda de posicionamento nos itens Full (via health ou estoque) não vai aparecer no produto que mais vende, vai aparecer no GMV por pedido.
+- O fulfillment mix de ontem divergiu do padrão histórico recente: Full caiu para 57.1% dos pedidos do top 10, contra 77.7% em 7d e 73.9% em 30d — o dia foi ancorado proporcionalmente em mais cross-docking do que é padrão. Essa mudança de composição é explicável pelo domínio do Conjunto 5 Potes Tampa Preta (22 pedidos, logística cross_docking): quando esse produto lidera com folga, ele puxa o mix de fulfillment do dia para baixo do padrão semanal. Não é anomalia de operação — é reflexo de concentração de vendas em produto fora do Full.
 
-- Dois itens Full com tração real no dia estão com health abaixo do threshold: KIT4YW1050 (0.75, 13 pedidos, 2º lugar) e Conjunto 5 Potes Tampa Vermelha (0.71, 5 pedidos). Continuam vendendo agora, o que confirma o diagnóstico da Estratégica: a erosão de ranking ainda não se materializou em queda de vendas, mas o sinal precoce está presente. Esse é exatamente o padrão de deterioração silenciosa que a Tática indicou como prioridade de checagem.
+- A concentração operacional foi alta: o produto líder representou 24.4% dos pedidos isoladamente, e os três primeiros responderam por quase metade do volume (47.8%). O dia performou, mas com pouca margem para absorver variação nos produtos que mais venderam — padrão de dependência que a Estratégica já havia apontado como característica estrutural da conta, e que o dia confirma.
 
-- Um listing pausado com estoque zerado (Kit 06 Canequinhas com Suporte Acrílico, 914C_BAV) aparece com 3 pedidos no dia — comportamento operacionalmente atípico que não encontra explicação óbvia nos dados disponíveis.
+- O Kit 06 Canequinhas Suporte Acrílico (914C_BAV) encerrou o dia com 3 unidades disponíveis após 3 pedidos registrados. A probabilidade operacional de ruptura hoje é alta — esse risco iminente identificado pela Tática encontra evidência direta na composição do dia.
 
 ---
 
 ### Sinais operacionais relevantes
 
-- **Sinal:** Kit 6 Tigelas (TL6250) com 20 unidades disponíveis em Full e 5 pedidos no dia; Kit 2 Potes 1050ml (KIT2YW1050) com 15 unidades disponíveis e 3 pedidos em 8 itens — **interpretação operacional:** cobertura de estoque Full de 4 dias para Tigelas e menos de 2 dias em itens para Kit 2 Potes, ao ritmo observado; ruptura em Full implica perda imediata do benefício logístico e descida de ranking orgânico — adiciona evidência concreta à ação que a Tática já recomendou.
+- **Sinal:** fulfillment mix de ontem com 42.9% cross-docking vs padrão de 22-26% nas janelas 7d/30d — **interpretação operacional:** a composição de vendas foi puxada pelo produto líder em cross-docking; não indica problema logístico sistêmico, mas a Granular precisa confirmar se o Full dos produtos YW (KIT4YW1050 e família) rodou normalmente ou se houve algum ponto de indisponibilidade de estoque no CD.
 
-- **Sinal:** 914C_BAV gerou 3 pedidos com listing pausado e estoque zerado — **interpretação operacional:** pedidos capturados antes do pause ou janela de indisponibilidade com sincronização defasada; se confirmados sem estoque, risco de cancelamento concentrado nesse item nos próximos dias — anômalo por natureza, mas isolado.
+- **Sinal:** KIT4YW1050 com health 0.75 respondendo por 13 pedidos (segundo maior vendedor) — **interpretação operacional:** adiciona evidência ao risco estrutural levantado pela Estratégica; o produto de maior valor unitário da conta operou ontem com saúde degradada e ainda performou — o risco não se materializou no dia, mas a base de exposição para os próximos dias está comprometida se a health não for corrigida.
 
-- **Sinal:** ADS atribuiu aproximadamente 60% do GMV do dia (R$3,041 de R$5,077) com ACOS de 4.33% — **interpretação operacional:** dependência de tráfego pago é relevante, mas a eficiência está bem calibrada; o risco latente é que, se health degradado forçar os anúncios Full a competirem mais por posição, o ADS vai sustentar exposição que antes era orgânica — custo pode subir antes de aparecer no ACOS.
+- **Sinal:** 914C_BAV encerrou o dia com 3 unidades após 3 pedidos — **interpretação operacional:** ruptura de estoque quase certa hoje; confirma o risco operacional iminente identificado pela Tática, com impacto potencial de penalização de health e perda de ranking mesmo após reabastecimento.
 
-- **Sinal:** produto líder de volume (Conjunto 5 Potes Tampa Preta, 22 pedidos) opera em cross_docking, enquanto os itens que sustentam o ticket operam em Full — **interpretação operacional:** a conta tem dois perfis logísticos ativos com funções distintas; se o ML priorizar exposição para itens Full, o produto líder de volume pode oscilar mais nos dias de menor demanda orgânica.
+- **Sinal:** Kit 2 Potes 1050ml Retangular (KIT2YW1050) com 19 unidades disponíveis e Kit 6 Tigelas 250ml (TL6250) com 20 unidades — **interpretação operacional:** dois anúncios ativos da cauda do top 10 com estoque em nível crítico; nenhum dos dois foi apontado como risco nas camadas anteriores — sinal operacional novo que pode gerar ruptura em 3-5 dias dependendo do ritmo de pedidos.
+
+- **Sinal:** distribuição horária concentrou 29% dos pedidos no bloco 13-15h (26 pedidos), com volume diurno razoavelmente distribuído e noturno abaixo do esperado (apenas 8 pedidos após as 18h) — **interpretação operacional:** o perfil de horário não indica perda de exposição ou queda de tração; o comportamento é coerente com um dia de quarta-feira dentro do padrão do canal, sem anomalia de janela.
 
 ---
 
 ### Anomalias ou ausência de anomalia
 
-**Anomalia leve.** A performance agregada do dia está dentro do esperado — volume flat no mesmo dia da semana, GMV acima do histórico via ticket, sem queda de reputação, sem ruptura de estoque declarada. Dois desvios operacionais perceptíveis, mas isolados: (1) 914C_BAV com pedidos gerados em listing pausado com estoque zerado — atípico e potencialmente gerador de cancelamentos não planejados; (2) queda no mix Full ontem (57.1% vs 77.7% no 7d), explicável pelo perfil do líder de volume, mas que reduz a vantagem logística do dia. Nenhum dos dois compromete a execução hoje. O que elevaria para **anomalia moderada**: 914C_BAV confirmar cancelamentos por falta de estoque nos próximos dias, ou queda adicional do mix Full acompanhada de redução de pedidos nos itens de ticket.
+**Anomalia leve.**
+
+Dois pontos desviam do padrão esperado sem comprometer a execução do dia: (1) fulfillment mix deslizou para proporção de cross-docking acima do histórico recente, o que é explicável pela composição de vendas mas merece monitoramento por 1-2 dias para confirmar que não há problema de abastecimento no Full; (2) 914C_BAV está em ruptura operacional iminente — se ainda não entrou em out-of-stock, entra hoje. Fora esses dois desvios, o volume e o GMV estão dentro dos parâmetros históricos, reputação estável, ADS rodando com ACOS dentro da normalidade aparente e sem cancelamento relevante (3/90). Para subir para anomalia moderada seria necessário encontrar queda de disponibilidade no Full dos produtos YW ou confirmação de que a health baixa no KIT4YW1050 já está produzindo redução de pedidos nos próximos dias.
 
 ---
 
 ### O que precisa ser investigado pela Granular
 
-- **Pergunta:** os 3 pedidos do 914C_BAV foram confirmados com estoque disponível ou estão em risco de cancelamento por ruptura? — **motivada por:** listing pausado com estoque zerado gerando pedidos no dia; comportamento atípico que pode resultar em cancelamentos concentrados e impacto pontual na métrica de cancelamento da conta.
+- **Pergunta:** o estoque do Kit 06 Canequinhas Suporte Acrílico (914C_BAV) já está zerado ou o anúncio entrou em out-of-stock hoje? — **motivada por:** sinal de 3 unidades disponíveis após 3 pedidos ontem; ruptura de anúncio ativo gera penalização de health e degradação de ranking.
 
-- **Pergunta:** qual é a previsão de reposição para TL6250 e KIT2YW1050 no CD do ML? — **motivada por:** cobertura de estoque Full estimada em 2-4 dias para ambos ao ritmo atual; ruptura implica perda do benefício Full com impacto direto em ranking e na composição de GMV que a conta vem sustentando.
+- **Pergunta:** o estoque de KIT2YW1050 (19 unidades) e TL6250 (20 unidades) está sendo reposto ou esses anúncios estão em risco de ruptura nos próximos dias? — **motivada por:** dois produtos ativos do top 10 com níveis de estoque críticos que não foram sinalizados nas camadas anteriores; sem reposição, podem entrar em out-of-stock em 3-5 dias dependendo do ritmo.
 
-- **Pergunta:** o health score do KIT4YW1050 (0.75) está em deterioração ativa ou estabilizado nesse nível no 7d? — **motivada por:** item é o 2º maior vendedor do dia em Full e aparece como risco central da Estratégica; diferenciar deterioração em curso de patamar estável muda a urgência da ação tática recomendada.
+- **Pergunta:** o fulfillment Full dos produtos YW (especialmente KIT4YW1050) rodou normalmente ontem ou houve algum período de indisponibilidade no CD do ML? — **motivada por:** queda de Full para 57.1% ontem vs 77.7% em 7d; a explicação provável é composição de mix, mas precisa descartar restrição de abastecimento no Full antes de confirmar.
+
+- **Pergunta:** a health do KIT4YW1050 está estável em 0.75 ou caiu em relação ao snapshot anterior? — **motivada por:** esse produto é o segundo maior em pedidos e o principal vetor de valor da conta; a Tática identificou 0.75 como risco ativo, e distinguir entre patamar estável e deterioração em curso muda completamente a urgência do acionamento de Himmel.
 
 ---
 
 ### Destaque para a Condensadora
 
-O GMV positivo e o ticket elevado tendem a dominar a leitura do dia, mas os dois riscos práticos que a Tática sinalizou se apresentaram com evidência concreta hoje: estoque Full em cobertura de 2-4 dias em itens ativos (TL6250 e KIT2YW1050) e um listing pausado com estoque zero gerando pedidos (914C_BAV) — ambos silenciosos na métrica agregada, mas com potencial de materialização em cancelamentos ou ruptura de Full nos próximos dias. O dia em si não trouxe fato operacional novo além do que a Estratégica e a Tática já mapearam, mas confirmou que os sinais de risco não são hipotéticos: estão visíveis nos dados de ontem. A Condensadora deve garantir que esses dois pontos operacionais cheguem a Yasmin com concretude, sem ficarem mascarados pelo número positivo de GMV.
+O fato operacional mais importante do dia não é a performance do GMV — é a sobreposição de três pontos de estoque crítico que as camadas anteriores tocaram parcialmente mas que o dia tornou mais concretos: 914C_BAV em ruptura quase certa, KIT2YW1050 e TL6250 com menos de 20 unidades cada. Isso é risco silencioso que não aparece no número do dia (que fechou dentro do padrão histórico) mas que pode se materializar como penalização de health e perda de ranking em 1-2 dias. O segundo ponto que merece atenção é o deslocamento de fulfillment mix para cross-docking: o dia rodou mais pesado em operação própria de expedição do que é padrão — se isso for recorrente nos próximos dias sem explicação de mix, pode indicar restrição de abastecimento no Full que ainda não apareceu nas métricas de volume.

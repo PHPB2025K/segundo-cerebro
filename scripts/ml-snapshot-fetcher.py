@@ -401,11 +401,59 @@ def _load_supabase_creds():
     )
 
 
+def _supabase_count(sb_url, sb_key, params_list):
+    """Faz HEAD com Prefer=count=exact e devolve o total da query."""
+    url = f"{sb_url}/rest/v1/orders?" + urllib.parse.urlencode(params_list)
+    req = urllib.request.Request(url, method="HEAD", headers={
+        "apikey": sb_key,
+        "Authorization": f"Bearer {sb_key}",
+        "Prefer": "count=exact",
+        "Range-Unit": "items",
+        "Range": "0-0",
+    })
+    try:
+        resp = urllib.request.urlopen(req, timeout=30)
+        cr = resp.headers.get("content-range", "")  # "0-0/N" ou "*/N"
+        if "/" in cr:
+            return int(cr.split("/")[-1])
+    except Exception:
+        pass
+    return None
+
+
+def _supabase_paginate(sb_url, sb_key, base_params, page_size=1000):
+    """
+    Pagina /orders trazendo todos os rows em lotes via Range header.
+    base_params é uma lista de tuplas (chaves podem repetir, ex: order_date 2x).
+    """
+    all_rows = []
+    offset = 0
+    while True:
+        params = list(base_params) + [("limit", str(page_size)), ("offset", str(offset))]
+        url = f"{sb_url}/rest/v1/orders?" + urllib.parse.urlencode(params)
+        req = urllib.request.Request(url, headers={
+            "apikey": sb_key,
+            "Authorization": f"Bearer {sb_key}",
+        })
+        resp = urllib.request.urlopen(req, timeout=60)
+        rows = json.loads(resp.read())
+        if not rows:
+            break
+        all_rows.extend(rows)
+        if len(rows) < page_size:
+            break
+        offset += page_size
+        if offset > 50_000:  # defensivo
+            log.warning(f"Paginação cortada em {offset} rows")
+            break
+    return all_rows
+
+
 def build_fulfillment_mix_window_block(date_str, days):
     """
     Calcula % logistic_type para a janela dos últimos N dias contando ATÉ date_str
     (inclusivo) usando a coluna orders.logistic_type do Supabase.
-    Não chama API ML — é só query SQL via REST.
+    Não chama API ML — é só query SQL via REST com paginação.
     """
     sb_url, sb_key = _load_supabase_creds()
     if not sb_url or not sb_key:
@@ -416,22 +464,17 @@ def build_fulfillment_mix_window_block(date_str, days):
     since_iso = start_dt.strftime("%Y-%m-%dT00:00:00+00:00")
     until_iso = end_dt.strftime("%Y-%m-%dT00:00:00+00:00")
 
-    params = {
-        "select": "logistic_type",
-        "platform": "eq.ml",
-        "order_date": f"gte.{since_iso}",
-        "and": f"(order_date.lt.{until_iso})",
-        "logistic_type": "not.is.null",
-        "limit": "10000",
-    }
-    url = f"{sb_url}/rest/v1/orders?" + urllib.parse.urlencode(params)
-    req = urllib.request.Request(url, headers={
-        "apikey": sb_key,
-        "Authorization": f"Bearer {sb_key}",
-    })
+    # base params como lista de tuplas — permite duas condições em order_date
+    base_params_with_lt = [
+        ("select", "logistic_type"),
+        ("platform", "eq.ml"),
+        ("order_date", f"gte.{since_iso}"),
+        ("order_date", f"lt.{until_iso}"),
+        ("logistic_type", "not.is.null"),
+    ]
+
     try:
-        resp = urllib.request.urlopen(req, timeout=30)
-        rows = json.loads(resp.read())
+        rows = _supabase_paginate(sb_url, sb_key, base_params_with_lt)
     except Exception as e:
         return {"status": "unavailable", "error": str(e)[:200]}
 
@@ -449,27 +492,13 @@ def build_fulfillment_mix_window_block(date_str, days):
         counts[bucket] += 1
     total = len(rows)
 
-    # também consulta total geral (com e sem logistic_type) pra reportar cobertura
-    params_total = {
-        "select": "count",
-        "platform": "eq.ml",
-        "order_date": f"gte.{since_iso}",
-        "and": f"(order_date.lt.{until_iso})",
-    }
-    url_total = f"{sb_url}/rest/v1/orders?" + urllib.parse.urlencode(params_total)
-    req_total = urllib.request.Request(url_total, headers={
-        "apikey": sb_key,
-        "Authorization": f"Bearer {sb_key}",
-        "Prefer": "count=exact",
-    })
-    total_window = None
-    try:
-        resp_t = urllib.request.urlopen(req_total, timeout=30)
-        cr = resp_t.headers.get("content-range", "")  # "0-0/N"
-        if "/" in cr:
-            total_window = int(cr.split("/")[-1])
-    except Exception:
-        pass
+    # total geral da janela (com e sem logistic_type) pra reportar cobertura
+    total_window = _supabase_count(sb_url, sb_key, [
+        ("select", "count"),
+        ("platform", "eq.ml"),
+        ("order_date", f"gte.{since_iso}"),
+        ("order_date", f"lt.{until_iso}"),
+    ])
 
     def _pct(c):
         return round(100 * c / total, 1)

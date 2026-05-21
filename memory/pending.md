@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-20 23:45 BRT — consolidação diária em camadas_
+_Atualizado: 2026-05-21 02:00 BRT — organização noturna silenciosa_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -132,7 +132,7 @@ _Atualizado: 2026-05-20 23:45 BRT — consolidação diária em camadas_
 ## 🟡 Observação / estabilidade
 
 
-- [ ] **Organização Noturna Silenciosa — investigar timeout da rodada anterior**: estado do cron mostrou a execução de 19/05 02:00 BRT como `error/timeout` antes desta rodada. Em 20/05 02:00 BRT a rotina conseguiu avançar e os últimos crons recorrentes recentes estavam OK; revisar escopo/timeout se a falha se repetir.
+- [x] ~~**Organização Noturna Silenciosa — investigar timeout da rodada anterior**~~ → **RESOLVIDO 21/05.** A falha isolada de 19/05 02:00 BRT não se repetiu: as rodadas de 20/05 e 21/05 concluíram, e os últimos crons recorrentes recentes estavam OK. Manter apenas monitoramento normal; reabrir se houver novo timeout.
 - [ ] **Watchdog/Monitor Ponto/RH crons** — revisar timeouts/fallbacks em jobs com histórico de falha por timeout/model not found.
 
 ## 🟡 Futuro aprovado / não imediato
@@ -143,10 +143,10 @@ _Atualizado: 2026-05-20 23:45 BRT — consolidação diária em camadas_
 
 
 ## Nota para briefing matinal — itens estagnados >7 dias
-_Gerado pela organização noturna de 20/05 02:00 BRT._
+_Gerado pela organização noturna de 21/05 02:00 BRT._
 
-- Revalidar no briefing apenas os itens que continuam bloqueados por decisão/input do Pedro: reposição de canecas/Agente de Compras, Pedidos Atacado/PDF oficial Bling, Meta Business Segunda Venda, grupo OS/OSA com Davi, Estoque Budamix deploy/credencial GitHub, Social Studio Meta App/secrets, Canggu senha/admin + smoke real, DRE abril U15, Guarani distrato, Bling Filial 403, firewall VPS e rotação de tokens expostos.
-- Crons recorrentes mais recentes checados em 20/05 02:00 BRT: Claude Contingency Guard, job-monitor e Himmel ML WhatsApp Context Ingestion estavam OK. Falha anterior da própria Organização Noturna em 19/05 por timeout foi registrada em Observação/estabilidade para acompanhamento, sem interromper o briefing.
+- Revalidar no briefing apenas os itens que continuam bloqueados por decisão/input do Pedro: reposição de canecas/Agente de Compras, Pedidos Atacado/PDF oficial Bling, teste controlado da automação de pedidos, Meta Business Segunda Venda, carrosséis fixos do Instagram Budamix, grupo OS/OSA com Davi, escolha da Capa 01 do banner triplo, aliases/POT1BB/KFJ003 do Estoque Budamix, Social Studio Meta App/secrets, Canggu senha/admin + hard-block defensivo, DRE abril U15, Guarani distrato, Bling Filial 403, firewall VPS e rotação de tokens expostos.
+- Crons recorrentes mais recentes checados em 21/05 02:00 BRT: Watchdog — GitHub Sync Segundo Cérebro (01:42 BRT), Inbox Cleanup - Gmail Pedro (00:30 BRT) e Watchdog — Consolidação em Camadas (00:20 BRT) estavam OK. A falha isolada da Organização Noturna em 19/05 não se repetiu e foi marcada como resolvida.
 - Sessões antigas >30 dias foram verificadas e mantidas por falta de marcação inequívoca de consolidação completa; não deletar até a consolidação diária/profunda confirmar.
 - Não reabrir pendências antigas de abril/2026 que Pedro já mandou limpar; manter histórico fora da fila ativa.
 
@@ -164,4 +164,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última consolidação: 2026-05-20 23:45 BRT._
+_Última organização: 2026-05-21 02:00 BRT._

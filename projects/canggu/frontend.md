@@ -112,3 +112,8 @@ Total componentes (sumário B4 do histórico): 39 + 8 hooks + 4 stores.
 
 - Sumário B1–B10 do monorepo: `~/audit-canggu-forensics/RAW/B_monorepo/01_summary.md`
 - Seções §B1 (estrutura), §B4 (rotas), §B5 (Supabase), §B6 (edge calls)
+
+## Conectado a
+
+- [[projects/canggu/canggu]] — **pai**: ficha-pai do projeto
+- [[knowledge/concepts/stack-tecnico]] — **tema**: Vite/React/Zustand/Tailwind na stack canônica

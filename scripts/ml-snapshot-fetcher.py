@@ -65,6 +65,11 @@ ML_LOGISTIC_TYPE_TO_BUCKET = {
     "xd_drop_off": "self_service",
 }
 
+# Amostragem do account overview — 50 anúncios é representativo sem explodir API
+ACCOUNT_OVERVIEW_SAMPLE_SIZE = 50
+MULTIGET_BATCH_SIZE = 20  # limite oficial do endpoint multi-get da API ML
+LOW_HEALTH_THRESHOLD = 0.85  # health < 0.85 = anúncio com penalização visível
+
 # ─── Blocos do snapshot ───────────────────────────────────────────────────────
 
 
@@ -180,6 +185,151 @@ def compute_fulfillment_mix(top_items_details, top_products):
     }
 
 
+def _count_items_by_status(token, status):
+    """Conta total de anúncios em um status (1 chamada, limit=1, pega paging.total)."""
+    url = (
+        f"https://api.mercadolibre.com/users/{ml_conn.USER_ID}/items/search"
+        f"?status={status}&limit=1"
+    )
+    data = ml_conn.api_get(url, token)
+    if not data:
+        return None
+    return (data.get("paging") or {}).get("total")
+
+
+def _multiget_items(token, item_ids, attributes):
+    """
+    Busca múltiplos items em batches de 20 (limite ML).
+    Retorna lista de dicts (cada um é o body[i]['body'] do multiget).
+    """
+    results = []
+    attr_str = ",".join(attributes)
+    for i in range(0, len(item_ids), MULTIGET_BATCH_SIZE):
+        batch = item_ids[i:i + MULTIGET_BATCH_SIZE]
+        url = (
+            f"https://api.mercadolibre.com/items"
+            f"?ids={','.join(batch)}&attributes={attr_str}"
+        )
+        data = ml_conn.api_get(url, token)
+        if not data:
+            continue
+        # multiget retorna lista de {"code": 200, "body": {...}}
+        for entry in data:
+            if entry.get("code") == 200 and entry.get("body"):
+                results.append(entry["body"])
+    return results
+
+
+def build_account_overview_block(token):
+    """
+    Panorama de TODA a conta (não só top 10 do dia):
+      - totais por status (active / paused / closed)
+      - amostragem de até 50 ativos com % Full/Flex/Coletado, frete grátis,
+        listing_type, catálogo, fora de estoque, health baixo
+    """
+    # 1. contagens por status — 3 chamadas baratas
+    counts = {
+        "active": _count_items_by_status(token, "active"),
+        "paused": _count_items_by_status(token, "paused"),
+        "closed": _count_items_by_status(token, "closed"),
+    }
+
+    if counts["active"] is None:
+        return {
+            "status": "unavailable",
+            "error": "items/search status=active returned None",
+        }
+
+    # 2. amostragem dos ativos — pega 50 primeiros IDs
+    sample_url = (
+        f"https://api.mercadolibre.com/users/{ml_conn.USER_ID}/items/search"
+        f"?status=active&limit={ACCOUNT_OVERVIEW_SAMPLE_SIZE}"
+    )
+    sample_data = ml_conn.api_get(sample_url, token)
+    if not sample_data:
+        return {
+            "status": "partial",
+            "totals": counts,
+            "sample_analysis": {"status": "unavailable", "error": "sample fetch failed"},
+        }
+    sample_ids = sample_data.get("results", []) or []
+    if not sample_ids:
+        return {
+            "status": "partial",
+            "totals": counts,
+            "sample_analysis": {"status": "unavailable", "error": "no active items"},
+        }
+
+    # 3. multiget detalhes — atributos mínimos pra reduzir payload
+    attributes = [
+        "id", "status", "listing_type_id", "catalog_listing",
+        "shipping", "available_quantity", "health", "sold_quantity",
+    ]
+    items = _multiget_items(token, sample_ids, attributes)
+    sample_size_real = len(items)
+
+    if sample_size_real == 0:
+        return {
+            "status": "partial",
+            "totals": counts,
+            "sample_analysis": {"status": "unavailable", "error": "multiget failed"},
+        }
+
+    # 4. agregações da amostra
+    fulfillment_counts = {"full": 0, "flex": 0, "self_service": 0, "unknown": 0}
+    listing_counts = {}
+    catalog_count = 0
+    free_shipping_count = 0
+    out_of_stock_count = 0
+    low_health_count = 0
+    no_health_data_count = 0
+
+    for item in items:
+        shipping = item.get("shipping") or {}
+        bucket = ML_LOGISTIC_TYPE_TO_BUCKET.get(shipping.get("logistic_type"), "unknown")
+        fulfillment_counts[bucket] += 1
+
+        lt = item.get("listing_type_id") or "unknown"
+        listing_counts[lt] = listing_counts.get(lt, 0) + 1
+
+        if item.get("catalog_listing"):
+            catalog_count += 1
+        if shipping.get("free_shipping"):
+            free_shipping_count += 1
+        if (item.get("available_quantity") or 0) == 0:
+            out_of_stock_count += 1
+        health = item.get("health")
+        if health is None:
+            no_health_data_count += 1
+        elif health < LOW_HEALTH_THRESHOLD:
+            low_health_count += 1
+
+    def _pct(n):
+        return round(100 * n / sample_size_real, 1)
+
+    return {
+        "status": "ok",
+        "totals": counts,
+        "sample_analysis": {
+            "status": "ok",
+            "sample_size": sample_size_real,
+            "fulfillment_mix": {
+                "full_pct": _pct(fulfillment_counts["full"]),
+                "flex_pct": _pct(fulfillment_counts["flex"]),
+                "self_service_pct": _pct(fulfillment_counts["self_service"]),
+                "unknown_pct": _pct(fulfillment_counts["unknown"]),
+            },
+            "listing_type_mix": {k: _pct(v) for k, v in listing_counts.items()},
+            "catalog_pct": _pct(catalog_count),
+            "free_shipping_pct": _pct(free_shipping_count),
+            "out_of_stock_count": out_of_stock_count,
+            "low_health_count": low_health_count,
+            "no_health_data_count": no_health_data_count,
+            "low_health_threshold": LOW_HEALTH_THRESHOLD,
+        },
+    }
+
+
 def build_ads_block(token, date_str):
     """Chama API Mercado Ads pra trazer resumo do dia."""
     try:
@@ -227,12 +377,13 @@ def read_top_products(package_path):
     )
 
 
-def overall_status(reputation, fulfillment, items_details, ads):
+def overall_status(reputation, fulfillment, items_details, ads, account_overview):
     """Decide o status global do snapshot."""
     block_statuses = [
         reputation.get("status"),
         fulfillment.get("status"),
         ads.get("status"),
+        account_overview.get("status"),
     ]
     has_items = any(d.get("status") != "unavailable" for d in items_details)
     if has_items:
@@ -274,7 +425,16 @@ def build_snapshot(date_str, top_items_from):
     log.info("Buscando resumo ADS...")
     ads = build_ads_block(token, date_str)
 
-    overall = overall_status(reputation, fulfillment, top_items, ads)
+    log.info("Buscando panorama da conta inteira (50 ativos)...")
+    account_overview = build_account_overview_block(token)
+    if account_overview.get("status") == "ok":
+        totals = account_overview.get("totals", {})
+        log.info(
+            f"  → ativos:{totals.get('active')} pausados:{totals.get('paused')} "
+            f"fechados:{totals.get('closed')}"
+        )
+
+    overall = overall_status(reputation, fulfillment, top_items, ads, account_overview)
 
     return {
         "schema_version": "ml-snapshot/v1",
@@ -285,6 +445,7 @@ def build_snapshot(date_str, top_items_from):
         "fulfillment_mix": fulfillment,
         "top_items_details": top_items,
         "ads_summary": ads,
+        "account_overview": account_overview,
     }
 
 
@@ -359,6 +520,7 @@ def main():
                 "fulfillment_mix": {"status": "unavailable"},
                 "top_items_details": [],
                 "ads_summary": {"status": "unavailable"},
+                "account_overview": {"status": "unavailable"},
             }
 
     # escreve output principal

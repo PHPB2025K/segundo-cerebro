@@ -1,56 +1,56 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Qualidade da base
 
-Weekly e monthly estão em templates vazios — sem consolidação histórica acumulada para a conta ML. Não há hipóteses ativas de leituras anteriores para confirmar ou refutar; esta análise serve como ponto de partida da memória, não como verificação de tese. Em compensação, todos os blocos ML opcionais estão disponíveis com cobertura total (reputação, mix fulfillment, top items com health e estoque, ads_summary, account overview) — a leitura estrutural é robusta. A limitação é temporal, não qualitativa.
+`weekly.md` e `monthly.md` são templates sem dados preenchidos — não há consolidação semanal nem tese mensal registrada. Sem hipóteses ativas de ciclos anteriores para confirmar ou refutar: esta leitura é **ponto zero da memória**, não confirmação de tese. Dados ML opcionais (reputação, fulfillment mix, ADS summary) vieram completos com `status: ok` — o snapshot ML está robusto. A limitação é a memória histórica rasa, não a qualidade do dado de hoje.
 
 ---
 
 ### Leitura temporal
 
-- **60d e 30d — mudança de composição, não de alcance.** A conta saiu de R$3.817 (média 60d) para R$5.057 hoje (+32,5% no GMV), com pedidos essencialmente flat (–1,3% vs 60d) e ticket subindo de R$41,86 para R$56,19 (+34,2%). O padrão se repete no 30d: pedidos –9,9%, GMV +15%, ticket +27,6%. O crescimento não veio de mais volume — veio de mix de maior valor unitário. A trajetória é consistente em duas janelas longas.
+- **vs 60d e 30d — ticket sobe, volume flat:** GMV R$5.087,71 está +33,3% acima da média bimestral (R$3.817,90) e +15,7% acima da média mensal (R$4.396,77), mas pedidos ficaram essencialmente flat vs 60d (-0,2% vs avg_60d=91,2) e abaixo do 30d (-8,9% vs avg_30d=99,9). Ticket médio R$55,91 vs média 60d R$41,86 (+33,6%) e vs 30d R$44,03 (+27,0%). A conta está faturando mais com o mesmo volume de pedidos — o vetor de crescimento é ticket, não alcance. Esse padrão se repete em ambas as janelas longas: não é evento.
 
-- **7d — pico de volume que não se sustentou, mas GMV segura.** A média dos últimos 7 dias registrou 115,1 pedidos e ticket de R$46,17 — o período inclui dias de pico. Hoje o volume recuou para 90 pedidos (–21,8%) mas o GMV ficou em R$5.057 (–4,9%) porque o ticket subiu a R$56,19. O recuo de pedidos vs 7d é a maior divergência do pacote; controlado pelo mesmo dia da semana, é ruído de sazonalidade, não deterioração.
+- **vs mesmo dia da semana — controle confirma:** 91 pedidos vs avg_same_weekday de 92,5 (-1,6%) — volume praticamente idêntico ao par histórico. GMV R$5.087,71 vs avg R$3.841,73 (+32,4%). O controle de sazonalidade elimina a hipótese de dia da semana favorável: a força é de ticket e mix, não de tráfego.
 
-- **Mesmo dia da semana — suporte sólido ao resultado.** Média das 4 quartas anteriores: 92,5 pedidos e R$3.841 de GMV. Hoje: 90 pedidos (–2,7%) e R$5.057 (+31,6%). Volume totalmente alinhado à sazonalidade; GMV expressivamente acima. O ticket elevado de hoje não é anomalia do dia — é aceleração de uma tendência que já estava presente nas comparações 30d e 60d. A quarta de 29/04 (134 pedidos, R$5.618) foi outlier e distorce levemente a média 7d para cima.
+- **vs 7d — divergência de ticket explicada:** Pedidos -20,9% e GMV -4,3% vs avg_7d (115,1 pedidos, R$5.315,70). A semana recente incluiu dias de maior volume a ticket menor — o dia de ontem inverteu a composição (menos pedidos, mais ticket). Isso é consistente com o padrão 30d/60d, mas indica que a semana recente teve algo que elevou o volume (provável intensificação de ADS ou campanha pontual — hipótese, sem dado para confirmar).
 
-- **Hipóteses anteriores:** Sem memória consolidada, não há teses ativas a confirmar ou refutar. Esta leitura inaugura o histórico.
+- **Hipóteses anteriores:** Nenhuma ativa — memória vazia. A leitura de hoje estabelece as primeiras hipóteses, não confirma nenhuma.
 
 ---
 
 ### Leitura estratégica
 
-- **Deslocamento estrutural de ticket, não de volume.** A elevação de ticket de R$41,86 (60d) para R$56,19 hoje (+34,2%) aparece de forma consistente em todas as janelas — não é efeito de um dia nem de sazonalidade. Os anúncios de maior valor unitário (Kit 4 Potes 1050ml, Kit 10 Potes 1050ml) estão ganhando peso relativo no mix. A conta cresce em GMV sem crescer em alcance de pedidos — positivo para faturamento, mas aumenta a dependência de um núcleo pequeno de SKUs de alto ticket.
+- **O crescimento de GMV é real, mas narrow.** A trajetória 60d confirma patamar de ticket em ascensão (+33,6%), não de alcance. A conta está convertendo mais por pedido — seja por mix de kits maiores, seja por composição de campanha ADS direcionada a SKUs de ticket mais alto. Esse tipo de crescimento é mais frágil do que expansão de volume: depende de manter a composição de campanha e o mix de produto estáveis. Qualquer mudança de estratégia ADS ou ruptura de SKU de alto ticket reverte o indicador rapidamente.
 
-- **Mercado Ads sustenta o resultado, mas a proporção é dominante.** As campanhas de Himmel geraram R$3.041 de receita com R$262 de investimento — ROAS de 11,6x e ACOS de 4,33%, ambos excelentes. Mas essa receita representa **60,1% do GMV do dia**. A conta está em zona de ADS dominante: eficiente hoje, mas estruturalmente exposta. Se as campanhas forem pausadas, ajustadas ou sofrerem mudança de algoritmo ML, o GMV não tem base orgânica equivalente para absorver o impacto.
+- **ADS é o motor atual — e isso é fragilidade estrutural latente.** `ml_snapshot.ads_summary`: gasto R$262,19, receita atribuída R$3.041,56 — ROAS 11,6x, ACOS 4,33% (campanha Himmel extremamente eficiente). Esse resultado representa **59,8% do GMV total do dia** (R$3.041,56 / R$5.087,71): conta em zona de **ADS dominante**. A eficiência não é o problema — o risco é que, sem confirmação de base orgânica por baixo, qualquer pausa ou redução de campanha remove mais da metade do faturamento. Sem histórico de ADS share em ciclos anteriores (memória vazia), não é possível dizer se 60% é padrão ou escalada recente.
 
-- **Health dos campeões — ADS mascara penalização.** O 2º maior anúncio por pedidos (Kit 4 Potes 1050ml, 13 pedidos, em Full) opera com health 0,75 — zona de penalização ML. O 5º (Conjunto 5 Potes Tampa Vermelha, 5 pedidos, em Full) tem health 0,71. Dois dos cinco maiores do dia estão penalizados. A conta entrega resultado mesmo assim — o que sugere que o ADS está compensando a exposição orgânica reduzida. Essa combinação é silenciosa: o número parece saudável, mas a exposição orgânica dos campeões está deteriorada.
+- **Dois campeões operam em penalização de ranking ML.** Kit 4 Potes de Vidro 1050ml (MLB4073003575, 2º produto, 13 pedidos) tem `health=0,75`. Conjunto 5 Potes Tampa Vermelha (MLB3288536143, 5º produto, 5 pedidos) tem `health=0,71`. Ambos abaixo do threshold ML de 0,85, ambos em `logistic_type=fulfillment` (Full) — a penalização de ranking ocorre no orgânico, não no fulfillment. Se ADS estiver sustentando a exposição desses anúncios, a degradação de health pode estar mascarada no faturamento hoje. A leitura orgânica desses dois é decrescente enquanto health não for recuperada.
 
-- **Cauda morta e concentração estrutural.** 174 anúncios pausados contra 82 ativos — os pausados excedem os ativos em 2x. O top 3 concentra 47,8% dos pedidos. Os anúncios vencedores usam Full em proporção muito acima da média da base: 57-77% no top 10 vs 34% na conta toda. A operação vive de um núcleo enxuto de anúncios em Full; a cauda em Coleta sustenta pouco volume e não oferece segundo vetor consolidado.
+- **O líder é Cross-Docking e puxa o mix do dia.** Conjunto 5 Potes Tampa Preta (MLB4535865317, 1º produto, 23 pedidos) é `cross_docking`, sem Frete Grátis, `health=null`. O mix top10 ontem ficou em 56,3% Full — abaixo do mix 7d (77,7%) e 30d (73,9%). A divergência é explicada pelo peso do líder em cross-docking. A base da conta (82 ativos vs 174 pausados — razão 2,1x) confirma cauda morta dominante: a operação depende de conjunto restrito de SKUs, com os campeões tendo mix de fulfillment superior à base mas heterogêneo entre si.
 
 ---
 
 ### Tese da conta
 
-**Vulnerável.** O GMV está em trajetória de alta consistente nos últimos 30 e 60 dias, sustentado por elevação real de ticket — isso é positivo e estruturalmente relevante. Mas a arquitetura que entrega esse resultado é frágil em três dimensões simultâneas: aproximadamente 60% do GMV atribuído ao Mercado Ads com ROAS elevado mas sem base orgânica equivalente por baixo; os dois maiores anúncios por volume de pedidos com health penalizado (0,75 e 0,71); e concentração alta em poucos anúncios Full sem segundo vetor consolidado. O número parece saudável; a estrutura que o produz está exposta.
+**Vulnerável.** O GMV +33,3% vs 60d e o ticket +33,6% confirmam trajetória real de upgrading de mix — não ruído de um dia. Mas a estrutura que sustenta esse resultado concentra risco em três frentes simultâneas: ADS representa ~60% do GMV sem confirmação de base orgânica, dois dos cinco campeões operam com `health` abaixo de 0,85 e em penalização de ranking ML, e um anúncio top-10 está com `available_quantity=3` (Kit 06 Canequinhas Acrílico — ruptura iminente). A cauda está morta (174 pausados vs 82 ativos). O número de hoje é forte; a estrutura que o produz não está confirmada como sustentável.
 
 ---
 
 ### Risco estrutural principal
 
-**Risco:** Dois dos maiores anúncios da conta (Kit 4 Potes 1050ml e Conjunto 5 Potes Tampa Vermelha) operam com health na zona de penalização (0,75 e 0,71) enquanto ~60% do GMV é atribuído a campanhas de Mercado Ads. O ADS está compensando a redução de exposição orgânica causada pela penalização — sem que isso apareça no resultado agregado.
+**Risco:** Dependência de Mercado Ads (Himmel) como vetor primário do faturamento, com ADS share ~60% e sem evidência confirmada de base orgânica que sustente o patamar de forma autônoma.
 
-**Por que importa:** Qualquer ajuste nas campanhas de Himmel (pausa, redução de verba, mudança de algoritmo) expõe o ranking real desses anúncios — já penalizados — sem o amparo do tráfego pago. A conta pode perder GMV de forma abrupta e assimétrica, muito mais rápido do que a trajetória de alta sugere.
+**Por que importa:** Se as campanhas reduzirem — por revisão de verba, pausa operacional, ajuste de estratégia ou qualquer fricção no fluxo Yasmin → Himmel — a conta perde mais da metade do GMV atual sem sinal de aviso no dia anterior. A eficiência de ROAS 11,6x confirma que Himmel está operando bem hoje; não confirma que o orgânico existe em volume suficiente para segurar o patamar.
 
-**Histórico:** Sem memória anterior consolidada, não é possível confirmar se esse é padrão recorrente ou degradação recente. Esta é a primeira leitura formalizada da conta.
+**Histórico:** Sem registros em ciclos anteriores (weekly.md e monthly.md vazios). Não é possível afirmar se o ADS dominante é padrão histórico ou escalada recente. A hipótese é candidata, não conclusão — hoje é o primeiro ciclo com leitura de share disponível.
 
-**Sinal de confirmação:** Health do Kit 4 Potes 1050ml ou do Conjunto 5 Potes Tampa Vermelha caindo abaixo de 0,70 nos próximos ciclos, ou GMV abaixo de R$4.000 por 2 dias consecutivos com spend ADS constante, confirma que a degradação está se aprofundando além do limiar de compensação.
+**Sinal de confirmação:** ADS share acima de 55% por 3 dias seguidos confirma dependência estrutural. Se o share cair abaixo de 35% num dia com GMV acima de R$4.000 sustentado, confirma base orgânica relevante e enfraquece o risco.
 
 ---
 
 ### Sinais a observar
 
-1. **Health dos dois campeões penalizados:** Se Kit 4 Potes 1050ml e Conjunto 5 Potes Tampa Vermelha mantiverem health abaixo de 0,80 por 3 ciclos seguidos, a penalização de ranking passa de hipótese a problema operacional ativo — e a dependência de ADS para compensação deixa de ser contingente.
+1. **Ruptura de estoque do Kit 06 Canequinhas Acrílico (MLB4410218897) nas próximas 24h.** `available_quantity=3` com 3 pedidos ontem — qualquer venda adicional hoje já compromete atendimento. Se o anúncio entrar em out-of-stock, gera cancelamentos prospectivos que ainda não aparecem na `reputation.cancellations_rate` (janela longa, hoje em 0); o impacto na reputação virá nos próximos ciclos sem aviso agregado imediato.
 
-2. **Ruptura iminente no Kit 06 Canequinhas Com Suporte Acrílico:** O anúncio encerrou o dia com 3 unidades disponíveis após 3 pedidos. Sem reposição em 24–48h, o estoque zera — gerando cancelamentos prospectivos que impactam a taxa de cancelamentos da conta nos próximos ciclos sem sinalização no agregado de hoje.
+2. **GMV abaixo de R$4.500 por 2 dias seguidos refuta a tese de patamar.** O bimestre médio é R$3.817,90; o dia ficou +33% acima. Dois dias consecutivos abaixo de R$4.500 indicam que o movimento é pico pontual (possivelmente ADS específico ou data de demanda), não patamar estabelecido — e a trajetória de ticket volta a ser inconclusiva.
 
-3. **ADS share como estrutural vs alavanca:** Se o share de Mercado Ads sobre o GMV permanecer acima de 55% por mais de 3 dias seguidos sem crescimento paralelo de pedidos em anúncios não impulsionados, a dependência de mídia paga está se consolidando como arquitetura da conta — não como amplificador pontual.
+3. **`health` do Kit 4 Potes 1050ml (MLB4073003575) abaixo de 0,75 ou Conjunto 5 Potes Tampa Vermelha (MLB3288536143) abaixo de 0,70 em leitura seguinte confirma deterioração acelerada de exposição orgânica nesses dois campeões** (se `top_items_details` disponível no pacote). Estabilidade ou recuperação enfraquece o risco de erosão de ranking em Full.

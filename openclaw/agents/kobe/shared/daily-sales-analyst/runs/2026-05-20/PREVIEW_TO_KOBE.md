@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-20
-**Gerado em:** 2026-05-21T15:21:43.318093+00:00
+**Gerado em:** 2026-05-21T15:43:59.452328+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,8 +24,10 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Confiança geral da mensagem é média (declarada pela Condensadora): weekly.md e monthly.md são templates inaugurais sem teses consolidadas — hoje é o primeiro ponto da série de observação. A linguagem de hipótese foi corretamente preservada em todos os insights e prioridades.
-- **Aviso:** A omissão de 'de produto' no bullet 1 da análise não foi registrada nas Decisões de formatação da Slack Writer — ciclo seguinte deve documentar explicitamente qualquer simplificação de qualificador, mesmo que sem alteração de sentido.
+- **Aviso:** DADOS_PARCIAIS declarado no Layer 0 por volume da Shopee-Budamix-Store fora da banda 30d (–45,8%) — não afeta a mensagem ML. Todos os checks relevantes para Mercado Livre retornaram OK: volume_band_mercado-livre OK, reconciliation_mercado-livre OK, timezone_brt OK, product_identity_contract OK.
+- **Aviso:** 4 perguntas operacionais enviadas pela camada 3 à camada 4 ficaram sem resposta por ausência de dado no pacote (atribuição ADS por produto, pedidos pendentes em processamento do 914C_BAV, status de reposição logística do TL6250 e do 914C_BAV, posição competitiva em catálogo do IMB501V). Os riscos correspondentes foram comunicados na mensagem com ressalvas de incerteza corretas, sem fabricação de dado — nenhum 'não respondido por falta de dado' foi convertido em conclusão.
+- **Aviso:** Sync freshness marcado como 'not_measured' no Layer 0 por limitação de esquema. Limitação registrada e sem impacto na validação da mensagem.
+- **Aviso:** Confiança declarada como 'média' pela Condensadora. A limitação é estrutural ao pacote ML deste ciclo e não viola nenhuma regra objetiva — comunicação preserva o grau correto de incerteza.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/00-data-package.json`

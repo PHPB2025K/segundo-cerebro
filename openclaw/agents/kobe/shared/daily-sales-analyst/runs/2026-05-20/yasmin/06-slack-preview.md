@@ -5,31 +5,31 @@
 DAILY SALES REPORT — MERCADO LIVRE — 20/05/2026 (Ontem)
 
 📊 VISÃO MERCADO LIVRE
-- Faturamento: R$ 5.057,51
-- Pedidos: 90 pedidos
-- Ticket médio: R$ 56,19
-- Cancelamentos: 3
+• Faturamento: R$ 5.087,71
+• Pedidos: 91 pedidos
+• Ticket médio: R$ 55,91
+• Cancelamentos: 3
 
 🏆 TOP PRODUTOS MERCADO LIVRE
-- Conjunto 5 Potes de Vidro Redondos Tampa Preta — 22 pedidos
-- Kit 4 Potes de Vidro 1050ml Retangular — 13 pedidos
-- Kit 6 Canequinhas 100ml — 8 pedidos
-- Kit 10 Potes Herméticos 1050ml Refratário 4 Travas — 5 pedidos
-- Conjunto 5 Potes de Vidro Redondos Tampa Vermelha — 5 pedidos
-- Kit 6 Canecas Porcelana Tulipa 250ml — 5 pedidos
-- Kit 2 Potes de Vidro 1050ml Retangular — 3 pedidos
-- Suporte Gamer 2 Controles e Headset Mesa Organizador PS5/PS4 Preto — 3 pedidos
-- Kit 4 Potes de Vidro 320ml — 3 pedidos
-- Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico — 3 pedidos
+• Conjunto 5 Potes de Vidro Redondos Tampa Preta — 23 pedidos
+• Kit 4 Potes de Vidro 1050ml Retangular — 13 pedidos
+• Kit 6 Canequinhas 100ml — 8 pedidos
+• Conjunto 5 Potes de Vidro Redondos Tampa Vermelha — 5 pedidos
+• Kit 10 Potes Herméticos 1050ml Refratário 4 Travas — 5 pedidos
+• Kit 6 Canecas Porcelana Tulipa Lisa 250ml — 5 pedidos
+• Kit 2 Potes de Vidro 1050ml Retangular — 3 pedidos
+• Suporte Gamer 2 Controles e Headset Mesa PS5/PS4 Preto — 3 pedidos
+• Kit 4 Potes de Vidro 320ml Retangular — 3 pedidos
+• Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico — 3 pedidos
 
 🔍 ANÁLISE DA CONTA
-- O GMV do dia ficou acima do histórico do mesmo dia da semana (+31,6%), mas o motor não foi volume — foi ticket elevado (R$ 56,19 vs R$ 41,53 de histórico no mesmo dia). Boa parte desse resultado passou pelo pago. A conta não ganhou alcance; amplificou receita por pedido via mix impulsionado por campanha. Sem confirmar se o ticket segura no orgânico, tratar isso como crescimento de canal é leitura prematura.
-- A concentração do dia não está em um produto isolado: as duas variações de potes redondos (tampa preta e tampa vermelha) somaram 30% dos pedidos juntas, e as duas estão expostas ao mesmo risco de ranking. Se esse conjunto perder posição, a conta perde um terço do volume de uma vez — não um SKU cai, um conceito de produto inteiro cai.
-- Há um item de fulfillment com 3 unidades em estoque e anúncio ativo. Sem reposição confirmada, o anúncio pode ser pausado involuntariamente nos próximos 1-2 dias — o que contamina a série de observação que é necessária para validar a hipótese de dependência de ADS. É o único ponto que exige ação ainda hoje.
+• O dia parece forte no GMV, mas o resultado é narrow e apoiado em estrutura frágil: o ADS (Himmel) respondeu por cerca de 60% do faturamento, e dois dos campeões em Full operam com health abaixo do threshold do ML — penalização de ranking que o número de ontem não mostra porque o ADS cobriu a exposição. O crescimento de ticket é real, mas depende de manter a composição de campanha e o mix de produto estáveis; qualquer ajuste de verba ou mudança de estratégia desfaz o número sem aviso de volume.
+• A queda de 21 pontos no mix de fulfillment não é degradação de infraestrutura Full — é o produto que mais vendeu no dia operando em cross-docking e pesando o agregado para baixo. Tirando esse produto do cálculo, o mix dos demais anúncios volta ao padrão histórico. Não há sinal operacional autônomo aqui.
 
 🎯 PRIORIDADES DO DIA
-- Yasmin: checar reposição do kit de canequinhas com suporte acrílico (3 unidades em estoque, anúncio ativo em fulfillment). Por quê: ruptura iminente pode pausar o anúncio involuntariamente e contaminar a série de volume dos próximos dias, comprometendo a janela de observação da hipótese estratégica. Sinal a observar: reposição em trânsito ou pedido confirmado dentro de hoje. Escalar se: anúncio pausado sem reposição prevista — registrar como variável confundidora.
-- Yasmin: revisar health e posição dos anúncios líderes de fulfillment — especialmente o segundo maior produto do dia (potes retangulares 1050ml), que está com saúde abaixo do limiar — e comparar com a posição da semana passada. Por quê: se o health estiver em deterioração ativa, o ADS pode estar compensando perda de orgânico, o que tornaria a dependência de campanha ainda mais real. Sinal a observar: queda de posição relativa confirmada vs semana passada indica deterioração ativa; posição estável indica health em patamar estável. Escalar se: 2 ou mais anúncios líderes com queda de posição confirmada → Yasmin alinha com Himmel para checar se ADS está compensando perda de orgânico.
+• Yasmin: verificar estoque disponível do anúncio de baixíssimo estoque (Kit 06 Canequinhas 100ml Acrílico, top10 da conta). O snapshot registrou 3 unidades disponíveis e 3 pedidos ontem — qualquer pedido hoje pode ter zerado o estoque ou disparado pausa automática no ML. Se o anúncio entrou em pausa ou aparecerem cancelamentos ligados a esse produto, avaliar reposição urgente com expedição.
+• Yasmin: registrar o ADS share de ontem (~60% do GMV) como primeiro ponto da série e acompanhar nos próximos 2–3 dias. O ROAS está eficiente; o risco não é a campanha em si, é não saber ainda se há base orgânica sustentável por baixo. Se o share ficar acima de 55% por 3 dias seguidos e o GMV começar a cair abaixo de R$ 4.500, alinhar com Kobe.
+• Yasmin: registrar os health atuais dos dois campeões em Full (0,75 e 0,71 — ambos abaixo do threshold ML de 0,85) como baseline e calcular a direção no próximo ciclo. Se health cair nos dois por 2 leituras seguidas e GMV ficar abaixo de R$ 4.500, alinhar com Himmel.
 
 Dia analisado: 20/05/2026 — 00:00–23:59 BRT
 ```
@@ -38,64 +38,71 @@ Dia analisado: 20/05/2026 — 00:00–23:59 BRT
 
 ### Respeito de bloqueios
 
-- Item bloqueado: display_name "Kit 6 Tigelas de Vidro 250ml" (TL6250 / MLB6167272090)
-- Origem do bloqueio: Granular + Condensadora
-- Motivo: display_name diverge materialmente do produto real — produto é "Kit 6 Canecas Porcelana Tulipa Lisa 250ml" (porcelana, não vidro; canecas, não tigelas)
-- Agregado autorizado: não — nenhum agregado autorizado; produto citado pelo título real corrigido
-- Tratamento aplicado: produto citado na mensagem com nome corrigido ("Kit 6 Canecas Porcelana Tulipa 250ml"), em linha com a resolução de divergência da Granular (título real do anúncio prevalece sobre display_name de mapeamento interno)
-- Aparece na mensagem final: sim, como "Kit 6 Canecas Porcelana Tulipa 250ml"
+- **Item bloqueado:** TL6250 pelo display_name interno "Kit 6 Tigelas de Vidro 250ml"
+- **Origem do bloqueio:** Granular / Condensadora
+- **Motivo:** alias incorreto — o produto real identificado pelo pedido e pelo title do anúncio (MLB6167272090) é "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara"; citar pelo alias nomearia categoria errada (tigelas de vidro ≠ canecas de porcelana)
+- **Agregado autorizado:** sim — uso do raw_title "Kit 6 Canecas Porcelana Tulipa Lisa 250ml" como nome identificável do produto real
+- **Tratamento aplicado:** substituído pelo nome derivado do raw_title; display_name interno suprimido
+- **Aparece na mensagem final:** sim, como "Kit 6 Canecas Porcelana Tulipa Lisa 250ml"
 
-- Item bloqueado: proporção exata ADS/GMV como dado bruto ("60% do GMV veio de ADS")
-- Origem do bloqueio: Condensadora
-- Motivo: número bruto como manchete — bloqueado; interpretação narrativa autorizada
-- Agregado autorizado: sim — "boa parte do GMV do dia passou pelo pago"
-- Tratamento aplicado: substituído por formulação interpretativa ("boa parte desse resultado passou pelo pago")
-- Aparece na mensagem final: sim, como formulação interpretativa
+---
 
-- Item bloqueado: hipótese de perda ativa de Buy Box do produto em catálogo (Tampa Vermelha / MLB3288536143)
-- Origem do bloqueio: Condensadora
-- Motivo: vulnerabilidade estrutural confirmada, mas perda ativa de Buy Box para concorrente não confirmável pelos dados
-- Agregado autorizado: não — Condensadora bloqueou afirmação de fato; item não aparece como risco confirmado de Buy Box
-- Tratamento aplicado: produto citado apenas no Top Produtos pelo volume; sem menção a Buy Box ou catálogo na análise
-- Aparece na mensagem final: sim, no Top Produtos apenas (pelo volume), sem qualificação de risco de Buy Box
+- **Item bloqueado:** Afirmação ligando os 3 cancelamentos ao anúncio de estoque crítico (MLB4410218897)
+- **Origem do bloqueio:** Granular / Condensadora
+- **Motivo:** a Granular não encontrou breakdown de cancelamentos por produto; a conexão não está evidenciada
+- **Agregado autorizado:** não
+- **Tratamento aplicado:** cancelamentos citados apenas como total agregado na VISÃO (3 cancelamentos); nenhuma ligação com o anúncio crítico foi feita
+- **Aparece na mensagem final:** não (a ligação); somente o total aparece em VISÃO
 
-- Item bloqueado: health numérico específico de cada anúncio listado individualmente
-- Origem do bloqueio: Condensadora
-- Motivo: dado técnico bruto não adequado para Slack
-- Agregado autorizado: sim — referência qualitativa ao "segundo maior produto com saúde abaixo do limiar"
-- Tratamento aplicado: health mencionado na prioridade como "saúde abaixo do limiar", sem valores numéricos por produto
-- Aparece na mensagem final: sim, como referência qualitativa na prioridade
+---
 
-- Item bloqueado: IDs técnicos (MLBs) e raw SKUs
-- Origem do bloqueio: Condensadora + regra estrutural
-- Motivo: IDs técnicos não adequados para mensagem ao responsável operacional
-- Agregado autorizado: não aplicável — regra estrutural de omissão
-- Tratamento aplicado: nenhum ID MLB ou raw SKU aparece na mensagem final
-- Aparece na mensagem final: não
+- **Item bloqueado:** Afirmação de ruptura consumada do anúncio de baixíssimo estoque (MLB4410218897)
+- **Origem do bloqueio:** Granular / Condensadora
+- **Motivo:** ambiguidade de timing — não é possível confirmar se ruptura já ocorreu ou ainda é iminente
+- **Agregado autorizado:** sim — formulação de risco iminente ("pode ter zerado o estoque ou disparado pausa automática")
+- **Tratamento aplicado:** formulação preserva indício sem afirmar ruptura como fato
+- **Aparece na mensagem final:** sim, como risco iminente com linguagem de indício
 
-- Item bloqueado: divergência de mapeamento TL6250 como detalhe interno
-- Origem do bloqueio: Condensadora
-- Motivo: detalhe interno de pipeline; não vai para Slack
-- Agregado autorizado: não — omitir da análise e prioridades
-- Tratamento aplicado: divergência não mencionada na mensagem; produto corrigido silenciosamente pelo título real
-- Aparece na mensagem final: não (divergência); produto corrigido sim
+---
+
+- **Item bloqueado:** SKUs crus com confidence=medium (914C_BAV, KIT10YW1050, SPC0111, KIT4YW320) citados nominalmente
+- **Origem do bloqueio:** Condensadora
+- **Motivo:** mapping_reason=mapped_generic_sku; não citar nominalmente
+- **Agregado autorizado:** sim — uso dos display_names disponíveis nos dados para os respectivos produtos em Top Produtos
+- **Tratamento aplicado:** produtos aparecem pelos nomes de display derivados dos títulos reais, sem SKU cru visível
+- **Aparece na mensagem final:** sim, pelos nomes de produto (sem SKU cru)
+
+---
+
+- **Item bloqueado:** Afirmação de que GMV +33% vs 60d representa patamar consolidado
+- **Origem do bloqueio:** Condensadora
+- **Motivo:** primeiro ciclo com leitura estruturada; sem weekly ou monthly que confirme trajetória; formulação correta é "trajetória de ticket em ascensão", não "patamar estabelecido"
+- **Agregado autorizado:** não aplicável (formulação, não produto)
+- **Tratamento aplicado:** a análise preserva "o crescimento de ticket é real" sem afirmar patamar consolidado; a comparação temporal foi omitida da seção VISÃO (conforme regra da seção); a nuance de fragilidade foi mantida na ANÁLISE
+- **Aparece na mensagem final:** não como afirmação de patamar; sim como crescimento de ticket com ressalva de dependência
+
+---
+
+- **Item bloqueado:** Platform_item_ids técnicos (MLB...) na mensagem final
+- **Origem do bloqueio:** Condensadora
+- **Motivo:** desnecessários para o responsável operacional
+- **Agregado autorizado:** não aplicável
+- **Tratamento aplicado:** nenhum MLB aparece na Mensagem Slack
+- **Aparece na mensagem final:** não
 
 ---
 
 ### Decisões de formatação
 
-- Remoção de metadados internos ("— base: Estratégica + Operacional", "— base: Granular", "— base: Granular + Tática") dos três insights da análise — motivo: instrução explícita de não citar camadas internas na mensagem Slack
-- Preservação de linguagem de hipótese nos três insights ("leitura prematura", "pode ser pausado involuntariamente", "pode estar compensando") — motivo: Condensadora classificou os insights como hipótese emergente, não fato confirmado; linguagem de indício preservada conforme regra de confiança média
-- Substituição de "boa parte do GMV do dia passou pelo pago" no lugar de "~60% do GMV via campanha" — motivo: Condensadora bloqueou proporção exata como manchete numérica; formulação interpretativa autorizada usada
-- Produto TL6250 citado no Top Produtos como "Kit 6 Canecas Porcelana Tulipa 250ml" — motivo: resolução de divergência da Granular; título real do anúncio prevalece sobre display_name de mapeamento interno ("Kit 6 Tigelas de Vidro 250ml" é incorreto — produto é porcelana, não vidro)
-- Produto 914C_BAV citado no Top Produtos como "Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico" — motivo: confidence medium com mapping_reason fallback; título real do anúncio usado conforme regra ML; display_name e raw_title são consistentes para este item
-- Produto SPC0111 citado como "Suporte Gamer 2 Controles e Headset Mesa Organizador PS5/PS4 Preto" — motivo: confidence medium; título real do anúncio usado; abreviação "PS5 Ps4" normalizada para "PS5/PS4" para legibilidade
-- Produto KIT4YW320 citado como "Kit 4 Potes de Vidro 320ml" — motivo: display_name original truncado com reticências ("...Azul-pet..."); usado título curto e identificável sem truncamento
-- Produto KIT10YW1050 citado como "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas" — motivo: confidence medium; display_name suficientemente identificável sem código interno; usado conforme disponível
-- Health numérico (0.75, 0.71) não aparece na mensagem — motivo: Condensadora bloqueou listagem numérica individual; referência qualitativa usada nas prioridades
-- Hipótese de Buy Box da Tampa Vermelha omitida da análise e prioridades — motivo: Condensadora bloqueou como hipótese com evidência parcial; produto aparece apenas no Top Produtos pelo volume real
-- Prioridades preservadas com estrutura completa: ação + motivo + sinal de confirmação/refutação + gatilho de escalonamento — motivo: instrução Addendum v3.1 regra 7.2; todos esses elementos estavam na Condensadora
-- Nome do item de estoque crítico na prioridade citado descritivamente ("kit de canequinhas com suporte acrílico, 3 unidades") sem MLB — motivo: MLB bloqueado; identificação operacional suficiente para Yasmin localizar o produto
-- Seção VISÃO sem comparação temporal — motivo: regra estrutural; comparações pertencem à análise, não à visão objetiva do dia
-- Ticket médio na VISÃO: R$ 56,19 (2 casas decimais, vírgula decimal) — motivo: padrão numérico obrigatório
-- Ranking Top Produtos em ordem decrescente por pedidos — motivo: regra estrutural; verificado e confirmado (22, 13, 8, 5, 5, 5, 3, 3, 3, 3)
+- Remoção de metadados internos (`— base: Estratégica + Operacional + Granular`, `Padrão B`, `Padrão A`) dos dois insights — motivo: linguagem de pipeline interna, proibida na mensagem Slack
+- Preservação literal dos dois insights da Condensadora sem reescrita — ambos entregues com linguagem direta e operacional; nenhuma simplificação foi necessária além da remoção dos metadados
+- Preservação da nuance "parece forte" (indício, não fato) no primeiro insight — motivo: a Condensadora classificou o padrão como "parece bom, mas estrutura mostra fragilidade"; transformar em "foi forte" inverteria a tese
+- Preservação do conectivo "mas" no primeiro insight — motivo: troca por "e" removeria o contraste central da tese (proibição explícita de alteração de conectivo que muda nuance)
+- Seção VISÃO sem comparação temporal — motivo: regra da seção; comparações pertencem à ANÁLISE e só se vieram da Condensadora; os dois insights da Condensadora não foram enquadrados como comparação de VISÃO
+- TL6250 citado pelo raw_title real ("Kit 6 Canecas Porcelana Tulipa Lisa 250ml") em vez do display_name incorreto — motivo: bloqueio confirmado pela Granular/Condensadora; raw_title + platform_item_id são fonte primária e identificam o produto corretamente
+- Top Produtos em ordem decrescente por pedidos (23, 13, 8, 5, 5, 5, 3, 3, 3, 3) — motivo: regra de ranking decrescente; itens empatados em 5 pedidos ordenados conforme posição no pacote validado (IMB501V antes de TL6250 antes de KIT10YW1050)
+- Produtos com confidence=medium (KIT10YW1050, SPC0111, KIT4YW320, 914C_BAV) citados pelos títulos derivados do raw_title disponível — motivo: platform_item_id e raw_title presentes no pacote sustentam identificação razoável; sem SKU cru visível conforme bloqueio da Condensadora
+- "Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico" usado em vez do display_name truncado "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico" — motivo: adequação de caixa para leitura no Slack; nome derivado do título real sem desvio de identificação
+- Prioridades redigidas em formato `Yasmin: [ação]. [Por quê]. [Sinal]. [Escalar se].` conforme template aprovado — motivo: padrão obrigatório da seção
+- Nenhum ASIN exibido (plataforma ML, não Amazon) — motivo: regra de IDs técnicos visíveis aplicável apenas à Amazon quando necessário
+- Nenhuma conta Shopee mencionada — motivo: mensagem direcionada a Yasmin/ML; proibição de mistura de plataformas

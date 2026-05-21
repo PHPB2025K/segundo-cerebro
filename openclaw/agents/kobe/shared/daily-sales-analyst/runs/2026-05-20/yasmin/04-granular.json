@@ -1,9 +1,273 @@
 {
-  "layer": "04-granular",
-  "date": "2026-05-20",
-  "platform": "ml",
+  "camada": "04-granular",
+  "data": "2026-05-20",
+  "plataforma": "ml",
   "recipient": "Yasmin",
-  "output": "### Respostas granulares às perguntas da Operacional\n\n---\n\n**Pergunta 1:** O Kit 06 Canequinhas com Suporte Acrílico tem reposição prevista ou agendada?\n\n- **Status:** não respondida por falta de dado\n- **Evidência:**\n  - Produto visível: Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico\n  - platform_item_id (MLB): MLB4410218897\n  - Fonte: top_items_details / snapshot\n  - available_quantity: 3 — ruptura iminente confirmada\n  - logistic_type: fulfillment — estoque no CD do ML\n  - health: null\n- **Leitura:** O dado de ruptura iminente é confirmado granularmente (3 unidades em fulfillment, anúncio ativo). Dado de reposição planejada, pedido de compra ou entrada prevista no CD não existe no pacote. A pergunta não é respondível com os dados disponíveis — requer acesso a sistema de estoque interno ou informação direta do CD do ML.\n- **Conclusão granular:** inconclusivo por falta de dado — o risco de ruptura está confirmado; a existência de reposição não é verificável\n- **Confiança:** baixa (dado de ruptura confirmado por snapshot; dado de reposição ausente do pacote)\n\n---\n\n**Pergunta 2:** O health do Kit 4 Potes de Vidro 1050ml Retangular caiu nos últimos 7 dias ou está estável em 0.75?\n\n- **Status:** parcialmente respondida\n- **Evidência:**\n  - Produto visível: Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo\n  - platform_item_id (MLB): MLB4073003575\n  - Fonte: top_items_details / snapshot\n  - health: 0.75 (hoje, 2026-05-20)\n  - logistic_type: fulfillment\n  - available_quantity: 166\n  - sold_quantity: 959 (histórico significativo — produto de volume relevante)\n- **Leitura:** O health de 0.75 está confirmado para hoje, abaixo do limiar de 0.85. O pacote não inclui série histórica de health por anúncio — é impossível determinar se o valor está em deterioração ativa ou estável no mesmo patamar há dias ou semanas. O sold_quantity de 959 indica produto de volume maduro, o que torna o risco de deterioração de health operacionalmente mais relevante caso esteja em queda.\n- **Conclusão granular:** parcialmente confirmado — health abaixo do limiar documentado; tendência (queda vs estabilidade) indeterminável com os dados disponíveis\n- **Confiança:** média (health de hoje confirmado por snapshot; histórico de health ausente)\n\n---\n\n**Pergunta 3:** O Conjunto 5 Potes Tampa Vermelha (em catálogo, health 0.71) está perdendo posição para concorrentes no mesmo listing de catálogo?\n\n- **Status:** parcialmente respondida\n- **Evidência:**\n  - Produto visível: Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita\n  - platform_item_id (MLB): MLB3288536143\n  - catalog_product_id: MLB44224272\n  - is_catalog: true\n  - health: 0.71 — menor entre todos os top 10 com health disponível\n  - logistic_type: fulfillment\n  - available_quantity: 372\n  - sold_quantity: 5.668 (histórico alto — anúncio veterano)\n  - Fonte: top_items_details / snapshot\n- **Leitura:** O health de 0.71 é o mais baixo entre todos os anúncios top 10 que têm health reportado. O fato de estar em catálogo (MLB44224272) expõe o anúncio à competição direta por Buy Box no mesmo listing de outros vendedores. Contudo, dado de posição relativa no catálogo, número de concorrentes no listing e quem detém o Buy Box atualmente não está no pacote — o snapshot ML não retorna essa informação. O que o dado confirma: vulnerabilidade estrutural por combinação de health baixo e exposição de catálogo. O que não confirma: se a perda de posição está ocorrendo agora e em que magnitude.\n- **Conclusão granular:** parcialmente confirmado — vulnerabilidade estrutural confirmada (health 0.71 + catálogo); perda ativa de Buy Box não confirmável por falta de dado de concorrência no listing\n- **Confiança:** média\n\n---\n\n**Pergunta 4:** O anúncio do produto líder (Conjunto 5 Potes Tampa Preta, MLB4535865317) tem health disponível e qual é a posição de ranking atual?\n\n- **Status:** parcialmente respondida\n- **Evidência:**\n  - Produto visível: Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto\n  - platform_item_id (MLB): MLB4535865317\n  - Fonte: top_items_details / snapshot\n  - health: null — ausente no snapshot, confirmado\n  - logistic_type: cross_docking\n  - listing_type: gold_special\n  - is_catalog: false\n  - available_quantity: 8.385\n  - sold_quantity: 318\n  - free_shipping: false\n- **Leitura:** Health está confirmado como ausente no dado do dia — o snapshot retorna null para este anúncio, confirmando o ponto cego operacional identificado pela Operacional. Dado de ranking ou posição de busca não está disponível no pacote. O que se pode afirmar com evidência: o anúncio tem estoque amplo (8.385 unidades), é gold_special, não é catálogo (sem risco de Buy Box compartilhado com concorrentes), opera em cross_docking sem Frete Grátis. A ausência de health para o produto que gerou 24.4% dos pedidos do dia é um dado que pertence ao registro de ponto cego — não é possível inferir saúde de exposição orgânica a partir de volume de vendas em único dia.\n- **Conclusão granular:** health ausente confirmado granularmente; dado de ranking indisponível no pacote; identificação do produto confirmada com segurança\n- **Confiança:** média (produto identificado com segurança; saúde e ranking são pontos cegos confirmados, não resolvidos)\n\n---\n\n### Investigações próprias\n\n**Investigação 1: Discrepância de identificação — TL6250 (display_name diverge do título real do anúncio)**\n\n- **Origem:** risco de identificação\n- **Evidência:**\n  - Produto visível (título real do anúncio): Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara\n  - platform_item_id (MLB): MLB6167272090\n  - raw_title: \"Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara\"\n  - display_name atribuído pelo mapeamento: \"Kit 6 Tigelas de Vidro 250ml\"\n  - mapping_reason: reviewed_sku_display_map\n  - SKU: TL6250\n  - Fonte: top_products / top_items_details\n- **Leitura:** Há discrepância material entre o título real do anúncio (\"Canecas Porcelana Tulipa\") e o display_name atribuído (\"Tigelas de Vidro\"). São produtos de materiais e categorias diferentes — porcelana vs vidro; canecas vs tigelas. O mapping_reason indica que o display_name veio de revisão manual do SKU, não do título do pedido. Pela regra da plataforma, o título real do anúncio prevalece como identificador primário. Qualquer referência a este produto usando \"tigelas de vidro\" está identificando o produto errado.\n- **Conclusão granular:** risco de identificação médio confirmado — display_name \"Tigelas de Vidro\" é incorreto; produto real é canecas de porcelana; citação nominal nas camadas seguintes deve usar o título real do anúncio\n- **Confiança:** alta (divergência verificável diretamente pelos campos raw_title e display_name no pacote)\n\n---\n\n**Investigação 2: Concentração real é de família IMB501, não de SKU isolado**\n\n- **Origem:** anomalia / concentração\n- **Evidência:**\n  - Variação 1 — Produto visível: Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto | platform_item_id: MLB4535865317 | SKU: IMB501P | pedidos: 22 | family: IMB501\n  - Variação 2 — Produto visível: Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita | platform_item_id: MLB3288536143 | SKU: IMB501V | pedidos: 5 | family: IMB501\n  - parent_family compartilhado: IMB501\n  - Total família: 27 pedidos de 90 = 30% do volume diário\n  - Fonte: top_products / pedidos reais\n- **Leitura:** As duas variações da família IMB501 (Tampa Preta e Tampa Vermelha) somam 27 pedidos — 30% do dia. A concentração identificada pelas camadas anteriores como \"dependência do produto líder\" é na prática concentração de família: um único conceito de produto (Conjunto 5 Potes Redondos) com duas variações de cor respondeu por quase 1/3 do dia. As duas variações não se protegem mutuamente em termos de risco de exposição ou estoque — se a família IMB501 perder ranking ou Frete Grátis, as duas variações são afetadas simultaneamente. Isso intensifica a leitura de dependência além do que a concentração por SKU isolado revelaria.\n- **Conclusão granular:** confirma e intensifica hipótese de concentração — a dependência é de família, não de SKU; 30% do volume está exposto a um único risco de exposição de catálogo/ranking\n- **Confiança:** alta\n\n---\n\n**Investigação 3: MLB6167272090 (Canecas Porcelana Tulipa) como segundo produto de cauda em zona de atenção de estoque**\n\n- **Origem:** anomalia\n- **Evidência:**\n  - Produto visível: Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara\n  - platform_item_id (MLB): MLB6167272090\n  - available_quantity: 20\n  - sold_quantity histórico: 69 (produto de menor tração vs outros de fulfillment)\n  - pedidos hoje: 5\n  - health: null\n  - logistic_type: fulfillment\n  - Fonte: top_items_details / snapshot\n- **Leitura:** Com 20 unidades disponíveis e 5 pedidos no dia, cobertura aproximada é de 4 dias no ritmo atual — sem considerar variação positiva ou picos. Não é ruptura iminente como o MLB4410218897 (3 unidades), mas é o segundo produto da cauda em zona de atenção real. O sold_quantity total de 69 unidades vs 959, 5.720, 5.668 dos outros produtos de fulfillment indica produto de menor histórico de tração, o que torna a gestão de reposição menos previsível e o risco de subestimar a velocidade de venda mais real.\n- **Conclusão granular:** sinal confirmado como zona de atenção secundária; não é ruptura iminente mas merece monitoramento no próximo ciclo\n- **Confiança:** média (cobertura calculada com base em único dia de vendas — amostra pequena para projeção de ruptura)\n\n---\n\n### Risco de identificação ou leitura errada\n\n**Nível: médio**\n\nFontes de risco:\n- **TL6250 (MLB6167272090):** display_name \"Kit 6 Tigelas de Vidro 250ml\" diverge materialmente do título real do anúncio \"Kit 6 Canecas Porcelana Tulipa Lisa 250ml\". Produto real é canecas de porcelana, não tigelas de vidro. Este é o risco de identificação mais relevante do pacote.\n- **KIT10YW1050, KIT4YW320, SPC0111, 914C_BAV:** confidence medium com mapping_reason \"raw_sku_normalized_with_short_title_fallback\" — identificação por fallback de título curto, não por mapeamento revisado. Risco baixo de erro material (títulos reais consistentes com SKUs), mas menor certeza em variações.\n- **health null em 6 dos 10 anúncios top:** impossibilidade de avaliar saúde de exposição para a maioria dos produtos que geraram o volume do dia. Não é risco de identificação de produto, mas é risco de leitura errada de qualidade do anúncio — impede afirmar \"exposição orgânica saudável\" para esses produtos.\n\nNenhum produto em **BLOQUEIO PARA SLACK** por risco alto — todos têm platform_item_id confirmado. O TL6250 deve ser citado com seu título real (\"Kit 6 Canecas Porcelana Tulipa 250ml\") e nunca como \"tigelas de vidro\".\n\n---\n\n### Divergência entre fontes\n\n- **Divergência:** display_name do mapeamento interno para TL6250 mostra \"Kit 6 Tigelas de Vidro 250ml\"; título real do anúncio (top_items_details, MLB6167272090) mostra \"Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara\".\n- **Resolução:** título real do anúncio prevalece (regra ML: título real do anúncio > display_name de mapeamento interno revisado).\n- **Impacto:** o produto não é de vidro — é de porcelana. Qualquer citação deste produto usando o display_name de mapeamento nomeia a categoria e o material errados. Recomendação para camadas seguintes: usar \"Kit 6 Canecas Porcelana Tulipa 250ml\" ou omitir nome específico e tratar como produto de cauda genérico.\n\n---\n\n### Detalhe que a Condensadora não pode perder\n\n- **A concentração real do dia é de família IMB501, não de um SKU isolado: Tampa Preta (22 pedidos) + Tampa Vermelha (5 pedidos) = 27 pedidos = 30% do total.** As duas variações compartilham o mesmo risco de exposição e ranking — se a família perder posição, as duas caem juntas. A dependência não é de um produto; é de um conceito de produto com duas variações que não se protegem mutuamente. — Confiança: alta\n\n- **O produto que carregou 24.4% dos pedidos do dia (MLB4535865317, Potes Tampa Preta) não tem health disponível, opera em cross_docking e sem Frete Grátis.** Não é possível afirmar que a liderança é sustentada por exposição orgânica saudável. A mensagem final não pode tratar o líder do dia como anúncio de condição operacional plena — o dado não sustenta essa afirmação. — Confiança: alta\n\n- **Kit 06 Canequinhas com Suporte Acrílico (MLB4410218897) tem 3 unidades em fulfillment com anúncio ativo e ruptura iminente sem reposição confirmável pelos dados.** Este é o único item que justifica ação operacional hoje: se o anúncio for pausado por estoque nos próximos 1-2 dias, contamina a série de leitura de volume dos próximos dias e elimina um ponto de cauda da conta. — Confiança: alta\n\n---\n\n### O que fica só na memória interna\n\n- IDs técnicos: MLB4535865317 (Potes Tampa Preta / IMB501P), MLB4073003575 (Kit 4 Potes 1050ml / KIT4YW1050), MLB3343832496 (Canequinhas Alumínio Amarelo / 914C), MLB4676726433 (Kit 10 Potes / KIT10YW1050), MLB3288536143 (Potes Tampa Vermelha / IMB501V), MLB6167272090 (Canecas Porcelana Tulipa / TL6250), MLB6518176572 (Kit 2 Potes 1050ml / KIT2YW1050), MLB6661811594 (Suporte Gamer / SPC0111), MLB4073064873 (Kit 4 Potes 320ml / KIT4YW320), MLB4410218897 (Canequinhas Suporte Acrílico / 914C_BAV)\n- catalog_product_id MLB44224272 (IMB501V em catálogo) — para referência futura em monitoramento de Buy Box de concorrentes\n- Distribuição horária: dois picos distintos — manhã (~9h: 9 pedidos) e tarde (~13h-14h: 23 pedidos combinados); madrugada residual (0h, 1h, 4h, 5h: 4 pedidos total)\n- Raw SKUs: IMB501PT / IMB501P_T (IMB501P), IMB501V_T (IMB501V), KIT4YW1050, KIT2YW1050, KIT10YW1050, 914C_B (914C), 914C_BAV, TL6250, KIT4YW320, SPC0111\n- Sold_quantity histórico por produto de referência: MLB3343832496 (5.720), MLB3288536143 (5.668) — anúncios veteranos de alta tração; MLB6167272090 (69), MLB6661811594 (32) — anúncios recentes / menor tração\n- Available_quantity em zona de monitoramento: MLB4410218897 (3 — crítico), MLB6167272090 (20 — atenção), MLB6518176572 (30 — observação)\n- Divergência TL6250 display_name documentada — corrigir mapeamento interno: \"Kit 6 Tigelas de Vidro 250ml\" deve ser atualizado para refletir produto real \"Kit 6 Canecas Porcelana Tulipa 250ml\"\n- Família IMB501 total hoje: 27 pedidos (30%) — registrar para monitoramento de concentração familiar nos próximos ciclos",
+  "respostas_granulares_operacional": [
+    {
+      "pergunta": "O Kit 06 Canequinhas Acrílico (MLB4410218897) ainda tem unidades disponíveis no momento atual, ou o anúncio já entrou em pausa/ruptura?",
+      "status": "parcialmente respondida",
+      "evidencia": {
+        "produto_visivel": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico",
+        "platform_item_id": "MLB4410218897",
+        "fonte": "top_items_details / ml_snapshot",
+        "status_anuncio": "active",
+        "available_quantity_no_snapshot": 3,
+        "logistic_type": "fulfillment",
+        "sold_quantity_historico_acumulado": 453,
+        "pedidos_dia_anterior": 3,
+        "snapshot_fetched_at_utc": "2026-05-21T15:38:05",
+        "nota": "O snapshot foi coletado às 15h38 UTC do dia 21 (12h38 BRT), posterior ao fechamento do dia 20 em BRT. O anúncio mantém status active com available_quantity=3. Não é possível determinar se esse valor já reflete a dedução dos 3 pedidos de ontem (logistic_type=fulfillment implica dedução no CD do ML após confirmação) ou se representa o estado anterior à dedução. A ambiguidade de timing impede conclusão de ruptura consumada."
+      },
+      "leitura": "O anúncio está ativo no snapshot e mostra available_quantity=3 — exatamente o mesmo número de pedidos do dia anterior. Se o valor já reflete dedução dos 3 pedidos de ontem, há 3 unidades restantes e qualquer pedido hoje zera. Se não reflete, o estoque pode já ter zerado. Em qualquer cenário, o limiar crítico está confirmado; o que não é possível confirmar é se a ruptura já ocorreu ou ainda está iminente.",
+      "conclusao_granular": "parcialmente confirma o risco — anúncio ainda active, estoque em nível crítico (3 unidades) confirmado, mas ambiguidade de timing impede afirmar ruptura consumada ou descartá-la",
+      "confianca": "media"
+    },
+    {
+      "pergunta": "Os 3 cancelamentos do dia estão concentrados em algum produto ou anúncio específico, ou são pulverizados?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "nota": "O pacote de dados não contém breakdown de cancelamentos por produto, anúncio ou pedido individual. Apenas o total de 3 cancelamentos está disponível como agregado. Sem orderItems dos pedidos cancelados, não há evidência granular que permita responder a pergunta."
+      },
+      "leitura": "Impossível determinar concentração ou pulverização dos cancelamentos com os dados disponíveis no pacote. A pergunta permanece aberta — nenhum indício de que os cancelamentos tocam ou não tocam o anúncio de estoque crítico.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": null
+    },
+    {
+      "pergunta": "O health do Kit 4 Potes 1050ml (MLB4073003575) e do Conjunto 5 Potes Tampa Vermelha (MLB3288536143) está estável, caindo ou em recuperação em relação à leitura anterior disponível?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "kit_4_potes_1050ml": {
+          "produto_visivel": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+          "platform_item_id": "MLB4073003575",
+          "health_atual": 0.75,
+          "logistic_type": "fulfillment",
+          "fonte": "top_items_details / ml_snapshot"
+        },
+        "conjunto_5_potes_vermelha": {
+          "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "platform_item_id": "MLB3288536143",
+          "health_atual": 0.71,
+          "logistic_type": "fulfillment",
+          "fonte": "top_items_details / ml_snapshot"
+        },
+        "nota": "weekly.md e monthly.md são templates sem dados preenchidos. Não há nenhum registro de health anterior para esses anúncios em qualquer fonte do pacote. Este é o ponto zero da memória — a primeira leitura de health disponível para ambos. Sem valor anterior, cálculo de direção (estável / caindo / recuperando) é impossível."
+      },
+      "leitura": "Os valores de health atuais estão confirmados (0,75 e 0,71), ambos abaixo do threshold ML de 0,85. A pergunta da Operacional pressupõe uma leitura anterior — essa premissa não se sustenta com a base atual. A direção só poderá ser calculada a partir do próximo ciclo, quando esta leitura servirá de baseline.",
+      "conclusao_granular": "inconclusivo por falta de dado — primeira leitura disponível; direção não calculável; registrar valores atuais como baseline para próximo ciclo",
+      "confianca": null
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Impacto isolado do campeão cross-docking no fulfillment mix do dia",
+      "origem": "anomalia — divergência de 21 pontos entre fulfillment mix ontem (56,3% Full) e padrão 7d (77,7%)",
+      "evidencia": {
+        "produto_visivel": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
+        "platform_item_id": "MLB4535865317",
+        "fonte": "orderItems (top_products) + top_items_details",
+        "logistic_type_lider": "cross_docking",
+        "pedidos_lider": 23,
+        "pct_total_pedidos": "25,3% (23/91)",
+        "fulfillment_mix_top10_ontem": {
+          "total_orders_resolved": 71,
+          "full_pct": 56.3,
+          "full_pedidos_estimados": 40,
+          "cross_docking_pct": 43.7,
+          "cross_docking_pedidos_estimados": 31
+        },
+        "calculo_sem_lider": "71 pedidos top10 menos 23 do líder = 48 pedidos restantes; ~40 Full e ~8 cross_docking = 83% Full — alinhado ao padrão 7d de 77,7% e ao 30d de 73,9%"
+      },
+      "leitura": "A divergência de 21 pontos no fulfillment mix é quase inteiramente explicada pelo peso do líder em cross_docking. Removendo o campeão do cálculo, o mix dos demais anúncios retorna ao padrão histórico. Não há degradação de infraestrutura Full nem mudança de comportamento logístico — é artefato de composição de vendas do dia.",
+      "conclusao_granular": "confirma — a hipótese tática de que a divergência é efeito de composição do campeão está sustentada por cálculo a partir dos pedidos reais; não é sinal operacional autônomo",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Divergência de identificação no produto TL6250 — display_name inconsistente com raw_title e título real do anúncio",
+      "origem": "risco de identificação — discrepância entre alias interno e produto real identificado por platform_item_id",
+      "evidencia": {
+        "produto_visivel_raw_title": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+        "platform_item_id": "MLB6167272090",
+        "sku": "TL6250",
+        "display_name_interno": "Kit 6 Tigelas de Vidro 250ml",
+        "titulo_top_items_details": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+        "mapping_reason": "reviewed_sku_display_map",
+        "fonte": "orderItems (top_products) + top_items_details",
+        "nota": "raw_title e top_items_details convergem para o mesmo produto: canecas de porcelana tulipa. O display_name interno ('Tigelas de Vidro') descreve categoria diferente — tigelas de vidro e canecas de porcelana são produtos distintos em material, forma e uso. O mapeamento reviewed_sku_display_map criou alias incorreto."
+      },
+      "leitura": "O produto identificado pelos pedidos reais é 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara' (MLB6167272090). O display_name interno 'Kit 6 Tigelas de Vidro 250ml' é alias incorreto que, se usado como referência em comunicação, identifica produto errado — categoria diferente, material diferente. Risco de erro silencioso confirmado.",
+      "conclusao_granular": "risco de identificação médio confirmado — raw_title e platform_item_id são fonte primária e identificam o produto corretamente; display_name interno é erro de mapeamento que deve ser corrigido",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Estoque limitado secundário no MLB6167272090 (TL6250, Canecas Porcelana Tulipa)",
+      "origem": "risco de identificação resolvido + verificação complementar de estoque no top10",
+      "evidencia": {
+        "produto_visivel": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+        "platform_item_id": "MLB6167272090",
+        "fonte": "top_items_details / ml_snapshot",
+        "available_quantity": 21,
+        "logistic_type": "fulfillment",
+        "pedidos_ontem": 5,
+        "health": null,
+        "sold_quantity_historico_acumulado": 69,
+        "cobertura_estimada_dias": "~4 dias no ritmo atual de 5 pedidos/dia"
+      },
+      "leitura": "Com 5 pedidos ontem e 21 unidades disponíveis, o anúncio tem cobertura estimada de ~4 dias. Não é ruptura iminente no mesmo nível do MLB4410218897 (3 unidades), mas é estoque limitado para produto em fulfillment com health=null. Risco secundário que não exige ação hoje, mas merece monitoramento na próxima leitura — especialmente por acumular dois fatores de atenção: estoque restrito e erro de mapeamento de display_name.",
+      "conclusao_granular": "sinal adicional de atenção — não urgente, mas complementa o mapa de estoque da conta e justifica monitoramento no próximo ciclo",
+      "confianca": "media"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "medio",
+    "fontes_de_risco": [
+      "display_name incorreto no TL6250 — alias interno 'Kit 6 Tigelas de Vidro 250ml' vs. produto real 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara' (MLB6167272090)",
+      "confidence=medium em 4 produtos do top10 com mapping_reason=mapped_generic_sku: KIT10YW1050, SPC0111, KIT4YW320, 914C_BAV",
+      "health=null em 5 dos 10 anúncios no top_items_details: MLB4535865317, MLB4676726433, MLB6167272090, MLB6518176572, MLB6661811594"
+    ],
+    "explicacao": "O risco principal é o display_name incorreto do TL6250, que nomeia categoria diferente do produto real. Porém o raw_title e o platform_item_id estão presentes e convergentes — a identidade do produto está correta na fonte primária; o erro é no alias interno. Os 4 produtos com confidence=medium têm raw_title e platform_item_id disponíveis no pacote, sustentando identificação razoável mas não de alta confiança. A ausência de health em 5 anúncios não compromete identificação, mas reduz a completude da análise de saúde de listing. Todos os produtos do top10 têm platform_item_id e raw_title nos pedidos reais — o que mantém o nível em médio, não alto.",
+    "bloqueio_para_slack": null
+  },
+  "divergencia_entre_fontes": {
+    "divergencias": [
+      {
+        "divergencia": "display_name interno (TL6250) registra 'Kit 6 Tigelas de Vidro 250ml'; raw_title do pedido real e top_items_details (MLB6167272090) registram 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara'",
+        "resolucao": "raw_title + platform_item_id (pedido real) prevalecem sobre display_name (alias interno). Regra: para ML, pedido real (orderItems) vence alias manual, catálogo e mapeamento interno.",
+        "impacto": "Se a Condensadora usar o display_name do mapeamento interno para citar o produto, a mensagem final identifica categoria errada. A referência correta é o raw_title ou o MLB6167272090. O produto tem 5 pedidos ontem e aparece no top6 — impacto direto se citado nominalmente pelo alias incorreto."
+      }
+    ]
+  },
+  "detalhes_condensadora_nao_pode_perder": [
+    {
+      "detalhe": "A divergência de 21 pontos no fulfillment mix ontem (56,3% Full vs. 77,7% no 7d) é quase inteiramente explicada pelo campeão Conjunto 5 Potes Tampa Preta (MLB4535865317, cross_docking, 23 pedidos = 25,3% do volume) — sem ele, o mix dos demais ~48 pedidos seria ~83% Full, alinhado ao padrão histórico",
+      "por_que_importa": "Se a mensagem afirmar 'o Full caiu' sem contextualizar, gera alerta falso de degradação de infraestrutura; o correto é que o mix refletiu a composição de vendas do dia — o produto que mais vendeu não opera em Full, e isso é tudo",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Os 3 cancelamentos não têm breakdown por produto no pacote — a pergunta sobre concentração no anúncio de estoque crítico (MLB4410218897) não pôde ser respondida; nenhuma evidência liga os cancelamentos a esse anúncio ou a qualquer outro",
+      "por_que_importa": "Citar os cancelamentos associados ao risco de ruptura do MLB4410218897 sem evidência seria erro de atribuição; o risco de ruptura existe e está confirmado em nível de estoque, mas a conexão com os cancelamentos de ontem não está evidenciada e não deve ser afirmada",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "TL6250 aparece no mapeamento interno como 'Kit 6 Tigelas de Vidro 250ml', mas o produto real identificado pelo pedido (MLB6167272090, raw_title) é 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara' — categorias e materiais diferentes; o alias interno está errado",
+      "por_que_importa": "Se o produto for citado pelo display_name interno, a mensagem final nomeia produto errado para os 5 pedidos do top6; usar o raw_title ou tratar no agregado é o caminho correto — e o erro de mapeamento deve ser corrigido fora do ciclo de análise",
+      "confianca": "alta"
+    }
+  ],
+  "memoria_interna": {
+    "nota": "Detalhes técnicos para log e investigações futuras — não vão para Slack",
+    "itens": [
+      {
+        "tipo": "estoque_critico_prioritario",
+        "platform_item_id": "MLB4410218897",
+        "sku_raw": "914C_BAV",
+        "available_quantity_snapshot": 3,
+        "snapshot_utc": "2026-05-21T15:38:05",
+        "pedidos_dia_anterior": 3,
+        "logistic_type": "fulfillment",
+        "status_anuncio": "active",
+        "acao": "verificar available_quantity no próximo ciclo; se zerou ou entrou em pausa automática, avaliar reposição urgente e checar cancelamentos pendentes"
+      },
+      {
+        "tipo": "estoque_limitado_secundario",
+        "platform_item_id": "MLB6167272090",
+        "sku": "TL6250",
+        "available_quantity": 21,
+        "pedidos_dia_anterior": 5,
+        "logistic_type": "fulfillment",
+        "health": null,
+        "cobertura_estimada_dias": 4,
+        "acao": "monitorar no próximo ciclo; não urgente hoje"
+      },
+      {
+        "tipo": "erro_mapeamento_display_name",
+        "sku": "TL6250",
+        "platform_item_id": "MLB6167272090",
+        "display_name_incorreto": "Kit 6 Tigelas de Vidro 250ml",
+        "produto_real_raw_title": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+        "mapping_reason": "reviewed_sku_display_map",
+        "acao": "corrigir display_name no mapeamento interno; não é emergência operacional mas é erro de identidade que contamina toda análise que usar o alias"
+      },
+      {
+        "tipo": "health_baseline_primeiro_ciclo",
+        "anuncios": [
+          {
+            "platform_item_id": "MLB4073003575",
+            "produto_visivel": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+            "health_baseline": 0.75,
+            "logistic_type": "fulfillment",
+            "available_quantity": 166
+          },
+          {
+            "platform_item_id": "MLB3288536143",
+            "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+            "health_baseline": 0.71,
+            "logistic_type": "fulfillment",
+            "available_quantity": 368
+          }
+        ],
+        "nota": "Primeira leitura disponível — usar como baseline para calcular direção no próximo ciclo. Threshold ML = 0,85. Ambos abaixo."
+      },
+      {
+        "tipo": "distribuicao_horaria_completa_baseline",
+        "pico_principal": "13h-15h: 31 pedidos = 34,1% do volume",
+        "pico_secundario": "9h e 19h: 9 pedidos cada = 9,9% cada",
+        "hora_a_hora": {
+          "0": 1,
+          "1": 1,
+          "4": 1,
+          "5": 1,
+          "7": 1,
+          "8": 4,
+          "9": 9,
+          "10": 3,
+          "11": 5,
+          "12": 3,
+          "13": 11,
+          "14": 12,
+          "15": 8,
+          "16": 4,
+          "17": 3,
+          "18": 7,
+          "19": 9,
+          "20": 2,
+          "21": 2,
+          "22": 4
+        },
+        "nota": "Primeira leitura de distribuição horária — registrar como baseline; sem referência anterior para avaliar desvio de padrão"
+      },
+      {
+        "tipo": "ads_share_baseline_primeiro_ciclo",
+        "ads_revenue": 3041.56,
+        "gmv_total": 5087.71,
+        "ads_share_pct": 59.8,
+        "gmv_organico_estimado": 2046.15,
+        "roas": 11.6,
+        "acos_pct": 4.33,
+        "nota": "Primeiro ponto da série de ADS share — registrar para comparação nos próximos 2-3 ciclos conforme monitoramento tático definido"
+      },
+      {
+        "tipo": "ids_tecnicos_confidence_medium",
+        "skus": [
+          "KIT10YW1050",
+          "SPC0111",
+          "KIT4YW320",
+          "914C_BAV"
+        ],
+        "mapping_reason_comum": "mapped_generic_sku"
+      },
+      {
+        "tipo": "anuncios_health_null_top10",
+        "platform_item_ids": [
+          "MLB4535865317",
+          "MLB4676726433",
+          "MLB6167272090",
+          "MLB6518176572",
+          "MLB6661811594"
+        ]
+      }
+    ]
+  },
   "llm_used": true,
   "model": "sonnet",
   "fallback": false

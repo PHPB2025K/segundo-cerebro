@@ -81,3 +81,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 **Contexto:** Preview de 18/05/2026 BRT passou com ressalvas: ML usou rótulo inventado para diferenciar 914C_BAV, Amazon omitiu 914C do Top Produtos sem registrar a decisão por nome, e alguns nomes comerciais vieram de mapeamento divergente.
 **Lição:** Slack Writer não deve inventar label para diferenciar variações/listings quando a Condensadora ou pacote não autorizam. Toda omissão relevante do Top Produtos deve ter motivo registrado por nome, inclusive itens de 1 pedido com confiança alta.
 **Expira:** 2026-06-18
+
+### [TÁTICA] Daily Sales v2 Shopee: linha consolidada cross-conta substitui componentes (2026-05-20)
+**Contexto:** Preview de 19/05/2026 BRT bloqueou Lucas/Shopee porque CTL002 apareceu como consolidado das 3 contas e também como linha Store já contida no total; além disso, a linha consolidada ficou fora da ordem correta por volume.
+**Lição:** Quando um SKU/variação vendável for consolidado entre contas Shopee no Top Produtos, remover integralmente as linhas componentes incluídas, ranquear pelo volume total consolidado e formatar o breakdown com separadores claros por conta. Se log e mensagem divergirem, QA deve bloquear.
+**Expira:** 2026-06-19

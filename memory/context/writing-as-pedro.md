@@ -57,3 +57,10 @@ Obrigado.”
 ## Regra de segurança
 
 Se houver dúvida real sobre o tom — especialmente em mensagens sensíveis, cobrança, jurídico, negociação, funcionário ou fornecedor crítico — Kobe deve perguntar ao Pedro antes de enviar ou finalizar a versão.
+
+## Conectado a
+
+- [[memory/context/business-context]] — **tema**: regra de comunicação é parte do contexto operacional
+- [[memory/context/people]] — **ref**: Pedro descrito como CEO; regra define o tom dele
+- [[openclaw/agents/kobe/IDENTITY]] — **executor**: Kobe é quem aplica essa regra
+- [[projects/canggu/canggu]] — **tema**: Ana também redige em nome do Pedro/marca — mesmo princípio

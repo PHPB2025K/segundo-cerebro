@@ -232,3 +232,9 @@ Toda sexta-feira no fim do dia:
 - **Próxima cobrança recomendada:** “Lucas, me traz na próxima reunião 3 análises de anúncio: MDF, pote/caneca novo e um item que caiu. Para cada um: impressões, cliques, vendas, preço/margem, capa, campanha ativa, hipótese e ação.”
 - **Memória individual:** detalhes, pauta da próxima reunião e ritual semanal foram promovidos para `memory/projects/gestao-funcionarios-lucas.md`.
 
+## Conectado a
+
+- [[memory/context/people]] — **ref**: 3 focal points descritos no people
+- [[projects/ponto-certo]] — **complementar**: separação clara: gestão de pessoas ≠ RH/Ponto Certo
+- [[openclaw/agents/rh/IDENTITY]] — **complementar**: RH cobre ponto/jornada; esta frente cobre performance
+- [[memory/projects/compras-canecas]] — **tema**: mesma equipe e mesmo canal Slack

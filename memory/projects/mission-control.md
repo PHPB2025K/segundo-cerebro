@@ -26,3 +26,9 @@ Painel operacional interno baseado no fork TenacitOS, retomado em 2026-05-12.
 - Criar/configurar `data/configured-skills.json`.
 - Refinar detecção de `botToken` em `auth-profiles.json`.
 - Remover/justificar hex hardcoded restantes em Three.js.
+
+## Conectado a
+
+- [[projects/mission-control]] — **pai**: ficha completa do projeto
+- [[meta/mocs/MOC - Governanca OpenClaw]] — **tema**: painel visual da governança OpenClaw
+- [[automacoes/workflows/pedidos-venda-gb-bling]] — **filho**: consome a rota /api/fisco/pedidos-venda-gb que vive no Mission

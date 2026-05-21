@@ -101,3 +101,11 @@ Todo assunto relacionado a compras deve ser tratado no tópico Telegram **🛍�
 ## Próximo passo
 
 Aguardar os arquivos/projeções da equipe e montar a primeira rodada consolidada.
+
+## Conectado a
+
+- [[memory/context/people]] — **ref**: 3 focal points (Yasmin/ML, Lucas/Shopee, Leonardo/Amazon)
+- [[openclaw/agents/trader/IDENTITY]] — **executor**: Trader cruza dados marketplace para validar projeções da equipe
+- [[projects/budamix-central]] — **ref**: estoque consolidado FULL+FÍSICO+TOTAL na home do Central
+- [[business/marketplaces/_index]] — **tema**: 3 canais ML/Shopee/Amazon mapeados como contexto
+- [[memory/projects/gestao-funcionarios]] — **tema**: mesma equipe acompanhada semanalmente

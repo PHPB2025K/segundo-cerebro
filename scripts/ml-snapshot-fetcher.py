@@ -401,6 +401,58 @@ def _load_supabase_creds():
     )
 
 
+def persist_account_snapshot_to_supabase(date_str, reputation, account_overview, raw_snapshot=None):
+    """
+    Salva o snapshot da conta (reputação + contagens de items) na tabela
+    ml_account_snapshots no Supabase. Idempotente via upsert por snapshot_date.
+    Falha silenciosa: log + return False, não derruba o fetcher.
+    """
+    sb_url, sb_key = _load_supabase_creds()
+    if not sb_url or not sb_key:
+        log.warning("Supabase creds indisponíveis, snapshot não persistido")
+        return False
+
+    if reputation.get("status") != "ok":
+        log.warning("Reputação não disponível, snapshot persistido só com contagens")
+
+    totals = (account_overview or {}).get("totals", {})
+    row = {
+        "snapshot_date": date_str,
+        "fetched_at_utc": datetime.now(timezone.utc).isoformat(),
+        "reputation_color": reputation.get("color"),
+        "power_seller_status": reputation.get("power_seller_status"),
+        "claims_rate": reputation.get("claims_rate"),
+        "cancellations_rate": reputation.get("cancellations_rate"),
+        "delayed_handling_rate": reputation.get("delayed_handling_rate"),
+        "transactions_completed": reputation.get("transactions_completed"),
+        "transactions_canceled": reputation.get("transactions_canceled"),
+        "items_active": totals.get("active"),
+        "items_paused": totals.get("paused"),
+        "items_closed": totals.get("closed"),
+        "raw_payload": raw_snapshot or {},
+    }
+
+    url = f"{sb_url}/rest/v1/ml_account_snapshots?on_conflict=snapshot_date"
+    try:
+        req = urllib.request.Request(
+            url,
+            data=json.dumps([row]).encode(),
+            method="POST",
+            headers={
+                "apikey": sb_key,
+                "Authorization": f"Bearer {sb_key}",
+                "Content-Type": "application/json",
+                "Prefer": "resolution=merge-duplicates,return=minimal",
+            },
+        )
+        urllib.request.urlopen(req, timeout=30)
+        log.info(f"  → ml_account_snapshots upserted ({date_str})")
+        return True
+    except Exception as e:
+        log.warning(f"  ⚠ falha persistir snapshot: {str(e)[:120]}")
+        return False
+
+
 def _supabase_count(sb_url, sb_key, params_list):
     """Faz HEAD com Prefer=count=exact e devolve o total da query."""
     url = f"{sb_url}/rest/v1/orders?" + urllib.parse.urlencode(params_list)
@@ -644,7 +696,7 @@ def build_snapshot(date_str, top_items_from):
 
     overall = overall_status(reputation, fulfillment, top_items, ads, account_overview)
 
-    return {
+    snapshot_data = {
         "schema_version": "ml-snapshot/v1",
         "fetched_at_utc": datetime.now(timezone.utc).isoformat(),
         "date": date_str,
@@ -657,6 +709,17 @@ def build_snapshot(date_str, top_items_from):
         "ads_summary": ads,
         "account_overview": account_overview,
     }
+
+    # Persiste reputação + contagens no Supabase (histórico)
+    log.info("Persistindo snapshot da conta no Supabase (ml_account_snapshots)...")
+    persist_account_snapshot_to_supabase(
+        date_str=date_str,
+        reputation=reputation,
+        account_overview=account_overview,
+        raw_snapshot=snapshot_data,
+    )
+
+    return snapshot_data
 
 
 # ─── Cache (fallback) ─────────────────────────────────────────────────────────

@@ -232,6 +232,43 @@ Toda sexta-feira no fim do dia:
 - **Próxima cobrança recomendada:** “Lucas, me traz na próxima reunião 3 análises de anúncio: MDF, pote/caneca novo e um item que caiu. Para cada um: impressões, cliques, vendas, preço/margem, capa, campanha ativa, hipótese e ação.”
 - **Memória individual:** detalhes, pauta da próxima reunião e ritual semanal foram promovidos para `memory/projects/gestao-funcionarios-lucas.md`.
 
+
+### 2026-W21 — Reunião semanal Yasmin (21/05)
+
+**Fonte:** transcrição enviada por Pedro no tópico Gestão de Funcionários em 21/05/2026. Síntese executiva; transcrição integral não foi persistida.
+
+#### Yasmin — Mercado Livre / anúncios / MDF / autonomia
+- **Tema central:** reunião consolidou Yasmin como focal point do Mercado Livre, com evolução de execução para análise de anúncios, testes e controle gradual da conta.
+- **Evolução vs histórico:** avanço claro. Yasmin grava/anota, entende melhor o porquê dos anúncios, questiona agência quando percebe superficialidade e propõe testes próprios. Pedro reconheceu que a conta respondeu melhor e que ela está se especializando por estar focada só no Mercado Livre.
+- **Framework de análise alinhado:** Pedro treinou leitura por impressões, visitas/cliques, vendas e conversão. Baixa impressão aponta para exposição/ADS/campanha; impressão sem clique aponta para capa/título/preço; clique sem compra aponta para oferta/preço/fotos/vídeo/confiança. Próximo nível esperado é trazer poucos anúncios com análise densa, hipótese, teste e resultado.
+- **MDF e casinha:** casinha de bonecas/Mansão MDF ficou visualmente boa; falta vídeo e novos ângulos. Diretriz de testar capa com cenário vs fundo branco e acompanhar MDFs por métrica. Pedro rejeitou a leitura genérica da Himmel de que MDF/brinquedo não venderia no período e reforçou que agência cuida de ADS, enquanto operação decide produto/teste.
+- **Testes autorizados:** Yasmin pode criar anúncios novos para testar capa, título, preço e combos, avisando no Slack e levando resultado depois. Para anúncios novos, acompanhar a cada 2–3 dias e fechar leitura após ~15 dias.
+- **Potes/kit 10 1050 ml:** teste de kit 10 funcionou muito bem, com anúncio subindo forte na curva e ~20 vendas no dia. Aumento de preço para R$139,90 parece ter melhorado performance, hipótese ainda em observação. Faltam vídeos para completar qualidade do anúncio.
+- **Funil de imagens:** Yasmin demonstrou entendimento forte de imagem funcional: menos foto “decorativa” e mais benefício objetivo, medidas, vedação, capacidade e razões de compra. Pedro validou a linha para potes/canecas e site Budamix.
+- **Full e estoque:** Yasmin está planejando Full até junho/julho com expedição, equilibrando data ML, capacidade de produção e estoque geral. Pedro reforçou que precisa conciliar os três; não pode ficar bom só para expedição se faltar no estoque.
+- **Autonomia/IA:** Pedro explicou que relatórios e automações são apoio, não substituição. Objetivo é ela usar os dados para ganhar visão da conta e evoluir de analista para gestão do Mercado Livre.
+- **Ideias novas:** Yasmin sugeriu combo/brinde de porta-copos MDF com canecas, embutindo custo baixo para aumentar conversão e dar saída aos MDFs. Pedro aprovou testar com capa adequada.
+- **Pontos RH tratados na reunião:** férias após 12 meses, preferência por até 15 dias, evitar agosto e picos de outubro/novembro se possível; saídas/horas devem ser alinhadas antes, e casos de saúde com comprovante/atestado não devem gerar desconto.
+
+#### Combinados e pendências para cobrar Yasmin
+- Na próxima reunião, trazer análise de poucos anúncios MDF/prioritários com impressões, visitas/cliques, vendas/conversão, hipótese, teste e próxima ação.
+- Testar capa com cenário vs fundo branco nos MDFs e registrar qual performa melhor.
+- Adicionar vídeo(s) na casinha/Mansão MDF, incluindo possível vídeo 3D do molde e/ou material com IA.
+- Buscar novos ângulos da casinha: lateral, diagonal, móveis fora, área externa; considerar balanço/piscina/móveis extras como evolução futura.
+- Continuar testes de anúncios de canecas e potes, mas sempre levar resultado medido depois.
+- Acompanhar kit 10 de 1050 ml e validar se preço maior continua sustentando volume/conversão.
+- Testar combo caneca + porta-copos MDF como brinde/benefício percebido.
+- Manter planejamento de Full validando estoque total e não só agenda da expedição.
+- Repassar orientação geral ao time sobre saídas/horas: alinhar antes; saúde/consulta com comprovante/atestado.
+
+#### Leitura de gestão do Kobe
+- **Status atual:** Yasmin evoluiu de executora de cadastro para analista em formação do Mercado Livre. Mostrou boa leitura de agência, capa, funil, concorrência e teste.
+- **Gargalo principal:** disciplina de medição. A liberdade para criar testes é positiva, mas precisa virar ritual: hipótese → ação → métrica → decisão.
+- **Como gerir daqui pra frente:** manter autonomia crescente com cobrança objetiva de evidência. Toda reunião deve ter 2–5 anúncios específicos analisados em profundidade, não uma revisão ampla e rasa da conta.
+- **Próxima cobrança recomendada:** “Yasmin, me traz 3 testes: um MDF, um pote/caneca e um anúncio novo. Para cada um: impressão, clique, venda/conversão, o que você mudou e qual a próxima ação.”
+- **Memória individual:** detalhes, pauta da próxima reunião e leitura de gestão foram promovidos para `memory/projects/gestao-funcionarios-yasmin.md`.
+
+
 ## Conectado a
 
 - [[memory/context/people]] — **ref**: 3 focal points descritos no people

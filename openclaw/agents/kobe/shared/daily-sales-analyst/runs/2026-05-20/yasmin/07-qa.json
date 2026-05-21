@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem é fiel à Condensadora em todos os pontos críticos: 3 insights mapeados 1:1 com os 3 bullets da seção de análise, contagem exata preservada, bloqueios respeitados integralmente (substituição correta do display_name incorreto do TL6250 por 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml', Suporte Gamer mantido apenas no ranking sem análise associada, distribuição de cancelamentos por anúncio corretamente tratada como inconclusiva, direção do health formulada como ação de verificação e não como fato), prioridades com todos os elementos da Condensadora — ação, motivo, sinal de confirmação/refutação e condição de escalonamento — preservados e atribuídos corretamente à Yasmin, estrutura Slack em ordem exata com 6 seções obrigatórias, dados numéricos batendo com o pacote validado sem delta, destinatário e plataforma corretos. Um único Menor identificado no Gate 11: valores monetários na seção de análise aparecem abreviados (R$ 3.041 e R$ 5.087 em vez de R$ 3.041,56 e R$ 5.087,71), inconsistência com o padrão R$ 1.234,56 exigido — embora a abreviação seja herança direta do tratamento adotado pela própria Condensadora, configurando fidelidade, não invenção. Nenhum Crítico, nenhum Maior. Regra de agregação: 0 Maiores + 1 Menor → APROVADO COM RESSALVA.",
+  "motivo": "A mensagem passou todos os 11 gates sem falha crítica ou maior. Um único problema Menor foi identificado no Gate 11: o percentual '+32% vs mesmas quartas' na seção ANÁLISE DA CONTA aparece sem casa decimal, violando o padrão obrigatório de vírgula + 1 casa (deveria ser '+32,4%'). O problema originou-se na Condensadora e foi reproduzido fielmente pela Slack Writer — não é falha de rediagnóstico, mas é falha objetiva de formato na mensagem final. Todos os bloqueios da Granular e da Condensadora foram respeitados com rastreabilidade completa nos logs. Os três insights são fiéis à Condensadora, conectivos de contraste preservados, linguagem de hipótese/indício mantida. As três prioridades reproduzem ação, motivo, sinal de confirmação/refutação e condição de escalonamento conforme prescrito. Regra de agregação: 0 Críticos + 0 Maiores + 1 Menor = APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -21,28 +21,31 @@
     "maiores": 0,
     "maiores_gates_distintos": 0,
     "menores": 1,
-    "regra_agregacao_aplicada": "0 Maiores + 1 Menor → APROVADO COM RESSALVA"
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 1 Menor → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
       "severidade": "Menor",
-      "gate": "11",
-      "texto_atual": "59,8% do GMV veio de campanha (R$ 3.041 dos R$ 5.087)",
-      "texto_esperado": "59,8% do GMV veio de campanha (R$ 3.041,56 dos R$ 5.087,71)",
-      "estado_atual": "Valores monetários abreviados sem casas decimais na seção de análise; padrão idêntico ao adotado pela Condensadora para os mesmos valores",
-      "estado_esperado": "Valores monetários completos no formato R$ 1.234,56 conforme exigido pelo Gate 11",
-      "regra_violada": "Gate 11: valores monetários devem seguir o formato R$ 1.234,56; R$ 3.041 e R$ 5.087 não incluem as casas decimais obrigatórias",
+      "gate": "11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "+32% vs mesmas quartas",
+      "texto_esperado": "+32,4% vs mesmas quartas",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Percentuais devem aparecer com vírgula e 1 casa decimal quando exibidos. O dado bruto mostra gmv_vs_same_weekday_pct = 32.4; a Condensadora arredondou para +32% sem decimal, e a Slack Writer reproduziu fielmente. A falha de formato está na mensagem final independentemente da camada que a introduziu.",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Valores monetários abreviados na seção de análise (R$ 3.041 e R$ 5.087) são herança direta da Condensadora, que adotou o mesmo tratamento para esses valores ilustrativos de proporção ADS/GMV. A Slack Writer foi fiel à fonte, o que é correto. Para eliminar o Menor nos próximos ciclos, considerar que a Condensadora já entregue esses valores com decimais completos quando citados em contexto monetário, evitando que a Slack Writer precise escolher entre fidelidade e padrão numérico.",
-    "Primeira leitura qualitativa do ciclo ML desde que Yasmin assumiu em 22/04/2026. Memória qualitativa estabelecida hoje como linha de base: ADS share 59,8%, ROAS 11,6x, ACOS 4,33%, ticket R$ 55,91, GMV R$ 5.087,71. Nenhuma hipótese anterior para confirmar ou refutar.",
-    "Kit 06 Canequinhas com Suporte Acrílico (MLB4410218897) encerrou o dia com available_quantity=4 e 3 pedidos — ruptura iminente em ~1 dia. Prioridade operacional corretamente transmitida à Yasmin. Verificar no próximo ciclo se houve reposição ou novos cancelamentos.",
-    "Health dos dois campeões Full (KIT4YW1050=0,75 e IMB501V=0,71) sem série temporal disponível no pacote — direção não determinável. Dado central para próximo ciclo: valores de D-1 e D-2 para calcular tendência e confirmar ou refutar erosão orgânica progressiva."
+    "Percentual '+32%' na ANÁLISE DA CONTA originou-se no arredondamento da Condensadora (camada 05), não na Slack Writer. A Condensadora deve ser orientada a preservar 1 casa decimal em percentuais no próximo ciclo para evitar reincidência.",
+    "Inconsistência de mapping_confidence no data builder (TL6250 / MLB6167272090 fixado como 'high' via reviewed_sku_display_map com alias incorreto) não afetou esta mensagem — o bloqueio foi respeitado e o título correto foi usado — mas o erro persiste na origem e deve ser corrigido antes do próximo ciclo.",
+    "Data Readiness status DADOS_PARCIAIS (volume_band shopee-budamix-store em partial) não afetou esta mensagem ML, mas deve ser registrado como contexto do ciclo."
   ],
-  "ressalvas_auditoria_nao_bloqueante": [],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "Os três bullets da ANÁLISE DA CONTA são essencialmente reproduções literais da Condensadora com remoções mínimas de metadados internos. A Diretriz Pedro 2026-05-17 prescreve 'linguagem mais simples e operacional' em relação à Condensadora — a simplificação realizada foi marginal (remoção de '(confirmado pela API ML, corrigindo a análise estratégica)', troca de 'e sim de' por 'é de', remoção de 'grupo de' em prioridade 2). Isso não constitui violação objetiva porque a Condensadora já utilizava linguagem operacional direta; não há frase que exija releitura nem jargão de consultoria. Registrado como sinal para evolução da Slack Writer: maior atividade de simplificação em ciclos futuros quando a Condensadora entregar linguagem analítica mais densa.",
+    "A seção VISÃO MERCADO LIVRE não incluiu o mix de fulfillment (Full 56,3% / Cross-Docking 43,7% no top10 de ontem). O dado estava disponível e é relevante para contexto operacional. A Condensadora não prescreveu sua inclusão na VISÃO — portanto não é falha da Slack Writer — mas seria informação útil como dado objetivo do dia. Registrado como sugestão para a Condensadora avaliar inclusão em ciclos futuros quando o desvio de mix for significativo (>15pp vs média 30d).",
+    "As prioridades são extensas (4 componentes cada: ação + motivo + confirmar/refutar + escalar se). O comprimento é justificado pela prescrição explícita da Condensadora, mas a experiência de leitura no Slack pode ser melhorada com formatação em sub-bullets nos próximos ciclos sem alterar o conteúdo."
+  ],
   "llm_used": true,
   "model": "sonnet",
   "fallback": false

@@ -5,31 +5,33 @@
 DAILY SALES REPORT — MERCADO LIVRE — 20/05/2026 (Ontem)
 
 📊 VISÃO MERCADO LIVRE
-• Faturamento: R$ 5.087,71
-• Pedidos: 91 pedidos
-• Ticket médio: R$ 55,91
-• Cancelamentos: 3
+- Faturamento: R$ 5.087,71
+- Pedidos: 91 pedidos
+- Ticket médio: R$ 55,91
+- Cancelamentos: 3
+- Itens vendidos: 97
 
 🏆 TOP PRODUTOS MERCADO LIVRE
-• Conjunto 5 Potes de Vidro Redondos Tampa Preta — 23 pedidos
-• Kit 4 Potes de Vidro 1050ml Retangular — 13 pedidos
-• Kit 6 Canequinhas 100ml — 8 pedidos
-• Kit 10 Potes Herméticos 1050ml Refratário 4 Travas — 5 pedidos
-• Conjunto 5 Potes de Vidro Redondos Tampa Vermelha — 5 pedidos
-• Kit 6 Canecas Porcelana Tulipa Lisa 250ml — 5 pedidos
-• Kit 2 Potes de Vidro 1050ml Retangular — 3 pedidos
-• Suporte Gamer 2 Controles e Headset Mesa PS5/PS4 Preto — 3 pedidos
-• Kit 4 Potes de Vidro 320ml Tampa Hermético 4 Travas — 3 pedidos
-• Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico — 3 pedidos
+- Conjunto 5 Potes de Vidro Redondos Tampa Preta — 23 pedidos
+- Kit 4 Potes de Vidro 1050ml Retangular — 13 pedidos
+- Kit 6 Canequinhas 100ml — 8 pedidos
+- Kit 10 Potes Herméticos 1050ml Refratário 4 Travas — 5 pedidos
+- Conjunto 5 Potes de Vidro Redondos Tampa Vermelha — 5 pedidos
+- Kit 6 Canecas Porcelana Tulipa Lisa 250ml — 5 pedidos
+- Kit 2 Potes de Vidro 1050ml Retangular — 3 pedidos
+- Suporte Gamer 2 Controles E Headset Mesa Organizador Ps5 Ps4 Preto — 3 pedidos
+- Kit 4 Potes de Vidro 320ml Tampa Hermético 4 Travas — 3 pedidos
+- Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico — 3 pedidos
 
 🔍 ANÁLISE DA CONTA
-• O volume está -20,9% vs 7 dias, mas esse número distorce a leitura — a média de 7 dias foi inflada pelo pico de 29/04 (134 pedidos). O controle correto é o mesmo dia da semana: -1,6%. O GMV acima de R$ 5.000 não vem de mais alcance, vem de ticket maior. Os pedidos estão no mesmo patamar dos últimos 60 dias enquanto o GMV cresceu +34,2% no mesmo período. É expansão via mix qualificado, não fraqueza de demanda.
-• O resultado parece positivo, mas o patamar de R$ 5.000+ depende de ADS — 59,8% do GMV veio de campanha (R$ 3.041 dos R$ 5.087). Isso roda sobre uma base orgânica com dois campeões em Full com health penalizada, abaixo do threshold do ML, o que já significa perda de exposição orgânica ativa nesses anúncios. Enquanto Himmel entrega ROAS alto, o orgânico não se recupera no mesmo ritmo. O patamar atual não é orgânico conquistado.
-• O único ponto que exige ação hoje é o estoque do Kit 06 Canequinhas com Suporte Acrílico em fulfillment: 4 unidades disponíveis, 3 pedidos ontem — cobertura de cerca de 1 dia. Se zerar sem reposição ou pausa manual, o ML continua aceitando pedidos e os próximos viram cancelamentos automáticos que começam a mover a taxa de cancelamento, hoje em zero. Os 3 cancelamentos do dia não têm distribuição por anúncio disponível — não dá para descartar que parte já veio desse item.
+- O anúncio de potes redondos com tampa vermelha (5º do dia, fulfillment) tem health=0,71 — mas o risco não é de queda em ranking de categoria, é de perda de Buy Box. O anúncio é de Catálogo, e penalização de health em catálogo pressiona o slot principal de conversão diretamente, com recuperação mais lenta e menos previsível do que em anúncio Clássico. A urgência real é maior do que uma leitura de erosão orgânica sugere.
+- O Kit 06 Canequinhas com Suporte Acrílico terminou o dia com estoque zerado e anúncio ainda ativo — o snapshot de 21/05 às 16h confirma que a situação não foi resolvida. Com cancellations_rate em zero e reputação 5_green/gold, qualquer pedido adicional sem estoque gera cancelamento desnecessário que começa a erodir o único indicador limpo da conta.
+- O GMV do dia ficou bem acima da banda histórica (+32% vs mesmas quartas), mas o volume de pedidos foi praticamente igual ao bimestre — o crescimento é inteiramente pelo ticket. Sessenta por cento do GMV veio de ADS com ROAS de 11,6x. A conta está crescendo, mas sobre base concentrada e com orgânico ainda não validado: quando o ADS performa bem o número parece robusto; sem ele, o piso é desconhecido.
 
 🎯 PRIORIDADES DO DIA
-• Yasmin: confirmar estoque físico real e reposição do Kit 06 Canequinhas com Suporte Acrílico junto à expedição. Com 4 unidades em fulfillment e 3 pedidos ontem, o horizonte de ruptura é de aproximadamente 1 dia — ruptura sem pausa manual gera cancelamentos automáticos que impactam reputação, hoje em zero. Confirmar/refutar: reposição em 24h = risco neutralizado; sem reposição e anúncio ainda ativo amanhã = registrar como fonte de novos cancelamentos. Escalar se anúncio zerar com pedidos sendo aceitos — alinhar pausa manual antes que o ML gere cancelamentos automáticos.
-• Yasmin: checar a direção do health dos dois campeões em Full com penalização — Kit 4 Potes 1050ml Retangular (health 0,75) e potes redondos Tampa Vermelha em fulfillment (health 0,71). A tese da conta é ADS compensando orgânico degradado; saber se o health está caindo, estável ou subindo é o dado que falta para decidir se a dependência de ADS vai se aprofundar. Confirmar/refutar: health estável ou subindo nos dois = manter observação sem ação; health caindo em um ou nos dois = Yasmin alinha com Himmel sobre cobertura preventiva antes da próxima semana. Escalar se health cair por 2 ciclos consecutivos em ambos.
+- Yasmin: verificar situação do Kit 06 Canequinhas com Suporte Acrílico (MLB4410218897) e decidir entre reposição emergencial no CD do ML ou pausa controlada do anúncio. Estoque zerado com anúncio ativo — o snapshot de 21/05 às 16h não mostrou resolução; qualquer pedido adicional gera cancelamento que contamina o cancellations_rate hoje em zero. Confirmar/refutar: reposição ou pausa efetivada = risco neutralizado; cancelamento no próximo ciclo sem ação = risco materializado. Escalar se: cancelamento registrado sem ação → registrar como variável confundidora para a série de reputação.
+- Yasmin: checar a direção — estável, caindo ou recuperando — do health dos dois anúncios com penalização ativa: Kit 4 Potes 1050ml (health=0,75, Clássico) e potes redondos com tampa vermelha (health=0,71, Catálogo). Primeira leitura disponível para ambos — o de catálogo tem mecanismo de dano mais grave via Buy Box. Confirmar/refutar: health estável ou em recuperação em ambos por 2 ciclos = observar sem ação; health caindo em ao menos um por 2 dias consecutivos = acionar Himmel. Escalar se: health caindo em qualquer um por 2 dias → alinhar com Himmel sobre cobertura preventiva de ADS.
+- Yasmin: iniciar reposição das canecas porcelana tulipa (MLB6167272090, fulfillment, Catálogo) — available_quantity=21 com cobertura de aproximadamente 4 dias ao ritmo atual; janela para reposição em fulfillment fecha em torno de 22/05 para garantir continuidade antes de 25/05. Ruptura em Catálogo impacta Buy Box diretamente. Confirmar/refutar: reposição iniciada até 22/05 = risco controlado; estoque chegando a zero sem reposição = perda de Buy Box em catálogo ativo.
 
 Dia analisado: 20/05/2026 — 00:00–23:59 BRT
 ```
@@ -38,72 +40,63 @@ Dia analisado: 20/05/2026 — 00:00–23:59 BRT
 
 ### Respeito de bloqueios
 
-- **Item bloqueado:** `Kit 6 Tigelas de Vidro 250ml` (display_name interno do TL6250 / MLB6167272090)
-- **Origem do bloqueio:** Granular + Condensadora
-- **Motivo:** display_name incorreto — produto real confirmado por raw_title e ml_snapshot é `Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara`; categorias e materiais completamente distintos (canecas de porcelana ≠ tigelas de vidro)
-- **Agregado autorizado:** não — a Condensadora não autorizou agregado; a Granular resolveu com nome correto por raw_title
-- **Tratamento aplicado:** substituído pelo nome correto conforme resolução da Granular: `Kit 6 Canecas Porcelana Tulipa Lisa 250ml`
-- **Aparece na mensagem final:** sim, como `Kit 6 Canecas Porcelana Tulipa Lisa 250ml` (nome correto, não o alias bloqueado)
+- **Item bloqueado:** TL6250 / MLB6167272090 — alias interno "Kit 6 Tigelas de Vidro 250ml"
+- **Origem do bloqueio:** Granular (confiança alta) → confirmado pela Condensadora
+- **Motivo:** Alias descreve categoria radicalmente diferente do produto real. "Tigelas de Vidro" (utensílios de mesa) vs produto real "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara" (xícaras de café/bebida em porcelana). Raw_title do pedido e title da API ML convergem contradizendo o alias.
+- **Agregado autorizado:** sim — uso do título correto: "Kit 6 Canecas Porcelana Tulipa Lisa 250ml"
+- **Tratamento aplicado:** substituído pelo título correto conforme fonte primária (top_items_details + raw_title)
+- **Aparece na mensagem final:** sim, como "Kit 6 Canecas Porcelana Tulipa Lisa 250ml — 5 pedidos"
 
 ---
 
-- **Item bloqueado:** Suporte Gamer SPC0111 / MLB6661811594 como insight ou sinal analítico
+- **Item bloqueado:** Origem dos 3 cancelamentos do dia (breakdown por anúncio)
 - **Origem do bloqueio:** Condensadora
-- **Motivo:** 3 pedidos com mapeamento de confiança média e histórico de 32 unidades totais é microamostra insuficiente para qualquer leitura
-- **Agregado autorizado:** não
-- **Tratamento aplicado:** produto mantido apenas no ranking Top Produtos (3 pedidos, posição decrescente correta), sem menção em análise ou prioridades
-- **Aparece na mensagem final:** sim, apenas no ranking de Top Produtos como linha de pedidos — sem análise associada
+- **Motivo:** Pacote não contém breakdown de cancelamentos por platform_item_id — hipótese de concentração no MLB4410218897 é plausível mas não evidenciada
+- **Agregado autorizado:** não — dado ausente, não fabricar inferência
+- **Tratamento aplicado:** omitido da mensagem; cancelamentos aparecem apenas como contagem objetiva na seção VISÃO (3 cancelamentos)
+- **Aparece na mensagem final:** não (exceto contagem agregada em VISÃO)
 
 ---
 
-- **Item bloqueado:** Concentração dos 3 cancelamentos em produto específico
-- **Origem do bloqueio:** Granular + Condensadora
-- **Motivo:** breakdown por anúncio ausente do pacote; distribuição inconclusiva
-- **Agregado autorizado:** não
-- **Tratamento aplicado:** cancelamentos citados como total (3) com ressalva de que a distribuição por anúncio não está disponível no pacote
-- **Aparece na mensagem final:** sim, como dado objetivo em VISÃO e como contexto de incerteza em ANÁLISE — sem atribuição a produto específico
-
----
-
-- **Item bloqueado:** Afirmação sobre priorização de ADS de Himmel no campeão Cross-docking (MLB4535865317)
+- **Item bloqueado:** Concentração de revenue_ads por anúncio
 - **Origem do bloqueio:** Condensadora
-- **Motivo:** breakdown de receita ADS por anúncio ausente; hipótese plausível mas não confirmada
+- **Motivo:** ads_summary contém apenas totais agregados — breakdown por anúncio ausente; hipótese de ADS amplificando anúncio Cross-Docking não confirmável
 - **Agregado autorizado:** não
-- **Tratamento aplicado:** citado como hipótese não confirmável — não entrou nominalmente em análise nem em prioridades
-- **Aparece na mensagem final:** não
+- **Tratamento aplicado:** omitido; ADS aparece apenas como share total (60% do GMV, ROAS 11,6x) na análise da conta, conforme Condensadora
+- **Aparece na mensagem final:** não (breakdown por anúncio ausente; totais presentes na análise conforme aprovado)
 
 ---
 
-- **Item bloqueado:** Direção do health dos anúncios penalizados como fato
+- **Item bloqueado:** Direção e causa do health=0,71 do MLB3288536143 (potes tampa vermelha)
 - **Origem do bloqueio:** Condensadora
-- **Motivo:** pacote contém apenas ponto único sem série temporal; direção não é determinável
-- **Agregado autorizado:** não
-- **Tratamento aplicado:** prioridade formulada como checagem a realizar ("checar a direção"), não como fato estabelecido
-- **Aparece na mensagem final:** sim, como ação de verificação — não como afirmação de direção
+- **Motivo:** Pacote contém apenas valor pontual — série histórica, claims e causa ausentes; comunicar como tendência confirmada seria fabricar evidência
+- **Agregado autorizado:** sim — comunicar como valor pontual com linguagem de indício, sem afirmar direção
+- **Tratamento aplicado:** preservada linguagem de indício; health=0,71 citado como valor atual sem afirmar trajetória
+- **Aparece na mensagem final:** sim, como valor pontual com ressalva de que é primeira leitura
 
 ---
 
-- **Item bloqueado:** Leitura de -20,9% em pedidos vs 7 dias como deterioração
+- **Item bloqueado:** Confirmação de que ação sobre MLB4410218897 foi tomada ou risco neutralizado
 - **Origem do bloqueio:** Condensadora
-- **Motivo:** artefato do outlier de 29/04; não reflete tendência real
-- **Agregado autorizado:** não aplicável — a Condensadora forneceu a leitura correta substituta
-- **Tratamento aplicado:** dado usado como ponto de partida para explicar a inversão correta, preservando exatamente a tese da Condensadora
-- **Aparece na mensagem final:** sim, como contexto de inversão corrigida — não como sinal de deterioração
+- **Motivo:** Snapshot de 21/05 às 16:33 BRT mostra status=active e available_quantity=3 — ação não refletida até coleta; comunicar como risco resolvido seria impreciso
+- **Agregado autorizado:** sim — comunicar como risco ainda em aberto no horário do snapshot
+- **Tratamento aplicado:** preservada linguagem de risco em aberto; "snapshot de 21/05 às 16h confirma que a situação não foi resolvida"
+- **Aparece na mensagem final:** sim, como risco ainda em aberto
 
 ---
 
 ### Decisões de formatação
 
-- Remoção de metadados internos (`— base: Estratégica + Operacional`, `— base: Tática + Granular`, `Padrão B/C/E`) — metadados de pipeline não pertencem ao Slack
-- Nome correto aplicado para TL6250/MLB6167272090: `Kit 6 Canecas Porcelana Tulipa Lisa 250ml` no lugar de `Kit 6 Tigelas de Vidro 250ml` — divergência resolvida pela Granular com confiança alta; raw_title prevalece
-- Prioridades formuladas com ação + por quê + sinal de confirmação/refutação + condição de escalonamento — todos os elementos presentes na Condensadora foram preservados
-- Ranking Top Produtos em ordem decrescente por pedidos: 23 / 13 / 8 / 5 / 5 / 5 / 3 / 3 / 3 / 3 — ordem correta mantida; empates (5/5/5 e 3/3/3/3) preservados na sequência em que aparecem no pacote validado
-- Faturamento por produto omitido de Top Produtos — pacote não traz receita validada por produto/variação; proibido calcular ou estimar
-- Suporte Gamer incluído no ranking com nome ligeiramente encurtado (`Suporte Gamer 2 Controles e Headset Mesa PS5/PS4 Preto`) para legibilidade; sem alterar identidade do produto
-- Kit 4 Potes 320ml: display_name truncado no pacote (`Azul-pet...`) — usado nome sem truncamento mas mantendo apenas o atributo identificável sem expandir além do que o pacote confirma: `Kit 4 Potes de Vidro 320ml Tampa Hermético 4 Travas`
-- Quebra de frase em insight 1 não necessária — texto da Condensadora já estava direto e coerente; preservado sem reescrita
-- SKUs crus e platform_item_ids omitidos integralmente da mensagem final — regra aplicada a todos os 10 produtos do top10
-- Referências internas substituídas: nenhuma camada citada pelo nome na mensagem final
-- Confiança média da Condensadora preservada via linguagem de indício nos alertas: "não dá para descartar", "sugere", "parece"; nenhum insight convertido em certeza
-- `Kit 06 Canequinhas com Suporte Acrílico` usado como nome de produto no lugar do display_name completo `Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico` — encurtamento para legibilidade mantendo identidade sem ambiguidade; mesma referência usada de forma consistente em análise e prioridades
-- Anúncio da Tampa Vermelha referenciado como "potes redondos Tampa Vermelha em fulfillment" em prioridades — linguagem operacional clara sem usar MLB nem SKU, alinhado com o tratamento da Condensadora
+- Remoção de metadados internos ("base: Granular + Operacional", "padrão: E", etc.) de todos os insights — motivo: são referências de pipeline interno, proibidas no Slack
+- Preservação de linguagem de indício no insight 3 ("parece robusto", "piso é desconhecido") — motivo: Condensadora classificou como hipótese/risco latente, não fato; proibido transformar em certeza
+- Preservação do conectivo "mas" nos três insights — motivo: conectivo de contraste carrega a inversão analítica central de cada insight; troca por "e" ou "e também" destruiria a tese
+- Uso do título correto "Kit 6 Canecas Porcelana Tulipa Lisa 250ml" no Top Produtos, substituindo alias bloqueado "Kit 6 Tigelas de Vidro 250ml" — motivo: bloqueio de identidade confirmado pela Granular com confiança alta; fonte primária é top_items_details.title + raw_title
+- Uso de "Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico" no Top Produtos para MLB4410218897 — motivo: título real do anúncio via top_items_details sem SKU cru visível; display_name interno preservado sem o código "914C_BAV"
+- Omissão de "Kit 6 Tigelas de Vidro 250ml" como nome alternativo — motivo: bloqueio ativo; apenas título correto permitido
+- Quebra de "Sessenta por cento do GMV veio de ADS com ROAS de 11,6x" em frase separada dentro do mesmo bullet — motivo: frase longa; quebra mantém todos os termos analíticos e a tese intacta
+- Preservação de "health=0,75" e "health=0,71" como valores numéricos explícitos nas prioridades — motivo: métricas concretas que ajudam Yasmin a identificar qual anúncio checar sem recorrer a identificadores opacos; Condensadora as incluiu nas prioridades
+- Omissão do breakdown de cancelamentos por anúncio — motivo: bloqueio ativo; contagem de 3 cancelamentos mantida apenas na VISÃO como dado objetivo
+- Omissão do breakdown de ADS por anúncio — motivo: bloqueio ativo; share total e ROAS mantidos na análise conforme Condensadora
+- Inclusão de MLB4410218897 e MLB6167272090 nas prioridades com identificadores de anúncio — motivo: Condensadora incluiu explicitamente; ajuda Yasmin a localizar o anúncio correto; SKU interno não exposto, apenas o platform_item_id
+- Ordenação do Top Produtos em ordem decrescente por pedidos (23, 13, 8, 5, 5, 5, 3, 3, 3, 3) — motivo: regra obrigatória de ranking decrescente; produtos com 5 pedidos preservados em três linhas distintas (variações e produtos diferentes)
+- Prioridades formatadas com estrutura completa: ação + por quê + confirmar/refutar + escalar se — motivo: Condensadora trouxe todos esses elementos para as 3 prioridades; regra de preservação de condições de confirmação/refutação e escalonamento

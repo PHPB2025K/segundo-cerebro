@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-20
-**Gerado em:** 2026-05-21T19:20:31.950287+00:00
+**Gerado em:** 2026-05-21T20:04:26.630478+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,10 +24,9 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Valores monetários abreviados na seção de análise (R$ 3.041 e R$ 5.087) são herança direta da Condensadora, que adotou o mesmo tratamento para esses valores ilustrativos de proporção ADS/GMV. A Slack Writer foi fiel à fonte, o que é correto. Para eliminar o Menor nos próximos ciclos, considerar que a Condensadora já entregue esses valores com decimais completos quando citados em contexto monetário, evitando que a Slack Writer precise escolher entre fidelidade e padrão numérico.
-- **Aviso:** Primeira leitura qualitativa do ciclo ML desde que Yasmin assumiu em 22/04/2026. Memória qualitativa estabelecida hoje como linha de base: ADS share 59,8%, ROAS 11,6x, ACOS 4,33%, ticket R$ 55,91, GMV R$ 5.087,71. Nenhuma hipótese anterior para confirmar ou refutar.
-- **Aviso:** Kit 06 Canequinhas com Suporte Acrílico (MLB4410218897) encerrou o dia com available_quantity=4 e 3 pedidos — ruptura iminente em ~1 dia. Prioridade operacional corretamente transmitida à Yasmin. Verificar no próximo ciclo se houve reposição ou novos cancelamentos.
-- **Aviso:** Health dos dois campeões Full (KIT4YW1050=0,75 e IMB501V=0,71) sem série temporal disponível no pacote — direção não determinável. Dado central para próximo ciclo: valores de D-1 e D-2 para calcular tendência e confirmar ou refutar erosão orgânica progressiva.
+- **Aviso:** Percentual '+32%' na ANÁLISE DA CONTA originou-se no arredondamento da Condensadora (camada 05), não na Slack Writer. A Condensadora deve ser orientada a preservar 1 casa decimal em percentuais no próximo ciclo para evitar reincidência.
+- **Aviso:** Inconsistência de mapping_confidence no data builder (TL6250 / MLB6167272090 fixado como 'high' via reviewed_sku_display_map com alias incorreto) não afetou esta mensagem — o bloqueio foi respeitado e o título correto foi usado — mas o erro persiste na origem e deve ser corrigido antes do próximo ciclo.
+- **Aviso:** Data Readiness status DADOS_PARCIAIS (volume_band shopee-budamix-store em partial) não afetou esta mensagem ML, mas deve ser registrado como contexto do ciclo.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/00-data-package.json`

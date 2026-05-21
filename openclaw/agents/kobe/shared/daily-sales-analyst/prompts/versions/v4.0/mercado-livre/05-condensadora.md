@@ -373,6 +373,7 @@ Classifique a confiança geral da condensação:
 
 ### Específicas Mercado Livre
 - Não usar `display_name` interno se a L04 marcou divergência com `title` real — use `title` real.
+- **Atributos de variação confirmados por SKU** (`top_products[i].confirmed_variation_attributes`, ex.: `["Tampa Vermelha"]` para IMB501V) são **autoritativos** mesmo quando o `title` ML não menciona o atributo. Esse caso **não é divergência** — não bloquear. Combinar com o título enxuto na comunicação: `"[título ML simplificado] — [atributo confirmado]"`.
 - Não citar `platform_item_id` (MLB...) na `analise_final_condensada` ou `prioridades_condensadas` — usar nome comercial. MLB só em `memoria_para_amanha` como rastreabilidade técnica.
 - Não tratar Cross-Docking como problema — é modalidade legítima.
 - Não confundir mecanismo de dano: Catálogo com health baixa → Buy Box; Clássico com health baixa → ranking de categoria. Insights devem citar o mecanismo correto.

@@ -196,8 +196,19 @@ Restrições da simplificação:
 - Nunca alterar o tipo do produto (Kit não vira Caixa).
 - Nunca alterar quantidade ou dimensão.
 - Nunca remover atributo de variação visível e confirmado no título ML.
-- Nunca adicionar atributo que não esteja no título ML (ex.: não escrever "Tampa Vermelha" se o título ML não confirma a cor).
-- Se a L04/Condensadora bloqueou um atributo (item em `o_que_nao_pode_ir_para_slack`), respeitar o bloqueio — usar o título ML sem o atributo, não o display_name.
+- Nunca adicionar atributo que não esteja no título ML **nem em `confirmed_variation_attributes`**. Atributo só entra na mensagem se uma das duas fontes confirma.
+- Se a L04/Condensadora bloqueou um atributo (item em `o_que_nao_pode_ir_para_slack`), respeitar o bloqueio.
+
+#### Atributos confirmados por SKU
+
+O campo `top_products[i].confirmed_variation_attributes` (lista de strings) traz atributos de variação **autoritativos** vindos da codificação interna do SKU Budamix (ex.: IMB501V → `["Tampa Vermelha"]`). É a forma de manter a cor/variação visível na mensagem mesmo quando o título ML público é enxuto.
+
+Regras:
+- Se o campo está preenchido **e** a L04/L05 não bloqueou explicitamente o atributo, **incluir o atributo no nome final**, no formato `[título ML simplificado] — [atributo confirmado]`.
+- Exemplo: title `"Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita"` + `confirmed_variation_attributes: ["Tampa Vermelha"]` → `"Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha"`.
+- Se a lista tem múltiplos atributos, concatenar com vírgula: `"Produto X — Atributo A, Atributo B"`.
+- Se a lista está vazia ou ausente, comportamento default (só o título ML simplificado).
+- Não inferir atributo extra além da lista: a lista é o limite do que pode aparecer.
 
 Registrar cada simplificação relevante no bloco `### Decisões de formatação` no log.
 

@@ -281,6 +281,17 @@ PRODUCT_DISPLAY_NAMES: dict[str, str] = {
     "008": "Pote de Vidro Hermético Pequeno",
 }
 
+# Atributos de variação confirmados por codificação interna do SKU.
+# Fonte autoritativa de atributo de variação (cor, tampa, tamanho) quando o
+# título do anúncio no marketplace omite o atributo. Permite que L04 e L05
+# não bloqueiem o atributo como "inferência" — ele vem como dado validado.
+# Cada entrada: variation_sku (normalizado) → lista de atributos confirmados.
+SKU_VARIATION_ATTRIBUTES: dict[str, list[str]] = {
+    "IMB501P": ["Tampa Preta"],
+    "IMB501C": ["Tampa Cinza"],
+    "IMB501V": ["Tampa Vermelha"],
+}
+
 PRODUCT_VARIATION_MAP: dict[str, dict[str, Any]] = {
     "IMB501P": {
         "family": "IMB501",
@@ -558,6 +569,10 @@ def compute_metrics(orders: list[dict], cancelled: list[dict], platform: str = "
                     "raw_skus": [],
                     "platform_item_id": item.get("platform_item_id") or item.get("asin") or "",
                     "title": title or variation.get("short_product_name") or variation.get("display_name") or "",
+                    "confirmed_variation_attributes": SKU_VARIATION_ATTRIBUTES.get(
+                        variation.get("variation_sku") or variation.get("mapped_variation_sku") or "",
+                        [],
+                    ),
                 }
             if raw_sku and raw_sku not in product_meta[key]["raw_skus"]:
                 product_meta[key]["raw_skus"].append(raw_sku)

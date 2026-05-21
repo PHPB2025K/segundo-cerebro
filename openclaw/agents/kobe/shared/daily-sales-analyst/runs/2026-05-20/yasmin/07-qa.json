@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem passou todos os gates críticos sem falha. Data, período e rodapé corretos; destinatário Yasmin/ML correto; estrutura Slack com exatamente as 6 seções na ordem aprovada; VISÃO com dados objetivos do dia sem comparação temporal; Top Produtos fiel ao pacote validado por variação, com bloqueio de 'Tampa Vermelha' corretamente aplicado; Análise com exatamente 3 bullets correspondendo 1:1 aos 3 insights da Condensadora, teses e conectivos preservados, linguagem operacional clara; Prioridades com ação+motivo+sinal+escalonamento conforme Condensadora; todos os 5 bloqueios da Granular/Condensadora cruzados, logados e respeitados na mensagem final. Um único problema Menor foi identificado: inconsistência cosmética de espaçamento após símbolo R$ entre a seção VISÃO ('R$ 55,91') e o texto da análise ('R$55,91', 'R$41,53'). Regra de agregação aplicada: 0 Críticos + 0 Maiores + 1 Menor → APROVADO COM RESSALVA.",
+  "motivo": "A mensagem não apresenta Críticos nem Maiores. Foram encontrados 5 Menores distribuídos em 3 gates (Gate 5, Gate 6 e Gate 11): uma troca de 'Conjunto' por 'Kit' no nome do IMB501P no Top Produtos (Gate 5); duas variações de enquadramento na Análise — 'parece ter caído estruturalmente' virou 'ficou em' e 'O problema é que' virou 'O ponto de atenção:' (Gate 6); e uso de percentuais sem casa decimal (32%, 56%, 60%, 74%) e do identificador técnico '5_green/gold' herdados da Condensadora (Gate 11). Nenhum dos 5 Menores indica degradação sistêmica — são pontos isolados que não comprometem clareza, estrutura ou segurança operacional da mensagem. Regra de agregação aplicada: 0 Maiores + 5 Menores não sistêmicos → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -8,8 +8,8 @@
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "OK",
-    "gate_6_analise_conta": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "RESSALVA",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
@@ -20,30 +20,72 @@
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 1,
-    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 1 Menor → APROVADO COM RESSALVA"
+    "menores": 5,
+    "regra_agregacao_aplicada": "0 Maiores + 5 Menores não sistêmicos → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
       "severidade": "Menor",
-      "gate": "11 — Padrão numérico e formatação objetiva",
-      "texto_atual": "R$55,91 vs R$41,53 (na seção 🔍 ANÁLISE DA CONTA, bullet 1)",
-      "texto_esperado": "R$ 55,91 vs R$ 41,53",
-      "estado_atual": "Valores monetários inline na análise omitem o espaço entre o símbolo R$ e o número, divergindo do padrão aplicado na seção VISÃO ('R$ 55,91', 'R$ 5.087,71')",
-      "estado_esperado": "Espaçamento uniforme após R$ em toda a mensagem, conforme padrão 'R$ X.XXX,XX' definido nas regras",
-      "regra_violada": "Padrão numérico consistente em toda a mensagem; Gate 11 exige que valores monetários sigam o formato 'R$ 1.234,56' com espaço entre símbolo e número",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "Kit 5 Potes de Vidro Redondos Tampa Preta — 23 pedidos",
+      "texto_esperado": "Conjunto 5 Potes de Vidro Redondos Tampa Preta — 23 pedidos",
+      "estado_atual": "Slack Writer substituiu 'Conjunto' por 'Kit' apoiada no raw_title ('Kit 5 Peças'), divergindo do display_name canônico do pacote ('Conjunto 5 Potes de Vidro Redondos Tampa Preta').",
+      "estado_esperado": "Produto claramente identificável em qualquer versão do nome; troca não induz erro. Uso do display_name canônico seria mais preciso.",
+      "regra_violada": "Top Produtos deve usar o display_name do pacote validado como fonte primária de nome; desvio para raw_title é permitido apenas quando display_name está ausente ou é ambíguo.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "O mix de fulfillment do dia ficou em 56% Full contra 74% no histórico 30d, mas a queda foi produto-específica",
+      "texto_esperado": "O mix de fulfillment do dia parece ter caído estruturalmente — 56% Full contra 74% no histórico 30d — mas a queda foi produto-específica",
+      "estado_atual": "A Condensadora usa 'parece ter caído estruturalmente' para montar a inversão negativa (padrão C): aparência de queda estrutural corrigida pelo 'mas'. O Slack trocou por 'ficou em', apresentando os números como fato neutro antes do 'mas', enfraquecendo levemente o setup da inversão.",
+      "estado_esperado": "O 'mas' corretivo e o conteúdo completo da inversão estão preservados; a tese central não mudou. A troca enfraquece marginalmente o enquadramento narrativo sem comprometer a leitura operacional.",
+      "regra_violada": "Gate 6 — Contraste/inversão/enquadramento preservados: se a Condensadora usou padrão 'não é X, é Y' ou 'parece bom, mas...', o Slack mantém a estrutura.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "O ponto de atenção: 60% desse resultado passou por ADS",
+      "texto_esperado": "O problema é que 60% desse resultado passou por ADS hoje",
+      "estado_atual": "A Condensadora usa 'O problema é que' para sinalizar a vulnerabilidade estrutural da dependência ADS. O Slack substituiu por 'O ponto de atenção:', que é linguagem operacional padrão mas levemente mais neutra. Todo o conteúdo do alerta (percentual, health, hipótese) está preservado; a ressalva de hipótese no final do bullet também preserva a incerteza.",
+      "estado_esperado": "O alerta é mantido em conteúdo e em classificação (hipótese). A substituição é ajuste de redação sem impacto operacional, dado que o insight é classificado como hipótese — não risco confirmado.",
+      "regra_violada": "Gate 6 — mesmo conectivo principal e enquadramento preservados. A mudança de 'O problema é que' para 'O ponto de atenção:' é suavização leve de framing, não de conteúdo.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "32% acima da média histórica [...] 56% Full contra 74% [...] 60% desse resultado passou por ADS",
+      "texto_esperado": "32,0% acima da média histórica [...] 56,3% Full contra 73,9% [...] 59,8% desse resultado passou por ADS (ou arredondado com 1 casa: 59,8%)",
+      "estado_atual": "Percentuais na seção de Análise estão sem casa decimal. A Condensadora já entregou esses percentuais arredondados (32%, 56%, 60%, 74%) e o Slack Writer foi fiel à Condensadora. A seção de Prioridades usa o valor preciso (59,8%) corretamente.",
+      "estado_esperado": "Regra padrão: percentuais com vírgula e 1 casa decimal quando aparecerem na mensagem. Percentuais de 1 casa são usados corretamente nas Prioridades mas não na Análise.",
+      "regra_violada": "Gate 11 — Percentuais com vírgula e 1 casa quando aparecerem.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "a reputação 5_green/gold é o ativo que sustenta exposição e elegibilidade ADS de toda a conta",
+      "texto_esperado": "a reputação verde/ouro (MercadoLíder Ouro) é o ativo que sustenta exposição e elegibilidade ADS de toda a conta",
+      "estado_atual": "'5_green/gold' é o valor de campo da API ML (reputation.color + power_seller_status). A expressão vem diretamente da Condensadora e foi reproduzida fielmente pelo Slack Writer. Para Yasmin é reconhecível, mas é formato de identificador técnico, não nome de exibição do painel ML.",
+      "estado_esperado": "Identificador técnico de API substituído por nomenclatura display do painel ML — não compromete a leitura operacional, mas um ajuste futuro na Condensadora melhoraria o padrão.",
+      "regra_violada": "Gate 11 — Sem IDs técnicos indevidos. Herança da Condensadora; o Slack Writer foi fiel à fonte.",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Inconsistência R$/R$ $ no texto inline da análise (Gate 11, Menor): corrigir no próximo ciclo padronizando espaçamento após símbolo de moeda em todo o corpo da mensagem, incluindo referências inline na seção ANÁLISE DA CONTA."
+    "Gate 5: display_name canônico do pacote para IMB501P é 'Conjunto 5 Potes de Vidro Redondos Tampa Preta' — a Condensadora e layers upstream devem padronizar o uso de 'Conjunto' vs 'Kit' para evitar divergência com o raw_title na próxima geração.",
+    "Gate 11: Condensadora entregou percentuais sem decimal (32%, 56%, 60%, 74%) — regra de formatação de 1 casa decimal deve ser aplicada na Condensadora ou documentada como exceção para números redondos; a omissão de 'hoje' em '60% desse resultado passou por ADS' (vs Condensadora: 'passou por ADS hoje') também ocorreu na Gate 6.",
+    "Gate 11: Identificador técnico '5_green/gold' oriundo da API ML foi reproduzido pela Condensadora e pelo Slack Writer — próximo ciclo deve avaliar substituição por nomenclatura de display ('verde/ouro' ou 'MercadoLíder Ouro') para aderência ao padrão de mensagem sem IDs técnicos.",
+    "Diretriz Pedro 2026-05-17: troca de 'O problema é que' por 'O ponto de atenção:' é consistente com simplificação operacional pedida; ajuste aceitável para hipótese não confirmada, mas a tese da Condensadora usa 'O problema é que' com intenção — registrar para calibrar a Condensadora ML no próximo ciclo."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "Decisão de omitir mix de fulfillment da seção VISÃO (78% de cobertura, 71/91 pedidos) está devidamente documentada nas Decisões de Formatação e não configura violação de regra objetiva — o dado foi corretamente roteado para a seção de análise (insight 3). Registrar para revisão futura se cobertura do fulfillment_mix_yesterday_top10 puder ser expandida para 100% dos pedidos do dia.",
-    "Insight 2 classifica os dois anúncios como 'ruptura iminente' preservando linguagem de risco latente conforme a Condensadora. A Granular marcou confiança média para o anúncio de canequinhas acrílico (MLB4410218897) e confiança alta para o de canecas tulipa (MLB6167272090). A mensagem trata ambos com o mesmo grau de urgência, o que é conservador e não viola regra objetiva, mas a distinção de confiança entre os dois casos está documentada aqui para memória interna.",
-    "O campeão de volume em Cross-docking (Conjunto 5 Potes Tampa Preta, 23 pedidos, sold_quantity histórico de 323) tem origem de pico não confirmada (orgânico vs ADS Himmel). A hipótese foi corretamente bloqueada pela Condensadora e não aparece na mensagem. Registrar para o próximo ciclo: se breakdown de ADS por platform_item_id for disponibilizado no ml_snapshot v2+, essa pergunta pode ser respondida de forma definitiva.",
-    "Quatro anúncios do top10 com health em zona crítica ou no limiar (MLB4073003575=0,75; MLB3288536143=0,71; MLB3343832496=0,85; MLB4073064873=0,85) foram corretamente omitidos como afirmação consolidada conforme bloqueio da Condensadora. A abrangência real do risco de health é maior do que o comunicado operacionalmente na mensagem — contexto preservado aqui para série futura."
+    "Insight 3 (hipótese): A Condensadora usa 'O problema é que' para sinalizar vulnerabilidade estrutural — framing mais forte do que 'O ponto de atenção:'. Para insights classificados como hipótese, a Diretriz Pedro favorece linguagem operacional simples, o que suporta a escolha do Slack Writer. Registrar como ponto de calibração da Condensadora ML: avaliar se 'O problema é que' é apropriado para hipótese não confirmada ou se a Condensadora deveria sinalizar de forma mais explícita o nível de certeza antes que o Slack Writer intervenha.",
+    "Insight 2 (fato): 'parece ter caído estruturalmente' (Condensadora) vs 'ficou em' (Slack) — o padrão C de inversão negativa é preservado pelo 'mas a queda foi produto-específica'; a mudança no setup da inversão não compromete a leitura operacional. Para próximos ciclos, o Slack Writer pode preservar o setup da Condensadora sem comprometer a clareza pedida pela Diretriz Pedro.",
+    "Fulfillment omitido da VISÃO: decisão registrada pelo Slack Writer (top10 cobre 71 de 91 pedidos, não o total do dia). A Condensadora não autorizou dado de fulfillment parcial na VISÃO. Decisão correta e documentada. Para evolução futura: avaliar se o fulfillment_mix_30d (cobertura 100%) poderia ser incluído na VISÃO como referência de padrão sem misturar com o dado do dia."
   ],
   "llm_used": true,
   "model": "sonnet",

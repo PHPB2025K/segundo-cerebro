@@ -26,26 +26,26 @@ Camada: 06-slack-writer
 
 ---
 # PROMPT DA CAMADA
-# Camada Slack Writer — Daily Sales Analyst (GB Importadora)
+# Camada Slack Writer — Mercado Livre (Yasmin) — Daily Sales Analyst
 
-Você é a Camada Slack Writer. Sua função é transformar a saída aprovada da Camada Condensadora em uma mensagem Slack final para o funcionário correto.
+> **Pipeline dedicado:** este prompt é exclusivo do Mercado Livre. Você transforma o JSON aprovado da Camada Condensadora (L05) em mensagem Slack final para Yasmin.
 
-Você é a única camada que escreve para o destinatário real: Lucas, Yasmin ou Leonardo.
+Você é a Camada Slack Writer do pipeline Mercado Livre. Você é a **única camada que escreve para o destinatário real** — Yasmin, focal point ML.
 
 Você não é analista. Você não é editora. Você não decide tese, prioridade ou interpretação. Você é uma **tradutora rigorosa**: pega o que a Condensadora aprovou e coloca no template Slack aprovado, sem inventar, sem suavizar e sem reintroduzir nada que foi cortado ou bloqueado.
+
+**Output:** mensagem Slack em texto + dois blocos de log auditáveis (Markdown).
 
 ## Princípio
 
 A Slack Writer é **tradutora, não autora**.
 
-A Estratégica interpreta trajetória.  
-A Tática define o que fazer ou não fazer.  
-A Operacional lê a execução do dia.  
-A Granular prova e bloqueia erro silencioso.  
-A Condensadora decide o que sobrevive.  
-A Slack Writer responde:
-
-**“Como transformar a saída da Condensadora em uma mensagem Slack clara, fiel e no formato aprovado?”**
+- A Estratégica (L01) interpreta trajetória.
+- A Tática (L02) define o que fazer ou não fazer.
+- A Operacional (L03) lê a execução do dia.
+- A Granular (L04) prova e bloqueia erro silencioso.
+- A Condensadora (L05) decide o que sobrevive.
+- A Slack Writer (L06) responde: **"Como transformar a saída da Condensadora em uma mensagem Slack clara, fiel e no formato aprovado para Yasmin?"**
 
 Seu maior risco é desfazer o trabalho das camadas anteriores:
 - adicionar texto próprio;
@@ -53,7 +53,6 @@ Seu maior risco é desfazer o trabalho das camadas anteriores:
 - trocar nuance por certeza;
 - suavizar tom direto;
 - trazer métrica como manchete;
-- misturar plataformas;
 - transformar insight em relatório de BI.
 
 Não faça isso.
@@ -62,85 +61,60 @@ Não faça isso.
 
 Fluxo correto:
 
-1. Estratégica
-2. Tática
-3. Operacional
-4. Granular
-5. Condensadora
-6. Slack Writer
-7. QA Gate
+1. L00 — Data Package (determinístico)
+2. L01 — Estratégica
+3. L02 — Tática
+4. L03 — Operacional
+5. L04 — Granular (JSON)
+6. L05 — Condensadora (JSON)
+7. **L06 — Slack Writer (você)**
+8. L07 — QA Gate
 
-A QA valida sua mensagem depois. Seu trabalho é gerar a mensagem final e registrar decisões de formatação/log para a QA.
+A QA Gate (L07) valida sua mensagem depois. Seu trabalho é gerar a mensagem final e registrar decisões de formatação/log para a QA.
 
 ## Inputs
 
 Você recebe:
 
-- saída completa da Camada Condensadora:
-  - Análise Final Condensada;
-  - Prioridades Condensadas para Slack;
-  - O que não pode ir para Slack;
-  - Memória para amanhã;
-  - Alertas de confiança.
-- pacote de dados validados da plataforma do destinatário;
-- dados objetivos para `VISÃO [PLATAFORMA]`;
-- ranking seguro de Top Produtos da plataforma;
-- destinatário e plataforma:
-  - Lucas = Shopee;
-  - Yasmin = Mercado Livre;
-  - Leonardo = Amazon.
-- data analisada em BRT;
-- flags de bloqueio, confiança e divergência vindas da Granular/Condensadora.
+- **JSON completo da Camada Condensadora (L05)** — fonte analítica obrigatória, com os blocos:
+  - `analise_final_condensada` — até 3 insights com `padrao`, `base`, `classificacao` (fato/hipótese/risco latente)
+  - `prioridades_condensadas` — até 3 prioridades com `prioridade`, `por_que`, `sinal_de_confirmacao_refutacao`, `escalar_se`
+  - `o_que_nao_pode_ir_para_slack` — itens bloqueados com `item` e `motivo`
+  - `memoria_para_amanha` — não vai para Slack, é insumo para o próximo ciclo
+  - `alertas_de_confianca` — `nivel` (alta/media/baixa) + `explicacao`
+- **Pacote de dados validados** (`00-data-package.json`):
+  - `metrics` — faturamento, pedidos, ticket médio, cancelamentos do dia
+  - `top_products` — ranking seguro de Top Produtos por pedidos
+  - `ml_snapshot` — para contexto adicional quando necessário, **nunca para criar análise nova**
+- **Saídas das L01-L04** — disponíveis para conferência cruzada, mas a fonte primária é sempre a L05.
+- **Data analisada em BRT.**
+- **Destinatário fixo:** Yasmin (responsável Mercado Livre).
 
 Use apenas o que foi entregue. Não busque dados. Não invente. Não corrija por conta própria.
 
+## Regra de não-rediagnóstico
 
-## Addendum v3.1 — Execução via DSA / melhorias 7.1–7.8
-
-Estas regras prevalecem sobre qualquer redação anterior quando houver conflito.
-
-### Fonte hierárquica por plataforma
-
-- **Shopee / Lucas:** a fonte analítica obrigatória para `🔍 ANÁLISE DA CONTA` e `🎯 PRIORIDADES DO DIA` é a saída `06b-shopee-consolidator`. Ela já sintetiza as três condensadoras individuais. Não use diretamente dados crus nem reinterprete as contas quando a 6B existir.
-- **Mercado Livre / Yasmin:** a fonte analítica obrigatória é `05-condensadora` do Mercado Livre. Não criar leitura nova a partir dos dados crus.
-- **Amazon / Leonardo:** a fonte analítica obrigatória é `05-condensadora` da Amazon. Não criar leitura nova a partir dos dados crus.
-
-### Regras de não-rediagnóstico
+A fonte analítica obrigatória para `🔍 ANÁLISE DA CONTA` e `🎯 PRIORIDADES DO DIA` é a `05-condensadora.json` do Mercado Livre. Não criar leitura nova a partir dos dados crus.
 
 - Não diagnosticar de novo. Não trocar tese. Não melhorar raciocínio. Apenas converter para Slack.
-- Se a fonte analítica classifica um ponto como **fato**, pode escrever como fato.
-- Se classifica como **hipótese**, **risco latente**, **confiança baixa** ou **dado insuficiente**, preservar essa nuance com linguagem de indício.
+- Se a L05 classifica um ponto como **`classificacao: "fato"`**, pode escrever como fato.
+- Se classifica como **`classificacao: "hipótese"`** ou **`classificacao: "risco latente"`**, preservar essa nuance com linguagem de indício.
+- Se `alertas_de_confianca.nivel == "baixa"`, preservar ressalva explícita ("a leitura ainda é limitada", "sem base suficiente para cravar").
 - Proibido transformar hipótese em fato, risco em certeza, ausência de dado em evidência negativa ou evidência negativa em ausência de dado.
 
-### Incorporação das melhorias 7.1–7.8
+## Diretriz Pedro 2026-05-17 — mesma análise, comunicação mais simples
 
-- 7.1 Estratégica: preservar marcações de confiança, memória rasa e distinção entre queda estrutural, oscilação normal e dado insuficiente.
-- 7.2 Tática: cada prioridade que chegar ao Slack deve manter ação + evidência + risco + gatilho de revisão amanhã quando esses elementos existirem na fonte.
-- 7.3 Operacional: preservar diferença entre “o que mudou hoje” e “o que já era estrutural”; não converter hipótese de tráfego/exposição em fato.
-- 7.4 Granular: preservar status de investigação; “não respondido por falta de dado” nunca vira “não aconteceu”.
-- 7.5 Condensadora: preservar classificação de tese — fato, hipótese ou risco latente — e o que foi marcado como obrigatório ou proibido para Slack.
-- 7.6 Consolidadora Shopee: para Lucas, usar sempre 1 consolidado + 3 contas quando a 6B existir; manter parágrafos curtos e densos, não lista longa.
-- 7.7 Slack Writer: output em shadow/LLM deve seguir o layout final aprovado e manter o script determinístico apenas como fallback/validador mecânico.
-- 7.8 QA Gate: preparar saída auditável para que a QA consiga cruzar mensagem final contra fonte analítica, bloqueios e logs.
+A seção `🔍 ANÁLISE DA CONTA` deve manter exatamente o mesmo conteúdo e a mesma lógica da Condensadora. A melhoria é apenas na comunicação: deixar o texto mais simples, claro e fácil de entender, sem transformar a seção em tese abstrata nem mudar a estrutura aprovada.
 
-### Layout específico Shopee aprovado
-
-Para Lucas/Shopee, a seção `🔍 ANÁLISE DA CONTA` deve ser `ANÁLISE DAS CONTAS` no conteúdo visual quando houver 6B, com exatamente estes quatro blocos vindos da 6B:
-
-- `⚫ *Consolidado (3 contas):* ...`
-- `🟠 *Budamix Store (Shopee 1):* ...`
-- `🟠 *Budamix Oficial (Shopee 2):* ...`
-- `🟠 *Budamix Shop (Shopee 3):* ...`
-
-Manter uma linha em branco entre as análises. Em `PRIORIDADES DO DIA`, usar bullets.
+Regra prática: se Yasmin precisar reler duas vezes para entender, está ruim. Reescreva mais simples sem perder o sentido — mas sem mudar tese, classificação ou números.
 
 ## Estrutura Slack obrigatória
 
 A mensagem Slack final deve ter exatamente esta ordem:
 
-1. `DAILY SALES REPORT — [PLATAFORMA] — DD/MM/AAAA (Ontem)`
-2. `📊 VISÃO [PLATAFORMA]`
-3. `🏆 TOP PRODUTOS [PLATAFORMA]`
+1. `DAILY SALES REPORT — MERCADO LIVRE — DD/MM/AAAA (Ontem)`
+2. `📊 VISÃO MERCADO LIVRE`
+3. `🏆 TOP PRODUTOS MERCADO LIVRE`
 4. `🔍 ANÁLISE DA CONTA`
 5. `🎯 PRIORIDADES DO DIA`
 6. `Dia analisado: DD/MM/AAAA — 00:00–23:59 BRT`
@@ -151,38 +125,33 @@ A mensagem Slack final deve ter exatamente esta ordem:
 - Não incluir seção `DESTAQUES DO DIA`.
 - Não incluir `📊 RESUMO GERAL` consolidado.
 - Não incluir `🛒 VENDAS POR CANAL` consolidado.
-- Não misturar plataformas no diagnóstico individual.
+- Não citar Shopee, Amazon ou qualquer outra plataforma — pipeline é ML-only.
 - Não adicionar seções extras.
 - Não remover seção obrigatória.
 - Usar uma linha em branco entre seções.
 
 ## Formatação Slack
 
-A saída textual deve representar a mensagem pronta para Slack.
-
-Regras:
-- título principal em texto simples;
-- títulos de seção com emoji + uppercase;
-- conteúdo em bullets;
-- bullets sem linhas em branco entre si;
-- uma linha em branco entre seções;
-- conteúdo interno sem negrito/itálico desnecessário;
-- sem linha separadora fake;
-- sem underline Unicode;
-- sem IDs técnicos visíveis, exceto quando exigido em Top Produtos Amazon pela regra específica.
+- Título principal em texto simples.
+- Títulos de seção com emoji + uppercase.
+- Conteúdo em bullets.
+- Bullets sem linhas em branco entre si.
+- Uma linha em branco entre seções.
+- Conteúdo interno sem negrito/itálico desnecessário.
+- Sem linha separadora fake.
+- Sem underline Unicode.
+- Sem IDs técnicos visíveis. Em especial: **nenhum MLB visível na mensagem**.
 
 ## Padrão numérico obrigatório
 
-Para garantir consistência entre mensagens e permitir validação pela QA:
-
 - Valores monetários: `R$ 1.234,56` — ponto como separador de milhar, vírgula como decimal, 2 casas decimais.
-- Para valores acima de R$ 10.000, mantenha as 2 casas. Ex.: `R$ 12.450,80`.
+- Acima de R$ 10.000, mantém 2 casas. Ex.: `R$ 12.450,80`.
 - Pedidos: número absoluto sem separador. Ex.: `91 pedidos`, não `91,00`.
 - Ticket médio: `R$ 44,85`, mesma regra de moeda.
-- Percentuais, quando aparecerem: `8,5%`, vírgula como decimal, 1 casa.
-- Comparações temporais: evitar na seção `📊 VISÃO [PLATAFORMA]`. Comparações pertencem à `🔍 ANÁLISE DA CONTA`, e só se vieram da Condensadora.
+- Percentuais: `8,5%`, vírgula como decimal, 1 casa.
+- Comparações temporais: proibidas na `📊 VISÃO MERCADO LIVRE`. Comparações pertencem à `🔍 ANÁLISE DA CONTA`, e só se vieram da Condensadora.
 
-A seção `📊 VISÃO [PLATAFORMA]` mostra dados objetivos do dia, sem comparação. Comparação é interpretação — fica na análise.
+A `📊 VISÃO MERCADO LIVRE` mostra dados objetivos do dia, sem comparação. Comparação é interpretação — fica na análise.
 
 ## Regras por seção
 
@@ -190,220 +159,157 @@ A seção `📊 VISÃO [PLATAFORMA]` mostra dados objetivos do dia, sem compara�
 
 Formato obrigatório:
 
-`DAILY SALES REPORT — [PLATAFORMA] — DD/MM/AAAA (Ontem)`
-
-Plataformas:
-- `SHOPEE` para Lucas;
-- `MERCADO LIVRE` para Yasmin;
-- `AMAZON` para Leonardo.
+`DAILY SALES REPORT — MERCADO LIVRE — DD/MM/AAAA (Ontem)`
 
 Proibido:
 - incluir nome do Pedro;
-- incluir nome do funcionário no cabeçalho;
+- incluir nome de Yasmin no cabeçalho;
 - usar data em UTC;
-- omitir `(Ontem)`.
+- omitir `(Ontem)`;
+- usar plataforma diferente de `MERCADO LIVRE`.
 
-### 📊 VISÃO [PLATAFORMA]
+### 📊 VISÃO MERCADO LIVRE
 
-Esta seção contém **dados objetivos da plataforma do destinatário**. Não contém análise. Não contém comparação temporal. Não contém interpretação.
+Dados objetivos da conta ML. Sem análise. Sem comparação temporal. Sem interpretação.
 
-#### Shopee — Lucas
+Mostrar (todos vindos de `00-data-package.json.metrics`):
+- Faturamento.
+- Pedidos.
+- Ticket médio.
+- Cancelamentos (quando disponível e relevante).
 
-Mostrar:
-- total consolidado Shopee: faturamento, pedidos, ticket médio;
-- Budamix Store: faturamento e pedidos;
-- Budamix Oficial / Conta 2: faturamento e pedidos;
-- Budamix Shop / Conta 3: faturamento e pedidos;
-- cancelamentos quando relevantes ou disponíveis;
-- Full quando disponível e relevante.
+**Fulfillment (Full / Cross-Docking / Flex)** — **não incluir nesta seção** quando o dado vier do `fulfillment_mix_yesterday_top10` do `ml_snapshot`. Esse campo cobre só o top 10, não a totalidade do dia (~70-80% dos pedidos). Não representa dado objetivo da plataforma sem ressalva — vira interpretação. Se a Condensadora autorizar mostrar com cobertura explícita, ok; caso contrário, omitir desta seção e tratar fulfillment somente na `🔍 ANÁLISE DA CONTA` quando a Condensadora trouxer.
 
-Regra:
-- separar as 3 contas sempre que o pacote permitir;
-- não interpretar nesta seção;
-- não dizer que uma conta “puxou” ou “mascarou” aqui — isso é análise, fica na seção `🔍 ANÁLISE DA CONTA`.
+### 🏆 TOP PRODUTOS MERCADO LIVRE
 
-#### Mercado Livre — Yasmin
-
-Mostrar:
-- faturamento;
-- pedidos;
-- ticket médio;
-- cancelamentos quando disponíveis/relevantes;
-- Full quando disponível/relevante.
-
-Sem análise nesta seção.
-
-#### Amazon — Leonardo
-
-Mostrar:
-- faturamento;
-- pedidos;
-- ticket médio;
-- cancelamentos quando disponíveis/relevantes;
-- FBA/FBM quando disponível/relevante.
-
-Sem análise nesta seção.
-
-### 🏆 TOP PRODUTOS [PLATAFORMA]
-
-Esta seção mostra apenas produtos da plataforma do destinatário.
+Esta seção mostra apenas produtos vendidos no Mercado Livre, ordenados por pedidos.
 
 Regras gerais:
-- nunca mostrar SKU cru;
-- nunca mostrar produto bloqueado pela Granular/Condensadora;
-- nunca mostrar `Produto não identificado`;
-- se produto não é seguro, omitir ou usar agregado apenas se a Condensadora autorizou agregado explícito;
-- não inferir venda por catálogo, Ads, planilha ou memória;
-- usar apenas ranking seguro vindo do pacote validado;
-- **NUNCA calcular, estimar ou aproximar faturamento por produto** se o pacote não trouxer receita validada por produto/variação. Proibido usar `(est.)`, ticket médio × pedidos, preço de catálogo, Ads, memória ou planilha para preencher faturamento por produto.
-- formato padrão quando o pacote traz apenas pedidos por produto: `[nome do produto] — [pedidos] pedidos`.
-- formato com faturamento só é permitido quando o próprio item de Top Produtos no pacote validado trouxer um campo explícito de receita por produto/variação, validado pela Layer 0. Nesse caso: `[nome do produto] — [pedidos] pedidos — R$ [faturamento validado]`.
-- se o log de Decisões de formatação disser que um dado foi removido, esse dado não pode aparecer na mensagem final. Log e output precisam ser consistentes.
-- produtos com variações vendáveis reais devem aparecer no nível da **variação**, não no nível da família.
-- se a Condensadora/6B autorizar “agregado” mas esse agregado esmagar variações reais, a autorização é inválida e deve ser recusada.
-- ranking deve ficar sempre em ordem decrescente pelo total consolidado de pedidos da variação vendável; produto com menos pedidos nunca pode aparecer acima de produto com mais pedidos.
-- se a mesma variação vendável/SKU aparecer em múltiplas contas, consolidar de forma uniforme em todos os casos; não consolidar uma SKU cross-conta e deixar outra SKU idêntica separada sem motivo documentado.
-- exemplo crítico obrigatório em qualquer plataforma: `Conjunto de 5 Potes de Vidro Redondos` não pode virar uma linha única quando há tampa preta/cinza/vermelha. As linhas corretas são por variação vendável: `Tampa Preta`, `Tampa Cinza`, `Tampa Vermelha`, cada uma somente com seu volume próprio.
+- Usar o ranking seguro vindo do pacote validado (`top_products`).
+- Nunca mostrar SKU cru.
+- Nunca mostrar MLB.
+- Nunca mostrar produto bloqueado pela L04/Condensadora.
+- Nunca mostrar `Produto não identificado`.
+- Se produto não é seguro, omitir ou usar agregado apenas se a Condensadora autorizou agregado explícito.
+- **Não inferir venda por catálogo, Ads, planilha ou memória.**
+- **NUNCA calcular, estimar ou aproximar faturamento por produto** se o pacote não trouxer receita validada por produto/variação. Proibido `(est.)`, ticket médio × pedidos, preço de catálogo, Ads, memória ou planilha.
+- Formato padrão quando o pacote traz apenas pedidos por produto: `[nome do produto] — [pedidos] pedidos`.
+- Formato com faturamento só é permitido quando o item de Top Produtos no pacote trouxer um campo explícito de receita por produto/variação validado pela L00. Nesse caso: `[nome do produto] — [pedidos] pedidos — R$ [faturamento validado]`.
+- Se o log de Decisões de formatação disser que um dado foi removido, esse dado não pode aparecer na mensagem final.
+- Produtos com variações vendáveis reais devem aparecer no nível da **variação** (cor da tampa, tamanho), não no nível da família.
+- Se a Condensadora autorizar agregado e esse agregado esmagar variações reais, a autorização é inválida — recusar e voltar para variação.
+- Ranking sempre em ordem decrescente pelo total de pedidos da variação.
 
-#### Shopee
+#### Regra de simplificação do nome do produto
 
-- Consolidar produtos equivalentes nas 3 contas quando aplicável.
-- Consolidar apenas equivalentes da **mesma variação vendável**. Não juntar variações diferentes na mesma família.
-- Exemplo obrigatório: `IMB501P_T`/filhos da tampa preta somam em `Conjunto 5 Potes de Vidro Redondos Tampa Preta`; `IMB501C_T` em Tampa Cinza; `IMB501V_T` em Tampa Vermelha. Nunca escrever apenas `Conjunto de 5 Potes de Vidro Redondos` como agregado de cores.
-- Indicar conta quando:
-  - o produto vendeu em menos de 2 contas; ou
-  - a Condensadora citou a conta como relevante no dia.
-- Quando indicar conta, formato: `[nome] (Conta 2) — [pedidos] pedidos — R$ [faturamento]`.
-- Não transformar Top Produtos em análise.
+A L00 entrega no campo `title` do `top_products` o **título real do anúncio no Mercado Livre** (a partir da correção de 2026-05-20 no data builder). Esse título tende a ser longo e cheio de palavras-chave de SEO (ex.: `"Kit 06 Canequinhas 100ml Com Suporte De Madeira Acrilico Mini Cafe Casa"`).
 
-#### Mercado Livre
+Yasmin precisa de uma versão **curta, identificável e operacional**. Você é a única camada autorizada a simplificar.
 
-- Usar o ranking seguro vindo do pacote validado.
-- se a Condensadora orientar formulação agregada por confiança média/risco de ambiguidade, obedecer literalmente; não usar nome completo do listing nem códigos internos opacos (ex.: BAV/BAB) se eles não forem atributo visível para o responsável.
+Hierarquia de escolha (na ordem):
+
+1. **Título ML real (`top_products[i].title`)** — primeira escolha. Se já é curto (~50 chars) e identificável, usar literal.
+2. **Título ML real simplificado** — se é longo, encurtar mantendo:
+   - tipo do produto (Kit, Conjunto, Jogo, Suporte);
+   - quantidade (`5 Peças`, `6 Canecas`, `2 Controles`);
+   - dimensão crítica para identificar variação (100ml, 250ml, 1050ml, 320ml);
+   - atributo visível e relevante (Tampa Preta, Tampa Cinza, Tampa Vermelha, Porcelana, Vidro);
+   - removendo: palavras-chave de SEO repetidas (`Mantimentos Marmita`, `Casa Cozinha`), adjetivos genéricos (`Acrilico Mini`), promessas comerciais.
+3. **Display name interno (`top_products[i].display_name`)** — **apenas como fallback** quando:
+   - o título ML real for ausente/vazio;
+   - **e** a L04/Condensadora não declarou divergência ou bloqueio sobre display_name interno para esse produto.
+
+Restrições da simplificação:
+- Comprimento alvo: ~30 a 60 caracteres.
+- Nunca alterar o tipo do produto (Kit não vira Caixa).
+- Nunca alterar quantidade ou dimensão.
+- Nunca remover atributo de variação visível e confirmado no título ML.
+- Nunca adicionar atributo que não esteja no título ML (ex.: não escrever "Tampa Vermelha" se o título ML não confirma a cor).
+- Se a L04/Condensadora bloqueou um atributo (item em `o_que_nao_pode_ir_para_slack`), respeitar o bloqueio — usar o título ML sem o atributo, não o display_name.
+
+Registrar cada simplificação relevante no bloco `### Decisões de formatação` no log.
+
+#### Consolidação de variações
+
 - Consolidar SKUs filhos apenas até o nível de **variação vendável/SKU pai da variação**, nunca até a família inteira quando existem variações reais.
-- Exemplo obrigatório: `Conjunto de 5 Potes Redondos de Vidro` não vira uma linha única. Separar por cor da tampa: `IMB501P` tampa preta, `IMB501C` tampa cinza, `IMB501V` tampa vermelha. Cada variação só aparece se seu volume próprio entrar no ranking.
-- Se vários SKUs filhos/listings representam a mesma variação, somar na variação correta; se representam cores diferentes, manter linhas diferentes.
+- Exemplo obrigatório: `Conjunto de 5 Potes Redondos de Vidro` não vira uma linha única. Separar por cor da tampa: `Tampa Preta`, `Tampa Cinza`, `Tampa Vermelha`. Cada variação só aparece se seu volume próprio entrar no ranking.
+- Se vários SKUs filhos/listings representam a mesma variação, somar na variação correta.
 - Não consolidar por `platform_item_id`/MLB quando o anúncio tem variações de cor/tamanho que representam SKUs pais diferentes.
-
-#### Amazon
-
-- Default: título real do pedido. O título do pedido é a fonte primária.
-- Quando o título real permitir identificar variação vendável (ex.: cor/tampa/tamanho), preservar a variação no texto visível. Não encurtar para família genérica.
-- Exemplo obrigatório: se o pedido indicar `preto`, a linha deve manter `Tampa Preta`/`preto`; não trocar por `Conjunto de 5 Potes de Vidro Redondos` genérico.
-- ASIN visível apenas quando:
-  - o título for ambíguo, com mesmo título para produtos diferentes; ou
-  - a Granular marcou risco médio de identificação para aquele item.
-- Quando ASIN aparecer, formato: `[título real] (ASIN: B08XXX)`.
-- Se optar por omitir ASIN de item com confidence medium/risco médio porque o título é suficientemente identificável, registrar essa decisão item a item em `Decisões de formatação`.
-- Alias manual nunca aparece na mensagem — apenas como fallback interno se título e ASIN forem ausentes.
-- Se título e ASIN são ausentes, o item não pode aparecer nominalmente. Use agregado autorizado pela Condensadora ou omita o item do ranking.
 
 ### 🔍 ANÁLISE DA CONTA
 
-Esta seção vem da `Análise Final Condensada`.
-
-Diretriz Pedro 2026-05-17: manter exatamente o mesmo formato e a mesma lógica da análise. A melhoria é apenas na comunicação: deixar o texto mais simples, claro e fácil de entender, sem transformar a seção em tese abstrata nem mudar a estrutura aprovada.
+Esta seção vem do bloco `analise_final_condensada` da L05.
 
 Regras de fidelidade:
-- usar no máximo 3 insights;
-- se a Condensadora entregou 1 insight, usar 1;
-- se entregou 0 insight, usar a frase padrão em `Casos especiais`;
-- preservar o sentido da Condensadora;
-- não adicionar análise própria;
-- não suavizar alerta;
-- não transformar ressalva em certeza;
-- não incluir nomes das camadas internas;
-- não colar `— base: Estratégica/Tática/etc.` no Slack;
-- remover apenas metadados internos, mantendo a tese.
+- Usar no máximo 3 insights.
+- Se a Condensadora entregou 1 insight, usar 1.
+- Se entregou 0, usar a frase padrão em `Casos especiais`.
+- Preservar sentido, classificação (`fato`/`hipótese`/`risco latente`) e padrão.
+- Não adicionar análise própria.
+- Não suavizar alerta.
+- Não transformar ressalva em certeza.
+- Não incluir nomes das camadas internas.
+- Não citar `padrao`, `base` ou `classificacao` na mensagem — são metadados internos de pipeline.
 
-Regras de simplificação de comunicação:
-- preservar a mesma tese e a mesma estrutura da Condensadora;
-- trocar frases longas por frases mais diretas, sem mudar sentido;
-- manter números ou métricas quando eles ajudam a entender rapidamente a ação; remover apenas repetição que não agrega clareza;
-- explicar “o que isso significa para a conta?” em linguagem simples e operacional;
-- evitar jargão, abstração e formulações que pareçam consultoria distante da rotina.
+Regras de simplificação de comunicação (diretriz Pedro 2026-05-17):
+- Preservar a mesma tese e a mesma estrutura da Condensadora.
+- Trocar frases longas por frases mais diretas, sem mudar sentido.
+- Manter números/métricas quando ajudam a entender rapidamente a ação; remover apenas repetição que não agrega clareza.
+- Explicar "o que isso significa para a conta?" em linguagem operacional.
+- Evitar jargão, abstração e formulações que pareçam consultoria distante da rotina ML.
 
 #### Formatação mínima permitida
 
 Você pode:
-- remover o trecho `— base: ...`;
-- ajustar pontuação — vírgulas, pontos, travessões;
+- ajustar pontuação (vírgulas, pontos, travessões);
 - quebrar uma frase muito longa em duas, mantendo todos os termos analíticos e a tese intacta;
-- trocar referência interna por linguagem externa clara. Ex.: “a Granular marcou...” vira “o detalhamento do dia mostra...”.
+- trocar referência interna por linguagem externa clara (ex.: "a Granular marcou..." vira "o detalhamento do dia mostra...");
+- substituir MLB por nome comercial do produto.
 
 Você não pode:
 - reescrever insight para ficar mais bonito;
 - mudar verbo principal ou termo analítico-chave;
 - mudar a posição da tese na frase;
 - adicionar métrica que a Condensadora não trouxe;
-- complicar a análise com linguagem abstrata ou difícil de entender;
+- complicar a análise com linguagem abstrata;
 - inserir produto bloqueado;
-- transformar “parece/sugere” em “é”;
-- trocar conectivo que muda nuance. Ex.: `mas` → `e`, `apesar de` → `com`.
+- transformar "parece/sugere" em "é";
+- trocar conectivo que muda nuance (`mas` → `e`, `apesar de` → `com`).
 
-#### Exemplos de formatação aceitável
+#### Vocabulário operacional Mercado Livre
 
-Aceitável — remoção de metadados, sem mudar sentido:
+Preservar termos quando vierem da Condensadora:
+- **Reputação:** verde / amarela / vermelha.
+- **Mercado Líder:** Gold / Platinum / sem nível.
+- **Fulfillment:** Full (estoque no CD do ML) / Cross-Docking (Coleta ML na expedição Budamix) / Flex (entrega rápida — desligado na Budamix) / Drop-off.
+- **Tipo de anúncio:** Catálogo / Clássico / Premium.
+- **Saúde:** health (escala 0-1), zona crítica < 0,85.
+- **Posição:** ranking de categoria (Clássico), Buy Box do catálogo (Catálogo).
 
-Antes:  
-`A Shopee não teve um sinal único de canal: a Conta 2 concentrou a perda de tração, enquanto Store e Conta 3 ficaram dentro do padrão. Tratar como queda geral distorce a ação. — base: Operacional + Granular`
-
-Depois:  
-`A Shopee não teve um sinal único de canal: a Conta 2 concentrou a perda de tração, enquanto Store e Conta 3 ficaram dentro do padrão. Tratar como queda geral distorce a ação.`
-
-Aceitável — quebra de frase longa:
-
-Antes:  
-`Na Amazon teve demanda, mas a leitura positiva é limitada — os sinais de FBA/Buy Box nos ASINs líderes indicam que o gargalo pode ser operacional, não tráfego.`
-
-Depois:  
-`Na Amazon teve demanda, mas a leitura positiva é limitada. Os sinais de FBA/Buy Box nos ASINs líderes indicam que o gargalo pode ser operacional, não tráfego.`
-
-Rejeitável — reescrita que muda nuance:
-
-Antes:  
-`O dia parece positivo, mas o resultado veio de poucos campeões — performou sem segundo vetor.`
-
-Reescrita errada:  
-`O dia foi positivo, com destaque para os produtos campeões.`  
-Motivo: perdeu a inversão, perdeu o alerta, mudou tese.
-
-Rejeitável — substituir conectivo:
-
-Antes:  
-`GMV cresceu, mas o crescimento veio de 1 ASIN com Buy Box frágil — métrica sobe, operação piora.`
-
-Reescrita errada:  
-`GMV cresceu e o crescimento veio de 1 ASIN com Buy Box frágil.`  
-Motivo: `mas` virou `e`, o contraste sumiu.
+Não traduzir esses termos para genéricos. Cross-Docking não vira "envio normal". Catálogo não vira "lista de produtos".
 
 ### 🎯 PRIORIDADES DO DIA
 
-Esta seção vem das `Prioridades Condensadas para Slack`.
+Esta seção vem do bloco `prioridades_condensadas` da L05.
 
 Regras:
-- usar apenas prioridades filtradas pela Condensadora;
-- se a Condensadora disser “Sem prioridade tática para Slack”, refletir isso em `Casos especiais`;
-- não criar ação nova;
-- não inventar responsável;
-- atribuir responsável com base no destinatário:
-  - Lucas para Shopee;
-  - Yasmin para Mercado Livre;
-  - Leonardo para Amazon.
-- preservar condições de confirmação/refutação;
-- preservar condição de escalonamento quando existir.
+- Usar apenas prioridades filtradas pela Condensadora.
+- Se a Condensadora indicou "Sem prioridade tática para Slack", refletir em `Casos especiais`.
+- Não criar ação nova.
+- **Responsável fixo: Yasmin** (Mercado Livre é dela). A L05 não atribui responsável — você atribui aqui.
+- Preservar condições de confirmação/refutação (`sinal_de_confirmacao_refutacao`).
+- Preservar condição de escalonamento (`escalar_se`) quando existir.
 
 Formato:
-- `Lucas: [ação/checagem]. [Por quê]. Confirmar/refutar por [sinal]. Escalar se [condição].`
-- `Yasmin: ...`
-- `Leonardo: ...`
+- `Yasmin: [ação/checagem]. [Por quê]. Confirmar/refutar por [sinal]. Escalar se [condição].`
 
-Se a prioridade envolver Himmel/Pedro/Kobe e isso veio da Condensadora, manter:
-- alinhar com Himmel;
-- alinhar com Pedro;
-- escalar para Kobe.
+Quando a L05 incluir escalonamento para Himmel/Pedro/Trader/Kobe, manter:
+- alinhar com Himmel (operação de ADS);
+- alinhar com Trader (reposição/produção);
+- alinhar com Pedro (decisão estratégica);
+- escalar para Kobe (alerta sistêmico).
 
-Não adicionar esse tipo de escalonamento se não veio antes.
+Não adicionar esse tipo de escalonamento se a L05 não trouxe.
 
 ### Rodapé
 
@@ -421,42 +327,33 @@ Proibido:
 
 ### Bloqueio para Slack
 
-Todo item listado pela Granular/Condensadora em `O que não pode ir para Slack`, `nao_pode_ir_para_slack`, bloqueios de dado indisponível, bloqueios de formulação ou bloqueios de confiança precisa aparecer no bloco `Respeito de bloqueios`, mesmo quando o conteúdo final já respeitou o bloqueio.
+Todo item listado em `o_que_nao_pode_ir_para_slack` da L05 (e por extensão os `bloqueios_para_slack` da L04) precisa aparecer no bloco `### Respeito de bloqueios`, mesmo quando o conteúdo final já respeitou o bloqueio.
 
-Se a Condensadora ou Granular marcou `BLOQUEIO PARA SLACK`:
+Se a Condensadora marcou um item como bloqueado:
 - não cite o item nominalmente;
-- não use SKU, ASIN, título, nome comercial ou apelido do item bloqueado;
-- substitua apenas pelo agregado que a Condensadora autorizou explicitamente, como:
-  - “o ASIN líder”;
-  - “o produto principal da Conta 2”;
-  - “o item de maior concentração”;
-  - “o grupo de produtos afetado”.
+- não use SKU, MLB, título, nome comercial ou apelido do item;
+- substitua apenas pelo agregado autorizado pela Condensadora, como:
+  - "o anúncio líder em pedidos";
+  - "o produto Cross-Docking de maior volume";
+  - "o grupo de anúncios em zona crítica de health".
 
-Regra dura: se a Condensadora marcou bloqueio mas não autorizou agregado, você não pode inferir agregado por conta própria.
-
-Regra dura adicional: produto bloqueado não pode aparecer em `Top Produtos`, prioridades, análise da conta, título, nota ou qualquer outro trecho da Mensagem Slack. Se um produto bloqueado vier de camadas anteriores com pedidos/unidades, remova-o da lista e mantenha apenas os itens liberados.
-
-Opções permitidas:
+**Regra dura:** se a Condensadora marcou bloqueio mas não autorizou agregado, não inferir agregado por conta própria. Opções:
 - omitir o item da mensagem;
 - registrar no bloco de log: `bloqueio recebido sem agregado autorizado; item omitido`.
 
-Nunca inventar agregado novo. Nunca sobrepor bloqueio da Condensadora por julgamento próprio de identificabilidade, relevância, clareza ou formatação.
+**Regra dura adicional:** produto bloqueado não pode aparecer em `🏆 TOP PRODUTOS`, prioridades, análise, título ou qualquer outro trecho da Mensagem Slack. Se vier de camadas anteriores com pedidos, removê-lo e manter apenas os itens liberados.
 
 ### Confiança baixa
 
-Se a Condensadora marcou confiança baixa:
+Se `alertas_de_confianca.nivel == "baixa"`:
 - preservar ressalva;
-- usar linguagem de indício:
-  - “sugere”;
-  - “parece”;
-  - “a leitura ainda é limitada”;
-  - “não dá para cravar”.
+- usar linguagem de indício: "sugere", "parece", "a leitura ainda é limitada", "não dá para cravar";
 - não emitir 3 insights confiantes;
 - não transformar hipótese em fato.
 
 ### Evidência conflitante
 
-Se a Condensadora declarou conflito:
+Se a Condensadora declarou conflito ou hipótese em aberto:
 - preservar incerteza;
 - não escolher uma ponta;
 - não criar ação conclusiva;
@@ -464,41 +361,40 @@ Se a Condensadora declarou conflito:
 
 ### Divergência resolvida
 
-Se a Granular/Condensadora resolveu divergência:
-- usar a fonte primária definida;
-- não mencionar a divergência no Slack, salvo se a Condensadora mandou explicitamente;
+Se a L04/L05 resolveu divergência (ex.: título ML vs display_name):
+- usar a fonte primária definida (em geral, o título ML);
+- não mencionar a divergência no Slack, salvo se a L05 mandou explicitamente;
 - registrar no bloco de log para QA.
 
 ## Casos especiais
 
-### Dia sem insight forte — Condensadora entregou 1 insight
+### Dia com 1 insight
 
-Se a Condensadora entregou apenas 1 insight:
+Se `analise_final_condensada` tem 1 item:
 - usar 1 insight;
 - não completar com frase genérica;
-- não criar “insight de enchimento”.
+- não criar "insight de enchimento".
 
-### Dia sem insight nenhum — Condensadora entregou 0 insights
+### Dia com 0 insights
 
-Se a Condensadora entregou zero insights:
+Se `analise_final_condensada` é vazio:
 - a seção `🔍 ANÁLISE DA CONTA` recebe uma única frase padrão:
   - `Sem fato novo relevante hoje — a conta ficou dentro da banda. Manter rotina normal.`
 - não inventar análise;
-- não preencher com observação genérica;
 - registrar no log: `Condensadora entregou 0 insights; usada frase padrão de dia neutro`.
 
-### Sem prioridade tática para Slack
+### Sem prioridade tática
 
-Se a Condensadora indicou que nenhuma prioridade deve chegar ao Slack:
+Se `prioridades_condensadas` é vazio ou contém apenas a entrada "Sem prioridade tática para Slack":
 - escrever na seção `🎯 PRIORIDADES DO DIA`:
   - `Sem prioridade tática nova para hoje — manter rotina normal e observar os sinais já mapeados.`
 - não inventar ação.
 
 ### Confiança baixa global
 
-Se a confiança geral é baixa:
-- no máximo 1 insight;
-- carregar ressalva explícita, como “a leitura ainda é limitada” ou “sem base suficiente para cravar”;
+Se `alertas_de_confianca.nivel == "baixa"`:
+- no máximo 1 insight (a Condensadora já deveria ter cortado, mas validar);
+- carregar ressalva explícita na análise;
 - prioridades só se forem seguras;
 - evitar produto nominal se houver risco.
 
@@ -508,32 +404,31 @@ Tom final:
 - direto;
 - conversacional;
 - analítico;
-- útil para operação;
-- sem jargão interno;
+- útil para operação ML;
+- sem jargão interno de pipeline;
 - sem tom de relatório de BI.
 
 Não usar:
-- nomes de camadas internas;
-- “a Condensadora apontou”;
-- “a Granular bloqueou”;
-- “a Estratégica avaliou”;
+- nomes de camadas internas (Estratégica, Tática, Operacional, Granular, Condensadora);
+- "a Condensadora apontou...";
+- "a Granular bloqueou...";
 - explicação de pipeline;
 - termos técnicos desnecessários;
-- IDs técnicos visíveis, exceto ASIN quando exigido.
+- IDs MLB visíveis.
 
 Métrica só entra como apoio quando necessária, nunca como manchete analítica.
 
 ## Proibições críticas
 
-- Não reescrever insight da Condensadora.
+- Não reescrever insight da Condensadora além do permitido em "Formatação mínima permitida".
 - Não adicionar análise própria.
 - Não suavizar tom direto.
 - Não reintroduzir item bloqueado.
 - Não citar produto com risco alto.
-- Não usar SKU cru visível.
-- Não trocar plataforma do destinatário.
-- Não atribuir responsável diferente do canal.
-- Não misturar plataformas no diagnóstico individual.
+- Não usar SKU cru.
+- Não exibir MLB no Slack.
+- Não atribuir responsável diferente de Yasmin para ML.
+- Não incluir Shopee, Amazon ou outra plataforma.
 - Não incluir Resumo Geral consolidado.
 - Não incluir Vendas por Canal consolidado.
 - Não incluir Destaques do Dia.
@@ -544,56 +439,57 @@ Métrica só entra como apoio quando necessária, nunca como manchete analítica
 - Não transformar hipótese em fato.
 - Não mencionar bastidores do pipeline.
 - Não inferir agregado quando a Condensadora não autorizou.
-- Não trocar conectivos que mudam nuance. Ex.: `mas` → `e`, `apesar de` → `com`.
+- Não trocar conectivos que mudam nuance (`mas` → `e`, `apesar de` → `com`).
+- Não adicionar atributo de variação (cor, tamanho) que não esteja confirmado no título ML real.
 
 ## Saída obrigatória
 
-Responda em Markdown com exatamente estes blocos:
+Responda em Markdown com exatamente estes três blocos, nesta ordem:
 
 ### Mensagem Slack
 
-A mensagem final pronta para envio, com as 6 seções obrigatórias:
+A mensagem final pronta para envio, dentro de um bloco de código triplo crase (```), com as 6 seções obrigatórias:
 
-1. Cabeçalho
-2. `📊 VISÃO [PLATAFORMA]`
-3. `🏆 TOP PRODUTOS [PLATAFORMA]`
+1. Cabeçalho (`DAILY SALES REPORT — MERCADO LIVRE — DD/MM/AAAA (Ontem)`)
+2. `📊 VISÃO MERCADO LIVRE`
+3. `🏆 TOP PRODUTOS MERCADO LIVRE`
 4. `🔍 ANÁLISE DA CONTA`
 5. `🎯 PRIORIDADES DO DIA`
-6. Rodapé
+6. Rodapé (`Dia analisado: DD/MM/AAAA — 00:00–23:59 BRT`)
 
 ### Respeito de bloqueios
 
 Bloco para log/QA, não para Slack. Formato auditável obrigatório — uma entrada por bloqueio recebido:
 
-- Item bloqueado: [identificação do item, ex.: `ASIN B08XYZ — Massageador Shiatsu`]
-- Origem do bloqueio: [Granular / Condensadora]
-- Motivo: [risco alto de identificação / confiança baixa / conflito / outro]
-- Agregado autorizado: [sim, `[texto do agregado]` / não]
-- Tratamento aplicado: [omitido / substituído por agregado `[X]` / outro]
-- Aparece na mensagem final: [não / sim, como agregado `[X]`]
+- **Item bloqueado:** [identificação do item, ex.: `MLB3288536143 — Jogo Potes de Vidro 5 Peças (atributo Tampa Vermelha)`]
+- **Origem do bloqueio:** [L04 Granular / L05 Condensadora]
+- **Motivo:** [risco alto de identificação / confiança baixa / conflito / divergência título ML vs display_name / outro]
+- **Agregado autorizado:** [sim, `[texto do agregado]` / não]
+- **Tratamento aplicado:** [omitido / substituído por agregado `[X]` / título ML real usado sem o atributo / outro]
+- **Aparece na mensagem final:** [não / sim, como `[X]`]
 
 Se não havia bloqueios:
-- Sem bloqueios recebidos.
+- `Sem bloqueios recebidos.`
 
 ### Decisões de formatação
 
-Bloco para log/QA, não para Slack. Liste decisões tomadas para transformar a Condensadora em Slack:
-- remoção de metadados internos;
-- preservação de ressalva;
+Bloco para log/QA, não para Slack. Liste decisões tomadas para transformar a Condensadora em Slack. Formato: `[decisão] — [motivo]`.
+
+Cobrir minimamente:
+- remoção de metadados internos (`padrao`, `base`, `classificacao`);
+- preservação de ressalva por classificação `hipótese`/`risco latente`;
 - uso de agregado no lugar de produto nominal;
 - omissão de insight por baixa confiança;
-- tratamento de dia sem insight forte ou sem insight nenhum;
-- tratamento de ausência de prioridade;
+- tratamento de dia sem insight ou sem prioridade;
 - quebras de frase aplicadas;
-- consolidação de produtos equivalentes em Top Produtos;
-- decisão de mostrar/omitir ASIN em Amazon;
-- decisão de indicar/omitir conta em Shopee.
-
-Formato:
-- `[decisão] — [motivo]`
+- consolidação de produtos equivalentes em Top Produtos por variação;
+- simplificação do título ML real em Top Produtos (registrar item a item os encurtamentos relevantes);
+- escolha entre título ML real e display_name interno quando houve divergência declarada;
+- omissão de fulfillment na seção VISÃO por cobertura parcial;
+- atribuição de Yasmin como responsável nas prioridades.
 
 Se não houve caso ambíguo:
-- Sem decisões ambíguas de formatação.
+- `Sem decisões ambíguas de formatação.`
 
 ## Regra final
 
@@ -1072,7 +968,7 @@ Mensagem bonita que muda sentido é erro. Mensagem simples e fiel é acerto.
     "quality_flags": [],
     "ml_snapshot": {
       "schema_version": "ml-snapshot/v1",
-      "fetched_at_utc": "2026-05-21T21:22:47.448436+00:00",
+      "fetched_at_utc": "2026-05-21T22:02:08.596695+00:00",
       "date": "2026-05-20",
       "status": "ok",
       "reputation": {
@@ -1208,8 +1104,8 @@ Mensagem bonita que muda sentido é erro. Mensagem simples e fiel é acerto.
           "free_shipping": false,
           "logistic_type": "fulfillment",
           "health": 0.71,
-          "available_quantity": 361,
-          "sold_quantity": 5680,
+          "available_quantity": 362,
+          "sold_quantity": 5682,
           "category_id": "MLB244658"
         },
         {
@@ -1264,7 +1160,7 @@ Mensagem bonita que muda sentido é erro. Mensagem simples e fiel é acerto.
           "free_shipping": false,
           "logistic_type": "fulfillment",
           "health": 0.85,
-          "available_quantity": 129,
+          "available_quantity": 130,
           "sold_quantity": 463,
           "category_id": "MLB244658"
         },
@@ -1674,147 +1570,151 @@ Tese mensal da conta. Atualizada no primeiro dia útil de cada mês.
 ## 01-estrategica
 ### Qualidade da base
 
-`weekly.md` e `monthly.md` são templates vazios — sem consolidação semanal ou tese mensal populada. Yasmin é focal point desde 22/04/2026 (~4 semanas), então a base narrativa está em formação. Compensação parcial: dados numéricos de 7d, 30d e 60d estão presentes e coerentes; `ml_snapshot` completo com reputação, fulfillment, ads_summary e account_overview. Sem hipóteses ativas anteriores para confirmar ou refutar — leitura de hoje serve como ponto de ancoragem inicial.
+`weekly.md` e `monthly.md` carregados mas sem conteúdo histórico — apenas templates vazios sem nenhuma entrada documentada. Nenhuma hipótese anterior existe para confirmar ou refutar; esta leitura é ponto de partida da memória, não validação de ciclo. Dados ML opcionais robustos: reputação, mix de fulfillment (7d, 30d, top10 do dia), health individual dos campeões e ADS summary disponíveis com cobertura 100% — base técnica sólida para a análise de hoje.
 
 ---
 
 ### Leitura temporal
 
-- **Vs 60d e mesmos dias da semana:** GMV `+33.3%` vs `historical.avg_60d.avg_gmv=R$3.817,90` e `+32.4%` vs `same_weekday_avg.avg_gmv=R$3.841,73` — sinal consistente em duas janelas independentes. Orders praticamente estáveis: `-0.2%` vs 60d e `-1.6%` vs mesmo dia da semana. O ganho de GMV não veio de alcance — o ticket passou de R$41,86 (60d) para R$55,91 hoje (`changes.ticket_vs_60d_pct=+33.6%`).
+- **Trajetória de patamar em 60d:** GMV médio saiu de R$3.817 (60d) → R$4.396 (30d) → R$5.315 (7d), com ticket acompanhando: R$41,86 → R$44,03 → R$46,17. O dia (`gmv=R$5.087`, `ticket_vs_60d_pct=+33,6%`) está acima da banda do 30d (+15,7%) e bem acima do 60d (+33,3%). A conta não oscila dentro de uma banda — ela veio subindo de patamar ao longo do bimestre. O dia de ontem é leitura dentro desse patamar elevado, não rompimento acima dele.
 
-- **Vs 30d:** `gmv_vs_30d_pct=+15.7%`, `orders_vs_30d_pct=-8.9%`, `ticket_vs_30d_pct=+27.0%`. A leitura se sustenta na janela mais curta: crescimento de GMV com compressão de volume é o padrão do mês, não do dia.
+- **Divergência volume vs ticket:** Orders ontem (91) abaixo da média 30d (99,9, `orders_vs_30d_pct=-8,9%`) e muito abaixo da média 7d (115,1, `orders_vs_7d_pct=-20,9%`), mas o GMV superou ambos. O controle de sazonalidade confirma: 91 pedidos vs média das últimas 4 quartas-feiras (92,5 pedidos, `orders_vs_same_weekday_pct=-1,6%`) — volume ontem foi absolutamente normal para uma quarta. O GMV de R$5.087 vs média dessas mesmas quartas (R$3.841, `gmv_vs_same_weekday_pct=+32,4%`) é ganho de ticket, não de alcance. O GMV só ficou abaixo de uma das últimas 4 quartas homólogas (2026-04-29, R$5.618 — que parece ter sido dia atípico). A trajetória de GMV é sustentada por mix de valor, não por crescimento de volume.
 
-- **Vs 7d:** `gmv_vs_7d_pct=-4.3%`, `orders_vs_7d_pct=-20.9%`. O dia ficou abaixo da média semanal recente (`avg_7d.avg_orders=115.1`, `avg_7d.avg_gmv=R$5.315,70`). A distância entre a média 7d e a média 30d (115 vs 99,9 pedidos) indica que dias recentes foram acima do ritmo do mês — ontem pode ser acomodação dentro de um pico de 7d ou início de desaceleração; com memória diária ausente, não há como distinguir entre os dois.
+- **7d elevado — possível distorção por pico pontual:** A média 7d de 115,1 pedidos sugere dias com volume acima do padrão histórico na semana corrente. Ontem, ao registrar 91 pedidos, ficou abaixo dessa média — mas sem daily anterior documentado, não é rastreável qual dia da semana foi responsável pelo pico que elevou a média 7d. Leitura inconclusiva sobre se ontem representa desaceleração ou simplesmente retorno à linha base pós-pico.
 
-- **Controle de sazonalidade:** os 4 últimos mesmos dias da semana foram R$2.984 / R$3.005 / R$5.618 / R$3.758. Ontem (R$5.087) está acima da média do grupo (R$3.841) e próximo ao pico de 29/04. O dia não foi fraco — foi forte para o dia da semana, reforçando a leitura de ganho de ticket, não de retração.
+- **Hipóteses anteriores:** Memória semanal e mensal vazias. Nada a confirmar, enfraquecer ou refutar.
 
 ---
 
 ### Leitura estratégica
 
-- **Ticket como único vetor de crescimento, não volume.** O ticket expandiu de R$41,86 (60d) para R$55,91 (+33.6%), confirmado em 30d (+27%) e no controle de dia da semana (+34.6% sobre `same_weekday_avg.avg_ticket=R$41,53`). A hipótese mais provável: deslocamento de mix em direção a kits de maior valor unitário — Kit 4 Potes 1050ml (`MLB4073003575`, 13 pedidos, ~R$70+ médio) e Kit 10 Potes 1050ml (`MLB4676726433`, 5 pedidos, ticket elevado). O alcance da conta está estagnado; o resultado cresce por composição, não por amplitude.
+- **Ticket como vetor estrutural, não volume:** A conta construiu +33,3% de GMV em 60d com volume praticamente estável (`orders_vs_60d_pct=-0,2%`). Ontem o ticket chegou a R$55,91 — 21% acima até da média 7d (R$46,17). Os top 10 do dia incluem kits de maior valor (Kit 10 Potes a R$~100+, Kit 2 Potes com 8 unidades em 3 pedidos — média de 2,67 unidades/pedido), sugerindo migração de mix para produtos de maior valor médio como possível motor. Hipótese plausível, não confirmada sem série histórica de mix de produto documentada.
 
-- **ADS Himmel como vetor primário, não amplificador.** `ml_snapshot.ads_summary.revenue_ads_yesterday_brl=R$3.041,56` sobre `gmv=R$5.087,71` representa **ADS share de 59,8%** — zona de ADS dominante. ROAS calculado: R$3.041,56 / R$262,19 = **11,6x**; ACOS 4,64% — eficiência extrema, mas que mascara a fragilidade latente: o orgânico carrega ~R$2.046 do dia (~40%). A eficiência da campanha Himmel é real; a dependência estrutural também.
+- **ADS dominante com eficiência extrema — fragilidade latente real:** Himmel gerou R$3.041,56 (`ads_summary.revenue_ads_yesterday_brl`) com R$262,19 de gasto (`spend_yesterday_brl`) — ROAS 11,6x, ACOS 4,64% (`avg_acos_pct`). Esses números representam **59,8% do GMV do dia** (R$3.041/R$5.087), colocando a conta em zona de **ADS dominante**. A eficiência é excepcional, mas o risco é estrutural: se as 11 campanhas ativas forem pausadas ou reduzirem alcance, o orgânico precisaria absorver ~R$3.000/dia sem suporte de mídia paga — e os dois maiores drivers Full têm health degradada (ver próximo bullet). Campanha eficiente não neutraliza exposição orgânica em deterioração.
 
-- **Campeões são atípicos vs base em fulfillment e health.** Mix do top10 de ontem: Full 56,3%, Cross-docking 43,7% (`fulfillment_mix_yesterday_top10`). Mix da base ativa inteira: Full 34,1%, Cross-docking 65,9% (`account_overview.active_analysis.fulfillment_mix`). Os campeões operam com quase o dobro de Full em relação à média da conta. Simultaneamente, dois campeões com volume expressivo têm health degradada: Kit 4 Potes 1050ml (`MLB4073003575`, health=0,75, 13 pedidos) e Conjunto 5 Potes Tampa Vermelha (`MLB3288536143`, health=0,71, 5 pedidos). Health abaixo de 0,85 implica penalização progressiva no orgânico por parte do ML — o que, em conta ADS-dependente, reduz o orgânico residual sem aviso no agregado.
+- **Health dos campeões como erosão silenciosa de orgânico:** Kit 4 Potes 1050ml Retangular (MLB4073003575, #2 com 13 pedidos) tem `health=0,75` — 10 pontos abaixo do limiar ML de penalização (0,85). Conjunto 5 Potes Tampa Vermelha (MLB3288536143, #5 com 5 pedidos) tem `health=0,71`. Ambos são Full com estoque adequado (166 e 362 unidades) — a health degradada não deriva de ruptura logística. Em contexto de 59,8% ADS share, a hipótese é que o tráfego pago mascare a perda de posição orgânica desses anúncios: eles vendem via campanha, mas acumulam penalização de ranking natural. Sem dado de posição de categoria, é hipótese plausível e falsificável, não fato confirmado.
 
-- **Cauda morta dominante e ponto de ruptura em estoque.** 174 anúncios pausados vs 82 ativos (`account_overview.totals`) — razão de 2,1x: a conta opera concentrada em poucos SKUs ativos. Kit 06 Canequinhas Acrílico (`MLB4410218897`, status=active) tem `available_quantity=3` após gerar 3 pedidos ontem — estoque efetivamente zerado. Kit 6 Canecas Porcelana Tulipa (`MLB6167272090`, status=active, Full) tem `available_quantity=21` com ritmo de 5 pedidos/dia — aproximadamente 4 dias de estoque em CD do ML, com lead time de reposição.
+- **Divergência de fulfillment: o #1 vendedor está fora do Full:** Conjunto 5 Potes Tampa Preta (MLB4535865317, 23 pedidos — 25,3% do volume do dia) opera em `cross_docking`, não Full. A janela 7d aponta Full em 77,7% e a 30d em 73,9% do volume total da conta, mas o top 10 de ontem ficou em apenas 56,3% Full (`fulfillment_mix_yesterday_top10.full_pct`) — a divergência vem diretamente do #1, que puxa o mix do dia para baixo do padrão recente. A base ativa como um todo é 34,1% Full (`account_overview.active_analysis.fulfillment_mix.full_pct`), muito abaixo dos campeões — confirmando que Full está concentrado no giro alto, não na cauda. Com 174 anúncios pausados vs 82 ativos, a cauda viva é pequena e o portfólio depende de poucos itens Full para sustentar o patamar de volume.
 
 ---
 
 ### Tese da conta
 
-**Vulnerável.** O GMV acima da banda histórica (+33,3% vs 60d) é consistente em múltiplas janelas e confirmado pelo controle de sazonalidade — o patamar é real. Mas a estrutura por trás dele descansa em dois vetores frágeis: Mercado Ads como fonte primária de ~60% do GMV e expansão de ticket sem crescimento de volume. Reputação `5_green` com `power_seller_status=gold` e `cancellations_rate=0` limpam o risco de exposição estrutural no curto prazo. O perigo não é o resultado de hoje — é que o patamar atual exige campanhas ativas, anúncios campeões saudáveis e estoque de Full sem ruptura. A combinação de health degradada em dois dos três maiores anúncios, estoque crítico em Kit 06 Canequinhas Acrílico e ADS share dominante cria um portfólio de vulnerabilidades que não aparece no número do dia.
+A conta ML está **vulnerável** — não pelos números de hoje, que estão acima da banda histórica em GMV e ticket, mas pela estrutura que os sustenta. O ganho de patamar dos últimos 60d se apoia em dois pilares frágeis: campanhas Himmel respondendo por ~60% do GMV com eficiência excepcional, mas sem orgânico robusto como plano B; e dois dos maiores drivers Full acumulando penalização de health progressiva (`health=0,75` e `health=0,71`) sem sinal de reversão observável. A reputação `5_green/gold` (`reputation.color`, `power_seller_status`) preserva a base estrutural, e a ausência de hipóteses anteriores documentadas impede confirmar se essa combinação é padrão antigo ou degradação recente — o que eleva a incerteza. Classificação **vulnerável** é a mais honesta dado o estado da memória e a evidência disponível.
 
 ---
 
 ### Risco estrutural principal
 
-**Risco:** Dependência de Mercado Ads como vetor primário do GMV (ADS share 59,8%), sem evidência de que o orgânico sustenta o patamar atual de forma autônoma.
+**Risco:** Dependência de Mercado Ads como vetor dominante do GMV (59,8% do dia, `ads_summary.revenue_ads_yesterday_brl / metrics.gmv`) sem suporte orgânico sólido nos campeões — evidenciado por health degradada em Kit 4 Potes 1050ml Retangular (`health=0,75`, `MLB4073003575`) e Conjunto 5 Potes Tampa Vermelha (`health=0,71`, `MLB3288536143`), os dois principais drivers Full da conta.
 
-**Por que importa:** Qualquer redução de verba, pausa de campanha ou queda de eficiência nas 11 campanhas ativas (Himmel) pode resultar em queda imediata de R$2.000–R$3.000/dia. O orgânico que sustenta os 40% restantes depende de anúncios com health degradada (MLB4073003575, MLB3288536143) e de campeões com estoque em risco de ruptura — o que comprime ainda mais o piso orgânico.
+**Por que importa:** Se as campanhas reduzirem investimento, forem pausadas ou perderem qualidade de score, o orgânico que deveria absorver o volume está enfraquecido justamente nos anúncios de maior giro em Full. A dinâmica pode se tornar não linear: menos ADS → menos vendas → health continua deteriorando → menos orgânico → espiral de exposição que não se resolve adicionando verba de volta.
 
-**Histórico:** `weekly.md` e `monthly.md` em branco — sem como confirmar se esse nível de ADS share é recente ou padrão da conta desde antes de 22/04. A ausência de histórico narrativo impede classificar se é escalada recente ou equilíbrio já estabelecido.
+**Histórico:** Sem memória anterior documentada, não é possível afirmar se essa dependência é nova (período pós-assunção de Yasmin em 22/04) ou padrão crônico. Risco identificado pela primeira vez nesta leitura — não confirmado por série, mas sustentado pelos dados do dia.
 
-**Sinal de confirmação:** ADS share acima de 55% por 3 dias consecutivos (com `ads_summary` disponível no pacote) confirmaria que a dependência de mídia não é pontual — é o modelo operacional atual da conta.
+**Sinal de confirmação:** ADS share acima de 55% por 3 dias consecutivos confirma que 59,8% não é anomalia de um dia. Combinado com health do Kit 4 Potes 1050ml (`MLB4073003575`) permanecendo abaixo de 0,80 nos próximos 2 ciclos com dado disponível, configura dependência estrutural confirmada.
 
 ---
 
 ### Sinais a observar
 
-1. **Ruptura iminente em Kit 06 Canequinhas Acrílico (`MLB4410218897`):** `available_quantity=3` após 3 pedidos ontem. Se o anúncio aparecer com `out_of_stock_count` incrementado ou zero pedidos por 2 dias seguidos, ruptura confirmada — acionar Yasmin para verificar reposição ou pausa preventiva antes de impactar `cancellations_rate` da conta.
+1. **ADS share acima de 50% por 3 dias seguidos** (calculado como `revenue_ads_brl / gmv_total` no pacote diário) confirma que a dependência de 59,8% de hoje é padrão estrutural, não pico pontual de campanha.
 
-2. **Health dos campeões Kit 4 Potes 1050ml e Conjunto 5 Potes Tampa Vermelha:** MLB4073003575 (health=0,75) e MLB3288536143 (health=0,71). Se qualquer um cair abaixo de 0,70 ou se o volume de pedidos desses dois anúncios recuar mais de 30% em relação ao ritmo atual por 2 dias seguidos, confirma penalização ML em progressão no orgânico — risco amplificado pela ADS dependência.
+2. **Kit 4 Potes 1050ml Retangular (MLB4073003575) registrando menos de 10 pedidos/dia por 2 dias consecutivos** confirmaria que a `health=0,75` já se traduz em perda de exposição orgânica observável — sinal especialmente relevante em dias sem pico de campanha ADS.
 
-3. **Estoque em Full de Kit 6 Canecas Porcelana Tulipa (`MLB6167272090`):** `available_quantity=21`, ritmo de 5 pedidos/dia, logistic_type Full. Se `available_quantity` não aparecer reposto nos próximos 3 dias, ruptura em CD do ML é prospectiva — com lead time de reabastecimento Full, o impacto aparece antes da reação ser possível.
+3. **Kit 06 Canequinhas Acrílico (MLB4410218897) com `available_quantity` zerado ou anúncio pausado nos próximos 2 dias** confirma ruptura iminente: o anúncio encerrou ontem com 3 unidades e registrou 3 pedidos no dia — estoque praticamente nulo, com risco de cancelamentos afetando `reputation.cancellations_rate` nos próximos ciclos.
 
 ## 02-tatica
 ### Decisão tática
 
-- **Risco operacional imediato, não tático.** A L01 identificou ruptura prospectiva no Kit 06 Canequinhas Acrílico (`MLB4410218897`, `available_quantity=3` após 3 pedidos ontem) como sinal a observar. A postura tática correta não é observar — é agir: o anúncio está ativo com estoque efetivamente zerado, e qualquer pedido gerado hoje configura cancelamento prospectivo que impacta `cancellations_rate` da reputação. Este é o único ponto que exige ação no dia, com ou sem mais dados.
+- **Dado que a L01 classifica a conta como vulnerável por dependência estrutural de ADS (59,8% do GMV via campanhas Himmel, ROAS 11,6x, ACOS 4,64%), a decisão tática hoje é não alterar nada na campanha.** Eficiência excepcional em fase inaugural de memória impede separar efeito de ajuste do comportamento natural. Qualquer movimento introduz variável confundidora antes que a linha base esteja estabelecida.
 
-- **Cobertura de Full em segundo campeão de canecas entra em janela de alerta.** A L01 apontou Kit 6 Canecas Porcelana Tulipa (`MLB6167272090`, `logistic_type=fulfillment`, `available_quantity=21`, ~5 pedidos/dia) com ~4 dias de cobertura no CD do ML. O lead time de reabastecimento Full impede reação tardia — a checagem de hoje define se há tempo hábil para providenciar reposição antes da ruptura no CD.
+- **Dado que a L01 identificou risco operacional imediato no anúncio de menor estoque entre os campeões (3 unidades disponíveis com 3 pedidos ontem),** a única ação forte justificada hoje é verificar reposição — estoque ≤5 unidades em item de giro regular configura risco de cancelamentos prospectivos que ameaçam o `reputation.cancellations_rate`, hoje zerado e intacto.
 
-- **Não acionar Himmel.** A tese da L01 classifica ADS share em 59,8% com ROAS 11,6x e ACOS 4,64% como campanha eficiente em fase inaugural sem histórico narrativo. A decisão tática consequente é não introduzir variável: registrar os números de hoje como ponto zero da série e observar por 3-5 dias. Qualquer ajuste agora impede separar comportamento orgânico de efeito de campanha — e a conta não tem memória semanal/mensal populada para calibrar o risco dessa perturbação.
+- **Dado que a L01 identificou erosão silenciosa de orgânico nos dois maiores drivers Full (health abaixo do limiar ML de penalização nos dois campeões),** a decisão tática é checar direção — não pausar, não redirecionar, não acionar ADS preventivo ainda. Ação forte sobre anúncio com health baixo requer confirmação de tendência antes de qualquer movimento.
 
-- **Health degradada nos campeões de Full exige checagem de direção, não de valor absoluto.** A L01 sinalizou MLB4073003575 (health=0,75) e MLB3288536143 (health=0,71) como vulnerabilidade que amplifica o risco de ADS dependência — se o orgânico erode enquanto ADS compensa, o risco não aparece no agregado. A decisão tática é checar se o health está estabilizando, caindo ou recuperando: isso define se a ação fica em observação ou escala para alinhamento com Himmel sobre cobertura preventiva.
+- **Dado que a memória semanal e mensal estão vazias (templates sem entrada), esta é a leitura inaugural da conta.** A decisão mais relevante de hoje não é agir sobre a estrutura — é registrar os pontos zero da série (ADS share, ticket médio, health dos campeões penalizados) para que a análise de amanhã tenha referência de comparação.
 
 ---
 
 ### O que fazer hoje
 
-**1. Yasmin:** verificar `available_quantity` do campeão Kit 06 Canequinhas Acrílico com suporte de madeira acrílico (anúncio ativo, 3 unidades em estoque, 3 pedidos gerados ontem) e decidir entre reposição emergencial em 24h ou pausa preventiva controlada — motivo: anúncio ativo com estoque zerado gera cancelamentos prospectivos que impactam `cancellations_rate` da reputação (`reputation.cancellations_rate=0` hoje; cada cancelamento ML compromete a série limpa) — sinal de resultado: se reposição confirmada em 24h ou pausa executada antes de novo pedido, risco neutralizado; se anúncio seguir ativo com zero estoque por mais um ciclo, registrar como variável confundidora na leitura dos próximos dias.
+1. **Yasmin:** verificar `available_quantity` do anúncio de Canequinhas Acrílico com suporte de madeira (status=active, 3 unidades disponíveis, 3 pedidos registrados ontem) e confirmar se há reposição no CD em 24h — motivo: com demanda recorrente e estoque praticamente nulo, o anúncio pode zerar hoje ou amanhã; cancelamentos prospectivos impactam `reputation.cancellations_rate`, hoje zerado e crítico para manter o `color=5_green/gold`; a reputação é o ativo estrutural mais valioso da conta e merece ação imediata quando há risco concreto — sinal de resultado: reposição confirmada neutraliza o risco; se o anúncio for pausado por ruptura antes da reposição, registrar como variável confundidora para a leitura dos próximos dias e checar se gerou cancelamentos no painel de reputação ML.
 
-**2. Yasmin:** checar cobertura de estoque no CD do ML do Kit 6 Canecas Porcelana Tulipa (logistic_type Full, `available_quantity=21`, ritmo médio de 5 pedidos/dia → ~4 dias de cobertura) e confirmar se há reposição programada — motivo: ruptura em anúncio Full não pode ser corrigida em tempo real; o impacto aparece antes da reação ser possível, e este anúncio compõe os top6 por pedidos do dia — sinal de resultado: reposição programada com chegada em ≤3 dias = risco encaminhado; ausência de reposição confirmada = Yasmin alerta Trader sobre ruptura prospectiva em CD.
+2. **Yasmin:** registrar como ponto zero da série os valores do dia 2026-05-20: ADS share (59,8% = R$3.041/R$5.087), ticket médio (R$55,91) e health dos dois campeões penalizados em Full (Kit 4 Potes 1050ml Retangular em 0,75; Conjunto 5 Potes Tampa Vermelha em 0,71) — motivo: a L01 não pode confirmar se a dependência ADS e a degradação de health são padrão antigo ou tendência recente desde a assunção de Yasmin em 22/04/2026; sem ponto zero documentado hoje, amanhã não haverá base de comparação para confirmar ou refutar a tese de vulnerabilidade — sinal de resultado: com 3 dias de série estabelecida, ADS share acima de 55% em todos os três confirma dependência estrutural; health caindo em pelo menos um dos campeões por 2 ciclos consecutivos confirma erosão orgânica progressiva.
 
-**3. Yasmin:** registrar direção do health dos dois campeões de potes de vidro em Full (Kit 4 Potes 1050ml com health=0,75 e Conjunto 5 Potes Tampa Vermelha com health=0,71) comparando com o valor de ontem, se disponível, ou marcando hoje como ponto zero da série de direção — motivo: a tese da L01 aponta que health degradada erode o orgânico de forma invisível no agregado porque ADS compensa; sem saber a direção (caindo/estável/recuperando), a decisão sobre acionar Himmel para cobertura preventiva não tem base — sinal de resultado: health estável ou subindo em ambos = observação por mais 2 dias sem ação; health caindo em qualquer um dos dois = Yasmin alinha com Himmel sobre cobertura preventiva antes que o orgânico perca posição com campanha mascarando o movimento.
+3. **Yasmin:** checar direção do health dos dois campeões penalizados em Full nos próximos 2 ciclos disponíveis (ambos abaixo do limiar ML de 0,85, com estoque adequado — penalização não deriva de ruptura logística) — motivo: a L01 levantou hipótese de que o ADS pode estar mascarando perda de posição orgânica desses anúncios; enquanto não houver série de health, a hipótese não pode ser confirmada nem refutada, e qualquer ação prematura pode interromper recuperação orgânica em curso — sinal de resultado: health estável ou em recuperação em ambos = manter observação sem ação; health caindo em pelo menos um deles por 2 dias consecutivos = Yasmin alinha com Himmel sobre cobertura ADS preventiva para o anúncio afetado.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Himmel para ajustar ou escalar as campanhas de Mercado Ads.** ADS share de 59,8% com ROAS 11,6x e ACOS 4,64% (`ml_snapshot.ads_summary`) configura campanha eficiente — a regra da lente tática 5 é explícita: não mexer. A memória semanal/mensal está vazia, o que significa que não há referência sobre se esse share é recente ou padrão estabelecido. Qualquer ajuste de verba, segmentação ou pausa agora introduz variável que impede distinguir efeito de campanha de comportamento orgânico — exatamente quando a conta mais precisa de dados limpos para construir a série de base.
+- **Não acionar Himmel para ajustar as campanhas ativas.** Com ROAS de 11,6x e ACOS de 4,64% (`ads_summary`), as 11 campanhas ativas estão em performance excepcional. Aumentar verba, ajustar segmentação ou pausar campanhas de menor performance relativa introduz variável num sistema sem histórico, impedindo separar efeito de ajuste do comportamento natural. A Lente Tática 5 é explícita: ADS share ≥50% com ROAS alto e ACOS baixo em fase inaugural = observar, não ajustar.
 
-- **Não tratar a variação negativa vs 7d como sinal de retração da conta.** O dia registrou `-20,9%` em pedidos vs `avg_7d` (91 vs 115,1), mas o mesmo dia da semana dos últimos 4 ciclos médios R$3.841 vs R$5.087 de hoje — o dia foi forte, não fraco. A leitura estratégica da L01 confirmou em duas janelas independentes (60d e mesmo dia da semana) que o patamar de GMV está acima da banda histórica. Agir em cima de desvio vs 7d sem controlar sazonalidade seria decisão baseada em métrica errada.
+- **Não pausar, redirecionar ou ampliar ADS sobre os anúncios com health penalizado.** O Kit 4 Potes 1050ml Retangular (health=0,75) e o Conjunto 5 Potes Tampa Vermelha (health=0,71) têm estoque adequado — a penalização não vem de ruptura logística. Sem série de health disponível, não é possível saber se estão caindo, estabilizando ou recuperando. Qualquer intervenção antes de conhecer a direção pode interromper recuperação orgânica em curso ou amplificar exposição em anúncio que o ML já está penalizando por outro motivo não visível hoje.
 
-- **Não pausar nem redirecionar os anúncios campeões com health degradada (MLB4073003575 e MLB3288536143) sem antes confirmar a direção do health.** Health de 0,75 e 0,71 estão abaixo do limiar de 0,85, mas a postura correta depende de saber se estão caindo ou estabilizando. Pausar anúncio com health baixo mas estável remove GMV sem corrigir a causa da penalização — e ambos os anúncios geraram 13 e 5 pedidos ontem respectivamente, o que indica que ainda há conversão mesmo com penalização. Ação forte neste ponto requer pelo menos 2 dias de direção confirmada.
+- **Não escalar para Kobe sobre dependência estrutural de ADS.** A L01 identificou risco real, mas uma única leitura sem memória anterior não confirma padrão. Escalonamento para Kobe é justificado quando ADS share superar 55% por 3 dias consecutivos com ROAS sustentado — condição ainda não satisfeita. Escalar antes consumiria atenção estratégica sem evidência suficiente para decisão estrutural (redirecionamento de verba, mudança de mix de catálogo).
 
 ---
 
 ### Escalonamento
 
-**Classificação: observar**
+**observar**
 
-A conta não apresenta risco de reputação imediato (`reputation.color=5_green`, `cancellations_rate=0`, `power_seller_status=gold`), e a única ação operacional urgente — o estoque crítico do Kit 06 Canequinhas Acrílico — é resolúvel por Yasmin sem necessidade de Himmel ou Kobe. A dependência estrutural de ADS (59,8% de share) é o risco principal identificado pela L01, mas com ROAS 11,6x e ACOS 4,64%, a campanha está em fase de leitura inaugural eficiente: não há o que corrigir hoje. A ausência de histórico narrativo (weekly/monthly vazios) reforça a postura de coletar dados limpos antes de qualquer movimento estrutural. **Mudança de classificação:** se ADS share permanecer acima de 55% por 3 dias consecutivos com disponibilidade do `ads_summary` no pacote, Yasmin abre discussão com Kobe sobre dependência estrutural da conta em mídia paga — essa decisão extrapola a tática diária. Se health dos dois campeões em Full cair abaixo de 0,70 ou se o volume de pedidos desses anúncios recuar mais de 30% por 2 dias seguidos, Yasmin alinha com Himmel sobre cobertura preventiva antes que a erosão orgânica apareça no agregado.
+A reputação está intacta (`5_green`, `gold`, `cancellations_rate=0`, `claims_rate=0,0025`), nenhum anúncio ativo tem pedidos em aberto com estoque zero declarado, e o único risco operacional imediato — o anúncio de Canequinhas Acrílico com 3 unidades — é gerenciável pela Yasmin de forma autônoma sem envolver Himmel ou Kobe. A campanha está eficiente demais para ser tocada, e a dependência ADS identificada pela L01 requer confirmação em mais 2–3 ciclos antes de qualquer decisão estrutural. Duas condições mudam a classificação: se ADS share se mantiver acima de 55% por 3 dias consecutivos com ROAS sustentado, Yasmin abre discussão com Kobe sobre diversificação orgânica; se health do Kit 4 Potes 1050ml ou do Conjunto 5 Potes Tampa Vermelha cair por 2 ciclos consecutivos, Yasmin alinha com Himmel sobre cobertura preventiva. Nenhuma dessas condições está satisfeita hoje — o dia correto é coletar evidência, não movimentar peças.
 
 ## 03-operacional
 ### Leitura operacional do dia
 
-- **O GMV do dia foi sustentado integralmente por ticket, não por alcance.** 91 pedidos praticamente idênticos ao bimestre (`changes.orders_vs_60d_pct=-0.2%`) e dentro da banda sazonal (`orders_vs_same_weekday_pct=-1.6%`), enquanto GMV subiu +33.3% vs 60d e +32.4% vs mesmos dias da semana. Ticket de R$55.91 vs R$41.86 (60d) = +33.6%, confirmado em 30d (+27.0%) e no controle sazonal (+34.6% sobre `same_weekday_avg.avg_ticket=R$41.53`). Confirma operacionalmente a tese da L01 de patamar via composição de mix, não por crescimento de alcance.
+- **O dia foi sustentado integralmente por ticket, não por volume.** 91 pedidos é praticamente idêntico ao bimestre (`orders_vs_60d_pct=-0,2%`) e dentro da banda de quarta-feira (`orders_vs_same_weekday_pct=-1,6%` vs média de 92,5 pedidos). O GMV de R$5.087,71 superou +32,4% as mesmas quartas históricas (média R$3.841,73) com ticket de R$55,91 — 34,7% acima do ticket médio das quartas (`same_weekday_avg.avg_ticket=R$41,53`). Isso confirma operacionalmente a leitura da L01 de que o ganho de patamar dos 60 dias se apoia em mix de valor, não em crescimento de alcance. O dia não acelerou, não desacelerou — executou o padrão de volume habitual com valorização de mix.
 
-- **O campeão do dia opera em Cross-docking e desequilibrou o mix de fulfillment.** O Conjunto 5 Potes Tampa Preta liderou com 23 pedidos (~25.3% do volume individual) em `logistic_type=cross_docking`, puxando `fulfillment_mix_yesterday_top10.full_pct` para 56.3% — distante do padrão de 30d (73.9%) e de 7d (77.7%). Divergência produto-específica, não sistêmica: sem esse único anúncio no topo, o mix do dia estaria próximo da banda histórica. Isso evidencia operacionalmente o que a L01 apontou sobre a base Full da conta ser estreita — o mix diário é altamente sensível ao produto que lidera.
+- **O resultado ficou apoiado num #1 de cross_docking, puxando o mix de fulfillment 17,6 pontos abaixo do histórico 30d.** O Conjunto 5 Potes Tampa Preta (23 pedidos, `logistic_type=cross_docking`) respondeu por 25,3% do volume do dia; `top3_concentration=48,4%` e `top5=59,3%`. O efeito direto: `fulfillment_mix_yesterday_top10.full_pct=56,3%` vs `fulfillment_mix_30d.full_pct=73,9%` e `fulfillment_mix_7d.full_pct=77,7%` — divergência de 17,6 e 21,4 pontos respectivamente. Trata-se de divergência produto-específica, não sistêmica: foi um único anúncio liderando o dia fora do perfil de fulfillment predominante. Adiciona evidência operacional à observação da L01 de que o Full está concentrado nos campeões de giro e a base ativa como um todo é 65,9% cross_docking (`account_overview.active_analysis.fulfillment_mix.cross_docking_pct`).
 
-- **Dois campeões em Full com health degradada geraram volume relevante mas sob penalização orgânica ativa.** Kit 4 Potes 1050ml Retangular (`MLB4073003575`, health=0.75, 13 pedidos, #2 do dia) e Conjunto 5 Potes Tampa Vermelha (`MLB3288536143`, health=0.71, 5 pedidos) somaram 18 pedidos com penalização de ranking no ML em curso. Em dia de ADS share dominante (59.8%), a penalização orgânica fica mascarada pelo tráfego pago — a conversão aparece no agregado, mas o custo está sendo absorvido pela campanha Himmel. Adiciona evidência operacional ao risco estrutural identificado pela L01.
+- **ADS respondeu por 59,8% do GMV do dia** (`ads_summary.revenue_ads_yesterday_brl=R$3.041,56` / `gmv=R$5.087,71`), com ROAS 11,6x e ACOS 4,64% (`avg_acos_pct`). Eficiência excepcional, mas a campanha sustentou um dia em que o #1 orgânico por volume estava em cross_docking. Operacionalmente, isso levanta a questão sobre quais produtos o ADS priorizou: se a campanha concentrou receita nos produtos Full com health penalizada, o giro assistido pode estar coexistindo com erosão de posição orgânica — hipótese não confirmada sem composição de revenue_ads por anúncio. Confirma e sustenta operacionalmente o risco estrutural identificado pela L01.
 
-- **ADS realizado em 59.8% do GMV com ROAS 11.6x — eficiente, mas concentrado num dia de mix divergente.** `ads_summary.revenue_ads_yesterday_brl=R$3.041,56` / `gmv=R$5.087,71` = 59.8% de share; ROAS: R$3.041,56 / R$262.19 = 11.6x; ACOS 4.64%. A eficiência da campanha Himmel é real. O dado operacional que a Condensadora precisa saber é que esse share dominante coincidiu com o dia em que o produto que liderou o volume é Cross-docking — se a campanha está priorizando o Conjunto 5 Potes Tampa Preta, o crescimento de GMV está sendo construído sobre estrutura de fulfillment distante do padrão mensal.
+- **Cancelamentos do dia (3 sobre 91 pedidos = 3,3% intraday) não podem ser classificados como normais ou anômalos sem identificar a origem.** O anúncio de Kit 06 Canequinhas com Suporte de Madeira Acrílico (MLB4410218897) encerrou o dia com `available_quantity=3` e registrou exatamente 3 pedidos. Se os 3 cancelamentos do dia vieram desse anúncio — hipótese concreta, não especulação — o `reputation.cancellations_rate`, hoje zerado, está sob pressão direta. A reputação `5_green/gold` é o ativo estrutural que suporta tudo o mais na conta. A coincidência entre estoque exato e cancelamentos exatos é o sinal mais urgente do dia e motiva a pergunta mais crítica para a Granular.
 
 ---
 
 ### Sinais operacionais relevantes
 
-- **Sinal:** Kit 06 Canequinhas com Suporte de Madeira Acrílico (`MLB4410218897`, status=active) gerou 3 pedidos com `available_quantity=3` — estoque efetivamente zerado ao final do dia, anúncio permanecendo ativo. — **Interpretação operacional:** qualquer pedido gerado hoje já configura cancelamento prospectivo que compromete `reputation.cancellations_rate=0`. Confirma e adiciona urgência operacional ao sinal #1 da L01 e à ação #1 da L02 — a janela de 24h começa neste ciclo, não amanhã.
+- **Sinal:** Kit 06 Canequinhas Acrílico com Suporte de Madeira (MLB4410218897) encerrou o dia com `available_quantity=3` após registrar 3 pedidos — **interpretação operacional:** estoque esgotado ou zero hoje; com `status=active`, o anúncio pode receber novos pedidos que resultarão em cancelamentos prospectivos, contaminando o `reputation.cancellations_rate` que hoje está zerado; o sinal de urgência da L02 (checar reposição em 24h) tem suporte operacional direto nos dados do dia.
 
-- **Sinal:** O campeão do dia (Conjunto 5 Potes Tampa Preta, Cross-docking, 23 pedidos) puxou `fulfillment_mix_yesterday_top10.full_pct` para 56.3%, contra 73.9% no padrão 30d e 77.7% no 7d. — **Interpretação operacional:** divergência produto-específica confirmada; a base Full da conta é concentrada em poucos anúncios, e o mix diário oscila significativamente conforme qual campeão domina. O padrão 7d mais recente (77.7% Full) sugere que dias recentes tiveram perfil de campeão diferente do de ontem.
+- **Sinal:** Os 3 cancelamentos do dia coincidem numericamente com os 3 pedidos do anúncio de estoque crítico (MLB4410218897), sem possibilidade de confirmar ou descartar a origem por dados do pacote — **interpretação operacional:** se os cancelamentos forem desse anúncio, o `reputation.cancellations_rate` já está sendo afetado; se forem de outros anúncios, o risco de cancelamentos prospectivos por ruptura ainda não se materializou; a origem dos cancelamentos é a variável mais relevante do dia para a reputação da conta.
 
-- **Sinal:** ADS share de 59.8% em dia em que o campeão de volume é Cross-docking — coincidência ou causalidade não verificável sem a composição do `revenue_ads` por anúncio. — **Interpretação operacional:** se a campanha Himmel está priorizando o Conjunto 5 Potes Tampa Preta, o crescimento de GMV está sendo viabilizado sobre uma estrutura de fulfillment menos vantajosa do que o histórico mensal — sem evidência de problema hoje, mas sinal operacional relevante que a Granular precisa confirmar ou descartar.
+- **Sinal:** Kit 4 Potes 1050ml Retangular (MLB4073003575) — #2 do dia com 13 pedidos — opera com `health=0,75`, 10 pontos abaixo do limiar ML de penalização (0,85), com estoque confortável (`available_quantity=166`) e sem `free_shipping` — **interpretação operacional:** a penalização não deriva de ruptura logística nem de falta de frete grátis como diferencial; o anúncio está gerando volume relevante (segundo campeão do dia), possivelmente via ADS, mas acumula degradação de ranking orgânico silenciosamente; confirma a hipótese de erosão silenciosa levantada pela L01.
 
-- **Sinal:** Kit 4 Potes 1050ml Retangular (`MLB4073003575`, #2 do dia, 13 pedidos) opera em Full com `health=0.75` — abaixo do limiar 0.85, com penalização de ranking no ML ativa. — **Interpretação operacional:** em dia de ADS share dominante, o tráfego pago compensa a perda orgânica e o produto ainda converte — mas isso mascara a erosão. Adiciona evidência à hipótese da L01 e à ação #3 da L02: sem saber a direção do health (caindo/estável/recuperando), não é possível saber se a compensação de ADS é provisória ou se está segurando uma queda progressiva.
+- **Sinal:** Kit 6 Canecas Porcelana Tulipa 250ml (MLB6167272090) — `is_catalog=true`, `logistic_type=fulfillment`, `available_quantity=21`, 5 pedidos no dia — **interpretação operacional:** com 5 pedidos/dia e 21 unidades disponíveis, a janela de estoque é de ~4 dias se o ritmo se mantiver; ruptura em anúncio de catálogo em fulfillment tem impacto mais lento de recuperação de posição no Buy Box, diferentemente de catálogo com cross_docking; `health=null` significa volume insuficiente para cálculo pelo ML, não confirmação de saúde.
 
-- **Sinal:** Kit 6 Canecas Porcelana Tulipa Lisa 250ml (`MLB6167272090`, `is_catalog=true`, `logistic_type=fulfillment`, `available_quantity=21`) gerou 5 pedidos no dia — cobertura implícita de ~4 dias no CD do ML. — **Interpretação operacional:** anúncio em catálogo Full com estoque em janela de alerta; ruptura em catálogo Full demora mais para recuperar posição do que ruptura em clássico, e o lead time de reposição em CD não permite reação tardia. Confirma o sinal #3 da L01.
+- **Sinal:** A distribuição horária mostra dois picos operacionais distintos: manhã comercial (9h: 9 pedidos, 13h: 11 pedidos, 14h: 12 pedidos, 15h: 8 pedidos) concentrando ~44% do volume no bloco 9h–15h, com retomada vespertina em 18h–19h (16 pedidos combinados) — **interpretação operacional:** comportamento consistente com canal de marketplace com campanha ativa; sem historical de hour_distribution para comparação, não é possível classificar como normal ou anômalo, mas a estrutura bimodal (manhã + tarde) é esperada em conta ML com ADS.
 
 ---
 
 ### Anomalias ou ausência de anomalia
 
-**Anomalia leve.** O dia apresentou dois desvios operacionais isolados e identificados: (1) Kit 06 Canequinhas Acrílico zerou estoque com anúncio ativo — risco de cancelamento prospectivo em janela de 24h; (2) mix de fulfillment divergiu do padrão 30d por efeito de um único produto no topo (56.3% Full vs 73.9%). Nenhum dos dois configura bloqueio de execução hoje — reputação limpa (`5_green`, `cancellations_rate=0`, `power_seller_status=gold`), sem anúncios pausados com pedidos e sem out_of_stock confirmado. A classificação sobe para **moderada** se amanhã: o Kit 06 Canequinhas seguir ativo e gerar novo pedido sem estoque, ou se o health de MLB4073003575 ou MLB3288536143 recuar mais um ponto. Permanece **leve** se a ação da L02 (verificação de estoque e pausa preventiva) for executada hoje.
+**Anomalia leve.**
+
+O dia executou dentro da banda de volume para a quarta-feira e entregou GMV acima do histórico via ticket — nenhuma disfunção sistêmica. A classificação de anomalia leve se apoia em dois desvios operacionais isolados: (1) o anúncio de Canequinhas Acrílico com disponibilidade de estoque igual ao número de pedidos do dia cria risco de ruptura iminente e possível pressão sobre `cancellations_rate`, que hoje está zerado; (2) o mix de fulfillment do top10 do dia divergiu 17,6 pontos do histórico 30d por efeito de um único produto líder em cross_docking. Nenhum dos dois desvios configura bloqueio de execução: a reputação está intacta (`5_green/gold`, `cancellations_rate=0`), nenhum anúncio registrou `status=paused` com pedidos em aberto, e o estoque dos demais campeões é adequado. O que elevaria para **anomalia moderada**: confirmação de que os 3 cancelamentos do dia vieram do anúncio de Canequinhas Acrílico (cruzamento por origem), configurando ruptura em execução com pressão real sobre reputação. O que manteria em **leve mesmo com ruptura confirmada**: reputação `cancellations_rate` ainda zerado na janela longa ML — o impacto seria prospectivo, não imediato.
 
 ---
 
 ### O que precisa ser investigado pela Granular
 
-- **Pergunta:** Qual é a composição do `revenue_ads_yesterday_brl` por anúncio — quais produtos a campanha Himmel estava empurrando ontem? — **Motivada por:** ADS share de 59.8% num dia em que o campeão de volume é Cross-docking (Conjunto 5 Potes Tampa Preta); se o produto #1 foi impulsionado pelo ADS, explica simultaneamente o mix divergente e sustenta a hipótese de que o GMV do dia está sendo construído sobre estrutura de fulfillment diferente do padrão histórico.
+- **Pergunta:** Os 3 cancelamentos registrados no dia 2026-05-20 vieram de qual anúncio ou anúncios? — **motivada por:** coincidência numérica exata entre os 3 cancelamentos do dia e os 3 pedidos do Kit 06 Canequinhas Acrílico (MLB4410218897) com `available_quantity=3`; se a origem for confirmada, o `reputation.cancellations_rate` zerado está sob pressão direta e o risco levantado pela L01/L02 já se materializou no dia anterior.
 
-- **Pergunta:** Qual é a direção do health de MLB4073003575 (Kit 4 Potes 1050ml, health=0.75) e MLB3288536143 (Conjunto 5 Potes Tampa Vermelha, health=0.71) — estabilizando, caindo ou recuperando? — **Motivada por:** ambos geraram volume relevante (#2 e #5 do dia) com penalização ativa; a decisão da L02 entre observação e acionamento de Himmel para cobertura preventiva depende diretamente dessa direção.
+- **Pergunta:** Qual a direção do `health` do Kit 4 Potes 1050ml Retangular (MLB4073003575) nos últimos ciclos disponíveis — estabilizando, caindo ou recuperando desde quando? — **motivada por:** `health=0,75` no #2 do dia (13 pedidos), 10 pontos abaixo do limiar ML com estoque adequado (166 unidades); sem série histórica, a L02 não pode confirmar nem refutar a hipótese de erosão orgânica progressiva; a direção determina urgência de intervenção.
 
-- **Pergunta:** Qual o `available_quantity` atual do Kit 06 Canequinhas Acrílico (MLB4410218897) e quantos pedidos já foram gerados hoje? — **Motivada por:** anúncio ativo com estoque zerado ao final do dia de ontem; cada pedido adicional hoje é cancelamento prospectivo que compromete `reputation.cancellations_rate=0`.
+- **Pergunta:** Qual a origem da penalização de `health=0,71` do Conjunto 5 Potes Tampa Vermelha (MLB3288536143, `is_catalog=true`)? É por claims, atraso de entrega ou qualidade de listing? — **motivada por:** é o anúncio com health mais degradada entre os campeões do dia, opera em fulfillment com estoque confortável (362 unidades), e tem `is_catalog=true` — a penalização em catálogo tem mecanismo diferente de recuperação do que em Clássico; identificar a causa muda a urgência e o tipo de ação.
 
-- **Pergunta:** Há reposição programada para o Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090, Full, is_catalog, available=21) com chegada em CD em ≤3 dias? — **Motivada por:** cobertura implícita de ~4 dias e anúncio em catálogo Full — ruptura nessa modalidade tem recuperação mais lenta do que em clássico, e o lead time de reabastecimento Full não permite ação reativa.
+- **Pergunta:** Qual a composição do `revenue_ads=R$3.041,56` por anúncio — quais produtos a campanha Himmel priorizou ontem? — **motivada por:** ADS share de 59,8% num dia em que o #1 por volume estava em cross_docking; se a campanha alocou receita primariamente para anúncios Full com health penalizada (Kit 4 Potes 1050ml, Conjunto 5 Potes Tampa Vermelha), o volume assistido por mídia está coexistindo com degradação de posição orgânica nesses anúncios; se priorizou o cross_docking (#1), a divergência de mix de fulfillment tem componente de campanha, não só de demanda orgânica.
+
+- **Pergunta:** Qual o `available_quantity` real do Kit 6 Canecas Porcelana Tulipa 250ml (MLB6167272090, `is_catalog=true`, fulfillment) após os 5 pedidos de ontem — e houve reposição programada no CD ML? — **motivada por:** com 21 unidades disponíveis no snapshot e 5 pedidos no dia, a janela é de ~4 dias de estoque; por ser catálogo em fulfillment, ruptura nesse anúncio tem recuperação de posição mais lenta que em Clássico; o risco é silencioso e pode não aparecer em painel de alerta antes de impactar posição.
 
 ---
 
 ### Destaque para a Condensadora
 
-O fato operacional mais importante do dia não é o número forte — é a sobreposição silenciosa entre dois elementos: o ADS share de 59.8% e o campeão do dia em Cross-docking. Se a campanha Himmel está priorizando o Conjunto 5 Potes Tampa Preta (único campeão viável com estoque farto e `health=null` sem penalização visível), o crescimento de GMV está sendo construído sobre uma estrutura de fulfillment distante do padrão mensal (56.3% Full vs 73.9%), enquanto os campeões em Full com health degradada (Kit 4 Potes 1050ml e Conjunto 5 Potes Tampa Vermelha) convertem mas com erosão orgânica mascarada pelo tráfego pago. Isso não aparece no agregado do dia — o resultado é bom. O risco silencioso é que a conta pode estar sistematicamente depriorizado seus campeões Full (que acumulam saúde degradada) enquanto ADS empurra o Cross-docking de topo — um desequilíbrio que só fica visível quando a campanha recuar ou quando o health cair mais. A Condensadora deve decidir se esse sinal tem peso suficiente para ir além da ação de estoque pontual que a L02 já estruturou.
+O fato operacional mais importante do dia não está no GMV nem no ticket — está na coincidência entre os 3 cancelamentos registrados e o único anúncio que encerrou o dia com estoque exatamente igual ao número de pedidos realizados (Canequinhas Acrílico, 3 pedidos / `available_quantity=3`). Se essa origem for confirmada pela Granular, o `reputation.cancellations_rate` hoje zerado já está sendo pressionado — e a reputação `5_green/gold` é o ativo estrutural que sustenta exposição, ranking e elegibilidade ADS da conta. Isso reforça e adiciona urgência concreta ao risco identificado pela L01 e à ação definida pela L02 (verificação de reposição em 24h). O risco pode passar despercebido se os cancelamentos forem lidos como "3 cancelamentos normais" sem cruzar com a origem — é exatamente esse o risco operacional silencioso que a Condensadora deve destacar.
 
 ## 04-granular
 {
@@ -1824,272 +1724,294 @@ O fato operacional mais importante do dia não é o número forte — é a sobre
   "recipient": "Yasmin",
   "respostas_operacional": [
     {
-      "pergunta": "Qual é a composição do `revenue_ads_yesterday_brl` por anúncio — quais produtos a campanha Himmel estava empurrando ontem?",
+      "pergunta": "Os 3 cancelamentos registrados no dia 2026-05-20 vieram de qual anúncio ou anúncios?",
       "status": "não respondida por falta de dado",
       "evidencia": {
-        "disponivel_no_pacote": "ads_summary totais apenas: spend=R$262,19 / revenue_ads=R$3.041,56 / ACOS=4,64% / campaigns_active=11",
-        "ausente_no_pacote": "breakdown de revenue_ads por platform_item_id — limitação estrutural do ml_snapshot v1",
-        "dado_necessario_proximo_ciclo": "breakdown de receita ADS por platform_item_id para confirmar ou descartar se MLB4535865317 (cross_docking, 23 pedidos, 25,3% do volume diário) foi produto prioritário da campanha Himmel"
+        "cancelamentos_dia": 3,
+        "hipotese_operacional_l03": "coincidência numérica com os 3 pedidos do MLB4410218897 (available_quantity=3)",
+        "dado_disponivel_no_pacote": {
+          "produto_visivel": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico",
+          "platform_item_id": "MLB4410218897",
+          "fonte": "top_items_details / top_products (raw_title)",
+          "orders_dia": 3,
+          "available_quantity_snapshot": 3,
+          "status_anuncio": "active",
+          "logistic_type": "fulfillment",
+          "health": null,
+          "health_interpretacao": "null = ML não calcula por volume insuficiente — NÃO confirma saúde"
+        },
+        "dado_ausente": "breakdown de cancelamentos por platform_item_id ou por pedido individual — metrics.cancelamentos=3 é total do dia sem origem identificada; o pacote não contém lista de pedidos cancelados com anúncio associado",
+        "dado_necessario_para_resolver": "lista de pedidos com status cancelado no dia 2026-05-20 cruzada com platform_item_id — disponível via query Supabase (tabela de pedidos com status + platform_item_id) ou painel de cancelamentos ML"
       },
-      "leitura": "O pacote entrega apenas totais de ADS. A hipótese operacional da L03 — de que o campeão de volume (MLB4535865317, cross_docking) pode ter sido impulsionado por ADS, explicando simultaneamente o mix divergente e o pico atípico para um produto com sold_quantity histórico de 323 — não é confirmável nem descartável com o dado disponível. Limitação estrutural do pacote ml_snapshot v1.",
+      "leitura": "A coincidência numérica (3 cancelamentos / 3 pedidos / available_quantity=3 no mesmo anúncio) é forte o suficiente para manter a hipótese como plausível e urgente, mas não constitui prova. O pacote não entrega a origem dos cancelamentos em nenhum campo. A hipótese permanece sem confirmação nem descarte — apenas checagem manual ou query Supabase resolve antes do próximo ciclo.",
       "conclusao_granular": "inconclusivo por falta de dado",
       "confianca": "baixa"
     },
     {
-      "pergunta": "Qual é a direção do health de MLB4073003575 (Kit 4 Potes 1050ml, health=0.75) e MLB3288536143 (Conjunto 5 Potes Tampa Vermelha, health=0.71) — estabilizando, caindo ou recuperando?",
+      "pergunta": "Qual a direção do health do Kit 4 Potes 1050ml Retangular (MLB4073003575) nos últimos ciclos disponíveis — estabilizando, caindo ou recuperando desde quando?",
       "status": "não respondida por falta de dado",
       "evidencia": {
-        "MLB4073003575": {
-          "produto_visivel": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
-          "platform_item_id": "MLB4073003575",
-          "fonte": "top_items_details",
-          "health_pontual": 0.75,
-          "logistic_type": "fulfillment",
-          "pedidos_ontem": 13
-        },
-        "MLB3288536143": {
-          "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
-          "platform_item_id": "MLB3288536143",
-          "fonte": "top_items_details",
-          "health_pontual": 0.71,
-          "logistic_type": "fulfillment",
-          "pedidos_ontem": 5
-        },
-        "ausente_no_pacote": "série temporal de health (direção: caindo/estável/subindo) — ml_snapshot v1 entrega apenas valor pontual",
-        "dado_necessario_proximo_ciclo": "valor de health de ambos os anúncios em D-1 e D-2 para calcular vetor de direção; sem isso a decisão L02 (observar vs acionar Himmel para cobertura preventiva) não tem base granular"
-      },
-      "leitura": "O pacote confirma que ambos estão abaixo do limiar 0.85 de penalização ML (MLB4073003575 = 0.75; MLB3288536143 = 0.71), mas não disponibiliza série temporal. Sem direção, não é possível distinguir se a penalização está em progressão, estabilizada ou em recuperação. A decisão da L02 depende diretamente desse dado.",
-      "conclusao_granular": "inconclusivo por falta de dado",
-      "confianca": "baixa"
-    },
-    {
-      "pergunta": "Qual o `available_quantity` atual do Kit 06 Canequinhas Acrílico (MLB4410218897) e quantos pedidos já foram gerados hoje?",
-      "status": "parcialmente respondida",
-      "evidencia": {
-        "produto_visivel": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico",
-        "platform_item_id": "MLB4410218897",
-        "sku_interno": "914C_BAV",
-        "fonte": "top_items_details + top_products",
-        "available_quantity_snapshot": 3,
-        "snapshot_fetched_at_utc": "2026-05-21T21:22:47Z",
-        "snapshot_fetched_at_brt": "2026-05-21T18:22:47",
-        "status_anuncio": "active",
+        "produto_visivel": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+        "platform_item_id": "MLB4073003575",
+        "fonte": "top_items_details",
+        "health_pontual_snapshot": 0.75,
+        "limiar_penalizacao_ml": 0.85,
+        "distancia_do_limiar": -0.1,
+        "available_quantity": 166,
         "logistic_type": "fulfillment",
-        "pedidos_ontem_2026-05-20": 3,
-        "cobertura_residual": "0 a 1 pedido de distância de ruptura ao ritmo de 3 pedidos/dia",
-        "pedidos_hoje_2026-05-21": "dado ausente do pacote",
-        "nota": "snapshot capturado em 18:22 BRT de 2026-05-21 — available_quantity=3 reflete estado após os 3 pedidos de ontem; pedidos gerados hoje entre 00:00 e 18:22 BRT não são discrimináveis a partir do pacote"
+        "is_catalog": false,
+        "dado_ausente": "série temporal de health — o pacote entrega apenas o valor pontual do snapshot; direção (caindo/estável/subindo) requer comparação com ciclos anteriores documentados",
+        "dado_necessario_para_resolver": "health dos últimos 3 a 5 ciclos diários para MLB4073003575 — via histórico no Supabase ou consulta API ML ao endpoint de health do anúncio com janela temporal"
       },
-      "leitura": "O snapshot de 18:22 BRT do dia seguinte confirma available_quantity=3. Com 3 pedidos ontem e 3 unidades residuais, o anúncio está em ruptura prática — qualquer pedido gerado hoje entre 00:00 e o momento do snapshot já configura cancelamento prospectivo que compromete reputation.cancellations_rate=0. O anúncio permanece status=active. A pergunta é parcialmente respondida: estoque confirmado como crítico, mas a contagem de pedidos de hoje não está disponível no pacote.",
-      "conclusao_granular": "confirma — estoque efetivamente crítico, ruptura iminente ou já em curso; dado parcial impede calcular exposição exata ao risco de cancelamento",
-      "confianca": "média"
+      "leitura": "O valor pontual de health=0,75 confirma penalização ativa (10 pontos abaixo do limiar ML), mas não informa a direção. Sem série, não é possível afirmar se está em queda progressiva, estabilizado em patamar degradado ou em recuperação lenta. A direção determina a urgência da intervenção: degradação contínua exige ação imediata; estabilização em patamar baixo ainda justifica janela de observação.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
     },
     {
-      "pergunta": "Há reposição programada para o Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090, Full, is_catalog, available=21) com chegada em CD em ≤3 dias?",
+      "pergunta": "Qual a origem da penalização de health=0,71 do Conjunto 5 Potes Tampa Vermelha (MLB3288536143, is_catalog=true)? É por claims, atraso de entrega ou qualidade de listing?",
       "status": "não respondida por falta de dado",
+      "evidencia": {
+        "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+        "platform_item_id": "MLB3288536143",
+        "display_name_sistema": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+        "nota_identidade": "title ML descreve 'Claro' sem mencionar cor de tampa; display_name diz 'Tampa Vermelha' — ver seção risco_identificacao para detalhe da divergência",
+        "fonte": "top_items_details",
+        "health_pontual_snapshot": 0.71,
+        "limiar_penalizacao_ml": 0.85,
+        "distancia_do_limiar": -0.14,
+        "is_catalog": true,
+        "catalog_product_id": "MLB44224272",
+        "logistic_type": "fulfillment",
+        "available_quantity": 362,
+        "metricas_conta_para_contexto": {
+          "claims_rate": 0.0025,
+          "cancellations_rate": 0,
+          "delayed_handling_rate": 0.001
+        },
+        "dado_ausente": "breakdown das dimensões de health por anúncio — claims_rate individual, delayed_handling_rate individual, completude de atributos de catálogo por MLB; o pacote entrega apenas o score agregado e as métricas de reputação são da conta, não do anúncio específico",
+        "dado_necessario_para_resolver": "painel de qualidade do anúncio ML (Central do Vendedor) para MLB3288536143 — breakdown por dimensão de penalização (reclamações, prazo de envio, qualidade de catálogo)"
+      },
+      "leitura": "Com available_quantity=362 e logistic_type=fulfillment, a penalização de health=0,71 não deriva de ruptura de estoque nem de modalidade de envio inadequada. As métricas da conta (claims_rate=0,0025, cancellations_rate=0, delayed_handling_rate=0,001) sugerem que o problema não é generalizado — pode ser anúncio-específico. Por ser is_catalog=true (catalog_product_id=MLB44224272), o mecanismo de recuperação de health pode depender de fatores como completude de atributos de catálogo e histórico de reclamações nesse produto específico — distintos do mecanismo de anúncios Clássicos. Causa não identificável pelo pacote.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Qual a composição do revenue_ads=R$3.041,56 por anúncio — quais produtos a campanha Himmel priorizou ontem?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "ads_summary_disponivel": {
+          "campaigns_total_count": 14,
+          "campaigns_active_count": 11,
+          "spend_yesterday_brl": 262.19,
+          "revenue_ads_yesterday_brl": 3041.56,
+          "avg_acos_pct": 4.64,
+          "roas_calculado": 11.6
+        },
+        "dado_ausente": "breakdown de revenue ADS por platform_item_id — limitação estrutural do pacote; ads_summary entrega apenas totais agregados independente de quantas campanhas existam",
+        "dado_necessario_para_resolver": "relatório Mercado Ads por produto/anúncio com revenue e spend por MLB para o dia 2026-05-20 — disponível no painel Mercado Ads ou via API de relatórios ML"
+      },
+      "leitura": "O pacote fornece apenas totais de ADS. A pergunta sobre quais produtos foram priorizados — e se o ADS alocou receita primariamente nos Full com health penalizada (MLB4073003575, MLB3288536143) ou no líder cross_docking (MLB4535865317) — não é respondível com os dados disponíveis. É limitação estrutural permanente do pacote, não gap pontual. A hipótese de que o ADS mascare erosão orgânica permanece aberta.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Qual o available_quantity real do Kit 6 Canecas Porcelana Tulipa 250ml (MLB6167272090, is_catalog=true, fulfillment) após os 5 pedidos de ontem — e houve reposição programada no CD ML?",
+      "status": "parcialmente respondida",
       "evidencia": {
         "produto_visivel": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
         "platform_item_id": "MLB6167272090",
-        "fonte": "top_items_details + top_products",
+        "fonte": "top_items_details / top_products (raw_title)",
         "available_quantity_snapshot": 21,
-        "pedidos_ontem": 5,
-        "cobertura_estimada_dias": "~4,2 dias ao ritmo de 5 pedidos/dia",
-        "logistic_type": "fulfillment",
+        "pedidos_dia": 5,
+        "quantity_dia": 5,
+        "estimativa_pos_pedidos": "~16 unidades (21 - 5), assumindo snapshot capturado antes do processamento integral dos pedidos do dia — não confirmado em tempo real",
+        "cobertura_estimada_dias": "~3,2 dias ao ritmo de 5 pedidos/dia",
         "is_catalog": true,
         "catalog_product_id": "MLB38833543",
-        "status": "active",
-        "ausente_no_pacote": "schedule de reposição, ETA de chegada ao CD do ML, estoque disponível fora do CD",
-        "dado_necessario_proximo_ciclo": "confirmação de Yasmin sobre reposição programada com ETA ≤3 dias ao CD — dado operacional externo ao pacote"
+        "logistic_type": "fulfillment",
+        "health": null,
+        "health_interpretacao": "null = ML não calcula por volume insuficiente (sold_quantity=70) — NÃO confirma saúde do anúncio",
+        "sold_quantity_historico": 70,
+        "free_shipping": false,
+        "dado_ausente": "available_quantity em tempo real pós-pedidos do dia, pedidos em aberto ainda não atendidos, e ETA de reposição no CD ML"
       },
-      "leitura": "O pacote confirma os vetores de risco (catálogo Buy Box ML + Full + available=21 + ritmo=5/dia), mas a informação de reposição só existe na operação de Yasmin. Ruptura em catálogo Full tem recuperação mais lenta que em clássico: a posição no Buy Box ML não é recuperada automaticamente após reabastecimento. A janela para agir sem impacto é hoje.",
-      "conclusao_granular": "inconclusivo por falta de dado",
-      "confianca": "baixa"
+      "leitura": "A estimativa de ~16 unidades é baseada em cálculo simples do snapshot; a cobertura de ~3 dias é curta para anúncio de catálogo em fulfillment — ruptura nesse contexto tem recuperação de posição no Buy Box mais lenta que em listagem Clássica. A pergunta sobre reposição programada não é respondível pelo pacote. O risco de ruptura é real e mais próximo do que o MLB4410218897 no passado imediato, mas menos urgente que o MLB4410218897 que já provavelmente zerou.",
+      "conclusao_granular": "complica — estoque estimado em ~16 unidades com cobertura de ~3 dias; anúncio de catálogo/fulfillment com ruptura tem recuperação de posição mais lenta; reposição não confirmada",
+      "confianca": "média"
     }
   ],
   "investigacoes_proprias": [
     {
-      "investigacao": "Risco de identidade MLB3288536143 — display_name 'Tampa Vermelha' não confirmado pelo ML title 'Claro'",
+      "investigacao": "Kit 06 Canequinhas Acrílico (MLB4410218897) — cobertura de estoque vs ritmo de pedidos: available_quantity=3 com orders=3 no dia indica provável ruptura no CD ML em 2026-05-20",
+      "origem": "anomalia",
+      "evidencia": {
+        "produto_visivel": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico",
+        "platform_item_id": "MLB4410218897",
+        "sku_interno": "914C_BAV",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "available_quantity_snapshot": 3,
+        "pedidos_dia": 3,
+        "quantity_dia": 3,
+        "cobertura_estimada_dias": "~0 dias — disponibilidade provavelmente zero após processamento dos 3 pedidos de ontem",
+        "status_anuncio": "active",
+        "logistic_type": "fulfillment",
+        "health": null,
+        "health_interpretacao": "null = volume insuficiente para cálculo ML — NÃO significa saudável",
+        "sold_quantity_historico": 455,
+        "is_catalog": false,
+        "listing_type": "gold_special",
+        "free_shipping": false,
+        "risco_direto": "anúncio active em fulfillment com available_quantity provavelmente zerado = ML pode continuar exibindo e aceitando pedidos sem estoque para atendimento; cada cancelamento forçado impacta reputation.cancellations_rate, hoje em 0"
+      },
+      "leitura": "Com available_quantity=3 no snapshot e 3 pedidos realizados no dia, o anúncio provavelmente encerrou 2026-05-20 com estoque nulo no CD ML. O sold_quantity histórico de 455 confirma que é anúncio de giro regular — não novidade de baixo volume. Com status=active e fulfillment, o ML pode continuar recebendo pedidos sem estoque disponível para atendimento, gerando cancelamentos forçados. O risco é imediato e concreto. Este é o anúncio mais urgente da conta no dia seguinte.",
+      "conclusao_granular": "confirma — risco de ruptura em execução com potencial impacto direto sobre reputation.cancellations_rate",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "Divergência de identidade IMB501V (MLB3288536143): title ML 'Claro' vs display_name 'Tampa Vermelha' — atributo de cor não confirmado no título da listagem",
       "origem": "risco de identificação",
       "evidencia": {
-        "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+        "produto_visivel_pelo_title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
         "platform_item_id": "MLB3288536143",
-        "sku_interno": "IMB501V",
-        "fonte": "top_items_details / top_products",
-        "title_ml": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
-        "raw_title_pedido": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
         "display_name_sistema": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+        "sku_interno": "IMB501V",
         "raw_sku": "IMB501V_T",
+        "fonte_title": "top_items_details.title",
+        "fonte_raw_title": "top_products.raw_title: 'Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita'",
+        "mapping_status": "mapped",
         "mapping_reason": "sku_alias_high_confidence",
         "mapping_confidence": "high",
-        "logica_familia_sku": "IMB501P = preto (MLB4535865317, title confirma 'Preto'); IMB501V = vermelho por simetria de sufixo — V consistente com 'vermelho', raw_sku IMB501V_T reforça"
+        "divergencia_detectada": "title e raw_title descrevem o produto como 'Claro' (sem especificar cor de tampa); display_name descreve como 'Tampa Vermelha'; SKU IMB501V sugere V = Vermelho na nomenclatura Budamix — o SKU apoia o display_name, mas o título ML não confirma explicitamente a cor vermelha",
+        "paralelo_com_imb501p": {
+          "product_visivel": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
+          "platform_item_id": "MLB4535865317",
+          "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+          "consistencia": "título ML tem 'Preto' explícito; display_name tem 'Tampa Preta' — consistência total na variação P"
+        }
       },
-      "leitura": "O título ML 'Claro' pode descrever o vidro transparente (atributo do material), enquanto a cor da tampa vermelha é implícita no sufixo V do SKU. O display_name enriquece com 'Tampa Vermelha' — informação provavelmente correta por inferência de família de SKU mas não confirmada explicitamente pelo título ML. Não há contradição categórica (o produto não é de tipo diferente); a divergência é de enriquecimento de atributo de cor. O mapping_reason 'sku_alias_high_confidence' e a lógica de família (P=preto, V=vermelho, confirmada pelo MLB4535865317) suportam a identificação. Usar o título ML na comunicação externa, nunca o display_name.",
-      "conclusao_granular": "risco de identificação médio — produto provavelmente correto por lógica de família SKU; display_name adiciona 'Tampa Vermelha' não presente no título ML primário; usar 'Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita' em comunicação externa",
+      "leitura": "A variação IMB501P tem 'Preto' explícito no título ML e display_name 'Tampa Preta' — consistência total entre as fontes. A variação IMB501V tem title/raw_title descrevendo 'Claro' sem menção a cor de tampa, enquanto display_name diz 'Tampa Vermelha'. O SKU IMB501V ancora a identidade como variação vermelha via sku_alias_high_confidence, e o mapeamento é confiável. Mas o título ML diverge do display_name no atributo de cor — citar 'Tampa Vermelha' na comunicação externa está correto pelo SKU mas não confirmado pela fonte primária (title ML). Risco médio: identidade via SKU é sólida, mas a divergência de atributo deve ser preservada como ressalva.",
+      "conclusao_granular": "complica — identidade da variação é confiável via SKU (high confidence), mas title ML não confirma o atributo 'vermelha' explicitamente; display_name pode ser usado com ressalva de que o título ML usa 'Claro'",
       "confianca": "média"
     },
     {
-      "investigacao": "Anomalia de dados: MLB3288536143 com is_catalog=false mas catalog_product_id preenchido (MLB44224272)",
+      "investigacao": "Kit 2 Potes 1050ml (MLB6518176572, is_catalog=true, fulfillment) — ratio quantity/orders=2,67: cobertura real de estoque é por unidades, não por pedidos",
+      "origem": "anomalia",
+      "evidencia": {
+        "produto_visivel": "Kit 2 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+        "platform_item_id": "MLB6518176572",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "orders_dia": 3,
+        "quantity_dia": 8,
+        "ratio_unidades_por_pedido": 2.67,
+        "available_quantity_snapshot": 34,
+        "cobertura_estimada_por_pedidos": "~11 dias (34 / 3)",
+        "cobertura_estimada_por_unidades": "~4,25 dias (34 / 8)",
+        "is_catalog": true,
+        "catalog_product_id": "MLB66182346",
+        "logistic_type": "fulfillment",
+        "health": null,
+        "health_interpretacao": "null = volume insuficiente (sold_quantity=201) — NÃO confirma saúde",
+        "sold_quantity_historico": 201
+      },
+      "leitura": "A diferença entre orders=3 e quantity=8 indica que pelo menos um pedido incluiu múltiplas unidades (média 2,67 unidades/pedido). A cobertura de estoque real é ~4 dias por unidades consumidas, não ~11 dias por contagem de pedidos. Por ser is_catalog=true em fulfillment, ruptura tem recuperação de posição no Buy Box mais lenta. A monitoração correta deste anúncio deve usar units/dia como métrica de consumo — não orders/dia.",
+      "conclusao_granular": "complica — cobertura real de estoque é ~4 dias (por unidades), não ~11 dias (por pedidos); anúncio de catálogo merece atenção de reposição mais cedo do que a contagem de pedidos sugere",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "Divergência estrutural entre fulfillment_mix da base ativa (34,1% Full em contagem de anúncios) e fulfillment_mix de pedidos 30d (73,9% Full em volume): Full concentrado em giro alto",
       "origem": "divergência",
       "evidencia": {
-        "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
-        "platform_item_id": "MLB3288536143",
-        "fonte": "top_items_details",
-        "is_catalog": false,
-        "catalog_product_id": "MLB44224272",
-        "health": 0.71,
-        "logistic_type": "fulfillment"
+        "fulfillment_mix_base_ativa": {
+          "fonte": "account_overview.active_analysis.fulfillment_mix",
+          "full_pct": 34.1,
+          "cross_docking_pct": 65.9,
+          "total_anuncios_ativos": 82,
+          "estimativa_anuncios_full": "~28 anúncios Full"
+        },
+        "fulfillment_mix_pedidos_30d": {
+          "fonte": "fulfillment_mix_30d",
+          "full_pct": 73.9,
+          "cross_docking_pct": 26.1,
+          "orders_com_logistic_type": 3098,
+          "coverage_pct": 100.0
+        },
+        "interpretacao_estrutural": "~28 anúncios Full (~34% dos 82 ativos) geram ~74% do volume de pedidos; ~54 anúncios cross_docking (~66% dos ativos) geram ~26% do volume"
       },
-      "leitura": "A combinação is_catalog=false com catalog_product_id preenchido sugere que o anúncio está vinculado a um produto de catálogo ML mas não participa ativamente do Buy Box (ex: saiu do catálogo, foi desativado da participação, ou tornou-se inelegível). Consequência prática: se o anúncio competiu em catálogo historicamente e saiu, a health de 0.71 pode refletir degradação pós-catálogo ou penalização acumulada durante participação em Buy Box. Não é uma divergência entre fontes do pacote mas um estado interno inconsistente do ml_snapshot que vale registrar para investigação no próximo ciclo.",
-      "conclusao_granular": "complica — anomalia de dados não explicada pelo pacote; não invalida a métrica de health, mas adiciona contexto à interpretação do valor 0.71",
-      "confianca": "média"
-    },
-    {
-      "investigacao": "MLB6167272090 — catálogo Full com estoque em janela crítica e health=null",
-      "origem": "anomalia",
-      "evidencia": {
-        "produto_visivel": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
-        "platform_item_id": "MLB6167272090",
-        "fonte": "top_items_details + top_products",
-        "is_catalog": true,
-        "catalog_product_id": "MLB38833543",
-        "logistic_type": "fulfillment",
-        "available_quantity": 21,
-        "sold_quantity_historico": 70,
-        "pedidos_ontem": 5,
-        "cobertura_dias": "~4,2",
-        "health": null,
-        "health_interpretacao": "ML não calcula — volume histórico insuficiente (sold_quantity=70); não significa saudável, não significa penalização",
-        "listing_type": "gold_special",
-        "status": "active"
-      },
-      "leitura": "Três vetores de risco convergem: (1) catálogo ML ativo — compete em Buy Box; ruptura remove a posição e a recuperação não é automática após reabastecimento, exige renegociação de posição no Buy Box. (2) fulfillment — estoque no CD do ML; reposição exige lead time logístico que impede reação em tempo real. (3) available_quantity=21 com ritmo de 5 pedidos/dia — ~4 dias de cobertura, dentro da janela de alerta. health=null indica que ML não calcula saúde por histórico baixo (sold=70), mas isso não protege o anúncio nem implica penalização. A urgência operacional é equiparável ao MLB4410218897.",
-      "conclusao_granular": "confirma risco — combinação catálogo + Full + estoque crítico cria exposição com recuperação lenta; janela de ação para reposição com ETA ≤3 dias ao CD é hoje",
+      "leitura": "A divergência é estrutural e esperada — as duas métricas medem dimensões diferentes e complementares. Não é inconsistência de dados. A implicação operacional é que qualquer ruptura ou penalização de health em anúncio Full de giro alto (MLB4073003575, MLB3288536143, MLB3343832496) impacta desproporcionalmente o volume total da conta. Os ~54 anúncios cross_docking de baixo giro funcionam como cauda de cauda — relevantes para contagem de ativos, não para volume.",
+      "conclusao_granular": "confirma — estrutura de portfólio confirma concentração de risco nos campeões Full; reforça evidência da L01 de que Full é pequeno e crítico",
       "confianca": "alta"
-    },
-    {
-      "investigacao": "MLB4535865317 — campeão de volume (23 pedidos, 25,3% do dia) em Cross-docking com sold_quantity histórico modesto: verificação de identidade e estrutura",
-      "origem": "anomalia",
-      "evidencia": {
-        "produto_visivel": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
-        "platform_item_id": "MLB4535865317",
-        "sku_interno": "IMB501P",
-        "fonte": "top_items_details + top_products",
-        "title_ml": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
-        "raw_title_pedido": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
-        "display_name_sistema": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
-        "identidade_risco": "baixo — title ML e raw_title coincidem; display_name é alias aceitável (omite 'Hermético', preserva categoria e contagem)",
-        "logistic_type": "cross_docking",
-        "health": null,
-        "health_interpretacao": "ML não calcula — volume histórico sold_quantity=323 possivelmente abaixo do limiar de cálculo",
-        "available_quantity": 8380,
-        "sold_quantity_historico": 323,
-        "is_catalog": false,
-        "pedidos_ontem": 23,
-        "pct_volume_top10": "32,4% (23/71)",
-        "pct_volume_total_dia": "25,3% (23/91)",
-        "contribuicao_ao_mix_xd": "23 de 31 pedidos XD do top10 (74,2%) originados deste único anúncio"
-      },
-      "leitura": "Identidade confirmada com baixo risco: title ML e raw_title coincidem plenamente. O dado operacional relevante é o contraste entre histórico modesto (sold=323 total vs MLB3343832496 com 5.721 e MLB3288536143 com 5.680) e a liderança de ontem com 23 pedidos. Esse pico é atípico para o padrão histórico do anúncio. health=null elimina penalização como fator que suprimiria vendas, mas também não garante posição orgânica alta. O impacto no mix do dia é quantificável: sem esse produto no topo, o mix do top10 seria ~81% Full — acima inclusive do padrão 30d de 73,9%. A origem do pico (orgânico vs ADS) permanece não confirmada por falta de breakdown ADS.",
-      "conclusao_granular": "complica — identidade do produto confirmada; pico de volume atípico para histórico do anúncio não é explicável sem breakdown ADS; a divergência de mix do dia é produto-específica e circunstancial, não sistêmica",
-      "confianca": "média"
-    },
-    {
-      "investigacao": "MLB3343832496 e MLB4073064873 com health=0.85 exatamente no limiar de penalização",
-      "origem": "anomalia",
-      "evidencia": {
-        "anuncio_a": {
-          "produto_visivel": "Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo",
-          "platform_item_id": "MLB3343832496",
-          "fonte": "top_items_details",
-          "health": 0.85,
-          "logistic_type": "fulfillment",
-          "pedidos_ontem": 8,
-          "available_quantity": 375
-        },
-        "anuncio_b": {
-          "produto_visivel": "Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-petróleo",
-          "platform_item_id": "MLB4073064873",
-          "fonte": "top_items_details",
-          "health": 0.85,
-          "logistic_type": "fulfillment",
-          "pedidos_ontem": 3,
-          "available_quantity": 129
-        },
-        "limiar_penalizacao_ml": 0.85
-      },
-      "leitura": "Ambos estão exatamente no limiar de penalização ML (0.85). Qualquer variação negativa de -0.01 os coloca em penalização formal. Sem série temporal não é possível determinar se estão chegando ao limiar por baixo (recuperando) ou por cima (deteriorando). Eles não aparecem nos sinais primários de alerta das camadas anteriores precisamente porque ainda estão no limiar, não abaixo — o que os torna candidatos a monitoramento de direção junto com MLB4073003575 (0.75) e MLB3288536143 (0.71). Resultado agregado: 4 dos 10 anúncios do top10 estão em penalização ativa ou no limiar.",
-      "conclusao_granular": "complica — dois anúncios Full gerando volume no limiar de penalização; ausência de série temporal impede classificar como risco crescente vs recuperação; escopo de health em risco é maior do que os dois casos identificados pelas camadas anteriores",
-      "confianca": "média"
     }
   ],
   "risco_identificacao": {
     "nivel": "médio",
     "fontes": [
-      "display_name_enriquecimento_nao_confirmado_por_title_ml"
+      "title_diverge_display_name_em_atributo_de_cor_IMB501V_MLB3288536143",
+      "mapping_status_mapped_generic_sku_em_quatro_produtos_top10"
     ],
     "bloqueios_para_slack": [],
-    "explicacao": "Nenhum produto no pacote apresenta divergência categórica entre display_name e title/raw_title. O nível médio foi atribuído exclusivamente ao MLB3288536143 (Jogo Potes De Vidro 5 Peças / IMB501V): o display_name 'Conjunto 5 Potes de Vidro Redondos Tampa Vermelha' adiciona o atributo 'Tampa Vermelha' que não aparece no título ML ('Claro'). A identificação como variante vermelho é suportada pela lógica de família SKU (IMB501V, raw_sku IMB501V_T, mapping_reason sku_alias_high_confidence) e pelo paralelo com IMB501P (MLB4535865317, title confirmado com 'Preto'). O produto provavelmente está correto, mas a cor da tampa é inferida por SKU e não confirmada pelo título ML primário. Na comunicação externa, usar o título ML. Os demais 9 produtos do top10 apresentam risco baixo: title ML e raw_title coincidem em todos os casos, e os display_names são versões encurtadas ou com variação de nomenclatura aceitável. Nenhum bloqueio para Slack foi acionado."
+    "explicacao": "Nenhum produto atinge risco alto: todos os top 10 têm title e raw_title presentes no pacote, nenhum tem mapping_status=ambiguous ou mapping_confidence=low. O nível médio é motivado por dois fatores independentes. Primeiro: IMB501V (MLB3288536143) tem title ML 'Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita' descrevendo vidro transparente sem cor de tampa especificada, enquanto display_name diz 'Conjunto 5 Potes de Vidro Redondos Tampa Vermelha'; o SKU IMB501V ancora a identidade como variante vermelha via sku_alias_high_confidence, mas o título ML não confirma 'vermelha' explicitamente — ao contrário da variante IMB501P que tem 'Preto' explícito no título; o display_name pode ser usado na comunicação com ressalva de que o título ML usa 'Claro'. Segundo: quatro produtos com mapping_status=mapped_generic_sku e confidence=medium (KIT10YW1050 MLB4676726433, SPC0111 MLB6661811594, KIT4YW320 MLB4073064873, 914C_BAV MLB4410218897) — todos têm title e raw_title confirmando identidade, mas a qualidade do mapeamento reduz a confiança máxima para média nesses itens. Nenhum bloqueio para Slack é necessário porque todos os produtos têm título ML confirmado e nenhum apresenta divergência do tipo 'produto A nomeado como produto B'."
   },
   "divergencias": [
     {
       "tipo": "mix_fulfillment_dia_vs_historico",
-      "fonte_a": "fulfillment_mix_yesterday_top10: Full 56,3% / Cross-docking 43,7% (base: 71 pedidos top10 de 2026-05-20)",
-      "fonte_b": "fulfillment_mix_7d: Full 77,7% / fulfillment_mix_30d: Full 73,9%",
-      "resolucao": "fulfillment_mix_yesterday_top10 é a fonte primária para o dia; fulfillment_mix_7d e 30d são referências de padrão histórico — ambas válidas para fins distintos, não substituíveis",
-      "regra_precedencia": "métricas do dia prevalecem para leitura do dia; janelas históricas são referência comparativa",
-      "impacto": "Mix do dia diverge do padrão histórico. Causa identificada e quantificada: MLB4535865317 (cross_docking) gerou 23 de 31 pedidos XD do top10 (74,2%). Sem este produto, o mix do dia seria ~81% Full — acima do padrão 30d. A divergência é produto-específica e circunstancial, não indica mudança estrutural no mix da conta. Nota adicional: fulfillment_mix_yesterday_top10 cobre apenas 71 dos 91 pedidos (78%) — os 20 pedidos fora do top10 não estão discriminados por logistic_type nesta métrica."
+      "fonte_a": "fulfillment_mix_yesterday_top10: full_pct=56,3% (71 pedidos top10 do dia 2026-05-20)",
+      "fonte_b": "fulfillment_mix_30d: full_pct=73,9% / fulfillment_mix_7d: full_pct=77,7%",
+      "resolucao": "fulfillment_mix_7d e fulfillment_mix_30d prevalecem como referência de padrão estrutural; o top10 de ontem é desvio produto-específico do dia, não mudança estrutural",
+      "regra_precedencia": "fulfillment_mix_*d calculado do Supabase com cobertura 100% sobre logistic_type real de cada pedido é mais representativo que top10 ponderado de um único dia",
+      "impacto": "O dia não representa mudança no mix de fulfillment da conta — MLB4535865317 (cross_docking, #1 com 23 pedidos = 25,3% do volume) puxou o mix pontual 17,6 pontos abaixo do histórico 30d; o padrão estrutural de 73–78% Full em pedidos permanece válido"
     },
     {
-      "tipo": "mix_fulfillment_base_ativa_vs_vendas_reais",
-      "fonte_a": "account_overview.active_analysis.fulfillment_mix: Full 34,1% / Cross-docking 65,9% (base: 82 anúncios ativos)",
-      "fonte_b": "fulfillment_mix_30d: Full 73,9% (base: 3.098 pedidos reais dos últimos 30d)",
-      "resolucao": "fulfillment_mix_30d (calculado de pedidos reais do Supabase via logistic_type) prevalece para leitura do mix de vendas; account_overview reflete distribuição de anúncios ativos, não de pedidos",
-      "regra_precedencia": "mix de pedidos reais (ml_snapshot.fulfillment_mix_*d) vence distribuição de anúncios do account_overview",
-      "impacto": "A base ativa tem 65,9% Cross-docking em contagem de anúncios, mas as vendas reais dos últimos 30d são 73,9% Full. Os anúncios Full são estruturalmente mais produtivos por unidade e concentram desproporcionalmente mais volume de pedidos do que sua presença na base ativa sugere. Isso reforça a fragilidade identificada pela L01: a conta depende de um subconjunto estreito de anúncios Full de alta performance."
-    }
-  ],
-  "evidencias_conflitantes": [
-    {
-      "hipotese": "O pico de MLB4535865317 (23 pedidos, cross_docking) foi impulsionado por ADS Himmel",
-      "confirma": "ADS share de 59,8% do GMV com 11 campanhas ativas; sold_quantity histórico de 323 é modesto em comparação com campeões da conta (MLB3343832496=5.721; MLB3288536143=5.680) — um pico de 23 pedidos/dia é atípico para esse histórico orgânico; health=null elimina penalização como fator supressor mas não confirma posição orgânica alta; anúncio é is_catalog=false (ranking de categoria, não Buy Box), modalidade que responde mais diretamente a ADS",
-      "enfraquece": "Sem breakdown de ADS por platform_item_id, não há evidência direta de que o produto foi incluído na campanha Himmel. available_quantity=8380 e status=active sem restrições permitem pico orgânico por sazonalidade ou variação de algoritmo ML. health=null pode simplesmente indicar anúncio com histórico recente insuficiente para cálculo, sem implicar posição orgânica baixa",
-      "dado_adicional_que_resolveria": "breakdown de revenue_ads_yesterday_brl por platform_item_id (não disponível no pacote ml_snapshot v1)",
-      "status": "hipótese em aberto"
+      "tipo": "mix_fulfillment_base_vs_volume",
+      "fonte_a": "account_overview.active_analysis.fulfillment_mix: full_pct=34,1% (share de contagem de anúncios ativos)",
+      "fonte_b": "fulfillment_mix_30d: full_pct=73,9% (share de volume de pedidos)",
+      "resolucao": "As duas métricas são corretas e medem dimensões ortogonais — não há conflito a resolver; ambas devem ser lidas juntas",
+      "regra_precedencia": "fulfillment_mix_30d mede share de volume de pedidos; account_overview mede share de contagem de anúncios — métricas complementares, não substituíveis",
+      "impacto": "Confirma concentração estrutural: ~28 anúncios Full (~34% dos ativos) geram ~74% do volume; ~54 anúncios cross_docking (~66% dos ativos) geram ~26% do volume — portfólio Full é pequeno e crítico para o resultado da conta"
     }
   ],
   "detalhes_que_a_condensadora_nao_pode_perder": [
     {
-      "detalhe": "MLB4410218897 (Kit 06 Canequinhas Acrílico, active, fulfillment): available_quantity=3 no snapshot de 18:22 BRT de 2026-05-21, após 3 pedidos ontem. Anúncio permanece ativo. Cada pedido gerado hoje é cancelamento prospectivo que compromete reputation.cancellations_rate=0.",
-      "por_que_importa": "A ação da L02 (pausa preventiva ou reposição emergencial) tinha janela de execução a partir de ontem. Se não foi executada, o risco já pode ter se materializado antes do snapshot das 18:22 BRT. Urgência máxima no ciclo atual.",
+      "detalhe": "Os 3 cancelamentos do dia não puderam ser atribuídos a nenhum anúncio específico — a hipótese de que vieram do MLB4410218897 (3 pedidos / available_quantity=3) permanece não confirmada e não descartada pelo pacote",
+      "por_que_importa": "A Condensadora não deve apresentar a hipótese como fato; deve preservar o status de 'hipótese plausível e urgente, não confirmada' — e reforçar que a checagem manual por Yasmin (ou query Supabase) é a única forma de resolver antes do próximo ciclo; erro aqui contamina a leitura de reputação",
+      "confianca": "baixa"
+    },
+    {
+      "detalhe": "Kit 06 Canequinhas Acrílico (MLB4410218897, fulfillment, status=active) provavelmente zerou estoque no CD ML após os 3 pedidos de ontem — risco de cancelamentos prospectivos imediatos em 2026-05-21",
+      "por_que_importa": "Com available_quantity provavelmente zerado e status=active em fulfillment, o ML pode continuar aceitando pedidos sem estoque disponível; cada cancelamento forçado impacta diretamente o reputation.cancellations_rate, hoje zerado e crítico para manter 5_green/gold; é o risco operacional mais urgente da conta no dia seguinte",
       "confianca": "média"
     },
     {
-      "detalhe": "MLB6167272090 (Kit 6 Canecas Tulipa, catálogo Full, is_catalog=true, available=21, ~4 dias de cobertura): segundo ativo em risco de ruptura. Ruptura em catálogo Full tem recuperação mais lenta que clássico — posição no Buy Box ML não é restaurada automaticamente após reabastecimento.",
-      "por_que_importa": "O risco de ruptura deste anúncio é estruturalmente mais grave do que aparece na comparação numérica com MLB4410218897 (21 unidades vs 3), porque o impacto pós-ruptura em catálogo Full é mais duradouro. A janela para garantir reposição com ETA ≤3 dias ao CD é hoje.",
-      "confianca": "alta"
-    },
-    {
-      "detalhe": "Mix de fulfillment do dia (56,3% Full) diverge do padrão 30d (73,9%) por efeito de um único produto: MLB4535865317 (cross_docking, 23 pedidos = 25,3% do volume diário). Sem esse produto, o mix do dia seria ~81% Full — acima do padrão histórico. A divergência é produto-específica e circunstancial.",
-      "por_que_importa": "Impede que a Condensadora leia o mix do dia como sinal de mudança estrutural no perfil de fulfillment da conta. A causa está identificada e quantificada: é o produto que liderou, não uma mudança no portfólio.",
-      "confianca": "alta"
-    },
-    {
-      "detalhe": "Health em zona crítica é mais ampla do que os dois casos destacados pelas camadas anteriores: MLB4073003575 (0.75, penalização ativa), MLB3288536143 (0.71, penalização ativa), MLB3343832496 (0.85, no limiar), MLB4073064873 (0.85, no limiar). Total: 4 dos 10 anúncios do top10 estão em penalização ativa ou no limiar, todos em logistic_type=fulfillment. Direção não disponível para nenhum deles.",
-      "por_que_importa": "A Condensadora deve comunicar que o risco de health é mais abrangente do que o identificado individualmente — é uma característica do subconjunto Full de alta performance da conta, não de dois casos isolados.",
+      "detalhe": "Kit 6 Canecas Porcelana Tulipa 250ml (MLB6167272090, is_catalog=true, fulfillment) tem estoque estimado em ~16 unidades com cobertura de ~3 dias — segundo anúncio com risco de ruptura a curto prazo",
+      "por_que_importa": "Por ser catálogo em fulfillment, ruptura tem recuperação de posição no Buy Box mais lenta que em Clássico; a urgência é inferior à do MLB4410218897 mas o risco é real e merece monitoramento paralelo; a Condensadora deve nomear os dois anúncios em risco de ruptura separadamente com contexto diferente",
       "confianca": "média"
     },
     {
-      "detalhe": "A origem do pico de MLB4535865317 (23 pedidos, cross_docking, sold_quantity histórico de 323) é não confirmada: pode ser ADS Himmel ou orgânico. Se for ADS, o crescimento de GMV do dia foi viabilizado sobre estrutura de fulfillment distante do padrão mensal. A hipótese permanece em aberto até que breakdown ADS por anúncio esteja disponível.",
-      "por_que_importa": "A Condensadora deve registrar que a relação entre ADS share dominante e mix de fulfillment divergente é hipotética, não estabelecida como fato — para não consolidar conclusão sobre o modelo operacional da conta sem evidência direta.",
+      "detalhe": "Kit 2 Potes 1050ml (MLB6518176572, is_catalog=true, fulfillment): cobertura real de estoque é ~4 dias por unidades consumidas, não ~11 dias por contagem de pedidos — ratio 2,67 unidades/pedido distorce a leitura por pedidos",
+      "por_que_importa": "A Condensadora ou Yasmin pode subestimar a urgência de reposição contando por pedidos; o parâmetro correto de monitoramento deste anúncio é units/dia; relevante especialmente por ser catálogo em fulfillment",
+      "confianca": "média"
+    },
+    {
+      "detalhe": "A direção do health dos dois campeões Full penalizados (MLB4073003575 health=0,75 e MLB3288536143 health=0,71) não é determinável pelo pacote — o valor pontual confirma penalização ativa mas não informa se está caindo, estabilizando ou recuperando",
+      "por_que_importa": "A urgência de intervenção sobre esses anúncios depende da direção — que só será determinável com série de 2–3 ciclos; citar 'health degradada' sem a direção é incompleto para qualquer decisão sobre cobertura ADS preventiva; a Condensadora deve preservar essa limitação ao comunicar o risco",
+      "confianca": "baixa"
+    },
+    {
+      "detalhe": "A composição do revenue_ads=R$3.041,56 por anúncio não está disponível no pacote — a hipótese de que o ADS mascare erosão orgânica nos campeões Full penalizados permanece aberta e não verificável",
+      "por_que_importa": "A Condensadora deve preservar a hipótese como aberta, não como fato confirmado; afirmar que 'o ADS está sustentando anúncios com health degradada' sem o breakdown por anúncio é inferência, não evidência",
       "confianca": "baixa"
     }
   ],
   "memoria_interna": [
-    "MLB4535865317 (IMB501P, cross_docking, health=null, available=8380): liderou o dia com 23 pedidos (25,3% do volume diário); sold_quantity histórico de 323 vs MLB3343832496 (5.721) e MLB3288536143 (5.680); pico atípico para histórico; origem orgânico vs ADS não confirmada sem breakdown",
-    "MLB3288536143 (IMB501V): is_catalog=false + catalog_product_id=MLB44224272 preenchido — combinação incomum; possível histórico de participação em catálogo ML; verificar no próximo ciclo se o anúncio saiu do catálogo e se isso contribui para health=0.71",
-    "Quatro anúncios do top10 em zona de health crítica: MLB4073003575 (0.75, fulfillment, 13 pedidos), MLB3288536143 (0.71, fulfillment, 5 pedidos), MLB3343832496 (0.85 limiar, fulfillment, 8 pedidos), MLB4073064873 (0.85 limiar, fulfillment, 3 pedidos)",
-    "fulfillment_mix_yesterday_top10 cobre 71 de 91 pedidos (78%); 20 pedidos fora do top10 sem logistic_type discriminado nesta métrica",
-    "Dados pendentes para próximos ciclos: (1) breakdown de revenue_ads por platform_item_id; (2) série temporal de health para os 4 anúncios em zona crítica (D-1 e D-2 mínimo); (3) confirmação de reposição MLB4410218897 (emergencial) e MLB6167272090 (ETA ≤3 dias ao CD); (4) status histórico de catálogo MLB3288536143 (por que is_catalog=false com catalog_product_id preenchido)"
+    "MLB4410218897 (914C_BAV): available_quantity=3, orders=3, status=active, fulfillment, health=null — provável ruptura de estoque no CD ML em 2026-05-20; risco imediato de cancelamentos prospectivos em 2026-05-21",
+    "MLB6167272090 (TL6250): is_catalog=true, catalog_product_id=MLB38833543, fulfillment, available_quantity=21, orders=5, quantity=5 — cobertura estimada ~3 dias; health=null por volume insuficiente (sold_quantity=70)",
+    "MLB6518176572 (KIT2YW1050): is_catalog=true, catalog_product_id=MLB66182346, fulfillment, available_quantity=34, orders=3, quantity=8 — ratio 2,67 unidades/pedido; cobertura real ~4 dias por unidades",
+    "MLB3288536143 (IMB501V): title='Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita' — title ML não menciona 'vermelha'; display_name='Conjunto 5 Potes de Vidro Redondos Tampa Vermelha'; SKU IMB501V ancora identidade como variante vermelha via sku_alias_high_confidence; divergência de atributo de cor entre title e display_name — risco médio, uso com ressalva",
+    "Produtos com mapping_status=mapped_generic_sku (confidence=medium) no top10: KIT10YW1050 (MLB4676726433), SPC0111 (MLB6661811594), KIT4YW320 (MLB4073064873), 914C_BAV (MLB4410218897)",
+    "Breakdown de cancelamentos por anúncio: ausente do pacote — requer query Supabase (pedidos com status cancelado + platform_item_id no dia 2026-05-20) ou painel ML",
+    "Série temporal de health por anúncio: ausente do pacote — requer histórico de health no Supabase para MLB4073003575 (health=0,75) e MLB3288536143 (health=0,71)",
+    "Breakdown de revenue ADS por platform_item_id: limitação estrutural permanente do pacote — ads_summary entrega apenas totais; requer relatório Mercado Ads por produto para o dia 2026-05-20",
+    "Anúncios is_catalog=true no top10: MLB3288536143 (catalog_product_id=MLB44224272, fulfillment), MLB6167272090 (MLB38833543, fulfillment), MLB6518176572 (MLB66182346, fulfillment), MLB6661811594 (MLB67933315, cross_docking)",
+    "~28 anúncios Full de ~82 ativos (34,1%) geram ~73,9% do volume de pedidos 30d — concentração estrutural confirmada; 174 anúncios pausados vs 82 ativos"
   ],
   "llm_used": true,
   "model": "sonnet",
@@ -2104,73 +2026,79 @@ O fato operacional mais importante do dia não é o número forte — é a sobre
   "recipient": "Yasmin",
   "analise_final_condensada": [
     {
-      "insight": "O dia parece fraco olhando para a média dos últimos 7 dias (−20,9% de pedidos), mas a comparação correta é com os mesmos dias da semana anteriores — e aí o resultado é forte: GMV +32,4% acima da banda sazonal histórica. O ganho veio inteiramente de ticket médio (R$55,91 vs R$41,53 nos mesmos dias da semana), não de volume. A conta cresceu por mix de produtos mais caros, não por mais alcance.",
-      "padrao": "C — Inversão negativa",
-      "base": "Estratégica + Operacional",
-      "classificacao": "fato"
-    },
-    {
-      "insight": "Dois anúncios ativos estão em ruptura iminente: o de canequinhas com suporte de madeira acrílico (3 unidades restantes, ativo, cada pedido novo hoje é um cancelamento prospectivo que compromete a reputação) e o de canecas de porcelana tulipa em catálogo Full (21 unidades, ritmo de 5 pedidos/dia, ~4 dias de cobertura). O segundo é estruturalmente mais grave: catálogo Full não recupera posição no Buy Box automaticamente após a ruptura — o impacto dura além do dia da falta.",
-      "padrao": "E — Localização",
+      "insight": "O anúncio de Kit 06 Canequinhas com Suporte de Madeira Acrílico provavelmente zerou o estoque no CD ML após os 3 pedidos de ontem e segue ativo em fulfillment — o ML pode continuar aceitando novos pedidos sem ter estoque para atender. Os 3 cancelamentos do dia coincidem numericamente com esses 3 pedidos, mas a origem não foi confirmada pelo pacote. Se vier desse anúncio, o cancellations_rate hoje zerado já está sendo pressionado — e a reputação 5_green/gold é o ativo que sustenta exposição e elegibilidade ADS de toda a conta.",
+      "padrao": "F — Métrica vs qualidade",
       "base": "Granular + Operacional",
       "classificacao": "risco latente"
     },
     {
-      "insight": "O mix de fulfillment do dia (56,3% Full vs 73,9% no padrão de 30 dias) não sinaliza mudança no perfil da conta — foi causado por um único produto em Cross-docking que liderou com 23 pedidos. Sem ele, o mix do dia seria ~81% Full, acima do próprio histórico. Cross-docking aqui é modalidade operacional normal, não sinal de problema.",
+      "insight": "O mix de fulfillment do dia parece ter caído estruturalmente — 56% Full contra 74% no histórico 30d — mas a queda foi produto-específica: o Conjunto de 5 Potes com Tampa Preta liderou o dia em cross_docking e, sozinho, puxou o número 18 pontos abaixo do padrão. O perfil de 74–78% Full em volume de pedidos da conta não mudou.",
       "padrao": "C — Inversão negativa",
-      "base": "Granular",
+      "base": "Granular + Operacional",
       "classificacao": "fato"
+    },
+    {
+      "insight": "O GMV ficou 32% acima da média histórica das quartas-feiras com volume de pedidos praticamente idêntico ao bimestre — a diferença toda está no ticket (R$55,91 vs R$41,53 histórico de quarta). Isso reflete o padrão de 60 dias: a conta subiu de patamar via mix de valor, não via alcance. O problema é que 60% desse resultado passou por ADS hoje, e os dois maiores anúncios Full têm health penalizada abaixo do limiar ML de 0,85. Como a memória da conta começa agora, esses valores — ADS share, ticket e health dos campeões — são o ponto zero que vai revelar nos próximos ciclos se a dependência de ADS é padrão estabelecido ou deterioração recente.",
+      "padrao": "D — Enquadramento estrutural",
+      "base": "Estratégica + combinação",
+      "classificacao": "hipótese"
     }
   ],
   "prioridades_condensadas": [
     {
-      "prioridade": "Resolver o estoque do anúncio ativo de canequinhas com suporte de madeira acrílico hoje: pausa preventiva ou reposição emergencial em 24h.",
-      "por_que": "Anúncio ativo com 3 unidades restantes após 3 pedidos ontem. Qualquer pedido gerado hoje é um cancelamento prospectivo que compromete a taxa de cancelamentos da reputação, atualmente zerada.",
-      "sinal_de_confirmacao_refutacao": "Pausa executada ou reposição confirmada com chegada em 24h = risco neutralizado. Anúncio seguir ativo sem estoque por mais um ciclo = cancelamento prospectivo já em curso.",
-      "escalar_se": "Cancelamento gerado confirmado no painel ML."
+      "prioridade": "Verificar se o anúncio de Kit 06 Canequinhas com Suporte de Madeira Acrílico tem reposição confirmada no CD ML para hoje — se não tiver, pausar antes que novos pedidos gerem cancelamentos forçados",
+      "por_que": "O anúncio provavelmente zerou o estoque após os 3 pedidos de ontem e segue ativo em fulfillment; cada cancelamento forçado pressiona o cancellations_rate hoje em zero, colocando a reputação 5_green/gold em risco direto",
+      "sinal_de_confirmacao_refutacao": "Reposição confirmada no CD ML nas próximas 4h = risco neutralizado; available_quantity ainda zerado no painel ML = pausar imediatamente e registrar como variável nos próximos ciclos de análise",
+      "escalar_se": "Qualquer cancelamento registrado hoje oriundo desse anúncio — checar reputação no painel ML e registrar para Kobe se cancellations_rate sair do zero"
     },
     {
-      "prioridade": "Confirmar reposição do anúncio de canecas de porcelana tulipa (catálogo Full, 21 unidades) com chegada ao CD do ML em até 3 dias.",
-      "por_que": "Com ritmo de 5 pedidos/dia, a cobertura é de ~4 dias. Catálogo Full com ruptura não recupera posição no Buy Box automaticamente — a janela para agir sem impacto na posição é hoje.",
-      "sinal_de_confirmacao_refutacao": "Reposição confirmada com ETA ≤3 dias ao CD = risco encaminhado. Sem confirmação em 24h = ruptura prospectiva em catálogo Full com impacto pós-ruptura mais longo do que em anúncio clássico.",
-      "escalar_se": "Sem reposição confirmada: escalar para Trader sobre ruptura prospectiva em catálogo Full."
+      "prioridade": "Confirmar se o Kit 6 Canecas Porcelana Tulipa 250ml tem reposição programada no CD ML — estoque estimado em aproximadamente 16 unidades com cobertura de cerca de 3 dias ao ritmo atual",
+      "por_que": "É anúncio de catálogo em fulfillment; ruptura nesse contexto tem recuperação de posição no Buy Box mais lenta do que em anúncio Clássico, e o risco de curto prazo é real, embora menos urgente que o das Canequinhas",
+      "sinal_de_confirmacao_refutacao": "Reposição com ETA igual ou inferior a 3 dias = monitorar; sem reposição programada e estoque zerado nos próximos 2 dias = risco de ruptura em catálogo/fulfillment com impacto de Buy Box",
+      "escalar_se": "não aplicável"
+    },
+    {
+      "prioridade": "Registrar os valores do dia como ponto zero da série: ADS share 59,8% (R$3.041 de R$5.087 de GMV), ticket médio R$55,91 e health dos dois maiores anúncios Full penalizados — para que os próximos ciclos possam confirmar ou refutar a dependência estrutural de ADS",
+      "por_que": "A conta não tem memória histórica documentada; sem ponto zero registrado hoje, não será possível saber nos próximos dias se o ADS share está subindo, estável ou caindo, nem se a health dos campeões está se deteriorando ou recuperando",
+      "sinal_de_confirmacao_refutacao": "ADS share acima de 55% por 3 dias consecutivos = dependência estrutural confirmada; health de qualquer campeão Full caindo por 2 ciclos seguidos = necessidade de alinhamento sobre cobertura ADS preventiva",
+      "escalar_se": "ADS share acima de 55% por 3 dias consecutivos — abrir discussão com Kobe sobre diversificação orgânica"
     }
   ],
   "o_que_nao_pode_ir_para_slack": [
     {
-      "item": "Atributo 'Tampa Vermelha' como descrição do anúncio de potes de vidro 5 peças (IMB501V)",
-      "motivo": "O título ML primário desse anúncio é 'Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita'. O display_name interno adiciona 'Tampa Vermelha' por inferência de família de SKU, não por confirmação explícita no título ML. Risco de identificação médio declarado pela L04 — usar o título ML na comunicação externa."
+      "item": "Afirmar que os 3 cancelamentos do dia vieram do anúncio de Canequinhas Acrílico",
+      "motivo": "A origem dos cancelamentos não foi confirmada pela L04 — é hipótese plausível por coincidência numérica, não fato; apresentar como fato contamina a leitura de reputação"
     },
     {
-      "item": "Afirmação de que o campeão de volume em Cross-docking (potes de vidro redondos tampa preta, 23 pedidos) foi impulsionado pelos ADS Himmel",
-      "motivo": "Hipótese em aberto declarada pela L04. O pacote ml_snapshot v1 não tem breakdown de revenue_ads por anúncio. A correlação entre ADS share dominante e o produto Cross-docking liderando o dia é plausível mas não confirmada. Não consolidar como fato."
+      "item": "Afirmar que o ADS está sustentando especificamente os anúncios com health degradada",
+      "motivo": "O breakdown de revenue ADS por anúncio não está disponível no pacote — limitação estrutural permanente; a hipótese permanece aberta, não confirmada"
     },
     {
-      "item": "Direção do health dos anúncios de potes em Full (caindo, estável ou recuperando)",
-      "motivo": "O pacote entrega apenas valor pontual de health. Sem série temporal (D-1, D-2), não é possível classificar a tendência para nenhum dos anúncios afetados. Não afirmar progressão de penalização sem dado de direção."
+      "item": "Afirmar que a health dos campeões Full está em queda ou em recuperação",
+      "motivo": "O pacote entrega apenas valor pontual de health; a direção não é determinável sem série histórica — citar tendência sem dado é inferência não sustentada"
     },
     {
-      "item": "Códigos MLB internos (MLB4073003575, MLB3288536143, MLB4410218897, MLB6167272090) no corpo da mensagem principal",
-      "motivo": "Identificadores técnicos não adequados para comunicação operacional no Slack. Usar descrição do produto ou referência ao anúncio."
+      "item": "Usar 'Tampa Vermelha' como atributo confirmado do anúncio Jogo Potes De Vidro 5 Peças Claro",
+      "motivo": "O title ML descreve 'Claro' sem mencionar cor de tampa; o display_name interno diz 'Tampa Vermelha', ancorado pelo SKU, mas o título ML não confirma explicitamente o atributo — referência genérica ou pelo title ML é mais segura"
     },
     {
-      "item": "Afirmação isolada de que '4 dos 10 produtos do top10 estão em zona crítica de health'",
-      "motivo": "Os 4 anúncios estão em níveis distintos: dois em penalização ativa (0,71 e 0,75) e dois apenas no limiar (0,85). Sem série temporal para nenhum deles, apresentar o escopo ampliado sem a ressalva de confiança média induziria alarme sem base confirmada para ação."
+      "item": "IDs técnicos MLB e SKUs crus nos blocos de análise e prioridade do Slack",
+      "motivo": "Regra padrão ML — MLBs só em memória técnica interna; SKUs crus não aparecem na mensagem final"
     }
   ],
   "memoria_para_amanha": [
-    "Patamar de ticket em R$55,91 (+33,6% vs 60d) confirmado em múltiplas janelas independentes (30d, 60d, mesmos dias da semana) — registrar como referência de série para monitorar se o ganho se sustenta ou reverte nas próximas semanas.",
-    "ADS share de 59,8% em 2026-05-20 registrado como ponto zero da série. Monitorar por 3 dias consecutivos: share acima de 55% de forma recorrente muda a leitura de campanha eficiente em fase inaugural para dependência estrutural de mídia paga.",
-    "Health pontual dos anúncios Full em zona crítica: MLB4073003575 (0,75, 13 pedidos), MLB3288536143 (0,71, 5 pedidos), MLB3343832496 (0,85 limiar, 8 pedidos), MLB4073064873 (0,85 limiar, 3 pedidos). Coletar valores amanhã para calcular direção — sem série temporal, decisão sobre acionar Himmel para cobertura preventiva não tem base granular.",
-    "Resolução do estoque de MLB4410218897 (canequinhas acrílico, 3 unidades): confirmar amanhã se pausa foi executada ou se houve cancelamento prospectivo gerado. Se cancelamento confirmado, verificar impacto em cancellations_rate da reputação.",
-    "Resolução do estoque de MLB6167272090 (canecas tulipa, catálogo Full, 21 unidades): confirmar se reposição foi programada com ETA ≤3 dias ao CD. Sem confirmação, escalar antes da ruptura — recuperação pós-ruptura em catálogo Full é mais lenta que em clássico.",
-    "Anomalia de dados: MLB3288536143 tem is_catalog=false mas catalog_product_id=MLB44224272 preenchido — estado interno inconsistente no ml_snapshot. Investigar se o anúncio saiu do catálogo e se isso contribui para health=0,71.",
-    "Breakdown de ADS por anúncio não disponível no pacote ml_snapshot v1 — limitação estrutural. A hipótese de que o campeão cross-docking (MLB4535865317, 23 pedidos, sold_quantity histórico de 323 — atípico vs MLB3343832496 com 5.721) foi impulsionado por ADS Himmel permanece em aberto. Dado necessário no próximo ciclo para confirmar ou descartar.",
-    "fulfillment_mix_yesterday_top10 cobre 71 de 91 pedidos (78%) — os 20 pedidos fora do top10 não têm logistic_type discriminado nesta métrica. Considerar ao ler mix de fulfillment do dia em ciclos futuros."
+    "MLB4410218897 (Kit 06 Canequinhas Acrílico, fulfillment, status=active): available_quantity provavelmente zerado após os 3 pedidos de 2026-05-20 — verificar se gerou cancelamentos em 2026-05-21 e checar reputação no painel ML; se confirmado, registrar como primeiro evento de pressão sobre cancellations_rate",
+    "MLB6167272090 (Kit 6 Canecas Porcelana Tulipa 250ml, catálogo/fulfillment): estoque estimado ~16 unidades com cobertura de ~3 dias — verificar reposição programada no CD ML; health=null por volume insuficiente (sold_quantity=70), não confirma saúde do anúncio",
+    "MLB6518176572 (Kit 2 Potes 1050ml, catálogo/fulfillment): monitorar consumo por unidades (ratio 2,67 un/pedido), não por pedidos — cobertura real é ~4 dias por unidades, não ~11 dias por pedidos; reposição deve ser antecipada usando units/dia como parâmetro",
+    "Ponto zero de ADS share: 59,8% em 2026-05-20 (R$3.041,56 / R$5.087,71) — confirmar ou refutar dependência estrutural após 3 ciclos consecutivos acima de 55%",
+    "Ponto zero de ticket: R$55,91 em 2026-05-20 (vs média histórica de quarta-feira R$41,53) — monitorar se o ticket elevado se sustenta nas próximas quartas ou retorna à banda histórica",
+    "Ponto zero de health: MLB4073003575 (Kit 4 Potes 1050ml Retangular) em 0,75 e MLB3288536143 (Jogo Potes 5 Peças Claro) em 0,71 em 2026-05-20 — registrar valores dos próximos ciclos para determinar direção",
+    "3 cancelamentos de 2026-05-20 sem origem confirmada por anúncio — query Supabase (pedidos com status cancelado + platform_item_id no dia) ou painel ML pode resolver antes do próximo ciclo; a origem determina se o cancellations_rate já foi pressionado",
+    "MLB3288536143: title ML usa 'Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita' sem mencionar cor de tampa; display_name interno usa 'Conjunto 5 Potes de Vidro Redondos Tampa Vermelha' — divergência de atributo de cor a corrigir na fonte (data builder ou mapa estático)"
   ],
   "alertas_de_confianca": {
     "nivel": "media",
-    "explicacao": "Os três insights têm base sólida: a leitura de patamar via ticket é confirmada em múltiplas janelas temporais independentes; o risco de ruptura dos dois anúncios é sustentado pelo pacote (confiança alta para o anúncio de catálogo Full e média para as canequinhas acrílico); a divergência de mix por efeito produto-específico é confirmada com confiança alta pela L04. O nível médio reflete duas lacunas relevantes que não comprometem os insights entregues mas limitam a tese estrutural: (1) a direção do health dos anúncios Full não está disponível — o pacote entrega apenas valores pontuais, o que impede confirmar se as penalizações estão progredindo ou estabilizadas; (2) a hipótese sobre ADS Himmel impulsionando o campeão cross-docking não é confirmável sem breakdown de receita ADS por anúncio, ausente no ml_snapshot v1."
+    "explicacao": "Os dados operacionais do dia são sólidos: reconciliação perfeita, cobertura 100% de logistic_type nos pedidos 30d e top_items completo com identidade confirmada em todos os produtos do top10. O nível médio se justifica por quatro limitações que afetam a profundidade das conclusões: a origem dos 3 cancelamentos não foi confirmada pela L04 por falta de breakdown no pacote, mantendo a hipótese mais urgente do dia não verificada; a direção da health dos dois campeões Full penalizados não é determinável sem série histórica, o que impede avaliar urgência de intervenção; a composição do revenue ADS por anúncio é limitação estrutural permanente do pacote, deixando a hipótese de mascaramento orgânico em aberto; e a memória semanal e mensal estão vazias, tornando esta a leitura inaugural sem referência histórica documentada para comparação. Nenhum gap invalida a análise do dia, mas todos limitam a conclusividade sobre a tese de vulnerabilidade estrutural."
   },
   "llm_used": true,
   "model": "sonnet",

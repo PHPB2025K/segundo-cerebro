@@ -1,0 +1,159 @@
+{
+  "camada": "granular",
+  "data": "2026-05-20",
+  "recipient": "Leonardo",
+  "platform": "amazon",
+  "respostas_operacional": [
+    {
+      "pergunta": "Os 3 cancelamentos do dia estão concentrados em qual ASIN ou em qual origem de pedido?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote de dados fornece apenas o total de cancelamentos (3) como métrica agregada da conta. Não há dado granular de cancelamentos por ASIN, por pedido individual, por horário ou por origem de fulfillment disponível no pacote desta camada.",
+      "leitura": "Impossível determinar se os cancelamentos estão concentrados no ASIN líder (CK4742/B0G2CWWMGK) ou distribuídos. A pergunta não pode ser respondida com os dados disponíveis.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa",
+      "nota": "Dado necessário para resposta: lista de pedidos cancelados com ASIN/platform_item_id e motivo de cancelamento. Sem isso, o risco operacional de cancelamentos concentrados no líder permanece aberto."
+    },
+    {
+      "pergunta": "Qual era o status de Buy Box e cobertura de estoque FBA do CK4742 (B0G2CWWMGK) durante o dia de ontem?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote de dados não contém campo de Buy Box percentage, FBA stock level, FBA eligibility status ou qualquer métrica de saúde de listing para o ASIN B0G2CWWMGK ou para qualquer outro ASIN. O fulfillment confirma 100% FBA (40 pedidos FBA, 0 FBM), mas isso é dado de execução — não de saúde operacional do ASIN.",
+      "leitura": "A ausência de dado de Buy Box e FBA stock é a lacuna operacional mais crítica do dia. Com CK4742 representando 37,5% dos pedidos em estrutura 100% FBA, não é possível afirmar se o volume atual tem sustentação competitiva ou é produto de uma janela de exposição não garantida.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa",
+      "nota": "Dado necessário: Buy Box percentage histórico para B0G2CWWMGK (mínimo 7d) e nível de estoque FBA atual. Sem isso, a tese de ganho de patamar permanece com validação operacional em aberto conforme sinalizado pela Tática."
+    },
+    {
+      "pergunta": "O pico de 22h (6 pedidos, ~15% do volume) é padrão recorrente ou comportamento isolado do dia?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote inclui distribuição horária apenas para o dia de hoje (2026-05-20). Não há série histórica de distribuição por hora disponível para comparação. Os dados históricos (7d, 30d, 60d) fornecem apenas médias de pedidos, GMV, ticket e itens — sem breakdown horário. Weekly e monthly são templates vazios sem entradas históricas.",
+      "leitura": "Não é possível classificar o pico de 22h como recorrente ou isolado. O dado existe para hoje (6 pedidos às 22h, correspondendo a 15% do volume diário), mas não há série histórica horária para contextualizar. A concentração é observável; sua natureza (padrão vs. evento) é indeterminável.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa",
+      "nota": "Dado necessário: distribuição horária dos últimos 7 a 14 dias para Amazon. A partir do terceiro ciclo diário com histórico acumulado, essa pergunta poderá ser respondida internamente."
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Divergência entre display_name e produto real: TL250P e TL250B mapeados como 'Tigela de Vidro 250ml' quando raw_title indica canecas de porcelana",
+      "origem": "risco de identificação",
+      "evidencia": {
+        "TL250P": {
+          "produto_visivel_raw_title": "Budamix Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Empilhável Ideal para Chocolate Quente e Café Expresso Preto",
+          "display_name_mapeado": "Tigela de Vidro 250ml",
+          "platform_item_id": "B0GGTY2BLT",
+          "sku": "TL250P",
+          "pedidos": 3,
+          "fonte": "top_products / pedido real"
+        },
+        "TL250B": {
+          "produto_visivel_raw_title": "Kit 6 Canecas de Porcelana Tulipa 250ml para Café e Chá Jogo de Caneca Grande Empilhável Ideal para Chocolate Quente e Café Expresso Budamix Branco",
+          "display_name_mapeado": "Tigela de Vidro 250ml",
+          "platform_item_id": "B0GGTTMD4H",
+          "sku": "TL250B",
+          "pedidos": 2,
+          "fonte": "top_products / pedido real"
+        }
+      },
+      "leitura": "Dois ASINs distintos (B0GGTY2BLT e B0GGTTMD4H) têm raw_title confirmado de Canecas de Porcelana Tulipa 250ml (variações Preto e Branco), mas estão mapeados com display_name 'Tigela de Vidro 250ml' — produto de categoria diferente. O nome exibido não corresponde ao produto real do pedido. O mapping_reason é 'reviewed_sku_display_map' com confiança 'high', o que sugere que esse mapeamento foi revisado manualmente e pode estar incorreto no catálogo interno. O raw_title (fonte primária por regra Amazon) invalida o display_name como identificador correto.",
+      "conclusao_granular": "divergência confirmada — display_name incorreto em relação ao produto real do pedido",
+      "confianca": "alta",
+      "bloqueio_slack": "TL250P e TL250B não podem ser citados como 'Tigela de Vidro 250ml' no Slack — o produto real do pedido é Canecas de Porcelana Tulipa 250ml. Usar raw_title ou citar apenas como 'canecas' sem nome de display incorreto."
+    },
+    {
+      "investigacao": "Identificação com confiança reduzida: XCP003 e 028 mapeados via fallback de título curto",
+      "origem": "risco de identificação",
+      "evidencia": {
+        "XCP003": {
+          "produto_visivel_raw_title": "Kit 6 Xícaras de Café Chá Porcelana 170ml Modelo Paris Presente Casa Cozinha Chocolate Quente Xícara Budamix (Rosa)",
+          "platform_item_id": "B0GGTRYN4Q",
+          "sku": "XCP003",
+          "confidence_mapeamento": "medium",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "pedidos": 1,
+          "fonte": "top_products / pedido real"
+        },
+        "028": {
+          "produto_visivel_raw_title": "Kit Conjunto 3 Potes de Vidro Herméticos Tampa Bambu com Vedação Pote Hermético",
+          "platform_item_id": "B0F2GHQHRN",
+          "sku": "028",
+          "confidence_mapeamento": "medium",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "pedidos": 1,
+          "fonte": "top_products / pedido real"
+        }
+      },
+      "leitura": "Ambos os produtos têm platform_item_id e raw_title disponíveis no pacote, o que torna a identificação do produto real viável via fonte primária. O risco está no mapeamento interno (SKU cru '028' é genérico e o fallback de título sugere que o mapeamento não passou por revisão direta). Com 1 pedido cada, o impacto operacional hoje é mínimo — mas o SKU '028' merece revisão no catálogo interno para evitar ambiguidade futura em dias de maior volume.",
+      "conclusao_granular": "risco de identificação médio para fins de catálogo interno; produto real identificável por raw_title + platform_item_id para fins deste ciclo",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "Relação itens/pedido anômala no KIT2YW320: 2 pedidos, 6 itens",
+      "origem": "anomalia",
+      "evidencia": {
+        "produto_visivel": "Conjunto 2 Potes De Vidro 320ml Tampa Hermético 4 Travas",
+        "platform_item_id": "B0FB17CGD5",
+        "sku": "KIT2YW320",
+        "pedidos": 2,
+        "quantidade_total": 6,
+        "itens_por_pedido_media": 3.0,
+        "fonte": "top_products / pedido real"
+      },
+      "leitura": "A média de 3 unidades por pedido para um produto que é vendido como 'kit de 2 potes' indica compra múltipla do mesmo SKU por pedido (3 kits por compra em média). Isso pode refletir compra B2B ou alta percepção de valor por unidade. O impacto no GMV do dia é positivo mas pequeno (6 itens de um produto de ticket provavelmente baixo). Não há sinal de erro de registro — é comportamento de compra válido. Relevante como padrão a monitorar se o volume desse ASIN crescer.",
+      "conclusao_granular": "confirma comportamento de compra múltipla; sem anomalia crítica para o dia",
+      "confianca": "média"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "médio",
+    "fontes_de_risco": [
+      "display_name incorreto para TL250P e TL250B (mapeados como 'Tigela de Vidro 250ml' quando raw_title confirma Canecas de Porcelana Tulipa 250ml)",
+      "SKU genérico '028' com mapeamento via fallback (medium confidence)",
+      "XCP003 com mapeamento via fallback de título curto (medium confidence)"
+    ],
+    "explicacao": "O risco médio é motivado principalmente pela divergência confirmada entre display_name e produto real para TL250P e TL250B — dois ASINs identificáveis por raw_title e platform_item_id, mas com alias de exibição errado que poderia gerar erro silencioso se a Condensadora usasse o display_name em vez do título real. Para os 8 produtos restantes no top10, o risco é baixo: todos têm platform_item_id e raw_title confirmados, e a maioria foi mapeada via 'reviewed_sku_display_map' com confiança alta. A confiança geral das análises deste ciclo fica em média para os itens afetados e alta para os demais. Buy Box e FBA ausentes elevam o risco operacional, mas não o risco de identificação de produto.",
+    "bloqueios_slack": [
+      "TL250P não pode ser citado como 'Tigela de Vidro 250ml' — produto real do pedido é 'Kit 6 Canecas de Porcelana Tulipa 250ml Preto' (ASIN B0GGTY2BLT)",
+      "TL250B não pode ser citado como 'Tigela de Vidro 250ml' — produto real do pedido é 'Kit 6 Canecas de Porcelana Tulipa 250ml Branco' (ASIN B0GGTTMD4H)"
+    ]
+  },
+  "divergencia_entre_fontes": {
+    "divergencia_1": {
+      "descricao": "display_name 'Tigela de Vidro 250ml' nos produtos TL250P e TL250B vs. raw_title dos pedidos reais que indica Canecas de Porcelana Tulipa 250ml",
+      "fonte_a": "display_name / mapeamento interno (reviewed_sku_display_map)",
+      "fonte_b": "raw_title do pedido real (orderItems)",
+      "resolucao": "raw_title do pedido real (fonte B) prevalece — regra: produto visível Amazon prioriza título real do pedido + ASIN/platform_item_id; alias manual e display_name são apenas apoio interno, nunca fonte primária",
+      "impacto": "O produto correto para TL250P é 'Kit 6 Canecas de Porcelana Tulipa 250ml Preto' (ASIN B0GGTY2BLT) e para TL250B é 'Kit 6 Canecas de Porcelana Tulipa 250ml Branco' (ASIN B0GGTTMD4H). Se a Condensadora usar display_name, o Slack citará produto errado. O volume combinado é 5 pedidos (posição de 3º e 7º no ranking do dia) — impacto moderado em leitura de mix."
+    }
+  },
+  "detalhes_condensadora_nao_pode_perder": [
+    {
+      "detalhe": "TL250P e TL250B venderam como Canecas de Porcelana Tulipa 250ml (Preto e Branco), não como 'Tigela de Vidro 250ml' — o display_name no sistema está errado e o Slack não pode usar esse alias",
+      "por_que_importa": "Se a mensagem usar o display_name mapeado, cita produto errado para Leonardo — erro silencioso de identificação que pode distorcer a leitura de mix e gerar decisões baseadas em produto incorreto",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "As 3 perguntas prioritárias da Operacional (cancelamentos por ASIN, Buy Box/FBA do CK4742, recorrência do pico de 22h) ficaram todas sem resposta por falta de dado no pacote — nenhuma das lacunas operacionais críticas foi fechada por esta camada",
+      "por_que_importa": "A Condensadora não pode apresentar o dia como operacionalmente validado; as checagens que a Tática sinalizou como pré-requisito (Buy Box, FBA, cancelamentos no líder) continuam abertas e precisam ser encaminhadas como urgência para Leonardo, não como informação resolvida",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Top 3 em 57,5% com CK4742 isolado em 37,5% — a distribuição granular confirma que o segundo produto (SPC002, 5 pedidos) está a 10 pedidos de distância do líder, insuficiente para funcionar como amortecedor real",
+      "por_que_importa": "A mensagem não pode suavizar a concentração com 'cauda distribuída' — a cauda existe (10 SKUs distintos), mas nenhum produto além do líder tem volume operacionalmente relevante; o risco de dependência identificado pela Estratégica é confirmado em nível granular",
+      "confianca": "alta"
+    }
+  ],
+  "memoria_interna": {
+    "nota": "Itens abaixo são para log e investigações futuras — não devem ir para Slack",
+    "itens": [
+      "ASINs completos dos top10: CK4742=B0G2CWWMGK, SPC002=B0GH2BTQFJ, TL250P=B0GGTY2BLT, IMB501C=B0GSWRMDRG, KIT2YW320=B0FB17CGD5, 914C=B0G2SV7NR1, TL250B=B0GGTTMD4H, XCP002=B0GGTRQPRC, XCP003=B0GGTRYN4Q, 028=B0F2GHQHRN",
+      "Distribuição horária completa: 7h=1, 8h=2, 9h=5, 10h=1, 11h=4, 12h=2, 13h=1, 15h=2, 16h=3, 17h=4, 18h=2, 19h=1, 20h=1, 21h=4, 22h=6, 23h=1 — pico 22h = 15% do volume; segundo maior cluster: 9h (5 pedidos = 12,5%)",
+      "KIT2YW320: 2 pedidos, 6 itens = média 3 unidades/pedido — padrão de compra múltipla a monitorar se volume crescer",
+      "SKU '028' genérico: revisar mapeamento interno para evitar ambiguidade futura — raw_title confirma 'Kit Conjunto 3 Potes de Vidro Herméticos Tampa Bambu' (B0F2GHQHRN)",
+      "Perguntas da Operacional ficaram 3/3 sem resposta por ausência de dado granular — registrar como gaps a resolver na arquitetura do pacote de dados (cancelamentos por ASIN, Buy Box histórico, distribuição horária histórica)",
+      "TL250P e TL250B: mapeamento internal (reviewed_sku_display_map) com display_name 'Tigela de Vidro 250ml' está divergente do produto real — requer correção no catálogo interno; não é erro de pedido, é erro de alias"
+    ]
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

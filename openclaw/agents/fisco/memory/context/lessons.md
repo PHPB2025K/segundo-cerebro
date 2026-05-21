@@ -1,6 +1,12 @@
 # Lições — Fisco
 
-_Atualizado: 2026-05-19_
+_Atualizado: 2026-05-20_
+
+## 2026-05-20
+- Persistência do HTTP 403 da Filial por seis dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/token e teste controlado.
+- Matriz segue estável nas execuções completas do refresh, então o risco principal permanece concentrado na Filial, no canal de alerta e na confiabilidade da automação.
+- Abortos/timeouts do cron podem impedir resposta consolidada e, em uma rodada, impedir até a captura de resultado fiscal útil; a consolidação diária precisa considerar sessões incompletas como risco operacional.
+- Respostas de cron fiscal devem sempre incluir horário em BRT quando exibirem horário; padronizar isso evita mistura de UTC/BRT em auditoria operacional.
 
 ## 2026-05-19
 - Persistência do HTTP 403 da Filial por cinco dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/token e teste controlado.

@@ -10,13 +10,13 @@ tags:
 
 # MEMORY.md - Long-Term Memory
 
-_Último update: 2026-05-18_
+_Último update: 2026-05-20_
 
 ## Estado operacional recente
+- 2026-05-20: Refresh OAuth do Bling manteve o padrão crítico pelo sexto dia: Matriz OK nas execuções completas, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403 e uma rodada abortada antes de resultado fiscal útil. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
+- 2026-05-19: Refresh OAuth do Bling manteve o padrão crítico: Matriz OK nas execuções completas, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403, além de bloqueios/abortos de automação. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-05-18: Refresh OAuth do Bling manteve o padrão crítico: Matriz OK nas execuções observadas, Filial com HTTP 403 por empresa vinculada ao token inativa, e alerta WhatsApp também com HTTP 403. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-05-17: Refresh OAuth do Bling manteve o padrão crítico: Matriz OK nas execuções em que o script rodou, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403, além de uma execução bloqueada por allowlist. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
-- 2026-05-16: Refresh OAuth do Bling repetiu o padrão crítico em todas as execuções observadas: Matriz OK, Filial com HTTP 403 por empresa vinculada ao token inativa, e alerta WhatsApp também com HTTP 403. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
-- 2026-05-15: Refresh OAuth do Bling apresentou falha recorrente na Filial (HTTP 403, empresa vinculada ao token inativa). Matriz renovou/conectou nas execuções completas. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - Bloqueio atual: qualquer fluxo dependente da Filial no Bling deve aguardar correção do token/status da empresa, validação de conectividade e estabilização da execução automática.
 
 ## Estrutura de memória

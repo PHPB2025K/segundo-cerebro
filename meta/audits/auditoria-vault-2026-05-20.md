@@ -547,3 +547,7 @@ Variantes detectadas por normalização (lower + sem `s` final + `_`→`-`).
 ---
 
 _Auditoria gerada por `/tmp/vault-audit/audit.py` em 2026-05-20._
+
+## Conectado a
+
+- [[meta/audits/auditoria-conexoes-2026-04-10]] — **predecessor**: auditoria anterior do vault (10/04)

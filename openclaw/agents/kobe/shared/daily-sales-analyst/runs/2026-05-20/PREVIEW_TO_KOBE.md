@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-20
-**Gerado em:** 2026-05-21T17:20:27.617935+00:00
+**Gerado em:** 2026-05-21T19:20:31.950287+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,9 +24,10 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** A Condensadora usou notação americana (ponto decimal) para health scores em seu output intermediário — corrigir na próxima versão das regras da Condensadora para garantir que artefatos intermediários já adotem o padrão numérico brasileiro, evitando propagação ao Slack.
-- **Aviso:** O bloqueio da Condensadora proibiu 'afirmar reclamação, atraso ou listing como causa' mas não explicitou se hipóteses formuladas com 'pode ser' são permitidas — a Slack Writer interpretou o silêncio como permissão de hipótese. Recomenda-se clarificar na próxima versão das regras se o bloqueio inclui ou exclui formulações hipotéticas, para fechar essa ambiguidade antes do próximo ciclo.
-- **Aviso:** O log das Decisões de Formatação descreveu incorretamente 'estoque de 3 unidades' como se fosse 'estoque zerado' — sinaliza necessidade de a Slack Writer citar o trecho literal alterado, não a categoria do bloqueio, para garantir rastreabilidade exata no Gate 8.
+- **Aviso:** Valores monetários abreviados na seção de análise (R$ 3.041 e R$ 5.087) são herança direta da Condensadora, que adotou o mesmo tratamento para esses valores ilustrativos de proporção ADS/GMV. A Slack Writer foi fiel à fonte, o que é correto. Para eliminar o Menor nos próximos ciclos, considerar que a Condensadora já entregue esses valores com decimais completos quando citados em contexto monetário, evitando que a Slack Writer precise escolher entre fidelidade e padrão numérico.
+- **Aviso:** Primeira leitura qualitativa do ciclo ML desde que Yasmin assumiu em 22/04/2026. Memória qualitativa estabelecida hoje como linha de base: ADS share 59,8%, ROAS 11,6x, ACOS 4,33%, ticket R$ 55,91, GMV R$ 5.087,71. Nenhuma hipótese anterior para confirmar ou refutar.
+- **Aviso:** Kit 06 Canequinhas com Suporte Acrílico (MLB4410218897) encerrou o dia com available_quantity=4 e 3 pedidos — ruptura iminente em ~1 dia. Prioridade operacional corretamente transmitida à Yasmin. Verificar no próximo ciclo se houve reposição ou novos cancelamentos.
+- **Aviso:** Health dos dois campeões Full (KIT4YW1050=0,75 e IMB501V=0,71) sem série temporal disponível no pacote — direção não determinável. Dado central para próximo ciclo: valores de D-1 e D-2 para calcular tendência e confirmar ou refutar erosão orgânica progressiva.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/00-data-package.json`

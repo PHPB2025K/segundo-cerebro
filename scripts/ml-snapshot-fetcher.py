@@ -57,18 +57,26 @@ log = logging.getLogger("ml-snapshot")
 
 # ─── Constants ────────────────────────────────────────────────────────────────
 
+# Mapeamento dos logistic_type da API ML → buckets operacionais Budamix.
+# IMPORTANTE: a nomenclatura ML diverge da nomenclatura operacional. Mapa correto:
+#   fulfillment   = Full (estoque no ML, envio direto do CD ML)
+#   cross_docking = COLETA (ML coleta na expedição da Budamix e distribui)
+#   self_service  = FLEX real (lojista entrega no mesmo dia)
+#   drop_off/xd_drop_off = AGÊNCIA (lojista leva pacote a uma agência ML)
+# Confusão comum: "cross_docking" parece Flex mas NÃO é — é a Coleta ML.
 ML_LOGISTIC_TYPE_TO_BUCKET = {
-    "fulfillment": "full",       # Mercado Envios Full
-    "cross_docking": "flex",     # Mercado Envios Flex
-    "self_service": "self_service",  # Coletado / Colocado
-    "drop_off": "self_service",  # Postagem ag. Mercado Livre
-    "xd_drop_off": "self_service",
+    "fulfillment": "full",
+    "cross_docking": "cross_docking",
+    "self_service": "flex",
+    "drop_off": "drop_off",
+    "xd_drop_off": "drop_off",
 }
 
-# Amostragem do account overview — 50 anúncios é representativo sem explodir API
-ACCOUNT_OVERVIEW_SAMPLE_SIZE = 50
-MULTIGET_BATCH_SIZE = 20  # limite oficial do endpoint multi-get da API ML
-LOW_HEALTH_THRESHOLD = 0.85  # health < 0.85 = anúncio com penalização visível
+# Account overview: cobre 100% dos anúncios ativos (paginando)
+ITEMS_SEARCH_PAGE_SIZE = 100  # max permitido pelo endpoint /users/{id}/items/search
+ITEMS_SEARCH_MAX_PAGES = 20   # 20 * 100 = 2000 ids (defensivo; Budamix tem ~80 ativos)
+MULTIGET_BATCH_SIZE = 20      # limite oficial do endpoint multi-get da API ML
+LOW_HEALTH_THRESHOLD = 0.85   # health < 0.85 = anúncio com penalização visível
 
 # ─── Blocos do snapshot ───────────────────────────────────────────────────────
 
@@ -148,7 +156,7 @@ def compute_fulfillment_mix(top_items_details, top_products):
     Agrega logistic_type dos top anúncios PONDERADO pelos pedidos do dia.
     Devolve % Full / Flex / Coletado / unknown.
     """
-    counts = {"full": 0, "flex": 0, "self_service": 0, "unknown": 0}
+    counts = {"full": 0, "cross_docking": 0, "flex": 0, "drop_off": 0, "unknown": 0}
     total_orders_counted = 0
 
     # mapa platform_item_id -> orders pra lookup rápido
@@ -174,14 +182,24 @@ def compute_fulfillment_mix(top_items_details, top_products):
             "reason": "no_top_items_with_orders_resolved",
         }
 
+    def _pct(c):
+        return round(100 * c / total_orders_counted, 1)
+
     return {
         "status": "ok",
-        "full_pct": round(100 * counts["full"] / total_orders_counted, 1),
-        "flex_pct": round(100 * counts["flex"] / total_orders_counted, 1),
-        "self_service_pct": round(100 * counts["self_service"] / total_orders_counted, 1),
-        "unknown_pct": round(100 * counts["unknown"] / total_orders_counted, 1),
+        "full_pct": _pct(counts["full"]),
+        "cross_docking_pct": _pct(counts["cross_docking"]),
+        "flex_pct": _pct(counts["flex"]),
+        "drop_off_pct": _pct(counts["drop_off"]),
+        "unknown_pct": _pct(counts["unknown"]),
         "total_orders_resolved": total_orders_counted,
         "computed_from": "top_10_items_weighted_by_orders",
+        "_glossary": {
+            "full": "fulfillment — estoque no CD do ML, envio direto",
+            "cross_docking": "ML coleta na expedição da Budamix e distribui",
+            "flex": "self_service — lojista entrega no mesmo dia",
+            "drop_off": "lojista posta em agência ML",
+        },
     }
 
 
@@ -195,6 +213,38 @@ def _count_items_by_status(token, status):
     if not data:
         return None
     return (data.get("paging") or {}).get("total")
+
+
+def _fetch_all_item_ids(token, status):
+    """
+    Pagina /users/{USER_ID}/items/search?status={status} até pegar TODOS os IDs.
+    Retorna (lista_de_ids, total_reportado_pela_api).
+    Se a API limitar paginação, devolve o que conseguir + warning no log.
+    """
+    all_ids = []
+    total_reported = None
+    offset = 0
+    for page in range(ITEMS_SEARCH_MAX_PAGES):
+        url = (
+            f"https://api.mercadolibre.com/users/{ml_conn.USER_ID}/items/search"
+            f"?status={status}&limit={ITEMS_SEARCH_PAGE_SIZE}&offset={offset}"
+        )
+        data = ml_conn.api_get(url, token)
+        if not data:
+            break
+        if total_reported is None:
+            total_reported = (data.get("paging") or {}).get("total")
+        results = data.get("results", []) or []
+        all_ids.extend(results)
+        if not results or len(all_ids) >= (total_reported or 0):
+            break
+        offset += ITEMS_SEARCH_PAGE_SIZE
+    if total_reported and len(all_ids) < total_reported:
+        log.warning(
+            f"Paginação cobriu {len(all_ids)}/{total_reported} ativos "
+            f"(limite ITEMS_SEARCH_MAX_PAGES atingido)"
+        )
+    return all_ids, total_reported
 
 
 def _multiget_items(token, item_ids, attributes):
@@ -224,10 +274,10 @@ def build_account_overview_block(token):
     """
     Panorama de TODA a conta (não só top 10 do dia):
       - totais por status (active / paused / closed)
-      - amostragem de até 50 ativos com % Full/Flex/Coletado, frete grátis,
+      - análise de 100% dos ativos com % Full/Flex/Coletado, frete grátis,
         listing_type, catálogo, fora de estoque, health baixo
     """
-    # 1. contagens por status — 3 chamadas baratas
+    # 1. contagens por status — 3 chamadas baratas (paused/closed para visibilidade)
     counts = {
         "active": _count_items_by_status(token, "active"),
         "paused": _count_items_by_status(token, "paused"),
@@ -240,47 +290,38 @@ def build_account_overview_block(token):
             "error": "items/search status=active returned None",
         }
 
-    # 2. amostragem dos ativos — pega 50 primeiros IDs
-    sample_url = (
-        f"https://api.mercadolibre.com/users/{ml_conn.USER_ID}/items/search"
-        f"?status=active&limit={ACCOUNT_OVERVIEW_SAMPLE_SIZE}"
-    )
-    sample_data = ml_conn.api_get(sample_url, token)
-    if not sample_data:
+    # 2. pega TODOS os IDs ativos (paginando)
+    active_ids, total_reported = _fetch_all_item_ids(token, "active")
+    if not active_ids:
         return {
             "status": "partial",
             "totals": counts,
-            "sample_analysis": {"status": "unavailable", "error": "sample fetch failed"},
+            "active_analysis": {"status": "unavailable", "error": "no active ids fetched"},
         }
-    sample_ids = sample_data.get("results", []) or []
-    if not sample_ids:
-        return {
-            "status": "partial",
-            "totals": counts,
-            "sample_analysis": {"status": "unavailable", "error": "no active items"},
-        }
+    coverage_pct = round(100 * len(active_ids) / counts["active"], 1) if counts["active"] else 0.0
 
     # 3. multiget detalhes — atributos mínimos pra reduzir payload
     attributes = [
         "id", "status", "listing_type_id", "catalog_listing",
         "shipping", "available_quantity", "health", "sold_quantity",
     ]
-    items = _multiget_items(token, sample_ids, attributes)
-    sample_size_real = len(items)
+    items = _multiget_items(token, active_ids, attributes)
+    n = len(items)
 
-    if sample_size_real == 0:
+    if n == 0:
         return {
             "status": "partial",
             "totals": counts,
-            "sample_analysis": {"status": "unavailable", "error": "multiget failed"},
+            "active_analysis": {"status": "unavailable", "error": "multiget failed"},
         }
 
-    # 4. agregações da amostra
-    fulfillment_counts = {"full": 0, "flex": 0, "self_service": 0, "unknown": 0}
+    # 4. agregações sobre 100% dos ativos
+    fulfillment_counts = {"full": 0, "cross_docking": 0, "flex": 0, "drop_off": 0, "unknown": 0}
     listing_counts = {}
     catalog_count = 0
     free_shipping_count = 0
     out_of_stock_count = 0
+    out_of_stock_ids = []
     low_health_count = 0
     no_health_data_count = 0
 
@@ -298,31 +339,42 @@ def build_account_overview_block(token):
             free_shipping_count += 1
         if (item.get("available_quantity") or 0) == 0:
             out_of_stock_count += 1
+            out_of_stock_ids.append(item.get("id"))
         health = item.get("health")
         if health is None:
             no_health_data_count += 1
         elif health < LOW_HEALTH_THRESHOLD:
             low_health_count += 1
 
-    def _pct(n):
-        return round(100 * n / sample_size_real, 1)
+    def _pct(c):
+        return round(100 * c / n, 1)
 
     return {
         "status": "ok",
         "totals": counts,
-        "sample_analysis": {
+        "active_analysis": {
             "status": "ok",
-            "sample_size": sample_size_real,
+            "analyzed": n,
+            "total_active": counts["active"],
+            "coverage_pct": coverage_pct,
             "fulfillment_mix": {
                 "full_pct": _pct(fulfillment_counts["full"]),
+                "cross_docking_pct": _pct(fulfillment_counts["cross_docking"]),
                 "flex_pct": _pct(fulfillment_counts["flex"]),
-                "self_service_pct": _pct(fulfillment_counts["self_service"]),
+                "drop_off_pct": _pct(fulfillment_counts["drop_off"]),
                 "unknown_pct": _pct(fulfillment_counts["unknown"]),
+                "_glossary": {
+                    "full": "fulfillment — estoque no CD do ML",
+                    "cross_docking": "ML coleta na expedição da Budamix",
+                    "flex": "self_service — entrega no mesmo dia pelo lojista",
+                    "drop_off": "lojista posta em agência ML",
+                },
             },
             "listing_type_mix": {k: _pct(v) for k, v in listing_counts.items()},
             "catalog_pct": _pct(catalog_count),
             "free_shipping_pct": _pct(free_shipping_count),
             "out_of_stock_count": out_of_stock_count,
+            "out_of_stock_ids": out_of_stock_ids,
             "low_health_count": low_health_count,
             "no_health_data_count": no_health_data_count,
             "low_health_threshold": LOW_HEALTH_THRESHOLD,
@@ -425,13 +477,16 @@ def build_snapshot(date_str, top_items_from):
     log.info("Buscando resumo ADS...")
     ads = build_ads_block(token, date_str)
 
-    log.info("Buscando panorama da conta inteira (50 ativos)...")
+    log.info("Buscando panorama da conta inteira (100% dos ativos)...")
     account_overview = build_account_overview_block(token)
     if account_overview.get("status") == "ok":
         totals = account_overview.get("totals", {})
+        analysis = account_overview.get("active_analysis", {})
         log.info(
             f"  → ativos:{totals.get('active')} pausados:{totals.get('paused')} "
-            f"fechados:{totals.get('closed')}"
+            f"fechados:{totals.get('closed')} "
+            f"| analisados {analysis.get('analyzed')}/{analysis.get('total_active')} "
+            f"({analysis.get('coverage_pct')}%)"
         )
 
     overall = overall_status(reputation, fulfillment, top_items, ads, account_overview)

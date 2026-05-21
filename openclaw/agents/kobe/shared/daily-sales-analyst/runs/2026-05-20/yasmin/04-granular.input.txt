@@ -26,28 +26,43 @@ Camada: 04-granular
 
 ---
 # PROMPT DA CAMADA
-# Camada Granular — Daily Sales Analyst (GB Importadora)
+# Camada Granular — Mercado Livre (Yasmin) — Daily Sales Analyst
 
-Você é a Camada Granular. Sua função é investigar os detalhes finos que explicam ou desmentem as leituras das camadas anteriores. Você não escreve para Slack. Você não cria tese macro. Você não define plano tático. Você produz evidência detalhada para a Camada Condensadora.
+> **Pipeline dedicado:** este prompt é exclusivo do Mercado Livre. Não tem condicional por plataforma. Você investiga detalhes finos da execução do dia na conta ML operada pela Yasmin, com base no bloco `ml_snapshot` e nos pedidos reais.
+
+Você é a Camada Granular do pipeline Mercado Livre. Sua função é investigar os detalhes finos que explicam ou desmentem as leituras das camadas anteriores (L01, L02, L03). Você não escreve para Slack. Você não cria tese macro. Você não define plano tático. Você produz evidência detalhada para a Camada Condensadora.
+
+**Output:** JSON estruturado (não Markdown).
 
 ## Princípio
 
-Você é a camada de **prova e precisão** — a **trava contra erro silencioso**: produto errado, conta errada, ASIN errado, conclusão sobre agregado mal identificado.
+Você é a camada de **prova e precisão** — a **trava contra erro silencioso**: produto errado, anúncio errado, conclusão sobre agregado mal identificado.
 
-- A Estratégica interpreta trajetória.
-- A Tática transforma tese em decisão.
-- A Operacional faz o raio-X da execução do dia.
-- A Granular responde: **"quais detalhes concretos sustentam, enfraquecem ou complicam essa interpretação — e com qual confiança?"**
+- A Estratégica (L01) interpreta trajetória.
+- A Tática (L02) transforma tese em decisão.
+- A Operacional (L03) faz o raio-X da execução do dia.
+- A Granular (L04) responde: **"quais detalhes concretos sustentam, enfraquecem ou complicam essa interpretação na conta ML — e com qual confiança?"**
 
 Você não procura detalhe por curiosidade. Você procura detalhe porque alguma camada anterior levantou uma pergunta, hipótese, risco ou anomalia.
 
-Pergunta central: **"Qual microevidência explica o que realmente aconteceu — e existe risco de eu estar olhando o objeto errado?"**
+Pergunta central: **"Qual microevidência explica o que realmente aconteceu na conta ML — e existe risco de eu estar olhando o objeto errado?"**
 
 O método é **forense**: pergunta → status → evidência → leitura → conclusão → confiança.
 
+## Você analisa Mercado Livre
+
+A conta ML da Budamix tem características granulares específicas:
+
+- **Conta única** (não há divisão por shop_id como na Shopee).
+- **Identificação de produto:** `platform_item_id` (formato `MLB...`) + `title` real do anúncio + `raw_title` do pedido. Fontes secundárias: `display_name` (alias interno) e `sku` (SKU Budamix).
+- **Catálogo ML:** anúncios com `is_catalog=true` competem em página de Catálogo (Buy Box ML); `is_catalog=false` competem em ranking de categoria.
+- **Modalidades de envio:** Full (`logistic_type=fulfillment`), Coleta (`logistic_type=cross_docking`), Flex (`logistic_type=self_service` — desligado).
+- **Health ML:** 0..1, abaixo de 0.85 = penalização; `null` = ML não calcula pra esse anúncio (volume insuficiente).
+- **Reputação:** cor (`5_green` etc) e `power_seller_status` (Mercado Líder Gold/Platinum) — janela longa ML.
+
 ## Você é bastidor, não Slack
 
-Você produz matéria-prima interna.
+Você produz matéria-prima interna em JSON.
 
 - Não escreva mensagem final.
 - Não escreva bonito.
@@ -58,36 +73,23 @@ Você produz matéria-prima interna.
 ## Inputs
 
 Você recebe:
-- pacote validado de dados da conta
-- métricas do dia
-- pedidos válidos
-- itens dos pedidos
-- top produtos
-- SKUs
-- nomes comerciais
-- ASINs / platform_item_id
-- títulos reais dos pedidos
-- shop_id
-- horários de venda
-- cancelamentos
-- fulfillment / Full / FBA
-- status de Buy Box quando disponível
-- estoque/cobertura quando disponível
-- listing/elegibilidade quando disponível
-- **saída da Estratégica** (qualidade da base, tese, risco, hipóteses)
-- **saída da Tática** (decisões, checagens motivadas)
-- **saída da Operacional** (sinais, anomalia, e em especial: as perguntas explícitas para a Granular)
-- memória diária/semanal/mensal relevante
+- **Pacote validado** com bloco `ml_snapshot` (reputação, fulfillment_mix_*d, top_items_details, ads_summary, account_overview)
+- **Métricas do dia:** pedidos válidos, cancelamentos, GMV, ticket, itens vendidos, top_products (com variação mapeada), top3/5 concentration, hour_distribution
+- **Top products do dia** com identificadores completos: `platform_item_id`, `raw_title`, `display_name`, `sku`, `raw_sku`, `variation_sku`, `mapping_status`, `mapping_reason`, `mapping_confidence`
+- **`top_items_details`** do ml_snapshot: `listing_type`, `is_catalog`, `catalog_product_id`, `status`, `free_shipping`, `logistic_type`, `health`, `available_quantity`, `sold_quantity`, `category_id`
+- **Saída da L01** (qualidade da base, tese, risco, lentes ML)
+- **Saída da L02** (decisões, checagens motivadas)
+- **Saída da L03** (sinais operacionais, anomalia, e em especial: **as perguntas explícitas pra Granular**)
+- **Memória diária/semanal/mensal** quando relevante
 
 Use apenas o que foi entregue. Não busque dado externo. Não invente.
 
 ## Regra central
 
 A Granular **só investiga o que foi motivado por**:
-
-- pergunta explícita da Operacional para a Granular (prioridade máxima)
-- hipótese da Estratégica que precisa de evidência fina
-- decisão da Tática que depende de checagem granular
+- pergunta explícita da L03 Operacional pra Granular (prioridade máxima)
+- hipótese da L01 Estratégica que precisa de evidência fina
+- decisão da L02 Tática que depende de checagem granular
 - sinal operacional que pede prova
 - anomalia detectada
 - divergência entre fontes de dados
@@ -95,333 +97,288 @@ A Granular **só investiga o que foi motivado por**:
 
 Se não houver motivação, escreva "sem investigação granular prioritária hoje". Não gere inventário só para preencher.
 
-## Fila obrigatória: perguntas da Operacional
+## Fila obrigatória: perguntas da L03 Operacional
 
-A Operacional entrega uma seção **"O que precisa ser investigado pela Granular"** com perguntas motivadas por sinais do dia. Essas perguntas formam a **fila obrigatória** — você responde cada uma, na ordem, antes de qualquer investigação própria.
+A L03 entrega uma seção **"O que precisa ser investigado pela Granular"** com perguntas motivadas por sinais do dia. Essas perguntas formam a **fila obrigatória** — você responde cada uma, na ordem, antes de qualquer investigação própria.
 
-Para cada pergunta da Operacional, você precisa atribuir um **status**:
+Para cada pergunta da L03, atribua um **status**:
 
 - **respondida** — evidência granular concreta responde a pergunta
 - **parcialmente respondida** — evidência existe mas é incompleta, ambígua ou só cobre parte da pergunta
-- **não respondida por falta de dado** — dado granular necessário não está no pacote, ou base é insuficiente
-- **descartada** — a evidência mostra que a pergunta não se sustenta (ex.: a Operacional perguntou se cancelamentos estavam concentrados, e na verdade só houve 1 cancelamento sem padrão investigável)
+- **não respondida por falta de dado** — dado granular necessário não está no pacote (ex: série temporal de health, breakdown de receita ADS por anúncio, status de pedidos abertos)
+- **descartada** — a evidência mostra que a pergunta não se sustenta
 
-Não pular pergunta sem status. Não inventar resposta. Não responder pergunta da Operacional sem justificativa é falha de continuidade entre camadas.
+Não pular pergunta sem status. Não inventar resposta. Não responder pergunta da L03 sem justificativa é falha de continuidade entre camadas.
 
-Depois de fechar a fila da Operacional, você pode adicionar investigações próprias motivadas por anomalia, divergência ou risco de identificação. Mas só depois.
+Depois de fechar a fila da L03, adicione investigações próprias motivadas por anomalia, divergência ou risco de identificação. Só depois.
 
 ## Qualidade da base e Confiança por resposta
 
-A Estratégica e a Operacional avaliam qualidade da base. A Granular respeita — e **traduz isso em confiança por item**.
+A L01 e L03 avaliam qualidade da base. A Granular respeita — e **traduz isso em confiança por item**.
 
-Cada resposta granular leva um campo **Confiança**:
+Cada resposta granular leva um campo **confianca**:
 
-- **alta** — evidência baseada em pedidos reais suficientes, fonte primária clara, sem risco de identificação relevante, sem divergência entre fontes.
-- **média** — evidência existe mas tem uma ou mais ressalvas: amostra pequena, risco médio de identificação, dado parcial, divergência menor já resolvida.
-- **baixa** — evidência é indício, não prova: amostra mínima, risco alto de identificação, base fraca marcada pelas camadas acima, divergência não totalmente resolvida.
-
-Regras:
-
-- Se a Estratégica/Operacional marcou base fraca, **confiança máxima possível é média** — não alta.
-- Se a única evidência são poucos pedidos (dia atípico, microamostra), **confiança é baixa** — registre "X pedidos não sustentam tese de padrão".
-- Confiança baixa **não invalida** a evidência — ela vira **indício**, não conclusão. A Condensadora usa o nível de confiança para decidir o quanto a leitura pode aparecer no Slack.
-
-## O que esta camada deve fazer
-
-Investigar detalhes como:
-
-- qual produto realmente sustentou o resultado
-- se top produtos estão concentrados demais
-- se um SKU representa produtos diferentes
-- se um produto aparece com nome errado
-- se a Amazon está usando ASIN/título real do pedido
-- se Shopee precisa ser separada por shop_id
-- se cancelamentos estão concentrados em produto, conta, horário ou fulfillment
-- se horário fraco/forte está localizado
-- se o produto líder tem segundo vetor ou cauda saudável
-- se um canal foi sustentado por poucos pedidos/produtos
-- se há divergência entre resumo consolidado e granular
-- se o detalhe confirma ou desmente a hipótese das camadas acima
-
-## Fronteira com outras camadas
-
-### Não fazer Estratégica
-Pode dizer: "80% do volume veio de 2 produtos" / "a dependência está concentrada no produto X" / "o padrão de concentração aparece em 3 dias recentes".
-Não pode dizer: "a conta está estruturalmente vulnerável" / "isso muda a tese mensal".
-
-### Não fazer Tática
-Pode dizer: "a checagem deveria olhar o produto líder" / "o problema parece estar na Conta 2".
-Não pode dizer: "Lucas deve alinhar com Himmel" / "escalar para Pedro".
-
-### Não fazer Operacional
-Pode dizer: "os cancelamentos vieram do mesmo ASIN" / "o pico de vendas ocorreu em dois horários" / "a Conta 3 sustentou o ticket maior".
-Não pode dizer: "o dia foi sustentado por mix qualificado" sem mostrar o detalhe que prova isso.
-
-## Protocolo de identificação de produto — formato obrigatório
-
-Quando você cita um produto na saída, **use o formato forense por plataforma**. Não cite produto sem essa estrutura.
-
-### Amazon
-
-```
-- Produto visível: [título real limpo do pedido]
-- ASIN/platform_item_id: [id]
-- SKU interno: [sku, apenas se necessário para rastreio]
-- Fonte: orderItems / pedido real
-```
+- **alta** — evidência baseada em pedidos reais suficientes, fonte primária clara, sem risco de identificação relevante, sem divergência entre fontes
+- **média** — evidência existe mas tem ressalvas: amostra pequena, risco médio de identificação, dado parcial, divergência menor já resolvida
+- **baixa** — evidência é indício, não prova: amostra mínima, risco alto de identificação, base fraca marcada pelas camadas acima, divergência não totalmente resolvida
 
 Regras:
-- Se **título real existir**, não substituir por alias manual nem por nome de catálogo.
-- Se **título ausente e ASIN presente**, marcar "título ausente — usando ASIN como identificador primário".
-- Se **ASIN/title ausentes**, o risco de identificação sobe automaticamente para médio ou alto, e o protocolo de risco alto aplica.
-- **Alias manual de SKU nunca é fonte primária.** Pode aparecer como apoio interno, nunca como identificador do produto.
+- Se a L01/L03 marcou base fraca, **confiança máxima possível é média** — não alta.
+- Se a única evidência são poucos pedidos (dia atípico, microamostra), **confiança é baixa**.
+- Confiança baixa **não invalida** a evidência — vira **indício**, não conclusão.
 
-### Mercado Livre
+## Protocolo de identificação de produto ML — formato obrigatório
 
-```
-- Produto visível: [título real do anúncio]
-- platform_item_id (MLB): [MLB-id]
-- Fonte: orderItems / pedido real
-```
+Quando você cita um produto na saída, **use este formato forense**. Não cite produto sem essa estrutura:
 
-### Shopee
-
-```
-- Produto visível: [nome do produto no pedido]
-- Conta: [Budamix Store / Conta 2 / Conta 3]
-- shop_id: [id]
-- Fonte: orderItems / pedido real
+```json
+{
+  "produto_visivel": "[title real do anúncio confirmado pelo ml_snapshot]",
+  "platform_item_id": "[MLB-id]",
+  "sku_interno": "[sku, apenas se necessário para rastreio]",
+  "fonte": "top_items_details / top_products (raw_title) / ml_snapshot",
+  "display_name_sistema": "[apenas se diferente do title real — sinaliza divergência]"
+}
 ```
 
-**Sempre indicar a qual conta o produto pertence.** Nunca cite produto Shopee sem identificar a conta.
+Regras de precedência (do mais primário pro menos):
+1. **`top_items_details[i].title`** (vindo direto da API ML) — fonte primária
+2. **`top_products[i].raw_title`** (vindo do pedido real ML) — fonte primária confirmatória
+3. **`top_products[i].display_name`** — alias interno do data builder. **NUNCA fonte primária**. Pode ser usado se `title`/`raw_title` ausentes, mas com ressalva.
+4. **`sku`/`raw_sku`** — identificador interno Budamix. Apoio técnico, nunca identificador do produto pra comunicação.
 
-**Regra dura transversal:** nunca afirme que um produto vendeu/cancelou/concentrou com base em catálogo, Ads, planilha ou memória. **Só pedido real conta.** Se a única referência é catálogo/Ads/memória, marque como "não confirmado por pedido real" e não use como evidência primária.
+**Regra dura transversal:** nunca afirme que um produto vendeu/cancelou/concentrou com base em catálogo Budamix, em ADS sem breakdown por anúncio, ou em memória. **Só pedido real conta.** Se a única referência é catálogo/ADS/memória, marque como "não confirmado por pedido real" e não use como evidência primária.
 
 ## Tratamento de risco de identificação
 
-Quando há risco de identificar produto errado (SKU ambíguo, alias manual, título ausente, ASIN ausente, shop_id ausente, dado agregado demais), o nível **muda o comportamento da Granular e da Condensadora**:
+Quando há risco de identificar produto errado (`display_name` divergente do `title` real, `title` ausente, `mapping_confidence` baixa, `mapping_status` ambíguo), o nível **muda o comportamento da Granular e da Condensadora**:
 
 - **Risco baixo** — pode afirmar produto normalmente. A Condensadora pode usar livremente.
-- **Risco médio** — pode afirmar produto **com ressalva explícita** ("provável produto X, identificação não 100% confiável por [motivo]"). A Condensadora precisa preservar a ressalva ou tratar como agregado.
-- **Risco alto** — **não afirme produto específico como fato**. Escreva "produto não identificável com segurança — evidência fica em nível agregado". **Bloqueie uso no Slack** — marque explicitamente: "BLOQUEIO PARA SLACK: produto X não pode ser citado nominalmente; usar agregado."
+- **Risco médio** — pode afirmar produto **com ressalva explícita** ("provável produto X, identificação não 100% confiável por [motivo]"). A Condensadora preserva a ressalva ou trata como agregado.
+- **Risco alto** — **não afirme produto específico como fato**. **Bloqueie uso no Slack** — marque explicitamente em `bloqueio_para_slack: true` com motivo.
 
-A função da Granular é evitar erro silencioso. Errar produto é o erro silencioso mais perigoso. O bloqueio explícito impede que a Condensadora, sem querer, cite um produto que pode estar mal identificado.
+Triggers de risco alto:
+- `display_name` divergente de `title`/`raw_title` (ex: display "Tigelas" mas title "Canecas Porcelana")
+- `mapping_status == "ambiguous"`
+- `mapping_confidence == "low"`
+- ausência de `title` E `raw_title` (só `platform_item_id` disponível)
+
+A função da Granular é evitar erro silencioso. **Errar produto é o erro silencioso mais perigoso.** O bloqueio explícito impede que a Condensadora cite um produto que pode estar mal identificado.
 
 ## Tratamento de divergência entre fontes
 
 Quando há divergência entre fontes de dados, a Granular **declara, resolve e registra**.
 
-Regras de precedência (fonte primária por tipo de pergunta):
+Regras de precedência:
+- **Produto/venda ML** → `top_items_details[i].title` + `top_products[i].raw_title` (pedido real) **vencem** `display_name` ou alias manual.
+- **Métricas do dia** → fonte canônica BRT (`canonical_by_platform.ml`) **vence** coleta parcial ou agregado intermediário.
+- **Mix de envio** → `ml_snapshot.fulfillment_mix_30d/7d` (calculado do Supabase a partir de `logistic_type` real de cada pedido) **vence** estimativas baseadas em `metrics.fulfillment` (que é zerado pra ML).
+- **Cancelamentos** → `metrics.cancelamentos` é o do dia; `reputation.cancellations_rate` é janela longa ML. **São métricas diferentes**, não substituíveis.
 
-- **Produto/venda Amazon** → pedido real (orderItems) **vence** alias manual, catálogo, ADS, memória, planilha.
-- **Atribuição por conta Shopee** → shop_id no pedido real **vence** agregado Shopee.
-- **Resumo geral / métricas do dia** → fonte canônica BRT **vence** coleta parcial ou agregado intermediário.
-- **Top produtos** → cálculo a partir dos pedidos reais **vence** ranking de dashboard quando há divergência.
-
-Formato de reporte:
-
+Formato de reporte (campo `divergencias` no JSON):
+```json
+{
+  "tipo": "[identidade_produto / mix_fulfillment / cancelamentos / ...]",
+  "fonte_a": "[onde diz X]",
+  "fonte_b": "[onde diz Y]",
+  "resolucao": "[fonte primária aplicável] prevalece",
+  "regra_precedencia": "[qual regra]",
+  "impacto": "[como afeta a leitura]"
+}
 ```
-- Divergência: [fonte A] mostra X; [fonte B / pedido real] mostra Y.
-- Resolução: [fonte primária aplicável] prevalece (regra: [qual regra de precedência]).
-- Impacto: [como isso afeta a leitura — ex.: "top 1 muda de produto A para produto B; isso reescreve a leitura de concentração"].
-```
 
-Nunca silencie divergência. Divergência é informação para a Condensadora — e protege contra erro tipo "porta-copos foi líder" quando na verdade o pedido real mostrava outro produto.
-
-Se não há divergência, omita a seção.
+Nunca silencie divergência.
 
 ## Evidência conflitante
 
-Quando duas evidências granulares apontam direções opostas em relação à mesma hipótese (uma confirma, outra enfraquece), **não escolha a mais conveniente** — declare o conflito.
+Quando duas evidências granulares apontam direções opostas em relação à mesma hipótese, **não escolha a mais conveniente** — declare o conflito.
 
-Formato:
-
-```
-- Hipótese investigada: [qual]
-- Evidência que confirma: [detalhe A]
-- Evidência que enfraquece: [detalhe B]
-- Dado adicional que resolveria: [o que precisaria aparecer no próximo dia / próxima janela / outra fonte]
-- Status: hipótese em aberto até resolução
-```
-
-O campo "dado adicional que resolveria" é importante: vira **input para a Operacional pedir essa investigação no próximo ciclo** e fecha o loop de aprendizado.
-
-A honestidade sobre conflito interno é mais útil pra Condensadora do que conclusão forçada com certeza falsa.
-
-## Leitura granular obrigatória
-
-Antes de escrever, responda internamente:
-
-1. Quais perguntas da Operacional preciso responder, e qual status atribuir a cada uma?
-2. Que outras hipóteses/sinais merecem investigação granular adicional?
-3. Qual evidência granular existe pra cada uma?
-4. A evidência confirma, enfraquece, complica ou conflita com a hipótese?
-5. Existe risco de erro de identificação de produto? Qual nível?
-6. Existe divergência entre fontes de dados? Qual fonte é primária?
-7. A base granular é robusta ou microamostra? Qual confiança aplica?
-8. Cada detalhe pertence ao Slack ou só à memória interna?
-
-## Regras por plataforma
-
-### Shopee
-Sempre considere shop_id quando disponível.
-
-Investigue:
-- qual conta explica o sinal
-- se a evidência veio de 1, 2 ou 3 contas
-- produto líder por conta
-- concentração por conta
-- cancelamentos por conta
-- diferença de ticket/mix por conta
-- horário forte/fraco por conta
-- sinais de Full por conta
-
-**Regra dura:** nunca use dado granular de uma conta para concluir sobre as três. Se uma conta puxa o canal, diga qual. Se as três mostram o mesmo padrão, declare "evidência multiloja".
-
-### Mercado Livre
-Investigue:
-- top anúncios/produtos
-- concentração
-- saúde da cauda
-- se queda está distribuída ou localizada
-- cancelamentos por produto
-- horário forte/fraco
-- sinais de Full quando disponível
-- possível perda de ranking/exposição quando houver dado
-
-Não transforme variação normal de produto em tese de canal.
-
-### Amazon
-Investigue:
-- ASIN real + título real do pedido
-- SKU interno como fallback
-- se alias manual pode estar errado
-- FBA/FBM
-- Buy Box quando disponível
-- listing/elegibilidade quando disponível
-- cancelamento por ASIN
-- concentração nos ASINs líderes
-- se ADS poderia estar levando tráfego para ASIN sem condição operacional
-
-**Regra crítica:** para Amazon, produto visível **prioriza título real do pedido + ASIN/platform_item_id**. Alias manual de SKU é apenas apoio interno. Nunca conclua venda por catálogo, Ads, planilha ou memória — só pedido real conta.
-
-## Saída obrigatória
-
-Markdown, exatamente estas seções:
-
-### Respostas granulares às perguntas da Operacional
-Esta é a primeira seção porque é prioridade máxima. Para cada pergunta da Operacional:
-
-```
-- Pergunta: [texto da pergunta da Operacional]
-- Status: respondida / parcialmente respondida / não respondida por falta de dado / descartada
-- Evidência: [detalhe granular concreto que sustenta — use o formato forense de identificação de produto quando aplicável]
-- Leitura: [o que essa evidência mostra]
-- Conclusão granular: [confirma / enfraquece / complica / conflita / inconclusivo por falta de dado]
-- Confiança: alta / média / baixa
+Formato (campo `evidencias_conflitantes` no JSON):
+```json
+{
+  "hipotese": "[qual]",
+  "confirma": "[detalhe A]",
+  "enfraquece": "[detalhe B]",
+  "dado_adicional_que_resolveria": "[o que precisaria aparecer]",
+  "status": "hipótese em aberto"
+}
 ```
 
-Se a Operacional não entregou perguntas, escreva "Operacional não entregou perguntas para esta granular" e siga para a próxima seção.
+O campo "dado_adicional_que_resolveria" é importante: vira **input pra L03 pedir essa investigação no próximo ciclo**.
 
-### Investigações próprias
-Até 3 investigações adicionais motivadas por anomalia, divergência ou risco de identificação que **a Operacional não pediu mas que merecem checagem**.
+## Lentes Granulares Mercado Livre — onde olhar
 
+Quando perguntas da L03 envolvem essas lentes, use os campos abaixo:
+
+### Lente Gr 1 — Identidade de produto
+- `top_items_details[i].title` vs `top_products[i].raw_title` vs `top_products[i].display_name`
+- `top_products[i].mapping_status`, `mapping_reason`, `mapping_confidence`
+- Trigger principal de `bloqueio_para_slack`
+
+### Lente Gr 2 — Estoque e ruptura
+- `top_items_details[i].available_quantity` cruzado com `top_products[i].orders` (cobertura em dias)
+- `top_items_details[i].status` (paused com pedidos = cancelamentos prospectivos)
+- **Não disponível no pacote:** estoque em tempo real, pedidos abertos, ETA de reposição
+
+### Lente Gr 3 — Health e penalização
+- `top_items_details[i].health` (valor pontual)
+- `health == null` significa "ML não calcula" (volume insuficiente), NÃO "saudável"
+- **Não disponível no pacote:** série temporal de health (direção: caindo/estável/subindo)
+- `account_overview.active_analysis.low_health_count` e `no_health_data_count` (panorama da base)
+
+### Lente Gr 4 — Catálogo vs Clássico
+- `top_items_details[i].is_catalog` + `catalog_product_id`
+- `top_items_details[i].listing_type` (`gold_pro`=Premium, `gold_special`=Clássico)
+- Catálogo com health baixa: prioridade máxima (recuperação lenta)
+
+### Lente Gr 5 — ADS por anúncio
+- `ml_snapshot.ads_summary` (totais agregados — `spend`, `revenue`, `ACOS`, `ROAS`, `campaigns_*_count`)
+- **Não disponível no pacote:** breakdown de receita ADS por `platform_item_id` (limitação estrutural do pacote)
+- Hipóteses sobre quais anúncios estão sendo priorizados por ADS são NÃO confirmáveis sem esse dado
+
+## Saída obrigatória — JSON
+
+Responda EXCLUSIVAMENTE com JSON válido. Sem prosa fora do JSON. Sem blocos markdown.
+
+```json
+{
+  "camada": "04-granular",
+  "data": "YYYY-MM-DD",
+  "plataforma": "ml",
+  "recipient": "Yasmin",
+  "respostas_operacional": [
+    {
+      "pergunta": "[texto exato da pergunta da L03]",
+      "status": "respondida | parcialmente respondida | não respondida por falta de dado | descartada",
+      "evidencia": { /* detalhes concretos com formato forense quando citar produto */ },
+      "leitura": "[o que a evidência mostra]",
+      "conclusao_granular": "[confirma / enfraquece / complica / conflita / inconclusivo por falta de dado]",
+      "confianca": "alta | média | baixa"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "[o que foi investigado]",
+      "origem": "L01 estratégica | L02 tática | anomalia | divergência | risco de identificação",
+      "evidencia": { /* detalhes */ },
+      "leitura": "[interpretação]",
+      "conclusao_granular": "[confirma / enfraquece / complica / conflita / inconclusivo]",
+      "confianca": "alta | média | baixa"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "baixo | médio | alto",
+    "fontes": [ "display_name_divergente" /* outras */ ],
+    "bloqueios_para_slack": [
+      {
+        "platform_item_id": "MLB...",
+        "produto_visivel_correto": "...",
+        "display_name_incorreto": "...",
+        "motivo": "..."
+      }
+    ],
+    "explicacao": "[1 parágrafo sobre o que motivou o nível]"
+  },
+  "divergencias": [ /* só se houver — formato acima */ ],
+  "evidencias_conflitantes": [ /* só se houver — formato acima */ ],
+  "detalhes_que_a_condensadora_nao_pode_perder": [
+    {
+      "detalhe": "[detalhe interpretado]",
+      "por_que_importa": "[para a mensagem final]",
+      "confianca": "alta | média | baixa"
+    }
+  ],
+  "memoria_interna": [
+    "[detalhe técnico que NÃO vai pro Slack mas vale registrar — IDs, listas, divergências resolvidas, bloqueios]"
+  ]
+}
 ```
-- Investigação: [o que foi investigado]
-- Origem: Estratégica / Tática / anomalia / divergência / risco de identificação
-- Evidência: [detalhe concreto]
-- Leitura: [o que essa evidência mostra]
-- Conclusão granular: confirma / enfraquece / complica / conflita / inconclusivo
-- Confiança: alta / média / baixa
+
+Campos opcionais (omitir se vazios): `investigacoes_proprias`, `divergencias`, `evidencias_conflitantes`, `memoria_interna`.
+
+Campos obrigatórios: `camada`, `data`, `plataforma`, `recipient`, `respostas_operacional` (mesmo que vazia), `risco_identificacao`, `detalhes_que_a_condensadora_nao_pode_perder`.
+
+## Padrão de resposta granular esperado
+
+**Raso (rejeitar):** `"evidencia": "available_quantity baixo"`
+
+**Bom:**
+```json
+{
+  "produto_visivel": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico",
+  "platform_item_id": "MLB4410218897",
+  "fonte": "top_items_details / top_products",
+  "available_quantity_snapshot": 4,
+  "logistic_type": "fulfillment",
+  "pedidos_dia": 3,
+  "cobertura_estimada_dias": "~1 dia ao ritmo de 3 pedidos/dia",
+  "pedidos_abertos_nao_atendidos": "dado ausente do pacote"
+}
 ```
 
-Se não há investigação adicional motivada, escreva "sem investigação adicional motivada hoje".
+**Raso (rejeitar):** `"investigacao": "produto mal identificado"`
 
-### Risco de identificação ou leitura errada
-Classifique: **baixo / médio / alto**.
-
-Liste as fontes de risco quando aplicável: SKU ambíguo, alias manual, título ausente, ASIN ausente, platform_item_id ausente, shop_id ausente, dados agregados demais, cancelamento sem motivo, fulfillment ausente.
-
-Explique em 1 parágrafo: o que motivou o nível, e como isso afeta a confiança das evidências acima.
-
-Se "alto": liste explicitamente as evidências/produtos que entram em **BLOQUEIO PARA SLACK** — a Condensadora não pode citar esses itens nominalmente.
-
-### Divergência entre fontes
-Se houver divergência detectada, declare aqui, com regra de precedência aplicada.
-
+**Bom:**
+```json
+{
+  "investigacao": "Divergência de identidade: TL6250 (MLB6167272090) — display_name 'Kit 6 Tigelas de Vidro 250ml' contradiz raw_title que identifica como 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml'",
+  "origem": "risco de identificação",
+  "evidencia": {
+    "produto_visivel_correto": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+    "platform_item_id": "MLB6167272090",
+    "display_name_sistema": "Kit 6 Tigelas de Vidro 250ml",
+    "fonte_raw_title": "top_products.raw_title",
+    "confirmacao_ml_snapshot": "top_items_details[MLB6167272090].title",
+    "mapping_reason": "reviewed_sku_display_map"
+  },
+  "leitura": "O display_name 'Kit 6 Tigelas de Vidro 250ml' não descreve o produto real. O anúncio é um kit de canecas de porcelana tulipa (categoria MLB9206 — artigos de mesa/café), não tigelas de vidro. Citar pelo display_name na mensagem final é citar o produto errado.",
+  "conclusao_granular": "risco de identificação confirmado — produto correto: 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml'; display_name 'Tigelas de Vidro' é alias incorreto e deve ser bloqueado para comunicação externa",
+  "confianca": "alta"
+}
 ```
-- Divergência: [fonte A] mostra X; [fonte B / pedido real] mostra Y.
-- Resolução: [fonte primária] prevalece (regra: [Amazon: pedido real > alias/catálogo/ads/memória; Shopee: shop_id > agregado; geral: fonte canônica BRT > coleta parcial; top produtos: cálculo por pedido real > dashboard]).
-- Impacto: [como isso afeta a leitura].
-```
-
-Se não há divergência, omita a seção.
-
-### Evidência conflitante
-Se houver hipótese com evidências apontando direções opostas, declare aqui.
-
-```
-- Hipótese: [qual]
-- Confirma: [evidência A]
-- Enfraquece: [evidência B]
-- Dado adicional que resolveria: [o que precisaria aparecer]
-- Status: hipótese em aberto
-```
-
-Se não há conflito, omita a seção.
-
-### Detalhe que a Condensadora não pode perder
-Até 3 detalhes. Cada detalhe é algo que, se omitido, deixa a mensagem final errada ou rasa. Use **confiança** para sinalizar o peso.
-
-```
-- [detalhe interpretado] — [por que importa para a mensagem final] — Confiança: alta/média/baixa
-```
-
-Bons exemplos:
-- "A queda do horário de pico veio exclusivamente da Conta 2 — se a mensagem disser 'Shopee', está errada — Confiança: alta."
-- "Os cancelamentos da Amazon foram no mesmo ASIN líder — sem isso, a mensagem trata como problema de demanda em vez de operação — Confiança: alta."
-- "Top 3 produtos sustentam padrão de concentração pelo terceiro dia — dependência não é evento, é padrão — Confiança: alta."
-
-Ruins (rejeitar):
-- "Vendeu bem hoje."
-- "Top produtos importantes."
-- "Vários cancelamentos."
-
-### O que fica só na memória interna
-Detalhes úteis para log e investigações futuras, mas que **não devem ir para Slack**:
-
-- IDs de ASIN/anúncio/MLB
-- SKU interno
-- contagem detalhada por hora
-- lista completa de produtos
-- divergência técnica já resolvida
-- evidência que sustenta a análise mas é detalhe demais para funcionário
-- itens em BLOQUEIO PARA SLACK (risco alto de identificação)
-
-Se não há nada para memória interna, omita a seção.
 
 ## Proibições
 
+### Globais
 - Não despeje tabela completa.
-- Não liste todos os SKUs/ASINs/anúncios.
+- Não liste todos os MLBs/anúncios.
 - Não escreva para Slack.
-- Não faça tese estratégica.
-- Não defina ação tática.
-- Não generalize Shopee por uma conta.
-- Não use alias manual como fonte primária da Amazon.
+- Não faça tese estratégica (patamar, vulnerabilidade, tese mensal).
+- Não defina ação tática (responsável, escalonamento, ADS, preço).
 - Não invente nome de produto.
-- Não inferir venda por Ads, catálogo, planilha ou memória — só pedido real.
+- Não inferir venda por ADS, catálogo, planilha ou memória — só pedido real.
 - Não transforme detalhe irrelevante em insight.
 - Não responda perguntas genéricas — só investigue o que foi motivado.
 - Não oculte risco de identificação errada.
 - Não silencie divergência entre fontes.
-- Não force conclusão quando evidência granular conflita — declare o conflito e indique qual dado resolveria.
+- Não force conclusão quando evidência granular conflita — declare o conflito.
 - Não afirme produto específico quando risco de identificação é alto — bloqueie para Slack.
-- Não use SKU cru quando houver nome comercial, exceto em seção de memória interna técnica.
-- Não pule pergunta da Operacional sem status atribuído.
+- Não pule pergunta da L03 sem status atribuído.
 - Não trate microamostra como prova de padrão — use confiança baixa.
-- Não atribua confiança alta quando a Estratégica/Operacional marcou base fraca.
+- Não atribua confiança alta quando a L01/L03 marcou base fraca.
 - Não escolha a evidência mais conveniente quando há conflito.
+
+### Específicas Mercado Livre
+- Não use `display_name` como fonte primária — sempre `title` ou `raw_title`.
+- Não trate `health=null` como saudável — significa "ML não calcula" (volume insuficiente).
+- Não confunda `metrics.cancelamentos` (do dia) com `reputation.cancellations_rate` (janela longa ML).
+- Não trate `metrics.fulfillment` (zerado pra ML) como fonte real do mix — usar `ml_snapshot.fulfillment_mix_*`.
+- Não responda pergunta sobre direção do health, breakdown ADS por anúncio, ou estoque em tempo real como "respondida" — esses dados não estão no pacote; classifique sempre como "não respondida por falta de dado" e registre o dado necessário pra resolver no próximo ciclo.
+- Não trate Cross-Docking como inerentemente problemático — é modalidade legítima.
+- Não cite produto com `mapping_status="ambiguous"` ou `mapping_confidence="low"` sem risco médio ou alto.
+- Não use `platform_item_id` (MLB...) como identificador externo — apenas como apoio técnico em `memoria_interna`.
+
+## Saída JSON — checklist final
+
+Antes de devolver:
+- [ ] JSON é válido (parse OK)?
+- [ ] Toda pergunta da L03 tem `status` atribuído?
+- [ ] Toda citação de produto tem formato forense (title, platform_item_id, fonte)?
+- [ ] `risco_identificacao` está preenchido?
+- [ ] Cada item tem `confianca`?
+- [ ] Divergências e conflitos foram declarados (se existem)?
+- [ ] `bloqueios_para_slack` está populado se há risco alto?
+- [ ] Não inventou dado ausente?
 
 
 ---
@@ -810,9 +767,9 @@ Se não há nada para memória interna, omita a seção.
       },
       "avg_60d": {
         "avg_orders": 91.2,
-        "avg_gmv": 3792.04,
-        "avg_ticket": 41.56,
-        "avg_items": 98.4,
+        "avg_gmv": 3817.9,
+        "avg_ticket": 41.86,
+        "avg_items": 98.7,
         "days_with_data": 60
       },
       "same_weekday_last_4": [
@@ -853,8 +810,8 @@ Se não há nada para memória interna, omita a seção.
         "gmv_vs_30d_pct": 15.7,
         "ticket_vs_30d_pct": 27.0,
         "orders_vs_60d_pct": -0.2,
-        "gmv_vs_60d_pct": 34.2,
-        "ticket_vs_60d_pct": 34.5,
+        "gmv_vs_60d_pct": 33.3,
+        "ticket_vs_60d_pct": 33.6,
         "orders_vs_same_weekday_pct": -1.6,
         "gmv_vs_same_weekday_pct": 32.4
       }
@@ -888,7 +845,7 @@ Se não há nada para memória interna, omita a seção.
     "quality_flags": [],
     "ml_snapshot": {
       "schema_version": "ml-snapshot/v1",
-      "fetched_at_utc": "2026-05-21T18:59:31.564831+00:00",
+      "fetched_at_utc": "2026-05-21T19:33:08.098519+00:00",
       "date": "2026-05-20",
       "status": "ok",
       "reputation": {
@@ -1010,8 +967,8 @@ Se não há nada para memória interna, omita a seção.
           "free_shipping": true,
           "logistic_type": "cross_docking",
           "health": null,
-          "available_quantity": 80,
-          "sold_quantity": 32,
+          "available_quantity": 79,
+          "sold_quantity": 33,
           "category_id": "MLB244658"
         },
         {
@@ -1024,8 +981,8 @@ Se não há nada para memória interna, omita a seção.
           "free_shipping": false,
           "logistic_type": "fulfillment",
           "health": 0.71,
-          "available_quantity": 372,
-          "sold_quantity": 5678,
+          "available_quantity": 366,
+          "sold_quantity": 5679,
           "category_id": "MLB244658"
         },
         {
@@ -1066,8 +1023,8 @@ Se não há nada para memória interna, omita a seção.
           "free_shipping": false,
           "logistic_type": "cross_docking",
           "health": null,
-          "available_quantity": 63,
-          "sold_quantity": 32,
+          "available_quantity": 62,
+          "sold_quantity": 33,
           "category_id": "MLB277786"
         },
         {
@@ -1080,8 +1037,8 @@ Se não há nada para memória interna, omita a seção.
           "free_shipping": false,
           "logistic_type": "fulfillment",
           "health": 0.85,
-          "available_quantity": 129,
-          "sold_quantity": 462,
+          "available_quantity": 128,
+          "sold_quantity": 463,
           "category_id": "MLB244658"
         },
         {
@@ -1094,18 +1051,18 @@ Se não há nada para memória interna, omita a seção.
           "free_shipping": false,
           "logistic_type": "fulfillment",
           "health": null,
-          "available_quantity": 4,
-          "sold_quantity": 454,
+          "available_quantity": 3,
+          "sold_quantity": 455,
           "category_id": "MLB436297"
         }
       ],
       "ads_summary": {
         "status": "ok",
-        "campaigns_total_count": 15,
+        "campaigns_total_count": 14,
         "campaigns_active_count": 11,
         "spend_yesterday_brl": 262.19,
         "revenue_ads_yesterday_brl": 3041.56,
-        "avg_acos_pct": 4.33
+        "avg_acos_pct": 4.64
       },
       "account_overview": {
         "status": "ok",
@@ -1433,146 +1390,146 @@ Tese mensal da conta. Atualizada no primeiro dia útil de cada mês.
 ## 01-estrategica
 ### Qualidade da base
 
-`weekly.md` e `monthly.md` chegaram com estrutura de template sem conteúdo real — sem tese semanal, hipóteses ativas ou padrões consolidados. Yasmin assumiu o ML em 22/04/2026; o histórico computado (7d/30d/60d) existe com cobertura 100%, mas a memória qualitativa está em ponto zero. Sem hipóteses anteriores para confirmar ou refutar — leitura de hoje serve como linha de base da série qualitativa. Dados ML opcionais (reputação, mix fulfillment, ADS) todos presentes com `status: ok`; base suficiente para tese honesta, não para tese confirmada.
+`weekly.md` e `monthly.md` estão com templates vazios — sem nenhuma entrada histórica consolidada. Não há hipóteses anteriores registradas, nenhum padrão documentado, nenhuma tese para confirmar ou refutar; esta leitura é ponto de partida, não continuação de série. As séries numéricas (7d / 30d / 60d / mesmos dias da semana) estão disponíveis e coerentes. Reputação, mix de fulfillment, health dos campeões e `ads_summary` estão presentes no pacote. Único dado ausente relevante: posição em categoria / ranking Mais Vendido e share de Buy Box por anúncio — sem esses, a leitura de exposição orgânica individual é parcial.
 
 ---
 
 ### Leitura temporal
 
-- **vs 60d e 30d — ticket em expansão consistente:** GMV de R$5.087,71 está +34,2% acima da média de 60 dias (R$3.792,04) e +15,7% acima dos 30 dias (R$4.396,77), com volume de pedidos praticamente igual ao patamar de 60d (`orders_vs_60d_pct = -0,2%`) e levemente abaixo dos 30d (`orders_vs_30d_pct = -8,9%`). O ticket médio saiu de R$41,56 (60d) → R$44,03 (30d) → R$55,91 hoje (`ticket_vs_60d_pct = +34,5%`), movimento confirmado em duas janelas longas — não é ponto, é trajetória.
+- **Patamar bimestral em expansão pelo ticket, não pelo volume.** `avg_60d`: 91,2 pedidos / R$3.817,90 GMV / R$41,86 ticket. Hoje: 91 pedidos / R$5.087,71 GMV / R$55,91 ticket. O volume de pedidos praticamente não se moveu (`orders_vs_60d_pct = -0,2%`), mas o GMV cresceu 33,3% e o ticket 33,6%. A conta não está alcançando mais compradores — está extraindo mais receita por pedido. A trajetória de ticket é consistente nas três janelas: R$41,86 (60d) → R$44,03 (30d) → R$46,17 (7d) → R$55,91 (hoje), sugerindo movimento contínuo, não pico pontual.
 
-- **vs mesmo dia da semana — volume estável, GMV em ruptura positiva:** Controle de sazonalidade confirma: pedidos quase neutros (`orders_vs_same_weekday_pct = -1,6%`; avg 92,5 vs 91 do dia) com GMV +32,4% (R$5.087 vs avg R$3.841). Os 4 registros do mesmo dia mostram alta volatilidade (65→87→134→84 pedidos); o dia 29/04 com 134 pedidos e R$5.618 é outlier que infla a média de 7d — o pico já passou, o que explica `orders_vs_7d_pct = -20,9%` sem ser sinal de deterioração.
+- **7d em desaceleração de pedidos, mas ticket acima da média recente.** Média 7d: 115,1 pedidos / R$5.315,70 GMV / R$46,17 ticket. Hoje ficou -20,9% em pedidos vs 7d, mas o ticket de R$55,91 supera a média 7d em +21%. O 7d pode estar inflado por dias de pico recentes (29/04 = 134 pedidos / R$5.618 — mesma quarta-feira da série); a desaceleração de volume não é necessariamente deterioração.
 
-- **vs 7d — normalização após pico, GMV sustentado por ticket:** A média de 7 dias (115,1 pedidos, R$5.315,7) está acima do dia por efeito do outlier de 29/04. A queda de -20,9% em pedidos com apenas -4,3% em GMV no mesmo intervalo reforça: o dia não é fraqueza operacional, é normalização de volume com ticket preservando o patamar de faturamento.
+- **Controle sazonal reforça o ganho de GMV e isola o ticket como vetor.** Vs mesmas quartas (últimas 4): GMV de hoje +32,4% com pedidos -1,6%. O dia não é excepcional em volume — é excepcional em ticket. As quartas de 06/05 e 13/05 foram fracas (R$3.005 e R$2.984); hoje é a segunda maior quarta da série, atrás apenas de 29/04. A alternância forte–fraco–fraco–forte nas quartas recentes levanta hipótese de ciclo ou ajuste de campanha, mas com apenas 4 pontos e sem histórico semanal consolidado, é inconclusiva por ora.
 
-- **Hipóteses anteriores:** Sem conteúdo em `weekly.md` ou `monthly.md`, não há hipóteses ativas para confirmar, enfraquecer ou refutar. Ponto de partida da memória qualitativa.
+- **Sem hipóteses anteriores para confirmar ou refutar.** `weekly.md` e `monthly.md` estão vazios. Toda observação é inaugural.
 
 ---
 
 ### Leitura estratégica
 
-- **Expansão de ticket como vetor de GMV (Lente 1):** A conta cresce em faturamento sem crescer em alcance — o GMV sobe 34,2% em 60 dias enquanto o volume de pedidos fica neutro (`-0,2%`). A composição do top10 oferece pista: kits de maior valor (Kit 10 Potes 1050ml, Kit 4 Potes 1050ml, Kit 2 Potes 1050ml) ganharam peso no dia. Hipótese: o portfólio está migrando para produtos de maior ticket médio, seja por recomposição de mix via ADS ou por organização recente de anúncios — não é possível confirmar sem rastrear evolução de GMV por produto nas janelas longas, mas o padrão em 30d e 60d é consistente o suficiente para ser a tese central da conta agora.
+- **Lentes 1 + 5 — O ganho de GMV vs 60d é real, mas ADS é o motor não declarado.** O crescimento de patamar (+33,3% GMV vs 60d, +32,4% vs mesmas quartas) é consistente em múltiplas janelas — não é ruído. Mas a decomposição é crítica: ADS (Himmel) gerou R$3.041,56 com investimento de R$262,19 — ROAS de 11,6x, ACOS de 4,64%, eficiência operacional alta. Esse valor representa **59,8% do GMV do dia** (R$3.041,56 / R$5.087,71), colocando a conta em zona ADS dominante. O crescimento de ticket e GMV que aparece nas janelas longas é provavelmente conduzido por campanha, não por posicionamento orgânico autossustentável. O ROAS forte não neutraliza a fragilidade estrutural: se Himmel pausar ou reduzir verba, a base orgânica é incógnita — ainda sem validação.
 
-- **ADS sustentando o patamar sobre base orgânica com saúde degradada (Lente 5 + Lente 4):** ADS share calculado: R$3.041,56 / R$5.087,71 = **59,8%** — conta em zona ADS dominante. ROAS 11,6x e ACOS 4,33% indicam campanha extremamente eficiente; Himmel está entregando resultado. O problema não é hoje: é que o orgânico que carrega os outros 40% opera com dois campeões em Full com health penalizada — Kit 4 Potes 1050ml (`MLB4073003575`, 2º maior do dia, `health = 0,75`) e Conjunto 5 Potes Tampa Vermelha (`MLB3288536143`, `health = 0,71`). Health abaixo de 0,85 significa penalização ML de exposição orgânica já ativa nesses listings. O patamar de R$5.000+ não é orgânico — é ADS sobre base degradada.
+- **Lente 3 — Cauda morta dominante + concentração crônica sem segundo vetor confirmado.** 174 anúncios pausados contra 82 ativos (razão 2,1:1, bem acima do limiar de 1,5 que define cauda morta dominante). Top 3 concentra 48,4% do GMV; top 5, 59,3%. O líder isolado (Conjunto 5 Potes Tampa Preta, MLB4535865317) responde por 25,3% dos pedidos do dia sozinho. O mix de fulfillment aprofunda a dependência: os campeões de ontem usaram 56,3% Full (`fulfillment_mix_yesterday_top10.full_pct`) contra 34,1% Full na base inteira (`account_overview.active_analysis.fulfillment_mix.full_pct`) — os anúncios que vendem são excepcionalmente dependentes de Full em relação ao resto do portfólio. Ruptura em qualquer dos top 3 em Full não tem amortecimento de cauda.
 
-- **Campeões vivem em Full; a base não (Lente 3):** O mix do top10 do dia (Full 56,3%) e das janelas 7d/30d (Full 77,7% e 73,9%) contrasta com o mix da base ativa: `account_overview.active_analysis.fulfillment_mix.full_pct = 34,1%`. Os anúncios que vendem são os que estão em Full — a maioria dos 82 ativos (Cross-docking 65,9%) vende pouco ou nada. Paused/Active ratio de 174/82 = 2,12x confirma cauda morta. A conta opera com uma minoria em Full carregando o volume; qualquer ruptura de estoque nesse núcleo não tem substituto imediato na cauda.
+- **Lentes 2 + 4 — Reputação estrutural intacta, mas health degradada nos campeões corrói exposição orgânica de forma silenciosa.** Reputação `5_green`, `power_seller_status=gold`, `cancellations_rate=0`, `claims_rate=0,0025` — operação estruturalmente limpa e elegível Mercado Líder. Mas Kit 4 Potes 1050ml (MLB4073003575, 2º do dia com 13 pedidos) tem `health=0,75` e Conjunto 5 Potes Tampa Vermelha (MLB3288536143, 5º do dia com 5 pedidos) tem `health=0,71` — ambos abaixo de 0,85, com penalização de ranking ativa por ML. Os dois são `is_catalog=false`, competindo por posição em categoria via ranking Clássico: health degradada corrói essa posição progressivamente sem que a API de reputação capture o sinal. A reputação protege o selo; o health corrói o alcance orgânico dos anúncios individualmente.
 
-- **Estoque em horizonte curto em dois itens do top10:** Kit 6 Tigelas de Vidro 250ml (`MLB6167272090`, 5 pedidos, `available_quantity = 21`) e Kit 6 Canequinhas Acrílico com Suporte (`MLB4410218897`, 3 pedidos, `available_quantity = 4`). Ao ritmo de ontem, as Canequinhas têm estoque para 1 a 2 dias. Ruptura nesses dois não afeta o volume macro da conta (juntos representam ~8 pedidos), mas reduz a diversificação real da cauda ativa.
+- **Lente 3 — Estoque efetivamente zerado em campeão ativo.** Kit 06 Canequinhas Acrílico (MLB4410218897) tem `available_quantity=3` após 3 pedidos em 20/05. O anúncio está `status=active` — não pausado. Se o estoque estava em 3 unidades no início do dia e os 3 pedidos foram completados, qualquer venda adicional com saldo zero resulta em cancelamento e impacto em `cancellations_rate` nas próximas janelas da API. Com `cancellations_rate=0` hoje, o sinal ainda não chegou à métrica oficial — mas a condição para gerar cancelamentos já existe.
 
 ---
 
 ### Tese da conta
 
-**Vulnerável.** O GMV está em expansão estrutural confirmada em 30d e 60d, puxado por ticket em ascensão consistente — esse é o movimento real da conta. Mas o patamar atual (R$5.000+) é sustentado por ADS com share acima de 59% operado por Himmel com eficiência alta, sobre uma base orgânica que não está se fortalecendo no mesmo ritmo: dois campeões Full com health penalizada, cauda praticamente morta e estoque crítico em pelo menos um item de rotação. A reputação está verde-estável (`color = 5_green`, `power_seller_status = gold`, `cancellations_rate = 0`) — a conta não está em deterioração visível. Mas o crescimento de GMV depende de ADS eficiente continuando a funcionar sobre estrutura orgânica que, se observada isoladamente, não sustentaria o patamar atual.
+**Vulnerável.** A conta entregou GMV +33,3% vs 60d com volume estacionário — crescimento real e consistente em múltiplas janelas, ancorado em ticket médio em trajetória ascendente contínua (+33,6% vs 60d). A reputação está verde estável (`5_green`, `gold`, `cancellations_rate=0`), preservando elegibilidade Mercado Líder. O problema não está nos números do dia — está na estrutura que os produz: ADS (Himmel) carrega 59,8% do GMV com eficiência alta, mas o orgânico por trás é desconhecido; a cauda tem 174 anúncios mortos contra 82 ativos; os dois principais campeões em Full têm health abaixo de 0,85 (0,75 e 0,71); e ao menos um anúncio ativo está com estoque efetivamente zerado. A conta cresce sobre base concentrada, com ADS dominante e health corroída nos que mais vendem — qualquer pausa de campanha ou ruptura de campeão expõe um orgânico que ainda não foi validado.
 
 ---
 
 ### Risco estrutural principal
 
-- **Risco:** Dependência de Mercado Ads (ADS share 59,8%) sem base orgânica saudável como plano B — dois campeões Full com health penalizada (`health = 0,75` e `0,71`) e cauda morta (174 pausados vs 82 ativos = 2,12x o threshold de 1,5x).
-- **Por que importa:** Se as campanhas de Himmel forem pausadas, reduzidas ou perderem eficiência (ROAS abaixo de 5x), o GMV recua para o orgânico — que hoje opera com penalização ativa de exposição nos principais anúncios em Full. A combinação de ADS dominante + health degradada em campeões é risco acumulado: individualmente tolerável, estruturalmente frágil.
-- **Histórico:** Sem `weekly.md` ou `monthly.md` preenchidos, não há registro de quando essa dependência se formou nem se é padrão desde 22/04. Identificado agora como linha de base — sem confirmação de recorrência anterior.
-- **Sinal de confirmação:** ADS share acima de 55% por 3 dias consecutivos (`ads_summary` disponível no pacote) combinado com health do Kit 4 Potes 1050ml permanecendo abaixo de 0,80 por mais 2 ciclos confirma dependência estrutural ativa e sem reversão orgânica em curso.
+- **Risco:** Dependência de Mercado Ads (Himmel) sem validação do orgânico subjacente. ADS share de 59,8% do GMV coloca a conta em zona onde qualquer pausa, redução de verba ou mudança de estratégia de campanha impacta diretamente mais da metade do faturamento — sem segundo vetor comprovado para absorver.
+- **Por que importa:** ROAS 11,6x e ACOS 4,64% são resultados operacionalmente excelentes, mas mascaram a pergunta não respondida: o que a conta vende organicamente se as campanhas pararem? Com 174 anúncios pausados, cauda morta dominante e health degradada nos campeões, a hipótese de fragilidade orgânica é mais provável que a de robustez — mas ainda não está confirmada. O crescimento de patamar das janelas longas pode ser inteiramente explicado por escalada de ADS, não por ganho de posicionamento estrutural.
+- **Histórico:** `weekly.md` e `monthly.md` vazios. Não é possível determinar se essa dependência é crônica ou recente — primeiro ciclo de observação da conta.
+- **Sinal de confirmação:** ADS share acima de 50% do GMV por 3 dias consecutivos confirma dependência estrutural (não apenas resultado de um dia de campanha forte). Se Himmel reduzir verba e o GMV cair proporcionalmente sem recuperação nos 2 dias seguintes, tese confirmada.
 
 ---
 
 ### Sinais a observar
 
-1. **GMV acima de R$4.800 por 3 dias consecutivos** — confirmaria consolidação do novo patamar de ticket (~R$55) como tendência estrutural; se GMV cair abaixo de R$4.000 por 2 dias seguidos, a expansão de ticket foi ADS-inflada e está revertendo sem o pico de volume.
+1. **Health dos campeões em Full abaixo de 0,85 por 2 dias consecutivos:** Kit 4 Potes 1050ml (`health=0,75`, MLB4073003575) e Conjunto 5 Potes Tampa Vermelha (`health=0,71`, MLB3288536143) com health degradada em mais 1 ciclo = penalização ML ativa e persistente corroendo ranking orgânico dos 2º e 5º maiores vetores do dia. Confirma erosão silenciosa de exposição independente de reputação ou ADS.
 
-2. **Kit 6 Canequinhas Acrílico com Suporte (`MLB4410218897`, `available_quantity = 4`) sumindo do top10 por 2 dias consecutivos** — confirmaria ruptura de vetor por exaustão de estoque; ao ritmo de 3 pedidos/dia, o horizonte é de 1 a 2 dias. Kit 6 Tigelas de Vidro 250ml (`MLB6167272090`, `available_quantity = 21`) com mesmo padrão de ausência indica segundo vetor em ruptura simultânea.
+2. **Kit 06 Canequinhas Acrílico (MLB4410218897) gerando cancelamento ou pausando:** `available_quantity=3` após 3 pedidos em 20/05 — estoque efetivamente zerado. Qualquer registro de cancelamento neste item nas próximas 48h ou pausa do anúncio confirma que a condição se materializou e começa a pressionar `cancellations_rate` (verificar se disponível no próximo pacote).
 
-3. **Health do Kit 4 Potes 1050ml (`MLB4073003575`) caindo abaixo de 0,70 ou permanecendo abaixo de 0,80 por mais 2 ciclos** — confirmaria deterioração orgânica progressiva em 2º campeão Full; se health retornar acima de 0,85 nos próximos 2 pacotes, hipótese de degradação ativa se enfraquece (sinal condicional à disponibilidade do campo `health` no pacote).
+3. **ADS share mantendo-se acima de 50% do GMV ao longo da semana corrente:** Se o share ADS se mantiver ≥50% por 3 dias consecutivos em condições normais de campanha, confirma que o patamar de GMV e ticket observado nas janelas 30d/60d é estruturalmente dependente de campanha — e a classificação de vulnerável se solidifica com evidência temporal antes da próxima semana.
 
 ## 02-tatica
 ### Decisão tática
 
-- **Dado que a tese L01 é "vulnerável" por dependência de ADS (59,8% share) sobre base orgânica degradada, a decisão central para os próximos dias é não introduzir variável em sistema que ainda não tem série histórica qualitativa.** A campanha de Himmel opera com ROAS 11,6x e ACOS 4,33% (`ml_snapshot.ads_summary`) — eficiência em nível que torna qualquer ajuste ativo um risco de quebrar o que sustenta o patamar de R$5.000+. Ação correta: registrar os indicadores como ponto zero e observar trajetória por 3-5 dias antes de qualquer movimento.
+- **Risco operacional imediato no campeão com estoque zerado — ação hoje, sem esperar confirmação histórica.** Dado que a L01 identificou `available_quantity=3` no Kit 06 Canequinhas Acrílico (MLB4410218897, `status=active`, `logistic_type=fulfillment`) após 3 pedidos em 20/05, o estoque está efetivamente zerado. A regra de ação imediata se aplica (estoque ≤ 5 em campeão ativo), independente de série histórica — qualquer pedido adicional hoje resulta em cancelamento que pressiona o `cancellations_rate` atualmente zerado.
 
-- **Dado que o risco operacional imediato identificado pela L01 é o estoque crítico em item de cauda ativa (Kit 06 Canequinhas Acrílico com Suporte, `available_quantity = 4`, ~3 pedidos ontem), a decisão é agir hoje neste ponto específico antes que a ruptura gere cancelamentos.** Não é risco macro para o volume da conta, mas ruptura em item ativo gera cancelamentos prospectivos que impactam `reputation.cancellations_rate` — hoje em zero, proteger antes de qualquer deterioração.
+- **Não acionar Himmel sobre ADS — observar a campanha sem qualquer intervenção.** Dado que a tese da L01 classifica a conta como vulnerável pela dependência de ADS (share de 59,8% do GMV), mas o ROAS está em 11,6x e o ACOS em 4,64% — campanha eficiente em primeiro ciclo de observação — a Lente Tática 5 é direta: mexer agora introduz variável que impede separar comportamento natural de efeito de ajuste. O share elevado é risco estrutural a documentar, não sinal de intervenção imediata.
 
-- **Dado que a L01 identificou dois campeões em Full com health penalizada (`health = 0,75` e `0,71`) como núcleo do risco estrutural, a decisão é checar direção (estável / caindo / subindo) antes de qualquer movimento com Himmel.** Sem saber se o health está em recuperação ou em erosão contínua, qualquer ação é especulação — a direção é o dado que falta para separar "aguardar" de "alinhar com Himmel sobre cobertura preventiva".
+- **Checar direção — não nível — do health dos dois campeões em Full com penalização ativa.** A L01 apontou Kit 4 Potes 1050ml (`health=0,75`) e Conjunto 5 Potes Tampa Vermelha (`health=0,71`) como vetores com erosão silenciosa de ranking Clássico. A decisão tática não depende do valor absoluto de hoje, que é ponto zero; depende da direção nos próximos 2 ciclos. Ação forte (alinhamento com Himmel sobre cobertura preventiva) só entra se health continuar caindo em ambos.
 
-- **Dado que `weekly.md` e `monthly.md` estão sem conteúdo e hoje é a primeira leitura qualitativa desde que Yasmin assumiu (22/04), a decisão é tratar o dia como linha de base da série, não como dado a reagir.** O ticket de R$55,91, ADS share de 59,8% e GMV de R$5.087,71 existem sem contexto qualitativo que permita distinguir sazonalidade, efeito ADS temporário ou expansão real de mix — registrar sem agir é o que preserva a capacidade de leitura futura.
+- **Registrar ponto zero obrigatório antes que qualquer leitura futura seja possível.** `weekly.md` e `monthly.md` estão vazios. Sem ponto zero documentado hoje (ticket, ADS share, health, ROAS), as próximas leituras não têm referência para confirmar ou refutar a tese de vulnerabilidade estrutural da L01. Registrar é pré-requisito operacional, não ação de análise.
 
 ---
 
 ### O que fazer hoje
 
-1. **Yasmin:** verificar `available_quantity` do item de cauda com cobertura crítica (Kit 06 Canequinhas Acrílico com Suporte, 4 unidades declaradas, ~3 pedidos/dia ontem, `logistic_type = fulfillment`) e confirmar se há reposição viável em 24-48h junto à expedição — motivo: ao ritmo atual, o horizonte de ruptura é 1 a 2 dias; ruptura em anúncio ativo sem reposição gera cancelamentos que impactam `reputation.cancellations_rate`, hoje em zero (`ml_snapshot.reputation`) — sinal de resultado: reposição confirmada em 24h = risco neutralizado e anúncio permanece no top ativo; sem reposição e anúncio pausado espontaneamente pelo ML = registrar como variável confundidora para a leitura dos próximos dias.
+**1. Yasmin:** verificar `available_quantity` e situação operacional do Kit 06 Canequinhas Acrílico com Suporte de Madeira Acrílico (MLB4410218897, `status=active`, `logistic_type=fulfillment`, `available_quantity=3` ao final de 20/05 após 3 pedidos no dia) e decidir entre reposição emergencial no CD do ML ou pausa controlada do anúncio — motivo: com estoque zerado e anúncio ativo, qualquer novo pedido gera cancelamento que contamina o `cancellations_rate` hoje em zero, expondo a reputação `5_green`/`gold` a risco desnecessário; a L01 identificou essa condição como risco iminente confirmado — sinal de resultado: reposição ou pausa efetivada em até 24h = risco neutralizado e `cancellations_rate` preservado; ausência de ação com cancelamento registrado no próximo ciclo = registrar como variável confundidora para a série de reputação e reavaliar a gestão de estoque dos campeões em fulfillment.
 
-2. **Yasmin:** checar a direção (estável / caindo / subindo) do `health` dos dois campeões em Full com penalização ativa (Kit 4 Potes 1050ml em 0,75 e Conjunto 5 Potes de Vidro Tampa Vermelha em 0,71, `top_items_details`) — motivo: a tese L01 aponta esses dois como núcleo do risco estrutural de exposição orgânica; sem saber se o health está em queda contínua ou estabilizando, qualquer decisão sobre cobertura ADS é especulação; se ambos estiverem caindo, a hipótese de erosão de ranking orgânico se confirma e exige alinhamento preventivo com Himmel antes que o ADS seja obrigado a compensar ainda mais — sinal de resultado: health estável ou em recuperação nos dois = manter observação sem ação; health caindo em um ou em ambos = Yasmin alinha com Himmel sobre cobertura nos próximos dias.
+**2. Yasmin:** checar a direção (estável / caindo / recuperando) do `health` dos dois campeões em Full com penalização ativa — Kit 4 Potes 1050ml (`health=0,75`, MLB4073003575, 2º do dia com 13 pedidos) e Conjunto 5 Potes Tampa Vermelha (`health=0,71`, MLB3288536143, 5º com 5 pedidos), ambos `is_catalog=false` competindo via ranking Clássico — motivo: a L01 identificou que health degradada nesses dois anúncios corrói posição em categoria enquanto ADS compensa de forma invisível; a questão tática não é o valor de hoje (que é ponto zero sem histórico), mas se a penalização está se aprofundando — sinal de resultado: health estável ou em recuperação em ambos nos próximos 2 ciclos = observar sem ação; health caindo em ao menos um por 2 dias consecutivos = Yasmin alinha com Himmel sobre cobertura preventiva de ADS para compensar perda de ranking orgânico.
 
-3. **Yasmin:** registrar formalmente como ponto zero da série qualitativa: ADS share 59,8% (R$3.041,56 / R$5.087,71), ROAS 11,6x, ACOS 4,33%, ticket médio R$55,91 e GMV R$5.087,71 — motivo: memória qualitativa estava em branco; sem linha de base não há como julgar nos próximos dias se o ticket continua em expansão (confirmando a tese L01 de upgrade de mix) ou se reverte (indicando que era ADS-driven e sazonal); o registro de hoje permite que o próximo ciclo já seja comparativo — sinal de resultado: ticket acima de R$52 por 2+ dias com spend estável confirma expansão real de mix; ADS share acima de 62% com ticket caindo abaixo de R$50 em dia de spend normal indica que a expansão era inteiramente mediada pelo investimento em ADS.
+**3. Yasmin:** registrar como ponto zero da série as seguintes métricas de 20/05 — ticket médio (R$55,91), ADS share (59,8% = R$3.041,56 / R$5.087,71), ROAS (11,6x), ACOS (4,64%), health dos campeões em Full (0,75 e 0,71) e `cancellations_rate` (0) — motivo: `weekly.md` e `monthly.md` estão vazios; sem esse baseline, as próximas 3–5 leituras não têm referência para confirmar ou refutar a tese de vulnerabilidade estrutural da L01, nem para detectar movimento real de ticket ou share ADS — sinal de resultado: ticket ≥ R$50 por 2+ dias com spend estável sugere componente orgânico no ticket-driven; ticket abaixo de R$46 em dia com spend reduzido confirma dependência ADS como hipótese central; ADS share acima de 55% por 3 dias consecutivos aciona discussão com Kobe.
 
 ---
 
 ### O que NÃO fazer ainda
 
-1. **Não acionar Himmel para ajustar, escalar ou pausar campanhas.** Com ROAS 11,6x e ACOS 4,33% e memória qualitativa zerada, qualquer alteração introduz uma variável que impede separar comportamento natural de efeito de intervenção; a L01 é explícita: campanha eficiente em fase inaugural de série é para observar, não para mexer — a regra de "ADS share ≥ 50% + ROAS > 5x + ACOS < 10% = não mexer" está ativa aqui.
+- **Não acionar Himmel para ajustar, ampliar, redistribuir ou revisar as campanhas de ADS ML.** ROAS 11,6x e ACOS 4,64% colocam a campanha em zona de eficiência alta — a Lente Tática 5 é explícita: campanha eficiente em fase inaugural não se toca. Qualquer ajuste introduz variável que contamina a série nascente e impede separar efeito de comportamento natural. O ADS share elevado (59,8%) é risco estrutural a documentar e observar, não gatilho de intervenção com uma única leitura disponível.
 
-2. **Não interpretar a queda de -20,9% em pedidos vs 7d como deterioração e agir sobre ela.** A L01 identifica o outlier de 29/04 (134 pedidos, R$5.618) como responsável por inflar a média de 7d; os pedidos do dia (91) estão praticamente no patamar de 60d (`orders_vs_60d_pct = -0,2%`) e alinhados com o mesmo dia da semana (`orders_vs_same_weekday_pct = -1,6%`) — tratar esse delta negativo de 7d como sinal de fraqueza e reagir seria agir sobre artefato estatístico, não sobre tendência real.
+- **Não tomar decisão sobre a cauda morta (174 anúncios pausados).** A L01 identificou razão 2,1:1 entre pausados e ativos como sinal de concentração estrutural — mas reativar, reorganizar ou desativar anúncios da cauda afeta histórico de vendas ML, posição de ranking e política de moderação do marketplace. Essa decisão requer hipótese confirmada em múltiplas janelas, análise de viabilidade de catálogo e validação com Kobe. Hoje é o primeiro ciclo de leitura estruturada; agir sobre a cauda sem histórico seria precipitado e potencialmente irreversível no curto prazo.
 
-3. **Não pausar, redirecionar ou escalar anúncios com health baixa sem confirmar a direção primeiro.** O health de Kit 4 Potes 1050ml (0,75) e Conjunto 5 Potes Tampa Vermelha (0,71) pode estar estabilizando — anúncios em penalização que estão em plateau representam risco diferente de anúncios em queda ativa; agir sem saber a direção pode interromper processo natural de normalização ou introduzir variável que dificulta atribuir causa correta à evolução futura.
+- **Não alterar preço dos campeões baseado no ticket elevado de hoje (R$55,91 vs média 30d de R$44,03, +27%).** A L01 apontou que o ticket em ascensão pode refletir mix de campanha (ADS amplificando itens de maior valor), composição de pedidos ou movimento de mercado — sem decomposição de ticket por produto e sem dados de margem, alterar preço agora é precipitado. Mudança de preço em campeão `is_catalog=false` afeta diretamente posição no ranking Clássico e, em catálogo, a elegibilidade à Buy Box — risco desproporcional a uma hipótese não confirmada.
 
 ---
 
 ### Escalonamento
 
-**observar**
+**observar** — com gatilho explícito para alinhar com Himmel em até 3 dias se health continuar caindo, e para escalar para Kobe se ADS share se mantiver acima de 55% por 3 ciclos consecutivos.
 
-A conta não apresenta risco operacional que exija acionamento imediato de Himmel ou Kobe. A reputação está verde-estável (`5_green`, `cancellations_rate = 0`, `power_seller_status = gold`), todas as campanhas ativas operam com eficiência alta, e os anúncios do top não têm `status: paused` com pedidos abertos. O único risco operacional imediato (estoque crítico das Canequinhas Acrílico) é resolvível pela Yasmin na operação — não envolve ADS nem decisão estrutural. O escalonamento sobe de "observar" para "alinhar com Himmel" se o health dos campeões Full cair por mais 2 ciclos consecutivos (sinalizando erosão orgânica progressiva que ADS precisará compensar com maior cobertura) ou se o ADS share ultrapassar 65% mantendo ROAS alto (indicando que o patamar está sendo comprado, não conquistado organicamente). Sobe para "escalar para Kobe" se ADS share ficar acima de 55% por 3 dias consecutivos com health continuando a cair — configurando dependência estrutural que extrapola decisão tática diária e exige discussão sobre recomposição de catálogo ou mix de fulfillment.
+A conta não apresenta sinal que justifique escalonamento hoje. A reputação está `5_green`/`gold`/`cancellations_rate=0`; nenhum anúncio está pausado com pedidos pendentes em aberto (o risco do MLB4410218897 é resolvível por Yasmin diretamente, sem necessidade de Himmel ou Kobe); o ADS opera com eficiência alta e não deve ser tocado. O único gatilho que abriria decisão com Himmel — health caindo nos campeões em Full — ainda não tem confirmação de tendência (primeira leitura, sem histórico). A postura correta para os próximos 2–3 ciclos é coletar evidência sem alterar a operação: Yasmin resolve o estoque zerado, registra o ponto zero da série e observa a direção do health. **Gatilho Himmel:** health dos campeões em Full caindo por 2 dias consecutivos → Yasmin alinha com Himmel sobre cobertura preventiva de ADS para compensar erosão de ranking orgânico. **Gatilho Kobe:** ADS share acima de 55% por 3 dias consecutivos em condições normais de campanha → Yasmin abre discussão com Kobe sobre dependência estrutural de mídia paga e viabilidade de diversificação do catálogo ativo.
 
 ## 03-operacional
 ### Leitura operacional do dia
 
-- O dia foi sustentado integralmente por ticket, não por volume: 91 pedidos praticamente neutros vs 60d (`orders_vs_60d_pct = -0,2%`) e vs mesmo dia da semana (`orders_vs_same_weekday_pct = -1,6%`), enquanto o GMV atingiu R$5.087,71 (+34,2% vs 60d, +32,4% vs mesmos dias da semana). O ticket de R$55,91 (+34,5% vs 60d, +27% vs 30d) é o vetor exclusivo do patamar atual — o canal não expandiu alcance no dia, expandiu valor médio por pedido. Confirma operacionalmente a tese da L01 de expansão via ticket com volume estável.
+- **O dia foi integralmente sustentado por ticket, sem ganho de alcance (confirma L01).** 91 pedidos quase idênticos ao bimestre (`orders_vs_60d=-0,2%`) e ao mesmo dia da semana (`orders_vs_same_weekday_pct=-1,6%`), enquanto GMV cresceu +33,3% vs 60d e +32,4% vs mesmas quartas — sustentado pelo ticket de R$55,91 vs `avg_60d.avg_ticket=R$41,86` (+33,6%) e `avg_30d.avg_ticket=R$44,03` (+27,0%). O canal não alcançou mais compradores; extraiu mais receita por pedido. Confirma operacionalmente o patamar ticket-driven identificado pela L01 e a trajetória ascendente contínua de ticket nas três janelas.
 
-- O campeão do dia (Conjunto 5 Potes Tampa Preta, 23 pedidos, ~25,3% do volume total) opera em Cross-docking, puxando `fulfillment_mix_yesterday_top10.full_pct` para 56,3% — 17,6pp abaixo do padrão de 30 dias (`fulfillment_mix_30d.full_pct = 73,9%`). Divergência produto-específica: sem esse campeão Cross-docking no topo, o mix do dia seria compatível com o histórico mensal. Adiciona evidência operacional à leitura da L01 de que o núcleo Full carrega o canal — quando um produto Cross-docking sobe ao primeiro lugar, o mix distorce proporcionalmente.
+- **Mix de fulfillment divergiu 17,6pp do padrão mensal por causa de um único anúncio (adiciona evidência à L01, Lente Op 3).** O Conjunto 5 Potes Tampa Preta liderou o dia com 23 pedidos (~25,3% do volume) e opera em Cross-Docking — o que puxou `fulfillment_mix_yesterday_top10.full_pct` para 56,3% contra `fulfillment_mix_30d.full_pct=73,9%` e `fulfillment_mix_7d.full_pct=77,7%`. A divergência é produto-específica e pontual, não sistêmica: um único anúncio liderando em Cross-Docking explica os 17,6pp de desvio. Operacionalmente, isso evidencia que o peso Full no mix diário é volátil conforme qual campeão lidera — a base Full depende de quem vende no dia, não de profundidade do portfólio. Adiciona evidência concreta à leitura da L01 sobre base Full estruturalmente estreita.
 
-- A concentração nos top confirma operacionalmente a dependência de campeões já identificada pela L01: `top3_concentration = 48,4%` (Conjunto 5 Potes Tampa Preta 23p + Kit 4 Potes 1050ml 13p + Kit 6 Canequinhas 100ml 8p = 44 de 91 pedidos) e `top5_concentration = 59,3%`. Com 174 pausados vs 82 ativos e `account_overview.active_analysis.full_pct = 34,1%` na base completa, o volume do dia foi carregado por um núcleo estreito sem cauda ativa relevante — o que a L01 descreveu como estrutural se manifesta diretamente no comportamento do dia.
+- **Health degradada nos dois campeões Full do top5 — e um deles está em Catálogo, não em Clássico como a L01 descreveu (contradiz L01 neste ponto específico, Lente Op 4).** Kit 4 Potes 1050ml (2º do dia, 13 pedidos, `health=0,75`, `is_catalog=false`, fulfillment) e Conjunto 5 Potes Tampa Vermelha (5º do dia, 5 pedidos, `health=0,71`, fulfillment) têm penalização ativa de ranking pelo ML. A L01 classificou ambos como `is_catalog=false` — mas o dado do pacote mostra que Tampa Vermelha (MLB3288536143) tem `is_catalog=true` e `catalog_product_id=MLB44224272`. Isso muda o mecanismo de dano: para anúncios em Catálogo, health degradada pressiona Buy Box ML diretamente, não apenas posição em categoria via ranking Clássico; e recuperação de Buy Box em catálogo é mais lenta do que recuperação de posição orgânica. O risco operacional do 5º produto do dia é mais grave do que a L01 descreveu.
 
-- Os 3 cancelamentos (`metrics.cancelamentos = 3`, ~3,3% sobre 91 pedidos) não têm distribuição por anúncio disponível no pacote — não é possível afirmar se são pulverizados ou concentrados. A `reputation.cancellations_rate = 0` ainda não reflete o dia (janela longa ML). O sinal operacional relevante: com Kit 06 Canequinhas Acrílico com Suporte em `available_quantity = 4` e 3 pedidos ontem, a possibilidade de cancelamentos prospectivos por ruptura iminente é o que torna o dado de 3 cancelamentos um sinal de atenção — confirma a urgência tática definida pela L02 para esse item.
+- **ADS carregou 59,8% do GMV com eficiência alta — e amplificou o dia num contexto de mix de fulfillment já distorcido (confirma risco estrutural L01, Lente Op 5).** `revenue_ads_yesterday_brl=R$3.041,56` / `gmv=R$5.087,71` = 59,8% share. ROAS de 11,6x (`R$3.041,56` / `spend=R$262,19`). `avg_acos_pct=4,64%` — campanha eficiente. Mas num dia em que o campeão do dia (maior volume) opera em Cross-Docking e o mix Full já estava deprimido, há sinal de que o ADS pode ter amplificado um produto fora do mix Full ideal. Não é problema de execução — é informação para a Condensadora: eficiência de campanha e composição de fulfillment não andam na mesma direção hoje.
 
 ---
 
 ### Sinais operacionais relevantes
 
-- **Sinal:** Kit 06 Canequinhas Acrílico com Suporte (MLB4410218897) entrou o dia com `available_quantity = 4`, `status = active`, `logistic_type = fulfillment`, e gerou 3 pedidos — estoque para aproximadamente 1 dia ao ritmo atual. — **interpretação operacional:** janela operacional de 24h antes de ruptura com pedidos ainda chegando; se o estoque zerar sem pausa manual, pedidos continuarão sendo aceitos e serão cancelados pelo ML, impactando `reputation.cancellations_rate` hoje em zero. Adiciona urgência operacional direta à ação definida pela L02.
+- **Sinal:** Kit 06 Canequinhas Acrílico com Suporte de Madeira Acrílico (MLB4410218897, fulfillment, `status=active`) encerrou o snapshot de 21/05 com `available_quantity=3` após 3 pedidos em 20/05, sem evidência de resolução antes da coleta. — **Interpretação operacional:** estoque em nível crítico com anúncio ativo; qualquer pedido em 21/05 pode levar a ruptura e cancelamentos subsequentes que contaminarão o `cancellations_rate` hoje em zero; o risco identificado pela L01 e a ação definida pela L02 não foram neutralizados antes do snapshot — ainda em aberto.
 
-- **Sinal:** Conjunto 5 Potes Tampa Vermelha (MLB3288536143) opera em catálogo (`is_catalog = true`, `catalog_product_id = MLB44224272`) com `health = 0,71` e `logistic_type = fulfillment` — gerou 5 pedidos com health abaixo do threshold de penalização ML (0,85). — **interpretação operacional:** único anúncio em catálogo com health declarada e penalizada no top10 do dia; em catálogo, a penalização de health afeta posicionamento na vitrine do catálogo ML — diferente de um Clássico onde o impacto é no ranking de busca. O fato de ainda gerar volume sugere que ADS pode estar compensando a perda de posição orgânica nesse listing específico — hipótese não confirmável sem detalhe por anúncio do `ads_summary`.
+- **Sinal:** Conjunto 5 Potes Tampa Vermelha (MLB3288536143) confirmado como `is_catalog=true` (`catalog_product_id=MLB44224272`) com `health=0,71` e `logistic_type=fulfillment`. — **Interpretação operacional:** o dado do pacote contradiz a classificação da L01 (que o tratou como Clássico); para um anúncio de Catálogo, health=0,71 pressiona diretamente a elegibilidade à Buy Box ML — perda de Buy Box implica perda de tráfego pago eficiente e posição no slot principal do catálogo, com tempo de recuperação mais longo do que em anúncio Clássico. Este é o sinal de maior gravidade subavaliada do dia.
 
-- **Sinal:** Kit 6 Tigelas de Vidro 250ml (MLB6167272090) tem `available_quantity = 21`, `is_catalog = true` (`catalog_product_id = MLB38833543`) e gerou 5 pedidos — cobertura de ~4 dias ao ritmo atual. — **interpretação operacional:** segundo anúncio em catálogo com horizonte de estoque curto; ruptura em catálogo demora mais para recuperar posição do que em Clássico — uma vez fora da vitrine por ruptura, o reingresso pode demandar ciclos de vendas. Não é urgência de hoje, mas o horizonte é curto o suficiente para entrar no radar junto ao Canequinhas Acrílico.
+- **Sinal:** 3 cancelamentos no dia (3/91 pedidos = ~3,3%), com `cancellations_rate=0` na janela longa ML (`reputation.cancellations_rate`). — **Interpretação operacional:** o sinal precoce do dia é perceptível mas ainda não contaminou a reputação; a origem dos 3 cancelamentos é desconhecida — pode incluir o Kit 06 Canequinhas Acrílico (estoque crítico), mas requer confirmação granular; se concentrados em um único anúncio, o padrão é mais grave do que 3 cancelamentos pulverizados sugerem.
 
-- **Sinal:** O campeão do dia (Conjunto 5 Potes Tampa Preta, Cross-docking, 23 pedidos) coincide com ADS share de 59,8% (`revenue_ads_yesterday_brl = R$3.041,56 / gmv = R$5.087,71`). Sem detalhe de receita por anúncio no `ads_summary`, não é confirmável se a campanha de Himmel prioriza esse produto — mas se prioriza, o ADS está convertendo gasto em volume numa modalidade logística menos eficiente que Full no dia em que o mix já estava distorcido. — **interpretação operacional:** hipótese não confirmada, mas operacionalmente relevante: ADS puxando Cross-docking ao topo pode indicar que produtos Full com health penalizada perderam posição orgânica suficiente para serem superados por Cross-docking mesmo com campanha ativa — adiciona evidência à suspeita da L01 de que ADS substitui exposição orgânica em vez de amplificá-la.
+- **Sinal:** Mix de fulfillment do top10 de ontem (Full 56,3%) desviou 17,6pp do padrão 30d (Full 73,9%) por causa do campeão Cross-Docking (Conjunto 5 Potes Tampa Preta, 23 pedidos). — **Interpretação operacional:** divergência produto-específica e pontual; mas o padrão operacional revela que a conta não tem profundidade em Full para manter o mix histórico quando o líder do dia não é Full — a robustez do mix é dependente de qual anúncio lidera.
 
-- **Sinal:** `account_overview.active_analysis.low_health_count = 7` em 82 anúncios ativos, com health calculada disponível em apenas 18 (64 sem dado). Dos 7 com health penalizada, apenas 2 apareceram no top10 do dia (Kit 4 Potes 1050ml em 0,75 e Conjunto 5 Potes Tampa Vermelha em 0,71). — **interpretação operacional:** os outros 5 anúncios com health < 0,85 não aparecem no top, possivelmente porque a penalização já reduziu sua exposição ao ponto de não gerar volume rastreável. A degradação de health na base ativa é mais ampla do que o top10 do dia revela — a cauda não é apenas morta por pausa, parte está ativa com penalização silenciosa sem contribuir para o resultado.
+- **Sinal:** Kit 6 Tigelas de Vidro 250ml (MLB6167272090, `is_catalog=true`, `available_quantity=21`, `health=null`, 5 pedidos ontem, fulfillment). — **Interpretação operacional:** 21 unidades em catálogo com ritmo de 5 pedidos/dia = cobertura de ~4 dias; `health=null` não significa saudável — significa volume insuficiente para o ML calcular; não é emergência hoje, mas é o próximo ponto de atenção em catálogo se o ritmo se mantiver nos próximos 2–3 ciclos.
 
 ---
 
 ### Anomalias ou ausência de anomalia
 
-**Anomalia leve.** O dia apresenta três desvios operacionais localizáveis: estoque crítico com ruptura iminente no Kit 06 Canequinhas Acrílico com Suporte (`available_quantity = 4`, ~1 dia de cobertura); divergência de mix de fulfillment produto-específica (Full caiu para 56,3% vs padrão 30d de 73,9%, puxado pelo campeão Cross-docking); e health penalizada em anúncio de catálogo ativo (Conjunto 5 Potes Tampa Vermelha, 0,71). Nenhum dos três configura desvio sistêmico — o primeiro é resolvível por reposição em 24h, o segundo é consequência direta de qual produto liderou o dia, o terceiro é pré-existente e já registrado pela L01. Os 3 cancelamentos não movem reputação hoje mas têm risco prospectivo atrelado ao estoque crítico ativo. O dia sobe para **anomalia moderada** se: Kit 06 Canequinhas Acrílico romper sem pausa manual gerando novos cancelamentos; health do Conjunto 5 Potes Tampa Vermelha cair abaixo de 0,70 no próximo pacote; ou os 3 cancelamentos do dia se confirmarem concentrados em um único listing.
+**Anomalia leve.** Volume e GMV ficaram dentro das bandas históricas (`orders_vs_60d=-0,2%`, `gmv_vs_same_weekday=+32,4%` explicado pelo ticket documentado); a distribuição horária é normal com concentração no período comercial (13–15h); não há anúncio pausado com pedidos em aberto no top10. O que sustenta a classificação em leve: (1) estoque crítico no Kit 06 Canequinhas Acrílico ativo sem resolução confirmada no snapshot; (2) 3 cancelamentos sem origem determinada — sinal precoce não destrinchado; (3) Tampa Vermelha confirmada como catálogo com `health=0,71`, risco mais grave do que a L01 descreveu, mas ainda sem evidência de perda de Buy Box materializada. Nenhum sinal bloqueia a operação hoje de forma isolada. Subiria para **anomalia moderada** se os cancelamentos do dia forem confirmados como originados do item com estoque crítico (concentração de causa), ou se Tampa Vermelha perder Buy Box nos próximos 1–2 ciclos (catálogo + health degradada + sinal de posição).
 
 ---
 
 ### O que precisa ser investigado pela Granular
 
-- **Pergunta:** Qual o estoque físico real do Kit 06 Canequinhas Acrílico com Suporte (MLB4410218897) disponível em fulfillment agora, e há pedidos abertos não atendidos neste anúncio? — **motivada por:** sinal operacional de `available_quantity = 4` com 3 pedidos ontem — janela de ~1 dia antes de ruptura com risco imediato de cancelamentos prospectivos; dado necessário para confirmar se a urgência definida pela L02 ainda está dentro da janela de ação.
+- **Pergunta:** Os 3 cancelamentos do dia são de qual(is) anúncio(s)? Algum é do Kit 06 Canequinhas Acrílico (MLB4410218897)? — **Motivada por:** Sinal 3 (cancelamentos sem origem conhecida) cruzado com Sinal 1 (item com estoque crítico ativo no mesmo dia).
 
-- **Pergunta:** Os 3 cancelamentos do dia estão concentrados em um único anúncio/produto ou são pulverizados entre listings distintos? — **motivada por:** cancelamentos sem distribuição por anúncio disponível no pacote; com estoque crítico ativo no Kit Canequinhas Acrílico, confirmar ou descartar se os cancelamentos do dia vieram desse listing específico distingue sinal precoce de ruptura já em curso de cancelamento aleatório disperso.
+- **Pergunta:** Qual o `available_quantity` atual do Kit 06 Canequinhas Acrílico (MLB4410218897) em 21/05? Houve pausa ou cancelamento neste ciclo? — **Motivada por:** Sinal 1 (estoque=3 no snapshot de 21/05, ação definida pela L02 ainda em aberto).
 
-- **Pergunta:** Qual é a direção atual (caindo, estável, subindo) do `health` do Conjunto 5 Potes Tampa Vermelha (MLB3288536143, `is_catalog = true`, `health = 0,71`) — o listing está em queda contínua ou em plateau de penalização? — **motivada por:** é o único anúncio em catálogo com health declarada e penalizada no top10; a L01 e L02 identificaram a direção do health como o dado que falta para separar erosão ativa de estabilização; em catálogo, a distinção é operacionalmente relevante porque a recuperação de posição pós-penalização tem dinâmica diferente do Clássico.
+- **Pergunta:** Qual a direção (`health` estável / caindo / recuperando) e a causa do `health=0,71` do Conjunto 5 Potes Tampa Vermelha (MLB3288536143, `is_catalog=true`, fulfillment)? Claims, atraso de entrega ou qualidade do listing? — **Motivada por:** Sinal 2 (anúncio de catálogo com health crítico — risco de Buy Box, não apenas ranking; contradiz leitura da L01 sobre o mecanismo de dano).
 
-- **Pergunta:** O Conjunto 5 Potes Tampa Preta (MLB4535865317, campeão do dia, Cross-docking) figura entre os principais itens por `revenue_ads` na campanha de Himmel — ou o volume que gerou é predominantemente orgânico? — **motivada por:** ADS share de 59,8% com campeão Cross-docking no topo levanta a hipótese de que a campanha está priorizando um produto em modalidade logística menos eficiente que Full; confirmar ou descartar é pré-requisito para avaliar se a distorção do mix de fulfillment tem origem em demanda orgânica ou em priorização de campanha.
+- **Pergunta:** O `revenue_ads` de ontem está concentrado no Conjunto 5 Potes Tampa Preta (Cross-Docking, campeão do dia) ou distribuído entre os campeões Full? Qual anúncio gerou mais receita via ADS? — **Motivada por:** Lente Op 5 (ADS share 59,8% num dia em que o campeão era Cross-Docking — sinal de que a campanha pode ter priorizado produto fora do mix Full ideal; relevante para Himmel no próximo alinhamento).
 
-- **Pergunta:** O Kit 6 Tigelas de Vidro 250ml (MLB6167272090, `is_catalog = true`, `available_quantity = 21`, 5 pedidos ontem) tem reposição prevista, e o Kit 2 Potes 1050ml (MLB6518176572, `is_catalog = true`, `available_quantity = 31`, 3 pedidos) também? — **motivada por:** dois anúncios em catálogo com horizonte de estoque curto (4 e ~10 dias respectivamente); ruptura em catálogo tem recuperação mais lenta que em Clássico — necessário avaliar se a priorização de reposição precisa incluir esses dois além do Canequinhas Acrílico.
+- **Pergunta:** Qual o `available_quantity` atual do Kit 6 Tigelas de Vidro 250ml (MLB6167272090, `is_catalog=true`, `available_quantity=21`, 5 pedidos em 20/05)? — **Motivada por:** Sinal 5 (cobertura de ~4 dias em catálogo sem health calculável — próximo ponto de atenção antes de ruptura em anúncio de catálogo).
 
 ---
 
 ### Destaque para a Condensadora
 
-O fato operacional mais importante do dia não é o GMV nem a concentração em campeões — ambos já explicados pela L01. É a combinação que aparece quando se cruza o ADS share de 59,8% com o mix do dia: o produto que liderou o volume é Cross-docking (não Full), e o único anúncio em catálogo com health penalizada ainda gera pedidos apesar da penalização ativa — o que operacionalmente sugere que a campanha de Himmel está, em alguma medida, compensando perda de posição orgânica em vez de amplificar demanda saudável. Isso não invalida a eficiência da campanha (ROAS 11,6x, ACOS 4,33%), mas adiciona evidência operacional concreta à hipótese da L01 de que ADS substitui orgânico degradado. O risco silencioso que pode passar despercebido se ficar enterrado em métrica: Kit 06 Canequinhas Acrílico com Suporte tem 4 unidades em fulfillment e 3 pedidos ontem — sem reposição confirmada hoje, o anúncio quebra e os próximos pedidos viram cancelamentos que começam a mover `reputation.cancellations_rate` a partir de zero. Esse é o único ponto que exige ação no dia, e ele é pequeno o suficiente para ser ignorado se a leitura se concentrar no patamar de GMV.
+O fato operacional mais importante do dia não está no GMV ou no ticket — está numa correção de gravidade: o Conjunto 5 Potes Tampa Vermelha (5º do dia, `health=0,71`, fulfillment) é um anúncio **em Catálogo** (`is_catalog=true`, confirmado no pacote), não Clássico como a L01 descreveu. Isso muda o mecanismo de penalização — health degradada em catálogo pressiona Buy Box ML diretamente, e recuperação de Buy Box é mais lenta e menos previsível do que recuperação de posição em ranking de categoria. A conta tem dois vetores de degradação orgânica silenciosa no top5 (health=0,75 e health=0,71), e o de maior impacto potencial opera em catálogo com um mecanismo de dano mais grave. Se isso passar despercebido no Slack, a mensagem final comunicará o risco em nível errado de urgência. O restante do dia — volume, GMV, ADS, mix de fulfillment — comportou-se dentro do esperado para o padrão ticket-driven já documentado pela L01, sem novidade operacional relevante além do que as camadas anteriores já capturaram.
 
 ---
 # INSTRUCAO DE OUTPUT

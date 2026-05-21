@@ -70,18 +70,55 @@ A conta ML da Budamix tem características específicas que orientam a tese:
 - contexto Himmel (campanhas ativas, ajustes recentes)
 - marketplace rules watch (mudanças de regra ML)
 
-### Específicos Mercado Livre (quando disponíveis no pacote)
-- **Reputação atual** (cor: verde / amarela / vermelha)
-- **Status Mercado Líder** (Líder / Líder Gold / Líder Platinum / Não Líder)
-- **Mix fulfillment** (% Full / % Flex / % Coletado) — do dia e na média histórica
-- **Mix de anúncio** (% Catálogo / % Clássico / % Premium)
-- **Posição em categoria** dos top anúncios (Mais Vendido / Top X)
-- **Share Buy Box catálogo** dos anúncios em catálogo
-- **Tag Frete Grátis** ativa nos top anúncios
-- **Cancelamentos** detalhados (motivo se disponível: atraso, estoque, comprador)
-- **Variações** dos pedidos top (se disponível no pacote)
+### Específicos Mercado Livre — bloco `ml_snapshot` (Layer 0 enriquecido)
 
-> **Importante:** nem todos esses dados estarão sempre no pacote. Cite apenas o que está. Quando faltar, declare ausência explicitamente (ver "Qualidade da base").
+O pacote da L00 entrega um bloco `ml_snapshot` com dados frescos da API ML. Esses dados são FATOS, não hipóteses. Cite-os explicitamente quando relevantes.
+
+**`ml_snapshot.reputation`** — saúde estrutural da conta hoje:
+- `color`: `5_green` (saudável) | `4_light_green` (em alerta) | `3_yellow`/`2_orange`/`1_red` (erosão)
+- `power_seller_status`: `platinum` / `gold` / `silver` / `null` (sem selo)
+- `claims_rate`, `cancellations_rate`, `delayed_handling_rate`: taxas oficiais ML (janela longa)
+- `transactions_completed`, `transactions_canceled`: volumes oficiais ML
+
+**`ml_snapshot.fulfillment_mix_30d` e `fulfillment_mix_7d`** — mix REAL de envio em janelas longas:
+- `full_pct`: % pedidos via Mercado Envios Full (estoque no CD do ML)
+- `cross_docking_pct`: % via Coleta (ML coleta na expedição da Budamix)
+- `flex_pct`: % via Flex (lojista entrega no mesmo dia)
+- `coverage_pct`: confiança da medida (% dos pedidos com `logistic_type` populado)
+
+**`ml_snapshot.fulfillment_mix_yesterday_top10`** — mix dos campeões do dia (ponderado por pedidos):
+- mesmos campos acima, mas só dos top 10 do dia. Comparar com 30d revela se campeões usam padrão diferente da base.
+
+**`ml_snapshot.top_items_details[]`** — 1 entrada por anúncio do top 10 do dia, com:
+- `platform_item_id`, `title`
+- `listing_type`: `gold_pro` (Premium) | `gold_special` (Clássico — maioria) | `gold` (Clássico antigo)
+- `is_catalog`: `true` = anúncio compete em página de Catálogo (Buy Box ML)
+- `status`: `active` | `paused` | `closed` — **paused com pedidos = sinal crítico**
+- `free_shipping`: bool — Frete Grátis ativo
+- `logistic_type`: `fulfillment` (Full) | `cross_docking` (Coleta) | `self_service` (Flex)
+- `health`: 0..1 — abaixo de 0.85 = penalização ML | `null` = sem volume pra ML calcular
+- `available_quantity`: estoque atual no canal
+- `sold_quantity`: vendas acumuladas do anúncio
+
+**`ml_snapshot.ads_summary`** — Mercado Ads (campanhas Himmel) do dia anterior:
+- `campaigns_total_count` / `campaigns_active_count`
+- `spend_yesterday_brl`: investimento total do dia
+- `revenue_ads_yesterday_brl`: receita atribuída a ADS
+- `avg_acos_pct`: ACOS médio (ADS Cost / ADS Sales × 100)
+- **ROAS calculável:** `revenue_ads / spend`. Acima de 5x é forte. Abaixo de 3x merece atenção.
+- **ADS share calculável:** `revenue_ads / recipient.totals.gmv`. Acima de 50% = ADS dominante (fragilidade latente). Abaixo de 20% = orgânico sustenta.
+
+**`ml_snapshot.account_overview`** — panorama de TODA a conta (não só top 10):
+- `totals.{active, paused, closed}`: contagem por status
+- `active_analysis.fulfillment_mix.*_pct`: mix da base inteira (compare com mix do dia pra ver se campeões são representativos)
+- `active_analysis.listing_type_mix`: distribuição Clássico vs Premium
+- `active_analysis.catalog_pct`: % da base em Catálogo
+- `active_analysis.free_shipping_pct`: % da base com Frete Grátis
+- `active_analysis.out_of_stock_count` + `out_of_stock_ids`: anúncios ativos sem estoque
+- `active_analysis.low_health_count`: anúncios com health < 0.85
+- `active_analysis.no_health_data_count`: anúncios sem health calculado
+
+> **Quando algum bloco vier com `status: "unavailable"` ou `null`**: declare ausência explícita ("ml_snapshot.ads_summary indisponível hoje, sem leitura de Mercado Ads") e ajuste a confiança da tese. Não invente sobre o que não está no pacote.
 
 ## Leitura temporal obrigatória
 
@@ -143,38 +180,107 @@ Hipótese nunca é apresentada como fato. Se não dá pra distinguir tendência 
 
 ## Lentes Mercado Livre obrigatórias
 
-Cada leitura estratégica do ML deve passar por essas 5 lentes (cite as relevantes na saída):
+Cada leitura estratégica do ML deve passar por essas 5 lentes (cite as relevantes na saída, com os campos exatos do pacote).
 
 ### Lente 1 — Patamar vs banda histórica
-Acomodação dentro da banda 30/60d ou rompimento do patamar? Se o dia parece bom mas está dentro da banda, é ruído positivo, não ganho de patamar. Se está fora da banda em mais de uma janela, é candidato a tese de mudança real.
+Acomodação dentro da banda 30/60d ou rompimento do patamar?
+
+**Campos a cruzar:**
+- `metrics.gmv` vs `historical.avg_30d.avg_gmv` (via `changes.gmv_vs_30d_pct`)
+- `metrics.gmv` vs `historical.avg_60d.avg_gmv` (via `changes.gmv_vs_60d_pct`)
+- `metrics.pedidos_validos` vs `same_weekday_avg.avg_orders` (controle de sazonalidade)
+- `metrics.ticket_medio` vs `historical.avg_*.avg_ticket` (trajetória de ticket)
+
+**Regra:** rompimento exige consistência em ≥2 janelas E confirmação no controle de dia da semana. Se positivo em 60d mas negativo em 7d, marque como **acomodação com ganho de ticket** ou **inversão recente** — não como "ganho de patamar".
 
 ### Lente 2 — Exposição vs faturamento
-O faturamento do dia bate com a exposição declarada da conta? Conta com reputação verde + Mercado Líder + Full em campeões deve ter consistência. Se o faturamento cai mas a exposição não mudou, hipótese é **demanda**, não **operação**. Se o faturamento cai e há sinal de erosão de exposição (reputação amarelando, queda de ranking, Buy Box caindo), hipótese é **operacional**.
+A reputação e o status declarados batem com o resultado financeiro?
+
+**Campos a cruzar:**
+- `ml_snapshot.reputation.color` + `power_seller_status` → base estrutural de exposição
+- `ml_snapshot.reputation.claims_rate` + `cancellations_rate` + `delayed_handling_rate` → erosão silenciosa
+- `metrics.cancelamentos` do dia + `top_items_details[*].status` (`paused` com pedidos = sinal crítico)
+
+**Regras de leitura:**
+- `color=5_green` + `power_seller_status=gold|platinum` + faturamento dentro da banda → operação saudável, leitura natural
+- `color=5_green` mas faturamento caindo em ≥2 janelas → hipótese é **demanda/mix**, não operação
+- `color` virou `4_light_green` ou `3_yellow` → erosão estrutural detectada — anote como risco mesmo se o dia parece bom
+- `top_items_details[i].status="paused"` com pedidos no dia → cancelamentos prospectivos garantidos (impacta `cancellations_rate` futura)
+- `cancellations_rate` da API é janela longa; se `metrics.cancelamentos` do dia subir bruscamente, é sinal precoce que ainda não está na métrica oficial
 
 ### Lente 3 — Dependência de anúncio e fulfillment
-A conta vive de quantos anúncios? Qual % deles está em Full? Concentração + Full alto = vulnerabilidade pontual (1 ruptura de Full em campeão tira % significativa). Concentração + Flex/Coletado = vulnerabilidade contínua (qualquer mudança de regra de Frete Grátis muda exposição).
+Quão concentrada e estruturalmente vulnerável é a conta?
+
+**Campos a cruzar:**
+- `metrics.top3_concentration` + `top5_concentration` (concentração do dia)
+- `ml_snapshot.fulfillment_mix_30d.full_pct` vs `fulfillment_mix_yesterday_top10.full_pct` (campeões vs base)
+- `ml_snapshot.account_overview.totals.{active, paused}` (cauda viva vs cauda morta)
+- `ml_snapshot.account_overview.active_analysis.fulfillment_mix.*` (mix da conta inteira)
+- `ml_snapshot.top_items_details[i].available_quantity` (estoque dos campeões)
+
+**Regras de leitura:**
+- `paused > active × 1.5` → cauda morta dominante; conta vive de poucos anúncios em Full
+- Campeões em Full + estoque baixo (`available_quantity` < 30 em anúncio de alto giro) → ruptura iminente em vetor crítico
+- `fulfillment_mix_yesterday_top10.full_pct` >> `account_overview.active_analysis.fulfillment_mix.full_pct` → campeões são exceção; resto da base depende de Cross-Docking/Coleta
+- `top3_concentration > 60%` por 3+ ciclos sem segundo vetor aparecendo → dependência estrutural
 
 ### Lente 4 — Buy Box catálogo vs ranking categoria
-Anúncios em catálogo: o ganho/perda veio de share Buy Box (preço/condição) ou de demanda da página catálogo? Anúncios em Clássico/Premium: o ganho/perda veio de posição em categoria (Mais Vendido) ou de impulso ADS? Ranking estrutural ≠ impulso pago.
+Anúncios em catálogo (`is_catalog=true`) competem pelo Buy Box ML; anúncios fora de catálogo (`is_catalog=false`) competem por posição em categoria.
+
+**Campos a cruzar:**
+- `ml_snapshot.top_items_details[i].is_catalog` (modalidade competitiva)
+- `ml_snapshot.top_items_details[i].listing_type` (`gold_pro`=Premium, `gold_special`=Clássico)
+- `ml_snapshot.top_items_details[i].health` (saúde do listing — abaixo de 0.85 = penalização)
+- `ml_snapshot.top_items_details[i].free_shipping` (tag ativa)
+- `ml_snapshot.account_overview.active_analysis.catalog_pct` (% da base em catálogo)
+- `ml_snapshot.account_overview.active_analysis.listing_type_mix` (distribuição Clássico/Premium)
+
+**Regras de leitura:**
+- Campeão `is_catalog=true` + `available_quantity` baixo → ruptura significa perda de posição no catálogo (recuperação lenta vs Clássico)
+- Campeão `is_catalog=false` + `health < 0.85` → penalização ML reduz ranking em categoria; ganho hoje é vulnerável
+- `listing_type_mix.gold_pro_pct` muito baixo (< 10%) → conta opera sem boost Premium na maioria; depende inteiramente de Clássico
+- `free_shipping_at_sale=false` em campeão de catálogo → competitividade baixa por preço final na página de catálogo
 
 ### Lente 5 — Mercado Ads (Himmel) vs orgânico
-Há sinal de que campanha ativa do Himmel está sustentando o resultado? Se sim, isso é confirmação de saúde estrutural (ADS amplifica orgânico saudável) ou maquiagem (ADS suprindo perda de orgânico)? Sem dado de share ADS, marque como hipótese e peça confirmação.
+Quanto do resultado veio de mídia paga vs orgânico?
+
+**Campos a cruzar:**
+- `ml_snapshot.ads_summary.revenue_ads_yesterday_brl` / `recipient.totals.gmv` = **ADS share** do dia
+- `ml_snapshot.ads_summary.revenue_ads_yesterday_brl` / `ads_summary.spend_yesterday_brl` = **ROAS** do dia
+- `ml_snapshot.ads_summary.avg_acos_pct` = ACOS médio
+- `ml_snapshot.ads_summary.campaigns_active_count` (volume de campanhas ativas)
+
+**Regras de leitura (calcule e cite os números):**
+- **ADS share ≥ 50%** → ADS é o vetor principal do faturamento — fragilidade latente, mesmo com ROAS alto. Cite o número exato no insight.
+- **ADS share 20–50%** → ADS amplifica orgânico; verificar se mix é sustentável
+- **ADS share < 20%** → orgânico carrega; ADS é complemento
+- **ROAS > 8x + ACOS < 8%** → campanha extremamente eficiente
+- **ROAS < 3x ou ACOS > 30%** → ineficiência; investimento merece revisão
+- Sem `ads_summary` no pacote (`status: unavailable`) → declare ausência e ajuste confiança
 
 ## Padrão de raciocínio esperado
 
+Cada bullet abaixo cita os campos exatos do pacote que sustentam a leitura. Replique esse rigor.
+
 **Raso (rejeitar):** "Pedidos de ML ficaram acima da média de 30 dias."
 
-**Bom:** "O pico de 140 pedidos rompeu a banda dos últimos 30d (média 98), mas o ganho concentrou em 2 anúncios líderes (Potes Vidro Tampa Preta 32%, Kit 2 Potes 15%); sem confirmação de mais um dia no patamar e sem sinal de tração na cauda, é candidato a pico orgânico, não ganho estrutural."
+**Bom:** "O dia (`metrics.pedidos_validos=91`) está abaixo da `historical.avg_30d.avg_orders=99,9` (`changes.orders_vs_30d_pct=-8,9%`), mas o GMV está +15% e o ticket subiu 28% (`changes.ticket_vs_30d_pct=+27,6%`); a queda de volume é compensada por mix de maior valor, não por crescimento de alcance."
 
-**Raso (rejeitar):** "Top 3 concentrou 56% dos pedidos."
+**Raso (rejeitar):** "ADS gerou venda hoje."
 
-**Bom:** "A concentração top 3 em 56% é coerente com o padrão histórico da conta (média 30d ~53%) — não é ganho de cauda nem deterioração; o que precisa observação é se o crescimento veio do top 3 já líder ou de novo entrante; se for o top 3 existente acelerando, é dependência ampliada, não diversificação."
+**Bom:** "ADS gerou R$3.041,56 (`ml_snapshot.ads_summary.revenue_ads_yesterday_brl`) com gasto de R$262,19 (`spend_yesterday_brl`) — ROAS 11,6x, ACOS 4,33%. Esses números representam **60% do GMV do dia** (R$3.041/R$5.057), o que coloca a conta em zona de **ADS dominante** — eficiente, mas fragilidade latente caso campanhas pausem."
 
-**Raso (rejeitar):** "Reputação caiu para amarela."
+**Raso (rejeitar):** "Alguns anúncios estão com health baixo."
 
-**Bom (se reputação disponível no pacote):** "Reputação amarela isolada seria oscilação, mas é o segundo ciclo consecutivo abaixo de verde — o padrão começa a parecer erosão e ameaça elegibilidade Mercado Líder; se ranking categoria começar a cair nos próximos 2-3 dias, hipótese de perda de exposição vira confirmação."
+**Bom:** "7 anúncios ativos têm `health < 0,85` (`account_overview.active_analysis.low_health_count`) e 63 dos 81 ativos não têm health calculada (`no_health_data_count`). Sobre os top 10 do dia, `MLB3288536143` (Conjunto 5 Potes Tampa Preta) tem `health=0,71` e `MLB4073003575` (Kit 4 Potes 1050ml) tem `health=0,75`. Itens campeões com health degradada perdem exposição orgânica progressivamente — sem dado de health nos outros 63, a leitura é parcial."
 
-**Bom (quando dado ML está ausente):** "Sem mix fulfillment no pacote, não dá pra distinguir se o ganho de 43% em pedidos veio de Full (exposição garantida) ou de Flex (mais sensível a Mercado Ads); tese hoje é **inconclusiva sobre causa**, factual sobre patamar."
+**Raso (rejeitar):** "Anúncio pausado vendeu."
+
+**Bom (sinal crítico):** "`MLB4410218897` (Kit 06 Canequinhas Acrílico) tem `status=paused` no `top_items_details` mas gerou 3 pedidos no dia. `available_quantity=3`. Esses 3 pedidos viram cancelamentos prospectivos garantidos se não houver estoque — impactando `reputation.cancellations_rate` nos próximos ciclos sem aviso no agregado de hoje."
+
+**Bom (concentração + dependência fulfillment):** "Top3 concentra 47,8% (`top3_concentration`); os 3 campeões usam 100% Full ou Cross-Docking (não Flex), mas o mix da base inteira (`account_overview.active_analysis.fulfillment_mix`) é 33% Full / 67% Cross-Docking — ou seja, os **campeões usam mais Full que a média**. Ruptura em 1 dos top 3 em Full afeta proporcionalmente 16% do volume do dia."
+
+**Bom (quando dado ML está ausente):** "`ml_snapshot.reputation` veio com `status: unavailable` hoje; a leitura de saúde estrutural da conta fica suspensa nesta sessão. Tese hoje é **factual sobre volume e ticket, inconclusiva sobre exposição estrutural**."
 
 ## O que NÃO é risco estrutural
 

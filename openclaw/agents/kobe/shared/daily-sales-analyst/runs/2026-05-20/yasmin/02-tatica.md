@@ -1,38 +1,38 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Decisão tática
 
-- **Dado que a tese é acomodação com ticket-driven e ~60% do GMV sustentado por ADS a ACOS de 4.33%**, a decisão correta é não alterar a campanha — o ADS está eficiente e não há sinal de ineficiência a corrigir. Mexer agora seria precipitado e poderia comprimir o GMV sem ganho operacional.
+- **Dado que a tese é "vulnerável" por saúde penalizada de dois campeões mascarada pelo ADS**, a decisão correta é investigar a causa da penalização antes de qualquer movimento em ADS ou mix — agir sobre a alavanca (ADS) sem entender o que está penalizando o ranking amplifica o problema, não resolve.
 
-- **Dado que o risco estrutural principal é a dependência ADS não validada como orgânica**, a ação tática é construir a baseline de observação (ticket, GMV, spend) ao longo dos próximos 3-5 dias — não agir, mas instrumentar a janela de confirmação da hipótese estratégica.
+- **Dado que o risco principal é o ADS compensando exposição orgânica deteriorada**, proteger a estabilidade das campanhas atuais é prioridade sobre qualquer teste de segundo vetor — não é hora de expandir; é hora de entender por que o núcleo está penalizado.
 
-- **Dado que há itens com ruptura iminente identificados no snapshot** (em especial produto de cauda com estoque crítico), esse é o único sinal operacional que justifica ação imediata — risco de anúncio pausado involuntariamente, o que contaminaria a leitura dos próximos dias.
+- **Dado que o sinal operacional de ruptura de estoque no Kit 06 Canequinhas Suporte Acrílico é iminente (3 unidades)**, esse risco precede qualquer decisão estratégica — cancelamentos prospectivos nos próximos ciclos impactam reputação da conta sem aparecer no agregado de hoje.
 
-- **Dado que os anúncios líderes de fulfillment estão com health abaixo ou no limiar de 0.85**, é necessário checar posição e ranking hoje para separar se a saúde já está gerando redução de exposição — antes de qualquer decisão sobre verba ou mix.
+- **Dado que não há memória consolidada anterior**, não há hipótese ativa a confirmar ou refutar; esta é a leitura inaugural. Nenhuma ação forte está autorizada por um único ciclo sem histórico.
 
 ---
 
 ### O que fazer hoje
 
-- **Yasmin:** checar disponibilidade de estoque nos anúncios de cauda com quantidade crítica identificados no snapshot — motivo: ruptura iminente em um ou mais itens ativos pode causar pausa involuntária de anúncio e distorcer a leitura de volume dos próximos dias, comprometendo a baseline de confirmação da tese — sinal de resultado: se o estoque crítico for reabastecido ou anúncio pausado de forma gerenciada antes do dia de pico, a série dos próximos dias permanece limpa; se a ruptura acontecer sem controle, registrar como variável confundidora na memória diária.
+- **Yasmin:** verificar o status de health dos dois anúncios líderes penalizados (Kit 4 Potes 1050ml e Conjunto 5 Potes Tampa Vermelha) e identificar a causa — a tese estratégica aponta que o ADS está compensando penalização de ranking orgânico; sem saber se a causa é operacional (atraso de envio, reclamação, estoque CD) ou estrutural (posição competitiva), qualquer alinhamento com Himmel sobre ADS seria cego — **sinal de resultado:** causa identificada e tratável (ex: métrica de envio, reclamação pontual) confirma que a proteção é operacional e gerenciável por Yasmin; health abaixo de 0,70 ou causa não identificada sobe para alinhamento com Himmel.
 
-- **Yasmin:** revisar health e posição dos anúncios líderes de fulfillment — em especial os que já estão abaixo de 0.85 hoje — e comparar com a posição dos mesmos anúncios há 7 dias — motivo: health em deterioração no segundo maior produto (Kit 4 Potes 1050ml em 0.75) pode reduzir exposição orgânica e distorcer o sinal de ticket nos próximos dias, e um anúncio em catálogo (Potes Tampa Vermelha, health 0.71) já está abaixo do limiar — sinal de resultado: se 2 ou mais anúncios líderes apresentarem queda de posição relativa confirmada, Yasmin alinha com Himmel para checar se ADS está compensando perda de orgânico; se posição estável, mantém observação sem mexer em campanha.
+- **Yasmin:** confirmar disponibilidade de reposição de estoque para o Kit 06 Canequinhas Suporte Acrílico (3 unidades em estoque) e acionar logística nas próximas horas — risco operacional iminente: estoque zera em 24–48h gerando cancelamentos prospectivos que deterioram taxa de cancelamentos e reputação da conta — **sinal de resultado:** reposição confirmada e em trânsito para o CD do ML nas próximas 24h contém o risco; ausência de confirmação nesse prazo exige escalonamento para decisão de pausa ou substituição do anúncio.
 
-- **Yasmin:** registrar ticket de hoje (R$56.19) como ponto zero da janela de observação da hipótese estratégica — motivo: weekly e monthly são bases inaugurais, portanto os próximos 3-5 dias são a primeira série disponível para confirmar ou enfraquecer a tese de ticket orgânico vs ADS-sustentado — sinal de resultado: ticket acima de R$50 por 2+ dias seguidos sem alteração de spend fortalece a hipótese orgânica; ticket abaixo de R$46 em dia de spend normal enfraquece.
+- **Yasmin:** registrar o share de ADS sobre o GMV hoje (referência: ~60%) e repetir a leitura nos próximos 2 dias sem alterar as campanhas — a tese é que a dependência de mídia paga pode estar se consolidando como arquitetura, não como amplificador pontual; esta é a primeira leitura e não há base para comparação — **sinal de resultado:** share acima de 55% por 3 dias consecutivos sem crescimento paralelo de pedidos em anúncios não impulsionados confirma dependência estrutural; Yasmin então prepara alinhamento com Himmel sobre diversificação orgânica.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Himmel para ajustar ADS Mercado Livre.** ACOS em 4.33% com R$3.041 de receita atribuída em um único dia é operação eficiente, não ineficiente. Não há sinal de campanha queimando verba, posição deteriorando ou spend descontrolado. Qualquer ajuste de verba, segmentação ou pausa de campanha agora seria intervenção sobre uma operação que está funcionando, com risco real de comprimir o GMV antes de entender se o patamar de ticket é sustentável.
+- **Não pausar, reduzir ou ajustar as campanhas de Mercado Ads com Himmel.** As campanhas de Himmel são hoje o principal amortecedor de uma base orgânica deteriorada — remover ou reduzir o ADS enquanto os dois maiores anúncios operam com health penalizado expõe o ranking real sem nenhuma rede de segurança. A decisão de mexer em ADS só faz sentido após entender a causa da penalização e avaliar se ela é reversível.
 
-- **Não tratar o volume de hoje (-21.8% vs 7d em pedidos) como queda real da conta.** O 7d inclui dias com volume acima do padrão histórico. Hoje está abaixo da semana recente, mas dentro da banda 60d e neutro vs mesmo dia da semana (-2.7%). Isolar esse desvio como alerta exigiria pelo menos 2 dias seguidos abaixo da banda, o que não está configurado.
+- **Não testar segundo vetor ou ativar novos anúncios para diversificar concentração.** A concentração em núcleo enxuto é um risco estrutural apontado pela Estratégica, mas atacá-lo agora, sem baseline de memória e com saúde penalizada nos campeões, divide atenção operacional e pode deteriorar o ranking dos anúncios que sustentam o GMV. Diversificação é decisão de expansão; o momento atual pede estabilização.
 
-- **Não fazer leitura consolidada de tese ou hipóteses de mix com base em apenas um dia.** Weekly e monthly estão vazios — hoje é o primeiro ponto da série. Qualquer conclusão sobre dependência de campanha, sazonalidade ou mudança de patamar é hipótese emergente, não confirmação. Decisões de mix, reorientação de catálogo ou mudança de foco em produto precisam de pelo menos 3-5 dias de base antes de merecer ação tática.
+- **Não alterar preços dos SKUs líderes.** O ticket elevado (R$56,19 vs R$41,86 na base 60d) é o principal vetor de crescimento de GMV na conta. Não há dado de margem ou custo disponível neste pacote para avaliar se uma eventual redução de preço geraria volume suficiente para compensar. Mexer em preço sem essa informação arrisca desfazer a única trajetória positiva consistente da conta.
 
 ---
 
 ### Escalonamento
 
-**observar**
+**Observar** — com gatilho para **alinhar com Himmel** se sinal operacional confirmar.
 
-A conta está operacionalmente intacta — reputação máxima, Mercado Líder Gold, zero cancelamentos, ADS eficiente. O risco levantado pela Estratégica (dependência ADS sobre ticket elevado) é hipótese emergente sem histórico consolidado para confirmar ou refutar. A postura correta é coletar os próximos ciclos sem alterar a operação. Yasmin resolve as checagens operacionais (estoque crítico, health dos líderes) dentro do próprio canal, sem necessidade de alinhamento externo. Mudança de classificação: se nos próximos 2 dias o ticket cair abaixo de R$46 em dia de spend normal, ou se 2+ anúncios líderes mostrarem queda de posição confirmada, Yasmin alinha com Himmel preventivamente — não para mexer em verba, mas para entender se o ADS está compensando perda de orgânico.
+Esta é a leitura inaugural da conta; não há baseline de memória para autorizar decisão estrutural. A postura correta é coletar evidência por 2–3 ciclos antes de qualquer movimento em ADS ou mix. Yasmin resolve os dois itens operacionais hoje (investigar health dos campeões, confirmar reposição de estoque) sem acionar Himmel. A mudança de classificação ocorre se: (a) health dos campeões penalizados cair abaixo de 0,70 no próximo ciclo — isso transforma o risco de hipótese em problema ativo e Yasmin alinha com Himmel para avaliar proteção de exposição; ou (b) share de ADS permanecer acima de 55% por 3 dias seguidos sem crescimento de pedidos orgânicos — o que justifica conversa com Himmel sobre rebalanceamento. O risco de ruptura de estoque do Kit 06 Canequinhas é operacional e não depende de Himmel — Yasmin resolve diretamente.

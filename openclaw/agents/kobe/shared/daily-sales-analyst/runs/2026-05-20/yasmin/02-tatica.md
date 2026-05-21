@@ -1,38 +1,38 @@
 <!-- llm_used=true model=sonnet fallback=false -->
 ### Decisão tática
 
-- **Dado que a tese é ganho de patamar via expansão de ticket**, a postura correta é proteger os anúncios que sustentam esse ticket — especialmente o campeão — sem intervir no que está funcionando. Mexer em ADS ou mix agora seria solucionar problema que os dados não mostram.
+- **Dado que a tese é ganho de patamar via ticket, a prioridade é proteger os anúncios que sustentam essa composição de GMV** — especialmente os itens Full com health degradado (KIT4YW1050 e Conjunto 5 Potes Tampa Vermelha), pois uma perda silenciosa de ranking em anúncios que já vendem bem derruba GMV sem evento operacional visível.
 
-- **Dado que o risco estrutural é dependência do campeão (família IMB501)**, a checagem prioritária é sobre saúde de exposição e posição desse anúncio, não sobre volume geral — o volume está dentro do patamar histórico.
+- **Dado que o risco principal é erosão de health em Full, a decisão é checar agora, não esperar 2 ciclos** — diferente de uma queda de volume sem causa, aqui há sinal concreto (health 0.75 e 0.71) que fundamenta investigação imediata pelo responsável do canal.
 
-- **Dado que a comparação vs 7d (-20,9% pedidos) cria ilusão de queda**, qualquer decisão baseada nesse referencial seria precipitada. O patamar real é o de 60d e os mesmos dias da semana — e hoje o dia fechou acima da média sazonal em GMV.
+- **Dado que o ADS está operando com ACOS de 4.33% e receita atribuída saudável, a decisão é não tocar** — não há sinal de desequilíbrio, e qualquer alteração sem causa identificada arrisca quebrar calibração que está funcionando.
 
-- **Dado que a memória é semente e não há hipóteses anteriores transitando**, esta leitura é ponto de partida, não confirmação. A tese é candidata forte mas não acumulada — a postura tática correta é coletar evidência nos próximos dias antes de qualquer movimento estrutural.
+- **Dado que dois anúncios Full têm estoque baixo (Kit 6 Tigelas com 20 unidades, Kit 2 Potes com 15 unidades), a decisão é confirmar cobertura antes de qualquer ruptura** — estoque esgotado em Full implica perda de benefício logístico e queda de visibilidade no ranking orgânico, exatamente no momento em que a conta está em trajetória de ticket crescente.
 
 ---
 
 ### O que fazer hoje
 
-- **Yasmin:** revisar posição e saúde dos anúncios líderes (família IMB501 e KIT4YW1050) e comparar com os últimos 7 dias — a tese de ganho de patamar depende da continuidade de exposição desses campeões; sem dado de posição no pacote atual, a checagem direta fecha essa lacuna — se posição dos anúncios líderes caiu em 2 ou mais, Yasmin alinha com Himmel sobre ADS ML; se posição estável, mantém observação sem mexer.
+- **Yasmin:** verificar health score e posição de ranking dos anúncios líderes em Full com health abaixo de 0.85 — risco estrutural da tese é que a elevação de ticket depende de itens Full bem posicionados, e health degradado corrói ranking sem alarme visível — se health do 2º mais vendido (KIT4YW1050) caiu abaixo de 0.70 ou se a posição média caiu vs 7 dias atrás, Yasmin aciona revisão do anúncio e alinha com Himmel sobre exposição; se health estável ou em recuperação, mantém observação sem ação.
 
-- **Yasmin:** observar se o ticket médio se mantém acima de R$ 50 nos próximos 2-3 dias (controlando por dia da semana) — sinal de confirmação central da tese estratégica; ticket acima de R$ 50 por 3 dias seguidos consolida o ganho de patamar como estrutural; ticket caindo abaixo de R$ 45 em 2 dos próximos 4 dias revisa a tese para acomodação.
+- **Yasmin:** checar cobertura de estoque Full dos anúncios com quantidade disponível abaixo de 25 unidades (Kit 6 Tigelas e Kit 2 Potes 1050ml) — com Full respondendo por 77.7% das vendas, ruptura de estoque em CD do ML implica perda do benefício logístico e descida de ranking orgânico, não apenas perda de vendas diretas — se algum desses itens estiver abaixo de 10 unidades sem reposição prevista, Yasmin escala para Kobe para decisão de urgência de reabastecimento; acima de 15 unidades com reposição prevista, sem ação imediata.
 
-- **Yasmin:** registrar a participação do Conjunto 5 Potes Tampa Preta no total de pedidos por mais 2 dias — dado que hoje foi ~24% (acima do limiar de confirmação de 20%), 3 dias consecutivos acima de 20% confirmam dependência estrutural como padrão e não como evento; isso eleva a urgência de proteger esse anúncio especificamente.
+- **Yasmin:** registrar o nível de ticket hoje (R$55.80) como ponto de referência da tese — se ticket se mantiver acima de R$50 pelos próximos 2 dias úteis, a trajetória de ganho de patamar via ticket deixa de ser hipótese e vira tendência observada em 3 pontos consecutivos — sinal de resultado: se ticket cair abaixo de R$45 amanhã sem mudança de mix óbvia, a tese precisa ser revisitada na próxima leitura.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Himmel para mexer em ADS ML** com base no recuo de -20,9% vs 7d — a janela de 7 dias estava excepcionalmente inflada (+26% acima do patamar de 60d), e o recuo de hoje é regressão ao nível histórico, não deterioração. Acionar ADS sobre esse referencial distorcido seria aumentar verba sem problema real.
+- **Não acionar Himmel para mexer em ADS ML:** ACOS em 4.33% com R$3,041 de receita atribuída para R$262 de gasto indica que as campanhas estão bem calibradas para o patamar atual. Não há sinal de subexposição, excesso de verba, ou queda de eficiência. Qualquer ajuste agora seria sem hipótese sustentada e poderia quebrar calibração que está funcionando.
 
-- **Não alterar mix ou forçar distribuição de catálogo** — a concentração nos top 5 (58,2%) pode ser padrão histórico estável da conta; sem memória prévia que mostre crescimento dessa concentração, tratar isso como problema agora seria agir sobre hipótese ainda sem sustentação acumulada.
+- **Não interpretar a queda de -20.9% em pedidos vs 7d como deterioração de demanda:** o volume vs mesmo dia da semana está em -1.6% — essencialmente flat. O 7d recente provavelmente contém dias de maior volume com ticket menor. Agir sobre o delta 7d como se fosse sinal de queda seria precipitado: o dado correto de comparação (mesmo dia da semana) não confirma problema.
 
-- **Não escalar para Kobe nem tratar hoje como alerta estrutural** — a conta fechou o dia com GMV +33% vs 60d e flat vs mesmos dias da semana. Não há sinal de deterioração real; escalar agora seria criar urgência onde os dados apontam para saúde. O único caminho de escalonamento aberto é se posição dos campeões cair de forma confirmada — e esse dado ainda precisa ser coletado.
+- **Não tomar ação sobre o anúncio 914C_BAV pausado por estoque zerado:** o item já está pausado automaticamente pelo marketplace — não há exposição sendo perdida além do que já está interrompido. A decisão de reativar exige verificação de reposição de estoque e não deve ser feita como reação ao dado de hoje sem planejamento de abastecimento.
 
 ---
 
 ### Escalonamento
 
-**observar**
+**Classificação: observar — com gatilho para "não escalar" em 1-2 dias se sinais confirmatórios aparecerem.**
 
-A conta está operando dentro do patamar histórico e com expansão de GMV consistente em todas as janelas relevantes. Não há risco operacional iminente (reputação, Full, cancelamentos acima do normal, estoque crítico) visível no pacote. A memória é semente — não há hipóteses acumuladas que justifiquem decisão estrutural. O escalonamento correto é coletar mais 2-3 ciclos antes de qualquer movimento forte. A mudança de classificação ocorre se: (a) posição dos anúncios líderes cair de forma confirmada em 2+ dias — nesse caso Yasmin alinha com Himmel sobre ADS ML; ou (b) ticket médio cair abaixo de R$ 45 em 2 dos próximos 4 dias — nesse caso a tese de ganho de patamar precisa ser revisada e o escalonamento sobe para decisão estrutural com Kobe.
+A tese estratégica tem confiança moderada (memória analítica começa aqui) e os dois sinais de risco — health degradado e estoque baixo em Full — precisam de leitura confirmada antes de qualquer decisão estrutural. As checagens de hoje (health, estoque, ticket) são suficientes para reduzir incerteza sem alterar a operação. Se health do KIT4YW1050 se confirmar em deterioração (abaixo de 0.70) ou estoque Full de algum anúncio líder atingir ruptura iminente, Yasmin escala para Kobe para decisão de reabastecimento urgente ou revisão de listing. Se ticket se mantiver acima de R$50 por mais 2 dias e health estiver estável, o nível de atenção desce para "não escalar" — Yasmin resolve no nível dela.

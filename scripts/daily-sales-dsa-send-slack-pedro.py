@@ -153,18 +153,19 @@ def qa_gate_allows_send(recipient: dict) -> bool:
     return True
 
 
-def validate_manifest(manifest: dict) -> None:
+def validate_manifest(manifest: dict, target_recipients: list[str]) -> None:
+    """Valida o manifest apenas para os recipients alvo (permite execução por plataforma)."""
     recipients = manifest.get("recipients") or {}
-    missing = [name for name in EXPECTED_RECIPIENTS if name not in recipients]
+    missing = [name for name in target_recipients if name not in recipients]
     if missing:
         raise RuntimeError(f"Manifest sem recipients obrigatórios: {', '.join(missing)}")
-    not_llm = [name for name in EXPECTED_RECIPIENTS if not recipient_is_full_llm(recipients[name])]
+    not_llm = [name for name in target_recipients if not recipient_is_full_llm(recipients[name])]
     if not_llm:
         raise RuntimeError(f"Recipients não estão 100% LLM: {', '.join(not_llm)}")
-    blocked = [name for name in EXPECTED_RECIPIENTS if recipients[name].get("status") == "BLOCKED"]
+    blocked = [name for name in target_recipients if recipients[name].get("status") == "BLOCKED"]
     if blocked:
         raise RuntimeError(f"Recipients bloqueados: {', '.join(blocked)}")
-    qa_blocked = [name for name in EXPECTED_RECIPIENTS if not qa_gate_allows_send(recipients[name])]
+    qa_blocked = [name for name in target_recipients if not qa_gate_allows_send(recipients[name])]
     if qa_blocked:
         raise RuntimeError(f"QA Gate não permite envio: {', '.join(qa_blocked)}")
 
@@ -192,15 +193,27 @@ def load_message(recipient: dict) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Enviar outputs DSA para Slack pessoal do Pedro")
     parser.add_argument("--date", default=default_day(), help="Data analisada YYYY-MM-DD; default ontem BRT")
+    parser.add_argument(
+        "--recipients",
+        default=",".join(EXPECTED_RECIPIENTS),
+        help="Lista comma-separated de recipients (lucas,yasmin,leonardo). "
+             "Default: todos. Use pra rodar pipeline por plataforma.",
+    )
     parser.add_argument("--dry-run", action="store_true", help="Não envia; imprime destino e validações")
     args = parser.parse_args()
 
+    target_recipients = [r.strip().lower() for r in args.recipients.split(",") if r.strip()]
+    unknown = [r for r in target_recipients if r not in EXPECTED_RECIPIENTS]
+    if unknown:
+        raise SystemExit(f"Recipients desconhecidos: {', '.join(unknown)}. "
+                         f"Válidos: {', '.join(EXPECTED_RECIPIENTS)}")
+
     manifest = load_manifest(args.date)
-    validate_manifest(manifest)
+    validate_manifest(manifest, target_recipients)
     recipients = manifest["recipients"]
 
     sent = []
-    for key in EXPECTED_RECIPIENTS:
+    for key in target_recipients:
         header = f"*Daily Sales Report — {DISPLAY_NAMES[key]}*\n_Entrega temporária: enviado só para Pedro._\n\n"
         send_dm_to_pedro(header + load_message(recipients[key]), dry_run=args.dry_run)
         sent.append(DISPLAY_NAMES[key])

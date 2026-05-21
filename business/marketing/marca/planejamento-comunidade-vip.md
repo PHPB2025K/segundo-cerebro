@@ -84,3 +84,9 @@ A votação de cor em 19/05 alimenta diretamente o lançamento de 26/05. **Conec
 A condição de 27/05 deve ter **prazo curto** (48h máximo) e ser genuinamente melhor que o Instagram. Se a oferta não for exclusiva de verdade, o grupo perde credibilidade no segundo mês.
 
 Silêncio nos sábados e domingos é regra. **Não quebrar.**
+
+## Conectado a
+
+- [[business/marketing/marca/_index]] — **pai**: listado no índice
+- [[business/marketing/marca/proposta-de-valor]] — **autoridade**: posicionamento e inimigo comum fundamentam o tom da comunidade
+- [[memory/context/business-context]] — **ref**: canal WhatsApp Budamix VIP no contexto geral

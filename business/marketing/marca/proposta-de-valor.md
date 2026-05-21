@@ -562,3 +562,10 @@ A Budamix tem três ativos que poucas marcas da categoria têm simultaneamente: 
 A diferença entre a Budamix e o concorrente genérico chinês não é o produto físico — é a **camada de significado** que envolve o produto. E a camada de significado se constrói com manifesto, mecanismo nomeado, oferta-âncora estratégica e presença consistente nos canais que o avatar realmente frequenta.
 
 A Improvisação Herdada é um inimigo grande, mas é um inimigo cansado. Milhares de mulheres brasileiras estão prontas para sair dele. A Budamix existe pra entregar a saída — clara, acessível e sem distância aspiracional.
+
+## Conectado a
+
+- [[business/marketing/marca/_index]] — **pai**: listado no índice como documento mestre
+- [[business/marketing/marca/mapa-editorial]] — **filho**: mapa editorial deriva da proposta
+- [[memory/context/business-context]] — **tema**: empresa/marca/público compartilhados com o contexto geral
+- [[projects/budamix-ecommerce]] — **ref**: loja própria é expressão direta do posicionamento Budamix

@@ -221,3 +221,9 @@ Pra não cair na repetição e manter a base engajada, todo dia o feed de storie
 
 *Documento criado por SIMON — Especialista em Carrosséis Narrativos*
 *Baseado na Proposta de Valor Budamix (Abril/2026)*
+
+## Conectado a
+
+- [[business/marketing/marca/_index]] — **pai**: listado no índice
+- [[business/marketing/marca/proposta-de-valor]] — **autoridade**: linhas editoriais (Bastidores Reais, etc.) vêm da proposta
+- [[projects/social-studio-reborn]] — **executor**: stories publicados via Social Studio Reborn

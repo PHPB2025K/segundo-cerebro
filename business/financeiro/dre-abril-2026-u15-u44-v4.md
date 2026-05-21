@@ -55,3 +55,10 @@ Critério v4: U44 limpa deve conter comissão + taxa fixa/service/transaction/FB
 - Diferença: **R$ 0,00**
 
 Conclusão: a v4 reorganiza a leitura gerencial sem alterar EBITDA/LL gerencial.
+
+## Conectado a
+
+- [[business/financeiro/_index]] — **pai**: índice financeiro tem seção 'DRE contínuo no vault'
+- [[skills/financeiro/dre-profissional-marketplace/SKILL]] — **dependência**: skill que gera DREs profissionais multi-marketplace
+- [[meta/mocs/MOC - Taxas e Precificacao]] — **tema**: U44 (taxas marketplace) é conceito central do MOC
+- [[business/marketplaces/_index]] — **ref**: bases ML/Shopee/Amazon vêm dos canais listados

@@ -239,3 +239,10 @@ Conteúdo de **chamada direta para ação**: oferta-âncora, cupons, frete grát
 ## 🎯 RESUMO ESTRATÉGICO
 
 A Budamix vai operar com **42% do mix em fundo de funil** (L4 + L5) para atender a prioridade de venda, **34% no meio** (L2 + L3) para construir autoridade e aquecer leads, e **25% no topo** (L1) para garantir alcance contínuo. Esse mix protege a marca contra o erro mais comum de quem tem urgência de venda: secar o topo do funil e ficar refém de tráfego pago. Em 90 dias, a Budamix terá um perfil que **vende e cresce ao mesmo tempo** — sem trair a identidade de marca acessível-com-alma que diferencia do genérico.
+
+## Conectado a
+
+- [[business/marketing/marca/_index]] — **pai**: listado no índice
+- [[business/marketing/marca/proposta-de-valor]] — **autoridade**: inimigo comum + avatar + posicionamento vêm da proposta
+- [[business/marketing/marca/calendario-semana-04-a-10-maio-2026]] — **filho**: calendário concreto que aplica o framework
+- [[meta/mocs/MOC - Design Systems Budamix]] — **tema**: DNA visual aplicado por nível de consciência

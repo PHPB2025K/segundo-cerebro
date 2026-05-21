@@ -55,3 +55,10 @@ Na sexta, **fecha a semana convertendo** com L4 — storytelling de transformaç
 ---
 
 *Calendário gerado pelo Mago dos Calendários de Conteúdo 🧙‍♂️✨*
+
+## Conectado a
+
+- [[business/marketing/marca/_index]] — **pai**: listado no índice da pasta marca
+- [[business/marketing/marca/mapa-editorial]] — **autoridade**: framework Schwartz aplicado vem do mapa editorial
+- [[business/marketing/marca/proposta-de-valor]] — **autoridade**: inimigo comum 'Improvisação Herdada' definido na proposta
+- [[projects/social-studio-reborn]] — **executor**: publicador Instagram que distribui os posts do calendário

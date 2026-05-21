@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem passou em todos os 11 gates sem violação crítica ou maior. O único problema identificado é um Menor no Gate 6: a Condensadora usou a estrutura contrastiva 'somam ~30% da conta, não 24%' para explicar por que o risco de dependência é maior do que o número do produto líder isolado sugere, e a Slack Writer removeu o 'não 24%', preservando apenas 'somam cerca de 30% da conta'. A tese central do insight permanece intacta e a frase de abertura ('maior do que o produto líder isolado sugere') ainda sinaliza o contraste implicitamente, mas a referência explícita ao número anterior (24%) que dava contexto ao leitor foi suprimida sem justificativa nas Decisões de Formatação. Regra de agregação aplicada: 0 Críticos, 0 Maiores, 1 Menor → APROVADO COM RESSALVA.",
+  "motivo": "A mensagem passou todos os gates sem violação crítica ou maior. Destinatário, plataforma, período, estrutura Slack, fidelidade à Condensadora, bloqueios, prioridades e padrão numérico estão corretos. Um único problema menor foi identificado no Gate 5: o produto KIT4YW320 aparece como 'Kit 4 Potes de Vidro 320ml Retangular' no Top Produtos, mas o descritor 'Retangular' não está presente no raw_title ('Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-petróleo') nem no título real do ml_snapshot. A Condensadora instrui não citar produto por nome não confirmado contra raw_title ou ml_snapshot. O risco de induzir Yasmin a erro é baixo (produto é identificável pelo volume 320ml e família KIT4YW), mas a regra não foi seguida estritamente. Regra de agregação aplicada: 0 Maiores + 1 Menor → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -8,8 +8,8 @@
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "OK",
-    "gate_6_analise_conta": "RESSALVA",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "OK",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
@@ -26,23 +26,26 @@
   "problemas_encontrados": [
     {
       "severidade": "Menor",
-      "gate": "6 — Análise da Conta",
-      "texto_atual": "as duas variações da família juntas somam cerca de 30% da conta.",
-      "texto_esperado": "as duas variações da família juntas somam cerca de 30% da conta, não 24%.",
-      "estado_atual": "A estrutura contrastiva 'X, não Y' da Condensadora foi truncada: o valor corretivo 'não 24%' foi removido sem registro nas Decisões de Formatação.",
-      "estado_esperado": "Preservar o marcador corretivo 'não 24%' que a Condensadora usou explicitamente para mostrar que o risco real de família supera o número de produto único que as camadas anteriores haviam usado como referência.",
-      "regra_violada": "Gate 6 — Contraste/inversão/enquadramento preservados: a Condensadora usou padrão 'X, não Y' (somam ~30%, não 24%) e o Slack deve manter a estrutura. A supressão não foi registrada nas Decisões de Formatação.",
+      "gate": "5 — Top Produtos",
+      "texto_atual": "Kit 4 Potes de Vidro 320ml Retangular — 3 pedidos",
+      "texto_esperado": "Kit Conjunto 4 Potes de Vidro 320ml Tampa Hermético 4 Travas Azul-petróleo — 3 pedidos (ou simplificação a partir do raw_title/ml_snapshot)",
+      "estado_atual": "O descritor 'Retangular' não consta no raw_title do pedido ('Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-petróleo') nem no título real do ml_snapshot. A Slack Writer aplicou a convenção de nomenclatura da família YW (usado em KIT4YW1050 e KIT2YW1050 cujos display_names revisados incluem 'Retangular'), mas para KIT4YW320 o mapeamento é 'raw_sku_normalized_with_short_title_fallback' com confiança média — a convenção não está validada por reviewed_sku_display_map neste caso.",
+      "estado_esperado": "Nome do produto sourced de raw_title ou ml_snapshot title, conforme instruído pela Condensadora: 'Não citar nenhum produto pelo display_name interno sem confirmar contra raw_title ou ml_snapshot'.",
+      "regra_violada": "Condensadora — o_que_nao_pode_ir_para_slack: 'Não citar nenhum produto pelo display_name interno sem confirmar contra raw_title ou ml_snapshot'. Gate 5 ML: ranking vem do pacote validado por variação vendável com título confirmado por fonte primária.",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Decisões de Formatação não registraram a supressão do 'não 24%' do insight 3. Se a decisão foi intencional (reduzir comprimento), deveria estar documentada no log para rastreabilidade do próximo ciclo."
+    "KIT4YW320 usa 'Retangular' como convenção de família não validada por reviewed_sku_display_map — registrar para revisão do catálogo interno junto com a divergência já identificada para TL6250 (display_name interno errado, corrigido neste ciclo).",
+    "914C_BAV aparece no Top Produtos com listing pausado/estoque zerado — presença justificada pelos 3 pedidos capturados no pacote validado; Condensadora não bloqueou presença no ranking, apenas bloqueou SKU técnico e MLB. Lógica da Slack Writer correta.",
+    "sync_freshness not_measured no pacote de dados — métrica de frescor de sincronização não disponível no schema atual; reconciliação ML ok (order_delta 0, revenue_delta 0,00); sem impacto na confiabilidade dos dados de pedidos e GMV."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "SPC0111 (Suporte Gamer, confidence medium, categoria fora do core) aparece no Top Produtos sem caveat de identificação. O Granular pediu 'citar com ressalva' e a Condensadora bloqueou seu uso como evidência de mix, mas não bloqueou nominalmente do ranking. A inclusão no Top Produtos com volume real e platform_item_id confirmado é tecnicamente correta; registra-se para avaliação se em próximos ciclos o produto persiste e se vale incluir marcador explícito de 'identificação com ressalva' no ranking.",
-    "Memória narrativa da conta ainda é semente — weekly e monthly são templates vazios. A confiança média da Condensadora foi corretamente preservada nos insights via linguagem de hipótese ('aponta para', 'enfraquece a hipótese de ruído') sem converter indício em certeza. Registra-se para acompanhamento: a tese de ganho de patamar ainda precisa de 2-3 ciclos para acumulação analítica.",
-    "Ranking de empates na cauda (posições 4-6 com 5 pedidos; posições 7-10 com 3 pedidos) mantido na ordem do pacote validado sem reordenação — decisão documentada e correta; a ordem entre empates não é analiticamente significativa neste contexto."
+    "DADOS_PARCIAIS: o status parcial do pacote de dados decorre do check de banda de volume da Shopee Budamix Store (−41,9% vs 30d, fora da banda de 30d mas dentro da de 60d). Não impacta os dados de ML, cujos checks de reconciliação, banda de volume e identificação de produtos estão todos OK.",
+    "Conta sem histórico analítico acumulado (weekly e monthly são templates vazios): a tese de ganho de patamar via ticket é candidata sustentada por três janelas temporais convergentes, mas não confirmada por ciclos anteriores. A Condensadora comunicou essa limitação corretamente com confiança média; a Slack Writer preservou o enquadramento. A ausência de memória acumulada não é violação de regra — é a condição de partida documentada.",
+    "Health score do KIT4YW1050 (0,75) sem série histórica: urgência tática não confirmada nem descartada por dado disponível. A Slack Writer preservou corretamente a linguagem de incerteza ('não dá para cravar se está em deterioração ou estabilizado') na análise e na prioridade correspondente. Sinal em aberto para próximo ciclo.",
+    "Cobertura de estoque KIT2YW1050 calculada sobre 1 dia de volume (estimativa de ~1,9 dias em itens): a Slack Writer corretamente usou 'cobertura curta' sem número preciso, conforme bloqueio da Condensadora. Estimativa não verificada por dado logístico de pipeline — limitação preservada na formulação da prioridade."
   ],
   "llm_used": true,
   "model": "sonnet",

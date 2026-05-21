@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-20
-**Gerado em:** 2026-05-21T10:32:21.583808+00:00
+**Gerado em:** 2026-05-21T12:45:59.190665+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** PARTIAL
@@ -12,6 +12,32 @@
 - require_kobe_approval_for_real_send=true — no approval document found
 
 ## Resumo por Recipient
+
+### Yasmin (mercado_livre)
+- **Status:** APPROVED_WITH_REMARKS
+- **send_allowed:** False
+- **llm_used:** True
+  - 01-estrategica: LLM
+  - 02-tatica: LLM
+  - 03-operacional: LLM
+  - 04-granular: LLM
+  - 05-condensadora: LLM
+  - 06-slack-preview: LLM
+  - 07-qa: LLM
+- **Aviso:** KIT4YW320 usa 'Retangular' como convenção de família não validada por reviewed_sku_display_map — registrar para revisão do catálogo interno junto com a divergência já identificada para TL6250 (display_name interno errado, corrigido neste ciclo).
+- **Aviso:** 914C_BAV aparece no Top Produtos com listing pausado/estoque zerado — presença justificada pelos 3 pedidos capturados no pacote validado; Condensadora não bloqueou presença no ranking, apenas bloqueou SKU técnico e MLB. Lógica da Slack Writer correta.
+- **Aviso:** sync_freshness not_measured no pacote de dados — métrica de frescor de sincronização não disponível no schema atual; reconciliação ML ok (order_delta 0, revenue_delta 0,00); sem impacto na confiabilidade dos dados de pedidos e GMV.
+
+**Artefatos:**
+  - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/00-data-package.json`
+  - `layer1_estrategica`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/01-estrategica.md`
+  - `layer2_tatica`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/02-tatica.md`
+  - `layer3_operacional`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/03-operacional.md`
+  - `layer4_granular`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/04-granular.json`
+  - `layer5_condensadora`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/05-condensadora.json`
+  - `layer6b_shopee_consolidator`: ``
+  - `layer6_slack_writer`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/06-slack-preview.md`
+  - `layer7_qa_gate`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/07-qa.json`
 
 ### Lucas (shopee)
 - **Status:** BLOCKED
@@ -38,30 +64,6 @@
   - `layer6b_shopee_consolidator`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/lucas/06b-shopee-consolidator.json`
   - `layer6_slack_writer`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/lucas/06-slack-preview.md`
   - `layer7_qa_gate`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/lucas/07-qa.json`
-
-### Yasmin (mercado_livre)
-- **Status:** APPROVED_WITH_REMARKS
-- **send_allowed:** False
-- **llm_used:** True
-  - 01-estrategica: LLM
-  - 02-tatica: LLM
-  - 03-operacional: LLM
-  - 04-granular: LLM
-  - 05-condensadora: LLM
-  - 06-slack-preview: LLM
-  - 07-qa: LLM
-- **Aviso:** Decisões de Formatação não registraram a supressão do 'não 24%' do insight 3. Se a decisão foi intencional (reduzir comprimento), deveria estar documentada no log para rastreabilidade do próximo ciclo.
-
-**Artefatos:**
-  - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/00-data-package.json`
-  - `layer1_estrategica`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/01-estrategica.md`
-  - `layer2_tatica`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/02-tatica.md`
-  - `layer3_operacional`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/03-operacional.md`
-  - `layer4_granular`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/04-granular.json`
-  - `layer5_condensadora`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/05-condensadora.json`
-  - `layer6b_shopee_consolidator`: ``
-  - `layer6_slack_writer`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/06-slack-preview.md`
-  - `layer7_qa_gate`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/07-qa.json`
 
 ### Leonardo (amazon)
 - **Status:** APPROVED_WITH_REMARKS

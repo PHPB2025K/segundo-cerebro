@@ -1,60 +1,67 @@
 {
   "camada": "05-condensadora",
   "data": "2026-05-20",
-  "plataforma": "ml",
+  "plataforma": "mercado_livre",
   "recipient": "Yasmin",
   "analise_final_condensada": [
     {
-      "insight": "O dia parece forte no GMV, mas o resultado é narrow e apoiado em estrutura frágil: o ADS (Himmel) respondeu por cerca de 60% do faturamento, e dois dos campeões em Full operam com health abaixo do threshold do ML — penalização de ranking que o número de ontem não mostra porque o ADS cobriu a exposição. O crescimento de ticket é real, mas depende de manter a composição de campanha e o mix de produto estáveis; qualquer ajuste de verba ou mudança de estratégia desfaz o número sem aviso de volume.",
-      "padrao": "Padrão B — parece bom, mas a estrutura mostra fragilidade",
+      "ordem": 1,
+      "padrao": "B — inversão positiva (parece bom, mas...)",
+      "insight": "O GMV do dia (R$5.087) parece saudável, mas cerca de 60% desse resultado veio de campanha de ADS sobre anúncios que estão perdendo posição orgânica — dois dos campeões em Full têm health abaixo do limiar de penalização do ML, e sem o dado histórico de direção, não dá pra saber se a erosão está acelerando ou estabilizada. A campanha está eficiente, mas pode estar compensando perda de exposição orgânica que ainda não aparece no número agregado.",
       "base": "Estratégica + Operacional + Granular",
-      "criterio_sobrevivencia": "muda a leitura do dia; evita interpretação errada (GMV forte ≠ conta saudável); alerta contra risco silencioso"
+      "criterio_descarte_atendido": "Evita interpretação errada (ADS eficiente não é sinal de saúde orgânica) + alerta contra risco silencioso (erosão mascarada por campanha)"
     },
     {
-      "insight": "A queda de 21 pontos no mix de fulfillment não é degradação de infraestrutura Full — é o produto que mais vendeu no dia operando em cross-docking e pesando o agregado para baixo. Tirando esse produto do cálculo, o mix dos demais anúncios volta ao padrão histórico. Não há sinal operacional autônomo aqui.",
-      "padrao": "Padrão A — não é X, é Y",
-      "base": "Granular (alta confiança)",
-      "criterio_sobrevivencia": "evita interpretação errada crítica — sem isso, a leitura natural do dado gera alerta falso de degradação de Full"
+      "ordem": 2,
+      "padrao": "C — inversão negativa (parece ruim, mas...)",
+      "insight": "A queda de pedidos em relação à semana (-20,9%) parece deterioração, mas o controle correto é o dia da semana: 91 pedidos está dentro da banda histórica de quartas (-1,6% vs média). O que mudou de verdade é o ticket — R$55,91 contra R$41,53 histórico do mesmo dia da semana — e o GMV subiu +32,4% por isso. Não é queda, é acomodação com mix mais caro.",
+      "base": "Estratégica + Operacional",
+      "criterio_descarte_atendido": "Corrige leitura falsa (queda de volume vs 7d induz diagnóstico errado de degradação)"
+    },
+    {
+      "ordem": 3,
+      "padrao": "E — localização (o problema não é o canal, é um produto específico)",
+      "insight": "O único ponto que exige ação hoje é o anúncio de canequinhas acrílico: estoque de 3 unidades, anúncio ativo, 3 pedidos gerados ontem — o ML continuará recebendo pedidos enquanto o anúncio não for pausado ou o estoque não for reposto. Janela de 24h antes de gerar cancelamento prospectivo que contamina a reputação.",
+      "base": "Tática + Granular",
+      "criterio_descarte_atendido": "Ação acionável hoje com janela definida + evita risco silencioso (cancelamento que afeta reputação antes de aparecer no agregado)"
     }
   ],
   "prioridades_condensadas": [
     {
-      "prioridade": "Verificar estoque disponível do anúncio de baixíssimo estoque (Kit 06 Canequinhas Acrílico, top10 da conta)",
-      "por_que": "O snapshot registrou 3 unidades disponíveis e 3 pedidos no dia anterior — qualquer pedido hoje já pode ter zerado o estoque ou disparado pausa automática do anúncio no ML. A ruptura pode já ter ocorrido sem aparecer ainda nos cancelamentos agregados.",
-      "sinal_confirmacao_refutacao": "Se available_quantity > 0 no próximo snapshot: risco ainda iminente, monitorar até zerar. Se anúncio entrou em pausa ou cancelamentos novos aparecerem ligados a esse produto: ruptura confirmada, avaliar reposição urgente.",
-      "escalar_se": "Anúncio entrar em pausa automática ou aparecerem cancelamentos ligados a esse produto — nesse caso avaliar reposição urgente com expedição"
+      "ordem": 1,
+      "prioridade": "Verificar status e repor estoque do anúncio de canequinhas acrílico com cobertura crítica",
+      "por_que": "Anúncio ativo no último snapshot com available_quantity=3 e demanda recorrente confirmada (3 pedidos gerados ontem) — sem pausa ou reposição, novos pedidos geram cancelamento prospectivo",
+      "sinal_de_confirmacao": "Se nenhum cancelamento for gerado e o anúncio for pausado ou reabastecido nas próximas 24h, risco neutralizado. Se entrar em ruptura ou gerar cancelamento registrado na métrica de reputação, registrar data de ocorrência como variável confundidora",
+      "escalar_se": "Cancelamento confirmado no anúncio — registrar impacto em cancellations_rate e delayed_handling_rate"
     },
     {
-      "prioridade": "Registrar ADS share de ontem (~60% do GMV) como primeiro ponto da série e acompanhar nos próximos 2-3 ciclos",
-      "por_que": "Esse é o primeiro ciclo com leitura disponível — sem série histórica não é possível distinguir se 60% de dependência de ADS é padrão estrutural ou escalada recente. O ROAS 11,6x indica campanha eficiente; o risco não é a eficiência, é a ausência de confirmação de base orgânica.",
-      "sinal_confirmacao_refutacao": "ADS share acima de 55% por 3 dias consecutivos confirma dependência estrutural. Share abaixo de 35% com GMV acima de R$4.000 sustentado confirma base orgânica relevante e enfraquece o risco.",
-      "escalar_se": "ADS share acima de 55% por 3 dias consecutivos E GMV começar a cair abaixo de R$4.500 — nesse caso alinhar com Kobe sobre dependência de canal"
-    },
-    {
-      "prioridade": "Registrar health dos dois campeões em Full (0,75 e 0,71) como baseline e calcular direção no próximo ciclo",
-      "por_que": "Ambos estão abaixo do threshold ML de 0,85 e em penalização de ranking orgânico, com o ADS cobrindo a exposição. Esta é a primeira leitura disponível — a direção (estável, caindo ou recuperando) só será calculável a partir do próximo ciclo.",
-      "sinal_confirmacao_refutacao": "Health estável ou em recuperação no próximo ciclo: observação sem ação. Health caindo em ambos os anúncios por 2 leituras seguidas: confirma deterioração e abre avaliação de acionamento de Himmel para cobertura de exposição comprometida.",
-      "escalar_se": "Health caindo em ambos por 2 leituras seguidas E GMV abaixo de R$4.500 — nesse caso Yasmin alinha com Himmel"
+      "ordem": 2,
+      "prioridade": "Investigar causa do health penalizado no anúncio de catálogo da variante Tampa Vermelha (variante da família dominante do dia, Full, health=0.71)",
+      "por_que": "Anúncio em catálogo com health abaixo de 0.85 perde posição que demora a recuperar; variante gerou apenas 5 pedidos no dia enquanto a variante Tampa Preta da mesma família gerou 23 — assimetria operacionalmente relevante com causa desconhecida; ruptura e inatividade foram descartadas pelo dado (estoque=369, pedidos ativos)",
+      "sinal_de_confirmacao": "Causa identificada e tratável (listing, SLA, reclamação) = ação específica; causa não identificável pelo painel = escalada para repensar cobertura ADS nesse anúncio específico antes que o health caia mais",
+      "escalar_se": "Health desse anúncio cair abaixo de 0.65 no próximo ciclo — confirma aceleração de penalização em catálogo, demanda alinhamento com Himmel sobre cobertura preventiva"
     }
   ],
   "o_que_nao_pode_ir_para_slack": [
-    "Produto TL6250 pelo display_name interno 'Kit 6 Tigelas de Vidro 250ml' — alias incorreto confirmado pela Granular; o produto real identificado pelo pedido e pelo title do anúncio (MLB6167272090) é 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara'; citar pelo alias nomearia categoria errada",
-    "Qualquer afirmação ligando os 3 cancelamentos do dia ao anúncio de estoque crítico — a Granular não encontrou breakdown de cancelamentos por produto no pacote; a conexão não está evidenciada e não deve ser afirmada",
-    "Afirmar que a ruptura do anúncio de baixíssimo estoque está consumada — o risco está confirmado em nível de estoque, mas a Granular registrou ambiguidade de timing; a formulação correta é 'pode já ter zerado' ou 'risco iminente', não 'já entrou em ruptura'",
-    "Platform_item_ids técnicos (MLB...) na mensagem final — desnecessários para o responsável operacional",
-    "SKUs crus (914C_BAV, KIT10YW1050, SPC0111, KIT4YW320) — confidence=medium, mapping_reason=mapped_generic_sku; não citar nominalmente",
-    "Hipótese de que o GMV +33% vs 60d representa patamar consolidado — é o primeiro ciclo com leitura estruturada, sem weekly ou monthly que confirme trajetória; a formulação correta é 'trajetória de ticket em ascensão', não 'patamar estabelecido'"
+    "SKUs crus (IMB501PT, KIT4YW1050, MLB4410218897 etc.) — usar nome descritivo do produto ou formulação agregada",
+    "Afirmação de que o estoque do anúncio de canequinhas está zerado — o dado tem ambiguidade temporal (available_quantity=3 pode ser pré ou pós-processamento dos 3 pedidos de ontem); usar 'estoque em cobertura crítica' em vez de 'zerado'",
+    "Causa do health=0.71 no anúncio Tampa Vermelha — inconclusivo por falta de dado no pacote; não afirmar reclamação, atraso ou listing como causa",
+    "Direção do health do Kit 4 Potes 1050ml (saúde=0.75) — ponto zero sem histórico anterior; não afirmar queda ou estabilidade",
+    "Display_name 'Kit 6 Tigelas de Vidro 250ml' para o produto TL6250 — título real do anúncio é 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml'; mapeamento interno divergente confirmado pela Granular",
+    "Alegação de que Tampa Preta e Tampa Vermelha 'compartilham listing' ou 'estão no mesmo anúncio' — estrutura de variação da família IMB501 não confirmada pelo pacote; usar 'variantes da mesma família de potes redondos'",
+    "Afirmação de que 78% da base ativa tem health saudável ou desconhecido — a ausência de dado de health em 78% da base é cegueira estrutural, não indicação de saúde"
   ],
   "memoria_para_amanha": [
-    "Health baseline dos campeões em Full: Kit 4 Potes 1050ml (MLB4073003575) = 0,75 e Conjunto 5 Potes Tampa Vermelha (MLB3288536143) = 0,71 — primeira leitura disponível; calcular direção no próximo ciclo comparando com esses valores; threshold ML = 0,85",
-    "ADS share baseline: ~60% do GMV (R$3.041,56 de R$5.087,71); ROAS 11,6x; ACOS 4,33% — primeiro ponto da série; confirmar se share acima de 55% se mantém por 3 dias consecutivos para concluir sobre dependência estrutural",
-    "Estoque crítico ativo: anúncio com 3 unidades disponíveis (Kit 06 Canequinhas Acrílico, top10) — verificar no próximo ciclo se zerou, entrou em pausa automática ou gerou cancelamentos pendentes",
-    "Erro de mapeamento a corrigir fora do ciclo de análise: TL6250 com display_name interno 'Kit 6 Tigelas de Vidro 250ml' → produto real é 'Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara' (MLB6167272090); mapping_reason=reviewed_sku_display_map está incorreto",
-    "Estoque limitado secundário: Kit 6 Canecas Porcelana Tulipa (MLB6167272090), 21 unidades, ~4 dias de cobertura no ritmo de ontem (5 pedidos/dia), fulfillment, health=null — monitorar no próximo ciclo; não urgente hoje mas acumula dois fatores de atenção"
+    "Ponto zero registrado: ticket R$55,91 / ADS share 59,8% (R$3.041 de R$5.087) / ROAS 11,6x / ACOS 4,33% — série histórica começa hoje; próximos 3 dias definem se estrutura é estável ou se ADS share está em tendência de alta",
+    "Health dos dois campeões Full penalizados: MLB4073003575=0.75 e MLB3288536143=0.71 (ponto zero da série) — verificar se estabilizou, caiu ou recuperou no próximo ciclo; health do catálogo (MLB3288536143) é prioritário porque demora a recuperar",
+    "Anúncio de canequinhas acrílico (MLB4410218897) com cobertura crítica — confirmar se foi pausado, reabastecido ou se gerou cancelamento; risco pode ter sido neutralizado ou aprofundado antes do próximo ciclo",
+    "Segundo anúncio com cobertura curta: Kit 6 Canecas Porcelana Tulipa 250ml (MLB6167272090), available_quantity=21, cobertura estimada de ~4 dias ao ritmo de 5 pedidos/dia — não urgente hoje, mas entra na janela de risco em 3-4 dias",
+    "Família IMB501 sustentou 30,8% do volume do dia (28/91 pedidos) com assimetria interna entre variante líder (Cross-Docking, health desconhecido) e variante penalizada (Full, health=0.71, catálogo) — monitorar se a assimetria de performance entre as duas variantes se mantém ou se amplia",
+    "Campeão do dia (Conjunto 5 Potes Tampa Preta, Cross-Docking, 8.384 unidades) não está inscrito no Full — quando esse produto lidera, o mix de fulfillment do canal cai estruturalmente para ~56% Full (vs 74% mensal); não é anomalia, é consequência previsível e recorrente da liderança deste produto"
   ],
   "alertas_de_confianca": {
-    "nivel": "media",
-    "explicacao": "Os dados ML do dia estão consistentes e reconciliados (delta zero em pedidos e receita). O snapshot ML veio completo com status ok em reputação, ADS summary e fulfillment mix. Os dois insights principais são sustentados por evidências de alta confiança da Granular. A limitação é de contexto histórico: weekly.md e monthly.md são templates vazios, tornando este o ponto zero da memória — sem hipóteses anteriores para confirmar, sem série de ADS share ou health para calcular direção. Três perguntas granulares ficaram sem resposta completa (breakdown de cancelamentos por produto, direção do health, status definitivo da ruptura do anúncio crítico), o que limita a profundidade da análise operacional mas não invalida os insights estruturais. A confiança ficaria baixa apenas se o insight principal dependesse de dado inconclusivo — aqui ele depende de dado confirmado (ADS share, health absoluto, identificação dos produtos líderes)."
+    "nivel": "média",
+    "explicacao": "Dados de volume, GMV e reputação são sólidos e reconciliados. A confiança é limitada a média por quatro fatores acumulados: (1) ambiguidade temporal no available_quantity do anúncio de canequinhas — o snapshot não distingue estado pré vs pós-processamento dos 3 pedidos de ontem, deixando o risco operacional confirmado mas não quantificado; (2) causa do health penalizado no anúncio de catálogo Tampa Vermelha não determinável com os dados do pacote; (3) direção do health dos dois anúncios penalizados indeterminável — ponto zero sem histórico anterior, weekly e monthly são templates vazios; (4) 78% da base ativa e 6 dos top 10 anúncios de ontem sem dado de health, incluindo o campeão do dia — a avaliação de erosão orgânica é parcialmente cega. Nenhum desses fatores invalida os insights entregues, mas todos exigem que a mensagem preserve ressalvas de confiança onde indicado."
   },
   "llm_used": true,
   "model": "sonnet",

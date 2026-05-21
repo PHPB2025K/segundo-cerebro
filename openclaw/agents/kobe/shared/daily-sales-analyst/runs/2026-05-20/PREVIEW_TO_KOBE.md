@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-20
-**Gerado em:** 2026-05-21T15:54:27.284805+00:00
+**Gerado em:** 2026-05-21T17:20:27.617935+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,10 +24,9 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Log de decisão de formatação (Gate 5) registrou incorretamente a ordem de produtos empatados — 'conforme posição no pacote validado (IMB501V antes de TL6250 antes de KIT10YW1050)' — quando o pacote tem KIT10YW1050 na posição 4 e IMB501V na posição 5. A inconsistência é entre log e realidade do pacote, não entre log e mensagem. Corrigir instrução de ordenação de empates para próximos ciclos.
-- **Aviso:** Sinais de refutação de P2 e P3 foram comprimidos na redação das prioridades. Versões futuras da Slack Writer devem incluir o critério de resolução/dissipação do risco junto à condição de escalonamento.
-- **Aviso:** Palavra 'narrow' em inglês foi preservada literalmente da Condensadora. A Condensadora deve avaliar substituição por equivalente em português nos próximos ciclos.
-- **Aviso:** Descritor 'Retangular' atribuído ao KIT4YW320 sem base explícita na fonte — verificar se o produto é de fato retangular e, se sim, atualizar o display_name no mapeamento interno para refletir isso.
+- **Aviso:** A Condensadora usou notação americana (ponto decimal) para health scores em seu output intermediário — corrigir na próxima versão das regras da Condensadora para garantir que artefatos intermediários já adotem o padrão numérico brasileiro, evitando propagação ao Slack.
+- **Aviso:** O bloqueio da Condensadora proibiu 'afirmar reclamação, atraso ou listing como causa' mas não explicitou se hipóteses formuladas com 'pode ser' são permitidas — a Slack Writer interpretou o silêncio como permissão de hipótese. Recomenda-se clarificar na próxima versão das regras se o bloqueio inclui ou exclui formulações hipotéticas, para fechar essa ambiguidade antes do próximo ciclo.
+- **Aviso:** O log das Decisões de Formatação descreveu incorretamente 'estoque de 3 unidades' como se fosse 'estoque zerado' — sinaliza necessidade de a Slack Writer citar o trecho literal alterado, não a categoria do bloqueio, para garantir rastreabilidade exata no Gate 8.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-20/yasmin/00-data-package.json`

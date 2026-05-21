@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem está estruturalmente correta, fiel à Condensadora e sem violações críticas. Destinatário, plataforma, período, bloqueios e insights estão em conformidade com as fontes primárias. Foram identificados 5 Menores isolados: dois em Gate 5 (ordem de produtos empatados diverge do pacote e descritor 'Retangular' extrapolado para KIT4YW320), dois em Gate 7 (sinais de refutação das prioridades P2 e P3 omitidos) e um em Gate 10 (palavra inglesa 'narrow' em texto português). Nenhum é sistêmico. Regra aplicada: 0 Maiores + 5 Menores → APROVADO COM RESSALVA.",
+  "motivo": "A mensagem está estruturalmente correta, fiel à Condensadora nos três insights e nas duas prioridades, com todos os bloqueios respeitados e destinatário/plataforma corretos. Foram encontrados quatro Menores isolados em gates distintos: (1) Gate 7 — adição de 'pode ser listing, SLA ou reclamação' na prioridade #2, conteúdo ausente no output autorizado da Condensadora, embora compatível com hipótese Granular e sem violar literalmente o bloqueio de 'não afirmar'; (2) Gate 7 — campo escalar_se da prioridade #1 simplificado, omitindo o detalhe 'registrar impacto em cancellations_rate e delayed_handling_rate' que a Condensadora incluiu; (3) Gate 8 — log das Decisões de Formatação descreve a substituição como 'no lugar de estoque zerado' quando o texto real alterado foi 'estoque de 3 unidades' → 'estoque em cobertura crítica'; (4) Gate 11 — health scores grafados com decimal americano (0.71, 0.65) em vez do padrão brasileiro (0,71, 0,65), inconsistência herdada da Condensadora. Nenhum Crítico, nenhum Maior; quatro Menores isolados sem degradação sistêmica. Regra aplicada: 0 Maiores + 4 Menores não sistêmicos → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -8,84 +8,73 @@
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "RESSALVA",
+    "gate_5_top_produtos": "OK",
     "gate_6_analise_conta": "OK",
     "gate_7_prioridades": "RESSALVA",
-    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_8_bloqueios_confianca_logs": "RESSALVA",
     "gate_9_consistencia_camadas": "OK",
-    "gate_10_tom_utilidade": "RESSALVA",
-    "gate_11_padrao_numerico_formatacao": "OK"
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "RESSALVA"
   },
   "contagem_severidade": {
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 5,
-    "regra_agregacao_aplicada": "0 Maiores + 5 Menores isolados (não sistêmicos) → APROVADO COM RESSALVA"
+    "menores": 4,
+    "regra_agregacao_aplicada": "0 Maiores + 4 Menores (não sistêmicos, isolados em três gates distintos) → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
       "severidade": "Menor",
-      "gate": "Gate 5 — Top Produtos",
-      "texto_atual": "4. Conjunto 5 Potes de Vidro Redondos Tampa Vermelha — 5 pedidos\n5. Kit 10 Potes Herméticos 1050ml Refratário 4 Travas — 5 pedidos",
-      "texto_esperado": "4. Kit 10 Potes Herméticos 1050ml Refratário 4 Travas — 5 pedidos\n5. Conjunto 5 Potes de Vidro Redondos Tampa Vermelha — 5 pedidos",
-      "estado_atual": "Produtos empatados em 5 pedidos aparecem em ordem invertida em relação ao pacote validado (pacote: KIT10YW1050 posição 4, IMB501V posição 5). Log de decisão afirma incorretamente que seguiu a ordem do pacote ('IMB501V antes de TL6250 antes de KIT10YW1050').",
-      "estado_esperado": "Itens empatados em posições 4-5 devem seguir a ordem do pacote: KIT10YW1050 antes de IMB501V. Ou o log deve registrar a decisão de inversão com justificativa.",
-      "regra_violada": "Gate 5: 'ranking vem do pacote validado'. Log de decisão registrou ordem diferente da aplicada, criando inconsistência entre log e mensagem.",
+      "gate": "7 — Prioridades do Dia",
+      "texto_atual": "Causa ainda desconhecida — pode ser listing, SLA ou reclamação.",
+      "texto_esperado": "Causa ainda desconhecida (ruptura e inatividade foram descartadas).",
+      "estado_atual": "Slack Writer adicionou 'pode ser listing, SLA ou reclamação' ao texto da prioridade #2. Esse conteúdo está ausente no output autorizado da Condensadora — a prioridade #2 diz apenas 'causa desconhecida; ruptura e inatividade foram descartadas pelo dado'. A listagem das causas hipotéticas é conteúdo da Granular que a Condensadora optou por não passar ao Slack. Adicionalmente, a Condensadora nomeou explicitamente 'reclamação, atraso ou listing' no campo de bloqueios, indicando que considerou e decidiu não incluí-las no output, mesmo como hipótese.",
+      "estado_esperado": "Prioridade restrita ao que a Condensadora autorizou no seu texto filtrado: 'causa desconhecida', sem listagem de hipóteses de causa não aprovadas pela Condensadora.",
+      "regra_violada": "Gate 7 e Gate 9: Slack Writer deve ser fiel ao output da Condensadora; não deve incorporar análise de camada inferior que a Condensadora escolheu não incluir no seu texto filtrado de prioridades.",
       "bloqueia_envio": false
     },
     {
       "severidade": "Menor",
-      "gate": "Gate 5 — Top Produtos",
-      "texto_atual": "Kit 4 Potes de Vidro 320ml Retangular — 3 pedidos",
-      "texto_esperado": "Kit 4 Potes de Vidro 320ml Tampa Hermético 4 Travas — 3 pedidos (ou derivado do raw_title sem 'Retangular')",
-      "estado_atual": "Produto KIT4YW320 aparece com descritor 'Retangular' que não consta em nenhuma fonte primária: raw_title é 'Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-petróleo' e display_name está truncado sem mencionar forma. O descritor parece extrapolado do padrão de nomes KIT4YW1050/KIT2YW1050.",
-      "estado_esperado": "Nome derivado exclusivamente do raw_title ou display_name disponíveis, sem adicionar descritor ausente na fonte.",
-      "regra_violada": "Gate 5: nome de produto deve ser derivado do raw_title ou display_name do pacote validado, sem inferência de características não presentes na fonte.",
+      "gate": "7 — Prioridades do Dia",
+      "texto_atual": "Escalar se cancelamento for confirmado.",
+      "texto_esperado": "Escalar se cancelamento for confirmado — registrar impacto em cancellations_rate e delayed_handling_rate.",
+      "estado_atual": "A Condensadora (prioridade #1, campo escalar_se) incluiu 'registrar impacto em cancellations_rate e delayed_handling_rate' como ação associada à condição de escalonamento. O Slack simplificou para apenas 'Escalar se cancelamento for confirmado', omitindo o detalhe operacional de registro de métricas.",
+      "estado_esperado": "Condição de escalonamento completa conforme a Condensadora, preservando a ação específica de registro.",
+      "regra_violada": "Gate 7: prioridade deve preservar motivo, sinal de confirmação/refutação e condição de escalonamento integralmente conforme a Condensadora.",
       "bloqueia_envio": false
     },
     {
       "severidade": "Menor",
-      "gate": "Gate 7 — Prioridades do Dia",
-      "texto_atual": "Yasmin: registrar o ADS share de ontem (~60% do GMV) como primeiro ponto da série e acompanhar nos próximos 2–3 dias. O ROAS está eficiente; o risco não é a campanha em si, é não saber ainda se há base orgânica sustentável por baixo. Se o share ficar acima de 55% por 3 dias seguidos e o GMV começar a cair abaixo de R$ 4.500, alinhar com Kobe.",
-      "texto_esperado": "Incluir sinal de refutação da Condensadora: 'Share abaixo de 35% com GMV acima de R$ 4.000 sustentado confirma base orgânica relevante e enfraquece o risco.'",
-      "estado_atual": "Prioridade 2 preserva apenas a condição de escalonamento, omitindo o sinal de refutação explícito que a Condensadora definiu como parte do critério de monitoramento.",
-      "estado_esperado": "Sinal de confirmação/refutação preservado conforme definido pela Condensadora: condição de encerramento do risco ('share abaixo de 35% + GMV acima de R$ 4.000') deve aparecer para que Yasmin saiba quando o risco se dissipa.",
-      "regra_violada": "Gate 7: 'preserva sinal de confirmação/refutação'. A omissão deixa a prioridade sem critério explícito de resolução do risco.",
+      "gate": "8 — Bloqueios, confiança e logs",
+      "texto_atual": "Log Decisões de Formatação: 'Uso de estoque em cobertura crítica no lugar de estoque zerado — ambiguidade temporal do snapshot preservada conforme bloqueio da Condensadora'",
+      "texto_esperado": "Log deveria descrever: 'substituído por estoque em cobertura crítica no lugar de estoque de 3 unidades (texto da Condensadora no insight #3); o bloqueio da Condensadora proibia estoque zerado, não estoque de 3 unidades — a substituição foi mais conservadora do que o bloqueio exigia'",
+      "estado_atual": "A Decisão de Formatação descreve a substituição como 'no lugar de estoque zerado', mas o texto real do insight #3 da Condensadora usava 'estoque de 3 unidades', não 'estoque zerado'. A Condensadora bloqueou a afirmação de 'zerado' por ambiguidade temporal, mas 'de 3 unidades' era formulação segura e autorizada pela própria Condensadora no seu insight. O log é internamente inconsistente: descreve incorretamente o que foi trocado.",
+      "estado_esperado": "Log que distingue o que o bloqueio realmente bloqueou (zerado) do que foi efetivamente alterado (de 3 unidades → em cobertura crítica), registrando que a substituição foi mais conservadora do que necessário.",
+      "regra_violada": "Gate 8: log das Decisões de Formatação deve registrar acuradamente as substituições realizadas, com origem correta do bloqueio e descrição fiel do trecho substituído.",
       "bloqueia_envio": false
     },
     {
       "severidade": "Menor",
-      "gate": "Gate 7 — Prioridades do Dia",
-      "texto_atual": "Yasmin: registrar os health atuais dos dois campeões em Full (0,75 e 0,71 — ambos abaixo do threshold ML de 0,85) como baseline e calcular a direção no próximo ciclo. Se health cair nos dois por 2 leituras seguidas e GMV ficar abaixo de R$ 4.500, alinhar com Himmel.",
-      "texto_esperado": "Incluir sinal de refutação da Condensadora: 'Health estável ou em recuperação no próximo ciclo: observação sem ação.'",
-      "estado_atual": "Prioridade 3 omite o sinal de refutação positivo que indica quando o risco está se dissipando e a ação pode ser encerrada.",
-      "estado_esperado": "Sinal de refutação explícito ('health estável ou em recuperação → observação sem ação') deve estar presente para fechar o ciclo de monitoramento.",
-      "regra_violada": "Gate 7: 'preserva sinal de confirmação/refutação'.",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "Gate 10 — Tom e utilidade",
-      "texto_atual": "o resultado é narrow e apoiado em estrutura frágil",
-      "texto_esperado": "o resultado é concentrado (ou: pouco diversificado / apoiado em base estreita) e apoiado em estrutura frágil",
-      "estado_atual": "Palavra inglesa 'narrow' está embutida em texto português no Slack operacional direcionado a Yasmin. Conforme diretriz Pedro 2026-05-17, a comunicação deve ser simples e fácil de entender sem exigir bilinguismo.",
-      "estado_esperado": "Equivalente em português preservando a mesma nuance ('estreito', 'concentrado', 'pouco diversificado') sem desviar da tese da Condensadora.",
-      "regra_violada": "Gate 10 / Diretriz Pedro 2026-05-17: linguagem deve ser simples, clara e fácil de entender para o responsável da conta. Termo em inglês em contexto operacional português pode exigir releitura.",
+      "gate": "11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "health=0.71 / abaixo de 0.65",
+      "texto_esperado": "health=0,71 / abaixo de 0,65",
+      "estado_atual": "Os scores de health são grafados com ponto decimal americano (0.71, 0.65) em vez do padrão brasileiro de vírgula decimal. A inconsistência é herdada da Condensadora, que usa o mesmo padrão em seu output intermediário. Não induz erro operacional para Yasmin, mas viola formalmente o padrão numérico aprovado para mensagens Slack.",
+      "estado_esperado": "Notação brasileira com vírgula decimal para todos os valores numéricos presentes na mensagem, inclusive scores técnicos de health.",
+      "regra_violada": "Gate 11: sem números com padrão americano.",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Log de decisão de formatação (Gate 5) registrou incorretamente a ordem de produtos empatados — 'conforme posição no pacote validado (IMB501V antes de TL6250 antes de KIT10YW1050)' — quando o pacote tem KIT10YW1050 na posição 4 e IMB501V na posição 5. A inconsistência é entre log e realidade do pacote, não entre log e mensagem. Corrigir instrução de ordenação de empates para próximos ciclos.",
-    "Sinais de refutação de P2 e P3 foram comprimidos na redação das prioridades. Versões futuras da Slack Writer devem incluir o critério de resolução/dissipação do risco junto à condição de escalonamento.",
-    "Palavra 'narrow' em inglês foi preservada literalmente da Condensadora. A Condensadora deve avaliar substituição por equivalente em português nos próximos ciclos.",
-    "Descritor 'Retangular' atribuído ao KIT4YW320 sem base explícita na fonte — verificar se o produto é de fato retangular e, se sim, atualizar o display_name no mapeamento interno para refletir isso."
+    "A Condensadora usou notação americana (ponto decimal) para health scores em seu output intermediário — corrigir na próxima versão das regras da Condensadora para garantir que artefatos intermediários já adotem o padrão numérico brasileiro, evitando propagação ao Slack.",
+    "O bloqueio da Condensadora proibiu 'afirmar reclamação, atraso ou listing como causa' mas não explicitou se hipóteses formuladas com 'pode ser' são permitidas — a Slack Writer interpretou o silêncio como permissão de hipótese. Recomenda-se clarificar na próxima versão das regras se o bloqueio inclui ou exclui formulações hipotéticas, para fechar essa ambiguidade antes do próximo ciclo.",
+    "O log das Decisões de Formatação descreveu incorretamente 'estoque de 3 unidades' como se fosse 'estoque zerado' — sinaliza necessidade de a Slack Writer citar o trecho literal alterado, não a categoria do bloqueio, para garantir rastreabilidade exata no Gate 8."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "A Slack Writer optou por preservação literal dos dois insights da Condensadora sem simplificação. A diretriz Pedro 2026-05-17 pede 'linguagem mais simples e operacional'; o primeiro insight é denso (múltiplas cláusulas encadeadas) e poderia ser redigido em dois bullets sem perder a tese. Não é violação objetiva — a Condensadora aprovou o nível de profundidade — mas é sinal de melhoria para próximos ciclos: a Slack Writer deve simplificar ativamente quando a fonte primária já é densa.",
-    "O primeiro ponto da série de ADS share (~60%) está registrado na mensagem como referência para monitoramento. Como é o ponto zero da memória, a Condensadora não tem histórico para comparar — este fato foi corretamente preservado na análise ('não saber ainda se há base orgânica'). A limitação de confiança está adequadamente sinalizada.",
-    "O dado de fulfillment mix ontem (56,3% Full vs 77,7% no 7d) foi corretamente explicado na análise como efeito de composição do campeão cross-docking, evitando interpretação de degradação de infraestrutura. Leitura operacional precisa e útil para Yasmin."
+    "Os três bullets de Análise da Conta foram reproduzidos com fidelidade quase verbatim à Condensadora, sem simplificação de linguagem para o nível operacional. O bullet #1 é o mais longo e usa terminologia analítica ('erosão está acelerando ou estabilizada', 'perda de exposição orgânica que ainda não aparece no número agregado'). A Diretriz Pedro 2026-05-17 recomenda que cada insight diga a mesma coisa da Condensadora em linguagem mais simples e operacional. A QA não bloqueia por discordância analítica com o estilo aprovado pela Condensadora, mas registra o sinal para revisão do prompt da Slack Writer no próximo ciclo — especificamente a instrução de simplificar linguagem abstrata sem alterar tese ou estrutura.",
+    "O Kit 4 Potes de Vidro 320ml (KIT4YW320) aparece no Top Produtos com título simplificado 'Kit 4 Potes de Vidro 320ml Hermético 4 Travas', omitindo 'Azul-petróleo' do título real do anúncio. Como apenas uma variação de 320ml desse produto consta no ranking e o identificador de tamanho é preservado, não há risco de confusão na leitura atual. Sinalizado para monitoramento: se outras variações de cor/tamanho desse produto entrarem no ranking em ciclos futuros, a omissão de 'Azul-petróleo' poderá gerar ambiguidade e exigirá correção.",
+    "Segundo produto com risco de ruptura iminente (Kit 6 Canecas Porcelana Tulipa 250ml, MLB6167272090, available_quantity=21, cobertura estimada de ~4 dias ao ritmo de 5 pedidos/dia) não consta nas prioridades do Slack — consistente com a Condensadora, que registrou o sinal apenas em 'memoria_para_amanha', não em prioridades. Registrado para garantir que a Condensadora do próximo ciclo retome ativamente esse sinal se o estoque não tiver sido reposto, convertendo-o em prioridade antes que a janela de risco se abra."
   ],
   "llm_used": true,
   "model": "sonnet",

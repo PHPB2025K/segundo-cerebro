@@ -32,7 +32,9 @@ import json
 import logging
 import os
 import sys
-from datetime import datetime, timezone
+import urllib.parse
+import urllib.request
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 # Reusa connector existente — adiciona path do vault
@@ -382,6 +384,118 @@ def build_account_overview_block(token):
     }
 
 
+def _load_supabase_creds():
+    """Lê credenciais Supabase do .env do budamix-central (mesma fonte do data builder)."""
+    env_path = "/var/www/budamix-central/.env"
+    if not os.path.exists(env_path):
+        return None, None
+    env = {}
+    for line in open(env_path):
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            env[k.strip()] = v.strip().strip('"').strip("'")
+    return (
+        env.get("NEXT_PUBLIC_SUPABASE_URL"),
+        env.get("SUPABASE_SERVICE_ROLE_KEY"),
+    )
+
+
+def build_fulfillment_mix_window_block(date_str, days):
+    """
+    Calcula % logistic_type para a janela dos últimos N dias contando ATÉ date_str
+    (inclusivo) usando a coluna orders.logistic_type do Supabase.
+    Não chama API ML — é só query SQL via REST.
+    """
+    sb_url, sb_key = _load_supabase_creds()
+    if not sb_url or not sb_key:
+        return {"status": "unavailable", "error": "supabase creds not found"}
+
+    end_dt = datetime.strptime(date_str, "%Y-%m-%d") + timedelta(days=1)
+    start_dt = end_dt - timedelta(days=days)
+    since_iso = start_dt.strftime("%Y-%m-%dT00:00:00+00:00")
+    until_iso = end_dt.strftime("%Y-%m-%dT00:00:00+00:00")
+
+    params = {
+        "select": "logistic_type",
+        "platform": "eq.ml",
+        "order_date": f"gte.{since_iso}",
+        "and": f"(order_date.lt.{until_iso})",
+        "logistic_type": "not.is.null",
+        "limit": "10000",
+    }
+    url = f"{sb_url}/rest/v1/orders?" + urllib.parse.urlencode(params)
+    req = urllib.request.Request(url, headers={
+        "apikey": sb_key,
+        "Authorization": f"Bearer {sb_key}",
+    })
+    try:
+        resp = urllib.request.urlopen(req, timeout=30)
+        rows = json.loads(resp.read())
+    except Exception as e:
+        return {"status": "unavailable", "error": str(e)[:200]}
+
+    if not rows:
+        return {
+            "status": "unavailable",
+            "window_days": days,
+            "since": since_iso,
+            "reason": "no_orders_with_logistic_type_in_window",
+        }
+
+    counts = {"full": 0, "cross_docking": 0, "flex": 0, "drop_off": 0, "unknown": 0}
+    for r in rows:
+        bucket = ML_LOGISTIC_TYPE_TO_BUCKET.get(r.get("logistic_type"), "unknown")
+        counts[bucket] += 1
+    total = len(rows)
+
+    # também consulta total geral (com e sem logistic_type) pra reportar cobertura
+    params_total = {
+        "select": "count",
+        "platform": "eq.ml",
+        "order_date": f"gte.{since_iso}",
+        "and": f"(order_date.lt.{until_iso})",
+    }
+    url_total = f"{sb_url}/rest/v1/orders?" + urllib.parse.urlencode(params_total)
+    req_total = urllib.request.Request(url_total, headers={
+        "apikey": sb_key,
+        "Authorization": f"Bearer {sb_key}",
+        "Prefer": "count=exact",
+    })
+    total_window = None
+    try:
+        resp_t = urllib.request.urlopen(req_total, timeout=30)
+        cr = resp_t.headers.get("content-range", "")  # "0-0/N"
+        if "/" in cr:
+            total_window = int(cr.split("/")[-1])
+    except Exception:
+        pass
+
+    def _pct(c):
+        return round(100 * c / total, 1)
+
+    return {
+        "status": "ok",
+        "window_days": days,
+        "since": since_iso,
+        "until": until_iso,
+        "orders_with_logistic_type": total,
+        "orders_total_in_window": total_window,
+        "coverage_pct": round(100 * total / total_window, 1) if total_window else None,
+        "full_pct": _pct(counts["full"]),
+        "cross_docking_pct": _pct(counts["cross_docking"]),
+        "flex_pct": _pct(counts["flex"]),
+        "drop_off_pct": _pct(counts["drop_off"]),
+        "unknown_pct": _pct(counts["unknown"]),
+        "_glossary": {
+            "full": "fulfillment — estoque no CD do ML",
+            "cross_docking": "ML coleta na expedição da Budamix",
+            "flex": "self_service — entrega no mesmo dia pelo lojista",
+            "drop_off": "lojista posta em agência ML",
+        },
+    }
+
+
 def build_ads_block(token, date_str):
     """Chama API Mercado Ads pra trazer resumo do dia."""
     try:
@@ -489,6 +603,16 @@ def build_snapshot(date_str, top_items_from):
             f"({analysis.get('coverage_pct')}%)"
         )
 
+    log.info("Calculando mix de envio em janelas de 7d e 30d (via Supabase)...")
+    mix_7d = build_fulfillment_mix_window_block(date_str, 7)
+    mix_30d = build_fulfillment_mix_window_block(date_str, 30)
+    if mix_30d.get("status") == "ok":
+        log.info(
+            f"  → 30d: Full {mix_30d['full_pct']}% / Cross {mix_30d['cross_docking_pct']}% "
+            f"/ Flex {mix_30d['flex_pct']}% "
+            f"(cobertura {mix_30d.get('coverage_pct')}%)"
+        )
+
     overall = overall_status(reputation, fulfillment, top_items, ads, account_overview)
 
     return {
@@ -497,7 +621,9 @@ def build_snapshot(date_str, top_items_from):
         "date": date_str,
         "status": overall,
         "reputation": reputation,
-        "fulfillment_mix": fulfillment,
+        "fulfillment_mix_yesterday_top10": fulfillment,
+        "fulfillment_mix_7d": mix_7d,
+        "fulfillment_mix_30d": mix_30d,
         "top_items_details": top_items,
         "ads_summary": ads,
         "account_overview": account_overview,
@@ -572,7 +698,9 @@ def main():
                 "status": "failed",
                 "error": str(e),
                 "reputation": {"status": "unavailable"},
-                "fulfillment_mix": {"status": "unavailable"},
+                "fulfillment_mix_yesterday_top10": {"status": "unavailable"},
+                "fulfillment_mix_7d": {"status": "unavailable"},
+                "fulfillment_mix_30d": {"status": "unavailable"},
                 "top_items_details": [],
                 "ads_summary": {"status": "unavailable"},
                 "account_overview": {"status": "unavailable"},

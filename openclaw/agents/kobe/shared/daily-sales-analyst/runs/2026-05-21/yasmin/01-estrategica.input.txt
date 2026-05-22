@@ -286,6 +286,38 @@ Quanto do resultado veio de mídia paga vs orgânico?
 - **ROAS < 3x ou ACOS > 30%** → ineficiência; investimento merece revisão
 - Sem `ads_summary` no pacote (`status: unavailable`) → declare ausência e ajuste confiança
 
+### Lente 6 — MercadoLíder (medalha + trajetória pro próximo nível)
+Em que medalha estamos? Estamos no ritmo pra promoção? O dia ajudou ou atrapalhou?
+
+**Por que essa lente existe:** a Budamix tem **MercadoLíder Gold** atualmente. A diferença pra Platinum não é cosmética — Platinum significa **maior boost de Buy Box, prioridade em buscas, acesso antecipado a features e campanhas/blitz exclusivas**. Cada dia em ritmo abaixo do necessário atrasa essa promoção; cada dia acima, acelera. A medida é em **janela de 60 dias rolling** de faturamento.
+
+**Thresholds oficiais ML (60 dias rolling):**
+- **MercadoLíder** (Silver): ≥ 230 vendas, ≥ R$ 37.000
+- **MercadoLíder Gold**: ≥ 575 vendas, ≥ R$ 118.400
+- **MercadoLíder Platinum**: ≥ 1.725 vendas, ≥ R$ 296.000
+- Métricas de qualidade obrigatórias em todos os níveis: reclamações < 1%, mediações ≤ 0,5%, cancelamentos com devolução < 2%, cancelamentos pelo vendedor ≤ 0,5%, atrasos < 6%.
+
+**Campos a cruzar:**
+- `ml_snapshot.reputation.power_seller_status` → medalha atual (`silver` | `gold` | `platinum` | `null`)
+- `ml_snapshot.reputation.real_level` → nível real durante proteção (geralmente null)
+- `ml_snapshot.reputation.protection_end_date` → fim da proteção (geralmente null)
+- `ml_snapshot.mercadolider.sales_60d_revenue_brl` → faturamento real 60d rolling (calculado do Supabase)
+- `ml_snapshot.mercadolider.platinum.gap_revenue_brl` → quanto falta de faturamento pro Platinum
+- `ml_snapshot.mercadolider.platinum.progress_pct` → % do caminho (0–100)
+- `ml_snapshot.mercadolider.ritmo_diario_brl` → BRL/dia médio na janela atual
+- `ml_snapshot.mercadolider.platinum.eta_dias_estimado` → estimativa grosseira de dias pra atingir threshold mantendo ritmo
+
+**Regras de leitura:**
+- **`real_level` preenchido** → medalha exibida está em **proteção temporária**; a medalha real é `real_level`. Citar como risco se `real_level` for inferior à medalha exibida.
+- **Gap < R$ 30.000 e progresso > 90%** → promoção iminente — qualquer queda de ritmo nas próximas semanas adia.
+- **Gap entre R$ 30k–R$ 100k e progresso 70–90%** → no ritmo, sustentar = mover; reduzir = adiar significativamente.
+- **Gap > R$ 100k ou progresso < 70%** → fora de alcance no curto prazo; foco é manter ou ganhar mercado, não perseguir Platinum.
+- **Medalha atual ameaçada** (vendas/faturamento 60d cair abaixo do threshold do nível atual) → risco de **rebaixamento** — alerta crítico.
+- **Métricas de qualidade no limite** (claims ≥ 0,8%, atrasos ≥ 5%, cancelamentos ≥ 1,5%) → independente do volume, pode derrubar a medalha. Sinalizar como risco silencioso.
+- Calcular **impacto do dia** quando relevante: ritmo do dia (GMV do dia) vs ritmo médio necessário (`gap / dias restantes ideais`). Dia abaixo = atraso; acima = ganho.
+
+**Vocabulário no insight:** sempre escrever **"MercadoLíder Gold"** / **"MercadoLíder Platinum"** com capitalização correta. Nunca colar termos como "verde-gold" (a cor verde do termômetro é separada da medalha; tratar em frases distintas se ambos forem citados). Reputação do termômetro = "reputação verde / amarela / vermelha"; medalha = "MercadoLíder [nível]". São dois eixos, não um.
+
 ## Padrão de raciocínio esperado
 
 Cada bullet abaixo cita os campos exatos do pacote que sustentam a leitura. Replique esse rigor.
@@ -416,16 +448,16 @@ Sinais ruins (rejeite):
     "mercado-livre"
   ],
   "totals": {
-    "orders": 100,
-    "gmv": 6082.82,
+    "orders": 101,
+    "gmv": 6113.02,
     "cancelamentos": 3,
-    "ticket_medio": 60.83
+    "ticket_medio": 60.52
   },
   "canonical_platform_total": {
     "platform": "ml",
-    "order_count": 100,
-    "total_revenue": 6082.82,
-    "avg_order_value": 60.83
+    "order_count": 101,
+    "total_revenue": 6113.02,
+    "avg_order_value": 60.52
   }
 }
 ```
@@ -443,11 +475,11 @@ Sinais ruins (rejeite):
       "platform": "ml"
     },
     "metrics": {
-      "pedidos_validos": 100,
+      "pedidos_validos": 101,
       "cancelamentos": 3,
-      "gmv": 6082.82,
-      "ticket_medio": 60.83,
-      "itens_vendidos": 103,
+      "gmv": 6113.02,
+      "ticket_medio": 60.52,
+      "itens_vendidos": 104,
       "top_products": [
         {
           "sku": "IMB501P",
@@ -546,36 +578,6 @@ Sinais ruins (rejeite):
           "aggregation_level": "variation"
         },
         {
-          "sku": "KIT4YW1050",
-          "raw_sku": "KIT4YW1050",
-          "raw_title": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
-          "family": "KIT4YW",
-          "parent_family": "KIT4YW",
-          "variation": "KIT4YW1050",
-          "variation_sku": "KIT4YW1050",
-          "mapped_variation_sku": "KIT4YW1050",
-          "display_name": "Kit 4 Potes de Vidro 1050ml Retangular",
-          "short_product_name": "Kit 4 Potes de Vidro 1050ml Retangular",
-          "confidence": "high",
-          "mapping_status": "mapped",
-          "mapping_reason": "reviewed_sku_display_map",
-          "source_signals": {
-            "has_raw_sku": true,
-            "has_title": true,
-            "has_platform_item_id": true,
-            "sku_normalized": "KIT4YW1050"
-          },
-          "raw_skus": [
-            "KIT4YW1050"
-          ],
-          "platform_item_id": "MLB4073003575",
-          "title": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
-          "confirmed_variation_attributes": [],
-          "orders": 8,
-          "quantity": 9,
-          "aggregation_level": "variation"
-        },
-        {
           "sku": "IMB501V",
           "raw_sku": "IMB501V",
           "raw_title": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Vermelho",
@@ -604,8 +606,38 @@ Sinais ruins (rejeite):
           "confirmed_variation_attributes": [
             "Tampa Vermelha"
           ],
+          "orders": 9,
+          "quantity": 9,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT4YW1050",
+          "raw_sku": "KIT4YW1050",
+          "raw_title": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+          "family": "KIT4YW",
+          "parent_family": "KIT4YW",
+          "variation": "KIT4YW1050",
+          "variation_sku": "KIT4YW1050",
+          "mapped_variation_sku": "KIT4YW1050",
+          "display_name": "Kit 4 Potes de Vidro 1050ml Retangular",
+          "short_product_name": "Kit 4 Potes de Vidro 1050ml Retangular",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT4YW1050"
+          },
+          "raw_skus": [
+            "KIT4YW1050"
+          ],
+          "platform_item_id": "MLB4073003575",
+          "title": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+          "confirmed_variation_attributes": [],
           "orders": 8,
-          "quantity": 8,
+          "quantity": 9,
           "aggregation_level": "variation"
         },
         {
@@ -759,8 +791,8 @@ Sinais ruins (rejeite):
           "aggregation_level": "variation"
         }
       ],
-      "top3_concentration": 60.0,
-      "top5_concentration": 76.0,
+      "top3_concentration": 59.4,
+      "top5_concentration": 76.2,
       "hour_distribution": {
         "3": 3,
         "5": 1,
@@ -775,7 +807,7 @@ Sinais ruins (rejeite):
         "15": 9,
         "16": 5,
         "17": 4,
-        "18": 4,
+        "18": 5,
         "19": 2,
         "20": 9,
         "21": 4,
@@ -787,7 +819,7 @@ Sinais ruins (rejeite):
         "amazon_fba": 0,
         "amazon_fbm": 0,
         "other": 0,
-        "total": 100
+        "total": 101
       }
     },
     "historical": {
@@ -806,11 +838,11 @@ Sinais ruins (rejeite):
         "days_with_data": 30
       },
       "avg_60d": {
-        "avg_orders": 92.4,
-        "avg_gmv": 3886.46,
-        "avg_ticket": 42.05,
-        "avg_items": 100.0,
-        "days_with_data": 60
+        "avg_orders": 95.3,
+        "avg_gmv": 3891.95,
+        "avg_ticket": 40.86,
+        "avg_items": 102.4,
+        "days_with_data": 58
       },
       "same_weekday_last_4": [
         {
@@ -844,25 +876,25 @@ Sinais ruins (rejeite):
         "avg_ticket": 45.61
       },
       "changes": {
-        "orders_vs_7d_pct": -15.9,
-        "gmv_vs_7d_pct": 8.3,
-        "orders_vs_30d_pct": 0.7,
-        "gmv_vs_30d_pct": 38.0,
-        "ticket_vs_30d_pct": 37.1,
-        "orders_vs_60d_pct": 8.2,
-        "gmv_vs_60d_pct": 56.5,
-        "ticket_vs_60d_pct": 44.7,
-        "orders_vs_same_weekday_pct": -2.7,
-        "gmv_vs_same_weekday_pct": 29.8
+        "orders_vs_7d_pct": -15.1,
+        "gmv_vs_7d_pct": 8.8,
+        "orders_vs_30d_pct": 1.7,
+        "gmv_vs_30d_pct": 38.7,
+        "ticket_vs_30d_pct": 36.4,
+        "orders_vs_60d_pct": 6.0,
+        "gmv_vs_60d_pct": 57.1,
+        "ticket_vs_60d_pct": 48.1,
+        "orders_vs_same_weekday_pct": -1.7,
+        "gmv_vs_same_weekday_pct": 30.5
       }
     },
     "reconciliation": {
       "scope": "platform",
       "platform": "ml",
-      "canonical_orders": 100,
-      "canonical_revenue": 6082.82,
-      "orders_count": 100,
-      "orders_revenue": 6082.82,
+      "canonical_orders": 101,
+      "canonical_revenue": 6113.02,
+      "orders_count": 101,
+      "orders_revenue": 6113.02,
       "order_delta": 0,
       "revenue_delta": 0.0,
       "ok": true
@@ -884,28 +916,61 @@ Sinais ruins (rejeite):
     },
     "quality_flags": [],
     "ml_snapshot": {
-      "schema_version": "ml-snapshot/v1",
-      "fetched_at_utc": "2026-05-22T15:00:13.338695+00:00",
+      "schema_version": "ml-snapshot/v2",
+      "fetched_at_utc": "2026-05-22T18:08:26.289075+00:00",
       "date": "2026-05-21",
       "status": "ok",
       "reputation": {
         "status": "ok",
         "color": "5_green",
         "power_seller_status": "gold",
+        "real_level": null,
+        "protection_end_date": null,
         "claims_rate": 0.0025,
         "cancellations_rate": 0,
         "delayed_handling_rate": 0.001,
-        "transactions_completed": 5571,
-        "transactions_canceled": 0
+        "transactions_completed": 5595,
+        "transactions_canceled": 0,
+        "ratings_positive": 0.58,
+        "ratings_neutral": 0.03,
+        "ratings_negative": 0.39
+      },
+      "mercadolider": {
+        "status": "ok",
+        "medalha_atual": "gold",
+        "proxima_medalha": "platinum",
+        "sales_60d_revenue_brl": 236908.99,
+        "sales_60d_window_start": "2026-03-23",
+        "sales_60d_window_end": "2026-05-21",
+        "sales_60d_count_paid": 5591,
+        "sales_60d_completed_api": 5595,
+        "ritmo_diario_brl": 3948.48,
+        "platinum": {
+          "threshold_revenue_brl": 296000,
+          "threshold_sales": 1725,
+          "gap_revenue_brl": 59091.01000000001,
+          "progress_pct": 80.04,
+          "eta_dias_estimado": 15.0,
+          "vendas_acima_threshold": 3870
+        },
+        "proximo_nivel": {
+          "alvo": "platinum",
+          "threshold_revenue_brl": 296000,
+          "threshold_sales": 1725,
+          "gap_revenue_brl": 59091.01000000001,
+          "progress_pct": 80.04,
+          "eta_dias_estimado": 15.0
+        },
+        "_observacao_eta": "ETA é estimativa grosseira mantendo o ritmo diário médio. Cálculo real precisa simular janela rolling dia a dia (entrada vs saída). Quando ritmo cair, ETA sobe; quando subir, ETA baixa."
       },
       "fulfillment_mix_yesterday_top10": {
         "status": "ok",
-        "full_pct": 20.0,
-        "cross_docking_pct": 80.0,
+        "full_pct": 19.8,
+        "cross_docking_pct": 80.2,
         "flex_pct": 0.0,
         "drop_off_pct": 0.0,
         "unknown_pct": 0.0,
-        "total_orders_resolved": 90,
+        "total_orders_resolved": 91,
         "computed_from": "top_10_items_weighted_by_orders",
         "_glossary": {
           "full": "fulfillment — estoque no CD do ML, envio direto",
@@ -919,8 +984,8 @@ Sinais ruins (rejeite):
         "window_days": 7,
         "since": "2026-05-15T00:00:00+00:00",
         "until": "2026-05-22T00:00:00+00:00",
-        "orders_with_logistic_type": 830,
-        "orders_total_in_window": 830,
+        "orders_with_logistic_type": 831,
+        "orders_total_in_window": 831,
         "coverage_pct": 100.0,
         "full_pct": 77.0,
         "cross_docking_pct": 23.0,
@@ -939,8 +1004,8 @@ Sinais ruins (rejeite):
         "window_days": 30,
         "since": "2026-04-22T00:00:00+00:00",
         "until": "2026-05-22T00:00:00+00:00",
-        "orders_with_logistic_type": 3087,
-        "orders_total_in_window": 3087,
+        "orders_with_logistic_type": 3088,
+        "orders_total_in_window": 3088,
         "coverage_pct": 100.0,
         "full_pct": 73.6,
         "cross_docking_pct": 26.4,
@@ -998,20 +1063,6 @@ Sinais ruins (rejeite):
           "category_id": "MLB244658"
         },
         {
-          "platform_item_id": "MLB4073003575",
-          "title": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
-          "listing_type": "gold_special",
-          "is_catalog": false,
-          "catalog_product_id": null,
-          "status": "active",
-          "free_shipping": false,
-          "logistic_type": "fulfillment",
-          "health": 0.75,
-          "available_quantity": 165,
-          "sold_quantity": 962,
-          "category_id": "MLB244658"
-        },
-        {
           "platform_item_id": "MLB4535659243",
           "title": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Vermelho",
           "listing_type": "gold_special",
@@ -1026,6 +1077,20 @@ Sinais ruins (rejeite):
           "category_id": "MLB244658"
         },
         {
+          "platform_item_id": "MLB4073003575",
+          "title": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": null,
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": 0.75,
+          "available_quantity": 163,
+          "sold_quantity": 964,
+          "category_id": "MLB244658"
+        },
+        {
           "platform_item_id": "MLB6167272090",
           "title": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
           "listing_type": "gold_special",
@@ -1035,8 +1100,8 @@ Sinais ruins (rejeite):
           "free_shipping": false,
           "logistic_type": "fulfillment",
           "health": null,
-          "available_quantity": 19,
-          "sold_quantity": 72,
+          "available_quantity": 14,
+          "sold_quantity": 77,
           "category_id": "MLB9206"
         },
         {
@@ -1077,8 +1142,8 @@ Sinais ruins (rejeite):
           "free_shipping": true,
           "logistic_type": "cross_docking",
           "health": null,
-          "available_quantity": 42,
-          "sold_quantity": 8,
+          "available_quantity": 41,
+          "sold_quantity": 9,
           "category_id": "MLB244658"
         },
         {
@@ -1091,8 +1156,8 @@ Sinais ruins (rejeite):
           "free_shipping": false,
           "logistic_type": "fulfillment",
           "health": null,
-          "available_quantity": 92,
-          "sold_quantity": 202,
+          "available_quantity": 89,
+          "sold_quantity": 203,
           "category_id": "MLB244658"
         }
       ],
@@ -1107,18 +1172,18 @@ Sinais ruins (rejeite):
       "account_overview": {
         "status": "ok",
         "totals": {
-          "active": 83,
+          "active": 84,
           "paused": 173,
           "closed": 0
         },
         "active_analysis": {
           "status": "ok",
-          "analyzed": 83,
-          "total_active": 83,
+          "analyzed": 84,
+          "total_active": 84,
           "coverage_pct": 100.0,
           "fulfillment_mix": {
-            "full_pct": 33.7,
-            "cross_docking_pct": 66.3,
+            "full_pct": 33.3,
+            "cross_docking_pct": 66.7,
             "flex_pct": 0.0,
             "drop_off_pct": 0.0,
             "unknown_pct": 0.0,
@@ -1130,15 +1195,15 @@ Sinais ruins (rejeite):
             }
           },
           "listing_type_mix": {
-            "gold_special": 92.8,
-            "gold_pro": 7.2
+            "gold_special": 92.9,
+            "gold_pro": 7.1
           },
-          "catalog_pct": 13.3,
-          "free_shipping_pct": 15.7,
+          "catalog_pct": 13.1,
+          "free_shipping_pct": 15.5,
           "out_of_stock_count": 0,
           "out_of_stock_ids": [],
           "low_health_count": 7,
-          "no_health_data_count": 65,
+          "no_health_data_count": 66,
           "low_health_threshold": 0.85
         }
       }
@@ -1171,12 +1236,12 @@ Sinais ruins (rejeite):
     {
       "check": "volume_band_shopee-budamix-store",
       "status": "ok",
-      "detail": "Orders 48 vs avg30 75.4 = -36.3%"
+      "detail": "Orders 46 vs avg30 75.4 = -39.0%"
     },
     {
       "check": "volume_band_shopee-budamix-oficial-2",
       "status": "ok",
-      "detail": "Orders 32 vs avg30 27.4 = +16.8%"
+      "detail": "Orders 31 vs avg30 27.4 = +13.1%"
     },
     {
       "check": "volume_band_shopee-budamix-shop-3",
@@ -1186,12 +1251,12 @@ Sinais ruins (rejeite):
     {
       "check": "volume_band_mercado-livre",
       "status": "ok",
-      "detail": "Orders 100 vs avg30 99.3 = +0.7%"
+      "detail": "Orders 101 vs avg30 99.3 = +1.7%"
     },
     {
       "check": "volume_band_amazon",
       "status": "partial",
-      "detail": "Orders 54 vs avg30 31.2 = +73.1% (positive spike; partial confidence, not blocking)"
+      "detail": "Orders 54 vs avg30 32.3 = +67.2% (positive spike; partial confidence, not blocking)"
     },
     {
       "check": "reconciliation_shopee-budamix-store",

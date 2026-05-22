@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-21
-**Gerado em:** 2026-05-22T20:21:18.437850+00:00
+**Gerado em:** 2026-05-22T21:32:00.643850+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,8 +24,7 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** ACOS com 2 casas decimais origina-se da L05 que copiou diretamente o valor da API (avg_acos_pct: 4.71) — verificar se a regra de 1 casa decimal deve ter exceção para ACOS (métrica financeira de campanha tipicamente expressa com 2 casas) ou se a L05 e L06 devem normalizar para 4,7% nos próximos ciclos.
-- **Aviso:** L06 realizou duas supressões menores não registradas nas Decisões de formatação ('no máximo' e 'do dia') — indicam que o processo de simplificação pode estar gerando ablações não auditadas; orientar L06 a registrar toda supressão de qualificador ou modificador, mesmo quando trivial.
+- **Aviso:** Padrão de imprecisão temporal em referências a snapshots de D+1: L06 usa 'no final do dia' (Análise) e 'snapshot de ontem' (Prioridades) para descrever dado coletado em D+1 ~18h BRT. Sugestão de padronização para ciclos futuros: adotar 'snapshot de D+1 (~18h BRT)' ou 'snapshot coletado hoje (~18h BRT)' como fórmula padrão para referenciar dados do ml_snapshot, evitando ambiguidade entre dia analisado e dia de coleta.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-21/yasmin/00-data-package.json`

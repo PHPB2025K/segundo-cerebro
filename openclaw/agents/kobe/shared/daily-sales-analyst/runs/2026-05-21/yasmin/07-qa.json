@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "Mensagem fiel à L05 em estrutura, dados, bloqueios e classificações de hipótese/fato/risco latente. Todos os 5 bloqueios da L05 foram respeitados e registrados no log da L06. Top Produtos usa display_shorts verbatim com confirmed_variation_attributes corretos. Prioridades derivam integralmente da L05 com responsável Yasmin, por_que, sinais e escalar_se preservados. Três desvios menores isolados: ACOS apresentado com 2 casas decimais (4,71%) em vez de 1 (Gate 11); remoção do intensificador 'no máximo' no insight 3 da Análise (Gate 6); supressão trivial de 'do dia' na frase conclusiva do insight 2 (Gate 6). Nenhum Crítico, nenhum Maior. Regra de agregação: 0 Maiores + 3 Menores sem degradação sistêmica = APROVADO COM RESSALVA.",
+  "motivo": "Nenhuma violação crítica nem maior identificada nos 12 gates. A mensagem é fiel à L05, respeita todos os bloqueios, mantém estrutura aprovada, preserva classificações, atribui Yasmin em todas as prioridades e não expõe MLBs, SKUs, ruído SEO nem a palavra 'fulfillment'. Dois problemas menores de imprecisão temporal foram detectados: na ANÁLISE (Gate 6), 'no final do dia' descreve o snapshot como se fosse do encerramento de 21/05 quando foi coletado em D+1 (~18h BRT de 22/05); nas PRIORIDADES (Gate 7), 'snapshot de ontem (~18h BRT)' leva Yasmin a interpretar o dado como sendo de 21/05 18h BRT, quando o snapshot foi coletado em 22/05 18h BRT. Ambas as imprecisões tornam o dado percebido como ~24h mais antigo do que realmente é, mas nenhuma altera a ação requerida nem induz erro operacional material. Regra de agregação aplicada: 0 Maiores + 2 Menores (abaixo de 6, não sistêmicos) → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -10,64 +10,51 @@
     "gate_4_visao_plataforma": "OK",
     "gate_5_top_produtos": "OK",
     "gate_6_analise_conta": "RESSALVA",
-    "gate_7_prioridades": "OK",
+    "gate_7_prioridades": "RESSALVA",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "RESSALVA",
+    "gate_11_padrao_numerico_formatacao": "OK",
     "gate_12_consistencia_ml_snapshot": "OK"
   },
   "contagem_severidade": {
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 3,
-    "regra_agregacao_aplicada": "0 Maiores + 3 Menores isolados sem degradação sistêmica de clareza, tom ou consistência → APROVADO COM RESSALVA"
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 2 Menores (em 2 gates distintos, não sistêmicos, não prejudicam clareza operacional da mensagem) → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
       "severidade": "Menor",
-      "gate": "11",
-      "texto_atual": "ACOS 4,71%",
-      "texto_esperado": "ACOS 4,7%",
-      "estado_atual": "Percentual ACOS apresentado com 2 casas decimais (4,71%) na seção ANÁLISE DA CONTA e na terceira prioridade",
-      "estado_esperado": "Percentuais com vírgula e 1 casa decimal conforme padrão aprovado — o valor correto seria 4,7%",
-      "regra_violada": "Percentuais com vírgula e 1 casa quando aparecerem (ex: 8,5%). O dado de origem avg_acos_pct=4.71 tem 2 casas e a L05 também os reproduziu com 2 casas — a raiz do desvio está na L05, mas a L06 poderia ter normalizado para 1 casa na formatação final.",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "o Kit 6 Canequinhas 100ml com Suporte de Madeira Acrílico estava ativo com 1 unidade no final do dia",
+      "texto_esperado": "o Kit 6 Canequinhas 100ml com Suporte de Madeira Acrílico estava ativo com 1 unidade no snapshot de D+1 (~18h BRT de 22/05)",
+      "estado_atual": "A expressão 'no final do dia' posiciona temporalmente o snapshot como encerramento de 21/05 (dia analisado). O snapshot foi coletado em 2026-05-22T21:06:09Z ≈ 18h06 BRT de 22/05 — D+1 do dia analisado, não final de 21/05.",
+      "estado_esperado": "Referência temporal alinhada à L05, que especifica 'no snapshot de D+1 (~18h BRT de 2026-05-22)'. Qualquer formulação equivalente que sinalize que o dado é de D+1 evita ambiguidade sobre a ancoragem temporal do risco.",
+      "regra_violada": "Gate 6 — fidelidade à L05: a L05 usou 'ainda ativo com 1 unidade no snapshot de D+1 (~18h BRT de 2026-05-22)'; L06 simplificou para 'no final do dia', perdendo a precisão temporal e podendo induzir Yasmin a inferir que o dado data do encerramento de 21/05.",
       "bloqueia_envio": false
     },
     {
       "severidade": "Menor",
-      "gate": "6",
-      "texto_atual": "— campanha eficiente, mas esta é a primeira leitura estruturada da conta",
-      "texto_esperado": "— campanha eficiente no máximo, mas esta é a primeira leitura estruturada da conta",
-      "estado_atual": "L06 removeu o intensificador 'no máximo' da caracterização da campanha ADS no insight 3 da Análise sem registrar a supressão nas Decisões de formatação",
-      "estado_esperado": "Preservar 'no máximo' da L05 — o termo carrega gradação (eficiência máxima, não apenas eficiência genérica) relevante para sustentar a recomendação de não tocar nas campanhas; é um qualificador analítico, não mero ornamento",
-      "regra_violada": "Nenhum termo analítico-chave removido; supressão não registrada nas Decisões de formatação",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "6",
-      "texto_atual": "e sozinha explica a inversão.",
-      "texto_esperado": "e sozinha explica a inversão do dia.",
-      "estado_atual": "L06 suprimiu 'do dia' da frase conclusiva do insight 2 sem impacto semântico relevante e sem registro nas Decisões de formatação",
-      "estado_esperado": "Manter a frase exata da L05 para fidelidade integral — a supressão é trivial mas indica ablação não auditada",
-      "regra_violada": "Fidelidade à L05 — mesmo conectivo, mesma estrutura de frase; supressões devem ser registradas nas Decisões de formatação mesmo quando inócuas",
+      "gate": "Gate 7 — Prioridades do Dia",
+      "texto_atual": "anúncio ativo até o snapshot de ontem (~18h BRT)",
+      "texto_esperado": "anúncio ativo até o snapshot de hoje (~18h BRT) / snapshot de D+1 (~18h BRT de 22/05)",
+      "estado_atual": "Yasmin lê o relatório em 22/05. 'Snapshot de ontem' remete a 21/05 ~18h BRT. O snapshot real foi coletado em 22/05 ~18h06 BRT (hoje), não ontem. A imprecisão faz o dado parecer ~24h mais antigo do que é, reduzindo marginalmente a percepção de imediação do risco.",
+      "estado_esperado": "Referência temporal correta: 'snapshot de hoje (~18h BRT)' ou 'snapshot de D+1 (~18h BRT de 22/05)', alinhada ao 'snapshot de ~18h BRT de 2026-05-22' especificado na L05.",
+      "regra_violada": "Gate 7 — fidelidade à L05 nas prioridades: L05 ancora o risco no snapshot de 2026-05-22 ~18h BRT; L06 descreve como 'de ontem', que para quem lê em 22/05 aponta para 21/05 — inversão de um dia na ancoragem temporal.",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "ACOS com 2 casas decimais origina-se da L05 que copiou diretamente o valor da API (avg_acos_pct: 4.71) — verificar se a regra de 1 casa decimal deve ter exceção para ACOS (métrica financeira de campanha tipicamente expressa com 2 casas) ou se a L05 e L06 devem normalizar para 4,7% nos próximos ciclos.",
-    "L06 realizou duas supressões menores não registradas nas Decisões de formatação ('no máximo' e 'do dia') — indicam que o processo de simplificação pode estar gerando ablações não auditadas; orientar L06 a registrar toda supressão de qualificador ou modificador, mesmo quando trivial."
+    "Padrão de imprecisão temporal em referências a snapshots de D+1: L06 usa 'no final do dia' (Análise) e 'snapshot de ontem' (Prioridades) para descrever dado coletado em D+1 ~18h BRT. Sugestão de padronização para ciclos futuros: adotar 'snapshot de D+1 (~18h BRT)' ou 'snapshot coletado hoje (~18h BRT)' como fórmula padrão para referenciar dados do ml_snapshot, evitando ambiguidade entre dia analisado e dia de coleta."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "Bug de mapeamento interno confirmado pela L04: KIT6YW1050 (MLB4676751119) e KIT10YW1050 (MLB4676726433) compartilham display_name idêntico 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas' — bloqueio respeitado no Slack, mas correção no data builder está pendente há todo o ciclo; priorizar para próximo deploy.",
-    "Anomalia is_catalog=false com catalog_product_id='MLB38833543' no Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090) registrada na L04 e na memoria_para_amanha da L05 — não chegou ao Slack, mas Yasmin deve verificar via Seller Center se é opt-out intencional de Catálogo ou associação pendente de aprovação ML.",
-    "Dados estruturalmente ausentes do pacote ML a solicitar ao data builder para próximos ciclos: (1) breakdown de cancelamentos por order_id ou platform_item_id — impede atribuição dos 3 cancelamentos do dia; (2) série temporal de health por platform_item_id mínimo 3 leituras consecutivas — impede determinar direção do health do Kit 4 Potes 1050ml Retangular; (3) breakdown de ADS revenue e spend por platform_item_id — impede confirmar se campanha priorizou família IMB501 ou se resultado Cross-Docking é orgânico; (4) reserved_quantity do endpoint de inventory ML para anúncios Full — melhora precisão de cobertura de estoque.",
-    "ratings_negative=0,39 (39% de avaliações negativas): assimétrico com métricas do termômetro verde (claims 0,25%, cancellations 0%, delayed_handling 0,1%) — não chegou ao Slack, registrado apenas na memoria_para_amanha da L05; monitorar persistência ≥35% por 2 ciclos com dado confirmado para avaliar risco silencioso de erosão de conversão em anúncios Clássicos (gold_special).",
-    "Kit 10 Potes Herméticos 1050ml Azul-petróleo 10 Unidades (MLB4676726433): cobertura estimada de ~4,6 dias ao ritmo de 16 pedidos do dia em Cross-Docking — não é emergência (lógica de ruptura diferente de Full), mas o 2º produto mais vendido do dia requer monitoramento nos próximos 2-3 pacotes conforme memoria_para_amanha da L05.",
-    "fulfillment_mix_yesterday_top10 capturou 91 de 101 pedidos do dia (90% — top 10 ponderado por orders, não totalidade dos pedidos); os 10 pedidos fora do top 10 podem incluir anúncios Full, tornando o percentual Full real marginalmente superior a 19,8%; não contaminou o Slack (insight usa o dado corretamente como referência do top 10 com padrão 30d como contraponto), mas documentar para comunicação ao data builder sobre eventual expansão de cobertura da métrica de fulfillment diário."
+    "Família IMB501 (MLB4535865317, MLB4535865311, MLB4535659243): health=null nos três anúncios apesar de sold_quantity acumulados de 326, 170 e 245 respectivamente. Com esse volume histórico acumulado, a ausência de cálculo ML é atípica e pode indicar recategorização, janela de recalibração interna do algoritmo ML ou outra condição técnica no fetcher. Não contaminou o Slack — L04 identificou e registrou; L06 não expôs health=null da família IMB501 como dado analítico. Ponto a investigar no próximo ciclo no data builder.",
+    "MLB6167272090 (Kit 6 Canecas Porcelana Tulipa Lisa 250ml): estado híbrido is_catalog=false com catalog_product_id='MLB38833543' preenchido. Não contaminou o Slack — L06 menciona corretamente nas prioridades ('associado ao catálogo ML mas não compete ativamente por Buy Box de Catálogo'). Investigar nos próximos ciclos se o reabastecimento no CD do ML altera o status de catálogo e como isso afeta o perfil competitivo do anúncio (Buy Box vs ranking de categoria).",
+    "ADS breakdown por platform_item_id permanece limitação estrutural permanente do pacote de coleta. A hipótese de concentração de verba ADS na família IMB501 (Cross-Docking) levantada pela L03 e qualificada como não verificável pela L04 não pode ser resolvida por coleta automática. Himmel é a fonte necessária para esse dado; considerar incluir reporte de alocação por campanha/anúncio no ritual de alinhamento semanal.",
+    "Causa dos 3 cancelamentos do dia (2026-05-21) permanece não mapeável pelo pacote. Candidato operacional identificado (MLB4410218897 com 1 unidade residual em Full) mas sem evidência confirmatória. Ponto a rastrear quando breakdown de cancelamentos por order_id e motivo estiver disponível no fetcher — dado relevante para isolar impacto de ruptura de estoque no cancellations_rate da reputação ML."
   ],
   "llm_used": true,
   "model": "sonnet",

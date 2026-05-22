@@ -12,7 +12,11 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-21 22:30 BRT — Preview mobile entregue em prod + PDP polida (breadcrumb sem duplicidade, eyebrow removido, stock chip DNA Budamix). Ana voltou a responder após 13 dias muda (08-21/05): bypass JWT via X-Internal-Token + parser tolerante a typos._
+_Atualizado: 2026-05-22 08:30 BRT — Probe agendado para investigação de timing da API ML Ads. Decisão de horário do cron ML depende de checar resultados amanhã 23/05 às ~09:30 BRT._
+
+## 🔴 PRIORITÁRIA — Pipeline DSA / ML (verificar amanhã 23/05)
+
+- [ ] **Verificar resultados do probe ML Ads em 23/05 às ~09:30 BRT.** Bug confirmado em 22/05: cron `daily-sales-ml-pipeline.sh` roda às 06:50 BRT mas a API ML Marketplace Advertising ainda não consolidou as métricas do dia anterior — todas as chamadas zeradas (spend=0, revenue=0) apesar de 11 campanhas ativas. Probe direto às 08:26 BRT já retornou R$ 341,72 cost / R$ 4.593,66 revenue para 21/05. Agendados 5 probes em 23/05 (07:00, 07:30, 08:00, 08:30, 09:00) gravando em `/var/log/daily-sales/ads-probe.log` e `/root/.openclaw/ml-ads-probe/`. **Ação após coleta:** identificar primeiro timestamp com `ads_available: true` → mover cron `50 6 * * *` em `/etc/crontab` da VPS para esse horário + ~10min de margem. Depois implementar sanity check em `build_ads_block` (`ml-snapshot-fetcher.py:580`) que marca `status: "suspect_zero_spend"` quando `campaigns_active > 0 && spend == 0` — double-safety para futuras falhas. Bloqueia leituras analíticas erradas em L05/L06 sobre "orgânico forte" inexistente.
 
 ## 🔴 Canggu/Ana — pós-fix de 21/05 (Ana voltou, mas backlog crítico)
 

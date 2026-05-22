@@ -118,6 +118,7 @@ A mensagem Slack final deve ter exatamente esta ordem:
 
 - Valores monetários: `R$ 1.234,56` — ponto como separador de milhar, vírgula como decimal, 2 casas decimais.
 - Acima de R$ 10.000, mantém 2 casas. Ex.: `R$ 12.450,80`.
+- **Centavos obrigatórios em TODOS os valores monetários**, inclusive em aproximações com `~` ou `≈`. Escrever `~R$ 341,72` (não `~R$ 341`). Se quiser arredondar para inteiro, ser explícito: `R$ 342 (arredondado de R$ 341,72)`. Misturar `R$ 341,72` e `~R$ 341` no mesmo bullet/frase é proibido — cria inconsistência interna.
 - Pedidos: número absoluto sem separador. Ex.: `91 pedidos`, não `91,00`.
 - Ticket médio: `R$ 44,85`, mesma regra de moeda.
 - Percentuais: `8,5%`, vírgula como decimal, 1 casa.
@@ -282,6 +283,7 @@ Regras:
 - **Responsável fixo: Yasmin** (Mercado Livre é dela). A L05 não atribui responsável — você atribui aqui.
 - Preservar condições de confirmação/refutação (`sinal_de_confirmacao_refutacao`).
 - Preservar condição de escalonamento (`escalar_se`) quando existir.
+- **Preservar alternativas operacionais explícitas** — quando a L05 lista dois caminhos válidos para uma ação ("painel ML **ou** API de pedidos", "Trader **ou** Himmel", "reposição **ou** pausa"), manter ambos. Suprimir a alternativa secundária para encurtar é perda de informação operacional, não simplificação. Yasmin precisa saber que pode escolher o caminho disponível no momento.
 
 Formato:
 - `Yasmin: [ação/checagem]. [Por quê]. Confirmar/refutar por [sinal]. Escalar se [condição].`
@@ -467,6 +469,7 @@ Cobrir minimamente:
 - quebras de frase aplicadas;
 - consolidação de produtos equivalentes em Top Produtos por variação;
 - simplificação do título ML real em Top Produtos (registrar item a item os encurtamentos relevantes);
+- **divergência de denominação cross-layer** — quando o nome de um produto na Análise/Prioridades for diferente do que a L05 usou no `insight`/`prioridade` correspondente (ex.: L05 escreveu "Canequinhas Acrílico", L06 escreveu "Canequinhas 100ml"), registrar a divergência item a item com o nome usado pela L05, o nome usado pela L06, e o motivo (geralmente: padronização com o título ML simplificado do Top Produtos);
 - escolha entre título ML real e display_name interno quando houve divergência declarada;
 - omissão de fulfillment na seção VISÃO por cobertura parcial;
 - atribuição de Yasmin como responsável nas prioridades.

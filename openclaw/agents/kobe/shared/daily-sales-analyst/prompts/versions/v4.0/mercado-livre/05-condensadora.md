@@ -376,6 +376,7 @@ Classifique a confiança geral da condensação:
 - **Atributos de variação confirmados por SKU** (`top_products[i].confirmed_variation_attributes`, ex.: `["Tampa Vermelha"]` para IMB501V) são **autoritativos** mesmo quando o `title` ML não menciona o atributo. Esse caso **não é divergência** — não bloquear. Combinar com o título enxuto na comunicação: `"[título ML simplificado] — [atributo confirmado]"`.
 - Não citar `platform_item_id` (MLB...) na `analise_final_condensada` ou `prioridades_condensadas` — usar nome comercial. MLB só em `memoria_para_amanha` como rastreabilidade técnica.
 - Não tratar Cross-Docking como problema — é modalidade legítima.
+- **Grafia obrigatória no JSON de saída:** sempre escrever `"Cross-Docking"` com C e D maiúsculos e hífen — nunca `cross-docking`, `cross_docking`, `Cross-docking` ou `crossdocking`. Mesmo que o dado de entrada use formato snake_case ou minúsculo, o output da L05 deve normalizar. Mesma regra para `"Full"`, `"Flex"`, `"Drop-off"`, `"Catálogo"`, `"Clássico"`, `"Premium"`.
 - Não confundir mecanismo de dano: Catálogo com health baixa → Buy Box; Clássico com health baixa → ranking de categoria. Insights devem citar o mecanismo correto.
 - Não tratar `health=null` como saudável — significa "ML não calcula" (zona cega).
 - Não dizer "reputação caindo" sem dado real da `ml_snapshot.reputation` — usar `metrics.cancelamentos` do dia como sinal precoce, não como confirmação.

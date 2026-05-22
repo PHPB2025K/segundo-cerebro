@@ -1,0 +1,89 @@
+{
+  "camada": "05-condensadora",
+  "data": "2026-05-21",
+  "plataforma": "ml",
+  "recipient": "Yasmin",
+  "analise_final_condensada": [
+    {
+      "insight": "A reputação está verde e o cancellations_rate marca zero, mas esse número ainda não capturou o que aconteceu ontem: o Kit Canequinhas entrou em ruptura efetiva com 3 pedidos registrados contra 2 unidades disponíveis no CD do ML. Em Full, o cancelamento é processado pelo próprio ML — o impacto na reputação aparece no próximo ciclo, não neste. Ler o dia como 'reputação limpa' sem ressalva é leitura errada.",
+      "padrao": "F — Métrica vs qualidade",
+      "base": "Granular + Operacional",
+      "classificacao": "risco latente"
+    },
+    {
+      "insight": "O mix de fulfillment do dia parece ter invertido o padrão histórico — 80% Cross-docking ontem contra 73% Full nos últimos 30 dias. Mas não é o canal que mudou: os três produtos mais vendidos do dia são todos Cross-docking por natureza, e eles concentraram 60% do volume. O padrão Full da conta está intacto na série mensal; o dia foi produto-específico, não erosão sistêmica.",
+      "padrao": "C — Inversão negativa",
+      "base": "Operacional + Estratégica",
+      "classificacao": "fato"
+    },
+    {
+      "insight": "O GMV de R$6.082 com volume plano e zero de investimento em Mercado Ads parece indicar orgânico forte — mas o zero de ADS ainda não tem causa confirmada. Se foi pausa deliberada do Himmel, o resultado é leitura válida de músculo orgânico. Se foi falha de veiculação, o dia está contaminado e a série não pode ser usada. Qualquer conclusão sobre força orgânica ou sobre o ticket elevado (R$60,83, +37% vs 30d) fica suspensa até essa confirmação.",
+      "padrao": "B — Inversão positiva",
+      "base": "Estratégica + Tática + Granular",
+      "classificacao": "hipótese"
+    }
+  ],
+  "prioridades_condensadas": [
+    {
+      "prioridade": "Verificar status dos pedidos do Kit Canequinhas Acrílico no CD do ML e acionar reposição urgente — o item opera em Full, então reposição exige envio físico ao CD do Mercado Livre, não ajuste interno na expedição.",
+      "por_que": "Ruptura efetiva confirmada: 3 pedidos registrados contra 2 unidades disponíveis. A janela de cancelamento automático pelo ML já está aberta. Cada ciclo sem reposição é um ciclo com impacto prospectivo no cancellations_rate, hoje em 0%.",
+      "sinal_de_confirmacao_refutacao": "Cancelamentos do item aparecendo no próximo pacote confirma impacto em reputação. Reposição confirmada e pedidos atendidos dentro de 24h = risco neutralizado.",
+      "escalar_se": "Cancelamentos registrados no próximo ciclo — risco de reputação se materializou."
+    },
+    {
+      "prioridade": "Confirmar com Himmel se o zero de ADS em 2026-05-21 foi pausa deliberada ou falha técnica de veiculação.",
+      "por_que": "Sem essa confirmação, o resultado do dia (GMV R$6.082, ticket R$60,83) não é interpretável: orgânico forte e contaminado por falha implicam ações opostas. Nenhuma decisão sobre campanha ou leitura de série orgânica pode ser tomada com segurança antes disso.",
+      "sinal_de_confirmacao_refutacao": "Himmel confirma pausa intencional = registrar dia como ponto zero da série orgânica e manter observação por 3 dias. Himmel identifica falha técnica = marcar dia como contaminado, aguardar ciclo limpo.",
+      "escalar_se": "Himmel identificar falha técnica com campanhas desconfiguradas — classificação muda para alinhamento imediato com Himmel para reativação controlada."
+    },
+    {
+      "prioridade": "Registrar o estoque do Kit 6 Canecas Tulipa Lisa como segundo horizonte de ruptura em Full e avaliar reposição junto com o Canequinhas.",
+      "por_que": "Com 19 unidades disponíveis e 5 pedidos no dia, a cobertura estimada é ~4 dias em Full. Como Full exige envio físico ao CD do ML, a janela operacional efetiva é mais estreita que o número bruto sugere. É o próximo item a entrar em ruptura após o Canequinhas.",
+      "sinal_de_confirmacao_refutacao": "Estoque abaixo de 10 unidades no próximo ciclo confirma urgência de reposição. Item saindo do top 10 antes de atingir zero indica queda de giro — rever urgência.",
+      "escalar_se": "Não aplicável — ação direta de reposição."
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [
+    {
+      "item": "Leitura de 'orgânico forte confirmado' ou 'musculatura orgânica validada' para o dia 2026-05-21",
+      "motivo": "Zero de ADS com causa desconhecida — Granular (L04) e Estratégica (L01) confirmam que a interpretação de orgânico puro é hipótese não validada; afirmar como fato induz decisão errada sobre campanhas."
+    },
+    {
+      "item": "Reputação limpa sem ressalva sobre ruptura do Canequinhas",
+      "motivo": "Granular confirma que cancellations_rate=0 é métrica de janela longa que ainda não capturou os pedidos sem cobertura de 2026-05-21; citar reputação como fato limpo sem ressalva esconde o risco ativo."
+    },
+    {
+      "item": "Atributo 'Retangular' como característica confirmada do Kit 4 Potes 1050ml ou do Kit 2 Potes 1050ml",
+      "motivo": "Granular (L04) confirma que 'Retangular' está presente apenas no display_name interno, sem confirmação por título ML real nem por confirmed_variation_attributes; usar como atributo externo é dado interno não validado."
+    },
+    {
+      "item": "display_name 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas' como identificador de qualquer produto específico",
+      "motivo": "Granular (L04) identificou que KIT10YW1050 (10 unidades) e KIT6YW1050 (6 unidades) compartilham o mesmo display_name; usar display_name sem o diferenciador de quantidade produz identificação incorreta."
+    },
+    {
+      "item": "MLB... IDs (platform_item_id) no corpo da mensagem Slack",
+      "motivo": "Regra ML do pipeline — IDs técnicos não pertencem à comunicação final; usar nomes comerciais baseados nos títulos ML."
+    },
+    {
+      "item": "Direção do health do Kit 4 Potes 1050ml (queda, estabilização ou recuperação)",
+      "motivo": "Granular (L04) confirma que apenas leitura pontual de health=0.75 está disponível; série temporal ausente do pacote; afirmar direção seria invenção."
+    }
+  ],
+  "memoria_para_amanha": [
+    "Kit Canequinhas Acrílico (MLB4410218897): ruptura efetiva em 2026-05-21 — 3 pedidos vs 2 unidades em Full; verificar se cancelamentos aparecem registrados no pacote de amanhã como impacto em cancellations_rate; sold_quantity histórico 456.",
+    "Kit 6 Canecas Tulipa Lisa (MLB6167272090): cobertura estimada ~3,8 dias em Full (19 unidades / 5 pedidos no dia); é o segundo horizonte de ruptura após o Canequinhas; estado atípico catalog_product_id=MLB38833543 com is_catalog=false — verificar com Yasmin/Himmel se estratégia de catálogo estava planejada para esse item.",
+    "Kit 4 Potes 1050ml (MLB4073003575): health=0.75 pontual em 2026-05-21, penalização ativa (limiar 0.85); série temporal ausente — solicitar health dos últimos 3 ciclos para determinar direção; sold_quantity=961, logistic_type=fulfillment; único campeão Full do top 10 com health calculada.",
+    "Zero de ADS 2026-05-21: spend=0, revenue=0; 11 campanhas nominalmente ativas de 14 totais; causa pendente de confirmação com Himmel (deliberada vs falha técnica); resultado do dia não é interpretável como série orgânica até essa confirmação.",
+    "Ticket R$60,83 em 2026-05-21 é o ponto zero inaugural da série — primeiro dado estruturado disponível (weekly.md e monthly.md são templates vazios); precisam ≥3 dias consecutivos acima de R$55 para confirmar patamar; queda abaixo de R$48 em 2 dias seguidos refuta mudança estrutural.",
+    "Kit 10 Potes Herméticos 1050ml — 10 Unidades (MLB4676726433): available_quantity=78, giro 16 pedidos/dia, logistic_type=cross_docking; horizonte estimado ~5 dias; reposição depende de abastecimento na expedição Budamix antes da coleta ML.",
+    "display_name duplicado a corrigir no data builder: KIT10YW1050 (MLB4676726433) e KIT6YW1050 (MLB4676751119) compartilham 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas'; diferenciadores corretos são os títulos ML com '10 Unidades' e '6 Unidades' respectivamente.",
+    "Ponto zero GMV 2026-05-21: 100 pedidos, R$6.082,82, ticket R$60,83 — primeira leitura estruturada da conta para comparação futura; mix top 10: 80% Cross-docking, 20% Full; reputação 5_green, Mercado Líder Gold, cancellations_rate=0 (pré-impacto Canequinhas)."
+  ],
+  "alertas_de_confianca": {
+    "nivel": "media",
+    "explicacao": "O pacote ML está estruturalmente completo e a reconciliação fechou sem delta. A L04 não declarou bloqueios para Slack e o risco de identificação ficou em médio, não alto. Três fatores reduzem a confiança de alta para média: (1) a causa do zero de ADS não foi confirmada — o insight de orgânico é hipótese, não fato; (2) o status individual dos pedidos do Canequinhas é irrecuperável pelo pacote, então a materialização do risco de reputação não é confirmável nesta sessão; (3) a série histórica interna está zerada (weekly.md e monthly.md são templates vazios, diário de 2026-05-20 não entregue), tornando esta a leitura inaugural sem hipóteses ativas para confirmar ou refutar."
+  },
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

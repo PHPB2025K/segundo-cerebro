@@ -176,8 +176,15 @@ Como anúncios em Catálogo e Clássico se comportaram especificamente?
 **Cruzamentos obrigatórios:**
 - `ml_snapshot.top_items_details[i].is_catalog` cruzado com `orders` do dia
 - `ml_snapshot.top_items_details[i].health` (campeões com penalização ativa?)
-- `ml_snapshot.top_items_details[i].available_quantity` (estoque dos campeões)
+- `ml_snapshot.top_items_details[i].available_quantity` (estoque dos campeões — **POST-baixa**, ver regra abaixo)
 - `ml_snapshot.top_items_details[i].free_shipping`
+
+**REGRA CRÍTICA — `available_quantity` é estoque POST-baixa:** o snapshot é coletado depois do fechamento do dia analisado. Os pedidos do dia analisado **já foram processados e descontados** do estoque. `available_quantity=1` no snapshot significa "1 unidade disponível AGORA, depois de já ter atendido todos os pedidos do dia". **Proibido** afirmar coisas como "produto teve N pedidos e só tem M unidades, sobraram pedidos sem cobertura". Os pedidos do dia já foram atendidos. Risco de cancelamento é sempre **prospectivo** (pedidos futuros, dias D em diante), não retrospectivo (pedidos do dia analisado).
+
+**Análise de ruptura é prospectiva:**
+- Calcular cobertura em dias: `available_quantity` ÷ ritmo médio de venda dos últimos 7d (ou janela equivalente da L01)
+- Se cobertura < lead time de reposição → risco de ruptura nos próximos dias
+- Citar essa cobertura como "X dias de runway ao ritmo atual", nunca como "pedidos sem cobertura do dia analisado"
 
 **Leitura operacional:** algum campeão em Catálogo (`is_catalog=true`) está com health degradada? Estoque crítico em campeão de catálogo é mais grave que em campeão clássico (ruptura no catálogo demora a recuperar posição). Há padrão visível de Clássico vs Catálogo no comportamento do dia?
 
@@ -205,7 +212,7 @@ Cada bullet cita os campos exatos do pacote que sustentam a leitura. Replique es
 
 **Raso (rejeitar):** "Anúncio com estoque baixo."
 
-**Bom (Lente Op 4):** "O Kit 06 Canequinhas Acrílico entrou no dia com `available_quantity=3` e `status=active`, e gerou 3 pedidos. Esse é o único ponto do dia com risco operacional imediato — confirma e adiciona urgência ao sinal levantado pela L01 e à ação definida pela L02. Janela operacional de 24h antes que o ML cancele pedidos e contamine `reputation.cancellations_rate`."
+**Bom (Lente Op 4):** "O Kit 6 Canequinhas Acrílico tem `available_quantity=1` no snapshot atual (POST-baixa dos 3 pedidos de ontem) e ritmo médio de ~3 pedidos/dia. Cobertura prospectiva ≈ 8h — qualquer pedido novo a partir de agora ultrapassa o estoque disponível e dispara cancelamento automático pelo ML, pressionando `reputation.cancellations_rate` (hoje em 0). Risco é prospectivo, não retroativo — os 3 pedidos de ontem já foram atendidos."
 
 **Bom (Lente Op 5 — ADS):** "ADS respondeu por 60% do GMV do dia (`ads_summary.revenue_ads_yesterday_brl=R$3.041,56` / `recipient.totals.gmv=R$5.057,51`) com ROAS 11,6x e ACOS 4,33%. A eficiência é alta, mas a concentração num dia em que o mix de modalidade de envio já estava distorcido pelo campeão Cross-Docking sugere que a campanha está puxando volume para uma estrutura de modalidade de envio menos vantajosa do que o histórico mensal. Não é problema hoje — é informação operacional pra Condensadora."
 

@@ -31,6 +31,7 @@ A conta ML tem características que orientam a condensação:
 - **Vocabulário operacional ML:** reputação (verde/amarela/vermelha), Mercado Líder (Gold/Platinum), Full (estoque no CD do ML), Cross-Docking (Coleta na expedição), Flex (desligado), Catálogo, Clássico, Premium, health, ranking de categoria, Buy Box do catálogo.
 - **Modalidades de envio ativas na operação Budamix:** **exatamente duas — Full e Cross-Docking**. Flex está **desligado** por decisão operacional. Qualquer análise de "mix de modalidade de envio" compara somente essas duas; tratar Flex como inexistente, salvo se a L04 declarar anomalia.
 - **Cross-Docking não é problema** — é modalidade legítima. Só problematizar se houver divergência inesperada do padrão histórico.
+- **`available_quantity` é POST-baixa:** o snapshot vem coletado depois do dia analisado fechar. Pedidos do dia analisado **já foram processados** — não citar como "pendentes" nem afirmar que sobraram sem cobertura. Risco de ruptura é sempre prospectivo (cobertura = `available_quantity` ÷ ritmo médio = dias de runway nas vendas futuras). Frases proibidas no insight: "X dos Y pedidos do dia sem cobertura", "cancelamento iminente pelos pedidos de ontem", "produto fechou ontem com déficit de estoque".
 
 ## Diretriz Pedro 2026-05-17 — mesma análise, comunicação mais simples
 
@@ -119,7 +120,7 @@ Quando o agregado mascara onde o sinal realmente está.
 ### Padrão F — Métrica vs qualidade ("a métrica subiu, mas a qualidade piorou")
 Quando o resultado bom esconde deterioração operacional.
 - "GMV cresceu, mas dois campeões em Full estão com health abaixo do limiar — número sobe, qualidade do listing cai."
-- "Volume estável, mas anúncio ativo com estoque zerado gerando pedidos — métrica preservada hoje, cancelamento garantido amanhã."
+- "Volume estável, mas anúncio ativo com estoque crítico — pedidos novos a partir de hoje sem cobertura, cancelamento prospectivo nas próximas horas."
 
 Insight que não se encaixa em nenhum desses 6 padrões **provavelmente é descrição, não interpretação** — reavalie antes de incluir.
 

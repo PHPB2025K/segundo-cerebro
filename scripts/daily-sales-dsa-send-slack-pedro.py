@@ -177,6 +177,29 @@ def load_manifest(day: str) -> dict:
     return json.loads(path.read_text())
 
 
+def extract_slack_message(raw: str) -> str:
+    """Extrai apenas o bloco da mensagem Slack do artefato L06.
+
+    O arquivo 06-slack-preview.md tem três blocos por design:
+      ### Mensagem Slack       (vai pro Slack — dentro de ```...```)
+      ### Respeito de bloqueios (log auditável pra L07 QA Gate)
+      ### Decisões de formatação (log auditável pra L07 QA Gate)
+
+    Só o primeiro deve ser enviado. A extração pega o conteúdo entre
+    a primeira e a segunda ocorrência de ``` no arquivo.
+    """
+    first = raw.find("```")
+    if first == -1:
+        return raw.strip()
+    second = raw.find("```", first + 3)
+    if second == -1:
+        return raw.strip()
+    body = raw[first + 3:second]
+    if body.startswith("\n"):
+        body = body[1:]
+    return body.strip()
+
+
 def load_message(recipient: dict) -> str:
     layer_path = ((recipient.get("layers") or {}).get("layer6_slack_writer") or "").strip()
     if not layer_path:
@@ -184,10 +207,18 @@ def load_message(recipient: dict) -> str:
     path = Path(layer_path)
     if not path.exists():
         raise RuntimeError("Artefato Slack Writer não encontrado")
-    text = path.read_text().strip()
-    if not text:
+    raw = path.read_text().strip()
+    if not raw:
         raise RuntimeError("Artefato Slack Writer vazio")
-    return text
+    message = extract_slack_message(raw)
+    if not message:
+        raise RuntimeError("Bloco de mensagem Slack vazio após extração")
+    if message.lstrip().startswith("### Respeito") or message.lstrip().startswith("### Decisões"):
+        raise RuntimeError(
+            "Extração quebrou: bloco extraído começa com log auditável. "
+            "Verificar formato do L06 antes de reenviar."
+        )
+    return message
 
 
 def main() -> int:

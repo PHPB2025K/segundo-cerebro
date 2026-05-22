@@ -48,7 +48,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 | Nome | Status | Métricas-chave |
 |------|--------|----------------|
 | GB Importadora/Budamix | 🟢 Ativo | 44 SKUs ativos, 4 canais de venda |
-| [[openclaw/agents/kobe/AGENTS|OpenClaw/Kobe]] | 🟢 Ativo | 6 agentes, 22 crons, 16 integrações |
+| [[openclaw/agents/kobe/AGENTS|OpenClaw/Kobe]] | 🟢 Ativo | 7 agentes top-level (Kobe + 6 diretores) + 2 sub-agentes (Pulse, Ledger), 22 crons, 16 integrações |
 | [[projects/budamix-central|Budamix Central]] | 🟢 Ativo | Dashboard interno (Next.js 16, VPS pm2+Traefik), busca vetorial, 27 base_products |
 | FinanceFlow | 🔨 Em construção | Automação fiscal 6 CNPJs |
 | [[openclaw/agents/builder/memory/projects/simulimport|SimulaImport]] | 🔨 Em construção | MicroSaaS simulação importação |
@@ -63,7 +63,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 |------|--------|-------|
 | Pedro Broglio | CEO, dev, estratégia | Faz tudo |
 | 2 analistas | Operação, cadastro, marketplaces | Preenchendo dados de produtos no Budamix Central → [[memory/context/people|detalhes]] |
-| [[openclaw/agents/kobe/IDENTITY|Kobe]] (AI) | Agente principal OpenClaw | GPT 5.4, 6 sub-agentes: [[openclaw/agents/trader/IDENTITY|Trader]], [[openclaw/agents/spark/IDENTITY|Spark]], [[openclaw/agents/builder/IDENTITY|Builder]], [[openclaw/agents/fisco/IDENTITY|Fisco]], [[openclaw/agents/rh/IDENTITY|RH]] |
+| [[openclaw/agents/kobe/IDENTITY|Kobe]] (AI) | COO — Diretor de Operações | GPT 5.5. Orquestra 6 diretores: [[openclaw/agents/trader/IDENTITY|Trader]] (CCO), [[openclaw/agents/spark/IDENTITY|Spark]] (CMO), [[openclaw/agents/builder/IDENTITY|Builder]] (CTO), [[openclaw/agents/fisco/IDENTITY|Fisco]] (Diretor Fiscal), [[openclaw/agents/rh/IDENTITY|RH]] (CHRO), [[openclaw/agents/vault/IDENTITY|Vault]] (CFO). Sub-agentes: Pulse (no Trader), Ledger (no Vault) |
 | Ana (AI) | Atendimento WhatsApp | IA conversacional via N8N + Evolution API |
 
 ---
@@ -96,7 +96,7 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 | Componente | Status | Detalhes |
 |------------|--------|----------|
-| [[openclaw/agents/kobe/AGENTS|OpenClaw/Kobe]] | 🟢 Produção | VPS Hostinger, v2026.4.5, GPT 5.4 (todos os agentes migrados) |
+| [[openclaw/agents/kobe/AGENTS|OpenClaw/Kobe]] | 🟢 Produção | VPS Hostinger, v2026.4.23, GPT 5.5 (Trader/Spark/Builder/Fisco/RH), Opus 4.7 (Vault — fallback GPT 5.5). 6 diretores top-level + 2 sub-agentes (Pulse, Ledger) |
 | Ana (atendimento) | 🟢 Produção | N8N + Evolution API + Supabase |
 | Budamix Central | 🟢 Produção | Next.js 16 + Supabase + pgvector, VPS (pm2 porta 3000 + Traefik SSL), role-based access (admin/viewer) |
 | Claude Code | 🟢 Uso diário | VS Code + MCPs |
@@ -118,4 +118,4 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ---
 
-*Última atualização: 15/04/2026 — sessão 7*
+*Última atualização: 22/05/2026 — Área Financeira (Vault CFO + Ledger sub-agente) ativada; time cresceu de 5 → 6 diretores; cargos C-level no Mission Control; modelos atualizados GPT 5.4 → 5.5*

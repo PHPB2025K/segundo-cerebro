@@ -78,7 +78,7 @@ Quando você tem mais candidatos do que pode entregar (limite 3 insights), prior
 2. **Correção de leitura falsa** — quando a leitura natural do dado leva à conclusão errada (ex: divergência de mix Full no dia que é produto-específica, não sistêmica).
 3. **Mudança de enquadramento** — inversão de leitura óbvia ("parece X, é Y").
 4. **Padrão recorrente confirmado** — sustenta tese ativa, mesmo sem novidade.
-5. **Ação tática realmente acionável hoje** — algo que precisa ser checado/feito nas próximas horas (estoque crítico em fulfillment, anúncio pausado com pedidos).
+5. **Ação tática realmente acionável hoje** — algo que precisa ser checado/feito nas próximas horas (estoque crítico em Full, anúncio pausado com pedidos).
 6. **Hipótese fraca, só se for importante monitorar** — quando há sinal incipiente que pode virar relevante.
 
 Se os 3 primeiros candidatos já cobrem níveis 1-3, os outros caem. **Não complete só pra entregar 3.**
@@ -200,7 +200,7 @@ Se a L01 estabeleceu patamar/acomodação/mudança, vale insight quando: (a) lei
 ### Lente 2 — Exposição (reputação + cancelamentos + paused)
 Vale insight quando: (a) reputação verde/Mercado Líder Gold parece OK mas há anúncio pausado com pedidos; (b) cancelamentos do dia divergem da `cancellations_rate` da reputação (sinal precoce); (c) anúncio paused vendendo (cancelamento prospectivo invisível no agregado do dia).
 
-### Lente 3 — Dependência (concentração + fulfillment)
+### Lente 3 — Dependência (concentração + modalidade de envio)
 Vale insight quando: (a) divergência produto-específica do mix Full faz o número do dia parecer pior que é; (b) Cross-Docking lidera dia em vez de Full e isso é estrutural ou pontual; (c) cauda morta dominante (pausados >> ativos) com volume vivo concentrado em poucos.
 
 ### Lente 4 — Catálogo vs Clássico (Buy Box vs ranking)
@@ -377,6 +377,7 @@ Classifique a confiança geral da condensação:
 - Não citar `platform_item_id` (MLB...) na `analise_final_condensada` ou `prioridades_condensadas` — usar nome comercial. MLB só em `memoria_para_amanha` como rastreabilidade técnica.
 - Não tratar Cross-Docking como problema — é modalidade legítima.
 - **Grafia obrigatória no JSON de saída:** sempre escrever `"Cross-Docking"` com C e D maiúsculos e hífen — nunca `cross-docking`, `cross_docking`, `Cross-docking` ou `crossdocking`. Mesmo que o dado de entrada use formato snake_case ou minúsculo, o output da L05 deve normalizar. Mesma regra para `"Full"`, `"Flex"`, `"Drop-off"`, `"Catálogo"`, `"Clássico"`, `"Premium"`.
+- **Terminologia obrigatória no output narrativo:** sempre usar **"modalidade de envio"** (ou "mix de modalidade de envio") quando se referir ao conceito nos campos `analise_final_condensada`, `prioridades_condensadas` ou `memoria_para_amanha`. **Nunca "fulfillment"** no texto narrativo — confunde com a modalidade Full do ML. A palavra `fulfillment` só pode aparecer quando referenciar o nome técnico do campo no `ml_snapshot` (ex.: `fulfillment_mix_30d`) ou o valor literal do enum retornado pela API ML.
 - Não confundir mecanismo de dano: Catálogo com health baixa → Buy Box; Clássico com health baixa → ranking de categoria. Insights devem citar o mecanismo correto.
 - Não tratar `health=null` como saudável — significa "ML não calcula" (zona cega).
 - Não dizer "reputação caindo" sem dado real da `ml_snapshot.reputation` — usar `metrics.cancelamentos` do dia como sinal precoce, não como confirmação.

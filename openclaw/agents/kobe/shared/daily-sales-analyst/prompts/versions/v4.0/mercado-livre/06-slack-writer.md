@@ -151,7 +151,9 @@ Mostrar (todos vindos de `00-data-package.json.metrics`):
 - Ticket médio.
 - Cancelamentos (quando disponível e relevante).
 
-**Fulfillment (Full / Cross-Docking / Flex)** — **não incluir nesta seção** quando o dado vier do `fulfillment_mix_yesterday_top10` do `ml_snapshot`. Esse campo cobre só o top 10, não a totalidade do dia (~70-80% dos pedidos). Não representa dado objetivo da plataforma sem ressalva — vira interpretação. Se a Condensadora autorizar mostrar com cobertura explícita, ok; caso contrário, omitir desta seção e tratar fulfillment somente na `🔍 ANÁLISE DA CONTA` quando a Condensadora trouxer.
+**Modalidade de envio (Full / Cross-Docking / Flex)** — **não incluir nesta seção** quando o dado vier do `fulfillment_mix_yesterday_top10` do `ml_snapshot`. Esse campo cobre só o top 10, não a totalidade do dia (~70-80% dos pedidos). Não representa dado objetivo da plataforma sem ressalva — vira interpretação. Se a Condensadora autorizar mostrar com cobertura explícita, ok; caso contrário, omitir desta seção e tratar modalidade de envio somente na `🔍 ANÁLISE DA CONTA` quando a Condensadora trouxer.
+
+**Terminologia obrigatória na mensagem Slack:** sempre escrever **"modalidade de envio"**, nunca "fulfillment", quando se referir ao conceito de Full/Cross-Docking/Flex no texto. A palavra "fulfillment" só pode aparecer em referência técnica interna ao campo do `ml_snapshot`, nunca no Slack para Yasmin. Motivo: "fulfillment" gera ambiguidade com a modalidade "Full" no mesmo bullet.
 
 ### 🏆 TOP PRODUTOS MERCADO LIVRE
 
@@ -471,7 +473,7 @@ Cobrir minimamente:
 - simplificação do título ML real em Top Produtos (registrar item a item os encurtamentos relevantes);
 - **divergência de denominação cross-layer** — quando o nome de um produto na Análise/Prioridades for diferente do que a L05 usou no `insight`/`prioridade` correspondente (ex.: L05 escreveu "Canequinhas Acrílico", L06 escreveu "Canequinhas 100ml"), registrar a divergência item a item com o nome usado pela L05, o nome usado pela L06, e o motivo (geralmente: padronização com o título ML simplificado do Top Produtos);
 - escolha entre título ML real e display_name interno quando houve divergência declarada;
-- omissão de fulfillment na seção VISÃO por cobertura parcial;
+- omissão de modalidade de envio na seção VISÃO por cobertura parcial;
 - atribuição de Yasmin como responsável nas prioridades.
 
 Se não houve caso ambíguo:

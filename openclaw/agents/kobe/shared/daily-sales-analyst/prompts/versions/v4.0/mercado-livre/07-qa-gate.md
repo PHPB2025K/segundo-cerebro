@@ -445,7 +445,8 @@ Validar que a mensagem final:
 - não usa IDs técnicos indevidos (zero MLB visíveis);
 - não explica bastidores do pipeline;
 - não inclui nomes de camadas;
-- vocabulário ML correto: Full / Cross-Docking / Flex / Clássico / Catálogo / Premium / health / ranking / Buy Box / reputação.
+- vocabulário ML correto: Full / Cross-Docking / Flex / Clássico / Catálogo / Premium / health / ranking / Buy Box / reputação;
+- termo **"modalidade de envio"** usado em todas as referências ao conceito Full/Cross-Docking/Flex. **A palavra "fulfillment" não pode aparecer no Slack final** — confunde com a modalidade "Full". Bloquear como **Maior** se "fulfillment" aparecer em qualquer bullet da mensagem Slack (independentemente de capitalização).
 
 Bloquear se:
 - texto parecer análise interna colada no Slack;

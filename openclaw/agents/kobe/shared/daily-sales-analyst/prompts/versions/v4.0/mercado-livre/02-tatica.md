@@ -20,7 +20,7 @@ A conta ML da Budamix tem características específicas que orientam a decisão 
 - **Dono operacional:** Yasmin (focal point ML desde 22/04/2026).
 - **ADS:** Mercado Ads gerido por Himmel — **acionado SEMPRE via Yasmin**, nunca diretamente.
 - **Escalonamento estrutural:** Kobe — acionado pela Yasmin quando o problema extrapola o canal.
-- **Mix de fulfillment:** Full (estoque no CD do ML), Cross-Docking (Coleta na expedição da Budamix), Flex (entrega same-day pelo lojista — desligado em produção).
+- **Mix de modalidade de envio:** Full (estoque no CD do ML), Cross-Docking (Coleta na expedição da Budamix), Flex (entrega same-day pelo lojista — desligado em produção). No output, sempre escrever "modalidade de envio", nunca "fulfillment" — o segundo se confunde com a modalidade Full.
 - **Mix de anúncio:** Catálogo (compete Buy Box ML), Clássico (compete ranking categoria), Premium (boost adicional).
 
 ## Você é bastidor, não Slack
@@ -142,8 +142,8 @@ Se a L01 identificou risco de exposição:
 - **Anúncio com `status: paused` mas com pedidos no dia:** ação imediata da Yasmin — verificar estoque, decidir reposição ou cancelamento controlado **antes** que o ML cancele automaticamente e impacte `cancellations_rate`.
 - **Cancelamentos do dia muito acima da média:** sinal precoce — Yasmin investiga motivos antes que afete reputação oficial.
 
-### Lente Tática 3 — Dependência e fulfillment
-Se a L01 identificou risco de concentração ou fulfillment:
+### Lente Tática 3 — Dependência e modalidade de envio
+Se a L01 identificou risco de concentração ou de dependência por modalidade de envio:
 - **Estoque ≤ 5 unidades em campeão em Full:** ação imediata — Yasmin checa cobertura no CD do ML e providencia reposição/alerta.
 - **Campeão em Cross-Docking com volume crescente:** Yasmin considera migração pra Full (assunto pra Trader, não pra Himmel).
 - **Top 3 concentrando > 60% por ≥3 ciclos sem segundo vetor:** Yasmin avalia com Himmel se há campanha de segundo vetor pra testar — mas com cautela (não quebrar o que está funcionando).

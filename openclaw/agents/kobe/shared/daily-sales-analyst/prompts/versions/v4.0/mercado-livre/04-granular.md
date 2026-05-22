@@ -162,7 +162,7 @@ Regras de precedência:
 Formato de reporte (campo `divergencias` no JSON):
 ```json
 {
-  "tipo": "[identidade_produto / mix_fulfillment / cancelamentos / ...]",
+  "tipo": "[identidade_produto / mix_modalidade_envio / cancelamentos / ...]",
   "fonte_a": "[onde diz X]",
   "fonte_b": "[onde diz Y]",
   "resolucao": "[fonte primária aplicável] prevalece",
@@ -350,6 +350,7 @@ Campos obrigatórios: `camada`, `data`, `plataforma`, `recipient`, `respostas_op
 - Não responda pergunta sobre direção do health, breakdown ADS por anúncio, ou estoque em tempo real como "respondida" — esses dados não estão no pacote; classifique sempre como "não respondida por falta de dado" e registre o dado necessário pra resolver no próximo ciclo.
 - Não trate Cross-Docking como inerentemente problemático — é modalidade legítima.
 - **Grafia obrigatória no JSON de saída:** sempre escrever `"Cross-Docking"` com C e D maiúsculos e hífen — nunca `cross-docking`, `cross_docking`, `Cross-docking` ou `crossdocking`. Mesmo que o dado de entrada use formato snake_case ou minúsculo, o output da L04 deve normalizar. Mesma regra para `"Full"`, `"Flex"`, `"Drop-off"`, `"Catálogo"`, `"Clássico"`, `"Premium"`.
+- **Terminologia obrigatória no output narrativo:** sempre usar **"modalidade de envio"** (ou "mix de modalidade de envio") quando se referir ao conceito. **Nunca "fulfillment"** no texto narrativo — confunde com a modalidade Full do ML. A palavra `fulfillment` só pode aparecer quando referenciar o nome técnico do campo no `ml_snapshot` (ex.: `fulfillment_mix_30d`) ou o valor literal do enum `logistic_type=fulfillment` retornado pela API ML.
 - Não cite produto com `mapping_status="ambiguous"` ou `mapping_confidence="low"` sem risco médio ou alto.
 - Não use `platform_item_id` (MLB...) como identificador externo — apenas como apoio técnico em `memoria_interna`.
 

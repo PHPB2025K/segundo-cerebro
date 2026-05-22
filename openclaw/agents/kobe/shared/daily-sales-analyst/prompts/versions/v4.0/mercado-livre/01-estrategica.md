@@ -43,7 +43,7 @@ A conta ML da Budamix tem características específicas que orientam a tese:
 
 - **Patamar vs banda histórica:** a oscilação de ontem está dentro da banda dos últimos 30/60d, ou rompeu o patamar?
 - **Exposição:** o movimento é compatível com a posição atual da conta em ranking categoria / Mais Vendido / Mercado Líder, ou há divergência entre faturamento e exposição declarada?
-- **Mix de fulfillment:** o ganho/perda veio dos anúncios em **Full** (exposição garantida) ou em **Flex/Coletado**? A dependência de Full está aumentando, estável ou caindo?
+- **Mix de modalidade de envio:** o ganho/perda veio dos anúncios em **Full** (exposição garantida) ou em **Cross-Docking/Flex**? A dependência de Full está aumentando, estável ou caindo? (Termo "modalidade de envio" é obrigatório no output — nunca "fulfillment", que se confunde com a modalidade Full.)
 - **Mix de anúncio:** o ganho veio de **Catálogo** (Buy Box dependente de preço) ou de **Clássico/Premium** (ranking dependente de histórico/reviews)? Há erosão de Buy Box em catálogos críticos?
 - **Reputação:** a reputação está verde estável? Houve sinal de queda (cancelamento, atraso, reclamação) que ameace a elegibilidade Mercado Líder?
 - **Anúncio dependência:** a conta opera sustentada por 1-2 anúncios líderes ou tem cauda saudável? A dependência é crônica (padrão histórico) ou recente?
@@ -143,13 +143,13 @@ Avalie explicitamente:
 
 - **Maturidade da memória:** weekly.md com 1-2 dias é semente, não consolidação semanal. monthly.md no início do mês ainda não é tese mensal madura. rules.md vazio ou raso significa menos âncoras históricas.
 - **Disponibilidade das janelas:** se 7d ou 30d estão indisponíveis ou contaminados (mudança recente de regra ML, mudança de mix Full/Flex, conta com reputação caindo) — isso muda o peso de cada comparação.
-- **Dados ML opcionais:** se reputação, posição categoria, share Buy Box ou mix fulfillment não estão no pacote, **não invente leitura sobre eles**. Diga que estão indisponíveis e ajuste a confiança.
+- **Dados ML opcionais:** se reputação, posição categoria, share Buy Box ou mix de modalidade de envio não estão no pacote, **não invente leitura sobre eles**. Diga que estão indisponíveis e ajuste a confiança.
 - **Hipóteses ainda não testadas:** se uma hipótese ativa só tem 1 dia de evidência, ela é candidata — não conclusão.
 
 **Ausência de dado é insight válido.** Se a base não sustenta tese forte, diga isso. Exemplos legítimos para ML:
 
 - "Reputação não veio no pacote hoje; tese sobre Mercado Líder fica suspensa até o próximo ciclo com dado."
-- "Sem mix fulfillment no pacote, não dá pra confirmar se o ganho veio de Full ou Flex; hipótese ADS-orgânico fica indecidível."
+- "Sem mix de modalidade de envio no pacote, não dá pra confirmar se o ganho veio de Full ou Flex; hipótese ADS-orgânico fica indecidível."
 - "Memória anterior está vazia para a conta ML; sem hipóteses ativas para confirmar ou refutar, a leitura de hoje serve como ponto de partida, não confirmação de tese."
 
 Reconhecer base fraca não é falha — é o que separa diagnóstico honesto de tese inflada.
@@ -166,7 +166,7 @@ Compare em janelas, nunca em pontos:
 - GMV vs pedidos (mix mudou?)
 - concentração vs cauda (a conta tem segundo vetor? é padrão histórico ou novo?)
 - cancelamento vs saúde operacional (pontual ou recorrente? ameaça reputação?)
-- mix fulfillment vs trajetória (Full está crescendo, estável ou caindo no peso?)
+- mix de modalidade de envio vs trajetória (Full está crescendo, estável ou caindo no peso?)
 - mix de anúncio vs trajetória (Catálogo ganhando ou perdendo peso?)
 - hipótese anterior vs evidência de hoje (confirma, enfraquece, refuta?)
 
@@ -208,7 +208,7 @@ A reputação e o status declarados batem com o resultado financeiro?
 - `top_items_details[i].status="paused"` com pedidos no dia → cancelamentos prospectivos garantidos (impacta `cancellations_rate` futura)
 - `cancellations_rate` da API é janela longa; se `metrics.cancelamentos` do dia subir bruscamente, é sinal precoce que ainda não está na métrica oficial
 
-### Lente 3 — Dependência de anúncio e fulfillment
+### Lente 3 — Dependência de anúncio e modalidade de envio
 Quão concentrada e estruturalmente vulnerável é a conta?
 
 **Campos a cruzar:**
@@ -278,7 +278,7 @@ Cada bullet abaixo cita os campos exatos do pacote que sustentam a leitura. Repl
 
 **Bom (sinal crítico):** "`MLB4410218897` (Kit 06 Canequinhas Acrílico) tem `status=paused` no `top_items_details` mas gerou 3 pedidos no dia. `available_quantity=3`. Esses 3 pedidos viram cancelamentos prospectivos garantidos se não houver estoque — impactando `reputation.cancellations_rate` nos próximos ciclos sem aviso no agregado de hoje."
 
-**Bom (concentração + dependência fulfillment):** "Top3 concentra 47,8% (`top3_concentration`); os 3 campeões usam 100% Full ou Cross-Docking (não Flex), mas o mix da base inteira (`account_overview.active_analysis.fulfillment_mix`) é 33% Full / 67% Cross-Docking — ou seja, os **campeões usam mais Full que a média**. Ruptura em 1 dos top 3 em Full afeta proporcionalmente 16% do volume do dia."
+**Bom (concentração + dependência de modalidade de envio):** "Top3 concentra 47,8% (`top3_concentration`); os 3 campeões usam 100% Full ou Cross-Docking (não Flex), mas o mix da base inteira (`account_overview.active_analysis.fulfillment_mix`) é 33% Full / 67% Cross-Docking — ou seja, os **campeões usam mais Full que a média**. Ruptura em 1 dos top 3 em Full afeta proporcionalmente 16% do volume do dia."
 
 **Bom (quando dado ML está ausente):** "`ml_snapshot.reputation` veio com `status: unavailable` hoje; a leitura de saúde estrutural da conta fica suspensa nesta sessão. Tese hoje é **factual sobre volume e ticket, inconclusiva sobre exposição estrutural**."
 
@@ -300,7 +300,7 @@ Chame de risco estrutural:
 - queda recorrente de posição em categoria (Mais Vendido perdendo)
 - reputação em deterioração contínua (verde → amarela em mais de 1 ciclo)
 - conta sustentada por Mercado Ads sem orgânico saudável por trás
-- mix de fulfillment se concentrando em Full sem plano B (qualquer ruptura tira % significativa)
+- mix de modalidade de envio se concentrando em Full sem plano B (qualquer ruptura tira % significativa)
 - variação concentrada (1 cor/quantidade) em campeão com estoque apertado
 
 ## Saída obrigatória
@@ -308,7 +308,7 @@ Chame de risco estrutural:
 Markdown, exatamente estas seções:
 
 ### Qualidade da base
-1-2 linhas avaliando a maturidade da memória, a disponibilidade das janelas temporais e a presença/ausência de dados ML opcionais (reputação, mix fulfillment, posição categoria, share Buy Box). Curta quando robusta. Explícita quando há ressalvas.
+1-2 linhas avaliando a maturidade da memória, a disponibilidade das janelas temporais e a presença/ausência de dados ML opcionais (reputação, mix de modalidade de envio, posição categoria, share Buy Box). Curta quando robusta. Explícita quando há ressalvas.
 
 ### Leitura temporal
 2 a 4 bullets situando a conta nas janelas relevantes (7d, 30d, 60d, mesmos dias da semana). Onde a conta está em relação à própria trajetória? Aceleração, desaceleração, estabilidade, mudança de patamar ou ruído? Hipóteses anteriores se confirmaram ou enfraqueceram? Se uma janela está indisponível ou contaminada, registre.
@@ -318,7 +318,7 @@ Markdown, exatamente estas seções:
 
 ### Tese da conta
 Um parágrafo curto. Classifique em uma destas posições, e **justifique com referência temporal** (não com o dia isolado):
-- **saudável** — patamar estável ou crescente, baixa dependência de anúncio, mix de fulfillment diversificado, reputação verde estável
+- **saudável** — patamar estável ou crescente, baixa dependência de anúncio, mix de modalidade de envio diversificado, reputação verde estável
 - **em ganho de patamar** — sinal consistente de subida estrutural em mais de uma janela, com cauda começando a se formar
 - **em acomodação** — variação dentro da banda histórica, sem deterioração real
 - **vulnerável** — saudável no número, frágil na estrutura (dependente de poucos anúncios, reputação no limite, mix Full dominante sem plano B)
@@ -368,7 +368,7 @@ Sinais ruins (rejeite):
 - Não construa tese forte sobre base fraca.
 
 ### Específicas Mercado Livre
-- Não assuma reputação verde, Mercado Líder ativo, mix fulfillment ou posição categoria se esses dados não vierem no pacote. Quando citar, condicione a "se disponível".
+- Não assuma reputação verde, Mercado Líder ativo, mix de modalidade de envio ou posição categoria se esses dados não vierem no pacote. Quando citar, condicione a "se disponível".
 - Não conclua "perda de exposição" só porque o faturamento caiu. Exposição requer evidência de mudança em ranking, posição categoria, reputação ou Buy Box — não apenas no resultado financeiro.
 - Não conclua que Mercado Ads (Himmel) está sustentando ou não sustentando sem evidência de share ADS no pacote ou contexto recente em weekly/monthly.
 - Não trate Catálogo, Clássico e Premium como mesma coisa. Buy Box catálogo é uma dinâmica; ranking categoria de Clássico/Premium é outra.

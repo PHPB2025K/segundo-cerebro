@@ -269,6 +269,39 @@ Toda sexta-feira no fim do dia:
 - **Memória individual:** detalhes, pauta da próxima reunião e leitura de gestão foram promovidos para `memory/projects/gestao-funcionarios-yasmin.md`.
 
 
+### 2026-W21 — Coleta semanal Slack (22/05)
+
+**Fonte consultada:** Slack read-only, últimos 7 dias, buscas por `#ata-reuniao`, atas/reuniões/feedbacks de Yasmin, Lucas e Leonardo, além das DMs recentes dos três. Não foi persistida transcrição integral.
+
+#### Yasmin
+- **Ata formal localizada:** sim, como resumo enviado por Pedro no Slack em 21/05 após a reunião semanal; a síntese completa já havia sido registrada no bloco da reunião de Yasmin de 21/05.
+- **Pontos tratados na semana:** cadastro da casinha/Mansão MDF no Mercado Livre, lista de móveis inclusos, imagens com criança/contexto de uso, preços finais agressivos para MDF, vídeos de usabilidade dos potes, redução de margem dos kits para tração e alinhamento do ritual de análise por anúncio.
+- **Evolução vs histórico:** Yasmin respondeu bem à orientação operacional, publicou o anúncio da casinha, recebeu feedback positivo do Pedro e começou a trabalhar com testes/preço/capa de forma mais consciente. Também trouxe alerta relevante sobre canecas chegando com muitos remendos e gerando reclamações.
+- **Alertas:** ainda depende de disciplina de registro quando reunião falhar; atenção aos kits de 10 unidades no Mercado Livre, pois houve segunda mancada de envio/etiqueta segundo Pedro; reclamações de qualidade das canecas precisam alimentar compras/fornecedor.
+- **Pontos positivos:** boa execução de cadastro, abertura para ajustes rápidos e entendimento crescente de funil visual e preço final.
+- **Pendências para Pedro cobrar:** confirmar se imagens/vídeos da casinha foram ajustados; checar se ofertas relâmpago/margem reduzida dos kits foram aplicadas e medidas; acompanhar problema de envio dos kits de 10; cobrar na próxima reunião 3 testes com métrica clara: MDF, pote/caneca e anúncio novo.
+
+#### Lucas
+- **Ata formal localizada:** não pelo padrão `#ata-reuniao` no Slack nesta semana. Houve reunião semanal em 20/05 registrada via Telegram e reforços operacionais no Slack.
+- **Pontos tratados na semana:** preços finais dos jogos da memória e demais MDF nas três Shopees, cadastro do Quebra-cabeça Animais, oferta relâmpago agressiva para potes 4 travas com margem até 12%, envio da planilha de planejamento de compra de canecas, bugs do sistema de estoque/PDF, ações semanais pós-reunião, anúncio Brasil/Copa e teste A/B de capa.
+- **Evolução vs histórico:** Lucas segue bem engajado, trouxe planilha de compras, executou cadastro nas três lojas e começou a trabalhar teste A/B explícito. O ponto positivo é iniciativa operacional; o próximo nível continua sendo análise granular por anúncio/SKU.
+- **Alertas:** risco de dispersão alto — Shopee, estoque, agência, afiliados, chat, MDF, canecas e site continuam competindo pela atenção. Nos preços agressivos, precisa medir resultado real por impressão, clique e venda, não só aplicar desconto.
+- **Pontos positivos:** cadastrou rapidamente o anúncio Brasil/Copa nas três contas, entendeu orientação de descrição mais curta e manteve resposta ativa às demandas.
+- **Pendências para Pedro cobrar:** status do Quebra-cabeça Animais nas três Shopees; resultado da oferta relâmpago dos potes 4 travas; análise de 2–3 anúncios específicos na próxima reunião; confirmação de entrada dos anúncios novos nas campanhas da Himmel/RIMA; acompanhamento do teste A/B da capa Brasil/Copa.
+
+#### Leonardo
+- **Ata formal localizada:** não houve nova ata semanal padronizada no Slack nos últimos 7 dias. O Slack mostrou acompanhamento operacional e preparação para a próxima reunião.
+- **Pontos tratados na semana:** preços finais de MDF na Amazon, ajustes de agenda, apoio no admin do site Budamix, cadastro/imagens dos kits de potes 4 travas no site, padrão de fotos 2000x2000, variações e capas das canecas Tulipa, entendimento de estoque automático site↔planilha, envio do item Brasil/Copa para Amazon e análise de campanhas Amazon.
+- **Evolução vs histórico:** Leonardo está ganhando contato com site próprio e Amazon ao mesmo tempo. Mostrou iniciativa ao sugerir melhorias no admin/variações e preparar análise/apresentação, mas ainda precisa separar melhor “usei o Chat” de “eu analisei e recomendo”.
+- **Alertas:** Pedro corrigiu explicitamente que a análise é responsabilidade da pessoa, não do Chat. Esse é o ponto de gestão mais importante da semana para Leonardo: IA pode apoiar, mas ele precisa chegar com leitura própria, síntese e recomendação.
+- **Pontos positivos:** respondeu rápido aos testes do admin, ajustou imagens/capas, trouxe dúvida técnica boa sobre variações/estoque e está preparando apresentação para a reunião.
+- **Pendências para Pedro cobrar:** apresentação objetiva das campanhas Amazon com impressões, cliques, vendas, hipótese e ação; concluir capas/imagens dos kits e canecas no site; confirmar envio/cadastro do Brasil/Copa na Amazon; reforçar que toda análise deve terminar com recomendação própria, não só comparação entre Chat e Claude Code.
+
+#### Ponto sistêmico
+- A semana teve bastante gestão real, mas pouca padronização de ata no Slack. Yasmin teve resumo pós-reunião; Lucas e Leonardo tiveram acompanhamento forte, mas sem `#ata-reuniao` novo. Recomendo manter a regra: toda reunião termina com uma mensagem curta no Slack no padrão `#ata-reuniao Nome AAAA-MM-DD`, mesmo quando a transcrição vier pelo Telegram.
+
+
+
 ## Conectado a
 
 - [[memory/context/people]] — **ref**: 3 focal points descritos no people

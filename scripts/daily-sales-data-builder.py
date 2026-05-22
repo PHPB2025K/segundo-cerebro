@@ -314,6 +314,49 @@ SEO_NOISE_PATTERNS: list[str] = [
 ]
 
 
+def _attribute_redundancy_tokens(attribute: str) -> set:
+    """Extrai a palavra-cor de um atributo + variação morfológica de gênero.
+
+    Ex.: 'Tampa Preta' → {'preta', 'preto'}
+         'Tampa Vermelha' → {'vermelha', 'vermelho'}
+         'Tampa Cinza' → {'cinza'} (sem variação)
+    """
+    if not attribute:
+        return set()
+    parts = str(attribute).strip().lower().split()
+    if not parts:
+        return set()
+    last = parts[-1]
+    tokens = {last}
+    if last.endswith("a"):
+        tokens.add(last[:-1] + "o")
+    elif last.endswith("o"):
+        tokens.add(last[:-1] + "a")
+    return tokens
+
+
+def strip_redundant_attribute_suffix(display: str, attributes: list) -> str:
+    """Remove palavras finais de `display` que duplicam atributos confirmados.
+
+    Quando o título ML termina com cor (`...Preto`) e o
+    `confirmed_variation_attributes` traz a mesma cor flexionada
+    (`Tampa Preta`), a L06 acaba imprimindo `...Preto — Tampa Preta` (redundância).
+    Esta função poda a cor do fim de `display_short` antes da L06 anexar o
+    atributo, gerando saída limpa `... — Tampa Preta`.
+    """
+    if not display or not attributes:
+        return display
+    redundancy_tokens = set()
+    for attr in attributes:
+        redundancy_tokens.update(_attribute_redundancy_tokens(attr))
+    if not redundancy_tokens:
+        return display
+    words = display.strip().split()
+    while words and words[-1].lower().strip(",.;:") in redundancy_tokens:
+        words.pop()
+    return " ".join(words).strip()
+
+
 def simplify_ml_title(title: str) -> str:
     """Gera nome curto canônico a partir do título ML real.
 
@@ -628,8 +671,14 @@ def compute_metrics(orders: list[dict], cancelled: list[dict], platform: str = "
                     "raw_skus": [],
                     "platform_item_id": item.get("platform_item_id") or item.get("asin") or "",
                     "title": title or variation.get("short_product_name") or variation.get("display_name") or "",
-                    "display_short": simplify_ml_title(
-                        title or variation.get("short_product_name") or variation.get("display_name") or ""
+                    "display_short": strip_redundant_attribute_suffix(
+                        simplify_ml_title(
+                            title or variation.get("short_product_name") or variation.get("display_name") or ""
+                        ),
+                        SKU_VARIATION_ATTRIBUTES.get(
+                            variation.get("variation_sku") or variation.get("mapped_variation_sku") or "",
+                            [],
+                        ),
                     ),
                     "confirmed_variation_attributes": SKU_VARIATION_ATTRIBUTES.get(
                         variation.get("variation_sku") or variation.get("mapped_variation_sku") or "",

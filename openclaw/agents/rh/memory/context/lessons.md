@@ -1,6 +1,10 @@
 # Lições — RH
 
-_Atualizado: 2026-05-20_
+_Atualizado: 2026-05-21_
+
+## 2026-05-21
+- A recorrência de compliance em 21/05 ficou concentrada em Lucas e Guilherme; quando o volume geral cai, a consolidação deve destacar os indivíduos que seguem repetindo padrão.
+- Entrada e saída sem marcações de intervalo não comprovam ausência de almoço; tratar como pendência de validação antes de qualquer ajuste ou cobrança.
 
 ## 2026-05-20
 - O fechamento diário pode revelar novas violações mesmo em dia sem conversas RH; a consolidação deve continuar cruzando sessões com dados do Ponto Certo.

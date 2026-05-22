@@ -5,253 +5,312 @@
   "recipient": "Yasmin",
   "respostas_operacional": [
     {
-      "pergunta": "Quantos pedidos do Kit 06 Canequinhas Acrílico (MLB4410218897) estão em estado que ainda permite cancelamento controlado pela operação antes que o ML cancele automaticamente?",
-      "status": "não respondida por falta de dado",
-      "evidencia": {
-        "produto_visivel": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico",
-        "platform_item_id": "MLB4410218897",
-        "fonte": "top_items_details / top_products",
-        "available_quantity_snapshot": 2,
-        "pedidos_dia": 3,
-        "status_anuncio": "active",
-        "logistic_type": "fulfillment",
-        "sold_quantity_acumulado": 456,
-        "cobertura": "negativa — 3 pedidos aceitos com apenas 2 unidades disponíveis; ruptura técnica já consumada",
-        "dado_ausente": "estado individual dos pedidos abertos (paid / processing / ready_to_ship / shipped) por order_id — não disponível no pacote; requer consulta direta ao painel ML ou API de pedidos; somente pedidos em estado anterior a 'em separação / pronto para coleta' permitem cancelamento sem penalidade de reputação ML"
-      },
-      "leitura": "O pacote confirma que a ruptura técnica já ocorreu — 3 pedidos gerados superam as 2 unidades disponíveis no CD do ML. Porém, a pergunta da L03 exige granularidade de estado por pedido: apenas order_ids em status pré-envio permitem cancelamento controlado sem impacto em reputation.cancellations_rate. Esse dado não está no schema ml-snapshot/v1 e não é derivável dos campos disponíveis.",
-      "conclusao_granular": "inconclusivo por falta de dado — ruptura técnica confirmada pelo pacote; estado operacional dos pedidos individuais requer dado externo; a ação da L02 (decisão binária reposição vs cancelamento controlado) depende de consulta ao painel ML fora deste ciclo",
-      "confianca": "baixa"
-    },
-    {
-      "pergunta": "Qual a causa do health=0.75 no Kit 4 Potes 1050ml Retangular (MLB4073003575) — claims, atraso de handling, qualidade do listing — e qual a direção do indicador nos últimos 7 dias (estabilizando, caindo ou recuperando)?",
+      "pergunta": "Qual é a trajetória da `health` do Kit 4 Potes 1050ml (MLB4073003575) nos últimos 3–5 registros disponíveis — está caindo, estabilizada ou em recuperação?",
       "status": "não respondida por falta de dado",
       "evidencia": {
         "produto_visivel": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
         "platform_item_id": "MLB4073003575",
         "fonte": "top_items_details",
-        "health_snapshot": 0.75,
-        "limiar_penalizacao_ml": 0.85,
-        "logistic_type": "fulfillment",
-        "pedidos_dia": 8,
-        "available_quantity": 165,
-        "sold_quantity_acumulado": 961,
-        "dados_ausentes": [
-          "série temporal de health — schema ml-snapshot/v1 retorna apenas valor pontual, sem histórico por data",
-          "breakdown da composição do health por dimensão (claims_rate, late_delivery_rate, quality_issues) — não retornado pelo ml_snapshot",
-          "account_overview.active_analysis contabiliza low_health_count=7 mas não identifica quais platform_item_ids nem a causa por item"
-        ]
+        "health_snapshot_pontual": 0.75,
+        "health_timestamp": "2026-05-22T15:00:13Z",
+        "dado_ausente": "série histórica de health não está no pacote — apenas valor pontual do snapshot de 2026-05-22T15:00 UTC disponível; o campo health em top_items_details é snapshot de coleta, não série temporal",
+        "dado_necessario_proximo_ciclo": "série de health dos últimos 3–5 registros por platform_item_id para determinar direção: caindo / estável / em recuperação"
       },
-      "leitura": "O pacote entrega apenas o valor pontual health=0.75, confirmando que este é o único anúncio do top 10 com health calculado e em penalização. Nem a causa (qual dimensão arrasta o indicador abaixo de 0.85) nem a direção (caindo, estabilizando ou recuperando) são acessíveis. A decisão da L02 — 'observar trajetória por 2-3 dias antes de agir' — é a única rota viável com os dados atuais, pois a transição de 'observar' para 'alinhar com Himmel' depende exatamente da série temporal que o pacote não entrega.",
-      "conclusao_granular": "inconclusivo por falta de dado — penalização ativa confirmada (0.75 < 0.85); causa e direção indetermináveis com o pacote atual; dado necessário para a decisão da L02 não está disponível neste ciclo",
+      "leitura": "O pacote disponibiliza apenas o valor pontual de health=0,75 capturado no snapshot de 2026-05-22T15:00 UTC. Não há série histórica de health por anúncio — o campo existe como snapshot de momento da coleta, não como histórico temporal. É possível confirmar que o anúncio está em zona de penalização ML (abaixo do limiar 0,85), mas não é possível determinar se o valor está caindo, estável ou em recuperação. A pergunta da L03 e a ação da L02 (checar direção antes de qualquer cobertura ADS) dependem de dado estruturalmente ausente do pacote atual.",
+      "conclusao_granular": "inconclusivo por falta de dado — health=0,75 confirma penalização ativa no anúncio Full de maior histórico acumulado no top 10 (sold_quantity=962), mas direção não é determinável; dado necessário para o próximo ciclo: série histórica de health por platform_item_id",
       "confianca": "baixa"
     },
     {
-      "pergunta": "Qual o available_quantity atual do Kit 10 Potes 1050ml (KIT10YW1050, MLB4676726433) e há confirmação de reposição pendente?",
+      "pergunta": "Qual é o status atual do `available_quantity` do Kit 06 Canequinhas Acrílico (MLB4410218897) desde o fechamento de ontem — houve pedido adicional, cancelamento já registrado ou o anúncio foi pausado antes da ruptura?",
       "status": "parcialmente respondida",
       "evidencia": {
-        "produto_visivel": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades",
-        "platform_item_id": "MLB4676726433",
-        "fonte": "top_items_details / top_products",
-        "available_quantity_snapshot": 76,
-        "pedidos_dia": 16,
-        "logistic_type": "cross_docking",
-        "free_shipping": true,
-        "status_anuncio": "active",
-        "health": null,
-        "cobertura_estimada_dias": "~4-5 dias ao ritmo de 16 pedidos/dia",
-        "nota_logistic_type": "cross_docking — reposição não requer envio ao CD do ML; Budamix mantém estoque próprio e ML coleta na expedição; recuperação de ruptura mais rápida que fulfillment",
-        "reposicao_pendente": "não confirmável pelo pacote — ml_snapshot não inclui pipeline de reposição ou ordens de compra pendentes"
+        "produto_visivel": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico",
+        "platform_item_id": "MLB4410218897",
+        "fonte": "top_items_details",
+        "available_quantity_no_snapshot": 1,
+        "status_no_snapshot": "active",
+        "logistic_type": "fulfillment",
+        "snapshot_timestamp": "2026-05-22T15:00:13Z",
+        "pedidos_dia_anterior": 3,
+        "sold_quantity_acumulado": 457,
+        "dado_ausente": "pedidos gerados entre fechamento BRT de ontem e snapshot de hoje, cancelamentos eventualmente já processados pelo ML, confirmação de reposição em trânsito ou efetivada no CD"
       },
-      "leitura": "available_quantity=76 confirmado pelo top_items_details. Cobertura estimada de ~4-5 dias é razoável ao ritmo de 16 pedidos/dia, mas deve ser tratada como estimativa — o ritmo pode variar. Como logistic_type=cross_docking, a reposição não depende de envio ao CD do ML, o que dá à Budamix mais controle sobre o timing vs fulfillment. A segunda parte da pergunta (confirmação de reposição) não é respondível com os dados do pacote.",
-      "conclusao_granular": "parcialmente respondida — cobertura granular de ~4-5 dias confirmada por fonte primária; reposição pendente não confirmável; urgência menor que Canequinhas (fulfillment) e Canecas Porcelana (fulfillment, cobertura ~3-4 dias), mas janela de atenção se abre nos próximos dias",
+      "leitura": "O snapshot de 2026-05-22T15:00 UTC mostra status=active e available_quantity=1 — o anúncio não foi pausado até ao menos 15h UTC de hoje. A ruptura operacional não foi revertida até esse momento. Qualquer pedido gerado após o fechamento BRT de ontem e antes de uma eventual reposição resulta em cancelamento que entra na janela longa do reputation.cancellations_rate. O snapshot não captura pedidos abertos intraday nem cancelamentos já processados após o fechamento BRT — não é possível saber se a ruptura já ocorreu ou se há pedido em risco de cancelamento automático pelo ML.",
+      "conclusao_granular": "confirma risco operacional — anúncio Full com available_quantity=1 permanece ativo e sem sinal de pausa ou reposição até 15:00 UTC de 2026-05-22; ação da L02 não evidenciada como executada ao momento do snapshot",
       "confianca": "média"
     },
     {
-      "pergunta": "Qual a composição do revenue_ads_yesterday_brl = R$4.593,66 por anúncio — quais produtos Himmel priorizou nas campanhas ontem?",
+      "pergunta": "Qual anúncio (ou quais anúncios) concentra o `revenue_ads_yesterday_brl=R$4.593,66` da campanha de Himmel — a cobertura ADS está nos campeões Cross-Docking do dia (família IMB501, KIT10YW1050) ou há cobertura significativa nos anúncios Full (Kit 4 Potes, Canecas Tulipa, Kit 2 Potes)?",
       "status": "não respondida por falta de dado",
       "evidencia": {
         "ads_summary_disponivel": {
+          "campaigns_total_count": 14,
+          "campaigns_active_count": 11,
           "spend_yesterday_brl": 341.72,
           "revenue_ads_yesterday_brl": 4593.66,
           "avg_acos_pct": 4.71,
-          "campaigns_total_count": 14,
-          "campaigns_active_count": 11
+          "roas_calculado": 13.44
         },
-        "dado_ausente": "breakdown de receita e spend ADS por platform_item_id — limitação estrutural do schema ml-snapshot/v1; ads_summary retorna exclusivamente totais agregados por conta",
-        "hipotese_nao_confirmavel": "a hipótese da L03 — que Himmel priorizou ativamente IMB501 e KIT10YW1050 nas campanhas, explicando a dominância cross_docking do dia — não é confirmável nem refutável com os dados disponíveis; as 11 campanhas ativas podem distribuir spend de qualquer forma entre os anúncios"
+        "dado_ausente": "breakdown de revenue_ads por platform_item_id não está no pacote — limitação estrutural do ads_summary que entrega apenas totais agregados por conta, sem granularidade por anúncio",
+        "dado_necessario_proximo_ciclo": "breakdown de receita ADS por platform_item_id para determinar distribuição de cobertura de mídia paga entre anúncios Cross-Docking e Full"
       },
-      "leitura": "O pacote não permite responder qual fração do revenue_ads_yesterday_brl é atribuível a cada platform_item_id. A correlação entre a dominância de produtos cross_docking (IMB501 + KIT10YW1050, 68 pedidos, 68% do volume) e o ADS share de 75.5% permanece como hipótese não testada — pode ser demanda orgânica nos produtos cross_docking coincidindo com ADS em outros anúncios, ou pode ser ADS direcionando ativamente esses produtos.",
-      "conclusao_granular": "inconclusivo por falta de dado — breakdown ADS por anúncio é limitação estrutural do pacote; hipótese da L03 sobre priorização cross_docking por ADS permanece em aberto; registrado como dado necessário para próximo ciclo",
+      "leitura": "O ads_summary entrega apenas totais agregados (spend, revenue, ACOS, ROAS, contagem de campanhas ativas). Não há breakdown de receita ADS por platform_item_id no pacote — é limitação estrutural da coleta, não dado ausente por falha pontual. A hipótese operacional da L03 (cobertura ADS concentrada nos campeões Cross-Docking, expondo os anúncios Full à erosão orgânica sem cobertura paga) é plausível e relevante, mas não é confirmável nem descartável com o dado disponível.",
+      "conclusao_granular": "inconclusivo por falta de dado — a hipótese da L03 sobre distribuição de cobertura ADS entre modalidades de envio é estruturalmente irrespondível com o pacote atual; requer dado de breakdown por platform_item_id que não é coletado atualmente",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Qual foi o ritmo médio de saída do Kit 6 Canecas Porcelana Tulipa 250ml (MLB6167272090) nos últimos 7 dias — a taxa diária está próxima dos 5 pedidos de ontem ou é maior?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "produto_visivel": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+        "platform_item_id": "MLB6167272090",
+        "fonte": "top_items_details / top_products",
+        "pedidos_dia": 5,
+        "available_quantity_snapshot": 19,
+        "sold_quantity_acumulado": 72,
+        "logistic_type": "fulfillment",
+        "cobertura_estimada_ao_ritmo_de_ontem": "~3,8 dias (19 unidades / 5 pedidos/dia)",
+        "dado_ausente": "série diária de pedidos por platform_item_id nos últimos 7 dias não está no pacote; sold_quantity=72 é total acumulado histórico sem data de início de listing conhecida — impossível derivar taxa média diária",
+        "dado_necessario_proximo_ciclo": "série de pedidos diários por platform_item_id nos últimos 7 dias para determinar se 5 pedidos/dia é ritmo habitual ou atípico; sem esse dado a cobertura estimada de 3–4 dias pode ser subestimada se o ritmo histórico for maior"
+      },
+      "leitura": "Não há série temporal de pedidos por produto no pacote. O campo sold_quantity=72 representa o total acumulado histórico — sem período de referência conhecido, não é possível extrair taxa média diária. A estimativa de cobertura (~3,8 dias ao ritmo de 5 pedidos/dia de ontem) é indicativa mas pode subestimar o risco se o ritmo histórico real for superior a 5 pedidos/dia. A pergunta da L03 sobre urgência relativa deste anúncio em comparação ao Kit 06 Canequinhas Acrílico permanece irrespondível sem a série diária por produto.",
+      "conclusao_granular": "inconclusivo por falta de dado — cobertura estimada de ~3,8 dias confirma horizonte crítico a curto prazo, mas a urgência real (e a comparação com o Kit 06 Canequinhas Acrílico) depende do ritmo histórico do produto que não está disponível no pacote",
       "confianca": "baixa"
     }
   ],
   "investigacoes_proprias": [
     {
-      "investigacao": "Divergência de display_name no KIT6YW1050 (MLB4676751119): display_name 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas' é idêntico ao display_name de KIT10YW1050 (MLB4676726433), omitindo o diferencial crítico de quantidade '6 Unidades'",
+      "investigacao": "Varredura de identidade de produto em todos os top 10 — ausência de risco alto de identificação",
       "origem": "risco de identificação",
       "evidencia": {
-        "produto_visivel": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 6 Unidades",
-        "platform_item_id": "MLB4676751119",
-        "sku_interno": "KIT6YW1050",
-        "fonte": "top_items_details / top_products",
-        "display_name_sistema": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas",
-        "title_ml_confirmado": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 6 Unidades",
-        "raw_title_confirmado": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 6 Unidades",
-        "display_name_identico_a": "KIT10YW1050 (MLB4676726433) — ambos têm display_name 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas'",
-        "diferencial_perdido": "quantidade de peças — '6 Unidades' vs '10 Unidades'",
-        "mapping_status": "mapped_generic_sku",
-        "mapping_confidence": "medium"
+        "produtos_verificados": [
+          {
+            "produto_visivel": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
+            "platform_item_id": "MLB4535865317",
+            "fonte": "top_items_details / top_products (raw_title)",
+            "title_vs_raw_title": "alinhados",
+            "display_name_sistema": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+            "confirmed_variation_attributes": [
+              "Tampa Preta"
+            ],
+            "avaliacao": "título ML enxuto sem cor explícita + atributo confirmado por SKU IMB501PT; não é divergência — caso de título genérico + atributo autoritativo por SKU",
+            "risco": "baixo"
+          },
+          {
+            "produto_visivel": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades",
+            "platform_item_id": "MLB4676726433",
+            "fonte": "top_items_details / top_products (raw_title)",
+            "title_vs_raw_title": "alinhados",
+            "display_name_sistema": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas",
+            "mapping_status": "mapped_generic_sku",
+            "mapping_confidence": "medium",
+            "avaliacao": "display_name é versão encurtada do title; mapping_generic_sku gera risco médio por convenção de mapeamento, mas alinhamento title/raw_title confirma identidade",
+            "risco": "médio"
+          },
+          {
+            "produto_visivel": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Cinza",
+            "platform_item_id": "MLB4535865311",
+            "fonte": "top_items_details / top_products (raw_title)",
+            "title_vs_raw_title": "alinhados",
+            "confirmed_variation_attributes": [
+              "Tampa Cinza"
+            ],
+            "risco": "baixo"
+          },
+          {
+            "produto_visivel": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+            "platform_item_id": "MLB4073003575",
+            "fonte": "top_items_details / top_products (raw_title)",
+            "title_vs_raw_title": "alinhados",
+            "display_name_sistema": "Kit 4 Potes de Vidro 1050ml Retangular",
+            "avaliacao": "display_name adiciona 'Retangular' (atributo de formato) não presente no title ML; não contradiz identidade do produto — mesma família de potes herméticos 1050ml; informação complementar, não conflito",
+            "risco": "baixo"
+          },
+          {
+            "produto_visivel": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Vermelho",
+            "platform_item_id": "MLB4535659243",
+            "fonte": "top_items_details / top_products (raw_title)",
+            "title_vs_raw_title": "alinhados",
+            "confirmed_variation_attributes": [
+              "Tampa Vermelha"
+            ],
+            "risco": "baixo"
+          },
+          {
+            "produto_visivel": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+            "platform_item_id": "MLB6167272090",
+            "fonte": "top_items_details / top_products (raw_title)",
+            "title_vs_raw_title": "alinhados",
+            "display_name_sistema": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml",
+            "risco": "baixo"
+          },
+          {
+            "produto_visivel": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico",
+            "platform_item_id": "MLB4410218897",
+            "fonte": "top_items_details / top_products (raw_title)",
+            "title_vs_raw_title": "alinhados — title, raw_title e display_name idênticos",
+            "risco": "baixo"
+          },
+          {
+            "produto_visivel": "Kit 10 Potes Herméticos 520ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades",
+            "platform_item_id": "MLB4676131007",
+            "fonte": "top_items_details / top_products (raw_title)",
+            "title_vs_raw_title": "alinhados",
+            "mapping_status": "mapped_generic_sku",
+            "mapping_confidence": "medium",
+            "risco": "médio — mesmo padrão do KIT10YW1050; identidade confirmada pelo alinhamento title/raw_title"
+          },
+          {
+            "produto_visivel": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 6 Unidades",
+            "platform_item_id": "MLB4676751119",
+            "fonte": "top_items_details / top_products (raw_title)",
+            "title_vs_raw_title": "alinhados",
+            "mapping_status": "mapped_generic_sku",
+            "mapping_confidence": "medium",
+            "avaliacao": "SKU KIT6YW1050 consistente com '6 Unidades' no title; display_name omite a quantidade mas não contradiz identidade",
+            "risco": "médio"
+          },
+          {
+            "produto_visivel": "Kit 2 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+            "platform_item_id": "MLB6518176572",
+            "fonte": "top_items_details / top_products (raw_title)",
+            "title_vs_raw_title": "alinhados",
+            "risco": "baixo"
+          }
+        ],
+        "resumo_varredura": "10 de 10 anúncios com title e raw_title alinhados; nenhum display_name contradiz identidade de produto; 3 com risco médio por mapping_generic_sku (MLB4676726433, MLB4676131007, MLB4676751119) mas identidade confirmada pelas fontes primárias; nenhum caso de risco alto detectado"
       },
-      "leitura": "O display_name de KIT6YW1050 é idêntico ao de KIT10YW1050, omitindo o atributo que diferencia os dois produtos (quantidade de unidades). Title e raw_title confirmam inequivocamente que MLB4676751119 é o Kit de 6 Unidades. O risco é de confusão interna no sistema, não de identificação incorreta de venda — pedidos são rastreáveis por platform_item_id e SKU. Porém, qualquer comunicação que use display_name como referência pode misturar os dois produtos. A Condensadora deve usar title ML (que inclui 'X Unidades' explícito) ao citar qualquer kit da família YW1050.",
-      "conclusao_granular": "divergência confirmada — display_name incorreto por omissão de quantidade; produto correto identificado pelas fontes primárias (title ML / raw_title); risco médio para comunicação interna; não bloqueia citação no Slack se title ML for usado",
+      "leitura": "A varredura de identidade no top 10 não encontrou divergência entre title (fonte primária, top_items_details) e raw_title (fonte primária confirmatória, pedido real). Nenhum display_name contradiz a categoria ou identidade do produto — os casos de diferença são versões encurtadas ou atributos complementares de formato. Os três anúncios com mapping_generic_sku têm confiança medium por convenção de mapeamento, mas o alinhamento title/raw_title confirma identidade em todos. Nenhum bloqueio para Slack é necessário.",
+      "conclusao_granular": "confirma — risco de identificação global é baixo no top 10; três anúncios com risco médio por mapping_generic_sku sem divergência de identidade real; a Condensadora pode citar todos os produtos do top 10 sem restrição derivada de identidade",
       "confianca": "alta"
     },
     {
-      "investigacao": "MLB6518176572 (Kit 2 Potes 1050ml / KIT2YW1050) é o único anúncio is_catalog=true no top 10 — lógica de competição distinta (Buy Box ML) e estoque",
+      "investigacao": "Cobertura de estoque do KIT10YW1050 (MLB4676726433) — segundo Cross-Docking de alto volume com horizonte de ruptura a observar nos próximos 5 dias",
       "origem": "anomalia",
       "evidencia": {
-        "produto_visivel": "Kit 2 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
-        "platform_item_id": "MLB6518176572",
-        "fonte": "top_items_details",
-        "is_catalog": true,
-        "catalog_product_id": "MLB66182346",
-        "logistic_type": "fulfillment",
-        "health": null,
-        "health_interpretacao": "ML não calcula health para este anúncio — volume insuficiente para cálculo; NÃO significa saudável",
-        "available_quantity": 64,
-        "sold_quantity_acumulado": 202,
-        "pedidos_dia": 2,
-        "cobertura_estimada_dias": "~32 dias ao ritmo de 2 pedidos/dia",
-        "status_anuncio": "active",
-        "outros_itens_top10_is_catalog": "nenhum — 9 dos 10 top items são is_catalog=false",
-        "catalog_pct_conta": "13.3% dos 83 anúncios ativos são catálogo"
+        "produto_visivel": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades",
+        "platform_item_id": "MLB4676726433",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "available_quantity_snapshot": 74,
+        "pedidos_dia": 16,
+        "logistic_type": "cross_docking",
+        "status": "active",
+        "free_shipping": true,
+        "cobertura_estimada_dias": "~4,6 dias ao ritmo de 16 pedidos/dia",
+        "sold_quantity_acumulado": 38,
+        "mapping_status": "mapped_generic_sku",
+        "mapping_confidence": "medium",
+        "nota": "ritmo de 16 pedidos/dia é de ontem; se ritmo histórico for diferente, cobertura real varia — série por produto ausente do pacote"
       },
-      "leitura": "Único item is_catalog=true no top 10. A competição ocorre por Buy Box ML (catálogo), não por ranking de categoria — perda de Buy Box para concorrente não seria visível nas métricas de posicionamento por categoria. Estoque confortável (~32 dias), 2 pedidos ontem, sem urgência operacional. health=null confirma volume insuficiente para cálculo ML — com sold_quantity=202 acumulado, pode indicar baixo volume na janela de cálculo recente. O risco específico de catálogo (concorrente assumindo a Buy Box) não é monitorável com os dados do pacote.",
-      "conclusao_granular": "complica — item em catálogo tem lógica de exposição distinta dos 9 outros top items; sem urgência operacional hoje, mas vale registro para monitoramento de Buy Box em próximos ciclos",
+      "leitura": "O KIT10YW1050 foi o segundo produto do dia (16 pedidos, 16% do volume total) e opera em modalidade de envio Cross-Docking. Com available_quantity=74 e 16 pedidos registrados ontem, a cobertura estimada é de aproximadamente 4,6 dias. Não é urgência de 24h com a criticidade do Kit 06 Canequinhas Acrílico (available_quantity=1), mas é o terceiro horizonte de estoque relevante a monitorar — além dos dois já sinalizados pelas camadas anteriores. Se o ritmo se mantiver, a janela crítica pode ser atingida em 4–5 dias sem reposição. A ruptura deste anúncio aprofundaria a concentração Cross-Docking do dia, pois é o segundo maior volume em Cross-Docking.",
+      "conclusao_granular": "complica — KIT10YW1050 é segundo volume do dia em modalidade de envio Cross-Docking com cobertura estimada de ~4,6 dias; não é urgência de 24h mas deve entrar no radar de monitoramento de estoque da semana; não foi sinalizado pelas camadas anteriores",
       "confianca": "média"
     },
     {
-      "investigacao": "MLB6167272090 (TL6250 — Kit 6 Canecas Porcelana 250ml): is_catalog=false com catalog_product_id='MLB38833543' preenchido — avaliação de estoque e cobertura real em fulfillment",
-      "origem": "anomalia",
+      "investigacao": "MLB6167272090 (TL6250) — catalog_product_id presente mas is_catalog=false: anúncio associado a produto de Catálogo sem participar como listing de Catálogo",
+      "origem": "divergência",
       "evidencia": {
         "produto_visivel": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
         "platform_item_id": "MLB6167272090",
-        "sku_interno": "TL6250",
-        "fonte": "top_items_details / top_products",
+        "fonte": "top_items_details",
         "is_catalog": false,
         "catalog_product_id": "MLB38833543",
-        "nota_estado": "is_catalog=false + catalog_product_id preenchido é estado válido no ML — item associado a produto do catálogo para dados/metadados mas competindo por ranking de categoria, não pela página de catálogo (Buy Box); sem contradição técnica",
+        "listing_type": "gold_special",
         "logistic_type": "fulfillment",
-        "available_quantity": 19,
-        "sold_quantity_acumulado": 72,
-        "pedidos_dia": 5,
-        "cobertura_estimada_dias": "~3-4 dias ao ritmo de 5 pedidos/dia",
         "health": null,
-        "health_interpretacao": "volume insuficiente para ML calcular health — NÃO significa saudável",
-        "status_anuncio": "active",
-        "nota_fulfillment_cobertura": "reposição em fulfillment exige tempo de envio ao CD do ML (dias úteis); a janela real de ação é mais estreita do que a cobertura em dias sugere"
+        "available_quantity": 19,
+        "pedidos_dia": 5,
+        "interpretacao_tecnica": "anúncio está associado a produto de Catálogo ML (catalog_product_id preenchido) mas não participa como listing de Catálogo ativo (is_catalog=false); compete por ranking de categoria como Clássico (gold_special), não pelo Buy Box do Catálogo"
       },
-      "leitura": "A coexistência de is_catalog=false + catalog_product_id preenchido não é divergência técnica — é estado válido. O dado operacional crítico é a cobertura: 19 unidades disponíveis no CD do ML, 5 pedidos ontem, ~3-4 dias de cobertura. Como logistic_type=fulfillment, a reposição exige tempo logístico de envio ao CD, o que encurta a janela real de ação. Confirma e adiciona precisão ao sinal da L03 sobre este ser o segundo anúncio Full em zona de ruptura iminente.",
-      "conclusao_granular": "confirma — cobertura de ~3-4 dias em fulfillment verificada por fonte primária; is_catalog=false + catalog_product_id não é divergência; urgência hierarquicamente abaixo do Canequinhas (ruptura já ocorrida) mas imediata para planejamento de ressuprimento",
-      "confianca": "alta"
+      "leitura": "O anúncio MLB6167272090 tem catalog_product_id='MLB38833543' preenchido mas is_catalog=false. Isso indica que o anúncio está vinculado a um produto de Catálogo ML mas não está participando ativamente do Buy Box de Catálogo — pode ser configuração intencional (lojista optou por competir como Clássico em vez de participar do Buy Box de Catálogo) ou estado temporário. A saúde null indica que o ML não calcula health para este anúncio por volume insuficiente (não significa anúncio saudável). Com available_quantity=19 e 5 pedidos ontem, o horizonte de cobertura estimado é ~3,8 dias — segundo anúncio Full com ruptura a curto prazo.",
+      "conclusao_granular": "complica — a coexistência de catalog_product_id com is_catalog=false é informação técnica relevante para decisão estratégica futura (participação no Buy Box de Catálogo); não é ação tática de hoje, mas registra que o anúncio tem potencial de posicionamento de Catálogo não ativado; a Condensadora deve registrar e não amplificar",
+      "confianca": "média"
     },
     {
-      "investigacao": "Kit 4 Potes 1050ml (MLB4073003575): único anúncio top 10 com health calculado (0.75, penalizado), maior sold_quantity acumulado do grupo (961), fulfillment — avaliação de cobertura e consistência de identificação",
+      "investigacao": "Panorama de health na base ativa — 7 anúncios com penalização além do único visível no top 10",
       "origem": "L01 estratégica",
       "evidencia": {
-        "produto_visivel": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
-        "platform_item_id": "MLB4073003575",
-        "fonte": "top_items_details / top_products",
-        "display_name_sistema": "Kit 4 Potes de Vidro 1050ml Retangular",
-        "nota_display_name": "display_name menciona 'Retangular' mas title ML não menciona formato — divergência de atributo menor; não contradiz número de peças (4) nem volume (1050ml); mapping_status=mapped, confidence=high, mapping_reason=reviewed_sku_display_map — identificação primária pelo title ML não é comprometida",
-        "health": 0.75,
-        "logistic_type": "fulfillment",
-        "available_quantity": 165,
-        "sold_quantity_acumulado": 961,
-        "pedidos_dia": 8,
-        "cobertura_estimada_dias": "~20 dias ao ritmo de 8 pedidos/dia",
-        "status_anuncio": "active",
-        "is_catalog": false,
-        "free_shipping": false,
-        "contexto_health": "único dos 7 anúncios com low_health no top 10 que está identificado no pacote com valor; os outros 6 low_health da conta (account_overview.active_analysis.low_health_count=7) não são identificáveis pelo pacote"
+        "fonte": "account_overview.active_analysis",
+        "low_health_count": 7,
+        "low_health_threshold": 0.85,
+        "no_health_data_count": 65,
+        "total_active": 83,
+        "coverage_pct": 100.0,
+        "unico_anuncio_low_health_no_top10": {
+          "produto_visivel": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+          "platform_item_id": "MLB4073003575",
+          "health": 0.75,
+          "logistic_type": "fulfillment",
+          "pedidos_dia": 8,
+          "sold_quantity_acumulado": 962
+        },
+        "outros_anuncios_low_health_fora_do_top10": "6 anúncios adicionais com health < 0,85 — identidades não disponíveis no pacote (fora do top 10 do dia)",
+        "anuncios_sem_health_calculada_no_top10": [
+          "MLB4535865317 (IMB501P — 31 pedidos, Cross-Docking)",
+          "MLB4676726433 (KIT10YW1050 — 16 pedidos, Cross-Docking)",
+          "MLB4535865311 (IMB501C — 13 pedidos, Cross-Docking)",
+          "MLB4535659243 (IMB501V — 8 pedidos, Cross-Docking)",
+          "MLB6167272090 (TL6250 — 5 pedidos, Full)",
+          "MLB4410218897 (914C_BAV — 3 pedidos, Full)",
+          "MLB4676131007 (KIT10YW520 — 2 pedidos, Cross-Docking)",
+          "MLB4676751119 (KIT6YW1050 — 2 pedidos, Cross-Docking)",
+          "MLB6518176572 (KIT2YW1050 — 2 pedidos, Full)"
+        ],
+        "nota_health_null": "health=null significa volume insuficiente para ML calcular health — NÃO significa anúncio saudável"
       },
-      "leitura": "Estoque confortável (~20 dias) e status ativo. Com sold_quantity=961, é o produto com maior histórico de saída do top 10 — health penalizado em anúncio de alto volume histórico sugere que algum evento degradou o indicador após período de forte performance. A hipótese da L01 (ADS compensando exposição orgânica degradada) é plausível — 8 pedidos ontem com health abaixo do limiar é consistente com campanha ativa cobrindo o déficit de ranking orgânico. O atributo 'Retangular' no display_name não afeta a identificação primária, que é inequívoca pelo title/raw_title.",
-      "conclusao_granular": "confirma parcialmente — estoque sem urgência, penalização ativa, hipótese de compensação ADS plausível mas não confirmável sem breakdown ADS; divergência de display_name ('Retangular') é atributo menor que não compromete identificação por fonte primária",
+      "leitura": "Dos 83 anúncios ativos, 65 não têm health calculada (volume insuficiente para ML) e 7 estão em zona de penalização (health < 0,85). Apenas um dos 7 penalizados aparece no top 10 do dia: MLB4073003575 com health=0,75. Os outros 6 estão fora do top 10 e suas identidades não são disponíveis no pacote. Isso significa que há 6 anúncios da conta em penalização ML ativa cujo volume de ontem não foi suficiente para entrar no top 10 — anúncios penalizados com volume baixo podem se deteriorar por feedback negativo de exposição sem aparecer nas leituras de top produtos.",
+      "conclusao_granular": "complica — a L01 e L02 focaram corretamente no único penalizado visível no top 10 (MLB4073003575), mas o panorama de health da base é mais amplo do que a análise de camadas anteriores sugere; 7 anúncios em penalização representam 8,4% da base ativa — dado de saúde de conta, não apenas de produto individual; os 6 penalizados não identificáveis no pacote atual são lacuna de visibilidade",
       "confianca": "média"
     }
   ],
   "risco_identificacao": {
-    "nivel": "médio",
-    "fontes": [
-      "display_name_KIT6YW1050_omite_quantidade_critica_igual_ao_display_name_KIT10YW1050",
-      "mapping_status_mapped_generic_sku_em_quatro_produtos_KIT10YW1050_KIT6YW1050_KIT10YW520_914C_BAV"
-    ],
+    "nivel": "baixo",
+    "fontes": [],
     "bloqueios_para_slack": [],
-    "explicacao": "Nenhum produto no top 10 atinge risco alto de identificação. Os seis produtos com confidence=high e mapping_status=mapped (IMB501P, IMB501C, IMB501V, KIT4YW1050, KIT2YW1050, TL6250) têm title ML, raw_title e SKU totalmente consistentes — citação pelo title ML é segura. Os quatro produtos com mapping_status=mapped_generic_sku e confidence=medium (KIT10YW1050, KIT6YW1050, KIT10YW520, 914C_BAV) têm identificadores primários (title/raw_title) coerentes com os SKUs — não há contradição que justifique bloqueio. O ponto de risco médio mais concreto é o display_name de KIT6YW1050 (MLB4676751119), idêntico ao de KIT10YW1050, criando ambiguidade interna entre os dois kits da família YW1050; usando title ML (que inclui 'X Unidades' explícito), o risco é eliminado. Nenhum bloqueio para Slack desde que as citações usem title ML como referência, nunca display_name."
+    "explicacao": "A varredura de identidade no top 10 não encontrou divergência entre title (top_items_details, fonte primária) e raw_title (pedido real, fonte primária confirmatória) em nenhum dos 10 anúncios. O único display_name que adiciona informação não presente no title ML é o de MLB4073003575 ('Retangular'), mas trata-se de atributo complementar de formato — não contradiz a identidade do produto nem a categoria. Os três anúncios com mapping_generic_sku e confidence medium (MLB4676726433, MLB4676131007, MLB4676751119) têm risco médio por convenção de mapeamento interno, mas o alinhamento entre title e raw_title nos três casos confirma identidade de produto sem ambiguidade. Nenhum bloqueio para Slack é necessário."
   },
   "divergencias": [
     {
-      "tipo": "display_name_omite_atributo_diferenciador_de_quantidade",
-      "fonte_a": "top_products[KIT6YW1050].display_name = 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas' (idêntico ao display_name de KIT10YW1050)",
-      "fonte_b": "top_items_details[MLB4676751119].title = 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 6 Unidades'",
-      "resolucao": "top_items_details[i].title prevalece — produto é Kit de 6 Unidades (SKU KIT6YW1050); display_name omite diferencial de quantidade e cria ambiguidade com MLB4676726433 (KIT10YW1050 / 10 Unidades)",
-      "regra_precedencia": "title ML (fonte primária) vence display_name (alias interno)",
-      "impacto": "risco de confusão interna entre KIT6YW1050 e KIT10YW1050 se relatórios ou comunicação usarem display_name; citação no Slack via title ML não é afetada"
-    }
-  ],
-  "evidencias_conflitantes": [
-    {
-      "hipotese": "Himmel priorizou ativamente produtos cross_docking (IMB501 + KIT10YW1050) nas campanhas ontem, explicando o fulfillment mix invertido do dia (80% cross_docking vs padrão 7d de 77% Full)",
-      "confirma": "IMB501 (três variações cross_docking, 52 pedidos combinados, 52% do volume) e KIT10YW1050 (cross_docking, 16 pedidos, 16% do volume) dominaram o top 5 em dia com ADS share de 75.5%; a correlação entre dominância cross_docking e ADS share elevado é observável",
-      "enfraquece": "ads_summary não tem breakdown por anúncio — não é verificável que Himmel explicitamente priorizou esses anúncios vs demanda orgânica elevada nesses produtos; IMB501 tem available_quantity de 8k+ unidades e logistic_type=cross_docking por característica intrínseca do produto, não por decisão de campanha; a inversão de fulfillment mix pode ser inteiramente produto-composição sem envolvimento direto de ADS",
-      "dado_adicional_que_resolveria": "breakdown de revenue e spend ADS por platform_item_id (MLB4535865317, MLB4535865311, MLB4535659243, MLB4676726433) para confirmar se esses anúncios receberam spend ontem — dado não disponível no schema ml-snapshot/v1 atual",
-      "status": "hipótese em aberto"
+      "tipo": "mix_modalidade_envio",
+      "fonte_a": "fulfillment_mix_yesterday_top10: Full 20% / Cross-Docking 80% (90 pedidos resolvidos do top 10 de ontem)",
+      "fonte_b": "fulfillment_mix_7d: Full 77% / Cross-Docking 23% (830 pedidos, janela 7 dias)",
+      "resolucao": "Ambas as fontes são corretas para suas respectivas janelas — não há conflito de precedência nem dado incorreto; a divergência é real e explicada pela composição do top 10 de ontem: três anúncios Cross-Docking liderando o volume (MLB4535865317 com 31 pedidos, MLB4676726433 com 16, MLB4535865311 com 13)",
+      "regra_precedencia": "fulfillment_mix_*d (calculado do Supabase a partir de logistic_type real de cada pedido) prevalece para leitura de janela histórica; fulfillment_mix_yesterday_top10 prevalece para leitura do dia específico — as duas métricas coexistem sem substituição e respondem perguntas diferentes",
+      "impacto": "A leitura do dia (80% Cross-Docking) reflete o produto que puxou o volume de ontem, não uma mudança sistêmica na operação; o padrão histórico da conta (73,6% Full em 30d, 77% Full em 7d) não foi alterado. A divergência confirma que a conta depende de poucos anúncios Full para sustentar o padrão histórico de mix — quando os Cross-Docking lideram o dia, o mix observado inverte. Essa fragilidade estrutural é distinta de falha operacional."
     }
   ],
   "detalhes_que_a_condensadora_nao_pode_perder": [
     {
-      "detalhe": "Kit 06 Canequinhas Acrílico (MLB4410218897): ruptura técnica já consumada — 3 pedidos aceitos com 2 unidades disponíveis no CD do ML, anúncio ativo em fulfillment. Estado dos pedidos individuais não é verificável pelo pacote; Yasmin precisa consultar o painel ML ou API de pedidos para identificar quais order_ids ainda permitem cancelamento controlado.",
-      "por_que_importa": "cada pedido aceito sem cobertura resulta em cancelamento ML-originado com impacto em reputation.cancellations_rate; a urgência é de hoje, não de monitoramento — a Condensadora deve preservar o tom de ação imediata e não diluir em 'acompanhar'",
+      "detalhe": "Nenhuma das quatro perguntas da L03 para a Granular foi respondida com evidência resolutiva: trajetória de health é série histórica ausente do pacote; status intraday do Kit 06 Canequinhas após fechamento BRT é pedido aberto não capturável pelo snapshot; breakdown ADS por anúncio é limitação estrutural da coleta; ritmo 7d por produto é série temporal ausente. O pacote granular confirma os riscos levantados pelas camadas anteriores mas não adiciona resolução às perguntas de diagnóstico mais críticas.",
+      "por_que_importa": "A Condensadora deve calibrar o nível de certeza da mensagem à Yasmin: os riscos são sustentados pela evidência disponível, mas as perguntas de diagnóstico mais finas permanecem abertas — não há evidência granular nova que confirme, resolva ou descarte as hipóteses de maior impacto",
       "confianca": "alta"
     },
     {
-      "detalhe": "Kit 6 Canecas Porcelana 250ml (MLB6167272090 / TL6250): cobertura de ~3-4 dias (19 unidades, 5 pedidos/dia) em fulfillment. Reposição em fulfillment exige tempo de envio ao CD do ML — a janela real de ação para evitar ruptura é mais estreita do que a cobertura em dias sugere.",
-      "por_que_importa": "a Condensadora deve diferenciar claramente as urgências: Canequinhas é ruptura já ocorrida (ação imediata); Canecas é ruptura iminente em dias úteis (ação hoje para evitar, não para remediar)",
-      "confianca": "alta"
-    },
-    {
-      "detalhe": "health=0.75 no Kit 4 Potes (MLB4073003575) é o único health calculado no top 10; 65 dos 83 anúncios ativos têm health=null (volume insuficiente para cálculo ML, NÃO significa saudáveis). Causa e direção do health=0.75 são indetermináveis pelo pacote — não há série temporal disponível.",
-      "por_que_importa": "a Condensadora não deve citar melhora, piora ou estabilidade do health — o dado é ponto único sem histórico; health=null nos outros 9 top items não deve ser lido como saudabilidade; a observação de trajetória definida pela L02 requer dado externo ao pacote",
-      "confianca": "alta"
-    },
-    {
-      "detalhe": "Kit 10 Potes 1050ml (KIT10YW1050 / MLB4676726433): cobertura de ~4-5 dias (76 unidades, 16 pedidos/dia) em cross_docking. Não foi sinalizado pela L01 nem pela L02 como ponto de atenção; é o terceiro produto em zona de atenção de estoque após Canequinhas e Canecas Porcelana.",
-      "por_que_importa": "a Condensadora deve hierarquizar: Canequinhas (urgente hoje) > Canecas (urgente hoje preventivamente) > KIT10YW1050 (próximos 2-3 dias); cross_docking tem recuperação mais rápida que fulfillment, mas confirmação de reposição é necessária",
+      "detalhe": "Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico (MLB4410218897) permanecia com status=active e available_quantity=1 no snapshot de 2026-05-22T15:00 UTC. Não foi pausado. Sem sinal de reposição no CD. A ação definida pela L02 não foi evidenciada como executada até o momento do snapshot.",
+      "por_que_importa": "A janela de impacto na reputação está aberta. Se a Condensadora for comunicar urgência à Yasmin, o timing é agora — o risco não foi neutralizado conforme evidenciado pelo snapshot mais recente disponível",
       "confianca": "média"
     },
     {
-      "detalhe": "MLB6518176572 (Kit 2 Potes 1050ml / KIT2YW1050) é o único anúncio is_catalog=true no top 10 — compete por Buy Box ML, não por ranking de categoria. Estoque confortável (64 unidades, ~32 dias), 2 pedidos ontem. Perda de Buy Box para concorrente não seria detectável por métricas de ranking disponíveis no pacote.",
-      "por_que_importa": "distinção de lógica de competição relevante para monitoramento futuro; não é urgência operacional hoje mas é ponto cego do pacote atual para este anúncio específico",
+      "detalhe": "Seis anúncios da conta com health < 0,85 (penalização ML ativa) estão fora do top 10 e não são identificáveis no pacote. O MLB4073003575 é apenas o penalizado visível. O panorama de saúde da base é mais amplo do que as camadas anteriores identificaram: 7 anúncios em penalização representam 8,4% da base ativa de 83 anúncios.",
+      "por_que_importa": "A tese de vulnerabilidade estrutural da L01 pode ser subestimada se a leitura de health se limitar ao único anúncio penalizado visível no top 10; a Condensadora deve tratar isso como dado de saúde de conta, não apenas de produto individual",
       "confianca": "média"
     },
     {
-      "detalhe": "Breakdown ADS por anúncio é indisponível no schema ml-snapshot/v1 — limitação estrutural. A hipótese da L03 sobre priorização cross_docking por ADS de Himmel permanece não testável com os dados atuais.",
-      "por_que_importa": "a Condensadora não deve citar como fato a relação entre campanhas de Himmel e dominância cross_docking do dia; a correlação é observacional, não confirmada por evidência granular",
-      "confianca": "alta"
+      "detalhe": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades (MLB4676726433, Cross-Docking, segundo volume do dia com 16 pedidos) tem available_quantity=74 e cobertura estimada de ~4,6 dias. Não é urgência de 24h, mas é um terceiro horizonte de estoque relevante não sinalizado pelas camadas anteriores.",
+      "por_que_importa": "Se o KIT10YW1050 entrar em ruptura junto com os dois anúncios Full já sinalizados (Kit 06 Canequinhas e Kit 6 Canecas Porcelana Tulipa), o impacto simultâneo sobre o mix e o volume do canal seria superior ao de qualquer ruptura individual. A Condensadora decide se registra este sinal ou o guarda para o próximo ciclo.",
+      "confianca": "média"
     }
   ],
   "memoria_interna": [
-    "MLB4410218897 (914C_BAV / Kit 06 Canequinhas Acrílico): available_quantity=2, sold_quantity=456, 3 pedidos ontem, fulfillment, health=null, status=active — ruptura técnica consumada; estado dos pedidos abertos não confirmável pelo pacote; requer consulta direta ao painel ML ou API de pedidos por order_id",
-    "MLB4073003575 (KIT4YW1050 / Kit 4 Potes 1050ml): health=0.75 (único health calculado no top 10), fulfillment, available_quantity=165, sold_quantity=961 (maior do top 10 acumulado), 8 pedidos ontem, cobertura ~20 dias — causa e direção do health indetermináveis pelo pacote; display_name menciona 'Retangular' (atributo menor ausente no title ML)",
-    "MLB6167272090 (TL6250 / Kit 6 Canecas Porcelana 250ml): is_catalog=false com catalog_product_id=MLB38833543 (associação a catálogo ML sem competição pela página de catálogo — estado válido), fulfillment, available_quantity=19, sold_quantity=72, 5 pedidos ontem, cobertura ~3-4 dias; segundo anúncio Full em zona de ruptura iminente",
-    "MLB4676726433 (KIT10YW1050): available_quantity=76, cross_docking, free_shipping=true, 16 pedidos ontem, cobertura ~4-5 dias, mapping_status=mapped_generic_sku, confidence=medium — terceiro em zona de atenção de estoque",
-    "MLB6518176572 (KIT2YW1050 / Kit 2 Potes 1050ml): único is_catalog=true no top 10, catalog_product_id=MLB66182346, fulfillment, available_quantity=64, sold_quantity=202, health=null, 2 pedidos ontem — cobertura confortável; Buy Box não monitorável pelo pacote atual",
-    "MLB4676751119 (KIT6YW1050): display_name='Kit 10 Potes Herméticos 1050ml Refratário 4 Travas' (idêntico ao de KIT10YW1050/MLB4676726433) — divergência registrada; title ML correto: 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 6 Unidades'; mapping_status=mapped_generic_sku, confidence=medium — usar title ML para evitar confusão",
-    "ads_summary: 14 campanhas totais, 11 ativas, spend=341.72, revenue_ads=4593.66, ACOS=4.71% — breakdown por platform_item_id não disponível no schema ml-snapshot/v1; limitação estrutural; solicitação de dado para próximos ciclos: breakdown de revenue e spend ADS por platform_item_id",
-    "account_overview: 83 ativos, 173 pausados (ratio 2.1:1), low_health_count=7, no_health_data_count=65; dos 7 com low_health, apenas MLB4073003575 é identificável no pacote; os outros 6 não são visíveis no top 10 e seus IDs são desconhecidos",
-    "fulfillment_mix_yesterday_top10 (20% Full / 80% Cross-docking) vs fulfillment_mix_7d (77% Full): divergência produto-composição; IMB501 (3 variações cross_docking, 52 pedidos) + KIT10YW1050 (cross_docking, 16 pedidos) explicam a inversão; não é mudança estrutural de configuração",
-    "health=null em 65 de 83 anúncios ativos = volume insuficiente para ML calcular health — NUNCA reportar como saudável; registrar distinção ativa para todas as camadas"
+    "MLB4073003575 (KIT4YW1050, logistic_type=fulfillment, health=0,75): único anúncio Full do top 10 com health calculada e em penalização ativa; sold_quantity_acumulado=962 (maior acumulado em Full no top 10); trajetória de health irrespondível com dado atual — dado crítico para próximo ciclo: série histórica de health por platform_item_id",
+    "MLB4410218897 (914C_BAV, logistic_type=fulfillment): status=active, available_quantity=1 no snapshot 2026-05-22T15:00 UTC — sem pausa ou reposição evidenciada; 3 pedidos no dia anterior; sold_quantity_acumulado=457",
+    "MLB6167272090 (TL6250, logistic_type=fulfillment): catalog_product_id='MLB38833543' com is_catalog=false — anúncio Clássico (gold_special) associado a produto de Catálogo sem participar do Buy Box de Catálogo; available_quantity=19, 5 pedidos ontem, cobertura estimada ~3,8 dias; health=null (volume insuficiente para ML calcular)",
+    "MLB4676726433 (KIT10YW1050, logistic_type=cross_docking): available_quantity=74, 16 pedidos ontem, cobertura estimada ~4,6 dias — terceiro horizonte de estoque relevante não sinalizado pelas camadas anteriores; free_shipping=true; mapping_generic_sku, confidence medium",
+    "account_overview: 7 anúncios com health < 0,85 na base ativa (83 anúncios totais); 65 sem health calculada (null = volume insuficiente para ML calcular — não significa saudável); apenas MLB4073003575 identificado entre os 7 low_health por estar no top 10; identidades dos outros 6 indisponíveis no pacote",
+    "Três anúncios com mapping_generic_sku e confidence medium: MLB4676726433 (KIT10YW1050), MLB4676131007 (KIT10YW520), MLB4676751119 (KIT6YW1050) — risco de identificação médio por convenção de mapeamento; identidade confirmada pelo alinhamento title/raw_title em todos os três",
+    "ads_summary: breakdown de revenue_ads por platform_item_id estruturalmente ausente do pacote — não é falha pontual; hipótese da L03 sobre distribuição de cobertura ADS entre Cross-Docking e Full irrespondível sem esse dado; dado necessário para coleta futura",
+    "Série histórica de pedidos por produto (7d) ausente do pacote — sold_quantity em top_items_details é total acumulado histórico sem período de referência; impossível calcular ritmo médio diário por anúncio com dado disponível",
+    "MLB4676751119 (KIT6YW1050): SKU sugere kit de 6 unidades (KIT6YW); raw_title e title confirmam '6 Unidades' — consistente; display_name omite a quantidade mas não contradiz identidade"
   ],
   "llm_used": true,
   "model": "sonnet",

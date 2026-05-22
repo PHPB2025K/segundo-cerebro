@@ -1,6 +1,12 @@
 # Lições — Fisco
 
-_Atualizado: 2026-05-20_
+_Atualizado: 2026-05-21_
+
+## 2026-05-21
+- Persistência do HTTP 403 da Filial por sete dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/token e teste controlado.
+- Matriz segue estável nas execuções completas do refresh, então o risco principal permanece concentrado na Filial, no canal de alerta e na confiabilidade da automação.
+- Bloqueios iniciais por allowlist e sessões abortadas antes de resposta consolidada seguem como riscos independentes do erro fiscal principal: mesmo quando o refresh roda e captura resultado, a resposta final do cron pode ficar incompleta.
+- Sincronizar metadado de falha da Filial ajuda rastreabilidade, mas não reduz o bloqueio fiscal; a operação dependente da Filial continua parada até validação real de conectividade.
 
 ## 2026-05-20
 - Persistência do HTTP 403 da Filial por seis dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/token e teste controlado.

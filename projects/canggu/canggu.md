@@ -6,16 +6,23 @@ tags:
   - canggu
   - moc
 criado: 2026-04-22
-atualizado: 2026-05-21
+atualizado: 2026-05-22
 fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 ---
 
-> ⚠️ **21/05/2026** — Ana voltou após 13 dias muda (08-21/05). Causa raiz exata
-> ainda desconhecida: `process-message` rejeitava `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`
-> com 401 no edge runtime. Bypass aplicado: secret `INTERNAL_DISPATCH_TOKEN` via
-> header `X-Internal-Token` + `verify_jwt=false` no `process-message`. Versões
-> atuais: `webhook-whatsapp` v36, `process-message` v42, `ml-webhook` v12 (refresh
-> proativo). Pós-mortem pendente. Ver [[memory/context/decisoes/2026-05]].
+> ✅ **22/05/2026 — Operação Ana fechada 100%**. Bug do JWT desalinhado tinha 2
+> camadas: (a) `process-message` rejeitando webhook (resolvido 21/05); (b)
+> `escalate` rejeitando dispatchEscalation (resolvido 22/05). Bypass aplicado
+> nas 3 functions via `X-Internal-Token` + `verify_jwt=false`. 7/7 testes E2E
+> validados com Kobe. Bug bônus do `notification_phone` (era a própria Ana, não
+> Pedro) corrigido.
+>
+> **Versões em prod 22/05:** webhook-whatsapp v37, process-message v44,
+> escalate v18, ml-webhook v15. Workflow GHA com `NO_JWT_FUNCTIONS list` evita
+> reversão silenciosa em redeploys. `DIAGNOSTICO_ANA.md` no repo canguu com
+> histórico completo + anexo do bug do notification_phone.
+>
+> Pós-mortem da causa raiz exata do JWT pendente. Ver [[memory/context/decisoes/2026-05]].
 
 # Canggu — Map of Content
 

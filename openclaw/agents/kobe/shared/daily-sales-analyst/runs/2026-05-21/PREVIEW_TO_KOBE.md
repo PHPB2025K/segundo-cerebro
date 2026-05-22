@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-21
-**Gerado em:** 2026-05-22T15:23:34.847614+00:00
+**Gerado em:** 2026-05-22T18:41:17.578082+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,10 +24,9 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Os 4 Menores cross-section de nomes de produto derivam de uma decisão de formatação não documentada explicitamente: L06 manteve nomes curtos da L05 na Análise e Prioridades ('Potes de Vidro Tampa Preta', 'Potes Tampa Cinza', 'Kit 10 Potes 1050ml', 'Kit 4 Potes de Vidro Hermético 1050ml') em vez de expandir para os nomes padronizados do Top Produtos. O log de Decisões de formatação registrou que os nomes foram 'expandidos', mas essa expansão ocorreu apenas no Top Produtos — o log é impreciso sobre o escopo da decisão. Para o próximo ciclo: L06 deve definir e registrar explicitamente a política de nomenclatura cross-section (nomes curtos L05 uniformes em todas as seções, ou nomes completos Top Produtos uniformes em todas as seções).
-- **Aviso:** O detalhe '(962 unidades vendidas)' foi omitido da Prioridade 3 na tradução da L05 para o Slack. Embora Menor, esse número fundamenta a afirmação de 'maior acumulado em Full no top 10' e deve ser mantido em próximas iterações: detalhes quantitativos que justificam prioridades não devem ser omitidos na simplificação de linguagem.
-- **Aviso:** Erro gramatical 'o taxa' (deve ser 'a taxa') na abertura do bullet 1 da Análise. Menor e sem impacto operacional, mas deve ser corrigido em próximas iterações do template de escrita da L06.
-- **Aviso:** A compressão de 'subida acima de 0 nos próximos 1-2 ciclos' (L05, Prioridade 1) para 'taxa de cancelamentos subir acima de 0 no próximo ciclo de reputação' (L06) reduz a janela de observação de 1-2 ciclos para 1 ciclo. Menor em contexto de operação diária, mas remove a tolerância temporal originalmente definida pela Condensadora — registrar para alinhamento de escrita futura.
+- **Aviso:** Os 6 Menores detectados têm causa raiz majoritariamente na L05 (arredondamentos de percentual, paráfrase de 'sem base qualitativa', inconsistência 75% vs 75,1%) ou foram transparentemente documentados pelo L06 (inconsistências de nome cross-section). No próximo ciclo, recomendar à L05: (a) uniformizar valor de ADS share (usar 75,1% consistentemente); (b) usar 1 casa decimal para percentuais de modalidade de envio (80,2% e 73,6%); (c) preservar exatamente 'sem base qualitativa acumulada'.
+- **Aviso:** Prioridade 3: o campo sinal_de_confirmacao_refutacao da L05 contém ação prescrita de refutação ('abrir conversa sobre cobertura preventiva de ADS') que não foi replicada explicitamente no Slack. A L06 capturou o threshold no escalar_se mas omitiu o destinatário da ação. Sinalizar à L06 para incluir ação prescrita do sinal de refutação integralmente nas prioridades.
+- **Aviso:** Tensão estrutural observada em L05 insight 1: classificacao='risco latente' combinada com linguagem afirmativa 'é cancelamento prospectivo garantido'. A linguagem de 'risco latente' deveria incluir condicionais ('se', 'quando'). L06 foi fiel à L05. A tensão originou-se na L05 e não é violação da L06 — registrar para revisão da regra trava hipótese vs fato na L05 no próximo ciclo.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-21/yasmin/00-data-package.json`

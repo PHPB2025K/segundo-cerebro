@@ -273,7 +273,12 @@ Validar:
 - consolidação para no nível da **variação vendável/SKU pai da variação**, não na família inteira;
 - variações reais preservadas (cor da tampa, dimensão, modelo);
 - `confirmed_variation_attributes` foi usado quando presente (ex.: IMB501V → "Tampa Vermelha");
-- nome do produto é **consistente** com o nome usado na Análise/Prioridades (mesmo produto não pode ter dois nomes diferentes na mesma mensagem).
+- nome do produto é **consistente** com o nome usado na Análise/Prioridades (mesmo produto não pode ter dois nomes diferentes na mesma mensagem);
+- **a L05 e a L06 usaram `top_products[i].display_short` como nome canônico**. Bloquear como **Maior** se:
+  - L06 alterou `display_short` por estilo (encurtou, abreviou, omitiu partes) no Top Produtos;
+  - L05 inventou versão mais curta no insight/prioridade que não corresponde ao `display_short` correspondente;
+  - títulos no Top Produtos contêm ruído SEO que `simplify_ml_title` deveria ter removido (`Refratário`, `Vedação`, `Mantimentos Marmita`, `Coloridas Xícara`, `Mini Café Casa`, `4 Travas`, `Budamix`) — sinaliza que o data builder não está rodando a versão atual;
+  - números aparecem com zero à esquerda em contexto de Kit (`Kit 06`, `Kit 08`) — sinaliza que `simplify_ml_title` não foi aplicada.
 
 Bloquear se:
 - Top Produtos consolidar família inteira quando existem variações vendáveis diferentes (ex.: IMB501 sem separar tampa preta/cinza/vermelha);

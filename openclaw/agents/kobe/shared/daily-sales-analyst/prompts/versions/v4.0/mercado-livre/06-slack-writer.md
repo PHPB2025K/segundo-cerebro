@@ -179,27 +179,24 @@ Regras gerais:
 
 A L00 entrega no campo `title` do `top_products` o **título real do anúncio no Mercado Livre** (a partir da correção de 2026-05-20 no data builder). Esse título tende a ser longo e cheio de palavras-chave de SEO (ex.: `"Kit 06 Canequinhas 100ml Com Suporte De Madeira Acrilico Mini Cafe Casa"`).
 
-Yasmin precisa de uma versão **curta, identificável e operacional**. Você é a única camada autorizada a simplificar.
+Yasmin precisa de uma versão **curta, identificável e operacional**. A simplificação **já foi feita pela L00** (data builder) e está no campo `top_products[i].display_short` — você apenas consome esse valor.
 
-Hierarquia de escolha (na ordem):
+**Regra única:** use `top_products[i].display_short` **verbatim** (sem alterar palavras, ordem, capitalização ou pontuação). É a mesma string que a L05 usa nos insights/prioridades — garante convergência cross-section.
 
-1. **Título ML real (`top_products[i].title`)** — primeira escolha. Se já é curto (~50 chars) e identificável, usar literal.
-2. **Título ML real simplificado** — se é longo, encurtar mantendo:
-   - tipo do produto (Kit, Conjunto, Jogo, Suporte);
-   - quantidade (`5 Peças`, `6 Canecas`, `2 Controles`);
-   - dimensão crítica para identificar variação (100ml, 250ml, 1050ml, 320ml);
-   - atributo visível e relevante (Tampa Preta, Tampa Cinza, Tampa Vermelha, Porcelana, Vidro);
-   - removendo: palavras-chave de SEO repetidas (`Mantimentos Marmita`, `Casa Cozinha`), adjetivos genéricos (`Acrilico Mini`), promessas comerciais.
-3. **Display name interno (`top_products[i].display_name`)** — **apenas como fallback** quando:
-   - o título ML real for ausente/vazio;
-   - **e** a L04/Condensadora não declarou divergência ou bloqueio sobre display_name interno para esse produto.
+O `display_short` já vem com:
+- Ruído SEO removido (`Mantimentos Marmita`, `Refratário`, `Vedação`, `Coloridas Xícara`, `4 Travas`, etc.);
+- Zero à esquerda normalizado (`Kit 06` → `Kit 6`);
+- Unidades padronizadas (`100 Ml` → `100ml`);
+- Capitalização corrigida (`com`, `de`, `e` minúsculos quando não iniciais).
 
-Restrições da simplificação:
-- Comprimento alvo: ~30 a 60 caracteres.
-- Nunca alterar o tipo do produto (Kit não vira Caixa).
-- Nunca alterar quantidade ou dimensão.
-- Nunca remover atributo de variação visível e confirmado no título ML.
-- Nunca adicionar atributo que não esteja no título ML **nem em `confirmed_variation_attributes`**. Atributo só entra na mensagem se uma das duas fontes confirma.
+**Fallbacks (raros):**
+1. Se `display_short` estiver vazio → usar `title` literal.
+2. Se `title` também estiver vazio → usar `display_name` interno, **apenas se** a L04/L05 não declarou divergência.
+
+**Proibido:**
+- Alterar o `display_short` por estilo (encurtar mais, abreviar palavras, omitir partes).
+- Adicionar atributo que não esteja no título ML nem em `confirmed_variation_attributes`.
+- Reintroduzir palavras SEO que a L00 removeu.
 - Se a L04/Condensadora bloqueou um atributo (item em `o_que_nao_pode_ir_para_slack`), respeitar o bloqueio.
 
 #### Atributos confirmados por SKU
@@ -207,10 +204,10 @@ Restrições da simplificação:
 O campo `top_products[i].confirmed_variation_attributes` (lista de strings) traz atributos de variação **autoritativos** vindos da codificação interna do SKU Budamix (ex.: IMB501V → `["Tampa Vermelha"]`). É a forma de manter a cor/variação visível na mensagem mesmo quando o título ML público é enxuto.
 
 Regras:
-- Se o campo está preenchido **e** a L04/L05 não bloqueou explicitamente o atributo, **incluir o atributo no nome final**, no formato `[título ML simplificado] — [atributo confirmado]`.
-- Exemplo: title `"Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita"` + `confirmed_variation_attributes: ["Tampa Vermelha"]` → `"Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha"`.
+- Se o campo está preenchido **e** a L04/L05 não bloqueou explicitamente o atributo, **incluir o atributo no nome final**, no formato `[display_short] — [atributo confirmado]`.
+- Exemplo: `display_short: "Jogo Potes de Vidro 5 Peças Claro"` + `confirmed_variation_attributes: ["Tampa Vermelha"]` → `"Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha"`.
 - Se a lista tem múltiplos atributos, concatenar com vírgula: `"Produto X — Atributo A, Atributo B"`.
-- Se a lista está vazia ou ausente, comportamento default (só o título ML simplificado).
+- Se a lista está vazia ou ausente, usar só `display_short`.
 - Não inferir atributo extra além da lista: a lista é o limite do que pode aparecer.
 
 Registrar cada simplificação relevante no bloco `### Decisões de formatação` no log.

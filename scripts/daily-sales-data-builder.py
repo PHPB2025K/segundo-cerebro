@@ -292,6 +292,65 @@ SKU_VARIATION_ATTRIBUTES: dict[str, list[str]] = {
     "IMB501V": ["Tampa Vermelha"],
 }
 
+
+# Palavras/frases que aparecem como ruído SEO nos títulos ML da Budamix.
+# Removidas pela `simplify_ml_title` para gerar `display_short` — nome
+# canônico curto consumido tanto pela L05 (insights/prioridades) quanto pela
+# L06 (Top Produtos), garantindo convergência cross-section.
+# Ordem importa: frases compostas devem vir antes das palavras avulsas.
+SEO_NOISE_PATTERNS: list[str] = [
+    r"\bMantimentos Marmita\b",
+    r"\bColoridas Xícara\b",
+    r"\bMini Café Casa\b",
+    r"\bAcrílico Mini\b",
+    r"\bRefratário\b",
+    r"\bVedação\b",
+    r"\b4 Travas\b",
+    r"\bBudamix\b",
+    r"\bMantimentos\b",
+    r"\bMarmita\b",
+    r"\bColoridas\b",
+    r"\bXícara\b",
+]
+
+
+def simplify_ml_title(title: str) -> str:
+    """Gera nome curto canônico a partir do título ML real.
+
+    Aplica três transformações:
+    1. Remove ruído SEO (lista `SEO_NOISE_PATTERNS`).
+    2. Normaliza zero à esquerda: `Kit 06` → `Kit 6`, `Kit 08` → `Kit 8`.
+    3. Normaliza unidade: `De 100 Ml` / `100 Ml` → `100ml`.
+    4. Capitalização de palavras de ligação no meio do título:
+       `Com` → `com`, `De` → `de`, `E` → `e` (mas preserva quando inicial).
+    5. Colapsa espaços duplicados.
+
+    O resultado é a fonte ÚNICA de nome do produto que circula entre
+    `top_products[i].display_short` → L05 → L06. Ambas as camadas devem
+    consumir esse campo verbatim — qualquer simplificação adicional cria
+    inconsistência cross-section.
+    """
+    if not title:
+        return ""
+    t = str(title).strip()
+
+    for pattern in SEO_NOISE_PATTERNS:
+        t = re.sub(pattern, "", t, flags=re.IGNORECASE)
+
+    t = re.sub(r"\bKit 0(\d)\b", r"Kit \1", t)
+    t = re.sub(r"\bDe (\d+) Ml\b", r"\1ml", t, flags=re.IGNORECASE)
+    t = re.sub(r"\b(\d+) Ml\b", r"\1ml", t, flags=re.IGNORECASE)
+
+    t = re.sub(r"(?<!^)\bCom\b", "com", t)
+    t = re.sub(r"(?<!^)\bDe\b", "de", t)
+    t = re.sub(r"(?<!^)\bE\b", "e", t)
+
+    t = re.sub(r"\s+", " ", t).strip()
+    t = re.sub(r"\s+([,.])", r"\1", t)
+    t = re.sub(r"\s+-\s+", " - ", t)
+
+    return t
+
 PRODUCT_VARIATION_MAP: dict[str, dict[str, Any]] = {
     "IMB501P": {
         "family": "IMB501",
@@ -569,6 +628,9 @@ def compute_metrics(orders: list[dict], cancelled: list[dict], platform: str = "
                     "raw_skus": [],
                     "platform_item_id": item.get("platform_item_id") or item.get("asin") or "",
                     "title": title or variation.get("short_product_name") or variation.get("display_name") or "",
+                    "display_short": simplify_ml_title(
+                        title or variation.get("short_product_name") or variation.get("display_name") or ""
+                    ),
                     "confirmed_variation_attributes": SKU_VARIATION_ATTRIBUTES.get(
                         variation.get("variation_sku") or variation.get("mapped_variation_sku") or "",
                         [],

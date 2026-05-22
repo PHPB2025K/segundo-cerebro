@@ -265,14 +265,20 @@ Você não pode:
 #### Vocabulário operacional Mercado Livre
 
 Preservar termos quando vierem da Condensadora:
-- **Reputação:** verde / amarela / vermelha.
-- **Mercado Líder:** Gold / Platinum / sem nível.
+- **Reputação (cor do termômetro):** "reputação verde" / "reputação amarela" / "reputação vermelha". **Eixo separado da medalha.**
+- **MercadoLíder (medalha do vendedor):** três níveis oficiais, escritos sempre por extenso e com a grafia correta:
+  - `MercadoLíder` (Silver/padrão)
+  - `MercadoLíder Gold` ← Budamix está aqui
+  - `MercadoLíder Platinum`
+  - Sem medalha = "sem medalha MercadoLíder" (não escrever "sem nível").
 - **Modalidade de envio (ativas na Budamix: somente duas — Full e Cross-Docking):** Full (estoque no CD do ML) / Cross-Docking (Coleta ML na expedição Budamix). Flex (entrega rápida) e Drop-off **não são modalidades praticadas pela Budamix** — não mencionar como alternativas operacionais válidas no Slack.
 - **Tipo de anúncio:** Catálogo / Clássico / Premium.
 - **Saúde:** health (escala 0-1), zona crítica < 0,85.
 - **Posição:** ranking de categoria (Clássico), Buy Box do catálogo (Catálogo).
 
-Não traduzir esses termos para genéricos. Cross-Docking não vira "envio normal". Catálogo não vira "lista de produtos".
+**Regra obrigatória — reputação vs medalha:** são **dois eixos distintos**. Reputação é a cor do termômetro (verde/amarela/vermelha); medalha é o nível MercadoLíder. **Proibido colar os dois** em termo composto como "verde-gold", "verde-platinum", "verde Gold". Se ambos forem citados, separar em frases ou cláusulas: `"reputação verde e MercadoLíder Gold"`, nunca `"verde-gold"`.
+
+Não traduzir esses termos para genéricos. Cross-Docking não vira "envio normal". Catálogo não vira "lista de produtos". MercadoLíder Gold não vira "vendedor premium".
 
 ### 🎯 PRIORIDADES DO DIA
 

@@ -210,6 +210,13 @@ Vale insight quando: (a) anúncio em catálogo com health degradada (mecanismo �
 ### Lente 5 — ADS vs orgânico
 Vale insight quando: (a) ADS share ≥50% num dia sem histórico anterior — fragilidade latente; (b) ROAS alto mas concentrado em produto Cross-Docking ou em anúncio com health degradada (hipótese: ADS substituindo orgânico); (c) campanha eficiente em fase de leitura inaugural — `não mexer` é a decisão correta.
 
+### Lente 6 — MercadoLíder (medalha + trajetória pro próximo nível)
+Vale insight quando: (a) **promoção iminente** — gap pra Platinum < R$ 30k e progresso > 90% (`ml_snapshot.mercadolider.platinum.gap_revenue_brl` / `progress_pct`); cada dia abaixo do ritmo adia, cada dia acima acelera — citar números; (b) **mudança de medalha confirmada** entre snapshots (`power_seller_status` mudou) — fato relevante; classificar como `fato`; (c) **rebaixamento iminente** — `sales_60d_revenue_brl` se aproximando do threshold inferior do nível atual (Gold cair pra Silver = R$ 118.400; Platinum cair pra Gold = R$ 296.000); (d) **proteção temporária ativa** (`real_level` preenchido e diferente da medalha exibida) — risco silencioso; (e) **métrica de qualidade no limite** (claims ≥ 0,8%, atrasos ≥ 5%, cancelamentos ≥ 1,5%) que pode derrubar medalha independente de volume.
+
+**Não vale insight quando:** Gap > R$ 100k e nenhuma métrica de qualidade no limite — está fora de alcance no curto prazo; mencionar como contexto na `memoria_para_amanha` se relevante, mas não como insight do dia.
+
+**Vocabulário obrigatório no JSON:** sempre escrever `"MercadoLíder Gold"` / `"MercadoLíder Platinum"` com capitalização correta. Reputação do termômetro (verde/amarela/vermelha) é **eixo distinto da medalha** — nunca colar (proibido "verde-gold", "verde Platinum"). Em frases que citem ambos, separar: "reputação verde e MercadoLíder Gold", não "verde-gold".
+
 ## Caso especial: dia sem insight forte
 
 Se as 4 camadas convergem em "dia normal, dentro da banda, nada estrutural se moveu, nenhum risco silencioso detectado", a resposta correta **não é produzir 3 insights por preencher**.

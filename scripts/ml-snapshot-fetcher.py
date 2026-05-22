@@ -96,15 +96,22 @@ def build_reputation_block(token):
         node = metrics.get(key) or {}
         return node.get("rate")
 
+    transactions = rep.get("transactions") or {}
+    ratings = transactions.get("ratings") or {}
     return {
         "status": "ok",
         "color": rep.get("level_id"),                   # ex: "5_green"
         "power_seller_status": rep.get("power_seller_status"),  # platinum|gold|silver|None
+        "real_level": rep.get("real_level"),            # nível real durante proteção (geralmente null)
+        "protection_end_date": rep.get("protection_end_date"),  # fim do período de proteção (geralmente null)
         "claims_rate": _rate("claims"),
         "cancellations_rate": _rate("cancellations"),
         "delayed_handling_rate": _rate("delayed_handling_time"),
         "transactions_completed": (metrics.get("sales") or {}).get("completed"),
         "transactions_canceled": (metrics.get("cancellations") or {}).get("value"),
+        "ratings_positive": ratings.get("positive"),
+        "ratings_neutral": ratings.get("neutral"),
+        "ratings_negative": ratings.get("negative"),
     }
 
 
@@ -401,11 +408,11 @@ def _load_supabase_creds():
     )
 
 
-def persist_account_snapshot_to_supabase(date_str, reputation, account_overview, raw_snapshot=None):
+def persist_account_snapshot_to_supabase(date_str, reputation, account_overview, mercadolider=None, raw_snapshot=None):
     """
-    Salva o snapshot da conta (reputação + contagens de items) na tabela
-    ml_account_snapshots no Supabase. Idempotente via upsert por snapshot_date.
-    Falha silenciosa: log + return False, não derruba o fetcher.
+    Salva o snapshot da conta (reputação + contagens de items + trajetória
+    MercadoLíder) na tabela ml_account_snapshots no Supabase. Idempotente via
+    upsert por snapshot_date. Falha silenciosa: log + return False.
     """
     sb_url, sb_key = _load_supabase_creds()
     if not sb_url or not sb_key:
@@ -416,16 +423,25 @@ def persist_account_snapshot_to_supabase(date_str, reputation, account_overview,
         log.warning("Reputação não disponível, snapshot persistido só com contagens")
 
     totals = (account_overview or {}).get("totals", {})
+    ml_prog = mercadolider if (mercadolider and mercadolider.get("status") == "ok") else {}
+
     row = {
         "snapshot_date": date_str,
         "fetched_at_utc": datetime.now(timezone.utc).isoformat(),
         "reputation_color": reputation.get("color"),
         "power_seller_status": reputation.get("power_seller_status"),
+        "real_level": reputation.get("real_level"),
+        "protection_end_date": reputation.get("protection_end_date"),
         "claims_rate": reputation.get("claims_rate"),
         "cancellations_rate": reputation.get("cancellations_rate"),
         "delayed_handling_rate": reputation.get("delayed_handling_rate"),
         "transactions_completed": reputation.get("transactions_completed"),
         "transactions_canceled": reputation.get("transactions_canceled"),
+        "ratings_positive": reputation.get("ratings_positive"),
+        "ratings_neutral": reputation.get("ratings_neutral"),
+        "ratings_negative": reputation.get("ratings_negative"),
+        "sales_60d_revenue_brl": ml_prog.get("sales_60d_revenue_brl"),
+        "sales_60d_window_start": ml_prog.get("sales_60d_window_start"),
         "items_active": totals.get("active"),
         "items_paused": totals.get("paused"),
         "items_closed": totals.get("closed"),
@@ -577,6 +593,129 @@ def build_fulfillment_mix_window_block(date_str, days):
     }
 
 
+# ─── MercadoLíder — trajetória pra Platinum ───────────────────────────────────
+
+# Thresholds oficiais ML (60 dias rolling)
+PLATINUM_SALES_THRESHOLD = 1725
+PLATINUM_REVENUE_THRESHOLD = 296000
+GOLD_SALES_THRESHOLD = 575
+GOLD_REVENUE_THRESHOLD = 118400
+SILVER_SALES_THRESHOLD = 230
+SILVER_REVENUE_THRESHOLD = 37000
+
+
+def build_mercadolider_progress_block(date_str, reputation):
+    """
+    Calcula trajetória da Budamix em direção ao próximo nível MercadoLíder.
+
+    Output:
+      - sales_60d_revenue_brl: faturamento rolling 60d (orders paid no Supabase)
+      - sales_60d_window_start / end: janela analisada
+      - sales_60d_count_paid: pedidos pagos na janela
+      - medalha_atual / proxima_medalha: silver/gold/platinum
+      - platinum.gap_brl / progress_pct / ritmo_diario / eta_dias_estimado
+      - ritmo_diario_atual: BRL/dia médio na janela 60d
+      - status: 'ok' | 'unavailable'
+
+    Fonte de revenue: Supabase orders (platform=ml, status=paid).
+    Threshold Platinum: R$ 296.000 + 1.725 vendas concluídas em 60d rolling.
+    """
+    sb_url, sb_key = _load_supabase_creds()
+    if not sb_url or not sb_key:
+        return {"status": "unavailable", "error": "supabase creds not found"}
+
+    end_dt = datetime.strptime(date_str, "%Y-%m-%d") + timedelta(days=1)
+    start_dt = end_dt - timedelta(days=60)
+    since_iso = start_dt.strftime("%Y-%m-%dT00:00:00+00:00")
+    until_iso = end_dt.strftime("%Y-%m-%dT00:00:00+00:00")
+
+    base_params = [
+        ("select", "total_amount"),
+        ("platform", "eq.ml"),
+        ("status", "eq.paid"),
+        ("order_date", f"gte.{since_iso}"),
+        ("order_date", f"lt.{until_iso}"),
+    ]
+
+    try:
+        rows = _supabase_paginate(sb_url, sb_key, base_params)
+    except Exception as e:
+        log.warning(f"  ⚠ falha calcular revenue 60d: {str(e)[:120]}")
+        return {"status": "unavailable", "error": str(e)[:200]}
+
+    revenue_60d = round(sum(float(r.get("total_amount") or 0) for r in rows), 2)
+    count_paid = len(rows)
+
+    sales_completed_60d = reputation.get("transactions_completed") if reputation else None
+    medalha_atual = reputation.get("power_seller_status") if reputation else None
+
+    # qual é o próximo nível?
+    if medalha_atual is None:
+        proxima = "silver"
+        threshold_sales = SILVER_SALES_THRESHOLD
+        threshold_revenue = SILVER_REVENUE_THRESHOLD
+    elif medalha_atual == "silver":
+        proxima = "gold"
+        threshold_sales = GOLD_SALES_THRESHOLD
+        threshold_revenue = GOLD_REVENUE_THRESHOLD
+    elif medalha_atual == "gold":
+        proxima = "platinum"
+        threshold_sales = PLATINUM_SALES_THRESHOLD
+        threshold_revenue = PLATINUM_REVENUE_THRESHOLD
+    else:
+        proxima = None
+        threshold_sales = None
+        threshold_revenue = None
+
+    # trajetória pra Platinum (mesmo se medalha já é gold/platinum — sempre útil)
+    gap_brl_platinum = max(0, PLATINUM_REVENUE_THRESHOLD - revenue_60d)
+    progress_pct_platinum = min(100, round(revenue_60d / PLATINUM_REVENUE_THRESHOLD * 100, 2)) if revenue_60d > 0 else 0
+    ritmo_diario = round(revenue_60d / 60, 2) if revenue_60d > 0 else 0
+    eta_dias_simples = round(gap_brl_platinum / ritmo_diario, 1) if (ritmo_diario > 0 and gap_brl_platinum > 0) else 0
+
+    # trajetória pro próximo nível (pode ser != platinum)
+    proxima_gap = None
+    proxima_progress = None
+    proxima_eta = None
+    if proxima and threshold_revenue:
+        proxima_gap = max(0, threshold_revenue - revenue_60d)
+        proxima_progress = min(100, round(revenue_60d / threshold_revenue * 100, 2)) if revenue_60d > 0 else 0
+        proxima_eta = round(proxima_gap / ritmo_diario, 1) if (ritmo_diario > 0 and proxima_gap > 0) else 0
+
+    return {
+        "status": "ok",
+        "medalha_atual": medalha_atual,
+        "proxima_medalha": proxima,
+        "sales_60d_revenue_brl": revenue_60d,
+        "sales_60d_window_start": start_dt.strftime("%Y-%m-%d"),
+        "sales_60d_window_end": date_str,
+        "sales_60d_count_paid": count_paid,
+        "sales_60d_completed_api": sales_completed_60d,  # vem da API ML
+        "ritmo_diario_brl": ritmo_diario,
+        "platinum": {
+            "threshold_revenue_brl": PLATINUM_REVENUE_THRESHOLD,
+            "threshold_sales": PLATINUM_SALES_THRESHOLD,
+            "gap_revenue_brl": gap_brl_platinum,
+            "progress_pct": progress_pct_platinum,
+            "eta_dias_estimado": eta_dias_simples,  # ignora rolling — estimativa grosseira
+            "vendas_acima_threshold": (sales_completed_60d or 0) - PLATINUM_SALES_THRESHOLD if sales_completed_60d else None,
+        },
+        "proximo_nivel": {
+            "alvo": proxima,
+            "threshold_revenue_brl": threshold_revenue,
+            "threshold_sales": threshold_sales,
+            "gap_revenue_brl": proxima_gap,
+            "progress_pct": proxima_progress,
+            "eta_dias_estimado": proxima_eta,
+        } if proxima else None,
+        "_observacao_eta": (
+            "ETA é estimativa grosseira mantendo o ritmo diário médio. "
+            "Cálculo real precisa simular janela rolling dia a dia (entrada vs saída). "
+            "Quando ritmo cair, ETA sobe; quando subir, ETA baixa."
+        ),
+    }
+
+
 def build_ads_block(token, date_str):
     """Chama API Mercado Ads pra trazer resumo do dia."""
     try:
@@ -694,14 +833,26 @@ def build_snapshot(date_str, top_items_from):
             f"(cobertura {mix_30d.get('coverage_pct')}%)"
         )
 
+    log.info("Calculando trajetória MercadoLíder (revenue 60d via Supabase)...")
+    mercadolider = build_mercadolider_progress_block(date_str, reputation)
+    if mercadolider.get("status") == "ok":
+        plat = mercadolider.get("platinum", {})
+        log.info(
+            f"  → medalha={mercadolider.get('medalha_atual')} | "
+            f"revenue 60d=R$ {mercadolider['sales_60d_revenue_brl']:.2f} | "
+            f"gap Platinum=R$ {plat.get('gap_revenue_brl', 0):.2f} | "
+            f"ETA~{plat.get('eta_dias_estimado', 0)}d"
+        )
+
     overall = overall_status(reputation, fulfillment, top_items, ads, account_overview)
 
     snapshot_data = {
-        "schema_version": "ml-snapshot/v1",
+        "schema_version": "ml-snapshot/v2",
         "fetched_at_utc": datetime.now(timezone.utc).isoformat(),
         "date": date_str,
         "status": overall,
         "reputation": reputation,
+        "mercadolider": mercadolider,
         "fulfillment_mix_yesterday_top10": fulfillment,
         "fulfillment_mix_7d": mix_7d,
         "fulfillment_mix_30d": mix_30d,
@@ -716,6 +867,7 @@ def build_snapshot(date_str, top_items_from):
         date_str=date_str,
         reputation=reputation,
         account_overview=account_overview,
+        mercadolider=mercadolider,
         raw_snapshot=snapshot_data,
     )
 

@@ -451,6 +451,11 @@ Validar que a mensagem final:
   - listar Flex como modalidade em uso ou como alternativa válida (ex.: "ativar Flex", "migrar pra Flex");
   - apresentar mix de modalidade de envio como sendo entre 3 modalidades (Full/Cross-Docking/Flex) em vez de 2;
   - sugerir prioridade ou ação que dependa de Flex.
+- **vocabulário MercadoLíder oficial:** os três níveis devem aparecer com grafia exata — `MercadoLíder`, `MercadoLíder Gold`, `MercadoLíder Platinum`. Bloquear como **Maior** se a mensagem Slack:
+  - colar reputação (cor do termômetro) com medalha em termo composto, ex.: `"verde-gold"`, `"verde-platinum"`, `"verdegold"`, `"verde Gold"` (com hífen, espaço ou sem separador entre cor e nível). Reputação e medalha são eixos distintos e devem ser citados em cláusulas separadas;
+  - escrever a medalha em minúsculas (`"mercadolider gold"`, `"gold"` sem `MercadoLíder` antes) ou com grafia errada (`"Mercado Lider Gold"` sem til, `"ML Gold"`, `"Mercado Líder Plat"`);
+  - traduzir a medalha para termo genérico (`"vendedor premium"`, `"vendedor elite"`, `"vendedor top"`);
+  - afirmar promoção ou rebaixamento sem o `ml_snapshot.mercadolider` sustentar (ex.: dizer "estamos perto do Platinum" sem citar gap/progresso) → registrar como **Menor** se vier sem dado, **Maior** se contradisser a L05.
 
 Bloquear se:
 - texto parecer análise interna colada no Slack;

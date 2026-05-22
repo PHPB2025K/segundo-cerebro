@@ -258,6 +258,38 @@ Quanto do resultado veio de mídia paga vs orgânico?
 - **ROAS < 3x ou ACOS > 30%** → ineficiência; investimento merece revisão
 - Sem `ads_summary` no pacote (`status: unavailable`) → declare ausência e ajuste confiança
 
+### Lente 6 — MercadoLíder (medalha + trajetória pro próximo nível)
+Em que medalha estamos? Estamos no ritmo pra promoção? O dia ajudou ou atrapalhou?
+
+**Por que essa lente existe:** a Budamix tem **MercadoLíder Gold** atualmente. A diferença pra Platinum não é cosmética — Platinum significa **maior boost de Buy Box, prioridade em buscas, acesso antecipado a features e campanhas/blitz exclusivas**. Cada dia em ritmo abaixo do necessário atrasa essa promoção; cada dia acima, acelera. A medida é em **janela de 60 dias rolling** de faturamento.
+
+**Thresholds oficiais ML (60 dias rolling):**
+- **MercadoLíder** (Silver): ≥ 230 vendas, ≥ R$ 37.000
+- **MercadoLíder Gold**: ≥ 575 vendas, ≥ R$ 118.400
+- **MercadoLíder Platinum**: ≥ 1.725 vendas, ≥ R$ 296.000
+- Métricas de qualidade obrigatórias em todos os níveis: reclamações < 1%, mediações ≤ 0,5%, cancelamentos com devolução < 2%, cancelamentos pelo vendedor ≤ 0,5%, atrasos < 6%.
+
+**Campos a cruzar:**
+- `ml_snapshot.reputation.power_seller_status` → medalha atual (`silver` | `gold` | `platinum` | `null`)
+- `ml_snapshot.reputation.real_level` → nível real durante proteção (geralmente null)
+- `ml_snapshot.reputation.protection_end_date` → fim da proteção (geralmente null)
+- `ml_snapshot.mercadolider.sales_60d_revenue_brl` → faturamento real 60d rolling (calculado do Supabase)
+- `ml_snapshot.mercadolider.platinum.gap_revenue_brl` → quanto falta de faturamento pro Platinum
+- `ml_snapshot.mercadolider.platinum.progress_pct` → % do caminho (0–100)
+- `ml_snapshot.mercadolider.ritmo_diario_brl` → BRL/dia médio na janela atual
+- `ml_snapshot.mercadolider.platinum.eta_dias_estimado` → estimativa grosseira de dias pra atingir threshold mantendo ritmo
+
+**Regras de leitura:**
+- **`real_level` preenchido** → medalha exibida está em **proteção temporária**; a medalha real é `real_level`. Citar como risco se `real_level` for inferior à medalha exibida.
+- **Gap < R$ 30.000 e progresso > 90%** → promoção iminente — qualquer queda de ritmo nas próximas semanas adia.
+- **Gap entre R$ 30k–R$ 100k e progresso 70–90%** → no ritmo, sustentar = mover; reduzir = adiar significativamente.
+- **Gap > R$ 100k ou progresso < 70%** → fora de alcance no curto prazo; foco é manter ou ganhar mercado, não perseguir Platinum.
+- **Medalha atual ameaçada** (vendas/faturamento 60d cair abaixo do threshold do nível atual) → risco de **rebaixamento** — alerta crítico.
+- **Métricas de qualidade no limite** (claims ≥ 0,8%, atrasos ≥ 5%, cancelamentos ≥ 1,5%) → independente do volume, pode derrubar a medalha. Sinalizar como risco silencioso.
+- Calcular **impacto do dia** quando relevante: ritmo do dia (GMV do dia) vs ritmo médio necessário (`gap / dias restantes ideais`). Dia abaixo = atraso; acima = ganho.
+
+**Vocabulário no insight:** sempre escrever **"MercadoLíder Gold"** / **"MercadoLíder Platinum"** com capitalização correta. Nunca colar termos como "verde-gold" (a cor verde do termômetro é separada da medalha; tratar em frases distintas se ambos forem citados). Reputação do termômetro = "reputação verde / amarela / vermelha"; medalha = "MercadoLíder [nível]". São dois eixos, não um.
+
 ## Padrão de raciocínio esperado
 
 Cada bullet abaixo cita os campos exatos do pacote que sustentam a leitura. Replique esse rigor.

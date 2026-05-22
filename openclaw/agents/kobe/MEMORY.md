@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-20 23:45 BRT (consolidação diária em camadas)._
+_Último update: 2026-05-21 23:45 BRT (consolidação diária em camadas)._
 
 ---
 
@@ -134,12 +134,12 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (20/05/2026 23:45 BRT — consolidação diária em camadas)
+## Status do Sistema (21/05/2026 23:45 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
 - **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; todo conteúdo relacionado a alertas deve ir para lá (watchdogs, guards, audits, monitores, failure alerts, resumos e avisos de risco/problema). Thread 8 permanece Urgente e não deve receber alertas técnicos de rotina.
 - **Planejamento de reposição das canecas:** prioridade máxima do próximo bloco operacional. Primeira rodada será manual pelo Kobe e servirá de piloto para o futuro Agente de Compras; todo assunto de compras vai no tópico Compras.
-- **Daily Sales Report Slack:** LLM é o caminho principal aprovado tecnicamente, com fallback determinístico desabilitado. Em 20/05, o preview analisando 19/05 ficou `PARTIAL`: Lucas/Shopee bloqueado por duplicidade CTL002/double-counting no Top Produtos; Yasmin/ML e Leonardo/Amazon aprovados com ressalva. Envio real para funcionários segue bloqueado até liberação explícita; próximo passo é corrigir/reexecutar Lucas/Shopee e decidir o critério de promoção.
+- **Daily Sales Report Slack:** LLM é o caminho principal aprovado tecnicamente, com fallback determinístico desabilitado. Em 21/05, o preview analisando 20/05 ficou `APPROVED_WITH_REMARKS`, mas Lucas/Shopee bloqueou por erro factual de percentual Store (~45% correto vs 49% escrito); Yasmin/ML aprovado e Leonardo/Amazon aprovado com ressalva menor. Envio real para funcionários segue bloqueado até liberação explícita; próximo passo é corrigir/reexecutar Lucas/Shopee e decidir critério de promoção.
 - **Estoque Budamix:** deploy de produção foi retomado em 20/05 por rsync direto, encerrando o checkpoint GitHub/Deploy Key para essa frente. Parser PDF local substituiu webhook n8n quebrado e teste E2E reversível com PDF real validou 7 SKUs com retorno bit a bit da planilha. Pendências remanescentes: POT1BB duplicado, aliases, PR4 kits/BOM, cleanup opcional das ops de teste e desativar webhook antigo.
 - **DRE Abril:** U15 Descontos Concedidos continua prioridade antes da U44 v4 limpa. ML aceito em R$ 5.061,14; Amazon precisa fechar item-promotion sem frete promocional; Shopee segue suspeita/reclassificação.
 - **Mission Control:** 11/23 módulos fechados; módulos Activity, Cron, Sessions, Skills e Costs consolidados, com separação de custo real API vs equivalente API vs subscription. Próxima prioridade técnica segue n8n usage tracking em `/costs`, painel Daily Sales Pipeline pendente de restart/smoke e PRDs dos módulos restantes.
@@ -148,11 +148,11 @@ skills/
 
 ### ⚠️ Importante
 - **Meta Ads:** token atingiu a data estimada de expiração em 18/05/2026 e Spark ficou quieto em 20/05; antes de depender da API, validar renovação/funcionamento e escalar correção se falhar.
-- **Canggu/Ana:** silêncio de 9 dias teve causa raiz corrigida com background seguro no webhook; regra 17 “resposta cética mas gentil” substituiu prompt ruim de cadastro/verificação interna; 25 respostas ML auditadas e 3 correções com embedding aplicadas. Pendente hard-block adicional contra linguagem de cadastro/processo interno, correção manual ML antiga, redirect www↔apex e resiliência restante.
+- **Canggu/Ana:** silêncio de 9 dias e falha de dispatch foram fechados em 21/05 com validação E2E real: WhatsApp → webhook → process-message → dispatcher voltou a gerar mensagem LLM com tokens; parser de origem `Shoppe` → `shopee` também validado. Regra 17 “resposta cética mas gentil” segue aplicada no ML. Pendentes: hard-block adicional contra linguagem de cadastro/processo interno, correção manual ML antiga, redirect www↔apex e resiliência restante.
 - **RH/Ponto Certo:** `ponto.budamix.com.br` ativo com SSL; WhatsApp RH proativo bloqueado indefinidamente até liberação explícita, inbound permitido.
 - **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2.
 - **Amazon Ads:** rodada D+7 avançou em 13/05 com múltiplas execuções e tracking ASIN-level validado; pendem grupos de baixo gasto/inativos e auditorias/logs específicos.
-- **Bling/Fisco:** Filial segue com HTTP 403/empresa-token inativo no refresh OAuth; alerta WhatsApp do refresh também falhou com HTTP 403. Não avançar fluxos fiscais que dependam da Filial antes de corrigir vínculo/status/token, estabilizar o cron e validar canal de alerta.
+- **Bling/Fisco:** Filial segue com HTTP 403/empresa-token inativo no refresh OAuth; Pedro decidiu pausar essa frente em 21/05 porque não está usando esse Bling. Não gastar bloco operacional agora; não avançar fluxos fiscais que dependam da Filial até reabrirem a frente. WhatsApp Health Check virou próximo foco de infra.
 - **RH/Ponto Certo:** follow-up tem pré-checagem determinística de cobertura por ajuste, justificativa ou batida real. Em 20/05, compliance registrou Franciele/Geziele/Guilherme sem saída e Guilherme/Leonardo/Lucas com intervalo <1h; WhatsApp proativo segue bloqueado fora do escopo autorizado.
 - **Blog Budamix Pipeline v2:** em produção; resta inspeção visual humana do post de teste e cleanup.
 
@@ -171,9 +171,11 @@ skills/
 
 
 
-
-
-
+## Qualidade da Memória (Consolidação Diária em Camadas 21/05 — 23:45 BRT)
+- Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
+- Digests lidos: Trader, Spark, Builder, Fisco e RH. Nenhum digest ausente neste fechamento.
+- Marcos globais incorporados: Budamix E-commerce entregou preview mobile no admin e polimentos PDP; Canggu/Ana voltou a responder via fluxo real WhatsApp após v36/v42; Bling Filial foi pausado por decisão do Pedro; WhatsApp Health Check virou prioridade de substituição do N8N por script versionado; sync do segundo cérebro na VPS passou por escrita segura; reunião semanal de Yasmin foi registrada.
+- Riscos críticos vindos dos digests: Daily Sales v2 segue sem envio real e Lucas/Shopee bloqueou por erro factual de percentual Store; Meta Ads precisa validação; Bling Filial continua risco conhecido porém adiado; RH agravou recorrência de Lucas sem almoço e Guilherme com intervalo de 51min.
 
 ## Qualidade da Memória (Consolidação Diária em Camadas 20/05 — 23:45 BRT)
 - Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
@@ -226,6 +228,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-21:** Budamix E-commerce ganhou preview mobile no admin e polimentos de PDP; Canggu/Ana voltou a responder via fluxo real WhatsApp após pacote v36/v42; Pedro pausou Bling Filial e priorizou WhatsApp Health Check versionado; sync da VPS passou a usar escrita segura; Gestão de Funcionários registrou reunião semanal com Yasmin; Daily Sales v2 ficou em preview `APPROVED_WITH_REMARKS`, mas Lucas/Shopee bloqueou por erro factual de percentual Store.
 - **2026-05-20:** Canggu/Ana teve correção estrutural do silêncio de 9 dias e regra 17 contra respostas de cadastro/processo interno; WhatsApp Himmel/Shopee foi integrado e ambos os grupos Himmel passaram a 3 ingestões diárias; Estoque Budamix voltou a produção via rsync com parser PDF local validado; Budamix E-commerce ganhou variações estruturadas e desativou temporariamente kits 4 travas; Gestão de Funcionários ganhou memórias individuais; Daily Sales v2 ficou PARTIAL por bloqueio Lucas/Shopee.
 - **2026-05-19:** Daily Sales v2 recuperou a falha de Lucas/Shopee do dia anterior e aprovou os três recipients com ressalvas em preview Pedro-only, sem envio real aos funcionários. Spark e Builder ficaram quietos; Fisco manteve Bling Filial 403 + alerta WhatsApp degradado; RH adicionou riscos de compliance para Guilherme/Lucas/Leonardo/Franciele.
 - **2026-05-18:** Daily Sales v2 falhou de forma segura no cron 06:50: Lucas/Shopee bloqueou no QA por duplicidade de Top Produtos, enquanto Yasmin/ML e Leonardo/Amazon chegaram ao QA com ressalvas; próximo passo é corrigir/reexecutar apenas Lucas. RH recebeu trava determinística contra cobrança de pendências já cobertas. Reunião OS/OSA abriu possível alternativa de câmbio para importações. Meta Ads precisa validação pós-expiração estimada do token; Bling Filial 403 segue bloqueante.
@@ -263,7 +266,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) corrigir/reexecutar Lucas/Shopee no Daily Sales v2 e decidir critério de promoção para envio real, (2) planejar reposição de canecas e estruturar piloto do Agente de Compras, (3) validar token Meta Ads pós-18/05, (4) orientar RH sobre saídas/intervalos de 20/05 sem liberar proativo genérico, (5) corrigir Bling Filial 403 e alerta do refresh, (6) hard-block Canggu contra linguagem de cadastro/processo interno, (7) retomar n8n usage tracking e painel Daily Sales Pipeline no Mission Control._
+_Próximas ações: (1) corrigir/reexecutar Lucas/Shopee no Daily Sales v2 e decidir critério de promoção para envio real, (2) implementar WhatsApp Health Check versionado substituindo N8N quebrado, (3) planejar reposição de canecas e estruturar piloto do Agente de Compras, (4) validar token Meta Ads pós-18/05, (5) orientar RH sobre Lucas/Guilherme sem liberar proativo genérico, (6) hard-block Canggu contra linguagem de cadastro/processo interno, (7) retomar n8n usage tracking e painel Daily Sales Pipeline no Mission Control._
 
 ---
 ## Contexto

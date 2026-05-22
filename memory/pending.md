@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-21 02:00 BRT — organização noturna silenciosa_
+_Atualizado: 2026-05-21 23:45 BRT — consolidação diária em camadas_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -52,7 +52,7 @@ _Atualizado: 2026-05-21 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 Canggu / Ana
 
-- [ ] **Canggu/Ana — hard-block adicional e reauditoria pós-regra 17**: em 20/05, a causa raiz do silêncio foi corrigida com background seguro no webhook e a regra 17 substituiu o prompt ruim de cadastro/verificação interna. Pendências restantes: adicionar camada defensiva no validador contra frases tipo “cadastro do produto”, “verificar internamente” e “atualizar o anúncio”; considerar reauditoria semanal automática das respostas ML se Pedro aprovar.
+- [ ] **Canggu/Ana — hard-block adicional e reauditoria pós-regra 17**: em 21/05, o fluxo real WhatsApp → webhook → process-message → dispatcher voltou a gerar resposta LLM após pacote `webhook-whatsapp` v36 + `process-message` v42; o parser `Shoppe` → `shopee` também foi validado. Pendências restantes: adicionar camada defensiva no validador contra frases tipo “cadastro do produto”, “verificar internamente” e “atualizar o anúncio”; acompanhar próximas respostas reais; considerar reauditoria semanal automática das respostas ML se Pedro aprovar.
 - [ ] **Canggu — manter repo canônico reconciliado após hotfix ML**: repo `PHPB2025K/canguu` recebeu commit `eb76d3f`; quando Pedro voltar o repo para privado, garantir que a VPS/token mantém acesso de leitura/escrita para próximos patches e CI/CD.
 - [ ] **Canggu — trocar senha temporária do admin** no login do admin. Ação do Pedro.
 - [ ] **Canggu — corrigir type TS pré-existente em `_shared/evolution-api.ts`**: `EvolutionMessageContent` é referenciado mas o tipo real chama `EvolutionMessageData`. Detectado no `deno check` durante incidente Ana 24/7; edge deploya mesmo com warning, mas limpar no próximo bloco Canggu.
@@ -81,8 +81,8 @@ _Atualizado: 2026-05-21 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 Gestão / Jurídico / Contratos
 
-- [ ] **Daily Sales Report v2 — aguardar liberação explícita para envio real aos funcionários**: envio real para Lucas/Yasmin/Leonardo continua bloqueado até liberação explícita. Execução Pedro-only de 21/05 analisando 20/05 BRT não entregou Slack: análise profunda das 5 contas e Data Readiness foram gerados (`DADOS_PARCIAIS`), DSA usou LLM, mas Lucas/Shopee ficou `BLOCKED` e o processo recebeu SIGKILL durante Yasmin antes de concluir Leonardo/emitir `SENT_TO_PEDRO_SLACK`. Nenhum envio externo foi realizado; manter `fallback_deterministic_allowed=false` e bloqueio fail-closed se camada LLM falhar.
-- [ ] **Daily Sales Report v2 — corrigir/reexecutar Lucas/Shopee e decidir critério de promoção**: remover duplicidade CTL002, ranquear CTL002 consolidado corretamente, corrigir breakdown por conta, preservar evidência operacional ao simplificar a 6B e decidir se produção exige ciclo `APPROVED` sem ressalvas ou aceita `APPROVED_WITH_REMARKS` sem críticos/maiores. Revalidar Shopee/Amazon Rules Watch antes de usar regra/taxa como causa forte.
+- [ ] **Daily Sales Report v2 — aguardar liberação explícita para envio real aos funcionários**: envio real para Lucas/Yasmin/Leonardo continua bloqueado até liberação explícita. Execução Trader de 21/05 analisando 20/05 BRT terminou em preview `APPROVED_WITH_REMARKS`, sem envio externo. Total marketplaces: R$ 11.973,29, 222 pedidos, ticket médio R$ 53,93. Lucas/Shopee ficou bloqueado por erro factual de percentual Store (~45% correto vs 49% escrito); Yasmin/ML aprovado; Leonardo/Amazon aprovado com ressalva menor. Manter `fallback_deterministic_allowed=false` e bloqueio fail-closed se camada LLM falhar.
+- [ ] **Daily Sales Report v2 — corrigir/reexecutar Lucas/Shopee e decidir critério de promoção**: corrigir Store para ~45% do GMV Shopee, recalcular percentuais derivados contra pacote validado, reprocessar Slack Writer e QA; registrar omissões de Top Produtos/residuais quando existirem; decidir se produção exige ciclo `APPROVED` sem ressalvas ou aceita `APPROVED_WITH_REMARKS` sem críticos/maiores. Revalidar Shopee/Amazon Rules Watch antes de usar regra/taxa como causa forte.
 
 - [ ] **Adapta — aguardar retorno sobre cobranças recorrentes**: Pedro recebeu mensagem pronta em 07/05 para enviar como PEDRO HENRIQUE PERON BROGLIO. Se a empresa negar cancelamento/estorno, próxima frente é contestação pelo banco/cartão usando descritor `TAR PLANO ADAPT` e valores R$ 497,00/R$ 126,75.
 - [ ] **Guarani Sistemas — preparar minuta de distrato e só pagar após aceite/assinatura**: em 13/05, Guarani aceitou a proposta global de **R$ 7.500,00 à vista** e confirmou baixa/quitação dos 7 títulos/NFs em aberto, sem protesto/negativação/cobrança externa, com isenção do aviso prévio. Próximo passo: enviar minuta de distrato para análise. Ponto crítico: a minuta deve preservar **quitação integral e definitiva**, **sem saldo remanescente/cobrança futura**, **sem reconhecimento de dívida**, e evitar que a cláusula “distrato parte da sua empresa por ausência de mão de obra” vire admissão ampla de culpa. Recomendação: não pagar antes de distrato aprovado/assinado ou, no mínimo, aceite escrito inequívoco dos termos finais.
@@ -123,7 +123,7 @@ _Atualizado: 2026-05-21 02:00 BRT — organização noturna silenciosa_
 
 - [ ] **OpenClaw fallback — adicionar Anthropic como 3º fallback**: `anthropic:default` está configurado, mas fora de `agents.defaults.model.fallbacks`; após upgrade para ChatGPT Pro não é urgente, mas evita queda total se o mesmo auth profile OpenAI estourar em pico.
 - [ ] **WhatsApp Health Check — substituir N8N quebrado por script VPS versionado**: Pedro pausou Bling Filial em 21/05 por não estar usando esse Bling. Próximo ponto ativo é a tabela `whatsapp_health_checks`, sem escrita desde 07/05. Workflow N8N original ficou inutilizável após refactor 11 nodes → 2 nodes, export versionado original sumiu, e acesso ao N8N/Evolution a partir da VPS está bloqueado por Cloudflare 1010. Decisão operacional recomendada: criar script Python versionado em cron na VPS, gravando direto no Supabase. Defaults aprovados salvo ajuste do Pedro: alerta no Telegram/tópico Alertas e frequência 15min. Evolution-specific checks podem continuar degradados enquanto Cloudflare bloquear, mas o health check geral deixa de depender do N8N.
-- [ ] **Bling Token Refresh — Filial ADIADO por decisão do Pedro**: em 21/05, Pedro decidiu deixar essa integração como está porque não está usando esse Bling no momento. Não gastar bloco operacional nisso agora. Manter apenas como risco conhecido: Filial segue com erro 403/inativa e fluxos fiscais dependentes da Filial não devem avançar até reabrirem essa frente.
+- [ ] **Bling Token Refresh — Filial ADIADO por decisão do Pedro**: em 21/05, Pedro decidiu deixar essa integração como está porque não está usando esse Bling no momento. Não gastar bloco operacional nisso agora. Manter apenas como risco conhecido: Filial segue com erro 403/inativa e fluxos fiscais dependentes da Filial não devem avançar até reabrirem essa frente. Próximo foco de infra/automações é o WhatsApp Health Check.
 - [ ] **Security Audit / Firewall VPS** — auditoria de 10/05 06:01 BRT executou e substituiu a pendência antiga de timeout. Achados: `ufw` não instalado/disponível; Fail2ban OK (`sshd`, maxretry=5); SSH sem senha; portas públicas além de 22/80/443 incluem 3000, 3050, 3091, 8084 e 8090. Próximo passo: definir política de firewall/Traefik sem risco de lockout antes de qualquer mudança.
 - [ ] **Slack App GB Importadora** — rotacionar/reinstalar para invalidar bot token que apareceu em screenshot durante setup. Integração operacional usa user token read-only salvo no 1Password.
 - [ ] **WhatsApp Baileys/OpenClaw** — leitura passiva em tempo real está desconectada/not linked; se Pedro quiser reativar essa rota, precisa reescanear QR Code. Evolution API/histórico segue separado e funcional.
@@ -165,4 +165,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-05-21 02:00 BRT._
+_Última organização: 2026-05-21 23:45 BRT._

@@ -221,6 +221,25 @@ def load_message(recipient: dict) -> str:
     return message
 
 
+def persist_sent_message(date_iso: str, recipient_key: str, text: str, *, dry_run: bool) -> None:
+    """Persist the exact text sent to Slack (after sender transformations).
+
+    Single source of truth for what reached the user — used by Mission Control
+    to render the Sender stage INPUT/OUTPUT. Saved in both dry-run and real send,
+    overwritten on each invocation so the file always reflects the latest send.
+    """
+    run_dir = RUNS_DIR / date_iso / recipient_key
+    if not run_dir.exists():
+        return
+    out_path = run_dir / "08-slack-sent.txt"
+    timestamp = datetime.now(BRT).isoformat(timespec="seconds")
+    mode = "dry-run" if dry_run else "real"
+    header_comment = (
+        f"<!-- sender_mode={mode} sent_at_brt={timestamp} recipient={recipient_key} -->\n"
+    )
+    out_path.write_text(header_comment + text, encoding="utf-8")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Enviar outputs DSA para Slack pessoal do Pedro")
     parser.add_argument("--date", default=default_day(), help="Data analisada YYYY-MM-DD; default ontem BRT")
@@ -246,7 +265,9 @@ def main() -> int:
     sent = []
     for key in target_recipients:
         header = f"*Daily Sales Report — {DISPLAY_NAMES[key]}*\n_Entrega temporária: enviado só para Pedro._\n\n"
-        send_dm_to_pedro(header + load_message(recipients[key]), dry_run=args.dry_run)
+        final_text = header + load_message(recipients[key])
+        persist_sent_message(args.date, key, final_text, dry_run=args.dry_run)
+        send_dm_to_pedro(final_text, dry_run=args.dry_run)
         sent.append(DISPLAY_NAMES[key])
 
     print("SENT_TO_PEDRO_SLACK " + ", ".join(sent))

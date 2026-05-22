@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-21
-**Gerado em:** 2026-05-22T07:13:17.863168+00:00
+**Gerado em:** 2026-05-22T12:11:41.940014+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,11 +24,9 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Nos próximos ciclos: monitorar se Kit Canequinhas (MLB4410218897) gerou cancelamentos registrados — confirmation/refutation da materialização do risco de reputação aberto em 2026-05-21.
-- **Aviso:** Zero de ADS em 2026-05-21 requer confirmação de Himmel antes de qualquer interpretação de série orgânica. Resultado do dia não pode ser usado como baseline até essa confirmação.
-- **Aviso:** Kit 6 Canecas Tulipa Lisa (MLB6167272090): cobertura estimada ~3,8 dias em Full a partir de 2026-05-21. Reposição deve ser avaliada junto com o Kit Canequinhas.
-- **Aviso:** display_name duplicado de KIT10YW1050 e KIT6YW1050 a corrigir no data builder — diferenciadores corretos são os títulos ML com '10 Unidades' e '6 Unidades'.
-- **Aviso:** health=0,75 pontual para MLB4073003575 sem série temporal disponível. Solicitar ao próximo ciclo a trajetória de health dos últimos 3 dias para determinar direção.
+- **Aviso:** 5 Menores identificados sem impacto bloqueante. Para próximo ciclo: (1) alinhar nomenclatura cross-section de Canecas Porcelana entre Top Produtos e Análise/Prioridades; (2) alinhar denominação cross-layer de Canequinhas entre L05 e L06, ou documentar divergência no log; (3) preservar 'ou API de pedidos' nas prioridades com ruptura técnica ativa; (4) corrigir grafia 'Cross-Docking' nos prompts da L05 e L06; (5) manter centavos em valores monetários de comparação mesmo quando precedidos de '~'.
+- **Aviso:** A propagação de 'cross-docking' em minúscula origina-se na L05 (Condensadora) — a correção deve ocorrer no prompt da L05 para que a L06 herde a grafia correta sem precisar sobrepor a fidelidade terminológica.
+- **Aviso:** O log de formatação da L06 documenta as simplificações de Top Produtos item a item, mas não registra explicitamente a decisão de adotar denominação diferente da L05 para o produto 914C_BAV na Análise. Adicionar esse tipo de justificativa no log previne flags cross-layer em ciclos futuros.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-21/yasmin/00-data-package.json`

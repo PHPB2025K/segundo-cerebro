@@ -1,17 +1,21 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-20_
+_Atualizado: 2026-05-21_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
+- [ ] Corrigir e reexecutar Lucas/Shopee para 20/05/2026 BRT: ajustar na 6B o percentual de GMV da Budamix Store de 49% para ~45% (R$ 2.351,20 / R$ 5.232,53 = 44,9%), reprocessar Slack Writer e validar que o QA deixa de ser BLOCKED antes de qualquer envio.
 - [ ] Corrigir e reexecutar Lucas/Shopee para 19/05/2026 BRT: remover duplicidade CTL002 no Top Produtos, posicionar a linha consolidada de 10 pedidos na 3ª posição, formatar breakdown com separadores claros e validar que o QA deixa de ser BLOCKED antes de qualquer envio.
 - [ ] Ajustar Slack Writer/06B de Shopee para que linha consolidada cross-conta substitua integralmente linhas componentes já contidas no total; aplicar também ao KIT2YW800SQ e registrar decisões de formatação coerentes.
 - [ ] Monitorar simplificações da Slack Writer Shopee frente à 6B: manter linguagem mais simples sem remover evidências operacionais essenciais; se o padrão persistir, ajustar prompt antes de envio real.
 - [ ] Ajustar Slack Writer de Mercado Livre para preservar âncoras de framing Padrão B (“parece saudável, mas...”) e registrar formalmente qualquer simplificação relevante.
+- [ ] Mercado Livre: avaliar se fulfillment parcial deve aparecer na visão da Yasmin com ressalva de cobertura quando o mix top 10 divergir materialmente do padrão recente; priorizar série temporal de health e ADS breakdown por item para gatilhos com Himmel.
 - [ ] Corrigir logs de Amazon: item exibido no ranking não pode aparecer como “omitido”; recalcular ranking/posições após exclusões antes de gerar decisões de formatação.
+- [ ] Amazon: registrar simplificações de evidência de concentração na Slack Writer/QA (ex.: segundo candidato e distância para o líder) e criar linha de base semanal/mensal com concentração CK4742, volume, ticket e cancelamentos.
+- [ ] Corrigir nomes internos Amazon TL250P/TL250B: não podem aparecer como tigelas de vidro se o produto real for canecas de porcelana Tulipa.
 - [ ] Monitorar primeira execução real/autorizada do wrapper v2 e garantir que análise por conta use memória diária/semanal/mensal, nome comercial e sem SKU cru; se LLM falhar, bloquear recipient em vez de fallback.
-- [ ] Tornar obrigatório no log da Slack Writer o registro formal de todos os itens “não pode ir para Slack”, inclusive regras gerais, restrições de inferência e toda omissão de Top Produtos por nome, mesmo item de 1 pedido com confiança alta.
+- [ ] Tornar obrigatório no log da Slack Writer o registro formal de todos os itens “não pode ir para Slack”, inclusive regras gerais, restrições de inferência e toda omissão de Top Produtos por nome, mesmo item de 1 pedido com confiança alta; incluir omissões por volume residual como KIT2YW1050 quando aplicável.
 - [ ] Corrigir mapeamentos/nome comercial que contaminam Daily Sales: Amazon TL250B/TL6250 não podem aparecer como tigelas de vidro; Shopee SKU 098 deve usar raw_title/descrição correta; ML 914C_BAV não deve receber rótulo inventado.
 - [ ] Incluir/validar no pacote Daily Sales: Shopee Full real por conta, Buy Box e cobertura FBA por ASIN na Amazon, atribuição de cancelamentos por produto quando disponível.
 - [ ] Monitorar Shopee nas 3 contas por queda transversal vs média 30d, concentração dos top produtos e possível canibalização interna entre lojas; se GMV Shopee ficar abaixo de R$ 4.500 por mais um ciclo corrigido, contar como segundo dia para possível intervenção Lucas + Himmel.

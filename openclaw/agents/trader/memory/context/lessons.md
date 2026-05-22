@@ -86,3 +86,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 **Contexto:** Preview de 19/05/2026 BRT bloqueou Lucas/Shopee porque CTL002 apareceu como consolidado das 3 contas e também como linha Store já contida no total; além disso, a linha consolidada ficou fora da ordem correta por volume.
 **Lição:** Quando um SKU/variação vendável for consolidado entre contas Shopee no Top Produtos, remover integralmente as linhas componentes incluídas, ranquear pelo volume total consolidado e formatar o breakdown com separadores claros por conta. Se log e mensagem divergirem, QA deve bloquear.
 **Expira:** 2026-06-19
+
+### [TÁTICA] Daily Sales v2 Shopee: percentual de GMV precisa ser recalculado na 6B contra pacote validado (2026-05-21)
+**Contexto:** Preview de 20/05/2026 BRT bloqueou Lucas/Shopee porque a 6B afirmou que a Budamix Store concentrava 49% do GMV da plataforma, mas o pacote validado mostrava R$ 2.351,20 / R$ 5.232,53 = 44,9% (~45%). A Slack Writer reproduziu fielmente a fonte, então o erro era da camada analítica, não da saída final.
+**Lição:** Todo percentual derivado em análise consolidada deve ser recalculado diretamente do pacote validado antes do QA. Corrigir apenas na Slack Writer mascara a origem; correção precisa nascer na 6B.
+**Expira:** 2026-06-20

@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "Nenhum Crítico e nenhum Maior detectados. Foram encontrados 6 Menores distribuídos pelos Gates 5, 6, 7 e 11: duas inconsistências de nome cross-section (já documentadas pelo próprio L06 nas Decisões de formatação), uma leve paráfrase de expressão analítica da L05, uma omissão parcial de ação prescrita no sinal de refutação da Prioridade 3, e dois problemas de precisão numérica em percentuais (arredondamentos herdados da L05 e inconsistência 75% vs 75,1% para a mesma métrica entre seções). Nenhum dos 6 Menores compromete a clareza operacional da mensagem nem induz Yasmin a erro; os arredondamentos de percentual são herdados fielmente da L05; as inconsistências de nome foram reconhecidas no log da L06; a omissão na Prioridade 3 é parcialmente coberta pelo campo escalar_se. Degradação sistêmica não configurada — os Menores são isolados e não se reforçam mutuamente para degradar tom, clareza ou consistência da mensagem. Regra aplicada: 6 Menores sem degradação sistêmica → APROVADO COM RESSALVA.",
+  "motivo": "A mensagem está estruturalmente correta, fiel à L05 em tese, connectivos e classificações, com todos os bloqueios respeitados e dados objetivos conferidos contra o pacote. Dois problemas Menores foram identificados em gates distintos (Gate 7 e Gate 8), ambos relacionados à introdução de 'ou via API de pedidos' na prioridade 1 sem respaldo explícito do texto da L05, e à incoerência correspondente no log de formatação da L06. Nenhum Crítico ou Maior. Regra de agregação aplicada: 0 Maiores + 2 Menores → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -8,97 +8,54 @@
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "RESSALVA",
-    "gate_6_analise_conta": "RESSALVA",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "OK",
     "gate_7_prioridades": "RESSALVA",
-    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_8_bloqueios_confianca_logs": "RESSALVA",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "RESSALVA",
+    "gate_11_padrao_numerico_formatacao": "OK",
     "gate_12_consistencia_ml_snapshot": "OK"
   },
   "contagem_severidade": {
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 6,
-    "regra_agregacao_aplicada": "6 Menores sem degradação sistêmica → APROVADO COM RESSALVA. Os 6 Menores são isolados (documentados pelo L06 em 2 casos, herdados da L05 em 2 casos, leve paráfrase em 1 caso, omissão parcial em 1 caso) e não se reforçam mutuamente para degradar a qualidade operacional da mensagem."
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Maiores + 1–5 Menores → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
       "severidade": "Menor",
-      "gate": "5 — Top Produtos",
-      "texto_atual": "Top Produtos: 'Kit 5 Potes de Vidro Redondos — Tampa Preta/Cinza/Vermelha'; Análise: 'família de Potes de Vidro Redondos Kit 5 Peças'",
-      "texto_esperado": "Nome consistente entre seções para o mesmo produto — ex.: 'Kit 5 Potes de Vidro Redondos — Tampa [Cor]' em ambas as seções",
-      "estado_atual": "Produto IMB501 referenciado com dois padrões de nome diferentes: ordenação 'Kit 5 Potes de Vidro Redondos' no Top Produtos vs 'Potes de Vidro Redondos Kit 5 Peças' na Análise. L06 documentou a divergência nas Decisões de formatação.",
-      "estado_esperado": "Mesmo nome simplificado de família em todas as seções onde o produto é mencionado.",
-      "regra_violada": "Gate 5 — Registrar como Menor quando mesmo produto aparece com nome diferente em seções distintas (ex.: 'Porcelana Tulipa' vs 'Tulipa Lisa'). Não bloqueia, mas é ruído de identificação.",
+      "gate": "Gate 7 — Prioridades do Dia",
+      "texto_atual": "Yasmin: verificar agora no painel ML — ou via API de pedidos — o status dos pedidos do Kit 6 Canequinhas 100ml com Suporte de Madeira Acrílico em Full",
+      "texto_esperado": "Yasmin: verificar agora no painel ML o status dos pedidos do Kit 6 Canequinhas 100ml com Suporte de Madeira Acrílico em Full",
+      "estado_atual": "A L06 inseriu 'ou via API de pedidos' como alternativa ao painel ML na prioridade 1. Essa alternativa consta na L04 ('via painel ML ou endpoint de pedidos') mas não foi carregada pela L05 para o texto da prioridade — a L05 menciona exclusivamente 'painel ML'.",
+      "estado_esperado": "O texto da prioridade deve reproduzir exatamente o caminho autorizado pela L05: 'painel ML', sem adição de alternativas não transportadas pela Condensadora.",
+      "regra_violada": "Gate 7 exige que prioridades usem apenas o que foi definido em prioridades_condensadas da L05. A L05 não autorizou 'API de pedidos' como alternativa na prioridade — mesmo que o conceito apareça na L04, foi filtrado pela L05 na condensação.",
       "bloqueia_envio": false
     },
     {
       "severidade": "Menor",
-      "gate": "5 — Top Produtos",
-      "texto_atual": "Top Produtos: 'Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico'; Análise/Prioridades: 'Kit 06 Canequinhas Acrílico'",
-      "texto_esperado": "Nome consistente entre seções para o mesmo produto",
-      "estado_atual": "Produto 914C_BAV referenciado com dois padrões de nome diferentes entre seções. L06 documentou a divergência e declarou que preservou o nome da L05 nas seções de análise e prioridades.",
-      "estado_esperado": "Mesmo nome simplificado em todas as seções, ou divergência irrelevante ao identificador do produto.",
-      "regra_violada": "Gate 5 — Menor por inconsistência cross-section de nome de produto.",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "6 — Análise da Conta",
-      "texto_atual": "Insight 3 Slack: '...sem histórico acumulado, o patamar só se confirma...'",
-      "texto_esperado": "Insight 3 L05: '...sem base qualitativa acumulada, o patamar só se confirma...'",
-      "estado_atual": "A expressão 'sem base qualitativa acumulada' da L05 foi parafraseada para 'sem histórico acumulado'. O adjetivo 'qualitativa' carrega a nuance de que o déficit é de memória interpretada (weekly/monthly vazios), não apenas de dados históricos numéricos. O sentido central é preservado, mas a especificidade analítica é levemente reduzida.",
-      "estado_esperado": "Manter 'sem base qualitativa acumulada' ou equivalente que preserve o qualificador 'qualitativa'.",
-      "regra_violada": "Gate 6 — Checklist de fidelidade: nenhum termo analítico-chave removido. 'Qualitativa' é qualificador que distingue base de memória interpretada de série numérica.",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "7 — Prioridades do Dia",
-      "texto_atual": "Prioridade 3 Slack — sinal de refutação: 'Confirmar por: ticket acima de R$ 55,00 por 2 dias consecutivos + health estável no Kit 4 Potes = tese de patamar em confirmação.' — refutação presente apenas no campo escalar_se (threshold), sem ação prescrita.",
-      "texto_esperado": "L05 sinal_de_confirmacao_refutacao: 'Ticket abaixo de R$ 48 OU health abaixo de 0,70 em 2 dias = abrir conversa sobre cobertura preventiva de ADS.' — a ação prescrita ('abrir conversa sobre cobertura preventiva de ADS') deve constar explicitamente.",
-      "estado_atual": "A condição de refutação (ticket < R$ 48 OU health < 0,70) está capturada no escalar_se, mas a ação resultante ('abrir conversa sobre cobertura preventiva de ADS com Himmel') não está explicitada. Yasmin sabe quando escalar mas não sabe o que discutir especificamente ao escalar.",
-      "estado_esperado": "Incluir a ação prescrita do sinal de refutação: 'se ticket abaixo de R$ 48 ou health abaixo de 0,70 por 2 dias consecutivos → abrir conversa com Himmel sobre cobertura preventiva de ADS'.",
-      "regra_violada": "Gate 7 — preserva sinal_de_confirmacao_refutacao, incluindo a ação prescrita ao refutar a tese.",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "11 — Padrão numérico e formatação objetiva",
-      "texto_atual": "Análise: '80% Cross-Docking contra o padrão de 74% Full nos últimos 30 dias'",
-      "texto_esperado": "'80,2% Cross-Docking contra o padrão de 73,6% Full nos últimos 30 dias' (conforme fulfillment_mix_yesterday_top10.cross_docking_pct=80,2 e fulfillment_mix_30d.full_pct=73,6 no pacote)",
-      "estado_atual": "A L05 insight 2 já arredondou os valores para '80%' e '74%', e a L06 foi fiel à L05. Os valores reais do pacote são 80,2% e 73,6%. O arredondamento originou-se na L05 e foi propagado fielmente pelo L06. A regra do padrão numérico exige 1 casa decimal para percentuais.",
-      "estado_esperado": "Percentuais com 1 casa decimal: '80,2%' e '73,6%'.",
-      "regra_violada": "Gate 11 — percentuais com vírgula e 1 casa quando aparecerem. Causa raiz está na L05; L06 foi fiel. Registrado como Menor e sinalizando para correção da L05 no próximo ciclo.",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "11 — Padrão numérico e formatação objetiva",
-      "texto_atual": "ANÁLISE: '75% do GMV via Mercado Ads'; PRIORIDADES: 'ADS share de 75,1%'",
-      "texto_esperado": "Mesma precisão numérica para a mesma métrica nas duas seções: '75,1%' em ambas (conforme revenue_ads_yesterday_brl 4593,66 / gmv 6113,02 = 75,14%)",
-      "estado_atual": "O ADS share é apresentado como '75%' (sem decimal) na seção ANÁLISE e '75,1%' (com decimal) na seção PRIORIDADES dentro da mesma mensagem. A inconsistência origina-se na L05 (insight 3 usa '75%'; prioridade 3 usa '75,1%') e foi propagada fielmente pelo L06. Não induz erro operacional mas viola o padrão de consistência entre seções.",
-      "estado_esperado": "'75,1%' em ambas as seções. Correção a aplicar na L05 no próximo ciclo para uniformizar o valor antes da L06.",
-      "regra_violada": "Gate 11 — dados objetivos não devem ser apresentados de forma inconsistente entre seções; percentuais com 1 casa decimal. Causa raiz está na L05.",
+      "gate": "Gate 8 — Bloqueios, confiança e logs da Slack Writer",
+      "texto_atual": "Prioridade 1: a L05 menciona 'painel ML ou API de pedidos' como caminhos — ambas as alternativas preservadas ('painel ML — ou via API de pedidos') para não suprimir alternativa operacional.",
+      "texto_esperado": "Decisão de formatação deve refletir a fonte correta: o conceito de 'API de pedidos' veio da L04 (endpoint de pedidos), não da L05. O log deve registrar com precisão de onde veio a decisão e por que foi reintroduzida, ou omitir a adição.",
+      "estado_atual": "O log declara incorretamente que 'a L05 menciona painel ML ou API de pedidos como caminhos'. A L05 menciona apenas 'painel ML' no texto da prioridade. O log cria uma atribuição falsa à L05 para justificar uma decisão que foi tomada pela L06.",
+      "estado_esperado": "Log deve ser preciso quanto à fonte de cada decisão. Se a L06 reintroduziu alternativa da L04 que a L05 filtrou, isso deve ser registrado com essa atribuição correta — ou a reintrodução não deveria ter ocorrido.",
+      "regra_violada": "Gate 8 exige que o log de decisões de formatação registre decisões sem ambiguidade e sem atribuição incorreta à L05. Decisão registrada no log contradiz a fonte primária (L05) da qual deveria derivar.",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Os 6 Menores detectados têm causa raiz majoritariamente na L05 (arredondamentos de percentual, paráfrase de 'sem base qualitativa', inconsistência 75% vs 75,1%) ou foram transparentemente documentados pelo L06 (inconsistências de nome cross-section). No próximo ciclo, recomendar à L05: (a) uniformizar valor de ADS share (usar 75,1% consistentemente); (b) usar 1 casa decimal para percentuais de modalidade de envio (80,2% e 73,6%); (c) preservar exatamente 'sem base qualitativa acumulada'.",
-    "Prioridade 3: o campo sinal_de_confirmacao_refutacao da L05 contém ação prescrita de refutação ('abrir conversa sobre cobertura preventiva de ADS') que não foi replicada explicitamente no Slack. A L06 capturou o threshold no escalar_se mas omitiu o destinatário da ação. Sinalizar à L06 para incluir ação prescrita do sinal de refutação integralmente nas prioridades.",
-    "Tensão estrutural observada em L05 insight 1: classificacao='risco latente' combinada com linguagem afirmativa 'é cancelamento prospectivo garantido'. A linguagem de 'risco latente' deveria incluir condicionais ('se', 'quando'). L06 foi fiel à L05. A tensão originou-se na L05 e não é violação da L06 — registrar para revisão da regra trava hipótese vs fato na L05 no próximo ciclo."
+    "Gate 7 e Gate 8 identificaram o mesmo problema de origem: L06 reintroduziu 'ou via API de pedidos' da L04 ignorando que a L05 filtrou essa alternativa na condensação da prioridade. A L06 então justificou a decisão atribuindo-a incorretamente à L05 no log. Dois Menores em gates distintos — não bloqueia, mas o padrão merece atenção: L06 não deve buscar alternativas em L04 que a L05 filtrou."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "ml_snapshot — fulfillment_mix_yesterday_top10 cobre 91 de 101 pedidos (90,1%). Os 10 pedidos não cobertos (anúncios fora do top 10) têm modalidade de envio desconhecida. O percentual de 80,2% Cross-Docking é representativo do top 10 ponderado por pedidos, não da conta completa. Cobertura está acima do limiar de 70% de Gate 12, portanto não bloqueia. Recomendar ao builder: expandir fulfillment_mix para cobertura total da conta (100 pedidos) usando a mesma lógica do fulfillment_mix_7d e fulfillment_mix_30d que já têm cobertura 100%.",
-    "ml_snapshot — KIT6YW1050 (MLB4676751119): title ML 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 6 Unidades' contém inconsistência interna ('Kit 10' e '6 Unidades' no mesmo título). A L04 identificou como erro de título no anúncio ML, não erro de mapeamento. Volume irrisório (2 pedidos). Risco de reclamação de comprador por expectativa de 10 potes recebendo 6. Yasmin deve corrigir o título do anúncio ML.",
-    "ml_snapshot — ads_summary não tem breakdown por platform_item_id. A hipótese de que ADS está concentrado nos anúncios IMB501 (explicando a inversão de mix de modalidade de envio) é indício plausível mas não confirmável com o pacote atual. Gap recorrente estrutural do builder — não muda entre ciclos sem alteração no fetcher.",
-    "ml_snapshot — ratings_negative=0,39 sobre base de 5.595 transações: gap estrutural entre percepção real do comprador (39% avaliações negativas) e indicador formal de reputação (5_green). Com 75% do GMV via Mercado Ads, degradação de conversão orgânica pode estar sendo mascarada pela campanha eficiente. Causa raiz não rastreável por produto ou período no pacote atual. Sinal de médio prazo para investigação — não impacta o Slack do dia.",
-    "ml_snapshot — breakdown de cancelamentos (3 no dia) por platform_item_id está ausente do pacote. Não é possível confirmar se os cancelamentos estão concentrados no Kit 06 Canequinhas ou distribuídos. Solicitar ao builder: detalhe de cancelamentos por order_id + platform_item_id + motivo para próximos ciclos.",
-    "ml_snapshot — série temporal de health por platform_item_id ausente. top_items_details fornece apenas valor pontual. Os 7 anúncios com low_health identificados em account_overview.active_analysis.low_health_count=7 carecem de monitoramento de direção (caindo/estável/recuperando). Solicitar ao builder: série histórica diária de health para os 7 anúncios com low_health."
+    "L05 classificou o insight 1 como 'risco latente' mas redigiu com linguagem assertiva ('cancelamento automático iminente em horas') sem uso de estrutura condicional ('se'/'quando'). A L06 reproduziu fielmente a L05 — não é violação da L06 e não bloqueia. Mas a inconsistência interna da L05 (classificação de risco latente com linguagem de fato iminente) merece revisão das regras de redação da Condensadora no próximo ciclo: 'risco latente' deveria preservar linguagem condicional mesmo quando a probabilidade é alta.",
+    "ADS share de 75,1% (R$ 4.593,66 / R$ 6.113,02) com ROAS 13,44x e ACOS 4,71% é o ponto zero formal da série da conta. Weekly.md e monthly.md chegaram sem conteúdo — qualquer leitura de dependência estrutural de ADS é hipótese de ciclo inaugural, não padrão confirmado. A mensagem não comete esse erro (ADS não é citado como dependência no Slack), mas a memória da conta deve registrar que o diagnóstico de fragilidade estrutural de ADS requer 3–5 dias de série antes de ser comunicado como padrão.",
+    "ml_snapshot internamente consistente: ADS com spend não-zero e status 'ok' — sem risco de 'ADS zero' como contaminação de dado; fulfillment_mix_yesterday_top10 cobre 91/101 pedidos (90,1%), acima do limiar de 70%; reputação 5_green com cancelamentos_rate=0 e cancelamentos do dia=3 (≤5 — sem descolamento); top_items_details e top_products convergentes nos 10 produtos. Nenhuma contaminação detectada.",
+    "O listing KIT6YW1050 (MLB4676751119) tem inconsistência no título ML ('Kit 10 Potes Herméticos 1050ml...6 Unidades') — contradição interna do próprio listing ML documentada pela L04. A L05 bloqueou a citação no Slack e a L06 respeitou. Registrado aqui para atenção do time de catálogo: título ML do anúncio deve ser corrigido para evitar confusão operacional com KIT10YW1050 (MLB4676726433, kit real de 10 unidades).",
+    "ratings_negative=0,39 (39% de avaliações negativas) com reputação 5_green: descolamento sustentado pelos indicadores operacionais (cancellations_rate=0, claims_rate=0,0025). Não citado no Slack conforme bloqueio da L05. Registrado para monitoramento: se cancelamentos prospectivos das Canequinhas consumarem e cancellations_rate subir, o algoritmo de reputação recalculará sobre uma base já carregada de ratings negativos — risco de degradação mais rápida do termômetro do que o esperado."
   ],
   "llm_used": true,
   "model": "sonnet",

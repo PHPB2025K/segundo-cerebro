@@ -215,3 +215,19 @@ SUPABASE_ACCESS_TOKEN="$(op item get 'Supabase Access Token - CLI' --vault OpenC
 **Edge functions**: `create-mp-payment@v11`, `mp-webhook@v12`.
 
 Detalhes completos em [[memory/sessions/2026-05-21]].
+
+## Atualização 2026-05-22 — Loop de estoque fechado (site ↔ planilha)
+
+Resolvido o problema de venda no site sumir após sync (oversell potencial).
+
+**Novo cron VPS:** `/opt/budamix-stock-sync/decrement-planilha.py` roda a cada 2min, lê `orders WHERE status='paid' AND planilha_decremented=false`, decrementa col A da aba ESTOQUE da planilha em `qty × und_por_kit` pra cada SKU base (suporta kits compostos), marca order como processada.
+
+**Coluna nova:** `orders.planilha_decremented BOOLEAN DEFAULT false` + índice parcial.
+
+**Wrapper:** `/root/scripts/decrement-planilha-cron.sh` (com `GOG_KEYRING_PASSWORD` + `GOG_ACCOUNT=gb.ai.agent@gbimportadora.com`).
+
+**Latência total:** ≤7min entre pagamento e estoque sincronizado em todos os 7 produtos com SKU compartilhado (decrement 2min + sync.py 5min).
+
+**Log:** `/var/log/budamix-decrement-planilha.log`.
+
+Detalhes em [[memory/sessions/2026-05-22]] e [[memory/context/decisoes/2026-05#2026-05-22 — Loop de estoque fechado entre site e planilha]].

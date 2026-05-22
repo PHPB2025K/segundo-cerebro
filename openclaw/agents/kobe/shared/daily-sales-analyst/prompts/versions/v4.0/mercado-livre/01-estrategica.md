@@ -43,7 +43,7 @@ A conta ML da Budamix tem características específicas que orientam a tese:
 
 - **Patamar vs banda histórica:** a oscilação de ontem está dentro da banda dos últimos 30/60d, ou rompeu o patamar?
 - **Exposição:** o movimento é compatível com a posição atual da conta em ranking categoria / Mais Vendido / Mercado Líder, ou há divergência entre faturamento e exposição declarada?
-- **Mix de modalidade de envio:** o ganho/perda veio dos anúncios em **Full** (exposição garantida) ou em **Cross-Docking/Flex**? A dependência de Full está aumentando, estável ou caindo? (Termo "modalidade de envio" é obrigatório no output — nunca "fulfillment", que se confunde com a modalidade Full.)
+- **Mix de modalidade de envio:** a operação Budamix tem **exatamente duas modalidades de envio ativas no Mercado Livre — Full e Cross-Docking** (Flex está **desligado** na operação atual e não conta como modalidade em uso). O ganho/perda veio dos anúncios em **Full** (estoque no CD do ML, exposição garantida) ou em **Cross-Docking** (Coleta na expedição Budamix)? A dependência de Full está aumentando, estável ou caindo em relação a Cross-Docking? (Termo "modalidade de envio" é obrigatório no output — nunca "fulfillment", que se confunde com a modalidade Full.)
 - **Mix de anúncio:** o ganho veio de **Catálogo** (Buy Box dependente de preço) ou de **Clássico/Premium** (ranking dependente de histórico/reviews)? Há erosão de Buy Box em catálogos críticos?
 - **Reputação:** a reputação está verde estável? Houve sinal de queda (cancelamento, atraso, reclamação) que ameace a elegibilidade Mercado Líder?
 - **Anúncio dependência:** a conta opera sustentada por 1-2 anúncios líderes ou tem cauda saudável? A dependência é crônica (padrão histórico) ou recente?

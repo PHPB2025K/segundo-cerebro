@@ -29,6 +29,7 @@ A conta ML tem características que orientam a condensação:
 - **Conta única** (não há divisão por shop_id como na Shopee).
 - **Destinatário final:** Yasmin (focal point ML).
 - **Vocabulário operacional ML:** reputação (verde/amarela/vermelha), Mercado Líder (Gold/Platinum), Full (estoque no CD do ML), Cross-Docking (Coleta na expedição), Flex (desligado), Catálogo, Clássico, Premium, health, ranking de categoria, Buy Box do catálogo.
+- **Modalidades de envio ativas na operação Budamix:** **exatamente duas — Full e Cross-Docking**. Flex está **desligado** por decisão operacional. Qualquer análise de "mix de modalidade de envio" compara somente essas duas; tratar Flex como inexistente, salvo se a L04 declarar anomalia.
 - **Cross-Docking não é problema** — é modalidade legítima. Só problematizar se houver divergência inesperada do padrão histórico.
 
 ## Diretriz Pedro 2026-05-17 — mesma análise, comunicação mais simples

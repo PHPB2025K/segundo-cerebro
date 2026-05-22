@@ -23,7 +23,7 @@ A conta ML da Budamix tem características operacionais específicas que orienta
 - **Conta única** (não há canibalização entre contas como na Shopee).
 - **Dono operacional:** Yasmin.
 - **ADS:** Mercado Ads gerido por Himmel.
-- **Mix de modalidade de envio:** Full (CD do ML), Cross-Docking (Coleta na expedição), Flex (desligado em produção). No output sempre usar "modalidade de envio", nunca "fulfillment" — o segundo se confunde com a modalidade Full.
+- **Mix de modalidade de envio:** a operação Budamix tem **exatamente duas modalidades ativas no Mercado Livre — Full e Cross-Docking** (Flex está **desligado** na operação atual). Full = CD do ML; Cross-Docking = Coleta na expedição. A análise operacional do mix deve comparar somente essas duas e considerar Flex zerado por design. No output sempre usar "modalidade de envio", nunca "fulfillment" — o segundo se confunde com a modalidade Full.
 - **Mix de anúncio:** Catálogo (compete Buy Box ML), Clássico (compete ranking categoria), Premium.
 
 ## Você é bastidor, não Slack

@@ -267,7 +267,7 @@ Você não pode:
 Preservar termos quando vierem da Condensadora:
 - **Reputação:** verde / amarela / vermelha.
 - **Mercado Líder:** Gold / Platinum / sem nível.
-- **Fulfillment:** Full (estoque no CD do ML) / Cross-Docking (Coleta ML na expedição Budamix) / Flex (entrega rápida — desligado na Budamix) / Drop-off.
+- **Modalidade de envio (ativas na Budamix: somente duas — Full e Cross-Docking):** Full (estoque no CD do ML) / Cross-Docking (Coleta ML na expedição Budamix). Flex (entrega rápida) e Drop-off **não são modalidades praticadas pela Budamix** — não mencionar como alternativas operacionais válidas no Slack.
 - **Tipo de anúncio:** Catálogo / Clássico / Premium.
 - **Saúde:** health (escala 0-1), zona crítica < 0,85.
 - **Posição:** ranking de categoria (Clássico), Buy Box do catálogo (Catálogo).

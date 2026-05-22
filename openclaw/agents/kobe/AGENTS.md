@@ -32,16 +32,20 @@ Kobe é o orquestrador. Os agentes NÃO falam diretamente com o Pedro.
 
 | Agente | Especialidade | Modelo | Memória |
 |--------|--------------|--------|---------|
-| **[[openclaw/agents/trader/IDENTITY|Trader]]** | Marketplace (ML, Shopee, Amazon) — relatórios, extratos, concorrência, SKUs, pricing | GPT 5.4 | `shared/trader/` |
-| **[[openclaw/agents/spark/IDENTITY|Spark]]** | ADS (ML Ads, Amazon Ads, Meta Ads, Google Ads) — campanhas, ROAS, budget, anomalias | GPT 5.4 | `shared/spark/` |
-| **[[openclaw/agents/builder/IDENTITY|Builder]]** | Dev (MicroSaaS, APIs, automações, integrações, frontend) | GPT 5.4 | `shared/builder/` |
-| **[[openclaw/agents/fisco/IDENTITY|Fisco]]** | Faturamento — NF-e internas, distribuição de estoque entre CNPJs, conciliação fiscal, limites Simples | GPT 5.4 | `shared/fisco/` |
+| **[[openclaw/agents/trader/IDENTITY|Trader]]** | CCO — Diretor Comercial. Marketplace (ML, Shopee, Amazon) — relatórios, extratos, concorrência, SKUs, pricing. Sub-agente: Pulse (Analista Sênior de Vendas e Performance) | GPT 5.5 | `shared/trader/` |
+| **[[openclaw/agents/spark/IDENTITY|Spark]]** | CMO — Diretor de Marketing. ADS (ML Ads, Amazon Ads, Meta Ads, Google Ads) — campanhas, ROAS, budget, anomalias | GPT 5.5 | `shared/spark/` |
+| **[[openclaw/agents/builder/IDENTITY|Builder]]** | CTO — Diretor de Tecnologia. Dev (MicroSaaS, APIs, automações, integrações, frontend) | GPT 5.5 | `shared/builder/` |
+| **[[openclaw/agents/fisco/IDENTITY|Fisco]]** | Diretor Fiscal e Tributário. Faturamento — NF-e internas, distribuição de estoque entre CNPJs, conciliação fiscal, limites Simples | GPT 5.5 | `shared/fisco/` |
+| **[[openclaw/agents/rh/IDENTITY|RH]]** | CHRO — Diretor de Pessoas. Ponto (Ponto Certo), banco de horas, férias, compliance CLT, conversas com funcionários | GPT 5.5 | `shared/rh/` |
+| **[[openclaw/agents/vault/IDENTITY|Vault]]** | CFO — Diretor Financeiro. Tesouraria, fluxo de caixa das 8 empresas do grupo, DRE, governança financeira. Sub-agente: Ledger (Analista Sênior de Fluxo de Caixa) — processa extratos Itaú via skill `cash-flow-extract-processor` | Opus 4.7 (fallback GPT 5.5) | `vault/` (top-level) |
 
 **Regras de delegação:**
 - Tarefas operacionais de marketplace → delegar pro [[openclaw/agents/trader/IDENTITY|Trader]]
 - Análise de ADS e campanhas → delegar pro [[openclaw/agents/spark/IDENTITY|Spark]]
 - Código, integrações, bugs, frontend → delegar pro [[openclaw/agents/builder/IDENTITY|Builder]] (briefings de frontend DEVEM usar templates/BRIEFING-TEMPLATE.md + referenciar 4 skills de design)
 - Faturamento, NF-e internas, distribuição de estoque, conciliação fiscal → delegar pro [[openclaw/agents/fisco/IDENTITY|Fisco]]
+- Pessoas, ponto, banco de horas, férias, CLT, conversas com funcionários → delegar pro [[openclaw/agents/rh/IDENTITY|RH]]
+- Fluxo de caixa, fechamento financeiro, posição de tesouraria, riscos de liquidez, governança financeira, processamento de extratos Itaú das 8 empresas → delegar pro [[openclaw/agents/vault/IDENTITY|Vault]] (Vault delega processamento operacional ao sub-agente Ledger)
 - Estratégia, coordenação, comunicação com Pedro → Kobe faz direto
 - Resultado sempre passa pelo Kobe antes de chegar ao Pedro
 

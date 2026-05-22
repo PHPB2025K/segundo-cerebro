@@ -23,7 +23,8 @@ _Atualizado: 2026-03-26_
 | **[[openclaw/agents/trader/IDENTITY|Trader]]** | Marketplace (ML + Amazon + Shopee) | L1 | Opus 4.6 | ✅ Ativo | ✅ Completo | 2026-03-19 |
 | **[[openclaw/agents/builder/IDENTITY|Builder]]** | Dev (SaaS + Sistemas) | L2 ⬆️ | Opus 4.6 | ✅ Ativo | ✅ Completo | 2026-03-19 |
 | **[[openclaw/agents/fisco/IDENTITY|Fisco]]** | Faturamento (NF-e, distribuição, fiscal) | L1 | Opus 4.6 | 🔴 Construção | Fase 1 | 2026-03-28 |
-| **[[openclaw/agents/rh/IDENTITY|RH]]** | Recursos Humanos (ponto, férias, CLT) | L1 | Opus 4.6 | 🟡 Fase 1 | Estrutura criada | 2026-03-30 |
+| **[[openclaw/agents/rh/IDENTITY|RH]]** | CHRO — Diretor de Pessoas (Ponto Certo, banco de horas, férias, CLT, conversas com funcionários) | L1 | GPT 5.5 | ✅ Ativo | ✅ Completo | 2026-03-30 |
+| **[[openclaw/agents/vault/IDENTITY|Vault]]** | CFO — Diretor Financeiro (tesouraria, fluxo de caixa das 8 empresas, DRE, governança). Sub-agente: Ledger (Analista Sênior de Fluxo de Caixa) | L1 | Opus 4.7 (fallback GPT 5.5) | ✅ Ativo | ✅ Completo | 2026-05-22 |
 
 ---
 
@@ -31,12 +32,15 @@ _Atualizado: 2026-03-26_
 
 ```
 Pedro (decisor final — humano)
- └── [[openclaw/agents/kobe/IDENTITY|Kobe]] (L4 Trusted — agente mestre / COO)
-      ├── [[openclaw/agents/spark/IDENTITY|Spark]] (L1 Observer — tráfego pago)
-      ├── [[openclaw/agents/trader/IDENTITY|Trader]] (L1 Observer — marketplaces)
-      ├── [[openclaw/agents/builder/IDENTITY|Builder]] (L1 Observer — dev/SaaS)
-      ├── [[openclaw/agents/fisco/IDENTITY|Fisco]] (L1 Observer — faturamento/fiscal)
-      └── [[openclaw/agents/rh/IDENTITY|RH]] (L1 Observer — recursos humanos/ponto/CLT)
+ └── [[openclaw/agents/kobe/IDENTITY|Kobe]] (L4 Trusted — COO / Diretor de Operações)
+      ├── [[openclaw/agents/trader/IDENTITY|Trader]] (L1 Observer — CCO / Marketplaces)
+      │    └── Pulse (sub-agente — Analista Sênior de Vendas e Performance)
+      ├── [[openclaw/agents/spark/IDENTITY|Spark]] (L1 Observer — CMO / Tráfego Pago)
+      ├── [[openclaw/agents/builder/IDENTITY|Builder]] (L1 Observer — CTO / Dev e Sistemas)
+      ├── [[openclaw/agents/fisco/IDENTITY|Fisco]] (L1 Observer — Diretor Fiscal e Tributário)
+      ├── [[openclaw/agents/rh/IDENTITY|RH]] (L1 Observer — CHRO / Pessoas)
+      └── [[openclaw/agents/vault/IDENTITY|Vault]] (L1 Observer — CFO / Finanças)
+           └── [[openclaw/agents/vault/shared/ledger/IDENTITY|Ledger]] (sub-agente — Analista Sênior de Fluxo de Caixa)
 ```
 
 **Regra absoluta:** Nenhum agente subordinado fala diretamente com Pedro. Tudo passa pelo Kobe.

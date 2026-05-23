@@ -367,56 +367,118 @@ def build_llm_input(layer_def, package, recipient_name, prompt_content,
     return "\n".join(sections)
 
 
+def _is_openai_model(model: str) -> bool:
+    """Detecta se o nome do modelo pertence à família OpenAI (codex CLI)."""
+    m = (model or "").lower()
+    return (
+        m.startswith("gpt-")
+        or m.startswith("o3")
+        or m.startswith("o4")
+        or m.startswith("openai")
+    )
+
+
+def _call_claude(prompt_text, model, timeout):
+    """Invoca claude -p (Anthropic CLI). Retorna (stdout, stderr, returncode)."""
+    result = subprocess.run(
+        ["claude", "-p", "--model", model, "--allowedTools", ""],
+        input=prompt_text,
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+    )
+    return result.stdout, result.stderr, result.returncode
+
+
+def _call_codex(prompt_text, model, timeout):
+    """Invoca codex exec (OpenAI CLI). Lê resposta de --output-last-message."""
+    out_file = tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False)
+    out_file.close()
+    try:
+        result = subprocess.run(
+            [
+                "codex", "exec",
+                "-m", model,
+                "--skip-git-repo-check",
+                "--ephemeral",
+                "-s", "read-only",
+                "--output-last-message", out_file.name,
+            ],
+            input=prompt_text,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+        )
+        try:
+            with open(out_file.name, "r", encoding="utf-8") as f:
+                stdout = f.read()
+        except Exception:
+            stdout = ""
+        return stdout, result.stderr, result.returncode
+    finally:
+        try:
+            os.unlink(out_file.name)
+        except Exception:
+            pass
+
+
 def call_llm(prompt_text, config):
-    """Call LLM via claude CLI and return (output, model_used, error)."""
+    """Roteia para a CLI correta baseado no nome do modelo.
+
+    - Modelos `claude-*`, `sonnet`, `opus`  → `claude -p`
+    - Modelos `gpt-*`, `o3-*`, `o4-*`       → `codex exec` (OpenAI)
+
+    Retorna (output, model_used, error).
+    """
     model = config.get("llm_model", "sonnet")
     timeout = config.get("llm_timeout_seconds", 120)
     max_retries = config.get("llm_max_retries", 2)
+    use_codex = _is_openai_model(model)
 
     for attempt in range(1, max_retries + 1):
+        tmp_path = None
         try:
             with tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False) as tmp:
                 tmp.write(prompt_text)
                 tmp_path = tmp.name
 
-            result = subprocess.run(
-                [
-                    "claude", "-p",
-                    "--model", model,
-                    "--allowedTools", "",
-                ],
-                input=prompt_text,
-                capture_output=True,
-                text=True,
-                timeout=timeout,
-            )
-
-            os.unlink(tmp_path)
-
-            if result.returncode == 0 and result.stdout.strip():
-                return result.stdout.strip(), model, None
+            if use_codex:
+                stdout, stderr, rc = _call_codex(prompt_text, model, timeout)
             else:
-                err = result.stderr.strip() or f"returncode={result.returncode}, empty output"
+                stdout, stderr, rc = _call_claude(prompt_text, model, timeout)
+
+            if tmp_path:
+                try:
+                    os.unlink(tmp_path)
+                except Exception:
+                    pass
+
+            if rc == 0 and (stdout or "").strip():
+                return stdout.strip(), model, None
+            else:
+                err = (stderr or "").strip() or f"returncode={rc}, empty output"
                 if attempt < max_retries:
                     print(f"    LLM attempt {attempt} failed: {err}. Retrying...")
                     continue
                 return None, model, err
 
         except subprocess.TimeoutExpired:
-            try:
-                os.unlink(tmp_path)
-            except Exception:
-                pass
+            if tmp_path:
+                try:
+                    os.unlink(tmp_path)
+                except Exception:
+                    pass
             err = f"timeout ({timeout}s)"
             if attempt < max_retries:
                 print(f"    LLM attempt {attempt} timed out. Retrying...")
                 continue
             return None, model, err
         except Exception as e:
-            try:
-                os.unlink(tmp_path)
-            except Exception:
-                pass
+            if tmp_path:
+                try:
+                    os.unlink(tmp_path)
+                except Exception:
+                    pass
             return None, model, str(e)
 
     return None, model, "max retries exceeded"

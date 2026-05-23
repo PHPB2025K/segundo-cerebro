@@ -103,6 +103,20 @@ Contexto operacional canônico da conta ML. Atualizado quando algum atributo est
 
 **Implicação prática:** perder Gold pra Silver muda limite de anúncios (50k → 20k) e reduz subsídio de frete; perder Platinum pra Gold mantém limites mas perde prioridade Buy Box e acesso antecipado.
 
+## Decisão de modelos LLM no pipeline DSA (23/05/2026)
+
+Após benchmark tripla das 7 camadas com Sonnet 4.6, Opus 4.7 e GPT 5.5 no mesmo dia (22/05/2026, weekly.md já populado), decidido:
+
+| Cron | Modelo | Por quê |
+|---|---|---|
+| **Pipeline diário** (06:50 BRT, todo dia) | `claude-sonnet-4-6` | Análise densa, latência ~6 min, custo modesto. Empate técnico com Opus em condições iguais. |
+| **Consolidação semanal** (segunda 09:00 BRT — a criar) | `claude-opus-4-7` | Decomposição numérica + amarração com trajetória estratégica; 4 execuções/mês justificam custo extra. |
+| **Consolidação mensal** (1º do mês 09:00 BRT — a criar) | `claude-opus-4-7` | Síntese mensal precisa profundidade analítica; 1 execução/mês. |
+
+GPT 5.5 (via codex CLI, assinatura ChatGPT Pro 5x) **descartado** para o pipeline: análise mais rasa, hedging excessivo, bug de formatação (vazou "text" no início do bloco Slack).
+
+Trocar modelo: editar `llm_model` em `/root/segundo-cerebro/openclaw/agents/kobe/shared/daily-sales-analyst/config/daily-sales-analyst.json`.
+
 ## Pipeline DSA — onde isso entra (planejado, ainda não implementado)
 
 - **Coletor (`ml-snapshot-fetcher.py`)** — capturar `power_seller_status`, `real_level`, `protection_end_date`, métricas 60d e persistir em `ml_account_snapshots` (migration pendente).

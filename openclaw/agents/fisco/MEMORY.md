@@ -10,9 +10,10 @@ tags:
 
 # MEMORY.md - Long-Term Memory
 
-_Último update: 2026-05-21_
+_Último update: 2026-05-22_
 
 ## Estado operacional recente
+- 2026-05-22: Refresh OAuth do Bling manteve o padrão crítico pelo oitavo dia: Matriz OK nas execuções completas, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403, além de rodadas abortadas por timeout e bloqueadas por allowlist/política de execução. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-05-21: Refresh OAuth do Bling manteve o padrão crítico pelo sétimo dia: Matriz OK nas execuções completas, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403, além de bloqueios iniciais por allowlist e sessões abortadas antes de resposta consolidada. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-05-20: Refresh OAuth do Bling manteve o padrão crítico pelo sexto dia: Matriz OK nas execuções completas, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403 e uma rodada abortada antes de resultado fiscal útil. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-05-19: Refresh OAuth do Bling manteve o padrão crítico: Matriz OK nas execuções completas, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403, além de bloqueios/abortos de automação. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.

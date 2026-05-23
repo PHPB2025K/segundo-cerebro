@@ -12,11 +12,11 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-22 12:30 BRT — Operação Ana fechada 100% após goal forense + 7/7 testes E2E + bug bônus do notification_phone (era a própria Ana, não Pedro) corrigido. Probe ML Ads agendado pra checar amanhã 23/05._
+_Atualizado: 2026-05-23 23:30 BRT — Pipeline DSA ML maduro: modo híbrido (Sonnet+Opus L04/L05) + consolidações semanal/mensal Opus puro + memory ingest + sistema MercadoLíder com trajetória pra Platinum. Probe ADS resolvido (anomalia pontual; cron já no horário ok). Pendência ML rebaixada pra média prioridade._
 
-## 🔴 PRIORITÁRIA — Pipeline DSA / ML (verificar amanhã 23/05)
+## 🟢 Pipeline DSA / ML — resolvido em 23/05
 
-- [ ] **Verificar resultados do probe ML Ads em 23/05 às ~09:30 BRT.** Bug confirmado em 22/05: cron `daily-sales-ml-pipeline.sh` roda às 06:50 BRT mas a API ML Marketplace Advertising ainda não consolidou as métricas do dia anterior — todas as chamadas zeradas (spend=0, revenue=0) apesar de 11 campanhas ativas. Probe direto às 08:26 BRT já retornou R$ 341,72 cost / R$ 4.593,66 revenue para 21/05. Agendados 5 probes em 23/05 (07:00, 07:30, 08:00, 08:30, 09:00) gravando em `/var/log/daily-sales/ads-probe.log` e `/root/.openclaw/ml-ads-probe/`. **Ação após coleta:** identificar primeiro timestamp com `ads_available: true` → mover cron `50 6 * * *` em `/etc/crontab` da VPS para esse horário + ~10min de margem. Depois implementar sanity check em `build_ads_block` (`ml-snapshot-fetcher.py:580`) que marca `status: "suspect_zero_spend"` quando `campaigns_active > 0 && spend == 0` — double-safety para futuras falhas. Bloqueia leituras analíticas erradas em L05/L06 sobre "orgânico forte" inexistente.
+- ✅ ~~**Probe ML Ads agendado pra 23/05 09:30 BRT**~~ → **RESOLVIDO 23/05** — bug do dia 22 (ADS zerado às 03:50 BRT) foi anomalia pontual. 5 probes rodaram (em UTC, não BRT como planejado — VPS está em UTC) e todas as 5 amostras (04:00, 04:30, 05:00, 05:30, 06:00 BRT) mostraram ADS já consolidado pra 22/05. Cron do pipeline ML movido pra `50 9 * * *` UTC = 06:50 BRT real. Sanity check `build_ads_block.suspect_zero_spend` NÃO implementado (não foi mais necessário; pode ficar como rede de segurança futura).
 
 ## 🟢 Canggu/Ana — pipeline validado E2E 22/05 (operação fechada)
 

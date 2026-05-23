@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-22
-**Gerado em:** 2026-05-23T12:30:38.661446+00:00
+**Gerado em:** 2026-05-23T13:06:38.368814+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,8 +24,8 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Insight 3 usa 'cancellations_rate zero' — termo técnico de campo de API que poderia ser substituído por 'taxa de cancelamento zero' em próximos ciclos para alinhar com vocabulário operacional ML.
-- **Aviso:** Bloqueio sobre 'cauda de 5 anúncios em low_health fora do top 10' foi autorizado como agregado pela L05 mas L06 optou por omitir — decisão editorial registrada e válida, mas perde sinal de auditoria que poderia importar em próximos ciclos.
+- **Aviso:** Os 5 Menores do Gate 6 estão todos no sentido de hedging adicional para classificação 'risco latente' (insights 1 e 2) ou de substituição de termo/tempo verbal próximo (insight 3). A tese central, os dados factuais (R$3.228,78, R$4.622,03, health 0,75 e 0,71, 9 unidades, 1,5 dias, 47% vs 74%, 33%), os bloqueios e as prioridades estão integralmente preservados. Nenhum risco de induzir Yasmin a erro operacional foi identificado.
+- **Aviso:** A L05 usou linguagem assertiva ('é frágil', 'não está', 'está cobrindo', 'É o único sinal') para insights classificados como 'risco latente' — tecnicamente inconsistente com a regra de linguagem condicional obrigatória para risco latente. L06 corrigiu na direção certa ao adicionar 'parece', gerando os Menores de verbo modal. Em ciclos futuros, a L05 deveria usar linguagem condicional já no texto do insight quando a classificação é 'risco latente', eliminando a ambiguidade de fidelidade para a L06 e os Menores resultantes.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-22/yasmin/00-data-package.json`

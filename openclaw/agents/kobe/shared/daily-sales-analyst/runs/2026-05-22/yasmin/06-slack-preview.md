@@ -1,4 +1,4 @@
-<!-- llm_used=true model=claude-opus-4-7 fallback=false -->
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
 ### Mensagem Slack
 
 ```
@@ -6,7 +6,7 @@ DAILY SALES REPORT — MERCADO LIVRE — 22/05/2026 (Ontem)
 
 📊 VISÃO MERCADO LIVRE
 - Faturamento: R$ 4.622,03
-- Pedidos: 84
+- Pedidos: 84 pedidos
 - Ticket médio: R$ 55,02
 - Cancelamentos: 1
 
@@ -23,78 +23,106 @@ DAILY SALES REPORT — MERCADO LIVRE — 22/05/2026 (Ontem)
 - Kit 6 Canequinhas 100ml com Suporte de Madeira Acrílico — 2 pedidos
 
 🔍 ANÁLISE DA CONTA
-- O faturamento parece saudável (R$ 4.622,03, acima das médias de 30d e 60d), mas é o segundo dia seguido em que ADS carrega ~70% do GMV. Tirando ADS, o orgânico sustenta sozinho só ~R$ 1.393,00 — bem abaixo da média de 30d da conta. Não é ganho de demanda, é patamar mediado por mídia paga.
-- Os dois campeões em Full seguem com health abaixo de 0,85: Kit 4 Potes de Vidro Hermético 1050ml Tampa Azul-petróleo em 0,75 e Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha (este em Catálogo) em 0,71. Segundo ciclo idêntico. O pacote só traz valor pontual, então não dá pra cravar se está caindo — o que dá pra dizer é que a penalização orgânica persiste no vetor que carrega ~74% do volume da conta, e em Catálogo o dano é perda de Buy Box, mais grave que ranking comum.
-- O risco operacional real do dia não está no agregado: é o Kit 6 Canecas Porcelana Tulipa Lisa 250ml em Full, com 9 unidades pós-baixa e ritmo de ~6 pedidos/dia — cobertura prospectiva de ~1,5 dia. Sem reposição encaminhada, há ruptura em Full em D+1 ou D+2, o que dispara cancelamento automático ML e pressiona a reputação (hoje em cancellations_rate zero).
+- O resultado ficou dentro da banda histórica, mas o mecanismo que sustentou o GMV sugere fragilidade: pelo segundo dia seguido, ~70% do faturamento (R$ 3.228,78 de R$ 4.622,03) veio de ADS — com os dois principais anúncios em Full operando com penalização ML ativa: Kit 4 Potes de Vidro Hermético 1050ml Tampa Azul-petróleo (health 0,75) e Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha (health 0,71). O orgânico parece não estar sustentando esse patamar por conta própria; o ADS de Himmel parece estar cobrindo essa brecha com ROAS excepcional. Se amanhã o ADS share ficar acima de 60% pelo terceiro dia consecutivo, a hipótese de dependência estrutural vira tese confirmada e o alinhamento com Himmel precisa acontecer.
+- O Kit 6 Canecas Porcelana Tulipa Lisa 250ml está em modalidade de envio Full com apenas 9 unidades disponíveis no CD do ML — cobertura de aproximadamente 1,5 dias ao ritmo de 6 pedidos/dia. Em Full, pedidos além do estoque disponível geram cancelamento automático pelo ML; a conta está hoje com cancellations_rate zerado. Parece ser o único sinal do ciclo com urgência de horas: sem reposição confirmada, o segundo vetor de categoria pode desaparecer e o faturamento ficaria ainda mais concentrado na família de potes de vidro — cujos principais campeões em Full já carregam penalização ativa.
+- O mix de modalidade de envio do top 10 caiu para 47% Full ontem, bem abaixo da banda de 74% dos últimos 30 dias. Não é erosão estrutural: os Potes de Vidro Hermético Redondo com Tampa Kit 5 Peças — Tampa Preta (Cross-Docking) lideraram o dia com 20 pedidos — volume atípico para esse produto — puxando o mix sozinhos para baixo. A base de anúncios ativos tem apenas 33% em modalidade de envio Full: quando um item Cross-Docking rota para o topo, o mix do dia inverte naturalmente. Não há problema no mix; houve rotação pontual de produto.
 
 🎯 PRIORIDADES DO DIA
-- Yasmin: checar a direção da health dos dois campeões em Full com penalização (Kit 4 Potes 1050ml Azul-petróleo em 0,75 e Jogo Potes 5 Peças Claro — Tampa Vermelha, Catálogo, em 0,71), comparando com o valor pontual de 22/05 registrado na memória. Segundo ciclo idêntico já é padrão, mas só a direção define se a erosão orgânica está acelerando ou contida — em Catálogo a consequência é perda de Buy Box. Confirmar/refutar em 24h: health estável ou subindo = manter observação; health caindo em qualquer um = alinhar com Himmel sobre cobertura ADS preventiva no item afetado. Escalar se health cair em qualquer um OU permanecer abaixo de 0,80 por mais 2 dias combinada com terceiro ciclo de ADS share ≥60% — aí abrir conversa com Kobe antes da janela Platinum fechar.
-- Yasmin: verificar se a reposição do Kit 6 Canecas Porcelana Tulipa Lisa 250ml em Full já foi encaminhada (9 unidades pós-baixa, ritmo ~6 pedidos/dia). Único risco operacional imediato do dia; ruptura em Full em D+1 ou D+2 dispara cancelamento automático ML. Confirmar/refutar em 24h: reposição encaminhada = risco neutralizado; sem reposição = considerar pausa controlada do anúncio antes do cancelamento automático ML. Escalar se sem reposição em 24h, registrar como variável confundidora para a leitura dos próximos dias.
-- Yasmin: registrar o ADS share do dia (69,9%, R$ 3.228,78 de R$ 4.622,03, ROAS 10,87x, ACOS 4,57%) como segundo ponto da série iniciada em 22/05, sem acionar Himmel para mexer em verba ou segmentação. Campanha eficiente em zona dominante, mas precisa do terceiro ciclo para confirmar dependência estrutural; mexer agora introduz variável num sistema sem leitura fechada e compromete o ritmo rumo ao Platinum. Confirmar/refutar no próximo ciclo: terceiro dia consecutivo com share ≥60% = risco confirmado como tese estrutural; share caindo para <60% sem alteração de spend = orgânico está reagindo e a tese de dependência enfraquece. Escalar se terceiro ciclo confirmado com health mantida em penalização — aí abrir conversa com Kobe sobre dependência estrutural antes da janela Platinum fechar.
+- Yasmin: verificar o status de reposição agendada no CD do ML para o Kit 6 Canecas Porcelana Tulipa Lisa 250ml (9 unidades disponíveis em Full pós-pedidos do dia). Em modalidade de envio Full, ruptura gera cancelamento automático pelo ML e elimina o segundo vetor de categoria da conta — urgência de horas. Confirmar/refutar por: reposição com ETA dentro de 24h neutraliza o risco; ausência de confirmação amanhã torna ruptura iminente — registrar como variável confundidora para não interpretar queda de canecas nos próximos ciclos como movimento orgânico. Escalar se: sem reposição confirmada em 24h — acionar abastecimento e registrar o evento para os próximos ciclos.
+- Yasmin: registrar o ADS share de hoje (~70% do GMV — R$ 3.228,78 de R$ 4.622,03) e os valores de health dos dois campeões Full — Kit 4 Potes de Vidro Hermético 1050ml Tampa Azul-petróleo (0,75) e Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha (0,71) — como segundo ponto explícito da série de observação do gatilho estrutural. Amanhã é o terceiro ciclo consecutivo potencial: se ADS share ≥60% e health de ambos abaixo de 0,80, a hipótese de dependência estrutural vira tese confirmada. Confirmar/refutar por: terceiro ciclo confirmado aciona alinhamento com Himmel; ADS share <55% ou health ≥0,85 em qualquer dos dois enfraquece a hipótese e retorna à postura de observação. Escalar se: terceiro ciclo confirmado — Yasmin alinha com Himmel sobre se a proporção ~70% de ADS é estratégia deliberada ou ausência de orgânico saudável; se o Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha (anúncio em Catálogo) registrar queda adicional de health, acionar Himmel imediatamente para cobertura preventiva de Buy Box.
+- Yasmin: solicitar ao data builder a série temporal de health (D-7 a D-1) para o Kit 4 Potes de Vidro Hermético 1050ml Tampa Azul-petróleo e o Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha. Sem essa série, não dá para saber se a penalização está se aprofundando ou estabilizando — e para o Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha (anúncio em Catálogo), direção descendente contínua eleva o risco de perda de Buy Box de hipótese para risco ativo. Confirmar/refutar por: série D-7 com queda consistente antes dos 2 ciclos visíveis muda a urgência tática imediatamente; valores estáveis ou crescentes sustentam a postura de observação até o terceiro ciclo. Escalar se: não aplicável — pedido técnico ao data builder; sem ação de escalonamento operacional neste momento.
 
 Dia analisado: 22/05/2026 — 00:00–23:59 BRT
 ```
 
+---
+
 ### Respeito de bloqueios
 
-- **Item bloqueado:** Afirmar que a health dos campeões em Full está "caindo" ou "estável".
-  - **Origem do bloqueio:** L05 Condensadora
-  - **Motivo:** confiança baixa / dado ausente — pacote só traz valor pontual, sem série temporal D-7 a D-1
-  - **Agregado autorizado:** sim, "penalização orgânica persiste no vetor que carrega ~74% do volume da conta" / "permaneceu abaixo de 0,85 no snapshot pontual"
-  - **Tratamento aplicado:** substituído por linguagem de indício ("não dá pra cravar se está caindo", "persiste")
-  - **Aparece na mensagem final:** não, como afirmação direcional; sim, como ressalva explícita
+- **Item bloqueado:** Afirmação de health "estabilizando" ou "estável" como tendência confirmada
+- **Origem do bloqueio:** L05 Condensadora
+- **Motivo:** estabilidade observada em apenas 2 ciclos consecutivos com valores idênticos; série D-7 a D-2 indisponível — dois pontos não distinguem estabilização de queda anterior não detectada
+- **Agregado autorizado:** não
+- **Tratamento aplicado:** preservada incerteza com linguagem de indício; afirmação de estabilidade omitida; texto da prioridade 3 preserva "não dá para saber se a penalização está se aprofundando ou estabilizando"
+- **Aparece na mensagem final:** não como afirmação de tendência confirmada
 
-- **Item bloqueado:** Afirmar que Himmel deslocou foco de ADS para Cross-Docking ou para os campeões em Full com health degradada.
-  - **Origem do bloqueio:** L05 Condensadora
-  - **Motivo:** dado ausente — não há breakdown de revenue_ads por platform_item_id
-  - **Agregado autorizado:** não
-  - **Tratamento aplicado:** omitido — nenhuma afirmação sobre alocação ADS por item na mensagem
-  - **Aparece na mensagem final:** não
+---
 
-- **Item bloqueado:** Citar "mix de modalidade de envio mudou para Cross-Docking" ou tratar os 47,1% Full do top10 como mudança estrutural.
-  - **Origem do bloqueio:** L05 Condensadora
-  - **Motivo:** divergência resolvida — fulfillment_mix_30d/7d (~74% Full) prevalece como referência estrutural
-  - **Agregado autorizado:** não
-  - **Tratamento aplicado:** omitido — modalidade de envio não citada na VISÃO nem na ANÁLISE
-  - **Aparece na mensagem final:** não
+- **Item bloqueado:** Afirmação de que Himmel está priorizando itens Cross-Docking da família IMB501 em detrimento dos campeões Full penalizados
+- **Origem do bloqueio:** L05 Condensadora
+- **Motivo:** hipótese em aberto — breakdown de revenue_ads por platform_item_id indisponível no pacote; liderança Cross-Docking pode ser demanda orgânica espontânea; os dois mecanismos são indistinguíveis sem o dado
+- **Agregado autorizado:** não
+- **Tratamento aplicado:** hipótese omitida integralmente; ADS share citado apenas como total agregado confirmado (R$ 3.228,78 / R$ 4.622,03)
+- **Aparece na mensagem final:** não
 
-- **Item bloqueado:** Usar o display_name "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas" sem diferenciar quantidade (6 Unidades vs 10 Unidades).
-  - **Origem do bloqueio:** L05 Condensadora
-  - **Motivo:** colisão de display_name entre MLB4676726433 e MLB4676751119
-  - **Agregado autorizado:** sim, diferenciar por quantidade no título ML
-  - **Tratamento aplicado:** usado display_short da L00 que já diferencia ("10 Unidades" vs "6 Unidades")
-  - **Aparece na mensagem final:** sim, como "Kit 10 Potes Herméticos 1050ml Azul-petróleo 10 Unidades" e "Kit 10 Potes Herméticos 1050ml Azul-petróleo 6 Unidades"
+---
 
-- **Item bloqueado:** Citar quais são os 5 anúncios em low_health fora do top 10.
-  - **Origem do bloqueio:** L05 Condensadora
-  - **Motivo:** dado ausente — account_overview entrega só contador, não IDs
-  - **Agregado autorizado:** sim, "cauda de 5 anúncios em penalização orgânica fora dos campeões"
-  - **Tratamento aplicado:** omitido da mensagem final por opção editorial (não citado, nem como agregado, para preservar foco nos 3 insights centrais)
-  - **Aparece na mensagem final:** não
+- **Item bloqueado:** Citação dos produtos Kit 10 Potes Herméticos 1050ml pelo display_name sem qualificador de quantidade
+- **Origem do bloqueio:** L04 Granular / L05 Condensadora
+- **Motivo:** colisão de display_name confirmada entre MLB4676726433 (KIT10YW1050, 10 Unidades) e MLB4676751119 (KIT6YW1050, 6 Unidades) — display_name idêntico para dois produtos distintos; citação sem sufixo cria ambiguidade com impacto prático para Yasmin
+- **Agregado autorizado:** não aplicável — display_short de cada produto já inclui o qualificador de quantidade
+- **Tratamento aplicado:** display_short usado verbatim para ambos — "Kit 10 Potes Herméticos 1050ml Azul-petróleo 10 Unidades" e "Kit 10 Potes Herméticos 1050ml Azul-petróleo 6 Unidades"
+- **Aparece na mensagem final:** sim, com qualificador de quantidade incluído em ambos
 
-- **Item bloqueado:** Citar platform_item_id (MLB...) na mensagem.
-  - **Origem do bloqueio:** L05 Condensadora
-  - **Motivo:** regra ML — nenhum MLB visível no Slack
-  - **Agregado autorizado:** sim, substituir por nome comercial
-  - **Tratamento aplicado:** substituído por nome comercial em todas as citações (Análise, Prioridades, Top Produtos)
-  - **Aparece na mensagem final:** não como MLB; sim como nome comercial
+---
+
+- **Item bloqueado:** IDs, nomes ou características dos 5 anúncios com low_health fora do top 10
+- **Origem do bloqueio:** L05 Condensadora
+- **Motivo:** dados indisponíveis no pacote — account_overview entrega apenas count agregado (7 total, 2 identificados no top 10); qualquer caracterização dos 5 restantes seria invenção
+- **Agregado autorizado:** não
+- **Tratamento aplicado:** omitido integralmente
+- **Aparece na mensagem final:** não
+
+---
+
+- **Item bloqueado:** Breakdown de ADS por anúncio individual (spend ou revenue_ads por platform_item_id)
+- **Origem do bloqueio:** L05 Condensadora
+- **Motivo:** limitação estrutural documentada do ml_snapshot v2 — dado não disponível no pacote
+- **Agregado autorizado:** não — apenas total agregado confirmado
+- **Tratamento aplicado:** apenas totais confirmados citados (R$ 3.228,78 revenue_ads / R$ 4.622,03 GMV); nenhum número por anúncio
+- **Aparece na mensagem final:** não (breakdown individual); sim (totais agregados, como fato confirmado)
+
+---
+
+- **Item bloqueado:** SKUs crus (IMB501P, IMB501V, IMB501C, TL6250, KIT10YW1050, KIT6YW1050, demais)
+- **Origem do bloqueio:** L05 Condensadora
+- **Motivo:** regra ML — SKU cru não vai ao Slack
+- **Agregado autorizado:** não aplicável
+- **Tratamento aplicado:** display_short + confirmed_variation_attributes usados em todas as citações; nenhum SKU cru na mensagem
+- **Aparece na mensagem final:** não
+
+---
 
 ### Decisões de formatação
 
-- Remoção de metadados internos (`padrao`, `base`, `classificacao`) — metadados de pipeline, não vão para Slack.
-- Preservação de ressalva por classificação `risco latente` nos 3 insights — uso de "parece", "não dá pra cravar", "indício" para manter nuance.
-- Substituição de referência interna por linguagem externa — "L04 confirma..." vira afirmação direta sem citar camadas.
-- Cabeçalho sem nome de Pedro e sem nome de Yasmin, conforme regra estrutural.
-- Atribuição de Yasmin como responsável fixa nas 3 prioridades (L05 não atribui responsável — L06 atribui).
-- Omissão de modalidade de envio na seção VISÃO MERCADO LIVRE — `fulfillment_mix_yesterday_top10` cobre só ~80% dos pedidos (68 de 84) e a L05 marcou bloqueio sobre tratar isso como dado estrutural.
-- Cancelamentos incluídos na VISÃO (1) por estar disponível e relevante para contexto (relacionado à ressalva de reputação na análise).
-- Top Produtos sem faturamento por produto — pacote não traz receita validada por variação, então formato é "[nome] — [pedidos] pedidos" conforme regra dura.
-- Consolidação por variação (não por família) na família IMB501 — Tampa Preta, Tampa Vermelha e Tampa Cinza aparecem separadas, cada uma com seu volume.
-- Uso de `display_short` da L00 verbatim para todos os 10 itens, conforme regra única.
-- Inclusão de `confirmed_variation_attributes` no nome final dos 3 itens IMB501 (Tampa Preta, Tampa Vermelha, Tampa Cinza) no formato `[display_short] — [atributo confirmado]`.
-- Quebra de frases longas no insight 2 e insight 3 da Análise para melhorar legibilidade, sem mudar tese nem classificação.
-- Diferenciação de Catálogo (perda de Buy Box) vs Clássico (ranking de categoria) preservada no insight 2, conforme L05.
-- Terminologia "modalidade de envio" usada (não "fulfillment") quando referência a Full/Cross-Docking, conforme regra.
-- Risco prospectivo preservado no insight 3 (cobertura ~1,5 dia, ruptura em D+1/D+2), sem cair em formulação retrospectiva ("pedidos sem cobertura").
-- Vocabulário ML preservado: "reputação" como métrica separada, "MercadoLíder Platinum" por extenso, "Catálogo", "Buy Box", "health", "Cross-Docking", "Full".
-- Sem decisões ambíguas de divergência cross-layer — nomes usados na Análise/Prioridades batem com os usados no Top Produtos (Kit 4 Potes 1050ml Azul-petróleo / Jogo Potes 5 Peças Claro — Tampa Vermelha / Kit 6 Canecas Porcelana Tulipa Lisa 250ml).
+- Metadados internos (`padrao`, `base`, `classificacao`) removidos — são campos de pipeline; Yasmin não precisa saber que um insight é "padrão B" ou "combinação (Estratégica, Operacional, Granular)".
+
+- Insights 1 e 2 classificados como "risco latente" na L05 — linguagem de indício preservada: "sugere fragilidade", "parece não estar sustentando", "parece estar cobrindo", "pode desaparecer". Dados factuais dentro dos insights (R$ 3.228,78, health 0,75, health 0,71, 9 unidades, 1,5 dias) citados como fatos confirmados; as inferências estruturais sobre causa e consequência mantidas em modo de indício.
+
+- Insight 3 classificado como "fato" na L05 — escrito de forma direta, sem hedging: "Não é erosão estrutural", "houve rotação pontual de produto".
+
+- Modalidade de envio omitida da seção VISÃO MERCADO LIVRE — dado de `fulfillment_mix_yesterday_top10` cobre apenas os top 10 itens do dia (~68 de 84 pedidos, ~81%), insuficiente para representar o dia como dado objetivo sem ressalva; modalidade de envio tratada exclusivamente na ANÁLISE DA CONTA conforme trazido pela Condensadora.
+
+- Nomes de camadas internas suprimidos — referências a "a Estratégica", "a Granular", "a Condensadora" substituídas por linguagem neutra de conteúdo; nenhum bastidor de pipeline citado.
+
+- Responsável fixo Yasmin atribuído a todas as 3 prioridades — a L05 não atribui responsável; a L06 atribui conforme regra de pipeline.
+
+- Simplificação de nomes de produto no Top Produtos (item a item):
+  - IMB501P: display_short "Potes de Vidro Hermético Redondo com Tampa Kit 5 Peças" + atributo confirmado "Tampa Preta" → "Potes de Vidro Hermético Redondo com Tampa Kit 5 Peças — Tampa Preta". Ruído SEO do raw_title ("Preto" no título como cor de peça, não de tampa) absorvido corretamente pelo display_short.
+  - KIT4YW1050: display_short "Kit 4 Potes de Vidro Hermético 1050ml Tampa Azul-petróleo" + sem atributos confirmados → usado verbatim. Ruído SEO do raw_title ("4 Travas Vedação") removido pelo display_short.
+  - IMB501V: display_short "Jogo Potes de Vidro 5 Peças Claro" + atributo confirmado "Tampa Vermelha" → "Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha". Ruído SEO do raw_title ("Mantimentos Marmita") removido pelo display_short.
+  - IMB501C: display_short "Potes de Vidro Hermético Redondo com Tampa Kit 5 Peças" + atributo confirmado "Tampa Cinza" → "Potes de Vidro Hermético Redondo com Tampa Kit 5 Peças — Tampa Cinza". Mesmo display_short base que IMB501P; diferenciação garantida pelo atributo de variação.
+  - TL6250: display_short "Kit 6 Canecas Porcelana Tulipa Lisa 250ml" + sem atributos confirmados → usado verbatim. Ruído SEO do raw_title ("Coloridas Xícara") removido pelo display_short.
+  - KIT10YW1050: display_short "Kit 10 Potes Herméticos 1050ml Azul-petróleo 10 Unidades" + sem atributos confirmados → usado verbatim. Qualificador "10 Unidades" presente; colisão de display_name com KIT6YW1050 resolvida.
+  - CLR002: display_short "Kit de 6 Canecas de Porcelana Lisa Reta Para Chá e Café Colorida 200ml Caneca Colorida" + sem atributos confirmados → usado verbatim. Ruído SEO residual ("Para Chá e Café Colorida", "Caneca Colorida") presente no display_short entregue pelo data builder; não alterado conforme regra de uso verbatim. Display_name mais limpo ("Kit 6 Canecas Lisas 200ml") não usado pois display_short está preenchido.
+  - KIT6YW1050: display_short "Kit 10 Potes Herméticos 1050ml Azul-petróleo 6 Unidades" + sem atributos confirmados → usado verbatim. Qualificador "6 Unidades" presente; colisão de display_name com KIT10YW1050 resolvida.
+  - KIT10YW320: display_short "Kit 10 Potes Herméticos 320ml Azul-petróleo 10 Unidades" + sem atributos confirmados → usado verbatim. Ruído SEO do raw_title ("Refratário 4 Travas Budamix") removido pelo display_short.
+  - 914C_BA: display_short "Kit 6 Canequinhas 100ml com Suporte de Madeira Acrílico" + sem atributos confirmados → usado verbatim. Zero à esquerda normalizado ("Kit 06" → "Kit 6") pelo display_short.
+
+- Divergência de denominação cross-layer: nenhuma — nomes usados na ANÁLISE DA CONTA e PRIORIDADES DO DIA são idênticos aos display_short + atributos confirmados do Top Produtos em todos os casos. Convergência cross-section garantida.
+
+- Memória para amanhã (progresso MercadoLíder Platinum, pedidos técnicos pendentes ao data builder, colisão de display_name KIT10/KIT6, 5 anúncios low_health invisíveis) não incluída na mensagem Slack — campo exclusivo para próximo ciclo analítico, conforme estrutura da L05.
+
+- Top Produtos listados em ordem decrescente por pedidos: 20, 11, 10, 7, 6, 4, 3, 3, 2, 2. Produtos com empate em pedidos (CLR002 e KIT6YW1050, ambos 3 pedidos; KIT10YW320 e 914C_BA, ambos 2 pedidos) mantidos na ordem original do pacote validado.
+
+- Alertas de confiança nível "media" — não dispara ressalva global de baixa confiança; linguagem de indício aplicada apenas nos insights classificados como "risco latente", conforme regra por classificação.

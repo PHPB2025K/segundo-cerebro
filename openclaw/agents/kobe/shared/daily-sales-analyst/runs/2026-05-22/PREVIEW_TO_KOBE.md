@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-22
-**Gerado em:** 2026-05-23T07:16:44.454430+00:00
+**Gerado em:** 2026-05-23T12:30:38.661446+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,8 +24,8 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** L05 Insight 1 usa linguagem assertada ('está deteriorado', 'ADS respondeu por 69,8% do GMV para compensar') para classificacao 'risco latente' — inconsistência interna da L05 entre texto e classificacao. A L06 corrigiu adequadamente para 'dá sinais de deterioração' e 'ADS pode estar compensando', alinhando com a classificacao. Sinalizar para revisão do prompt L05: texto deve usar linguagem condicional quando classificacao = 'risco latente'.
-- **Aviso:** L06 Decisões de formatação não registrou explicitamente a omissão de '-2,1% vs mesmos dias' do Insight 1. Para auditoria futura, toda omissão de dado numérico presente na L05 deve ser declarada e justificada no log, mesmo quando não bloqueante.
+- **Aviso:** Insight 3 usa 'cancellations_rate zero' — termo técnico de campo de API que poderia ser substituído por 'taxa de cancelamento zero' em próximos ciclos para alinhar com vocabulário operacional ML.
+- **Aviso:** Bloqueio sobre 'cauda de 5 anúncios em low_health fora do top 10' foi autorizado como agregado pela L05 mas L06 optou por omitir — decisão editorial registrada e válida, mas perde sinal de auditoria que poderia importar em próximos ciclos.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-22/yasmin/00-data-package.json`

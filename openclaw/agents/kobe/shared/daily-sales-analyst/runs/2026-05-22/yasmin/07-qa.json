@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "Nenhum gate crítico falhou e nenhum Maior foi detectado. Um único problema Menor identificado no Gate 6: a referência quantitativa '-2,1% vs mesmos dias' presente no Insight 1 da L05 foi omitida no Slack sem registro explícito em Decisões de formatação. O número contextualiza a afirmação 'dentro da banda esperada para sexta-feira' mas não é diretamente acionável para as ações do dia (check health / check stock), portanto não configura Maior pela Diretriz Pedro. Adicionalmente, a suavização de 'está deteriorado' (L05) para 'dá sinais de deterioração' (L06) é coerente com a classificacao 'risco latente' e não constitui violação — ao contrário, corrige uma inconsistência interna da L05. Regra de agregação aplicada: 0 Maiores + 1 Menor (1–5) → APROVADO COM RESSALVA.",
+  "motivo": "Mensagem fiel à L05 nos três insights e três prioridades, com ressalvas de classificação ('risco latente') preservadas via linguagem condicional ('parece', 'não dá pra cravar'). Estrutura Slack correta nas 6 seções, Top Produtos consolidado por variação com confirmed_variation_attributes aplicados, bloqueios todos respeitados. Detectado 1 Maior no Gate 10 (palavra 'fulfillment' não pode aparecer no Slack — mas após releitura cuidadosa, a palavra não aparece na mensagem final, apenas no log de Decisões de formatação, que é meta-bloco e não vai ao Slack). Detectadas inconsistências menores (cabeçalho cita 'cancellations_rate zero' que é da reputação acumulada, podendo confundir com cancelamento do dia=1; insight 2 menciona '~74% do volume da conta' que é dado da L01 não citado explicitamente na L05 mas derivável; prioridade 2 com 'escalar se' redundante). Aplicada regra: 0 Maiores + 3 Menores → APROVADO COM RESSALVA. Envio para Pedro autorizado; envio direto a Yasmin segue bloqueado por governança.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -9,43 +9,64 @@
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
     "gate_5_top_produtos": "OK",
-    "gate_6_analise_conta": "RESSALVA",
+    "gate_6_analise_conta": "OK",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
-    "gate_10_tom_utilidade": "OK",
+    "gate_10_tom_utilidade": "RESSALVA",
     "gate_11_padrao_numerico_formatacao": "OK",
-    "gate_12_consistencia_ml_snapshot": "OK"
+    "gate_12_consistencia_ml_snapshot": "RESSALVA"
   },
   "contagem_severidade": {
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 1,
-    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 1 Menor (1–5, não sistêmico) → APROVADO COM RESSALVA"
+    "menores": 3,
+    "regra_agregacao_aplicada": "0 Maiores + 1-5 Menores → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
       "severidade": "Menor",
-      "gate": "6 — Análise da Conta (fidelidade à L05)",
-      "texto_atual": "O GMV ficou dentro da banda esperada para sexta-feira, mas o mecanismo que entregou esse resultado dá sinais de deterioração",
-      "texto_esperado": "O GMV ficou dentro da banda esperada para sexta-feira (-2,1% vs mesmos dias), mas o mecanismo interno que entregou esse resultado está deteriorado",
-      "regra_violada": "Gate 6 / Diretriz Pedro 2026-05-17: número ou referência presente na L05 foi omitido sem registro em Decisões de formatação. O '-2,1% vs mesmos dias' fundamenta a afirmação 'dentro da banda esperada' com dado verificável. Classificado como Menor (não Maior) porque o número é contexto de situação, não insumo direto para as ações do dia (verificar health / verificar reposição), e a tese central e as prioridades permanecem intactas. A L06 deveria ter registrado explicitamente a omissão em Decisões de formatação.",
+      "gate": "Gate 10 — Tom e utilidade",
+      "texto_atual": "pressiona a reputação (hoje em cancellations_rate zero)",
+      "texto_esperado": "pressiona a reputação (hoje com taxa de cancelamento zero)",
+      "estado_atual": "Insight 3 da Análise usa o termo técnico interno 'cancellations_rate' que é nome de campo do ml_snapshot, não vocabulário operacional ML.",
+      "estado_esperado": "Vocabulário operacional puro — 'taxa de cancelamento' ou similar, sem jargão de campo de API.",
+      "regra_violada": "Gate 10 — não usar jargão interno / IDs técnicos indevidos",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "vetor que carrega ~74% do volume da conta",
+      "texto_esperado": "vetor que carrega a maior parte do volume da conta (ou referência explícita autorizada pela L05)",
+      "estado_atual": "Insight 2 do Slack traz o número ~74% que vem da L01 (fulfillment_mix_30d/7d) mas não é citado explicitamente nos insights da L05.",
+      "estado_esperado": "Manter fidelidade estrita à L05 — o insight 2 da L05 fala em '~74% do volume da conta' sim (verificado: 'penalização orgânica persiste no vetor que carrega ~74% do volume da conta'), então o número é fiel. Risco baixo, mas ainda é número que pode confundir Yasmin sem contexto de janela.",
+      "regra_violada": "Gate 6 — fidelidade preservada mas com número que poderia vir contextualizado",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 12 — Consistência ml_snapshot",
+      "texto_atual": "fulfillment_mix_yesterday_top10 cobre 68 de 84 pedidos (~81%)",
+      "texto_esperado": "n/a — observação de auditoria",
+      "estado_atual": "Cobertura do mix yesterday top10 é 81% (68/84), o que está acima do limite de 70% que dispararia bloqueio crítico — L06 corretamente omitiu da VISÃO. Decisão de formatação registra '~80%', consistente.",
+      "estado_esperado": "Decisão registrada e tratamento adequado — apenas registro de auditoria.",
+      "regra_violada": "nenhuma violação efetiva — observação para auditoria",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "L05 Insight 1 usa linguagem assertada ('está deteriorado', 'ADS respondeu por 69,8% do GMV para compensar') para classificacao 'risco latente' — inconsistência interna da L05 entre texto e classificacao. A L06 corrigiu adequadamente para 'dá sinais de deterioração' e 'ADS pode estar compensando', alinhando com a classificacao. Sinalizar para revisão do prompt L05: texto deve usar linguagem condicional quando classificacao = 'risco latente'.",
-    "L06 Decisões de formatação não registrou explicitamente a omissão de '-2,1% vs mesmos dias' do Insight 1. Para auditoria futura, toda omissão de dado numérico presente na L05 deve ser declarada e justificada no log, mesmo quando não bloqueante."
+    "Insight 3 usa 'cancellations_rate zero' — termo técnico de campo de API que poderia ser substituído por 'taxa de cancelamento zero' em próximos ciclos para alinhar com vocabulário operacional ML.",
+    "Bloqueio sobre 'cauda de 5 anúncios em low_health fora do top 10' foi autorizado como agregado pela L05 mas L06 optou por omitir — decisão editorial registrada e válida, mas perde sinal de auditoria que poderia importar em próximos ciclos."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "CLR002 (MLB6232315532): display_short no data package retém 'Caneca Colorida' ao final — 'Kit de 6 Canecas de Porcelana Lisa Reta Para Chá e Café Colorida 200ml Caneca Colorida'. Embora o termo não conste na lista específica de ruído SEO bloqueante do Gate 5 (Refratário, Vedação, Mantimentos Marmita, Coloridas Xícara, Mini Café Casa, 4 Travas, Budamix), o padrão indica que simplify_ml_title pode não estar cobrindo redundâncias SEO da família CLR. L06 usou verbatim o display_short conforme protocolo — responsabilidade de correção é do data builder. Investigar na próxima versão.",
-    "Série temporal de health ausente do pacote para MLB4073003575 (health=0,75) e MLB3288536143 (health=0,71): limitação estrutural que deixou a pergunta mais crítica da L03 (direção do health — caindo, estável ou em recuperação) sem resposta, mantendo o risco estrutural da L01 como hipótese aberta. Solicitar ao data builder inclusão de histórico D-7 de health para pelo menos os top 5 anúncios em modalidade Full.",
-    "Breakdown de revenue_ads por platform_item_id ausente do ads_summary: impede confirmar ou refutar hipótese de priorização ADS por modalidade de envio (evidência conflitante registrada na L04, classificada como hipótese em aberto). Solicitar ao data builder inclusão de revenue_ads_by_item no próximo ciclo para pelo menos os 10 itens do top.",
-    "KIT10YW320 (MLB6739241224): available_quantity=6 pós-baixa em Cross-Docking, cobertura prospectiva de ~3 dias ao ritmo de 2 pedidos/dia. Corretamente não incluído nas prioridades do Slack (L05 não incluiu), mas merece monitoramento no próximo ciclo. Dinâmica Cross-Docking em ruptura é menos crítica que Full, mas o produto está no top 10."
+    "Solicitação técnica ao data builder (breakdown de revenue_ads por platform_item_id e série temporal de health D-7 a D-1) segue pendente do ciclo anterior — limita capacidade analítica de confirmar/refutar hipóteses centrais. Não bloqueia esta mensagem mas merece priorização no roadmap do fetcher.",
+    "Colisão de display_name entre MLB4676726433 (KIT10YW1050) e MLB4676751119 (KIT6YW1050) persiste no pacote — L06 contornou usando display_short que já diferencia por quantidade, mas a inconsistência na fonte deveria ser corrigida no data builder.",
+    "Cabeçalho da VISÃO mostra Cancelamentos: 1 (do dia) e Insight 3 menciona 'cancellations_rate zero' (da reputação acumulada) — são métricas diferentes (dia vs janela de reputação) e poderiam confundir Yasmin se lidas em sequência. L06 não esclareceu a diferença. Considerar em próximo ciclo deixar explícito que são dois eixos."
   ],
   "llm_used": true,
-  "model": "sonnet",
+  "model": "claude-opus-4-7",
   "fallback": false
 }

@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-22
-**Gerado em:** 2026-05-23T13:27:24.975712+00:00
+**Gerado em:** 2026-05-23T14:12:31.056643+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,7 +24,8 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** No próximo ciclo, exigir que o log de Respeito de bloqueios registre origem dupla quando a L05 apenas propaga bloqueio primário da L04.
+- **Aviso:** Gate 6 — Bullet 1 da Análise omitiu 'o anúncio é Full', que é termo analítico-chave no L05. Nas próximas execuções, o L06 deve preservar a declaração explícita de modalidade de envio nos bullets da Análise quando o L05 a incluir como parte da tese.
+- **Aviso:** Gate 11 — 'R$296,96' sem espaço nas Prioridades. O L06 deve garantir espaço entre 'R$' e o valor numérico em todas as ocorrências da mensagem, incluindo dentro de bullets de Prioridades que listam métricas de ADS.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-22/yasmin/00-data-package.json`

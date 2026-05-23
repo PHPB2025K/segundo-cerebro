@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem pode ser enviada com segurança operacional: data, estrutura, destinatário, métricas, Top Produtos, análise e prioridades estão fiéis às camadas anteriores e respeitam os bloqueios materiais. A ressalva fica no Gate 8: o log de bloqueios registra os bloqueios herdados da L05, mas não explicita diretamente a origem primária L04 para os dois bloqueios de identidade dos kits YW1050; como os itens foram tratados corretamente na mensagem final, a falha é documental e não bloqueia envio pela regra de agregação.",
+  "motivo": "A mensagem passou por todos os 12 gates sem Críticos e sem Maiores. Foram encontrados 2 Menores isolados: (1) Gate 6 — o bullet 1 da Análise omitiu o termo analítico-chave 'Full' que o L05 declarou explicitamente ('o anúncio é Full'), embora a informação seja recuperada na Prioridade 1; (2) Gate 11 — formato monetário inconsistente entre 'R$ 4.622,03' (com espaço) na VISÃO e 'R$296,96' (sem espaço) nas Prioridades. Regra de agregação aplicada: 0 Maiores + 2 Menores (não sistêmicos) → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -9,41 +9,52 @@
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
     "gate_5_top_produtos": "OK",
-    "gate_6_analise_conta": "OK",
+    "gate_6_analise_conta": "RESSALVA",
     "gate_7_prioridades": "OK",
-    "gate_8_bloqueios_confianca_logs": "RESSALVA",
+    "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_11_padrao_numerico_formatacao": "RESSALVA",
     "gate_12_consistencia_ml_snapshot": "OK"
   },
   "contagem_severidade": {
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 1,
-    "regra_agregacao_aplicada": "0 Maiores + 1 Menor → APROVADO COM RESSALVA"
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Maiores + 2 Menores (não sistêmicos) → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
       "severidade": "Menor",
-      "gate": "Gate 8 — Bloqueios, confiança e logs da Slack Writer",
-      "texto_atual": "Origem do bloqueio: L05 Condensadora",
-      "texto_esperado": "Origem do bloqueio: L04 Granular e L05 Condensadora",
-      "estado_atual": "Os dois bloqueios de identidade dos kits YW1050 aparecem no log e foram respeitados na mensagem final, mas o log atribui a origem operacional apenas à L05, apesar de a fonte primária estar em L04.bloqueios_para_slack.",
-      "estado_esperado": "O log deveria explicitar que os bloqueios vieram da L04 e foram carregados pela L05, mantendo rastreabilidade completa.",
-      "regra_violada": "Cada bloqueio das fontes primárias L04/L05 deve aparecer no log com origem, motivo, tratamento aplicado e presença na mensagem final.",
+      "gate": "Gate 6 — Análise da Conta (fidelidade à L05)",
+      "texto_atual": "O urgente do dia é o Kit 6 Canecas Porcelana Tulipa Lisa 250ml: ficou com 9 unidades depois de vender 6 ontem, o que dá cobertura inferior a 2 dias para os próximos pedidos.",
+      "texto_esperado": "O urgente do dia é o Kit 6 Canecas Porcelana Tulipa Lisa 250ml: o anúncio é Full e ficou com 9 unidades depois de vender 6 ontem, o que dá cobertura inferior a 2 dias para os próximos pedidos.",
+      "regra_violada": "Nenhum termo analítico-chave removido — 'Full' está listado como termo-chave e foi omitido do bullet 1 da Análise. O L05 declarou explicitamente 'o anúncio é Full' como parte da tese do insight 1. 'Full' é o que explica por que a pausa automática pelo ML ocorre (diferente de Cross-Docking). A informação está recuperada na Prioridade 1, mas falta no bullet da Análise onde o L05 a colocou.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "gasto R$296,96",
+      "texto_esperado": "gasto R$ 296,96",
+      "regra_violada": "Formato monetário inconsistente na mesma mensagem: VISÃO usa 'R$ 4.622,03' (com espaço entre R$ e o número), Prioridades usam 'R$296,96' (sem espaço). O padrão canônico do pipeline é 'R$ 1.234,56'. Inconsistência menor que não induz erro de leitura mas diverge do padrão aprovado.",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "No próximo ciclo, exigir que o log de Respeito de bloqueios registre origem dupla quando a L05 apenas propaga bloqueio primário da L04."
+    "Gate 6 — Bullet 1 da Análise omitiu 'o anúncio é Full', que é termo analítico-chave no L05. Nas próximas execuções, o L06 deve preservar a declaração explícita de modalidade de envio nos bullets da Análise quando o L05 a incluir como parte da tese.",
+    "Gate 11 — 'R$296,96' sem espaço nas Prioridades. O L06 deve garantir espaço entre 'R$' e o valor numérico em todas as ocorrências da mensagem, incluindo dentro de bullets de Prioridades que listam métricas de ADS."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "O pacote permanece com confiança baixa por DADOS_PARCIAIS e ausência de ADS por anúncio, série temporal de health, distribuição horária por produto e item associado ao cancelamento; a L06 preservou essa limitação sem transformar hipótese em fato."
+    "Gate 12 — ml_snapshot internamente consistente. Nenhuma inconsistência de input detectada. ADS com 11 campanhas ativas e spend R$296,96 (sem zeramento de métricas). Reputação verde com 1 cancelamento no dia (abaixo do threshold de 5 para flag de inconsistência). fulfillment_mix_yesterday_top10 cobre 68/84 pedidos (~81%), acima do mínimo de 70%, omitido da VISÃO conforme regra e autorizado como dado explicativo na Análise pela L05.",
+    "Gate 5 — CLR002: display_short 'Kit de 6 Canecas de Porcelana Lisa Reta Para Chá e Café Colorida 200ml Caneca Colorida' contém 'Caneca Colorida' ao final, que é aparente ruído SEO não removido pelo simplify_ml_title. Não está na lista de ruídos canônicos bloqueantes (Refratário, Vedação, Mantimentos Marmita, Coloridas Xícara, Mini Café Casa, 4 Travas, Budamix), portanto não gera flag Maior. Recomenda-se incluir 'Caneca Colorida' na lista de ruídos a limpar no próximo ciclo do data builder.",
+    "Gate 6 — Colisão de labels no L05: Prioridade 2 (health dos campeões Full) é marcada como 'Filha do insight 3' (ADS), mas a relação causal mais direta seria com o risco estrutural de exposição orgânica identificado desde o L01. Não é violação de regra objetiva — o L05 aprovou a prioridade e ela é válida — mas o label de parentesco está impreciso. Sinal para revisão de nomenclatura interna do L05 no próximo ciclo.",
+    "Gate 9 — ratings_negative=0,39 (39% de avaliações negativas) identificado pelo L04, omitido do Slack por ausência de série temporal. Recomenda-se início de série temporal para esse indicador nos próximos ciclos para determinar trajetória antes de qualificar como risco ou anomalia.",
+    "Gate 12 — top_items_details e top_products são consistentes em termos de produtos e rankings. Nenhuma divergência de janela temporal que contaminou análise detectada."
   ],
   "llm_used": true,
-  "model": "gpt-5.5",
+  "model": "claude-sonnet-4-6",
   "fallback": false
 }

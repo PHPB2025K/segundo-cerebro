@@ -34,16 +34,17 @@ Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 en
 _Blocos diários abaixo. Job `daily-memory-ingest-ml.py` adiciona um bloco por dia. Rotação automática mantém os últimos 14 dias._
 
 ### Dia analisado: 2026-05-22
-_ingestido em 2026-05-23T10:27:27-03:00 BRT | confiança L05: baixa | insights L05: 1 (0 fato, 1 hipótese/risco latente) | prioridades L05: 3_
+_ingestido em 2026-05-23T11:12:35-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
 
 **Memória para o próximo ciclo (da L05):**
-- Mercado Ads ficou em cerca de 69,9% do GMV, com ROAS aproximado de 10,9x e ACOS 4,57% — se repetir por mais 2 ciclos, vira sinal estrutural de dependência.
-- Dois campeões Full seguem abaixo de health 0,80: Kit 4 Potes de Vidro Hermético 1050ml Tampa Azul-petróleo com 0,75 e Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha com 0,71 — falta série temporal para saber direção.
-- Kit 6 Canecas Porcelana Tulipa Lisa 250ml ficou com 9 unidades pós-baixa no Full — checar reposição antes de interpretar queda futura como demanda fraca.
-- Top 10 do dia ficou com 47,1% Full e 52,9% Cross-Docking, contra 73,7% Full no 30d — tratar como composição dos campeões, não decisão estrutural de modalidade de envio.
-- Potes de Vidro Hermético Redondo com Tampa Kit 5 Peças — Tampa Preta liderou o dia em Cross-Docking, mas não há distribuição horária por anúncio para explicar o pico.
-- MercadoLíder Platinum segue fora do gatilho principal de Slack: progresso 81,34%, gap R$55.226,77 e ETA estimado de 13,8 dias; fica relevante quando gap cair abaixo de R$30k com progresso acima de 90%.
-- Colisão de identidade entre os kits YW1050 continua pendente; sempre diferenciar 6 unidades e 10 unidades pelo nome com quantidade explícita.
+- Kit 6 Canecas Porcelana Tulipa Lisa 250ml com 9 unidades em Full pós-baixa e 6 pedidos no dia — se próximo pacote mostrar anúncio pausado ou estoque zerado sem reposição, é variável confundidora para health, ranking e GMV dos próximos dias.
+- Health do Kit 4 Potes de Vidro Hermético 1050ml Tampa Azul-petróleo (0,75) e do Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha (0,71) — segundo ponto da série; próximo pacote com dado define se vira ação com Himmel ou segue só observação.
+- ADS share 69,9% do GMV, ROAS 10,87x, ACOS 4,57%, gasto R$296,96 — ponto zero da série; se share acima de 65% por mais 2 ciclos com ROAS acima de 5x, vira dependência estrutural confirmada.
+- Família IMB501 (Tampa Preta Cross-Docking 20 pedidos, Tampa Vermelha Full 10 pedidos, Tampa Cinza Cross-Docking 7 pedidos) somou 37 pedidos = 44% do dia — eixo real de concentração; tratar como cluster ajuda a explicar mix sem fragmentar leitura.
+- Kit 10 Potes Herméticos 320ml Azul-petróleo 10 Unidades em Cross-Docking com 6 unidades pós-baixa e 2 pedidos no dia — cobertura ~3 dias se ritmo for típico; checagem preventiva sem urgência.
+- MercadoLíder Platinum: progresso 81,34%, gap R$55.226,77, ETA 13,8 dias — fora do gatilho principal de Slack; vira relevante quando gap cair abaixo de R$30k com progresso acima de 90%.
+- Colisão de display_name pendente: KIT10YW1050 (10 unidades, MLB4676726433) e KIT6YW1050 (6 unidades, MLB4676751119) — corrigir no mapa estático para que display_name carregue a quantidade.
+- ratings_negative=0,39 na reputação é estruturalmente alto, mas sem série no pacote para julgar trajetória — registrar para começar a montar série temporal.
 
 ---
 

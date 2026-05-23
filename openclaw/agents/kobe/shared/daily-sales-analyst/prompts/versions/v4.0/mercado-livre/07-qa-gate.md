@@ -274,11 +274,22 @@ Validar:
 - variações reais preservadas (cor da tampa, dimensão, modelo);
 - `confirmed_variation_attributes` foi usado quando presente (ex.: IMB501V → "Tampa Vermelha");
 - nome do produto é **consistente** com o nome usado na Análise/Prioridades (mesmo produto não pode ter dois nomes diferentes na mesma mensagem);
-- **a L05 e a L06 usaram `top_products[i].display_short` como nome canônico**. Bloquear como **Maior** se:
-  - L06 alterou `display_short` por estilo (encurtou, abreviou, omitiu partes) no Top Produtos;
-  - L05 inventou versão mais curta no insight/prioridade que não corresponde ao `display_short` correspondente;
-  - títulos no Top Produtos contêm ruído SEO que `simplify_ml_title` deveria ter removido (`Refratário`, `Vedação`, `Mantimentos Marmita`, `Coloridas Xícara`, `Mini Café Casa`, `4 Travas`, `Budamix`) — sinaliza que o data builder não está rodando a versão atual;
-  - números aparecem com zero à esquerda em contexto de Kit (`Kit 06`, `Kit 08`) — sinaliza que `simplify_ml_title` não foi aplicada.
+- **Arquitetura de nomes de produto (a partir de 2026-05-23):**
+  - **L01-L05 trabalham com `title` real do produto** (longo, técnico) para preservar contexto analítico.
+  - **L06 é a ÚNICA camada que traduz para nome curto** — em **todas** as menções (Top Produtos, Análise, Prioridades).
+  - Hierarquia de escolha do nome curto na L06: `top_products[i].slack_short_name` (mapeamento canônico) → `display_short` (fallback automático) → `title` literal (último recurso).
+
+  Bloquear como **Maior** se:
+  - L06 misturou nomes longos (vindos da L05) com nomes curtos do mapeamento na mesma mensagem (cross-section inconsistente). Mesma menção a produto deve usar SEMPRE o mesmo nome.
+  - L06 alterou `slack_short_name` por estilo (encurtou, abreviou, omitiu partes) — esse valor vem de mapeamento manual e é a forma final aprovada.
+  - L06 ignorou `slack_short_name` quando ele estava preenchido (não-null) e usou `display_short`/`title` no lugar.
+  - Top Produtos exibiu nome longo quando havia `slack_short_name` mapeado.
+  - Insights/Prioridades exibiram nome longo quando havia `slack_short_name` mapeado (L06 não traduziu).
+  - Títulos no Top Produtos contêm ruído SEO que `simplify_ml_title` deveria ter removido no fallback (`Refratário`, `Vedação`, `Mantimentos Marmita`, `Coloridas Xícara`, `Mini Café Casa`, `4 Travas`, `Budamix`) — sinaliza que o fallback do data builder não está rodando ou L06 ignorou.
+  - Números aparecem com zero à esquerda em contexto de Kit (`Kit 06`, `Kit 08`) no fallback — sinaliza que `simplify_ml_title` não foi aplicada.
+
+  Registrar como **Menor** (não bloqueia):
+  - Produto novo aparece no Top com `slack_short_name=null` (sem mapeamento manual) — sinal pra adicionar entrada em `config/slack-short-names-ml.json` na próxima manutenção. A L06 corretamente usou o fallback automático.
 
 Bloquear se:
 - Top Produtos consolidar família inteira quando existem variações vendáveis diferentes (ex.: IMB501 sem separar tampa preta/cinza/vermelha);

@@ -357,6 +357,38 @@ def strip_redundant_attribute_suffix(display: str, attributes: list) -> str:
     return " ".join(words).strip()
 
 
+# Caminho do mapeamento canônico de nomes curtos para Slack (uso EXCLUSIVO da L06).
+# Editável sem mexer em código. Lido a cada execução do pipeline.
+SLACK_SHORT_NAMES_PATH = Path(
+    "/root/segundo-cerebro/openclaw/agents/kobe/shared/daily-sales-analyst/config/"
+    "slack-short-names-ml.json"
+)
+
+# Fallback path para o Mac (desenvolvimento local).
+_LOCAL_SLACK_NAMES_PATH = Path(
+    "/Users/pedrobroglio/segundo-cerebro/openclaw/agents/kobe/shared/daily-sales-analyst/config/"
+    "slack-short-names-ml.json"
+)
+
+
+def load_slack_short_names() -> dict:
+    """Carrega mapeamento canônico variation_sku → slack_short_name.
+
+    Cai silenciosamente para dict vazio se arquivo ausente — o pipeline
+    funciona normalmente, apenas todos os produtos vão para o fallback
+    automático (simplify_ml_title) na L06.
+    """
+    for path in (SLACK_SHORT_NAMES_PATH, _LOCAL_SLACK_NAMES_PATH):
+        if path.exists():
+            try:
+                with path.open(encoding="utf-8") as f:
+                    data = json.load(f)
+                    return data.get("mapping", {}) or {}
+            except Exception:
+                continue
+    return {}
+
+
 def simplify_ml_title(title: str) -> str:
     """Gera nome curto canônico a partir do título ML real.
 
@@ -637,6 +669,10 @@ def compute_metrics(orders: list[dict], cancelled: list[dict], platform: str = "
     gmv = sum(float(o.get("total_amount") or 0) for o in orders)
     ticket = gmv / n if n else 0
 
+    # Carrega mapeamento canônico variation_sku → slack_short_name (uso exclusivo da L06).
+    # Atualização sem redeploy: editar o JSON em config/slack-short-names-ml.json.
+    slack_short_names = load_slack_short_names()
+
     total_items = 0
     product_counter: Counter = Counter()
     product_order_ids: dict[str, set[str]] = defaultdict(set)
@@ -679,6 +715,9 @@ def compute_metrics(orders: list[dict], cancelled: list[dict], platform: str = "
                             variation.get("variation_sku") or variation.get("mapped_variation_sku") or "",
                             [],
                         ),
+                    ),
+                    "slack_short_name": slack_short_names.get(
+                        variation.get("variation_sku") or variation.get("mapped_variation_sku") or ""
                     ),
                     "confirmed_variation_attributes": SKU_VARIATION_ATTRIBUTES.get(
                         variation.get("variation_sku") or variation.get("mapped_variation_sku") or "",

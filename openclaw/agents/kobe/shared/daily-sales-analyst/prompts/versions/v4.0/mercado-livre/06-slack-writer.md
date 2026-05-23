@@ -175,29 +175,43 @@ Regras gerais:
 - Se a Condensadora autorizar agregado e esse agregado esmagar variações reais, a autorização é inválida — recusar e voltar para variação.
 - Ranking sempre em ordem decrescente pelo total de pedidos da variação.
 
-#### Regra de simplificação do nome do produto
+#### Regra única de nome de produto na mensagem Slack (TODAS as menções)
 
-A L00 entrega no campo `title` do `top_products` o **título real do anúncio no Mercado Livre** (a partir da correção de 2026-05-20 no data builder). Esse título tende a ser longo e cheio de palavras-chave de SEO (ex.: `"Kit 06 Canequinhas 100ml Com Suporte De Madeira Acrilico Mini Cafe Casa"`).
+A L06 é a **única camada autorizada a encurtar** nomes de produto. As L01-L05 trabalham com `title` real (longo, técnico) para ter contexto analítico. Você traduz para nome curto canônico em **todas** as menções da mensagem Slack: Top Produtos, Análise da Conta E Prioridades do Dia. Sem exceção.
 
-Yasmin precisa de uma versão **curta, identificável e operacional**. A simplificação **já foi feita pela L00** (data builder) e está no campo `top_products[i].display_short` — você apenas consome esse valor.
+**Ordem de escolha do nome a usar (para cada produto referenciado):**
 
-**Regra única:** use `top_products[i].display_short` **verbatim** (sem alterar palavras, ordem, capitalização ou pontuação). É a mesma string que a L05 usa nos insights/prioridades — garante convergência cross-section.
+1. **Mapeamento canônico — primeira escolha.** Use `top_products[i].slack_short_name` se estiver preenchido (não-null). Esse é o nome curto pré-definido por SKU em `config/slack-short-names-ml.json`, editado manualmente pelo Pedro. Use **verbatim**, sem alterar.
 
-O `display_short` já vem com:
-- Ruído SEO removido (`Mantimentos Marmita`, `Refratário`, `Vedação`, `Coloridas Xícara`, `4 Travas`, etc.);
-- Zero à esquerda normalizado (`Kit 06` → `Kit 6`);
-- Unidades padronizadas (`100 Ml` → `100ml`);
-- Capitalização corrigida (`com`, `de`, `e` minúsculos quando não iniciais).
+2. **Fallback automático — quando `slack_short_name` for null.** Use `top_products[i].display_short`, que já vem com:
+   - Ruído SEO removido (`Mantimentos Marmita`, `Refratário`, `Vedação`, `Coloridas Xícara`, `4 Travas`, etc.)
+   - Zero à esquerda normalizado (`Kit 06` → `Kit 6`)
+   - Unidades padronizadas (`100 Ml` → `100ml`)
+   - Capitalização corrigida (`com`, `de`, `e` minúsculos quando não iniciais)
+   - Redundância de atributo já tratada
 
-**Fallbacks (raros):**
-1. Se `display_short` estiver vazio → usar `title` literal.
-2. Se `title` também estiver vazio → usar `display_name` interno, **apenas se** a L04/L05 não declarou divergência.
+3. **Fallback raríssimo — quando ambos forem ausentes.** Use `title` literal. Se `title` também for vazio, use `display_name` interno **apenas se** L04/L05 não declarou divergência.
+
+**Como traduzir menções da Análise/Prioridades vindas da L05:**
+
+A L05 vai escrever nos insights com o `title` real do produto (longo). Sua tarefa: **identificar o produto referenciado pelo title (ou pelo platform_item_id quando explícito) e substituir pelo `slack_short_name` correspondente** ao escrever a mensagem Slack. Não copie o texto da L05 verbatim quando há nome de produto envolvido — sempre traduza.
+
+**Exemplo concreto:**
+
+L05 escreveu no insight: *"O Kit 6 Canecas Porcelana Tulipa Lisa 250ml em Full está com 9 unidades pós-baixa..."*
+
+Você consulta `top_products` e vê que esse produto tem `variation_sku=TL6250` e `slack_short_name="Kit 6 Canecas Tulipa 250ml"`. Reescreve no insight Slack como: *"O Kit 6 Canecas Tulipa 250ml em Full está com 9 unidades pós-baixa..."*
 
 **Proibido:**
-- Alterar o `display_short` por estilo (encurtar mais, abreviar palavras, omitir partes).
-- Adicionar atributo que não esteja no título ML nem em `confirmed_variation_attributes`.
-- Reintroduzir palavras SEO que a L00 removeu.
-- Se a L04/Condensadora bloqueou um atributo (item em `o_que_nao_pode_ir_para_slack`), respeitar o bloqueio.
+- Misturar nomes longos da L05 e curtos do mapeamento na mesma mensagem (cross-section inconsistente).
+- Encurtar mais do que o `slack_short_name` define (essa é a versão final aprovada manualmente).
+- Adicionar atributo que não esteja no nome curto nem em `confirmed_variation_attributes`.
+- Reintroduzir palavras SEO removidas no fallback `display_short`.
+- Se a L04/Condensadora bloqueou um atributo (item em `o_que_nao_pode_ir_para_slack`), respeitar o bloqueio (substituir o nome inteiro por agregado autorizado, ou omitir).
+
+**Log obrigatório:** Para cada produto traduzido, registrar no bloco `### Decisões de formatação` uma linha:
+- `[produto] — usado slack_short_name "[valor]" (mapeamento canônico)`, ou
+- `[produto] — usado display_short "[valor]" (fallback automático; sem mapeamento manual para SKU [X])`
 
 #### Atributos confirmados por SKU
 

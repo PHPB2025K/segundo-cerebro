@@ -129,7 +129,7 @@ Regras:
 - **Esse caso NÃO é divergência** — é título ML genérico + atributo confirmado por SKU. Os dois podem coexistir sem conflito.
 - Divergência só existe quando o `title`/`raw_title` contradiz o atributo confirmado (ex.: title diz "Tampa Preta" mas SKU é IMB501V). Nesse caso o conflito é real e gera bloqueio.
 
-Como combinar na comunicação: usar o nome enxuto do produto (do `title` ML simplificado) + atributo confirmado (`confirmed_variation_attributes`). Exemplo: title `"Jogo Potes De Vidro 5 Peças Claro"` + `confirmed_variation_attributes: ["Tampa Vermelha"]` → forma comunicável: `"Jogo Potes de Vidro 5 Peças Claro — Tampa Vermelha"`.
+Como referenciar na sua análise interna: use o `title` ML real do produto (completo, sem simplificação) e cite `confirmed_variation_attributes` quando relevante para distinguir variação. A L06 Slack Writer fará a tradução para nome curto canônico (via `slack_short_name`) ao escrever a mensagem final.
 
 **Regra dura transversal:** nunca afirme que um produto vendeu/cancelou/concentrou com base em catálogo Budamix, em ADS sem breakdown por anúncio, ou em memória. **Só pedido real conta.** Se a única referência é catálogo/ADS/memória, marque como "não confirmado por pedido real" e não use como evidência primária.
 

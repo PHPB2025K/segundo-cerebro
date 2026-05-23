@@ -124,7 +124,7 @@ O pacote da L00 entrega um bloco `ml_snapshot` com dados frescos da API ML. Esse
 - `status`: `active` | `paused` | `closed` — **paused com pedidos = sinal crítico**
 - `free_shipping`: bool — Frete Grátis ativo
 - `logistic_type`: `fulfillment` (Full) | `cross_docking` (Coleta) | `self_service` (Flex)
-- `health`: 0..1 — abaixo de 0.85 = penalização ML | `null` = sem volume pra ML calcular
+- `health`: 0..1 — **nível de qualidade do anúncio** (terminologia oficial ML). Faixas: `0,00-0,69` Básico (perdendo exposição), `0,70-0,84` Padrão inferior (em risco), `0,85-0,98` Padrão superior (zona aceitável), `0,99-1,00` Profissional (máxima exposição). `null` = ML sem volume pra calcular. No output narrativo da L05/L06 sempre usar "nível de qualidade do anúncio" + nome do nível, nunca apenas "health" ou número solto.
 - `available_quantity`: estoque atual no canal
 - `sold_quantity`: vendas acumuladas do anúncio
 
@@ -143,8 +143,8 @@ O pacote da L00 entrega um bloco `ml_snapshot` com dados frescos da API ML. Esse
 - `active_analysis.catalog_pct`: % da base em Catálogo
 - `active_analysis.free_shipping_pct`: % da base com Frete Grátis
 - `active_analysis.out_of_stock_count` + `out_of_stock_ids`: anúncios ativos sem estoque
-- `active_analysis.low_health_count`: anúncios com health < 0.85
-- `active_analysis.no_health_data_count`: anúncios sem health calculado
+- `active_analysis.low_health_count`: anúncios em Padrão inferior ou Básico (health < 0,85)
+- `active_analysis.no_health_data_count`: anúncios sem nível de qualidade calculado (health=null)
 
 > **Quando algum bloco vier com `status: "unavailable"` ou `null`**: declare ausência explícita ("ml_snapshot.ads_summary indisponível hoje, sem leitura de Mercado Ads") e ajuste a confiança da tese. Não invente sobre o que não está no pacote.
 
@@ -258,14 +258,14 @@ Anúncios em catálogo (`is_catalog=true`) competem pelo Buy Box ML; anúncios f
 **Campos a cruzar:**
 - `ml_snapshot.top_items_details[i].is_catalog` (modalidade competitiva)
 - `ml_snapshot.top_items_details[i].listing_type` (`gold_pro`=Premium, `gold_special`=Clássico)
-- `ml_snapshot.top_items_details[i].health` (saúde do listing — abaixo de 0.85 = penalização)
+- `ml_snapshot.top_items_details[i].health` (nível de qualidade do anúncio; ver glossário das faixas oficiais em "Conceitos disponíveis no pacote")
 - `ml_snapshot.top_items_details[i].free_shipping` (tag ativa)
 - `ml_snapshot.account_overview.active_analysis.catalog_pct` (% da base em catálogo)
 - `ml_snapshot.account_overview.active_analysis.listing_type_mix` (distribuição Clássico/Premium)
 
 **Regras de leitura:**
 - Campeão `is_catalog=true` + `available_quantity` baixo → ruptura significa perda de posição no catálogo (recuperação lenta vs Clássico)
-- Campeão `is_catalog=false` + `health < 0.85` → penalização ML reduz ranking em categoria; ganho hoje é vulnerável
+- Campeão `is_catalog=false` + `health < 0,85` (Padrão inferior ou Básico) → ML reduz ranking em categoria; ganho hoje é vulnerável
 - `listing_type_mix.gold_pro_pct` muito baixo (< 10%) → conta opera sem boost Premium na maioria; depende inteiramente de Clássico
 - `free_shipping_at_sale=false` em campeão de catálogo → competitividade baixa por preço final na página de catálogo
 
@@ -935,7 +935,7 @@ Sinais ruins (rejeite):
     "quality_flags": [],
     "ml_snapshot": {
       "schema_version": "ml-snapshot/v2",
-      "fetched_at_utc": "2026-05-23T15:52:55.633068+00:00",
+      "fetched_at_utc": "2026-05-23T21:23:13.103189+00:00",
       "date": "2026-05-22",
       "status": "ok",
       "reputation": {
@@ -947,7 +947,7 @@ Sinais ruins (rejeite):
         "claims_rate": 0.0025,
         "cancellations_rate": 0,
         "delayed_handling_rate": 0.0012,
-        "transactions_completed": 5639,
+        "transactions_completed": 5670,
         "transactions_canceled": 0,
         "ratings_positive": 0.58,
         "ratings_neutral": 0.03,
@@ -961,7 +961,7 @@ Sinais ruins (rejeite):
         "sales_60d_window_start": "2026-03-24",
         "sales_60d_window_end": "2026-05-22",
         "sales_60d_count_paid": 5661,
-        "sales_60d_completed_api": 5639,
+        "sales_60d_completed_api": 5670,
         "ritmo_diario_brl": 4012.89,
         "platinum": {
           "threshold_revenue_brl": 296000,
@@ -969,7 +969,7 @@ Sinais ruins (rejeite):
           "gap_revenue_brl": 55226.76999999999,
           "progress_pct": 81.34,
           "eta_dias_estimado": 13.8,
-          "vendas_acima_threshold": 3914
+          "vendas_acima_threshold": 3945
         },
         "proximo_nivel": {
           "alvo": "platinum",
@@ -1062,8 +1062,8 @@ Sinais ruins (rejeite):
           "free_shipping": false,
           "logistic_type": "fulfillment",
           "health": 0.75,
-          "available_quantity": 149,
-          "sold_quantity": 977,
+          "available_quantity": 145,
+          "sold_quantity": 980,
           "category_id": "MLB244658"
         },
         {
@@ -1076,8 +1076,8 @@ Sinais ruins (rejeite):
           "free_shipping": false,
           "logistic_type": "fulfillment",
           "health": 0.71,
-          "available_quantity": 474,
-          "sold_quantity": 5742,
+          "available_quantity": 469,
+          "sold_quantity": 5756,
           "category_id": "MLB244658"
         },
         {
@@ -1118,8 +1118,8 @@ Sinais ruins (rejeite):
           "free_shipping": true,
           "logistic_type": "cross_docking",
           "health": null,
-          "available_quantity": 72,
-          "sold_quantity": 40,
+          "available_quantity": 71,
+          "sold_quantity": 41,
           "category_id": "MLB244658"
         },
         {
@@ -1132,8 +1132,8 @@ Sinais ruins (rejeite):
           "free_shipping": false,
           "logistic_type": "fulfillment",
           "health": null,
-          "available_quantity": 32,
-          "sold_quantity": 161,
+          "available_quantity": 37,
+          "sold_quantity": 162,
           "category_id": "MLB9206"
         },
         {
@@ -1146,8 +1146,8 @@ Sinais ruins (rejeite):
           "free_shipping": true,
           "logistic_type": "cross_docking",
           "health": null,
-          "available_quantity": 41,
-          "sold_quantity": 9,
+          "available_quantity": 37,
+          "sold_quantity": 13,
           "category_id": "MLB244658"
         },
         {
@@ -1175,7 +1175,7 @@ Sinais ruins (rejeite):
           "logistic_type": "fulfillment",
           "health": null,
           "available_quantity": 20,
-          "sold_quantity": 115,
+          "sold_quantity": 116,
           "category_id": "MLB436297"
         }
       ],
@@ -1254,7 +1254,7 @@ Sinais ruins (rejeite):
     {
       "check": "volume_band_shopee-budamix-store",
       "status": "partial",
-      "detail": "Orders 40 vs avg30 72.5 = -44.8% (outside 30d band, within 60d band)"
+      "detail": "Orders 39 vs avg30 72.5 = -46.2% (outside 30d band, within 60d band)"
     },
     {
       "check": "volume_band_shopee-budamix-oficial-2",
@@ -1264,7 +1264,7 @@ Sinais ruins (rejeite):
     {
       "check": "volume_band_shopee-budamix-shop-3",
       "status": "partial",
-      "detail": "Orders 12 vs avg30 25.1 = -52.2% (outside 30d band, within 60d band)"
+      "detail": "Orders 11 vs avg30 25.1 = -56.2% (outside both bands but above critical floor; partial confidence)"
     },
     {
       "check": "volume_band_mercado-livre",
@@ -1475,17 +1475,17 @@ Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 en
 _Blocos diários abaixo. Job `daily-memory-ingest-ml.py` adiciona um bloco por dia. Rotação automática mantém os últimos 14 dias._
 
 ### Dia analisado: 2026-05-22
-_ingestido em 2026-05-23T11:56:48-03:00 BRT | confiança L05: media | insights L05: 3 (2 fato, 1 hipótese/risco latente) | prioridades L05: 3_
+_ingestido em 2026-05-23T13:09:50-03:00 BRT | confiança L05: media | insights L05: 3 (2 fato, 1 hipótese/risco latente) | prioridades L05: 3_
 
 **Memória para o próximo ciclo (da L05):**
-- Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090) — 9 unidades pós-baixa em Full após 6 pedidos; se próximo pacote mostrar pausa ou estoque zerado sem reposição, vira variável confundidora para health, ranking e GMV dos dias seguintes
-- Health do Kit 4 Potes De Vidro Hermético 1050ml Tampa Azul-petróleo (0,75) e do Jogo Potes De Vidro 5 Peças Claro — Tampa Vermelha (0,71) — segundo ponto da série; próximo pacote com dado define direção e desbloqueia ou descarta ação com Himmel
+- Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090) — 7 unidades pós-baixa em Full após 6 pedidos; se próximo pacote mostrar pausa ou estoque zerado sem reposição, vira variável confundidora para health, ranking e GMV dos dias seguintes
+- Health do Kit 4 Potes De Vidro Hermético 1050ml Tampa Azul-petróleo (0,75) e do Jogo Potes De Vidro 5 Peças Claro — Tampa Vermelha (0,71) — segundo ponto pontual da série (sem direção confirmada); próximo pacote com dado define se a penalização está caindo, estável ou em recuperação e desbloqueia ou descarta ação com Himmel
 - ADS share 69,9% do GMV, ROAS 10,87x, ACOS 4,57%, gasto R$296,96 — segundo ponto da série iniciada em 22/05; se share acima de 65% por mais 2 ciclos com ROAS acima de 5x, vira dependência estrutural confirmada
-- Família IMB501 (Tampa Preta Cross-Docking 20 pedidos, Tampa Vermelha Full 10 pedidos, Tampa Cinza Cross-Docking 7 pedidos) somou 37 pedidos = 44% do dia — tratar como cluster ajuda a explicar mix sem fragmentar leitura; estoque robusto nas variações Cross-Docking (8.375 e 9.196 unidades)
+- Cluster IMB501 (Tampa Preta Cross-Docking 20 pedidos, Tampa Vermelha Full 10 pedidos, Tampa Cinza Cross-Docking 7 pedidos) somou 37 pedidos = 44% do dia — tratar como cluster ajuda a explicar mix sem fragmentar leitura; estoque robusto nas variações Cross-Docking (8.375 e 9.196 unidades)
+- Necessidade de dado para próximo ciclo: breakdown de revenue_ads_yesterday_brl por platform_item_id — sem ele a hipótese 'ADS está empurrando variações Cross-Docking ou anúncios Full penalizados' permanece inconfirmável (dado já registrado como pendente no ciclo anterior)
+- Ratings_negative=0,39 (39%) é proporção alta para conta com reputação verde e MercadoLíder Gold — sem breakdown por anúncio, hipótese de sobreposição com os dois Full penalizados (MLB4073003575 e MLB3288536143) permanece em aberto; vira relevante se claims_rate subir acima de 0,005 nos próximos ciclos
 - Kit 10 Potes Herméticos 320ml Azul-petróleo 10 Unidades (MLB6739241224) em Cross-Docking com 6 unidades pós-baixa e 2 pedidos — cobertura ~3 dias com ressalva (amostra pequena); checagem preventiva sem urgência, Budamix tem mais controle de reposição em Cross-Docking
 - MercadoLíder Platinum: progresso 81,34%, gap R$55.226,77, ETA 13,8 dias — fora do gatilho de Slack; vira relevante quando gap cair abaixo de R$30k com progresso acima de 90%
-- Kit 6 Canecas Lisas 200ml CLR002 (MLB6232315532) é o único anúncio em Catálogo entre top10 — Full Premium, 3 pedidos, health não calculada; sem sinal acionável hoje, mas perda de Buy Box impacta venda direta — monitorar
-- Necessidade de dado para próximo ciclo: breakdown de revenue_ads_yesterday_brl por platform_item_id — sem ele a hipótese 'ADS está empurrando variações Cross-Docking ou anúncios Full penalizados' permanece inconfirmável
 
 ---
 

@@ -28,7 +28,18 @@ A conta ML tem características que orientam a condensação:
 
 - **Conta única** (não há divisão por shop_id como na Shopee).
 - **Destinatário final:** Yasmin (focal point ML).
-- **Vocabulário operacional ML:** reputação (verde/amarela/vermelha), Mercado Líder (Gold/Platinum), Full (estoque no CD do ML), Cross-Docking (Coleta na expedição), Flex (desligado), Catálogo, Clássico, Premium, health, ranking de categoria, Buy Box do catálogo.
+- **Vocabulário operacional ML:** reputação (verde/amarela/vermelha), Mercado Líder (Gold/Platinum), Full (estoque no CD do ML), Cross-Docking (Coleta na expedição), Flex (desligado), Catálogo, Clássico, Premium, **nível de qualidade do anúncio** (Básico / Padrão inferior / Padrão superior / Profissional — vide regra abaixo), ranking de categoria, Buy Box do catálogo.
+
+**Terminologia do nível de qualidade do anúncio (campo `health` da API ML):**
+- O termo técnico é `health` (campo no `ml_snapshot.top_items_details[i].health`).
+- O termo correto em PT-BR é **"nível de qualidade do anúncio"** — use sempre esse no output narrativo (`analise_final_condensada`, `prioridades_condensadas`, `memoria_para_amanha`).
+- Faixas oficiais ML (escala 0-1) com nomes traduzidos:
+  - `0,00-0,69` → **Básico** (anúncio perde exposição ativamente)
+  - `0,70-0,84` → **Padrão inferior** (em risco, próximo de cair pra Básico)
+  - `0,85-0,98` → **Padrão superior** (zona aceitável, com melhorias possíveis)
+  - `0,99-1,00` → **Profissional** (máxima exposição)
+- `health=null` significa "ML não calcula" (volume insuficiente), NÃO "saudável".
+- Sempre citar o nível pelo nome ("Padrão inferior") e, opcionalmente, o valor numérico entre parênteses (`(health 0,75)`).
 - **Modalidades de envio ativas na operação Budamix:** **exatamente duas — Full e Cross-Docking**. Flex está **desligado** por decisão operacional. Qualquer análise de "mix de modalidade de envio" compara somente essas duas; tratar Flex como inexistente, salvo se a L04 declarar anomalia.
 - **Cross-Docking não é problema** — é modalidade legítima. Só problematizar se houver divergência inesperada do padrão histórico.
 - **`available_quantity` é POST-baixa:** o snapshot vem coletado depois do dia analisado fechar. Pedidos do dia analisado **já foram processados** — não citar como "pendentes" nem afirmar que sobraram sem cobertura. Risco de ruptura é sempre prospectivo (cobertura = `available_quantity` ÷ ritmo médio = dias de runway nas vendas futuras). Frases proibidas no insight: "X dos Y pedidos do dia sem cobertura", "cancelamento iminente pelos pedidos de ontem", "produto fechou ontem com déficit de estoque".

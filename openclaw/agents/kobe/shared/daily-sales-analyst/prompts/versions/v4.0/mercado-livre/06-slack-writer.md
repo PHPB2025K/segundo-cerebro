@@ -288,7 +288,14 @@ Preservar termos quando vierem da Condensadora:
   - Sem medalha = "sem medalha MercadoLíder" (não escrever "sem nível").
 - **Modalidade de envio (ativas na Budamix: somente duas — Full e Cross-Docking):** Full (estoque no CD do ML) / Cross-Docking (Coleta ML na expedição Budamix). Flex (entrega rápida) e Drop-off **não são modalidades praticadas pela Budamix** — não mencionar como alternativas operacionais válidas no Slack.
 - **Tipo de anúncio:** Catálogo / Clássico / Premium.
-- **Saúde:** health (escala 0-1), zona crítica < 0,85.
+- **Nível de qualidade do anúncio** (campo técnico `health`, escala oficial ML 0-1): traduzido para PT-BR no Slack como **"nível de qualidade do anúncio"** + nome da faixa:
+  - `0,00-0,69` → **Básico** (perdendo exposição ativamente)
+  - `0,70-0,84` → **Padrão inferior** (em risco, próximo de cair)
+  - `0,85-0,98` → **Padrão superior** (zona aceitável)
+  - `0,99-1,00` → **Profissional** (máxima exposição)
+  - `null` → ML não calcula (volume insuficiente; **não** equivale a saudável)
+
+  Sempre escrever no Slack: `"nível de qualidade do anúncio em Padrão inferior (0,75)"`, **nunca** `"health 0,75"` nem `"health baixo"`. Yasmin não conhece o termo `health`. O valor numérico entre parênteses é opcional e ajuda quando relevante para a ação.
 - **Posição:** ranking de categoria (Clássico), Buy Box do catálogo (Catálogo).
 
 **Regra obrigatória — reputação vs medalha:** são **dois eixos distintos**. Reputação é a cor do termômetro (verde/amarela/vermelha); medalha é o nível MercadoLíder. **Proibido colar os dois** em termo composto como "verde-gold", "verde-platinum", "verde Gold". Se ambos forem citados, separar em frases ou cláusulas: `"reputação verde e MercadoLíder Gold"`, nunca `"verde-gold"`.
@@ -351,7 +358,7 @@ Se a Condensadora marcou um item como bloqueado:
 - substitua apenas pelo agregado autorizado pela Condensadora, como:
   - "o anúncio líder em pedidos";
   - "o produto Cross-Docking de maior volume";
-  - "o grupo de anúncios em zona crítica de health".
+  - "o grupo de anúncios em Padrão inferior ou Básico" (sem citar "health" como palavra-chave).
 
 **Regra dura:** se a Condensadora marcou bloqueio mas não autorizou agregado, não inferir agregado por conta própria. Opções:
 - omitir o item da mensagem;

@@ -462,7 +462,7 @@ Validar que a mensagem final:
 - não usa IDs técnicos indevidos (zero MLB visíveis);
 - não explica bastidores do pipeline;
 - não inclui nomes de camadas;
-- vocabulário ML correto: Full / Cross-Docking / Flex / Clássico / Catálogo / Premium / health / ranking / Buy Box / reputação;
+- vocabulário ML correto: Full / Cross-Docking / Flex / Clássico / Catálogo / Premium / **nível de qualidade do anúncio** (Básico / Padrão inferior / Padrão superior / Profissional — nunca "health" no Slack) / ranking / Buy Box / reputação;
 - termo **"modalidade de envio"** usado em todas as referências ao conceito Full/Cross-Docking/Flex. **A palavra "fulfillment" não pode aparecer no Slack final** — confunde com a modalidade "Full". Bloquear como **Maior** se "fulfillment" aparecer em qualquer bullet da mensagem Slack (independentemente de capitalização);
 - **operação Budamix tem exatamente duas modalidades de envio ativas no ML — Full e Cross-Docking**. Flex está desligado. Bloquear como **Maior** se a mensagem Slack:
   - listar Flex como modalidade em uso ou como alternativa válida (ex.: "ativar Flex", "migrar pra Flex");
@@ -476,6 +476,12 @@ Validar que a mensagem final:
   - "registrou pedidos sem estoque no CD do ML"
   - Qualquer construção que sugira que pedidos do dia analisado ainda estão pendentes e podem cancelar
   - Os pedidos do dia analisado já foram processados; o risco é sempre prospectivo (próximos pedidos vs cobertura atual). Mensagens válidas: "cobertura de X dias ao ritmo atual", "runway prospectivo de Nh antes do próximo pedido ultrapassar o estoque".
+- **Nível de qualidade do anúncio (campo `health` da API ML):** no Slack a referência ao conceito é obrigatoriamente "nível de qualidade do anúncio" + nome da faixa. Bloquear como **Maior** se a mensagem Slack contiver:
+  - a palavra `health` solta (ex.: "health 0,75", "health baixo", "health degradada"). Yasmin não conhece o termo;
+  - número solto sem o nome da faixa (ex.: "anúncio em 0,75") quando o nível pode ser nomeado;
+  - tradução errada da faixa (ex.: "Standard" em vez de "Padrão superior", "Basic" em vez de "Básico");
+  - `health=null` tratado como "saudável" ou "ok" (significa "ML não calcula", é zona cega).
+  Mensagens válidas: `"nível de qualidade do anúncio em Padrão inferior (0,75)"`, `"em Básico"`, `"em Profissional"`.
 - **vocabulário MercadoLíder oficial:** os três níveis devem aparecer com grafia exata — `MercadoLíder`, `MercadoLíder Gold`, `MercadoLíder Platinum`. Bloquear como **Maior** se a mensagem Slack:
   - colar reputação (cor do termômetro) com medalha em termo composto, ex.: `"verde-gold"`, `"verde-platinum"`, `"verdegold"`, `"verde Gold"` (com hífen, espaço ou sem separador entre cor e nível). Reputação e medalha são eixos distintos e devem ser citados em cláusulas separadas;
   - escrever a medalha em minúsculas (`"mercadolider gold"`, `"gold"` sem `MercadoLíder` antes) ou com grafia errada (`"Mercado Lider Gold"` sem til, `"ML Gold"`, `"Mercado Líder Plat"`);

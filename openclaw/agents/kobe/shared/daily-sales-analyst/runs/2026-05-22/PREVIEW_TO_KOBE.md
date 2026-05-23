@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-22
-**Gerado em:** 2026-05-23T14:56:44.440522+00:00
+**Gerado em:** 2026-05-23T16:09:46.487384+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,9 +24,8 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Insight 3 da L05 usa linguagem levemente assertiva ('novos pedidos viram cancelamento') apesar de classificacao='risco latente'; a L06 aplicou 'podem virar cancelamento', ficando mais fiel à classificação do que o próprio texto da L05 — melhoria de alinhamento, não alteração de tese. Não é problema, é sinal de que a L05 pode refinar a redação dos insights de risco latente no próximo ciclo.
-- **Aviso:** Substituição 'família IMB501' → 'a linha Potes Vidro 5 Peças' no insight 2 e na prioridade 2 está corretamente documentada nas Decisões de formatação e é coerente com os nomes exibidos no Top Produtos da mesma mensagem — consistência cross-section confirmada.
-- **Aviso:** alertas_de_confianca.nivel='media' tratado corretamente: limitações de série temporal de health e de breakdown de ADS por anúncio foram incorporadas ponto a ponto nos insights e prioridades sem ressalva global no Slack, alinhado com o que a L05 autorizou.
+- **Aviso:** Prioridade 2 chegou ao Slack sem a instrução de registro explícita ('segundo ponto da série'). Se Yasmin não registrar, o próximo ciclo perde o referencial de série para health dos dois campeões Full. Trader deve garantir que Yasmin entende que o registro é parte da ação, mesmo que o Slack não deixe explícito.
+- **Aviso:** A substituição 'dias' → 'ciclos' no Insight 2 é editorialmente inofensiva mas indica padrão de paráfrase que pode, em insights futuros, alterar gatilhos quantitativos sem percepção. A L06 deve ser instruída a preservar unidades temporais literais da L05.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-22/yasmin/00-data-package.json`

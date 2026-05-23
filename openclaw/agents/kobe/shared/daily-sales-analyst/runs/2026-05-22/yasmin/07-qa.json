@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "Todos os 12 gates passaram sem falhas críticas ou maiores. Um único Menor registrado no Gate 5: SKU 914C_BA (Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico) não possui slack_short_name mapeado; a L06 aplicou corretamente o fallback automático via display_short e normalizou 'Kit 06' → 'Kit 6', conforme a regra de fallback. Nenhum bloqueio reintroduzido, nenhuma tese alterada, nenhuma hipótese convertida em fato, nenhuma inconsistência de input contaminando a análise. Regra de agregação aplicada: 0 Maiores + 1 Menor isolado → APROVADO COM RESSALVA.",
+  "motivo": "A mensagem passa em todos os 12 gates sem nenhum Crítico nem Maior. Foram identificados 2 Menores em gates distintos (Gate 6 e Gate 7): (1) Insight 2 substitui 'por mais 2 dias' (L05) por 'por mais 2 ciclos' — mudança de granularidade terminológica sem alteração de tese, mas não registrada nas Decisões de formatação; (2) Prioridade 2 omite a ação explícita de 'registrar health como segundo ponto da série', mantendo apenas 'checar a direção' — a ação de registro que ancora a série é parte do escopo da L05 e foi silenciada. Regra de agregação aplicada: 0 Maiores + 2 Menores não sistêmicos → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -8,9 +8,9 @@
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "RESSALVA",
-    "gate_6_analise_conta": "OK",
-    "gate_7_prioridades": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "RESSALVA",
+    "gate_7_prioridades": "RESSALVA",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
@@ -21,33 +21,41 @@
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 1,
-    "regra_agregacao_aplicada": "0 Maiores + 1 Menor isolado → APROVADO COM RESSALVA"
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Maiores + 1–5 Menores → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
       "severidade": "Menor",
-      "gate": "Gate 5 — Top Produtos",
-      "texto_atual": "Kit 6 Canequinhas 100ml com Suporte de Madeira Acrílico — 2 pedidos",
-      "texto_esperado": "Nome curto canônico aprovado manualmente (entrada ausente em config/slack-short-names-ml.json para SKU 914C_BA)",
-      "estado_atual": "SKU 914C_BA (MLB6073033006) possui slack_short_name=null; L06 aplicou fallback automático via display_short com normalização 'Kit 06' → 'Kit 6' e resultado é correto e legível",
-      "estado_esperado": "Entrada adicionada em config/slack-short-names-ml.json para garantir nome canônico aprovado manualmente nas próximas execuções, eliminando dependência de fallback automático",
-      "regra_violada": "Gate 5 — produto com slack_short_name=null deve ser registrado como Menor; sinal para manutenção do mapa estático na próxima janela de manutenção",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "Se o ADS share seguir acima de 65% por mais 2 ciclos com health dos dois Full abaixo de 0,80",
+      "texto_esperado": "se ADS share seguir acima de 65% por mais 2 dias com health dos dois Full abaixo de 0,80",
+      "estado_atual": "L06 substituiu 'dias' por 'ciclos' sem registrar a mudança nas Decisões de formatação. No contexto do pipeline ciclo ≈ dia, mas 'dias' é mais concreto e unambíguo; 'ciclos' pode ser interpretado como ciclos semanais ou mensais por quem lê sem contexto de pipeline.",
+      "estado_esperado": "Preservar 'dias' conforme L05 ou registrar explicitamente a substituição nas Decisões de formatação com justificativa de equivalência.",
+      "regra_violada": "Gate 6 — mesmo verbo modal e mesmo conectivo principal preservados, mas o quantificador temporal da condição falsificável foi alterado sem registro no log de decisões.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 7 — Prioridades do Dia",
+      "texto_atual": "Yasmin: checar a direção da health dos dois campeões Full no próximo ciclo com dado disponível",
+      "texto_esperado": "Yasmin registrar health dos dois campeões Full como segundo ponto da série e checar direção no próximo ciclo com dado disponível",
+      "estado_atual": "L06 preservou a ação de 'checar direção' mas omitiu a ação de 'registrar como segundo ponto da série'. A ação de registro é parte explícita da prioridade da L05 e ancora a construção da série temporal que vai habilitar a decisão de acionamento de Himmel em ciclos futuros. Sem o registro explícito, Yasmin pode checar e não anotar, perdendo a referência de série.",
+      "estado_esperado": "Incluir ação de registro explícita: 'Yasmin registrar health dos dois campeões Full como segundo ponto da série e checar direção no próximo ciclo com dado disponível'.",
+      "regra_violada": "Gate 7 — prioridade deve preservar o 'por_que' e o escopo completo da ação da L05; ação de registro que fundamenta a série foi silenciada.",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Insight 3 da L05 usa linguagem levemente assertiva ('novos pedidos viram cancelamento') apesar de classificacao='risco latente'; a L06 aplicou 'podem virar cancelamento', ficando mais fiel à classificação do que o próprio texto da L05 — melhoria de alinhamento, não alteração de tese. Não é problema, é sinal de que a L05 pode refinar a redação dos insights de risco latente no próximo ciclo.",
-    "Substituição 'família IMB501' → 'a linha Potes Vidro 5 Peças' no insight 2 e na prioridade 2 está corretamente documentada nas Decisões de formatação e é coerente com os nomes exibidos no Top Produtos da mesma mensagem — consistência cross-section confirmada.",
-    "alertas_de_confianca.nivel='media' tratado corretamente: limitações de série temporal de health e de breakdown de ADS por anúncio foram incorporadas ponto a ponto nos insights e prioridades sem ressalva global no Slack, alinhado com o que a L05 autorizou."
+    "Prioridade 2 chegou ao Slack sem a instrução de registro explícita ('segundo ponto da série'). Se Yasmin não registrar, o próximo ciclo perde o referencial de série para health dos dois campeões Full. Trader deve garantir que Yasmin entende que o registro é parte da ação, mesmo que o Slack não deixe explícito.",
+    "A substituição 'dias' → 'ciclos' no Insight 2 é editorialmente inofensiva mas indica padrão de paráfrase que pode, em insights futuros, alterar gatilhos quantitativos sem percepção. A L06 deve ser instruída a preservar unidades temporais literais da L05."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "SKU 914C_BA (MLB6073033006, Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico) não possui entrada em config/slack-short-names-ml.json — adicionar mapeamento manual na próxima janela de manutenção para garantir nome curto canônico aprovado e eliminar dependência de fallback.",
-    "ads_summary continua sem breakdown por platform_item_id — impossível confirmar ou refutar a hipótese de ADS empurrando variações IMB501 em Cross-Docking; limitação estrutural do fetcher que deve ser registrada para evolução do pacote de dados nos próximos ciclos.",
-    "Série temporal de health (MLB4073003575 e MLB3288536143) ausente do pacote — apenas valor pontual disponível; próximo ciclo precisa trazer histórico ou o terceiro ponto ficará novamente sem vetor confirmado, impossibilitando o critério de ação com Himmel definido pela L02.",
-    "display_name de KIT10YW1050 e KIT6YW1050 no mapa estático ainda não carrega a quantidade diferenciadora (10 un / 6 un) no campo display_name — ambos listados como 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas'; slack_short_name já corrige, mas o display_name precisa de atualização para alinhamento interno (colisão registrada na weekly L05 de 2026-05-22).",
-    "ratings_negative=0,39 na reputação ML está estruturalmente alto sem série temporal no pacote para julgar trajetória — registrar início de monitoramento sistemático nos próximos ciclos para construir base de comparação."
+    "SKU 914C_BA (Kit 06 Canequinhas 100ml, MLB6073033006) está no top10 do pacote com slack_short_name=null — mapeamento canônico ausente em config/slack-short-names-ml.json. Produto não apareceu no Top 5 do Slack (sem impacto neste ciclo), mas deve ser adicionado ao mapeamento antes de entrar no top 5 em ciclo futuro. Sugestão de nome curto: 'Kit 6 Canequinhas 100ml c/ Suporte'.",
+    "Memória semanal da conta tem apenas 1 entrada efetiva (2026-05-22 = mesmo dia desta análise). Ausência de dados dos dias 2026-05-20 e 2026-05-21 na memória limita série temporal para health dos campeões Full e ADS share. As quatro conclusões centrais da L05 (health, ADS share, mix de modalidade, cobertura Kit 6 Canecas) são pontos pontuais sem tendência confirmada — condição já sinalizada pelo alertas_de_confianca.nivel='media' da L05, mas que deve ser monitorada: se os gaps de memória persistirem por mais ciclos, o pipeline operará estruturalmente sem série histórica para as variáveis mais críticas da conta.",
+    "fulfillment_mix_yesterday_top10 cobre 68 de 84 pedidos (80,9%) — marginalmente acima do limiar de 70% mas abaixo de 85%. L05 optou por não autorizar exibição na VISÃO e L06 respeitou. O dado foi utilizado corretamente na ANÁLISE como comparativo com a janela longa. Para próximos ciclos, avaliar se é possível ampliar a cobertura do cron além dos top10 itens para obter mix mais representativo do total de pedidos.",
+    "Kit 10 Potes Herméticos 320ml 10un (MLB6739241224) tem 6 unidades pós-baixa em Cross-Docking com 2 pedidos — cobertura prospectiva ~3 dias com ressalva de microamostra. Não foi incluído na análise Slack (correto — abaixo do limiar de urgência e Cross-Docking permite reposição mais controlada). Monitorar no próximo ciclo: se available_quantity cair para ≤ 2 com ritmo mantido, acionar checagem preventiva."
   ],
   "llm_used": true,
   "model": "claude-sonnet-4-6",

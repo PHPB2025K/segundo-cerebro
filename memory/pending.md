@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-22 23:45 BRT — consolidação diária em camadas_
+_Atualizado: 2026-05-23 02:00 BRT — organização noturna silenciosa_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -140,7 +140,7 @@ _Atualizado: 2026-05-22 23:45 BRT — consolidação diária em camadas_
 
 
 - [ ] **Daily GitHub Backup — investigar timeout de 22/05 00:02 BRT**: cron falhou por timeout (`cron: job execution timed out`). Últimos crons recorrentes posteriores checados às 02:00 BRT estavam OK, e o Watchdog GitHub Sync das 01:42 BRT rodou em status OK com alerta já enviado; investigar no próximo bloco se o backup voltar a falhar.
-- [x] ~~**Organização Noturna Silenciosa — investigar timeout da rodada anterior**~~ → **RESOLVIDO 21/05.** A falha isolada de 19/05 02:00 BRT não se repetiu: as rodadas de 20/05 e 21/05 concluíram, e os últimos crons recorrentes recentes estavam OK. Manter apenas monitoramento normal; reabrir se houver novo timeout.
+- [ ] **Organização Noturna Silenciosa — investigar timeout de 22/05 02:00 BRT**: o estado do cron ainda registrava timeout da rodada anterior ao iniciar a organização de 23/05 02:00 BRT. A rodada atual conseguiu executar a checagem e atualizar memória; se o estado final também ficar OK, tratar como estabilidade recuperada. Se repetir, revisar timeout/config do job.
 - [ ] **Watchdog/Monitor Ponto/RH crons** — revisar timeouts/fallbacks em jobs com histórico de falha por timeout/model not found.
 
 ## 🟡 Futuro aprovado / não imediato
@@ -151,12 +151,12 @@ _Atualizado: 2026-05-22 23:45 BRT — consolidação diária em camadas_
 
 
 ## Nota para briefing matinal — itens estagnados >7 dias
-_Gerado pela organização noturna de 22/05 02:00 BRT._
+_Gerado pela organização noturna de 23/05 02:00 BRT._
 
 - Revalidar no briefing apenas os itens que continuam bloqueados por decisão/input do Pedro: reposição de canecas/Agente de Compras, Pedidos Atacado/PDF oficial Bling, teste controlado da automação de pedidos, Meta Business Segunda Venda, carrosséis fixos do Instagram Budamix, grupo OS/OSA com Davi, escolha da Capa 01 do banner triplo, aliases/POT1BB/KFJ003 do Estoque Budamix, Social Studio Meta App/secrets, Canggu senha/admin + hard-block defensivo, DRE abril U15, Guarani distrato, Bling Filial 403 pausado, firewall VPS e rotação de tokens expostos.
-- Crons recorrentes mais recentes checados em 22/05 02:00 BRT: Claude Contingency Guard (01:55 BRT), job-monitor (01:54 BRT) e Watchdog — GitHub Sync Segundo Cérebro (01:42 BRT) estavam em status OK. O Watchdog GitHub Sync gerou alerta, mas não falhou.
-- Falha nova a investigar sem interromper Pedro: Daily GitHub Backup às 00:02 BRT terminou em timeout. Se repetir, tratar como frente de estabilidade/backup; por ora ficou anotado em Observação/estabilidade.
-- Sessões antigas >30 dias por data de arquivo verificadas: 14/04, 15/04-audit, 16/04, 17/04, 19/04, 20/04 e 21/04 foram mantidas por falta de marcação inequívoca de consolidação completa; não deletar até a consolidação diária/profunda confirmar.
+- Crons recorrentes mais recentes checados em 23/05 02:00 BRT: job-monitor (01:53 BRT), Claude Contingency Guard (01:49 BRT) e Watchdog — GitHub Sync Segundo Cérebro (01:42 BRT) estavam em status OK.
+- Falha a investigar sem interromper Pedro: Organização Noturna Silenciosa ainda registrava timeout da rodada de 22/05 02:00 BRT ao iniciar a execução atual; se a execução de 23/05 fechar OK, manter apenas monitoramento. Daily GitHub Backup voltou a OK em 23/05 00:00 BRT após o timeout de 22/05.
+- Sessões antigas >30 dias por data de arquivo verificadas: 14/04, 16/04, 17/04, 19/04, 20/04, 21/04 e 22/04 foram mantidas por falta de marcação inequívoca de consolidação completa em todos os casos; não deletar até a consolidação diária/profunda confirmar.
 - Não reabrir pendências antigas de abril/2026 que Pedro já mandou limpar; manter histórico fora da fila ativa.
 
 ## Backlog Estagnado
@@ -173,4 +173,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-05-22 02:00 BRT._
+_Última organização: 2026-05-23 02:00 BRT._

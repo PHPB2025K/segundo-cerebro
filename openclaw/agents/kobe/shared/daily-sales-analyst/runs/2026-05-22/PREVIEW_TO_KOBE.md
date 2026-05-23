@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-22
-**Gerado em:** 2026-05-23T21:40:59.306891+00:00
+**Gerado em:** 2026-05-23T22:08:18.631225+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** BLOCKED
@@ -19,13 +19,12 @@
 - **llm_used:** True
   - 01-estrategica: LLM
   - 02-tatica: LLM
-  - 03-operacional: LLM
+  - 03-operacional: FALLBACK
   - 04-granular: LLM
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** A correção exigida é pontual (vocabulário em 4 trechos) e não requer reanálise de dados nem nova rodada completa de QA. Após a substituição, recomenda-se validação de Gate 8 e Gate 10 isoladamente antes de aprovar envio. Nenhuma tese da L05 foi alterada; fidelidade analítica está preservada.
-- **Aviso:** O erro ocorreu especificamente nos campos sinal_de_confirmacao_refutacao e escalar_se da prioridade 2, que foram provavelmente redigidos mais próximos do texto-fonte da L05 (que usa 'health' internamente) sem passar pela mesma camada de tradução aplicada à seção de análise. Ponto de atenção para próximos ciclos da L06.
+- **Aviso:** LLM obrigatório: fallback determinístico não é caminho aprovado.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-22/yasmin/00-data-package.json`

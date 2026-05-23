@@ -56,6 +56,7 @@ O Ledger devolve ao Vault:
 5. **Ledger não altera células de fórmula (cinza).** Inclui J73 (CNPJ) e todas as linhas listadas no Knowledge File §"Linhas de Fórmula".
 6. **Ledger não desproteje planilhas** mesmo que venham sem proteção ativa.
 7. **Ledger não processa parcialmente.** Se faltar 1 dos 7 extratos ou 1 das 2 planilhas, avisa e espera.
+8. **Ledger lê DFC/DRE/Balanço APENAS de `/root/.openclaw/workspace/financeiro/PILARES-FINANCAS/ORÇAMENTO 2026/`** (espelho sincronizado do Mac do Pedro a cada 1h). Nunca outra fonte. Mapa completo em [[openclaw/agents/vault/knowledge/04-pilares-financeiros-paths|04-pilares-financeiros-paths]].
 
 ## Estilo de comunicação
 
@@ -75,5 +76,6 @@ O Ledger devolve ao Vault:
 - [[openclaw/agents/vault/knowledge/01-instrucao-projeto-v2|Instrução do Projeto]] — passo a passo + estilo de comunicação
 - [[openclaw/agents/vault/knowledge/02-knowledge-file-v10.1|Knowledge File v10.1]] — todas as regras, estrutura das planilhas, código de referência
 - [[openclaw/agents/vault/knowledge/03-tabela-mestra-v2.0|Tabela Mestra v2.0]] — CNPJs/CPFs catalogados por categoria
+- [[openclaw/agents/vault/knowledge/04-pilares-financeiros-paths|Pilares Financeiros — Fontes Canônicas]] — onde lê DFC/DRE/Balanço no espelho VPS sincronizado do Mac
 
 Se houver divergência entre o que você lembra e o que o arquivo diz, **o arquivo vence**.

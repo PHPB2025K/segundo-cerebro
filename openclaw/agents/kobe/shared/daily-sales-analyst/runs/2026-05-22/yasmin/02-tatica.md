@@ -1,23 +1,40 @@
-<!-- llm_used=true model=gpt-5.5 fallback=false -->
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
 ### Decisão tática
 
-- Dado que a L01 define a conta como **vulnerável por dependência estrutural de Mercado Ads**, a decisão é **não mexer em ADS hoje**: `ads_summary.revenue_ads_yesterday_brl=3228,78` sobre `recipient.totals.gmv=4622,03` dá share ~69,9%, mas com ROAS ~10,9x e `avg_acos_pct=4,57`, a campanha está eficiente e qualquer ajuste agora confundiria a leitura.
-- Dado que o risco principal da L01 combina ADS dominante com campeões abaixo de `health=0,80`, a decisão é **checar direção do health antes de agir**: os dois campeões citados seguem em `health=0,75` e `0,71`, mas falta série temporal para saber se a penalização está piorando, estabilizada ou recuperando.
-- Dado que a L01 lê acomodação com ticket elevado, não queda real, a decisão é **proteger operação e evidência, não forçar alavanca comercial**: pedidos caem contra 7d/30d/60d, mas `gmv` segue acima de 30d e 60d, então a ação correta é reduzir incerteza por 2 ciclos.
-- Dado que a L01 aponta possível ruptura de campeão Full como sinal a observar, a decisão é **proteger cobertura dos itens Full de giro**: o anúncio de canecas em Full está com `available_quantity=9`, ainda não crítico pelo limiar duro, mas perto o suficiente para distorcer leitura de volume se romper.
+- **Respondendo ao risco de ADS dominância (L01):** A campanha Himmel opera com ROAS 10,87x e ACOS 4,57% (`ads_summary`) — eficiente. Mas este é o primeiro ciclo com ADS share quantificado (69,9% do GMV, weekly.md 2026-05-22 é a única entrada). Sem série histórica de ADS share no pacote, a decisão é **registrar como ponto zero e observar** — não acionar Himmel, não ajustar verba, não alterar segmentação.
+
+- **Respondendo ao risco de estoque em Full (L01, sinal 3):** Kit 6 Canecas Porcelana Tulipa Lisa 250ml (Full, `available_quantity=9`) gerou 6 pedidos ontem — ritmo que coloca ruptura em 1-2 dias sem reposição confirmada. A L01 sinalizou explicitamente esse ativo como gatilho de risco operacional (5+ pedidos com estoque crítico). Decisão: **ação hoje** — Yasmin confirma status de reposição no CD do ML antes que o anúncio pause por estoque.
+
+- **Respondendo à health degradada dos campeões Full (L01, sinal 2):** Kit 4 Potes de Vidro 1050ml (health=0,75) e Jogo Potes de Vidro Tampa Vermelha (health=0,71), ambos `is_catalog=false`, foram registrados com health abaixo de 0,85 pela primeira vez na weekly.md de 2026-05-22 — sem ciclo anterior para determinar direção. Decisão: **checar direção** antes de qualquer movimento com Himmel. Health estabilizado = observar; health caindo em ambos = alinhar com Himmel sobre cobertura preventiva.
+
+- **Respondendo ao patamar de MercadoLíder Platinum (L01):** Progresso em 81,34%, gap R$55.226,77, ETA 13,8 dias no ritmo atual. O dia ficou acima do ritmo necessário (R$4.622 vs R$4.012,89/dia). Decisão: **não alterar nada que impacte GMV de curto prazo** enquanto o gap não cair abaixo de R$30k — ação corretiva mal calibrada nesse estágio aumenta o ETA sem necessidade.
+
+---
 
 ### O que fazer hoje
 
-- **Yasmin:** checar direção do `health` dos dois campeões penalizados em Full/Catálogo e Full/Clássico — motivo: a L01 marca dependência de ADS sobre anúncios com `health=0,75` e `0,71`, mas sem série temporal a decisão sobre cobertura ADS seria prematura — sinal de resultado: health estável ou recuperando mantém observação; health caindo nos dois por mais 1-2 ciclos justifica alinhamento com Himmel sobre cobertura preventiva, sem mexer antes.
-- **Yasmin:** registrar como ponto zero do ciclo o ADS share ~69,9%, ROAS ~10,9x e ACOS `4,57%` — motivo: a L01 trata Mercado Ads como vetor dominante, mas eficiente; a tarefa hoje é separar dependência estrutural de campanha saudável em fase de leitura — sinal de resultado: se o share seguir ≥60% com ROAS alto por 2 ciclos, vira pauta de alinhamento; se cair sem perda de GMV, a dependência enfraquece.
-- **Yasmin:** verificar cobertura/reposição do campeão em Full com `available_quantity=9` — motivo: a L01 cita ruptura desse item como possível causa de perda de volume, e a memória já pede confirmação da reposição — sinal de resultado: se houver reposição antes de zerar, a variável operacional sai da leitura; se romper ou sair dos top 10, registrar como confundidor da leitura de pedidos dos próximos dias.
+1. **Yasmin:** confirmar status de reposição do Kit 6 Canecas Porcelana Tulipa Lisa 250ml no CD do ML (Full, `available_quantity=9` com 6 pedidos ontem — ruptura estimada em 1-2 dias sem entrada de estoque) — motivo: L01 sinalizou esse ativo como gatilho de risco operacional; ruptura em anúncio Full com venda ativa provoca pausa automática pelo ML e perda de posição no CD com custo de reintrodução que impacta ranking mesmo após reabastecimento, o que afeta diretamente o orgânico dos próximos dias — sinal de resultado: reposição confirmada e em trânsito dentro de 24h neutraliza o risco; anúncio pausado por estoque sem reposição já em andamento = registrar como variável confundidora para as próximas leituras de GMV e exposição.
+
+2. **Yasmin:** checar a direção de health dos dois campeões em Full com penalização — Kit 4 Potes de Vidro Hermético 1050ml Tampa Azul-petróleo (health=0,75) e Jogo Potes de Vidro 5 Peças Tampa Vermelha (health=0,71) — comparando com qualquer leitura disponível além da weekly.md 2026-05-22 (única entrada, sem ciclo anterior, direção ainda indeterminada) — motivo: health degradada em anúncio Full corrói ranking orgânico progressivamente com defasagem; se ADS estiver compensando a perda orgânica em silêncio, o risco é invisível no GMV de curto prazo mas acumula fragilidade — sinal de resultado: health estável ou em recuperação em ambos = manter observação sem ação; health caindo em qualquer um dos dois no próximo pacote com dado = Yasmin alinha com Himmel sobre cobertura preventiva antes que a posição orgânica eroda além do ponto de recuperação rápida.
+
+3. **Yasmin:** registrar como ponto zero da série: ADS share 69,9% (`revenue_ads_yesterday_brl` R$3.228,78 / `gmv` R$4.622,03), ROAS 10,87x, ACOS 4,57%, spend R$296,96 — motivo: L01 identificou este como o primeiro ciclo com ADS share quantificado; o ROAS alto pode estar parcialmente explicado pelo ticket elevado (R$55,02), que pode ser artefato de ADS qualificando compradores de maior valor — sem série, a separação orgânico/pago é indecidível — sinal de resultado: ADS share acima de 65% por 3 ciclos consecutivos com ROAS acima de 5x confirma dependência estrutural (acionar discussão com Kobe); ROAS caindo abaixo de 5x ou ACOS subindo acima de 10% em dois ciclos = mudar postura para alinhar com Himmel sobre revisão de segmentação.
+
+---
 
 ### O que NÃO fazer ainda
 
-- Não pedir ajuste, pausa ou redistribuição de Mercado Ads hoje: apesar do ADS share alto, `avg_acos_pct=4,57` e ROAS ~10,9x indicam eficiência; mexer agora pode quebrar uma campanha que sustenta GMV sem provar que ela está causando o problema.
-- Não interpretar a queda de pedidos como queda real de patamar: a L01 mostra `orders_vs_7d_pct=-25,9%` e `orders_vs_30d_pct=-15,4%`, mas `gmv_vs_30d_pct=+3,4%` e `gmv_vs_60d_pct=+17,9%`; ainda é acomodação com ticket maior, não reversão confirmada.
-- Não propor migração de modalidade de envio ou mudança estrutural de catálogo: o mix recente dos top 10 mudou para mais Cross-Docking, mas `fulfillment_mix_7d.full_pct=74,9%` e `fulfillment_mix_30d.full_pct=73,7%` ainda mostram predominância de Full; qualquer decisão de migração extrapola a tática diária.
+1. **Não acionar Himmel para ajustar campanhas ativas.** ADS share de 69,9% com ROAS 10,87x e ACOS 4,57% configura campanha eficiente em primeiro ciclo de observação. Qualquer ajuste — verba, segmentação, lances — introduz variável que impede separar efeito de campanha de comportamento orgânico numa série que ainda não tem ponto de comparação anterior. A L01 confirma que não há histórico de ADS share no pacote.
+
+2. **Não tomar ação forte sobre os dois campeões Full com health degradada** (Kit 4 Potes 1050ml em 0,75, Jogo Potes Tampa Vermelha em 0,71) **sem confirmar direção.** Pausar, redirecionar ou intervir em anúncio com health baixo mas potencialmente estabilizado pode desfazer posição orgânica acumulada. A weekly.md tem apenas uma entrada com esses valores — sem ciclo anterior, a direção é indeterminada. Ação forte requer ao menos dois pacotes consecutivos mostrando queda.
+
+3. **Não interpretar a retração de pedidos vs 7d (-25,9%) como deterioração estrutural que exige resposta.** O GMV do dia (R$4.622) ficou dentro da banda histórica de sextas-feira (R$3.214–R$6.465 nos 4 ciclos anteriores); a média 7d está inflada pela semana forte imediatamente anterior; o controle sazonal mostra -2,1% vs mesmo dia da semana — variação dentro do ruído histórico, não sinal de queda real.
+
+---
 
 ### Escalonamento
 
-**observar** — Yasmin resolve o ciclo de hoje com checagens dirigidas, sem acionar Himmel ou Kobe. A mudança de classificação acontece se ADS share ficar ≥60% por mais 2 ciclos com os dois campeões ainda abaixo de `health=0,80`; nesse caso, Yasmin alinha com Himmel sobre cobertura e intenção da estratégia de mídia. Se o padrão persistir com risco estrutural de dependência mesmo com ROAS alto, aí a discussão passa para Kobe.
+**observar**
+
+A conta está em primeiro ciclo de observação para o indicador mais crítico (ADS share): a tese de dependência estrutural foi identificada pela L01, mas não tem série temporal para confirmação. O único risco operacional presente (estoque crítico do Kit Canecas Tulipa) é resolvido pela Yasmin sem necessidade de acionar Himmel ou Kobe. Reputação verde estável (`5_green`, `cancellations_rate=0`, `delayed_handling_rate=0,12%`), ETA Platinum dentro do trilho, nenhum anúncio pausado com pedidos em aberto. A postura correta é coletar evidência sem alterar a operação.
+
+Dois gatilhos mudam a classificação: **(a)** se health de qualquer dos dois campeões Full (Kit 4 Potes 1050ml ou Jogo Potes Tampa Vermelha) cair no próximo pacote com dado, Yasmin passa para "alinhar com Himmel" sobre cobertura preventiva de ADS; **(b)** se ADS share ficar acima de 65% por mais 2 ciclos consecutivos com ROAS mantendo-se acima de 5x, Yasmin abre discussão com Kobe sobre dependência estrutural de mídia paga — decisão que extrapola tática diária e envolve mix de catálogo e estratégia de verba de médio prazo.

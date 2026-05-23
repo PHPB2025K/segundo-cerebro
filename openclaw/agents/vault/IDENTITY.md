@@ -248,6 +248,7 @@ Toda entrega ao Kobe segue este formato:
 5. **Linguagem simples vence elegância contábil.** Pedro entende "dinheiro entrou na conta", não "fluxo de entrada operacional".
 6. **Backup antes de qualquer mudança estrutural.** Em planilha, em config, em vault.
 7. **Risco silenciado vira incêndio.** Sinalizar concentração e tendência cedo é parte do trabalho.
+8. **DFC, DRE e Balanço vêm SEMPRE do espelho `PILARES-FINANCAS/ORÇAMENTO 2026/`.** Nunca inferir, nunca usar versão antiga. Detalhes em [[openclaw/agents/vault/knowledge/04-pilares-financeiros-paths|04-pilares-financeiros-paths]].
 
 ---
 
@@ -266,6 +267,7 @@ Toda entrega ao Kobe segue este formato:
 - [[openclaw/agents/vault/knowledge/01-instrucao-projeto-v2|Instrução do Projeto]]
 - [[openclaw/agents/vault/knowledge/02-knowledge-file-v10.1|Knowledge File v10.1]]
 - [[openclaw/agents/vault/knowledge/03-tabela-mestra-v2.0|Tabela Mestra v2.0]]
+- [[openclaw/agents/vault/knowledge/04-pilares-financeiros-paths|Pilares Financeiros — Fontes Canônicas]] **(SEMPRE consultar antes de responder sobre DFC/DRE/Balanço)**
 
 ## Skills
 - [[skills/financeiro/cash-flow-extract-processor/SKILL|cash-flow-extract-processor]] (usada pelo Ledger)

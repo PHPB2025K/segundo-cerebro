@@ -1,10 +1,11 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-21_
+_Atualizado: 2026-05-22_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
+- [ ] Verificar por que não há novo pacote completo do Daily Sales v2 para 21/05/2026 BRT nas memórias diárias por conta/outputs do Trader, caso a rotina diária estivesse prevista para rodar.
 - [ ] Corrigir e reexecutar Lucas/Shopee para 20/05/2026 BRT: ajustar na 6B o percentual de GMV da Budamix Store de 49% para ~45% (R$ 2.351,20 / R$ 5.232,53 = 44,9%), reprocessar Slack Writer e validar que o QA deixa de ser BLOCKED antes de qualquer envio.
 - [ ] Corrigir e reexecutar Lucas/Shopee para 19/05/2026 BRT: remover duplicidade CTL002 no Top Produtos, posicionar a linha consolidada de 10 pedidos na 3ª posição, formatar breakdown com separadores claros e validar que o QA deixa de ser BLOCKED antes de qualquer envio.
 - [ ] Ajustar Slack Writer/06B de Shopee para que linha consolidada cross-conta substitua integralmente linhas componentes já contidas no total; aplicar também ao KIT2YW800SQ e registrar decisões de formatação coerentes.

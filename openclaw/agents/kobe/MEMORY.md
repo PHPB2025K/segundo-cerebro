@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-21 23:45 BRT (consolidação diária em camadas)._
+_Último update: 2026-05-22 23:45 BRT (consolidação diária em camadas)._
 
 ---
 
@@ -134,7 +134,7 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (21/05/2026 23:45 BRT — consolidação diária em camadas)
+## Status do Sistema (22/05/2026 23:45 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
 - **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; todo conteúdo relacionado a alertas deve ir para lá (watchdogs, guards, audits, monitores, failure alerts, resumos e avisos de risco/problema). Thread 8 permanece Urgente e não deve receber alertas técnicos de rotina.
@@ -170,6 +170,12 @@ skills/
 - Agent memories de Trader, Spark e Builder atualizadas para refletir Daily Sales v2, Amazon Ads 5 camadas, Mission Control/Social Studio Reborn/Canggu.
 
 
+
+## Qualidade da Memória (Consolidação Diária em Camadas 22/05 — 23:45 BRT)
+- Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
+- Digests lidos: Trader, Spark, Builder, Fisco e RH. Nenhum digest ausente neste fechamento.
+- Marcos globais incorporados: Import Hub/Terminal49 avançou em GB26001/GB26002; loop de estoque site↔planilha do e-commerce foi fechado; Vault/Ledger entraram em produção como área financeira; Ana/Canggu foi validada 7/7 E2E com notificações reais para Pedro; IMB501 e destaques do e-commerce foram ajustados; Gestão de Funcionários rodou consolidação semanal.
+- Riscos críticos vindos dos digests: Trader não encontrou pacote completo do Daily Sales v2 para 21/05 BRT; Shopee/Amazon Rules Watch estão vencidos; Meta Ads ainda precisa validação de token; Bling Filial segue bloqueado/403; RH adicionou compliance 22/05 e backlog de 12 comunicações abertas.
 
 ## Qualidade da Memória (Consolidação Diária em Camadas 21/05 — 23:45 BRT)
 - Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
@@ -228,6 +234,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-22:** Import Hub anexou documentos e ativou Terminal49 para GB26001/GB26002; e-commerce fechou loop de estoque site↔planilha e reparou IMB501/destaques; Vault/Ledger entraram em produção como área financeira; Ana/Canggu fechou 7/7 E2E com escalação/notificação real; Daily Sales v2 ficou com lacuna operacional para 21/05; RH registrou novos riscos de compliance.
 - **2026-05-21:** Budamix E-commerce ganhou preview mobile no admin e polimentos de PDP; Canggu/Ana voltou a responder via fluxo real WhatsApp após pacote v36/v42; Pedro pausou Bling Filial e priorizou WhatsApp Health Check versionado; sync da VPS passou a usar escrita segura; Gestão de Funcionários registrou reunião semanal com Yasmin; Daily Sales v2 ficou em preview `APPROVED_WITH_REMARKS`, mas Lucas/Shopee bloqueou por erro factual de percentual Store.
 - **2026-05-20:** Canggu/Ana teve correção estrutural do silêncio de 9 dias e regra 17 contra respostas de cadastro/processo interno; WhatsApp Himmel/Shopee foi integrado e ambos os grupos Himmel passaram a 3 ingestões diárias; Estoque Budamix voltou a produção via rsync com parser PDF local validado; Budamix E-commerce ganhou variações estruturadas e desativou temporariamente kits 4 travas; Gestão de Funcionários ganhou memórias individuais; Daily Sales v2 ficou PARTIAL por bloqueio Lucas/Shopee.
 - **2026-05-19:** Daily Sales v2 recuperou a falha de Lucas/Shopee do dia anterior e aprovou os três recipients com ressalvas em preview Pedro-only, sem envio real aos funcionários. Spark e Builder ficaram quietos; Fisco manteve Bling Filial 403 + alerta WhatsApp degradado; RH adicionou riscos de compliance para Guilherme/Lucas/Leonardo/Franciele.
@@ -266,7 +273,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) corrigir/reexecutar Lucas/Shopee no Daily Sales v2 e decidir critério de promoção para envio real, (2) implementar WhatsApp Health Check versionado substituindo N8N quebrado, (3) planejar reposição de canecas e estruturar piloto do Agente de Compras, (4) validar token Meta Ads pós-18/05, (5) orientar RH sobre Lucas/Guilherme sem liberar proativo genérico, (6) hard-block Canggu contra linguagem de cadastro/processo interno, (7) retomar n8n usage tracking e painel Daily Sales Pipeline no Mission Control._
+_Próximas ações: (1) investigar lacuna Daily Sales v2 de 21/05 e corrigir Lucas/Shopee 20/05 antes de envio real, (2) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT, (3) planejar reposição de canecas e cobrar reviews dos kits 4 travas com Leonardo na segunda, (4) retomar automação de pedidos atacado em teste controlado, (5) validar token Meta Ads pós-18/05, (6) orientar RH sobre recorrências de intervalo/saída sem liberar proativo genérico, (7) validar primeiro pedido real do site com BUDAMIX10 e investigar preço Tulipa._
 
 ---
 ## Contexto

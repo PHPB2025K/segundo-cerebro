@@ -1,0 +1,51 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "Nenhum gate crítico falhou e nenhum Maior foi detectado. Um único problema Menor identificado no Gate 6: a referência quantitativa '-2,1% vs mesmos dias' presente no Insight 1 da L05 foi omitida no Slack sem registro explícito em Decisões de formatação. O número contextualiza a afirmação 'dentro da banda esperada para sexta-feira' mas não é diretamente acionável para as ações do dia (check health / check stock), portanto não configura Maior pela Diretriz Pedro. Adicionalmente, a suavização de 'está deteriorado' (L05) para 'dá sinais de deterioração' (L06) é coerente com a classificacao 'risco latente' e não constitui violação — ao contrário, corrige uma inconsistência interna da L05. Regra de agregação aplicada: 0 Maiores + 1 Menor (1–5) → APROVADO COM RESSALVA.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "RESSALVA",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 1,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 1 Menor (1–5, não sistêmico) → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "6 — Análise da Conta (fidelidade à L05)",
+      "texto_atual": "O GMV ficou dentro da banda esperada para sexta-feira, mas o mecanismo que entregou esse resultado dá sinais de deterioração",
+      "texto_esperado": "O GMV ficou dentro da banda esperada para sexta-feira (-2,1% vs mesmos dias), mas o mecanismo interno que entregou esse resultado está deteriorado",
+      "regra_violada": "Gate 6 / Diretriz Pedro 2026-05-17: número ou referência presente na L05 foi omitido sem registro em Decisões de formatação. O '-2,1% vs mesmos dias' fundamenta a afirmação 'dentro da banda esperada' com dado verificável. Classificado como Menor (não Maior) porque o número é contexto de situação, não insumo direto para as ações do dia (verificar health / verificar reposição), e a tese central e as prioridades permanecem intactas. A L06 deveria ter registrado explicitamente a omissão em Decisões de formatação.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "L05 Insight 1 usa linguagem assertada ('está deteriorado', 'ADS respondeu por 69,8% do GMV para compensar') para classificacao 'risco latente' — inconsistência interna da L05 entre texto e classificacao. A L06 corrigiu adequadamente para 'dá sinais de deterioração' e 'ADS pode estar compensando', alinhando com a classificacao. Sinalizar para revisão do prompt L05: texto deve usar linguagem condicional quando classificacao = 'risco latente'.",
+    "L06 Decisões de formatação não registrou explicitamente a omissão de '-2,1% vs mesmos dias' do Insight 1. Para auditoria futura, toda omissão de dado numérico presente na L05 deve ser declarada e justificada no log, mesmo quando não bloqueante."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "CLR002 (MLB6232315532): display_short no data package retém 'Caneca Colorida' ao final — 'Kit de 6 Canecas de Porcelana Lisa Reta Para Chá e Café Colorida 200ml Caneca Colorida'. Embora o termo não conste na lista específica de ruído SEO bloqueante do Gate 5 (Refratário, Vedação, Mantimentos Marmita, Coloridas Xícara, Mini Café Casa, 4 Travas, Budamix), o padrão indica que simplify_ml_title pode não estar cobrindo redundâncias SEO da família CLR. L06 usou verbatim o display_short conforme protocolo — responsabilidade de correção é do data builder. Investigar na próxima versão.",
+    "Série temporal de health ausente do pacote para MLB4073003575 (health=0,75) e MLB3288536143 (health=0,71): limitação estrutural que deixou a pergunta mais crítica da L03 (direção do health — caindo, estável ou em recuperação) sem resposta, mantendo o risco estrutural da L01 como hipótese aberta. Solicitar ao data builder inclusão de histórico D-7 de health para pelo menos os top 5 anúncios em modalidade Full.",
+    "Breakdown de revenue_ads por platform_item_id ausente do ads_summary: impede confirmar ou refutar hipótese de priorização ADS por modalidade de envio (evidência conflitante registrada na L04, classificada como hipótese em aberto). Solicitar ao data builder inclusão de revenue_ads_by_item no próximo ciclo para pelo menos os 10 itens do top.",
+    "KIT10YW320 (MLB6739241224): available_quantity=6 pós-baixa em Cross-Docking, cobertura prospectiva de ~3 dias ao ritmo de 2 pedidos/dia. Corretamente não incluído nas prioridades do Slack (L05 não incluiu), mas merece monitoramento no próximo ciclo. Dinâmica Cross-Docking em ruptura é menos crítica que Full, mas o produto está no top 10."
+  ],
+  "llm_used": true,
+  "model": "sonnet",
+  "fallback": false
+}

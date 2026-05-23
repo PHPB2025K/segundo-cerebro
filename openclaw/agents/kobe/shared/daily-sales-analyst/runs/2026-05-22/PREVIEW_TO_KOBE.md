@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-22
-**Gerado em:** 2026-05-23T13:06:38.368814+00:00
+**Gerado em:** 2026-05-23T13:27:24.975712+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,8 +24,7 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Os 5 Menores do Gate 6 estão todos no sentido de hedging adicional para classificação 'risco latente' (insights 1 e 2) ou de substituição de termo/tempo verbal próximo (insight 3). A tese central, os dados factuais (R$3.228,78, R$4.622,03, health 0,75 e 0,71, 9 unidades, 1,5 dias, 47% vs 74%, 33%), os bloqueios e as prioridades estão integralmente preservados. Nenhum risco de induzir Yasmin a erro operacional foi identificado.
-- **Aviso:** A L05 usou linguagem assertiva ('é frágil', 'não está', 'está cobrindo', 'É o único sinal') para insights classificados como 'risco latente' — tecnicamente inconsistente com a regra de linguagem condicional obrigatória para risco latente. L06 corrigiu na direção certa ao adicionar 'parece', gerando os Menores de verbo modal. Em ciclos futuros, a L05 deveria usar linguagem condicional já no texto do insight quando a classificação é 'risco latente', eliminando a ambiguidade de fidelidade para a L06 e os Menores resultantes.
+- **Aviso:** No próximo ciclo, exigir que o log de Respeito de bloqueios registre origem dupla quando a L05 apenas propaga bloqueio primário da L04.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-22/yasmin/00-data-package.json`

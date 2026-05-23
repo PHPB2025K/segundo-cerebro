@@ -103,19 +103,69 @@ Contexto operacional canônico da conta ML. Atualizado quando algum atributo est
 
 **Implicação prática:** perder Gold pra Silver muda limite de anúncios (50k → 20k) e reduz subsídio de frete; perder Platinum pra Gold mantém limites mas perde prioridade Buy Box e acesso antecipado.
 
-## Decisão de modelos LLM no pipeline DSA (23/05/2026)
+## Decisão final de modelos LLM no pipeline DSA (23/05/2026)
 
-Após benchmark tripla das 7 camadas com Sonnet 4.6, Opus 4.7 e GPT 5.5 no mesmo dia (22/05/2026, weekly.md já populado), decidido:
+Após benchmark quádruplo das 7 camadas no mesmo dia (22/05/2026, `weekly.md` populado): Sonnet 4.6 puro, Opus 4.7 puro, GPT 5.5 (via codex) e **híbrido (Sonnet default + Opus em L04/L05)**, decidido:
 
-| Cron | Modelo | Por quê |
+### Cron diário (todo dia 06:50 BRT) — **modo híbrido**
+
+| Camada | Modelo | Por quê |
 |---|---|---|
-| **Pipeline diário** (06:50 BRT, todo dia) | `claude-sonnet-4-6` | Análise densa, latência ~6 min, custo modesto. Empate técnico com Opus em condições iguais. |
-| **Consolidação semanal** (segunda 09:00 BRT — a criar) | `claude-opus-4-7` | Decomposição numérica + amarração com trajetória estratégica; 4 execuções/mês justificam custo extra. |
-| **Consolidação mensal** (1º do mês 09:00 BRT — a criar) | `claude-opus-4-7` | Síntese mensal precisa profundidade analítica; 1 execução/mês. |
+| L01 Estratégica | `claude-sonnet-4-6` | Análise panorâmica, latência baixa, custo modesto. |
+| L02 Tática | `claude-sonnet-4-6` | Tradução estratégia→ação; baixa complexidade analítica. |
+| L03 Operacional | `claude-sonnet-4-6` | Decomposição estrutural do dia; Sonnet performa muito bem. |
+| **L04 Granular** | **`claude-opus-4-7`** | Rigor investigativo, cruzamento de fontes, declaração de divergências. Camada com 2º maior peso analítico. |
+| **L05 Condensadora** | **`claude-opus-4-7`** | Julgamento de relevância, classificação `fato`/`hipótese`/`risco latente`, aplicação dos 6 padrões. Camada de maior peso analítico. |
+| L06 Slack Writer | `claude-sonnet-4-6` | Tradução estruturada, baixa complexidade. |
+| L07 QA Gate | `claude-sonnet-4-6` | Validação cruzada, 12 gates; não rediagnostica. |
 
-GPT 5.5 (via codex CLI, assinatura ChatGPT Pro 5x) **descartado** para o pipeline: análise mais rasa, hedging excessivo, bug de formatação (vazou "text" no início do bloco Slack).
+**Validação empírica do híbrido (run 23/05 11:12 BRT):**
+- APROVADO COM RESSALVA, **2 menores** (vs 5 do Sonnet puro, 3 do Opus puro)
+- Insight estrutural novo que **só apareceu no híbrido**: "ADS share alto num dia liderado por Cross-Docking sugere campanha acompanha produto, não modalidade"
+- Latência ~9-10 min (vs 6 min Sonnet puro, 13 min Opus puro)
+- Custo ~R$ 0,50/run (vs R$ 0,40 Sonnet puro, R$ 0,70 Opus puro)
 
-Trocar modelo: editar `llm_model` em `/root/segundo-cerebro/openclaw/agents/kobe/shared/daily-sales-analyst/config/daily-sales-analyst.json`.
+### Cron semanal (toda segunda 09:00 BRT) — **Opus 4.7 puro**
+
+Script: `daily-sales-weekly-consolidator-ml.py`. Lê 7 blocos diários do `weekly.md` da semana anterior, chama Opus 4.7 com prompt `08-weekly-consolidator.md`, gera bloco `### Semana: DD/MM a DD/MM/AAAA` no Histórico Semanal.
+
+### Cron mensal (dia 1 do mês 09:00 BRT) — **Opus 4.7 puro**
+
+Script: `daily-sales-monthly-consolidator-ml.py`. Lê 4-5 blocos semanais do mês anterior, chama Opus 4.7 com prompt `09-monthly-consolidator.md`, gera bloco `### Mês: MM/AAAA` no `monthly.md`.
+
+### Descartado: GPT 5.5
+
+GPT 5.5 (via codex CLI, assinatura ChatGPT Pro 5x) foi descartado para o pipeline: análise mais rasa (1 insight só vs 3 dos modelos Claude), hedging excessivo, bug de formatação (vazou "text" no início do bloco Slack). Vantagem do custo zero não compensa perda de qualidade analítica.
+
+### Como o override por camada funciona
+
+Config em `/root/segundo-cerebro/openclaw/agents/kobe/shared/daily-sales-analyst/config/daily-sales-analyst.json`:
+
+```json
+{
+  "llm_model": "claude-sonnet-4-6",
+  "llm_timeout_seconds": 450,
+  "llm_model_per_layer": {
+    "04": "claude-opus-4-7",
+    "05": "claude-opus-4-7"
+  },
+  "llm_timeout_seconds_per_layer": {
+    "04": 900,
+    "05": 900
+  }
+}
+```
+
+O runner (`daily-sales-runner-ml.py`) lê `llm_model_per_layer` e aplica override por camada via função `_resolve_model_for_layer`. Suporta tanto modelos Claude (via `claude -p`) quanto OpenAI/Codex (via `codex exec` com `--output-last-message`).
+
+### Custos estimados consolidados
+
+| Cron | Frequência/mês | Custo estimado/run | Custo/mês |
+|---|---|---|---|
+| Diário (híbrido) | 30 | R$ 0,50 | R$ 15,00 |
+| Semanal (Opus puro) | 4 | R$ 0,80 | R$ 3,20 |
+| Mensal (Opus puro) | 1 | R$ 1,20 | R$ 1,20 |
+| **Total ML/mês** | | | **~R$ 19,40** |
 
 ## Pipeline DSA — onde isso entra (planejado, ainda não implementado)
 

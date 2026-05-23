@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-05-22
-**Gerado em:** 2026-05-23T14:12:31.056643+00:00
+**Gerado em:** 2026-05-23T14:56:44.440522+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,8 +24,9 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Gate 6 — Bullet 1 da Análise omitiu 'o anúncio é Full', que é termo analítico-chave no L05. Nas próximas execuções, o L06 deve preservar a declaração explícita de modalidade de envio nos bullets da Análise quando o L05 a incluir como parte da tese.
-- **Aviso:** Gate 11 — 'R$296,96' sem espaço nas Prioridades. O L06 deve garantir espaço entre 'R$' e o valor numérico em todas as ocorrências da mensagem, incluindo dentro de bullets de Prioridades que listam métricas de ADS.
+- **Aviso:** Insight 3 da L05 usa linguagem levemente assertiva ('novos pedidos viram cancelamento') apesar de classificacao='risco latente'; a L06 aplicou 'podem virar cancelamento', ficando mais fiel à classificação do que o próprio texto da L05 — melhoria de alinhamento, não alteração de tese. Não é problema, é sinal de que a L05 pode refinar a redação dos insights de risco latente no próximo ciclo.
+- **Aviso:** Substituição 'família IMB501' → 'a linha Potes Vidro 5 Peças' no insight 2 e na prioridade 2 está corretamente documentada nas Decisões de formatação e é coerente com os nomes exibidos no Top Produtos da mesma mensagem — consistência cross-section confirmada.
+- **Aviso:** alertas_de_confianca.nivel='media' tratado corretamente: limitações de série temporal de health e de breakdown de ADS por anúncio foram incorporadas ponto a ponto nos insights e prioridades sem ressalva global no Slack, alinhado com o que a L05 autorizou.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-22/yasmin/00-data-package.json`

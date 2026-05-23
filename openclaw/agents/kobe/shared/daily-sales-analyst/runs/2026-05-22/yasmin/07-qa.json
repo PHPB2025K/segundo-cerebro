@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem passou por todos os 12 gates sem Críticos e sem Maiores. Foram encontrados 2 Menores isolados: (1) Gate 6 — o bullet 1 da Análise omitiu o termo analítico-chave 'Full' que o L05 declarou explicitamente ('o anúncio é Full'), embora a informação seja recuperada na Prioridade 1; (2) Gate 11 — formato monetário inconsistente entre 'R$ 4.622,03' (com espaço) na VISÃO e 'R$296,96' (sem espaço) nas Prioridades. Regra de agregação aplicada: 0 Maiores + 2 Menores (não sistêmicos) → APROVADO COM RESSALVA.",
+  "motivo": "Todos os 12 gates passaram sem falhas críticas ou maiores. Um único Menor registrado no Gate 5: SKU 914C_BA (Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico) não possui slack_short_name mapeado; a L06 aplicou corretamente o fallback automático via display_short e normalizou 'Kit 06' → 'Kit 6', conforme a regra de fallback. Nenhum bloqueio reintroduzido, nenhuma tese alterada, nenhuma hipótese convertida em fato, nenhuma inconsistência de input contaminando a análise. Regra de agregação aplicada: 0 Maiores + 1 Menor isolado → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -8,51 +8,46 @@
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "OK",
-    "gate_6_analise_conta": "RESSALVA",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "OK",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
     "gate_10_tom_utilidade": "OK",
-    "gate_11_padrao_numerico_formatacao": "RESSALVA",
+    "gate_11_padrao_numerico_formatacao": "OK",
     "gate_12_consistencia_ml_snapshot": "OK"
   },
   "contagem_severidade": {
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 2,
-    "regra_agregacao_aplicada": "0 Maiores + 2 Menores (não sistêmicos) → APROVADO COM RESSALVA"
+    "menores": 1,
+    "regra_agregacao_aplicada": "0 Maiores + 1 Menor isolado → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
       "severidade": "Menor",
-      "gate": "Gate 6 — Análise da Conta (fidelidade à L05)",
-      "texto_atual": "O urgente do dia é o Kit 6 Canecas Porcelana Tulipa Lisa 250ml: ficou com 9 unidades depois de vender 6 ontem, o que dá cobertura inferior a 2 dias para os próximos pedidos.",
-      "texto_esperado": "O urgente do dia é o Kit 6 Canecas Porcelana Tulipa Lisa 250ml: o anúncio é Full e ficou com 9 unidades depois de vender 6 ontem, o que dá cobertura inferior a 2 dias para os próximos pedidos.",
-      "regra_violada": "Nenhum termo analítico-chave removido — 'Full' está listado como termo-chave e foi omitido do bullet 1 da Análise. O L05 declarou explicitamente 'o anúncio é Full' como parte da tese do insight 1. 'Full' é o que explica por que a pausa automática pelo ML ocorre (diferente de Cross-Docking). A informação está recuperada na Prioridade 1, mas falta no bullet da Análise onde o L05 a colocou.",
-      "bloqueia_envio": false
-    },
-    {
-      "severidade": "Menor",
-      "gate": "Gate 11 — Padrão numérico e formatação objetiva",
-      "texto_atual": "gasto R$296,96",
-      "texto_esperado": "gasto R$ 296,96",
-      "regra_violada": "Formato monetário inconsistente na mesma mensagem: VISÃO usa 'R$ 4.622,03' (com espaço entre R$ e o número), Prioridades usam 'R$296,96' (sem espaço). O padrão canônico do pipeline é 'R$ 1.234,56'. Inconsistência menor que não induz erro de leitura mas diverge do padrão aprovado.",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "Kit 6 Canequinhas 100ml com Suporte de Madeira Acrílico — 2 pedidos",
+      "texto_esperado": "Nome curto canônico aprovado manualmente (entrada ausente em config/slack-short-names-ml.json para SKU 914C_BA)",
+      "estado_atual": "SKU 914C_BA (MLB6073033006) possui slack_short_name=null; L06 aplicou fallback automático via display_short com normalização 'Kit 06' → 'Kit 6' e resultado é correto e legível",
+      "estado_esperado": "Entrada adicionada em config/slack-short-names-ml.json para garantir nome canônico aprovado manualmente nas próximas execuções, eliminando dependência de fallback automático",
+      "regra_violada": "Gate 5 — produto com slack_short_name=null deve ser registrado como Menor; sinal para manutenção do mapa estático na próxima janela de manutenção",
       "bloqueia_envio": false
     }
   ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Gate 6 — Bullet 1 da Análise omitiu 'o anúncio é Full', que é termo analítico-chave no L05. Nas próximas execuções, o L06 deve preservar a declaração explícita de modalidade de envio nos bullets da Análise quando o L05 a incluir como parte da tese.",
-    "Gate 11 — 'R$296,96' sem espaço nas Prioridades. O L06 deve garantir espaço entre 'R$' e o valor numérico em todas as ocorrências da mensagem, incluindo dentro de bullets de Prioridades que listam métricas de ADS."
+    "Insight 3 da L05 usa linguagem levemente assertiva ('novos pedidos viram cancelamento') apesar de classificacao='risco latente'; a L06 aplicou 'podem virar cancelamento', ficando mais fiel à classificação do que o próprio texto da L05 — melhoria de alinhamento, não alteração de tese. Não é problema, é sinal de que a L05 pode refinar a redação dos insights de risco latente no próximo ciclo.",
+    "Substituição 'família IMB501' → 'a linha Potes Vidro 5 Peças' no insight 2 e na prioridade 2 está corretamente documentada nas Decisões de formatação e é coerente com os nomes exibidos no Top Produtos da mesma mensagem — consistência cross-section confirmada.",
+    "alertas_de_confianca.nivel='media' tratado corretamente: limitações de série temporal de health e de breakdown de ADS por anúncio foram incorporadas ponto a ponto nos insights e prioridades sem ressalva global no Slack, alinhado com o que a L05 autorizou."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "Gate 12 — ml_snapshot internamente consistente. Nenhuma inconsistência de input detectada. ADS com 11 campanhas ativas e spend R$296,96 (sem zeramento de métricas). Reputação verde com 1 cancelamento no dia (abaixo do threshold de 5 para flag de inconsistência). fulfillment_mix_yesterday_top10 cobre 68/84 pedidos (~81%), acima do mínimo de 70%, omitido da VISÃO conforme regra e autorizado como dado explicativo na Análise pela L05.",
-    "Gate 5 — CLR002: display_short 'Kit de 6 Canecas de Porcelana Lisa Reta Para Chá e Café Colorida 200ml Caneca Colorida' contém 'Caneca Colorida' ao final, que é aparente ruído SEO não removido pelo simplify_ml_title. Não está na lista de ruídos canônicos bloqueantes (Refratário, Vedação, Mantimentos Marmita, Coloridas Xícara, Mini Café Casa, 4 Travas, Budamix), portanto não gera flag Maior. Recomenda-se incluir 'Caneca Colorida' na lista de ruídos a limpar no próximo ciclo do data builder.",
-    "Gate 6 — Colisão de labels no L05: Prioridade 2 (health dos campeões Full) é marcada como 'Filha do insight 3' (ADS), mas a relação causal mais direta seria com o risco estrutural de exposição orgânica identificado desde o L01. Não é violação de regra objetiva — o L05 aprovou a prioridade e ela é válida — mas o label de parentesco está impreciso. Sinal para revisão de nomenclatura interna do L05 no próximo ciclo.",
-    "Gate 9 — ratings_negative=0,39 (39% de avaliações negativas) identificado pelo L04, omitido do Slack por ausência de série temporal. Recomenda-se início de série temporal para esse indicador nos próximos ciclos para determinar trajetória antes de qualificar como risco ou anomalia.",
-    "Gate 12 — top_items_details e top_products são consistentes em termos de produtos e rankings. Nenhuma divergência de janela temporal que contaminou análise detectada."
+    "SKU 914C_BA (MLB6073033006, Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico) não possui entrada em config/slack-short-names-ml.json — adicionar mapeamento manual na próxima janela de manutenção para garantir nome curto canônico aprovado e eliminar dependência de fallback.",
+    "ads_summary continua sem breakdown por platform_item_id — impossível confirmar ou refutar a hipótese de ADS empurrando variações IMB501 em Cross-Docking; limitação estrutural do fetcher que deve ser registrada para evolução do pacote de dados nos próximos ciclos.",
+    "Série temporal de health (MLB4073003575 e MLB3288536143) ausente do pacote — apenas valor pontual disponível; próximo ciclo precisa trazer histórico ou o terceiro ponto ficará novamente sem vetor confirmado, impossibilitando o critério de ação com Himmel definido pela L02.",
+    "display_name de KIT10YW1050 e KIT6YW1050 no mapa estático ainda não carrega a quantidade diferenciadora (10 un / 6 un) no campo display_name — ambos listados como 'Kit 10 Potes Herméticos 1050ml Refratário 4 Travas'; slack_short_name já corrige, mas o display_name precisa de atualização para alinhamento interno (colisão registrada na weekly L05 de 2026-05-22).",
+    "ratings_negative=0,39 na reputação ML está estruturalmente alto sem série temporal no pacote para julgar trajetória — registrar início de monitoramento sistemático nos próximos ciclos para construir base de comparação."
   ],
   "llm_used": true,
   "model": "claude-sonnet-4-6",

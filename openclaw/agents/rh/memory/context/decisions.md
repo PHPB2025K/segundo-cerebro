@@ -1,6 +1,12 @@
 # Decisões — RH
 
-_Atualizado: 2026-05-21_
+_Atualizado: 2026-05-22_
+
+## 2026-05-22
+- Nenhuma decisão nova de política RH registrada.
+- Mantido bloqueio: consolidação diária de memória não autoriza envio proativo a funcionários.
+- Pontos de compliance de 22/05 devem ser tratados como validação interna até confirmação por fluxo autorizado ou orientação do Pedro.
+- Backlog de comunicações RH em aberto deve ser revisado como risco operacional antes de novos disparos semanais.
 
 ## 2026-05-21
 - Nenhuma decisão nova de política RH registrada.

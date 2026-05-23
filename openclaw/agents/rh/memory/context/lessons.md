@@ -1,6 +1,12 @@
 # Lições — RH
 
-_Atualizado: 2026-05-21_
+_Atualizado: 2026-05-22_
+
+## 2026-05-22
+- Intervalos abaixo de 1h em dias consecutivos devem ser tratados como risco de padrão, principalmente quando se repetem nos mesmos funcionários ao longo da semana.
+- Ausência total de marcações ou saída final ausente no fechamento precisa de validação de contexto antes de cobrança; pode haver folga, jornada especial, esquecimento ou dado ainda não ajustado.
+- Backlog de comunicações abertas é risco operacional próprio: mesmo sem conversa nova no dia, casos antigos pendentes podem comprometer o acompanhamento semanal.
+- Para funcionários com jornada especial, marcações parciais exigem interpretação contextual antes de classificar como irregularidade trabalhista.
 
 ## 2026-05-21
 - A recorrência de compliance em 21/05 ficou concentrada em Lucas e Guilherme; quando o volume geral cai, a consolidação deve destacar os indivíduos que seguem repetindo padrão.

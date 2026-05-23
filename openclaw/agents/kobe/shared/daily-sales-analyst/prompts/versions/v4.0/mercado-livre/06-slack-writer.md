@@ -159,13 +159,15 @@ Mostrar (todos vindos de `00-data-package.json.metrics`):
 
 Esta seção mostra apenas produtos vendidos no Mercado Livre, ordenados por pedidos.
 
+**Quantidade na mensagem Slack: exatamente os 5 primeiros do `top_products`.** A análise interna (L01-L05) usa os 10 — só a apresentação visível no Slack fica em 5 para manter a mensagem concisa e focada nos produtos de maior peso. Quando `len(top_products) < 5`, exibir o que houver (sem preencher com nada).
+
 Regras gerais:
-- Usar o ranking seguro vindo do pacote validado (`top_products`).
+- Usar o ranking seguro vindo do pacote validado (`top_products`), pegando apenas os 5 primeiros.
 - Nunca mostrar SKU cru.
 - Nunca mostrar MLB.
 - Nunca mostrar produto bloqueado pela L04/Condensadora.
 - Nunca mostrar `Produto não identificado`.
-- Se produto não é seguro, omitir ou usar agregado apenas se a Condensadora autorizou agregado explícito.
+- Se produto não é seguro, omitir e **descer um lugar no ranking** para mostrar o próximo seguro (mantendo o limite de 5).
 - **Não inferir venda por catálogo, Ads, planilha ou memória.**
 - **NUNCA calcular, estimar ou aproximar faturamento por produto** se o pacote não trouxer receita validada por produto/variação. Proibido `(est.)`, ticket médio × pedidos, preço de catálogo, Ads, memória ou planilha.
 - Formato padrão quando o pacote traz apenas pedidos por produto: `[nome do produto] — [pedidos] pedidos`.
@@ -174,6 +176,8 @@ Regras gerais:
 - Produtos com variações vendáveis reais devem aparecer no nível da **variação** (cor da tampa, tamanho), não no nível da família.
 - Se a Condensadora autorizar agregado e esse agregado esmagar variações reais, a autorização é inválida — recusar e voltar para variação.
 - Ranking sempre em ordem decrescente pelo total de pedidos da variação.
+
+**Nota sobre menções fora desta seção:** Análise da Conta e Prioridades do Dia podem mencionar produtos que **não estão entre os 5 do Top Produtos visível**, desde que estejam no top 10 da L05 e tenham relevância analítica. Não há obrigação de o produto citado na análise aparecer no Top — são listas com cardinalidade diferente. Mas todos os produtos citados (em qualquer seção) seguem a mesma regra de nome curto canônico (`slack_short_name`).
 
 #### Regra única de nome de produto na mensagem Slack (TODAS as menções)
 

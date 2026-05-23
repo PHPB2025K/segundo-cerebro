@@ -263,6 +263,7 @@ Regra geral: `VISÃO` é dado objetivo do dia. Comparação temporal pertence à
 
 Validar:
 - Top Produtos é do Mercado Livre;
+- **A seção `🏆 TOP PRODUTOS MERCADO LIVRE` no Slack mostra exatamente 5 itens** (ou menos, se `top_products` tem menos). Bloquear como **Maior** se aparecer 6+ itens ou se houver substituição arbitrária. A análise interna (L05) usa os 10 — só o Slack exibe 5;
 - ranking vem do pacote validado (`top_products`);
 - SKU cru não aparece;
 - MLB cru não aparece;

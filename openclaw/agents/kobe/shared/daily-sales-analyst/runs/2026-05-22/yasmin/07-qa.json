@@ -1,61 +1,68 @@
 {
-  "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem passa em todos os 12 gates sem nenhum Crítico nem Maior. Foram identificados 2 Menores em gates distintos (Gate 6 e Gate 7): (1) Insight 2 substitui 'por mais 2 dias' (L05) por 'por mais 2 ciclos' — mudança de granularidade terminológica sem alteração de tese, mas não registrada nas Decisões de formatação; (2) Prioridade 2 omite a ação explícita de 'registrar health como segundo ponto da série', mantendo apenas 'checar a direção' — a ação de registro que ancora a série é parte do escopo da L05 e foi silenciada. Regra de agregação aplicada: 0 Maiores + 2 Menores não sistêmicos → APROVADO COM RESSALVA.",
-  "send_allowed": true,
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "Dois Maiores em gates distintos ativam bloqueio. Gate 10 (tom e utilidade): a palavra 'health' aparece 4 vezes na mensagem final — 1 vez na análise ('sem health calculado') e 3 vezes nas prioridades ('health estável', 'health caindo', 'health caindo nos dois anúncios') — violando a regra que proíbe o termo no Slack porque Yasmin não o reconhece; o correto é 'nível de qualidade do anúncio' ou variação contextual. Gate 8 (bloqueios, confiança e logs): as Decisões de formatação da L06 registram explicitamente 'Terminologia nível de qualidade do anúncio usada no lugar de health', mas a mensagem final contradiz esse registro ao manter 'health' em quatro ocorrências — decisão declarada contradiz a mensagem entregue, condição explícita de bloqueio do Gate 8. Regra de agregação aplicada: 2+ Maiores em gates diferentes → BLOQUEADO. Todos os demais gates passaram, inclusive estrutura, dados, bloqueios de produto, fidelidade à L05 e consistência do ml_snapshot. A correção é pontual e não exige reanálise: substituir as 4 ocorrências de 'health' por terminologia aprovada.",
+  "send_allowed": false,
   "send_real_allowed": false,
   "gates_avaliados": {
     "gate_1_data_periodo_fonte": "OK",
     "gate_2_destinatario_plataforma_responsavel": "OK",
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
-    "gate_5_top_produtos": "OK",
-    "gate_6_analise_conta": "RESSALVA",
-    "gate_7_prioridades": "RESSALVA",
-    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "FALHA",
     "gate_9_consistencia_camadas": "OK",
-    "gate_10_tom_utilidade": "OK",
+    "gate_10_tom_utilidade": "FALHA",
     "gate_11_padrao_numerico_formatacao": "OK",
     "gate_12_consistencia_ml_snapshot": "OK"
   },
   "contagem_severidade": {
     "criticos": 0,
-    "maiores": 0,
-    "maiores_gates_distintos": 0,
-    "menores": 2,
-    "regra_agregacao_aplicada": "0 Maiores + 1–5 Menores → APROVADO COM RESSALVA"
+    "maiores": 2,
+    "maiores_gates_distintos": 2,
+    "menores": 1,
+    "regra_agregacao_aplicada": "2+ Maiores em gates diferentes → BLOQUEADO"
   },
   "problemas_encontrados": [
     {
-      "severidade": "Menor",
-      "gate": "Gate 6 — Análise da Conta",
-      "texto_atual": "Se o ADS share seguir acima de 65% por mais 2 ciclos com health dos dois Full abaixo de 0,80",
-      "texto_esperado": "se ADS share seguir acima de 65% por mais 2 dias com health dos dois Full abaixo de 0,80",
-      "estado_atual": "L06 substituiu 'dias' por 'ciclos' sem registrar a mudança nas Decisões de formatação. No contexto do pipeline ciclo ≈ dia, mas 'dias' é mais concreto e unambíguo; 'ciclos' pode ser interpretado como ciclos semanais ou mensais por quem lê sem contexto de pipeline.",
-      "estado_esperado": "Preservar 'dias' conforme L05 ou registrar explicitamente a substituição nas Decisões de formatação com justificativa de equivalência.",
-      "regra_violada": "Gate 6 — mesmo verbo modal e mesmo conectivo principal preservados, mas o quantificador temporal da condição falsificável foi alterado sem registro no log de decisões.",
-      "bloqueia_envio": false
+      "severidade": "Maior",
+      "gate": "10 — Tom e utilidade",
+      "texto_atual": "Análise bullet 3: '...se esgotar, o ML pausa o anúncio automaticamente e ele sai do ranking de categoria sem aviso prévio (sem health calculado, não há baseline para estimar o impacto).' | Prioridade 2 Confirmar por: 'health estável ou em recuperação em pelo menos um dos dois = manter observação sem ação por mais 2 ciclos; health caindo nos dois = alinhar com Himmel sobre cobertura ADS preventiva.' | Prioridade 2 Escalar se: 'health caindo nos dois anúncios simultaneamente no próximo ciclo.'",
+      "texto_esperado": "Substituir todas as 4 ocorrências por terminologia aprovada: (1) 'sem health calculado' → 'sem nível de qualidade calculado'; (2) 'health estável ou em recuperação em pelo menos um dos dois' → 'nível de qualidade estável ou em recuperação em pelo menos um dos dois'; (3) 'health caindo nos dois' → 'nível caindo nos dois'; (4) 'health caindo nos dois anúncios' → 'nível caindo nos dois anúncios'. Forma alternativa aceitável: 'o nível calculado', 'o nível do anúncio', 'nível Padrão inferior ou abaixo em ambos'.",
+      "regra_violada": "Gate 10 — vocabulário ML obrigatório: 'a palavra health não pode aparecer no Slack final — confunde com a modalidade Full; Yasmin não conhece o termo técnico da API; usar nível de qualidade do anúncio + nome da faixa'. Bloquear como Maior se 'health' solta aparecer em qualquer bullet da mensagem Slack independentemente de capitalização.",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Maior",
+      "gate": "8 — Bloqueios, confiança e logs",
+      "estado_atual": "As Decisões de formatação da L06 registram: 'Terminologia nível de qualidade do anúncio usada no lugar de health — Yasmin não conhece o termo técnico; valores numéricos entre parênteses mantidos para contexto operacional nas prioridades'. A mensagem final, porém, contém 'health' em 4 ocorrências: 1 na análise e 3 nas prioridades (campos Confirmar por e Escalar se da prioridade 2). A decisão declarada contradiz a mensagem entregue.",
+      "estado_esperado": "Decisão de formatação e mensagem final devem ser mutuamente consistentes. Se o log declara que 'health foi substituído', nenhuma ocorrência do termo pode aparecer na mensagem. Alternativa aceitável: o log deve listar explicitamente onde 'health' permaneceu e justificar — o que não foi feito.",
+      "regra_violada": "Gate 8 — 'decisão registrada contradiz a mensagem final' é condição explícita de bloqueio. O log de Decisões de formatação deve refletir fielmente todas as escolhas aplicadas; inconsistência entre log e mensagem indica falha de revisão final pela L06.",
+      "bloqueia_envio": true
     },
     {
       "severidade": "Menor",
-      "gate": "Gate 7 — Prioridades do Dia",
-      "texto_atual": "Yasmin: checar a direção da health dos dois campeões Full no próximo ciclo com dado disponível",
-      "texto_esperado": "Yasmin registrar health dos dois campeões Full como segundo ponto da série e checar direção no próximo ciclo com dado disponível",
-      "estado_atual": "L06 preservou a ação de 'checar direção' mas omitiu a ação de 'registrar como segundo ponto da série'. A ação de registro é parte explícita da prioridade da L05 e ancora a construção da série temporal que vai habilitar a decisão de acionamento de Himmel em ciclos futuros. Sem o registro explícito, Yasmin pode checar e não anotar, perdendo a referência de série.",
-      "estado_esperado": "Incluir ação de registro explícita: 'Yasmin registrar health dos dois campeões Full como segundo ponto da série e checar direção no próximo ciclo com dado disponível'.",
-      "regra_violada": "Gate 7 — prioridade deve preservar o 'por_que' e o escopo completo da ação da L05; ação de registro que fundamenta a série foi silenciada.",
+      "gate": "5 — Top Produtos",
+      "texto_atual": "Top Produtos: 'Kit 4 Potes 1050ml — 11 pedidos' (slack_short_name canônico sem atributo de cor). Prioridade 2: 'Kit 4 Potes 1050ml Azul-petróleo (0,75)' (atributo 'Azul-petróleo' adicionado além do slack_short_name mapeado).",
+      "texto_esperado": "Mesmo produto referenciado com o mesmo nome em todas as seções. Preferencialmente o slack_short_name canônico 'Kit 4 Potes 1050ml' em todas as ocorrências; ou, se o atributo de cor for considerado necessário para disambiguação no contexto de nível de qualidade, aplicar de forma consistente em Top Produtos e Prioridades.",
+      "regra_violada": "Gate 5 — 'mesmo produto aparece com nome diferente em seções distintas — não bloqueia, mas é ruído de identificação; registrar como Menor'.",
       "bloqueia_envio": false
     }
   ],
-  "correcoes_obrigatorias_antes_envio": [],
+  "correcoes_obrigatorias_antes_envio": [
+    "Substituir as 4 ocorrências da palavra 'health' na mensagem Slack: (1) análise bullet 3 'sem health calculado, não há baseline para estimar o impacto' → 'sem nível de qualidade calculado, não há baseline para estimar o impacto'; (2) prioridade 2 Confirmar por 'health estável ou em recuperação em pelo menos um dos dois' → 'nível de qualidade estável ou em recuperação em pelo menos um dos dois'; (3) prioridade 2 Confirmar por 'health caindo nos dois' → 'nível caindo nos dois'; (4) prioridade 2 Escalar se 'health caindo nos dois anúncios simultaneamente no próximo ciclo' → 'nível caindo nos dois anúncios simultaneamente no próximo ciclo'.",
+    "Atualizar as Decisões de formatação da L06 para refletir que a substituição de 'health' foi aplicada em todas as seções — análise, sinal de confirmação e escalar se das prioridades — garantindo consistência entre log e mensagem entregue."
+  ],
   "ressalvas_memoria_interna": [
-    "Prioridade 2 chegou ao Slack sem a instrução de registro explícita ('segundo ponto da série'). Se Yasmin não registrar, o próximo ciclo perde o referencial de série para health dos dois campeões Full. Trader deve garantir que Yasmin entende que o registro é parte da ação, mesmo que o Slack não deixe explícito.",
-    "A substituição 'dias' → 'ciclos' no Insight 2 é editorialmente inofensiva mas indica padrão de paráfrase que pode, em insights futuros, alterar gatilhos quantitativos sem percepção. A L06 deve ser instruída a preservar unidades temporais literais da L05."
+    "A correção exigida é pontual (vocabulário em 4 trechos) e não requer reanálise de dados nem nova rodada completa de QA. Após a substituição, recomenda-se validação de Gate 8 e Gate 10 isoladamente antes de aprovar envio. Nenhuma tese da L05 foi alterada; fidelidade analítica está preservada.",
+    "O erro ocorreu especificamente nos campos sinal_de_confirmacao_refutacao e escalar_se da prioridade 2, que foram provavelmente redigidos mais próximos do texto-fonte da L05 (que usa 'health' internamente) sem passar pela mesma camada de tradução aplicada à seção de análise. Ponto de atenção para próximos ciclos da L06."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "SKU 914C_BA (Kit 06 Canequinhas 100ml, MLB6073033006) está no top10 do pacote com slack_short_name=null — mapeamento canônico ausente em config/slack-short-names-ml.json. Produto não apareceu no Top 5 do Slack (sem impacto neste ciclo), mas deve ser adicionado ao mapeamento antes de entrar no top 5 em ciclo futuro. Sugestão de nome curto: 'Kit 6 Canequinhas 100ml c/ Suporte'.",
-    "Memória semanal da conta tem apenas 1 entrada efetiva (2026-05-22 = mesmo dia desta análise). Ausência de dados dos dias 2026-05-20 e 2026-05-21 na memória limita série temporal para health dos campeões Full e ADS share. As quatro conclusões centrais da L05 (health, ADS share, mix de modalidade, cobertura Kit 6 Canecas) são pontos pontuais sem tendência confirmada — condição já sinalizada pelo alertas_de_confianca.nivel='media' da L05, mas que deve ser monitorada: se os gaps de memória persistirem por mais ciclos, o pipeline operará estruturalmente sem série histórica para as variáveis mais críticas da conta.",
-    "fulfillment_mix_yesterday_top10 cobre 68 de 84 pedidos (80,9%) — marginalmente acima do limiar de 70% mas abaixo de 85%. L05 optou por não autorizar exibição na VISÃO e L06 respeitou. O dado foi utilizado corretamente na ANÁLISE como comparativo com a janela longa. Para próximos ciclos, avaliar se é possível ampliar a cobertura do cron além dos top10 itens para obter mix mais representativo do total de pedidos.",
-    "Kit 10 Potes Herméticos 320ml 10un (MLB6739241224) tem 6 unidades pós-baixa em Cross-Docking com 2 pedidos — cobertura prospectiva ~3 dias com ressalva de microamostra. Não foi incluído na análise Slack (correto — abaixo do limiar de urgência e Cross-Docking permite reposição mais controlada). Monitorar no próximo ciclo: se available_quantity cair para ≤ 2 com ritmo mantido, acionar checagem preventiva."
+    "Cross-section name inconsistency: slack_short_name canônico de KIT4YW1050 é 'Kit 4 Potes 1050ml' (sem atributo de cor), mas nas prioridades aparece como 'Kit 4 Potes 1050ml Azul-petróleo'. O atributo é contextualmente útil para distinguir este produto do Kit 10 Potes 1050ml quando ambos são citados em contexto de nível de qualidade. Sugestão para próxima manutenção: avaliar se 'Kit 4 Potes 1050ml — Azul-petróleo' deve ser incluído como slack_short_name canônico em config/slack-short-names-ml.json para eliminar a inconsistência sem perder contexto.",
+    "914C_BA (Kit 06 Canequinhas 100ml com Suporte de Madeira Acrílico) está em posição 10 do top_products com slack_short_name=null — mapeamento manual ausente. O produto não apareceu no Slack (apenas Top 5 exibido), mas o sinal deve ser registrado para adição em config/slack-short-names-ml.json na próxima manutenção. A L06 usou corretamente o fallback automático para camadas internas.",
+    "fulfillment_mix_yesterday_top10 cobre 68 dos 84 pedidos do dia (81% — acima do threshold de 70%). A L06 optou corretamente por omitir da seção VISÃO por ausência de autorização explícita da L05, o que é defensável. Em ciclos futuros, se a Condensadora quiser autorizar a exibição com nota de cobertura parcial, o dado seria seguro para exibir com ressalva ('baseado nos 10 anúncios mais vendidos').",
+    "ratings_negative=0,39 (39%) em conta com reputação 5_green e MercadoLíder Gold permanece como sinal precoce não incorporado ao Slack neste ciclo (corretamente, pois claims_rate=0,0025 ainda está longe do limiar de 0,005). Registrado para monitoramento nos próximos ciclos conforme memória da L05."
   ],
   "llm_used": true,
   "model": "claude-sonnet-4-6",

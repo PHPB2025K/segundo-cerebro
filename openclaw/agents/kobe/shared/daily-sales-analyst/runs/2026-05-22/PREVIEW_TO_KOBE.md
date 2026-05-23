@@ -1,8 +1,8 @@
 # Preview para Kobe — 2026-05-22
-**Gerado em:** 2026-05-23T16:09:46.487384+00:00
+**Gerado em:** 2026-05-23T21:40:59.306891+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
-**Global Status:** APPROVED_WITH_REMARKS
+**Global Status:** BLOCKED
 **Prompt Version:** v4.0/mercado-livre
 **Data Builder Version:** v1.3
 **LLM Used:** True
@@ -14,7 +14,7 @@
 ## Resumo por Recipient
 
 ### Yasmin (mercado_livre)
-- **Status:** APPROVED_WITH_REMARKS
+- **Status:** BLOCKED
 - **send_allowed:** False
 - **llm_used:** True
   - 01-estrategica: LLM
@@ -24,8 +24,8 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Prioridade 2 chegou ao Slack sem a instrução de registro explícita ('segundo ponto da série'). Se Yasmin não registrar, o próximo ciclo perde o referencial de série para health dos dois campeões Full. Trader deve garantir que Yasmin entende que o registro é parte da ação, mesmo que o Slack não deixe explícito.
-- **Aviso:** A substituição 'dias' → 'ciclos' no Insight 2 é editorialmente inofensiva mas indica padrão de paráfrase que pode, em insights futuros, alterar gatilhos quantitativos sem percepção. A L06 deve ser instruída a preservar unidades temporais literais da L05.
+- **Aviso:** A correção exigida é pontual (vocabulário em 4 trechos) e não requer reanálise de dados nem nova rodada completa de QA. Após a substituição, recomenda-se validação de Gate 8 e Gate 10 isoladamente antes de aprovar envio. Nenhuma tese da L05 foi alterada; fidelidade analítica está preservada.
+- **Aviso:** O erro ocorreu especificamente nos campos sinal_de_confirmacao_refutacao e escalar_se da prioridade 2, que foram provavelmente redigidos mais próximos do texto-fonte da L05 (que usa 'health' internamente) sem passar pela mesma camada de tradução aplicada à seção de análise. Ponto de atenção para próximos ciclos da L06.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-22/yasmin/00-data-package.json`

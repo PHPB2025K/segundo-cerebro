@@ -422,16 +422,43 @@ def _call_codex(prompt_text, model, timeout):
             pass
 
 
-def call_llm(prompt_text, config):
+def _resolve_model_for_layer(config, layer_num):
+    """Resolve modelo a usar para uma camada específica.
+
+    Lê `llm_model_per_layer` no config (dict opcional `{"04": "claude-opus-4-7", ...}`).
+    Se a camada tem override, retorna ele; senão devolve `llm_model` global.
+    """
+    default = config.get("llm_model", "sonnet")
+    overrides = config.get("llm_model_per_layer") or {}
+    if not isinstance(overrides, dict):
+        return default
+    if layer_num and layer_num in overrides:
+        return overrides[layer_num]
+    return default
+
+
+def _resolve_timeout_for_layer(config, layer_num):
+    """Resolve timeout. Opus pode precisar de mais tempo que Sonnet."""
+    default = config.get("llm_timeout_seconds", 120)
+    overrides = config.get("llm_timeout_seconds_per_layer") or {}
+    if isinstance(overrides, dict) and layer_num and layer_num in overrides:
+        return overrides[layer_num]
+    return default
+
+
+def call_llm(prompt_text, config, layer_num=None):
     """Roteia para a CLI correta baseado no nome do modelo.
 
     - Modelos `claude-*`, `sonnet`, `opus`  → `claude -p`
     - Modelos `gpt-*`, `o3-*`, `o4-*`       → `codex exec` (OpenAI)
 
+    `layer_num` (opcional, ex.: "04", "05") permite override de modelo
+    e timeout por camada via `llm_model_per_layer` no config.
+
     Retorna (output, model_used, error).
     """
-    model = config.get("llm_model", "sonnet")
-    timeout = config.get("llm_timeout_seconds", 120)
+    model = _resolve_model_for_layer(config, layer_num)
+    timeout = _resolve_timeout_for_layer(config, layer_num)
     max_retries = config.get("llm_max_retries", 2)
     use_codex = _is_openai_model(model)
 
@@ -504,7 +531,7 @@ def validate_json_output(text):
         return None, str(e)
 
 
-def repair_json_with_llm(raw_output, json_error, config):
+def repair_json_with_llm(raw_output, json_error, config, layer_num=None):
     """Repair invalid LLM JSON with another LLM pass; never falls back deterministically."""
     prompt = f"""
 Voce e um reparador estrito de JSON.
@@ -522,7 +549,7 @@ TEXTO ORIGINAL:
 {raw_output}
 """.strip()
 
-    repaired_text, model_used, call_error = call_llm(prompt, config)
+    repaired_text, model_used, call_error = call_llm(prompt, config, layer_num=layer_num)
     if call_error or not repaired_text:
         return None, model_used, call_error or "empty repair output"
 
@@ -1023,8 +1050,8 @@ def run_llm_layers(package, run_dir, recipient_name, config, prompt_version,
         except Exception as e:
             print(f"    ⚠ falha ao persistir input: {e}")
 
-        # Call LLM
-        output, model_used, error = call_llm(llm_input, config)
+        # Call LLM (passa layer_num pra permitir override de modelo via config.llm_model_per_layer)
+        output, model_used, error = call_llm(llm_input, config, layer_num=layer_num)
 
         if error or not output:
             print(f"FALLBACK (error: {error})")
@@ -1060,7 +1087,7 @@ def run_llm_layers(package, run_dir, recipient_name, config, prompt_version,
             repaired_by_llm = False
             if json_err:
                 print(f"REPAIR_JSON (invalid JSON: {json_err})", end=" ", flush=True)
-                repaired, repair_model, repair_err = repair_json_with_llm(output, json_err, config)
+                repaired, repair_model, repair_err = repair_json_with_llm(output, json_err, config, layer_num=layer_num)
                 if repair_err:
                     print(f"FALLBACK (repair failed: {repair_err})")
                     layer_results[output_name] = {

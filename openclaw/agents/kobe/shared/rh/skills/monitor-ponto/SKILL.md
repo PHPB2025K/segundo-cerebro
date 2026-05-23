@@ -37,8 +37,9 @@ Monitorar diariamente as marcações de ponto de todos os funcionários da GB Im
 | Sexta | 8h00 | 07:00 | 16:00 |
 | Sáb–Dom | Não trabalha | — | — |
 
-- Tolerância atraso: 10 minutos (limite = 07:10)
-- Intervalo almoço: 1 hora
+- Tolerância atraso padrão: 10 minutos (limite = 07:10), mas exceções individuais prevalecem.
+- Mateus: entrada tarde por Tiro de Guerra segue jornada especial 08:30-17:00; não classificar como inconformidade se compatível com essa regra.
+- Intervalo almoço: 1 hora no cálculo, mas intervalo abaixo de 1h NÃO deve ser tratado como inconformidade/cobrança operacional (decisão Pedro 23/05/2026).
 - 4 marcações obrigatórias: clock_in → break_start → break_end → clock_out
 
 ---
@@ -135,8 +136,10 @@ O agente RH NÃO é um robô que aplica regras cegamente. Antes de qualquer cobr
 Antes de cobrar qualquer irregularidade, o agente deve:
 1. Verificar se há contexto atípico (migração, feriado, problema técnico)
 2. Checar se o padrão é individual ou coletivo
-3. Se não tiver certeza → perguntar ao funcionário ou escalar pro Pedro
-4. NUNCA assumir o pior — dar o benefício da dúvida
+3. Checar jornadas individuais antes de classificar atraso/saída (ex.: Mateus/Tiro de Guerra)
+4. Ignorar intervalo de almoço abaixo de 1h como inconformidade/cobrança, por decisão do Pedro em 23/05/2026
+5. Se não tiver certeza → perguntar ao funcionário ou escalar pro Pedro
+6. NUNCA assumir o pior — dar o benefício da dúvida
 
 ### Canal aberto
 
@@ -210,11 +213,12 @@ FUNÇÃO análise_diária(data_referência):
     
     irregularidades = []
     
-    # 3a. Atraso
+    # 3a. Atraso — aplicar regra individual antes da régua padrão
     SE marcações.clock_in != NULL:
       hora_entrada_sp = converter_para_sp(marcações.clock_in)
-      SE hora_entrada_sp > "07:10":
-        minutos_atraso = calcular_diferença(hora_entrada_sp, "07:10")
+      limite_funcionario = buscar_limite_entrada(funcionário)  # padrão 07:10; Mateus/Tiro de Guerra = 08:40
+      SE hora_entrada_sp > limite_funcionario:
+        minutos_atraso = calcular_diferença(hora_entrada_sp, limite_funcionario)
         irregularidades.append({
           tipo: "atraso",
           horário: hora_entrada_sp,

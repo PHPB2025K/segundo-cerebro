@@ -22,6 +22,7 @@ tags:
 | Domingo | Nao trabalha | - | - |
 
 - Intervalo de almoco: 1 hora (descontado automaticamente do calculo)
+- **Regra Pedro 23/05/2026:** intervalo de almoco abaixo de 1 hora NAO deve ser classificado como inconformidade operacional pelo agente RH. Registrar/considerar apenas como dado de calculo quando o sistema precisar, mas nao cobrar funcionario nem escalar como pendencia.
 - Qualquer hora trabalhada em sabado ou domingo e contabilizada integralmente como hora extra
 
 ### 1.2 Tipos de Marcacao
@@ -66,9 +67,10 @@ Toda marcacao via QR Code exige validacao de localizacao:
 | Tolerancia | 10 minutos |
 | Limite para atraso | 07:10 |
 
-- Entrada ate 07:10: normal, sem registro de atraso
-- Entrada apos 07:10: atraso registrado automaticamente na tabela atrasos
-- Os minutos de atraso sao calculados a partir de 07:10 (ex: entrada as 07:25 = 15 min de atraso)
+- Entrada ate 07:10: normal, sem registro de atraso para funcionarios em jornada padrao.
+- Entrada apos 07:10: atraso registrado automaticamente na tabela atrasos para funcionarios em jornada padrao.
+- **Excecoes individuais prevalecem sobre a regra padrao.** Exemplo critico: Mateus Eduardo Lisboa Santos tem jornada especial 08:30-17:00 por Tiro de Guerra; entrada tarde em relacao a 07:00/07:10 nao e inconformidade enquanto estiver dentro da regra individual.
+- Os minutos de atraso sao calculados a partir do limite aplicavel ao funcionario (padrao 07:10; excecoes em `jornadas-individuais.md`).
 - A deteccao ocorre em dois pontos:
   - Frontend (hook useTimeRecords): ao registrar clock_in, usa constantes TOLERANCE_HOUR=7, TOLERANCE_MINUTE=40 — NOTA: este valor esta desatualizado no frontend (07:40) mas o backend usa 07:10
   - Backend (Edge Function detectar-atrasos): cron diario as 08:00 BRT, usa TOLERANCE_HOUR=7, TOLERANCE_MINUTE=10

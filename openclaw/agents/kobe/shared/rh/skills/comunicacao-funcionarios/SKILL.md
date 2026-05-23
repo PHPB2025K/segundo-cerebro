@@ -73,20 +73,21 @@ Para cada dia de cada funcionário, verificar:
 
 ```
 TIPO A — Falta de marcação (1-3 batidas ausentes no dia)
-TIPO B — Atraso (entrada após 07:10)
-TIPO C — Saída antecipada (antes do horário sem justificativa prévia)
+TIPO B — Atraso (entrada após o limite aplicável ao funcionário; padrão 07:10, respeitando jornadas individuais como Mateus/Tiro de Guerra)
+TIPO C — Saída antecipada (antes do horário individual acordado sem justificativa prévia)
 TIPO D — Falta completa (nenhuma marcação no dia, sem aviso)
-TIPO E — Jornada incompleta (intervalo não registrado ou menor que 1h)
-TIPO F — Padrão recorrente (3+ irregularidades na semana OU 2+ semanas consecutivas com pendências)
+TIPO E — Jornada incompleta por marcação ausente (intervalo não registrado). Intervalo menor que 1h NÃO é inconformidade/cobrança operacional por decisão do Pedro em 23/05/2026.
+TIPO F — Padrão recorrente (3+ irregularidades reais na semana OU 2+ semanas consecutivas com pendências)
 ```
 
 ### Verificações Obrigatórias Antes de Classificar
 
 1. **É feriado?** → Consultar calendário. Se sim, ignorar o dia.
 2. **Funcionário está de férias/licença?** → Consultar people.md. Se sim, ignorar.
-3. **É sábado e o funcionário não trabalha sábado?** → Verificar jornada. Se não trabalha, ignorar.
-4. **Existe justificativa prévia?** → Funcionário avisou antes? Verificar WhatsApp recente.
-5. **Já foi comunicado sobre essa semana?** → Verificar histórico. Se sim, aguardar resposta.
+3. **Existe jornada individual?** → Consultar `knowledge/jornadas-individuais.md` antes de classificar atraso/saída. Mateus/Tiro de Guerra não é atraso por entrar depois do padrão.
+4. **É sábado e o funcionário não trabalha sábado?** → Verificar jornada. Se não trabalha, ignorar.
+5. **Existe justificativa prévia?** → Funcionário avisou antes? Verificar WhatsApp recente.
+6. **Já foi comunicado sobre essa semana?** → Verificar histórico. Se sim, aguardar resposta.
 
 ---
 

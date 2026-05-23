@@ -62,7 +62,9 @@ Não é necessário — a jornada efetiva bate com a contratual (8h30). O cálcu
 - **Mês típico (~22 dias úteis):** ~18h a menos que a jornada padrão
 
 ### Como o agente RH deve tratar
-- Entrada após 07:10 mas até 08:40 NÃO é atraso (tolerância: 08:30 + 10min)
+- **Regra Pedro 23/05/2026:** entrada tarde do Mateus em relação ao padrão 07:00/07:10 NÃO deve ser considerada inconformidade, pois decorre do Tiro de Guerra e o sistema já sabe dessa particularidade.
+- Entrada até 08:40 NÃO é atraso (tolerância: 08:30 + 10min).
+- Se houver entrada após 08:40, analisar individualmente antes de classificar; não aplicar régua padrão automaticamente.
 - Saída após 16:30 NÃO é hora extra automática até 17:00 (é o horário acordado)
 - Saída APÓS 17:00 SIM é hora extra real (autorizada pelo Pedro caso a caso)
 

@@ -1,6 +1,6 @@
 # Contexto Himmel/Granola — Mercado Livre
 
-_Gerado em: 2026-05-23 23:37:26 UTC._
+_Gerado em: 2026-05-24 23:37:28 UTC._
 
 ## Como usar
 - Usar como contexto causal/hipótese nas análises diárias, nunca como fato isolado.

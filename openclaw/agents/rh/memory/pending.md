@@ -1,6 +1,8 @@
 # Pendências — RH
 
-_Atualizado: 2026-05-22_
+_Atualizado: 2026-05-23_
+
+> 23/05 não gerou pendências novas ou alteradas. Lista abaixo permanece da consolidação de 22/05.
 
 ## 🔴 Prioridade Alta
 - [ ] Pedro aprovar/orientar próximos passos para Guilherme: pendências semanais de 11/05 e 13/05, comunicação anterior pendente >72h, 19/05 com marcações incompletas, 20/05 sem saída + intervalo <1h, 21/05 com intervalo <1h e 22/05 com intervalo de 28min.

@@ -10,15 +10,15 @@ tags:
 
 # MEMORY.md - Long-Term Memory
 
-_Último update: 2026-05-22_
+_Último update: 2026-05-23_
 
 ## Estado operacional recente
+- 2026-05-23: Refresh OAuth do Bling manteve o padrão crítico pelo nono dia: Matriz OK nas execuções completas, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403, além de uma rodada bloqueada por allowlist/política de aprovação e sessão abortada após captura parcial do resultado. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-05-22: Refresh OAuth do Bling manteve o padrão crítico pelo oitavo dia: Matriz OK nas execuções completas, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403, além de rodadas abortadas por timeout e bloqueadas por allowlist/política de execução. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-05-21: Refresh OAuth do Bling manteve o padrão crítico pelo sétimo dia: Matriz OK nas execuções completas, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403, além de bloqueios iniciais por allowlist e sessões abortadas antes de resposta consolidada. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-05-20: Refresh OAuth do Bling manteve o padrão crítico pelo sexto dia: Matriz OK nas execuções completas, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403 e uma rodada abortada antes de resultado fiscal útil. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-05-19: Refresh OAuth do Bling manteve o padrão crítico: Matriz OK nas execuções completas, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403, além de bloqueios/abortos de automação. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-05-18: Refresh OAuth do Bling manteve o padrão crítico: Matriz OK nas execuções observadas, Filial com HTTP 403 por empresa vinculada ao token inativa, e alerta WhatsApp também com HTTP 403. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
-- 2026-05-17: Refresh OAuth do Bling manteve o padrão crítico: Matriz OK nas execuções em que o script rodou, Filial com HTTP 403 por empresa vinculada ao token inativa, alerta WhatsApp também com HTTP 403, além de uma execução bloqueada por allowlist. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - Bloqueio atual: qualquer fluxo dependente da Filial no Bling deve aguardar correção do token/status da empresa, validação de conectividade e estabilização da execução automática.
 
 ## Estrutura de memória

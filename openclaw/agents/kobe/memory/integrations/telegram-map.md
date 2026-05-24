@@ -35,6 +35,7 @@ tags:
 | 10222 | Daily Sales Report - SLACK | Desenvolvimento, previews, alertas, QA, avisos e qualquer comunicação sobre o Daily Sales Report dos funcionários no Slack |
 | 10469 | Gestão de Funcionários | Assuntos de gestão específica de funcionários da empresa e rotina semanal `✅ Rotina semanal de Gestão de Funcionários` |
 | 10494 | Pedidos Atacado Automação | Assunto exclusivo da automação do WhatsApp **Pedidos de Venda - GB** / pedidos de atacado: desenho, testes, N8N, Bling Matriz, PDF oficial do pedido, parser, validação, webhook, bloqueios e alertas dessa rotina |
+| 11259 | Amazon ADS | Assunto exclusivo para qualquer comunicação relacionada a ADS da Amazon: análises semanais, grupos de anúncio, BidSpark, ações, D+7, auditorias, alertas e decisões operacionais de Amazon Ads |
 
 ## Formato de delivery para crons
 ```
@@ -56,3 +57,4 @@ to: -1003730816228:topic:{thread_id}
 | Daily Sales v2 — Himmel/Granola Context Sync | 10222 | Daily Sales Report - SLACK |
 | Gestão Funcionários — atas semanais Slack | 10469 | Gestão de Funcionários |
 | Automação Pedidos Atacado / Pedidos de Venda GB | 10494 | Pedidos Atacado Automação |
+| Amazon Ads / BidSpark | 11259 | Amazon ADS |

@@ -1,0 +1,55 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem passou todos os 12 gates sem Crítico nem Maior. Encontrado 1 Menor no Gate 6: o conectivo 'apesar de' da L05 (insight 3) foi substituído por 'mas' na L06, que é outro conectivo de contraste válido — a lógica não mudou e nenhuma inversão semântica foi introduzida. Regra de agregação aplicada: 0 Maiores + 1 Menor = APROVADO COM RESSALVA. A mensagem pode ser enviada; a ressalva fica registrada para auditoria de fidelidade de conectivos.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "RESSALVA",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 1,
+    "regra_agregacao_aplicada": "0 Maiores + 1 Menor → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta (fidelidade à L05)",
+      "texto_atual": "Os 91 pedidos parecem fracos comparados à semana, mas o GMV ficou acima das bandas de 30 e 60 dias com ticket em alta consistente",
+      "texto_esperado": "Apesar dos 91 pedidos parecerem fracos vs 7d, o GMV ficou acima das bandas de 30d e 60d com ticket em alta consistente",
+      "regra_violada": "Mesmo conectivo principal: 'apesar de' deve continuar 'apesar de'. O conectivo de contraste foi substituído por outro conectivo de contraste ('mas'), sem mudança de sentido nem inversão semântica, mas a regra de fidelidade de conectivos foi violada.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "Gate 6, insight 3: conectivo 'apesar de' da L05 virou 'mas' na L06. Ambos são adversativos e a tese central foi preservada — risco zero de induzir Yasmin a erro. Registrar para calibração futura da L06 sobre fidelidade estrita de conectivos.",
+    "Gate 10 / Gate 4: fulfillment_mix_yesterday_top10 cobre apenas ~54% dos pedidos do dia (49/91). L06 corretamente omitiu da seção VISÃO e contextualizou o dado de 88% Full no bullet da ANÁLISE como 'composição dos campeões, não mudança no perfil da conta'. Comportamento correto preservado.",
+    "Gate 2 / Gate 10: L05 usou 'reputação verde Gold' (forma composta proibida pelo Gate 10). L06 corrigiu autonomamente para 'reputação verde e nível MercadoLíder Gold', separando os eixos corretamente. Correção proativa registrada — L05 precisa adotar a separação de eixos antes de chegar à L06.",
+    "Gate 12c: fulfillment_mix_yesterday_top10 com cobertura ~54% (49/91) ficou abaixo do threshold de 70%. L06 omitiu da VISÃO e exibiu o dado apenas na ANÁLISE com ressalva explícita de composição — tratamento correto conforme autorização implícita da L05 que incluiu o insight com contexto. Sem inconsistência bloqueante.",
+    "Gate 5: KIT6YW1050 e KIT10YW1050 têm mapping_status=mapped_generic_sku e confidence=medium — os dois ficaram nas posições 7 e 10 do Top Produtos (não exibidos na seção Slack de 5 itens). Nenhum impacto na mensagem. Manutenção de confidence pode ser avaliada no próximo ciclo."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "fulfillment_mix_yesterday_top10 com total_orders_resolved=49 representa ~54% do volume do dia (91 pedidos). O fetcher resolve o mix apenas pelo top 10 de itens; quando os campeões do dia são fortemente Full, o resultado é inflado em relação ao perfil real. Considerar ampliar a janela de resolução do fetcher para cobrir 100% dos pedidos do dia ou sinalizar cobertura como campo obrigatório no pacote.",
+    "Breakdown de revenue_ads_yesterday_brl e spend_yesterday_brl por platform_item_id ausente pelo segundo ciclo consecutivo (documentado em weekly.md desde 22/05). Sem esse dado, a hipótese de dependência estrutural de ADS no anúncio MLB3288536143 não é falsificável — bloqueia a leitura tática da L02 e da L04. Pendência de dado de fetcher, não de análise.",
+    "Drivers de nível de qualidade por anúncio (health) ausentes do pacote pelo terceiro ciclo consecutivo — pacote traz apenas valor pontual, sem decomposição por claims, devoluções, conversion ou qualidade de listing por platform_item_id. Sem essa granularidade, a causa do nível Padrão inferior em MLB3288536143 (0,71) e MLB4073003575 (0,75) permanece em aberto e a ação corretiva é indeterminável.",
+    "Reposição em trânsito ao CD do ML ausente do pacote para todos os anúncios Full. Dado operacional crítico para o risco de ruptura do MLB6167272090 (Kit 6 Canecas Tulipa, available_quantity=2) — sem ele, a decisão entre cancelamento controlado e aguardar reposição não pode ser tomada com os dados do pacote.",
+    "L05 usou 'reputação verde Gold' (forma composta proibida) na prioridade 1. A L06 corrigiu, mas o erro de vocabulário na L05 indica que a regra de separação de eixos (reputação vs medalha) precisa ser reforçada no prompt da L05 para o próximo ciclo."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

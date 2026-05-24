@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO",
-  "motivo": "Todos os 12 gates passaram sem falhas. Dados batem com o pacote validado (GMV R$4.622,03, 84 pedidos, ticket R$55,02, 1 cancelamento). Estrutura Slack está na ordem exata aprovada com as 6 seções obrigatórias. Top Produtos exibe exatamente 5 itens com slack_short_name canônico e nenhum MLB/SKU exposto. Análise tem exatamente 3 bullets correspondentes aos 3 insights da L05, com conectivos, verbos modais, nuances de classificação e linguagem de hipótese/risco latente preservados. Prioridades mapeiam 1:1 com prioridades_condensadas da L05, todas atribuídas a Yasmin. Bloqueios: L04 e L05 declararam listas vazias; log da L06 está correto e consistente. Nenhuma ocorrência de 'fulfillment', 'health', Flex, MLB, SKU cru, linguagem retrospectiva de estoque, termo proibido ou seção proibida. ml_snapshot internamente consistente (ADS com gasto e receita reais, fulfillment_mix_yesterday_top10 com cobertura 81% acima do threshold de 70%, omitido da VISÃO conforme regra). Zero problemas detectados — regra de agregação: 0 problemas → APROVADO.",
+  "motivo": "Todos os 12 gates passaram sem falha ou ressalva bloqueante. Os dados da mensagem batem com o pacote validado: faturamento R$4.622,03, pedidos 84, ticket médio R$55,02, cancelamentos 1, percentuais de mix de modalidade de envio (52,9%/73,7%/74,9%), métricas ADS (69,9% share, ROAS 10,87x, ACOS 4,57%) e ETA de Platinum (13,8 dias) estão todos corretos e rastreáveis ao ml_snapshot. Estrutura Slack segue a ordem exata aprovada das 6 seções obrigatórias, sem seções proibidas, sem Pedro Broglio no topo, rodapé BRT presente. Top 5 produtos usa exclusivamente os slack_short_names canônicos para IMB501P/V/C, KIT4YW1050 e TL6250, com atributos de variação preservados via confirmed_variation_attributes e zero MLB visível. Análise da Conta é fiel à L05 em contagem (3 insights → 3 bullets), tese central, conectivos, verbos modais e classificação: risco latente manteve linguagem prospectiva condicional ('pode virar'), fato manteve afirmação direta com estrutura de inversão preservada ('parece X mas não é Y'), hipótese manteve 'ainda não dá para cravar' e 'derruba a hipótese'. Prioridades idênticas à L05 em contagem e conteúdo, com Yasmin atribuída em todas as três, sinais de confirmação/refutação e escalar_se intactos. Nenhum bloqueio ativo nas fontes primárias (L04.bloqueios_para_slack=[] e L05.o_que_nao_pode_ir_para_slack=[]). Nenhuma ocorrência de 'fulfillment', 'health' solta, Flex como modalidade ativa, afirmação retrospectiva de estoque, nem nomenclatura MercadoLíder incorreta. ml_snapshot internamente consistente: ADS com spend e revenue não-zerados, cancelamentos diários abaixo de 5, fulfillment_mix_yesterday_top10 com cobertura 80,9% (acima do limiar de 70%), top_items_details coincide com top_products. Regra de agregação: 0 problemas → APROVADO.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -26,16 +26,20 @@
   },
   "problemas_encontrados": [],
   "correcoes_obrigatorias_antes_envio": [],
-  "ressalvas_memoria_interna": [
-    "L03 veio em fallback determinístico neste ciclo — sem fila de perguntas explícitas para a Granular. A continuidade entre camadas foi mantida via motivações herdadas de L01/L02, sem prejuízo para a qualidade da mensagem final.",
-    "L06 nomeou o produto do insight 3 da L05 ('Kit 6 Canecas Tulipa 250ml') mesmo que a L05 não o tivesse nomeado explicitamente ('Tem um anúncio Full...'). A identificação foi justificada no log por eliminação (único Full do top com cobertura crítica) e é factualmente correta. Decisão documentada e segura.",
-    "Confiança L05 declarada como 'media' — preservada corretamente na linguagem de hipótese do insight 2 e no caráter prospectivo/condicional do insight 3. Nenhuma degradação para certeza."
-  ],
+  "ressalvas_memoria_interna": [],
   "ressalvas_auditoria_nao_bloqueante": [
-    "SKU 914C_BA (Kit 06 Canequinhas De 100ml Com Suporte De Madeira Acrílico) aparece em 10º lugar no top_products com slack_short_name=null e mapping_status='mapped_generic_sku'. Não entrou no Top 5 do Slack, mas sinaliza necessidade de adicionar entrada em config/slack-short-names-ml.json na próxima manutenção preventiva.",
-    "Breakdown de revenue_ads_yesterday_brl por platform_item_id segue indisponível pelo segundo ciclo consecutivo. Sem esse dado, a hipótese de ADS amplificando Cross-Docking saudável vs compensando Full penalizado permanece inconfirmável. Registrar como necessidade de dado estrutural para o fetcher.",
-    "Série temporal de nível de qualidade do anúncio para MLB4073003575 (0,75) e MLB3288536143 (0,71) ainda é ponto único no pipeline. Próximo pacote é o dado mínimo para determinar direção e liberar ou descartar ação com Himmel.",
-    "ratings_negative=39% coexiste com claims_rate=0,25% e reputação 5_green sem breakdown por anúncio. Hipótese de concentração nos dois Full penalizados permanece em aberto. Gatilho de atenção: claims_rate acima de 0,005."
+    {
+      "gate": "Gate 10 — vocabulário ML / nível de qualidade do anúncio",
+      "observacao": "L05 usa a frase 'nível de qualidade dos dois campeões Full' em vez do termo canônico aprovado 'nível de qualidade do anúncio'. L06 reproduziu fielmente a frase da L05 (correto em termos de fidelidade ao pipeline) e incluiu os nomes de faixa corretos ('Padrão inferior') com os valores numéricos — nenhuma condição de bloqueio da Gate 10 foi atingida (não há 'health' solta, número sem faixa, tradução errada ou health=null tratado como saudável). Recomendação sistêmica: alinhar o prompt da L05 para usar o termo exato 'nível de qualidade do anúncio' em todas as referências ao campo health da API ML, evitando que a paráfrase chegue à L06 por fidelidade."
+    },
+    {
+      "gate": "Gate 5 e Gate 6 — nomenclatura de cluster IMB501",
+      "observacao": "L05 usa o identificador técnico 'cluster IMB501' na analise_final_condensada; L06 traduziu para 'cluster de Potes Vidro 5 Peças' para padronizar com os slack_short_names canônicos, decisão documentada no log de formatação. A tradução é justificada e sem risco de confusão para Yasmin — os três produtos (Tampa Preta/Vermelha/Cinza) são inequivocamente identificados em ambos os nomes. Registrar como sinal de manutenção: em revisões de memória ou histórico que cruzem referência ao cluster por nome técnico, a discrepância 'IMB501' vs 'Potes Vidro 5 Peças' deve ser explicitada para evitar ambiguidade interna entre camadas."
+    },
+    {
+      "gate": "Gate 12 — cobertura do fulfillment_mix_yesterday_top10",
+      "observacao": "O campo fulfillment_mix_yesterday_top10 cobre 68 de 84 pedidos do dia (80,9%) — acima do limiar de 70% que dispararia BLOQUEIO Crítico. A mensagem usa corretamente o escopo explícito ('52,9% do top 10'), não como métrica total do canal. Manter monitoramento em ciclos futuros: dias com volume concentrado fora do top 10 (anúncios longtail, promoções pontuais) podem comprimir a cobertura abaixo de 70% e exigir tratamento explícito de ressalva na L05 para autorizar exibição."
+    }
   ],
   "llm_used": true,
   "model": "claude-sonnet-4-6",

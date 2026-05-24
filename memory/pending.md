@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-23 02:00 BRT — organização noturna silenciosa_
+_Atualizado: 2026-05-23 23:45 BRT — consolidação diária em camadas_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -39,6 +39,13 @@ _Atualizado: 2026-05-23 02:00 BRT — organização noturna silenciosa_
 - [ ] **Budamix Central — investigar SKU duplicado na aba ESTOQUE**: `physical_inventory_summary` ficou R$ 552.191,35 vs `physical_inventory_items` R$ 552.167,57 por deduplicação SKU-level.
 - [ ] **Budamix Central Full — Etapa 1E monitoramento Shopee**: criar healthcheck/alerta Telegram se alguma das 3 contas Shopee passar de 6h sem sync.
 - [ ] **Budamix Central Full — validação cruzada ML Full e Amazon FBA** equivalente à validação Shopee 1D. Confiança atual média; Amazon teve fantasmas removidos e precisa validação defensiva.
+
+## 🚨 Daily Sales Analyst / Marketplace Intelligence
+
+
+- [ ] **Daily Sales Analyst ML — aguardar primeira consolidação semanal real em 02/06**: pipeline v4.0 do Mercado Livre começou memory ingest diário em 23/05. A consolidação semanal exige pelo menos 7 blocos diários no `weekly.md`; primeira execução real esperada na segunda-feira 02/06, 09:00 BRT. Antes disso, saída correta é "dados insuficientes".
+- [ ] **Daily Sales Analyst ML — adicionar sanity check `suspect_zero_spend` para ADS**: probe de 23/05 mostrou que a falha ADS=0 do dia 22/05 foi anomalia pontual da API ML, mas vale adicionar rede defensiva no `build_ads_block` para evitar análise errada quando gasto zerado for suspeito.
+- [ ] **Daily Sales Analyst — avaliar replicação da estrutura v4.0 para Shopee e Amazon**: depois de estabilizar ML, considerar pipelines independentes para Shopee e Amazon com memória diária/semanal/mensal e modelo por camada, sem misturar regras de marketplaces diferentes.
 
 ## 🚨 Amazon Ads / BidSpark
 
@@ -172,4 +179,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-05-23 02:00 BRT._
+_Última organização: 2026-05-23 23:45 BRT._

@@ -11,6 +11,18 @@ tags:
 
 # Lições — Kobe
 
+## 2026-05-23 — [TÁTICA] Crontab da VPS usa UTC; planejamento continua em BRT
+
+A VPS Hostinger interpreta crontab em UTC. Qualquer cron planejado para horário de Brasília precisa ser convertido explicitamente para UTC ao gravar no sistema (+3h), enquanto toda comunicação e documentação para Pedro permanece em BRT. Não assumir que `07:00` no crontab significa 07h BRT.
+
+## 2026-05-23 — [TÁTICA] Escolha de modelo deve ser por camada quando o pipeline tem tarefas cognitivas diferentes
+
+No benchmark do DSA ML, o melhor resultado veio do modo híbrido: Sonnet 4.6 nas camadas estruturais e Opus 4.7 nas camadas de maior julgamento (L04/L05). Avaliar pipeline inteiro com um único modelo escondia essa diferença. Para pipelines multi-camada, comparar qualidade por função cognitiva da camada, não apenas por custo/latência global.
+
+## 2026-05-23 — [TÁTICA] RH/Ponto não deve classificar inconformidade sem contexto individual de jornada
+
+Na auditoria Ponto Certo da semana 18/05–22/05, Pedro corrigiu que entrada tarde do Mateus por Tiro de Guerra é contexto conhecido e não deve ser cobrada quando compatível com a jornada especial. Intervalo de almoço abaixo de 1h também não deve virar inconformidade operacional automática. Antes de cobrar, validar escala, jornada individual, ajuste/justificativa e regra real.
+
 ## 2026-05-22 — [TÁTICA] Hotfix deployado direto precisa virar commit imediatamente
 
 Em Canggu/Ana, um deploy cascade do GitHub Actions quase reverteu hotfix aplicado manualmente porque o repo ainda carregava versão antiga. Toda correção feita via CLI/MCP/deploy direto deve ser commitada e pushada logo em seguida, antes de qualquer workflow automático tocar a mesma função.

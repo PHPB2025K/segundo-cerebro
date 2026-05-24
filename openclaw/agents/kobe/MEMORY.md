@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-22 23:45 BRT (consolidação diária em camadas)._
+_Último update: 2026-05-23 23:45 BRT (consolidação diária em camadas)._
 
 ---
 
@@ -134,12 +134,12 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 
-## Status do Sistema (22/05/2026 23:45 BRT — consolidação diária em camadas)
+## Status do Sistema (23/05/2026 23:45 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
 - **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; todo conteúdo relacionado a alertas deve ir para lá (watchdogs, guards, audits, monitores, failure alerts, resumos e avisos de risco/problema). Thread 8 permanece Urgente e não deve receber alertas técnicos de rotina.
 - **Planejamento de reposição das canecas:** prioridade máxima do próximo bloco operacional. Primeira rodada será manual pelo Kobe e servirá de piloto para o futuro Agente de Compras; todo assunto de compras vai no tópico Compras.
-- **Daily Sales Report Slack:** LLM é o caminho principal aprovado tecnicamente, com fallback determinístico desabilitado. Em 21/05, o preview analisando 20/05 ficou `APPROVED_WITH_REMARKS`, mas Lucas/Shopee bloqueou por erro factual de percentual Store (~45% correto vs 49% escrito); Yasmin/ML aprovado e Leonardo/Amazon aprovado com ressalva menor. Envio real para funcionários segue bloqueado até liberação explícita; próximo passo é corrigir/reexecutar Lucas/Shopee e decidir critério de promoção.
+- **Daily Sales Report Slack / DSA:** envio real para funcionários segue bloqueado até liberação explícita. O DSA ML amadureceu em 23/05 com sistema MercadoLíder, memory ingest diário, consolidações semanal/mensal e decisão de modelo por camada. A frente Slack v2 ainda exige corrigir/reexecutar Lucas/Shopee 20/05 e investigar lacuna operacional de 21/05 antes de qualquer promoção.
 - **Estoque Budamix:** deploy de produção foi retomado em 20/05 por rsync direto, encerrando o checkpoint GitHub/Deploy Key para essa frente. Parser PDF local substituiu webhook n8n quebrado e teste E2E reversível com PDF real validou 7 SKUs com retorno bit a bit da planilha. Pendências remanescentes: POT1BB duplicado, aliases, PR4 kits/BOM, cleanup opcional das ops de teste e desativar webhook antigo.
 - **DRE Abril:** U15 Descontos Concedidos continua prioridade antes da U44 v4 limpa. ML aceito em R$ 5.061,14; Amazon precisa fechar item-promotion sem frete promocional; Shopee segue suspeita/reclassificação.
 - **Mission Control:** 11/23 módulos fechados; módulos Activity, Cron, Sessions, Skills e Costs consolidados, com separação de custo real API vs equivalente API vs subscription. Próxima prioridade técnica segue n8n usage tracking em `/costs`, painel Daily Sales Pipeline pendente de restart/smoke e PRDs dos módulos restantes.
@@ -147,7 +147,7 @@ skills/
 - **Fechamento março continua aberto:** ads spend real, consolidado novo e DRE semanal seguem pendentes.
 
 ### ⚠️ Importante
-- **Meta Ads:** token atingiu a data estimada de expiração em 18/05/2026 e Spark ficou quieto em 20/05; antes de depender da API, validar renovação/funcionamento e escalar correção se falhar.
+- **Meta Ads:** token atingiu a data estimada de expiração em 18/05/2026; Spark ficou quieto em 23/05. Antes de depender da API, validar renovação/funcionamento e escalar correção se falhar.
 - **Canggu/Ana:** silêncio de 9 dias e falha de dispatch foram fechados em 21/05 com validação E2E real: WhatsApp → webhook → process-message → dispatcher voltou a gerar mensagem LLM com tokens; parser de origem `Shoppe` → `shopee` também validado. Regra 17 “resposta cética mas gentil” segue aplicada no ML. Pendentes: hard-block adicional contra linguagem de cadastro/processo interno, correção manual ML antiga, redirect www↔apex e resiliência restante.
 - **RH/Ponto Certo:** `ponto.budamix.com.br` ativo com SSL; WhatsApp RH proativo bloqueado indefinidamente até liberação explícita, inbound permitido.
 - **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2.
@@ -170,6 +170,12 @@ skills/
 - Agent memories de Trader, Spark e Builder atualizadas para refletir Daily Sales v2, Amazon Ads 5 camadas, Mission Control/Social Studio Reborn/Canggu.
 
 
+
+## Qualidade da Memória (Consolidação Diária em Camadas 23/05 — 23:45 BRT)
+- Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
+- Digests lidos: Trader, Spark, Builder, Fisco e RH. Nenhum digest ausente neste fechamento.
+- Marcos globais incorporados: DSA ML amadureceu com sistema MercadoLíder, memory ingest diário, consolidações semanal/mensal, cron 06:50 BRT real e decisão híbrida Sonnet/Opus por camada; auditoria Ponto Certo confirmou ajustes sem duplicidade e refinou regras contra falsos positivos de jornada individual.
+- Riscos críticos vindos dos digests: Fisco mantém Bling Filial 403 pelo 9º dia e alerta WhatsApp degradado; Spark mantém validação pendente do token Meta Ads e auditoria Amazon Ads/BidSpark; Trader/Builder/RH ficaram quietos sem novo risco crítico.
 
 ## Qualidade da Memória (Consolidação Diária em Camadas 22/05 — 23:45 BRT)
 - Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
@@ -234,6 +240,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-23:** DSA ML virou pipeline maduro com MercadoLíder, memory ingest diário, consolidações semanal/mensal, cron corrigido para 06:50 BRT real e modo híbrido Sonnet/Opus por camada; auditoria Ponto Certo validou ajustes aprovados sem duplicidade e incorporou regra de contexto individual para Mateus/Tiro de Guerra e intervalos <1h.
 - **2026-05-22:** Import Hub anexou documentos e ativou Terminal49 para GB26001/GB26002; e-commerce fechou loop de estoque site↔planilha e reparou IMB501/destaques; Vault/Ledger entraram em produção como área financeira; Ana/Canggu fechou 7/7 E2E com escalação/notificação real; Daily Sales v2 ficou com lacuna operacional para 21/05; RH registrou novos riscos de compliance.
 - **2026-05-21:** Budamix E-commerce ganhou preview mobile no admin e polimentos de PDP; Canggu/Ana voltou a responder via fluxo real WhatsApp após pacote v36/v42; Pedro pausou Bling Filial e priorizou WhatsApp Health Check versionado; sync da VPS passou a usar escrita segura; Gestão de Funcionários registrou reunião semanal com Yasmin; Daily Sales v2 ficou em preview `APPROVED_WITH_REMARKS`, mas Lucas/Shopee bloqueou por erro factual de percentual Store.
 - **2026-05-20:** Canggu/Ana teve correção estrutural do silêncio de 9 dias e regra 17 contra respostas de cadastro/processo interno; WhatsApp Himmel/Shopee foi integrado e ambos os grupos Himmel passaram a 3 ingestões diárias; Estoque Budamix voltou a produção via rsync com parser PDF local validado; Budamix E-commerce ganhou variações estruturadas e desativou temporariamente kits 4 travas; Gestão de Funcionários ganhou memórias individuais; Daily Sales v2 ficou PARTIAL por bloqueio Lucas/Shopee.
@@ -273,7 +280,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) investigar lacuna Daily Sales v2 de 21/05 e corrigir Lucas/Shopee 20/05 antes de envio real, (2) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT, (3) planejar reposição de canecas e cobrar reviews dos kits 4 travas com Leonardo na segunda, (4) retomar automação de pedidos atacado em teste controlado, (5) validar token Meta Ads pós-18/05, (6) orientar RH sobre recorrências de intervalo/saída sem liberar proativo genérico, (7) validar primeiro pedido real do site com BUDAMIX10 e investigar preço Tulipa._
+_Próximas ações: (1) investigar lacuna Daily Sales v2 de 21/05 e corrigir Lucas/Shopee 20/05 antes de envio real, (2) acompanhar primeira consolidação semanal DSA ML em 02/06 e adicionar sanity check `suspect_zero_spend`, (3) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT, (4) planejar reposição de canecas e cobrar reviews dos kits 4 travas com Leonardo na segunda, (5) retomar automação de pedidos atacado em teste controlado, (6) validar token Meta Ads pós-18/05, (7) orientar RH com contexto individual sem liberar proativo genérico, (8) validar primeiro pedido real do site com BUDAMIX10 e investigar preço Tulipa._
 
 ---
 ## Contexto

@@ -101,7 +101,9 @@ Se a frase soa como **relatório técnico** ou **consultoria abstrata**, está e
 | `breakdown` | "detalhe", "abertura", "separação" |
 | `runway` | "fôlego", "cobertura", "quanto tempo dá" |
 | `elegibilidade` | "direito", "qualificação", "se mantém em" |
-| `share` (de ADS, GMV) | "% do total", "fatia", "parte" |
+| `share` (genérico) | "% do total", "fatia", "parte" |
+| `ADS share` | "ADS respondeu por X%", "fatia do ADS no faturamento", "% do faturamento via ADS" — **nunca escrever "ADS share" no Slack** |
+| `GMV` | **sempre "Faturamento"** — escapar mesmo uma vez no Slack vira bloqueio Maior na L07 |
 | `threshold` | "limite", "ponto de corte", "barreira" |
 | `ratio` | "razão", "proporção" |
 | `snapshot` | "leitura atual", "estado de agora" |
@@ -381,14 +383,20 @@ Preservar termos quando vierem da Condensadora:
   - Sem medalha = "sem medalha MercadoLíder" (não escrever "sem nível").
 - **Modalidade de envio (ativas na Budamix: somente duas — Full e Cross-Docking):** Full (estoque no CD do ML) / Cross-Docking (Coleta ML na expedição Budamix). Flex (entrega rápida) e Drop-off **não são modalidades praticadas pela Budamix** — não mencionar como alternativas operacionais válidas no Slack.
 - **Tipo de anúncio:** Catálogo / Clássico / Premium.
-- **Nível de qualidade do anúncio** (campo técnico `health`, escala oficial ML 0-1): no Slack usar **"nível de qualidade do anúncio"** + nome natural da faixa:
-  - `0,99-1,00` → **nível excelente** (máxima exposição)
-  - `0,85-0,98` → **nível bom** (zona aceitável)
-  - `0,70-0,84` → **nível regular** (em risco, próximo de cair)
-  - `0,00-0,69` → **nível preocupante** (perdendo exposição ativamente)
+- **Nível de qualidade do anúncio** (campo técnico `health`, escala oficial ML 0-1): no Slack usar **"qualidade do anúncio"** + nome natural da faixa:
+  - `0,99-1,00` → **excelente** (máxima exposição)
+  - `0,85-0,98` → **bom** (zona aceitável)
+  - `0,70-0,84` → **regular** (em risco, próximo de cair)
+  - `0,00-0,69` → **preocupante** (perdendo exposição ativamente)
   - `null` → "sem nível calculado pelo ML" (volume insuficiente; **não** equivale a saudável)
 
-  Sempre escrever no Slack: `"nível de qualidade do anúncio em nível regular (0,75)"`, **nunca** `"health 0,75"`, `"em Padrão inferior"` ou `"em Básico"`. Yasmin não conhece os termos técnicos do ML nem os nomes oficiais — usar sempre o termo natural. O valor numérico entre parênteses é opcional e ajuda quando relevante para a ação.
+  **Formato obrigatório no Slack:**
+  - ✅ `"qualidade do anúncio em regular"` / `"qualidade dos dois anúncios em bom"` / `"anúncio com qualidade preocupante"`
+  - ❌ `"nível de qualidade do anúncio em nível regular"` — duplicação proibida da palavra "nível"
+  - ❌ `"qualidade em regular (0,75)"` — **nunca incluir pontuação numérica** entre parênteses; Yasmin não precisa do valor exato, basta o nome da faixa
+  - ❌ `"health 0,75"` / `"em Padrão inferior"` / `"em Básico"` — jargão técnico ou nomes oficiais ML proibidos
+
+  **Princípio:** a Yasmin precisa saber em qual faixa o anúncio está (excelente/bom/regular/preocupante) — o número exato é detalhe interno. A análise (L01-L05) usa o número; o Slack usa só o nome.
 - **Posição:** ranking de categoria (Clássico), Buy Box do catálogo (Catálogo).
 
 **Regra obrigatória — reputação vs medalha:** são **dois eixos distintos**. Reputação é a cor do termômetro (verde/amarela/vermelha); medalha é o nível MercadoLíder. **Proibido colar os dois** em termo composto como "verde-gold", "verde-platinum", "verde Gold". Se ambos forem citados, separar em frases ou cláusulas: `"reputação verde e MercadoLíder Gold"`, nunca `"verde-gold"`.

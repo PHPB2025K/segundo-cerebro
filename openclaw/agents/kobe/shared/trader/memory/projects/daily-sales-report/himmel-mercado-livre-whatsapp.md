@@ -278,3 +278,23 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 **Status:** aberto — Himmel assumiu avaliação/inclusão, execução e impacto ainda precisam ser confirmados nos dados.
 
+### 2026-05-25 08:13–09:12 BRT — Dúvida operacional da Yasmin resolvida sem novo plano registrado
+
+**Participantes:** Yasmin Oscarlino; Cláudio Manrique Junior/Himmel; Fabio Schwichtemberg/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Suporte operacional pontual após etapa não detalhada em imagem.
+
+**Contexto registrado:**
+- Yasmin pediu auxílio após uma etapa visual/não textual, perguntando o que deveria fazer em seguida.
+- Cláudio informou que verificaria o caso.
+- Fabio/Himmel respondeu que “está tudo certo”.
+- Não houve menção legível a campanha, verba, SKU, produto, prazo, decisão comercial ou ação de ADS.
+
+**Impacto esperado:**
+- Tratar apenas como marcador de suporte operacional resolvido no grupo ML; não usar como causa para variações de vendas, ADS ou exposição sem contexto adicional.
+
+**Como validar nos dados:**
+- Se aparecer alteração operacional relevante no ML em 25/05, buscar a imagem/origem da dúvida antes de inferir ação.
+- Na ausência de novo contexto textual, não atribuir impacto a esta interação.
+
+**Status:** encerrado — sem contexto acionável para Daily Sales Report v2 no momento.

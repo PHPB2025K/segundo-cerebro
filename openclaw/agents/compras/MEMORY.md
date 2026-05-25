@@ -8,11 +8,11 @@ tags:
   - agent/compras
 ---
 
-# MEMORY.md — Compras
+# MEMORY.md — Scout
 
 ## Status inicial — 2026-05-25
 
-Agente criado como Diretor de Compras da GB Importadora, subordinado ao Kobe.
+Agente criado como **Scout**, Diretor de Compras da GB Importadora, subordinado ao Kobe.
 
 ## Projeto ativo
 
@@ -31,7 +31,7 @@ Regra confirmada por Pedro:
 - Kit colorido = 1 unidade de cada uma das seis cores.
 - Kit cor única = 6 unidades da mesma cor.
 
-## Pendências do Compras
+## Pendências do Scout
 
 - Aguardar/receber projeções da equipe para a primeira rodada.
 - Cruzar projeções com dados reais de marketplace e estoque.

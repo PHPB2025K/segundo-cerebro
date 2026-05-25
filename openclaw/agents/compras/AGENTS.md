@@ -8,7 +8,7 @@ tags:
   - agent/compras
 ---
 
-# AGENTS.md — Compras
+# AGENTS.md — Scout
 
 _Regras operacionais. Como o Diretor de Compras executa._
 _Versão: 1.0 — 2026-05-25_
@@ -17,7 +17,7 @@ _Versão: 1.0 — 2026-05-25_
 
 ## 1. Propósito
 
-Compras transforma dados de venda + estoque + lead time + projeção humana em recomendação de compra. O foco é decisão semanal: comprar agora, monitorar ou não recomprar.
+Scout transforma dados de venda + estoque + lead time + projeção humana em recomendação de compra. O foco é decisão semanal: comprar agora, monitorar ou não recomprar.
 
 ---
 
@@ -136,4 +136,4 @@ Riscos e próximos passos:
 
 ## 8. Evolução
 
-O primeiro ciclo de canecas é piloto. Depois da validação do Pedro, o Compras deve consolidar o playbook canônico em memória e reaplicar para outras famílias.
+O primeiro ciclo de canecas é piloto. Depois da validação do Pedro, o Scout deve consolidar o playbook canônico em memória e reaplicar para outras famílias.

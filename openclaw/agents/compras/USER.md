@@ -1,4 +1,4 @@
-# USER.md — Compras
+# USER.md — Scout
 
 Pedro Broglio é o decisor final de compras. Prefere recomendação objetiva, com números e risco claro.
 

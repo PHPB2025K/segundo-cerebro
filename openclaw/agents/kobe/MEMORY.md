@@ -134,13 +134,13 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 | **Vault** | Finanças, tesouraria, caixa | agents/vault | ✅ Operacional |
-| **Compras** | Reposição, demanda, estoque, compras semanais | agents/compras | ✅ Fundação criada |
+| **Scout** | Reposição, demanda, estoque, compras semanais | agents/compras | ✅ Fundação criada |
 
 ## Status do Sistema (25/05/2026 19:25 BRT — criação do Diretor de Compras)
 
 ### 🚨 Crítico
 - **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; todo conteúdo relacionado a alertas deve ir para lá (watchdogs, guards, audits, monitores, failure alerts, resumos e avisos de risco/problema). Thread 8 permanece Urgente e não deve receber alertas técnicos de rotina.
-- **Planejamento de reposição das canecas / Compras:** prioridade máxima do próximo bloco operacional. Pedro pediu em 25/05 retomar a criação do Diretor de Compras; fundação do agente **Compras** criada. O piloto de canecas segue como primeiro playbook antes de ampliar para outras famílias; todo assunto de compras vai no tópico Compras.
+- **Planejamento de reposição das canecas / Compras:** prioridade máxima do próximo bloco operacional. Pedro pediu em 25/05 retomar a criação do Diretor de Compras; fundação do agente **Scout** criada. O piloto de canecas segue como primeiro playbook antes de ampliar para outras famílias; todo assunto de compras vai no tópico Compras.
 - **Daily Sales Report Slack / DSA:** envio real para funcionários segue bloqueado até liberação explícita. O DSA ML amadureceu em 23/05 com sistema MercadoLíder, memory ingest diário, consolidações semanal/mensal e decisão de modelo por camada. Em 24/05, o pacote de 23/05 saiu como DADOS_PARCIAIS (R$ 10.086,22, 200 pedidos) sem Slack Writer/QA final detectado; investigar antes de qualquer promoção.
 - **Estoque Budamix:** deploy de produção foi retomado em 20/05 por rsync direto, encerrando o checkpoint GitHub/Deploy Key para essa frente. Parser PDF local substituiu webhook n8n quebrado e teste E2E reversível com PDF real validou 7 SKUs com retorno bit a bit da planilha. Pendências remanescentes: POT1BB duplicado, aliases, PR4 kits/BOM, cleanup opcional das ops de teste e desativar webhook antigo.
 - **DRE Abril:** U15 Descontos Concedidos continua prioridade antes da U44 v4 limpa. ML aceito em R$ 5.061,14; Amazon precisa fechar item-promotion sem frete promocional; Shopee segue suspeita/reclassificação.
@@ -168,8 +168,8 @@ skills/
 
 ## Qualidade da Memória (Criação do Compras — 25/05 19:25 BRT)
 - Pedro pediu no tópico Compras para retomar a criação do agente de compras como Diretor.
-- Fundação do agente top-level `compras` criada em `openclaw/agents/compras`, com IDENTITY/AGENTS/MEMORY/SOUL/TOOLS/USER/HEARTBEAT.
-- Guardrail principal: Compras recomenda e planeja, mas não envia pedido a fornecedor, não negocia e não assume compromisso financeiro sem autorização explícita via Kobe/Pedro.
+- Fundação do agente top-level `compras` criada com nome humano **Scout** em `openclaw/agents/compras`, com IDENTITY/AGENTS/MEMORY/SOUL/TOOLS/USER/HEARTBEAT.
+- Guardrail principal: Scout recomenda e planeja, mas não envia pedido a fornecedor, não negocia e não assume compromisso financeiro sem autorização explícita via Kobe/Pedro.
 - Primeiro playbook canônico segue sendo a reposição de canecas: Tulipa, Paris, Canelada e Reta × seis cores, com kit colorido desmembrado em 1 unidade de cada cor.
 
 ## Qualidade da Memória (Consolidação Profunda 15/05)

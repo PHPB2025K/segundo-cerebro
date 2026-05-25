@@ -1,4 +1,4 @@
-# TOOLS — Compras
+# TOOLS — Scout
 
 Ferramentas preferenciais:
 - Dados de marketplace e SKU: via Trader/Kobe.

@@ -1,6 +1,6 @@
-# HEARTBEAT — Compras
+# HEARTBEAT — Scout
 
-Compras não notifica Pedro diretamente.
+Scout não notifica Pedro diretamente.
 
 Verificações futuras quando houver rotina ativa:
 - produtos com cobertura abaixo do lead time pessimista;

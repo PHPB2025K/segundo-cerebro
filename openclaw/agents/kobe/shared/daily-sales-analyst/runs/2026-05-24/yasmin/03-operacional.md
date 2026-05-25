@@ -1,0 +1,52 @@
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
+### Leitura operacional do dia
+
+- **O dia confirmou operacionalmente a tese de patamar via ticket da L01, sem expansão de alcance.** Os 99 pedidos ficaram praticamente idênticos ao 30d (`changes.orders_vs_30d_pct=-0,7%`) e ao 60d (`changes.orders_vs_60d_pct=+3,2%`); o GMV de R$5.024,80 supera o 30d em +10,4% e o 60d em +22,7% exclusivamente pelo ticket de R$50,76 (+11,2% vs 30d; +18,8% vs 60d). O resultado forte no controle de dia da semana (+25,7% em pedidos e +36,1% em GMV vs `same_weekday_avg`) não contradiz a tese — o domingo de hoje opera num patamar estruturalmente mais alto que os domingos anteriores, e o mecanismo de sustentação continua sendo ticket, não volume. Nenhuma novidade conceitual aqui: confirma operacionalmente o que a L01 identificou como patamar real porém unidimensional.
+
+- **A dependência do cluster IMB501 aprofundou-se pelo terceiro ciclo consecutivo.** Tampa Preta (29), Tampa Vermelha (10) e Tampa Cinza (8) totalizam 47 pedidos no mesmo `platform_item_id` MLB3288536143 = **47,5% do volume do dia**, acima dos 44% de 22/05 e dos 44% de 23/05 — sequência crescente, não estabilização. `top3_concentration=57,6%` e `top5=74,7%` confirmam que a cauda não compensaria ruptura no anúncio líder. O anúncio opera com `health=0,71` pelo **quarto ciclo consecutivo** em Padrão inferior, `is_catalog=false` (Clássico, compete por ranking em categoria, não Buy Box). Isso adiciona evidência direta ao risco estrutural principal identificado pela L01: o vetor dominante do canal está cada vez mais concentrado num único anúncio com saúde orgânica deprimida — e o percentual cresceu, não se estabilizou.
+
+- **O mix de modalidade de envio do dia inverteu em relação aos ciclos anteriores por razão produto-específica.** `fulfillment_mix_yesterday_top10` registrou 83% Full vs 74,3% no 30d e 72,6% no 7d — o dia foi *mais* Full que o padrão histórico, na direção oposta às leituras de 22/05 e 23/05 onde o Cross-Docking liderava o mix. A causa é produto-específica: MLB3288536143, anúncio líder com 47 pedidos, aparece com `logistic_type=fulfillment` no snapshot atual, enquanto a memória de ciclos anteriores o registrava com variações em Cross-Docking (Tampa Preta e Tampa Cinza). Se houve migração de modalidade de envio no anúncio líder, o mix do dia reflete essa mudança, não sinal sistêmico da conta. Isso contradiz parcialmente a leitura anterior de que a divergência de mix era "Cross-Docking puxando o canal" — a direção inverteu, e a causa precisa ser confirmada pela Granular.
+
+- **ADS retornou a share dominante (71,2%) após o recuo atípico de 23/05 (49,5%), descartando operacionalmente a hipótese de expansão orgânica naquele ciclo.** `ads_summary.revenue_ads_yesterday_brl=R$3.578,05` / `gmv=R$5.024,80` = 71,2% de share, com ROAS 11,36x e ACOS 4,19%. A eficiência da campanha de Himmel segue alta — o problema operacional não é ineficiência de ADS, é que a volta a 71,2% com health dos campeões estagnado pelo quarto ciclo confirma que o recuo de 23/05 foi oscilação isolada, não início de expansão orgânica. Este é agora o **primeiro ponto** de uma nova janela de observação acima de 65%; o segundo ponto (ciclo de 25/05) é o gatilho definido pela L02.
+
+---
+
+### Sinais operacionais relevantes
+
+- **Sinal:** Kit 6 Canecas Porcelana Tulipa (MLB6167272090), registrado com 2 unidades no snapshot de 23/05 a ritmo de 6–9 pedidos/dia, está completamente ausente do `top_items_details` e do top 10 de hoje — **interpretação operacional:** ausência de anúncio com esse histórico de estoque crítico sugere ruptura ou pausa automática efetivada; os 2 cancelamentos de `metrics.cancelamentos` do dia têm perfil de origem concentrada (não pulverizada) e são candidatos imediatos a cancelamentos prospectivos gerados pelo ML ao alocar pedidos em anúncio sem estoque — impacto em `cancellations_rate` ainda não capturado pela janela longa da API, mas entraria na janela rolling do Platinum (gap R$48.941, ETA ~11,9 dias).
+
+- **Sinal:** Kit 6 Canecas 250ml Canelada Colorida (MLB6582645908, Cross-Docking) com `available_quantity=1` pós-baixa de 3 pedidos de hoje — **interpretação operacional:** cobertura prospectiva de menos de 1 dia ao ritmo atual; o próximo pedido zera o estoque e pode gerar cancelamento automático; por ser Cross-Docking, a Budamix controla a reposição (não depende do CD do ML), mas o ML pode pausar o anúncio antes da reposição chegar à expedição.
+
+- **Sinal:** Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo `is_catalog=true`, gold_pro Premium, Full) com `available_quantity=25` pós-baixa de 9 pedidos → cobertura prospectiva de **~2,8 dias** ao ritmo de hoje — **interpretação operacional:** único anúncio gold_pro da conta (7,5% do mix de listing_type); ruptura em anúncio Catálogo Full implica perda de Buy Box com recuperação lenta mesmo após reestocagem no CD do ML; contribui com ticket elevado num canal onde todo o ganho de patamar é via ticket.
+
+- **Sinal:** Cluster IMB501 cresceu de 44% (22/05 e 23/05) para 47,5% do volume do dia em sequência consecutiva — **interpretação operacional:** o anúncio que concentra quase metade do canal continua aprofundando participação, não distribuindo volume para a cauda; a L02 não prescreveu ação sobre o health hoje, mas a direção crescente (não flat) da concentração é dado novo que a Condensadora precisa carregar.
+
+- **Sinal:** MLB5406503442 (Kit Jogo 6 Potes Vidro Hermético Fit Azul-petróleo, Full, não-Catálogo) com `health=0,87` — único anúncio do top_items_details acima do threshold de 0,85 (Padrão superior) — **interpretação operacional:** sinal operacional positivo isolado; 2 pedidos no dia com cobertura de 26 unidades pós-baixa; não muda a leitura de dependência do canal, mas é o único ponto de saúde orgânica confirmada entre os campeões com health calculável hoje.
+
+---
+
+### Anomalias ou ausência de anomalia
+
+**Anomalia leve.**
+
+O dia operou dentro das bandas quantitativas (volume flat vs 30d/60d, GMV e ticket alinhados à trajetória de patamar confirmada pela L01, cancelamentos em 2 dentro do esperado para um domingo de 99 pedidos). O que eleva acima de "sem anomalia" são dois sinais operacionais fora do padrão esperado: (1) ausência de MLB6167272090 do `top_items_details` com 2 cancelamentos do dia possivelmente concentrados nesse anúncio — ruptura ativa é desvio operacional com consequências prospectivas em `cancellations_rate` e trajetória Platinum, ainda que os pedidos do dia já estejam atendidos; (2) MLB6582645908 com `available_quantity=1` em ruptura certa no próximo pedido. Ambos são isolados e não comprometem a execução do dia realizado. Subiria para **anomalia moderada** se o ciclo de 25/05 confirmar: cancelamentos automáticos de MLB6167272090 com anúncio pausado + MLB6582645908 também pausado, criando compressão simultânea no cluster de canecas (dois anúncios fora do ar) com impacto em `cancellations_rate` e em receita da janela rolling Platinum.
+
+---
+
+### O que precisa ser investigado pela Granular
+
+- **Pergunta:** MLB6167272090 (Kit 6 Canecas Porcelana Tulipa) está ativo, pausado ou esgotado no painel da Yasmin agora — e os 2 cancelamentos de `metrics.cancelamentos` do dia têm esse anúncio como origem? — **motivada por:** ausência do anúncio no `top_items_details` + snapshot de 23/05 com 2 unidades pós-baixa a ritmo de 6–9 pedidos/dia + 2 cancelamentos com perfil de origem concentrada.
+
+- **Pergunta:** MLB6582645908 (Kit 6 Canecas 250ml Canelada, Cross-Docking, `available_quantity=1`) — há reposição pendente na expedição da Budamix confirmada para entrega antes do próximo pedido? — **motivada por:** cobertura prospectiva de menos de 1 dia; Cross-Docking depende da expedição Budamix e não do CD do ML, portanto reposição é controlável — mas precisa ser verificada antes de cancelamento automático.
+
+- **Pergunta:** Qual o status de reposição em trânsito ao CD do ML para MLB6232315532 (Kit 6 Canecas Lisas 200ml, Catálogo gold_pro Full, `available_quantity=25`, ~9 pedidos/dia) — previsão de chegada dentro de 48h? — **motivada por:** cobertura estimada de ~2,8 dias; `is_catalog=true` significa que ruptura em Full gera perda de Buy Box com recuperação assimétrica e lenta — risco operacional qualitativo diferente dos demais anúncios do canal.
+
+- **Pergunta:** O `logistic_type` de MLB3288536143 (Conjunto 5 Potes de Vidro, cluster IMB501) mudou de Cross-Docking para Full entre os ciclos anteriores e o snapshot atual — ou o snapshot atual sempre refletiu Full e a memória de ciclos anteriores estava registrando variações individuais que não constavam no top_items_details? — **motivada por:** inversão do mix de modalidade de envio do dia (83% Full vs 74,3% no 30d) em direção oposta aos ciclos 22/05 e 23/05; entender se há migração real de modalidade de envio no anúncio líder ou se é artefato de como a memória capturou as variações.
+
+- **Pergunta:** Health de MLB3288536143 e MLB4073003575 no snapshot do ciclo de 25/05 — permaneceu em 0,71 e 0,75 (quinto ciclo consecutivo) ou há movimento em qualquer direção? — **motivada por:** quarta leitura consecutiva idêntica; L01 e L02 definiram o quinto ciclo como ponto definidor de direção (recuperação acima de 0,85 reverte o risco estrutural; queda abaixo de 0,70 em MLB3288536143 eleva o risco de latente para crítico).
+
+---
+
+### Destaque para a Condensadora
+
+O fato operacional mais importante do dia não é o volume nem o ticket — é que a concentração no cluster IMB501 cresceu pelo terceiro ciclo consecutivo (22/05: 44% → 23/05: 44% → 24/05: 47,5%), e o anúncio que carrega quase metade do canal permanece com `health=0,71` pelo quarto ciclo sem sinal de movimento. O ADS voltou a 71,2% descartando o recuo de 23/05 como expansão orgânica. Isso não é novidade conceptual — confirma o que L01 e L02 já mapearam — mas é a confirmação de que a trajetória piora, não estabiliza. O risco silencioso que pode passar despercebido na métrica é a combinação de ruptura ativa no cluster de canecas (MLB6167272090 provável + MLB6582645908 iminente) com a cobertura crítica do único anúncio Catálogo gold_pro da conta (MLB6232315532, ~2,8 dias): se dois ou três desses anúncios saírem do ar simultaneamente no próximo ciclo, o impacto não aparece no GMV do dia analisado — aparece nos cancelamentos prospectivos que entram direto na janela rolling do Platinum (gap R$48.941, ETA ~11,9 dias) e na `cancellations_rate`, que hoje está em zero e pode se mover rapidamente.

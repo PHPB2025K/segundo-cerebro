@@ -17,7 +17,7 @@ _Atualizado: 2026-05-25 17:15 BRT — Pivot Budamix.com.br pra 100% vidro (15 SK
 ## 🟡 Budamix.com.br — pivot 100% vidro
 
 - [ ] **Decisão sobre Jarra Medidora de Vidro 500ml** (slug `jarra-medidora-vidro-budamix-500ml`) — desativada em 25/05 junto com os outros não-(potes herméticos 4 travas + potes redondos). É vidro, mas não se encaixa nas 2 categorias específicas. Pedro precisa decidir se reativa como SKU avulso ou mantém de fora. Reativação: 1 UPDATE no Supabase.
-- [ ] **Trocar fotos placeholder dos 2 combos novos** (IMB501_KIT2 + IMB501_KIT3) — hoje usam fotos do unitário IMB501 Tampa Preta como fallback. Quando Pedro gerar/fotografar 3 versões reais (PC, PV, CV), basta `UPDATE product_images SET image_url = ...` mantendo `variant_id`. Frontend já está pronto pra trocar visual ao selecionar combinação.
+- [ ] **Trocar fotos placeholder dos 2 combos novos** (IMB501_KIT2 + IMB501_KIT3) — hoje usam fotos do unitário IMB501 Tampa Preta como fallback. Pedro vai **gerar manualmente** as 24 fotos (6 por combinação × 4 combinações) usando os prompts e referências definidos hoje 25/05 — descartou batch via nano-banana. Quando concluir, basta `UPDATE product_images SET image_url = ...` mantendo `variant_id`. Frontend já pronto pra trocar visual ao selecionar combinação. Continuação amanhã 26/05.
 - [ ] **Ajustar estoque inicial dos 2 combos** — hoje em 10 unidades cada. Pedro cadastra na planilha de Precificação (SKUs `IMB501_KIT2` e `IMB501_KIT3`) e o sync.py propaga.
 - [ ] **Atualizar conteúdo de marca (blog, ads, fotografia) pra refletir foco 100% vidro** — pivot é estratégico, afeta posicionamento.
 

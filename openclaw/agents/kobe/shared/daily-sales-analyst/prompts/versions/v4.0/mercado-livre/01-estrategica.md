@@ -96,7 +96,14 @@ O pacote da L00 entrega um bloco `ml_snapshot` com dados frescos da API ML. Esse
 - `status`: `active` | `paused` | `closed` — **paused com pedidos = sinal crítico**
 - `free_shipping`: bool — Frete Grátis ativo
 - `logistic_type`: `fulfillment` (Full) | `cross_docking` (Coleta) | `self_service` (Flex)
-- `health`: 0..1 — **nível de qualidade do anúncio** (terminologia oficial ML). Faixas: `0,00-0,69` Básico (perdendo exposição), `0,70-0,84` Padrão inferior (em risco), `0,85-0,98` Padrão superior (zona aceitável), `0,99-1,00` Profissional (máxima exposição). `null` = ML sem volume pra calcular. No output narrativo da L05/L06 sempre usar "nível de qualidade do anúncio" + nome do nível, nunca apenas "health" ou número solto.
+- `health`: 0..1 — **nível de qualidade do anúncio** (terminologia oficial ML, em PT-BR para Slack). Faixas (4 níveis naturais usados na comunicação para Yasmin):
+  - `0,99 – 1,00` → **nível excelente** (= Profissional ML; máxima exposição)
+  - `0,85 – 0,98` → **nível bom** (= Padrão superior ML; zona aceitável)
+  - `0,70 – 0,84` → **nível regular** (= Padrão inferior ML; em risco, próximo de cair)
+  - `0,00 – 0,69` → **nível preocupante** (= Básico ML; perdendo exposição ativamente)
+  - `null` = ML sem volume pra calcular.
+
+  No output narrativo da L05/L06 sempre usar "nível de qualidade do anúncio" + nome do nível natural, nunca apenas "health", número solto, ou nome oficial ML ("Profissional"/"Padrão"/"Básico").
 - `available_quantity`: estoque atual no canal
 - `sold_quantity`: vendas acumuladas do anúncio
 
@@ -115,7 +122,7 @@ O pacote da L00 entrega um bloco `ml_snapshot` com dados frescos da API ML. Esse
 - `active_analysis.catalog_pct`: % da base em Catálogo
 - `active_analysis.free_shipping_pct`: % da base com Frete Grátis
 - `active_analysis.out_of_stock_count` + `out_of_stock_ids`: anúncios ativos sem estoque
-- `active_analysis.low_health_count`: anúncios em Padrão inferior ou Básico (health < 0,85)
+- `active_analysis.low_health_count`: anúncios em nível regular ou preocupante (health < 0,85)
 - `active_analysis.no_health_data_count`: anúncios sem nível de qualidade calculado (health=null)
 
 > **Quando algum bloco vier com `status: "unavailable"` ou `null`**: declare ausência explícita ("ml_snapshot.ads_summary indisponível hoje, sem leitura de Mercado Ads") e ajuste a confiança da tese. Não invente sobre o que não está no pacote.
@@ -237,7 +244,7 @@ Anúncios em catálogo (`is_catalog=true`) competem pelo Buy Box ML; anúncios f
 
 **Regras de leitura:**
 - Campeão `is_catalog=true` + `available_quantity` baixo → ruptura significa perda de posição no catálogo (recuperação lenta vs Clássico)
-- Campeão `is_catalog=false` + `health < 0,85` (Padrão inferior ou Básico) → ML reduz ranking em categoria; ganho hoje é vulnerável
+- Campeão `is_catalog=false` + `health < 0,85` (nível regular ou preocupante) → ML reduz ranking em categoria; ganho hoje é vulnerável
 - `listing_type_mix.gold_pro_pct` muito baixo (< 10%) → conta opera sem boost Premium na maioria; depende inteiramente de Clássico
 - `free_shipping_at_sale=false` em campeão de catálogo → competitividade baixa por preço final na página de catálogo
 

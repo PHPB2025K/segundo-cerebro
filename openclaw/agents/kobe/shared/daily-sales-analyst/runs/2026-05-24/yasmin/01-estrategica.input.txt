@@ -124,7 +124,14 @@ O pacote da L00 entrega um bloco `ml_snapshot` com dados frescos da API ML. Esse
 - `status`: `active` | `paused` | `closed` — **paused com pedidos = sinal crítico**
 - `free_shipping`: bool — Frete Grátis ativo
 - `logistic_type`: `fulfillment` (Full) | `cross_docking` (Coleta) | `self_service` (Flex)
-- `health`: 0..1 — **nível de qualidade do anúncio** (terminologia oficial ML). Faixas: `0,00-0,69` Básico (perdendo exposição), `0,70-0,84` Padrão inferior (em risco), `0,85-0,98` Padrão superior (zona aceitável), `0,99-1,00` Profissional (máxima exposição). `null` = ML sem volume pra calcular. No output narrativo da L05/L06 sempre usar "nível de qualidade do anúncio" + nome do nível, nunca apenas "health" ou número solto.
+- `health`: 0..1 — **nível de qualidade do anúncio** (terminologia oficial ML, em PT-BR para Slack). Faixas (4 níveis naturais usados na comunicação para Yasmin):
+  - `0,99 – 1,00` → **nível excelente** (= Profissional ML; máxima exposição)
+  - `0,85 – 0,98` → **nível bom** (= Padrão superior ML; zona aceitável)
+  - `0,70 – 0,84` → **nível regular** (= Padrão inferior ML; em risco, próximo de cair)
+  - `0,00 – 0,69` → **nível preocupante** (= Básico ML; perdendo exposição ativamente)
+  - `null` = ML sem volume pra calcular.
+
+  No output narrativo da L05/L06 sempre usar "nível de qualidade do anúncio" + nome do nível natural, nunca apenas "health", número solto, ou nome oficial ML ("Profissional"/"Padrão"/"Básico").
 - `available_quantity`: estoque atual no canal
 - `sold_quantity`: vendas acumuladas do anúncio
 
@@ -143,7 +150,7 @@ O pacote da L00 entrega um bloco `ml_snapshot` com dados frescos da API ML. Esse
 - `active_analysis.catalog_pct`: % da base em Catálogo
 - `active_analysis.free_shipping_pct`: % da base com Frete Grátis
 - `active_analysis.out_of_stock_count` + `out_of_stock_ids`: anúncios ativos sem estoque
-- `active_analysis.low_health_count`: anúncios em Padrão inferior ou Básico (health < 0,85)
+- `active_analysis.low_health_count`: anúncios em nível regular ou preocupante (health < 0,85)
 - `active_analysis.no_health_data_count`: anúncios sem nível de qualidade calculado (health=null)
 
 > **Quando algum bloco vier com `status: "unavailable"` ou `null`**: declare ausência explícita ("ml_snapshot.ads_summary indisponível hoje, sem leitura de Mercado Ads") e ajuste a confiança da tese. Não invente sobre o que não está no pacote.
@@ -265,7 +272,7 @@ Anúncios em catálogo (`is_catalog=true`) competem pelo Buy Box ML; anúncios f
 
 **Regras de leitura:**
 - Campeão `is_catalog=true` + `available_quantity` baixo → ruptura significa perda de posição no catálogo (recuperação lenta vs Clássico)
-- Campeão `is_catalog=false` + `health < 0,85` (Padrão inferior ou Básico) → ML reduz ranking em categoria; ganho hoje é vulnerável
+- Campeão `is_catalog=false` + `health < 0,85` (nível regular ou preocupante) → ML reduz ranking em categoria; ganho hoje é vulnerável
 - `listing_type_mix.gold_pro_pct` muito baixo (< 10%) → conta opera sem boost Premium na maioria; depende inteiramente de Clássico
 - `free_shipping_at_sale=false` em campeão de catálogo → competitividade baixa por preço final na página de catálogo
 
@@ -937,7 +944,7 @@ Sinais ruins (rejeite):
     "quality_flags": [],
     "ml_snapshot": {
       "schema_version": "ml-snapshot/v2",
-      "fetched_at_utc": "2026-05-25T09:50:39.993786+00:00",
+      "fetched_at_utc": "2026-05-25T11:06:45.043355+00:00",
       "date": "2026-05-24",
       "status": "ok",
       "reputation": {
@@ -949,7 +956,7 @@ Sinais ruins (rejeite):
         "claims_rate": 0.0024,
         "cancellations_rate": 0,
         "delayed_handling_rate": 0.0012,
-        "transactions_completed": 5711,
+        "transactions_completed": 5713,
         "transactions_canceled": 0,
         "ratings_positive": 0.58,
         "ratings_neutral": 0.03,
@@ -963,7 +970,7 @@ Sinais ruins (rejeite):
         "sales_60d_window_start": "2026-03-26",
         "sales_60d_window_end": "2026-05-24",
         "sales_60d_count_paid": 5767,
-        "sales_60d_completed_api": 5711,
+        "sales_60d_completed_api": 5713,
         "ritmo_diario_brl": 4117.65,
         "platinum": {
           "threshold_revenue_brl": 296000,
@@ -971,7 +978,7 @@ Sinais ruins (rejeite):
           "gap_revenue_brl": 48941.140000000014,
           "progress_pct": 83.47,
           "eta_dias_estimado": 11.9,
-          "vendas_acima_threshold": 3986
+          "vendas_acima_threshold": 3988
         },
         "proximo_nivel": {
           "alvo": "platinum",
@@ -1050,8 +1057,8 @@ Sinais ruins (rejeite):
           "free_shipping": false,
           "logistic_type": "fulfillment",
           "health": 0.71,
-          "available_quantity": 483,
-          "sold_quantity": 5809,
+          "available_quantity": 481,
+          "sold_quantity": 5810,
           "category_id": "MLB244658"
         },
         {
@@ -1064,8 +1071,8 @@ Sinais ruins (rejeite):
           "free_shipping": false,
           "logistic_type": "fulfillment",
           "health": 0.75,
-          "available_quantity": 119,
-          "sold_quantity": 1004,
+          "available_quantity": 118,
+          "sold_quantity": 1005,
           "category_id": "MLB244658"
         },
         {
@@ -1157,9 +1164,9 @@ Sinais ruins (rejeite):
         "status": "ok",
         "campaigns_total_count": 14,
         "campaigns_active_count": 11,
-        "spend_yesterday_brl": 315.1,
+        "spend_yesterday_brl": 316.44,
         "revenue_ads_yesterday_brl": 3578.05,
-        "avg_acos_pct": 4.19
+        "avg_acos_pct": 4.22
       },
       "account_overview": {
         "status": "ok",
@@ -1248,7 +1255,7 @@ Sinais ruins (rejeite):
     {
       "check": "volume_band_amazon",
       "status": "ok",
-      "detail": "Orders 36 vs avg30 32.2 = +11.8%"
+      "detail": "Orders 36 vs avg30 32.0 = +12.5%"
     },
     {
       "check": "reconciliation_shopee-budamix-store",
@@ -1447,6 +1454,19 @@ Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 en
 ## Memória diária acumulada
 
 _Blocos diários abaixo. Job `daily-memory-ingest-ml.py` adiciona um bloco por dia. Rotação automática mantém os últimos 14 dias._
+
+### Dia analisado: 2026-05-24
+_ingestido em 2026-05-25T07:19:08-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- MLB3288536143 (Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita, Full, Clássico, anúncio único com variações IMB501P/V/C): quinto ciclo é o ponto definidor — health acima de 0,85 reverte risco estrutural; abaixo de 0,70 eleva risco de latente a crítico; concentração cresceu para 47,5% no terceiro ciclo seguido.
+- MLB4073003575 (Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo, Full): quarto ciclo em 0,75 — mesmo gatilho de leitura do quinto ciclo aplica.
+- ADS share da nova série pós-recuo de 23/05: primeiro ponto em 71,2% no dia 24/05; segundo ponto consecutivo acima de 65% em 25/05 com nível de qualidade dos campeões estagnado aciona alinhamento Yasmin–Himmel sobre cobertura preventiva.
+- Kit 6 Canecas Porcelana Tulipa (MLB6167272090) ausente do top — confirmar amanhã se está ativo, pausado ou esgotado; se pausado, registrar como variável confundidora para cancellations_rate e GMV do cluster de canecas nos próximos ciclos.
+- Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo Premium Full, 25 unidades, ~9 pedidos/dia): cobertura ~2,8 dias — se ruptura se confirmar com perda de Buy Box, impacto persiste mesmo após reestocagem.
+- MercadoLíder Platinum: gap R$48.941, progresso 83,47%, ETA ~12 dias ao ritmo atual — ainda fora do gatilho de Slack (gap > R$30k), mas qualquer combinação de rupturas no cluster de canecas com cancelamentos automáticos aperta a janela rapidamente.
+- Sinal positivo isolado: Kit Jogo 6 Potes Hermético Fit Azul-petróleo (MLB5406503442, Full, Clássico) com nível de qualidade em Padrão superior (0,87) — único anúncio do top com saúde orgânica confirmada; observar se sustenta.
+- Pendências de dado para o próximo pacote: (1) breakdown de revenue_ads_yesterday_brl e spend_yesterday_brl por platform_item_id; (2) ritmo 7d por platform_item_id; (3) breakdown de cancellations_rate por anúncio; (4) estoque em trânsito e ETA de reposição ao CD do ML por anúncio Full.
 
 ### Dia analisado: 2026-05-23
 _ingestido em 2026-05-24T07:10:47-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_

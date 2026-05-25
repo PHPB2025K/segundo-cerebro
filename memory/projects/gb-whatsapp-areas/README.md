@@ -23,8 +23,9 @@ Rotina diária de leitura read-only dos grupos internos de WhatsApp da GB, com r
 
 ## Regras
 
-- Leitura WhatsApp apenas via Evolution/local; nunca enviar mensagem nos grupos.
-- Uma execução por dia às 18:31 BRT.
+- Leitura WhatsApp apenas via Evolution/local.
+- Envio em grupos continua proibido por padrão; exceção aprovada por Pedro em 2026-05-25: Kobe pode enviar automaticamente no grupo **Financeiro - GB Importadora** a solicitação dos extratos de movimentação das contas GB, 3x/mês, direcionada à Simone.
+- Uma execução por dia às 18:31 BRT para leitura/relatório das áreas.
 - Síntese independente por área: não misturar assuntos entre grupos.
 - Memória persistente separada por área: decisões, pendências, responsáveis, riscos e histórico diário.
 - Não persistir dados sensíveis: senhas, tokens, cartões, dados bancários completos, CPF/RG/documentos pessoais.

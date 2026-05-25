@@ -3,12 +3,31 @@ title: "GB WhatsApp Areas — Financeiro"
 type: project-memory
 area: financeiro
 status: active
-updated: 2026-05-20
+updated: 2026-05-25
 ---
 
 # GB WhatsApp Areas — Financeiro
 
 Memória independente da área Financeiro da GB Importadora, baseada apenas nas mensagens do grupo Financeiro.
+
+## 2026-05-25 — Extratos de movimentação das contas GB
+
+### Definição operacional
+- Grupo WhatsApp: **Financeiro - GB Importadora**.
+- Responsável atual pelo envio dos extratos: **Simone**.
+- Frequência definida por Pedro no grupo: **3 vezes ao mês**.
+- Períodos fixos:
+  - **01 a 10**
+  - **11 a 20**
+  - **21 ao último dia do mês**
+- Kobe está autorizado por Pedro a enviar mensagem automática no grupo via WhatsApp próprio do Kobe para solicitar os extratos.
+
+### Cron / mensagem padrão aprovada
+- Todo dia **11**, solicitar extratos de **01 a 10**.
+- Todo dia **21**, solicitar extratos de **11 a 20**.
+- Todo dia **1º**, solicitar extratos de **21 ao último dia do mês anterior**.
+- Horário recomendado/aplicado: **08:30 BRT**.
+- Texto padrão: "Bom dia, Simone! Pode enviar aqui, por favor, os extratos de movimentação das contas da GB referentes ao período de [período]? Obrigado."
 
 ## 2026-05-20 — Histórico diário (BRT)
 

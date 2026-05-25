@@ -12,7 +12,18 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-25 17:15 BRT — Pivot Budamix.com.br pra 100% vidro (15 SKUs desativados, 13 ativos); 2 combos potes redondos com VariantMultiPicker em prod; ChunkErrorBoundary corrige tela branca pós-deploy._
+_Atualizado: 2026-05-25 ~22h BRT — Bug "Loja" desktop tela em branco registrado pra investigação; pivot Budamix.com.br 100% vidro consolidado._
+
+## 🔴 Bug — Loja desktop tela em branco (investigar)
+
+- [ ] **Clicar em "LOJA" no header desktop do `budamix.com.br` leva à tela em branco.** Relatado por Pedro em 25/05 noite. Investigação iniciada e interrompida.
+  - **Onde olhar:** `budamix-ecommerce/src/pages/Shop.tsx` (90 linhas, simples). Rota `/loja` em `App.tsx:68` via lazy import (`App.tsx:40`). Link em `components/layout/Header.tsx:11`.
+  - **Próximo passo:** abrir `https://budamix.com.br/loja` em desktop, abrir DevTools console e capturar o erro real antes de mexer no código.
+  - **Hipóteses iniciais (sem confirmação):**
+    - `useQuery` em `Shop.tsx:14` não desestrutura `error` — query falhando silenciosamente (RLS, coluna ausente, ou `product_images` mal-relacionada).
+    - Erro de runtime em filho de `Shop` (`ProductCard`, `Layout`) só em viewport desktop.
+    - Chunk de lazy import 404 pós-deploy (mas `ChunkErrorBoundary` deveria pegar).
+  - **Sintoma desktop-only:** estranho — mobile parece funcionar. Pode estar relacionado a algum componente condicional do header/layout desktop ou a um asset (imagem hero?) que só carrega em desktop.
 
 ## 🟡 Budamix.com.br — pivot 100% vidro
 

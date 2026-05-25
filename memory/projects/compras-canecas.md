@@ -117,3 +117,16 @@ Aguardar os arquivos/projeções da equipe e montar a primeira rodada consolidad
 Pedro aprovou manter o departamento de Compras enxuto por enquanto: **Scout → Radar**.
 
 Não criar mais analistas seniores nem analistas plenos nesta fase. Primeiro validar o playbook das canecas com dados reais, formato de tabela, critérios de compra e rotina semanal. Só depois avaliar expansão do departamento.
+
+## Regra do cron semanal — 2026-05-25
+
+Pedro definiu que o cron semanal de canecas deve refazer **todo o pipeline de planejamento do zero** a cada execução, usando dados completos até o dia anterior ao dia corrente. Depois, compara o resultado novo contra o último planejamento aprovado.
+
+Fluxo correto:
+1. Rodar pipeline completo com vendas, estoque, kits, cobertura, lead time e recomendação por modelo/cor.
+2. Considerar período fechado até D-1 completo.
+3. Comparar novo resultado contra o último planejamento vigente.
+4. Atualizar o arquivo de planejamento apenas se houver alteração relevante.
+5. Se nada mudou, registrar manutenção do planejamento atual.
+
+O objetivo é comprar no início da semana sempre após o cron ter recalculado e validado a quantidade semanal corrente.

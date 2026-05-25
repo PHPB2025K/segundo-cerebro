@@ -10,7 +10,7 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-05-23_
+_Atualizado: 2026-05-24_
 
 ## 🔴 Prioridade Alta
 

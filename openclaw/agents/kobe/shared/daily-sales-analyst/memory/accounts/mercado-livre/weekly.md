@@ -33,6 +33,19 @@ Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 en
 
 _Blocos diários abaixo. Job `daily-memory-ingest-ml.py` adiciona um bloco por dia. Rotação automática mantém os últimos 14 dias._
 
+### Dia analisado: 2026-05-24
+_ingestido em 2026-05-25T07:19:08-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- MLB3288536143 (Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita, Full, Clássico, anúncio único com variações IMB501P/V/C): quinto ciclo é o ponto definidor — health acima de 0,85 reverte risco estrutural; abaixo de 0,70 eleva risco de latente a crítico; concentração cresceu para 47,5% no terceiro ciclo seguido.
+- MLB4073003575 (Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo, Full): quarto ciclo em 0,75 — mesmo gatilho de leitura do quinto ciclo aplica.
+- ADS share da nova série pós-recuo de 23/05: primeiro ponto em 71,2% no dia 24/05; segundo ponto consecutivo acima de 65% em 25/05 com nível de qualidade dos campeões estagnado aciona alinhamento Yasmin–Himmel sobre cobertura preventiva.
+- Kit 6 Canecas Porcelana Tulipa (MLB6167272090) ausente do top — confirmar amanhã se está ativo, pausado ou esgotado; se pausado, registrar como variável confundidora para cancellations_rate e GMV do cluster de canecas nos próximos ciclos.
+- Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo Premium Full, 25 unidades, ~9 pedidos/dia): cobertura ~2,8 dias — se ruptura se confirmar com perda de Buy Box, impacto persiste mesmo após reestocagem.
+- MercadoLíder Platinum: gap R$48.941, progresso 83,47%, ETA ~12 dias ao ritmo atual — ainda fora do gatilho de Slack (gap > R$30k), mas qualquer combinação de rupturas no cluster de canecas com cancelamentos automáticos aperta a janela rapidamente.
+- Sinal positivo isolado: Kit Jogo 6 Potes Hermético Fit Azul-petróleo (MLB5406503442, Full, Clássico) com nível de qualidade em Padrão superior (0,87) — único anúncio do top com saúde orgânica confirmada; observar se sustenta.
+- Pendências de dado para o próximo pacote: (1) breakdown de revenue_ads_yesterday_brl e spend_yesterday_brl por platform_item_id; (2) ritmo 7d por platform_item_id; (3) breakdown de cancellations_rate por anúncio; (4) estoque em trânsito e ETA de reposição ao CD do ML por anúncio Full.
+
 ### Dia analisado: 2026-05-23
 _ingestido em 2026-05-24T07:10:47-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
 

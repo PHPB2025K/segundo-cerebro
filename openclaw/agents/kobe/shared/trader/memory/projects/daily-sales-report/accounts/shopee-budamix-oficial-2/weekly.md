@@ -1,40 +1,35 @@
-# Consolidação Semanal — Shopee — Budamix Oficial / Conta 2 — Semana até 2026-05-18
+# Consolidação Semanal — Shopee — Budamix Oficial / Conta 2 — Semana até 2026-05-25
 
 ## Metadados
-- **Semana analisada:** 2026-05-12 a 2026-05-18
+- **Semana analisada:** 2026-05-19 a 2026-05-25
 - **Conta:** Shopee — Budamix Oficial / Conta 2
-- **Dias analisados:** 5 de 7 (2026-05-12, 2026-05-14, 2026-05-15, 2026-05-16, 2026-05-17)
+- **Dias analisados:** 2 de 7 (2026-05-19, 2026-05-20)
 
 ## Leitura da Semana
-- A conta somou 104 pedidos e R$ 6.761,16 em GMV granular nos dias disponíveis, com ticket médio de R$ 65,01.
-- Melhor dia granular: 2026-05-16 (Sábado) com R$ 1.582,54; dia mais fraco: 2026-05-14 (Quinta) com R$ 1.222,74.
-- Cancelamentos no período: 6 (5,5%).
-- Concentração média do top 3: 67,2%; usar como sinal de dependência de mix nas próximas leituras.
+- A conta somou 38 pedidos e R$ 2.592,39 em GMV granular nos dias disponíveis, com ticket médio de R$ 68,22.
+- Melhor dia granular: 2026-05-20 (Quarta) com R$ 1.546,25; dia mais fraco: 2026-05-19 (Terça) com R$ 1.046,14.
+- Cancelamentos no período: 2 (5,0%).
+- Concentração média do top 3: 76,8%; usar como sinal de dependência de mix nas próximas leituras.
 
 ## Produtos em Observação
-- Kit 6 Canecas Tulipa Porcelana 250ml: 230774946365 un. acumuladas nos rankings diários.
-- Conjunto 5 Potes de Vidro Redondos Tampa Cinza: 117965774155 un. acumuladas nos rankings diários.
-- Kit 4 Potes de Vidro 800ml Quadrado: 88390668364 un. acumuladas nos rankings diários.
-- Kit 2 Potes de Vidro 1520ml Retangular: 57294791556 un. acumuladas nos rankings diários.
+- Kit 6 Canecas Tulipa Porcelana 250ml: 92309978546 un. acumuladas nos rankings diários.
+- SPC011: 49304767266 un. acumuladas nos rankings diários.
+- Conjunto 5 Potes de Vidro Redondos Tampa Cinza: 47186309662 un. acumuladas nos rankings diários.
 - Kit 3 Potes de Vidro Hermético: 46788396054 un. acumuladas nos rankings diários.
-- Kit 6 Canecas Altas Retas Porcelana 200ml: 46506712780 un. acumuladas nos rankings diários.
-- Kit 6 Canecas Porcelana 200ml: 44991334632 un. acumuladas nos rankings diários.
-- RED01B: 42520076264 un. acumuladas nos rankings diários.
+- Kit 4 Potes de Vidro 800ml Quadrado: 44195334182 un. acumuladas nos rankings diários.
+- Pote de Vidro Hermético 600ml: 23094203035 un. acumuladas nos rankings diários.
 
 ## Padrões e Riscos Recorrentes
-- (3x) ⚠️ HIPÓTESE: Queda de pedidos com ticket preservado → possível problema de tráfego/exposição/ADS.
-- (3x) 💡 Ponto para Himmel: sinal de queda de tráfego em Shopee — Budamix Oficial / Conta 2.
-- (1x) Concentração de 80.0% nos top 3 SKUs.
-- (1x) Concentração de 62.5% nos top 3 SKUs.
-- (1x) Taxa de cancelamento de 11.1%.
-- (1x) Concentração de 64.7% nos top 3 SKUs.
-- (1x) Concentração de 72.7% nos top 3 SKUs.
-- (1x) Concentração de 56.0% nos top 3 SKUs.
+- (1x) Concentração de 78.6% nos top 3 SKUs.
+- (1x) Taxa de cancelamento de 6.7%.
+- (1x) Concentração de 75.0% nos top 3 SKUs.
+- (1x) ⚠️ HIPÓTESE: Queda de pedidos com ticket preservado → possível problema de tráfego/exposição/ADS.
+- (1x) ⚠️ HIPÓTESE: Alta concentração nos top 3 SKUs (78.6%) → risco de dependência.
+- (1x) 💡 Ponto para Himmel: sinal de queda de tráfego em Shopee — Budamix Oficial / Conta 2.
+- (1x) ⚠️ HIPÓTESE: Alta concentração nos top 3 SKUs (75.0%) → risco de dependência.
 
 ## O que Carregar para Próxima Semana
-- (1x) Tendência de pedidos: hoje 24 vs média 30d 36.6.
-- (1x) Ticket médio: hoje R$ 55.15 vs média 30d R$ 57.78.
-- (1x) Tendência de pedidos: hoje 16 vs média 30d 33.5.
-- (1x) Ticket médio: hoje R$ 76.42 vs média 30d R$ 58.54.
-- (1x) Tendência de pedidos: hoje 17 vs média 30d 31.9.
-- (1x) Ticket médio: hoje R$ 73.42 vs média 30d R$ 59.72.
+- (1x) Tendência de pedidos: hoje 14 vs média 30d 29.3.
+- (1x) Ticket médio: hoje R$ 74.72 vs média 30d R$ 60.79.
+- (1x) Tendência de pedidos: hoje 24 vs média 30d 28.2.
+- (1x) Ticket médio: hoje R$ 64.43 vs média 30d R$ 61.38.

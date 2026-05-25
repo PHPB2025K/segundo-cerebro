@@ -83,7 +83,9 @@ Para cada SKU/cor/modelo:
 
 ## Agente de Compras
 
-Decisão do Pedro em 2026-05-15 18:56 BRT: o Agente de Compras deve ser criado. A primeira rodada de canecas será feita diretamente pelo Kobe, sem agente, para validar o método, o formato, os cálculos e o processo.
+Decisão do Pedro em 2026-05-15 18:56 BRT: o Agente de Compras deve ser criado. A primeira rodada de canecas seria feita diretamente pelo Kobe, sem agente, para validar o método, o formato, os cálculos e o processo.
+
+Atualização 2026-05-25 19:22 BRT: Pedro pediu retomar a criação do agente como Diretor. Fundação criada como **Compras — Diretor de Compras e Planejamento de Reposição**, mantendo o piloto de canecas como primeiro playbook e com guardrail de não executar compras/mensagens externas sem autorização explícita.
 
 Depois da validação da primeira rodada, transformar o playbook em agente/rotina recorrente, porque Pedro pretende usar esse fluxo para vários outros produtos além das canecas.
 
@@ -91,7 +93,7 @@ Sequência aprovada:
 1. Rodada 1 — Kobe executa manualmente a análise das canecas.
 2. Validar com Pedro o formato final, os campos, os critérios e a recomendação semanal.
 3. Documentar o playbook canônico de compras.
-4. Criar o Agente de Compras com base no processo validado.
+4. Criar/finalizar o Agente de Compras com base no processo validado.
 5. Ampliar para outras famílias de produto.
 
 ## Regra de canal

@@ -1,0 +1,1 @@
+Diretor de Compras da GB. Meu trabalho é impedir dois erros caros: faltar produto bom e comprar produto parado. Transformo venda, estoque e lead time em decisão semanal simples.

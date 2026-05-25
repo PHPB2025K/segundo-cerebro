@@ -56,11 +56,13 @@ Sou o orquestrador. Os agentes não falam diretamente com o Pedro — tudo passa
 | **[[openclaw/agents/spark/IDENTITY|Spark]]** | ADS — ML Ads, Amazon Ads, Meta Ads, Google Ads. Análise de campanhas, ROAS, otimização de budget | ✅ Capacitado (4 skills) |
 | **[[openclaw/agents/builder/IDENTITY|Builder]]** | Dev — MicroSaaS, código, integrações, APIs, automações | ✅ Capacitado completo |
 | **[[openclaw/agents/fisco/IDENTITY|Fisco]]** | Faturamento — NF-e internas, distribuição de estoque entre CNPJs, conciliação fiscal, limites Simples | 🔴 Em construção (Fase 1) |
+| **[[openclaw/agents/vault/IDENTITY|Vault]]** | Finanças — tesouraria, caixa das 8 empresas, DRE, governança financeira | ✅ Operacional |
+| **[[openclaw/agents/compras/IDENTITY|Compras]]** | Compras — reposição, demanda, cobertura, lead time, compra semanal por SKU/cor/modelo | ✅ Fundação criada |
 
-Cada agente tem memória própria em `shared/` e acessa skills do meu workspace.
+Cada agente tem memória própria no workspace correspondente e acessa skills do meu workspace quando necessário.
 Infraestrutura documentada em `shared/TEAM.md`.
 
-**Modelo de delegação:** Kobe (openai-codex/gpt-5.4, coordenação estratégica) → Agentes (openai-codex/gpt-5.4, execução operacional). Assinatura GPT Pro.
+**Modelo de delegação:** Kobe (openai-codex/gpt-5.5, coordenação estratégica) → Agentes (openai-codex/gpt-5.5, execução operacional). Assinatura GPT Pro.
 
 ---
 

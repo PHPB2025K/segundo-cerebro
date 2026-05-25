@@ -38,6 +38,7 @@ Kobe é o orquestrador. Os agentes NÃO falam diretamente com o Pedro.
 | **[[openclaw/agents/fisco/IDENTITY|Fisco]]** | Diretor Fiscal e Tributário. Faturamento — NF-e internas, distribuição de estoque entre CNPJs, conciliação fiscal, limites Simples | GPT 5.5 | `shared/fisco/` |
 | **[[openclaw/agents/rh/IDENTITY|RH]]** | CHRO — Diretor de Pessoas. Ponto (Ponto Certo), banco de horas, férias, compliance CLT, conversas com funcionários | GPT 5.5 | `shared/rh/` |
 | **[[openclaw/agents/vault/IDENTITY|Vault]]** | CFO — Diretor Financeiro. Tesouraria, fluxo de caixa das 8 empresas do grupo, DRE, governança financeira. Sub-agente: Ledger (Analista Sênior de Fluxo de Caixa) — processa extratos Itaú via skill `cash-flow-extract-processor` | Opus 4.7 (fallback GPT 5.5) | `vault/` (top-level) |
+| **[[openclaw/agents/compras/IDENTITY|Compras]]** | Diretor de Compras. Planejamento de reposição, demanda, estoque, lead time, compras semanais e comparação equipe × dados reais | GPT 5.5 | `agents/compras/` |
 
 **Regras de delegação:**
 - Tarefas operacionais de marketplace → delegar pro [[openclaw/agents/trader/IDENTITY|Trader]]
@@ -46,6 +47,7 @@ Kobe é o orquestrador. Os agentes NÃO falam diretamente com o Pedro.
 - Faturamento, NF-e internas, distribuição de estoque, conciliação fiscal → delegar pro [[openclaw/agents/fisco/IDENTITY|Fisco]]
 - Pessoas, ponto, banco de horas, férias, CLT, conversas com funcionários → delegar pro [[openclaw/agents/rh/IDENTITY|RH]]
 - Fluxo de caixa, fechamento financeiro, posição de tesouraria, riscos de liquidez, governança financeira, processamento de extratos Itaú das 8 empresas → delegar pro [[openclaw/agents/vault/IDENTITY|Vault]] (Vault delega processamento operacional ao sub-agente Ledger)
+- Planejamento de compras, reposição semanal, demanda por SKU/cor/modelo, risco de ruptura/excesso, comparação projeção da equipe × dados reais → delegar pro [[openclaw/agents/compras/IDENTITY|Compras]]
 - Estratégia, coordenação, comunicação com Pedro → Kobe faz direto
 - Resultado sempre passa pelo Kobe antes de chegar ao Pedro
 
@@ -130,7 +132,7 @@ Quando uma sessão precisa ser compactada:
 
 A Consolidação Diária NÃO deve mais ser um monólito do Kobe varrendo todos os agentes. O modelo correto é em camadas:
 
-1. **Cada agente direto consolida a própria memória:** Trader, Spark, Builder, Fisco e RH.
+1. **Cada agente direto consolida a própria memória:** Trader, Spark, Builder, Fisco, RH, Vault e Compras.
 2. **Cada agente gera um digest diário para Kobe** em `memory/agent-digests/YYYY-MM-DD/<agent>.md`.
 3. **Kobe lê apenas o próprio dia + digests dos agentes diretos.**
 4. **Subagentes/workers internos NÃO escrevem digest direto para Kobe.** O agente-pai absorve e resume.
@@ -142,6 +144,8 @@ Pipeline diário padrão:
 - 23:05 BRT — Consolidação Builder
 - 23:15 BRT — Consolidação Fisco
 - 23:25 BRT — Consolidação RH
+- 23:35 BRT — Consolidação Vault
+- 23:40 BRT — Consolidação Compras
 - 23:45 BRT — Consolidação Kobe
 - 00:05 BRT — Fechamento técnico: valida digests, commit/push e indexação
 

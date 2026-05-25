@@ -298,3 +298,47 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Na ausência de novo contexto textual, não atribuir impacto a esta interação.
 
 **Status:** encerrado — sem contexto acionável para Daily Sales Report v2 no momento.
+
+### 2026-05-25 13:42–17:50 BRT — Pedido de escala para MLB5402264802 e otimizações ML executadas
+
+**Participantes:** Yasmin Oscarlino; Cláudio Manrique Junior/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Aceleração de anúncio específico, ajustes de metas ROAS e movimentação de anúncios entre campanhas.
+
+**Contexto registrado:**
+- Yasmin pediu que a Himmel aumentasse as vendas do anúncio **MLB5402264802**, informando que já havia melhorado a imagem do anúncio.
+- Cláudio confirmou que estava analisando a conta, fazendo otimizações e que faria alteração referente ao anúncio.
+- Himmel registrou as movimentações realizadas em **25/05**:
+  - **[HML] ACELERAÇÃO | ACOS:** ROAS alvo de **8x para 7x**.
+  - **[HML] CA1 | PFT | CORE | ACOS:** ROAS alvo de **13x para 9,09x**.
+  - **[HML] CA3 | PFT | ACOS:** ROAS alvo de **9,09x para 11,1x**.
+  - **[HML] MLB4073003575 | PFT | AC:** ROAS alvo de **8x para 11,1x**.
+  - **[HML] MLB3288536143 | VSL | AC:** ROAS alvo de **11,1x para 12,5x**.
+  - **[HML] TESTE ABC | VSL | ACOS:** ROAS alvo de **7x para 13x**.
+- Movimentações de anúncios/produtos:
+  - **MLB5402264802** saiu de **Teste ABC** para **Aceleração**.
+  - **MLB55749976** saiu de **Balance** para **CA1**.
+  - **1613727941044371** saiu de **Balance** para **CB1** e também foi reforçado como **para CB1**.
+  - **6391246826895377** e **8072569709811665** saíram de **Balance** para **CB2**.
+  - **MLB4073003575** foi isolado em campanha própria; Himmel apontou **TACoS muito elevado**.
+  - **MLB4073064873** saiu de **Teste ABC** para **CA1**.
+  - **3860292271542547** saiu de **Teste ABC** para **Aceleração**.
+  - **MLB66715811** foi movido para **CB1**.
+  - **MLB4676726433**, **MLB4931700052** e **MLB6167272090** foram marcados como **sem estoque**.
+  - **6852620732614982** foi apontado com **TACoS elevado**; Himmel sugeriu verificar possibilidade de mais ações orgânicas.
+
+**Impacto esperado:**
+- A partir de **25/05**, variações de vendas, tráfego e gasto em **MLB5402264802** devem ser lidas como efeito combinado de melhoria de imagem feita pela equipe + entrada em campanha de **Aceleração**.
+- A campanha **Aceleração** ficou mais aberta a volume ao reduzir ROAS alvo de 8x para 7x; pode aumentar gasto e vendas com possível pressão de eficiência.
+- **CA1** ficou mais agressiva ao reduzir ROAS alvo de 13x para 9,09x, enquanto **CA3**, campanha própria do **MLB4073003575**, **MLB3288536143** e **Teste ABC** ficaram mais restritivas.
+- Produtos marcados como **sem estoque** não devem ser cobrados por escala via ADS até reposição; qualquer queda neles deve ser atribuída primeiro a ruptura.
+- **MLB4073003575** e **6852620732614982** exigem leitura de TACoS/ações orgânicas antes de culpar só campanha.
+
+**Como validar nos dados:**
+- Monitorar entre **2026-05-26 e 2026-06-01**: vendas, investimento, ACoS/TACoS, ROAS, impressões, cliques, conversão, preço e estoque dos anúncios citados.
+- Para **MLB5402264802**, comparar 7 dias antes/depois da entrada em Aceleração e separar possível efeito da nova imagem.
+- Confirmar reposição/estoque de **MLB4676726433**, **MLB4931700052** e **MLB6167272090** antes de interpretar performance de ADS.
+- Para **MLB4073003575** e **6852620732614982**, revisar fatores orgânicos: título, fotos, preço, reputação, frete, ranking, concorrência e conversão.
+
+**Status:** aberto — mudanças executadas em 25/05; validar nos Daily Sales Reports de Mercado Livre a partir de **26/05**.
+

@@ -1,6 +1,10 @@
 # Lições — RH
 
-_Atualizado: 2026-05-23_
+_Atualizado: 2026-05-24_
+
+## 2026-05-24
+- Nenhuma lição nova registrada; riscos e aprendizados anteriores permanecem válidos.
+- Domingo sem registros deve continuar sendo diferenciado de falta completa: sem escala específica ou trabalho registrado, não cobrar automaticamente.
 
 ## 2026-05-23
 - Nenhuma lição nova registrada; riscos e aprendizados anteriores permanecem válidos.

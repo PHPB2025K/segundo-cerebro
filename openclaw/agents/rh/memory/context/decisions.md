@@ -1,6 +1,11 @@
 # Decisões — RH
 
-_Atualizado: 2026-05-23_
+_Atualizado: 2026-05-24_
+
+## 2026-05-24
+- Nenhuma decisão nova de política RH registrada.
+- Mantido bloqueio: consolidação diária de memória não autoriza envio proativo a funcionários.
+- Domingo sem marcações permanece tratado como dia não útil sem cobrança automática, salvo escala específica ou evidência de trabalho.
 
 ## 2026-05-23
 - Nenhuma decisão nova de política RH registrada.

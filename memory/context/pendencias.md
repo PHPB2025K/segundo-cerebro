@@ -12,7 +12,14 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-25 ~22h BRT — Bug "Loja" desktop tela em branco registrado pra investigação; pivot Budamix.com.br 100% vidro consolidado._
+_Atualizado: 2026-05-25 ~23h BRT — Bug "Loja" desktop registrado; pivot 100% vidro consolidado; auditoria Ana ML+WhatsApp resultou em 4 fixes em prod (defesa em profundidade nos 3 canais)._
+
+## 🟢 Canggu/Ana — auditoria 25/05 fechada (4 fixes em prod)
+
+- ✅ ~~**Pergunta ML "Pode ser usado na air fryer?" recebeu resposta proibida do Bloco 17**~~ → **RESOLVIDO 25/05** — INSERT correção air fryer em `response_corrections` (id 5362537f, embedding processado) + `ml-response-validator.ts` estendido com `FORBIDDEN_ADMIN_LEAK_PATTERNS` (10 regex Bloco 17). Validado end-to-end via invocação real do `process-ml-question` v18: resposta agora correta usando RAG. Commit 7d93e78.
+- ✅ ~~**Ana mandou "Pra eu resolver isso pra você... rapidinho" em reclamação (Grace Kelly)**~~ → **RESOLVIDO 25/05** — `response-validator.ts` (WhatsApp) ganhou `COMPLAINT_OVERPROMISE_PATTERNS` com cleanup inline (5 regex Unicode-aware). "Vou resolver" → "vou encaminhar pra equipe". Validado via node: 5 casos PASS + controle neutro não dispara. Commits 127f379 + 12ba9f4 (bugfix regex `\b` ASCII vs `(?!\p{L})` Unicode).
+- ✅ ~~**Escalation gravada com `reason` em inglês**~~ → **RESOLVIDO 25/05** — `intent-classifier.ts` reescrito 100% em PT-BR com REGRA CRÍTICA DE IDIOMA + exemplos correto/errado. Enum `intention/sentiment` preservados (chaves de branching). Validado via Anthropic API direta: escalation_reason agora em PT-BR. Commit 127f379. Pendência satélite: 39/49 escalations históricas têm reason em inglês (não vou backfill — só novas).
+- ✅ ~~**Ana mandou 2 saudações em 26s no caso Grace**~~ → **RESOLVIDO 25/05** — detector de poll do `webhook-whatsapp/index.ts` agora busca QUALQUER agent msg com `metadata->>'origin_poll' = 'true'` na conversa (não só a última). Quando match → atualiza source + `skipAiPipeline=true`. Commit 78c7833 → webhook-whatsapp v40. Impacto histórico: 16 customers com `source=NULL` apesar de poll enviado serão destravados na próxima interação.
 
 ## 🔴 Bug — Loja desktop tela em branco (investigar)
 

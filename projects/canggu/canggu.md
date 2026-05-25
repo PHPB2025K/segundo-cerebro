@@ -6,19 +6,20 @@ tags:
   - canggu
   - moc
 criado: 2026-04-22
-atualizado: 2026-05-22
+atualizado: 2026-05-25
 fonte-auditoria: "[[auditorias/2026-04-22-forense]]"
 ---
 
+> ✅ **25/05/2026 — 4 fixes em prod consolidam defesa em profundidade nos 3 canais (ML público, WhatsApp privado, classifier).** Auditoria expôs casos onde regras do prompt foram violadas pelo LLM apesar de claras (air fryer ML, overpromise Grace, reason inglês, duplicação Grace). Arquitetura formalizada em 3 camadas — prompt + RAG/lookup + validator hard-block. Detalhes: [[memory/context/decisoes/2026-05#[25/05] Arquitetura Canggu/Ana — defesa em profundidade nos 3 canais]].
+>
+> **Versões em prod 25/05 19:30 BRT:** webhook-whatsapp v40, process-message v48, ml-webhook v17, process-ml-question v18, process-ml-message v14, escalate v21.
+>
 > ✅ **22/05/2026 — Operação Ana fechada 100%**. Bug do JWT desalinhado tinha 2
 > camadas: (a) `process-message` rejeitando webhook (resolvido 21/05); (b)
 > `escalate` rejeitando dispatchEscalation (resolvido 22/05). Bypass aplicado
 > nas 3 functions via `X-Internal-Token` + `verify_jwt=false`. 7/7 testes E2E
 > validados com Kobe. Bug bônus do `notification_phone` (era a própria Ana, não
-> Pedro) corrigido.
->
-> **Versões em prod 22/05:** webhook-whatsapp v37, process-message v44,
-> escalate v18, ml-webhook v15. Workflow GHA com `NO_JWT_FUNCTIONS list` evita
+> Pedro) corrigido. Workflow GHA com `NO_JWT_FUNCTIONS list` evita
 > reversão silenciosa em redeploys. `DIAGNOSTICO_ANA.md` no repo canguu com
 > histórico completo + anexo do bug do notification_phone.
 >

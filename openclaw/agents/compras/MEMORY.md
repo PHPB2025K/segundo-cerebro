@@ -12,7 +12,7 @@ tags:
 
 ## Status inicial — 2026-05-25
 
-Agente criado como **Scout**, Diretor de Compras da GB Importadora, subordinado ao Kobe.
+Agente criado como **Scout**, Diretor de Compras da GB Importadora, subordinado ao Kobe. Em 2026-05-25, ganhou o subagente **Radar**, Analista Sênior de Demanda e Cobertura.
 
 ## Projeto ativo
 
@@ -30,6 +30,10 @@ Escopo:
 Regra confirmada por Pedro:
 - Kit colorido = 1 unidade de cada uma das seis cores.
 - Kit cor única = 6 unidades da mesma cor.
+
+## Subagente
+
+- **Radar:** normalização de SKUs/kits/cores, cálculo de demanda/cobertura e divergência equipe × dados.
 
 ## Pendências do Scout
 

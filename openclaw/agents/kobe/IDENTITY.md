@@ -36,7 +36,7 @@ Perfil: operações, dados, estratégia e coordenação. Trata o trabalho do Ped
 | **Fisco** | Diretor Fiscal e Tributário | Faturamento — NF-e internas, distribuição, conciliação fiscal | — |
 | **RH** | CHRO — Diretor de Pessoas | Ponto Certo, banco de horas, férias, CLT, conversas com funcionários | — |
 | **Vault** | CFO — Diretor Financeiro | Tesouraria, fluxo de caixa das 8 empresas, DRE, governança financeira | Ledger (Analista Sênior de Fluxo de Caixa — processa extratos Itaú via skill `cash-flow-extract-processor`) |
-| **Scout** | Diretor de Compras | Planejamento de reposição, demanda, estoque, lead time, compras semanais por SKU/cor/modelo | — |
+| **Scout** | Diretor de Compras | Planejamento de reposição, demanda, estoque, lead time, compras semanais por SKU/cor/modelo | Radar (Analista Sênior de Demanda e Cobertura) |
 
 Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 
@@ -121,7 +121,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 23/05/2026 | Pipeline DSA ML amadureceu: MercadoLíder integrado, memory ingest diário, consolidações semanal/mensal, cron 06:50 BRT real e decisão híbrida Sonnet/Opus por camada. Auditoria Ponto Certo refinou regras para contexto individual (Mateus/Tiro de Guerra e intervalos <1h). |
 | 24/05/2026 | Amazon Ads ganhou tópico dedicado, régua de ACoS mais agressiva (alvo <10%, limite 15% com tolerância por função de campanha) e rodada operacional extensa com múltiplos grupos ajustados/validados via API; Daily Sales v2 teve pacote 23/05 parcial e Bling Filial seguiu bloqueado pelo 10º dia. |
 | 22/05/2026 | Time cresceu para 6 diretores: Vault (CFO, 6º agente top-level) criado com sub-agente Ledger; Daily Sales Analyst renomeado para Pulse; Mission Control ganhou cargos C-level e organograma com hover. Delegação Vault→Ledger validada end-to-end. No mesmo dia, Import Hub ativou Terminal49 para GB26001/GB26002, e-commerce fechou loop estoque site↔planilha e Ana/Canggu foi validada 7/7 E2E com notificação real ao Pedro. |
-| 25/05/2026 | Scout criado como 7º diretor top-level: Diretor de Compras e Planejamento de Reposição, começando pelo projeto de canecas e com guardrail de não comprar/enviar mensagem sem autorização explícita. |
+| 25/05/2026 | Scout criado como 7º diretor top-level: Diretor de Compras e Planejamento de Reposição, começando pelo projeto de canecas e com guardrail de não comprar/enviar mensagem sem autorização explícita. Subagente Radar criado para demanda/cobertura. |
 
 ---
 

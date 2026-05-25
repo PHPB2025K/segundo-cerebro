@@ -87,7 +87,7 @@ Decisão do Pedro em 2026-05-15 18:56 BRT: o Agente de Compras deve ser criado. 
 
 Atualização 2026-05-25 19:22 BRT: Pedro pediu retomar a criação do agente como Diretor. Fundação criada como **Scout — Diretor de Compras e Planejamento de Reposição**, mantendo o piloto de canecas como primeiro playbook e com guardrail de não executar compras/mensagens externas sem autorização explícita.
 
-Depois da validação da primeira rodada, transformar o playbook em agente/rotina recorrente, porque Pedro pretende usar esse fluxo para vários outros produtos além das canecas.
+Depois da validação da primeira rodada, transformar o playbook em agente/rotina recorrente, porque Pedro pretende usar esse fluxo para vários outros produtos além das canecas. Em 25/05, foi criado o subagente **Radar** sob o Scout para preparar a camada analítica de demanda/cobertura.
 
 Sequência aprovada:
 1. Rodada 1 — Kobe executa manualmente a análise das canecas.

@@ -57,7 +57,7 @@ Sou o orquestrador. Os agentes não falam diretamente com o Pedro — tudo passa
 | **[[openclaw/agents/builder/IDENTITY|Builder]]** | Dev — MicroSaaS, código, integrações, APIs, automações | ✅ Capacitado completo |
 | **[[openclaw/agents/fisco/IDENTITY|Fisco]]** | Faturamento — NF-e internas, distribuição de estoque entre CNPJs, conciliação fiscal, limites Simples | 🔴 Em construção (Fase 1) |
 | **[[openclaw/agents/vault/IDENTITY|Vault]]** | Finanças — tesouraria, caixa das 8 empresas, DRE, governança financeira | ✅ Operacional |
-| **[[openclaw/agents/compras/IDENTITY|Scout]]** | Compras — reposição, demanda, cobertura, lead time, compra semanal por SKU/cor/modelo | ✅ Fundação criada |
+| **[[openclaw/agents/compras/IDENTITY|Scout]]** | Compras — reposição, demanda, cobertura, lead time, compra semanal por SKU/cor/modelo. Subagente: Radar | ✅ Fundação criada |
 
 Cada agente tem memória própria no workspace correspondente e acessa skills do meu workspace quando necessário.
 Infraestrutura documentada em `shared/TEAM.md`.

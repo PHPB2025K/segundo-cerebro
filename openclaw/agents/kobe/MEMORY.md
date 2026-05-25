@@ -134,7 +134,7 @@ skills/
 | **Fisco** | Faturamento — NF-e, tributário | agents/fisco | ✅ Operacional |
 | **RH** | Ponto, salários, compliance | agents/rh | ✅ Operacional |
 | **Vault** | Finanças, tesouraria, caixa | agents/vault | ✅ Operacional |
-| **Scout** | Reposição, demanda, estoque, compras semanais | agents/compras | ✅ Fundação criada |
+| **Scout** | Reposição, demanda, estoque, compras semanais | agents/compras | ✅ Fundação criada + Radar |
 
 ## Status do Sistema (25/05/2026 19:25 BRT — criação do Diretor de Compras)
 
@@ -168,7 +168,7 @@ skills/
 
 ## Qualidade da Memória (Criação do Compras — 25/05 19:25 BRT)
 - Pedro pediu no tópico Compras para retomar a criação do agente de compras como Diretor.
-- Fundação do agente top-level `compras` criada com nome humano **Scout** em `openclaw/agents/compras`, com IDENTITY/AGENTS/MEMORY/SOUL/TOOLS/USER/HEARTBEAT.
+- Fundação do agente top-level `compras` criada com nome humano **Scout** em `openclaw/agents/compras`, com IDENTITY/AGENTS/MEMORY/SOUL/TOOLS/USER/HEARTBEAT. Em seguida, subagente **Radar** criado em `openclaw/agents/compras/shared/radar`.
 - Guardrail principal: Scout recomenda e planeja, mas não envia pedido a fornecedor, não negocia e não assume compromisso financeiro sem autorização explícita via Kobe/Pedro.
 - Primeiro playbook canônico segue sendo a reposição de canecas: Tulipa, Paris, Canelada e Reta × seis cores, com kit colorido desmembrado em 1 unidade de cada cor.
 

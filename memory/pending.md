@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-23 23:45 BRT — consolidação diária em camadas_
+_Atualizado: 2026-05-24 23:45 BRT — consolidação diária em camadas_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -43,11 +43,15 @@ _Atualizado: 2026-05-23 23:45 BRT — consolidação diária em camadas_
 ## 🚨 Daily Sales Analyst / Marketplace Intelligence
 
 
+- [ ] **Daily Sales v2 — investigar pacote parcial de 23/05**: execução de 24/05 às 06:50 BRT gerou pacote para 23/05 com status DADOS_PARCIAIS (R$ 10.086,22, 200 pedidos, ticket R$ 50,43), sem Slack Writer/QA final detectado pelo Trader. Validar causa do ciclo incompleto antes de qualquer promoção ou envio externo.
+
 - [ ] **Daily Sales Analyst ML — aguardar primeira consolidação semanal real em 02/06**: pipeline v4.0 do Mercado Livre começou memory ingest diário em 23/05. A consolidação semanal exige pelo menos 7 blocos diários no `weekly.md`; primeira execução real esperada na segunda-feira 02/06, 09:00 BRT. Antes disso, saída correta é "dados insuficientes".
 - [ ] **Daily Sales Analyst ML — adicionar sanity check `suspect_zero_spend` para ADS**: probe de 23/05 mostrou que a falha ADS=0 do dia 22/05 foi anomalia pontual da API ML, mas vale adicionar rede defensiva no `build_ads_block` para evitar análise errada quando gasto zerado for suspeito.
 - [ ] **Daily Sales Analyst — avaliar replicação da estrutura v4.0 para Shopee e Amazon**: depois de estabilizar ML, considerar pipelines independentes para Shopee e Amazon com memória diária/semanal/mensal e modelo por camada, sem misturar regras de marketplaces diferentes.
 
 ## 🚨 Amazon Ads / BidSpark
+
+- [ ] **Amazon Ads — D+7 da rodada 24/05 com nova régua de ACoS**: acompanhar efeitos dos ajustes executados em Tulipa, Suporte Controle Gamer, Potes Herméticos Vidro, Canecas Canelada, Descanso de Panela Modular MDF, Porta-Copos MDF, Jarra Medidora e Jogo Canequinhas Café. Grupos MDF receberam tração inicial corrigida para +80% sobre lances originais; medir impressões, cliques, CTR, CPC e relevância antes de cortar/escala. Potes Redondos foi renomeado para Potes Redondos Vidro. Kit Jardinagem segue pausado; decisão pendente é reativar campanhas por 3–7 dias sem mudar bids ou manter pausado.
 
 - [ ] **Meta Ads — validar renovação/funcionamento após 18/05/2026**: digest Spark de 18/05 registrou que a data estimada de expiração do token Meta Ads foi atingida. Antes de depender da API para análise/automação, validar se o token foi renovado/segue funcional; se falhar, escalar correção de autenticação.
 

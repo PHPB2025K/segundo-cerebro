@@ -48,3 +48,7 @@ Autosave, pull periódico e commits manuais no mesmo vault criam risco de corrid
 
 Em Canggu/Ana, receber mensagem no Supabase e até responder um teste manual não prova recovery. O caso real de 22/05 mostrou que clientes podem receber apenas a mensagem inicial de origem/canal, com imagens e textos corretamente ingeridos, mas sem nascer a resposta LLM posterior. Critério correto de saúde: cliente real ou teste que simule o fluxo real completo → mensagem inicial → resposta à origem/canal → nova mensagem/pergunta/imagem → mensagem `sender=agent` posterior com `tokens_used` e envio confirmado.
 
+
+## 2026-05-24 — [TÁTICA] Amazon Ads deve partir da base viva, não da rodada histórica
+
+Na análise semanal de Amazon Ads, a lista inicial omitiu os grupos MDF criados depois da rodada de abril. Antes de afirmar escopo de grupos/anúncios, consultar a base viva do BidSpark/Amazon Ads e validar grupos recém-criados, status live e campanhas atuais. Lista histórica serve como contexto, não como fonte final de verdade.

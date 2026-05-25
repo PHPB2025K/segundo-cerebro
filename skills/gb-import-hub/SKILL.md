@@ -68,6 +68,20 @@ Relacionamentos:
 
 ---
 
+## REGRA ANTI-DUPLICACAO — ANEXOS / ALERTAS DE IMPORTACAO
+
+Sempre que houver varredura de Gmail, e-mail, Drive ou qualquer fonte externa procurando documentos de importacao:
+
+1. **Consultar o Import Hub antes de alertar Pedro.** Identificar containers/processos provaveis e conferir diretamente `containers` + `documents`.
+2. **Verificar documentos ja anexados nos detalhes de cada container:** `file_name`, `document_tag`, `uploaded_at` e equivalentes.
+3. **Nao alertar duplicado.** Se o anexo/e-mail ja estiver representado no Hub (mesmo arquivo, nome equivalente, pacote consolidado, mesmo HBL/Invoice/Packing List/DI/DUIMP/PNI, ou documento compartilhado entre dois containers), responder silenciosamente e atualizar apenas estado/deduplicacao quando aplicavel.
+4. **Alertar somente diferenca objetiva:** documento novo ainda nao anexado, versao mais recente, container sem documento esperado, divergencia de status/dados, ou ambiguidade real que precise decisao do Pedro.
+5. **Mensagem de alerta deve declarar a checagem:** o que ja estava anexado no Import Hub vs o que falta. Nunca enviar alerta baseado so no Gmail.
+
+Essa regra foi reforcada por Pedro em 2026-05-25 apos alertas duplicados sobre arquivos/e-mails que ja estavam vistos e/ou anexados.
+
+---
+
 ## REGRAS DE NEGOCIO - CICLOS INDEPENDENTES
 
 ### Ciclo Logistico vs Ciclo Financeiro

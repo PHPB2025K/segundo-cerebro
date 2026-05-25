@@ -19,8 +19,8 @@ triggers:
 metadata:
   openclaw:
     emoji: 💰
-    last_updated: "2026-05-18"
-    next_review: "2026-05-25"
+    last_updated: "2026-05-25"
+    next_review: "2026-06-01"
     cron: "ML Fees Monitor — segunda 10h BRT"
     sources:
       - url: "https://www.mercadolivre.com.br/ajuda/quanto-custa-vender-um-produto_1338"
@@ -33,6 +33,8 @@ metadata:
         status: "✅ Oficial — tarifas"
       - url: "https://www.mercadolivre.com.br/ajuda/Custos-de-frete-gratis-pelo-Mercado-Envios_3362"
         status: "✅ Oficial — custos envio"
+      - url: "https://www.mercadolivre.com.br/ajuda/21793"
+        status: "✅ Oficial — armazenagem Full"
       - url: "https://gosmarter.com.br/taxas-mercado-livre/"
         status: "✅ Confiável — tabela completa + calculadora"
       - url: "https://gosmarter.com.br/mercado-envios-full-vale-a-pena-2026/"
@@ -47,9 +49,9 @@ metadata:
 
 # Regras de Comissões, Taxas e Custos — Mercado Livre 2026 (CNPJ)
 
-> ⚠️ **Última atualização:** 18/05/2026
+> ⚠️ **Última atualização:** 25/05/2026
 > **Mudança estrutural em 02/03/2026:** ML substituiu taxa fixa por tabela variável de 232 combinações (peso × preço), encerrou subsídio de frete grátis, reajustou Full, criou tabelas de frete por reputação.
-> **Verificação oficial 18/05/2026:** páginas oficiais mantêm comissões, custo de envio verde/ML/sem reputação, tabela de custos de envio reputação amarela e tarifas gerais. Corrigido resquício documental: desconto da tabela de reputação amarela = até 60% OFF conforme página oficial `ajuda/40545` (não até 40%).
+> **Verificação oficial 25/05/2026:** páginas oficiais mantêm comissões, custo de envio verde/ML/sem reputação, tabela de custos de envio reputação amarela, tarifas gerais e armazenagem Full. Corrigido: desconto da tabela de reputação amarela = até 40% OFF conforme página oficial `ajuda/40545`.
 > **Cron de verificação:** Segunda-feira 10h BRT (ML Fees Monitor)
 
 ---
@@ -155,7 +157,7 @@ Desde março/2026, existem **tabelas diferenciadas por reputação**:
 | Reputação | Desconto embutido | Faixa de custo (total) | Tabela oficial |
 |---|---|---|---|
 | Verde / ML / Sem reputação | Até 50% | R$ 5,65 — R$ 261,95 | `ajuda/40538` |
-| Amarela | Até 60% OFF | R$ 6,46 — R$ 314,34 | `ajuda/40545` |
+| Amarela | Até 40% OFF | R$ 6,46 — R$ 314,34 | `ajuda/40545` |
 | Laranja / Vermelha | 0% | **R$ 8,07 — R$ 523,90** | `ajuda/40547` |
 
 **⚠️ Reputação ruim pode DOBRAR o custo de frete. Manter verde é questão de sobrevivência financeira.**
@@ -507,13 +509,14 @@ Ambos reestruturaram custos em março/2026, encerrando a "guerra de frete gráti
 | 3 | [ML Oficial — Frete amarela](https://www.mercadolivre.com.br/ajuda/custos-frete-gratis-sem-reputacao-ou-amarela_40545) | ✅ Oficial | Tabela reputação amarela |
 | 4 | [ML Oficial — Tarifas](https://www.mercadolivre.com.br/ajuda/tarifas-e-faturamento_1472) | ✅ Oficial | Tarifas gerais |
 | 5 | [ML Oficial — Custos envio](https://www.mercadolivre.com.br/ajuda/Custos-de-frete-gratis-pelo-Mercado-Envios_3362) | ✅ Oficial | Envios |
-| 6 | [GoSmarter — Taxas ML](https://gosmarter.com.br/taxas-mercado-livre/) | ✅ Confiável | Calculadora + tabela |
-| 7 | [GoSmarter — Full](https://gosmarter.com.br/mercado-envios-full-vale-a-pena-2026/) | ✅ Confiável | Full detalhado |
-| 8 | [Ecommerce na Prática](https://ecommercenapratica.com/blog/comissao-mercado-livre/) | ✅ Confiável | Comissões |
-| 9 | [Koncili — Categorias](https://www.koncili.com/blog/categorias-do-mercado-livre/) | ✅ Confiável | Categorias |
+| 6 | [ML Oficial — Armazenagem Full](https://www.mercadolivre.com.br/ajuda/21793) | ✅ Oficial | Full |
+| 7 | [GoSmarter — Taxas ML](https://gosmarter.com.br/taxas-mercado-livre/) | ✅ Confiável | Calculadora + tabela |
+| 8 | [GoSmarter — Full](https://gosmarter.com.br/mercado-envios-full-vale-a-pena-2026/) | ✅ Confiável | Full detalhado |
+| 9 | [Ecommerce na Prática](https://ecommercenapratica.com/blog/comissao-mercado-livre/) | ✅ Confiável | Comissões |
+| 10 | [Koncili — Categorias](https://www.koncili.com/blog/categorias-do-mercado-livre/) | ✅ Confiável | Categorias |
 
 ### Protocolo de verificação:
-1. Acessar fontes oficiais ML (1–5) → comparar com dados desta skill
+1. Acessar fontes oficiais ML (1–6) → comparar com dados desta skill
 2. Cruzar com fontes secundárias (6–9)
 3. Se divergência → fonte oficial ML prevalece
 4. Se confirmada mudança → atualizar skill + notificar Pedro no tópico operacional configurado no cron
@@ -524,6 +527,7 @@ Ambos reestruturaram custos em março/2026, encerrando a "guerra de frete gráti
 
 | Data | Alteração |
 |---|---|
+| 25/05/2026 | v2.4 — Verificação semanal em fontes oficiais ML. Corrigido desconto da reputação amarela para até 40% OFF conforme página oficial `ajuda/40545`; valores da tabela amarela mantidos em R$ 6,46 — R$ 314,34. Comissões Clássico/Premium, tabela verde/ML/sem reputação, tarifas gerais e armazenagem Full conferidas sem mudança de valores. Adicionada fonte oficial de armazenagem Full (`ajuda/21793`) às URLs de monitoramento. |
 | 18/05/2026 | v2.3 — Verificação semanal em fontes oficiais ML. Corrigido resquício documental: reputação amarela voltou para desconto oficial de até 60% OFF conforme `ajuda/40545`/snippet oficial indexado; valores da faixa documentada mantidos em R$ 6,46 — R$ 314,34. Sem alteração confirmada em comissões, tabela verde/ML/sem reputação ou tarifas gerais. |
 | 11/05/2026 | v2.2 — Verificação semanal em fontes oficiais ML. Sem mudança nos valores oficiais conferidos. Corrigidos resquícios internos: seção reputação ainda citava até 70% de desconto no frete verde (corrigido para até 50%) e exemplo Clássico vs Premium ainda citava até 12× sem juros (corrigido para até 10×). |
 | 27/04/2026 | v2.1 — Verificação semanal em fontes oficiais ML. Corrigido Premium para até 10× sem juros; desconto de frete verde/MercadoLíder/sem reputação de 70% → 50%; reputação amarela de ~60% → até 40%. Tabelas de frete e custos Full conferidos sem alteração de valores. |

@@ -1,6 +1,6 @@
 {
   "resultado_qa": "APROVADO COM RESSALVA",
-  "motivo": "A mensagem respeitou todos os gates estruturais, de fidelidade à L05, de bloqueios, de padrão numérico, de consistência entre camadas e de consistência do ml_snapshot. Dois problemas foram identificados exclusivamente no Gate 10 (Tom e Utilidade): (1) o termo 'GMV' aparece nominalmente em Prioridade 1 — 'registrar como ponto de distorção para GMV e MercadoLíder dos próximos 5 dias' — violação Maior, pois o termo obrigatório para Yasmin é 'Faturamento'; (2) 'ADS share' aparece 3 vezes na mensagem (Análise bullet 3 ×1, Prioridade 3 ×2), atingindo o limiar de jargão técnico recorrente sem tradução natural, violação Menor. Regra de agregação aplicada: 1 Maior (em Gate 10 apenas) + 1 Menor → APROVADO COM RESSALVA. Não há Críticos. O único Maior concentra-se em um único gate, não atingindo o limiar de '2+ Maiores em gates diferentes' para bloqueio. Correção obrigatória antes do envio real a Yasmin: substituir 'GMV' por 'Faturamento' em Prioridade 1.",
+  "motivo": "Mensagem aprovada com duas ressalvas menores, ambas no Gate 6. Insight 1: L05 usou 'parece normal' como verbo de percepção na estrutura de inversão positiva (B); L06 substituiu por 'ficou dentro da banda esperada', que é afirmação direta — verbo modal não preservado literalmente, embora o contraste com 'mas' e a tese central estejam intactos. Insight 2: L05 usou 'entrou em colapso de estoque em dois pontos'; L06 usou 'teve dois alertas de estoque', suavizando a intensidade do diagnóstico, ainda que os dados factuais (1 unidade, queda de 33 para 25 unidades, coberturas) estejam preservados. Nenhum problema crítico ou maior foi detectado em nenhum dos 12 gates. Regra aplicada: 0 Críticos, 0 Maiores, 2 Menores → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
@@ -9,55 +9,52 @@
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
     "gate_5_top_produtos": "OK",
-    "gate_6_analise_conta": "OK",
+    "gate_6_analise_conta": "RESSALVA",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
-    "gate_10_tom_utilidade": "RESSALVA",
+    "gate_10_tom_utilidade": "OK",
     "gate_11_padrao_numerico_formatacao": "OK",
     "gate_12_consistencia_ml_snapshot": "OK"
   },
   "contagem_severidade": {
     "criticos": 0,
-    "maiores": 1,
-    "maiores_gates_distintos": 1,
-    "menores": 1,
-    "regra_agregacao_aplicada": "1 Maior + qualquer número de Menores → APROVADO COM RESSALVA. Críticos: 0. Maiores em gates distintos: 1 (Gate 10 apenas; limiar de bloqueio é 2+ em gates diferentes). Menores: 1, abaixo do limiar de 6+ para degradação sistêmica e isolado, não indica padrão de degradação generalizada."
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 2 Menores → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
-      "severidade": "Maior",
-      "gate": "Gate 10 — Tom e Utilidade",
-      "texto_atual": "registrar como ponto de distorção para GMV e MercadoLíder dos próximos 5 dias",
-      "texto_esperado": "registrar como ponto de distorção para Faturamento e MercadoLíder dos próximos 5 dias",
-      "estado_atual": "O termo proibido 'GMV' aparece em Prioridade 1, no trecho de consequência da ausência de reposição confirmada. O texto vem da L05 (prioridades_condensadas[0].sinal_de_confirmacao_refutacao usa 'GMV') mas a L06 tem a responsabilidade de traduzir antes de chegar ao Slack.",
-      "estado_esperado": "'GMV' substituído por 'Faturamento' em todas as ocorrências na mensagem Slack. Yasmin não usa 'GMV' no dia a dia operacional.",
-      "regra_violada": "Gate 10: 'Bloquear como Maior se GMV aparecer em qualquer bullet ou parágrafo da mensagem Slack (independente de capitalização). Yasmin não usa GMV no dia a dia; o termo dela é Faturamento.'",
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta (fidelidade à L05)",
+      "texto_atual": "O Faturamento ficou dentro da banda esperada, mas a concentração está subindo.",
+      "texto_esperado": "O dia parece normal pelo Faturamento (R$5.024,80, dentro da banda do novo patamar), mas o resultado ficou apoiado em um único anúncio...",
+      "estado_atual": "L06 substituiu 'parece normal' por 'ficou dentro da banda esperada', convertendo o verbo de percepção da inversão positiva (padrão B da L05) em afirmação direta. O contraste com 'mas' está preservado e a tese central permanece intacta, mas o verbo modal 'parece' — parte estrutural da inversão — não foi mantido.",
+      "estado_esperado": "O verbo de percepção 'parece' (presente na L05 como elemento funcional da estrutura de inversão positiva) deveria continuar como 'parece' ou equivalente de mesmo peso semântico ('parecia normal', 'o dia parece dentro da banda'). A regra de fidelidade exige que 'parece' continue 'parece'.",
+      "regra_violada": "Gate 6 — Mesmo verbo modal: 'parece' continua 'parece'. Indício não vira certeza.",
       "bloqueia_envio": false
     },
     {
       "severidade": "Menor",
-      "gate": "Gate 10 — Tom e Utilidade",
-      "texto_atual": "Ocorrência 1 — Análise bullet 3: 'Se o ADS share aparecer acima de 65% pelo segundo dia seguido'; Ocorrência 2 — Prioridade 3: 'com ADS share acima de 65% = Yasmin abre alinhamento com Himmel'; Ocorrência 3 — Prioridade 3: 'ADS share acima de 65% por três dias seguidos a partir de amanhã com nível estagnado'",
-      "texto_esperado": "Máximo de 1-2 ocorrências do termo 'ADS share'; nas repetições excedentes, usar tradução natural como 'participação do ADS no faturamento', 'ADS acima de X% das vendas' ou 'proporção de anúncios'.",
-      "estado_atual": "3 ocorrências exatas de 'ADS share' na mensagem, atingindo o limiar de jargão técnico recorrente sem tradução natural. Nota: as ocorrências em Análise bullet 1 ('o ADS responde por 71,2% do faturamento') e bullet 3 ('O ADS voltou a 71,2%') não usam 'ADS share' e estão corretas.",
-      "estado_esperado": "Frequência ≤2 de 'ADS share' ou tradução natural aplicada nas repetições excedentes para reduzir densidade técnica.",
-      "regra_violada": "Gate 10 — Comunicação simples (princípios Pedro 2026-05-25): Menor se a mensagem Slack contiver 3+ ocorrências de termos da lista sem tradução natural; 'share (de ADS/GMV)' está explicitamente listado.",
+      "gate": "Gate 6 — Análise da Conta (fidelidade à L05)",
+      "texto_atual": "O grupo de canecas teve dois alertas de estoque no mesmo dia.",
+      "texto_esperado": "O cluster de canecas entrou em colapso de estoque em dois pontos no mesmo dia.",
+      "estado_atual": "L06 suavizou 'entrou em colapso de estoque em dois pontos' para 'teve dois alertas de estoque'. 'Colapso' (L05) carrega diagnóstico de estado crítico confirmado; 'alertas' reduz a intensidade para sinalização de risco. Os elementos factuais subsequentes (1 unidade, queda de 33 para 25, coberturas) estão preservados, mas a abertura do insight perde a precisão diagnóstica da L05.",
+      "estado_esperado": "A frase de abertura do insight 2 deveria preservar 'entrou em colapso de estoque' ou equivalente de mesma intensidade — o L05 classificou este como 'risco latente', mas a descrição do estado factual ('colapso') é compatível com a classificação, pois os riscos prospectivos são tratados condicionalmente no restante do bullet.",
+      "regra_violada": "Gate 6 — Nenhum termo analítico-chave removido; suavização de alerta sem autorização da L05.",
       "bloqueia_envio": false
     }
   ],
-  "correcoes_obrigatorias_antes_envio": [
-    "Prioridade 1 — substituir 'GMV' por 'Faturamento' no trecho: 'registrar como ponto de distorção para GMV e MercadoLíder dos próximos 5 dias' → 'registrar como ponto de distorção para Faturamento e MercadoLíder dos próximos 5 dias'. Alteração cirúrgica, sem impacto em nenhum outro trecho."
-  ],
+  "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Gate 10 — 'GMV' na L05 (prioridades_condensadas[0].sinal_de_confirmacao_refutacao): a L05 usou 'variável confundidora para GMV e MercadoLíder dos próximos 5 dias', e a L06 herdou 'GMV' sem traduzir para 'Faturamento'. A regra de normalização de vocabulário é responsabilidade exclusiva da L06 — não depende de a L05 já usar o termo correto. Adicionar checagem explícita de 'GMV' no pipeline de escrita da L06 para interceptar herança não traduzida de camadas anteriores.",
-    "Gate 10 — 'ADS share' com 3 ocorrências: problema isolado de densidade terminológica, abaixo do limiar sistêmico. Corrigir na próxima versão da L06 limitando 'ADS share' a ≤2 aparições e usando paráfrases nas repetições extras."
+    "L05 insight 2 continha 'cancelamento automático em horas' na descrição do risco prospectivo. L06 corretamente suprimiu 'em horas' (que poderia ser lido como risco retrospectivo ou iminência excessivamente específica), substituindo por 'o ML cancela automaticamente' — resultado correto e alinhado com a regra de available_quantity post-baixa (Gate 10). Contudo, a decisão de formatação não registrou explicitamente essa remoção no log da L06. O resultado está correto; o registro está incompleto.",
+    "L06 inseriu 'e prejudica o cancellations_rate' no bullet 2 da ANÁLISE. Essa informação provém da L05, mas da seção 'prioridades_condensadas' (prioridade 2, campo 'por_que'), não do 'analise_final_condensada' insight 2. Não é análise nova — é informação autorizada pela L05 em seção diferente. O cruzamento cross-section é aceitável operacionalmente, mas tecnicamente o insight da L05 não autorizava explicitamente essa adição no bullet de análise. Não impacta fidelidade da tese; registrado para revisão de regra no próximo ciclo."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "Gate 5 — 914C_BA (Kit 06 Canequinhas De 100 Ml Com Suporte De Madeira Acrílico, MLB6073033006, rank 8) e KIT6S100 (Kit Jogo 6 Potes Vidro Hermético Tampa Travas Marmita Fit Azul-petróleo, MLB5406503442, rank 10) têm slack_short_name=null no data package. Ambos ficaram fora do Top 5 no Slack e não geraram risco de exibição de nome sem curadoria. Ação de manutenção: adicionar entradas para ambos em config/slack-short-names-ml.json no próximo ciclo de curadoria — especialmente KIT6S100 que também está fora dos top_items_details e pode ganhar relevância analítica futura.",
-    "Gate 12 — fulfillment_mix_yesterday_top10 cobre apenas 47 de 99 pedidos do dia (~47%), abaixo do piso de 70-80% necessário para apresentação como métrica representativa. A L06 omitiu corretamente da seção VISÃO e explicou no log de decisões de formatação. Para ciclos futuros, investigar se é viável ampliar o cron de fulfillment para capturar pedidos além dos top 10 itens, aumentando a cobertura para representatividade suficiente.",
-    "Memória — MLB6167272090 (Kit 6 Canecas Porcelana Tulipa) ausente do top pelo terceiro ciclo consecutivo sem resolução de status (ativo/pausado/esgotado). Pendência ativa desde 23/05 como variável confundidora para cancellations_rate e leitura do cluster de canecas. Reforçar no fetcher do próximo pacote a inclusão do status individual de platform_item_ids monitorados pela memória mesmo quando ausentes do top 10.",
-    "Gate 6 / Gate 9 — a L05 usa nomenclatura interna 'cluster IMB501' e 'anúncio único' nos insights analíticos; a L06 traduz corretamente para nome comercial padronizado 'anúncio de Potes Vidro 5 Peças (nas três variações de tampa)' na mensagem Slack. Divergência de vocabulário entre camadas é esperada e foi corretamente resolvida pela L06. Sugestão evolutiva: verificar se a L05 pode referenciar slack_short_name da variação principal (IMB501P → 'Potes Vidro 5 Peças — Tampa Preta') nos insights para reduzir a distância de vocabulário entre L05 e L06 e facilitar rastreabilidade cross-section."
+    "fulfillment_mix_yesterday_top10 cobre apenas 47 de 99 pedidos do dia (~47%), abaixo do threshold de 70% estabelecido no Gate 12c. A omissão correta desse dado da seção VISÃO foi executada pela L06 e registrada nas decisões de formatação. Contudo, a cobertura consistentemente baixa desse campo do fetcher (top_items_details limitado ao top 10 por volume) deve ser investigada: a janela fulfillment_mix_7d e fulfillment_mix_30d têm coverage_pct=100%, indicando que o problema é específico do cálculo diário por top 10, não da API de logistic_type. Sugestão: revisar lógica do cron que calcula fulfillment_mix_yesterday para cobrir todos os pedidos do dia, não apenas os do top 10 por faturamento.",
+    "top_items_details do ml_snapshot entrega 8 itens distintos (por platform_item_id) enquanto top_products entrega 10 variações (que mapeiam para 8 platform_item_ids únicos, já que MLB3288536143 aparece 3 vezes com SKUs distintos IMB501P/V/C). A coerência entre as duas fontes é esperada e confirmada — divergência de contagem reflete diferença entre granularidade de variação (top_products) e de anúncio (top_items_details). Sem impacto no Slack, mas sinaliza que a documentação do schema ml-snapshot/v2 poderia explicitar essa distinção para evitar interpretação errada em camadas futuras.",
+    "ratings_negative=0,39 (39% de avaliações negativas) identificado no ml_snapshot, idêntico aos ciclos 22-23/05. L05 não incluiu este dado na análise final nem nas prioridades (contexto: sem breakdown por anúncio, causa permanece em aberto). Dado omitido do Slack corretamente. Recomendação: monitorar se claims_rate se aproxima de 0,005 (limiar de risco) nos próximos ciclos — se cruzar, breakdown por anúncio passa a ser dado crítico para análise."
   ],
   "llm_used": true,
   "model": "claude-sonnet-4-6",

@@ -1,8 +1,8 @@
 # Preview para Kobe — 2026-05-24
-**Gerado em:** 2026-05-25T11:32:47.671455+00:00
+**Gerado em:** 2026-05-25T12:23:55.391980+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
-**Global Status:** BLOCKED
+**Global Status:** APPROVED_WITH_REMARKS
 **Prompt Version:** v4.0/mercado-livre
 **Data Builder Version:** v1.3
 **LLM Used:** True
@@ -14,7 +14,7 @@
 ## Resumo por Recipient
 
 ### Yasmin (mercado_livre)
-- **Status:** BLOCKED
+- **Status:** APPROVED_WITH_REMARKS
 - **send_allowed:** False
 - **llm_used:** True
   - 01-estrategica: LLM
@@ -24,8 +24,8 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Gate 10 — 'GMV' na L05 (prioridades_condensadas[0].sinal_de_confirmacao_refutacao): a L05 usou 'variável confundidora para GMV e MercadoLíder dos próximos 5 dias', e a L06 herdou 'GMV' sem traduzir para 'Faturamento'. A regra de normalização de vocabulário é responsabilidade exclusiva da L06 — não depende de a L05 já usar o termo correto. Adicionar checagem explícita de 'GMV' no pipeline de escrita da L06 para interceptar herança não traduzida de camadas anteriores.
-- **Aviso:** Gate 10 — 'ADS share' com 3 ocorrências: problema isolado de densidade terminológica, abaixo do limiar sistêmico. Corrigir na próxima versão da L06 limitando 'ADS share' a ≤2 aparições e usando paráfrases nas repetições extras.
+- **Aviso:** L05 insight 2 continha 'cancelamento automático em horas' na descrição do risco prospectivo. L06 corretamente suprimiu 'em horas' (que poderia ser lido como risco retrospectivo ou iminência excessivamente específica), substituindo por 'o ML cancela automaticamente' — resultado correto e alinhado com a regra de available_quantity post-baixa (Gate 10). Contudo, a decisão de formatação não registrou explicitamente essa remoção no log da L06. O resultado está correto; o registro está incompleto.
+- **Aviso:** L06 inseriu 'e prejudica o cancellations_rate' no bullet 2 da ANÁLISE. Essa informação provém da L05, mas da seção 'prioridades_condensadas' (prioridade 2, campo 'por_que'), não do 'analise_final_condensada' insight 2. Não é análise nova — é informação autorizada pela L05 em seção diferente. O cruzamento cross-section é aceitável operacionalmente, mas tecnicamente o insight da L05 não autorizava explicitamente essa adição no bullet de análise. Não impacta fidelidade da tese; registrado para revisão de regra no próximo ciclo.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-05-24/yasmin/00-data-package.json`

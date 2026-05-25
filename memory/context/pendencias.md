@@ -12,7 +12,14 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-23 23:30 BRT — Pipeline DSA ML maduro: modo híbrido (Sonnet+Opus L04/L05) + consolidações semanal/mensal Opus puro + memory ingest + sistema MercadoLíder com trajetória pra Platinum. Probe ADS resolvido (anomalia pontual; cron já no horário ok). Pendência ML rebaixada pra média prioridade._
+_Atualizado: 2026-05-25 17:15 BRT — Pivot Budamix.com.br pra 100% vidro (15 SKUs desativados, 13 ativos); 2 combos potes redondos com VariantMultiPicker em prod; ChunkErrorBoundary corrige tela branca pós-deploy._
+
+## 🟡 Budamix.com.br — pivot 100% vidro
+
+- [ ] **Decisão sobre Jarra Medidora de Vidro 500ml** (slug `jarra-medidora-vidro-budamix-500ml`) — desativada em 25/05 junto com os outros não-(potes herméticos 4 travas + potes redondos). É vidro, mas não se encaixa nas 2 categorias específicas. Pedro precisa decidir se reativa como SKU avulso ou mantém de fora. Reativação: 1 UPDATE no Supabase.
+- [ ] **Trocar fotos placeholder dos 2 combos novos** (IMB501_KIT2 + IMB501_KIT3) — hoje usam fotos do unitário IMB501 Tampa Preta como fallback. Quando Pedro gerar/fotografar 3 versões reais (PC, PV, CV), basta `UPDATE product_images SET image_url = ...` mantendo `variant_id`. Frontend já está pronto pra trocar visual ao selecionar combinação.
+- [ ] **Ajustar estoque inicial dos 2 combos** — hoje em 10 unidades cada. Pedro cadastra na planilha de Precificação (SKUs `IMB501_KIT2` e `IMB501_KIT3`) e o sync.py propaga.
+- [ ] **Atualizar conteúdo de marca (blog, ads, fotografia) pra refletir foco 100% vidro** — pivot é estratégico, afeta posicionamento.
 
 ## 🟢 Pipeline DSA / ML — resolvido em 23/05
 

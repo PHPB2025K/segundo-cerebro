@@ -106,6 +106,8 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ## Resultados Recentes
 
+- [25/05] **Budamix.com.br pivot 100% vidro** — 15 SKUs não-vidro desativados (canecas porcelana, MDF, alumínio); 13 ativos (8 herméticos 4 travas + 5 potes redondos vidro). Posicionamento de marca, ads e conteúdo devem refletir esse foco → [[memory/context/decisoes/2026-05|decisões]]
+- [25/05] **E-commerce: 2 combos novos potes redondos** (IMB501_KIT2 + IMB501_KIT3) com componente `VariantMultiPicker` reutilizável pra "escolha N de M" → [[memory/context/decisoes/2026-05|decisões]]
 - [15/04] Amazon Ads otimização cirúrgica: mapeamento 139 campanhas, 4 ações executadas (83 logadas), 48→39 ativas, ACOS 22,9%→meta 19%. Revisão 29/04 → [[memory/context/decisoes/2026-04|decisões]]
 - [15/04] Auditoria completa de margens Shopee: 72 SKUs, 4 correções aplicadas direto no Google Sheets via API (comissão escalonada, afiliado real, margens unificadas) → [[memory/context/decisoes/2026-04|decisões]]
 - [15/04] Google Sheets OAuth configurado: Claude Code agora edita planilha de precificação diretamente no Drive
@@ -118,4 +120,4 @@ Pedro Broglio. Founder da GB Importadora, marca Budamix. Importo utensílios dom
 
 ---
 
-*Última atualização: 22/05/2026 — Área Financeira (Vault CFO + Ledger sub-agente) ativada; time cresceu de 5 → 6 diretores; cargos C-level no Mission Control; modelos atualizados GPT 5.4 → 5.5*
+*Última atualização: 25/05/2026 — Budamix.com.br pivot 100% vidro (15 SKUs desativados, 13 ativos); 2 combos novos potes redondos com VariantMultiPicker; ChunkErrorBoundary padrão pra SPA + lazy.*

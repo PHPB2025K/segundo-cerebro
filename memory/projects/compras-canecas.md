@@ -111,3 +111,9 @@ Aguardar os arquivos/projeções da equipe e montar a primeira rodada consolidad
 - [[projects/budamix-central]] — **ref**: estoque consolidado FULL+FÍSICO+TOTAL na home do Central
 - [[business/marketplaces/_index]] — **tema**: 3 canais ML/Shopee/Amazon mapeados como contexto
 - [[memory/projects/gestao-funcionarios]] — **tema**: mesma equipe acompanhada semanalmente
+
+## Decisão de estrutura — 2026-05-25
+
+Pedro aprovou manter o departamento de Compras enxuto por enquanto: **Scout → Radar**.
+
+Não criar mais analistas seniores nem analistas plenos nesta fase. Primeiro validar o playbook das canecas com dados reais, formato de tabela, critérios de compra e rotina semanal. Só depois avaliar expansão do departamento.

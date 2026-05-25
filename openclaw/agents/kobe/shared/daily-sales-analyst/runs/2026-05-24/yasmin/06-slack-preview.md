@@ -5,27 +5,27 @@
 DAILY SALES REPORT — MERCADO LIVRE — 24/05/2026 (Ontem)
 
 📊 VISÃO MERCADO LIVRE
-• Faturamento: R$ 5.024,80
-• Pedidos: 99 pedidos
-• Ticket médio: R$ 50,76
-• Cancelamentos: 2
+- Faturamento: R$ 5.024,80
+- Pedidos: 99 pedidos
+- Ticket médio: R$ 50,76
+- Cancelamentos: 2
 
 🏆 TOP PRODUTOS MERCADO LIVRE
-• Potes Vidro 5 Peças — Tampa Preta — 29 pedidos
-• Kit 4 Potes 1050ml — 18 pedidos
-• Potes Vidro 5 Peças — Tampa Vermelha — 10 pedidos
-• Kit 6 Canecas Lisas 200ml — 9 pedidos
-• Potes Vidro 5 Peças — Tampa Cinza — 8 pedidos
+- Potes Vidro 5 Peças — Tampa Preta — 29 pedidos
+- Kit 4 Potes 1050ml — 18 pedidos
+- Potes Vidro 5 Peças — Tampa Vermelha — 10 pedidos
+- Kit 6 Canecas Lisas 200ml — 9 pedidos
+- Potes Vidro 5 Peças — Tampa Cinza — 8 pedidos
 
 🔍 ANÁLISE DA CONTA
-• O GMV ficou +10% acima do 30d e +23% acima do 60d — mas o número de pedidos não saiu do lugar (99). O crescimento veio inteiro do ticket médio (R$ 50,76). O patamar é real; o risco é que não há volume para amortizar se o ticket recuar.
-• O ADS representou 71% do GMV com ROAS de 11x — campanha eficiente. O sinal que chama atenção está embaixo: Potes Vidro 5 Peças e Kit 4 Potes 1050ml estão com nível de qualidade do anúncio em Padrão inferior (0,71 e 0,75) há quatro ciclos seguidos, o que sugere que o ML está restringindo a exposição orgânica deles. O ADS parece estar cobrindo ranking perdido, não amplificando orgânico saudável. O recuo de share do ciclo anterior (49%) parece ter sido oscilação, não virada.
-• Quase metade do dia (47,5%) veio de um único anúncio — as três variações de Potes Vidro 5 Peças (Tampa Preta, Vermelha e Cinza) compartilham o mesmo anúncio, com nível de qualidade do anúncio em Padrão inferior (0,71) há quatro ciclos seguidos. A concentração não está em três produtos separados, está num anúncio só — e cresceu pelo terceiro ciclo seguido (44% → 44% → 47,5%). Se esse anúncio perder posição, a cauda atual não parece ser forte o suficiente para absorver.
+- R$ 5.024,80 com ticket de R$ 50,76 — patamar real, acima da média dos últimos 30 e 60 dias. Mas o resultado depende de duas alavancas frágeis ao mesmo tempo: o anúncio de Potes Vidro 5 Peças (nas três variações de tampa) concentra 47,5% das vendas, com nível de qualidade do anúncio em nível regular (0,71) pelo quarto dia seguido; e o ADS responde por 71,2% do faturamento. Enquanto as duas funcionam juntas, o número parece saudável. Se qualquer uma ceder, o orgânico não está pronto para cobrir.
+- O risco urgente não está no faturamento — está nas canecas. O Kit 6 Canecas 250ml (Cross-Docking) ficou com 1 unidade após as vendas de ontem: qualquer pedido novo pode virar cancelamento automático. O Kit 6 Canecas Lisas 200ml (Catálogo Full) tem cobertura para ~2,8 dias ao ritmo atual. Perder o Buy Box em anúncio de catálogo demora a reverter mesmo depois de reestocar. Os 2 cancelamentos do dia chegaram sem origem rastreada — não dá para descartar que o sinal já começou.
+- O ADS voltou a 71,2% — mesmo patamar dos ciclos anteriores ao recuo de 23/05. Por ora, não é gatilho de ação: com as campanhas em ~11x de retorno e ACOS 4,22%, mexer agora seria introduzir variável sem motivo. O ponto a observar está no pacote de amanhã. Se o ADS share aparecer acima de 65% pelo segundo dia seguido e o nível de qualidade do anúncio dos dois líderes (0,71 e 0,75) seguir estagnado no quinto ciclo, é o momento de abrir o alinhamento com Himmel.
 
 🎯 PRIORIDADES DO DIA
-• Yasmin: checar reposição em trânsito ao CD do ML para o Kit 6 Canecas Lisas 200ml (anúncio Catálogo Premium, Full, com 25 unidades e ritmo de 9 pedidos/dia — cobertura de ~2,8 dias). Ruptura em Catálogo Full implica perda de Buy Box com recuperação lenta, e esse anúncio carrega ticket alto num canal onde todo o ganho de patamar veio do ticket. Confirmar/refutar por: reposição com chegada ao CD em até 48h neutraliza o risco; sem reposição em trânsito confirmada até amanhã, urgência sobe. Escalar se: cobertura cair abaixo de 2 dias sem reposição confirmada — acionar Kobe pelo impacto prospectivo na trajetória MercadoLíder Platinum.
-• Yasmin: verificar status do Kit 6 Canecas Porcelana Tulipa — o anúncio sumiu do top hoje; no ciclo anterior estava com 2 unidades e ritmo de 6 a 9 pedidos/dia, o que sugere ruptura ou pausa automática. Verificar também se os 2 cancelamentos do dia têm origem nesse anúncio. Confirmar/refutar por: anúncio ativo com estoque normalizado refuta a hipótese; anúncio pausado ou esgotado confirma ruptura — nesse caso, registrar como variável confundidora para as próximas leituras de cancelamentos. Escalar se: não aplicável — ação direta da Yasmin.
-• Yasmin: verificar reposição na expedição Budamix para o Kit 6 Canecas 250ml (Cross-Docking, 1 unidade no estoque — o próximo pedido zera e pode gerar cancelamento automático antes da reposição chegar). Por ser Cross-Docking, a Budamix controla a reposição (mais ágil que Full), mas o ML pode pausar o anúncio antes da chegada. Confirmar/refutar por: reposição disponível na expedição em 24h neutraliza o risco; ausência leva a cancelamento automático no próximo pedido. Escalar se: não aplicável — ação direta da Yasmin.
+- Yasmin: verificar estoque em trânsito e prazo de reposição ao CD do ML do Kit 6 Canecas Lisas 200ml (25 unidades restantes, cobertura ~2,8 dias ao ritmo atual) e acionar reposição imediata se ainda não estiver programada. Perder o Buy Box em catálogo demora a reverter mesmo depois de reestocar — a janela de ação é hoje. Confirmar por: reposição em trânsito com prazo ≤ 3 dias = risco resolvido; sem reposição confirmada ou anúncio pausado por estoque zero = registrar como ponto de distorção para GMV e MercadoLíder dos próximos 5 dias.
+- Yasmin: verificar o status do Kit 6 Canecas 250ml (Cross-Docking, 1 unidade restante, 3 pedidos ontem) — se há pedido em aberto sem estoque ou cancelamento automático pendente — e confirmar o status do Kit 6 Canecas Porcelana Tulipa, ausente do top há três ciclos. Cancelamento automático nesses anúncios entra direto na janela MercadoLíder Platinum (faltam R$ 48.941,14, prazo estimado ~12 dias) — e os 2 cancelamentos do dia sem origem rastreada podem já ser o primeiro sinal. Confirmar por: ambos os anúncios ativos com reposição programada = cluster estabilizado; cancelamento registrado = marcar data e volume e revisar prazo para Platinum. Escalar se: cancelamento automático confirmado em qualquer um dos dois — comunicar a Kobe se o gap para Platinum cair abaixo de R$ 30.000,00 como consequência.
+- Yasmin: no pacote de amanhã (25/05), ler o nível de qualidade do anúncio dos dois líderes em Full — Potes Vidro 5 Peças (0,71, quinto ciclo) e Kit 4 Potes 1050ml (0,75, quinto ciclo) — e o ADS share do dia. Essa leitura define o próximo movimento. Confirmar por: nível acima de 0,85 em qualquer dos dois = risco estrutural enfraquecido, manter observação; nível abaixo de 0,70 em qualquer dos dois com ADS share acima de 65% = Yasmin abre alinhamento com Himmel sobre cobertura preventiva. Escalar se: dado ausente no pacote = registrar como pendência técnica recorrente para o Trader; ADS share acima de 65% por três dias seguidos a partir de amanhã com nível estagnado = abrir discussão com Kobe sobre dependência em mídia paga.
 
 Dia analisado: 24/05/2026 — 00:00–23:59 BRT
 ```
@@ -34,70 +34,36 @@ Dia analisado: 24/05/2026 — 00:00–23:59 BRT
 
 ### Respeito de bloqueios
 
-- **Item bloqueado:** Afirmar que os 2 cancelamentos do dia vieram do Kit 6 Canecas Porcelana Tulipa
-- **Origem do bloqueio:** L05 Condensadora
-- **Motivo:** L04 confirmou que o pacote não traz breakdown de cancelamentos por anúncio — correlação é hipótese, não fato
-- **Agregado autorizado:** não
-- **Tratamento aplicado:** prioridade formulada como verificação operacional ("verificar também se os 2 cancelamentos do dia têm origem nesse anúncio"), sem afirmação causal
-- **Aparece na mensagem final:** sim, como checagem hipotética
-
----
-
-- **Item bloqueado:** Afirmar migração de modalidade de envio (Cross-Docking → Full) no anúncio líder das Potes Vidro 5 Peças
-- **Origem do bloqueio:** L04 Granular / L05 Condensadora
-- **Motivo:** L04 resolveu a divergência — um platform_item_id tem único logistic_type; o anúncio sempre foi Full; memória anterior misturou fontes; a "inversão de mix" da L03 é artefato de leitura anterior, não sinal sistêmico
-- **Agregado autorizado:** não aplicável
-- **Tratamento aplicado:** omitido integralmente; nenhuma menção a inversão de mix ou migração de modalidade de envio na mensagem
-- **Aparece na mensagem final:** não
-
----
-
-- **Item bloqueado:** Tratar health=null nos anúncios do top como sinal saudável
-- **Origem do bloqueio:** L04 Granular / L05 Condensadora
-- **Motivo:** health=null significa volume insuficiente para o ML calcular — zona cega, não confirmação positiva
-- **Agregado autorizado:** não aplicável
-- **Tratamento aplicado:** nenhum anúncio com health=null recebeu qualificação positiva; análise referencia apenas os dois anúncios com health calculável (0,71 e 0,75)
-- **Aparece na mensagem final:** não
-
----
-
-- **Item bloqueado:** Recomendação de ajuste em ADS ML
-- **Origem do bloqueio:** L05 Condensadora
-- **Motivo:** ROAS 11x e ACOS 4,19% — campanha em zona de alta eficiência; regra operacional Lente 5 — campanha eficiente em curso é para observar, não para mexer
-- **Agregado autorizado:** não aplicável
-- **Tratamento aplicado:** omitido; análise caracteriza a campanha como eficiente e posiciona o share alto como sintoma de orgânico deprimido, sem sugerir ajuste; nenhuma prioridade envolve ação em ADS
-- **Aparece na mensagem final:** não
-
----
-
-- **Item bloqueado:** Citação de MLBs técnicos (platform_item_id) na mensagem narrativa
-- **Origem do bloqueio:** L05 Condensadora / regra estrutural L06
-- **Motivo:** MLB serve apenas à rastreabilidade técnica interna; usar nome comercial no Slack
-- **Agregado autorizado:** não aplicável
-- **Tratamento aplicado:** todos os produtos referenciados por slack_short_name ou nome comercial aprovado; nenhum MLB visível na mensagem
-- **Aparece na mensagem final:** não
+Sem bloqueios recebidos. O campo `o_que_nao_pode_ir_para_slack` da L05 foi entregue como array vazio (`[]`). A L04 declarou `risco_identificacao.nivel: "baixo"` e `bloqueios_para_slack: []`. Todos os produtos citados na mensagem final têm identidade confirmada e não foram objeto de restrição em nenhuma camada.
 
 ---
 
 ### Decisões de formatação
 
-- Remoção de metadados internos (`padrao`, `base`, `classificacao`): nenhum aparece na mensagem Slack; usados apenas internamente para orientar linguagem e nuance.
-- Insight 1 (classificação `fato`): escrito como afirmação direta, sem hedge — "O crescimento veio inteiro do ticket médio" — consistente com a classificação.
-- Insights 2 e 3 (classificação `risco latente`): preservada linguagem de indício — "sugere que o ML está restringindo", "parece estar cobrindo", "parece ter sido oscilação", "parece ser forte o suficiente" — sem transformar hipótese estrutural em fato.
-- Modalidade de envio omitida da seção VISÃO: `fulfillment_mix_yesterday_top10` cobre 47 dos 99 pedidos do dia (~47%), abaixo do threshold operacional; Condensadora não autorizou exibição com ressalva de cobertura nessa seção — omitido conforme regra da L06.
-- Atribuição de Yasmin como responsável nas três prioridades: L05 não atribui responsável; L06 aplica regra fixa de responsável para Mercado Livre.
-- Escalonamento para Kobe mantido apenas na prioridade 1, onde L05 indicou `escalar_se` explicitamente; prioridades 2 e 3 com "não aplicável — ação direta da Yasmin", conforme L05.
-- **Top Produtos — tradução de nomes (item a item):**
-  - IMB501P — usado `slack_short_name` "Potes Vidro 5 Peças — Tampa Preta" (mapeamento canônico)
-  - KIT4YW1050 — usado `slack_short_name` "Kit 4 Potes 1050ml" (mapeamento canônico)
-  - IMB501V — usado `slack_short_name` "Potes Vidro 5 Peças — Tampa Vermelha" (mapeamento canônico)
-  - CLR002 — usado `slack_short_name` "Kit 6 Canecas Lisas 200ml" (mapeamento canônico)
-  - IMB501C — usado `slack_short_name` "Potes Vidro 5 Peças — Tampa Cinza" (mapeamento canônico)
-- Análise — aggregate do anúncio MLB3288536143: referenciado como "Potes Vidro 5 Peças" (sem cor de tampa) para representar o anúncio único com as três variações; escolha consistente com o prefixo comum dos três `slack_short_names` (IMB501P/V/C); não há `slack_short_name` de nível familiar — inferência mínima necessária e conservadora.
-- Análise — divergência cross-layer insight 2: L05 escreve "os dois campeões em Full" sem nomear; L06 nomeia como "Potes Vidro 5 Peças" e "Kit 4 Potes 1050ml" — correspondência com `slack_short_name` de IMB501 (aggregate) e KIT4YW1050 respectivamente; nomes registrados.
-- Prioridade 1 — nome: "Kit 6 Canecas Lisas 200ml" — `slack_short_name` de CLR002 (mapeamento canônico); consistente com L05.
-- Prioridade 2 — nome: "Kit 6 Canecas Porcelana Tulipa" — produto ausente do `top_products` do pacote (MLB6167272090 não está entre os 10 itens); sem `slack_short_name` mapeado; usado nome de memória/L05 como fallback raríssimo por ausência de alternativa disponível.
-- Prioridade 3 — divergência cross-layer: L05 usa "Kit 6 Canecas 250ml Canelada"; L06 usa "Kit 6 Canecas 250ml" — padronização com `slack_short_name` aprovado para K6CAN250 (atributo "Canelada" não consta no nome canônico manual).
-- Sem insight de enchimento: Condensadora entregou 3 insights, todos preservados, nenhum adicionado.
-- Sem prioridade inventada: 3 prioridades da Condensadora preservadas sem acréscimo ou supressão.
-- Cancelamentos apresentados como contagem simples (2) na seção VISÃO — sem valor monetário associado, consistente com a natureza do campo `metrics.cancelamentos`.
+- **Metadados internos removidos** (`padrao`, `base`, `classificacao`) — são campos de pipeline, não vão para Slack.
+- **Insight 1 (classificação: risco latente)** — nuance preservada com "parece saudável", "se qualquer uma ceder", "não está pronto para cobrir". Sem transformação de hipótese em certeza.
+- **Insight 2 (classificação: risco latente)** — nuance preservada com "pode virar cancelamento automático", "não dá para descartar que o sinal já começou". Ruptura descrita como prospectiva (pedidos novos), nunca retrospectiva — conforme regra de estoque POST-baixa.
+- **Insight 3 (classificação: hipótese)** — nuance preservada com "por ora, não é gatilho de ação", "é o momento de abrir o alinhamento" (condicional). Sem afirmação conclusiva sobre ADS.
+- **Top Produtos — 5 primeiros do pacote exibidos, sem faturamento por produto** — pacote não traz receita validada por produto/variação; formato aplicado: `[nome] — [pedidos] pedidos`.
+- **Modalidade de envio omitida da seção VISÃO** — `fulfillment_mix_yesterday_top10` cobre apenas 47 de 99 pedidos (~47%), sem representatividade da totalidade do dia. Modalidade citada apenas na Análise e Prioridades, com origem analítica da L05.
+- **Nomes dos produtos — mapeamento canônico (slack_short_name) aplicado em todas as menções:**
+  - IMB501P → `Potes Vidro 5 Peças — Tampa Preta` (slack_short_name, mapeamento canônico; atributo "Tampa Preta" já incluso no nome)
+  - KIT4YW1050 → `Kit 4 Potes 1050ml` (slack_short_name, mapeamento canônico; sem atributo confirmado a adicionar)
+  - IMB501V → `Potes Vidro 5 Peças — Tampa Vermelha` (slack_short_name, mapeamento canônico; atributo "Tampa Vermelha" já incluso)
+  - CLR002 → `Kit 6 Canecas Lisas 200ml` (slack_short_name, mapeamento canônico; sem atributo confirmado)
+  - IMB501C → `Potes Vidro 5 Peças — Tampa Cinza` (slack_short_name, mapeamento canônico; atributo "Tampa Cinza" já incluso)
+  - K6CAN250 → `Kit 6 Canecas 250ml` (slack_short_name, mapeamento canônico — mencionado na Análise e Prioridades, produto rank 6 do pacote com relevância analítica confirmada pela L05)
+  - Kit 6 Canecas Porcelana Tulipa — produto ausente do top_products do pacote; sem slack_short_name disponível; nome usado conforme referência analítica da L05 e memória de ciclos anteriores. MLB suprimido.
+- **Cluster IMB501 referenciado como bloco** — "anúncio de Potes Vidro 5 Peças (nas três variações de tampa)"; preserva que é um único anúncio com variações, conforme instrução da L04/L05. Divergência cross-layer: L05 usa "cluster IMB501" e "anúncio único"; L06 traduziu para nome comercial padronizado do Top Produtos.
+- **`health` traduzido** para "nível de qualidade do anúncio em nível regular (0,71)" e "nível de qualidade do anúncio dos dois líderes (0,71 e 0,75)" — nunca "health" no Slack.
+- **"runway" traduzido** para "cobertura" (~2,8 dias).
+- **"ETA" traduzido** para "prazo estimado" ou "prazo".
+- **"fulfillment" não aparece** no Slack; "Full" usado como nome da modalidade de envio onde necessário, "Cross-Docking" idem.
+- **Buy Box mantido** — termo ML reconhecido, aplicável ao contexto de anúncio de catálogo.
+- **MercadoLíder Platinum mantido** — nomenclatura oficial ML.
+- **Gap MercadoLíder Platinum** — L05 menciona "R$48.941" (sem centavos); L06 aplica padrão numérico obrigatório: `R$ 48.941,14` (valor exato do pacote: 48941.14). Threshold de escalonamento: `R$ 30.000,00`.
+- **Yasmin atribuída como responsável** em todas as três prioridades — responsável fixo ML conforme arquitetura.
+- **Alinhamento com Himmel via Yasmin** — nunca acionamento direto do DSA.
+- **Escalonamento para Kobe e Trader mantidos** conforme L05 — condições preservadas verbatim.
+- **Confiança média** — L05 entregou 3 insights; nenhuma degradação de cardinalidade aplicada. Ressalvas preservadas via linguagem de indício nos insights de risco latente e hipótese.
+- **Frases longas quebradas** em sentenças mais curtas sem perda de conteúdo analítico — diretriz Pedro 2026-05-17 e 2026-05-25 aplicada.

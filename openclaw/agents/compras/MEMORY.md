@@ -12,7 +12,7 @@ tags:
 
 ## Status inicial — 2026-05-25
 
-Agente criado como **Scout**, Diretor de Compras da GB Importadora, subordinado ao Kobe. Em 2026-05-25, ganhou o subagente **Radar**, Analista Sênior de Demanda e Cobertura.
+Agente criado como **Scout**, Diretor de Compras da GB Importadora, subordinado ao Kobe. Em 2026-05-25, ganhou o subagente **Radar**, Analista de Compras Sênior.
 
 ## Projeto ativo
 
@@ -33,7 +33,7 @@ Regra confirmada por Pedro:
 
 ## Subagente
 
-- **Radar:** normalização de SKUs/kits/cores, cálculo de demanda/cobertura e divergência equipe × dados.
+- **Radar:** análise sênior de compras, normalização de SKUs/kits/cores, cálculo de demanda/cobertura e divergência equipe × dados.
 
 ## Pendências do Scout
 

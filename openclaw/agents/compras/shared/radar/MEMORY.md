@@ -2,7 +2,7 @@
 
 ## Status inicial — 2026-05-25
 
-Subagente criado sob o Scout como Analista Sênior de Demanda e Cobertura.
+Subagente criado sob o Scout como Analista de Compras Sênior.
 
 ## Projeto ativo
 

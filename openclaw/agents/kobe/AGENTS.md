@@ -38,7 +38,7 @@ Kobe é o orquestrador. Os agentes NÃO falam diretamente com o Pedro.
 | **[[openclaw/agents/fisco/IDENTITY|Fisco]]** | Diretor Fiscal e Tributário. Faturamento — NF-e internas, distribuição de estoque entre CNPJs, conciliação fiscal, limites Simples | GPT 5.5 | `shared/fisco/` |
 | **[[openclaw/agents/rh/IDENTITY|RH]]** | CHRO — Diretor de Pessoas. Ponto (Ponto Certo), banco de horas, férias, compliance CLT, conversas com funcionários | GPT 5.5 | `shared/rh/` |
 | **[[openclaw/agents/vault/IDENTITY|Vault]]** | CFO — Diretor Financeiro. Tesouraria, fluxo de caixa das 8 empresas do grupo, DRE, governança financeira. Sub-agente: Ledger (Analista Sênior de Fluxo de Caixa) — processa extratos Itaú via skill `cash-flow-extract-processor` | Opus 4.7 (fallback GPT 5.5) | `vault/` (top-level) |
-| **[[openclaw/agents/compras/IDENTITY|Scout]]** | Diretor de Compras. Planejamento de reposição, demanda, estoque, lead time, compras semanais e comparação equipe × dados reais. Sub-agente: Radar (Analista Sênior de Demanda e Cobertura) | GPT 5.5 | `agents/compras/` |
+| **[[openclaw/agents/compras/IDENTITY|Scout]]** | Diretor de Compras. Planejamento de reposição, demanda, estoque, lead time, compras semanais e comparação equipe × dados reais. Sub-agente: Radar (Analista de Compras Sênior) | GPT 5.5 | `agents/compras/` |
 
 **Regras de delegação:**
 - Tarefas operacionais de marketplace → delegar pro [[openclaw/agents/trader/IDENTITY|Trader]]

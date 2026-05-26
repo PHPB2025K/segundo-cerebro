@@ -1,6 +1,12 @@
 # Lições — Fisco
 
-_Atualizado: 2026-05-24_
+_Atualizado: 2026-05-25_
+
+## 2026-05-25
+- Persistência do HTTP 403 da Filial por onze dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/token e teste controlado.
+- Rodadas com allowlist miss e aborto por SIGTERM no mesmo dia mostram que a confiabilidade do cron segue sendo risco independente do erro fiscal principal; ausência de validação não pode ser lida como estabilidade.
+- A falha recorrente do alerta WhatsApp com HTTP 403 continua sendo risco de visibilidade separado e ainda não foi mitigada.
+- Quando uma rodada recupera execução após allowlist miss, consolidar o resultado fiscal útil; quando não há rerun ou o processo aborta antes do retorno, registrar explicitamente como rodada sem validação útil.
 
 ## 2026-05-24
 - Persistência do HTTP 403 da Filial por dez dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/token e teste controlado.

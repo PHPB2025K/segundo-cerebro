@@ -171,3 +171,57 @@ Chat with meeting transcript: [https://notes.granola.ai/t/c4573cea-860a-406c-ae8
 - Usar como contexto causal/hipótese, não como fato isolado.
 - Cruzar com vendas reais, TACOS/ROAS/ACOS, exposição, estoque e campanhas nos próximos Daily Sales Reports.
 - Status inicial: **aberto**.
+
+
+---
+
+## [2026-05-26] Granola — BUDAMIX | Shopee | Letícia Gonçalves
+
+**Granola note ID:** `not_gaitRxo1YziJ9z`  
+**Link:** https://notes.granola.ai/d/ce1f91b8-68e0-47ed-b9d0-ed10021bba23  
+**Horário:** 2026-05-26T16:00:00-03:00 → 2026-05-26T17:00:00-03:00  
+**Participantes:** Setor Marketplace GB <marketplace@gbimportadora.com>, Ffelicio <ffelicio@himmelcorp.com.br>, Santosl <santosl@himmelcorp.com.br>  
+**Classificação:** ADS/Marketplace  
+**Plataformas/contas:** Shopee, Mercado Livre, Amazon  
+**Agentes impactados:** Trader, Spark  
+**Transcrição:** disponível via Granola API (56 trechos), não copiada integralmente para memória.
+
+### Resumo Granola
+### Reagendamento da Reunião
+
+- Pedro não tem disponibilidade esta semana
+- Reunião precisa ser remarcada para incluir Pedro obrigatoriamente
+- Participantes necessários: Lucas, Rafa, Setor Marketplace GB, Pedro
+- Duração estimada: aproximadamente 1 hora
+
+### Pontos Críticos a Discutir
+
+- Quedas significativas de faturamento nas lojas
+  - Orientação interna dos superiores devido ao impacto alto
+  - Necessidade de alinhamento com equipe completa
+- Otimizações de campanha recentes
+  - Pedro não estava acompanhando as últimas otimizações enviadas
+  - Detalhes das otimizações precisam ser explicados para ele
+
+### Logística Operacional
+
+- Etiquetas Mercado Livre e Amazon são iguais
+- Processo de providenciar materiais em andamento
+
+### Próximos Passos
+
+- Aguardar confirmação de disponibilidade do Pedro
+- Remarcar reunião ainda para esta semana, se possível
+- Comunicação continuará pelo grupo para definir nova data
+
+---
+
+Chat with meeting transcript: [https://notes.granola.ai/t/bbfe6589-cdeb-45e6-8c30-101179271645](https://notes.granola.ai/t/bbfe6589-cdeb-45e6-8c30-101179271645)
+
+### Ações / pendências extraídas
+- Próximos Passos
+
+### Como usar nos reports
+- Usar como contexto causal/hipótese, não como fato isolado.
+- Cruzar com vendas reais, TACOS/ROAS/ACOS, exposição, estoque e campanhas nos próximos Daily Sales Reports.
+- Status inicial: **aberto**.

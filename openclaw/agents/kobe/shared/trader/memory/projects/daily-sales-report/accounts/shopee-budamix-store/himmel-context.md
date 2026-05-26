@@ -1,6 +1,6 @@
 # Contexto Himmel/Granola — Shopee — Budamix Store
 
-_Gerado em: 2026-05-25 23:37:38 UTC._
+_Gerado em: 2026-05-26 23:37:23 UTC._
 
 ## Como usar
 - Usar como contexto causal/hipótese nas análises diárias, nunca como fato isolado.
@@ -10,6 +10,47 @@ _Gerado em: 2026-05-25 23:37:38 UTC._
 - Regra Pedro 2026-05-12: reunião Shopee consolidada vale para as 3 contas Shopee; separar particularidades por conta quando o resumo/transcrição permitir.
 
 ## Contextos relevantes recentes
+
+### 2026-05-26 — Granola — BUDAMIX | Shopee | Letícia Gonçalves
+
+#### Resumo-fonte Granola
+## [2026-05-26] Granola — BUDAMIX | Shopee | Letícia Gonçalves
+
+**Granola note ID:** `not_gaitRxo1YziJ9z`  
+**Link:** https://notes.granola.ai/d/ce1f91b8-68e0-47ed-b9d0-ed10021bba23  
+**Horário:** 2026-05-26T16:00:00-03:00 → 2026-05-26T17:00:00-03:00  
+**Participantes:** Setor Marketplace GB <marketplace@gbimportadora.com>, Ffelicio <ffelicio@himmelcorp.com.br>, Santosl <santosl@himmelcorp.com.br>  
+**Classificação:** ADS/Marketplace  
+**Plataformas/contas:** Shopee, Mercado Livre, Amazon  
+**Agentes impactados:** Trader, Spark  
+
+### Resumo Granola
+### Reagendamento da Reunião
+
+- Pedro não tem disponibilidade esta semana
+- Reunião precisa ser remarcada para incluir Pedro obrigatoriamente
+- Participantes necessários: Lucas, Rafa, Setor Marketplace GB, Pedro
+- Duração estimada: aproximadamente 1 hora
+
+### Pontos Críticos a Discutir
+
+- Quedas significativas de faturamento nas lojas
+  - Orientação interna dos superiores devido ao impacto alto
+  - Necessidade de alinhamento com equipe completa
+- Otimizações de campanha recentes
+  - Pedro não estava acompanhando as últimas otimizações enviadas
+  - Detalhes das otimizações precisam ser explicados para ele
+
+### Logística Operacional
+
+- Etiquetas Mercado Livre e Amazon são iguais
+- Processo de providenciar materiais em andamento
+
+### Próximos Passos
+
+- Aguardar confirmação de disponibilidade do Pedro
+- Remarcar reunião ainda para esta semana, se possível
+- Comunicação continuará pelo grupo para definir nova data
 
 ### 2026-05-19 — Granola — Otimização de campanhas e produtos MDF — métricas, balanceamento de anúncios e estratégia com Jasmin
 #### Pontos cabíveis para esta conta

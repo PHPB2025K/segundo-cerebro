@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-25 23:45 BRT — consolidação diária em camadas_
+_Atualizado: 2026-05-26 02:00 BRT — organização noturna silenciosa_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -99,7 +99,7 @@ _Atualizado: 2026-05-25 23:45 BRT — consolidação diária em camadas_
 - [ ] **Daily Sales Report v2 — corrigir/reexecutar Lucas/Shopee, investigar lacuna 21/05 e decidir critério de promoção**: corrigir Store para ~45% do GMV Shopee no pacote 20/05, recalcular percentuais derivados contra pacote validado, reprocessar Slack Writer e QA; Trader não encontrou pacote completo referente a 21/05 BRT em 22/05, então investigar se o cron deveria ter rodado e por que não deixou output completo; decidir se produção exige ciclo `APPROVED` sem ressalvas ou aceita `APPROVED_WITH_REMARKS` sem críticos/maiores. Revalidar Shopee/Amazon Rules Watch antes de usar regra/taxa como causa forte.
 
 - [ ] **Adapta — aguardar retorno sobre cobranças recorrentes**: Pedro recebeu mensagem pronta em 07/05 para enviar como PEDRO HENRIQUE PERON BROGLIO. Se a empresa negar cancelamento/estorno, próxima frente é contestação pelo banco/cartão usando descritor `TAR PLANO ADAPT` e valores R$ 497,00/R$ 126,75.
-- [ ] **Guarani Sistemas — preparar minuta de distrato e só pagar após aceite/assinatura**: em 13/05, Guarani aceitou a proposta global de **R$ 7.500,00 à vista** e confirmou baixa/quitação dos 7 títulos/NFs em aberto, sem protesto/negativação/cobrança externa, com isenção do aviso prévio. Próximo passo: enviar minuta de distrato para análise. Ponto crítico: a minuta deve preservar **quitação integral e definitiva**, **sem saldo remanescente/cobrança futura**, **sem reconhecimento de dívida**, e evitar que a cláusula “distrato parte da sua empresa por ausência de mão de obra” vire admissão ampla de culpa. Recomendação: não pagar antes de distrato aprovado/assinado ou, no mínimo, aceite escrito inequívoco dos termos finais.
+- [ ] **Guarani Sistemas — revisar distrato assinado e só pagar após aceite final seguro**: em 13/05, Guarani aceitou a proposta global de **R$ 7.500,00 à vista** e confirmou baixa/quitação dos 7 títulos/NFs em aberto, sem protesto/negativação/cobrança externa, com isenção do aviso prévio. Em 25/05 14:24 BRT, Inbox Cleanup encontrou e alertou no tópico Alertas o e-mail da Guarani com indício “segue documento assinado por parte da Guarani” e anexo “Distrato_GB x Guarani - Clicksign.pdf”. Próximo passo: revisar o PDF assinado antes de pagar/seguir. Ponto crítico: a minuta/distrato deve preservar **quitação integral e definitiva**, **sem saldo remanescente/cobrança futura**, **sem reconhecimento de dívida**, e evitar que a cláusula “distrato parte da sua empresa por ausência de mão de obra” vire admissão ampla de culpa.
 
 ## 🔥 PRIORIDADE IMEDIATA — Financeiro
 
@@ -164,13 +164,13 @@ _Atualizado: 2026-05-25 23:45 BRT — consolidação diária em camadas_
 
 
 ## Nota para briefing matinal — itens estagnados >7 dias
-_Gerado pela organização noturna de 25/05 02:00 BRT._
+_Gerado pela organização noturna de 26/05 02:00 BRT._
 
-- Revalidar no briefing apenas os itens que continuam bloqueados por decisão/input do Pedro: reposição de canecas/Agente de Compras, Pedidos Atacado/PDF oficial Bling, teste controlado da automação de pedidos, Meta Business Segunda Venda, carrosséis fixos do Instagram Budamix, grupo OS/OSA com Davi, escolha da Capa 01 do banner triplo, aliases/POT1BB/KFJ003 do Estoque Budamix, Social Studio Meta App/secrets, Canggu senha/admin + hard-block defensivo, DRE abril U15, Guarani distrato, Bling Filial 403 pausado, firewall VPS e rotação de tokens expostos.
-- Atenção especial para hoje (25/05): cobrar Leonardo pelas avaliações dos kits de potes 4 travas e retomar o status da automação de pedidos de atacado via WhatsApp, ambos pedidos por Pedro para segunda-feira.
-- Crons recorrentes mais recentes checados em 25/05 02:00 BRT: job-monitor (01:57 BRT), Claude Contingency Guard (01:53 BRT) e Watchdog — GitHub Sync Segundo Cérebro (01:42 BRT) estavam em status OK.
-- Organização Noturna Silenciosa recuperou estabilidade: última execução completa registrada em 24/05 02:01 BRT com status OK; a execução atual iniciou no horário esperado. Daily GitHub Backup também segue OK em 25/05 00:00 BRT.
-- Sessões antigas >30 dias por data de arquivo verificadas: 14/04, 15/04 Shopee audit, 16/04, 17/04, 19/04, 20/04, 21/04, 22/04, 23/04 e 24/04 foram mantidas por falta de marcação inequívoca de consolidação completa em todos os casos; não deletar até a consolidação diária/profunda confirmar.
+- Revalidar no briefing apenas os itens que continuam bloqueados por decisão/input do Pedro: reposição de canecas/Agente de Compras (aguardando pedidos em trânsito/já feitos), Pedidos Atacado/PDF oficial Bling, teste controlado da automação de pedidos, Meta Business Segunda Venda, carrosséis fixos do Instagram Budamix, grupo OS/OSA com Davi, escolha da Capa 01 do banner triplo, aliases/POT1BB/KFJ003 do Estoque Budamix, Social Studio Meta App/secrets, Canggu senha/admin + hard-block defensivo, DRE abril U15, Guarani distrato assinado para revisão antes do pagamento, Bling Filial 403 pausado, firewall VPS e rotação de tokens expostos.
+- Atenção especial para hoje (26/05): as duas ações pedidas para segunda-feira (25/05) continuam na fila salvo confirmação posterior — cobrar Leonardo pelas avaliações dos kits de potes 4 travas e retomar o status da automação de pedidos de atacado via WhatsApp.
+- Crons recorrentes mais recentes checados em 26/05 02:00 BRT: Claude Contingency Guard (01:50 BRT), job-monitor (01:49 BRT) e Watchdog — GitHub Sync Segundo Cérebro (01:42 BRT) estavam em status OK.
+- Observação de estabilidade: Watchdog — Consolidação em Camadas teve timeout às 00:23 BRT, mas não está entre os três crons recorrentes mais recentes; manter no radar caso repita. Bling Token Refresh às 01:29 BRT concluiu com Matriz OK e Filial 403/inativa, risco já registrado.
+- Sessões antigas >30 dias com marcação de consolidação foram removidas pela organização noturna: 14/04, 16/04, 17/04, 19/04, 20/04, 21/04, 22/04, 23/04, 24/04 e 25/04. O relatório `2026-04-15-shopee-audit.md` foi mantido por ser artefato analítico específico, não nota diária consolidada.
 - Não reabrir pendências antigas de abril/2026 que Pedro já mandou limpar; manter histórico fora da fila ativa.
 
 ## Backlog Estagnado
@@ -187,4 +187,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-05-25 02:00 BRT._
+_Última organização: 2026-05-26 02:00 BRT._

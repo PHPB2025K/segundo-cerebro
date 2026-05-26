@@ -38,3 +38,13 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 
 ## Interações
 
+### 2026-05-26 09:13–09:47 BRT — Reunião Shopee remarcada com estrategista Himmel
+
+- **Participantes:** Letícia (Himmel) e Lucas / PhaseTec.
+- **Plataforma/conta:** Shopee consolidado; sem conta específica nomeada, aplicar como contexto das 3 contas Budamix.
+- **Tema:** alinhamento/reunião operacional Shopee do dia.
+- **Contexto útil:** reunião originalmente confirmada para 10h foi remanejada para **16h BRT** porque será necessária a participação da estrategista da Himmel.
+- **Produtos/SKUs citados:** nenhum.
+- **Responsáveis/próximo passo:** Lucas aceitou o remanejamento; Himmel deve entrar com estrategista na reunião das 16h.
+- **Como validar nos próximos reports:** aguardar ata/transcrição ou mensagens posteriores para identificar decisões de campanha, verba, produtos priorizados, cupons, afiliados ou janelas de teste que possam afetar o Daily Sales Report v2.
+- **Status:** aberto — reunião agendada, ainda sem decisão operacional registrada.

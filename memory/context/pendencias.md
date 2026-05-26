@@ -12,12 +12,30 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-25 17:15 BRT — Pivot Budamix.com.br pra 100% vidro (15 SKUs desativados, 13 ativos); 2 combos potes redondos com VariantMultiPicker em prod; ChunkErrorBoundary corrige tela branca pós-deploy._
+_Atualizado: 2026-05-25 ~23h BRT — Bug "Loja" desktop registrado; pivot 100% vidro consolidado; auditoria Ana ML+WhatsApp resultou em 4 fixes em prod (defesa em profundidade nos 3 canais)._
+
+## 🟢 Canggu/Ana — auditoria 25/05 fechada (4 fixes em prod)
+
+- ✅ ~~**Pergunta ML "Pode ser usado na air fryer?" recebeu resposta proibida do Bloco 17**~~ → **RESOLVIDO 25/05** — INSERT correção air fryer em `response_corrections` (id 5362537f, embedding processado) + `ml-response-validator.ts` estendido com `FORBIDDEN_ADMIN_LEAK_PATTERNS` (10 regex Bloco 17). Validado end-to-end via invocação real do `process-ml-question` v18: resposta agora correta usando RAG. Commit 7d93e78.
+- ✅ ~~**Ana mandou "Pra eu resolver isso pra você... rapidinho" em reclamação (Grace Kelly)**~~ → **RESOLVIDO 25/05** — `response-validator.ts` (WhatsApp) ganhou `COMPLAINT_OVERPROMISE_PATTERNS` com cleanup inline (5 regex Unicode-aware). "Vou resolver" → "vou encaminhar pra equipe". Validado via node: 5 casos PASS + controle neutro não dispara. Commits 127f379 + 12ba9f4 (bugfix regex `\b` ASCII vs `(?!\p{L})` Unicode).
+- ✅ ~~**Escalation gravada com `reason` em inglês**~~ → **RESOLVIDO 25/05** — `intent-classifier.ts` reescrito 100% em PT-BR com REGRA CRÍTICA DE IDIOMA + exemplos correto/errado. Enum `intention/sentiment` preservados (chaves de branching). Validado via Anthropic API direta: escalation_reason agora em PT-BR. Commit 127f379. Pendência satélite: 39/49 escalations históricas têm reason em inglês (não vou backfill — só novas).
+- ✅ ~~**Ana mandou 2 saudações em 26s no caso Grace**~~ → **RESOLVIDO 25/05** — detector de poll do `webhook-whatsapp/index.ts` agora busca QUALQUER agent msg com `metadata->>'origin_poll' = 'true'` na conversa (não só a última). Quando match → atualiza source + `skipAiPipeline=true`. Commit 78c7833 → webhook-whatsapp v40. Impacto histórico: 16 customers com `source=NULL` apesar de poll enviado serão destravados na próxima interação.
+
+## 🔴 Bug — Loja desktop tela em branco (investigar)
+
+- [ ] **Clicar em "LOJA" no header desktop do `budamix.com.br` leva à tela em branco.** Relatado por Pedro em 25/05 noite. Investigação iniciada e interrompida.
+  - **Onde olhar:** `budamix-ecommerce/src/pages/Shop.tsx` (90 linhas, simples). Rota `/loja` em `App.tsx:68` via lazy import (`App.tsx:40`). Link em `components/layout/Header.tsx:11`.
+  - **Próximo passo:** abrir `https://budamix.com.br/loja` em desktop, abrir DevTools console e capturar o erro real antes de mexer no código.
+  - **Hipóteses iniciais (sem confirmação):**
+    - `useQuery` em `Shop.tsx:14` não desestrutura `error` — query falhando silenciosamente (RLS, coluna ausente, ou `product_images` mal-relacionada).
+    - Erro de runtime em filho de `Shop` (`ProductCard`, `Layout`) só em viewport desktop.
+    - Chunk de lazy import 404 pós-deploy (mas `ChunkErrorBoundary` deveria pegar).
+  - **Sintoma desktop-only:** estranho — mobile parece funcionar. Pode estar relacionado a algum componente condicional do header/layout desktop ou a um asset (imagem hero?) que só carrega em desktop.
 
 ## 🟡 Budamix.com.br — pivot 100% vidro
 
 - [ ] **Decisão sobre Jarra Medidora de Vidro 500ml** (slug `jarra-medidora-vidro-budamix-500ml`) — desativada em 25/05 junto com os outros não-(potes herméticos 4 travas + potes redondos). É vidro, mas não se encaixa nas 2 categorias específicas. Pedro precisa decidir se reativa como SKU avulso ou mantém de fora. Reativação: 1 UPDATE no Supabase.
-- [ ] **Trocar fotos placeholder dos 2 combos novos** (IMB501_KIT2 + IMB501_KIT3) — hoje usam fotos do unitário IMB501 Tampa Preta como fallback. Quando Pedro gerar/fotografar 3 versões reais (PC, PV, CV), basta `UPDATE product_images SET image_url = ...` mantendo `variant_id`. Frontend já está pronto pra trocar visual ao selecionar combinação.
+- [ ] **Trocar fotos placeholder dos 2 combos novos** (IMB501_KIT2 + IMB501_KIT3) — hoje usam fotos do unitário IMB501 Tampa Preta como fallback. Pedro vai **gerar manualmente** as 24 fotos (6 por combinação × 4 combinações) usando os prompts e referências definidos hoje 25/05 — descartou batch via nano-banana. Quando concluir, basta `UPDATE product_images SET image_url = ...` mantendo `variant_id`. Frontend já pronto pra trocar visual ao selecionar combinação. Continuação amanhã 26/05.
 - [ ] **Ajustar estoque inicial dos 2 combos** — hoje em 10 unidades cada. Pedro cadastra na planilha de Precificação (SKUs `IMB501_KIT2` e `IMB501_KIT3`) e o sync.py propaga.
 - [ ] **Atualizar conteúdo de marca (blog, ads, fotografia) pra refletir foco 100% vidro** — pivot é estratégico, afeta posicionamento.
 

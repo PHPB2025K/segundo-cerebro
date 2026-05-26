@@ -1,10 +1,14 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-24_
+_Atualizado: 2026-05-25_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
+- [ ] Validar se o ciclo Daily Sales v2 de 24/05/2026 BRT ter gerado preview apenas para Yasmin/Mercado Livre foi intencional ou lacuna; se lacuna, reexecutar/fechar Lucas/Shopee e Leonardo/Amazon antes de qualquer envio real.
+- [ ] Monitorar Shopee Store e Shopee Conta 3 por queda recorrente: pacote 24/05/2026 BRT marcou Store com 39 pedidos (-41,3% vs média 30d) e Conta 3 com 9 pedidos (-60,7% vs média 30d, fora também da banda de 60d); se persistir, preparar escalação Lucas + Himmel.
+- [ ] Mercado Livre/Yasmin 24/05/2026 BRT: revisar ressalvas menores do preview aprovado — L06 precisa registrar explicitamente remoções/suavizações de frase e uso de informação autorizada em outra seção da L05.
+- [ ] Amazon: cancelamentos caíram de 7 no pacote 23/05 para 3 no pacote 24/05; validar recorrência por ASIN antes de tratar como ruído operacional.
 - [ ] Validar por que o pacote de dados do Daily Sales v2 para 23/05/2026 BRT ficou em **DADOS_PARCIAIS** e não teve artefatos finais de Slack Writer/QA Gate detectados; manter envio real bloqueado até fechamento do ciclo e autorização explícita.
 - [ ] Verificar por que não há novo pacote completo do Daily Sales v2 para 21/05/2026 BRT nas memórias diárias por conta/outputs do Trader, caso a rotina diária estivesse prevista para rodar.
 - [ ] Corrigir e reexecutar Lucas/Shopee para 20/05/2026 BRT: ajustar na 6B o percentual de GMV da Budamix Store de 49% para ~45% (R$ 2.351,20 / R$ 5.232,53 = 44,9%), reprocessar Slack Writer e validar que o QA deixa de ser BLOCKED antes de qualquer envio.

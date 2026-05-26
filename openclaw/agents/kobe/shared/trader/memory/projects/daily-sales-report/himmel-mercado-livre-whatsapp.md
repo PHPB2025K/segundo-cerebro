@@ -342,3 +342,23 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 **Status:** aberto — mudanças executadas em 25/05; validar nos Daily Sales Reports de Mercado Livre a partir de **26/05**.
 
+### 2026-05-26 08:57 BRT — Yasmin confirma verificação e ajustes necessários após otimizações de ML
+
+**Participantes:** Yasmin Oscarlino; pessoa mencionada no grupo.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Validação operacional pós-ajustes/pendências.
+
+**Contexto registrado:**
+- Yasmin informou que já verificou os pontos pendentes e fez as alterações onde havia necessidade.
+- A mensagem não detalha quais anúncios, campanhas, imagens, preços ou ações orgânicas foram alterados.
+- Pelo contexto recente do grupo, tratar como continuação provável das verificações operacionais abertas em **25/05** após movimentações de campanhas e alertas de TACoS/estoque, mas sem inferir ação específica além da confirmação textual.
+
+**Impacto esperado:**
+- Reduz a pendência operacional de revisão pela equipe interna após as otimizações ML de **25/05**.
+- Ainda não deve ser usada como causa isolada de melhora/piora em vendas ou ADS, porque a ação concreta não está descrita.
+
+**Como validar nos dados:**
+- Nos Daily Sales Reports de **26/05 a 01/06**, cruzar performance dos anúncios afetados em 25/05 com mudanças reais de imagem/preço/estoque/campanha registradas nos sistemas.
+- Se **MLB5402264802**, **MLB4073003575**, **6852620732614982** ou anúncios sem estoque tiverem variação relevante, buscar qual alteração específica Yasmin executou antes de atribuir causalidade.
+
+**Status:** aberto — confirmação operacional registrada; impacto depende de validação por dados e identificação das alterações exatas.

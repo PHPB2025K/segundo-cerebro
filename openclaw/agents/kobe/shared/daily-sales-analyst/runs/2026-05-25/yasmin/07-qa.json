@@ -1,0 +1,65 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "Mensagem passou em todos os gates críticos sem violação de regra bloqueante. Dados batem com o pacote validado, estrutura Slack está correta, fidelidade à L05 preservada em contagem e conteúdo dos três insights e três prioridades, bloqueios da L05 respeitados e logados, vocabulário ML correto em todas as menções relevantes. Os únicos desvios detectados são dois Menores no Gate 10: em dois pontos da mensagem (insight 2 e prioridade 1), 'reputação verde' e 'MercadoLíder Gold' aparecem na mesma cláusula quando a regra exige citação em cláusulas separadas por serem eixos distintos do ML. Nenhum Crítico e nenhum Maior detectado. Regra aplicada: 0 Maiores + 2 Menores (1–5, sem degradação sistêmica) → APROVADO COM RESSALVA.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "RESSALVA",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Maiores + 2 Menores (1–5, sem degradação sistêmica) → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "10 — Tom e utilidade",
+      "texto_atual": "pressiona a reputação verde e o MercadoLíder Gold por dentro, sem aparecer nos números de hoje.",
+      "texto_esperado": "Formulação que separe os dois eixos em cláusulas distintas, ex.: 'pressiona a reputação verde por dentro — e corrói o MercadoLíder Gold por dentro também — sem aparecer nos números de hoje.'",
+      "estado_atual": "Reputação (cor do termômetro) e medalha MercadoLíder Gold citadas na mesma cláusula, ligadas por 'e', na seção Análise da Conta (insight 2).",
+      "estado_esperado": "Os dois eixos (reputação e medalha) devem ser citados em cláusulas separadas por serem métricas distintas do ML. Nenhum compound term foi criado ('verde-gold' não aparece), portanto o risco de confusão semântica é baixo — Menor, não Maior. Origem provável: L05 usou esta estrutura e L06 a reproduziu fielmente.",
+      "regra_violada": "Gate 10 — vocabulário MercadoLíder oficial: 'Reputação e medalha são eixos distintos e devem ser citados em cláusulas separadas.'",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "10 — Tom e utilidade",
+      "texto_atual": "que está em zero hoje e sustenta a conta em reputação verde e MercadoLíder Gold.",
+      "texto_esperado": "Formulação que separe os dois eixos em cláusulas distintas, ex.: 'que está em zero hoje, sustenta a reputação verde e sustenta o MercadoLíder Gold.'",
+      "estado_atual": "Mesmo padrão da ocorrência anterior: reputação (termômetro) e medalha MercadoLíder Gold na mesma cláusula na seção Prioridades do Dia (prioridade 1). Segundo ponto da mesma ocorrência estrutural.",
+      "estado_esperado": "Dois eixos em cláusulas separadas.",
+      "regra_violada": "Gate 10 — vocabulário MercadoLíder oficial: 'Reputação e medalha são eixos distintos e devem ser citados em cláusulas separadas.'",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "Os dois Menores do Gate 10 reproduzem uma estrutura que veio da própria L05 ('pressiona a reputação verde e o MercadoLíder Gold por dentro'). A correção definitiva deve ser aplicada na L05 no próximo ciclo para que a L06 não precise corrigir um padrão herdado da camada superior.",
+    "ACOS 14,15% foi arredondado para 14,2% pela L06 conforme regra de percentual com 1 casa decimal. Valor preciso é 14,15; análises de tendência interna devem usar 14,15 para evitar acúmulo de erro de arredondamento em séries comparativas.",
+    "Cluster IMB501 é referenciado na Análise como 'os Potes Vidro 5 Peças' (MLB3288536143 agregado, 61 pedidos) e no Top Produtos como variações individuais com slack_short_name. A estrutura de dois níveis hierárquicos é correta e está documentada no log da L06, mas Yasmin pode questionar por que há 3 linhas separadas de Potes no Top e uma única menção agregada na Análise — vale alinhar no próximo ciclo se houver dúvida de leitura."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "fulfillment_mix_yesterday_top10 cobre apenas 44 dos 108 pedidos do dia (~40,7%), bem abaixo do threshold de 70% do Gate 12c. L06 corretamente omitiu o mix da seção VISÃO e o pipeline não apresentou o dado como métrica total. O fetcher deve ser investigado: a cobertura parcial limita a visibilidade real do mix diário, que só é confiável nas janelas 7d e 30d (100% coverage). Avaliar se o computed_from='top_10_items_weighted_by_orders' pode ser expandido ou substituído por fonte mais abrangente.",
+    "Breakdown de ADS spend/revenue por platform_item_id ausente do pacote pelo quarto ciclo consecutivo (registrado nas memórias de 22-23-24/05). Sem este dado, o salto de ACOS de ~4,4% para 14,15% em um ciclo não pode ser atribuído a anúncio específico, e a hipótese de compensação orgânica pelo cluster IMB501 segue irresolvida. Requer ação no fetcher ou fonte de dados ADS para os próximos ciclos.",
+    "Série temporal de health por anúncio ausente do pacote — limitação estrutural que impede confirmar direção (caindo/estável/subindo) do MLB3288536143 no sexto ciclo idêntico de 0,71. O gatilho da L02 (health <0,68 libera alinhamento Yasmin–Himmel) não pode ser acionado nem refutado com certeza enquanto apenas valor pontual estiver disponível.",
+    "MLB4676726433 (Kit 10 Potes 1050ml) com status=paused e available_quantity=0 gerou 3 pedidos coincidentes com os 3 cancelamentos do dia. O pacote não entrega vínculo causal order_id↔cancel_id nem distingue cancelamento automático ML vs manual Yasmin — limitação recorrente (memórias 22-24/05). Registrar como pendência estrutural do fetcher: lista granular de cancelamentos com (order_id, platform_item_id, motivo, mecanismo) é necessária para confirmar ou refutar o impacto na cancellations_rate nos próximos 3–5 ciclos.",
+    "health=null em 61 dos 79 anúncios ativos (no_health_data_count=61 em account_overview.active_analysis). Leitura de qualidade de anúncio do canal é parcial e concentrada nos top itens com maior volume. Não contaminou a análise deste ciclo (L04/L05 trabalharam com os dados disponíveis), mas representa blind spot estrutural para 77,2% da base ativa."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

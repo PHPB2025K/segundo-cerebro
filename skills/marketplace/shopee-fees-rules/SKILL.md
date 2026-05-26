@@ -19,8 +19,8 @@ triggers:
 metadata:
  openclaw:
  emoji: 🧮
- last_updated: "2026-04-29"
- next_review: "2026-05-06"
+ last_updated: "2026-05-26"
+ next_review: "2026-06-02"
  cron: "Shopee Fees Monitor — quarta 10h SP"
  source_policy: "OFICIAL_FIRST — Seller Education/Seller Center/termos Shopee > comunicados oficiais > evidência operacional em extrato > fontes secundárias. Artigo/blog nunca pode alterar regra sozinho."
  sources:
@@ -41,6 +41,9 @@ metadata:
  tier: "primary_official"
  - url: "https://seller.shopee.com.br/edu/article/2856/conheca-o-processo-de-pagamentos-da-shopee"
  status: "✅ OFICIAL — pagamentos/extrato; útil para validar cobranças no settlement"
+ tier: "primary_official"
+ - url: "https://seller.shopee.com.br/edu/article/27600/Programa-Full-mais-Shopee"
+ status: "✅ OFICIAL — programa Full+ Shopee; rebate progressivo de comissão para pedidos Full a partir de junho/2026"
  tier: "primary_official"
  - url: "https://blog.calcularte.com.br/index.php/2026/03/06/taxas-comissoes-shopee-2026/"
  status: "🟡 secundária — completa e consistente; usar para cross-check, nunca como fonte única"
@@ -82,9 +85,9 @@ metadata:
 
 # Regras de Comissões, Taxas e Custos — Shopee Brasil 2026 (CNPJ + diferenças CPF)
 
-> ⚠️ **Última atualização:** 29/04/2026
+> ⚠️ **Última atualização:** 26/05/2026
 > Reestruturação completa em **01/03/2026**: novas faixas escalonadas, fim do teto de R$ 100, taxa fixa por faixa (aumento até 550%), frete grátis obrigatório, subsídio PIX.
-> **Monitor 29/04/2026:** regras CNPJ seguem iguais. Atualização desta skill apenas incorporou a diferença CPF vs CNPJ exigida pelo monitor e novas fontes recentes.
+> **Monitor 26/05/2026:** adicionada regra oficial do **programa Full+ Shopee**, com rebate progressivo de comissão para pedidos enviados via Full a partir de junho/2026.
 > **Cron de verificação:** Quarta-feira 10h SP (Shopee Fees Monitor)
 > **Escopo operacional GB:** cálculos de margem e precificação usam **CNPJ**. Regras CPF ficam documentadas apenas para comparação/auditoria.
 
@@ -236,6 +239,30 @@ NUNCA precificar exatamente no início de uma faixa superior. Se o cálculo der 
 | Taxa transação | ~2% separada | Embutida na comissão |
 
 ---
+
+## 3.7 Programa Full+ Shopee (novo contexto oficial a partir de junho/2026)
+
+- **Objetivo:** incentivar maior participação do seller no Full por meio de **devolução de comissão** na carteira Shopee.
+- **Elegibilidade-base:** seller com pedidos enviados via Full no mês calendário.
+- **Gate de participação:** é preciso fechar o mês com **pelo menos 40% dos pedidos enviados pelo Full**.
+- **Itens elegíveis ao rebate:** apenas itens vendidos via Full com valor **igual ou acima de R$ 50**.
+- **Itens abaixo de R$ 50:** contam para o cálculo da participação Full do mês, mas **não recebem rebate**.
+- **Liquidação:** a comissão do mês corrente é cobrada normalmente e a devolução é creditada na **primeira semana do mês seguinte** na carteira Shopee.
+- **Vigência informada pela Shopee:** até **dezembro/2026**, com possibilidade de alteração sem aviso prévio.
+
+### Faixas do Full+
+
+| Participação mensal de pedidos Full | Itens R$ 50–79,99 | Itens R$ 80+ |
+|---|---:|---:|
+| **Abaixo de 40%** | sem rebate | sem rebate |
+| **40%–69,99%** | **0,5 p.p.** de devolução | **1 p.p.** de devolução |
+| **70%+** | **1 p.p.** de devolução | **2 p.p.** de devolução |
+
+### Leitura operacional para a GB
+- Isso **não reduz a comissão na hora da venda**; o efeito financeiro aparece depois, via devolução na carteira.
+- O programa melhora a **margem efetiva** de SKUs Full elegíveis, principalmente acima de **R$ 80**.
+- Em estratégia de sortimento, pode justificar empurrar mais itens elegíveis para o Full se o ganho de margem superar o custo/risco logístico.
+- Em análise diária, tratar como contexto de **mix logístico e margem prospectiva**, não como explicação automática de conversão do dia.
 
 ## 4. FRETE GRÁTIS — PROGRAMA OBRIGATÓRIO
 
@@ -487,6 +514,7 @@ Fontes a verificar semanalmente pelo cron `Shopee Fees Monitor`:
 
 | Data | Alteração |
 |---|---|
+| 26/05/2026 | v2.2 — Adicionada regra oficial do programa Full+ Shopee: rebate progressivo de comissão para pedidos Full a partir de junho/2026, com corte mínimo de 40% de participação Full no mês, elegibilidade por item >= R$50, crédito na carteira no mês seguinte e vigência até dezembro/2026. Fonte oficial adicionada ao monitor. |
 | 29/04/2026 | v2.1 — Monitor semanal: regras CNPJ sem alteração. Adicionada seção CPF vs CNPJ (CPF alto volume >450 pedidos/90 dias paga +R$3 por item; abaixo de R$12 pode haver taxa regressiva). Fontes recentes adicionadas: Precisão Financeira e Irroba; Algoritmo que Vende atualizado em 29/04. Mantido R$26 para faixa R$200+/R$500+ por prevalência Calcularte/Precisão/Marketize, apesar de Irroba/GoSmarter citarem R$28. |
 | 10/04/2026 | v2.0 — Correção: taxa transação (~2%) embutida na comissão (não somar separado). Faixa 1 taxa fixa = R$0. Simulações recalculadas. Fórmula corrigida. Adicionada coparticipação frete API. Afiliados corrigido (3–30%, não ~10%). Removida seção CPF. Adicionada simulação Faixa 5. Fontes auditadas (removida OQueSobra desatualizada, adicionada XP Investimentos e Calcularte Extrato). |
 | 08/04/2026 | v1.0 — Criação inicial |

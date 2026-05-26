@@ -1,6 +1,12 @@
 # Decisões — RH
 
-_Atualizado: 2026-05-24_
+_Atualizado: 2026-05-25_
+
+## 2026-05-25
+- Casos semanais de Guilherme, Leonardo, Mateus e Sandra da semana 18/05–23/05 foram mantidos em espera por aprovação/orientação do Pedro antes de qualquer novo WhatsApp.
+- Mantido bloqueio: consolidação diária de memória não autoriza envio proativo a funcionários.
+- Pontos de compliance de 25/05 devem ser tratados como validação interna até confirmação por fluxo autorizado ou orientação do Pedro.
+- Sábado 23/05 sem marcações permanece tratado como dia não útil sem cobrança automática, salvo escala específica ou evidência de trabalho.
 
 ## 2026-05-24
 - Nenhuma decisão nova de política RH registrada.

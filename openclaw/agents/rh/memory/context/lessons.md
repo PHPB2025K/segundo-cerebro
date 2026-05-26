@@ -1,6 +1,12 @@
 # Lições — RH
 
-_Atualizado: 2026-05-24_
+_Atualizado: 2026-05-25_
+
+## 2026-05-25
+- Backlog de comunicações abertas subiu para 16 após o monitor semanal; esse acúmulo é risco operacional antes de novos ciclos de cobrança.
+- Recorrência de intervalos inferiores a 1h continua concentrada em Guilherme, Lucas e Mateus, exigindo validação/orientação antes de qualquer correção ou cobrança.
+- Contextualização individual segue essencial para evitar falso positivo: Leonardo exige leitura da jornada faculdade; Mateus exige tolerância do Tiro de Guerra.
+- Faltas completas recorrentes de Sandra são risco trabalhista sensível e devem continuar escaladas para orientação do Pedro antes de contato adicional.
 
 ## 2026-05-24
 - Nenhuma lição nova registrada; riscos e aprendizados anteriores permanecem válidos.

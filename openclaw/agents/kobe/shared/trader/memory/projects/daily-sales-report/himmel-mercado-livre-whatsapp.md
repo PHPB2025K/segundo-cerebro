@@ -362,3 +362,42 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Se **MLB5402264802**, **MLB4073003575**, **6852620732614982** ou anúncios sem estoque tiverem variação relevante, buscar qual alteração específica Yasmin executou antes de atribuir causalidade.
 
 **Status:** aberto — confirmação operacional registrada; impacto depende de validação por dados e identificação das alterações exatas.
+
+### 2026-05-26 14:16–16:05 BRT — Plano de escala ML para junho com TACoS mais flexível e risco de ruptura do KIT2YW1520
+
+**Participantes:** Yasmin Oscarlino; Cláudio Manrique Junior/Himmel; Pedro Broglio.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Planejamento de escala de ADS/volume para início de junho, orçamento diário, campanhas prioritárias e ruptura de item campeão.
+
+**Contexto registrado:**
+- Yasmin levou à Himmel uma leitura estratégica da conta ML: crescimento de **março R$ 117k → abril R$ 141k → maio em ritmo de ~R$ 170k**, com média atual aproximada de **R$ 5,6k/dia**.
+- Conta está com **termômetro verde**, métricas boas, estoque com profundidade geral e atenção a campeões da linha de potes que podem romper até o próximo container, previsto para **início de julho**.
+- Leitura operacional da GB: quase 100% das vendas são de clientes novos, conversão em torno de **5%**, e anúncio é motor de aquisição; foco comercial desejado na faixa de preço **R$ 29–79**.
+- Meta proposta pela GB: subir de **~R$ 5,6k/dia** para **R$ 7,2k/dia como piso** e mirar **R$ 8,3k/dia**, aumentando verba de ADS dos atuais **~R$ 280/dia** para **~R$ 550–600/dia**, concentrada nas campanhas com melhor retorno.
+- Yasmin pediu plano para acelerar **BALANCE**, **TESTE ABC**, **MLB3288536143** e **CA1**; segurar/otimizar **CA3**, **ACELERAÇÃO** e pausar/revisar **MDF** ou campanha sem venda; manter retorno mínimo esperado em **~R$ 8–9 por R$ 1**.
+- Himmel respondeu que **BALANCE não deve ser escalada**: é campanha estabilizadora, de baixo investimento, usada para conter gastos/ajustar anúncios com métricas ruins.
+- Himmel respondeu que **TESTE ABC não deve ser acelerada agressivamente**: funciona como incubadora para anúncios ainda sem ranqueamento; quando um anúncio cresce, é promovido para campanhas correspondentes. Aceleração forte pode gerar gasto alto e métricas ruins.
+- Para **MLB3288536143**, Himmel confirmou aceleração consciente; é anúncio top de vendas e com boa reputação. Houve pequeno aumento de ROAS para equilibrar TACoS, que subiu na semana/fim de mês.
+- Para **CA1**, Himmel explicou que a campanha perdeu o principal anúncio por falta de estoque e foi redirecionada para outros potes, especialmente conjuntos de 4 potes de diferentes tamanhos; ROAS da campanha foi reduzido e está em acompanhamento.
+- Para **CA3**, Himmel indicou perda de tração e balanceamento. Para **ACELERAÇÃO**, mudou produtos e está testando novos itens.
+- Pedro alinhou a estratégia de junho: prioridade será **volume e faturamento**, aceitando **TACoS um pouco mais alto até cerca de 05/06** em anúncios já ranqueados/campeões, especialmente **MLB3288536143**. Anúncios sem ranking devem seguir controlados.
+- Pedro reforçou ruptura do **KIT2YW1520** / kit 2 potes de vidro 1520ml, que só deve voltar com o container de início de julho, e pediu previsão realista de venda por dia em junho sem esse item e quais produtos serão usados para cobrir a falta.
+- Pedro pediu explicitamente prioridade no aumento sutil de TACoS em junho para puxar volume mesmo com ruptura do **KIT2YW1520**.
+- Cláudio/Himmel confirmou a ação: vai “puxar bem nesse começo de mês”, monitorando estoque Full e projeção para escalar sem gerar nova ruptura.
+
+**Impacto esperado:**
+- Para o Daily Sales Report v2, junho deve ser lido com uma diretriz deliberada de **mais volume com menor eficiência marginal** no ML, especialmente até **05/06**.
+- Alta de TACoS/ACoS no início de junho não deve ser automaticamente tratada como problema se vier acompanhada de ganho de faturamento e preservação de margem/estoque; é uma decisão operacional aprovada pelo Pedro.
+- A hipótese central a validar: anúncios campeões já ranqueados conseguem sustentar aumento de volume com TACoS apenas moderadamente maior, enquanto anúncios novos continuam em ritmo controlado.
+- Ruptura do **KIT2YW1520** é variável crítica: queda/limitação de vendas nesse item e redistribuição para kits/conjuntos de 4 potes devem ser separadas do efeito ADS.
+- Produtos substitutos prováveis: conjuntos de 4 potes de diferentes tamanhos e outros itens da faixa **R$ 29–79** com estoque e melhor conversão.
+
+**Como validar nos dados:**
+- Entre **2026-06-01 e 2026-06-05**, acompanhar faturamento diário ML contra piso **R$ 7,2k/dia** e mira **R$ 8,3k/dia**.
+- Comparar investimento diário de ADS contra faixa planejada de **R$ 550–600/dia** e retorno mínimo desejado de **~R$ 8–9 por R$ 1**.
+- Monitorar **MLB3288536143**, **CA1**, **CA3**, **ACELERAÇÃO**, **TESTE ABC** e **BALANCE** separadamente: vendas, investimento, ROAS, ACoS/TACoS, conversão, estoque e ranking.
+- Separar anúncios campeões/ranqueados dos anúncios em teste/incubação; não exigir a mesma eficiência dos dois grupos.
+- Medir impacto da ruptura do **KIT2YW1520** no mix e validar se conjuntos de 4 potes compensam parcialmente a perda.
+- Cobrar/registrar quando a Himmel responder à pergunta pendente: previsão realista de venda/dia em junho sem o KIT2YW1520 e lista dos itens priorizados para cobrir a falta.
+
+**Status:** aberto — decisão operacional aprovada para início de junho; validar diariamente até **2026-06-05** e reavaliar após chegada/reposição do container de julho.

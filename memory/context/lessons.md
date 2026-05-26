@@ -52,3 +52,16 @@ Em Canggu/Ana, receber mensagem no Supabase e até responder um teste manual nã
 ## 2026-05-24 — [TÁTICA] Amazon Ads deve partir da base viva, não da rodada histórica
 
 Na análise semanal de Amazon Ads, a lista inicial omitiu os grupos MDF criados depois da rodada de abril. Antes de afirmar escopo de grupos/anúncios, consultar a base viva do BidSpark/Amazon Ads e validar grupos recém-criados, status live e campanhas atuais. Lista histórica serve como contexto, não como fonte final de verdade.
+
+## 2026-05-25 — [TÁTICA] Camada final de análise operacional deve traduzir jargão sem rebaixar a máquina analítica
+
+Na lapidação da L06 do Daily Sales Analyst ML, Pedro deixou claro que Yasmin não precisa saber como a análise foi feita; ela precisa entender o que aconteceu, o que fazer e por que importa. A regra correta é manter L01-L05 técnicas e rigorosas, mas traduzir a saída final: GMV vira faturamento, ADS share vira participação do ADS no faturamento, `health` numérico vira qualidade do anúncio em termos naturais. Simplificar linguagem não é simplificar raciocínio.
+
+## 2026-05-25 — [TÁTICA] Cron de planejamento recorrente não deve fazer ajuste incremental cego
+
+No planejamento semanal de canecas, Pedro corrigiu que o cron deve recalcular o pipeline inteiro do zero com dados fechados até D-1 e só depois comparar contra o último plano aprovado. Para compras/reposição, ajuste incremental simples acumula erro e ignora mudança de estoque, venda, inbound e ruptura.
+
+## 2026-05-25 — [TÁTICA] Monitor que roda sem validação útil não é OK operacional
+
+No Fisco, o refresh da Filial teve rodadas abortadas por allowlist/SIGTERM e sem validação útil. Uma execução de cron que termina sem checar a condição que deveria monitorar não deve ser tratada como normalidade. O status precisa diferenciar “rodou” de “validou a integração”.
+

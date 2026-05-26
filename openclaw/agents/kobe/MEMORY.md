@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-25 19:25 BRT (criação do Diretor de Compras)._
+_Último update: 2026-05-25 23:45 BRT (consolidação diária em camadas)._
 
 ---
 
@@ -136,12 +136,12 @@ skills/
 | **Vault** | Finanças, tesouraria, caixa | agents/vault | ✅ Operacional |
 | **Scout** | Reposição, demanda, estoque, compras semanais | agents/compras | ✅ Fundação criada + Radar |
 
-## Status do Sistema (25/05/2026 19:25 BRT — criação do Diretor de Compras)
+## Status do Sistema (25/05/2026 23:45 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
 - **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; todo conteúdo relacionado a alertas deve ir para lá (watchdogs, guards, audits, monitores, failure alerts, resumos e avisos de risco/problema). Thread 8 permanece Urgente e não deve receber alertas técnicos de rotina.
-- **Planejamento de reposição das canecas / Compras:** prioridade máxima do próximo bloco operacional. Pedro pediu em 25/05 retomar a criação do Diretor de Compras; fundação do agente **Scout** criada. O piloto de canecas segue como primeiro playbook antes de ampliar para outras famílias; todo assunto de compras vai no tópico Compras.
-- **Daily Sales Report Slack / DSA:** envio real para funcionários segue bloqueado até liberação explícita. O DSA ML amadureceu em 23/05 com sistema MercadoLíder, memory ingest diário, consolidações semanal/mensal e decisão de modelo por camada. Em 24/05, o pacote de 23/05 saiu como DADOS_PARCIAIS (R$ 10.086,22, 200 pedidos) sem Slack Writer/QA final detectado; investigar antes de qualquer promoção.
+- **Planejamento de reposição das canecas / Compras:** prioridade máxima do próximo bloco operacional. Pedro pediu em 25/05 retomar a criação do Diretor de Compras; fundação do agente **Scout** criada com subagente **Radar**. Pedro aprovou estrutura enxuta Scout → Radar por enquanto e regra do cron semanal: recalcular o pipeline inteiro do zero com dados até D-1, comparar contra o plano aprovado e só atualizar se houver mudança relevante. O piloto de canecas segue como primeiro playbook antes de ampliar para outras famílias; todo assunto de compras vai no tópico Compras.
+- **Daily Sales Report Slack / DSA:** envio real para funcionários segue bloqueado até liberação explícita. O DSA ML amadureceu em 23/05 com sistema MercadoLíder, memory ingest diário, consolidações semanal/mensal e decisão de modelo por camada. Em 25/05, L06 foi lapidada para linguagem natural no Slack da Yasmin. Pacotes 23/05 e 24/05 seguem com DADOS_PARCIAIS; o de 24/05 teve R$ 10.766,55, 214 pedidos e preview apenas Yasmin/ML. Investigar ciclo parcial/ML-only antes de qualquer promoção.
 - **Estoque Budamix:** deploy de produção foi retomado em 20/05 por rsync direto, encerrando o checkpoint GitHub/Deploy Key para essa frente. Parser PDF local substituiu webhook n8n quebrado e teste E2E reversível com PDF real validou 7 SKUs com retorno bit a bit da planilha. Pendências remanescentes: POT1BB duplicado, aliases, PR4 kits/BOM, cleanup opcional das ops de teste e desativar webhook antigo.
 - **DRE Abril:** U15 Descontos Concedidos continua prioridade antes da U44 v4 limpa. ML aceito em R$ 5.061,14; Amazon precisa fechar item-promotion sem frete promocional; Shopee segue suspeita/reclassificação.
 - **Mission Control:** 11/23 módulos fechados; módulos Activity, Cron, Sessions, Skills e Costs consolidados, com separação de custo real API vs equivalente API vs subscription. Próxima prioridade técnica segue n8n usage tracking em `/costs`, painel Daily Sales Pipeline pendente de restart/smoke e PRDs dos módulos restantes.
@@ -154,7 +154,7 @@ skills/
 - **RH/Ponto Certo:** `ponto.budamix.com.br` ativo com SSL; WhatsApp RH proativo bloqueado indefinidamente até liberação explícita, inbound permitido.
 - **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2.
 - **Amazon Ads:** tópico oficial passou a ser Amazon ADS. Nova régua aprovada: grupo alvo <10% e limite 15%, com tolerância refinada por função de campanha. Rodada de 24/05 executou ajustes em Tulipa, Suporte Controle Gamer, Potes Herméticos Vidro, Canecas Canelada, MDFs, Jarra Medidora e Jogo Canequinhas Café; D+7 obrigatório para medir efeito.
-- **Bling/Fisco:** Filial segue com HTTP 403/empresa-token inativo no refresh OAuth; Pedro decidiu pausar essa frente em 21/05 porque não está usando esse Bling. Não gastar bloco operacional agora; não avançar fluxos fiscais que dependam da Filial até reabrirem a frente. WhatsApp Health Check virou próximo foco de infra.
+- **Bling/Fisco:** Filial segue com HTTP 403/empresa-token inativo no refresh OAuth pelo 11º dia em 25/05; Pedro decidiu pausar essa frente em 21/05 porque não está usando esse Bling. Não gastar bloco operacional agora; não avançar fluxos fiscais que dependam da Filial até reabrirem a frente. Atenção: cron refresh teve rodadas sem validação útil por allowlist/SIGTERM; se persistir, corrigir monitor antes de confiar nele. WhatsApp Health Check virou próximo foco de infra.
 - **RH/Ponto Certo:** follow-up tem pré-checagem determinística de cobertura por ajuste, justificativa ou batida real. Em 20/05, compliance registrou Franciele/Geziele/Guilherme sem saída e Guilherme/Leonardo/Lucas com intervalo <1h; WhatsApp proativo segue bloqueado fora do escopo autorizado.
 - **Blog Budamix Pipeline v2:** em produção; resta inspeção visual humana do post de teste e cleanup.
 
@@ -180,6 +180,14 @@ skills/
 
 
 
+
+
+
+## Qualidade da Memória (Consolidação Diária em Camadas 25/05 — 23:45 BRT)
+- Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos definidos para o ciclo; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
+- Digests lidos: Trader, Spark, Builder, Fisco e RH. Nenhum digest ausente neste fechamento.
+- Marcos globais incorporados: Import Hub ganhou checagem anti-duplicação antes de alertas; Guarani passou a ter alerta específico de minuta/distrato/acordo assinado no inbox cleanup; DSA ML lapidou linguagem natural para Yasmin sem alterar a máquina analítica; Scout foi criado como Diretor de Compras com Radar como analista; Pedro aprovou estrutura Scout → Radar e cron semanal de canecas recalculando do zero; Budamix.com.br pivotou para 100% utensílios de vidro com combos IMB501 novos.
+- Riscos críticos vindos dos digests: Daily Sales v2 segue sem condição de envio externo e pacote 24/05 foi parcial/ML-only; Shopee Store e Conta 3 precisam monitoramento; Bling Filial segue 403 pelo 11º dia e cron refresh teve rodadas sem validação útil; RH precisa orientação do Pedro para Guilherme, Leonardo, Mateus e Sandra antes de contato adicional.
 
 ## Qualidade da Memória (Consolidação Diária em Camadas 24/05 — 23:45 BRT)
 - Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
@@ -256,6 +264,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-25:** Compras ganhou o 7º diretor top-level Scout, com Radar como analista e estrutura Scout → Radar aprovada; cron semanal de canecas deve recalcular planejamento do zero com dados até D-1. Budamix.com.br pivotou para 100% utensílios de vidro, com hero retina-safe, swipe, combos IMB501 novos e correções mobile/cache. DSA ML refinou a comunicação final da Yasmin para linguagem natural, enquanto Daily Sales v2 continuou parcial/ML-only no pacote 24/05. Import Hub ganhou alerta anti-duplicação e Guarani entrou no radar específico de minuta/distrato/acordo assinado.
 - **2026-05-23:** DSA ML virou pipeline maduro com MercadoLíder, memory ingest diário, consolidações semanal/mensal, cron corrigido para 06:50 BRT real e modo híbrido Sonnet/Opus por camada; auditoria Ponto Certo validou ajustes aprovados sem duplicidade e incorporou regra de contexto individual para Mateus/Tiro de Guerra e intervalos <1h.
 - **2026-05-22:** Import Hub anexou documentos e ativou Terminal49 para GB26001/GB26002; e-commerce fechou loop de estoque site↔planilha e reparou IMB501/destaques; Vault/Ledger entraram em produção como área financeira; Ana/Canggu fechou 7/7 E2E com escalação/notificação real; Daily Sales v2 ficou com lacuna operacional para 21/05; RH registrou novos riscos de compliance.
 - **2026-05-21:** Budamix E-commerce ganhou preview mobile no admin e polimentos de PDP; Canggu/Ana voltou a responder via fluxo real WhatsApp após pacote v36/v42; Pedro pausou Bling Filial e priorizou WhatsApp Health Check versionado; sync da VPS passou a usar escrita segura; Gestão de Funcionários registrou reunião semanal com Yasmin; Daily Sales v2 ficou em preview `APPROVED_WITH_REMARKS`, mas Lucas/Shopee bloqueou por erro factual de percentual Store.
@@ -296,7 +305,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) investigar lacuna Daily Sales v2 de 21/05 e corrigir Lucas/Shopee 20/05 antes de envio real, (2) acompanhar primeira consolidação semanal DSA ML em 02/06 e adicionar sanity check `suspect_zero_spend`, (3) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT, (4) planejar reposição de canecas e cobrar reviews dos kits 4 travas com Leonardo na segunda, (5) retomar automação de pedidos atacado em teste controlado, (6) validar token Meta Ads pós-18/05, (7) orientar RH com contexto individual sem liberar proativo genérico, (8) validar primeiro pedido real do site com BUDAMIX10 e investigar preço Tulipa._
+_Próximas ações: (1) investigar pacotes parciais Daily Sales v2 de 23/05 e 24/05 antes de envio real, (2) acompanhar primeira consolidação semanal DSA ML em 02/06 e adicionar sanity check `suspect_zero_spend`, (3) fechar reposição de canecas após Pedro enviar pedidos em trânsito/já feitos, (4) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT, (5) retomar automação de pedidos atacado em teste controlado, (6) validar token Meta Ads pós-18/05, (7) orientar RH nos casos Guilherme/Leonardo/Mateus/Sandra sem liberar proativo genérico, (8) decidir Jarra Medidora e ajustar fotos/estoque/conteúdo do Budamix.com.br pós-pivot._
 
 ---
 ## Contexto

@@ -1,0 +1,286 @@
+{
+  "camada": "04-granular",
+  "data": "2026-05-25",
+  "plataforma": "ml",
+  "recipient": "Yasmin",
+  "respostas_operacional": [
+    {
+      "pergunta": "Os 3 cancelamentos do dia (metrics.cancelamentos=3) têm origem comprovada nos 3 pedidos do anúncio pausado MLB4676726433 (status=paused, available_quantity=0)? Foram cancelamentos automáticos pelo ML ou cancelamentos manuais controlados pela Yasmin?",
+      "status": "parcialmente respondida",
+      "evidencia": {
+        "produto_visivel": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades",
+        "platform_item_id": "MLB4676726433",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "status_anuncio": "paused",
+        "available_quantity_snapshot": 0,
+        "logistic_type": "fulfillment",
+        "pedidos_dia": 3,
+        "cancelamentos_dia_total": 3,
+        "cancellations_rate_snapshot": 0,
+        "coincidencia_numerica": "metrics.cancelamentos=3 == pedidos_dia do MLB4676726433=3 — coincidência numérica perfeita, mas o pacote não traz vínculo entre order_id e cancel_id que permita confirmar causalidade",
+        "mecanismo_cancelamento": "dado ausente do pacote — não há campo distinguindo cancelamento automático ML vs cancelamento manual Yasmin"
+      },
+      "leitura": "A coincidência 3==3 é operacionalmente expressiva e dificilmente acidental num dia em que o único anúncio do topo com status=paused e estoque zero gerou exatamente 3 pedidos. Mas o pacote não entrega vínculo causal direto (order_id↔cancel_id) nem distingue mecanismo (automático ML vs manual Yasmin). Sem essa atribuição, não dá pra afirmar se os cancelamentos já entraram na janela de reputação ML ou se foram contidos antes pela operação.",
+      "conclusao_granular": "complica — forte indício circunstancial de origem comum, mas atribuição definitiva e mecanismo seguem inconclusivos por falta de dado granular de cancel↔order e tipo de cancelamento",
+      "confianca": "média"
+    },
+    {
+      "pergunta": "Qual o estoque disponível atual do Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo, Full) e há reposição confirmada em trânsito ao CD do ML? Qual a data prevista de entrada?",
+      "status": "parcialmente respondida",
+      "evidencia": {
+        "produto_visivel": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+        "platform_item_id": "MLB6232315532",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "listing_type": "gold_pro",
+        "is_catalog": true,
+        "catalog_product_id": "MLB56152808",
+        "status_anuncio": "active",
+        "logistic_type": "fulfillment",
+        "free_shipping": false,
+        "health": null,
+        "available_quantity_snapshot": 19,
+        "pedidos_dia": 11,
+        "ritmo_dia": "11 pedidos/dia — convergente com ~11 pedidos/dia estimado pela L01 e acima do ~6 pedidos/dia das memórias 22-23/05",
+        "cobertura_estimada_dias": "19 / 11 ≈ 1,7 dias ao ritmo do dia",
+        "snapshot_post_baixa": "available_quantity=19 é POST-baixa dos 11 pedidos do dia 25/05",
+        "reposicao_em_transito_cd_ml": "dado ausente do pacote",
+        "eta_reposicao": "dado ausente do pacote",
+        "serie_historica_estoque": "memória 23/05 registrou available_quantity=33; queda 33→19 em ~2 ciclos coerente com ritmo observado"
+      },
+      "leitura": "Estoque atual snapshot (post-baixa) é 19 unidades; cobertura prospectiva ~1,7 dias ao ritmo do dia. Anúncio segue active (não pausou) e a queda 33→19 é coerente com consumo de ~6-7 unidades por ciclo sem evidência de reposição entrando. A categoria é MLB9206 e o catalog_product_id confirma exposição em Buy Box ML (Catálogo gold_pro). Health=null significa 'ML não calcula' (volume insuficiente para métrica), não 'saudável'. Dados de reposição em trânsito e ETA não estão no pacote — a janela de 24-48h identificada pela L02 segue aberta sem evidência granular de neutralização.",
+      "conclusao_granular": "parcialmente confirma — estoque atual e ritmo confirmados; reposição/ETA seguem sem evidência no pacote",
+      "confianca": "alta"
+    },
+    {
+      "pergunta": "A health=0,71 do MLB3288536143 (cluster IMB501) no ciclo atual (sexto ponto da série) subiu, desceu ou se manteve idêntica? Quais são os drivers ativos de penalização (claims, atraso de handling, qualidade do listing)?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+        "platform_item_id": "MLB3288536143",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "health_snapshot_atual": 0.71,
+        "health_serie_temporal": "dado ausente do pacote — ml_snapshot entrega apenas valor pontual, não direção (caindo/estável/subindo)",
+        "drivers_de_penalizacao_por_anuncio": "dado ausente do pacote — reputation traz métricas agregadas da conta (claims_rate=0,0023; delayed_handling_rate=0,0012; cancellations_rate=0), não breakdown por platform_item_id",
+        "reputacao_conta_agregada": {
+          "color": "5_green",
+          "claims_rate": 0.0023,
+          "delayed_handling_rate": 0.0012,
+          "cancellations_rate": 0
+        },
+        "memoria_serie": "memórias 22-23-24/05 registraram health=0,71 idêntica por 5 ciclos consecutivos — sexto ponto idêntico hoje confirma estagnação numérica, mas estagnação ≠ direção"
+      },
+      "leitura": "O sexto ponto é numericamente idêntico aos cinco anteriores (0,71), mas a estagnação não revela se há pressão acumulada represada (drivers piorando sem ainda movimentar o número) ou estabilização real. O pacote não entrega série temporal de health nem drivers por anúncio — limitação estrutural identificada também pela L03. O gatilho da L02 (health <0,68 libera alinhamento com Himmel) não é acionado nem refutado: o número é o mesmo, sem direção confirmável.",
+      "conclusao_granular": "inconclusivo por falta de dado — sexto ponto idêntico numericamente; direção e drivers seguem não observáveis no pacote",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Qual o breakdown de revenue_ads_yesterday_brl (R$2.905,50) por platform_item_id? O spend de ADS está concentrado no cluster IMB501 (MLB3288536143) ou distribuído por outros anúncios do top10?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "ads_summary_agregado": {
+          "campaigns_total_count": 11,
+          "campaigns_active_count": 11,
+          "spend_yesterday_brl": 378.67,
+          "revenue_ads_yesterday_brl": 2905.5,
+          "avg_acos_pct": 14.15,
+          "roas_calculado": "7,67x (2905,5 / 378,67)"
+        },
+        "breakdown_por_platform_item_id": "dado ausente do pacote — limitação estrutural recorrente já registrada nas memórias 22-23-24/05",
+        "ads_share_dia": "2905,5 / 5127,39 = 56,7%"
+      },
+      "leitura": "Sem breakdown por anúncio, qualquer atribuição do salto de ACOS (4,43% → 14,15%) a um anúncio específico (IMB501 com health=0,71 ou outro) é especulação. ROAS de 7,67x ainda está acima do limiar de ação da L02 (>5x), e ACOS abaixo do limiar de ineficiência estrutural (>30%). A pergunta operacional segue exatamente como estava antes do pacote.",
+      "conclusao_granular": "inconclusivo por falta de dado — agregado disponível, granular por anúncio ausente",
+      "confianca": "baixa"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Validar cluster IMB501 e sua concentração de 56,5% no dia — três variações (Tampa Preta + Cinza + Vermelha) compartilham o mesmo platform_item_id MLB3288536143",
+      "origem": "L01 estratégica / L03 operacional",
+      "evidencia": {
+        "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+        "platform_item_id": "MLB3288536143",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "title_ml_real": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+        "observacao_title": "title ML é genérico ('Claro') e omite atributo de cor da tampa — esperado para anúncio com variações de cor sob mesmo MLB",
+        "variacoes_confirmadas_por_sku": [
+          {
+            "sku": "IMB501P",
+            "confirmed_variation_attributes": [
+              "Tampa Preta"
+            ],
+            "orders": 40,
+            "quantity": 42
+          },
+          {
+            "sku": "IMB501C",
+            "confirmed_variation_attributes": [
+              "Tampa Cinza"
+            ],
+            "orders": 11,
+            "quantity": 11
+          },
+          {
+            "sku": "IMB501V",
+            "confirmed_variation_attributes": [
+              "Tampa Vermelha"
+            ],
+            "orders": 10,
+            "quantity": 10
+          }
+        ],
+        "total_cluster_pedidos": 61,
+        "concentracao_dia": "61 / 108 = 56,48% (arredondado 56,5%)",
+        "available_quantity_snapshot": 459,
+        "health": 0.71,
+        "listing_type": "gold_special",
+        "is_catalog": false,
+        "free_shipping": false,
+        "logistic_type": "fulfillment"
+      },
+      "leitura": "Concentração 56,5% confirmada por agregação real de pedidos (40+11+10=61). Os três SKUs apontam ao mesmo MLB3288536143 — é cluster de variações de cor dentro de um único anúncio Full Clássico não-Catálogo. Title ML genérico + confirmed_variation_attributes coexistem sem conflito (regra explícita do protocolo). Estoque robusto (459 pós-baixa de 42 unidades, cobertura ~7-8 dias ao ritmo do dia) — risco de ruptura física não é vetor; o vetor é health estagnada em 0,71 com volume crescente.",
+      "conclusao_granular": "confirma — concentração 56,5% pico da série; cluster opera em Full não-Catálogo com health 0,71 e estoque robusto",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Verificar mix de modalidade de envio do dia vs janelas longas — checar anomalia de logistic_type=self_service (Flex deveria estar zerado por decisão operacional)",
+      "origem": "divergência potencial — protocolo Full/Cross-Docking exclusivos",
+      "evidencia": {
+        "fulfillment_mix_yesterday_top10": {
+          "full_pct": 79.5,
+          "cross_docking_pct": 20.5,
+          "flex_pct": 0.0,
+          "drop_off_pct": 0.0,
+          "unknown_pct": 0.0
+        },
+        "fulfillment_mix_7d": {
+          "full_pct": 74.7,
+          "cross_docking_pct": 25.3,
+          "flex_pct": 0.0,
+          "drop_off_pct": 0.0,
+          "coverage_pct": 100.0
+        },
+        "fulfillment_mix_30d": {
+          "full_pct": 74.7,
+          "cross_docking_pct": 25.3,
+          "flex_pct": 0.0,
+          "drop_off_pct": 0.0,
+          "coverage_pct": 100.0
+        },
+        "logistic_types_top_items": {
+          "fulfillment": [
+            "MLB3288536143",
+            "MLB6232315532",
+            "MLB4073003575",
+            "MLB4676726433",
+            "MLB6518176572",
+            "MLB3343832496"
+          ],
+          "cross_docking": [
+            "MLB4676131007",
+            "MLB6661811594"
+          ]
+        },
+        "account_overview_base_ativa": {
+          "full_pct": 36.7,
+          "cross_docking_pct": 63.3,
+          "flex_pct": 0.0
+        }
+      },
+      "leitura": "Flex=0% confirmado em todas as janelas (yesterday_top10, 7d, 30d) e na base ativa — nenhuma anomalia operacional de self_service. Assimetria estrutural confirmada: top10 79,5% Full vs base ativa 36,7% Full — os campeões vivem no CD do ML, base ativa depende de Cross-Docking. Mix do dia (79,5% Full) levemente acima do padrão 30d (74,7% Full), efeito da dominância do cluster IMB501 (Full) e do MLB3343832496 (Full).",
+      "conclusao_granular": "confirma — sem anomalia de Flex; assimetria Full topo vs Cross-Docking base ativa é estrutural",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Status MLB4676726433 (Kit 10 Potes 1050ml) — anúncio pausado com estoque zero gerou pedidos",
+      "origem": "L01 / L02 / L03 — sinal crítico convergente",
+      "evidencia": {
+        "produto_visivel": "Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades",
+        "platform_item_id": "MLB4676726433",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "status": "paused",
+        "available_quantity": 0,
+        "free_shipping": true,
+        "logistic_type": "fulfillment",
+        "is_catalog": false,
+        "health": null,
+        "pedidos_dia": 3,
+        "quantity_dia": 3,
+        "sold_quantity_total": 46
+      },
+      "leitura": "Anúncio Full sem estoque e pausado registrou 3 pedidos no dia. Como o snapshot é post-baixa e available_quantity=0, ou os pedidos entraram quando ainda havia 3 unidades (antes da pausa), ou a sequência foi: pedidos consumiram últimas unidades → estoque zerou → anúncio foi pausado. Independente da ordem, os 3 pedidos existem e dependem de atendimento. Sem dado granular de status_pedido por order_id (atendido / aguardando / cancelado), não dá pra confirmar destino atual desses 3 pedidos — só a coincidência numérica com metrics.cancelamentos=3 sugere desfecho.",
+      "conclusao_granular": "confirma sinal crítico, complica atribuição — os 3 pedidos existem e o anúncio está paused com estoque zero; desfecho exato (cancelados ou pendentes) inconclusivo por falta de dado",
+      "confianca": "média"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "baixo",
+    "fontes": [],
+    "bloqueios_para_slack": [],
+    "explicacao": "Todos os 10 top_products do dia têm title ML real disponível em top_items_details (quando aplicável) e raw_title coerente vindo dos pedidos. Os três SKUs do cluster IMB501 compartilham um único platform_item_id MLB3288536143 com title ML genérico ('Claro'), mas confirmed_variation_attributes preenchidos pelo L00 (Tampa Preta/Cinza/Vermelha) — caso explícito do protocolo de 'título enxuto + atributo confirmado por SKU', não é divergência. mapping_status='mapped' (high confidence) em 7 dos 10 top; 3 com 'mapped_generic_sku' (medium confidence: KIT10YW520, SPC0111, KIT10YW1050) — todos com title ML real disponível, sem risco de citação errada. Nenhum caso de display_name contradizendo title/raw_title."
+  },
+  "divergencias": [
+    {
+      "tipo": "mix_modalidade_envio",
+      "fonte_a": "metrics.fulfillment do account-level (shopee_full=0, amazon_fba=0, amazon_fbm=0, other=0, total=108) — zerado para ML",
+      "fonte_b": "ml_snapshot.fulfillment_mix_yesterday_top10 (Full 79,5% / Cross-Docking 20,5%) e fulfillment_mix_30d (Full 74,7% / Cross-Docking 25,3%)",
+      "resolucao": "ml_snapshot.fulfillment_mix_* prevalece",
+      "regra_precedencia": "Mix de envio → ml_snapshot.fulfillment_mix_*d (calculado do Supabase a partir de logistic_type real) vence estimativas baseadas em metrics.fulfillment (zerado pra ML)",
+      "impacto": "leitura de mix do dia e do canal usa Full/Cross-Docking do ml_snapshot; metrics.fulfillment não deve ser referenciado para ML"
+    }
+  ],
+  "evidencias_conflitantes": [
+    {
+      "hipotese": "Os 3 cancelamentos do dia têm origem nos 3 pedidos do anúncio pausado MLB4676726433",
+      "confirma": "coincidência numérica perfeita (3==3); anúncio é o único do top com status=paused e available_quantity=0 gerando pedidos; nenhum outro vetor óbvio de cancelamento aparece no snapshot do dia",
+      "enfraquece": "pacote não traz vínculo causal order_id↔cancel_id; cancelamentos podem ter outras origens (recusa do comprador, problema de pagamento, etc) que produziriam a mesma coincidência numérica; cancellations_rate=0 no snapshot sugere que cancelamentos ainda não entraram na janela rolling, deixando ambíguo se já foram registrados pelo ML",
+      "dado_adicional_que_resolveria": "lista granular de cancelamentos do dia com (order_id, platform_item_id, motivo, mecanismo automático vs manual) — registrar como pendência de pacote para o próximo ciclo",
+      "status": "hipótese em aberto — indício circunstancial forte, prova causal ausente"
+    }
+  ],
+  "detalhes_que_a_condensadora_nao_pode_perder": [
+    {
+      "detalhe": "Cluster IMB501 (MLB3288536143, Full Clássico não-Catálogo, health=0,71) atingiu 56,5% do volume do dia (61 de 108 pedidos): Tampa Preta 40 + Tampa Cinza 11 + Tampa Vermelha 10 — novo pico da série 44%→47,5%→56,5%",
+      "por_que_importa": "confirma operacionalmente a dependência crescente identificada pela L01; estoque robusto (459 pós-baixa), risco não é ruptura física, é health estagnada num volume cada vez mais concentrado",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo gold_pro Full, health=null) com available_quantity=19 pós-baixa de 11 pedidos do dia — cobertura ~1,7 dias; reposição em trânsito ao CD do ML não confirmada no pacote",
+      "por_que_importa": "janela de 24-48h identificada pela L01/L02 segue aberta sem evidência de neutralização; ruptura em Catálogo gold_pro implica perda de Buy Box com recuperação estruturalmente lenta",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Kit 10 Potes Herméticos 1050ml (MLB4676726433, Full) com status=paused e available_quantity=0 registrou 3 pedidos no dia — exatamente igual aos 3 cancelamentos do dia (metrics.cancelamentos=3). Coincidência numérica perfeita, mas pacote não confirma vínculo causal nem distingue cancelamento automático ML vs manual Yasmin",
+      "por_que_importa": "se a origem for confirmada, cancellations_rate (hoje em 0) começa a se mover nos próximos 3-5 ciclos; condensadora deve preservar a ressalva de 'forte indício, atribuição não definitivamente confirmada'",
+      "confianca": "média"
+    },
+    {
+      "detalhe": "Health=0,71 do MLB3288536143 é sexto ponto numericamente idêntico da série; direção (caindo/estável/subindo) não é observável no pacote — apenas valor pontual disponível",
+      "por_que_importa": "gatilho da L02 (health <0,68 libera alinhamento com Himmel) não é acionado nem refutado; condensadora não deve afirmar que health 'estabilizou' nem que 'piorou' — só que o número permanece idêntico sem direção observável",
+      "confianca": "baixa"
+    },
+    {
+      "detalhe": "ADS share do dia = 56,7% (R$2.905,50 / R$5.127,39); ACOS=14,15% (salto de ~4,4% nos ciclos 22-23/05); ROAS=7,67x ainda eficiente. Breakdown por platform_item_id ausente — não é possível atribuir o salto ao cluster IMB501 ou a outros anúncios",
+      "por_que_importa": "L02 explicitamente decidiu não acionar Himmel hoje (ROAS >5x e ACOS <30%); condensadora deve registrar como ponto de série, não como gatilho de ação",
+      "confianca": "média"
+    },
+    {
+      "detalhe": "Modalidade de envio do dia: top10 79,5% Full / 20,5% Cross-Docking — coerente com padrão 30d (74,7% Full / 25,3% Cross-Docking); Flex=0% confirmado em todas as janelas; nenhuma anomalia operacional de self_service",
+      "por_que_importa": "mix do dia confirma estrutura: campeões vivem em Full, base ativa (36,7% Full / 63,3% Cross-Docking) depende de Cross-Docking — assimetria amplifica exposição a rupturas Full no topo",
+      "confianca": "alta"
+    }
+  ],
+  "memoria_interna": [
+    "MLB3288536143 — anúncio único com 3 variações (IMB501P/C/V) totalizando 61 pedidos / 63 unidades no dia; health=0,71 sexto ciclo idêntico; available_quantity=459 pós-baixa; sold_quantity acumulada=5.873",
+    "MLB6232315532 — Catálogo gold_pro Full (catalog_product_id=MLB56152808); available_quantity=19 pós-baixa de 11 pedidos; health=null (volume insuficiente para métrica, NÃO saudável); sold_quantity acumulada=192; mapping_reason=reviewed_sku_display_map",
+    "MLB4676726433 — Full paused available_quantity=0 com 3 pedidos no dia; coincidência numérica 3==3 com metrics.cancelamentos; mecanismo de cancelamento e vínculo order↔cancel ausentes no pacote",
+    "MLB3343832496 — Jogo 6 Canequinha 100ml (914C) é o único top item com health alta confirmada (0,85), Full não-Catálogo, available_quantity=370",
+    "MLB4073003575 — Kit 4 Potes 1050ml (KIT4YW1050) Full não-Catálogo, health=0,75, available_quantity=108, 7 pedidos / 8 unidades — segundo Full em padrão inferior da série, sem direção observável",
+    "Divergência mix de envio resolvida: ml_snapshot.fulfillment_mix_* prevalece sobre metrics.fulfillment (zerado pra ML)",
+    "Pendências de dado recorrentes para próximos pacotes: (1) série temporal de health por anúncio; (2) breakdown ADS spend/revenue por platform_item_id; (3) lista granular de cancelamentos com order_id↔platform_item_id↔mecanismo; (4) reposição em trânsito ao CD do ML por anúncio Full",
+    "Sem investigação granular sobre concentração horária — hour_distribution mostra picos esperados (21h=13, 9h=11, 13h=9) sem anomalia que motive aprofundamento"
+  ],
+  "llm_used": true,
+  "model": "claude-opus-4-7",
+  "fallback": false
+}

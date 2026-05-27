@@ -75,3 +75,16 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 - **Responsáveis/próximo passo:** GB/Pedro já estava reativando anúncios de Paris e Canelada; Himmel ficou de validar as recomendações em 2026-05-27 e atualizar no grupo.
 - **Como validar nos dados:** nos próximos Daily Sales Reports v2, observar inflexão a partir de 2026-05-27 por shop_id em faturamento, pedidos, mix vendido, investimento ADS, TACOS/ROAS, GMV Max, exposição e conversão dos itens em estoque; separar recuperação de canecas/jarra/redondos da limitação estrutural dos potes em ruptura.
 - **Status:** aberto — aguardando retorno da Himmel e validação com dados pós-ajuste.
+
+### 2026-05-27 10:55 BRT — Pedro cobra execução das ações combinadas para campanhas Shopee
+
+- **Participantes:** Pedro Broglio; pessoa marcada no grupo Himmel/PhaseTec.
+- **Plataforma/conta:** Shopee consolidado; sem conta específica nomeada, aplicar como contexto das 3 contas Budamix.
+- **Tema:** follow-up das ações de campanha alinhadas em 2026-05-26.
+- **Produtos/SKUs citados:** nenhum novo produto/SKU citado nesta interação; manter como contexto dos itens já priorizados na reunião anterior (canecas, Paris/Canelada, jarra/redondos e produtos com estoque), até detalhamento contrário.
+- **Decisão/contexto:** Pedro reforçou que a Himmel/equipe já pode tomar as ações mencionadas em relação às campanhas. Isso confirma que o plano de ajustes discutido no dia anterior saiu da fase de diagnóstico e entrou em execução operacional.
+- **Impacto esperado:** possível inflexão de investimento/exposição e mix vendido a partir de 2026-05-27, especialmente em produtos com estoque e anúncios reativados.
+- **Como validar nos dados:** nos próximos Daily Sales Reports v2, checar por shop_id mudanças em investimento ADS, GMV Max, TACOS/ROAS, vendas pagas vs orgânicas, pedidos e faturamento a partir de 2026-05-27/28; separar efeito de campanha de limitações de estoque dos potes em ruptura.
+- **Responsáveis/próximo passo:** Himmel/equipe deve executar os ajustes de campanha; Trader deve tratar o período pós-27/05 como janela inicial de validação.
+- **Status:** aberto — execução solicitada, aguardando evidência em dados.
+

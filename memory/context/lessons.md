@@ -68,3 +68,7 @@ No Fisco, o refresh da Filial teve rodadas abortadas por allowlist/SIGTERM e sem
 ## 2026-05-26 — [TÁTICA] Shopee Full+ é contexto de margem/mix, não causa automática de conversão
 
 No Daily Sales v2, a participação Full+ deve ser tratada como contexto operacional para margem, mix logístico, rebate e elegibilidade futura. Não usar Full+ como explicação automática para variação diária de conversão sem evidência adicional por conta/SKU/anúncio.
+
+## 2026-05-27 — [ESTRATÉGICA] Planilha de estoque exige valores em formato brasileiro
+
+Pedro definiu como regra absolutamente obrigatória: sempre que inserir ou atualizar qualquer tipo de valor na planilha de estoque, em qualquer aba, usar padrão brasileiro de moeda/número: `R$ 00,00`, com vírgula decimal. Nunca usar ponto como separador decimal. Antes de declarar sucesso em qualquer update de valor na planilha, validar visualmente/diretamente que o Sheets recebeu o valor no formato correto.

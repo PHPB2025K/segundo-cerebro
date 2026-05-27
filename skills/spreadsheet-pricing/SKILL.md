@@ -10,7 +10,7 @@ triggers:
 metadata:
   openclaw:
     emoji: "\U0001F4CA"
-    last_updated: "2026-04-08"
+    last_updated: "2026-05-27"
     spreadsheet_id: "1u74aCdH8VrQ2eK01YUQ8fUMwwb6ZPZXvrTTHoexWtnI"
     spreadsheet_name: "PLANILHA DE ESTOQUE"
 ---
@@ -134,11 +134,14 @@ Se o produto NAO tem EAN: os VLOOKUPs de MELI e SHOPEE vao retornar erro. Nesse 
 
 ## 6. REGRAS DE FORMATO
 
-### Numeros
-- Separador decimal no `gog sheets update`: usar PONTO (1.04, 19.90)
-- O Google Sheets BR converte automaticamente para virgula na exibicao
-- NUNCA enviar "R$" como texto — enviar so o numero (1.04, nao "R$ 1,04")
-- O Sheets aplica formatacao de moeda da coluna automaticamente
+### Numeros — REGRA ABSOLUTA PEDRO 2026-05-27
+- **SEMPRE que inserir ou atualizar QUALQUER valor na PLANILHA DE ESTOQUE, em qualquer aba, usar formato brasileiro: `R$ 00,00`.**
+- **NUNCA usar ponto como separador decimal (`.`) em valores enviados para a planilha.**
+- **SEMPRE usar virgula como separador decimal (`,`).**
+- Exemplos corretos: `R$ 6,75`, `R$ 6,21`, `R$ 5,00`, `R$ 66,90`.
+- Exemplos proibidos: `6.75`, `6.21`, `5.00`, `66.90`.
+- Se a ferramenta/API exigir outro formato técnico, primeiro confirmar em teste isolado e validar visualmente no Sheets; a regra operacional e de saída na planilha continua sendo formato brasileiro.
+- O Sheets aplica formatacao de moeda da coluna automaticamente, mas a entrada deve respeitar o padrão brasileiro acima.
 
 ### Texto
 - Nomes de produtos: resumidos, sem caracteres especiais
@@ -235,6 +238,7 @@ Para inserir um novo SKU, o Pedro precisa fornecer:
 | 2026-04-08 | Criacao da skill com mapeamento corrigido pelo Pedro (16 correcoes vs mapeamento original) |
 | 2026-04-08 | Documentacao de formulas reais por coluna em cada aba |
 | 2026-04-08 | Regras de cascata VLOOKUP (ESTOQUE -> marketplaces) |
+| 2026-05-27 | Regra absoluta: qualquer valor inserido na planilha deve usar formato brasileiro `R$ 00,00`, virgula decimal, nunca ponto |
 
 ---
 

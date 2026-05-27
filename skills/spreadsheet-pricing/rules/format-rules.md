@@ -11,17 +11,19 @@ tags:
 
 # Regras de Formato — Spreadsheet Pricing
 
-## Numeros
+## Numeros — REGRA ABSOLUTA PEDRO 2026-05-27
 
-| Regra | Exemplo correto | Exemplo errado |
-|-------|----------------|----------------|
-| Decimal com ponto no gog | `1.04` | `1,04` |
-| Sem prefixo R$ | `19.90` | `R$ 19,90` |
-| Sem aspas em numeros | `19.90` | `"19.90"` |
-| Inteiros sem decimal | `50` | `50.0` |
-| Zero como numero | `0` | `` (vazio) |
+Sempre que inserir ou atualizar qualquer valor na **PLANILHA DE ESTOQUE**, em qualquer aba, usar padrão brasileiro de moeda/número: `R$ 00,00`, com vírgula decimal.
 
-O Google Sheets BR converte ponto para virgula na exibicao automaticamente.
+| Regra | Exemplo correto | Exemplo proibido |
+|-------|----------------|------------------|
+| Moeda em padrão brasileiro | `R$ 6,75` | `6.75` |
+| Decimal com vírgula | `R$ 6,21` | `6.21` |
+| Centavos sempre com 2 casas | `R$ 5,00` | `5.0` ou `5.00` |
+| Preço de venda/custo/frete/taxa | `R$ 66,90` | `66.90` |
+| Inteiro monetário | `R$ 50,00` | `50` quando o campo for valor financeiro |
+
+Nunca usar ponto (`.`) como separador decimal em valores enviados para a planilha. Se uma ferramenta/API exigir formato técnico diferente, fazer teste isolado e validar visualmente/diretamente no Sheets antes de considerar a atualização concluída.
 
 ## Texto
 

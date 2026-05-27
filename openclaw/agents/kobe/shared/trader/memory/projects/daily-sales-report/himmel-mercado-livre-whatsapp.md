@@ -401,3 +401,26 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Cobrar/registrar quando a Himmel responder à pergunta pendente: previsão realista de venda/dia em junho sem o KIT2YW1520 e lista dos itens priorizados para cobrir a falta.
 
 **Status:** aberto — decisão operacional aprovada para início de junho; validar diariamente até **2026-06-05** e reavaliar após chegada/reposição do container de julho.
+
+### 2026-05-27 07:47–09:02 BRT — Pedido de inclusão de anúncio novo na campanha MLB6837149732
+
+**Participantes:** Yasmin Oscarlino; Cláudio Manrique Junior/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Inclusão operacional de anúncio novo em campanha específica.
+
+**Contexto registrado:**
+- Yasmin pediu à Himmel para incluir um **anúncio novo** na campanha **MLB6837149732**.
+- Cláudio/Himmel respondeu confirmando: “pode deixar”.
+- A conversa não trouxe o ID do anúncio novo em texto legível, produto/SKU, verba, meta de ROAS/ACoS ou prazo de execução.
+
+**Impacto esperado:**
+- Se a inclusão for executada, o anúncio novo pode ganhar exposição/investimento a partir de **27/05** dentro da campanha **MLB6837149732**.
+- Como o ID do anúncio não ficou legível no texto extraído, tratar como pendência de identificação antes de atribuir impacto de vendas/ADS a um item específico.
+
+**Como validar nos dados:**
+- Confirmar no ML Ads qual anúncio novo foi incluído na campanha **MLB6837149732** em **27/05**.
+- Monitorar entre **2026-05-27 e 2026-06-03**: impressões, cliques, vendas, investimento, ROAS, ACoS/TACoS, conversão, preço, estoque e ranking do anúncio incluído.
+- Se houver gasto sem tração, pedir retorno da Himmel sobre campanha, meta configurada e próximos ajustes.
+
+**Status:** aberto — Himmel confirmou o pedido, mas execução e impacto precisam ser validados nos dados.
+

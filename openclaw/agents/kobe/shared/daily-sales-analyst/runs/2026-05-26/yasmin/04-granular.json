@@ -1,0 +1,289 @@
+{
+  "camada": "04-granular",
+  "data": "2026-05-26",
+  "plataforma": "ml",
+  "recipient": "Yasmin",
+  "respostas_operacional": [
+    {
+      "pergunta": "Qual a origem dos 3 cancelamentos de 26/05 — continuação de MLB4676726433 (mesmo anúncio pausado de 25/05) ou novo anúncio em ruptura (candidato: MLB6167272090 Tulipa)?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "dado_disponivel": "metrics.cancelamentos=3 (agregado do dia, sem breakdown por order_id ou platform_item_id)",
+        "dado_ausente": "lista granular order_id↔platform_item_id↔motivo do cancelamento",
+        "contexto_reputacao_janela_longa": "ml_snapshot.reputation.cancellations_rate=0 (janela longa ML segue zerada, mas não reflete cancelamentos do dia ainda)",
+        "candidatos_plausiveis": [
+          {
+            "platform_item_id": "MLB4676726433",
+            "fonte": "memoria diária 25/05 (não presente no top_items_details de hoje)",
+            "hipotese": "anúncio pausado com estoque zero pode ainda estar gerando cancelamentos em fila — não confirmável pelo pacote"
+          },
+          {
+            "produto_visivel": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+            "platform_item_id": "MLB6167272090",
+            "fonte": "top_items_details / top_products",
+            "available_quantity_snapshot": 2,
+            "pedidos_dia": 4,
+            "hipotese": "ritmo de demanda > estoque disponível compatível com cancelamentos prospectivos"
+          }
+        ]
+      },
+      "leitura": "Dois dias consecutivos com exatamente 3 cancelamentos sugerem fonte comum ainda ativa, não evento pulverizado. Sem breakdown order_id↔platform_item_id, impossível atribuir a um anúncio específico. O pacote do dia não traz MLB4676726433 no top_items_details (já fora do snapshot), o que limita a verificação direta.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Status atual do MLB6167272090 (Kit 6 Canecas Tulipa 250ml) — anúncio ainda ativo? Pedidos novos gerados sobre available_quantity=2? Cancelamentos automáticos registrados no dia 26/05? Reposição confirmada em trânsito ao CD?",
+      "status": "parcialmente respondida",
+      "evidencia": {
+        "produto_visivel": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+        "platform_item_id": "MLB6167272090",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "status_anuncio": "active",
+        "listing_type": "gold_special",
+        "is_catalog": false,
+        "catalog_product_id": "MLB38833543",
+        "logistic_type": "fulfillment",
+        "available_quantity_snapshot": 2,
+        "snapshot_fetched_at_utc": "2026-05-27T09:50:34Z",
+        "natureza_snapshot": "POST-baixa dos pedidos do dia 26/05 — os 4 pedidos do dia já estão refletidos no available_quantity",
+        "pedidos_dia": 4,
+        "quantity_dia": 6,
+        "sold_quantity_acumulado": 98,
+        "health": null,
+        "health_interpretacao": "ML não calcula (volume insuficiente) — NÃO confundir com saudável",
+        "dado_ausente": [
+          "confirmação de cancelamentos automáticos no dia 26/05 atribuíveis especificamente a este MLB",
+          "ETA de reposição em trânsito ao CD do ML",
+          "snapshot pré-baixa do início do dia"
+        ]
+      },
+      "leitura": "Confirmado: anúncio segue active em Full no snapshot pós-execução, com 2 unidades remanescentes após os 4 pedidos do dia. Risco prospectivo é claro: ritmo de 4-6 pedidos/dia em 3 ciclos consecutivos sobre 2 unidades = cobertura prospectiva < 1 dia. Os 4 pedidos do dia analisado JÁ foram atendidos (snapshot é post-baixa). O risco é sobre pedidos D+1 caso entrem antes da reposição. Cancelamento automático no dia 26/05 não é confirmável pelo pacote.",
+      "conclusao_granular": "confirma — risco prospectivo de ruptura D+1, anúncio ainda ativo e exposto; ação Yasmin (L02) segue válida",
+      "confianca": "alta"
+    },
+    {
+      "pergunta": "Reposição em trânsito para MLB6232315532 (Kit 6 Canecas Lisas 200ml, Catálogo gold_pro, Full) confirmada com chegada ao CD do ML em até 2 dias?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "produto_visivel": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+        "platform_item_id": "MLB6232315532",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "status_anuncio": "active",
+        "listing_type": "gold_pro",
+        "is_catalog": true,
+        "catalog_product_id": "MLB56152808",
+        "logistic_type": "fulfillment",
+        "available_quantity_snapshot": 31,
+        "natureza_snapshot": "POST-baixa dos 15 pedidos do dia",
+        "pedidos_dia": 15,
+        "quantity_dia": 19,
+        "cobertura_prospectiva_dias": "~2,1 dias ao ritmo de 15 pedidos/dia",
+        "health": null,
+        "health_interpretacao": "ML não calcula (volume insuficiente) — NÃO confundir com saudável",
+        "dado_ausente": "ETA de reposição ao CD do ML, status logístico de transferência (não exposto no pacote)"
+      },
+      "leitura": "O dado de reposição em trânsito não está estruturalmente no pacote (ml_snapshot não expõe inbound shipments). A evidência disponível confirma o sinal de risco (cobertura prospectiva ≈ 2 dias em anúncio Catálogo Full), mas a pergunta específica sobre reposição não pode ser respondida com o que está no pacote — precisa ser checada por Yasmin no próprio painel ML.",
+      "conclusao_granular": "inconclusivo por falta de dado — risco operacional confirmado mas mitigação (reposição em trânsito) não verificável",
+      "confianca": "alta"
+    },
+    {
+      "pergunta": "Breakdown de revenue_ads por platform_item_id — quais anúncios estão gerando os R$4.484,87 de revenue ADS do dia?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "dado_disponivel": {
+          "spend_yesterday_brl": 321.93,
+          "revenue_ads_yesterday_brl": 4484.87,
+          "avg_acos_pct": 10.96,
+          "campaigns_total_count": 11,
+          "campaigns_active_count": 11
+        },
+        "dado_ausente": "ml_snapshot.ads_summary não expõe breakdown por platform_item_id — limitação estrutural do pacote já registrada na memória de 22-25/05",
+        "ads_share_calculado": "60,7% do GMV do dia (4.484,87 / 7.394,36)",
+        "roas_calculado": "13,9x (4.484,87 / 321,93)"
+      },
+      "leitura": "Pendência estrutural repetida pelo quarto ciclo consecutivo. Sem breakdown por platform_item_id, não é possível confirmar se ADS prioriza os campeões com health degradado (dependência circular hipotetizada pela L01) ou distribui em outros anúncios. Hipótese segue NÃO confirmável.",
+      "conclusao_granular": "inconclusivo por falta de dado — registrar como pendência recorrente para o próximo pacote",
+      "confianca": "alta"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Verificação do sétimo ciclo de health dos dois campeões Clássico em Full vs gatilho L02 (health < 0,68)",
+      "origem": "L02 tática",
+      "evidencia": {
+        "campeao_1": {
+          "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "platform_item_id": "MLB3288536143",
+          "fonte": "top_items_details / top_products (raw_title)",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id_referencia": "MLB44224272",
+          "health_atual": 0.71,
+          "logistic_type": "fulfillment",
+          "available_quantity_snapshot": 396,
+          "pedidos_dia_cluster_IMB501": 64,
+          "pedidos_dia_separados": {
+            "IMB501P_Tampa_Preta": 40,
+            "IMB501C_Tampa_Cinza": 12,
+            "IMB501V_Tampa_Vermelha": 12
+          },
+          "nota_identidade": "title ML é genérico ('Claro'); variações de tampa confirmadas por SKU via confirmed_variation_attributes — não é divergência"
+        },
+        "campeao_2": {
+          "produto_visivel": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+          "platform_item_id": "MLB4073003575",
+          "fonte": "top_items_details / top_products (raw_title)",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "health_atual": 0.75,
+          "logistic_type": "fulfillment",
+          "available_quantity_snapshot": 78,
+          "pedidos_dia": 21,
+          "cobertura_prospectiva_dias": "~3,7 dias ao ritmo de 21 pedidos/dia"
+        },
+        "serie_historica_health": "Ambos no mesmo patamar (0,71 e 0,75) pelo sétimo ciclo consecutivo segundo memória semanal 22-25/05",
+        "dado_ausente": "série temporal interna de health (direção: caindo/estável/subindo) não exposta pelo ML"
+      },
+      "leitura": "Sétimo ciclo idêntico em ambos os campeões — patamar estável, sem queda ciclo-a-ciclo observada. Gatilho L02 (health < 0,68 em qualquer dos dois) NÃO atingido. Decisão tática de continuar observação está sustentada.",
+      "conclusao_granular": "confirma — gatilho de alinhamento Yasmin–Himmel não disparado hoje",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "Divergência de mix de modalidade de envio entre o top10 do dia (94,4% Full) e janelas longas (75,1% em 30d, 76,9% em 7d) e base ativa (40,7% Full / 59,3% Cross-Docking)",
+      "origem": "anomalia",
+      "evidencia": {
+        "fulfillment_mix_yesterday_top10": {
+          "full_pct": 94.4,
+          "cross_docking_pct": 5.6,
+          "total_orders_resolved": 71
+        },
+        "fulfillment_mix_7d": {
+          "full_pct": 76.9,
+          "cross_docking_pct": 23.1
+        },
+        "fulfillment_mix_30d": {
+          "full_pct": 75.1,
+          "cross_docking_pct": 24.9
+        },
+        "base_ativa_fulfillment_mix": {
+          "full_pct": 40.7,
+          "cross_docking_pct": 59.3
+        },
+        "unico_cross_docking_no_top10": {
+          "produto_visivel": "Suporte Gamer 2 Controles E Headset Mesa Organizador Ps5 Ps4 Preto",
+          "platform_item_id": "MLB6661811594",
+          "fonte": "top_items_details / top_products (raw_title)",
+          "logistic_type": "cross_docking",
+          "is_catalog": true,
+          "catalog_product_id": "MLB67933315",
+          "health": null,
+          "pedidos_dia": 4
+        },
+        "flex_pct_todas_janelas": 0.0,
+        "anomalia_self_service": "Nenhuma — flex_pct=0 em todas as janelas, coerente com decisão operacional de desligar Flex"
+      },
+      "leitura": "O dia executou com concentração ainda maior em Full do que a média recente (+19 pp vs 30d). Os campeões do dia vivem em Full, mas a base ativa é majoritariamente Cross-Docking — confirma a estrutura assimétrica identificada pela L01. Nenhum pedido em logistic_type=self_service (Flex), coerente com a regra operacional Budamix.",
+      "conclusao_granular": "confirma — amplificação da exposição estrutural a rupturas de Full nos campeões",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Catálogo no top10 — quais anúncios competem em Buy Box ML",
+      "origem": "L01 estratégica",
+      "evidencia": {
+        "anuncios_is_catalog_true": [
+          {
+            "produto_visivel": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+            "platform_item_id": "MLB6232315532",
+            "catalog_product_id": "MLB56152808",
+            "listing_type": "gold_pro",
+            "health": null,
+            "available_quantity": 31,
+            "pedidos_dia": 15,
+            "cobertura_prospectiva_dias": "~2,1",
+            "logistic_type": "fulfillment"
+          },
+          {
+            "produto_visivel": "Suporte Gamer 2 Controles E Headset Mesa Organizador Ps5 Ps4 Preto",
+            "platform_item_id": "MLB6661811594",
+            "catalog_product_id": "MLB67933315",
+            "listing_type": "gold_special",
+            "health": null,
+            "available_quantity": 49,
+            "pedidos_dia": 4,
+            "logistic_type": "cross_docking"
+          }
+        ],
+        "outros_top10_classico": "Demais 8 anúncios is_catalog=false (competem em ranking de categoria, não Buy Box)"
+      },
+      "leitura": "Apenas 2 dos 10 anúncios destacados competem em Catálogo. O Kit 6 Canecas Lisas 200ml é o único Catálogo em zona de cobertura crítica e em Full — combinação que torna ruptura especialmente custosa (perda de Buy Box com recuperação lenta). O Suporte Gamer opera em Cross-Docking com cobertura confortável.",
+      "conclusao_granular": "complica — adiciona urgência ao sinal do MLB6232315532 que a L03 destacou como risco silencioso",
+      "confianca": "alta"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "baixo",
+    "fontes": [],
+    "bloqueios_para_slack": [],
+    "explicacao": "Todos os top products com title ML real preenchido em top_items_details e raw_title coerente em top_products. mapping_status='mapped' ou 'mapped_generic_sku' com confidence high/medium. As variações IMB501 (Tampa Preta/Cinza/Vermelha) compartilham o mesmo platform_item_id MLB3288536143 com title ML genérico ('Claro') — mas confirmed_variation_attributes confirma o atributo de tampa por convenção interna de SKU (IMB501P/C/V → Preta/Cinza/Vermelha). Esse caso NÃO é divergência (regra explícita da camada): é título ML enxuto + atributo confirmado por SKU. Os display_names internos batem com o atributo confirmado. Nenhum produto com risco de identificação que justifique bloqueio."
+  },
+  "divergencias": [
+    {
+      "tipo": "mix_modalidade_envio",
+      "fonte_a": "metrics.fulfillment (shopee_full=0, amazon_fba=0, amazon_fbm=0, other=0, total=143) — zerado para ML",
+      "fonte_b": "ml_snapshot.fulfillment_mix_30d (Full 75,1% / Cross-Docking 24,9%) e fulfillment_mix_yesterday_top10 (Full 94,4% / Cross-Docking 5,6%)",
+      "resolucao": "ml_snapshot.fulfillment_mix_* prevalece",
+      "regra_precedencia": "ml_snapshot calculado do Supabase a partir de logistic_type real de cada pedido vence metrics.fulfillment (campo genérico não populado para ML)",
+      "impacto": "Leitura de modalidade de envio do dia deve usar exclusivamente ml_snapshot — metrics.fulfillment é não-informativo para ML"
+    }
+  ],
+  "detalhes_que_a_condensadora_nao_pode_perder": [
+    {
+      "detalhe": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090) confirmado active em Full com available_quantity=2 pós-baixa dos 4 pedidos do dia — risco prospectivo D+1 imediato, ação Yasmin segue prioritária; pacote não confirma reposição em trânsito",
+      "por_que_importa": "Janela ETA Platinum ~10 dias depende de cancellations_rate=0; cancelamento automático D+1 nesse anúncio entra direto na janela",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Kit 6 Canecas Lisas 200ml (MLB6232315532) é o único Catálogo em zona crítica — available_quantity=31, 15 pedidos dia, cobertura prospectiva ~2,1 dias; combinação is_catalog=true + Full = ruptura cara (perda de Buy Box com recuperação lenta)",
+      "por_que_importa": "Sinal de intensidade nova hoje, distinto do risco 'sabido' da Tulipa; é o risco silencioso que pode passar atrás do GMV mais alto da semana",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Sétimo ciclo de health estável: MLB3288536143 (Jogo Potes 5 Peças) em 0,71 e MLB4073003575 (Kit 4 Potes 1050ml) em 0,75 — gatilho L02 (<0,68) NÃO atingido; decisão de observação sem acionar Himmel segue válida",
+      "por_que_importa": "Confirma decisão tática da L02 — não há acionamento de Himmel hoje; alinhamento Yasmin–Himmel permanece em standby",
+      "confianca": "média"
+    },
+    {
+      "detalhe": "Mix de modalidade de envio do top10 em 94,4% Full vs 75,1% (30d) e base ativa 40,7% Full — os campeões do dia operam quase integralmente sobre estoque no CD do ML, amplificando exposição estrutural",
+      "por_que_importa": "Reforça a tese L01 de vulnerabilidade: a base é majoritariamente Cross-Docking mas o volume vive em Full — ruptura nos campeões Full tem impacto desproporcional",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Cluster IMB501 em 44,8% do dia (Tampa Preta 40 + Tampa Cinza 12 + Tampa Vermelha 12 = 64 pedidos), title ML genérico com atributos de tampa confirmados por SKU (confirmed_variation_attributes) — pode ser comunicado com segurança",
+      "por_que_importa": "Concentração retorna ao patamar histórico (~44%) após o pico de 56,5% em 25/05 — era efeito de denominador na segunda-feira, não escalada do cluster",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "ADS share 60,7% do GMV com ROAS 13,9x e ACOS 10,96% — eficiência mais alta da série recente; ACOS é terceiro ponto consecutivo acima do baseline ~4,4% mas ROAS muito acima do limiar de ineficiência (5x)",
+      "por_que_importa": "Não dispara gatilho de acionamento Himmel; mas mantém ADS share como ponto a observar no próximo ciclo",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "3 cancelamentos do dia sem breakdown por platform_item_id — segundo dia consecutivo com exatamente 3; origem não confirmável (candidatos: MLB4676726433 herdado de 25/05 ou MLB6167272090 Tulipa em ruptura efetiva)",
+      "por_que_importa": "Recorrência sugere fonte comum ativa; sem dado granular, classificar como sinal a monitorar — não atribuir a anúncio específico no Slack",
+      "confianca": "baixa"
+    }
+  ],
+  "memoria_interna": [
+    "Pendências estruturais do pacote ML (recorrentes desde 22/05): (1) lista granular de cancelamentos com order_id↔platform_item_id↔motivo; (2) breakdown de spend_yesterday_brl e revenue_ads_yesterday_brl por platform_item_id; (3) série temporal de health por anúncio; (4) ETA/status de reposição em trânsito ao CD do ML por anúncio Full; (5) snapshot pré-baixa do início do dia",
+    "Cluster IMB501 — três variações no mesmo MLB3288536143: IMB501P (Tampa Preta) 40 pedidos, IMB501C (Tampa Cinza) 12, IMB501V (Tampa Vermelha) 12. Variações confirmadas via confirmed_variation_attributes — NÃO é divergência de identidade",
+    "MLB6232315532 (Kit 6 Canecas Lisas 200ml) é Catálogo gold_pro (catalog_product_id=MLB56152808) — único Catálogo Full em zona crítica de cobertura",
+    "MLB6661811594 (Suporte Gamer) é Catálogo gold_special em Cross-Docking (catalog_product_id=MLB67933315) — único Cross-Docking no top10",
+    "MLB4676726433 (memória 25/05 — pausado, estoque zero) NÃO aparece no top_items_details de hoje, limitando verificação direta de continuidade dos cancelamentos",
+    "flex_pct=0 em todas as janelas (yesterday top10, 7d, 30d) — coerente com decisão operacional Budamix de manter Flex desligado, nenhuma anomalia de logistic_type=self_service detectada",
+    "Reputação janela longa: 5_green, Gold, claims_rate=0,0022, cancellations_rate=0, delayed_handling_rate=0,0012 — abaixo de todos os thresholds de risco; cancelamentos do dia (3) ainda não refletidos na janela longa",
+    "MercadoLíder Platinum: gap R$42.460,66, progress 85,66%, ETA estimado ~10 dias ao ritmo R$4.225,66/dia — fora do gatilho L02 (gap < R$30k) mas janela em compressão"
+  ],
+  "llm_used": true,
+  "model": "claude-opus-4-7",
+  "fallback": false
+}

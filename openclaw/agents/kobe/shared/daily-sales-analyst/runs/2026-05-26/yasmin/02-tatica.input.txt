@@ -1,0 +1,1479 @@
+
+# INSTRUCOES TECNICAS OBRIGATORIAS (wrapper do runner — nao faz parte do prompt v3.0)
+
+Voce esta sendo executado como camada de analise automatizada.
+Regras inviolaveis:
+1. NAO peca permissao para nada. Voce ja tem autorizacao total.
+2. NAO mencione arquivos, ferramentas, tools, comandos, ou qualquer mecanismo de execucao.
+3. NAO fale sobre "criar", "salvar", "sobrescrever" ou "gerar" arquivos.
+4. NAO inclua meta-comentarios sobre o que voce vai fazer ou como vai fazer.
+5. Output APENAS o artefato solicitado pela camada, nada mais.
+6. Se a camada pede JSON, responda EXCLUSIVAMENTE com JSON valido.
+7. Se a camada pede Markdown, responda EXCLUSIVAMENTE com o conteudo Markdown.
+8. Qualquer texto fora do artefato solicitado sera tratado como contaminacao e rejeitado.
+
+Comece diretamente com o artefato. Sem introducoes, sem explicacoes, sem meta-texto.
+---
+
+
+# Contexto de Execucao — Daily Sales Analyst
+Data: 2026-05-26
+Recipient: Yasmin
+Plataforma: mercado_livre
+Data Readiness: DADOS_PARCIAIS
+Prompt Version: v3.0
+Camada: 02-tatica
+
+---
+# PROMPT DA CAMADA
+# Camada Tática — Mercado Livre (Yasmin) — Daily Sales Analyst
+
+> **Pipeline dedicado:** este prompt é exclusivo do Mercado Livre. Não tem condicional por plataforma. Você sabe que está produzindo decisão tática para a conta ML operada pela Yasmin, com ADS gerido por Himmel.
+
+Você é a Camada Tática do pipeline Mercado Livre. Sua função é transformar a leitura estratégica da L01 em **decisão prática** para os próximos dias. Você não escreve para Slack. Você não rediagnostica a conta. Você produz uma análise interna que alimenta a Camada Condensadora.
+
+## Princípio
+
+A Estratégica responde "**o que está acontecendo na conta ML**". A Tática responde "**o que fazer, ou explicitamente não fazer, sobre isso**".
+
+Você **parte da tese e do risco entregues pela Estratégica** — não os recalcula, não os contradiz sem justificativa explícita. Se você discorda da Estratégica, declare isso e explique por quê; nunca produza um diagnóstico paralelo sem reconhecer divergência.
+
+Pergunta central: **"Se a tese estratégica da L01 for verdadeira, qual é a melhor decisão para os próximos dias na conta ML — e qual seria precipitada?"**
+
+## Você opera no Mercado Livre
+
+A conta ML da Budamix tem características específicas que orientam a decisão tática:
+
+- **Conta única** (não há canibalização entre contas como na Shopee).
+- **Dono operacional:** Yasmin (focal point ML desde 22/04/2026).
+- **ADS:** Mercado Ads gerido por Himmel — **acionado SEMPRE via Yasmin**, nunca diretamente.
+- **Escalonamento estrutural:** Kobe — acionado pela Yasmin quando o problema extrapola o canal.
+- **Mix de modalidade de envio:** a operação Budamix tem **exatamente duas modalidades ativas no Mercado Livre — Full e Cross-Docking** (Flex está **desligado** na operação atual). Full = estoque no CD do ML; Cross-Docking = Coleta na expedição da Budamix. Toda análise de mix de modalidade de envio compara só essas duas. No output, sempre escrever "modalidade de envio", nunca "fulfillment" — o segundo se confunde com a modalidade Full.
+- **Mix de anúncio:** Catálogo (compete Buy Box ML), Clássico (compete ranking categoria), Premium (boost adicional).
+
+## Você é bastidor, não Slack
+
+Você produz **matéria-prima para a Condensadora**, não mensagem final.
+
+- Você **ordena internamente** por relevância tática (qual ação importa mais para a tese), mas **não seleciona o que vai virar mensagem no Slack** — quem escolhe o que aparece é a Condensadora.
+- Não escreva pensando em "como isso fica bonito no Slack". Escreva pensando em "como isso ajuda a Condensadora a julgar o que vale ser dito".
+- Se você se pegar formatando para soar bem como mensagem final, recue. Sua saída é insumo, não produto.
+
+## Horizonte temporal
+
+Tática trabalha em janela de **hoje até os próximos 5-7 dias**.
+
+- Ações para **agora/hoje** entram em "O que fazer hoje".
+- Ações que dependem de confirmar por 2-3 dias entram em "O que fazer hoje" como **checagem ou observação dirigida**, não como ação forte.
+- Ação forte (mexer em ADS via Himmel, mudar preço, escalar pra Kobe) requer ou (a) sinal já confirmado em mais de uma janela temporal pela Estratégica, ou (b) risco operacional iminente (anúncio pausado com pedidos, estoque crítico em Full, reputação amarelando) — não basta um dia fraco.
+
+## Inputs
+
+Você recebe:
+- **Saída completa da Camada Estratégica L01** (qualidade da base, tese da conta, risco estrutural principal, sinais a observar, lentes ML aplicadas)
+- **Pacote validado de dados** com bloco `ml_snapshot` (reputação, fulfillment_mix_30d/7d, top_items_details, ads_summary, account_overview)
+- **Histórico 7d/30d/60d** e mesmos dias da semana
+- **Memória diária/semanal/mensal** da conta ML
+- **Contexto Himmel** (campanhas ativas, ajustes recentes)
+- **Marketplace rules watch** (mudanças recentes de regra ML)
+
+Use apenas o que foi entregue. Não busque dado externo. Não invente causa.
+
+## Como pensar
+
+Pegue a tese estratégica da L01 e percorra:
+
+- Se essa tese for verdadeira, qual ação prática faz sentido nos próximos dias na conta ML?
+- Se essa tese for falsa, qual ação seria precipitada?
+- Qual é a **menor checagem** que evita uma decisão errada?
+- O que precisa ser **protegido** (campeão em Full, mix saudável, ranking de categoria, reputação)?
+- O que precisa ser **testado** (segundo vetor de anúncio, hipótese de exposição, hipótese de mix)?
+- O que precisa **esperar mais dados** antes de qualquer movimento?
+- Onde há risco de **mexer demais e piorar** (campanha eficiente que pode ser quebrada, anúncio com health baixo mas estável)?
+
+A saída precisa ser útil para operação real da Yasmin, não apenas estruturada.
+
+## Quando a tese estratégica é "inconclusiva" ou base é fraca
+
+Se a Estratégica entrega tese inconclusiva, marca confiança baixa, ou registra qualidade da base fraca (memória rasa, janelas indisponíveis, dados ML ausentes no pacote), a postura tática correta é:
+
+- **não tomar ação forte** (não acionar Himmel, não mexer em campanha, não alterar preço)
+- **definir checagens dirigidas** que reduzam a incerteza
+- **listar o que NÃO fazer** com mais ênfase que o que fazer
+- **escalonamento** geralmente é "observar"
+
+Tática nesse caso é **coletar evidência sem alterar a operação**.
+
+## Leitura temporal obrigatória
+
+Antes de propor ação:
+
+- O padrão já apareceu em dias anteriores? Foi resolvido como, ou ficou sem resolução?
+- A tendência vem de 7d/30d/60d ou é só ontem?
+- O mesmo dia da semana costuma se comportar assim?
+- A hipótese que sustenta esta ação apareceu antes? Foi confirmada, enfraquecida, refutada?
+- O histórico recomenda **agir agora** ou **esperar confirmação**?
+
+Regra dura: **nunca recomende ação forte baseada em um único dia fraco**, exceto risco operacional ML claro:
+- Anúncio pausado com pedidos no dia (cancelamentos prospectivos)
+- Estoque ≤ 5 unidades em campeão de alto giro
+- Reputação caindo de cor (verde → amarela)
+- Cancelamento ML do dia muito acima da média (sinal precoce de erosão de `cancellations_rate`)
+
+## Fronteira com outras camadas
+
+- **Estratégica (L01)** diagnostica a conta. Você usa o diagnóstico, não o refaz.
+- **Operacional (L03) e Granular (L04)** fornecem evidência fina (qual anúncio, qual horário, qual SKU específico). Você **cita** essa evidência para fundamentar a decisão, mas não a descreve em detalhe — quem detalha é a Granular.
+- **Condensadora (L05)** decide o que vira mensagem. Você não escreve para Slack. Você não seleciona o que aparece.
+
+Se sua saída pode ser confundida com lista de tarefas operacionais, com inventário granular, ou com mensagem pronta para Slack, está na camada errada.
+
+## Limite de especificidade
+
+Tática trabalha no nível de **decisão**, não de inventário. Você fala em **categorias e papéis**, não em listas exaustivas.
+
+**Pode:**
+- "checar health dos campeões em Full com health abaixo do limiar"
+- "verificar estoque do anúncio campeão em catálogo com cobertura crítica"
+- "observar posição dos top 3 anúncios nos próximos 2 dias"
+- "alinhar com Himmel sobre cobertura caso health continuar caindo"
+
+**Não pode:**
+- "checar health do MLB4073003575, MLB3288536143 e MLB6167272090" (a Granular faz isso)
+- "verificar estoque dos SKUs IMB501P, KIT4YW1050, 914C" (a Granular faz isso)
+
+Você **cita** a evidência granular para fundamentar a decisão ("dado que os 2 campeões em Full estão com health abaixo de 0,85..."), mas não a **reproduz** em detalhe. Se sua ação só faz sentido com lista de IDs, está descendo demais — generalize para a categoria e deixe a Granular preencher.
+
+## Mapa de responsáveis (Mercado Livre)
+
+Atribua responsável com base nesta lógica — não chute:
+
+- **Yasmin** — dona operacional do Mercado Livre. Toda ação tática começa nela: checagens de reputação, ranking, health, posição, estoque dos top, observação dirigida, comunicação com Himmel sobre ADS ML. Toda decisão tática em ML tem Yasmin como dono direto.
+- **Himmel** — gestão de Mercado Ads (verba, segmentação, criativos, lances, exposição). **Acionado via Yasmin**, nunca diretamente. Quando a decisão envolve mexer em ADS ML, a ação é "Yasmin alinha com Himmel".
+- **Kobe** — escalonamento estratégico. Acionado quando há decisão estrutural (mudar tese da conta, redirecionar verba, alterar mix de catálogo, risco que extrapola o canal ML). Acionado pela Yasmin após esgotar a decisão tática no nível dela.
+
+Regra dura: **toda ação tem Yasmin como dono direto**. Himmel e Kobe nunca aparecem como responsável primário — aparecem como **destino de alinhamento ou escalonamento**, sempre acionados pela Yasmin.
+
+## Lentes Táticas Mercado Livre obrigatórias
+
+As 5 lentes da Estratégica (L01) viram 5 lentes táticas. Para cada lente que a L01 marcou como relevante, percorra a regra de decisão correspondente:
+
+### Lente Tática 1 — Patamar
+Se a L01 identificou ganho/perda de patamar:
+- **Patamar em ganho confirmado em ≥2 janelas:** observar mais 2-3 dias, validar continuidade — não escalar nada.
+- **Patamar em queda confirmado em ≥2 janelas:** Yasmin investiga causa (exposição, mix, sazonalidade) antes de acionar Himmel.
+- **Patamar inconclusivo ou movimento de 1 dia:** coletar evidência, não agir.
+
+### Lente Tática 2 — Exposição (reputação + Mercado Líder)
+Se a L01 identificou risco de exposição:
+- **Reputação amarelando:** Yasmin investiga taxa de claims/cancellations/atraso do `ml_snapshot.reputation` — se subindo, ação imediata (causa raiz operacional).
+- **Anúncio com `status: paused` mas com pedidos no dia:** ação imediata da Yasmin — verificar estoque, decidir reposição ou cancelamento controlado **antes** que o ML cancele automaticamente e impacte `cancellations_rate`.
+- **Cancelamentos do dia muito acima da média:** sinal precoce — Yasmin investiga motivos antes que afete reputação oficial.
+
+### Lente Tática 3 — Dependência e modalidade de envio
+Se a L01 identificou risco de concentração ou de dependência por modalidade de envio:
+- **Estoque ≤ 5 unidades em campeão em Full:** ação imediata — Yasmin checa cobertura no CD do ML e providencia reposição/alerta.
+- **Campeão em Cross-Docking com volume crescente:** Yasmin considera migração pra Full (assunto pra Trader, não pra Himmel).
+- **Top 3 concentrando > 60% por ≥3 ciclos sem segundo vetor:** Yasmin avalia com Himmel se há campanha de segundo vetor pra testar — mas com cautela (não quebrar o que está funcionando).
+
+### Lente Tática 4 — Buy Box catálogo vs ranking categoria
+Se a L01 identificou risco em anúncio em catálogo ou Clássico:
+- **Campeão `is_catalog=true` com health < 0,85 ou estoque baixo:** ação imediata — ruptura em catálogo significa perda de posição que demora a recuperar. Yasmin protege o anúncio antes de qualquer outra ação.
+- **Campeão `is_catalog=false` com `health < 0,85`:** Yasmin checa se posição em categoria caiu nos últimos dias; se sim, alinha com Himmel sobre cobertura ADS preventiva (ADS amplifica orgânico, mas não substitui ranking deteriorado).
+- **Conta com `listing_type_mix.gold_pro_pct` baixo:** discussão estrutural pra Kobe — não tática de hoje.
+
+### Lente Tática 5 — Mercado Ads vs orgânico
+Se a L01 identificou ADS dominante ou ineficiente:
+- **ADS share ≥ 50% + ROAS alto (>5x) + ACOS baixo (<10%):** **NÃO mexer**. Campanha eficiente em fase de leitura inaugural — qualquer ajuste introduz variável e impede separar efeito de comportamento natural.
+- **ADS share ≥ 50% + ROAS baixo (<3x) ou ACOS alto (>30%):** Yasmin alinha com Himmel — campanha está sustentando GMV de forma ineficiente; revisar segmentação ou pausar campanhas com pior performance.
+- **ADS share < 20% (orgânico forte):** Yasmin pode propor escalada com Himmel — orgânico sustenta, ADS amplifica.
+- **Sem `ml_snapshot.ads_summary` no pacote:** decisão sobre ADS fica suspensa; Yasmin pede confirmação a Himmel antes de qualquer ação.
+
+## Padrão de raciocínio esperado
+
+Cada bullet cita os campos exatos do pacote ou do output da L01 que sustentam a decisão. Replique esse rigor.
+
+**Raso (rejeitar):** "Yasmin deve checar os anúncios líderes."
+
+**Bom:** "Yasmin verifica `available_quantity` do Kit 06 Canequinhas Acrílico (hoje em 3 unidades, `top_items_details[i].status=paused`) — risco operacional imediato porque 3 pedidos foram gerados ontem mesmo com anúncio pausado, configurando cancelamentos prospectivos que vão impactar `reputation.cancellations_rate` se não houver reposição em 24h."
+
+**Raso (rejeitar):** "Yasmin alinha com Himmel sobre ADS."
+
+**Bom:** "Yasmin **não aciona Himmel hoje**. ADS share está em 60% (R$3.041 / R$5.057 do `recipient.totals.gmv`) com ROAS 11,6x e ACOS 4,33% (`ml_snapshot.ads_summary`) — campanha eficiente. Mexer agora introduz variável num sistema sem histórico (memória vazia). Ação correta: registrar o share atual como ponto zero da série e observar 3-5 dias antes de qualquer movimento."
+
+**Raso (rejeitar):** "Health baixo precisa atenção."
+
+**Bom:** "Yasmin checa direção (estável/caindo/subindo) do `health` dos 2 campeões em Full com penalização (Kit 4 Potes 1050ml em 0,75 e Conjunto 5 Potes Tampa Vermelha em 0,71). Se health continuar caindo em ambos, hipótese de erosão de ranking orgânico se confirma e Yasmin alinha com Himmel sobre cobertura preventiva. Se estável ou em recuperação, mantém observação sem mexer."
+
+**Bom (escalonamento estrutural):** "Se ADS share ficar acima de 55% por 3 dias consecutivos com ROAS mantendo alta, Yasmin abre discussão com Kobe sobre dependência estrutural da conta em mídia paga — decisão sobre redirecionamento de verba ou diversificação de catálogo extrapola tática diária."
+
+**Bom (quando dado da L01 é insuficiente):** "A tese da L01 é inconclusiva sobre causa do ticket elevado (mix de campanha vs preferência orgânica). Tática hoje é **não agir**: Yasmin registra `ticket_medio=R$56,19` como ponto zero e coleta ticket/spend/share dos próximos 3 dias antes de qualquer decisão sobre verba ou mix."
+
+## Saída obrigatória
+
+Markdown, exatamente estas seções:
+
+### Decisão tática
+2 a 4 bullets. Cada bullet conecta:
+- a tese ou risco estratégico ao qual responde (cite a L01)
+- a decisão recomendada (agir, checar, proteger, testar, esperar)
+- o motivo, em uma frase
+
+Não rediagnostique. Cite a Estratégica como ponto de partida ("dado que a tese é X..." ou "se o risco principal é Y...").
+
+### O que fazer hoje
+Até 3 ações práticas, **ordenadas por relevância tática** (mais importante primeiro). A ordenação é insumo para a Condensadora — não é seleção do que vai aparecer no Slack.
+
+Cada uma com:
+- **Yasmin:** [ação concreta] — [motivo, conectado à tese estratégica e aos dados] — [sinal de resultado: o que indica que a ação funcionou ou precisa ser revista]
+
+**Sinal de resultado** ≠ **sinal de confirmação da Estratégica**. O sinal de resultado responde: "como saberemos se essa ação foi a certa?" — não "como saberemos se a tese estava certa?".
+
+Exemplos bons:
+- **Yasmin:** verificar estoque do anúncio Kit 06 Canequinhas Acrílico (status pausado, 3 unidades, 3 pedidos ontem) — risco operacional imediato: cancelamentos prospectivos vão impactar reputação — sinal de resultado: se houver reposição em 24h, risco neutralizado; se anúncio for cancelado, registrar como variável confundidora pra leitura dos próximos dias.
+- **Yasmin:** registrar ticket de hoje (R$56,19) e ADS share (60%) como ponto zero da série de observação — motivo: primeira leitura estruturada, sem histórico pra confirmar/refutar a tese de ticket-driven — sinal de resultado: ticket acima de R$50 por 2+ dias sem alteração de spend confirma orgânico; ticket abaixo de R$46 em dia de spend reduzido confirma dependência ADS.
+- **Yasmin:** checar direção do health dos 2 campeões em Full (Kit 4 Potes 1050ml em 0,75 e Conjunto 5 Potes Tampa Vermelha em 0,71) — motivo: penalização ML pode estar erodindo exposição orgânica enquanto ADS compensa, criando risco invisível — sinal de resultado: health estável/recuperando = observar sem ação; health caindo em ambos = alinhar com Himmel sobre cobertura.
+
+Exemplos ruins (rejeitar):
+- "Acompanhar desempenho de ML" (sem condição falsificável)
+- "Revisar campanha ML" (sem dizer o que checar)
+- "Ficar de olho na reputação" (genérico demais)
+- "Checar MLB4073003575, MLB3288536143" (granular demais)
+
+### O que NÃO fazer ainda
+Até 3 ações que seriam precipitadas. Para cada uma:
+- a ação que **não** deve ser feita agora
+- por que seria precipitada (dado/hipótese ainda não confirmado, risco de piorar, evidência insuficiente)
+
+Esta seção é tão importante quanto a anterior. Em tese inconclusiva ou base fraca, ela deve ser **mais carregada** que "O que fazer hoje".
+
+### Escalonamento
+Uma classificação + um parágrafo curto.
+
+Classificações (escolha uma):
+- **não escalar** — Yasmin resolve sozinha sem precisar de Himmel ou Kobe
+- **observar** — sem ação, coletar mais 1-2 ciclos antes de decidir
+- **alinhar com Himmel** — decisão envolve ADS ML, acionada pela Yasmin
+- **escalar para Kobe** — decisão estrutural ou risco extrapola o canal
+
+Justifique em 1 parágrafo: por que essa classificação, e o que aciona mudança (ex.: "se sinal X aparecer em 2 dias, Yasmin alinha com Himmel"; "se ADS share continuar acima de 55% por 3 dias, abre discussão com Kobe").
+
+## Proibições
+
+### Globais
+- Não rediagnostique a conta. Parta da Estratégica L01.
+- Não repita tabelas ou métricas brutas.
+- Não trate qualquer queda como "mexer em ADS".
+- Não sugira alteração de preço sem dado de margem/custo.
+- Não use "acompanhar", "monitorar", "ficar de olho" sem condição falsificável e janela temporal.
+- Não dê ação sem hipótese explícita por trás.
+- Não escreva para Slack. Você é insumo da Condensadora, não autora da mensagem final.
+- Não selecione o que vira mensagem — apenas ordene por relevância tática.
+- Não invente motivo. Não invente atribuição de responsável.
+- Não trate hipótese como fato.
+- Não desça ao detalhe granular (lista de SKUs, lista de MLBs) — cite a categoria e a evidência, não reproduza a lista.
+- Não recomende ação forte baseada em um único dia, exceto risco operacional ML claro (anúncio pausado com pedidos, estoque ≤ 5 em campeão, reputação caindo de cor).
+- Em tese inconclusiva ou base fraca, não force ação — a postura correta é checagem dirigida e "não fazer ainda".
+
+### Específicas Mercado Livre
+- Nunca coloque Himmel ou Kobe como responsável primário — eles são destino de alinhamento/escalonamento, acionados pela Yasmin.
+- Nunca trate Lucas, Leonardo ou Pedro como responsáveis — eles são de outros pipelines (Shopee, Amazon). Toda ação ML tem Yasmin como dono direto.
+- Não acione Himmel para ajustar ADS ML quando ROAS > 5x e ACOS < 10% — campanha eficiente em fase de leitura é pra observar, não pra mexer.
+- Não recomende migração de Cross-Docking pra Full como ação tática — é decisão estrutural (Trader/Kobe), Tática apenas sinaliza.
+- Não confunda `cancellations_rate` da reputação (janela longa ML) com `metrics.cancelamentos` do dia (sinal precoce) — eles servem pra propósitos diferentes na decisão.
+- Não pause/redirecione anúncio com health baixo sem antes saber se health está estabilizando, caindo ou recuperando.
+
+
+---
+# DADOS — Layer 0 Data Package
+
+## Recipient Data
+```json
+{
+  "recipient": "Yasmin",
+  "platform": "ml",
+  "accounts": [
+    "mercado-livre"
+  ],
+  "totals": {
+    "orders": 143,
+    "gmv": 7394.36,
+    "cancelamentos": 3,
+    "ticket_medio": 51.71
+  },
+  "canonical_platform_total": {
+    "platform": "ml",
+    "order_count": 143,
+    "total_revenue": 7394.36,
+    "avg_order_value": 51.71
+  }
+}
+```
+
+## Accounts Data
+```json
+{
+  "mercado-livre": {
+    "account_slug": "mercado-livre",
+    "account_name": "Mercado Livre",
+    "platform": "ml",
+    "responsavel": "Yasmin",
+    "ads_owner": "Himmel",
+    "filter": {
+      "platform": "ml"
+    },
+    "metrics": {
+      "pedidos_validos": 143,
+      "cancelamentos": 3,
+      "gmv": 7394.36,
+      "ticket_medio": 51.71,
+      "itens_vendidos": 160,
+      "top_products": [
+        {
+          "sku": "IMB501P",
+          "raw_sku": "IMB501P_T",
+          "raw_title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "family": "IMB501",
+          "parent_family": "IMB501",
+          "variation": "IMB501P",
+          "variation_sku": "IMB501P",
+          "mapped_variation_sku": "IMB501P",
+          "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+          "short_product_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "sku_alias_high_confidence",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "IMB501P"
+          },
+          "raw_skus": [
+            "IMB501P_T",
+            "IMB501PT"
+          ],
+          "platform_item_id": "MLB3288536143",
+          "title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "display_short": "Jogo Potes de Vidro 5 Peças Claro",
+          "slack_short_name": "Potes Vidro 5 Peças — Tampa Preta",
+          "confirmed_variation_attributes": [
+            "Tampa Preta"
+          ],
+          "orders": 40,
+          "quantity": 43,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT4YW1050",
+          "raw_sku": "KIT4YW1050",
+          "raw_title": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+          "family": "KIT4YW",
+          "parent_family": "KIT4YW",
+          "variation": "KIT4YW1050",
+          "variation_sku": "KIT4YW1050",
+          "mapped_variation_sku": "KIT4YW1050",
+          "display_name": "Kit 4 Potes de Vidro 1050ml Retangular",
+          "short_product_name": "Kit 4 Potes de Vidro 1050ml Retangular",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT4YW1050"
+          },
+          "raw_skus": [
+            "KIT4YW1050"
+          ],
+          "platform_item_id": "MLB4073003575",
+          "title": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+          "display_short": "Kit 4 Potes de Vidro Hermético 1050ml Tampa Azul-petróleo",
+          "slack_short_name": "Kit 4 Potes 1050ml",
+          "confirmed_variation_attributes": [],
+          "orders": 21,
+          "quantity": 22,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "CLR002",
+          "raw_sku": "CLR002",
+          "raw_title": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+          "family": "CLR",
+          "parent_family": "CLR",
+          "variation": "CLR002",
+          "variation_sku": "CLR002",
+          "mapped_variation_sku": "CLR002",
+          "display_name": "Kit 6 Canecas Lisas 200ml",
+          "short_product_name": "Kit 6 Canecas Lisas 200ml",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "CLR002"
+          },
+          "raw_skus": [
+            "CLR002"
+          ],
+          "platform_item_id": "MLB6232315532",
+          "title": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+          "display_short": "Kit de 6 Canecas de Porcelana Lisa Reta Para Chá e Café Colorida 200ml Caneca Colorida",
+          "slack_short_name": "Kit 6 Canecas Lisas 200ml",
+          "confirmed_variation_attributes": [],
+          "orders": 15,
+          "quantity": 19,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "IMB501C",
+          "raw_sku": "IMB501C_T",
+          "raw_title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "family": "IMB501",
+          "parent_family": "IMB501",
+          "variation": "IMB501C",
+          "variation_sku": "IMB501C",
+          "mapped_variation_sku": "IMB501C",
+          "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+          "short_product_name": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "sku_alias_high_confidence",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "IMB501C"
+          },
+          "raw_skus": [
+            "IMB501C_T",
+            "IMB501CT"
+          ],
+          "platform_item_id": "MLB3288536143",
+          "title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "display_short": "Jogo Potes de Vidro 5 Peças Claro",
+          "slack_short_name": "Potes Vidro 5 Peças — Tampa Cinza",
+          "confirmed_variation_attributes": [
+            "Tampa Cinza"
+          ],
+          "orders": 12,
+          "quantity": 17,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "IMB501V",
+          "raw_sku": "IMB501V_T",
+          "raw_title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "family": "IMB501",
+          "parent_family": "IMB501",
+          "variation": "IMB501V",
+          "variation_sku": "IMB501V",
+          "mapped_variation_sku": "IMB501V",
+          "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+          "short_product_name": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "sku_alias_high_confidence",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "IMB501V"
+          },
+          "raw_skus": [
+            "IMB501V_T",
+            "IMB501V"
+          ],
+          "platform_item_id": "MLB3288536143",
+          "title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "display_short": "Jogo Potes de Vidro 5 Peças Claro",
+          "slack_short_name": "Potes Vidro 5 Peças — Tampa Vermelha",
+          "confirmed_variation_attributes": [
+            "Tampa Vermelha"
+          ],
+          "orders": 12,
+          "quantity": 13,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT4YW320",
+          "raw_sku": "KIT4YW320",
+          "raw_title": "Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-petróleo",
+          "family": "KIT4YW320",
+          "parent_family": "KIT4YW320",
+          "variation": "KIT4YW320",
+          "variation_sku": "KIT4YW320",
+          "mapped_variation_sku": "KIT4YW320",
+          "display_name": "Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-pet...",
+          "short_product_name": "Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-pet...",
+          "confidence": "medium",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT4YW320"
+          },
+          "raw_skus": [
+            "KIT4YW320"
+          ],
+          "platform_item_id": "MLB4073064873",
+          "title": "Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-petróleo",
+          "display_short": "Kit Conjunto 4 Potes de Vidro 320ml Tampa Hermético Azul-petróleo",
+          "slack_short_name": "Kit 4 Potes 320ml",
+          "confirmed_variation_attributes": [],
+          "orders": 6,
+          "quantity": 6,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "914C",
+          "raw_sku": "914C_B",
+          "raw_title": "Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo",
+          "family": "914C",
+          "parent_family": "914C",
+          "variation": "914C",
+          "variation_sku": "914C",
+          "mapped_variation_sku": "914C",
+          "display_name": "Kit 6 Canequinhas 100ml com Suporte de Madeira",
+          "short_product_name": "Kit 6 Canequinhas 100ml com Suporte de Madeira",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "914C"
+          },
+          "raw_skus": [
+            "914C_B"
+          ],
+          "platform_item_id": "MLB3343832496",
+          "title": "Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo",
+          "display_short": "Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo",
+          "slack_short_name": "Kit 6 Canequinhas 100ml — Madeira",
+          "confirmed_variation_attributes": [],
+          "orders": 5,
+          "quantity": 5,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "TL6250",
+          "raw_sku": "TL6250",
+          "raw_title": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+          "family": "TL",
+          "parent_family": "TL",
+          "variation": "TL6250",
+          "variation_sku": "TL6250",
+          "mapped_variation_sku": "TL6250",
+          "display_name": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml",
+          "short_product_name": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "TL6250"
+          },
+          "raw_skus": [
+            "TL6250"
+          ],
+          "platform_item_id": "MLB6167272090",
+          "title": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+          "display_short": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml",
+          "slack_short_name": "Kit 6 Canecas Tulipa 250ml",
+          "confirmed_variation_attributes": [],
+          "orders": 4,
+          "quantity": 6,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT4YW1520",
+          "raw_sku": "KIT4YW1520",
+          "raw_title": "Kit 4 Potes Vidro Tampa Hermética 1520ml Travas Vedação Verde-escuro",
+          "family": "KIT4YW",
+          "parent_family": "KIT4YW",
+          "variation": "KIT4YW1520",
+          "variation_sku": "KIT4YW1520",
+          "mapped_variation_sku": "KIT4YW1520",
+          "display_name": "Kit 4 Potes de Vidro 1520ml Retangular",
+          "short_product_name": "Kit 4 Potes de Vidro 1520ml Retangular",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT4YW1520"
+          },
+          "raw_skus": [
+            "KIT4YW1520"
+          ],
+          "platform_item_id": "MLB5322470722",
+          "title": "Kit 4 Potes Vidro Tampa Hermética 1520ml Travas Vedação Verde-escuro",
+          "display_short": "Kit 4 Potes Vidro Tampa Hermética 1520ml Travas Verde-escuro",
+          "slack_short_name": "Kit 4 Potes 1520ml",
+          "confirmed_variation_attributes": [],
+          "orders": 4,
+          "quantity": 4,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "SPC0111",
+          "raw_sku": "SPC0111",
+          "raw_title": "Suporte Gamer 2 Controles E Headset Mesa Organizador Ps5 Ps4 Preto",
+          "family": "SPC0111",
+          "parent_family": "SPC0111",
+          "variation": "SPC0111",
+          "variation_sku": "SPC0111",
+          "mapped_variation_sku": "SPC0111",
+          "display_name": "Suporte Gamer 2 Controles E Headset Mesa Organizador Ps5 Ps4 Preto",
+          "short_product_name": "Suporte Gamer 2 Controles E Headset Mesa Organizador Ps5 Ps4 Preto",
+          "confidence": "medium",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "SPC0111"
+          },
+          "raw_skus": [
+            "SPC0111"
+          ],
+          "platform_item_id": "MLB6661811594",
+          "title": "Suporte Gamer 2 Controles E Headset Mesa Organizador Ps5 Ps4 Preto",
+          "display_short": "Suporte Gamer 2 Controles e Headset Mesa Organizador Ps5 Ps4 Preto",
+          "slack_short_name": "Suporte Gamer 2 Controles + Headset",
+          "confirmed_variation_attributes": [],
+          "orders": 4,
+          "quantity": 4,
+          "aggregation_level": "variation"
+        }
+      ],
+      "top3_concentration": 53.1,
+      "top5_concentration": 69.9,
+      "hour_distribution": {
+        "0": 3,
+        "1": 1,
+        "2": 1,
+        "5": 2,
+        "6": 3,
+        "7": 4,
+        "9": 11,
+        "10": 6,
+        "11": 7,
+        "12": 9,
+        "13": 19,
+        "14": 2,
+        "15": 1,
+        "16": 6,
+        "17": 12,
+        "18": 15,
+        "19": 11,
+        "20": 5,
+        "21": 9,
+        "22": 7,
+        "23": 9
+      },
+      "fulfillment": {
+        "shopee_full": 0,
+        "amazon_fba": 0,
+        "amazon_fbm": 0,
+        "other": 0,
+        "total": 143
+      }
+    },
+    "historical": {
+      "avg_7d": {
+        "avg_orders": 97.0,
+        "avg_gmv": 5261.62,
+        "avg_ticket": 54.24,
+        "avg_items": 102.4,
+        "days_with_data": 7
+      },
+      "avg_30d": {
+        "avg_orders": 102.1,
+        "avg_gmv": 4696.25,
+        "avg_ticket": 46.0,
+        "avg_items": 110.2,
+        "days_with_data": 30
+      },
+      "avg_60d": {
+        "avg_orders": 97.4,
+        "avg_gmv": 4185.11,
+        "avg_ticket": 42.95,
+        "avg_items": 105.2,
+        "days_with_data": 60
+      },
+      "same_weekday_last_4": [
+        {
+          "date": "2026-05-19",
+          "orders": 106,
+          "gmv": 5760.76,
+          "items": 112
+        },
+        {
+          "date": "2026-05-12",
+          "orders": 91,
+          "gmv": 4081.49,
+          "items": 94
+        },
+        {
+          "date": "2026-05-05",
+          "orders": 106,
+          "gmv": 4230.6,
+          "items": 114
+        },
+        {
+          "date": "2026-04-28",
+          "orders": 199,
+          "gmv": 7546.03,
+          "items": 225
+        }
+      ],
+      "same_weekday_avg": {
+        "avg_orders": 125.5,
+        "avg_gmv": 5404.72,
+        "avg_ticket": 43.07
+      },
+      "changes": {
+        "orders_vs_7d_pct": 47.4,
+        "gmv_vs_7d_pct": 40.5,
+        "orders_vs_30d_pct": 40.1,
+        "gmv_vs_30d_pct": 57.5,
+        "ticket_vs_30d_pct": 12.4,
+        "orders_vs_60d_pct": 46.8,
+        "gmv_vs_60d_pct": 76.7,
+        "ticket_vs_60d_pct": 20.4,
+        "orders_vs_same_weekday_pct": 13.9,
+        "gmv_vs_same_weekday_pct": 36.8
+      }
+    },
+    "reconciliation": {
+      "scope": "platform",
+      "platform": "ml",
+      "canonical_orders": 143,
+      "canonical_revenue": 7394.36,
+      "orders_count": 143,
+      "orders_revenue": 7394.36,
+      "order_delta": 0,
+      "revenue_delta": 0.0,
+      "ok": true
+    },
+    "memory": {
+      "loaded_keys": [
+        "OPERATING-RULES.md",
+        "account-himmel-context.md",
+        "global-himmel-context.md",
+        "marketplace-rules-watch.md",
+        "monthly.md",
+        "rules.md",
+        "weekly.md"
+      ],
+      "last_daily_file": "2026-05-20.md",
+      "has_weekly": true,
+      "has_monthly": true,
+      "has_rules": true
+    },
+    "quality_flags": [],
+    "ml_snapshot": {
+      "schema_version": "ml-snapshot/v2",
+      "fetched_at_utc": "2026-05-27T09:50:34.337688+00:00",
+      "date": "2026-05-26",
+      "status": "ok",
+      "reputation": {
+        "status": "ok",
+        "color": "5_green",
+        "power_seller_status": "gold",
+        "real_level": null,
+        "protection_end_date": null,
+        "claims_rate": 0.0022,
+        "cancellations_rate": 0,
+        "delayed_handling_rate": 0.0012,
+        "transactions_completed": 5842,
+        "transactions_canceled": 0,
+        "ratings_positive": 0.56,
+        "ratings_neutral": 0.03,
+        "ratings_negative": 0.41
+      },
+      "mercadolider": {
+        "status": "ok",
+        "medalha_atual": "gold",
+        "proxima_medalha": "platinum",
+        "sales_60d_revenue_brl": 253539.34,
+        "sales_60d_window_start": "2026-03-28",
+        "sales_60d_window_end": "2026-05-26",
+        "sales_60d_count_paid": 5876,
+        "sales_60d_completed_api": 5842,
+        "ritmo_diario_brl": 4225.66,
+        "platinum": {
+          "threshold_revenue_brl": 296000,
+          "threshold_sales": 1725,
+          "gap_revenue_brl": 42460.66,
+          "progress_pct": 85.66,
+          "eta_dias_estimado": 10.0,
+          "vendas_acima_threshold": 4117
+        },
+        "proximo_nivel": {
+          "alvo": "platinum",
+          "threshold_revenue_brl": 296000,
+          "threshold_sales": 1725,
+          "gap_revenue_brl": 42460.66,
+          "progress_pct": 85.66,
+          "eta_dias_estimado": 10.0
+        },
+        "_observacao_eta": "ETA é estimativa grosseira mantendo o ritmo diário médio. Cálculo real precisa simular janela rolling dia a dia (entrada vs saída). Quando ritmo cair, ETA sobe; quando subir, ETA baixa."
+      },
+      "fulfillment_mix_yesterday_top10": {
+        "status": "ok",
+        "full_pct": 94.4,
+        "cross_docking_pct": 5.6,
+        "flex_pct": 0.0,
+        "drop_off_pct": 0.0,
+        "unknown_pct": 0.0,
+        "total_orders_resolved": 71,
+        "computed_from": "top_10_items_weighted_by_orders",
+        "_glossary": {
+          "full": "fulfillment — estoque no CD do ML, envio direto",
+          "cross_docking": "ML coleta na expedição da Budamix e distribui",
+          "flex": "self_service — lojista entrega no mesmo dia",
+          "drop_off": "lojista posta em agência ML"
+        }
+      },
+      "fulfillment_mix_7d": {
+        "status": "ok",
+        "window_days": 7,
+        "since": "2026-05-20T00:00:00+00:00",
+        "until": "2026-05-27T00:00:00+00:00",
+        "orders_with_logistic_type": 719,
+        "orders_total_in_window": 719,
+        "coverage_pct": 100.0,
+        "full_pct": 76.9,
+        "cross_docking_pct": 23.1,
+        "flex_pct": 0.0,
+        "drop_off_pct": 0.0,
+        "unknown_pct": 0.0,
+        "_glossary": {
+          "full": "fulfillment — estoque no CD do ML",
+          "cross_docking": "ML coleta na expedição da Budamix",
+          "flex": "self_service — entrega no mesmo dia pelo lojista",
+          "drop_off": "lojista posta em agência ML"
+        }
+      },
+      "fulfillment_mix_30d": {
+        "status": "ok",
+        "window_days": 30,
+        "since": "2026-04-27T00:00:00+00:00",
+        "until": "2026-05-27T00:00:00+00:00",
+        "orders_with_logistic_type": 3222,
+        "orders_total_in_window": 3222,
+        "coverage_pct": 100.0,
+        "full_pct": 75.1,
+        "cross_docking_pct": 24.9,
+        "flex_pct": 0.0,
+        "drop_off_pct": 0.0,
+        "unknown_pct": 0.0,
+        "_glossary": {
+          "full": "fulfillment — estoque no CD do ML",
+          "cross_docking": "ML coleta na expedição da Budamix",
+          "flex": "self_service — entrega no mesmo dia pelo lojista",
+          "drop_off": "lojista posta em agência ML"
+        }
+      },
+      "top_items_details": [
+        {
+          "platform_item_id": "MLB3288536143",
+          "title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": "MLB44224272",
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": 0.71,
+          "available_quantity": 396,
+          "sold_quantity": 5939,
+          "category_id": "MLB244658"
+        },
+        {
+          "platform_item_id": "MLB4073003575",
+          "title": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": null,
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": 0.75,
+          "available_quantity": 78,
+          "sold_quantity": 1040,
+          "category_id": "MLB244658"
+        },
+        {
+          "platform_item_id": "MLB6232315532",
+          "title": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+          "listing_type": "gold_pro",
+          "is_catalog": true,
+          "catalog_product_id": "MLB56152808",
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": null,
+          "available_quantity": 31,
+          "sold_quantity": 211,
+          "category_id": "MLB9206"
+        },
+        {
+          "platform_item_id": "MLB4073064873",
+          "title": "Kit Conjunto 4 Potes De Vidro 320ml Tampa Hermético 4 Travas Azul-petróleo",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": null,
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": 0.85,
+          "available_quantity": 158,
+          "sold_quantity": 476,
+          "category_id": "MLB244658"
+        },
+        {
+          "platform_item_id": "MLB3343832496",
+          "title": "Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": null,
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": 0.85,
+          "available_quantity": 366,
+          "sold_quantity": 5736,
+          "category_id": "MLB9206"
+        },
+        {
+          "platform_item_id": "MLB6167272090",
+          "title": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": "MLB38833543",
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": null,
+          "available_quantity": 2,
+          "sold_quantity": 98,
+          "category_id": "MLB9206"
+        },
+        {
+          "platform_item_id": "MLB5322470722",
+          "title": "Kit 4 Potes Vidro Tampa Hermética 1520ml Travas Vedação Verde-escuro",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": null,
+          "status": "active",
+          "free_shipping": true,
+          "logistic_type": "fulfillment",
+          "health": 0.87,
+          "available_quantity": 60,
+          "sold_quantity": 137,
+          "category_id": "MLB244658"
+        },
+        {
+          "platform_item_id": "MLB6661811594",
+          "title": "Suporte Gamer 2 Controles E Headset Mesa Organizador Ps5 Ps4 Preto",
+          "listing_type": "gold_special",
+          "is_catalog": true,
+          "catalog_product_id": "MLB67933315",
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "cross_docking",
+          "health": null,
+          "available_quantity": 49,
+          "sold_quantity": 46,
+          "category_id": "MLB277786"
+        }
+      ],
+      "ads_summary": {
+        "status": "ok",
+        "campaigns_total_count": 11,
+        "campaigns_active_count": 11,
+        "spend_yesterday_brl": 321.93,
+        "revenue_ads_yesterday_brl": 4484.87,
+        "avg_acos_pct": 10.96
+      },
+      "account_overview": {
+        "status": "ok",
+        "totals": {
+          "active": 86,
+          "paused": 172,
+          "closed": 0
+        },
+        "active_analysis": {
+          "status": "ok",
+          "analyzed": 86,
+          "total_active": 86,
+          "coverage_pct": 100.0,
+          "fulfillment_mix": {
+            "full_pct": 40.7,
+            "cross_docking_pct": 59.3,
+            "flex_pct": 0.0,
+            "drop_off_pct": 0.0,
+            "unknown_pct": 0.0,
+            "_glossary": {
+              "full": "fulfillment — estoque no CD do ML",
+              "cross_docking": "ML coleta na expedição da Budamix",
+              "flex": "self_service — entrega no mesmo dia pelo lojista",
+              "drop_off": "lojista posta em agência ML"
+            }
+          },
+          "listing_type_mix": {
+            "gold_special": 91.9,
+            "gold_pro": 8.1
+          },
+          "catalog_pct": 14.0,
+          "free_shipping_pct": 15.1,
+          "out_of_stock_count": 0,
+          "out_of_stock_ids": [],
+          "low_health_count": 8,
+          "no_health_data_count": 67,
+          "low_health_threshold": 0.85
+        }
+      }
+    }
+  }
+}
+```
+
+## Data Readiness
+```json
+{
+  "status": "DADOS_PARCIAIS",
+  "data_quality": "partial",
+  "checks": [
+    {
+      "check": "timezone_brt",
+      "status": "ok",
+      "detail": "BRT window: 2026-05-26T03:00:00+00:00 to 2026-05-27T03:00:00+00:00"
+    },
+    {
+      "check": "canonical_source_available",
+      "status": "ok",
+      "detail": "Found: ['amazon', 'ml', 'shopee']; Missing: []"
+    },
+    {
+      "check": "shopee_separated_by_shop_id",
+      "status": "ok",
+      "detail": "shop_ids found: ['442066454', '448649947', '860803675']; all 3 present: True"
+    },
+    {
+      "check": "volume_band_shopee-budamix-store",
+      "status": "ok",
+      "detail": "Orders 46 vs avg30 65.5 = -29.8%"
+    },
+    {
+      "check": "volume_band_shopee-budamix-oficial-2",
+      "status": "partial",
+      "detail": "Orders 13 vs avg30 25.9 = -49.8% (outside both bands but above critical floor; partial confidence)"
+    },
+    {
+      "check": "volume_band_shopee-budamix-shop-3",
+      "status": "ok",
+      "detail": "Orders 16 vs avg30 21.8 = -26.6%"
+    },
+    {
+      "check": "volume_band_mercado-livre",
+      "status": "partial",
+      "detail": "Orders 143 vs avg30 102.1 = +40.1% (positive spike; partial confidence, not blocking)"
+    },
+    {
+      "check": "volume_band_amazon",
+      "status": "ok",
+      "detail": "Orders 34 vs avg30 32.6 = +4.3%"
+    },
+    {
+      "check": "reconciliation_shopee-budamix-store",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_shopee-budamix-oficial-2",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_shopee-budamix-shop-3",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_mercado-livre",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_amazon",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "product_identity_contract",
+      "status": "ok",
+      "detail": "Top products mapped to sellable variation + short name"
+    },
+    {
+      "check": "amazon_product_identity",
+      "status": "ok",
+      "detail": "Top 5 products identity check: all identified"
+    },
+    {
+      "check": "sync_freshness",
+      "status": "not_measured",
+      "detail": "Sync freshness metric not available from current database schema. Registered as not_measured per plan guidelines."
+    }
+  ]
+}
+```
+
+---
+# CONTEXTO: responsaveis
+# Responsáveis — Daily Sales Analyst
+
+## Operação por canal
+
+| Canal | Responsável operacional | Responsável ADS | Acionamento ADS |
+|-------|------------------------|-----------------|-----------------|
+| Shopee (3 contas) | Lucas | Himmel | Via Lucas |
+| Mercado Livre | Yasmin | Himmel | Via Yasmin |
+| Amazon | Leonardo | Pedro | Via Leonardo |
+
+## Governança
+
+| Papel | Agente | Responsabilidade |
+|-------|--------|-----------------|
+| Decisor humano final | Pedro | Decisão final, ADS Amazon |
+| Governança/QA final | Kobe | Validação de rollout, bloqueios, mudanças estratégicas, checkpoints |
+| Dono/Orquestrador | Trader | Aciona DSA, recebe retorno, envia Slack, valida memória |
+| Executor | DSA | Executa pipeline analítico, devolve artefatos ao Trader |
+| Gestão ADS Shopee/ML | Himmel | Verba, segmentação, criativos, lances, exposição, afiliados/cupons Shopee |
+
+## Regras de acionamento
+
+- Himmel nunca é acionado diretamente pelo DSA — sempre via Lucas (Shopee) ou Yasmin (ML).
+- Pedro nunca é acionado diretamente pelo DSA — sempre via Leonardo, após validação de pré-requisitos.
+- Kobe é acionado para decisões estruturais, conflitos e checkpoints.
+- DSA nunca fala com Pedro diretamente. Toda comunicação passa por Trader ou Kobe.
+
+
+---
+# CONTEXTO: marketplace-rules
+# Marketplace Rules — Daily Sales Analyst
+
+## Princípio
+
+Regras críticas de marketplace que o DSA deve considerar na análise. Estas são regras observadas e documentadas — não taxas específicas inventadas.
+
+## Shopee
+
+### Regras gerais
+- Shopee opera com múltiplas contas para a GB Importadora (3 contas ativas).
+- Cada conta tem mix, exposição e campanha próprios.
+- Cupons, afiliados e ADS são coordenados via Himmel.
+- Full Shopee (quando disponível) afeta visibilidade e entrega.
+- Canibalização entre contas é risco real e deve ser monitorada.
+
+### Pontos de atenção
+- Mudanças de regra do marketplace podem contaminar séries históricas.
+- Exposição pode variar por conta sem causa interna.
+- Horários de pico variam por conta e por categoria.
+
+## Mercado Livre
+
+### Regras gerais
+- Reputação afeta exposição e ranking.
+- Mercado Livre Full afeta visibilidade e competitividade.
+- Posição de anúncio e ranking são indicadores de saúde do canal.
+- Competitividade de preço relativo importa.
+
+### Pontos de atenção
+- Oscilação normal de ranking não é alerta sem base histórica.
+- Perda de reputação pode ter efeito cascata em exposição.
+- ADS ML coordenados via Himmel (acionado por Yasmin).
+
+## Amazon
+
+### Regras gerais
+- Buy Box é pré-requisito para tráfego pago eficiente.
+- FBA afeta elegibilidade, visibilidade e Buy Box.
+- Produto Amazon deve ser identificado por título real + ASIN do pedido.
+- Alias manual de SKU nunca é fonte primária.
+
+### Pontos de atenção
+- Nunca escalar ADS sem validar Buy Box, FBA e estoque.
+- Crescimento sobre operação frágil amplifica problema.
+- Cancelamentos e listings indisponíveis podem mascarar resultado real.
+- ADS Amazon geridos por Pedro (acionado por Leonardo após pré-requisitos).
+
+## Nota importante
+
+Este arquivo contém regras observadas e princípios operacionais. Taxas específicas de comissão, frete ou penalidade por marketplace **não são documentadas aqui** por não haver fonte validada. Quando necessário, consultar fontes oficiais dos marketplaces.
+
+
+---
+# CONTEXTO: contas-shopee
+# Contas Shopee — Daily Sales Analyst
+
+## Contas ativas
+
+| Nome | shop_id | Referência interna |
+|------|---------|-------------------|
+| Budamix Store | 448649947 | Conta principal / Store |
+| Budamix Oficial (Conta 2) | 860803675 | Conta 2 / Oficial |
+| Budamix Shop (Conta 3) | 442066454 | Conta 3 / Shop |
+
+## Responsável
+
+- Operacional: Lucas (todas as 3 contas)
+- ADS: Himmel (via Lucas)
+
+## Regras fundamentais
+
+- Nunca tratar as 3 contas como bloco. Cada conta tem mix, exposição, campanha e histórico próprios.
+- Diagnóstico em uma conta é diagnóstico daquela conta, não da Shopee.
+- Generalização ("a Shopee está caindo") só é válida se o sinal aparecer em 2 ou 3 contas ao mesmo tempo, com evidência em cada uma.
+- Sempre identificar qual conta sustenta a observação.
+- Produto Shopee sempre com conta identificada.
+- Separar comportamento por conta em horários, cancelamentos, mix e fulfillment.
+
+
+---
+# MEMORIA DAS CONTAS
+## mercado-livre
+### rules.md
+# Rules — Mercado Livre
+
+## Regras permanentes
+
+Regras específicas desta conta. Só mudam por decisão explícita, mudança de marketplace, QA recorrente ou aprovação Trader/Kobe.
+
+## Plataforma: Mercado Livre
+
+### Identificação
+- Responsável operacional: Yasmin
+- Responsável ADS: Himmel (via Yasmin)
+
+### Regras operacionais
+- Não transformar oscilação normal em alerta sem base histórica.
+- Considerar reputação, ranking, Full e competitividade.
+- Exposição e posição só podem ser citadas quando há dado ou hipótese sustentada.
+- Prioridades nunca genéricas demais.
+
+### Regras de marketplace ML
+- Regras genéricas de marketplace Mercado Livre aplicam a esta conta salvo exceção documentada.
+- ADS ML coordenados via Himmel.
+
+### Exceções
+- Nenhuma exceção documentada.
+
+---
+
+*Alterações abaixo. Registrar data, motivo e aprovação.*
+
+
+### weekly.md
+# Weekly — Mercado Livre
+
+## Estrutura
+
+Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 entradas diárias acumuladas.
+
+## Template
+
+### Semana: [DD/MM a DD/MM/AAAA]
+
+#### Tese semanal
+[Tese consolidada da semana baseada nas leituras diárias]
+
+#### Padrões observados
+- [Padrão 1]
+- [Padrão 2]
+
+#### Hipóteses ativas
+- [Hipótese 1 — status: confirmada/enfraquecida/em aberto]
+
+#### Riscos acumulados
+- [Risco 1 — persistência: X dias]
+
+#### Sinais para próxima semana
+- [Sinal 1 — condição falsificável]
+
+#### Ressalvas da semana
+- [Ressalva 1 — frequência: X ocorrências]
+
+---
+
+## Memória diária acumulada
+
+_Blocos diários abaixo. Job `daily-memory-ingest-ml.py` adiciona um bloco por dia. Rotação automática mantém os últimos 14 dias._
+
+### Dia analisado: 2026-05-25
+_ingestido em 2026-05-26T07:13:01-03:00 BRT | confiança L05: media | insights L05: 3 (0 fato, 3 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- Cluster do Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita (MLB3288536143, Full não-Catálogo) atingiu 56,5% do volume do dia — novo pico da série 44%→47,5%→56,5%; nível regular (0,71) no sexto ciclo idêntico, direção segue não observável; sétimo ponto é o decisivo para liberar ou não alinhamento Yasmin–Himmel sobre cobertura preventiva (gatilho L02: <0,68)
+- Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida (MLB6232315532, Catálogo gold_pro Full): cobertura ~1,7 dias com ritmo do dia em 11 pedidos (acima dos ~6/dia histórico) — confirmar amanhã se reposição entrou ou se entrou em ruptura com perda de Buy Box
+- Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades (MLB4676726433): pausado com estoque zero gerou 3 pedidos exatamente iguais aos 3 cancelamentos do dia — monitorar cancellations_rate nos próximos 3-5 ciclos; se subir acima de 0, confirma origem comum
+- ADS respondeu por 56,7% do faturamento do dia com ACOS saltando de ~4,4% (22-23/05) para 14,15% e ROAS 7,67x — segundo ponto da nova série; próximo ciclo define ruído vs tendência de ineficiência
+- Modalidade de envio: top10 do dia 79,5% Full / 20,5% Cross-Docking, coerente com 30d (74,7%/25,3%); base ativa segue assimétrica (36,7% Full / 63,3% Cross-Docking) — campeões vivem em Full, amplificando exposição a rupturas no topo
+- MercadoLíder Platinum: gap R$46.615, progresso 84,25%, ETA ~11 dias ao ritmo atual de R$4.156/dia — Faturamento do dia (R$5.127) acima do pace; fora do gatilho de Slack (gap >R$30k), mas qualquer movimento adverso em cancellations_rate aperta a janela
+- Pendências de pacote recorrentes para próximos ciclos: (1) série temporal de nível de qualidade por anúncio; (2) breakdown ADS spend/revenue por platform_item_id; (3) lista granular de cancelamentos com order_id↔platform_item_id↔mecanismo; (4) reposição em trânsito ao CD do ML por anúncio Full
+- Ticket do dia R$47,48 está acima de 30d (+3,4%) e 60d (+10,8%), mas 11,8% abaixo do avg_7d — compressão intra-semana por composição de segunda-feira dominada pelo cluster IMB501 de menor valor médio, não deterioração estrutural
+
+### Dia analisado: 2026-05-24
+_ingestido em 2026-05-25T09:24:01-03:00 BRT | confiança L05: media | insights L05: 3 (0 fato, 3 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- Quinto ciclo do nível de qualidade do Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita (MLB3288536143, hoje 0,71) e do Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo (MLB4073003575, hoje 0,75) — ponto definidor da erosão orgânica.
+- ADS share — se 25/05 fechar acima de 65% com nível dos campeões estagnado, aciona alinhamento Yasmin–Himmel sobre cobertura preventiva (segundo ponto consecutivo).
+- Status pós-decisão do Kit 6 Canecas Porcelana 250ml Canelada Colorida (MLB6582645908): se pausado, registrar como variável confundidora para cancellations_rate; se ativo, monitorar cancelamentos automáticos.
+- Estoque e ETA de reposição Full do Kit De 6 Canecas De Porcelana Lisa Reta 200 Ml (MLB6232315532) — confirmar se reposição entrou ou se cobertura caiu abaixo de 2 dias.
+- Kit 6 Canecas Porcelana Tulipa (MLB6167272090) ausente pelo segundo ciclo — confirmar amanhã se está ativo, pausado ou esgotado.
+- Cluster IMB501 atingiu 47,5% do volume do dia (vs 44% nos dois ciclos anteriores) — concentração crescente; observar se sustenta ou recua.
+- Possível migração operacional do IMB501P de Cross-Docking (memória 22/05) para Full (snapshot 24/05) — confirmar se sustenta no próximo ciclo; muda leitura do mix de modalidade de envio.
+- MercadoLíder Platinum: gap R$48.941, progresso 83,47%, ETA ~12 dias ao ritmo atual — fora do gatilho de Slack (gap > R$30k), mas qualquer ruptura confirmada no cluster de canecas com cancelamentos automáticos aperta a janela rapidamente.
+
+### Dia analisado: 2026-05-23
+_ingestido em 2026-05-24T07:10:47-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- Kit 6 Canecas Porcelana Tulipa 250ml (MLB6167272090, Full, não-Catálogo): snapshot 24/05 09:50 UTC com 2 unidades pós-baixa de 9 pedidos, anúncio ativo, ritmo de 6-9 pedidos/dia em dois ciclos consecutivos — checar status, estoque e reposição em trânsito amanhã; se reposição não chegou, registrar como ruptura ativa e impacto em cancellations_rate.
+- Conjunto 5 Potes de Vidro (MLB3288536143): nível de qualidade em 0,71 há três ciclos idênticos, available_quantity=469, cluster IMB501 (Tampa Preta+Vermelha+Cinza no mesmo anúncio) fez 40 pedidos = 44% do dia — quarta leitura define direção do nível.
+- Kit 4 Potes 1050ml Tampa Azul-petróleo (MLB4073003575, Full): nível de qualidade em 0,75 há três ciclos, available_quantity=139, 11 pedidos — segunda métrica que precisa de quarta leitura para definir direção.
+- Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo Full gold_pro): available_quantity=33 pós-baixa de 6 pedidos, cobertura estimada ~5,5 dias ao ritmo do dia — zona de atenção no horizonte de 5 dias por ser Catálogo (Buy Box demora a se recuperar).
+- ADS share do dia em 49,5% (R$2.538,63 / R$5.124,32), ROAS ~9x, ACOS 4,43% — segundo ponto da nova série pós-22/05; ≤ 55% no próximo ciclo confirma orgânico em expansão, ≥ 65% reativa gatilho de escalonamento a Kobe no terceiro ciclo.
+- MercadoLíder Platinum: gap R$51.794,49, progresso 82,5%, ritmo R$4.070/dia, ETA ~12,7 dias — GMV do dia acima do pace; qualquer cancelamento automático no Kit 6 Canecas Tulipa entra direto nessa janela apertada.
+- ratings_negative=0,39 (39%) idêntico ao ciclo 22/05, claims_rate=0,0025 (metade do threshold 0,005), cancellations_rate=0 — vira relevante se claims_rate ultrapassar 0,005 ou se breakdown por anúncio chegar e concentrar negativos nos dois Full em Padrão inferior.
+- Pendências de dado para o próximo pacote (consolidado): (1) breakdown de revenue_ads_yesterday_brl e spend_yesterday_brl por platform_item_id; (2) ritmo 7d por platform_item_id; (3) drivers de nível de qualidade por anúncio; (4) reposição em trânsito ao CD do ML por anúncio.
+
+### Dia analisado: 2026-05-22
+_ingestido em 2026-05-23T21:19:34-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090, Full): consumo confirmado em ~6 pedidos/dia em 2 ciclos consecutivos, estoque 7→2; se próximo pacote mostrar anúncio pausado ou cancelamento automático, vira variável confundidora para reputação, ETA Platinum e leitura do cluster de canecas
+- Nível de qualidade dos dois Full em Padrão inferior — Kit 4 Potes 1050ml Tampa Azul-petróleo (MLB4073003575, 0,75) e Jogo Potes 5 Peças Tampa Vermelha (MLB3288536143, 0,71) — segundo ponto idêntico entre ciclos, mas ML não expõe série interna; só o terceiro ponto define direção e desbloqueia ação com Himmel
+- ADS share 69,9%, ROAS 10,87x, ACOS 4,57%, gasto R$296,96 — segundo ponto consecutivo acima de 65%; terceiro ciclo é o gatilho de escalonamento a Kobe sobre dependência estrutural
+- Breakdown de revenue_ads_yesterday_brl por platform_item_id segue pendente desde 22/05 — sem ele, não dá pra confirmar se ADS prioriza os dois Full em Padrão inferior ou as variações Cross-Docking líderes do dia (registrar como dado necessário do próximo pacote)
+- Cluster IMB501 sustentou 44% do dia (37 pedidos): Tampa Preta Cross-Docking 20, Tampa Vermelha Full 10, Tampa Cinza Cross-Docking 7; tratar como bloco ajuda a explicar a inversão do mix sem fragmentar; estoque robusto nas variações Cross-Docking (8.375 e 9.195 unidades)
+- ratings_negative=0,39 (39%) idêntico ao ciclo anterior em conta verde Gold; claims_rate=0,0025 em 50% do threshold de risco (0,005); sem breakdown por anúncio, hipótese de concentração nos dois Full em Padrão inferior segue em aberto — vira relevante se claims_rate subir acima de 0,005
+- Kit 10 Potes Herméticos 320ml Azul-petróleo 10 un (MLB6739241224, Cross-Docking): 6 unidades pós-baixa com 2 pedidos no dia, cobertura ~3 dias com amostra pequena; checagem preventiva sem urgência, Budamix controla reposição em Cross-Docking
+- MercadoLíder Platinum: progresso 81,34%, gap R$55.226,77, ETA 13,8 dias ao ritmo atual de R$4.012,89/dia; GMV de hoje (R$4.622,03) está acima do ritmo necessário — fora do gatilho de Slack, vira relevante se gap cair abaixo de R$30k com progresso acima de 90%
+
+---
+
+*Histórico semanal abaixo. Não sobrescrever — adicionar nova entrada acima.*
+
+
+### monthly.md
+# Monthly — Mercado Livre
+
+## Estrutura
+
+Tese mensal da conta. Atualizada no primeiro dia útil de cada mês.
+
+## Template
+
+### Mês: [MM/AAAA]
+
+#### Tese mensal
+[Tese consolidada do mês baseada nas leituras semanais]
+
+#### Patamar da conta
+[saudável / em ganho de patamar / em acomodação / vulnerável / em queda real / inconclusiva]
+
+#### Evolução vs mês anterior
+[Comparação com tese do mês anterior — confirmada, revertida, evoluiu]
+
+#### Dependências estruturais
+- [Dependência 1 — ex: concentração em poucos produtos]
+
+#### Riscos persistentes
+- [Risco 1 — presente há X semanas]
+
+#### Decisões tomadas no mês
+- [Decisão 1 — resultado observado]
+
+#### Base para próximo mês
+- [O que monitorar]
+- [Hipóteses que transitam]
+
+---
+
+*Histórico mensal abaixo. Não sobrescrever — adicionar nova entrada acima.*
+
+
+---
+# OUTPUTS DAS CAMADAS ANTERIORES
+## 01-estrategica
+### Qualidade da base
+
+Weekly com quatro entradas diárias recentes (22–25/05) e hipóteses ativas bem documentadas — base operacional suficiente para leitura de continuidade e confirmação de hipóteses. Monthly.md sem tese mensal preenchida, o que limita âncora de longo prazo fora dos campos `avg_60d`; a leitura bimestral depende inteiramente dos dados históricos do pacote. Todos os blocos `ml_snapshot` disponíveis com `status: ok`; base robusta para a leitura de hoje.
+
+---
+
+### Leitura temporal
+
+- **Patamar vs todas as janelas:** GMV R$7.394,36 está +57,5% acima do `avg_30d` (R$4.696,25) e +76,7% acima do `avg_60d` (R$4.185,11). Orders 143 superam `avg_30d` em +40,1% e `avg_60d` em +46,8%. A elevação é simultânea em volume e ticket (R$51,71 vs avg_60d R$42,95, +20,4% via `changes.ticket_vs_60d_pct`): o dia não é efeito de ticket-pull isolado — alcance e mix subiram juntos.
+
+- **Controle de dia da semana:** Entre as últimas quatro terças-feiras (`same_weekday_avg` R$5.404,72), hoje é a segunda maior GMV da série, atrás apenas de 28/04 (R$7.546,03, período pós-feriado). A +36,8% vs o próprio grupo sazonal (`changes.gmv_vs_same_weekday_pct`), o resultado não é explicável por sazonalidade de terça — a conta opera em nível estruturalmente superior aos seus pares temporais.
+
+- **Trajetória intra-janela:** `avg_7d` (R$5.261,62) > `avg_30d` (R$4.696,25) > `avg_60d` (R$4.185,11) — progressão monotônica ascendente em GMV, confirmando aceleração contínua. O dia de hoje confirma e estende o vetor, não é pico isolado.
+
+- **Hipóteses anteriores:** (1) Concentração IMB501: memória registrava escalada 44%→47,5%→56,5% — hoje Tampa Preta (40) + Tampa Cinza (12) + Tampa Vermelha (12) = 64 pedidos / 143 = **44,8%**, recuo aparente; hipótese de concentração crescente permanece em aberto, pois 25/05 era segunda de baixo volume total (efeito de denominador, não de demanda real do cluster). (2) Health dos campeões: `health=0,71` (MLB3288536143) e `health=0,75` (MLB4073003575) confirmados no mesmo patamar pelo **sétimo ciclo consecutivo** — degradação não avançou mas tampouco reverteu. (3) ACOS spike de 25/05 (14,15%): hoje recua para 10,96% com ROAS 13,9x, sugerindo que o pico era parcialmente efeito de segunda (baixo orgânico) — mas permanece elevado vs 22–23/05 (4,4%), não houve retorno à base.
+
+---
+
+### Leitura estratégica
+
+- **Lente 1 — Patamar vs banda histórica:** A conta rompeu a banda de 60 dias com consistência entre janelas. Com `gmv_vs_7d_pct=+40,5%`, `gmv_vs_30d_pct=+57,5%` e `gmv_vs_60d_pct=+76,7%` convergindo na mesma direção, e o controle de dia da semana confirmando desempenho acima dos pares sazonais, o sinal qualifica como rompimento de patamar — não ruído, não acomodação. O único limitador para classificar como "em ganho de patamar consolidado" é a dependência estrutural que sustenta o resultado (ver Lente 5): o crescimento é real, mas a estrutura que o produz é frágil.
+
+- **Lente 3 — Dependência e modalidade de envio:** O cluster IMB501 (MLB3288536143, três variações no mesmo anúncio) somou 64 pedidos = 44,8% do dia, integralmente via modalidade de envio Full. `top3_concentration=53,1%` e `top5_concentration=69,9%`. Os campeões do dia operaram 94,4% em modalidade de envio Full (`fulfillment_mix_yesterday_top10.full_pct`), contra 40,7% na base ativa (`account_overview.active_analysis.fulfillment_mix.full_pct`) — os campeões são exceção Full em uma base majoritariamente Cross-Docking (59,3%). A assimetria persiste da série anterior: ruptura de reposição no CD do ML nos dois anúncios principais (MLB3288536143 com `available_quantity=396` e MLB4073003575 com `available_quantity=78`) afetaria o vetor Full de forma desproporcional ao peso que Full representa na base geral.
+
+- **Lente 4 — Buy Box catálogo vs ranking categoria:** Os dois campeões principais (MLB3288536143 e MLB4073003575) são Clássico (`gold_special`, `is_catalog=false`), competindo por ranking de categoria — não por Buy Box. Ambos operam com nível de qualidade do anúncio em zona regular (0,71 e 0,75 respectivamente), o que significa que o ML comprime progressivamente o posicionamento orgânico desses anúncios na categoria. O GMV subiu apesar dessa degradação porque ADS cobre a lacuna orgânica (confirmado pela Lente 5). Sinal crítico adicional: Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090, `is_catalog=false`, Full) com `available_quantity=2` e 4 pedidos hoje — alta probabilidade de ruptura ativa; pedidos sobre estoque zero geram cancelamentos prospectivos com impacto em `cancellations_rate` numa janela em que o MercadoLíder Platinum está a ~10 dias.
+
+- **Lente 5 — Mercado Ads vs orgânico:** ADS gerou R$4.484,87 (`revenue_ads_yesterday_brl`) com gasto R$321,93 (`spend_yesterday_brl`) — ROAS 13,9x, ACOS 10,96%. Esses números representam **60,6% do GMV do dia** (R$4.484,87 / R$7.394,36), mantendo a conta em zona **ADS dominante**. A eficiência do dia é forte (ROAS 13,9x, acima de 5x), mas não altera o diagnóstico estrutural: o orgânico responde por ~39% do volume, enquanto os dois campeões têm nível de qualidade do anúncio degradado que corrói ranking progressivamente. A dependência de ADS não é maquiagem de ineficiência hoje, mas é maquiagem de saúde orgânica declinante nos anúncios líderes.
+
+- **Lente 6 — MercadoLíder:** Medalha atual MercadoLíder Gold confirmada (`power_seller_status=gold`, `real_level=null`, sem proteção ativa). Progresso para Platinum: `sales_60d_revenue_brl=R$253.539,34`, gap `R$42.460,66` (`platinum.gap_revenue_brl`), progresso 85,66%. Ritmo atual `R$4.225,66/dia`; ETA ~10 dias. O dia de hoje (R$7.394,36) opera 75% acima do ritmo necessário para o prazo corrente — a janela se comprime a cada dia nesse patamar. Métricas de qualidade fora de risco: `claims_rate=0,0022` (threshold 0,005), `cancellations_rate=0`, `delayed_handling_rate=0,0012`. A única ameaça à janela é o impacto prospectivo de cancelamentos automáticos decorrentes de rupturas ativas (Kit 6 Canecas Tulipa 250ml).
+
+---
+
+### Tese da conta
+
+**Vulnerável.** A conta opera em patamar significativamente acima da banda histórica e em trajetória de aceleração consistente entre janelas — o resultado de hoje é o segundo maior de uma terça-feira na série e confirma expansão real de alcance, não apenas variação de ticket. No entanto, a estrutura que sustenta esse resultado é frágil em dois eixos simultâneos: os dois campeões Clássico em Full (que concentram 44,8%+ do volume via o cluster IMB501 + Kit 4 Potes 1050ml) operam em nível de qualidade regular pelo sétimo ciclo consecutivo, com ADS de Himmel preenchendo a lacuna orgânica que a degradação de ranking produz; e o ADS share em 60,6% coloca a conta em dependência estrutural de mídia paga sobre uma base orgânica que enfraquece silenciosamente. Crescimento real, sobre estrutura vulnerável.
+
+---
+
+### Risco estrutural principal
+
+- **Risco:** Campeões Clássico em nível de qualidade do anúncio regular pelo sétimo ciclo consecutivo (MLB3288536143 `health=0,71`; MLB4073003575 `health=0,75`) com ADS ocupando sistematicamente a lacuna orgânica gerada pela compressão de ranking — dependência circular: quanto mais o orgânico é erodido, mais ADS sustenta o resultado, mas a causa raiz (nível de qualidade degradado) não é endereçada.
+- **Por que importa:** Qualquer redução de verba, pausa de campanha ou pressão de ACOS que torne o investimento insustentável expõe o orgânico real dos dois campeões — que já opera com ranking comprimido pelo ML. A recuperação de nível de qualidade em anúncio Clássico é lenta (depende de métricas acumuladas de serviço e reviews); não há reversão rápida disponível. O crescimento de patamar registrado nas últimas semanas seria parcialmente artificial, construído sobre fundação que se corrói por baixo.
+- **Histórico:** Presente desde ao menos 22/05 (primeira entrada na weekly com dado de health dos campeões) — não é novo. O que é novo hoje é o GMV mais alto, que amplia a superfície de risco: mais volume dependendo da mesma base frágil.
+- **Sinal de confirmação:** ADS share acima de 65% por dois ciclos consecutivos com ACOS acima de 12% configura o ponto de escalonamento para alinhamento Yasmin–Himmel. Se, após qualquer ajuste de campanha, o GMV cair ≥ 25% em relação ao `avg_7d` atual (abaixo de ~R$3.950), confirma que o orgânico não sustenta o patamar sem cobertura de ADS.
+
+---
+
+### Sinais a observar
+
+1. **MercadoLíder Platinum — iminência de promoção:** Com o dia em R$7.394,36 vs ritmo atual de R$4.225,66/dia, o gap `R$42.460,66` deve cair para abaixo de R$38k no próximo ciclo. Se `mercadolider.platinum.gap_revenue_brl` cruzar abaixo de R$30.000 com progresso acima de 90%, entra na janela de iminência — qualquer dia abaixo de R$3.500 a partir daí adia a conquista, e qualquer `cancellations_rate` acima de zero pode inviabilizar a promoção pelos limiares de qualidade independentemente do faturamento.
+
+2. **Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090) — ruptura ativa:** Com `available_quantity=2` e 4 pedidos hoje (sétimo ciclo monitorado, memória de 22/05 já flagrava consumo de ~6 pedidos/dia com estoque 7→2), o próximo pacote deve mostrar ruptura confirmada. Se `status=paused` ou `available_quantity=0` com pedidos, confirma cancelamentos prospectivos entrando em `cancellations_rate` — sinal a cruzar com os thresholds de qualidade na janela de ETA Platinum.
+
+3. **ACOS e ADS share — novo regime ou normalização:** A série dos últimos 4 ciclos (ACOS: 4,57%→4,43%→14,15%→10,96%; ADS share: 69,9%→49,5%→56,7%→60,6%) ainda não permite leitura de tendência. Se nos próximos 2 ciclos o ACOS se estabilizar abaixo de 8% com ADS share abaixo de 55%, o regime de eficiência de campanha se confirma dentro do histórico; se ACOS permanecer acima de 10% com share acima de 60% por dois dias seguidos, configura novo patamar de menor eficiência que justifica alinhamento Yasmin–Himmel sobre cobertura e mix de campanhas.

@@ -1,0 +1,58 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "Nenhum Crítico nem Maior detectado. Dois Menores isolados e não sistêmicos identificados: (1) Gate 5/9 — inconsistência cross-section leve no cluster IMB501, cujas variações aparecem com atributo de cor no Top Produtos ('Potes Vidro 5 Peças — Tampa Preta/Cinza/Vermelha') mas sem cor na Análise e Prioridades ao referenciar o anúncio MLB3288536143 como conjunto ('Potes Vidro 5 Peças') — contextos analiticamente distintos (variação vs. listing de health), sem ambiguidade funcional, mas constitui ruído de identificação cross-section conforme definição do Gate 5; (2) Gate 6 — o contraste '(contra 75% no mês)' do mix de modalidade de envio Full, presente no insight 1 da L05, foi suprimido na L06 sem registro nas Decisões de formatação, levemente enfraquecendo o contexto analítico da concentração de 94% em Full mas sem alterar a tese central nem as ações priorizadas. Regra aplicada: 0 Maiores + 2 Menores (1–5 não sistêmicos) → APROVADO COM RESSALVA.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "RESSALVA",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Maiores + 2 Menores (1–5 Menores, não sistêmicos) → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "5 — Top Produtos / 9 — Consistência entre camadas",
+      "texto_atual": "Top Produtos: 'Potes Vidro 5 Peças — Tampa Preta', 'Potes Vidro 5 Peças — Tampa Cinza', 'Potes Vidro 5 Peças — Tampa Vermelha' | Análise bullet 1: 'Potes Vidro 5 Peças em regular' | Prioridades bullet 3: 'Potes Vidro 5 Peças'",
+      "texto_esperado": "Nominação consistente ao longo das seções: nas referências ao anúncio MLB3288536143 como unidade (health, concentração de volume) poderia ser mantida convenção explícita de que se trata do listing consolidado, ou ao menos registrada a distinção nas Decisões de formatação",
+      "regra_violada": "Gate 5 — 'Registrar como Menor: mesmo produto aparece com nome diferente em seções distintas'. Os slack_short_names das variações IMB501P/C/V incluem atributo de cor, mas ao referenciar o listing unificado na Análise e Prioridades (saúde e volume do cluster) a L06 omite o qualificador sem documentar a convenção, gerando nominação divergente entre seções para o mesmo artefato de produto.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "6 — Análise da Conta (fidelidade à L05)",
+      "texto_atual": "94% do volume dos produtos mais vendidos rodou via Full",
+      "texto_esperado": "94% do volume dos produtos mais vendidos rodou via Full (contra 75% no mês)",
+      "regra_violada": "Gate 6 — contraste analítico '(contra 75% no mês)' presente no insight 1 da L05 foi suprimido na L06 sem justificativa nas Decisões de formatação. O dado contextualiza por que a concentração de 94% em Full é anormal vs. o baseline mensal de 75%, reforçando o diagnóstico de 'resultado frágil'. A supressão não altera a tese central nem as ações, mas enfraquece levemente a evidência de suporte ao enquadramento de vulnerabilidade.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "Cluster IMB501 — convenção de nominação cross-section: slack_short_names das variações incluem cor (ex.: 'Potes Vidro 5 Peças — Tampa Preta'), mas referências ao listing MLB3288536143 como conjunto na Análise/Prioridades omitem a cor. Contextos são analiticamente distintos (variação vendável vs. listing de health/volume agregado) e não geram ambiguidade operacional, mas a distinção deveria ser documentada nas Decisões de formatação da L06 para evitar flag recorrente de QA.",
+    "Contraste de baseline do mix de modalidade de envio ('contra 75% no mês') suprimido da Análise sem registro nas Decisões de formatação. Em ciclos futuros, toda supressão de dado de contraste presente no insight da L05 deve ser documentada explicitamente na seção de decisões da L06, mesmo quando a tese central não é alterada."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "fulfillment_mix_yesterday_top10 cobre 71 dos 143 pedidos do dia (49,6%) — abaixo do limiar de 70% do Gate 12c. A L06 corretamente limitou o escopo a 'produtos mais vendidos' (não apresentou como métrica total), satisfazendo a condição de não bloqueio. No entanto, a L05 não registrou formalmente a limitação de cobertura como ressalva explícita. Para ciclos futuros: quando cobertura do top10 ficar abaixo de 70%, recomendar que L05 registre a limitação em alertas_de_confianca e L06 reforce o escopo na mensagem com marcação do tipo 'dos top 10 anúncios'.",
+    "Pendências estruturais recorrentes do pacote ML (quarto ciclo consecutivo sem resolução): (1) breakdown de ADS spend/revenue por platform_item_id — impede confirmação da hipótese de dependência circular entre ADS e campeões com qualidade degradada; (2) lista granular de cancelamentos com order_id↔platform_item_id↔motivo — impede atribuição dos 3 cancelamentos diários recorrentes; (3) série temporal de health por anúncio — impede leitura de direção; (4) ETA/status de reposição em trânsito ao CD do ML por anúncio Full — impede confirmação de mitigação de ruptura. Cada ciclo adicional sem esses dados eleva o volume de hipóteses inconclusivas e reduz a confiança operacional estrutural do report. Recomendar escalada do fetcher para Pedro/Trader.",
+    "ml_snapshot.mercadolider._observacao_eta registra que o ETA de ~10 dias para Platinum é estimativa grosseira baseada em ritmo médio diário, sem simulação de janela rolling. O faturamento do dia (R$ 7.394,36) é 75% acima do pace necessário (R$ 4.225,66/dia), o que comprime o ETA real vs. a estimativa exibida. A L05 e a L06 usaram corretamente 'prazo estimado ~10 dias' com linguagem de estimativa, mas a discrepância entre ritmo do dia e ritmo médio sugere que o ETA real pode ser menor que 10 dias — informação que pode tornar-se relevante nos próximos 1–2 ciclos quando o gap cruzar abaixo de R$ 30k."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

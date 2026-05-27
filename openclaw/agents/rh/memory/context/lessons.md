@@ -1,6 +1,12 @@
 # Lições — RH
 
-_Atualizado: 2026-05-25_
+_Atualizado: 2026-05-26_
+
+## 2026-05-26
+- A rotina de saída pode deixar de destacar ausência total de marcações; a consolidação deve validar também funcionários sem nenhum registro em dias úteis.
+- Silêncio prolongado de Leonardo e Mateus passou de uma semana útil e segue gerando escalamentos repetidos; sem decisão do Pedro, o risco vira ruído operacional e backlog.
+- Intervalos abaixo de 1h continuam recorrentes em Guilherme, Leonardo e Lucas; o padrão precisa de orientação operacional antes de cobrança ou correção.
+- Sandra sem marcações em dia útil, somada ao histórico de faltas completas, é risco trabalhista sensível e deve ficar em atenção alta.
 
 ## 2026-05-25
 - Backlog de comunicações abertas subiu para 16 após o monitor semanal; esse acúmulo é risco operacional antes de novos ciclos de cobrança.

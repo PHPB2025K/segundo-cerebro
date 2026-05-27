@@ -1,17 +1,18 @@
 # Pendências — RH
 
-_Atualizado: 2026-05-25_
+_Atualizado: 2026-05-26_
 
-> 25/05 gerou 4 casos semanais novos aguardando Pedro e aumentou o backlog para 16 comunicações RH abertas. Consolidação não autoriza WhatsApp proativo.
+> 26/05 não criou novas comunicações, mas adicionou risco diário: Sandra sem marcações em dia útil, Guilherme/Leonardo sem saída final e intervalos <1h recorrentes. Consolidação não autoriza WhatsApp proativo.
 
 ## 🔴 Prioridade Alta
-- [ ] Pedro aprovar/orientar próximos passos para Guilherme: pendências semanais de 11/05 e 13/05, comunicação anterior pendente >72h, 19/05 com marcações incompletas, 20/05 sem saída final + intervalo <1h, 21/05 com intervalo <1h, 22/05 com intervalo de 28min e novo caso semanal 18/05–23/05 persistido sem envio por TIPO F/recorrência.
-- [ ] Pedro aprovar/orientar próximos passos para Mateus: regularizar pendências da semana 04/05–09/05, pendências semanais de 11/05–16/05, batidas incompletas de almoço em 18/05, marcações parciais de 22/05 e novo caso semanal 18/05–23/05 com 7 pendências reais; considerar jornada especial/Tiro de Guerra antes de classificar.
-- [ ] Sandra: obter retorno/aprovação sobre ausência total de marcações antigas, pendências semanais de 11/05–16/05 e novo caso semanal 18/05–23/05 com 5 faltas completas (TIPO D + TIPO F); não enviar novo WhatsApp sem orientação.
-- [ ] Leonardo: concluir pendência de 04/05 considerando jornada especial; confirmar dias de faculdade para evitar falsos positivos recorrentes; validar 22/05 com saída final ausente e novo caso semanal 18/05–23/05 persistido sem envio por comunicação anterior aberta/silêncio prolongado.
-- [ ] Pedro aprovar/orientar próximos passos para Lucas: pendência semanal de 11/05, recorrência em semanas consecutivas, intervalos <1h em 19/05, 20/05, 22/05 e 25/05, 21/05 sem almoço registrado; ajuste antigo de 05/05 segue pendente de validação no Ponto Certo.
+- [ ] Pedro validar Sandra sem marcações em 26/05 e orientar se deve tratar como falta completa, ausência justificada ou falha de registro; histórico de faltas completas/pendências semanais segue bloqueado para contato sem orientação.
+- [ ] Pedro aprovar/orientar próximos passos para Guilherme: pendências semanais de 11/05 e 13/05, comunicação anterior pendente >72h, 19/05 com marcações incompletas, 20/05 sem saída final + intervalo <1h, 21/05 com intervalo <1h, 22/05 com intervalo de 28min, novo caso semanal 18/05–23/05 persistido sem envio por TIPO F/recorrência, e 26/05 com saída final ausente + intervalo de 54min.
+- [ ] Pedro aprovar/orientar próximos passos para Mateus: regularizar pendências da semana 04/05–09/05, pendências semanais de 11/05–16/05, batidas incompletas de almoço em 18/05, marcações parciais de 22/05, novo caso semanal 18/05–23/05 com 7 pendências reais, e comunicação antiga escalada novamente em 26/05 após 9 dias úteis sem resposta; considerar jornada especial/Tiro de Guerra antes de classificar.
+- [ ] Leonardo: concluir pendência de 04/05 considerando jornada especial; confirmar dias de faculdade para evitar falsos positivos recorrentes; validar 22/05 e 26/05 com saída final ausente; comunicação antiga foi escalada novamente em 26/05 após 9 dias úteis sem resposta.
+- [ ] Pedro aprovar/orientar próximos passos para Lucas: pendência semanal de 11/05, recorrência em semanas consecutivas, intervalos <1h em 19/05, 20/05, 22/05, 25/05 e 26/05, 21/05 sem almoço registrado; ajuste antigo de 05/05 segue pendente de validação no Ponto Certo.
 
 ## 🟡 Prioridade Média
+- [ ] Compliance 26/05: validar Sandra sem marcações; Guilherme e Leonardo sem saída final; Guilherme/Leonardo/Lucas com intervalo abaixo de 1h; Mateus com entrada 09:26 sob contexto de Tiro de Guerra; nenhuma jornada >10h identificada.
 - [ ] Compliance 25/05: validar Leonardo com batidas incompletas, Guilherme/Lucas/Mateus com intervalo abaixo de 1h; nenhuma jornada >10h identificada.
 - [ ] Backlog de comunicações RH: revisar 16 casos abertos não resolvidos, incluindo pendências antigas das semanas 27/04–02/05, 04/05–09/05, 11/05–16/05 e novos registros de 18/05–23/05.
 - [ ] Compliance 22/05: validar Guilherme/Lucas/Leonardo com intervalo abaixo de 1h, Leonardo sem saída final, Mateus com marcações parciais e Sandra sem marcações.

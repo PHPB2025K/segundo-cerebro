@@ -73,3 +73,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 - Pedro aprovou tecnicamente o uso de LLM como caminho principal para os três reports individuais: Lucas/Shopee, Yasmin/Mercado Livre e Leonardo/Amazon.
 - Slack Writer LLM + QA Gate LLM passam a ser o caminho aprovado; fallback determinístico não pode mascarar falha de camada LLM.
 - Envio real continua bloqueado até autorização explícita de Pedro/Kobe; se camada LLM falhar, o recipient fica bloqueado em vez de seguir por fallback.
+
+### Shopee Full+ — regra operacional para margem/mix (2026-05-26)
+- Programa começa em junho/2026; devolução de comissão ocorre no mês seguinte conforme participação mensal de pedidos enviados via Full por conta.
+- Abaixo de 40% Full não há rebate; 40%–69,99% gera faixa intermediária; 70%+ gera faixa máxima. Itens abaixo de R$50 contam para participação Full, mas não recebem devolução.
+- Usar Full+ como contexto de margem, mix logístico e priorização de sortimento Full; não usar como explicação automática de conversão/venda diária, porque o efeito financeiro liquida depois.

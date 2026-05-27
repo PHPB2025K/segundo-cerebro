@@ -1,13 +1,13 @@
 # Pendências — Fisco
 
-_Atualizado: 2026-05-25_
+_Atualizado: 2026-05-26_
 
 ## 🔴 Prioridade Alta
-- [ ] Bling Filial: resolver erro HTTP 403 “empresa vinculada ao token está inativa” antes de qualquer emissão/draft dependente da Filial. Reconfirmado em 2026-05-25.
-- [ ] Refresh Bling cron: manter execução automática estável e monitorada; falhas atuais incluem Filial inativa, alertas WhatsApp com HTTP 403, bloqueios por allowlist/política de execução/aprovação e abortos/SIGTERM antes de validação ou resposta consolidada. Reconfirmado em 2026-05-25.
+- [ ] Bling Filial: resolver erro HTTP 403 “empresa vinculada ao token está inativa” antes de qualquer emissão/draft dependente da Filial. Reconfirmado em 2026-05-26.
+- [ ] Refresh Bling cron: manter execução automática estável e monitorada; falhas atuais incluem Filial inativa, alertas WhatsApp com HTTP 403, bloqueios por allowlist/política de execução/aprovação e abortos/SIGTERM antes de validação ou resposta consolidada. Reconfirmado em 2026-05-26.
 
 ## 🟡 Prioridade Média
-- [ ] Alertas do refresh Bling: validar canal WhatsApp, que segue retornando HTTP 403 nas execuções observadas até 2026-05-25.
+- [ ] Alertas do refresh Bling: validar canal WhatsApp, que segue retornando HTTP 403 nas execuções observadas até 2026-05-26.
 - [ ] Após normalizar Bling Filial, executar teste controlado de conectividade Matriz + Filial sem expor tokens/credenciais.
 - [ ] Padronizar respostas do cron fiscal com horário em BRT quando houver horário visível.
 

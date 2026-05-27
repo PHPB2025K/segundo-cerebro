@@ -61,3 +61,17 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 - **Como validar nos dados:** nos próximos Daily Sales Reports v2, comparar vendas, tráfego/conversão, investimento ADS, TACOS/ROAS, ranking/exposição e estoque das 3 contas Shopee; procurar inflexão a partir de 2026-05-26/27 e separar por shop_id. Se houver melhora/queda, registrar como hipótese ligada às ações da reunião, não como causa confirmada.
 - **Responsáveis/próximo passo:** Himmel acompanhar evolução das ações e métricas; Lucas/Pedro devem repassar ou disponibilizar a gravação/ata para detalhar ações, produtos e janelas de validação.
 - **Status:** aberto — reunião realizada e ações citadas, mas sem detalhamento operacional no WhatsApp.
+
+### 2026-05-26 19:40–21:15 BRT — Pedro fecha diagnóstico e muda direção das ações Shopee
+
+- **Participantes:** Pedro Broglio, Raphaella (Himmel) e pessoas marcadas no grupo; contexto destinado à Himmel Shopee.
+- **Plataforma/conta:** Shopee consolidado; sem conta específica nomeada para a maior parte das ações, aplicar como contexto das 3 contas Budamix. A mensagem separa impacto estimado de ruptura por conta: Shop ~29% do faturamento, Oficial ~20–25%, Store ~7%.
+- **Tema:** diagnóstico da queda de maio e redirecionamento de estratégia de ADS/campanhas para recuperação de faturamento.
+- **Produtos/SKUs citados:** potes retangular 1520, quadrado 800, Canelada Rosa, Xícaras Paris, modelos Paris/Canelada/Reta/Tulipa, canecas, Jarra, Kit 5 Potes Redondos.
+- **Decisão/contexto:** Pedro atribuiu a queda de maio a três fatores: ruptura dos potes 1520/800; canecas/Paris/Canelada desativadas no teste anti-canibalização apesar de haver estoque; e campanhas GMV Max com ROAS muito alto/travado (15–35) e baixo gasto diário (~R$130–160 por conta). A direção definida foi não segurar investimento: afrouxar TACOS/meta de ROAS nas campeãs com estoque, remanejar verba dos potes em ruptura para itens disponíveis e religar Paris/Canelada.
+- **Contexto sobre teste anti-canibalização:** os modelos Paris, Canelada e Reta perderam volume total em maio; Tulipa foi o único modelo que cresceu e ficou ativo nas 3 contas. Hipótese: o teste retirou visibilidade em vez de direcionar volume para uma conta.
+- **Campanhas/promos:** campanha de desconto + Premium aprovada em conceito, mas deve ser redirecionada para itens em estoque, não para potes em ruptura. Cupons para gap de pedidos seguem complementares.
+- **Janelas de validação:** 06/06 deve ser preparado com canecas/jarra/redondos antes do container; 07/07 já deve considerar potes de volta. Ruptura dos potes só tende a normalizar com container no início de julho.
+- **Responsáveis/próximo passo:** GB/Pedro já estava reativando anúncios de Paris e Canelada; Himmel ficou de validar as recomendações em 2026-05-27 e atualizar no grupo.
+- **Como validar nos dados:** nos próximos Daily Sales Reports v2, observar inflexão a partir de 2026-05-27 por shop_id em faturamento, pedidos, mix vendido, investimento ADS, TACOS/ROAS, GMV Max, exposição e conversão dos itens em estoque; separar recuperação de canecas/jarra/redondos da limitação estrutural dos potes em ruptura.
+- **Status:** aberto — aguardando retorno da Himmel e validação com dados pós-ajuste.

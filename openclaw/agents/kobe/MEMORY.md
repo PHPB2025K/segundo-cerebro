@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-25 23:45 BRT (consolidação diária em camadas)._
+_Último update: 2026-05-26 23:45 BRT (consolidação diária em camadas)._
 
 ---
 
@@ -136,12 +136,12 @@ skills/
 | **Vault** | Finanças, tesouraria, caixa | agents/vault | ✅ Operacional |
 | **Scout** | Reposição, demanda, estoque, compras semanais | agents/compras | ✅ Fundação criada + Radar |
 
-## Status do Sistema (25/05/2026 23:45 BRT — consolidação diária em camadas)
+## Status do Sistema (26/05/2026 23:45 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
 - **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; todo conteúdo relacionado a alertas deve ir para lá (watchdogs, guards, audits, monitores, failure alerts, resumos e avisos de risco/problema). Thread 8 permanece Urgente e não deve receber alertas técnicos de rotina.
 - **Planejamento de reposição das canecas / Compras:** prioridade máxima do próximo bloco operacional. Pedro pediu em 25/05 retomar a criação do Diretor de Compras; fundação do agente **Scout** criada com subagente **Radar**. Pedro aprovou estrutura enxuta Scout → Radar por enquanto e regra do cron semanal: recalcular o pipeline inteiro do zero com dados até D-1, comparar contra o plano aprovado e só atualizar se houver mudança relevante. O piloto de canecas segue como primeiro playbook antes de ampliar para outras famílias; todo assunto de compras vai no tópico Compras.
-- **Daily Sales Report Slack / DSA:** envio real para funcionários segue bloqueado até liberação explícita. O DSA ML amadureceu em 23/05 com sistema MercadoLíder, memory ingest diário, consolidações semanal/mensal e decisão de modelo por camada. Em 25/05, L06 foi lapidada para linguagem natural no Slack da Yasmin. Pacotes 23/05 e 24/05 seguem com DADOS_PARCIAIS; o de 24/05 teve R$ 10.766,55, 214 pedidos e preview apenas Yasmin/ML. Investigar ciclo parcial/ML-only antes de qualquer promoção.
+- **Daily Sales Report Slack / DSA:** envio real para funcionários segue bloqueado até liberação explícita. O DSA ML amadureceu em 23/05 com sistema MercadoLíder, memory ingest diário, consolidações semanal/mensal e decisão de modelo por camada. Em 25/05, L06 foi lapidada para linguagem natural no Slack da Yasmin. Pacotes 23/05 e 24/05 seguem com DADOS_PARCIAIS; o pacote de 25/05 veio com **DADOS_OK** nas três plataformas (R$ 12.345,96, 268 pedidos, ticket R$ 46,07), mas a entrega temporária localizada novamente foi só Mercado Livre/Yasmin, Pedro-only, aprovada com ressalvas. Validar se o ciclo ML-only é desenho ou lacuna antes de qualquer promoção; envio real para Yasmin/Lucas/Leonardo continua bloqueado.
 - **Estoque Budamix:** deploy de produção foi retomado em 20/05 por rsync direto, encerrando o checkpoint GitHub/Deploy Key para essa frente. Parser PDF local substituiu webhook n8n quebrado e teste E2E reversível com PDF real validou 7 SKUs com retorno bit a bit da planilha. Pendências remanescentes: POT1BB duplicado, aliases, PR4 kits/BOM, cleanup opcional das ops de teste e desativar webhook antigo.
 - **DRE Abril:** U15 Descontos Concedidos continua prioridade antes da U44 v4 limpa. ML aceito em R$ 5.061,14; Amazon precisa fechar item-promotion sem frete promocional; Shopee segue suspeita/reclassificação.
 - **Mission Control:** 11/23 módulos fechados; módulos Activity, Cron, Sessions, Skills e Costs consolidados, com separação de custo real API vs equivalente API vs subscription. Próxima prioridade técnica segue n8n usage tracking em `/costs`, painel Daily Sales Pipeline pendente de restart/smoke e PRDs dos módulos restantes.
@@ -154,8 +154,9 @@ skills/
 - **RH/Ponto Certo:** `ponto.budamix.com.br` ativo com SSL; WhatsApp RH proativo bloqueado indefinidamente até liberação explícita, inbound permitido.
 - **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2.
 - **Amazon Ads:** tópico oficial passou a ser Amazon ADS. Nova régua aprovada: grupo alvo <10% e limite 15%, com tolerância refinada por função de campanha. Rodada de 24/05 executou ajustes em Tulipa, Suporte Controle Gamer, Potes Herméticos Vidro, Canecas Canelada, MDFs, Jarra Medidora e Jogo Canequinhas Café; D+7 obrigatório para medir efeito.
-- **Bling/Fisco:** Filial segue com HTTP 403/empresa-token inativo no refresh OAuth pelo 11º dia em 25/05; Pedro decidiu pausar essa frente em 21/05 porque não está usando esse Bling. Não gastar bloco operacional agora; não avançar fluxos fiscais que dependam da Filial até reabrirem a frente. Atenção: cron refresh teve rodadas sem validação útil por allowlist/SIGTERM; se persistir, corrigir monitor antes de confiar nele. WhatsApp Health Check virou próximo foco de infra.
-- **RH/Ponto Certo:** follow-up tem pré-checagem determinística de cobertura por ajuste, justificativa ou batida real. Em 20/05, compliance registrou Franciele/Geziele/Guilherme sem saída e Guilherme/Leonardo/Lucas com intervalo <1h; WhatsApp proativo segue bloqueado fora do escopo autorizado.
+- **Shopee Full+:** Trader registrou em 26/05 que Full+ deve ser tratado como contexto de margem/mix logístico e rebate, não como causa automática de conversão diária. Conta 3 está abaixo do corte mínimo de 40% de pedidos Full no MTD; calcular impacto financeiro por conta para junho antes de recomendar ação.
+- **Bling/Fisco:** Filial segue com HTTP 403/empresa-token inativo no refresh OAuth pelo 12º dia em 26/05; Pedro decidiu pausar essa frente em 21/05 porque não está usando esse Bling. Matriz OK e Filial 403 nas rodadas úteis de 01:29, 11:29, 16:29 e 21:29 BRT. Não gastar bloco operacional agora; não avançar fluxos fiscais que dependam da Filial até reabrirem a frente. Atenção: cron refresh teve rodadas sem validação útil por política/allowlist; se persistir, corrigir monitor antes de confiar nele. WhatsApp Health Check virou próximo foco de infra.
+- **RH/Ponto Certo:** follow-up tem pré-checagem determinística de cobertura por ajuste, justificativa ou batida real. Em 26/05, compliance registrou Sandra sem marcações em dia útil; Guilherme e Leonardo sem saída final; Guilherme, Leonardo e Lucas com intervalo <1h; backlog RH segue em 16 comunicações abertas. WhatsApp proativo segue bloqueado fora do escopo autorizado; Pedro precisa orientar casos antes de nova cobrança.
 - **Blog Budamix Pipeline v2:** em produção; resta inspeção visual humana do post de teste e cleanup.
 
 ### ✅ Operacional
@@ -335,3 +336,10 @@ _Próximas ações: (1) investigar pacotes parciais Daily Sales v2 de 23/05 e 24
 - [[openclaw/agents/kobe/shared/spark/MEMORY|Spark Workspace]]
 - [[openclaw/agents/kobe/shared/rh/SOUL|RH Workspace]]
 - [[openclaw/agents/kobe/shared/simulimport/reforma-tributaria-importacao|Reforma Tributária (SimulImport)]]
+
+
+## Qualidade da Memória (Consolidação em Camadas — 26/05 23:45 BRT)
+- Digests lidos: Trader, Spark, Builder, Fisco e RH. Digests ausentes: nenhum.
+- Escopo respeitado: Kobe/main + digests dos agentes diretos; sem varrer memória interna de agentes, subagentes, workers ou analysts temporários.
+- Marcos globais incorporados: Daily Sales v2 com pacote 25/05 DADOS_OK mas ciclo final ainda ML-only/Pedro-only; Shopee Full+ como risco de margem/mix; Bling Filial 403 pelo 12º dia; RH com Sandra sem marcações e backlog de 16 comunicações.
+- Nenhuma decisão global nova do Pedro; uma lição global adicionada sobre interpretação de Shopee Full+.

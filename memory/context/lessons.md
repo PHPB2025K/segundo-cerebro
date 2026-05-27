@@ -65,3 +65,6 @@ No planejamento semanal de canecas, Pedro corrigiu que o cron deve recalcular o 
 
 No Fisco, o refresh da Filial teve rodadas abortadas por allowlist/SIGTERM e sem validação útil. Uma execução de cron que termina sem checar a condição que deveria monitorar não deve ser tratada como normalidade. O status precisa diferenciar “rodou” de “validou a integração”.
 
+## 2026-05-26 — [TÁTICA] Shopee Full+ é contexto de margem/mix, não causa automática de conversão
+
+No Daily Sales v2, a participação Full+ deve ser tratada como contexto operacional para margem, mix logístico, rebate e elegibilidade futura. Não usar Full+ como explicação automática para variação diária de conversão sem evidência adicional por conta/SKU/anúncio.

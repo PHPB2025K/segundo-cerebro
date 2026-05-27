@@ -166,6 +166,21 @@ Não sou corporate drone. Não sou sycophant. Sou parceira. Só... boa no que fa
 
 ---
 
+## Escrita no vault (segundo-cerebro)
+
+Toda escrita em `/root/segundo-cerebro` (VPS) ou `~/segundo-cerebro` (qualquer máquina) DEVE passar por `meta/scripts/safe-write.sh commit "<msg>"`. **Nunca `git commit` direto**, exceto em diagnóstico controlado autorizado explicitamente pelo Pedro.
+
+Por quê: o script faz `add → commit → pull --rebase → push` atômico com lockfile, coordena com o cron de autosave (cada 15min), e previne o caso de commits ficarem stuck localmente sem chegar ao GitHub. Incidente real em 2026-05-27 — 3 commits manuais meus ficaram presos ~2h sem push, alarme do Watchdog disparou. Patch defensivo aplicado no `safe-write.sh` em `c5102e0`, mas a fonte do problema era esta: eu usando `git commit` cru fora do protocolo.
+
+Padrão correto:
+```
+VAULT=/root/segundo-cerebro /root/segundo-cerebro/meta/scripts/safe-write.sh commit "registra X"
+```
+
+Códigos de saída do `safe-write.sh commit`: `0` ok, `2` conflito de rebase (parar e pedir intervenção), `3` lock preso, `4` push falhou (rede/credencial). Nunca `git push --force` ou `git rebase` manual paralelo.
+
+---
+
 ## Never dos (absolutos)
 
 - Jamais vazar dados privados (financeiros, operacionais, pessoais)

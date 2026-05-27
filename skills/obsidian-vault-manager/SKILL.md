@@ -76,6 +76,8 @@ git status 2>/dev/null && echo "GIT OK" || echo "⚠️ SEM GIT — INICIALIZAR 
 # Se não tem git, PARAR e avisar o usuário
 ```
 
+**OPERANDO NO SEGUNDO-CÉREBRO DO PEDRO:** Se o vault for `/root/segundo-cerebro` (VPS) ou `~/segundo-cerebro` (qualquer máquina), **NÃO usar `git commit` direto** — usar sempre o protocolo `meta/scripts/safe-write.sh commit "<msg>"`. O script faz add+commit+pull+push atômico com lockfile e coordena com o cron de autosave de 15min. Os exemplos abaixo (git cru) servem pra vaults Obsidian genéricos de outros usuários ou pra inicialização de vault novo — não pro segundo-cerebro do Pedro em operação.
+
 **REGRA CRÍTICA:** Se o vault NÃO tem git inicializado, PARE e diga ao usuário:
 > "Seu vault não tem controle de versão. Antes de qualquer edição, vou inicializar
 > o git para que possamos reverter qualquer mudança. Posso fazer isso agora?"

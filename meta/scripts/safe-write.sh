@@ -70,6 +70,20 @@ case "$ACTION" in
     if [ -z "$(git status --porcelain)" ]; then
       echo "✓ nada local para commitar"
       do_pull
+
+      # Mesmo sem arquivo modificado, pode haver commit local não-pushado
+      # (ex: outro processo na VPS — Kobe agent, sub-tool — comitou direto
+      # com `git commit` em vez de chamar este script). Bug histórico:
+      # workspace limpo + commits stuck = alarme do Watchdog GitHub Sync.
+      # Visto em 2026-05-27: 3 commits do Kobe ficaram presos ~2h.
+      if [ -n "$(git log origin/main..HEAD --oneline 2>/dev/null)" ]; then
+        echo "→ commits locais não-pushados detectados, pushando..."
+        if ! git push origin main; then
+          echo "ERROR: push falhou — verificar conexão/credenciais" >&2
+          exit 4
+        fi
+        echo "✓ push de commits stuck OK ($(git rev-parse --short HEAD))"
+      fi
       exit 0
     fi
 

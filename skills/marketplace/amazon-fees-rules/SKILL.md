@@ -21,8 +21,8 @@ triggers:
 metadata:
   openclaw:
     emoji: 📦
-    last_updated: "2026-05-13"
-    next_review: "2026-05-20"
+    last_updated: "2026-05-27"
+    next_review: "2026-06-03"
     cron: "Amazon Fees Monitor — quarta 10h SP"
     sources:
       - url: "https://venda.amazon.com.br/precos"
@@ -49,9 +49,10 @@ metadata:
 
 # Regras de Comissões, Taxas e Custos — Amazon Brasil 2026 (CNPJ)
 
-> ⚠️ **Última atualização:** 13/05/2026
+> ⚠️ **Última atualização:** 27/05/2026
 > **Comissões:** sem alteração desde 20/01/2025 (quando 17 categorias tiveram redução de até 3 p.p.)
 > **FBA:** promoção agressiva vigente (fev–jul/2026) — tarifa zero para produtos ≥R$100
+> **DBA:** promoção oficial ativa de 50% off na tarifa logística para produtos ≥R$79, exclusiva CNPJ com coleta em SP
 > **Parcelamento:** desde 16/03/2026, taxa de 1,5% expandida para faixa R$40–100
 > **Nenhuma mudança adicional de comissões entre janeiro e maio de 2026.**
 > **Cron de verificação:** Quarta-feira 10h SP (Amazon Fees Monitor)
@@ -179,14 +180,15 @@ Comissão reduzida a **5%** nos primeiros 100 itens padrão (ou 50 extragrandes)
 - Frete de saída (CD → cliente) **incluído na tarifa FBA** — não paga frete separado
 - Entrega em 1 dia em 50+ cidades, 2 dias em 100+ cidades
 - Amazon reporta que sellers FBA crescem vendas em média **4×** (dados internos Amazon 2025)
-- Requisitos: CNPJ com IE em SP, MG, PR, RJ, SC, RS, CE, DF ou PE
+- Requisitos: CNPJ com IE em SP, MG, PR, RJ, SC, RS, CE, DF, PE, BA ou GO
 
 ### 4.2 DBA (Delivery by Amazon) — Padrão para novos sellers
 - Vendedor armazena e embala; transportadoras Amazon fazem entrega
 - **Sem selo Prime**
-- Frete grátis ao consumidor: ≥R$ 19 (mesma região) e ≥R$ 79 (inter-regional)
+- Frete grátis ao consumidor: produtos a partir de **R$ 19** (conforme página oficial DBA vigente)
 - Comissão incide **apenas sobre preço do produto** (não inclui frete) — vantagem vs FBM
 - Tarifas DBA (exemplos SP): R$ 4,50 (<R$ 30), R$ 6,50 (R$ 30–49,99), R$ 6,75 (R$ 50–78,99)
+- Promoção oficial vigente: **50% off na tarifa logística DBA para produtos ≥R$ 79**, exclusiva para contas CNPJ com coleta no estado de São Paulo. Tratar como benefício promocional e validar termos antes de precificar.
 
 ### 4.3 FBA Onsite — Por convite
 - Estoque fica no armazém do vendedor, Amazon gerencia logística
@@ -534,6 +536,8 @@ Se precificar a R$ 100:
 | Fev/2026 | Campanha FBA Grátis: tarifa R$ 0 (≥R$ 100) / R$ 5 (<R$ 100), válida até jul/2026 |
 | Fev/2026 | Campanha SP: comissão ZERO por até 5 meses (limite R$ 60.000) para CNPJ com coleta em SP |
 | Mar/2026 | Parcelamento sem juros: taxa 1,5% expandida para faixa R$ 40–100 |
+| Mai/2026 | DBA: página oficial destaca 50% off na tarifa logística para produtos ≥R$ 79, exclusivo CNPJ com coleta em SP |
+| Mai/2026 | FBA: elegibilidade oficial inclui BA e GO além dos estados já documentados |
 | Abr/2026 | Amazon EUA: sobretaxa 3,5% combustível no FBA — NÃO afeta Amazon Brasil doméstico |
 
 ---
@@ -563,6 +567,7 @@ Se precificar a R$ 100:
 
 | Data | Alteração |
 |---|---|
+| 27/05/2026 | v1.2 — Revisão semanal oficial. Comissões, parcelamento, FBA+, Buy Box e Ads sem mudança material. DBA atualizado com promoção oficial de 50% off na tarifa logística para produtos ≥R$79, exclusiva CNPJ com coleta em SP; frete grátis DBA corrigido para produtos a partir de R$19 conforme página oficial vigente. Elegibilidade FBA atualizada para incluir BA e GO. |
 | 13/05/2026 | v1.1 — Revisão semanal oficial. Comissões, parcelamento, DBA, Buy Box e Ads sem mudança material. FBA atualizado: benchmark oficial de crescimento médio ajustado de 5× para 4×; seção de produtos <R$79 corrigida para refletir a tabela oficial atual em três faixas de preço e remover a tabela antiga única de “<R$79”. Promoção FBA+ confirmada ativa até 31/07/2026 com validação mensal de 3,5% em Ads. |
 | 10/04/2026 | v1.0 — Criação da skill do zero. Tabela completa de comissões (35+ categorias). 4 modelos logísticos (FBA/DBA/FBA Onsite/FBM). Tarifas FBA completas (peso × preço). Promoção FBA+ vigente. Armazenagem e remoção. Amazon Ads (3 formatos + benchmarks). Buy Box (critérios e importância). Saúde da conta (AHR + métricas). Recebimento (ciclo 14 dias). Programas especiais (Vine, Programe e Poupe, Lightning Deals). Fórmula de precificação com exemplos. Comparativo Amazon vs ML vs Shopee. Mudanças 2026. |
 

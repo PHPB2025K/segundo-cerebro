@@ -424,3 +424,35 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 **Status:** aberto — Himmel confirmou o pedido, mas execução e impacto precisam ser validados nos dados.
 
+### 2026-05-28 16:03–16:07 BRT — Yasmin solicita aumento de giro em 7 anúncios ML
+
+**Participantes:** Yasmin Oscarlino; Cláudio Manrique Junior/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Pedido operacional para aumentar giro de venda em anúncios específicos.
+
+**Produtos/anúncios citados:**
+- MLB4391569148727378
+- MLB3460402812027346
+- MLB1157779627290741
+- MLB3279771571576527
+- MLB3392097377162372
+- MLB6175379698
+- MLB3368830887183364
+
+**Contexto registrado:**
+- Yasmin enviou à Himmel uma lista de 7 MLBs que precisam aumentar giro de venda dentro do Mercado Livre.
+- Cláudio/Himmel respondeu que vai analisar o que pode ser feito para esses produtos, fazer movimentações e apontar no grupo caso necessário.
+- Ainda não houve confirmação textual de ação executada, campanha escolhida, mudança de verba, ROAS/ACoS alvo, preço, imagem ou ação orgânica.
+
+**Impacto esperado:**
+- Esses 7 anúncios entram no radar de priorização operacional para ganho de giro no ML a partir de **28/05**.
+- Até haver confirmação de movimentação, tratar como **pedido aberto**, não como ação executada.
+- Se algum desses anúncios mostrar mudança de vendas, tráfego ou gasto nos próximos reports, validar se houve alteração de campanha/ADS ou ação orgânica antes de atribuir causalidade.
+
+**Como validar nos dados:**
+- Confirmar em ML Ads se algum dos 7 anúncios foi movido, incluído em campanha, teve verba/meta de ROAS ajustada ou recebeu ação orgânica após **28/05 16:03 BRT**.
+- Monitorar entre **2026-05-29 e 2026-06-04**: vendas, investimento, impressões, cliques, conversão, ROAS, ACoS/TACoS, preço, estoque, ranking e concorrência dos anúncios citados.
+- Caso não haja resposta/ação material até o próximo ciclo operacional, cobrar da Himmel o plano de movimentação e quais anúncios têm melhor potencial real de giro.
+
+**Status:** aberto — Yasmin solicitou aumento de giro; Himmel assumiu análise, mas execução e impacto ainda precisam ser confirmados nos dados.
+

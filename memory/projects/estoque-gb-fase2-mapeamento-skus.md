@@ -66,11 +66,16 @@ MANT, BAT, BACIA, BARBECUE FORK, etc).
 
 ## O que NÃO foi feito
 
-1. **Integração com o motor TypeScript** (Etapa 5 do plano, parte de código).
-   O resolver vive no Postgres. As rotas `/api/sheets/update`,
-   `/api/stock-movements/ingest-safe-outbound` e `/api/stock-movements/ingest-envios-full`
-   continuam fazendo match direto contra a planilha — precisam ser refatoradas
-   para chamar `supabase.rpc('resolver_sku', { p_sku_raw })`. **Esse trabalho é do Kobe.**
+1. ~~**Integração com o motor TypeScript** (Etapa 5 do plano, parte de código).~~
+   **✅ FEITO em 2026-05-28 ~15:50 BRT** — 3 arquivos refatorados:
+   - `src/lib/stock-movements.ts` ganhou `resolveSku()` + tipos `SkuResolution`
+   - `src/app/api/stock-movements/ingest-safe-outbound/route.ts` chama o resolver,
+     expande kits em N movimentos com external_event_id derivado por componente
+   - `src/app/api/sheets/update/route.ts` idem
+   - `npx tsc --noEmit` passou
+   - `/api/stock-movements/ingest-envios-full` não precisou mudar — só faz upload
+     do XLSX e dispatcha pra ingest-safe-outbound, que já tem o resolver
+   - **Build/PM2 restart NÃO foi feito** — código vivo no disco aguarda decisão.
 
 2. **Etapas 8-9 do plano** (modo sombra 2-3 dias + liberação gradual) — exigem
    o motor TS plugado no resolver e dias reais de operação.

@@ -88,3 +88,21 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 - **Responsáveis/próximo passo:** Himmel/equipe deve executar os ajustes de campanha; Trader deve tratar o período pós-27/05 como janela inicial de validação.
 - **Status:** aberto — execução solicitada, aguardando evidência em dados.
 
+### 2026-05-28 12:56–15:07 BRT — Potes priorizados e campanhas Ramp Up criadas nas 3 contas Shopee
+
+- **Participantes:** Lucas / PhaseTec, Pedro Broglio, Leticia e Raphaella (Himmel).
+- **Plataforma/conta:** Shopee — ações separadas por conta: Budamix.store, Budamix_store e Budamix.shop.
+- **Tema:** cobrança de execução urgente e otimização de campanhas para recuperar volume dos potes nas três contas.
+- **Produtos/anúncios citados:**
+  - **Budamix.store:** 44860819943, 45010813535, 41081027366, 56610855725.
+  - **Budamix_store:** 44710821547, 43831017919, 47110832134, 49710876332.
+  - **Budamix.shop:** 45860831209, 52060794046, 49860828629, 45710873981.
+- **Decisão/contexto:** Lucas pediu atenção maior nesses potes e estratégias mais fortes para aumentar visibilidade, alcance e conversão nas três contas. Pedro cobrou posição e urgência, reforçando que as três contas estavam em queda livre e que ele não mexeria diretamente nas campanhas para não prejudicar a estratégia da Himmel.
+- **Ações informadas pela Himmel:**
+  - **Budamix.store:** produtos migrados da GMVMAX para campanha própria **HML | RAMP UP | POTES**; campanha **[HML] - INCUBADORA - NOVOS ITENS** teve ROAS reduzido de **25 para 15**.
+  - **Budamix_store:** criada campanha **HML | RAMP UP | POTES HERMÉTICOS** para os 4 anúncios citados, com orçamento diário inicial de **R$50**.
+  - **Budamix.shop:** criada campanha **HML | RAM UP | POTES HERM | CC**; campanha **[HML] - INCUBADORA - NOVOS ITENS** teve ROAS reduzido de **28 para 18**.
+- **Impacto esperado:** aumento de consumo de verba, visibilidade e volume dos potes priorizados; possível recuperação parcial da queda Shopee a partir de 2026-05-28/29, limitada por estoque, preço e conversão real.
+- **Como validar nos dados:** nos próximos Daily Sales Reports v2, checar por shop_id/anúncio evolução de investimento ADS, ROAS/TACOS, vendas pagas vs orgânicas, pedidos, faturamento, conversão e ranking dos 12 anúncios listados; separar efeito das campanhas Ramp Up do impacto estrutural de ruptura de potes e do mix de canecas/jarra/redondos.
+- **Status:** aberto — campanhas otimizadas/criadas em 2026-05-28; validar janela D+1, D+3 e D+7.
+

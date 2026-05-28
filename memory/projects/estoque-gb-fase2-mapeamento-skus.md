@@ -107,6 +107,21 @@ de decisões, re-rodar `vw_resolver_dashboard` pra ver a cobertura subir.
 
 - RLS continua **desabilitado** em `stock_movements`, `stock_movement_evidences`,
   `sku_aliases`, `kit_bom` (e mais 9 tabelas). Advisor crítico do Supabase ativo.
-- PM2 do `estoque-budamix` continua rodando build de 20/05 — código da Fase 2
-  do Kobe não está em produção.
 - Repo VPS sem commits (git mostra "No commits yet").
+
+## Deploy 2026-05-28 ~16:09 BRT
+
+- Build webpack: 12.5s compile + 2.2min TS + 13 páginas OK
+- PM2 restart: pid 2428590, restart #6, Ready in 215ms
+- Smoke HTTP `apply:false` em ingest-safe-outbound: 5/5 cenários comportaram correto
+  (sku_direto, alias, kit_bom expandido, Clink bloqueado, desconhecido)
+- BUILD_ID: 2026-05-28 19:09:16 UTC
+
+## Limpeza Clink — decisão Pedro 2026-05-28
+
+Pedro confirmou: Budamix não trabalha mais com Clink. Aplicado em produção:
+- 1 SKU removido de `_catalog_estoque` (`CK4742_B`)
+- 2 aliases marcados `active=false` (`CK4742_BB`, `CK4742`)
+- 1 kit marcado `active=false` (`KIT2CK4742_B`)
+- Família `familia_CK_jarra_clink` (150 SKUs / 332 movimentos divergentes)
+  passou a contar como descontinuada — não cadastrar.

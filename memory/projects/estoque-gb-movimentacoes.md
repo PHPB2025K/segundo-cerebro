@@ -70,3 +70,29 @@ Pedro aprovou estruturar a atualização constante da Planilha de Estoque por um
 ## Próxima tarefa imediata
 
 Desenhar o blueprint técnico-operacional completo já considerando os canais criados: arquitetura, tabelas, estados dos movimentos, regras de validação, fluxo WhatsApp → movimento pendente → aprovação/aplicação → sincronização com Planilha de Estoque.
+
+## Fase 1 — Implementação em código iniciada/concluída — 2026-05-28
+
+Status: código implementado em `/var/www/estoque-budamix`, aguardando aplicação da migração no Supabase.
+
+Entregas:
+- Migração SQL para `stock_movements`, `stock_movement_evidences`, `sku_aliases` e `kit_bom`.
+- `stock_balances` deixado para Fase 2, quando houver motor transacional e conciliação de saldo.
+- Tipos TypeScript para movimentos, status, origem, evidências e afins.
+- API `GET/POST /api/stock-movements` para listar/criar movimentos sem aplicar saldo.
+- Validação mínima de campos e idempotência por origem/evento externo.
+- Bloqueio para impedir criação direta de movimento já `aplicado` pela API.
+- Painel simples no app para visualizar movimentos recentes, pendentes e divergentes.
+- Documentação da Fase 1 no repo.
+
+Garantias:
+- A nova camada não escreve na Planilha de Estoque.
+- Movimento pendente não altera saldo.
+- Fluxo manual legado de entrada/saída pela planilha não foi alterado.
+
+Validação:
+- TypeScript `tsc --noEmit` passou.
+- `npm run lint` e `npm run build` dependem de corrigir instalação local de dependências dev ausentes no `node_modules`.
+
+Próximo passo imediato:
+- Aplicar a migração no Supabase e testar a API/painel com dados reais controlados.

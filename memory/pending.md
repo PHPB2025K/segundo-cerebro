@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-27 23:45 BRT — consolidação diária em camadas_
+_Atualizado: 2026-05-28 02:00 BRT — organização noturna silenciosa_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -169,13 +169,13 @@ _Atualizado: 2026-05-27 23:45 BRT — consolidação diária em camadas_
 
 
 ## Nota para briefing matinal — itens estagnados >7 dias
-_Gerado pela organização noturna de 26/05 02:00 BRT._
+_Gerado pela organização noturna de 28/05 02:00 BRT._
 
 - Revalidar no briefing apenas os itens que continuam bloqueados por decisão/input do Pedro: reposição de canecas/Agente de Compras (aguardando pedidos em trânsito/já feitos), Pedidos Atacado/PDF oficial Bling, teste controlado da automação de pedidos, Meta Business Segunda Venda, carrosséis fixos do Instagram Budamix, grupo OS/OSA com Davi, escolha da Capa 01 do banner triplo, aliases/POT1BB/KFJ003 do Estoque Budamix, Social Studio Meta App/secrets, Canggu senha/admin + hard-block defensivo, DRE abril U15, Guarani distrato assinado para revisão antes do pagamento, Bling Filial 403 pausado, firewall VPS e rotação de tokens expostos.
-- Atenção especial para hoje (26/05): as duas ações pedidas para segunda-feira (25/05) continuam na fila salvo confirmação posterior — cobrar Leonardo pelas avaliações dos kits de potes 4 travas e retomar o status da automação de pedidos de atacado via WhatsApp.
-- Crons recorrentes mais recentes checados em 26/05 02:00 BRT: Claude Contingency Guard (01:50 BRT), job-monitor (01:49 BRT) e Watchdog — GitHub Sync Segundo Cérebro (01:42 BRT) estavam em status OK.
-- Observação de estabilidade: Watchdog — Consolidação em Camadas teve timeout às 00:23 BRT, mas não está entre os três crons recorrentes mais recentes; manter no radar caso repita. Bling Token Refresh às 01:29 BRT concluiu com Matriz OK e Filial 403/inativa, risco já registrado.
-- Sessões antigas >30 dias com marcação de consolidação foram removidas pela organização noturna: 14/04, 16/04, 17/04, 19/04, 20/04, 21/04, 22/04, 23/04, 24/04 e 25/04. O relatório `2026-04-15-shopee-audit.md` foi mantido por ser artefato analítico específico, não nota diária consolidada.
+- Atenção especial para hoje (28/05): as duas ações pedidas para segunda-feira (25/05) continuam na fila salvo confirmação posterior — cobrar Leonardo pelas avaliações dos kits de potes 4 travas e retomar o status da automação de pedidos de atacado via WhatsApp.
+- Crons recorrentes mais recentes checados em 28/05 02:00 BRT: Claude Contingency Guard (01:59 BRT), job-monitor (01:59 BRT) e Watchdog — GitHub Sync Segundo Cérebro (01:42 BRT) estavam em status OK.
+- Observação de estabilidade: Inbox Cleanup - Gmail Pedro rodou OK às 00:35 BRT e reforçou o alerta já existente do distrato assinado da Guarani. Watchdog — Consolidação em Camadas rodou OK às 00:21 BRT; Consolidação Diária — Fechamento Pipeline rodou OK às 00:06 BRT; Daily GitHub Backup rodou OK às 00:00 BRT.
+- Sessões antigas >30 dias: `memory/sessions/2026-04-27.md` estava consolidada no índice/timeline e foi removida. O relatório `2026-04-15-shopee-audit.md` foi mantido por ser artefato analítico específico, não nota diária consolidada.
 - Não reabrir pendências antigas de abril/2026 que Pedro já mandou limpar; manter histórico fora da fila ativa.
 
 ## Backlog Estagnado
@@ -192,4 +192,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-05-26 02:00 BRT._
+_Última organização: 2026-05-28 02:00 BRT._

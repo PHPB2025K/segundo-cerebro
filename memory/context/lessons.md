@@ -76,3 +76,7 @@ Pedro definiu como regra absolutamente obrigatória: sempre que inserir ou atual
 ## 2026-05-28 — [TÁTICA] Lista operacional de produtos pode incluir item fora da aba ESTOQUE quando Pedro o tratar como parte ativa da operação
 
 Na revisão dos produtos em MDF, o Quebra-Cabeça Animais não aparecia na lista atual da aba ESTOQUE, mas Pedro pediu explicitamente para adicioná-lo na relação enviada. Para pedidos de listagem/catalogação operacional, a resposta final deve refletir o entendimento atual do Pedro sobre o portfólio ativo, sinalizando quando um item está fora da aba canônica em vez de omiti-lo automaticamente.
+
+## 2026-05-28 — [TÁTICA] Limpeza da aba ESTOQUE pode quebrar margem/lucro das abas de marketplace se elas ainda dependerem de SKU de kit
+
+Na planilha de precificação da GB, remover kits da aba ESTOQUE deixou a aba correta como fonte de SKUs unitários, mas expôs dependências ocultas em SHOPEE e AMAZON: várias linhas de margem/lucro quebraram porque ainda puxavam custo/produto por SKU de kit removido. Regra operacional: antes de limpar a aba ESTOQUE, validar dependências cruzadas nas abas de marketplace e manter um backup pré-limpeza para restaurar custo/produto sem recolocar kit na fonte canônica.

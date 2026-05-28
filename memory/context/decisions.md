@@ -27,3 +27,12 @@ tags:
 - Pedro definiu que o **Quebra-Cabeça Animais MDF** deve entrar na lista de produtos feitos em MDF da operação mesmo não aparecendo na lista atual da aba ESTOQUE consultada naquele momento.
 - Forma de apresentação usada na sessão: **kits de 5, 10 e 20 peças**.
 - Contexto: correção explícita de uma primeira resposta que havia sinalizado o item como pendente/fora da lista atual.
+
+## 2026-05-28 — Aba ESTOQUE da planilha de precificação deve listar apenas SKUs pai/unitários, com exceções operacionais explícitas
+
+- Pedro definiu que a aba **ESTOQUE** deve listar exclusivamente produtos unitários / SKUs pai, sem linhas de kits/composições de marketplace.
+- Exceções aprovadas como unitárias dentro da ESTOQUE: **Kits Jardinagem**, **Kits MDF (porta-copos e descansos de panela)** e o **conjunto de 5 potes redondos IMB501**, por serem tratados operacionalmente como produto unitário.
+- Pedro aprovou deletar fisicamente da aba ESTOQUE os demais kits de potes e kits quebra-cabeças, em vez de apenas limpar conteúdo.
+- Pedro decidiu que o **QCB002 — Kit 10 Quebra-cabeças Animais** deve voltar/ficar na aba ESTOQUE como item unitário.
+- Pedro também aprovou corrigir os SKUs das Xícaras 95ml RR na ESTOQUE para o mapeamento correto: **verde = 308_B** e **rosa = 309_B**.
+- Contexto: reorganização da planilha para que a ESTOQUE fique como base canônica de produtos unitários, sem recalcular por enquanto o preço de custo nas abas MELI/SHOPEE/AMAZON.

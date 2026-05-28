@@ -142,6 +142,8 @@ _Atualizado: 2026-05-28 02:00 BRT — organização noturna silenciosa_
 
 ## 🚨 Infraestrutura e autenticações degradadas
 
+- [ ] **WhatsApp GB + Slack funcionários — auditar polling e extração de histórico**: em 28/05 21:33 UTC, Pedro pediu verificação objetiva se os pollings dos grupos de WhatsApp da operação da GB Importadora estão rodando, quais grupos estão tendo histórico extraído e se a extração das conversas com funcionários no Slack está funcionando corretamente. Entregar diagnóstico com fontes/canais cobertos, lacunas e falhas reais.
+
 - [ ] **Mission Control — n8n usage tracking em `/costs` (retomar 15/05)**: investigação de 14/05 confirmou que OpenClaw/GPT-5.x roda via subscription Pro 5x, mas n8n usa API keys reais. Próximos passos: habilitar `saveDataSuccessExecution='all'` nos 3 workflows LLM, criar coletor `collect-n8n-usage` com cron 15min, adicionar pricing de `gpt-5.2`, `text-embedding-3-small`, `tts-1-hd` e `claude-sonnet-4-6`, e criar categoria n8n em `/costs`.
 - [ ] **Mission Control — ativar painel Daily Sales Pipeline em produção**: Builder concluiu em 17/05 painel visual para o pipeline Daily Sales v2/Slack com timeline de 9 etapas, filtros por data/recipient, visualização prompt/output, edição segura allowlisted com backup e auto-refresh. Build validado; falta restart controlado do Mission Control e smoke test das rotas novas.
 - [ ] **Mission Control — 12 módulos restantes sem PRD próprio**: após 14/05, 11/23 módulos estão fechados (Dashboard, System, Files, Agents, Memory, Office 3D, Activity, Cron, Sessions, Skills, Costs). Restam: Tasks, Agents detail, Logs, Terminal, Git, Workflows, Search, Analytics, Reports, Settings, Calendar, About/Actions.

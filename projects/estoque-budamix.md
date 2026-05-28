@@ -27,6 +27,9 @@ Sistema de gestão de estoque para a Budamix. Next.js frontend, Supabase backend
 
 ## Decisões-chave
 
+- [28/05] **Fase 2 mapeamento de SKUs deployada** (Claude Code direto, não Kobe). Camada de dados: `sku_aliases` (25) + `kit_bom` (16) + Postgres function `resolver_sku()` + views `vw_resolver_dashboard` e `vw_decisoes_pendentes_familias`. Catálogo `_catalog_estoque` (93 SKUs snapshot). Camada de código: `resolveSku()` em `lib/stock-movements.ts`, rotas `ingest-safe-outbound` e `sheets/update` refatoradas pra expandir `kit_bom` em N movimentos por componente. Build webpack OK, PM2 restart pid 2428590. Smoke test 5/5 cenários. Doc handoff em `docs/stock-movements-phase2-resolver.md`. Cobertura: 8% dos 2.119 divergentes aplicariam (142 mov, 36 SKUs finais, ~5.470 un).
+- [28/05] **Clink descontinuado:** `CK4742_B` removido do catálogo, aliases (`CK4742_BB`, `CK4742`) e kit (`KIT2CK4742_B`) marcados `active=false`. Família `CK_jarra_clink` inteira (150 SKUs / 332 mov) considerada descontinuada.
+- [28/05] **Planilha ENVIOS FULL oficial:** ID `1zfll5bvkIUqY56y0YcJ-ZP1GoMupcj_f`, só 5 abas (FBA AMAZON, FULL ML, SHOPEE 1/2/3). Código `lib/envios-full.ts` tem `AMAZON FULL` e `FULL MAGALU` sobrando que devem ser removidos. 53 movimentos `source_channel='amazon_full'` no banco vieram de planilha errada.
 - [13/04] Supabase em vez de SQLite para persistência
 - [13/04] N8N para PDF parsing (workflow ID: WyxKDxwIkuuL8BdH) — ⚠️ DESCONTINUADO em 20/05/2026, substituído por parser local Next (`/api/sheets/parse-pdf`)
 - [13/04] Traefik reverse proxy (não Nginx direto)

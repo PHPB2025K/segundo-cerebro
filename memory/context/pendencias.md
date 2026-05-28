@@ -12,7 +12,17 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-25 ~23h BRT — Bug "Loja" desktop registrado; pivot 100% vidro consolidado; auditoria Ana ML+WhatsApp resultou em 4 fixes em prod (defesa em profundidade nos 3 canais)._
+_Atualizado: 2026-05-28 ~17h BRT — Fase 2 mapeamento de SKUs do estoque deployada (resolver_sku + 25 aliases + 16 kits + motor TS plugado + smoke 5/5 OK); Clink descontinuado; planilha ENVIOS FULL oficial identificada com 5 abas; aguardando lista de envios criados hoje dos analistas para aplicar baixa filtrada amanhã._
+
+## 🟡 Estoque GB — Fase 2 mapeamento de SKUs (próximos passos 29/05)
+
+- [ ] **Receber dos analistas (29/05) a lista de IDs dos envios FULL criados em 28/05.** Mensagens prontas para Slack já entregues pra Pedro (Leonardo/FBA AMAZON, Lucas/FULL SHOPEE 1-3, Yasmin/FULL ML). Pedro envia hoje, recebe respostas amanhã.
+- [ ] **Corrigir `/var/www/estoque-budamix/src/lib/envios-full.ts` linha 20:** remover `"AMAZON FULL"` e `"FULL MAGALU"` do array `FULL_SHEET_NAMES` (abas não existem na planilha oficial `1zfll5bvkIUqY56y0YcJ-ZP1GoMupcj_f`).
+- [ ] **Limpar do banco** os 53 movimentos com `source_channel='amazon_full'` (vieram de planilha errada que o Kobe baixou).
+- [ ] **Aplicar baixa filtrada** em `stock_movements` por `external_event_id LIKE '%:ENVIO_ID:%'` quando receber a lista, executando via rota `ingest-safe-outbound` com `apply=true` ou re-rodando o resolver sobre subset.
+- [ ] **Decidir fluxo de controle "novo vs antigo"** depois desse 1º ciclo: Pedro avaliou 3 opções (A pedir analistas, B fingerprint, C coluna STATUS_SISTEMA) e decidirá após volume baseline. Provavelmente combinação B+C.
+- [ ] **Passo 2 da implementação Fase 2:** especificar as decisões humanas por família (Pedro quer detalhe — kits_diversos 197 SKUs, FYTR001 13 SKUs alta-frequência, MANT, BR, BF, PUMP). Adiado para depois do ciclo de baixa de amanhã.
+- [ ] **RLS desabilitado em 13 tabelas** do Supabase Budamix Central (`stock_movements`, `stock_movement_evidences`, `sku_aliases`, `kit_bom` + 9 outras). Advisor crítico. Tratar quando puder.
 
 ## 🟢 Canggu/Ana — auditoria 25/05 fechada (4 fixes em prod)
 

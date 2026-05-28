@@ -72,3 +72,7 @@ No Daily Sales v2, a participação Full+ deve ser tratada como contexto operaci
 ## 2026-05-27 — [ESTRATÉGICA] Planilha de estoque exige valores em formato brasileiro
 
 Pedro definiu como regra absolutamente obrigatória: sempre que inserir ou atualizar qualquer tipo de valor na planilha de estoque, em qualquer aba, usar padrão brasileiro de moeda/número: `R$ 00,00`, com vírgula decimal. Nunca usar ponto como separador decimal. Antes de declarar sucesso em qualquer update de valor na planilha, validar visualmente/diretamente que o Sheets recebeu o valor no formato correto.
+
+## 2026-05-28 — [TÁTICA] Lista operacional de produtos pode incluir item fora da aba ESTOQUE quando Pedro o tratar como parte ativa da operação
+
+Na revisão dos produtos em MDF, o Quebra-Cabeça Animais não aparecia na lista atual da aba ESTOQUE, mas Pedro pediu explicitamente para adicioná-lo na relação enviada. Para pedidos de listagem/catalogação operacional, a resposta final deve refletir o entendimento atual do Pedro sobre o portfólio ativo, sinalizando quando um item está fora da aba canônica em vez de omiti-lo automaticamente.

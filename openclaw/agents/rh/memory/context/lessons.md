@@ -1,6 +1,13 @@
 # Lições — RH
 
-_Atualizado: 2026-05-26_
+_Atualizado: 2026-05-27_
+
+## 2026-05-27
+- A rotina de saída continua não destacando funcionário com zero marcações; a consolidação deve validar ausências totais em dias úteis além do relatório de saída.
+- Sandra voltou a aparecer sem marcações em dia útil, reforçando risco trabalhista sensível e necessidade de orientação do Pedro.
+- Mateus acumulou saída final ausente em 27/05 e histórico de pendências antigas; qualquer classificação precisa considerar Tiro de Guerra e orientações individuais.
+- Intervalos abaixo de 1h seguem recorrentes em Leonardo e Lucas; o padrão precisa de orientação operacional antes de cobrança ou correção.
+- Backlog de 16 comunicações abertas segue estável, mas permanece risco operacional para novos ciclos semanais.
 
 ## 2026-05-26
 - A rotina de saída pode deixar de destacar ausência total de marcações; a consolidação deve validar também funcionários sem nenhum registro em dias úteis.

@@ -1,0 +1,67 @@
+{
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "Um problema Crítico foi identificado no Gate 9: os percentuais de variação de faturamento citados na ANÁLISE DA CONTA (bullet 2) são incorretos. A mensagem afirma '+27% vs média dos últimos 30 dias' e '+41% vs a mesma quarta-feira' referindo-se a faturamento, mas esses valores pertencem ao crescimento de pedidos (orders_vs_30d_pct=27,2% e orders_vs_same_weekday_pct=41,1% no data package). Os percentuais corretos de faturamento/GMV são gmv_vs_30d_pct=47,5% e gmv_vs_same_weekday_pct=71,3%. O erro originou-se na L05 — a Condensadora conflou métricas de pedidos com métricas de GMV — e foi propagado fielmente pela L06. Por ser 'dado errado', aplica-se a regra dura: 1+ Crítico → BLOQUEADO. Adicionalmente, 2 Menores foram registrados (inconsistência cross-section de nomes no Gate 5 e mudança de conectivo no Gate 6), sem impacto na decisão de bloqueio.",
+  "send_allowed": false,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "RESSALVA",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "FALHA",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 1,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 2,
+    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Crítico",
+      "gate": "9 — Consistência entre camadas",
+      "texto_atual": "O faturamento rompeu para cima em todos os períodos de comparação: +27% vs média dos últimos 30 dias, +41% vs a mesma quarta-feira.",
+      "texto_esperado": "O faturamento rompeu para cima em todos os períodos de comparação: +47,5% vs média dos últimos 30 dias, +71,3% vs a mesma quarta-feira.",
+      "regra_violada": "Gate 9 — dado bruto deve bater com 00-data-package.json. Os percentuais +27% e +41% são de crescimento de pedidos (orders_vs_30d_pct=27,2% e orders_vs_same_weekday_pct=41,1%), não de faturamento/GMV. Os percentuais corretos de faturamento são gmv_vs_30d_pct=47,5% e gmv_vs_same_weekday_pct=71,3%. O erro originou-se na L05 — a Condensadora atribuiu percentuais de pedidos ao crescimento de faturamento — e foi propagado fielmente pela L06. Severidade: dado errado = Crítico.",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Menor",
+      "gate": "5 — Top Produtos Mercado Livre",
+      "estado_atual": "Na ANÁLISE DA CONTA, o listing-pai MLB3288536143 é referenciado como 'Potes Vidro 5 Peças' (sem indicação de cor), enquanto no TOP PRODUTOS as três variações aparecem com cor explícita ('Potes Vidro 5 Peças — Tampa Preta', '— Tampa Cinza', '— Tampa Vermelha').",
+      "estado_esperado": "Nome consistente entre seções ou referência ao aggregate explicitamente justificada. A decisão está documentada no log da L06, mas a inconsistência cross-section é ruído de identificação para Yasmin.",
+      "regra_violada": "Gate 5 — consistência cross-section: mesmo produto aparece com nomes distintos em seções diferentes da mesma mensagem. Registrado como Menor conforme regra explícita do gate.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "6 — Análise da Conta (fidelidade à L05)",
+      "texto_atual": "O crescimento é real. A ressalva: 67,3% do faturamento veio de ADS — segundo ciclo consecutivo acima de 65%",
+      "texto_esperado": "O patamar subiu de verdade, mas 67,3% veio de ADS — segundo ciclo consecutivo acima de 65%",
+      "regra_violada": "Gate 6 — mesmo conectivo principal: a L05 usou 'mas' (contraste direto integrado à frase) e a L06 fragmentou em nova frase encabeçada por 'A ressalva:'. O contraste não virou aditivo e a nuance de inversão positiva é preservada, mas o conectivo mudou de forma. Registrado como Menor porque a estrutura contraste→contraste não foi invertida.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [
+    "ANÁLISE DA CONTA, bullet 2: substituir '+27% vs média dos últimos 30 dias' por '+47,5% vs média dos últimos 30 dias' e '+41% vs a mesma quarta-feira' por '+71,3% vs a mesma quarta-feira'. Fonte canônica: gmv_vs_30d_pct=47,5% e gmv_vs_same_weekday_pct=71,3% no data package (historical.changes). Os valores atuais pertencem a pedidos (orders_vs_30d_pct=27,2% e orders_vs_same_weekday_pct=41,1%), não a faturamento."
+  ],
+  "ressalvas_memoria_interna": [
+    "L05 conflou métricas de crescimento de pedidos com métricas de crescimento de faturamento ao descrever 'O Faturamento rompeu para cima (+27% vs 30d, +41% vs mesma quarta)'. Revisar lógica de condensação da L05: ao citar percentuais de variação de faturamento, a L05 deve usar exclusivamente gmv_vs_*_pct; ao citar pedidos, usar orders_vs_*_pct. As duas séries coexistem no data package e têm valores distintos.",
+    "Padrão de risco recorrente: sempre que a L05 descrever crescimento de faturamento com percentuais comparativos, o QA deve cruzar explicitamente com gmv_vs_30d_pct e gmv_vs_same_weekday_pct do data package antes de aprovar."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "fulfillment_mix_yesterday_top10 cobre 54 de 133 pedidos do dia (40,6%), abaixo do limiar de 70% definido no Gate 12c. O L05 e o L06 trataram corretamente: omitido da VISÃO e usado na ANÁLISE apenas como confirmação estrutural via arquitetura ML (não como métrica de cobertura total). Sinal para revisão do fetcher: o top10 por volume captura apenas anúncios de alto giro, deixando 59,4% dos pedidos do dia sem atribuição de modalidade de envio no snapshot diário. Considerar usar fulfillment_mix_7d (coverage=100%, 759 pedidos) como proxy representativo para menções de mix na ANÁLISE quando o yesterday_top10 estiver abaixo de 70%.",
+    "slack_short_name=null para SKU 914C_CP (Kit 6 Canequinhas Café 100ml Suporte Madeira Tema Copa Mundo, MLB6686500254, posição 9 no top_products, 3 pedidos). Produto não exibido no Slack (top 5 apenas) e a ausência de mapeamento não gerou problema neste ciclo. Adicionar entrada em config/slack-short-names-ml.json preventivamente caso o produto entre no Top 5 em ciclos futuros."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

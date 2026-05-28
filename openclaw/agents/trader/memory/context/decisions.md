@@ -78,3 +78,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 - Programa começa em junho/2026; devolução de comissão ocorre no mês seguinte conforme participação mensal de pedidos enviados via Full por conta.
 - Abaixo de 40% Full não há rebate; 40%–69,99% gera faixa intermediária; 70%+ gera faixa máxima. Itens abaixo de R$50 contam para participação Full, mas não recebem devolução.
 - Usar Full+ como contexto de margem, mix logístico e priorização de sortimento Full; não usar como explicação automática de conversão/venda diária, porque o efeito financeiro liquida depois.
+
+### Planilha de precificação — formato brasileiro obrigatório (2026-05-27)
+- Qualquer valor monetário inserido ou atualizado nas abas de pricing/estoque deve usar padrão brasileiro `R$ 00,00`, com vírgula decimal.
+- Nunca usar ponto como separador decimal em inputs manuais ou automações de escrita no Google Sheets.
+- Validação pós-escrita deve checar tanto o valor numérico real quanto a exibição/formatação brasileira.

@@ -91,3 +91,12 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 **Contexto:** Preview de 20/05/2026 BRT bloqueou Lucas/Shopee porque a 6B afirmou que a Budamix Store concentrava 49% do GMV da plataforma, mas o pacote validado mostrava R$ 2.351,20 / R$ 5.232,53 = 44,9% (~45%). A Slack Writer reproduziu fielmente a fonte, então o erro era da camada analítica, não da saída final.
 **Lição:** Todo percentual derivado em análise consolidada deve ser recalculado diretamente do pacote validado antes do QA. Corrigir apenas na Slack Writer mascara a origem; correção precisa nascer na 6B.
 **Expira:** 2026-06-20
+
+### [ESTRATÉGICA] Planilha de pricing: formato brasileiro é parte da validação (2026-05-27)
+**Contexto:** Rodada de custos/devoluções em abas MELI, SHOPEE e AMAZON exigiu correção explícita de formato de valores monetários.
+**Lição:** Em planilhas operacionais, validar só o valor numérico não basta. Escritas de preço/custo/devolução devem preservar formato brasileiro `R$ 00,00` com vírgula decimal e confirmar visualmente ou via API que a célula ficou legível para operação.
+
+### [TÁTICA] Pricing: novas linhas exigem auditoria de fórmulas vizinhas (2026-05-27)
+**Contexto:** Ao cadastrar novas linhas na aba AMAZON e atualizar devoluções, foram encontradas 4 linhas existentes sem fórmula de lucro líquido.
+**Lição:** Após inserção/atualização em massa de anúncios, validar fórmulas críticas também nas linhas existentes próximas, não apenas nas linhas novas ou na coluna alterada.
+**Expira:** 2026-06-26

@@ -1,16 +1,19 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-26_
+_Atualizado: 2026-05-27_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
-- [ ] Validar se os ciclos Daily Sales v2 de 24/05 e 25/05/2026 BRT terem gerado preview apenas para Yasmin/Mercado Livre foram intencionais ou lacuna; se lacuna, reexecutar/fechar Lucas/Shopee e Leonardo/Amazon antes de qualquer envio real.
-- [ ] Manter envio real para Yasmin/Lucas/Leonardo bloqueado até autorização explícita de Kobe/Pedro e ciclo completo QA/Slack Writer validado; em 25/05 houve entrega temporária Pedro-only para Mercado Livre/Yasmin.
-- [ ] Shopee Store e Shopee Conta 3: volume recuperou no pacote 25/05/2026 BRT (Store 72 pedidos, +10,6% vs média 30d; Conta 3 20 pedidos, -10,7% vs média 30d e dentro da banda), mas ainda observar por recorrência curta antes de encerrar o alerta.
+- [ ] Validar se os ciclos Daily Sales v2 de 24/05, 25/05 e 26/05/2026 BRT terem gerado preview apenas para Yasmin/Mercado Livre foram intencionais ou lacuna; se lacuna, reexecutar/fechar Lucas/Shopee e Leonardo/Amazon antes de qualquer envio real.
+- [ ] Manter envio real para Yasmin/Lucas/Leonardo bloqueado até autorização explícita de Kobe/Pedro e ciclo completo QA/Slack Writer validado; em 26/05 houve preview Mercado Livre/Yasmin aprovado com ressalvas, sem envio real.
+- [ ] Shopee Conta 2: investigar queda para 13 pedidos em 26/05/2026 BRT (-49,8% vs média 30d), cruzando estoque/Full, exposição, ADS e canibalização antes de acionar Lucas/Himmel.
+- [ ] Shopee Store e Shopee Conta 3: Store tinha recuperado em 25/05, mas voltou a 46 pedidos em 26/05 (-29,8% vs média 30d); Conta 3 ficou em 16 pedidos. Manter observação por recorrência curta.
+- [ ] Mercado Livre/Yasmin 26/05/2026 BRT: documentar na L06 a distinção entre variação vendável e listing agregado do cluster IMB501, e registrar supressões de contraste de modalidade de envio para evitar ressalva recorrente de QA.
 - [ ] Mercado Livre/Yasmin 25/05/2026 BRT: revisar ressalvas menores do preview aprovado — corrigir padrão herdado na L05, preservar ACOS interno em 14,15% apesar do arredondamento visual para 14,2%, e alinhar leitura do cluster Potes Vidro 5 Peças entre análise agregada e Top Produtos por variação.
 - [ ] Mercado Livre/Yasmin: acompanhar concentração dos Potes Vidro 5 Peças, ADS respondendo por 56,7% do faturamento, possível risco de ruptura do Kit 6 Canecas Lisas 200ml em Full e pedidos do Kit 10 Potes 1050ml pausado/sem estoque.
-- [ ] Amazon: cancelamentos caíram para 2 no pacote 25/05/2026 BRT; validar recorrência por ASIN apenas se o volume voltar a subir.
+- [ ] Amazon: cancelamentos subiram para 6 no pacote 26/05/2026 BRT; validar recorrência por ASIN se repetir no próximo ciclo.
+- [ ] Pricing/planilha: após grandes alterações de custos/devoluções, auditar fórmulas críticas de lucro líquido nas linhas existentes próximas; em 27/05 foram restauradas 4 fórmulas ausentes na aba AMAZON.
 - [ ] Shopee Full+: calcular impacto financeiro estimado por conta para junho/2026 e separar SKUs Full com item >= R$50 antes de recomendar mudança de mix; Conta 3 está abaixo do corte mínimo de 40% no MTD.
 - [ ] Validar por que o pacote de dados do Daily Sales v2 para 23/05/2026 BRT ficou em **DADOS_PARCIAIS** e não teve artefatos finais de Slack Writer/QA Gate detectados; manter envio real bloqueado até fechamento do ciclo e autorização explícita.
 - [ ] Verificar por que não há novo pacote completo do Daily Sales v2 para 21/05/2026 BRT nas memórias diárias por conta/outputs do Trader, caso a rotina diária estivesse prevista para rodar.

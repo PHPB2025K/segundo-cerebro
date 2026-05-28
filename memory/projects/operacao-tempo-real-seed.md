@@ -28,7 +28,7 @@ tags:
 |---|---|---|---|---|---|---|
 | 1 | **Estoque - GB Importadora** | `120363407096324740@g.us` | estoque | **kobe** | ✅ ligar (confirmar recebimento, listar saldo, etc) | 4 participantes |
 | 2 | **Devoluções - GB Importadora** | `120363411628970089@g.us` | devolucoes | **kobe** | ✅ ligar (confirmar recebimento, status devolução) | 4 participantes |
-| 3 | **Contas a Receber - GB Importadora** | ⚠️ **não resolvido** — Kobe não está no grupo | contas_receber | **vault** | ❌ não | **Pedro: adicionar +5519998458149 ao grupo** |
+| 3 | **Contas a Receber - GB Importadora** | `120363321268883488@g.us` | contas_receber | **vault** | ❌ não | 6 participantes — adicionado 28/05 19:25 BRT |
 | 4 | **Vendas atacado - GB Importadora** | `120363401241177278@g.us` | atacado | **scout** | ✅ já ativo (pipeline `novo_pedido` do wholesale-poller) | 4 participantes — JÁ EM PRODUÇÃO |
 | 5 | **Compras - GB Importadora** | `120363409020629957@g.us` | compras | **scout** | ❌ não | 4 participantes |
 | 6 | **Expedição - GB Importadora** | `120363242132245729@g.us` | expedicao | **kobe** | ❌ não | 13 participantes |
@@ -69,16 +69,17 @@ tags:
 | **spark** | ✅ ativo (ADS) | nada nesta fase |
 | **builder** | ✅ ativo | nada nesta fase (dev, não operação) |
 
-## 6. Ação pendente para começar implementação
+## 6. Status implementação
 
-- **Pedro:** adicionar o número do Kobe (**+55 19 99845-8149**) ao grupo WhatsApp **"Contas a Receber - GB Importadora"**. Quando feito, o JID aparece automaticamente no próximo `fetchAllGroups`.
+✅ **9/9 grupos resolvidos.** Pronto para Fase 0 (schema).
 
-Depois disso:
-1. INSERT seed em `operation_groups` (9 grupos + 3 DMs Slack)
-2. Generalizar `wholesale-evolution-poller` → `whatsapp-operacao-poller`
-3. Subir `slack-dm-poller`
-4. Dispatcher + memória layered
-5. Cron digest 22h + briefing 07h no tópico Daily Briefing
+Próximos passos:
+1. Fase 0: aplicar schema (`operation_groups`, `operation_messages`, `agent_message_memory`) no Supabase Budamix Central
+2. Fase 1: INSERT seed (9 grupos + 3 DMs Slack)
+3. Fase 2: generalizar `wholesale-evolution-poller` → `whatsapp-operacao-poller`
+4. Fase 3: `slack-dm-poller`
+5. Fase 4: dispatcher + memória layered
+6. Fase 5: cron digest 22h + briefing 07h no tópico Daily Briefing (thread 2)
 
 ## 7. Inviolabilidades reforçadas
 

@@ -37,9 +37,18 @@ Pedro aprovou estruturar a atualização constante da Planilha de Estoque por um
 
 ## Canais definidos
 
-- WhatsApp: **Estoque - GB Importadora** — a ser criado por Pedro.
-- WhatsApp: **Devoluções - GB Importadora** — a ser criado por Pedro.
-- Telegram Kobe Hub: tópico **Estoque** — a ser criado por Pedro.
+- WhatsApp: **Estoque - GB Importadora** — criado por Pedro em 2026-05-28; Kobe foi adicionado pela instância Evolution API própria.
+- WhatsApp: **Devoluções - GB Importadora** — criado por Pedro em 2026-05-28; Kobe foi adicionado pela instância Evolution API própria.
+- Telegram Kobe Hub: tópico **Estoque** — criado por Pedro em 2026-05-28, thread 11932.
+- Telegram Kobe Hub: tópico **Devoluções** — criado por Pedro em 2026-05-28, thread 11937.
+
+## Regra de canal — decisão 2026-05-28
+
+- WhatsApp é a fonte real de inserção e comunicação dos dados no dia a dia da operação.
+- Telegram é o canal para falar com Pedro sobre desenvolvimento do sistema, alertas, divergências, decisões técnicas e assuntos fora da operação diária.
+- Assuntos de estoque devem ir para o tópico Telegram **Estoque**.
+- Assuntos de devoluções devem ir para o tópico Telegram **Devoluções**.
+- Não misturar devoluções no fluxo geral de estoque sem classificação; devolução exige triagem específica.
 
 ## Regras iniciais
 
@@ -58,3 +67,6 @@ Pedro aprovou estruturar a atualização constante da Planilha de Estoque por um
 - Rotina de conciliação diária e alertas de divergência.
 - Sincronização segura com a aba ESTOQUE.
 
+## Próxima tarefa imediata
+
+Desenhar o blueprint técnico-operacional completo já considerando os canais criados: arquitetura, tabelas, estados dos movimentos, regras de validação, fluxo WhatsApp → movimento pendente → aprovação/aplicação → sincronização com Planilha de Estoque.

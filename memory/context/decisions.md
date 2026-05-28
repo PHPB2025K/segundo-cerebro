@@ -19,6 +19,8 @@ tags:
 - Entradas a cobrir: mercadorias compradas recebidas no galpão, devoluções aprovadas como íntegras e containers recebidos.
 - Pedro vai criar grupos WhatsApp específicos **Estoque - GB Importadora** e **Devoluções - GB Importadora**, além de um tópico Telegram **Estoque** no Kobe Hub.
 - Regra de segurança aprovada: entradas via WhatsApp não devem alterar estoque automaticamente no início; devem criar movimento pendente para interpretação e confirmação antes da escrita no saldo.
+- Atualização do mesmo dia: Pedro criou os grupos WhatsApp **Estoque - GB Importadora** e **Devoluções - GB Importadora**, adicionou Kobe via instância Evolution API, e criou no Telegram os tópicos **Estoque** (thread 11932) e **Devoluções** (thread 11937).
+- Regra de canal: WhatsApp é a fonte real de inserção/comunicação diária da operação; Telegram fica para desenvolvimento do sistema, alertas, divergências, decisões e assuntos com Pedro fora da rotina operacional.
 
 ## 2026-05-28 — Produtos MDF / catálogo operacional
 

@@ -20,6 +20,8 @@ Rotina diária de leitura read-only dos grupos internos de WhatsApp da GB, com r
 | Vendas Atacado | Vendas atacado - GB Importadora | Tópico 6 |
 | Expedição | Expedição - GB Importadora | Expedição (10911) |
 | Sócios | Sócios - GB Importadora | Sócios (10912) |
+| Estoque | Estoque - GB Importadora | Estoque (11932) |
+| Devoluções | Devoluções - GB Importadora | Devoluções (11937) |
 
 ## Regras
 
@@ -29,3 +31,4 @@ Rotina diária de leitura read-only dos grupos internos de WhatsApp da GB, com r
 - Síntese independente por área: não misturar assuntos entre grupos.
 - Memória persistente separada por área: decisões, pendências, responsáveis, riscos e histórico diário.
 - Não persistir dados sensíveis: senhas, tokens, cartões, dados bancários completos, CPF/RG/documentos pessoais.
+- Para Estoque e Devoluções, WhatsApp é a fonte real da operação diária; Telegram é para desenvolvimento do sistema, alertas, divergências e decisões com Pedro.

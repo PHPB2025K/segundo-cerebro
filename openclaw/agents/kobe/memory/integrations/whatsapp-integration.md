@@ -80,6 +80,21 @@ _Atualizado: 2026-03-25_
 7. No número do Kobe: identidade = Kobe/Assistente do Pedro, NUNCA se passar pelo Pedro
 8. No número do Pedro: identidade = Pedro, NUNCA se identificar como Kobe/IA
 
+---
+
+## Grupos operacionais específicos — Estoque/Devoluções
+
+_Atualizado: 2026-05-28_
+
+Pedro criou e adicionou o Kobe, via instância Evolution API do número próprio, aos grupos:
+
+| Grupo WhatsApp | Função | Regra |
+|---|---|---|
+| **Estoque - GB Importadora** | Fonte operacional diária para entradas/movimentos de estoque físico: mercadorias recebidas, containers, notas/listagens e comunicação operacional de estoque. | Fonte real de dados da operação. Comunicação com Pedro sobre desenvolvimento, alertas e decisões deve ir no tópico Telegram **Estoque**. |
+| **Devoluções - GB Importadora** | Fonte operacional diária para devoluções aptas a retornar ao estoque, com foto/etiqueta enviada pela pessoa responsável apenas quando o produto estiver inteiro. | Fonte real de dados da operação. Comunicação com Pedro sobre desenvolvimento, alertas e decisões deve ir no tópico Telegram **Devoluções**. |
+
+Regra de desenho: mensagens desses grupos alimentam o motor/livro de movimentações de estoque. No início, entradas via WhatsApp devem criar movimentos pendentes para validação antes de alterar saldo da aba ESTOQUE.
+
 
 ## Ver também
 

@@ -36,6 +36,8 @@ tags:
 | 10469 | Gestão de Funcionários | Assuntos de gestão específica de funcionários da empresa e rotina semanal `✅ Rotina semanal de Gestão de Funcionários` |
 | 10494 | Pedidos Atacado Automação | Assunto exclusivo da automação do WhatsApp **Pedidos de Venda - GB** / pedidos de atacado: desenho, testes, N8N, Bling Matriz, PDF oficial do pedido, parser, validação, webhook, bloqueios e alertas dessa rotina |
 | 11259 | Amazon ADS | Assunto exclusivo para qualquer comunicação relacionada a ADS da Amazon: análises semanais, grupos de anúncio, BidSpark, ações, D+7, auditorias, alertas e decisões operacionais de Amazon Ads |
+| 11932 | Estoque | Desenvolvimento do sistema de estoque, alertas, divergências, decisões técnicas e comunicação com Pedro fora da operação diária. A fonte operacional real é o WhatsApp **Estoque - GB Importadora**. |
+| 11937 | Devoluções | Desenvolvimento, alertas, divergências e decisões sobre devoluções. A fonte operacional real é o WhatsApp **Devoluções - GB Importadora**. |
 
 ## Formato de delivery para crons
 ```
@@ -58,3 +60,5 @@ to: -1003730816228:topic:{thread_id}
 | Gestão Funcionários — atas semanais Slack | 10469 | Gestão de Funcionários |
 | Automação Pedidos Atacado / Pedidos de Venda GB | 10494 | Pedidos Atacado Automação |
 | Amazon Ads / BidSpark | 11259 | Amazon ADS |
+| Estoque GB — sistema/movimentações/alertas | 11932 | Estoque |
+| Devoluções GB — sistema/alertas/triagem | 11937 | Devoluções |

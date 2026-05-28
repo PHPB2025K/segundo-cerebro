@@ -122,6 +122,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 24/05/2026 | Amazon Ads ganhou tópico dedicado, régua de ACoS mais agressiva (alvo <10%, limite 15% com tolerância por função de campanha) e rodada operacional extensa com múltiplos grupos ajustados/validados via API; Daily Sales v2 teve pacote 23/05 parcial e Bling Filial seguiu bloqueado pelo 10º dia. |
 | 22/05/2026 | Time cresceu para 6 diretores: Vault (CFO, 6º agente top-level) criado com sub-agente Ledger; Daily Sales Analyst renomeado para Pulse; Mission Control ganhou cargos C-level e organograma com hover. Delegação Vault→Ledger validada end-to-end. No mesmo dia, Import Hub ativou Terminal49 para GB26001/GB26002, e-commerce fechou loop estoque site↔planilha e Ana/Canggu foi validada 7/7 E2E com notificação real ao Pedro. |
 | 25/05/2026 | Scout criado como 7º diretor top-level: Diretor de Compras e Planejamento de Reposição, começando pelo projeto de canecas e com guardrail de não comprar/enviar mensagem sem autorização explícita. Subagente Radar definido como Analista de Compras Sênior, respondendo diretamente ao Scout. |
+| 27/05/2026 | Watchdog GitHub Sync revelou commits stuck do Kobe e levou à regra operacional definitiva de escrita segura no vault; `safe-write.sh` ganhou defesa de catch-up. Planilha de Estoque/Precificação ganhou regra global de valores em formato brasileiro e rodada grande de pricing das canecas/devoluções reais por anúncio. |
 
 ---
 

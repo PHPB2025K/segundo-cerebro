@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-05-26 23:45 BRT (consolidação diária em camadas)._
+_Último update: 2026-05-27 23:45 BRT (consolidação diária em camadas)._
 
 ---
 
@@ -136,12 +136,12 @@ skills/
 | **Vault** | Finanças, tesouraria, caixa | agents/vault | ✅ Operacional |
 | **Scout** | Reposição, demanda, estoque, compras semanais | agents/compras | ✅ Fundação criada + Radar |
 
-## Status do Sistema (26/05/2026 23:45 BRT — consolidação diária em camadas)
+## Status do Sistema (27/05/2026 23:45 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
 - **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; todo conteúdo relacionado a alertas deve ir para lá (watchdogs, guards, audits, monitores, failure alerts, resumos e avisos de risco/problema). Thread 8 permanece Urgente e não deve receber alertas técnicos de rotina.
 - **Planejamento de reposição das canecas / Compras:** prioridade máxima do próximo bloco operacional. Pedro pediu em 25/05 retomar a criação do Diretor de Compras; fundação do agente **Scout** criada com subagente **Radar**. Pedro aprovou estrutura enxuta Scout → Radar por enquanto e regra do cron semanal: recalcular o pipeline inteiro do zero com dados até D-1, comparar contra o plano aprovado e só atualizar se houver mudança relevante. O piloto de canecas segue como primeiro playbook antes de ampliar para outras famílias; todo assunto de compras vai no tópico Compras.
-- **Daily Sales Report Slack / DSA:** envio real para funcionários segue bloqueado até liberação explícita. O DSA ML amadureceu em 23/05 com sistema MercadoLíder, memory ingest diário, consolidações semanal/mensal e decisão de modelo por camada. Em 25/05, L06 foi lapidada para linguagem natural no Slack da Yasmin. Pacotes 23/05 e 24/05 seguem com DADOS_PARCIAIS; o pacote de 25/05 veio com **DADOS_OK** nas três plataformas (R$ 12.345,96, 268 pedidos, ticket R$ 46,07), mas a entrega temporária localizada novamente foi só Mercado Livre/Yasmin, Pedro-only, aprovada com ressalvas. Validar se o ciclo ML-only é desenho ou lacuna antes de qualquer promoção; envio real para Yasmin/Lucas/Leonardo continua bloqueado.
+- **Daily Sales Report Slack / DSA:** envio real para funcionários segue bloqueado até liberação explícita. O DSA ML amadureceu em 23/05 com sistema MercadoLíder, memory ingest diário, consolidações semanal/mensal e decisão de modelo por camada. Em 25/05, L06 foi lapidada para linguagem natural no Slack da Yasmin. Pacotes 23/05 e 24/05 seguem com DADOS_PARCIAIS; o pacote de 25/05 veio com **DADOS_OK** nas três plataformas, mas a entrega temporária localizada ficou só Mercado Livre/Yasmin. Em 27/05, o Daily Sales de 26/05 reportou R$ 12.864,40 em 253 pedidos, com ML puxando R$ 7.394,36; data readiness parcial por Shopee Conta 2 fraca (13 pedidos, -49,8% vs média 30d) e 6 cancelamentos na Amazon. Validar se o ciclo ML-only de 24/05, 25/05 e 26/05 é desenho ou lacuna antes de qualquer promoção; envio real para Yasmin/Lucas/Leonardo continua bloqueado.
 - **Estoque Budamix:** deploy de produção foi retomado em 20/05 por rsync direto, encerrando o checkpoint GitHub/Deploy Key para essa frente. Parser PDF local substituiu webhook n8n quebrado e teste E2E reversível com PDF real validou 7 SKUs com retorno bit a bit da planilha. Pendências remanescentes: POT1BB duplicado, aliases, PR4 kits/BOM, cleanup opcional das ops de teste e desativar webhook antigo.
 - **DRE Abril:** U15 Descontos Concedidos continua prioridade antes da U44 v4 limpa. ML aceito em R$ 5.061,14; Amazon precisa fechar item-promotion sem frete promocional; Shopee segue suspeita/reclassificação.
 - **Mission Control:** 11/23 módulos fechados; módulos Activity, Cron, Sessions, Skills e Costs consolidados, com separação de custo real API vs equivalente API vs subscription. Próxima prioridade técnica segue n8n usage tracking em `/costs`, painel Daily Sales Pipeline pendente de restart/smoke e PRDs dos módulos restantes.
@@ -155,11 +155,13 @@ skills/
 - **Budamix Central Estoque:** Fase 1.5 visual precisa validação do Pedro antes da Fase 2.
 - **Amazon Ads:** tópico oficial passou a ser Amazon ADS. Nova régua aprovada: grupo alvo <10% e limite 15%, com tolerância refinada por função de campanha. Rodada de 24/05 executou ajustes em Tulipa, Suporte Controle Gamer, Potes Herméticos Vidro, Canecas Canelada, MDFs, Jarra Medidora e Jogo Canequinhas Café; D+7 obrigatório para medir efeito.
 - **Shopee Full+:** Trader registrou em 26/05 que Full+ deve ser tratado como contexto de margem/mix logístico e rebate, não como causa automática de conversão diária. Conta 3 está abaixo do corte mínimo de 40% de pedidos Full no MTD; calcular impacto financeiro por conta para junho antes de recomendar ação.
-- **Bling/Fisco:** Filial segue com HTTP 403/empresa-token inativo no refresh OAuth pelo 12º dia em 26/05; Pedro decidiu pausar essa frente em 21/05 porque não está usando esse Bling. Matriz OK e Filial 403 nas rodadas úteis de 01:29, 11:29, 16:29 e 21:29 BRT. Não gastar bloco operacional agora; não avançar fluxos fiscais que dependam da Filial até reabrirem a frente. Atenção: cron refresh teve rodadas sem validação útil por política/allowlist; se persistir, corrigir monitor antes de confiar nele. WhatsApp Health Check virou próximo foco de infra.
-- **RH/Ponto Certo:** follow-up tem pré-checagem determinística de cobertura por ajuste, justificativa ou batida real. Em 26/05, compliance registrou Sandra sem marcações em dia útil; Guilherme e Leonardo sem saída final; Guilherme, Leonardo e Lucas com intervalo <1h; backlog RH segue em 16 comunicações abertas. WhatsApp proativo segue bloqueado fora do escopo autorizado; Pedro precisa orientar casos antes de nova cobrança.
+- **Bling/Fisco:** Filial segue com HTTP 403/empresa-token inativo no refresh OAuth pelo 13º dia em 27/05; Pedro decidiu pausar essa frente em 21/05 porque não está usando esse Bling. Matriz OK nas execuções completas e Filial 403; não gastar bloco operacional agora e não avançar fluxos fiscais que dependam da Filial até reabrirem a frente. Atenção: cron refresh segue com risco separado de rodadas sem validação útil por política/allowlist, e alertas WhatsApp do refresh seguem falhando com HTTP 403. WhatsApp Health Check continua sendo o próximo foco de infra.
+- **RH/Ponto Certo:** follow-up tem pré-checagem determinística de cobertura por ajuste, justificativa ou batida real. Em 27/05, compliance registrou Sandra sem marcações em dia útil novamente; Mateus sem saída final; Leonardo e Lucas com intervalo abaixo de 1h; backlog RH segue em 16 comunicações abertas, com 9 casos exigindo aprovação/orientação do Pedro. WhatsApp proativo segue bloqueado fora do escopo autorizado; Pedro precisa orientar casos antes de nova cobrança.
 - **Blog Budamix Pipeline v2:** em produção; resta inspeção visual humana do post de teste e cleanup.
 
 ### ✅ Operacional
+- **Vault / segundo-cérebro:** regra operacional nova: toda escrita no vault deve passar pelo `safe-write.sh commit`; `git commit` direto só em diagnóstico controlado autorizado. Bug raiz de commits stuck foi corrigido no script com catch-up automático de commits locais já feitos.
+- **Planilha de Precificação/Estoque:** regra global de formato definida por Pedro em 27/05: qualquer valor inserido/atualizado deve usar padrão brasileiro de moeda/número (`R$ 00,00`, vírgula decimal). Rodada de pricing de canecas aplicou desconto de 10%, atualizou custos nas abas SHOPEE/AMAZON/MELI, taxas reais de devolução nas três plataformas e novas linhas Amazon.
 - **Daily Sales Report v2:** pipeline individual por funcionário em produção: análise profunda por conta, memória Trader diária/semanal/mensal, Slack DM 06:50 BRT, Granola/Himmel 20:37 BRT e Marketplace Rules Watch 06:23 BRT.
 - **Vault como SSoT** segue válido: OpenClaw aponta para `/root/segundo-cerebro`, sync Mac↔GitHub↔VPS funcionando.
 - **Social Studio Carrossel/PR2/Pivot 1** viraram referência histórica; o produto ativo agora é Reborn (publicador + métricas, sem IA).
@@ -265,6 +267,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-05-27:** Regra operacional do vault foi endurecida após Watchdog detectar 3 commits stuck: toda escrita no segundo-cérebro deve usar escrita segura, e o script ganhou catch-up automático. Planilha de Estoque/Precificação recebeu regra global de valores em padrão brasileiro e rodada grande de pricing: custos de canecas com desconto de 10%, devoluções reais por anúncio em MELI/Shopee/Amazon e 19 linhas Amazon novas. Daily Sales de 26/05 reportou R$ 12.864,40 em 253 pedidos, mas segue com ciclo final ML-only e data readiness parcial por Shopee Conta 2 fraca e 6 cancelamentos Amazon.
 - **2026-05-25:** Compras ganhou o 7º diretor top-level Scout, com Radar como analista e estrutura Scout → Radar aprovada; cron semanal de canecas deve recalcular planejamento do zero com dados até D-1. Budamix.com.br pivotou para 100% utensílios de vidro, com hero retina-safe, swipe, combos IMB501 novos e correções mobile/cache. DSA ML refinou a comunicação final da Yasmin para linguagem natural, enquanto Daily Sales v2 continuou parcial/ML-only no pacote 24/05. Import Hub ganhou alerta anti-duplicação e Guarani entrou no radar específico de minuta/distrato/acordo assinado.
 - **2026-05-23:** DSA ML virou pipeline maduro com MercadoLíder, memory ingest diário, consolidações semanal/mensal, cron corrigido para 06:50 BRT real e modo híbrido Sonnet/Opus por camada; auditoria Ponto Certo validou ajustes aprovados sem duplicidade e incorporou regra de contexto individual para Mateus/Tiro de Guerra e intervalos <1h.
 - **2026-05-22:** Import Hub anexou documentos e ativou Terminal49 para GB26001/GB26002; e-commerce fechou loop de estoque site↔planilha e reparou IMB501/destaques; Vault/Ledger entraram em produção como área financeira; Ana/Canggu fechou 7/7 E2E com escalação/notificação real; Daily Sales v2 ficou com lacuna operacional para 21/05; RH registrou novos riscos de compliance.
@@ -306,7 +309,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) investigar pacotes parciais Daily Sales v2 de 23/05 e 24/05 antes de envio real, (2) acompanhar primeira consolidação semanal DSA ML em 02/06 e adicionar sanity check `suspect_zero_spend`, (3) fechar reposição de canecas após Pedro enviar pedidos em trânsito/já feitos, (4) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT, (5) retomar automação de pedidos atacado em teste controlado, (6) validar token Meta Ads pós-18/05, (7) orientar RH nos casos Guilherme/Leonardo/Mateus/Sandra sem liberar proativo genérico, (8) decidir Jarra Medidora e ajustar fotos/estoque/conteúdo do Budamix.com.br pós-pivot._
+_Próximas ações: (1) confirmar se Daily Sales v2 deve continuar ML-only/Pedro-only ou voltar ao ciclo completo Lucas/Shopee e Leonardo/Amazon, (2) investigar Shopee Conta 2 fraca e Amazon com 6 cancelamentos em 26/05, (3) acompanhar primeira consolidação semanal DSA ML em 02/06 e adicionar sanity check `suspect_zero_spend`, (4) fechar reposição de canecas após Pedro enviar pedidos em trânsito/já feitos, (5) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT, (6) retomar automação de pedidos atacado em teste controlado, (7) validar token Meta Ads pós-18/05, (8) orientar RH nos casos Sandra/Mateus/Leonardo/Lucas sem liberar proativo genérico, (9) decidir Jarra Medidora e ajustar fotos/estoque/conteúdo do Budamix.com.br pós-pivot._
 
 ---
 ## Contexto
@@ -337,6 +340,13 @@ _Próximas ações: (1) investigar pacotes parciais Daily Sales v2 de 23/05 e 24
 - [[openclaw/agents/kobe/shared/rh/SOUL|RH Workspace]]
 - [[openclaw/agents/kobe/shared/simulimport/reforma-tributaria-importacao|Reforma Tributária (SimulImport)]]
 
+
+
+## Qualidade da Memória (Consolidação em Camadas — 27/05 23:45 BRT)
+- Digests lidos: Trader, Spark, Builder, Fisco e RH. Digests ausentes: nenhum.
+- Escopo respeitado: Kobe/main + digests dos agentes diretos; sem varrer memória interna de agentes, subagentes, workers ou analysts temporários.
+- Marcos globais incorporados: regra obrigatória de escrita segura no vault após alarme de commits stuck; regra de formato brasileiro para valores na planilha de estoque/preço; rodada de pricing das canecas com desconto de 10%, devoluções reais por anúncio em MELI/Shopee/Amazon e novas linhas Amazon; Daily Sales de 26/05 com R$ 12.864,40 em 253 pedidos, mas data readiness parcial.
+- Riscos críticos vindos dos digests: Daily Sales v2 segue recorrente em ML-only/Pedro-only e precisa decisão se isso é desenho ou lacuna; Shopee Conta 2 caiu forte em 26/05; Amazon teve 6 cancelamentos; Bling Filial segue 403 pelo 13º dia; RH precisa orientação para Sandra, Mateus, Leonardo, Lucas e backlog de 16 comunicações.
 
 ## Qualidade da Memória (Consolidação em Camadas — 26/05 23:45 BRT)
 - Digests lidos: Trader, Spark, Builder, Fisco e RH. Digests ausentes: nenhum.

@@ -121,3 +121,15 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 - **Responsáveis/próximo passo:** Himmel/equipe deve estruturar campanhas/estratégias para os itens MDF; Trader deve acompanhar separadamente o desempenho dos MDF por conta.
 - **Status:** aberto — prioridade operacional registrada, aguardando evidência de campanhas e performance.
 
+### 2026-05-29 13:44–13:50 BRT — Lucas cobra retorno e Himmel informa otimizações em andamento
+
+- **Participantes:** Lucas / PhaseTec e Raphaella (Himmel).
+- **Plataforma/conta:** Shopee consolidado; sem conta específica nomeada, aplicar como contexto das 3 contas Budamix.
+- **Tema:** follow-up de retorno da Himmel sobre os itens/ações enviados anteriormente.
+- **Produtos/SKUs citados:** nenhum produto novo citado nesta interação; manter vínculo com os itens em aberto dos registros de 2026-05-28 (potes/Ramp Up) e 2026-05-29 (novos MDF), salvo detalhamento posterior.
+- **Decisão/contexto:** Lucas cobrou retorno da Himmel. Raphaella respondeu que a equipe estava realizando otimizações naquele momento e que, após concluir essas demandas, analisaria os itens enviados no grupo e retornaria com posicionamento.
+- **Impacto esperado:** indica que as ações de campanha ainda estavam em execução/análise na tarde de 2026-05-29; resultados do dia podem refletir ajustes incompletos, e a confirmação operacional definitiva ainda está pendente.
+- **Como validar nos dados:** nos próximos Daily Sales Reports v2, observar D+1/D+3 a partir de 2026-05-29 por shop_id/anúncio: mudança em investimento ADS, campanhas ativas, ROAS/TACOS, pedidos, faturamento e conversão dos potes e MDF priorizados; tratar qualquer melhora/queda como hipótese até a Himmel detalhar as otimizações concluídas.
+- **Responsáveis/próximo passo:** Himmel deve concluir otimizações, analisar itens enviados e retornar com posicionamento; Lucas acompanha cobrança.
+- **Status:** aberto — otimizações em andamento e retorno prometido, ainda sem detalhamento de ações concluídas.
+

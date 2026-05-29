@@ -1,18 +1,20 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-27_
+_Atualizado: 2026-05-28_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
 - [ ] Validar se os ciclos Daily Sales v2 de 24/05, 25/05 e 26/05/2026 BRT terem gerado preview apenas para Yasmin/Mercado Livre foram intencionais ou lacuna; se lacuna, reexecutar/fechar Lucas/Shopee e Leonardo/Amazon antes de qualquer envio real.
 - [ ] Manter envio real para Yasmin/Lucas/Leonardo bloqueado até autorização explícita de Kobe/Pedro e ciclo completo QA/Slack Writer validado; em 26/05 houve preview Mercado Livre/Yasmin aprovado com ressalvas, sem envio real.
-- [ ] Shopee Conta 2: investigar queda para 13 pedidos em 26/05/2026 BRT (-49,8% vs média 30d), cruzando estoque/Full, exposição, ADS e canibalização antes de acionar Lucas/Himmel.
-- [ ] Shopee Store e Shopee Conta 3: Store tinha recuperado em 25/05, mas voltou a 46 pedidos em 26/05 (-29,8% vs média 30d); Conta 3 ficou em 16 pedidos. Manter observação por recorrência curta.
+- [ ] Shopee Ramp Up 28/05/2026 BRT: validar D+1, D+3 e D+7 se as campanhas de potes nas três contas aumentaram investimento, exposição, vendas pagas/orgânicas, conversão e pedidos; separar efeito por shop_id e produto antes de concluir recuperação.
+- [ ] Shopee Conta 3: investigar queda para 13 pedidos em 27/05/2026 BRT, cruzando estoque/Full, exposição, ADS, canibalização e início das campanhas Ramp Up.
+- [ ] Shopee Conta 2: manter observação após recuperação parcial para 22 pedidos em 27/05/2026 BRT; não encerrar alerta até confirmar sustentação por mais ciclos.
+- [ ] Shopee Store: monitorar queda para 35 pedidos em 27/05/2026 BRT após 44 pedidos reprocessados em 26/05; validar se é oscilação de mix ou perda de exposição.
 - [ ] Mercado Livre/Yasmin 26/05/2026 BRT: documentar na L06 a distinção entre variação vendável e listing agregado do cluster IMB501, e registrar supressões de contraste de modalidade de envio para evitar ressalva recorrente de QA.
 - [ ] Mercado Livre/Yasmin 25/05/2026 BRT: revisar ressalvas menores do preview aprovado — corrigir padrão herdado na L05, preservar ACOS interno em 14,15% apesar do arredondamento visual para 14,2%, e alinhar leitura do cluster Potes Vidro 5 Peças entre análise agregada e Top Produtos por variação.
 - [ ] Mercado Livre/Yasmin: acompanhar concentração dos Potes Vidro 5 Peças, ADS respondendo por 56,7% do faturamento, possível risco de ruptura do Kit 6 Canecas Lisas 200ml em Full e pedidos do Kit 10 Potes 1050ml pausado/sem estoque.
-- [ ] Amazon: cancelamentos subiram para 6 no pacote 26/05/2026 BRT; validar recorrência por ASIN se repetir no próximo ciclo.
+- [ ] Amazon/cancelamentos: coleta de 27/05 registrou 17 cancelamentos totais no dia; se persistir no próximo ciclo, quebrar por canal/ASIN/shop_id antes de tratar como ruído operacional.
 - [ ] Pricing/planilha: após grandes alterações de custos/devoluções, auditar fórmulas críticas de lucro líquido nas linhas existentes próximas; em 27/05 foram restauradas 4 fórmulas ausentes na aba AMAZON.
 - [ ] Shopee Full+: calcular impacto financeiro estimado por conta para junho/2026 e separar SKUs Full com item >= R$50 antes de recomendar mudança de mix; Conta 3 está abaixo do corte mínimo de 40% no MTD.
 - [ ] Validar por que o pacote de dados do Daily Sales v2 para 23/05/2026 BRT ficou em **DADOS_PARCIAIS** e não teve artefatos finais de Slack Writer/QA Gate detectados; manter envio real bloqueado até fechamento do ciclo e autorização explícita.
@@ -30,9 +32,9 @@ _Atualizado: 2026-05-27_
 - [ ] Tornar obrigatório no log da Slack Writer o registro formal de todos os itens “não pode ir para Slack”, inclusive regras gerais, restrições de inferência e toda omissão de Top Produtos por nome, mesmo item de 1 pedido com confiança alta; incluir omissões por volume residual como KIT2YW1050 quando aplicável.
 - [ ] Corrigir mapeamentos/nome comercial que contaminam Daily Sales: Amazon TL250B/TL6250 não podem aparecer como tigelas de vidro; Shopee SKU 098 deve usar raw_title/descrição correta; ML 914C_BAV não deve receber rótulo inventado.
 - [ ] Incluir/validar no pacote Daily Sales: Shopee Full real por conta, Buy Box e cobertura FBA por ASIN na Amazon, atribuição de cancelamentos por produto quando disponível.
-- [ ] Monitorar Shopee nas 3 contas por queda transversal vs média 30d, concentração dos top produtos e possível canibalização interna entre lojas; pacote de 23/05/2026 BRT marcou Store com 38 pedidos (-44,0% vs média 30d) e Conta 3 com 13 pedidos (-45,8% vs média 30d), exigindo nova checagem no próximo ciclo antes de possível intervenção Lucas + Himmel.
+- [ ] Monitorar Shopee nas 3 contas por queda transversal vs média 30d, concentração dos top produtos e possível canibalização interna entre lojas; a partir de 28/05, cruzar também com ações de Ramp Up para potes e religação/realocação de campanhas.
 - [ ] Amazon: validar recorrência dos 7 cancelamentos registrados no pacote de 23/05/2026 BRT por ASIN antes de tratar como ruído operacional.
-- [ ] Revisar Shopee Rules Watch, vencido desde 06/05/2026, e Amazon Rules Watch, previsto para 20/05/2026, antes de usar taxa/regra como hipótese causal forte no Daily Sales.
+- [ ] Rules Watch: próximas revisões — Mercado Livre 01/06/2026, Shopee 02/06/2026, Amazon 03/06/2026; até lá, contexto de regras está vigente, mas mudanças só devem ser usadas como hipótese quando cruzadas com dados reais.
 - [ ] Registrar/obter definição dos produtos prioritários Shopee de maio por Lucas; sem isso, recomendações de ADS/mix ficam parcialmente condicionadas.
 - [ ] Monitorar Mercado Livre entre 20/05 e 26/05 pelos efeitos das otimizações Himmel de 19/05: CB1 com verba maior, MDF com ROAS alvo mais aberto e anúncios movidos para Balance.
 - [ ] Monitorar Amazon por Buy Box, cobertura FBA, cancelamentos por ASIN e estabilidade dos ASINs líderes antes de recomendar escala de campanha.

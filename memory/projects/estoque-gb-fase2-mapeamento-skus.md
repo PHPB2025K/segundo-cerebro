@@ -136,8 +136,8 @@ de decisões, re-rodar `vw_resolver_dashboard` pra ver a cobertura subir.
   - ✅ Date em coluna status é ignorado (Shopee tem datas em col 5)
   - **Validação:** 3.196 eventos extraídos do XLSX oficial em isolamento, 43 skipped (32 corretos por CANCELADO, 5 typo "ENREGUE", 3 status "ENVIADO" não-mapeado).
 - **Skipped pendentes pra decisão Pedro:**
-  - `ENVIADO` (3 casos) — provavelmente SAFE, mas confirmar
-  - `ENREGUE` (5 casos) — typo de "Entregue" na planilha; pedir equipe corrigir
+  - ✅ `ENVIADO` (3 casos) — Pedro confirmou 29/05: significa "saiu do galpão pra transportadora". Adicionado em SAFE_STATUSES. PM2 restartado pid 2891417.
+  - `ENREGUE` (5 casos) — typo de "Entregue" na planilha. Localizado em **FULL ML, linhas 1317-1321, todos no envio ML143** (Yasmin). Pedir Yasmin corrigir.
 - Novo kit cadastrado: `KIT6YW640 → 6× YW640RC` (descoberto via envio ML590 do Yasmin).
 
 **Estado pós-aplicação:**

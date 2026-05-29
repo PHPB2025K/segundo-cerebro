@@ -106,3 +106,18 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 - **Como validar nos dados:** nos próximos Daily Sales Reports v2, checar por shop_id/anúncio evolução de investimento ADS, ROAS/TACOS, vendas pagas vs orgânicas, pedidos, faturamento, conversão e ranking dos 12 anúncios listados; separar efeito das campanhas Ramp Up do impacto estrutural de ruptura de potes e do mix de canecas/jarra/redondos.
 - **Status:** aberto — campanhas otimizadas/criadas em 2026-05-28; validar janela D+1, D+3 e D+7.
 
+### 2026-05-29 11:53–11:56 BRT — Novos itens MDF priorizados para campanhas nas 3 contas Shopee
+
+- **Participantes:** Lucas / PhaseTec.
+- **Plataforma/conta:** Shopee — ações separadas por conta: Budamix.store, Budamix_store e Budamix.shop.
+- **Tema:** expansão de visibilidade e vendas dos novos itens MDF nas três contas.
+- **Produtos/anúncios citados:**
+  - **Budamix.store:** 56310173341, 52760159518, 46660201660, 50210185745, 40531001446.
+  - **Budamix_store:** 49360200796, 51010172665, 40680725859, 44330709410, 55210742533.
+  - **Budamix.shop:** 42530725245, 52710175357, 50860186129, 45660210316, 56510738465.
+- **Decisão/contexto:** Lucas pediu atenção maior aos novos itens de MDF e sinalizou intenção de trabalhar campanhas e estratégias para aumentar visibilidade e impulsionar vendas nas três contas. Isso reforça a linha já levantada nas reuniões Himmel de usar MDF como alternativa de mix enquanto itens âncora importados sofrem ruptura/limitação.
+- **Impacto esperado:** aumento de exposição, tráfego e primeiros pedidos dos MDF; potencial para compensar parte da queda de Shopee se houver conversão suficiente, mas ainda precisa validação por anúncio/conta.
+- **Como validar nos dados:** nos próximos Daily Sales Reports v2, checar por shop_id/anúncio investimento ADS, impressões, cliques, pedidos, faturamento, conversão, ROAS/TACOS e evolução orgânica dos 15 anúncios listados; comparar D+1, D+3 e D+7 a partir de 2026-05-29.
+- **Responsáveis/próximo passo:** Himmel/equipe deve estruturar campanhas/estratégias para os itens MDF; Trader deve acompanhar separadamente o desempenho dos MDF por conta.
+- **Status:** aberto — prioridade operacional registrada, aguardando evidência de campanhas e performance.
+

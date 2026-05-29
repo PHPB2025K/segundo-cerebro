@@ -485,3 +485,36 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 **Status:** aberto — plano operacional para o próximo mês; validar nos Daily Sales Reports de Mercado Livre no início de junho.
 
+
+### 2026-05-29 10:32–11:00 BRT — Aceleração de anúncios, TACoS ruim e promoção bloqueada por margem
+
+**Participantes:** Cláudio Manrique Junior/Himmel; Yasmin Oscarlino.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Movimentações de campanha em anúncios que estavam em teste, foco orgânico e tentativa de viabilizar promoção sem prejudicar margem.
+
+**Produtos/anúncios citados:**
+- **MLB4076957145** — anúncio isolado pela Himmel com métrica ruim de **TACoS**.
+
+**Contexto registrado:**
+- Cláudio informou que já fez movimentações nos anúncios analisados: itens que estavam em **campanha de teste** passaram para **campanha de aceleração**.
+- Alguns anúncios já estavam isolados; Himmel segue analisando possibilidade de acelerar também esses casos.
+- Cláudio pediu que esses anúncios sejam foco também no **orgânico**, não apenas em ADS.
+- O anúncio **MLB4076957145** foi destacado como caso com TACoS ruim enquanto trabalhado de forma isolada.
+- Cláudio pediu verificação se os anúncios estavam em **Central de Promoção**, por possível impacto no resultado.
+- Yasmin verificou que não conseguiu colocar o anúncio em campanha de promoção porque o desconto do Mercado Livre prejudicaria a margem; informou que há **cupom de desconto ativo**.
+- Cláudio validou manter cupom ativo e acompanhar se surgir uma promoção que caiba na margem.
+- Yasmin planejou **aumentar o preço do anúncio** e, após cerca de **3 dias**, verificar se aparece alguma promoção disponível para encaixar.
+
+**Impacto esperado:**
+- A partir de **29/05**, variações de tráfego/vendas desses anúncios podem refletir migração de teste para aceleração e/ou ações orgânicas paralelas.
+- Para **MLB4076957145**, TACoS ruim vira ponto de atenção: não escalar sem cruzar margem, cupom, preço e efeito orgânico.
+- Promoção do ML foi bloqueada por margem; cupom ativo é o mecanismo promocional vigente até nova janela de promoção aparecer.
+- Possível aumento de preço pode afetar conversão por alguns dias, mas busca abrir elegibilidade de promoção preservando margem.
+
+**Como validar nos dados:**
+- Monitorar **MLB4076957145** e demais anúncios movidos de teste para aceleração entre **2026-05-29 e 2026-06-02**: vendas, investimento, ACOS/TACoS, ROAS, conversão, preço, cupom, margem e exposição orgânica.
+- Comparar antes/depois da migração para aceleração e do eventual aumento de preço.
+- Checar se aparece elegibilidade de promoção após aproximadamente **3 dias** e se a promoção cabe na margem.
+- Não interpretar aumento de gasto como problema isolado sem separar efeito da aceleração e do cupom ativo.
+
+**Status:** aberto — validar principalmente até **2026-06-02** nos dados de ML/ADS e margem.

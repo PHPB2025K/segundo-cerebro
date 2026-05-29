@@ -55,12 +55,15 @@ tags:
 ```
 /estoque (redirect)
   └── /fisico  ← NOVO DEFAULT
-       ├── Header: "Estoque Físico" + subtítulo sync
-       ├── PhysicalInventoryKpis (qty total, valor, SKUs com estoque)
-       ├── Card de filtros (busca, marca, "só com estoque")
-       ├── PhysicalInventoryTable (saldo SKU a SKU)
-       └── InventoryMovementsSection (NOVO)
-            ├── KPIs do período
+       Header: "Estoque" + sync 3min + SUB-TAB SELECTOR (Estoque Físico | Movimentações)
+       │
+       ├── Sub-aba "Estoque Físico" (default)
+       │    ├── PhysicalInventoryKpis (qty total, valor, SKUs com estoque)
+       │    ├── Card de filtros (busca, marca, "só com estoque")
+       │    └── PhysicalInventoryTable (saldo SKU a SKU)
+       │
+       └── Sub-aba "Movimentações"
+            ├── KPIs do período (total, aplicado, divergente, qty)
             ├── Filtros (período, status, origem, busca SKU)
             ├── Tabela paginada
             └── Refresh automático 30s

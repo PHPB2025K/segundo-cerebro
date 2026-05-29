@@ -74,21 +74,26 @@ Privacidade: DMs Slack só Kobe + RH veem.
 - Detecta `intent_preview` (7 padrões: novo_pedido, confirmar_recebimento, consultar_saldo, devolucao, doc_financeiro, reclamacao, logistica)
 - Detecta `contains_action_required` (regex com palavras-chave)
 
-### Fase 5 — Digest 22h + Briefing 07h (v2 com análise LLM)
+### Fase 5 — Digest 22h + Briefing 07h (v3 via Codex CLI — zero custo de API)
 - Script digest: `/var/www/mission-control/scripts/digest-por-agente.py` (rola 22h, popula `daily_digests` — histórico/auditoria)
-- Script briefing **v2**: `/var/www/mission-control/scripts/briefing-matinal.py`
-  - Puxa mensagens REAIS das 24h anteriores (não usa digest)
-  - 2 seções separadas: **📩 SLACK** (DMs analistas) e **📱 WHATSAPP** (grupos da operação)
-  - Para cada seção, Kobe (via `gpt-5-chat-latest`) lê as conversas, entende contexto, narra:
+- Script briefing **v3**: `/var/www/mission-control/scripts/briefing-matinal.py`
+  - **LLM via `codex exec` CLI** — usa a assinatura GPT Pro do Pedro (OAuth `pehpbroglio@gmail.com`), modelo gpt-5.5 default. **Zero cobrança de API.** Decisão Pedro 29/05.
+  - Puxa mensagens REAIS das 24h anteriores
+  - 2 seções: **📩 SLACK** (DMs analistas) e **📱 WHATSAPP** (grupos da operação)
+  - Para cada seção, Kobe (via codex CLI) lê as conversas, entende contexto, narra:
     - Slack: 1 subseção por DM (Lucas/Leonardo/Yasmin) + "Olhada geral"
     - WhatsApp: 1 subseção por grupo + "Pontos pra você olhar hoje"
   - Resolve user_ids em nomes amigáveis (Pedro/Lucas/Leonardo/Yasmin/Pedro@lid)
   - Envia em Markdown ao Telegram tópico `2` (📋 Daily Briefing) do Kobe Hub
-  - Split automático se mensagem > 4000 chars
+  - Split automático se > 4000 chars
 - Cron 22h BRT (01 UTC): digest por agente (legado/auditoria)
-- Cron 07h BRT (10 UTC): briefing matinal v2 com LLM
-- Tom: conversacional, sem se estender. Decisão Pedro 28/05.
-- **Bug do gpt-5-mini documentado:** reasoning model consome todos os tokens pensando, output vazio. Usar `gpt-5-chat-latest` para chat puro.
+- Cron 07h BRT (10 UTC): briefing matinal v3 com codex CLI
+- Tom: conversacional, sem se estender.
+- **Tempo médio:** ~30s por briefing (Slack 16s + WhatsApp 11s LLM via codex).
+- **Notas:**
+  - codex CLI binário em `/usr/bin/codex`. Auth OAuth persistente.
+  - Flags usadas: `--sandbox read-only --skip-git-repo-check --ephemeral --color never --output-last-message`
+  - Bug histórico: gpt-5-mini reasoning model gastava tokens pensando; resolvido ao mudar pra codex CLI (gpt-5.5 chat puro).
 
 ## Serviços PM2 ativos
 

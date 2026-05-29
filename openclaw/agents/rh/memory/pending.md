@@ -1,17 +1,18 @@
 # Pendências — RH
 
-_Atualizado: 2026-05-27_
+_Atualizado: 2026-05-28_
 
-> 27/05 não criou novas comunicações nem conversas, mas adicionou riscos diários: Sandra sem marcações em dia útil, Mateus com saída final ausente e entrada 09:06 sob contexto de Tiro de Guerra, Leonardo/Lucas com intervalo <1h. Consolidação não autoriza WhatsApp proativo.
+> 28/05 não criou novas conversas nem comunicações, mas atualizou dois casos antigos por escalamento automático e adicionou riscos diários: Sandra sem marcações em dia útil, Mateus com saída final ausente e entrada 09:00 sob contexto de Tiro de Guerra, Guilherme/Lucas com intervalo <1h. Consolidação não autoriza WhatsApp proativo.
 
 ## 🔴 Prioridade Alta
-- [ ] Pedro validar Sandra sem marcações em 27/05 e orientar se deve tratar como falta completa, ausência justificada ou falha de registro; histórico de faltas completas/pendências semanais segue bloqueado para contato sem orientação.
-- [ ] Pedro aprovar/orientar próximos passos para Guilherme: pendências semanais de 11/05 e 13/05, comunicação anterior pendente >72h, 19/05 com marcações incompletas, 20/05 sem saída final + intervalo <1h, 21/05 com intervalo <1h, 22/05 com intervalo de 28min, novo caso semanal 18/05–23/05 persistido sem envio por TIPO F/recorrência, e 26/05 com saída final ausente + intervalo de 54min.
-- [ ] Pedro aprovar/orientar próximos passos para Mateus: regularizar pendências da semana 04/05–09/05, pendências semanais de 11/05–16/05, batidas incompletas de almoço em 18/05, marcações parciais de 22/05, novo caso semanal 18/05–23/05 com 7 pendências reais, comunicação antiga escalada em 26/05 após 9 dias úteis sem resposta, e 27/05 com entrada 09:06 + saída final ausente; considerar jornada especial/Tiro de Guerra antes de classificar.
-- [ ] Leonardo: concluir pendência de 04/05 considerando jornada especial; confirmar dias de faculdade para evitar falsos positivos recorrentes; validar 22/05 e 26/05 com saída final ausente; comunicação antiga foi escalada novamente em 26/05 após 9 dias úteis sem resposta; 27/05 teve intervalo de almoço ~59min.
-- [ ] Pedro aprovar/orientar próximos passos para Lucas: pendência semanal de 11/05, recorrência em semanas consecutivas, intervalos <1h em 19/05, 20/05, 22/05, 25/05, 26/05 e 27/05, 21/05 sem almoço registrado; ajuste antigo de 05/05 segue pendente de validação no Ponto Certo.
+- [ ] Pedro validar Sandra sem marcações em 28/05 e orientar se deve tratar como falta completa, ausência justificada ou falha de registro; histórico de faltas completas/pendências semanais segue bloqueado para contato sem orientação.
+- [ ] Pedro aprovar/orientar próximos passos para Guilherme: pendências semanais de 11/05 e 13/05, comunicação anterior pendente >72h, 19/05 com marcações incompletas, 20/05 sem saída final + intervalo <1h, 21/05 com intervalo <1h, 22/05 com intervalo de 28min, novo caso semanal 18/05–23/05 persistido sem envio por TIPO F/recorrência, 26/05 com saída final ausente + intervalo de 54min e 28/05 com intervalo de 59min.
+- [ ] Pedro aprovar/orientar próximos passos para Mateus: regularizar pendências da semana 04/05–09/05, pendências semanais de 11/05–16/05, batidas incompletas de almoço em 18/05, marcações parciais de 22/05, novo caso semanal 18/05–23/05 com 7 pendências reais, comunicação antiga escalada em 28/05 após 11 dias úteis sem resposta, 27/05 com entrada 09:06 + saída final ausente e 28/05 com entrada 09:00 + saída final ausente; considerar jornada especial/Tiro de Guerra antes de classificar.
+- [ ] Leonardo: concluir pendência de 04/05 considerando jornada especial; confirmar dias de faculdade para evitar falsos positivos recorrentes; validar 22/05 e 26/05 com saída final ausente; comunicação antiga foi escalada novamente em 28/05 após 11 dias úteis sem resposta; 27/05 teve intervalo de almoço ~59min.
+- [ ] Pedro aprovar/orientar próximos passos para Lucas: pendência semanal de 11/05, recorrência em semanas consecutivas, intervalos <1h em 19/05, 20/05, 22/05, 25/05, 26/05, 27/05 e 28/05, 21/05 sem almoço registrado; ajuste antigo de 05/05 segue pendente de validação no Ponto Certo.
 
 ## 🟡 Prioridade Média
+- [ ] Compliance 28/05: validar Sandra sem marcações; Mateus com saída final ausente e entrada 09:00 sob contexto de Tiro de Guerra; Guilherme/Lucas com intervalo abaixo de 1h; nenhuma jornada >10h identificada.
 - [ ] Compliance 27/05: validar Sandra sem marcações; Mateus com saída final ausente e entrada 09:06 sob contexto de Tiro de Guerra; Leonardo/Lucas com intervalo abaixo de 1h; nenhuma jornada >10h identificada.
 - [ ] Compliance 26/05: validar Sandra sem marcações; Guilherme e Leonardo sem saída final; Guilherme/Leonardo/Lucas com intervalo abaixo de 1h; Mateus com entrada 09:26 sob contexto de Tiro de Guerra; nenhuma jornada >10h identificada.
 - [ ] Compliance 25/05: validar Leonardo com batidas incompletas, Guilherme/Lucas/Mateus com intervalo abaixo de 1h; nenhuma jornada >10h identificada.

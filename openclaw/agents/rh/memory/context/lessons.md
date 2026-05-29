@@ -1,6 +1,13 @@
 # Lições — RH
 
-_Atualizado: 2026-05-27_
+_Atualizado: 2026-05-28_
+
+## 2026-05-28
+- A ausência total de marcações de Sandra se repetiu em dia útil, mantendo risco trabalhista sensível e necessidade de orientação do Pedro.
+- Mateus segue combinando contexto especial de entrada com pendências de marcação; qualquer classificação precisa considerar Tiro de Guerra e histórico antes de cobrança.
+- Intervalos abaixo de 1h continuam recorrentes, hoje em Guilherme e Lucas; o padrão precisa de orientação operacional antes de cobrança ou correção.
+- Escalamentos automáticos repetidos de Leonardo e Mateus, após 11 dias úteis sem resposta, indicam que o backlog antigo precisa de decisão para não virar apenas ruído diário.
+- Backlog de 16 comunicações abertas segue estável, mas permanece risco operacional para novos ciclos semanais.
 
 ## 2026-05-27
 - A rotina de saída continua não destacando funcionário com zero marcações; a consolidação deve validar ausências totais em dias úteis além do relatório de saída.

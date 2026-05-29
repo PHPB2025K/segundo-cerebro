@@ -126,11 +126,18 @@ de decisões, re-rodar `vw_resolver_dashboard` pra ver a cobertura subir.
 
 **Decisões/aprendizados desta rodada:**
 - `gog drive download` (conta gb.ai.agent@gbimportadora.com) é o caminho oficial pra baixar XLSX do Drive na VPS. SA dedicada do estoque-budamix não precisa Drive API.
-- Parser TS `lib/envios-full.ts` tinha 2 problemas:
-  - Listava abas inexistentes ("AMAZON FULL", "FULL MAGALU") — **corrigido**
-  - SAFE_STATUSES não incluía "aguardando coleta" (status real dos envios criados ontem)
-  - **Não corrigido no TS ainda** — o parser TS rejeitará envios "aguardando coleta" da rota `ingest-envios-full`. Para esta sessão, contornei via script Python que tem SAFE_STATUSES ampliado. Próxima iteração: atualizar TS.
-- Layout de colunas por aba é heterogêneo (FULL ML usa idx 1/2/3/4; Shopee usa 2/3/4/_). Parser TS atual presume formato único — corrigir no próximo refactor.
+- Parser TS `lib/envios-full.ts` — **TODOS bugs corrigidos em 29/05 ~10:30 BRT:**
+  - ✅ Abas inexistentes removidas (AMAZON FULL, FULL MAGALU)
+  - ✅ `SAFE_STATUSES` estendido: `coletado, entregue, preparando, aguardando coleta, nf gerado, nf não gerado`
+  - ✅ `BLOCKED_STATUSES` estendido com `devolvido`
+  - ✅ `columnsForSheet` agora retorna por aba: FBA AMAZON `(1,2,3,6)`, FULL ML `(1,2,3,4)`, FULL SHOPEE `(2,3,4,null)` (sem coluna status confiável)
+  - ✅ Novo `isShipmentHeader` (regex `/^(AM|ML|SH|MALU)\w*\d/i`) + `isItemRow` baseado em SKU em coluna correta (não mais `row[0] > 0`)
+  - ✅ `SKU_LABEL_BLOCKLIST` rejeita labels (SKU/PRODUTO/GTIN/SEM GTIN/ASIN/etc.)
+  - ✅ Date em coluna status é ignorado (Shopee tem datas em col 5)
+  - **Validação:** 3.196 eventos extraídos do XLSX oficial em isolamento, 43 skipped (32 corretos por CANCELADO, 5 typo "ENREGUE", 3 status "ENVIADO" não-mapeado).
+- **Skipped pendentes pra decisão Pedro:**
+  - `ENVIADO` (3 casos) — provavelmente SAFE, mas confirmar
+  - `ENREGUE` (5 casos) — typo de "Entregue" na planilha; pedir equipe corrigir
 - Novo kit cadastrado: `KIT6YW640 → 6× YW640RC` (descoberto via envio ML590 do Yasmin).
 
 **Estado pós-aplicação:**

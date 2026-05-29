@@ -103,6 +103,41 @@ Pedro/Kobe definir por família: cadastrar, aliasar ou descontinuar. Cada decis�
 uma atualização da planilha ESTOQUE real, depois re-snapshot). Após cada lote
 de decisões, re-rodar `vw_resolver_dashboard` pra ver a cobertura subir.
 
+## Primeira baixa real aplicada — 29/05/2026 ~09:50 BRT
+
+**Contexto:** Pedro recebeu dos analistas a lista de envios FULL criados em 28/05 e autorizou aplicar baixa real.
+
+**Envios processados (5):**
+- ML590 (Yasmin / FULL ML)
+- AM328B (Leonardo / FBA AMAZON)
+- SH45 (Lucas / FULL SHOPEE 1)
+- SH41 (Lucas / FULL SHOPEE 2)
+- SH41 (Lucas / FULL SHOPEE 3)
+
+**Eventos: 13/13 aplicado em 20.7s. Total: 671 unidades baixadas.**
+
+| Canal | Movimentos | Qty baixada |
+|---|---|---|
+| fba_amazon | 1 | 10 |
+| full_ml | 1 (kit expandido) | 120 |
+| full_shopee_1 | 2 | 160 |
+| full_shopee_2 | 2 | 107 |
+| full_shopee_3 | 7 | 274 |
+
+**Decisões/aprendizados desta rodada:**
+- `gog drive download` (conta gb.ai.agent@gbimportadora.com) é o caminho oficial pra baixar XLSX do Drive na VPS. SA dedicada do estoque-budamix não precisa Drive API.
+- Parser TS `lib/envios-full.ts` tinha 2 problemas:
+  - Listava abas inexistentes ("AMAZON FULL", "FULL MAGALU") — **corrigido**
+  - SAFE_STATUSES não incluía "aguardando coleta" (status real dos envios criados ontem)
+  - **Não corrigido no TS ainda** — o parser TS rejeitará envios "aguardando coleta" da rota `ingest-envios-full`. Para esta sessão, contornei via script Python que tem SAFE_STATUSES ampliado. Próxima iteração: atualizar TS.
+- Layout de colunas por aba é heterogêneo (FULL ML usa idx 1/2/3/4; Shopee usa 2/3/4/_). Parser TS atual presume formato único — corrigir no próximo refactor.
+- Novo kit cadastrado: `KIT6YW640 → 6× YW640RC` (descoberto via envio ML590 do Yasmin).
+
+**Estado pós-aplicação:**
+- `kit_bom` agora tem 17 entries (16 + KIT6YW640)
+- `stock_movements` tem 13 novos rows com status='aplicado' e correspondentes baixas na planilha ESTOQUE do Drive
+- Saldos planilha decrementados em 671 unidades em 11 SKUs distintos
+
 ## Riscos abertos (não tratados nesta sessão)
 
 - RLS continua **desabilitado** em `stock_movements`, `stock_movement_evidences`,

@@ -90,6 +90,8 @@ Privacidade: DMs Slack só Kobe + RH veem.
 - Cron 07h BRT (10 UTC): briefing matinal v3 com codex CLI
 - Tom: conversacional, sem se estender.
 - **Tempo médio:** ~30s por briefing (Slack 16s + WhatsApp 11s LLM via codex).
+- **Lockfile defensivo:** `/var/run/briefing-matinal.lock` (fcntl LOCK_EX non-blocking). Se 2ª invocação simultânea ocorrer, sai silenciosamente. Adicionado 29/05 após detectar entries duplicados no log às 10:00:10 (cron Linux disparou só 1x, mas algo invocou script 2x — causa raiz não identificada; lock é defesa em profundidade).
+- **Coexistência com OpenClaw "Daily Briefing" (cron legado):** Cron OpenClaw `3ef411a0` (schedule `0 7 * * *` BRT) executa skill `daily-briefing` (clima + agenda + pendências + contexto), NÃO chama o briefing-matinal.py. São briefings DIFERENTES que ambos vão pro tópico 2 do Kobe Hub. Pedro quer ambos ativos.
 - **Notas:**
   - codex CLI binário em `/usr/bin/codex`. Auth OAuth persistente.
   - Flags usadas: `--sandbox read-only --skip-git-repo-check --ephemeral --color never --output-last-message`

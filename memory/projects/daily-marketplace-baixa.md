@@ -87,26 +87,35 @@ Maioria parece ser:
 | Tabela | `public.marketplace_sales_log` |
 | Função | `public.classify_fulfillment(text, text, jsonb)` |
 
-## Telegram digest diário (tópico Estoque)
+## Telegram digest diário (tópico Estoque) — formato Pedro aprovou 29/05
+
+Separa explicitamente "VENDA FULL" (não baixou galpão) de "VENDA DIÁRIA" (baixou ou tentou baixar do galpão), com totais em unidades + pedidos por plataforma.
 
 ```
-📊 Baixa marketplaces — DD/MM/YYYY
+📊 Vendas marketplaces — DD/MM/YYYY
 
-✅ Aplicados (Seller): N
-📦 Full (sem baixa): N
-⚠️ Divergentes: N
-❓ Unknown: N
+📦 VENDA FULL (não baixou galpão):
+  • Amazon: N unidades (M pedidos)
+  • Mercado Livre: N unidades (M pedidos)
+  • Shopee: N unidades (M pedidos)
+  Total: N unidades
 
-Seller por plataforma:
-  • ml: N pedidos
-  • shopee: N pedidos
-  • amazon: 0 pedidos
+🛒 VENDA DIÁRIA (baixou ou tentou baixar do galpão):
+  • Amazon: N unidades (M pedidos)
+  • Mercado Livre: N unidades (M pedidos)
+  • Shopee: N unidades (M pedidos)
+  Total: N unidades
 
-🚨 SKUs sem resolução (N):
-  • SKU1 (platform #order)
+✅ N unidades baixaram certinho
+⚠️ N unidades ficaram pendentes (SKU não cadastrado)
+
+🚨 SKUs sem cadastro (N distintos):
+  • SKU1 (Mercado Livre)
   ...
-Cadastrar em sku_aliases ou atacado_product_aliases.
+Cadastrar em sku_aliases (alias) ou kit_bom (kit)
 ```
+
+Nomenclatura segue regra Pedro: nunca usar "Seller/Full/FBA/FBS" na comunicação visível — só os termos "venda diária" e "venda Full" em português.
 
 ## Idempotência (3 camadas)
 

@@ -302,6 +302,41 @@ Toda sexta-feira no fim do dia:
 
 
 
+### 2026-W22 — Coleta semanal Slack (29/05)
+
+**Fonte consultada:** Slack read-only, últimos 7 dias, buscas por `#ata-reuniao`, atas/reuniões/feedbacks de Yasmin, Lucas e Leonardo, além das DMs recentes dos três. Não foi persistida transcrição integral.
+
+#### Yasmin
+- **Ata formal localizada:** sim — resumo de reunião enviado no Slack em 27/05, com foco em Mercado Livre, estratégia de junho, canecas, casinha/MDF, vídeos e rotina de acompanhamento.
+- **Pontos tratados:** ML segue como plataforma prioritária, com média aproximada de R$ 170 mil/mês e meta de elevar o piso diário para R$ 7,2k–8,3k; canecas de porcelana viraram produto foco de junho; canequinhas acrílicas devem ser encerradas conforme estoque; kits de potes devem migrar foco para 6 e 10 unidades nos próximos containers; casinha/MDF teve nova capa e vídeos em teste; Yasmin também alinhou com a Himmel campanha cofunded/ADS, Balance, Teste ABC, CA1, CA3 e aceleração.
+- **Acordos/prazos:** passar medidas e peso da caixa da casinha desmontada para recalcular frete; identificar o app de IA usado no vídeo; continuar produção/edição dos vídeos para ML; verificar fatura do ML sobre cobranças/ressarcimentos de quebrados; acompanhar nova capa da casinha até cerca de 03/06; antes de acionar RIMA/Himmel, levar métricas analisadas de avaliações, impressões e conversão; monitorar testes Blind e capa fundo branco vs. cenário.
+- **Evolução vs histórico:** Yasmin está assumindo papel mais estratégico no ML. Já não está só executando cadastro: está levando análise para Himmel, discutindo orçamento/campanhas e conectando criativo, estoque, ranking e meta de Platinum.
+- **Alertas:** planilha de estoque estava desatualizada e a baixa diária com Lucas foi marcada como crítica; preço final da casinha ainda depende de medidas/frete; canecas em junho exigem reposição rápida; manter cuidado para não depender de agência sem levar métrica própria.
+- **Pontos positivos:** boa evolução de autonomia; discurso com Himmel ficou mais técnico; criou/validou anúncios e vídeos com qualidade percebida pelo Pedro; entendimento de que ML é prioridade de crescimento está claro.
+- **Pendências para Pedro cobrar:** medidas/peso da casinha e preço final recalculado; vídeos finalizados e app de IA identificado; resultado da nova capa após uma semana; checagem da fatura de quebrados; status das canecas e aproximação do Platinum; confirmação de que a conversa com Himmel gerou plano de verba por campanha, não só resposta genérica.
+
+#### Lucas
+- **Ata formal localizada:** não foi localizada nova ata semanal padronizada no Slack. Houve remarcação de reunião e bastante acompanhamento operacional nas DMs.
+- **Pontos tratados:** estratégia Shopee Full/Store, criação de kits/combos acima de R$ 80 para capturar benefício de 2 p.p., casinha MDF nas três Shopees, ajuste de preço da jarrinha, análise de concorrência/preço da casinha, reativação de anúncios de canecas nas três lojas e nova regra de baixas/estoque: não mexer na planilha de estoque/precificação, usar apenas simulação nas abas dos marketplaces e enviar baixas diárias diretamente ao Pedro no Slack.
+- **Acordos/prazos:** reunião remarcada; Lucas ficou de apresentar possibilidades de kits maiores/combos; confirmou anúncios de canecas ativados; recebeu orientação de que baixas do dia devem ser enviadas diariamente e que o lançamento de estoque não deve ser feito diretamente na planilha principal.
+- **Evolução vs histórico:** Lucas continua responsivo e com iniciativa operacional, especialmente em Shopee Full, kits e execução multiloja. A leitura de concorrência da casinha mostrou atenção a volume real e margem, não só preço bruto.
+- **Alertas:** permanece sem ata formal semanal no Slack; frente de estoque/baixas precisa de disciplina porque mudou a regra operacional; risco de mexer indevidamente em planilha foi tratado explicitamente por Pedro.
+- **Pontos positivos:** respondeu rápido à ativação de canecas e às demandas de Full; trouxe leitura objetiva de concorrentes da casinha; demonstrou entendimento de que benefício Store depende de ticket acima de R$ 80 e volume real.
+- **Pendências para Pedro cobrar:** ata/resumo da reunião remarcada; plano de kits/combos Shopee Full acima de R$ 80; status definitivo da casinha nas três Shopees; rotina diária de baixas enviada no Slack; confirmação de que Lucas não está alterando estoque na planilha, só simulando preço quando necessário.
+
+#### Leonardo
+- **Ata formal localizada:** sim — resumo de reunião de 26/05 enviado no Slack, com foco em Amazon Ads, ACOS, funil e organização de campanhas.
+- **Pontos tratados:** canal Amazon em crescimento, com média diária subindo para cerca de R$ 1,5k; ACOS acima da meta máxima de 10%; campanhas automáticas e de alcance puxando o indicador para cima; revisão de lógica de negativação, extração de relatórios dos últimos 90 dias e funil automática → manual ampla → manual exata; duplicidade de campanhas; devoluções; prazo de 90 dias para avaliação do IPI; chamado em aberto do banco imobiliário no FBA; meta de 3 vendas/dia até primeira semana de junho.
+- **Acordos/prazos:** fazer pente fino em todas as campanhas ativas; extrair relatório de 90 dias e analisar com apoio do Claude; revisar termos sem venda, pausar ruins e escalar lances consolidados; checar negativação entre campanhas; enviar 3 anúncios de concorrentes de canecas/jarras para aprovação antes de criar campanhas segmentadas; criar campanhas por concorrente após aprovação; adicionar novos produtos às campanhas; confirmar início do prazo de 90 dias do IPI; acompanhar chamado do banco imobiliário; cadastrar casinha na Amazon com fotos/vídeo; monitorar estoque do pote e do suporte preto.
+- **Evolução vs histórico:** Leonardo está entrando em uma camada mais técnica de ADS Amazon e operação FBA. O foco deixou de ser só cadastro/imagem e passou a incluir estrutura de campanha, termos, duplicidade, funil e análise de relatório.
+- **Alertas:** ACOS acima da régua; duplicidade de campanhas precisa ser limpa antes de escalar verba; negativação manual é etapa crítica; Tulipa com avaliação 3,7 não deve receber tráfego pago por enquanto; uso do Claude deve apoiar, mas decisão/direcionamento continuam sendo dele.
+- **Pontos positivos:** tema da reunião foi bem objetivo e mais maduro; há tarefas claras por campanha, relatório e concorrente; Leonardo já estava preparando análise/apresentação e trabalhando fotos/capas/avaliações durante a semana.
+- **Pendências para Pedro cobrar:** resultado do pente fino das campanhas; relatório de 90 dias analisado; status das campanhas por concorrente; termos pausados/lances ajustados; confirmação do prazo do IPI; status do chamado do banco imobiliário; casinha cadastrada com fotos/vídeo; atualização de estoque dos principais produtos; ver se média diária caminha para R$ 3k.
+
+#### Ponto sistêmico
+- Yasmin e Leonardo tiveram resumos formais úteis no Slack; Lucas ficou novamente sem ata padronizada. Recomendo reforçar que, mesmo quando a reunião muda de dia, ela precisa terminar com uma mensagem curta no Slack no padrão `#ata-reuniao Nome AAAA-MM-DD`. Isso reduz ambiguidade e evita misturar operação diária com acompanhamento de gestão.
+
+
 ## Conectado a
 
 - [[memory/context/people]] — **ref**: 3 focal points descritos no people

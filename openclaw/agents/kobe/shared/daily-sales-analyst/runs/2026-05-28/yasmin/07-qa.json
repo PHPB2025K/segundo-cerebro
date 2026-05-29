@@ -1,0 +1,91 @@
+{
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "Dois Maiores em gates distintos acionam BLOQUEADO. Gate 10 (tom e utilidade): a seção ANÁLISE contém 'qualidade do anúncio em regular (0,71)' com pontuação numérica entre parênteses ao lado do nome da faixa — violação explícita e objetiva da regra de vocabulário de health no Slack. Gate 8 (bloqueios e logs): o bloco 'Decisões de formatação' da L06 declara que valores numéricos nunca aparecerão 'entre parênteses como (0,71) ao lado do nome da faixa', mas o output final contradiz diretamente esse registro. Gates 8 e 10 são gates distintos e cada um classifica o problema como Maior, acionando a regra '2+ Maiores em gates diferentes → BLOQUEADO'. Gate 12 registra Maior adicional de auditoria pela inconsistência ADS do ml_snapshot (11 campanhas ativas com spend=R$0), mas a condição de APROVADO COM RESSALVA está atendida pois L05 e L06 trataram corretamente como hipótese — contribui para o total de 3 Maiores em 3 gates distintos sem necessidade de ser o par primário de bloqueio.",
+  "send_allowed": false,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "RESSALVA",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "FALHA",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "FALHA",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "RESSALVA"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 3,
+    "maiores_gates_distintos": 3,
+    "menores": 3,
+    "regra_agregacao_aplicada": "2+ Maiores em gates diferentes → BLOQUEADO. Gates 8 e 10 são o par primário que aciona o bloqueio; Gate 12 contribui com terceiro Maior de auditoria. 3 Menores (Gates 5 e 6) não alteram o veredito."
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Maior",
+      "gate": "10 — Tom e utilidade",
+      "texto_atual": "que opera em Full com qualidade do anúncio em regular (0,71) há oito ciclos seguidos",
+      "texto_esperado": "que opera em Full com qualidade do anúncio em regular há oito ciclos seguidos",
+      "regra_violada": "Gate 10 bloqueia como Maior quando a mensagem Slack contiver pontuação numérica entre parênteses ao lado do nome do nível de qualidade do anúncio — ex.: 'em regular (0,71)'. O valor numérico é detalhe interno; o Slack deve usar apenas o nome da faixa.",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Maior",
+      "gate": "8 — Bloqueios, confiança e logs da Slack Writer",
+      "estado_atual": "O bloco 'Decisões de formatação' da L06 declara explicitamente: 'valores numéricos pontuais (0,71; 0,75) mantidos apenas onde necessários para identificar os gatilhos operacionais (<0,68 / <0,70); nunca entre parênteses como \"(0,71)\" ao lado do nome da faixa' — mas o output final da seção ANÁLISE contém exatamente o padrão declarado como proibido: 'em regular (0,71)'.",
+      "estado_esperado": "Decisão registrada no log deve ser coerente com o output final. Ou o output não contém '(0,71)' ao lado da faixa (correto), ou o log registra que o valor numérico aparece ao lado da faixa e justifica a exceção com base em regra explícita.",
+      "regra_violada": "Gate 8: 'Bloquear se decisão registrada contradiz a mensagem final.' A L06 declarou que '(0,71)' nunca apareceria ao lado do nome da faixa, mas a ANÁLISE contém exatamente esse padrão.",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Maior",
+      "gate": "12 — Consistência interna do ml_snapshot",
+      "estado_atual": "ads_summary.campaigns_active_count=11 com spend_yesterday_brl=0,0, revenue_ads_yesterday_brl=0,0 e avg_acos_pct=0,0 — configuração que sinaliza provável gap de consolidação da API Mercado Ads no horário do cron. Toda leitura analítica de 'ADS zero' é hipótese, não fato.",
+      "estado_esperado": "L05 marcou como hipótese em aberto (insight 2, classificacao='hipótese') e L06 preservou linguagem condicional ('A leitura natural seria...', 'até confirmar a origem', 'fica como ponto de observação, não como prova'). Condição para APROVADO COM RESSALVA atendida — Maior registrado como auditoria, não como par primário de bloqueio.",
+      "regra_violada": "Gate 12a: 'Se campaigns_active_count > 0 e spend_yesterday_brl == 0 (todos os três campos zerados) → marcar como Maior.' Aceitar APROVADO COM RESSALVA somente se L05 marcou como hipótese em aberto e L06 preservou linguagem condicional — condição cumprida.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "5 — Top Produtos Mercado Livre",
+      "estado_atual": "KIT6YW640 (5º produto do Top) tem slack_short_name=null. L06 usou display_short corretamente como fallback: 'Kit 10 Potes Herméticos 640ml Azul-petróleo 6 Unidades'. Mesmo produto é referenciado como 'Kit 10 Potes 640ml 6 Unidades' na ANÁLISE e nas PRIORIDADES.",
+      "estado_esperado": "Mesmo nome em todas as seções. Fallback display_short aplicado corretamente, mas a ausência de mapeamento manual gera inconsistência cross-section leve.",
+      "regra_violada": "Gate 5: 'Registrar como Menor (não bloqueia): Produto com slack_short_name=null — sinal para adicionar entrada em config/slack-short-names-ml.json.' E: 'Registrar como Menor (consistência cross-section): mesmo produto aparece com nome diferente em seções distintas.'",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "5 — Top Produtos Mercado Livre",
+      "texto_atual": "KIT6YW320 (Kit 10 Potes Herméticos 320ml) referenciado nas PRIORIDADES como 'Kit 10 Potes 320ml 6 Unidades'; produto não está no Top 5 do Slack mas é mencionado na prioridade 1. slack_short_name=null.",
+      "texto_esperado": "Produto com slack_short_name=null deve ter entrada adicionada em config/slack-short-names-ml.json para padronizar nome nas menções futuras.",
+      "regra_violada": "Gate 5: 'Registrar como Menor (não bloqueia): Produto com slack_short_name=null.'",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "6 — Análise da Conta",
+      "texto_atual": "Bullet 1 da ANÁLISE inicia com o label 'Risco urgente do dia:'",
+      "texto_esperado": "L05 insight 1 não contém esse prefixo. L06 adicionou label de apresentação sem correspondência na Condensadora.",
+      "regra_violada": "Gate 6: L06 não deve adicionar elemento não presente na L05. O prefixo não altera a tese central nem a classificação 'risco latente', mas representa adição não autorizada pela Condensadora.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [
+    "Gates 10 e 8 (mesma origem): remover '(0,71)' do trecho 'qualidade do anúncio em regular (0,71) há oito ciclos seguidos' na seção ANÁLISE. Texto corrigido: 'que opera em Full com qualidade do anúncio em regular há oito ciclos seguidos.' Após a correção do output, atualizar o bloco 'Decisões de formatação' da L06 para refletir com precisão o tratamento aplicado — coerência entre log e output é obrigatória para aprovação no Gate 8."
+  ],
+  "ressalvas_memoria_interna": [
+    "O termo 'cancellations_rate' aparece no bullet 1 da ANÁLISE ('pressiona a cancellations_rate (hoje em zero)'). L05 também usa o termo; L06 foi fiel. O termo não consta na lista de bloqueio explícito do Gate 10, mas pode ser avaliado para substituição por 'taxa de cancelamentos da reputação' em ciclos futuros para maior clareza operacional com Yasmin.",
+    "O prefixo 'Risco urgente do dia:' adicionado pela L06 ao bullet 1 da ANÁLISE eleva levemente o tom de urgência para além da classificação 'risco latente' da L05. Não altera a tese, mas o padrão de adicionar labels de apresentação não autorizados deve ser corrigido na L06 para ciclos seguintes."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "Gate 12 / ADS inconsistência estrutural: ads_summary entregou spend=R$0 e revenue=R$0 com 11 campanhas ativas — primeiro ciclo com zero absoluto após série de 5+ ciclos com participação de ADS entre 49% e 70% do faturamento. Condição não chegou ao Slack como fato (L05 e L06 trataram corretamente como hipótese). Investigar no fetcher se spend_yesterday_brl é calculado com atraso de consolidação pela API Mercado Ads e avaliar adição de flag 'consolidation_lag_suspected' ao ml_snapshot quando campaigns_active_count > 0 e spend == 0, para que L01–L06 possam sinalizar a ambiguidade de origem de forma mais explícita sem depender de confirmação manual com Himmel.",
+    "Gate 5 / slack_short_name ausente para dois produtos recorrentes: KIT6YW640 e KIT6YW320 aparecem nos rankings sem mapeamento manual. Adicionar entradas em config/slack-short-names-ml.json antes do próximo ciclo em que esses SKUs entrem no top 5. Sugestão: KIT6YW640 → 'Kit 10 Potes 640ml — 6 un'; KIT6YW320 → 'Kit 10 Potes 320ml — 6 un'. A ausência de mapeamento canônico gera inconsistência cross-section leve a cada ciclo em que esses produtos aparecem no top."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

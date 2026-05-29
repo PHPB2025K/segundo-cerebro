@@ -1,6 +1,12 @@
 # Lições — Fisco
 
-_Atualizado: 2026-05-27_
+_Atualizado: 2026-05-28_
+
+## 2026-05-28
+- Persistência do HTTP 403 da Filial por quatorze dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/token e teste controlado.
+- Matriz segue estável nas execuções completas do refresh, então o risco fiscal principal permanece concentrado na Filial; rodadas sem validação por allowlist/SIGTERM continuam reduzindo a confiabilidade do monitoramento.
+- A falha recorrente do alerta WhatsApp com HTTP 403 continua sendo risco de visibilidade independente da falha da Filial.
+- Quando o resultado fiscal é capturado mas a resposta final aborta por timeout, consolidar o achado operacional e registrar a falha de fechamento separadamente.
 
 ## 2026-05-27
 - Persistência do HTTP 403 da Filial por treze dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/token e teste controlado.

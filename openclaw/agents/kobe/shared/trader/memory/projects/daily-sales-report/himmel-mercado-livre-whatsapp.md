@@ -518,3 +518,29 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Não interpretar aumento de gasto como problema isolado sem separar efeito da aceleração e do cupom ativo.
 
 **Status:** aberto — validar principalmente até **2026-06-02** nos dados de ML/ADS e margem.
+
+### 2026-05-29 17:51 BRT — Fechamento de maio acima da projeção e TACoS temporariamente mais alto
+
+**Participantes:** Cláudio Manrique Junior/Himmel; Yasmin Oscarlino.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Fechamento parcial de maio, crescimento acima do previsto e leitura de TACoS em contexto de escala.
+
+**Contexto registrado:**
+- Himmel retomou a projeção feita na metade do mês, quando esperava aumento de faturamento de **4,6%**.
+- No fechamento parcial/final de maio, a conta estava performando bem acima da projeção, com crescimento informado de **23,86% até o momento**.
+- Cláudio avaliou o resultado como crescimento forte.
+- TACoS está um pouco mais alto, mas a Himmel considera isso esperado porque a conta está em movimento de escala.
+- Diretriz declarada: conforme os anúncios escalados ganharem melhor ranqueamento, buscar redução de TACoS de forma saudável, sem cortar a escala prematuramente.
+
+**Impacto esperado:**
+- Para o fechamento de maio e início de junho, não tratar aumento moderado de TACoS como problema isolado se vier acompanhado de crescimento real de faturamento e ganho de ranking.
+- A hipótese operacional da Himmel é que a escala atual deve melhorar eficiência depois que os anúncios escalados consolidarem ranqueamento.
+- Esse contexto reforça a diretriz já aprovada para junho: priorizar volume com controle de eficiência, especialmente em anúncios com potencial de ranking.
+
+**Como validar nos dados:**
+- Confirmar crescimento real de faturamento ML de maio contra abril e contra a projeção inicial de **+4,6%**.
+- Acompanhar TACoS/ACoS e ranking dos anúncios escalados entre **2026-05-30 e 2026-06-10**.
+- Separar aumento saudável de TACoS por escala de desperdício: validar vendas incrementais, margem, estoque, conversão e evolução orgânica dos anúncios acelerados.
+
+**Status:** aberto — validar no fechamento de maio e nos primeiros Daily Sales Reports de junho.
+

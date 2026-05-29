@@ -456,3 +456,32 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 **Status:** aberto — Yasmin solicitou aumento de giro; Himmel assumiu análise, mas execução e impacto ainda precisam ser confirmados nos dados.
 
+### 2026-05-29 09:36–09:54 BRT — Plano temporário de substituição dos kits 1050 por kits 6/10 de 640 ou 800
+
+**Participantes:** Yasmin Oscarlino; pessoa mencionada no grupo.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Planejamento de produtos para o próximo mês diante de ruptura/limitação de estoque dos potes 1050 no depósito.
+
+**Produtos/SKUs citados:**
+- Kits de 6/10 unidades dos potes **640ml** ou **800ml**.
+- Potes **1050ml**: sem estoque no depósito; ainda há saldo no Full, mas com duração incerta.
+
+**Contexto registrado:**
+- Yasmin cobrou retorno sobre uma verificação pendente.
+- Em seguida, registrou o plano para o próximo mês: tentar escalar kits de **6/10 unidades** dos modelos **640ml ou 800ml** como substituição temporária dos kits/produtos de **1050ml**.
+- Motivo operacional: não há mais estoque dos potes de **1050ml** no depósito; ainda existe estoque no Full, mas sem previsão clara de quanto tempo durará.
+- Justificativa comercial: os modelos de **640ml** e **800ml** já tiveram vendas, então serão priorizados para cobrir parte da demanda enquanto o 1050ml estiver limitado.
+
+**Impacto esperado:**
+- Para junho, quedas/limitações em produtos de **1050ml** devem ser lidas primeiro como efeito de estoque, não necessariamente perda de demanda ou falha de ADS.
+- Kits 6/10 de **640ml** e **800ml** entram como principais substitutos temporários e devem receber atenção em campanha, exposição orgânica, preço, estoque e conversão.
+- A estratégia reforça a diretriz já aberta de início de junho: escalar volume via produtos com estoque disponível, evitando depender dos campeões em ruptura.
+
+**Como validar nos dados:**
+- Confirmar estoque real no depósito e no Full para itens de **1050ml**, **640ml** e **800ml** antes de cobrar escala.
+- Entre **2026-06-01 e 2026-06-10**, monitorar vendas, tráfego, investimento, ACoS/TACoS, conversão e ranking dos kits 6/10 de **640ml** e **800ml**.
+- Comparar participação desses substitutos no mix contra queda dos itens de **1050ml** para medir se a substituição está compensando a ruptura.
+- Se houver ADS nesses produtos, validar se a Himmel executou movimentações de campanha compatíveis com o plano da Yasmin.
+
+**Status:** aberto — plano operacional para o próximo mês; validar nos Daily Sales Reports de Mercado Livre no início de junho.
+

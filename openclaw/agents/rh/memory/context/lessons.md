@@ -1,6 +1,13 @@
 # Lições — RH
 
-_Atualizado: 2026-05-28_
+_Atualizado: 2026-05-29_
+
+## 2026-05-29
+- A ausência total de marcações de Sandra se repetiu em vários dias úteis consecutivos, mantendo risco trabalhista sensível e necessidade de orientação do Pedro.
+- Saída final ausente em três funcionários no mesmo dia útil pode indicar esquecimento coletivo, falha de rotina ou lacuna operacional; deve ser validado antes de tratar como falta individual isolada.
+- Intervalos abaixo de 1h continuam recorrentes e hoje apareceram em Lucas, Guilherme, Mateus e Leonardo; o padrão precisa de orientação operacional antes de cobrança ou correção.
+- Escalamentos automáticos repetidos de Leonardo e Mateus, agora após 12 dias úteis sem resposta, indicam que o backlog antigo precisa de decisão para não virar apenas ruído diário.
+- Backlog de 16 comunicações abertas segue estável, mas permanece risco operacional para novos ciclos semanais.
 
 ## 2026-05-28
 - A ausência total de marcações de Sandra se repetiu em dia útil, mantendo risco trabalhista sensível e necessidade de orientação do Pedro.

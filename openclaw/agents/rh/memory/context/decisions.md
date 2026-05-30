@@ -1,6 +1,14 @@
 # Decisões — RH
 
-_Atualizado: 2026-05-28_
+_Atualizado: 2026-05-29_
+
+## 2026-05-29
+- Nenhuma decisão nova de política RH registrada.
+- Mantido bloqueio: consolidação diária de memória não autoriza envio proativo a funcionários.
+- Pontos de compliance de 29/05 devem ser tratados como validação interna até confirmação por fluxo autorizado ou orientação do Pedro.
+- Sandra sem marcações em dia útil permanece como atenção alta, sem contato automático fora do fluxo aprovado.
+- Casos de Lucas, Guilherme e Mateus com saída final ausente em 29/05 exigem validação antes de qualquer ajuste/cobrança.
+- Escalamentos automáticos repetidos de Leonardo e Mateus por 12 dias úteis sem resposta precisam de orientação do Pedro para não virarem ruído operacional.
 
 ## 2026-05-28
 - Nenhuma decisão nova de política RH registrada.

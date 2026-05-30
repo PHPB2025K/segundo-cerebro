@@ -11,6 +11,10 @@ tags:
 
 # Lições — Kobe
 
+## 2026-05-29 — [TÁTICA] Mensagem operacional não pode ser marcada como processada antes do efeito auditável
+
+No pipeline de Estoque via WhatsApp, uma mensagem de avarias foi capturada e memorizada, mas a aplicação do movimento falhou por validação de `sourceType`; mesmo assim a mensagem ficou marcada como processada e não será reprocessada automaticamente. Para fluxos operacionais auditáveis, sucesso de ingestão não é sucesso de aplicação: só marcar como processado quando o efeito esperado existir ou quando a falha ficar em fila explícita de retry/intervenção.
+
 ## 2026-05-23 — [TÁTICA] Crontab da VPS usa UTC; planejamento continua em BRT
 
 A VPS Hostinger interpreta crontab em UTC. Qualquer cron planejado para horário de Brasília precisa ser convertido explicitamente para UTC ao gravar no sistema (+3h), enquanto toda comunicação e documentação para Pedro permanece em BRT. Não assumir que `07:00` no crontab significa 07h BRT.

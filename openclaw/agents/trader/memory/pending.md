@@ -1,20 +1,20 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-28_
+_Atualizado: 2026-05-29_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
 - [ ] Validar se os ciclos Daily Sales v2 de 24/05, 25/05 e 26/05/2026 BRT terem gerado preview apenas para Yasmin/Mercado Livre foram intencionais ou lacuna; se lacuna, reexecutar/fechar Lucas/Shopee e Leonardo/Amazon antes de qualquer envio real.
 - [ ] Manter envio real para Yasmin/Lucas/Leonardo bloqueado até autorização explícita de Kobe/Pedro e ciclo completo QA/Slack Writer validado; em 26/05 houve preview Mercado Livre/Yasmin aprovado com ressalvas, sem envio real.
-- [ ] Shopee Ramp Up 28/05/2026 BRT: validar D+1, D+3 e D+7 se as campanhas de potes nas três contas aumentaram investimento, exposição, vendas pagas/orgânicas, conversão e pedidos; separar efeito por shop_id e produto antes de concluir recuperação.
-- [ ] Shopee Conta 3: investigar queda para 13 pedidos em 27/05/2026 BRT, cruzando estoque/Full, exposição, ADS, canibalização e início das campanhas Ramp Up.
-- [ ] Shopee Conta 2: manter observação após recuperação parcial para 22 pedidos em 27/05/2026 BRT; não encerrar alerta até confirmar sustentação por mais ciclos.
-- [ ] Shopee Store: monitorar queda para 35 pedidos em 27/05/2026 BRT após 44 pedidos reprocessados em 26/05; validar se é oscilação de mix ou perda de exposição.
+- [ ] Shopee Ramp Up 28/05/2026 BRT: D+1 em 28/05 foi misto — Store subiu para 46 pedidos, Conta 3 subiu para 17, Conta 2 caiu para 16; validar D+3 e D+7 se campanhas de potes aumentaram investimento, exposição, vendas pagas/orgânicas e conversão por shop_id/produto antes de concluir recuperação.
+- [ ] Shopee Conta 3: acompanhar se a recuperação parcial para 17 pedidos em 28/05 sustenta; cruzar estoque/Full, exposição, ADS, canibalização e campanhas Ramp Up.
+- [ ] Shopee Conta 2: manter alerta após cair de 22 pedidos em 27/05 para 16 pedidos em 28/05; não encerrar alerta até confirmar sustentação por mais ciclos.
+- [ ] Shopee Store: monitorar recuperação para 46 pedidos em 28/05 após queda para 35 em 27/05; validar se é efeito Ramp Up, oscilação de mix ou retomada real de exposição.
 - [ ] Mercado Livre/Yasmin 26/05/2026 BRT: documentar na L06 a distinção entre variação vendável e listing agregado do cluster IMB501, e registrar supressões de contraste de modalidade de envio para evitar ressalva recorrente de QA.
 - [ ] Mercado Livre/Yasmin 25/05/2026 BRT: revisar ressalvas menores do preview aprovado — corrigir padrão herdado na L05, preservar ACOS interno em 14,15% apesar do arredondamento visual para 14,2%, e alinhar leitura do cluster Potes Vidro 5 Peças entre análise agregada e Top Produtos por variação.
-- [ ] Mercado Livre/Yasmin: acompanhar concentração dos Potes Vidro 5 Peças, ADS respondendo por 56,7% do faturamento, possível risco de ruptura do Kit 6 Canecas Lisas 200ml em Full e pedidos do Kit 10 Potes 1050ml pausado/sem estoque.
-- [ ] Amazon/cancelamentos: coleta de 27/05 registrou 17 cancelamentos totais no dia; se persistir no próximo ciclo, quebrar por canal/ASIN/shop_id antes de tratar como ruído operacional.
+- [ ] Mercado Livre/Yasmin: investigar pico positivo de 164 pedidos em 28/05/2026 BRT e acompanhar concentração dos Potes Vidro 5 Peças, ADS respondendo por 56,7% do faturamento, possível risco de ruptura do Kit 6 Canecas Lisas 200ml em Full e pedidos do Kit 10 Potes 1050ml pausado/sem estoque.
+- [ ] Cancelamentos marketplace: pacote 28/05 registrou 11 cancelamentos totais e Amazon 0, então o alerta de 17 cancelamentos em 27/05 não persistiu em Amazon; manter monitoramento leve e quebrar por canal/ASIN/shop_id apenas se voltar a subir.
 - [ ] Pricing/planilha: após grandes alterações de custos/devoluções, auditar fórmulas críticas de lucro líquido nas linhas existentes próximas; em 27/05 foram restauradas 4 fórmulas ausentes na aba AMAZON.
 - [ ] Shopee Full+: calcular impacto financeiro estimado por conta para junho/2026 e separar SKUs Full com item >= R$50 antes de recomendar mudança de mix; Conta 3 está abaixo do corte mínimo de 40% no MTD.
 - [ ] Validar por que o pacote de dados do Daily Sales v2 para 23/05/2026 BRT ficou em **DADOS_PARCIAIS** e não teve artefatos finais de Slack Writer/QA Gate detectados; manter envio real bloqueado até fechamento do ciclo e autorização explícita.

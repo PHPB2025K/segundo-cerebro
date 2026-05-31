@@ -1,8 +1,8 @@
 # Pendências — RH
 
-_Atualizado: 2026-05-29_
+_Atualizado: 2026-05-30_
 
-> 29/05 não criou novas conversas nem comunicações, mas atualizou dois casos antigos por escalamento automático e adicionou riscos diários: Sandra sem marcações em dia útil; Lucas, Guilherme e Mateus com saída final ausente; Lucas, Guilherme, Mateus e Leonardo com intervalo <1h. Consolidação não autoriza WhatsApp proativo.
+> 30/05 foi quiet: QR Code do Ponto Certo rotacionado, compliance de sábado sem violações reportáveis, nenhuma conversa/comunicação nova ou atualizada. Backlog permanece em 16 comunicações abertas, 9 exigindo aprovação/orientação do Pedro. Consolidação não autoriza WhatsApp proativo.
 
 ## 🔴 Prioridade Alta
 - [ ] Pedro validar Sandra sem marcações em 29/05 e orientar se deve tratar como falta completa, ausência justificada ou falha de registro; histórico de faltas completas/pendências semanais segue bloqueado para contato sem orientação.

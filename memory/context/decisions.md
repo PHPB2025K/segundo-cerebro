@@ -36,3 +36,8 @@ tags:
 - Pedro decidiu que o **QCB002 — Kit 10 Quebra-cabeças Animais** deve voltar/ficar na aba ESTOQUE como item unitário.
 - Pedro também aprovou corrigir os SKUs das Xícaras 95ml RR na ESTOQUE para o mapeamento correto: **verde = 308_B** e **rosa = 309_B**.
 - Contexto: reorganização da planilha para que a ESTOQUE fique como base canônica de produtos unitários, sem recalcular por enquanto o preço de custo nas abas MELI/SHOPEE/AMAZON.
+
+## 2026-05-30 — GB26003 deve ser tratado como embarque real, sem datas inventadas
+
+- Pedro autorizou atualizar o Import Hub para tratar o **GB26003** como embarque real após o relatório operacional/pré-alerta da Open Trade mostrar GB26003 / OT/(OC) 44235/26, exportador YIWU LOTUS IMP.& EXP. CO., LIMITED, Porto de Itapoá, 1 container, responsável VINICIUSC, status “EMBARQUE AUTORIZADO”.
+- Regra operacional: não cadastrar data inventada para campos obrigatórios de importação. Como `embark_date` e `eta` ainda não aparecem no relatório, o cadastro limpo depende de datas reais informadas por Pedro/Trading ou de autorização explícita para cadastro provisório com placeholders documentados nas observações.

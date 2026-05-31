@@ -11,6 +11,15 @@ tags:
 
 # Lições — Kobe
 
+
+## 2026-05-30 — [TÁTICA] Cron sem evento novo também precisa deixar trilha de auditoria
+
+No cron ENVIOS FULL, a execução de 30/05 com zero envios novos mandou resumo e apareceu em log, mas inicialmente não criou linha em `envios_full_cron_runs`. Para rotinas operacionais auditáveis, “não houve evento” também é resultado de execução e precisa virar registro estruturado com contadores zerados; senão fica impossível diferenciar rotina saudável de lacuna de monitoramento.
+
+## 2026-05-30 — [TÁTICA] Shopee deve preferir SKU de variação antes de SKU pai na baixa de estoque
+
+Na baixa marketplace fora Full, várias divergências da Shopee nasceram porque o pipeline usava SKU pai (`item_sku`) quando o SKU correto estava no SKU da variação (`model_sku`) do raw payload. Antes de criar aliases manuais ou classificar como erro de cadastro, normalizar a partir do identificador mais granular da venda; SKU pai em marketplace costuma representar anúncio, não necessariamente unidade física baixável.
+
 ## 2026-05-29 — [TÁTICA] Mensagem operacional não pode ser marcada como processada antes do efeito auditável
 
 No pipeline de Estoque via WhatsApp, uma mensagem de avarias foi capturada e memorizada, mas a aplicação do movimento falhou por validação de `sourceType`; mesmo assim a mensagem ficou marcada como processada e não será reprocessada automaticamente. Para fluxos operacionais auditáveis, sucesso de ingestão não é sucesso de aplicação: só marcar como processado quando o efeito esperado existir ou quando a falha ficar em fila explícita de retry/intervenção.

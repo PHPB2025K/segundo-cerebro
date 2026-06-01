@@ -1,10 +1,16 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-30_
+_Atualizado: 2026-05-31_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
+- [ ] Daily Sales v2 30/05/2026 BRT: houve pacote de dados com status DADOS_PARCIAIS, mas não foram detectados artefatos finais de Slack Writer/QA para Lucas, Yasmin e Leonardo; investigar falha/lacuna antes de qualquer send-candidate.
+- [ ] Shopee Store: queda para 35 pedidos em 30/05 (-43,9% vs média 30d) virou principal alerta Shopee; cruzar exposição, estoque/Full, campanhas Ramp Up, canibalização pela Conta 2 e mix de Jarra/Potes.
+- [ ] Shopee Conta 2: reação para 32 pedidos em 30/05 (+26,5% vs média 30d) com 3 cancelamentos; confirmar se é sustentada ou efeito pontual de mix/ticket.
+- [ ] Shopee Conta 3: melhorou de 11 para 15 pedidos em 30/05, mas segue -23,5% vs média 30d; manter alerta até voltar ao patamar normal.
+- [ ] Mercado Livre: acompanhar desaceleração de 143 para 130 pedidos em 30/05 após pico 28–29/05, mantendo foco em Potes Vidro 5 Peças, estoque/Full e dependência de ADS.
+- [ ] Amazon: cancelamentos recuaram para 1 em 30/05, mas manter monitoramento da dependência da Jarra Medidora 500ml (15 de 30 pedidos).
 - [ ] Validar se os ciclos Daily Sales v2 de 24/05, 25/05 e 26/05/2026 BRT terem gerado preview apenas para Yasmin/Mercado Livre foram intencionais ou lacuna; se lacuna, reexecutar/fechar Lucas/Shopee e Leonardo/Amazon antes de qualquer envio real.
 - [ ] Manter envio real para Yasmin/Lucas/Leonardo bloqueado até autorização explícita de Kobe/Pedro e ciclo completo QA/Slack Writer validado; em 26/05 houve preview Mercado Livre/Yasmin aprovado com ressalvas, sem envio real.
 - [ ] Daily Sales v2 29/05/2026 BRT: preview de Yasmin/Mercado Livre ficou BLOCKED porque QA LLM teve timeout e fallback determinístico não é caminho aprovado; reexecutar QA/ciclo antes de qualquer avanço para send-candidate.

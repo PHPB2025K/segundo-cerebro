@@ -3,18 +3,18 @@
 ## Metadados
 - **Mês:** 2026-05
 - **Conta:** Mercado Livre
-- **Dias analisados:** 1
+- **Dias analisados:** 9
 
 ## Tese Atual da Conta
-Com 1 dia(s) analisado(s), a tese mensal ainda está em formação. O acumulado granular disponível mostra 92 pedidos, R$ 3.664,91 de GMV e ticket médio de R$ 39,84.
+Com 9 dia(s) analisado(s), a tese mensal ainda está em formação. O acumulado granular disponível mostra 1017 pedidos, R$ 47.100,09 de GMV e ticket médio de R$ 46,31.
 A prioridade do ciclo mensal é separar sinais pontuais de padrões recorrentes, usando as consolidações semanais como filtro antes de promover regras permanentes.
 
 ## Saúde da Conta
-- **Tendência geral:** em observação
-- **GMV analisado:** R$ 3.664,91
-- **Pedidos analisados:** 92
-- **Ticket médio:** R$ 39,84
-- **Cancelamentos:** 3,2%
+- **Tendência geral:** a consolidar
+- **GMV analisado:** R$ 47.100,09
+- **Pedidos analisados:** 1017
+- **Ticket médio:** R$ 46,31
+- **Cancelamentos:** 2,7%
 
 ## Dependências e Riscos
 - Principais produtos a monitorar no mês: Conjunto 5 Potes de Vidro Redondos Tampa Preta (25 un.); Conjunto 5 Potes de Vidro Redondos Tampa Cinza (12 un.); Conjunto 5 Potes de Vidro Redondos Tampa Vermelha (8 un.).

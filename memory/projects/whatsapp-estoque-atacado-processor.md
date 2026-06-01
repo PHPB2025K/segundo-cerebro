@@ -183,3 +183,16 @@ wholesale-evolution-poller   # legado, pipeline Bling Atacado
 - **(c) Cron marketplaces tempo real** — próximo na fila. ML primeiro (Yasmin), depois Shopee/Amazon
 - **Confirmação inline no grupo Atacado** — hoje só alerta no Telegram. Se Pedro quiser confirmação visível pra equipe vendas, vira (b.2)
 - **Métricas no dashboard** — número de baixas WhatsApp/Atacado por dia
+
+## Atualização — 2026-06-01 — descrição livre em avarias e baixa total segura
+
+Pedro definiu que o mapeamento deve decifrar descrições de produto também nas mensagens de avarias, não apenas no grupo de Atacado.
+
+Regra operacional:
+- Atacado: descrição livre continua resolvendo para SKU canônico antes da baixa.
+- Estoque/Avarias: descrição livre com quantidade explícita pode resolver para SKU canônico.
+- Estoque/Avarias: descrição livre sem quantidade só pode virar baixa automática se a frase indicar de forma inequívoca baixa total/zerar estoque e o SKU for resolvido com confiança.
+- Caso concreto autorizado: caneca reta rosa / Caneca Porcelana Reta 200ml Rosa resolve para `CAR200R`; em avaria com comando de zerar estoque, baixar o saldo atual inteiro desse SKU.
+- Se a descrição for ambígua ou curta demais, o item deve ficar como divergente/alerta, sem mexer no saldo.
+
+Validação: mensagem teste “Avarias: Caneca reta rosa - zerar estoque” gerou evento para `CAR200R` com quantidade igual ao saldo físico atual consultado, mantendo trilha auditável em `rawPayload.zero_stock=true`.

@@ -53,16 +53,6 @@ _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
 **Expira:** 2026-06-17
 
 
-### 2026-05-01 — Shopee Wallet não substitui relatório de Ads [TÁTICA]
-**Contexto:** Wallet API retornou `SPM_DEDUCT` com recargas/débitos de ADS, mas o número oficial da plataforma Shopee Ads foi maior e traz vendas/ROAS.
-**Lição:** Wallet é conciliação financeira, não performance/consumo oficial de campanhas.
-**Ação concreta:** Para DRE, usar número oficial da plataforma ou export; Wallet apenas alerta diferença.
-**Expira:** 2026-05-31
-
-### 2026-05-01 — Amazon Ads API mensal funciona para Sponsored Products [TÁTICA]
-**Contexto:** Report mensal abril/2026 via Amazon Ads API v3 concluiu e trouxe gasto, vendas, ROAS, ACOS, cliques e impressões.
-**Lição:** Para fechamento mensal Amazon Ads, preferir report API quando disponível; esperar estado sair de PENDING antes de concluir.
-**Expira:** 2026-05-31
 
 ### 2026-05-03 — Amazon Ads sem entrega exige diagnóstico estrutural [TÁTICA]
 **Contexto:** Redinha Frutas ficou 0/0/0 em abril/15d/7d; Kit Jardinagem estava inactive com entrega residual antiga.
@@ -75,6 +65,14 @@ _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
 ## Lições Expiradas (arquivo)
 
 _Lições TÁTICAS removidas após expiração. Mantidas aqui apenas para referência histórica._
+
+### [TÁTICA] Shopee Wallet não substitui relatório de Ads (2026-05-01)
+**Lição:** Wallet é conciliação financeira, não performance/consumo oficial de campanhas; para DRE, usar número oficial da plataforma ou export e tratar Wallet apenas como alerta de diferença.
+**Expira:** 2026-05-31
+
+### [TÁTICA] Amazon Ads API mensal funciona para Sponsored Products (2026-05-01)
+**Lição:** Para fechamento mensal Amazon Ads, preferir report API quando disponível; esperar estado sair de PENDING antes de concluir.
+**Expira:** 2026-05-31
 
 ### [TÁTICA] Amazon Ads: 0 impressão após experimento indica elegibilidade antes de bid (2026-05-11)
 **Lição:** Quando campanha/experimento fica com 0 impressões, 0 cliques e 0 vendas após janela de D+6/D+7, investigar listing ativo, Buy Box, elegibilidade, categoria e relevância antes de aumentar bid.

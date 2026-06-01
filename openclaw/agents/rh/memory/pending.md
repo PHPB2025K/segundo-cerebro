@@ -1,8 +1,8 @@
 # Pendências — RH
 
-_Atualizado: 2026-05-30_
+_Atualizado: 2026-05-31_
 
-> 30/05 foi quiet: QR Code do Ponto Certo rotacionado, compliance de sábado sem violações reportáveis, nenhuma conversa/comunicação nova ou atualizada. Backlog permanece em 16 comunicações abertas, 9 exigindo aprovação/orientação do Pedro. Consolidação não autoriza WhatsApp proativo.
+> 31/05 foi quiet: QR Code do Ponto Certo rotacionado/validado para o domingo, sem registros de ponto de funcionários ativos, nenhuma conversa/comunicação nova ou atualizada. Backlog permanece em 16 comunicações abertas, 9 exigindo aprovação/orientação do Pedro. Consolidação não autoriza WhatsApp proativo.
 
 ## 🔴 Prioridade Alta
 - [ ] Pedro validar Sandra sem marcações em 29/05 e orientar se deve tratar como falta completa, ausência justificada ou falha de registro; histórico de faltas completas/pendências semanais segue bloqueado para contato sem orientação.

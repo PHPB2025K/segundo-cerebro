@@ -1,6 +1,11 @@
 # Lições — RH
 
-_Atualizado: 2026-05-30_
+_Atualizado: 2026-05-31_
+
+## 2026-05-31
+- Nenhuma lição nova relevante além das já registradas.
+- Domingo sem registros deve continuar diferenciado de falta completa: sem escala específica ou trabalho registrado, não cobrar automaticamente.
+- Backlog de 16 comunicações abertas segue como principal risco operacional para os próximos ciclos semanais.
 
 ## 2026-05-30
 - Nenhuma lição nova relevante além das já registradas.

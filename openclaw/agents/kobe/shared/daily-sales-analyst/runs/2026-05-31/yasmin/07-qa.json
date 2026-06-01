@@ -1,0 +1,53 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem passou em 11 dos 12 gates sem problemas. Um único Menor foi identificado no Gate 10: a medalha 'Platinum' aparece sem o prefixo 'MercadoLíder' em uma ocorrência na segunda prioridade ('no cálculo para Platinum, hoje a 4,3 dias'). Todos os demais gates passaram limpos: data e período corretos (31/05/2026, rodapé BRT presente), destinatário e plataforma corretos (Yasmin / Mercado Livre), estrutura com as 6 seções na ordem exata e sem seções proibidas, VISÃO com dados objetivos sem mix de modalidade de envio, Top Produtos com exatamente 5 itens usando os slack_short_names canônicos corretos, Análise da Conta fiel à L05 em contagem (3 bullets = 3 insights), tese central, conectivos e classificações preservadas, Prioridades com 2 itens fiéis à L05 com Yasmin como responsável em ambas e sinais de confirmação/escalonamento intactos, bloqueios vazios corretamente registrados, consistência entre camadas sem itens cortados reintroduzidos, tom operacional direto sem jargão interno ou BI, padrão numérico correto (R$ com vírgula decimal, bullets homogêneos) e snapshot internamente consistente sem conclusões categóricas sobre dados incertos. Regra de agregação aplicada: 0 Críticos + 0 Maiores + 1 Menor → APROVADO COM RESSALVA.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "RESSALVA",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 1,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 1 Menor → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "10 — Tom e utilidade",
+      "texto_atual": "Entram na janela de reputação e no cálculo para Platinum, hoje a 4,3 dias.",
+      "texto_esperado": "Entram na janela de reputação e no cálculo para MercadoLíder Platinum, hoje a 4,3 dias.",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Vocabulário MercadoLíder oficial exige grafia exata 'MercadoLíder Platinum' em todas as ocorrências. O uso de 'Platinum' isolado omite o prefixo obrigatório do nome oficial. A forma completa foi usada corretamente na Análise da Conta ('previsão para MercadoLíder Platinum') mas foi abreviada na segunda prioridade.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "L06 corrigiu os valores monetários arredondados da L05 (R$ 8.267 → R$ 8.267,83 e R$ 19.876 → R$ 19.876,77) usando a fonte primária do pacote — comportamento correto e rastreável; sinalizar para L05 entregar centavos completos nos próximos ciclos, evitando dependência de correção na L06.",
+    "TL6250 (Kit 6 Canecas Tulipa 250ml, posição 8 no top_products com 4 pedidos) não aparece no Top Produtos do Slack — correto, pois o Slack exibe apenas os 5 primeiros. O produto é citado corretamente na Análise e Prioridades com o slack_short_name canônico 'Kit 6 Canecas Tulipa 250ml'.",
+    "Cluster IMB501 (MLB3288536143) referenciado como 'Potes Vidro 5 Peças (as três tampas)' nas seções de Análise e Prioridades: construção derivada da raiz comum dos três slack_short_names sem atributo de cor. Não há slack_short_name para o agregado; a decisão de formatação está documentada na L06 e preserva o sentido operacional de anúncio único. Registrar para eventual adição de entrada de agregado canônico em config/slack-short-names-ml.json se a referência ao cluster virar padrão recorrente."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "Gate 12-b — Reputação com cancelamentos acima de 5: reputation.color='5_green' com metrics.cancelamentos=6 no dia (>5). L05 sinalizou corretamente o risco de impacto futuro ('cancellations_rate da reputação segue em zero, mas é janela longa: o impacto entra nos próximos 3-5 ciclos') e L06 preservou a linguagem condicional ('taxa de cancelamentos da reputação segue em zero, mas é uma métrica lenta'). Inconsistência de snapshot não contaminou o Slack. Monitorar cancellations_rate nos próximos 3-5 snapshots; saída de zero confirmaria que os cancelamentos do dia (6, maior valor da série recente) entraram na janela rolling oficial.",
+    "Gate 12-c — Cobertura do fulfillment_mix_yesterday_top10: o campo cobre 77 dos 189 pedidos do dia (~40,7%), abaixo do limiar de 70% da regra. L05 autorizou a omissão da VISÃO e L06 corretamente não exibiu o mix como métrica total. Limitação estrutural do data builder: a janela top10 representa menos da metade dos pedidos reais do dia; recomendado expandir o cálculo para cobrir pelo menos 70% dos pedidos ou migrar para um campo de cobertura total na próxima iteração do fetcher.",
+    "Gate 5 — K6CAN250P (Kit 6 Canecas Porcelana 250ml Canelada, posição 6 no top_products com 4 pedidos) tem slack_short_name=null: produto sem mapeamento manual no config/slack-short-names-ml.json. Não aparece no Top 5 do Slack, portanto não gerou problema no ciclo atual. Sinal para adicionar entrada canônica na próxima manutenção de rotina antes que o produto ingresse no top 5."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

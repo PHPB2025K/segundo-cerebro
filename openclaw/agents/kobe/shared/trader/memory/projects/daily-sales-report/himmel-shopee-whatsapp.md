@@ -133,3 +133,17 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 - **Responsáveis/próximo passo:** Himmel deve concluir otimizações, analisar itens enviados e retornar com posicionamento; Lucas acompanha cobrança.
 - **Status:** aberto — otimizações em andamento e retorno prometido, ainda sem detalhamento de ações concluídas.
 
+### 2026-06-01 14:41–19:06 BRT — MDF segue pendente, RTS para pote inativo e estratégia de afiliados/ADS para novos produtos
+
+- **Participantes:** Lucas / PhaseTec, João Miguel CX, Leticia, Raphaella (Himmel) e Pedro Broglio.
+- **Plataforma/conta:** Shopee consolidado; sem conta específica nomeada para a maioria dos pontos, aplicar como contexto das 3 contas Budamix. Para novos produtos, Pedro propôs intercalar entre as 3 contas e usar ADS em apenas uma conta por produto/rodada.
+- **Tema:** follow-up de produtos MDF, correção de briefing, destravamento de estoque Full e diretriz de lançamento/tração para produtos novos.
+- **Produtos/anúncios citados:** produtos MDF enviados anteriormente; ID **23094048438** — Kit 3 Potes de Vidro Retangulares Herméticos com Vedação e Tampa de 4 Travas (Marmita), inativo, com **30 unidades paradas no Full**.
+- **Contexto útil:** Lucas cobrou posicionamento da Himmel sobre os MDF e questionou por que o briefing Shopee incluía falas de Mercado Livre. Raphaella explicou que o trecho de Meli foi incluído incorretamente, sem afetar as informações do briefing apresentado na reunião. Leticia informou que o posicionamento dos MDF ainda estava no fluxo e que retornariam ao concluir.
+- **RTS / estoque Full:** Raphaella pediu verificação da possibilidade de reativar ou solicitar abertura de RTS para o produto ID 23094048438, pois há 30 unidades paradas no Full sem possibilidade de movimentação. Pedro respondeu que aguardaria o retorno.
+- **Decisão/contexto de ADS e afiliados:** Raphaella sugeriu aumentar o investimento percentual em afiliados para produtos novos em ADS, porque a intenção é forçar venda orgânica; subir publicidade diretamente tenderia a canibalizar os anúncios. Pedro aprovou a ação e levantou a diretriz de intercalar entre as três contas, usando ADS nesses produtos novos em somente uma das três contas por vez.
+- **Impacto esperado:** novos produtos devem ganhar tração via afiliados e exposição controlada, com menor risco de canibalização entre contas; resultados de ADS/publicidade dos novos itens precisam ser lidos considerando que a estratégia preferida é concentrar/alternar, não ativar tudo simultaneamente nas 3 contas. O item ID 23094048438 pode gerar recuperação de estoque/caixa se reativado ou liberado via RTS.
+- **Como validar nos dados:** nos próximos Daily Sales Reports v2, checar por shop_id/anúncio evolução de pedidos, faturamento, vendas orgânicas vs pagas, afiliados, investimento ADS, TACOS/ROAS e canibalização dos novos produtos/MDF; monitorar se o ID 23094048438 volta a vender, é reativado ou recebe RTS/liberação do estoque Full.
+- **Responsáveis/próximo passo:** Himmel deve retornar posicionamento sobre MDF, revisar/evitar briefing com contexto incorreto de Meli e orientar execução de afiliados/ADS alternado; GB/Pedro/equipe deve verificar reativação ou RTS do ID 23094048438.
+- **Status:** aberto — aguardando retorno da Himmel e validação operacional nos dados D+1/D+3/D+7 a partir de 2026-06-01.
+

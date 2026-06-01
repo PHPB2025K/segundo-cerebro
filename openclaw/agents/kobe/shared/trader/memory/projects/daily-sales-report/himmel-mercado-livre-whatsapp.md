@@ -544,3 +544,24 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 **Status:** aberto — validar no fechamento de maio e nos primeiros Daily Sales Reports de junho.
 
+### 2026-06-01 10:55–10:59 BRT — Reunião ML confirmada para 02/06 às 10h
+
+**Participantes:** Cláudio Manrique Junior/Himmel; Yasmin Oscarlino.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Confirmação de participação em reunião operacional recorrente.
+
+**Contexto registrado:**
+- Cláudio/Himmel confirmou com Yasmin a reunião de **2026-06-02 às 10h BRT**.
+- Yasmin confirmou participação.
+- A conversa não trouxe decisão de campanha, SKU, verba, ROAS/ACoS, produto priorizado ou prazo além da reunião.
+
+**Impacto esperado:**
+- Há alinhamento ML agendado para **02/06 10h BRT**, dentro da janela crítica de validação da estratégia de junho: escala de volume com TACoS mais flexível até cerca de **05/06**, ruptura do **KIT2YW1520** e substituição por kits/produtos com estoque.
+- Não usar esta interação como causa direta de variação de vendas/ADS; usar apenas como marcador para buscar decisões posteriores da reunião.
+
+**Como validar nos dados:**
+- Procurar mensagens posteriores ou transcrição/ata da reunião de **02/06** antes de atribuir mudanças de campanha, verba, produtos priorizados ou performance ao alinhamento.
+- Se houver alterações relevantes no ML a partir de **02/06**, cruzar com eventuais decisões dessa reunião e com a diretriz de escala de junho já registrada.
+
+**Status:** aberto — reunião confirmada; conteúdo decisório ainda pendente.
+

@@ -37,7 +37,15 @@ tags:
 - Pedro também aprovou corrigir os SKUs das Xícaras 95ml RR na ESTOQUE para o mapeamento correto: **verde = 308_B** e **rosa = 309_B**.
 - Contexto: reorganização da planilha para que a ESTOQUE fique como base canônica de produtos unitários, sem recalcular por enquanto o preço de custo nas abas MELI/SHOPEE/AMAZON.
 
-## 2026-05-30 — GB26003 deve ser tratado como embarque real, sem datas inventadas
+## 2026-05-31 — GB26003 NÃO é pedido/embarque real sem gatilhos formais
 
-- Pedro autorizou atualizar o Import Hub para tratar o **GB26003** como embarque real após o relatório operacional/pré-alerta da Open Trade mostrar GB26003 / OT/(OC) 44235/26, exportador YIWU LOTUS IMP.& EXP. CO., LIMITED, Porto de Itapoá, 1 container, responsável VINICIUSC, status “EMBARQUE AUTORIZADO”.
-- Regra operacional: não cadastrar data inventada para campos obrigatórios de importação. Como `embark_date` e `eta` ainda não aparecem no relatório, o cadastro limpo depende de datas reais informadas por Pedro/Trading ou de autorização explícita para cadastro provisório com placeholders documentados nas observações.
+- Pedro corrigiu explicitamente a interpretação anterior sobre o **GB26003**: ele não pagou sinal, não autorizou fabricação e não assinou contrato.
+- Regra operacional definitiva: qualquer menção a GB26003 em relatório operacional, pré-alerta ou documento externo deve ser tratada como referência não confirmada / possível erro operacional até existirem os três gatilhos formais: contrato assinado, sinal pago e autorização explícita de fabricação/embarque pelo Pedro.
+- Não cadastrar, atualizar, criar tracking, milestones, pagamentos ou pendências logísticas/financeiras no Import Hub para GB26003 sem esses gatilhos.
+- Se o assunto voltar, o próximo passo seguro é confirmar com Open Trade/Skiway por que o código apareceu nos relatórios, sem assumir compromisso ou existência do pedido.
+
+## 2026-05-31 — Kits coloridos de canecas/xícaras devem ser desmembrados como 1 unidade de cada cor
+
+- Pedro confirmou explicitamente a lógica operacional dos kits coloridos de caneca/xícara: SKU colorido/sortido representa **1 unidade de cada cor** do conjunto.
+- Exemplos validados na baixa de estoque: `CTL002` colorida = 1 unidade de cada cor Tulipa; `KIT6CAR200` colorida = 1 unidade de cada cor Reta 200.
+- Essa regra deve orientar BOMs, baixa marketplace, conferência de estoque e normalização de SKUs desses kits, salvo exceção explícita futura.

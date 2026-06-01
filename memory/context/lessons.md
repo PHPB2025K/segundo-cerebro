@@ -93,3 +93,12 @@ Na revisão dos produtos em MDF, o Quebra-Cabeça Animais não aparecia na lista
 ## 2026-05-28 — [TÁTICA] Limpeza da aba ESTOQUE pode quebrar margem/lucro das abas de marketplace se elas ainda dependerem de SKU de kit
 
 Na planilha de precificação da GB, remover kits da aba ESTOQUE deixou a aba correta como fonte de SKUs unitários, mas expôs dependências ocultas em SHOPEE e AMAZON: várias linhas de margem/lucro quebraram porque ainda puxavam custo/produto por SKU de kit removido. Regra operacional: antes de limpar a aba ESTOQUE, validar dependências cruzadas nas abas de marketplace e manter um backup pré-limpeza para restaurar custo/produto sem recolocar kit na fonte canônica.
+
+## 2026-05-31 — [TÁTICA] Relatório externo de importação não confirma embarque sem gatilhos formais do Pedro
+
+No caso GB26003, relatório/pré-alerta externo da Open Trade indicava “embarque autorizado”, mas Pedro corrigiu que não houve contrato assinado, sinal pago nem autorização de fabricação. Para importação, documento operacional externo é indício, não fonte suficiente para criar embarque real no Hub. Antes de cadastrar/tratar como container vivo, validar os gatilhos formais do negócio com Pedro/Trading.
+
+
+## 2026-05-31 — [TÁTICA] Baixa retroativa de estoque exige validação de resolução antes de aplicar movimentos
+
+Na correção dos SKUs divergentes de marketplace, aliases/BOMs só foram aplicados depois de backup, teste do resolvedor e simulação de `ingest-safe-outbound`. Isso evitou baixa cega em estoque físico. Regra: antes de baixa retroativa em lote, validar mapeamento SKU→componente, simular pendências remanescentes e só aplicar quando o erro restante for conhecido e auditável.

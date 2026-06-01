@@ -37,6 +37,13 @@ tags:
 - Pedro também aprovou corrigir os SKUs das Xícaras 95ml RR na ESTOQUE para o mapeamento correto: **verde = 308_B** e **rosa = 309_B**.
 - Contexto: reorganização da planilha para que a ESTOQUE fique como base canônica de produtos unitários, sem recalcular por enquanto o preço de custo nas abas MELI/SHOPEE/AMAZON.
 
+## 2026-05-22 — Canggu: Edge Functions internas com `X-Internal-Token` exigem lista explícita de `NO_JWT_FUNCTIONS`
+
+- Funções Supabase Edge internas que são chamadas por outras funções/rotinas, e não diretamente pelo usuário final, podem operar temporariamente com `verify_jwt=false` apenas quando protegidas por `X-Internal-Token` e listadas explicitamente no deploy.
+- O workflow de deploy deve preservar a lista `NO_JWT_FUNCTIONS`; adicionar uma função a essa lista significa que ela passa a depender do segredo interno e precisa validação E2E.
+- Essa é uma mitigação temporária para o desalinhamento JWT observado no Canggu/Ana. O objetivo final continua sendo investigar causa raiz e voltar `verify_jwt=true` quando seguro.
+- Validação mínima: conversa real ou sintética cobrindo branch normal, mídia, áudio, burst, pedido humano e reclamação grave com escalação/notificação visual ao Pedro.
+
 ## 2026-05-31 — GB26003 NÃO é pedido/embarque real sem gatilhos formais
 
 - Pedro corrigiu explicitamente a interpretação anterior sobre o **GB26003**: ele não pagou sinal, não autorizou fabricação e não assinou contrato.

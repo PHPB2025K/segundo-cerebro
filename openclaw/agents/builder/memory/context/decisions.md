@@ -73,3 +73,10 @@ _Registro de decisões permanentes. NUNCA contradizer._
 - Canggu/Ana ML deve manter guard determinístico imediatamente antes do POST externo em todas as rotas que respondem marketplace; `ml-webhook` foi corrigida no repo canônico `PHPB2025K/canguu` em `eb76d3f`.
 - Budamix Central/Amazon sync deve filtrar pedidos de remoção FBA como não-venda pela assinatura `Non-Amazon` + `AFN` + datas dummy 1995/S01.
 - Pipeline RH WhatsApp deve aceitar `@lid`/aliases/pushName para inbound.
+
+## 2026-05-22 — Canggu: deploy de Edge Functions internas com `NO_JWT_FUNCTIONS`
+
+- Functions internas protegidas por `X-Internal-Token` podem operar temporariamente com `verify_jwt=false` somente quando listadas explicitamente em `NO_JWT_FUNCTIONS` no GitHub Actions.
+- A lista deve ser preservada pelo workflow de deploy; qualquer function adicionada a ela passa a depender de segredo interno e precisa validação E2E de branch normal e branch de escalação.
+- Essa decisão é mitigação temporária do incidente JWT da Ana/Canggu. A meta técnica continua sendo pós-mortem da causa raiz e retorno a `verify_jwt=true` quando seguro.
+- Teste aceitável precisa provar conversa real completa, incluindo notificação visual ao Pedro quando houver escalação.

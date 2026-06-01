@@ -52,13 +52,31 @@ _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
 **Cross-ref:** `accounts.md` → Sunset de API Meta
 **Expira:** 2026-06-17
 
-
-
 ### 2026-05-03 — Amazon Ads sem entrega exige diagnóstico estrutural [TÁTICA]
 **Contexto:** Redinha Frutas ficou 0/0/0 em abril/15d/7d; Kit Jardinagem estava inactive com entrega residual antiga.
 **Lição:** Sem impressões/cliques não existe otimização de ACoS. Validar product ads, estoque/FBA, listing, categoria e Buy Box antes de mexer em bid.
 **Ação concreta:** Classificar como experimento de tração/diagnóstico com confidence explícita e D+7 definido.
 **Expira:** 2026-06-02
+
+### 2026-05-11 — Amazon Ads: 0 impressão após experimento indica elegibilidade antes de bid [TÁTICA]
+**Contexto:** Experimentos de Kits Microfibra e Abraçadeiras Nylon ficaram com 0 impressões, 0 cliques e 0 vendas após janela de validação.
+**Lição:** Quando campanha/experimento fica com 0 impressões, 0 cliques e 0 vendas após D+6/D+7, investigar listing ativo, Buy Box, elegibilidade, categoria e relevância antes de aumentar bid.
+**Ação concreta:** Tratar como problema estrutural/elegibilidade antes de recomendação de lance.
+**Expira:** 2026-06-10
+
+### 2026-05-13 — Amazon Ads deve seguir protocolo de 5 camadas [ESTRATÉGICA]
+**Contexto:** Pedro exigiu análise máxima antes de novas recomendações Amazon Ads.
+**Lição:** Spark deve analisar Amazon Ads em 5 camadas: funil/estratégia, campanha, ASIN-listing/Buy Box, keyword-search term/histórico de bids e síntese macro. Não recomendar ação apenas por ACoS isolado.
+**Ação concreta:** Usar v4.3 do playbook Amazon Ads/BidSpark antes de qualquer corte, escala ou harvest.
+**Cross-ref:** decisions.md; `projects/analise-semanal-skill-amazon.md` v4.3
+**Expira:** Nunca
+
+### 2026-05-13 — Amazon Ads log interno deve ser validado antes de próxima rodada manual [TÁTICA]
+**Contexto:** Execução Tulipa teve 7/7 success na Amazon Ads API, mas falhou em `amazon_ads_actions_log` por FK/constraints.
+**Lição:** Se a API externa muda bid mas o log interno não registra, a auditoria D+7 fica capenga.
+**Ação concreta:** Antes da próxima rodada manual, validar schema/fluxo de log para round, entity_id e action_type.
+**Cross-ref:** pending.md
+**Expira:** 2026-06-12
 
 ---
 
@@ -68,33 +86,18 @@ _Lições TÁTICAS removidas após expiração. Mantidas aqui apenas para refer�
 
 ### [TÁTICA] Shopee Wallet não substitui relatório de Ads (2026-05-01)
 **Lição:** Wallet é conciliação financeira, não performance/consumo oficial de campanhas; para DRE, usar número oficial da plataforma ou export e tratar Wallet apenas como alerta de diferença.
-**Expira:** 2026-05-31
+**Expirou:** 2026-05-31
 
 ### [TÁTICA] Amazon Ads API mensal funciona para Sponsored Products (2026-05-01)
 **Lição:** Para fechamento mensal Amazon Ads, preferir report API quando disponível; esperar estado sair de PENDING antes de concluir.
-**Expira:** 2026-05-31
-
-### [TÁTICA] Amazon Ads: 0 impressão após experimento indica elegibilidade antes de bid (2026-05-11)
-**Lição:** Quando campanha/experimento fica com 0 impressões, 0 cliques e 0 vendas após janela de D+6/D+7, investigar listing ativo, Buy Box, elegibilidade, categoria e relevância antes de aumentar bid.
-**Expira:** 2026-06-10
+**Expirou:** 2026-05-31
 
 ## Auditoria — Consolidação Profunda 2026-05-15
 
 ### Táticas expiradas removidas
 - ### 2026-03-19 — Meta Ads: system user limitado por Business Manager [TÁTICA] — expirada em 2026-04-19.
 
+## Auditoria — Consolidação Profunda 2026-06-01
 
-### 2026-05-13 — Amazon Ads deve seguir protocolo de 5 camadas [ESTRATÉGICA]
-**Contexto:** Pedro exigiu análise máxima antes de novas recomendações Amazon Ads.
-**Lição:** Spark deve analisar Amazon Ads em 5 camadas: funil/estratégia, campanha, ASIN-listing/Buy Box, keyword-search term/histórico de bids e síntese macro. Não recomendar ação apenas por ACoS isolado.
-**Ação concreta:** Usar v4.3 do playbook Amazon Ads/BidSpark antes de qualquer corte, escala ou harvest.
-**Cross-ref:** decisions.md; `projects/analise-semanal-skill-amazon.md` v4.3
-**Expira:** Nunca
-
-
-### 2026-05-13 — Amazon Ads log interno deve ser validado antes de próxima rodada manual [TÁTICA]
-**Contexto:** Execução Tulipa teve 7/7 success na Amazon Ads API, mas falhou em `amazon_ads_actions_log` por FK/constraints.
-**Lição:** Se a API externa muda bid mas o log interno não registra, a auditoria D+7 fica capenga.
-**Ação concreta:** Antes da próxima rodada manual, validar schema/fluxo de log para round, entity_id e action_type.
-**Cross-ref:** pending.md
-**Expira:** 2026-06-12
+- Mantidas ativas as lições com expiração posterior a 2026-06-01.
+- Corrigida classificação da lição de 2026-05-11 sobre 0 impressão após experimento: ela ainda não estava expirada e voltou para a seção ativa até 2026-06-10.

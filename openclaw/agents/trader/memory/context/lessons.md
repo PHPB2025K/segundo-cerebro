@@ -33,10 +33,6 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 di
 ### [ESTRATÉGICA] Cron de relatório financeiro: validar tokens ANTES de executar (2026-04-01)
 **Lição:** Se qualquer token falhar (ML, Shopee 3 contas, Amazon), abortar e notificar — não executar parcialmente.
 
-### [TÁTICA] Shopee sync on_conflict: parâmetro condicional por tabela (2026-04-02)
-**Lição:** `products` usa `on_conflict=platform,platform_item_id`. `price_history` NÃO usa on_conflict (tabela de log).
-**Expira:** 2026-05-02
-
 ### [ESTRATÉGICA] Validar fonte canônica de planilha antes de diagnosticar custo (2026-04-30)
 **Lição:** Antes de concluir que SKU está sem custo ou pedir cadastro aos analistas, validar se o script lê a planilha oficial de precificação. A planilha correta de custos/anúncios é `1u74a...`; `1dUoZ...` é legado/operacional.
 
@@ -48,10 +44,6 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 di
 
 ### [ESTRATÉGICA] DRE profissional precisa de estrutura clássica completa (2026-05-01)
 **Lição:** DRE não pode virar relatório de marketplace com receita/taxas/ads/resultado. Usar estrutura contábil/gerencial completa e marcar lacunas.
-
----
-
-_Atualizado na Consolidação Profunda 2026-05-01._
 
 ### [TÁTICA] Daily Sales Report: Top Produtos por SKU equivalente, não por título (2026-05-11)
 **Lição:** Relatório diário operacional deve consolidar SKUs equivalentes entre ML/Shopee/Amazon e omitir nomes não confiáveis, nunca exibir “Produto não identificado”.
@@ -100,3 +92,16 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 **Contexto:** Ao cadastrar novas linhas na aba AMAZON e atualizar devoluções, foram encontradas 4 linhas existentes sem fórmula de lucro líquido.
 **Lição:** Após inserção/atualização em massa de anúncios, validar fórmulas críticas também nas linhas existentes próximas, não apenas nas linhas novas ou na coluna alterada.
 **Expira:** 2026-06-26
+
+---
+
+## Lições Expiradas / Arquivo
+
+### [TÁTICA] Shopee sync on_conflict: parâmetro condicional por tabela (2026-04-02)
+**Lição:** `products` usa `on_conflict=platform,platform_item_id`. `price_history` NÃO usa on_conflict (tabela de log).
+**Expirou:** 2026-05-02
+**Auditoria:** Removida da seção ativa na Consolidação Profunda 2026-06-01.
+
+---
+
+_Atualizado na Consolidação Profunda 2026-06-01._

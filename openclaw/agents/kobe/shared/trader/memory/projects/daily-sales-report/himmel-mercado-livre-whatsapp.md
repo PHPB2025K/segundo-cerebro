@@ -565,3 +565,32 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 **Status:** aberto — reunião confirmada; conteúdo decisório ainda pendente.
 
+### 2026-06-01 14:36–16:13 BRT — Reativação de anúncios com estoque limitado e pausa da casinha MDF
+
+**Participantes:** Yasmin Oscarlino; Cláudio Manrique Junior/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Reativação de produtos/anúncios com estoque disponível, decisão de ADS e pausa temporária de produto MDF.
+
+**Produtos/anúncios citados:**
+- **MLB5322494954** — produto reativado com poucas unidades disponíveis; Yasmin informou cerca de **20 kits ativos**, vindos de desmanche de outros kits, com possibilidade de aparecerem mais unidades.
+- **Casinha de MDF** — produto será pausado por enquanto; Yasmin avisará quando for retomado.
+- **MLB4521490883** — **jarrinhas**; Yasmin pediu reativação e informou que conseguirá **200 unidades para junho**; anúncio já está ativo no Mercado Livre.
+
+**Contexto registrado:**
+- Yasmin avisou a Himmel que o **MLB5322494954** foi reativado com estoque muito limitado e indicou que pode ser trabalhado em ADS, apesar da baixa profundidade.
+- Cláudio/Himmel respondeu que analisaria a reativação em ADS.
+- Sobre a **casinha de MDF**, Yasmin confirmou que a GB vai parar o produto por enquanto e avisará quando houver retomada.
+- Yasmin também pediu a reativação do **MLB4521490883**, identificado como **jarrinhas**, com previsão de **200 unidades disponíveis para junho** e já ativo no ML.
+
+**Impacto esperado:**
+- **MLB5322494954** deve ser tratado como oportunidade tática curta: pode gerar venda incremental, mas com risco alto de ruptura por estoque baixo; não escalar agressivamente sem acompanhar cobertura.
+- **MLB4521490883 / jarrinhas** entra como item relevante para junho, com estoque planejado de 200 unidades e potencial para absorver parte da estratégia de volume do começo do mês.
+- **Casinha de MDF** deve sair do radar de cobrança de escala/ADS até nova sinalização; queda ou ausência de vendas não deve ser interpretada como falha de campanha enquanto o produto estiver pausado.
+
+**Como validar nos dados:**
+- Entre **2026-06-01 e 2026-06-07**, acompanhar para **MLB5322494954** e **MLB4521490883**: estoque disponível, vendas, investimento, ROAS, ACoS/TACoS, conversão, preço, ranking e risco de ruptura.
+- Confirmar se a Himmel reativou/incluiu **MLB5322494954** e **MLB4521490883** em campanhas, e com qual nível de agressividade.
+- Separar performance de jarrinhas da estratégia mais ampla de junho, pois há estoque novo/previsto específico de 200 unidades.
+- Não cobrar performance da **casinha de MDF** até Yasmin/Pedro sinalizarem retomada.
+
+**Status:** aberto — reativações informadas em 01/06; validar execução em ADS e impacto nos Daily Sales Reports de Mercado Livre da primeira semana de junho.

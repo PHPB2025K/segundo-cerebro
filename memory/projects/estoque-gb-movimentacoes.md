@@ -131,3 +131,29 @@ Próximos passos:
 2. Integrar a aplicação de movimentos com geração de `stock_movement_cost_snapshots`.
 3. Alimentar `stock_cost_layers` com custo inicial confiável por SKU a partir da planilha/Import Hub.
 4. Criar consultas/endpoints para CMV semanal, mensal, marketplace, SKU, pedido e perdas/avarias.
+
+## Aba CMV no módulo Estoque — 2026-06-02
+
+Pedro pediu para adicionar uma aba **CMV** no módulo de Estoque para visualizar os pontos definidos. Implementação publicada no app `estoque.budamix.com.br`.
+
+A aba criada contém:
+
+- Filtro de período com atalhos para semana atual e mês atual.
+- Cards de receita cruzada, CMV comercial, perdas/avarias e margem bruta.
+- Indicadores de movimentos com CMV, pedidos e pendências de custo.
+- Blocos/tabelas para CMV por marketplace, CMV por SKU, CMV por pedido, perdas/avarias e pendências financeiras.
+- Aviso seguro quando a estrutura de snapshots de CMV ainda não estiver aplicada no banco, retornando modo `setupRequired` sem quebrar a tela.
+
+Validação executada:
+
+- TypeScript passou.
+- Lint passou com apenas um warning antigo fora da alteração.
+- Build Next passou.
+- PM2 `estoque-budamix` reiniciado.
+- Smoke test HTTPS do domínio e da API `/api/stock-cmv` passou; a API retorna `setupRequired: true` até a migração de CMV ser aplicada no banco.
+
+Próximo passo operacional:
+
+1. Aplicar migração de CMV no banco.
+2. Conectar geração real de snapshots de custo nos movimentos aplicados.
+3. Popular custos iniciais confiáveis por SKU.

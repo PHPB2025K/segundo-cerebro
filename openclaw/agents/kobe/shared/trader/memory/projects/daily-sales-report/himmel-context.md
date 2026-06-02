@@ -261,3 +261,79 @@ Chat with meeting transcript: [https://notes.granola.ai/t/bbfe6589-cdeb-45e6-8c3
 - Usar como contexto causal/hipótese, não como fato isolado.
 - Cruzar com vendas reais, TACOS/ROAS/ACOS, exposição, estoque e campanhas nos próximos Daily Sales Reports.
 - Status inicial: **aberto**.
+
+
+---
+
+## [2026-06-02] Granola — Métricas, campanhas e estoque — maio com Jasmin
+
+**Granola note ID:** `not_7SP3k1wyVKpdDO`  
+**Link:** https://notes.granola.ai/d/d003087e-b728-40a1-acd5-7364d98ccd4a  
+**Horário:** 2026-06-02T12:54:40.447Z  
+**Participantes:** Setor Marketplace GB <marketplace@gbimportadora.com>  
+**Classificação:** ADS/Marketplace  
+**Plataformas/contas:** Shopee  
+**Agentes impactados:** Trader, Spark  
+**Transcrição:** disponível via Granola API (472 trechos), não copiada integralmente para memória.
+
+### Resumo Granola
+### Métricas de Performance - Maio
+
+- Faturamento: R$ 164 mil (28% acima de abril)
+  - Aumento significativo de investimento puxou crescimento
+  - Produtos começando a rankear organicamente
+  - TACOS reduziu 20% nos últimos 14 dias
+  - Últimos 7 dias: TACOS caiu para 4,99% (ainda alto mas melhorando)
+- Produto principal (kit 2 potes vidro 1.020ml) ficou sem estoque período
+  - Mesmo assim manteve crescimento de vendas
+  - Agora jogo de potes é o mais vendido (70 unidades, duração 1 dia)
+  - Estoque será reabastecido sexta-feira (\~1.000 unidades)
+
+### Gestão de Campanhas e Produtos
+
+- Isolamento do pote 10 unidades (ML 1.050)
+  - Criada campanha específica devido alto investimento
+  - Produto vende bem mas puxa muito TACOS
+  - Controle individual para otimização
+- Campanha de aceleração
+  - Reativados: canequinha medidora, kit 2 potes
+  - Kit canequinha será descontinuado após esgotar estoque atual
+  - Kit outros potes com métrica ruim (muitas opções confundem cliente)
+- Produtos menores (kits 4, 8, 320, 640ml)
+  - TACOS muito alto, considerando descontinuar
+  - Focar em kits maiores com melhor margem
+  - Preços já no limite da margem viável
+- MDF: campanha ainda não performando bem
+  - Produtos fora de época, crescimento será gradual
+  - Foco em fortalecer orgânico primeiro
+
+### Estratégias e Próximos Passos
+
+- Cupons performando bem
+  - 5% e 15% com melhores métricas
+  - Manter cupons valor mínimo baixo (melhor conversão)
+  - Cupons acima R$ 200 aumentam ticket médio mas convertem menos
+- Dia dos Namorados (6 junho)
+  - Programar cupom carrinho abandonado para dia 8
+  - Oferta relâmpago durante semana (melhor que sábado)
+  - Atualizar banner da loja
+- Teste ferramenta aumento seguidores
+  - 10 dias gratuitos disponíveis
+  - Reduz custo CPC longo prazo (seguidores compram com menos cliques)
+  - Aguardando aprovação do Pedro para continuidade
+- Jarras Amazon: \~200 unidades retornadas
+  - Manter em aceleração para escoar estoque
+  - Indefinido se continuará produto linha
+
+---
+
+Chat with meeting transcript: [https://notes.granola.ai/t/d462e95c-be5c-46eb-9e7e-21a1fc412f97](https://notes.granola.ai/t/d462e95c-be5c-46eb-9e7e-21a1fc412f97)
+
+### Ações / pendências extraídas
+- Estratégias e Próximos Passos
+- Teste ferramenta aumento seguidores
+
+### Como usar nos reports
+- Usar como contexto causal/hipótese, não como fato isolado.
+- Cruzar com vendas reais, TACOS/ROAS/ACOS, exposição, estoque e campanhas nos próximos Daily Sales Reports.
+- Status inicial: **aberto**.

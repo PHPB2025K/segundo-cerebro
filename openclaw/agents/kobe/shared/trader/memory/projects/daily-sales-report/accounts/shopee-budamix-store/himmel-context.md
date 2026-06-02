@@ -1,6 +1,6 @@
 # Contexto Himmel/Granola — Shopee — Budamix Store
 
-_Gerado em: 2026-06-01 23:37:55 UTC._
+_Gerado em: 2026-06-02 23:37:26 UTC._
 
 ## Como usar
 - Usar como contexto causal/hipótese nas análises diárias, nunca como fato isolado.
@@ -10,6 +10,70 @@ _Gerado em: 2026-06-01 23:37:55 UTC._
 - Regra Pedro 2026-05-12: reunião Shopee consolidada vale para as 3 contas Shopee; separar particularidades por conta quando o resumo/transcrição permitir.
 
 ## Contextos relevantes recentes
+
+### 2026-06-02 — Granola — Métricas, campanhas e estoque — maio com Jasmin
+#### Pontos cabíveis para esta conta
+- TACOS da conta principal foi citado como muito melhor, saindo de 5,60% para 2,05%; usar como hipótese de eficiência de mídia, mas validar se o ganho não veio à custa de perda de volume.
+- Himmel/Rafaela sugeriu foco em kits pequenos herméticos e kits maiores para marmitas; acompanhar se esses produtos ganham força nos Top Produtos e se substituem parte da queda dos itens em ruptura.
+- Produtos MDF foram sugeridos como alternativa com estoque controlável; se aparecerem em venda/ADS, tratar como teste estratégico para reduzir dependência de importados com reposição lenta.
+- Teste de cupons fixos/mais chamativos foi sugerido; se houver variação de ticket ou conversão nos próximos 7 dias, considerar efeito de cupom antes de concluir mudança orgânica de demanda.
+
+#### Resumo-fonte Granola
+## [2026-06-02] Granola — Métricas, campanhas e estoque — maio com Jasmin
+
+**Granola note ID:** `not_7SP3k1wyVKpdDO`  
+**Link:** https://notes.granola.ai/d/d003087e-b728-40a1-acd5-7364d98ccd4a  
+**Horário:** 2026-06-02T12:54:40.447Z  
+**Participantes:** Setor Marketplace GB <marketplace@gbimportadora.com>  
+**Classificação:** ADS/Marketplace  
+**Plataformas/contas:** Shopee  
+**Agentes impactados:** Trader, Spark  
+
+### Resumo Granola
+### Métricas de Performance - Maio
+
+- Faturamento: R$ 164 mil (28% acima de abril)
+  - Aumento significativo de investimento puxou crescimento
+  - Produtos começando a rankear organicamente
+  - TACOS reduziu 20% nos últimos 14 dias
+  - Últimos 7 dias: TACOS caiu para 4,99% (ainda alto mas melhorando)
+- Produto principal (kit 2 potes vidro 1.020ml) ficou sem estoque período
+  - Mesmo assim manteve crescimento de vendas
+  - Agora jogo de potes é o mais vendido (70 unidades, duração 1 dia)
+  - Estoque será reabastecido sexta-feira (\~1.000 unidades)
+
+### Gestão de Campanhas e Produtos
+
+- Isolamento do pote 10 unidades (ML 1.050)
+  - Criada campanha específica devido alto investimento
+  - Produto vende bem mas puxa muito TACOS
+  - Controle individual para otimização
+- Campanha de aceleração
+  - Reativados: canequinha medidora, kit 2 potes
+  - Kit canequinha será descontinuado após esgotar estoque atual
+  - Kit outros potes com métrica ruim (muitas opções confundem cliente)
+- Produtos menores (kits 4, 8, 320, 640ml)
+  - TACOS muito alto, considerando descontinuar
+  - Focar em kits maiores com melhor margem
+  - Preços já no limite da margem viável
+- MDF: campanha ainda não performando bem
+  - Produtos fora de época, crescimento será gradual
+  - Foco em fortalecer orgânico primeiro
+
+### Estratégias e Próximos Passos
+
+- Cupons performando bem
+  - 5% e 15% com melhores métricas
+  - Manter cupons valor mínimo baixo (melhor conversão)
+  - Cupons acima R$ 200 aumentam ticket médio mas convertem menos
+- Dia dos Namorados (6 junho)
+  - Programar cupom carrinho abandonado para dia 8
+  - Oferta relâmpago durante semana (melhor que sábado)
+  - Atualizar banner da loja
+- Teste ferramenta aumento seguidores
+  - 10 dias gratuitos disponíveis
+
+_[trecho truncado para manter contexto enxuto]_
 
 ### 2026-05-26 — Granola — BUDAMIX | Shopee | Letícia Gonçalves
 

@@ -102,3 +102,8 @@ No caso GB26003, relatório/pré-alerta externo da Open Trade indicava “embarq
 ## 2026-05-31 — [TÁTICA] Baixa retroativa de estoque exige validação de resolução antes de aplicar movimentos
 
 Na correção dos SKUs divergentes de marketplace, aliases/BOMs só foram aplicados depois de backup, teste do resolvedor e simulação de `ingest-safe-outbound`. Isso evitou baixa cega em estoque físico. Regra: antes de baixa retroativa em lote, validar mapeamento SKU→componente, simular pendências remanescentes e só aplicar quando o erro restante for conhecido e auditável.
+
+## 2026-06-01 — [TÁTICA] Baixa marketplace precisa auditar seller real e bloquear Full/FBA físico
+
+No hardening do Daily Marketplace Baixa, Pedro pediu garantias explícitas de que seller processado = seller logado, alerta se Full/FBA gerar movimento físico, snapshot de status/SKU/logística no momento da execução e fila diária de divergentes. Para rotinas de estoque multi-seller/multi-logística, o critério de sucesso não é só “baixou sem erro”: precisa provar qual seller foi processado, preservar o payload relevante da decisão e acusar imediatamente qualquer baixa física em pedido que deveria ser Full/FBA.
+

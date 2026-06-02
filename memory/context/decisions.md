@@ -56,3 +56,11 @@ tags:
 - Pedro confirmou explicitamente a lógica operacional dos kits coloridos de caneca/xícara: SKU colorido/sortido representa **1 unidade de cada cor** do conjunto.
 - Exemplos validados na baixa de estoque: `CTL002` colorida = 1 unidade de cada cor Tulipa; `KIT6CAR200` colorida = 1 unidade de cada cor Reta 200.
 - Essa regra deve orientar BOMs, baixa marketplace, conferência de estoque e normalização de SKUs desses kits, salvo exceção explícita futura.
+
+## 2026-06-01 — Estoque/Avarias: descrição livre pode resolver SKU físico e baixa total apenas quando inequívoca
+
+- Pedro definiu que o mapeamento de SKU deve conseguir decifrar a qual SKU a descrição do produto se refere tanto nas mensagens do grupo de vendas de atacado quanto nas mensagens de avarias.
+- Em mensagens de avaria, quando houver comando inequívoco de baixa total/zerar estoque e a descrição resolver com segurança para um SKU físico, o processador pode gerar baixa total do saldo atual desse SKU.
+- Caso concreto autorizado: “Caneca Porcelana Reta 200ml Rosa” / “caneca reta rosa” resolve para `CAR200R` e pode zerar o saldo atual quando a mensagem pedir baixa total.
+- Mensagens ambíguas continuam bloqueadas como divergência e não devem alterar saldo automaticamente.
+

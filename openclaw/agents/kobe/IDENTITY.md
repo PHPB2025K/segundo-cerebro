@@ -125,6 +125,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 27/05/2026 | Watchdog GitHub Sync revelou commits stuck do Kobe e levou à regra operacional definitiva de escrita segura no vault; `safe-write.sh` ganhou defesa de catch-up. Planilha de Estoque/Precificação ganhou regra global de valores em formato brasileiro e rodada grande de pricing das canecas/devoluções reais por anúncio. |
 | 28/05/2026 | Estoque GB virou frente central: Pedro aprovou motor de movimentações auditáveis, criou grupos WhatsApp/tópicos Telegram de Estoque e Devoluções, Fase 1 foi implementada e Fase 2 avançou com resolver SKU/aliases/BOM/smoke 5/5; aba ESTOQUE foi redefinida para SKUs pai/unitários com exceções explícitas. |
 | 31/05/2026 | Estoque GB corrigiu baixa marketplace fora Full com `model_sku` Shopee, aliases/BOMs seguros e baixa retroativa de 352 unidades físicas; Pedro corrigiu GB26003 como não pedido/embarque real sem contrato/sinal/autorização; Budamix E-commerce zerou variantes ativas sem SKU e unificou redondos IMB501 em produto canônico com redirects. |
+| 01/06/2026 | Fechamento financeiro mensal de maio entregue com receita comercial R$366.007,59 e margem operacional 25,9%, ainda parcial por Amazon Ads N/D; Estoque GB ganhou hardening de baixa marketplace, limpeza do Central físico para alinhar à aba ESTOQUE e resolvedor de descrição livre/baixa total para avarias (`CAR200R`). |
 
 ---
 

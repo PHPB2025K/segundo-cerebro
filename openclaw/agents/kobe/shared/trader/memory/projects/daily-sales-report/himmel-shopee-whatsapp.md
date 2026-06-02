@@ -147,3 +147,15 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 - **Responsáveis/próximo passo:** Himmel deve retornar posicionamento sobre MDF, revisar/evitar briefing com contexto incorreto de Meli e orientar execução de afiliados/ADS alternado; GB/Pedro/equipe deve verificar reativação ou RTS do ID 23094048438.
 - **Status:** aberto — aguardando retorno da Himmel e validação operacional nos dados D+1/D+3/D+7 a partir de 2026-06-01.
 
+### 2026-06-02 09:32–09:41 BRT — Pedro aprova separação/alternância para evitar competição entre contas
+
+- **Participantes:** Leticia (Himmel) e Pedro Broglio.
+- **Plataforma/conta:** Shopee consolidado; sem conta específica nomeada, aplicar como contexto das 3 contas Budamix.
+- **Tema:** confirmação de estratégia para reduzir competição interna entre as contas Shopee.
+- **Produtos/SKUs citados:** nenhum.
+- **Decisão/contexto:** Leticia indicou seguir com a estratégia justamente para que uma conta não compita com a outra em lances e não virem concorrentes internas. Pedro aprovou: “podemos seguir dessa forma então”. Esta interação reforça a diretriz de alternar/concentrar ações entre contas quando fizer sentido, em vez de impulsionar o mesmo produto simultaneamente nas três.
+- **Impacto esperado:** menor canibalização de lances e leitura mais limpa de performance por conta/produto; possível redistribuição de investimento, exposição e vendas entre as três contas.
+- **Como validar nos dados:** nos próximos Daily Sales Reports v2, checar por shop_id se houve redução de sobreposição de campanhas/produtos, mudanças em investimento ADS, ROAS/TACOS, pedidos e faturamento; avaliar se produtos trabalhados em uma conta ganham tração sem derrubar desnecessariamente as demais.
+- **Responsáveis/próximo passo:** Himmel deve conduzir a estratégia aprovada; Trader deve tratar variações entre contas como possível efeito de separação/alternância, não apenas queda isolada.
+- **Status:** aberto — estratégia aprovada em 2026-06-02, validar D+1/D+3/D+7.
+

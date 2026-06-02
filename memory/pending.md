@@ -174,13 +174,14 @@ _Atualizado: 2026-06-01 23:45 BRT — consolidação diária em camadas_
 
 
 ## Nota para briefing matinal — itens estagnados >7 dias
-_Gerado pela organização noturna de 28/05 02:00 BRT._
+_Gerado pela organização noturna de 02/06 02:00 BRT._
 
-- Revalidar no briefing apenas os itens que continuam bloqueados por decisão/input do Pedro: reposição de canecas/Agente de Compras (aguardando pedidos em trânsito/já feitos), Pedidos Atacado/PDF oficial Bling, teste controlado da automação de pedidos, Meta Business Segunda Venda, carrosséis fixos do Instagram Budamix, grupo OS/OSA com Davi, escolha da Capa 01 do banner triplo, aliases/POT1BB/KFJ003 do Estoque Budamix, Social Studio Meta App/secrets, Canggu senha/admin + hard-block defensivo, DRE abril U15, Guarani distrato assinado para revisão antes do pagamento, Bling Filial 403 pausado, firewall VPS e rotação de tokens expostos.
-- Atenção especial para hoje (28/05): as duas ações pedidas para segunda-feira (25/05) continuam na fila salvo confirmação posterior — cobrar Leonardo pelas avaliações dos kits de potes 4 travas e retomar o status da automação de pedidos de atacado via WhatsApp.
-- Crons recorrentes mais recentes checados em 28/05 02:00 BRT: Claude Contingency Guard (01:59 BRT), job-monitor (01:59 BRT) e Watchdog — GitHub Sync Segundo Cérebro (01:42 BRT) estavam em status OK.
-- Observação de estabilidade: Inbox Cleanup - Gmail Pedro rodou OK às 00:35 BRT e reforçou o alerta já existente do distrato assinado da Guarani. Watchdog — Consolidação em Camadas rodou OK às 00:21 BRT; Consolidação Diária — Fechamento Pipeline rodou OK às 00:06 BRT; Daily GitHub Backup rodou OK às 00:00 BRT.
-- Sessões antigas >30 dias: `memory/sessions/2026-04-27.md` estava consolidada no índice/timeline e foi removida. O relatório `2026-04-15-shopee-audit.md` foi mantido por ser artefato analítico específico, não nota diária consolidada.
+- Revalidar no briefing apenas itens que continuam bloqueados por decisão/input do Pedro ou por lacuna operacional real: Estoque GB (`YW1520RC`, validação Central 94/94, avaria `CAR200R` e D+1 vs quase tempo real), Import Hub/GB25010-GB25011 custos, GB26003 bloqueado sem contrato/sinal/autorização, reposição de canecas/Scout aguardando pedidos em trânsito, Pedidos Atacado/PDF oficial Bling e teste controlado, Meta Business Segunda Venda, carrosséis fixos Instagram/Canva, grupo OS/OSA com Davi, Daily Sales v2 sem QA final completo, Shopee Store/Conta 3 pós-Ramp Up, RH aguardando orientação, DRE abril U15, Guarani distrato assinado antes de pagamento, Social Studio Meta App/secrets, Canggu JWT/health check e infra/autenticações degradadas.
+- Atenção especial para hoje (02/06): primeira consolidação semanal DSA ML esperada às 09:00 BRT; verificar se saiu com 7 blocos válidos e se precisa sanity check de ADS `suspect_zero_spend`.
+- Ações pedidas para segunda-feira (25/05) continuam na fila salvo confirmação posterior: cobrar Leonardo pelas avaliações dos kits de potes 4 travas e retomar status da automação de pedidos de atacado via WhatsApp.
+- Crons recorrentes mais recentes checados em 02/06 02:00 BRT: Watchdog — GitHub Sync Segundo Cérebro (01:42 BRT), Inbox Cleanup - Gmail Pedro (00:35 BRT) e Watchdog — Consolidação em Camadas (00:22 BRT) estavam em status OK.
+- Observação de estabilidade: Fechamento Pipeline (00:05 BRT), Daily GitHub Backup (00:00 BRT) e Consolidação Diária (01/06 23:48 BRT) também rodaram OK. Inbox Cleanup reforçou achado já pendente da Guarani/minuta assinada; não abriu pendência duplicada.
+- Sessões antigas >30 dias: `memory/sessions/2026-05-02.md` e `memory/sessions/2026-05-03.md` estavam consolidadas no índice/timeline e foram removidas. O relatório `2026-04-15-shopee-audit.md` foi mantido por ser artefato analítico específico, não nota diária consolidada.
 - Não reabrir pendências antigas de abril/2026 que Pedro já mandou limpar; manter histórico fora da fila ativa.
 
 ## Backlog Estagnado
@@ -197,4 +198,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última organização: 2026-06-01 23:45 BRT._
+_Última organização: 2026-06-02 02:00 BRT._

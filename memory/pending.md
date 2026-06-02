@@ -118,6 +118,8 @@ _Atualizado: 2026-06-01 23:45 BRT — consolidação diária em camadas_
 
 ## 🔥 PRIORIDADE IMEDIATA — Budamix E-commerce / Blog / Social Studio
 
+- [ ] **Instagram Budamix — executar cronograma oficial de conteúdo de junho/2026**: Pedro enviou em 02/06, no tópico Marketing, o PDF do cronograma mensal de posts, stories e artigos. Tratar como cronograma oficial de **junho/2026** apesar da mensagem mencionar Maio. Cadência: ~4 posts de feed por semana, stories quase diários e 1 artigo de blog por semana. Guardrails: usar só produtos com estoque, evitar `KIT2YW1520` e `KIT2YW800SQ` até julho, não incluir Kit 10 Potes plástico até decisão de marca, e permitir bastidores espontâneos fora do plano. Nota canônica criada em `memory/projects/instagram-budamix-junho-2026.md`.
+
 - [ ] **Budamix E-commerce — pós-pivot 100% vidro**: Pedro precisa decidir se reativa a Jarra Medidora de Vidro 500ml (é vidro, mas ficou fora dos 2 grupos ativos); trocar fotos placeholder dos combos IMB501_KIT2/IMB501_KIT3 por fotos reais; ajustar estoque inicial dos combos via planilha; atualizar conteúdo de marca/blog/ads/fotografia para refletir Budamix.com.br 100% utensílios de vidro.
 - [ ] **Budamix E-commerce — validar webhook Mercado Pago em produção com BUDAMIX10**: após o primeiro pedido real pago usando cupom, conferir se `coupon_redemptions` recebeu registro e se o contador do cupom incrementou no admin.
 - [ ] **Budamix E-commerce — investigar preço Tulipa R$ 55,90**: em 21/05 as variantes Tulipa apareceram a R$ 55,90/55,91 e foram corrigidas via SQL, mas a causa não foi identificada; risco de regressão por ação no admin ou script.

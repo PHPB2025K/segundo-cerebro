@@ -615,3 +615,28 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Se houver alterações relevantes no ML a partir de **02/06**, cruzar com eventuais decisões da reunião e com a estratégia de junho já registrada.
 
 **Status:** aberto — reunião confirmada; conteúdo decisório ainda pendente.
+
+### 2026-06-02 16:18–17:03 BRT — Aumentar investimento em produtos MDF mesmo com ACoS alto
+
+**Participantes:** Yasmin Oscarlino; Cláudio Manrique Junior/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Diretriz de investimento ADS em MDF após alinhamento com Pedro.
+
+**Produtos/SKUs citados:**
+- Produtos **MDF** de forma consolidada; nenhum SKU/anúncio específico citado nesta interação.
+
+**Contexto registrado:**
+- Yasmin informou à Himmel que, em conversa com Pedro, foi alinhado que vale aumentar os investimentos nos produtos **MDF**, mesmo que o **ACoS fique alto**.
+- Cláudio/Himmel respondeu que vai analisar a conta/campanhas para realizar esse aumento.
+
+**Impacto esperado:**
+- A partir de **02/06**, aumentos de gasto, ACoS/TACoS ou queda temporária de eficiência em MDF não devem ser lidos automaticamente como desperdício; há diretriz explícita de investimento para acelerar a categoria.
+- A hipótese operacional é usar ADS para ganhar tração/ranking em produtos de produção própria, aceitando eficiência pior no curto prazo.
+- Como MDF costuma depender menos de importação e pode ter controle de produção interno, o Daily Sales Report deve separar performance de MDF do restante do mix ao avaliar eficiência de ML.
+
+**Como validar nos dados:**
+- Entre **2026-06-03 e 2026-06-10**, acompanhar produtos/anúncios MDF no ML: investimento, ACoS/TACoS, vendas incrementais, conversão, ranking/exposição, estoque/capacidade produtiva e margem.
+- Verificar se a Himmel efetivamente aumentou orçamento/bids/campanhas de MDF após a análise prometida.
+- Separar o impacto de MDF no ACoS/TACoS consolidado da conta para não contaminar a leitura de eficiência dos kits e produtos importados.
+
+**Status:** aberto — decisão de investimento registrada; validar execução pela Himmel e resultado na primeira quinzena de junho.

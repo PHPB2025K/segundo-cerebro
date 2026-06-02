@@ -1,0 +1,53 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem passou os 12 gates sem nenhuma falha crítica ou maior. A estrutura Slack está correta, os 3 insights da L05 foram fielmente traduzidos com classificação preservada, os 4 bloqueios declarados foram respeitados integralmente, os slack_short_names foram usados em todas as menções, nenhum MLB aparece na mensagem, Yasmin é responsável em todas as prioridades e os logs da L06 são coerentes com a mensagem final. Um único problema menor foi identificado no Gate 11: o valor 'R$ 10k' na condição escalar_se da Prioridade 2 não segue o padrão monetário R$ X.XXX,XX — o desvio foi reproduzido fielmente da L05, que também usou a abreviação, mas o artefato final apresenta a inconsistência. Regra de agregação aplicada: 0 Críticos + 0 Maiores + 1 Menor → APROVADO COM RESSALVA.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "RESSALVA",
+    "gate_12_consistencia_ml_snapshot": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 1,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 1 Menor → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "a taxa de cancelamentos da reputação sair de zero enquanto o gap Platinum ainda estiver acima de R$ 10k",
+      "texto_esperado": "a taxa de cancelamentos da reputação sair de zero enquanto o gap Platinum ainda estiver acima de R$ 10.000",
+      "estado_atual": "Abreviação informal 'R$ 10k' no escalar_se da Prioridade 2 não segue o padrão monetário obrigatório R$ X.XXX,XX",
+      "estado_esperado": "Valor monetário escrito por extenso no formato padrão R$ 10.000",
+      "regra_violada": "Gate 11: moeda no formato R$ 1.234,56; sem abreviações informais (k/K) em referências monetárias na mensagem final",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "O 'R$ 10k' na condição escalar_se da Prioridade 2 foi reproduzido fielmente da L05, que também usou essa abreviação no campo escalar_se de prioridades_condensadas. A origem do desvio está na L05, não na L06. Registrar para o próximo ciclo: a L05 deve usar o formato R$ X.XXX,XX em todas as referências monetárias, inclusive em condições escalar_se e por_que, para garantir que a L06 não herde inconsistências de formato.",
+    "A L06 simplificou 'é hora de deixar a série respirar e usar esses números como ponto zero da confirmação de patamar' (L05, insight 3) para 'esses números são o ponto de referência da série'. A tese central — não mexer em campanha, usar os indicadores como baseline — está preservada. A simplificação está dentro do escopo da Diretriz Pedro 2026-05-17. Registrado apenas como sinal de auditoria de fidelidade semântica, sem impacto operacional."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "fulfillment_mix_yesterday_top10 cobre apenas 91 dos 206 pedidos do dia (~44,2%), bem abaixo do limiar de 70%. A omissão da seção VISÃO foi correta e está documentada em L05 e L06. A cobertura parcial desta métrica é recorrente. Avaliar no próximo ciclo de manutenção se a janela 7d (fulfillment_mix_7d, coverage_pct=100%) deve substituir o top10 como referência de mix de modalidade de envio no Slack, ou se o fetcher pode ampliar a cobertura do cálculo diário.",
+    "KIT3S099 (posição 9 do top_products, slack_short_name=null) e KIT6YW520 (posição 10, slack_short_name=null) ficaram fora do top 5 exibido no Slack e não causaram impacto na mensagem. Registrar para adição a config/slack-short-names-ml.json na próxima manutenção do mapeamento canônico, de modo a garantir cobertura completa no caso de qualquer um desses SKUs entrar no top 5 em ciclos futuros.",
+    "ratings_negative subiu de 0,39 para 0,41 no snapshot 02/06 09:50 UTC. A L05 corretamente relegou ao memoria_para_amanha e a L06 corretamente omitiu do Slack. Monitorar no próximo ciclo — sinal fraco isolado, mas em direção adversa no contexto de série crescente de cancelamentos (3→3→2→6→9) e de janela Platinum em fase final (gap R$ 16.112, ETA 3,5 dias).",
+    "A inconsistência interna do ml_snapshot entre fulfillment_mix_yesterday_top10 (91 pedidos resolvidos de 206, ~44,2% de cobertura) e o total canônico de 206 pedidos foi corretamente tratada por L05 e L06 via omissão do mix na VISÃO. Nenhuma contaminação analítica identificada na mensagem final. O fetcher deve ser revisado para ampliar a base de cálculo do mix diário ou para sinalizar explicitamente a cobertura parcial no campo status da chave."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

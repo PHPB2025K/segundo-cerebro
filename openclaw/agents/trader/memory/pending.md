@@ -1,10 +1,19 @@
 # Pendências — Trader
 
-_Atualizado: 2026-05-31_
+_Atualizado: 2026-06-01_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
+
+- [ ] Daily Sales v2 31/05/2026 BRT: pacote de dados gerado com status DADOS_PARCIAIS por pico positivo de Mercado Livre (+77,6% vs média 30d), mas sem artefatos finais detectados de Slack Writer/QA para Lucas, Yasmin e Leonardo; investigar lacuna antes de qualquer send-candidate.
+- [ ] Mercado Livre: validar se pico de 189 pedidos em 31/05 sustenta ou foi ponto isolado de domingo; cruzar ADS, estoque/Full, ranking, cancelamentos e concentração em Potes Vidro 5 Peças antes de tratar como novo patamar.
+- [ ] Rules Watch Mercado Livre: ML Fees Monitor de 01/06/2026 BRT terminou em timeout; revisar regras/taxas ML antes de usar mudança de taxa/frete/reputação como causa forte em junho.
+- [ ] Relatório financeiro maio/2026: fechar Amazon Ads maio (N/D no relatório entregue) para transformar a DRE operacional de parcial em completa e recalcular ROAS consolidado.
+- [ ] Relatório financeiro maio/2026: mapear SKUs sem custo em ML/Shopee para aumentar cobertura de CMV e reduzir risco de margem parcial.
+- [ ] Shopee novos produtos/MDF: validar D+1/D+3/D+7 da diretriz de afiliados + ADS alternado entre contas; monitorar canibalização, vendas orgânicas vs pagas, ROAS/TACOS e retorno da Himmel sobre MDF.
+- [ ] Shopee Full/RTS: verificar reativação ou RTS do produto 23094048438 com 30 unidades paradas no Full; monitorar se volta a vender ou se há liberação operacional.
+- [ ] Mercado Livre junho: acompanhar MLB5322494954 (estoque limitado de ~20 kits) e MLB4521490883/jarrinhas (previsão de 200 unidades) por estoque, vendas, ADS, ROAS/ACoS/TACoS e risco de ruptura.
 - [ ] Daily Sales v2 30/05/2026 BRT: houve pacote de dados com status DADOS_PARCIAIS, mas não foram detectados artefatos finais de Slack Writer/QA para Lucas, Yasmin e Leonardo; investigar falha/lacuna antes de qualquer send-candidate.
 - [ ] Shopee Store: queda para 35 pedidos em 30/05 (-43,9% vs média 30d) virou principal alerta Shopee; cruzar exposição, estoque/Full, campanhas Ramp Up, canibalização pela Conta 2 e mix de Jarra/Potes.
 - [ ] Shopee Conta 2: reação para 32 pedidos em 30/05 (+26,5% vs média 30d) com 3 cancelamentos; confirmar se é sustentada ou efeito pontual de mix/ticket.

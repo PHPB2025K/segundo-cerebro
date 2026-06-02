@@ -594,3 +594,24 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Não cobrar performance da **casinha de MDF** até Yasmin/Pedro sinalizarem retomada.
 
 **Status:** aberto — reativações informadas em 01/06; validar execução em ADS e impacto nos Daily Sales Reports de Mercado Livre da primeira semana de junho.
+
+### 2026-06-02 09:37–09:38 BRT — Link enviado e reunião ML mantida às 10h
+
+**Participantes:** Cláudio Manrique Junior/Himmel; Yasmin Oscarlino.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Confirmação operacional da reunião recorrente de Mercado Livre.
+
+**Contexto registrado:**
+- Cláudio/Himmel enviou o link do Google Meet da reunião **BUDAMIX** marcada para **2026-06-02, 10h–11h BRT**.
+- Yasmin respondeu “Combinado”, confirmando ciência/continuidade do alinhamento.
+- A conversa não trouxe decisão de campanha, SKU, verba, ROAS/ACoS, produto priorizado ou prazo além da reunião.
+
+**Impacto esperado:**
+- A reunião de **02/06 às 10h BRT** foi efetivamente mantida; usar como marcador para buscar decisões posteriores por WhatsApp ou Granola.
+- Não usar esta interação como causa direta de variação de vendas/ADS; ela apenas confirma que o alinhamento operacional aconteceu/estava prestes a acontecer.
+
+**Como validar nos dados:**
+- Procurar mensagens posteriores ou transcrição/ata da reunião de **02/06** antes de atribuir mudanças de campanha, verba, produtos priorizados ou performance ao alinhamento.
+- Se houver alterações relevantes no ML a partir de **02/06**, cruzar com eventuais decisões da reunião e com a estratégia de junho já registrada.
+
+**Status:** aberto — reunião confirmada; conteúdo decisório ainda pendente.

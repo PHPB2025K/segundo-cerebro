@@ -96,3 +96,38 @@ Validação:
 
 Próximo passo imediato:
 - Aplicar a migração no Supabase e testar a API/painel com dados reais controlados.
+
+## CMV oficial por período — decisão de estruturação — 2026-06-02
+
+Pedro aprovou começar a estruturação do motor de estoque para virar fonte oficial de CMV por período, permitindo responder com segurança:
+
+- CMV de semana específica.
+- CMV de mês.
+- CMV por marketplace.
+- CMV por SKU.
+- CMV por pedido.
+- CMV de perdas/avarias separado de venda.
+- Margem bruta real por período.
+
+Decisão técnica-operacional:
+
+- O ledger de movimentações será a fonte de quantidade/consumo.
+- O CMV oficial virá de snapshots de custo gravados no momento em que o movimento aplicado consome estoque.
+- Nunca recalcular CMV histórico usando custo atual da planilha, porque isso distorce períodos antigos quando o custo muda.
+- Método inicial recomendado: custo médio ponderado por SKU.
+- Modelo deve ficar preparado para evoluir para FIFO por lote/container via Import Hub.
+- Envio para Full é transferência logística e não gera CMV na saída do galpão; CMV nasce na venda/perda/ajuste que consome economicamente o produto.
+- Perdas e avarias devem ficar separadas de venda para não poluir margem comercial por marketplace.
+- Movimento que consome estoque sem custo confiável vira pendência financeira e não entra no CMV oficial até resolver.
+
+Artefatos criados:
+
+- Documento canônico: `docs/stock-cmv-official-periods.md`.
+- Migração inicial: `migrations/202606021140_stock_cmv_cost_snapshots.sql`.
+
+Próximos passos:
+
+1. Validar/aplicar a migração de CMV no banco.
+2. Integrar a aplicação de movimentos com geração de `stock_movement_cost_snapshots`.
+3. Alimentar `stock_cost_layers` com custo inicial confiável por SKU a partir da planilha/Import Hub.
+4. Criar consultas/endpoints para CMV semanal, mensal, marketplace, SKU, pedido e perdas/avarias.

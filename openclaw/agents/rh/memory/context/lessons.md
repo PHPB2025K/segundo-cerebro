@@ -1,6 +1,13 @@
 # Lições — RH
 
-_Atualizado: 2026-05-31_
+_Atualizado: 2026-06-01_
+
+## 2026-06-01
+- Backlog de comunicações abertas aumentou para 21 e virou o principal risco operacional do RH; novos ciclos semanais podem acumular ruído se Pedro não orientar os casos bloqueados.
+- Sandra sem marcações em múltiplos dias úteis consecutivos e novamente em 01/06 é risco trabalhista sensível e precisa de decisão humana antes de contato adicional.
+- Intervalos abaixo de 1h seguem recorrentes em Guilherme, Lucas e Mateus; o padrão precisa de orientação operacional antes de cobrança ou correção.
+- Mateus continua exigindo interpretação contextual por Tiro de Guerra antes de classificar entradas tardias ou saídas ausentes.
+- Leonardo continua exigindo interpretação contextual por jornada/faculdade antes de classificar entrada à tarde ou marcações incompletas.
 
 ## 2026-05-31
 - Nenhuma lição nova relevante além das já registradas.

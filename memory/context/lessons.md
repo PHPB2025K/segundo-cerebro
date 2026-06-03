@@ -107,3 +107,10 @@ Na correção dos SKUs divergentes de marketplace, aliases/BOMs só foram aplica
 
 No hardening do Daily Marketplace Baixa, Pedro pediu garantias explícitas de que seller processado = seller logado, alerta se Full/FBA gerar movimento físico, snapshot de status/SKU/logística no momento da execução e fila diária de divergentes. Para rotinas de estoque multi-seller/multi-logística, o critério de sucesso não é só “baixou sem erro”: precisa provar qual seller foi processado, preservar o payload relevante da decisão e acusar imediatamente qualquer baixa física em pedido que deveria ser Full/FBA.
 
+## 2026-06-02 — [TÁTICA] Daily Sales com Atacado no consolidado exige leitura separada de marketplaces
+
+No Daily Sales de 01/06, o consolidado ficou muito forte, mas Atacado - GB Matriz adicionou R$ 6.483,34 em apenas 3 pedidos. Antes de concluir que marketplaces melhoraram ou que ticket médio subiu estruturalmente, separar marketplace puro de Atacado/Bling e analisar ML, Shopee e Amazon isoladamente. Atacado distorce faturamento, ticket e leitura de tendência quando entra no mesmo total executivo.
+
+## 2026-06-02 — [TÁTICA] Bling 403 na Matriz muda o risco de integração fiscal
+
+Até 01/06 o Bling 403 parecia concentrado na Filial e estava adiado por decisão operacional do Pedro. Em 02/06, o Fisco registrou HTTP 403 também na Matriz em execuções úteis. Quando a Matriz falha, o risco deixa de ser integração filial secundária e passa a bloquear operação fiscal principal; antes de emitir NF-e, criar draft ou depender do Bling, validar conectividade Matriz + Filial em teste controlado.

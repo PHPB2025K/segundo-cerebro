@@ -64,3 +64,14 @@ tags:
 - Caso concreto autorizado: “Caneca Porcelana Reta 200ml Rosa” / “caneca reta rosa” resolve para `CAR200R` e pode zerar o saldo atual quando a mensagem pedir baixa total.
 - Mensagens ambíguas continuam bloqueadas como divergência e não devem alterar saldo automaticamente.
 
+## 2026-06-02 — Shopee: alternância entre contas para evitar competição interna
+
+- Pedro aprovou, via contexto consolidado pelo Trader, seguir com separação/alternância entre contas Shopee para reduzir competição interna de lances entre lojas da própria operação.
+- Variações de performance por shop_id nos próximos reports devem ser lidas considerando essa estratégia, separando queda operacional real de alternância planejada.
+- Monitoramento obrigatório: D+1/D+3/D+7 por conta, anúncio, SKU, ADS, afiliados, ROAS/TACoS e possível canibalização.
+
+## 2026-06-02 — Mercado Livre: MDF pode receber investimento com ACoS alto como aposta de tração
+
+- Pedro alinhou que produtos MDF no Mercado Livre podem receber mais investimento mesmo com ACoS alto quando a intenção for ganhar tração, exposição e ranking.
+- A leitura de ADS/marketplace deve separar MDF do restante da conta para não classificar o ACoS alto como erro automático.
+- Se MDF pressionar TACoS/resultado geral, a decisão pendente passa a ser limite de tolerância ou janela mínima de teste, não corte imediato.

@@ -126,6 +126,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 28/05/2026 | Estoque GB virou frente central: Pedro aprovou motor de movimentações auditáveis, criou grupos WhatsApp/tópicos Telegram de Estoque e Devoluções, Fase 1 foi implementada e Fase 2 avançou com resolver SKU/aliases/BOM/smoke 5/5; aba ESTOQUE foi redefinida para SKUs pai/unitários com exceções explícitas. |
 | 31/05/2026 | Estoque GB corrigiu baixa marketplace fora Full com `model_sku` Shopee, aliases/BOMs seguros e baixa retroativa de 352 unidades físicas; Pedro corrigiu GB26003 como não pedido/embarque real sem contrato/sinal/autorização; Budamix E-commerce zerou variantes ativas sem SKU e unificou redondos IMB501 em produto canônico com redirects. |
 | 01/06/2026 | Fechamento financeiro mensal de maio entregue com receita comercial R$366.007,59 e margem operacional 25,9%, ainda parcial por Amazon Ads N/D; Estoque GB ganhou hardening de baixa marketplace, limpeza do Central físico para alinhar à aba ESTOQUE e resolvedor de descrição livre/baixa total para avarias (`CAR200R`). |
+| 02/06/2026 | Estoque GB ativou camada CMV+receita com 130 snapshots oficiais e 0 pendências de custo; replay de divergentes corrigíveis zerou falhas sistêmicas. Daily Sales 01/06 trouxe R$23.190,76/361 pedidos com Atacado distorcendo o consolidado; Pedro aprovou alternância Shopee e investimento estratégico em MDF no ML mesmo com ACoS alto. Bling 403 passou a aparecer também na Matriz. |
 
 ---
 

@@ -1,6 +1,13 @@
 # Lições — RH
 
-_Atualizado: 2026-06-01_
+_Atualizado: 2026-06-02_
+
+## 2026-06-02
+- Sandra sem marcações novamente em dia útil reforça risco trabalhista sensível e necessidade de orientação do Pedro antes de contato adicional.
+- Intervalo de almoço de 1min em Franciele é anomalia forte; deve ser validado como possível erro de marcação antes de qualquer leitura de compliance.
+- Intervalos abaixo de 1h seguem recorrentes em Guilherme, Lucas e Mateus, indicando padrão operacional que precisa de orientação antes de cobrança/correção.
+- Escalamentos automáticos repetidos de Leonardo e Mateus continuam gerando ruído sem resolver o caso; o backlog antigo precisa de decisão.
+- Backlog de 21 comunicações abertas segue como principal risco operacional do RH.
 
 ## 2026-06-01
 - Backlog de comunicações abertas aumentou para 21 e virou o principal risco operacional do RH; novos ciclos semanais podem acumular ruído se Pedro não orientar os casos bloqueados.

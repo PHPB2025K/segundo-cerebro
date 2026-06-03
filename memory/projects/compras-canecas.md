@@ -130,3 +130,17 @@ Fluxo correto:
 5. Se nada mudou, registrar manutenção do planejamento atual.
 
 O objetivo é comprar no início da semana sempre após o cron ter recalculado e validado a quantidade semanal corrente.
+
+## Inbound informado — 2026-06-03
+
+Pedro informou pedidos de canecas **Reta** aguardando chegada:
+- Reta rosa: 8 caixas × 60 unidades = **480 unidades**
+- Reta branca: 8 caixas × 60 unidades = **480 unidades**
+- Reta preta: 6 caixas × 60 unidades = **360 unidades**
+- Reta amarela: 6 caixas × 60 unidades = **360 unidades**
+- Reta azul: 6 caixas × 60 unidades = **360 unidades**
+- Reta verde: 6 caixas × 60 unidades = **360 unidades**
+
+Total Reta em trânsito: **40 caixas / 2.400 unidades**.
+
+Impacto no recálculo Scout de 03/06: se esse inbound chegar dentro do lead time operacional, a família Reta deixa de exigir compra imediata nesta semana. Sem considerar Tulipa/Canelada/Paris, o bruto semanal cai de 2.176 para aproximadamente **1.548 unidades/semana**, abatendo as recomendações brutas de Reta: rosa 167, preta 74, branca 184, azul 39, verde 0, amarela 164.

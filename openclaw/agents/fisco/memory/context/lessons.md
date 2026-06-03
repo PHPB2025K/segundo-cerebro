@@ -1,6 +1,12 @@
 # Lições — Fisco
 
-_Atualizado: 2026-06-01_
+_Atualizado: 2026-06-02_
+
+## 2026-06-02
+- A falha HTTP 403 “empresa inativa” deixou de estar isolada na Filial: Matriz também falhou em duas execuções úteis do dia, apesar de ter conectado de manhã. Tratar como agravamento operacional até teste controlado confirmar recuperação.
+- Persistência do HTTP 403 da Filial por dezenove dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/acesso da empresa e teste controlado.
+- Falha recorrente do alerta WhatsApp com HTTP 403 continua sendo risco de visibilidade independente, agora ainda mais crítico porque pode mascarar bloqueio simultâneo de Matriz e Filial.
+- Rodadas bloqueadas por approvals/allowlist ou abortadas por timeout após captura de resultado devem separar dois fatos: ausência de fechamento confiável do cron e, quando houver output fiscal capturado, diagnóstico operacional válido.
 
 ## 2026-06-01
 - Persistência do HTTP 403 da Filial por dezoito dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/acesso da empresa e teste controlado.

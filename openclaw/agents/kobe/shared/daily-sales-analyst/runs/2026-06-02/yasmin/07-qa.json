@@ -1,0 +1,53 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem Slack está estruturalmente correta, fiel à L05 em dados e tese, com bloqueios respeitados (lista vazia na L04 e L05), produtos com nomes canônicos corretos via slack_short_name em todas as seções, prioridades completas e fiéis, tom operacional adequado e nenhuma violação de regra crítica. Um único problema menor foi identificado: o termo 'prospectivos' (da lista de jargões técnicos a monitorar — 'prospectivo/retrospectivo' — conforme Diretriz Pedro 2026-05-25) aparece 3 vezes na mensagem, atingindo o threshold de ≥3 ocorrências. Por ser 1 Menor sem Críticos nem Maiores, a regra de agregação resulta em APROVADO COM RESSALVA. A mensagem pode ser enviada.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "RESSALVA",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 1,
+    "regra_agregacao_aplicada": "0 Maiores + 1–5 Menores → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "Gate 10 — Tom e utilidade",
+      "texto_atual": "Três ocorrências de 'prospectivos': (1) bullet 1 Análise — '8 pedidos viraram cancelamentos prospectivos'; (2) bullet 2 Análise — 'os cancelamentos prospectivos do Kit 6 Canecas Tulipa 250ml acumulam em série crescente'; (3) prioridade 2 — 'desta vez na maior escala da série (8 cancelamentos prospectivos)'",
+      "texto_esperado": "≤ 2 ocorrências, ou substituição por linguagem natural: 'cancelamentos que ainda devem acontecer', 'cancelamentos esperados', 'cancelamentos prováveis' — 1 a 2 usos são tolerados quando precisos, mas 3+ indicam jargão técnico não traduzido conforme a regra",
+      "estado_atual": "Frequência = 3 para o termo 'prospectivos/prospectivo', que consta explicitamente na lista de termos a monitorar (prospectivo/retrospectivo) da Diretriz Pedro 2026-05-25. O termo foi preservado da linguagem da L05 sem tradução nas três ocorrências.",
+      "estado_esperado": "Frequência < 3 ou tradução natural aplicada em pelo menos uma das ocorrências para manter o critério abaixo do threshold",
+      "regra_violada": "Gate 10: bloquear como Menor se a mensagem Slack contiver 3+ ocorrências dos termos técnicos listados sem tradução natural; 'prospectivo/retrospectivo' está na lista. Frequência ≥ 3 indica jargão técnico não traduzido.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "L06 adicionou 'progresso em 96,1%' no bullet 2 da Análise — dado factualmente correto (ml_snapshot.mercadolider.platinum.progress_pct=96.07) que não estava no texto literal do insight 2 da L05, apenas no bloco de dados subjacente. A adição é precisa, suporta a tese sem alterá-la e não constitui insight novo, portanto não bloqueia. Para o próximo ciclo: L05 pode optar por incluir explicitamente o progress_pct no insight para evitar enriquecimento autônomo pela L06.",
+    "A comparação do fulfillment_mix_yesterday_top10 (68,5% de cobertura, 135/197 pedidos) contra fulfillment_mix_30d (100% de cobertura, 3.536 pedidos) no bullet 3 da Análise é metodologicamente assimétrica em termos de base. A qualificação 'no top 10' delimita o escopo corretamente e a própria L05 realizou a mesma comparação no insight 3, portanto QA aceita. Para o próximo ciclo: considerar se a L05 deve adicionar ressalva explícita de cobertura ao realizar essa comparação, para preservar rastreabilidade analítica."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "fulfillment_mix_yesterday_top10 cobriu 135/197 pedidos = 68,5%, marginalmente abaixo do threshold de 70% do Gate 12c. A mensagem qualifica corretamente o dado como 'no top 10' e não o apresenta como métrica total da conta, portanto não aciona bloqueio. O fetcher do data builder deve avaliar se é possível ampliar a resolução do logistic_type para além dos top 10 itens a fim de cobrir ≥90% dos pedidos diários e eliminar a ambiguidade de cobertura nessa janela.",
+    "Pendências estruturais do ml_snapshot persistem há 12+ ciclos consecutivos sem resolução: (1) breakdown ADS spend/revenue por platform_item_id — impede separar aceleração real de campanha de artefato métrico; (2) lista granular de cancelamentos order_id↔platform_item_id↔motivo — impede atribuição dos cancelamentos diários; (3) série temporal de nível de qualidade por anúncio — impede identificar direção interna dos anúncios em patamar inferior; (4) ETA de reposição ao CD do ML — impede resposta prospectiva sobre janela de ruptura; (5) available_quantity por variação em anúncios multi-variação — impede leitura granular do cluster IMB501C/V. A ausência contínua desses dados mantém hipóteses centrais em aberto em cada ciclo e limita o nível de confiança para 'média'. Priorizar itens (1) e (2) no próximo ciclo de desenvolvimento do fetcher.",
+    "Kit 4 Potes 640ml (MLB5402326666, KIT4YW640): health=0,66 é o menor do snapshot atual, abaixo do threshold 0,85, com slack_short_name=null e mapping_confidence=medium. Produto ficou fora do top 5 Slack e não foi citado em análise ou prioridades. Ações recomendadas para o próximo ciclo de manutenção: (a) adicionar entrada canônica em config/slack-short-names-ml.json para KIT4YW640; (b) investigar drivers do health degradado — claims, late_handling ou problema de listing — para classificar como recorrente ou pontual.",
+    "K6CAN250P (MLB6582682928): slack_short_name=null, mapping_confidence=medium, 8 pedidos no dia (posição 8 no top 10). É o único produto entre os top 10 sem mapeamento canônico de nome curto. A L06 usou corretamente o fallback automático (display_short/title). Registrar para manutenção: adicionar entrada em config/slack-short-names-ml.json para K6CAN250P no próximo ciclo, conforme sinalização da arquitetura de nomes do Gate 5."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

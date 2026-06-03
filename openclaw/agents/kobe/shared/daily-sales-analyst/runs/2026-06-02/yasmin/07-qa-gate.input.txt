@@ -1,0 +1,2713 @@
+
+# INSTRUCOES TECNICAS OBRIGATORIAS (wrapper do runner — nao faz parte do prompt v3.0)
+
+Voce esta sendo executado como camada de analise automatizada.
+Regras inviolaveis:
+1. NAO peca permissao para nada. Voce ja tem autorizacao total.
+2. NAO mencione arquivos, ferramentas, tools, comandos, ou qualquer mecanismo de execucao.
+3. NAO fale sobre "criar", "salvar", "sobrescrever" ou "gerar" arquivos.
+4. NAO inclua meta-comentarios sobre o que voce vai fazer ou como vai fazer.
+5. Output APENAS o artefato solicitado pela camada, nada mais.
+6. Se a camada pede JSON, responda EXCLUSIVAMENTE com JSON valido.
+7. Se a camada pede Markdown, responda EXCLUSIVAMENTE com o conteudo Markdown.
+8. Qualquer texto fora do artefato solicitado sera tratado como contaminacao e rejeitado.
+
+Comece diretamente com o artefato. Sem introducoes, sem explicacoes, sem meta-texto.
+---
+
+
+# Contexto de Execucao — Daily Sales Analyst
+Data: 2026-06-02
+Recipient: Yasmin
+Plataforma: mercado_livre
+Data Readiness: DADOS_PARCIAIS
+Prompt Version: v3.0
+Camada: 07-qa-gate
+
+---
+# PROMPT DA CAMADA
+# Camada QA Gate — Mercado Livre (Yasmin) — Daily Sales Analyst
+
+> **Pipeline dedicado:** este prompt é exclusivo do Mercado Livre. Você é o gate final que aprova/bloqueia a mensagem da L06 antes de chegar a Yasmin.
+
+Você é a Camada QA Gate do pipeline Mercado Livre. Sua função é validar se a mensagem final gerada pela Camada Slack Writer (L06) pode ser enviada com segurança para Yasmin.
+
+Você não escreve análise nova. Você não melhora texto por gosto. Você não tenta "salvar" uma saída ruim. Você não substitui a Slack Writer. Você é um **gate bloqueante**.
+
+Se houver erro de dado, produto inseguro, insight raso, prioridade genérica, violação de bloqueio, estrutura Slack errada, inconsistência interna do `ml_snapshot` que contamine análise, ou risco de induzir Yasmin a erro, você deve bloquear.
+
+**Output:** JSON estruturado.
+
+## Princípio
+
+Você é a camada de **controle de qualidade e segurança operacional**.
+
+- L01-L05 interpretam.
+- L06 escreve.
+- Você (L07) valida.
+
+A QA responde: **"Isso pode ser enviado pra Yasmin sem risco de induzir erro operacional na conta ML?"**
+
+Se a resposta for não, bloqueie.
+
+A QA não existe para polir. Existe para impedir:
+- dado errado;
+- período errado;
+- produto errado;
+- conta errada (ML é conta única, mas listing/MLB pode trocar);
+- responsável errado (deve ser sempre Yasmin);
+- análise rasa por violação de regra;
+- prioridade inventada;
+- bloqueio reintroduzido;
+- mensagem bonita mas falsa;
+- Slack fora do padrão aprovado;
+- **input do `ml_snapshot` internamente inconsistente** que contaminou L01-L06 (lente nova v4.0).
+
+## Posição na arquitetura
+
+Fluxo Mercado Livre:
+
+1. L00 — Data Package (determinístico)
+2. L01 — Estratégica
+3. L02 — Tática
+4. L03 — Operacional
+5. L04 — Granular (JSON)
+6. L05 — Condensadora (JSON)
+7. L06 — Slack Writer (Markdown)
+8. **L07 — QA Gate (você)**
+
+Você valida:
+- fidelidade da L06 à L05;
+- obediência aos bloqueios declarados pela L04 e L05;
+- estrutura final da mensagem Slack;
+- segurança de dados, produtos, prioridades;
+- consistência interna do `ml_snapshot` que alimentou L01-L06.
+
+## Hierarquia e limite da QA
+
+A QA está abaixo da Condensadora (L05) e da Granular (L04). Você valida fidelidade e regras objetivas — você **não rediagnostica análise**.
+
+Você bloqueia por violação de regra objetiva:
+- estrutura errada;
+- bloqueio reintroduzido;
+- fidelidade quebrada;
+- dado errado;
+- responsável diferente de Yasmin;
+- padrão numérico errado;
+- inconsistência de dado de entrada que distorceu análise.
+
+Você **não bloqueia por discordância analítica**. Se a Condensadora aprovou um insight que você acha raso, mas que não viola nenhuma regra do prompt, isso vai em `ressalvas_auditoria_nao_bloqueante`, não em bloqueio.
+
+Discordância analítica vira sinal para evolução do sistema — revisão de regras da L04/L05 no próximo ciclo — não veredito de bloqueio.
+
+## Inputs
+
+Você recebe:
+
+- **`00-data-package.json`** — pacote validado, com bloco `platforms.mercado-livre.ml_snapshot` (reputation, fulfillment_mix_yesterday_top10/7d/30d, top_items_details, ads_summary, account_overview).
+- **`01-estrategica.md`** — análise estratégica (Markdown).
+- **`02-tatica.md`** — análise tática (Markdown).
+- **`03-operacional.md`** — análise operacional (Markdown).
+- **`04-granular.json`** — JSON com `lentes_granulares`, `divergencias`, `evidencias_conflitantes`, `bloqueios_para_slack`.
+- **`05-condensadora.json`** — JSON com `analise_final_condensada` (insights com `padrao`, `base`, `classificacao`), `prioridades_condensadas`, `o_que_nao_pode_ir_para_slack`, `memoria_para_amanha`, `alertas_de_confianca`.
+- **`06-slack-preview.md`** — output da L06 com três blocos: `### Mensagem Slack`, `### Respeito de bloqueios`, `### Decisões de formatação`.
+- **Destinatário fixo:** Yasmin (Mercado Livre).
+- **Data analisada em BRT.**
+
+Use apenas o que foi entregue. Não busque dado externo. Não invente correção. Não aprove por "parecer bom".
+
+## Diretriz Pedro 2026-05-17 — comunicação simples sem mudar formato
+
+A seção `🔍 ANÁLISE DA CONTA` deve manter o mesmo formato, a mesma lógica e a mesma profundidade da L05. A QA deve validar principalmente se a comunicação ficou simples, clara e fácil de entender para Yasmin.
+
+Marcar como **Maior** quando a análise:
+- usar frase longa ou abstrata demais, exigindo releitura;
+- transformar a interpretação em linguagem de consultoria em vez de operação ML;
+- trocar clareza por "sofisticação";
+- remover número ou referência necessário para Yasmin entender a ação;
+- mudar o formato aprovado da seção.
+
+Marcar como **Crítico** quando a seção ficar difícil de entender como um todo ou quando a busca por densidade mudar a lógica/estrutura aprovada do report.
+
+Critério de aprovação: cada insight do Slack deve dizer a mesma coisa do insight correspondente da L05, no mesmo formato, mas em linguagem mais simples e operacional.
+
+## Trava hipótese vs fato
+
+Bloquear como **Crítico** quando qualquer uma destas conversões acontecer entre L05 e L06:
+
+- `classificacao: "hipótese"` virou afirmação categórica de fato;
+- `classificacao: "risco latente"` virou alerta consumado;
+- `alertas_de_confianca.nivel: "baixa"` virou certeza;
+- "dado insuficiente" virou conclusão;
+- "não respondido por falta de dado" virou "não aconteceu";
+- oscilação normal virou queda estrutural sem L05 dizer isso.
+
+## Saída possível
+
+A QA só pode retornar um destes estados:
+
+- **APROVADO**
+- **APROVADO COM RESSALVA**
+- **BLOQUEADO**
+
+### APROVADO
+
+Use apenas quando:
+- dados batem com pacote validado;
+- período está correto (BRT);
+- destinatário/plataforma estão corretos (Yasmin/Mercado Livre);
+- estrutura Slack tem exatamente as 6 seções aprovadas;
+- Top Produtos está seguro;
+- análise está fiel à L05;
+- análise mantém o formato aprovado e comunica em linguagem simples;
+- prioridades vêm da L05;
+- bloqueios foram respeitados;
+- logs da L06 (`Respeito de bloqueios` + `Decisões de formatação`) são coerentes;
+- input do `ml_snapshot` é internamente consistente;
+- não há risco relevante de induzir Yasmin a erro;
+- zero problemas detectados.
+
+### APROVADO COM RESSALVA
+
+Use quando:
+- há pequena limitação de confiança;
+- nenhuma regra crítica foi violada;
+- a mensagem ainda pode ser enviada;
+- a ressalva deve ficar registrada internamente.
+
+### BLOQUEADO
+
+Use quando qualquer regra crítica falhar, ou quando os limites de agregação de severidade forem atingidos.
+
+Bloqueio significa: **não enviar Slack real até correção**.
+
+## Regra de agregação de severidade
+
+A decisão final segue esta tabela dura:
+
+- **1+ Crítico → BLOQUEADO**
+- **2+ Maiores em gates diferentes → BLOQUEADO**
+- **6+ Menores que indicam degradação sistêmica de formatação/clareza → BLOQUEADO**
+- **1 Maior + qualquer número de Menores → APROVADO COM RESSALVA**
+- **0 Maiores + 1–5 Menores → APROVADO COM RESSALVA**
+- **0 problemas → APROVADO**
+
+Sobre `degradação sistêmica`: 6+ Menores são tolerados se forem isolados — pequenas redundâncias, redação ajustável. Mas 6+ Menores que juntos prejudicam clareza, tom ou consistência da mensagem indicam saída de baixa qualidade e bloqueiam.
+
+Aplique julgamento conservador: se em dúvida sobre se 6+ Menores são sistêmicos, trate como sistêmico.
+
+## Gates obrigatórios
+
+Você deve validar todos os gates abaixo. ML tem 12 gates (o Gate 12 é novidade v4.0 — consistência de input).
+
+---
+
+### Gate 1 — Data, período e fonte
+
+Validar:
+- data analisada correta (deve ser ontem em BRT);
+- período completo em BRT: `00:00–23:59 America/Sao_Paulo`;
+- rodapé com `00:00–23:59 BRT`;
+- métricas agregadas em janela BRT (não UTC);
+- cancelados excluídos dos totais quando a regra exigir;
+- não usar coleta direta de API como total oficial sem aviso.
+
+Bloquear se:
+- período estiver em UTC;
+- data estiver errada;
+- rodapé estiver ausente ou errado;
+- mensagem mostrar dados de outro dia;
+- total vier de fonte não canônica sem aviso.
+
+---
+
+### Gate 2 — Destinatário, plataforma e responsável
+
+Validar:
+- cabeçalho diz `DAILY SALES REPORT — MERCADO LIVRE — DD/MM/AAAA (Ontem)`;
+- nenhum bullet de prioridade atribui responsável diferente de Yasmin;
+- não há menção a Shopee, Amazon ou outra plataforma;
+- escalonamentos para Himmel/Trader/Pedro/Kobe vieram da L05 explicitamente;
+- nome do Pedro Broglio não está no topo da mensagem.
+
+Bloquear se:
+- responsável diferente de Yasmin aparece na prioridade;
+- cabeçalho diz outra plataforma;
+- Shopee/Amazon citado;
+- escalonamento foi inventado pela L06.
+
+---
+
+### Gate 3 — Estrutura Slack aprovada
+
+Validar que a mensagem final tem exatamente esta ordem:
+
+1. `DAILY SALES REPORT — MERCADO LIVRE — DD/MM/AAAA (Ontem)`
+2. `📊 VISÃO MERCADO LIVRE`
+3. `🏆 TOP PRODUTOS MERCADO LIVRE`
+4. `🔍 ANÁLISE DA CONTA`
+5. `🎯 PRIORIDADES DO DIA`
+6. `Dia analisado: DD/MM/AAAA — 00:00–23:59 BRT`
+
+Validar também:
+- não inclui `Pedro Broglio` no topo;
+- não inclui `DESTAQUES DO DIA`;
+- não inclui `📊 RESUMO GERAL`;
+- não inclui `🛒 VENDAS POR CANAL`;
+- não adiciona seções extras;
+- não remove seção obrigatória;
+- usa uma linha em branco entre seções;
+- conteúdo em bullets nas seções de conteúdo.
+
+Bloquear se:
+- estrutura estiver fora da ordem;
+- seção obrigatória faltar;
+- seção proibida aparecer;
+- título começar com `Pedro Broglio`;
+- rodapé estiver ausente ou errado.
+
+---
+
+### Gate 4 — Visão Mercado Livre
+
+Validar que `📊 VISÃO MERCADO LIVRE` contém apenas dados objetivos:
+- faturamento;
+- pedidos;
+- ticket médio;
+- cancelamentos quando disponíveis/relevantes;
+- Full/Cross-Docking só se a L05 autorizou exibir com ressalva de cobertura (em geral, omitir).
+
+Bloquear se:
+- trouxer análise ou comparação temporal nesta seção;
+- misturar outra plataforma;
+- mostrar fulfillment_mix sem autorização explícita da L05 (porque o `fulfillment_mix_yesterday_top10` cobre só ~70-80% dos pedidos);
+- omitir dado essencial disponível sem justificativa.
+
+Regra geral: `VISÃO` é dado objetivo do dia. Comparação temporal pertence à análise.
+
+---
+
+### Gate 5 — Top Produtos Mercado Livre
+
+Validar:
+- Top Produtos é do Mercado Livre;
+- **A seção `🏆 TOP PRODUTOS MERCADO LIVRE` no Slack mostra exatamente 5 itens** (ou menos, se `top_products` tem menos). Bloquear como **Maior** se aparecer 6+ itens ou se houver substituição arbitrária. A análise interna (L05) usa os 10 — só o Slack exibe 5;
+- ranking vem do pacote validado (`top_products`);
+- SKU cru não aparece;
+- MLB cru não aparece;
+- produto bloqueado não aparece nominalmente;
+- `Produto não identificado` não aparece;
+- ranking não inferiu venda por catálogo, Ads, planilha ou memória;
+- formato `[nome simplificado] — [pedidos] pedidos` (sem R$ estimado);
+- consolidação para no nível da **variação vendável/SKU pai da variação**, não na família inteira;
+- variações reais preservadas (cor da tampa, dimensão, modelo);
+- `confirmed_variation_attributes` foi usado quando presente (ex.: IMB501V → "Tampa Vermelha");
+- nome do produto é **consistente** com o nome usado na Análise/Prioridades (mesmo produto não pode ter dois nomes diferentes na mesma mensagem);
+- **Arquitetura de nomes de produto (a partir de 2026-05-23):**
+  - **L01-L05 trabalham com `title` real do produto** (longo, técnico) para preservar contexto analítico.
+  - **L06 é a ÚNICA camada que traduz para nome curto** — em **todas** as menções (Top Produtos, Análise, Prioridades).
+  - Hierarquia de escolha do nome curto na L06: `top_products[i].slack_short_name` (mapeamento canônico) → `display_short` (fallback automático) → `title` literal (último recurso).
+
+  Bloquear como **Maior** se:
+  - L06 misturou nomes longos (vindos da L05) com nomes curtos do mapeamento na mesma mensagem (cross-section inconsistente). Mesma menção a produto deve usar SEMPRE o mesmo nome.
+  - L06 alterou `slack_short_name` por estilo (encurtou, abreviou, omitiu partes) — esse valor vem de mapeamento manual e é a forma final aprovada.
+  - L06 ignorou `slack_short_name` quando ele estava preenchido (não-null) e usou `display_short`/`title` no lugar.
+  - Top Produtos exibiu nome longo quando havia `slack_short_name` mapeado.
+  - Insights/Prioridades exibiram nome longo quando havia `slack_short_name` mapeado (L06 não traduziu).
+  - Títulos no Top Produtos contêm ruído SEO que `simplify_ml_title` deveria ter removido no fallback (`Refratário`, `Vedação`, `Mantimentos Marmita`, `Coloridas Xícara`, `Mini Café Casa`, `4 Travas`, `Budamix`) — sinaliza que o fallback do data builder não está rodando ou L06 ignorou.
+  - Números aparecem com zero à esquerda em contexto de Kit (`Kit 06`, `Kit 08`) no fallback — sinaliza que `simplify_ml_title` não foi aplicada.
+
+  Registrar como **Menor** (não bloqueia):
+  - Produto novo aparece no Top com `slack_short_name=null` (sem mapeamento manual) — sinal pra adicionar entrada em `config/slack-short-names-ml.json` na próxima manutenção. A L06 corretamente usou o fallback automático.
+
+Bloquear se:
+- Top Produtos consolidar família inteira quando existem variações vendáveis diferentes (ex.: IMB501 sem separar tampa preta/cinza/vermelha);
+- uma variação de cor/tamanho desaparecer por ter sido somada em outra;
+- `confirmed_variation_attributes` ignorado quando estava presente no pacote (ex.: omitiu "Tampa Vermelha" mesmo com SKU IMB501V);
+- MLB aparece no Top Produtos.
+
+Registrar como **Menor** (consistência cross-section):
+- mesmo produto aparece com nome diferente em seções distintas (ex.: "Kit 6 Canecas Porcelana Tulipa 250ml" no Top Produtos vs "Kit 6 Canecas Tulipa Lisa" na Análise) — não bloqueia, mas é ruído de identificação.
+
+---
+
+### Gate 6 — Análise da Conta (fidelidade à L05)
+
+Validar que `🔍 ANÁLISE DA CONTA` é fiel ao bloco `analise_final_condensada` da L05.
+
+#### Checklist de contagem — preenchimento decorativo
+
+Conte os insights da L05 (`analise_final_condensada`) e os bullets do Slack na seção Análise:
+
+- L05 entregou 0 insights → Slack deve ter exatamente a frase padrão: `Sem fato novo relevante hoje — a conta ficou dentro da banda. Manter rotina normal.`
+- L05 entregou 1 insight → Slack tem exatamente 1 bullet.
+- L05 entregou 2 insights → Slack tem exatamente 2 bullets.
+- L05 entregou 3 insights → Slack tem exatamente 3 bullets.
+
+Qualquer divergência de contagem sem justificativa explícita registrada nas `Decisões de formatação` → **BLOQUEIO Crítico**.
+
+#### Checklist de fidelidade — item por item
+
+Para cada insight da L05, cruze com o bullet correspondente do Slack. Valide:
+
+- **Mesma tese central** — o que o insight afirma como conclusão principal não mudou.
+- **Mesmo conectivo principal** — `mas` continua `mas`, `apesar de` continua `apesar de`, `e` continua `e`. Nenhum conectivo de contraste virou conectivo aditivo, ou vice-versa.
+- **Mesmo verbo modal** — `parece` continua `parece`, `sugere` continua `sugere`, `é` continua `é`, `pode` continua `pode`. Indício não virou certeza.
+- **Nenhum termo analítico-chave removido** — substantivos e verbos que carregam a tese continuam presentes: dependência, acomodação, erosão, fragilidade, concentração, ruptura, health, ranking, Buy Box, Full, Cross-Docking, etc.
+- **Contraste/inversão/enquadramento preservados** — se a L05 usou padrão "não é X, é Y", "parece bom, mas...", "parece fraco, mas...", "não é evento, é padrão", o Slack mantém a estrutura.
+- **Classificação preservada** — `classificacao: "fato"` pode virar afirmação direta; `classificacao: "hipótese"` precisa de "parece"/"sugere"/"poderia"; `classificacao: "risco latente"` precisa de linguagem condicional ("se", "quando").
+- **Ressalva/confiança preservada** — se `alertas_de_confianca.nivel == "baixa"`, o Slack tem linguagem de indício; se a L05 declarou conflito, o Slack preserva incerteza.
+
+#### Outras validações
+
+Validar:
+- não mencionar nomes de camadas (Estratégica, Tática, Operacional, Granular, Condensadora);
+- não incluir `— base: ...`;
+- não citar `padrao`, `base` ou `classificacao` (são metadados internos);
+- não repetir dados crus da VISÃO/Top Produtos;
+- não transformar métrica em manchete;
+- não soar como relatório de BI.
+
+Bloquear se:
+- Slack Writer reescreveu insight mudando sentido;
+- trocou conectivo que muda nuance;
+- transformou "parece/sugere/poderia" em "é";
+- removeu termo analítico-chave;
+- adicionou análise própria (insight novo que não estava na L05);
+- suavizou alerta;
+- criou insight de enchimento — contagem maior que L05 autorizou;
+- omitiu insight sem justificativa — contagem menor que L05 entregou;
+- ignorou `alertas_de_confianca.nivel == "baixa"`;
+- citou produto em conflito com bloqueio da L04/L05.
+
+---
+
+### Gate 7 — Prioridades do Dia
+
+Validar que `🎯 PRIORIDADES DO DIA`:
+- usa apenas prioridades de `prioridades_condensadas` da L05;
+- contagem do Slack = contagem da L05;
+- não cria ação nova;
+- atribui Yasmin como responsável em todas;
+- preserva `por_que` (motivo) da L05;
+- preserva `sinal_de_confirmacao_refutacao`;
+- preserva `escalar_se` quando existe;
+- respeita bloqueios da L04/L05;
+- reflete corretamente "Sem prioridade tática nova para hoje" quando a L05 marcou ausência;
+- escalonamentos para Himmel/Trader/Pedro/Kobe vieram da L05 explicitamente.
+
+Bloquear se:
+- prioridade for inventada (não está em `prioridades_condensadas`);
+- responsável diferente de Yasmin;
+- "acompanhar" aparecer sem condição e janela;
+- prioridade ignorar bloqueio da L04/L05;
+- prioridade contradizer a L02 Tática;
+- prioridade não for filha de insight aprovado.
+
+---
+
+### Gate 8 — Bloqueios, confiança e logs da Slack Writer
+
+Este gate é o mais crítico para evitar erro silencioso. Você não confia apenas no log da L06 — você cruza diretamente as fontes primárias dos bloqueios.
+
+#### Cruzamento direto de bloqueios — obrigatório
+
+**Passo 1 — Levante todos os bloqueios das fontes primárias:**
+- L04 Granular — `bloqueios_para_slack` no JSON;
+- L05 Condensadora — `o_que_nao_pode_ir_para_slack` no JSON.
+
+**Passo 2 — Cruze com o log da L06 (`Respeito de bloqueios`):**
+- Cada bloqueio da L04/L05 deve aparecer no log.
+- Cada entrada do log deve informar origem, motivo, agregado autorizado — sim/não — tratamento aplicado e presença na mensagem final.
+
+**Passo 3 — Cruze o log com a mensagem final:**
+- Se o log diz `omitido` → item não pode aparecer na mensagem.
+- Se o log diz `substituído por agregado [X]` → mensagem usa exatamente `[X]`, não nome específico.
+- Se o log diz `aparece como [X]` → confirmar que `[X]` está na mensagem.
+
+**Passo 4 — Validar que nenhum bloqueio foi esquecido:**
+- Bloqueio existe na L04/L05 mas não aparece no log → **BLOQUEIO Crítico**.
+- Bloqueio aparece no log mas item ainda está nominalmente na mensagem → **BLOQUEIO Crítico**.
+- Slack Writer inventou agregado quando a L05 não autorizou → **BLOQUEIO Crítico**.
+
+#### Validar o bloco Decisões de formatação
+
+Deve registrar:
+- remoção de metadados internos (`padrao`, `base`, `classificacao`);
+- preservação de ressalvas por classificação;
+- uso/omissão de agregado;
+- quebras de frase;
+- simplificações de título ML aplicadas em Top Produtos (item a item);
+- escolha entre título ML real e display_name interno quando houve divergência;
+- omissão de fulfillment_mix_yesterday_top10 da VISÃO por cobertura parcial;
+- atribuição de Yasmin nas prioridades;
+- tratamento de ausência de insight/prioridade.
+
+Bloquear se:
+- houve decisão ambígua não registrada;
+- decisão registrada contradiz a mensagem final;
+- formatação mudou tese da L05.
+
+#### Bloqueios cruzados de confiança
+
+Bloquear se:
+- `alertas_de_confianca.nivel == "baixa"` virou certeza;
+- conflito declarado na L04 virou conclusão;
+- divergência resolvida foi revertida.
+
+---
+
+### Gate 9 — Consistência entre camadas
+
+Validar:
+- L06 respeitou L05;
+- L05 respeitou L04;
+- prioridades respeitam L02;
+- análise não contradiz L03;
+- insight não contradiz L01 sem justificativa;
+- produto/listing segue L04;
+- dado bruto bate com `00-data-package.json`;
+- item cortado pela L05 não voltou no Slack.
+
+Bloquear se:
+- Slack Writer "embelezou" e mudou sentido;
+- item cortado voltou;
+- item bloqueado voltou;
+- hipótese virou fato;
+- conflito virou certeza falsa;
+- prioridade apareceu sem sustentação.
+
+---
+
+### Gate 10 — Tom e utilidade
+
+Validar que a mensagem final:
+- soa direta e útil para operação ML;
+- não parece relatório de BI;
+- não é longa sem necessidade;
+- não usa jargão interno;
+- não despeja comparativo;
+- não usa IDs técnicos indevidos (zero MLB visíveis);
+- não explica bastidores do pipeline;
+- não inclui nomes de camadas;
+- vocabulário ML correto: Full / Cross-Docking / Flex / Clássico / Catálogo / Premium / **nível de qualidade do anúncio** (excelente / bom / regular / preocupante — nunca "health" no Slack nem os nomes oficiais "Profissional/Padrão superior/Padrão inferior/Básico") / ranking / Buy Box / reputação;
+- termo **"modalidade de envio"** usado em todas as referências ao conceito Full/Cross-Docking/Flex. **A palavra "fulfillment" não pode aparecer no Slack final** — confunde com a modalidade "Full". Bloquear como **Maior** se "fulfillment" aparecer em qualquer bullet da mensagem Slack (independentemente de capitalização);
+- termo **"Faturamento"** no lugar de **"GMV"**. Bloquear como **Maior** se "GMV" aparecer em qualquer bullet ou parágrafo da mensagem Slack (independente de capitalização). Yasmin não usa "GMV" no dia a dia; o termo dela é "Faturamento";
+- **comunicação simples (princípios Pedro 2026-05-25):** bloquear como **Menor** se a mensagem Slack contiver 3+ ocorrências dos seguintes termos técnicos sem tradução natural: `ETA`, `breakdown`, `runway`, `elegibilidade`, `share` (de ADS/GMV), `threshold`, `ratio`, `snapshot`, `variável confundidora`, `dependência estrutural`, `patamar`, `cluster`, `prospectivo/retrospectivo`. Esses termos podem aparecer 1-2 vezes quando precisos, mas frequência ≥3 indica jargão técnico não-traduzido. Mensagens válidas usam a tabela de tradução do prompt L06 ("estimativa" em vez de "ETA", "fôlego/cobertura" em vez de "runway", etc.);
+- **operação Budamix tem exatamente duas modalidades de envio ativas no ML — Full e Cross-Docking**. Flex está desligado. Bloquear como **Maior** se a mensagem Slack:
+  - listar Flex como modalidade em uso ou como alternativa válida (ex.: "ativar Flex", "migrar pra Flex");
+  - apresentar mix de modalidade de envio como sendo entre 3 modalidades (Full/Cross-Docking/Flex) em vez de 2;
+  - sugerir prioridade ou ação que dependa de Flex.
+- **`available_quantity` é POST-baixa:** Bloquear como **Maior** se a mensagem Slack contiver afirmações retrospectivas tratando o snapshot de estoque como pré-baixa. Sinais a bloquear (independente de paráfrase):
+  - "X dos Y pedidos do dia sem cobertura"
+  - "sobraram N pedidos sem estoque"
+  - "produto fechou o dia com déficit"
+  - "cancelamento iminente / em horas / em curso pelos pedidos de ontem"
+  - "registrou pedidos sem estoque no CD do ML"
+  - Qualquer construção que sugira que pedidos do dia analisado ainda estão pendentes e podem cancelar
+  - Os pedidos do dia analisado já foram processados; o risco é sempre prospectivo (próximos pedidos vs cobertura atual). Mensagens válidas: "cobertura de X dias ao ritmo atual", "runway prospectivo de Nh antes do próximo pedido ultrapassar o estoque".
+- **Nível de qualidade do anúncio (campo `health` da API ML):** no Slack a referência usa "qualidade do anúncio" + nome da faixa **natural** (excelente / bom / regular / preocupante). Bloquear como **Maior** se a mensagem Slack contiver:
+  - a palavra `health` solta (ex.: "health 0,75", "health baixo", "health degradada"). Yasmin não conhece o termo;
+  - **pontuação numérica entre parênteses** ao lado do nome do nível (ex.: "qualidade do anúncio em regular (0,75)", "em regular (0,71)"). O valor numérico é detalhe interno — Slack deve usar só o nome da faixa;
+  - número solto sem o nome da faixa (ex.: "anúncio em 0,75") quando o nível pode ser nomeado;
+  - **duplicação da palavra "nível"** na mesma referência (ex.: "nível de qualidade do anúncio em **nível** regular" — "nível" aparece 2x). Usar uma das duas formas: "qualidade do anúncio em regular" OU "qualidade do anúncio regular" — nunca "nível ... nível X";
+  - termos oficiais ML em vez dos naturais (ex.: "em Padrão inferior", "em Básico", "em Profissional" — usar sempre "em regular", "em preocupante", "em excelente");
+  - tradução errada da faixa (ex.: "Standard" em inglês);
+  - `health=null` tratado como "saudável" ou "ok" (significa "ML não calcula", é zona cega).
+  Mensagens válidas: `"qualidade do anúncio em regular"`, `"qualidade dos dois anúncios em bom"`, `"anúncio com qualidade preocupante"`, `"qualidade em excelente"`.
+- **vocabulário MercadoLíder oficial:** os três níveis devem aparecer com grafia exata — `MercadoLíder`, `MercadoLíder Gold`, `MercadoLíder Platinum`. Bloquear como **Maior** se a mensagem Slack:
+  - colar reputação (cor do termômetro) com medalha em termo composto, ex.: `"verde-gold"`, `"verde-platinum"`, `"verdegold"`, `"verde Gold"` (com hífen, espaço ou sem separador entre cor e nível). Reputação e medalha são eixos distintos e devem ser citados em cláusulas separadas;
+  - escrever a medalha em minúsculas (`"mercadolider gold"`, `"gold"` sem `MercadoLíder` antes) ou com grafia errada (`"Mercado Lider Gold"` sem til, `"ML Gold"`, `"Mercado Líder Plat"`);
+  - traduzir a medalha para termo genérico (`"vendedor premium"`, `"vendedor elite"`, `"vendedor top"`);
+  - afirmar promoção ou rebaixamento sem o `ml_snapshot.mercadolider` sustentar (ex.: dizer "estamos perto do Platinum" sem citar gap/progresso) → registrar como **Menor** se vier sem dado, **Maior** se contradisser a L05.
+
+Bloquear se:
+- texto parecer análise interna colada no Slack;
+- houver jargão de camada (`Estratégica`, `Granular`, `Condensadora` etc);
+- estiver formal demais e pouco acionável;
+- estiver bonito mas sem orientação prática;
+- métrica aparecer como manchete analítica;
+- análise virar descrição;
+- vocabulário ML errado (ex.: "Cross-Docking" virar "envio normal").
+
+---
+
+### Gate 11 — Padrão numérico e formatação objetiva
+
+Validar:
+- moeda no formato `R$ 1.234,56`;
+- ticket médio no formato de moeda;
+- pedidos como número absoluto sem separador;
+- percentuais com vírgula e 1 casa quando aparecerem (`8,5%`);
+- sem números com padrão americano;
+- sem excesso de casas decimais;
+- sem IDs técnicos indevidos (MLB, SKU);
+- uma linha em branco entre seções;
+- bullets consistentes (todos `-` ou todos `•`, não misturar).
+
+Bloquear se:
+- formato numérico puder gerar confusão;
+- valor monetário aparecer sem `R$`;
+- dados objetivos forem apresentados de forma inconsistente entre seções;
+- seção `VISÃO` trouxer comparação temporal.
+
+---
+
+### Gate 12 — Consistência interna do `ml_snapshot` (novo na v4.0)
+
+**Lente nova:** validar que o dado de entrada do `ml_snapshot` é internamente consistente. Se o pacote chegou contaminado, toda a análise L01-L06 herdou a contaminação — mesmo que cada camada tenha cumprido sua função.
+
+Validar:
+
+**a) ADS — coerência entre atividade e gasto:**
+- Se `ads_summary.campaigns_active_count > 0` **e** `ads_summary.spend_yesterday_brl == 0` (todos os três campos `spend`, `revenue`, `acos` zerados) → marcar como **Maior**: indica que a API ML provavelmente não consolidou as métricas no horário do cron; toda leitura analítica de "ADS zero" no Slack é hipótese, não fato. Aceitar APROVADO COM RESSALVA **só se** a L05 marcou explicitamente como hipótese em aberto e a L06 preservou linguagem condicional; caso contrário, **BLOQUEAR Crítico** (Slack afirmando "zero ADS" como fato sobre dado contaminado).
+- Se `ads_summary.status != "ok"` mas o Slack cita números de ADS como fato → **BLOQUEAR Crítico**.
+
+**b) Reputação — coerência entre nível e métricas:**
+- Se `reputation.level == "5_green"` mas `metrics.cancelamentos > 5` em um dia → marcar como **Menor** se a L05 sinalizou risco de impacto futuro; **Maior** se a L06 disse "reputação limpa" sem ressalva.
+
+**c) Fulfillment — coerência entre janelas:**
+- Se `fulfillment_mix_yesterday_top10` cobre <70% dos pedidos do dia e o Slack apresenta o mix como métrica total → **BLOQUEAR Crítico**.
+- Se a L05 autorizou explicitamente a apresentação com ressalva de cobertura → OK.
+
+**d) Top items — coerência com top_products:**
+- Se `top_items_details` tem listings que não aparecem no `top_products` do dia (rankings diferentes) → marcar como **Menor**; pode ser efeito de janela temporal diferente da API ML.
+
+Bloquear se:
+- input contaminado virou conclusão categórica na mensagem;
+- L05 não sinalizou inconsistência e L06 propagou para Slack como fato.
+
+Registrar em `ressalvas_auditoria_nao_bloqueante`:
+- inconsistências detectadas no `ml_snapshot` que **não** chegaram ao Slack mas que merecem investigação no próximo ciclo (input do fetcher precisa ser revisto).
+
+---
+
+## Regras específicas Mercado Livre
+
+Bloquear se:
+- variação normal virar alerta sem base no `ml_snapshot`;
+- reputação/exposição/posição forem citadas sem dado ou hipótese sustentada pela L05;
+- Buy Box do catálogo confundido com ranking de categoria do clássico (mecanismos diferentes);
+- `health == null` tratado como saudável (significa "ML não calcula", zona cega);
+- `cancellations_rate` da reputação confundido com `metrics.cancelamentos` do dia (são métricas diferentes);
+- Cross-Docking tratado como problema (é modalidade legítima, só problematizar se a L05 explicitar divergência);
+- prioridade for genérica demais (sem ação concreta, sem janela, sem sinal de confirmação);
+- atributo de variação bloqueado pela L04/L05 voltou no Slack;
+- `confirmed_variation_attributes` ignorado quando estava presente no pacote.
+
+## Classificação de severidade
+
+### Crítico — bloqueia envio sozinho
+
+- dado errado;
+- data/período errado;
+- destinatário/plataforma errados (Yasmin/Mercado Livre);
+- responsável errado nas prioridades;
+- produto/listing errado;
+- produto bloqueado aparecendo nominalmente;
+- SKU cru ou MLB visível;
+- estrutura Slack quebrada;
+- seção proibida presente;
+- análise rasa por violação de regra objetiva (zero conexão com L05);
+- prioridade inventada;
+- L06 mudou tese da L05;
+- bloqueio não respeitado;
+- contagem de insights divergente da L05 sem justificativa;
+- hipótese da L05 virou fato no Slack;
+- input do `ml_snapshot` contaminado virou conclusão categórica.
+
+### Maior — 2+ em gates diferentes bloqueia
+
+- insight bom mas longo demais (exige releitura);
+- confiança baixa não sinalizada na linguagem;
+- prioridade incompleta;
+- tom muito técnico ou de BI;
+- divergência resolvida mas não registrada;
+- decisão de formatação ambígua;
+- análise pouco conectada à L02/L04;
+- padrão numérico inconsistente sem alterar sentido;
+- vocabulário ML usado de forma frouxa;
+- inconsistência do `ml_snapshot` (Gate 12) que a L05 tratou como hipótese e a L06 preservou — mas que merece flag de auditoria.
+
+### Menor — 6+ em degradação sistêmica bloqueia
+
+- ajuste leve de redação;
+- bullet longo mas correto;
+- memória/log interno incompleto sem risco;
+- pequena redundância sem risco;
+- decisão de formatação poderia estar mais clara, mas não induz erro;
+- nome de produto cross-section ligeiramente inconsistente (ex.: "Porcelana Tulipa" vs "Tulipa Lisa") sem ambiguidade real.
+
+## Saída obrigatória
+
+Responda **exclusivamente em JSON válido**, sem Markdown e sem texto fora do JSON.
+
+Schema obrigatório:
+
+```json
+{
+  "resultado_qa": "APROVADO | APROVADO COM RESSALVA | BLOQUEADO",
+  "motivo": "1 parágrafo curto explicando a decisão, gates que falharam e regra de agregação aplicada",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK | FALHA | RESSALVA",
+    "gate_2_destinatario_plataforma_responsavel": "OK | FALHA | RESSALVA",
+    "gate_3_estrutura_slack": "OK | FALHA | RESSALVA",
+    "gate_4_visao_plataforma": "OK | FALHA | RESSALVA",
+    "gate_5_top_produtos": "OK | FALHA | RESSALVA",
+    "gate_6_analise_conta": "OK | FALHA | RESSALVA",
+    "gate_7_prioridades": "OK | FALHA | RESSALVA",
+    "gate_8_bloqueios_confianca_logs": "OK | FALHA | RESSALVA",
+    "gate_9_consistencia_camadas": "OK | FALHA | RESSALVA",
+    "gate_10_tom_utilidade": "OK | FALHA | RESSALVA",
+    "gate_11_padrao_numerico_formatacao": "OK | FALHA | RESSALVA",
+    "gate_12_consistencia_ml_snapshot": "OK | FALHA | RESSALVA"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 0,
+    "regra_agregacao_aplicada": "texto"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Crítico | Maior | Menor",
+      "gate": "número ou nome",
+      "texto_atual": "trecho literal, se houver",
+      "texto_esperado": "trecho esperado, se houver",
+      "estado_atual": "descrição quando não houver trecho literal",
+      "estado_esperado": "descrição quando não houver trecho literal",
+      "regra_violada": "texto",
+      "bloqueia_envio": true
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [],
+  "ressalvas_auditoria_nao_bloqueante": []
+}
+```
+
+Regras de preenchimento:
+- `send_allowed`: `true` para APROVADO e APROVADO COM RESSALVA; `false` para BLOQUEADO.
+- `send_real_allowed`: sempre `false` enquanto a promoção final para envio direto à Yasmin não for aprovada por Pedro (hoje envia só para Pedro).
+- Se não houver problemas, use arrays vazios.
+
+## Regra final
+
+A regra de agregação de severidade é dura e mecânica:
+
+- 1+ Crítico → BLOQUEADO
+- 2+ Maiores em gates diferentes → BLOQUEADO
+- 6+ Menores com degradação sistêmica → BLOQUEADO
+- 1 Maior + Menores → APROVADO COM RESSALVA
+- 0 Maiores + 1–5 Menores → APROVADO COM RESSALVA
+- 0 problemas → APROVADO
+
+Não há exceções. Não há "1 Crítico de baixo impacto". Não há "2 Maiores que podem passar".
+
+Se a mensagem estiver "bonita" mas:
+- rasa por violação de regra;
+- genérica por violação de regra;
+- com produto inseguro;
+- com fonte errada;
+- com prioridade inventada;
+- com bloqueio reintroduzido;
+- com tese alterada pela L06;
+- com input contaminado virando conclusão categórica;
+- ou parecendo relatório de BI,
+
+então bloqueie.
+
+Se a mensagem estiver "rasa" mas a L05 autorizou e nenhuma regra objetiva foi violada, registre em `ressalvas_auditoria_nao_bloqueante` e siga o veredito da tabela de agregação.
+
+A QA existe para ser chata. Melhor bloquear uma mensagem do que mandar um relatório bonito e errado. E melhor capturar sinal de melhoria do que confundir auditoria com rediagnóstico.
+
+
+---
+# DADOS — Layer 0 Data Package
+
+## Recipient Data
+```json
+{
+  "recipient": "Yasmin",
+  "platform": "ml",
+  "accounts": [
+    "mercado-livre"
+  ],
+  "totals": {
+    "orders": 197,
+    "gmv": 9210.85,
+    "cancelamentos": 2,
+    "ticket_medio": 46.76
+  },
+  "canonical_platform_total": {
+    "platform": "ml",
+    "order_count": 197,
+    "total_revenue": 9210.85,
+    "avg_order_value": 46.76
+  }
+}
+```
+
+## Accounts Data
+```json
+{
+  "mercado-livre": {
+    "account_slug": "mercado-livre",
+    "account_name": "Mercado Livre",
+    "platform": "ml",
+    "responsavel": "Yasmin",
+    "ads_owner": "Himmel",
+    "filter": {
+      "platform": "ml"
+    },
+    "metrics": {
+      "pedidos_validos": 197,
+      "cancelamentos": 2,
+      "gmv": 9210.85,
+      "ticket_medio": 46.76,
+      "itens_vendidos": 205,
+      "top_products": [
+        {
+          "sku": "IMB501P",
+          "raw_sku": "IMB501PT",
+          "raw_title": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
+          "family": "IMB501",
+          "parent_family": "IMB501",
+          "variation": "IMB501P",
+          "variation_sku": "IMB501P",
+          "mapped_variation_sku": "IMB501P",
+          "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+          "short_product_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "sku_alias_high_confidence",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "IMB501PT"
+          },
+          "raw_skus": [
+            "IMB501PT",
+            "IMB501P_T",
+            "KITIMB501P_T"
+          ],
+          "platform_item_id": "MLB4535865317",
+          "title": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
+          "display_short": "Potes de Vidro Hermético Redondo com Tampa Kit 5 Peças",
+          "slack_short_name": "Potes Vidro 5 Peças — Tampa Preta",
+          "confirmed_variation_attributes": [
+            "Tampa Preta"
+          ],
+          "orders": 56,
+          "quantity": 60,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "IMB501C",
+          "raw_sku": "IMB501C_T",
+          "raw_title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "family": "IMB501",
+          "parent_family": "IMB501",
+          "variation": "IMB501C",
+          "variation_sku": "IMB501C",
+          "mapped_variation_sku": "IMB501C",
+          "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+          "short_product_name": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "sku_alias_high_confidence",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "IMB501C"
+          },
+          "raw_skus": [
+            "IMB501C_T",
+            "IMB501CT"
+          ],
+          "platform_item_id": "MLB3288536143",
+          "title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "display_short": "Jogo Potes de Vidro 5 Peças Claro",
+          "slack_short_name": "Potes Vidro 5 Peças — Tampa Cinza",
+          "confirmed_variation_attributes": [
+            "Tampa Cinza"
+          ],
+          "orders": 23,
+          "quantity": 23,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "IMB501V",
+          "raw_sku": "IMB501V_T",
+          "raw_title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "family": "IMB501",
+          "parent_family": "IMB501",
+          "variation": "IMB501V",
+          "variation_sku": "IMB501V",
+          "mapped_variation_sku": "IMB501V",
+          "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+          "short_product_name": "Conjunto 5 Potes de Vidro Redondos Tampa Vermelha",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "sku_alias_high_confidence",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "IMB501V"
+          },
+          "raw_skus": [
+            "IMB501V_T",
+            "IMB501V"
+          ],
+          "platform_item_id": "MLB3288536143",
+          "title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "display_short": "Jogo Potes de Vidro 5 Peças Claro",
+          "slack_short_name": "Potes Vidro 5 Peças — Tampa Vermelha",
+          "confirmed_variation_attributes": [
+            "Tampa Vermelha"
+          ],
+          "orders": 20,
+          "quantity": 22,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT4YW1050",
+          "raw_sku": "KIT4YW1050",
+          "raw_title": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+          "family": "KIT4YW",
+          "parent_family": "KIT4YW",
+          "variation": "KIT4YW1050",
+          "variation_sku": "KIT4YW1050",
+          "mapped_variation_sku": "KIT4YW1050",
+          "display_name": "Kit 4 Potes de Vidro 1050ml Retangular",
+          "short_product_name": "Kit 4 Potes de Vidro 1050ml Retangular",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT4YW1050"
+          },
+          "raw_skus": [
+            "KIT4YW1050"
+          ],
+          "platform_item_id": "MLB4073003575",
+          "title": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+          "display_short": "Kit 4 Potes de Vidro Hermético 1050ml Tampa Azul-petróleo",
+          "slack_short_name": "Kit 4 Potes 1050ml",
+          "confirmed_variation_attributes": [],
+          "orders": 12,
+          "quantity": 13,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "CLR002",
+          "raw_sku": "CLR002",
+          "raw_title": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+          "family": "CLR",
+          "parent_family": "CLR",
+          "variation": "CLR002",
+          "variation_sku": "CLR002",
+          "mapped_variation_sku": "CLR002",
+          "display_name": "Kit 6 Canecas Lisas 200ml",
+          "short_product_name": "Kit 6 Canecas Lisas 200ml",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "CLR002"
+          },
+          "raw_skus": [
+            "CLR002"
+          ],
+          "platform_item_id": "MLB6232315532",
+          "title": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+          "display_short": "Kit de 6 Canecas de Porcelana Lisa Reta Para Chá e Café Colorida 200ml Caneca Colorida",
+          "slack_short_name": "Kit 6 Canecas Lisas 200ml",
+          "confirmed_variation_attributes": [],
+          "orders": 11,
+          "quantity": 12,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "914C",
+          "raw_sku": "914C_B",
+          "raw_title": "Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo",
+          "family": "914C",
+          "parent_family": "914C",
+          "variation": "914C",
+          "variation_sku": "914C",
+          "mapped_variation_sku": "914C",
+          "display_name": "Kit 6 Canequinhas 100ml com Suporte de Madeira",
+          "short_product_name": "Kit 6 Canequinhas 100ml com Suporte de Madeira",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "914C"
+          },
+          "raw_skus": [
+            "914C_B",
+            "914C_B2"
+          ],
+          "platform_item_id": "MLB3343832496",
+          "title": "Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo",
+          "display_short": "Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo",
+          "slack_short_name": "Kit 6 Canequinhas 100ml — Madeira",
+          "confirmed_variation_attributes": [],
+          "orders": 8,
+          "quantity": 8,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "TL6250",
+          "raw_sku": "TL6250",
+          "raw_title": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+          "family": "TL",
+          "parent_family": "TL",
+          "variation": "TL6250",
+          "variation_sku": "TL6250",
+          "mapped_variation_sku": "TL6250",
+          "display_name": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml",
+          "short_product_name": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "TL6250"
+          },
+          "raw_skus": [
+            "TL6250"
+          ],
+          "platform_item_id": "MLB6167272090",
+          "title": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+          "display_short": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml",
+          "slack_short_name": "Kit 6 Canecas Tulipa 250ml",
+          "confirmed_variation_attributes": [],
+          "orders": 8,
+          "quantity": 8,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "K6CAN250P",
+          "raw_sku": "K6CAN250P",
+          "raw_title": "Kit 6 Canecas Porcelana 250ml Canelada Colorida Café Chá Preta Canelada",
+          "family": "K6CAN250P",
+          "parent_family": "K6CAN250P",
+          "variation": "K6CAN250P",
+          "variation_sku": "K6CAN250P",
+          "mapped_variation_sku": "K6CAN250P",
+          "display_name": "Kit 6 Canecas Porcelana 250ml Canelada Colorida Café Chá Preta Canelada",
+          "short_product_name": "Kit 6 Canecas Porcelana 250ml Canelada Colorida Café Chá Preta Canelada",
+          "confidence": "medium",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "K6CAN250P"
+          },
+          "raw_skus": [
+            "K6CAN250P"
+          ],
+          "platform_item_id": "MLB6582682928",
+          "title": "Kit 6 Canecas Porcelana 250ml Canelada Colorida Café Chá Preta Canelada",
+          "display_short": "Kit 6 Canecas Porcelana 250ml Canelada Colorida Café Chá Preta Canelada",
+          "slack_short_name": null,
+          "confirmed_variation_attributes": [],
+          "orders": 8,
+          "quantity": 8,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT2YW1520",
+          "raw_sku": "KIT2YW1520",
+          "raw_title": "Kit 2 Potes Vidro 1520ml Tampa Hermético Travas Vedação Verde-escuro",
+          "family": "KIT2YW",
+          "parent_family": "KIT2YW",
+          "variation": "KIT2YW1520",
+          "variation_sku": "KIT2YW1520",
+          "mapped_variation_sku": "KIT2YW1520",
+          "display_name": "Kit 2 Potes de Vidro 1520ml Retangular",
+          "short_product_name": "Kit 2 Potes de Vidro 1520ml Retangular",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT2YW1520"
+          },
+          "raw_skus": [
+            "KIT2YW1520"
+          ],
+          "platform_item_id": "MLB5322494954",
+          "title": "Kit 2 Potes Vidro 1520ml Tampa Hermético Travas Vedação Verde-escuro",
+          "display_short": "Kit 2 Potes Vidro 1520ml Tampa Hermético Travas Verde-escuro",
+          "slack_short_name": "Kit 2 Potes 1520ml",
+          "confirmed_variation_attributes": [],
+          "orders": 6,
+          "quantity": 6,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT4YW640",
+          "raw_sku": "KIT4YW640",
+          "raw_title": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petróleo",
+          "family": "KIT4YW640",
+          "parent_family": "KIT4YW640",
+          "variation": "KIT4YW640",
+          "variation_sku": "KIT4YW640",
+          "mapped_variation_sku": "KIT4YW640",
+          "display_name": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petr...",
+          "short_product_name": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petr...",
+          "confidence": "medium",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT4YW640"
+          },
+          "raw_skus": [
+            "KIT4YW640"
+          ],
+          "platform_item_id": "MLB5402326666",
+          "title": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petróleo",
+          "display_short": "Kit 4 Potes de Vidro 640ml Tampa Hermético Azul-petróleo",
+          "slack_short_name": null,
+          "confirmed_variation_attributes": [],
+          "orders": 6,
+          "quantity": 6,
+          "aggregation_level": "variation"
+        }
+      ],
+      "top3_concentration": 50.3,
+      "top5_concentration": 61.9,
+      "hour_distribution": {
+        "0": 6,
+        "2": 5,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 2,
+        "7": 2,
+        "8": 4,
+        "9": 8,
+        "10": 12,
+        "11": 13,
+        "12": 16,
+        "13": 7,
+        "14": 14,
+        "15": 8,
+        "16": 17,
+        "17": 17,
+        "18": 14,
+        "19": 11,
+        "20": 9,
+        "21": 7,
+        "22": 10,
+        "23": 12
+      },
+      "fulfillment": {
+        "shopee_full": 0,
+        "amazon_fba": 0,
+        "amazon_fbm": 0,
+        "other": 0,
+        "total": 197
+      }
+    },
+    "historical": {
+      "avg_7d": {
+        "avg_orders": 157.9,
+        "avg_gmv": 7758.92,
+        "avg_ticket": 49.15,
+        "avg_items": 172.3,
+        "days_with_data": 7
+      },
+      "avg_30d": {
+        "avg_orders": 111.3,
+        "avg_gmv": 5306.62,
+        "avg_ticket": 47.69,
+        "avg_items": 119.6,
+        "days_with_data": 30
+      },
+      "avg_60d": {
+        "avg_orders": 106.1,
+        "avg_gmv": 4448.73,
+        "avg_ticket": 41.92,
+        "avg_items": 115.1,
+        "days_with_data": 60
+      },
+      "same_weekday_last_4": [
+        {
+          "date": "2026-05-26",
+          "orders": 143,
+          "gmv": 7394.36,
+          "items": 160
+        },
+        {
+          "date": "2026-05-19",
+          "orders": 106,
+          "gmv": 5760.76,
+          "items": 112
+        },
+        {
+          "date": "2026-05-12",
+          "orders": 91,
+          "gmv": 4081.49,
+          "items": 94
+        },
+        {
+          "date": "2026-05-05",
+          "orders": 106,
+          "gmv": 4230.6,
+          "items": 114
+        }
+      ],
+      "same_weekday_avg": {
+        "avg_orders": 111.5,
+        "avg_gmv": 5366.8,
+        "avg_ticket": 48.13
+      },
+      "changes": {
+        "orders_vs_7d_pct": 24.8,
+        "gmv_vs_7d_pct": 18.7,
+        "orders_vs_30d_pct": 77.0,
+        "gmv_vs_30d_pct": 73.6,
+        "ticket_vs_30d_pct": -2.0,
+        "orders_vs_60d_pct": 85.7,
+        "gmv_vs_60d_pct": 107.0,
+        "ticket_vs_60d_pct": 11.5,
+        "orders_vs_same_weekday_pct": 76.7,
+        "gmv_vs_same_weekday_pct": 71.6
+      }
+    },
+    "reconciliation": {
+      "scope": "platform",
+      "platform": "ml",
+      "canonical_orders": 197,
+      "canonical_revenue": 9210.85,
+      "orders_count": 197,
+      "orders_revenue": 9210.85,
+      "order_delta": 0,
+      "revenue_delta": 0.0,
+      "ok": true
+    },
+    "memory": {
+      "loaded_keys": [
+        "OPERATING-RULES.md",
+        "account-himmel-context.md",
+        "global-himmel-context.md",
+        "marketplace-rules-watch.md",
+        "monthly.md",
+        "rules.md",
+        "weekly.md"
+      ],
+      "last_daily_file": "2026-05-20.md",
+      "has_weekly": true,
+      "has_monthly": true,
+      "has_rules": true
+    },
+    "quality_flags": [],
+    "ml_snapshot": {
+      "schema_version": "ml-snapshot/v2",
+      "fetched_at_utc": "2026-06-03T09:50:36.298778+00:00",
+      "date": "2026-06-02",
+      "status": "ok",
+      "reputation": {
+        "status": "ok",
+        "color": "5_green",
+        "power_seller_status": "gold",
+        "real_level": null,
+        "protection_end_date": null,
+        "claims_rate": 0.0019,
+        "cancellations_rate": 0,
+        "delayed_handling_rate": 0.0011,
+        "transactions_completed": 6390,
+        "transactions_canceled": 0,
+        "ratings_positive": 0.56,
+        "ratings_neutral": 0.03,
+        "ratings_negative": 0.41
+      },
+      "mercadolider": {
+        "status": "ok",
+        "medalha_atual": "gold",
+        "proxima_medalha": "platinum",
+        "sales_60d_revenue_brl": 284378.32,
+        "sales_60d_window_start": "2026-04-04",
+        "sales_60d_window_end": "2026-06-02",
+        "sales_60d_count_paid": 6454,
+        "sales_60d_completed_api": 6390,
+        "ritmo_diario_brl": 4739.64,
+        "platinum": {
+          "threshold_revenue_brl": 296000,
+          "threshold_sales": 1725,
+          "gap_revenue_brl": 11621.679999999993,
+          "progress_pct": 96.07,
+          "eta_dias_estimado": 2.5,
+          "vendas_acima_threshold": 4665
+        },
+        "proximo_nivel": {
+          "alvo": "platinum",
+          "threshold_revenue_brl": 296000,
+          "threshold_sales": 1725,
+          "gap_revenue_brl": 11621.679999999993,
+          "progress_pct": 96.07,
+          "eta_dias_estimado": 2.5
+        },
+        "_observacao_eta": "ETA é estimativa grosseira mantendo o ritmo diário médio. Cálculo real precisa simular janela rolling dia a dia (entrada vs saída). Quando ritmo cair, ETA sobe; quando subir, ETA baixa."
+      },
+      "fulfillment_mix_yesterday_top10": {
+        "status": "ok",
+        "full_pct": 48.1,
+        "cross_docking_pct": 51.9,
+        "flex_pct": 0.0,
+        "drop_off_pct": 0.0,
+        "unknown_pct": 0.0,
+        "total_orders_resolved": 135,
+        "computed_from": "top_10_items_weighted_by_orders",
+        "_glossary": {
+          "full": "fulfillment — estoque no CD do ML, envio direto",
+          "cross_docking": "ML coleta na expedição da Budamix e distribui",
+          "flex": "self_service — lojista entrega no mesmo dia",
+          "drop_off": "lojista posta em agência ML"
+        }
+      },
+      "fulfillment_mix_7d": {
+        "status": "ok",
+        "window_days": 7,
+        "since": "2026-05-27T00:00:00+00:00",
+        "until": "2026-06-03T00:00:00+00:00",
+        "orders_with_logistic_type": 1191,
+        "orders_total_in_window": 1191,
+        "coverage_pct": 100.0,
+        "full_pct": 84.0,
+        "cross_docking_pct": 16.0,
+        "flex_pct": 0.0,
+        "drop_off_pct": 0.0,
+        "unknown_pct": 0.0,
+        "_glossary": {
+          "full": "fulfillment — estoque no CD do ML",
+          "cross_docking": "ML coleta na expedição da Budamix",
+          "flex": "self_service — entrega no mesmo dia pelo lojista",
+          "drop_off": "lojista posta em agência ML"
+        }
+      },
+      "fulfillment_mix_30d": {
+        "status": "ok",
+        "window_days": 30,
+        "since": "2026-05-04T00:00:00+00:00",
+        "until": "2026-06-03T00:00:00+00:00",
+        "orders_with_logistic_type": 3536,
+        "orders_total_in_window": 3536,
+        "coverage_pct": 100.0,
+        "full_pct": 80.9,
+        "cross_docking_pct": 19.1,
+        "flex_pct": 0.0,
+        "drop_off_pct": 0.0,
+        "unknown_pct": 0.0,
+        "_glossary": {
+          "full": "fulfillment — estoque no CD do ML",
+          "cross_docking": "ML coleta na expedição da Budamix",
+          "flex": "self_service — entrega no mesmo dia pelo lojista",
+          "drop_off": "lojista posta em agência ML"
+        }
+      },
+      "top_items_details": [
+        {
+          "platform_item_id": "MLB4535865317",
+          "title": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": null,
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "cross_docking",
+          "health": null,
+          "available_quantity": 8327,
+          "sold_quantity": 376,
+          "category_id": "MLB244658"
+        },
+        {
+          "platform_item_id": "MLB3288536143",
+          "title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": "MLB44224272",
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": 0.71,
+          "available_quantity": 137,
+          "sold_quantity": 6547,
+          "category_id": "MLB244658"
+        },
+        {
+          "platform_item_id": "MLB4073003575",
+          "title": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": null,
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": 0.75,
+          "available_quantity": 2,
+          "sold_quantity": 1128,
+          "category_id": "MLB244658"
+        },
+        {
+          "platform_item_id": "MLB6232315532",
+          "title": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+          "listing_type": "gold_pro",
+          "is_catalog": true,
+          "catalog_product_id": "MLB56152808",
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": null,
+          "available_quantity": 28,
+          "sold_quantity": 299,
+          "category_id": "MLB9206"
+        },
+        {
+          "platform_item_id": "MLB3343832496",
+          "title": "Jogo 6 Canequinha 100ml Caneca Café Suporte Madeira Alumínio Amarelo",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": null,
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": 0.85,
+          "available_quantity": 333,
+          "sold_quantity": 5769,
+          "category_id": "MLB9206"
+        },
+        {
+          "platform_item_id": "MLB6167272090",
+          "title": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": "MLB39111350",
+          "status": "paused",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": null,
+          "available_quantity": 0,
+          "sold_quantity": 156,
+          "category_id": "MLB9206"
+        },
+        {
+          "platform_item_id": "MLB6582682928",
+          "title": "Kit 6 Canecas Porcelana 250ml Canelada Colorida Café Chá Preta Canelada",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": null,
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "cross_docking",
+          "health": null,
+          "available_quantity": 25,
+          "sold_quantity": 31,
+          "category_id": "MLB9206"
+        },
+        {
+          "platform_item_id": "MLB5322494954",
+          "title": "Kit 2 Potes Vidro 1520ml Tampa Hermético Travas Vedação Verde-escuro",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": null,
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "cross_docking",
+          "health": 0.75,
+          "available_quantity": 14,
+          "sold_quantity": 874,
+          "category_id": "MLB244658"
+        },
+        {
+          "platform_item_id": "MLB5402326666",
+          "title": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petróleo",
+          "listing_type": "gold_special",
+          "is_catalog": false,
+          "catalog_product_id": null,
+          "status": "active",
+          "free_shipping": false,
+          "logistic_type": "fulfillment",
+          "health": 0.66,
+          "available_quantity": 101,
+          "sold_quantity": 206,
+          "category_id": "MLB244658"
+        }
+      ],
+      "ads_summary": {
+        "status": "ok",
+        "campaigns_total_count": 12,
+        "campaigns_active_count": 12,
+        "spend_yesterday_brl": 350.07,
+        "revenue_ads_yesterday_brl": 5059.39,
+        "avg_acos_pct": 4.7
+      },
+      "account_overview": {
+        "status": "ok",
+        "totals": {
+          "active": 79,
+          "paused": 179,
+          "closed": 0
+        },
+        "active_analysis": {
+          "status": "ok",
+          "analyzed": 79,
+          "total_active": 79,
+          "coverage_pct": 100.0,
+          "fulfillment_mix": {
+            "full_pct": 36.7,
+            "cross_docking_pct": 63.3,
+            "flex_pct": 0.0,
+            "drop_off_pct": 0.0,
+            "unknown_pct": 0.0,
+            "_glossary": {
+              "full": "fulfillment — estoque no CD do ML",
+              "cross_docking": "ML coleta na expedição da Budamix",
+              "flex": "self_service — entrega no mesmo dia pelo lojista",
+              "drop_off": "lojista posta em agência ML"
+            }
+          },
+          "listing_type_mix": {
+            "gold_special": 92.4,
+            "gold_pro": 7.6
+          },
+          "catalog_pct": 11.4,
+          "free_shipping_pct": 10.1,
+          "out_of_stock_count": 0,
+          "out_of_stock_ids": [],
+          "low_health_count": 8,
+          "no_health_data_count": 60,
+          "low_health_threshold": 0.85
+        }
+      }
+    }
+  }
+}
+```
+
+## Data Readiness
+```json
+{
+  "status": "DADOS_PARCIAIS",
+  "data_quality": "partial",
+  "checks": [
+    {
+      "check": "timezone_brt",
+      "status": "ok",
+      "detail": "BRT window: 2026-06-02T03:00:00+00:00 to 2026-06-03T03:00:00+00:00"
+    },
+    {
+      "check": "canonical_source_available",
+      "status": "ok",
+      "detail": "Found: ['amazon', 'ml', 'shopee']; Missing: []"
+    },
+    {
+      "check": "shopee_separated_by_shop_id",
+      "status": "ok",
+      "detail": "shop_ids found: ['442066454', '448649947', '860803675']; all 3 present: True"
+    },
+    {
+      "check": "volume_band_shopee-budamix-store",
+      "status": "ok",
+      "detail": "Orders 59 vs avg30 59.1 = -0.2%"
+    },
+    {
+      "check": "volume_band_shopee-budamix-oficial-2",
+      "status": "ok",
+      "detail": "Orders 33 vs avg30 23.6 = +39.8%"
+    },
+    {
+      "check": "volume_band_shopee-budamix-shop-3",
+      "status": "partial",
+      "detail": "Orders 30 vs avg30 17.9 = +67.6% (positive spike; partial confidence, not blocking)"
+    },
+    {
+      "check": "volume_band_mercado-livre",
+      "status": "partial",
+      "detail": "Orders 197 vs avg30 111.3 = +77.0% (positive spike; partial confidence, not blocking)"
+    },
+    {
+      "check": "volume_band_amazon",
+      "status": "ok",
+      "detail": "Orders 46 vs avg30 34.2 = +34.5%"
+    },
+    {
+      "check": "reconciliation_shopee-budamix-store",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_shopee-budamix-oficial-2",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_shopee-budamix-shop-3",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_mercado-livre",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_amazon",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "product_identity_contract",
+      "status": "ok",
+      "detail": "Top products mapped to sellable variation + short name"
+    },
+    {
+      "check": "amazon_product_identity",
+      "status": "ok",
+      "detail": "Top 5 products identity check: all identified"
+    },
+    {
+      "check": "sync_freshness",
+      "status": "not_measured",
+      "detail": "Sync freshness metric not available from current database schema. Registered as not_measured per plan guidelines."
+    }
+  ]
+}
+```
+
+---
+# CONTEXTO: qa-standards
+# QA Standards — Daily Sales Analyst
+
+## Critérios de bloqueio
+
+O QA Gate (Camada 7) aplica gates obrigatórios e regra de agregação de severidade.
+
+### Regra de agregação (dura, sem exceção)
+
+- 1+ Crítico → BLOQUEADO
+- 2+ Maiores em gates diferentes → BLOQUEADO
+- 6+ Menores com degradação sistêmica → BLOQUEADO
+- 1 Maior + Menores → APROVADO COM RESSALVA
+- 0 Maiores + 1-5 Menores → APROVADO COM RESSALVA
+- 0 problemas → APROVADO
+
+### Gates obrigatórios
+
+1. Data, período e fonte
+2. Destinatário, plataforma e responsável
+3. Estrutura Slack aprovada
+4. Visão da Plataforma
+5. Top Produtos
+6. Análise da Conta (fidelidade à Condensadora)
+7. Prioridades do Dia
+8. Bloqueios, confiança e logs
+9. Consistência entre camadas
+10. Tom e utilidade
+11. Padrão numérico e formatação objetiva
+
+## Critérios de ressalva
+
+Ressalvas são registradas quando:
+- Limitação de confiança sem violação de regra crítica.
+- Insight com confiança média mas sem risco de induzir erro.
+- Decisão de formatação ambígua mas documentada e segura.
+- Pergunta granular secundária não respondida sem impacto na mensagem.
+
+## Hierarquia QA
+
+- QA valida fidelidade e regras objetivas.
+- QA não rediagnostica análise.
+- Discordância analítica vai em "Ressalvas de auditoria", não em bloqueio.
+- QA está abaixo da Condensadora e Granular na hierarquia de decisão.
+
+
+---
+# CONTEXTO: slack-format
+# Slack Format — Daily Sales Analyst
+
+## Template final aprovado
+
+A mensagem Slack deve ter exatamente esta ordem:
+
+1. `DAILY SALES REPORT — [PLATAFORMA] — DD/MM/AAAA (Ontem)`
+2. `📊 VISÃO [PLATAFORMA]`
+3. `🏆 TOP PRODUTOS [PLATAFORMA]`
+4. `🔍 ANÁLISE DA CONTA`
+5. `🎯 PRIORIDADES DO DIA`
+6. `Dia analisado: DD/MM/AAAA — 00:00–23:59 BRT`
+
+## Destinatários
+
+- Lucas → SHOPEE
+- Yasmin → MERCADO LIVRE
+- Leonardo → AMAZON
+
+## Proibições
+
+- Não incluir Pedro Broglio no topo.
+- Não incluir seção DESTAQUES DO DIA.
+- Não incluir RESUMO GERAL consolidado.
+- Não incluir VENDAS POR CANAL consolidado.
+- Não misturar plataformas no diagnóstico individual.
+- Não adicionar seções extras.
+- Não remover seção obrigatória.
+- Uma linha em branco entre seções.
+
+## Formatação
+
+- Título principal em texto simples.
+- Títulos de seção com emoji + uppercase.
+- Conteúdo em bullets.
+- Sem negrito/itálico desnecessário.
+- Sem linha separadora fake.
+- Sem IDs técnicos visíveis (exceto ASIN Amazon quando necessário).
+
+## Padrão numérico
+
+- Valores monetários: R$ 1.234,56
+- Pedidos: número absoluto sem separador (ex: 91 pedidos)
+- Ticket médio: R$ 44,85
+- Percentuais: 8,5% (vírgula, 1 casa)
+- VISÃO mostra dados objetivos do dia, sem comparação temporal.
+
+
+---
+# CONTEXTO: responsaveis
+# Responsáveis — Daily Sales Analyst
+
+## Operação por canal
+
+| Canal | Responsável operacional | Responsável ADS | Acionamento ADS |
+|-------|------------------------|-----------------|-----------------|
+| Shopee (3 contas) | Lucas | Himmel | Via Lucas |
+| Mercado Livre | Yasmin | Himmel | Via Yasmin |
+| Amazon | Leonardo | Pedro | Via Leonardo |
+
+## Governança
+
+| Papel | Agente | Responsabilidade |
+|-------|--------|-----------------|
+| Decisor humano final | Pedro | Decisão final, ADS Amazon |
+| Governança/QA final | Kobe | Validação de rollout, bloqueios, mudanças estratégicas, checkpoints |
+| Dono/Orquestrador | Trader | Aciona DSA, recebe retorno, envia Slack, valida memória |
+| Executor | DSA | Executa pipeline analítico, devolve artefatos ao Trader |
+| Gestão ADS Shopee/ML | Himmel | Verba, segmentação, criativos, lances, exposição, afiliados/cupons Shopee |
+
+## Regras de acionamento
+
+- Himmel nunca é acionado diretamente pelo DSA — sempre via Lucas (Shopee) ou Yasmin (ML).
+- Pedro nunca é acionado diretamente pelo DSA — sempre via Leonardo, após validação de pré-requisitos.
+- Kobe é acionado para decisões estruturais, conflitos e checkpoints.
+- DSA nunca fala com Pedro diretamente. Toda comunicação passa por Trader ou Kobe.
+
+
+---
+# CONTEXTO: marketplace-rules
+# Marketplace Rules — Daily Sales Analyst
+
+## Princípio
+
+Regras críticas de marketplace que o DSA deve considerar na análise. Estas são regras observadas e documentadas — não taxas específicas inventadas.
+
+## Shopee
+
+### Regras gerais
+- Shopee opera com múltiplas contas para a GB Importadora (3 contas ativas).
+- Cada conta tem mix, exposição e campanha próprios.
+- Cupons, afiliados e ADS são coordenados via Himmel.
+- Full Shopee (quando disponível) afeta visibilidade e entrega.
+- Canibalização entre contas é risco real e deve ser monitorada.
+
+### Pontos de atenção
+- Mudanças de regra do marketplace podem contaminar séries históricas.
+- Exposição pode variar por conta sem causa interna.
+- Horários de pico variam por conta e por categoria.
+
+## Mercado Livre
+
+### Regras gerais
+- Reputação afeta exposição e ranking.
+- Mercado Livre Full afeta visibilidade e competitividade.
+- Posição de anúncio e ranking são indicadores de saúde do canal.
+- Competitividade de preço relativo importa.
+
+### Pontos de atenção
+- Oscilação normal de ranking não é alerta sem base histórica.
+- Perda de reputação pode ter efeito cascata em exposição.
+- ADS ML coordenados via Himmel (acionado por Yasmin).
+
+## Amazon
+
+### Regras gerais
+- Buy Box é pré-requisito para tráfego pago eficiente.
+- FBA afeta elegibilidade, visibilidade e Buy Box.
+- Produto Amazon deve ser identificado por título real + ASIN do pedido.
+- Alias manual de SKU nunca é fonte primária.
+
+### Pontos de atenção
+- Nunca escalar ADS sem validar Buy Box, FBA e estoque.
+- Crescimento sobre operação frágil amplifica problema.
+- Cancelamentos e listings indisponíveis podem mascarar resultado real.
+- ADS Amazon geridos por Pedro (acionado por Leonardo após pré-requisitos).
+
+## Nota importante
+
+Este arquivo contém regras observadas e princípios operacionais. Taxas específicas de comissão, frete ou penalidade por marketplace **não são documentadas aqui** por não haver fonte validada. Quando necessário, consultar fontes oficiais dos marketplaces.
+
+
+---
+# MEMORIA DAS CONTAS
+## mercado-livre
+### rules.md
+# Rules — Mercado Livre
+
+## Regras permanentes
+
+Regras específicas desta conta. Só mudam por decisão explícita, mudança de marketplace, QA recorrente ou aprovação Trader/Kobe.
+
+## Plataforma: Mercado Livre
+
+### Identificação
+- Responsável operacional: Yasmin
+- Responsável ADS: Himmel (via Yasmin)
+
+### Regras operacionais
+- Não transformar oscilação normal em alerta sem base histórica.
+- Considerar reputação, ranking, Full e competitividade.
+- Exposição e posição só podem ser citadas quando há dado ou hipótese sustentada.
+- Prioridades nunca genéricas demais.
+
+### Regras de marketplace ML
+- Regras genéricas de marketplace Mercado Livre aplicam a esta conta salvo exceção documentada.
+- ADS ML coordenados via Himmel.
+
+### Exceções
+- Nenhuma exceção documentada.
+
+---
+
+*Alterações abaixo. Registrar data, motivo e aprovação.*
+
+
+### weekly.md
+# Weekly — Mercado Livre
+
+## Estrutura
+
+Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 entradas diárias acumuladas.
+
+## Template
+
+### Semana: [DD/MM a DD/MM/AAAA]
+
+#### Tese semanal
+[Tese consolidada da semana baseada nas leituras diárias]
+
+#### Padrões observados
+- [Padrão 1]
+- [Padrão 2]
+
+#### Hipóteses ativas
+- [Hipótese 1 — status: confirmada/enfraquecida/em aberto]
+
+#### Riscos acumulados
+- [Risco 1 — persistência: X dias]
+
+#### Sinais para próxima semana
+- [Sinal 1 — condição falsificável]
+
+#### Ressalvas da semana
+- [Ressalva 1 — frequência: X ocorrências]
+
+---
+
+## Memória diária acumulada
+
+_Blocos diários abaixo. Job `daily-memory-ingest-ml.py` adiciona um bloco por dia. Rotação automática mantém os últimos 14 dias._
+
+### Dia analisado: 2026-06-01
+_ingestido em 2026-06-02T07:10:37-03:00 BRT | confiança L05: media | insights L05: 3 (2 fato, 1 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita (MLB3288536143, Full, nível preocupante 0,71 — décimo primeiro ciclo idêntico): 118 pedidos no dia e available_quantity=13 no snapshot 02/06 09:50 UTC; confirmar amanhã se reposição entrou, se caiu abaixo de 5 ou se virou paused — define se o patamar de ~R$ 10k se sustenta ou colapsa.
+- Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo (MLB4073003575, Full, nível regular 0,75 — décimo primeiro ciclo idêntico): available_quantity=13 após 14 pedidos; segundo Full em cobertura crítica simultânea ao IMB501.
+- Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida (MLB6232315532, Catálogo gold_pro Full, sem nível de qualidade calculado pelo ML): available_quantity=35 após 19 pedidos, cobertura ~1,6 dias; terceiro vetor Full em zona estreita — ruptura em Catálogo derruba Buy Box.
+- Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara (MLB6167272090, Full, sem nível calculado): reapareceu ativa com 2 unidades após pausar em 31/05 com zero — reposição parcial entre 31/05 e 02/06 confirmada, mas próximas vendas acionam pausa.
+- MercadoLíder Platinum: gap R$ 16.112, progresso 94,56%, ETA 3,5 dias ao ritmo médio R$ 4.665/dia — Faturamento do dia (R$ 9.953) 113% acima do pace; cancellations_rate oficial em zero, mas série crescente (3→3→2→6→9 em 5 dias) é vetor latente; qualquer movimento adverso aperta a janela.
+- 9 cancelamentos no dia (4,4% dos 206 pedidos) — maior valor absoluto da série recente, sem atribuição por anúncio possível pelo pacote; ratings_negative subiu de 0,39 para 0,41 (movimento na direção errada em 6.297 transações, mas cor verde mantida e claims_rate em 38% do threshold).
+- ADS share monotonicamente descendente desde 22/05: 69,9% → 56,7% → 60,7% → 59,5% → 51,4% → 48,1%, com GMV ascendente — primeiro ciclo abaixo de 50%; ROAS 10,6x e ACOS 8,89% no piso da série; orgânico expandindo proporcionalmente mais rápido que campanha.
+- Pendências estruturais recorrentes do pacote ML (desde 22/05): (1) breakdown ADS spend/revenue por platform_item_id; (2) lista granular de cancelamentos com order_id↔platform_item_id↔motivo; (3) série temporal de nível de qualidade por anúncio; (4) estoque em trânsito ao CD do ML / ETA de reposição Full; (5) available_quantity por variação dentro de anúncios multi-variação; (6) timestamp de reativação/reposição da Tulipa.
+
+### Dia analisado: 2026-05-31
+_ingestido em 2026-06-01T07:11:08-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 2_
+
+**Memória para o próximo ciclo (da L05):**
+- Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita (MLB3288536143, Full, nível regular 0,71 — décimo ciclo idêntico): cluster IMB501 fez 121 pedidos (66 Tampa Preta + 28 Tampa Cinza + 27 Tampa Vermelha) e fechou com 38 unidades agregadas pós-baixa; confirmar amanhã se reposição entrou, se available_quantity caiu abaixo de 10 ou se status virou paused — define se patamar de R$ 8k se sustenta ou retrai
+- Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara (MLB6167272090, Full, status=paused, available_quantity=0): 4 pedidos no dia que viram cancelamentos prospectivos — monitorar cancellations_rate da reputação nos próximos 3-5 snapshots; sair de zero confirma entrada na janela oficial e aperta ETA Platinum
+- Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo (MLB4073003575, Full, nível regular 0,75): 30 unidades pós-baixa de 16 pedidos, cobertura prospectiva ~1,9 dias — vira crítico imediato se MLB3288536143 pausar; verificar amanhã se reposição entrou ou se cobertura caiu abaixo de 1 dia
+- ADS: spend R$ 422,53, revenue R$ 4.245,82, ROAS 10,05x, ACOS 8,69%, fatia 51,4% do Faturamento — piso da série de 10 ciclos (49,5%-69,9%) em dia de pico, sugere componente orgânico relevante no crescimento; ADS não escalou proporcionalmente ao volume; gatilho L02 (ACOS > 10% com fatia > 60% por dois ciclos) segue não atingido
+- MercadoLíder Platinum: gap R$ 19.876,77, progresso 93,28%, ETA 4,3 dias ao ritmo R$ 4.602/dia — Faturamento do dia (R$ 8.267,83) 79,7% acima do pace; promoção ao alcance de uma semana mas diretamente vulnerável a qualquer cancelamento automático nos dois Full em cobertura curta
+- 6 cancelamentos no dia é o maior valor da série recente (25/05: 3, 26/05: 3, 30/05: 2, 31/05: 6); candidato natural de até 4 é a Tulipa pausada, os 2 restantes sem fonte identificável no pacote — relevante se cancellations_rate sair de zero
+- Ticket R$ 43,75 está 13,4% abaixo do avg_7d (R$ 50,49) e 8,8% abaixo do avg_30d, mas vs 60d segue positivo (+5,9%) — efeito de composição do cluster IMB501 (menor valor unitário) carregando 64% do volume, não compressão estrutural; registrar pra evitar leitura falsa em ciclos futuros
+- Pendências estruturais recorrentes do pacote ML (desde 22/05): (1) breakdown ADS spend/revenue por platform_item_id; (2) lista granular de cancelamentos com order_id↔platform_item_id↔motivo; (3) série temporal de nível de qualidade por anúncio; (4) estoque em trânsito ao CD do ML / ETA de reposição Full; (5) ritmo 7d por platform_item_id; (6) available_quantity por variação dentro de anúncios multi-variação
+
+### Dia analisado: 2026-05-30
+_ingestido em 2026-05-31T07:13:05-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 2_
+
+**Memória para o próximo ciclo (da L05):**
+- Cluster IMB501 (MLB3288536143, Full) atingiu 54,6% do dia (47 Tampa Preta + 15 Tampa Cinza + 9 Tampa Vermelha = 71 pedidos / 75 unidades) com available_quantity=149 pós-baixa — cobertura ~2 dias ao ritmo do sábado, ~3,5-4 dias ao ritmo médio de 7d; verificar amanhã se reposição entrou ou se available_quantity caiu abaixo de 80.
+- Conjunto Kit 6 Potes Vidro Hermético (MLB6437847224, Catálogo Full, health=null por baixo volume) com available_quantity=7 pós-baixa de 3 pedidos — cobertura ~2,3 dias; confirmar amanhã se reposição entrou, se available_quantity caiu abaixo de 3 ou se status=paused.
+- Oitavo ciclo idêntico do nível de qualidade do Jogo Potes De Vidro 5 Peças Claro (0,71) e do Kit 4 Potes De Vidro Hermético 1050ml Tampa Azul-petróleo (0,75) — direção interna não observável; nono ciclo com queda de qualquer um abaixo de 0,70 aciona gatilho de alinhamento com Himmel.
+- ADS: spend R$307,04, revenue R$3.381,57, ROAS 11,01x, ACOS 8,23%, fatia 59,5% do Faturamento — terceiro ponto da série pós-baseline (4,4 → 10,96 → 8,23), não monotônica; gatilho L02 é ACOS > 10% com fatia > 60% por dois ciclos consecutivos.
+- Restock do Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml (MLB6232315532, Catálogo gold_pro Full) confirmado: 31 → 61 unidades entre 26/05 e 30/05 — risco de Buy Box suspenso nos próximos ciclos curtos.
+- 2 cancelamentos no terceiro ciclo não-zero disponível (25/05: 3, 26/05: 3, 30/05: 2), nenhum top anúncio paused, breakdown order_id↔platform_item_id ausente — hipótese de causa comum permanece em aberto; relevante se cancellations_rate da reputação sair de zero.
+- MercadoLíder Platinum: gap R$23.327,75, progresso 92,12%, ETA 5,1 dias ao ritmo R$4.544,54/dia — Faturamento do dia (R$5.678,64) acima do pace; qualquer cancelamento automático nos dois Full em cobertura crítica comprime diretamente a janela.
+- Pendências estruturais recorrentes do pacote ML (desde 22/05): (1) breakdown ADS spend/revenue por platform_item_id; (2) lista granular de cancelamentos com order_id↔platform_item_id↔motivo; (3) série temporal de nível de qualidade por anúncio; (4) estoque em trânsito ao CD do ML / ETA de reposição Full.
+
+### Dia analisado: 2026-05-26
+_ingestido em 2026-05-27T07:18:48-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- Sétimo ciclo idêntico de nível de qualidade do Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita (MLB3288536143, 0,71) e do Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo (MLB4073003575, 0,75) — oitavo ciclo segue sendo o ponto de observação; gatilho L02 é cair abaixo de 0,68 em qualquer um dos dois.
+- Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090, Full ativo): 2 unidades pós-baixa de 4 pedidos do dia, sétimo ciclo de monitoramento sem reposição confirmada — verificar amanhã se anúncio segue ativo, se entrou em ruptura ou se cancelamento automático foi registrado.
+- Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida (MLB6232315532, Catálogo gold_pro Full): primeiro ciclo na zona crítica com 31 unidades pós-baixa de 15 pedidos (cobertura prospectiva ~2,1 dias) — confirmar amanhã se reposição entrou ou se cobertura caiu abaixo de 10 unidades.
+- 3 cancelamentos pelo segundo dia consecutivo, mesmo volume exato — sem breakdown order_id↔platform_item_id, origem não atribuível; monitorar se cancellations_rate da reputação sai de zero nos próximos 3-5 ciclos (sinal de fonte comum ativa).
+- Cluster IMB501 (MLB3288536143, Full) em 44,8% do dia (Tampa Preta 40 + Tampa Cinza 12 + Tampa Vermelha 12 = 64 pedidos) — concentração retornou ao patamar histórico após o pico de 56,5% em 25/05 (efeito de denominador da segunda-feira de baixo volume).
+- ADS carregou 60,7% do faturamento com ROAS 13,9x e ACOS 10,96% — terceiro ponto consecutivo de ACOS acima do baseline ~4,4% (22-23/05), mas ROAS muito acima do limiar de ineficiência; se próximo ciclo mantiver ACOS acima de 10% com fatia de ADS acima de 60%, vira gatilho de alinhamento Yasmin–Himmel sobre cobertura e mix de campanhas.
+- MercadoLíder Gold com gap para Platinum em R$ 42.460,66, progresso 85,66%, ritmo R$ 4.225,66/dia, ETA ~10 dias — faturamento do dia (R$ 7.394) opera 75% acima do pace; fora do gatilho de Slack (gap > R$ 30k) mas qualquer cancellations_rate > 0 ou ruptura na Tulipa/Catálogo aperta a janela.
+- Pendências estruturais recorrentes do pacote ML (desde 22/05): (1) breakdown ADS por platform_item_id; (2) lista granular de cancelamentos com order_id↔platform_item_id; (3) série temporal de nível de qualidade por anúncio; (4) ETA de reposição em trânsito ao CD do ML.
+
+### Dia analisado: 2026-05-25
+_ingestido em 2026-05-26T07:13:01-03:00 BRT | confiança L05: media | insights L05: 3 (0 fato, 3 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- Cluster do Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita (MLB3288536143, Full não-Catálogo) atingiu 56,5% do volume do dia — novo pico da série 44%→47,5%→56,5%; nível regular (0,71) no sexto ciclo idêntico, direção segue não observável; sétimo ponto é o decisivo para liberar ou não alinhamento Yasmin–Himmel sobre cobertura preventiva (gatilho L02: <0,68)
+- Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida (MLB6232315532, Catálogo gold_pro Full): cobertura ~1,7 dias com ritmo do dia em 11 pedidos (acima dos ~6/dia histórico) — confirmar amanhã se reposição entrou ou se entrou em ruptura com perda de Buy Box
+- Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades (MLB4676726433): pausado com estoque zero gerou 3 pedidos exatamente iguais aos 3 cancelamentos do dia — monitorar cancellations_rate nos próximos 3-5 ciclos; se subir acima de 0, confirma origem comum
+- ADS respondeu por 56,7% do faturamento do dia com ACOS saltando de ~4,4% (22-23/05) para 14,15% e ROAS 7,67x — segundo ponto da nova série; próximo ciclo define ruído vs tendência de ineficiência
+- Modalidade de envio: top10 do dia 79,5% Full / 20,5% Cross-Docking, coerente com 30d (74,7%/25,3%); base ativa segue assimétrica (36,7% Full / 63,3% Cross-Docking) — campeões vivem em Full, amplificando exposição a rupturas no topo
+- MercadoLíder Platinum: gap R$46.615, progresso 84,25%, ETA ~11 dias ao ritmo atual de R$4.156/dia — Faturamento do dia (R$5.127) acima do pace; fora do gatilho de Slack (gap >R$30k), mas qualquer movimento adverso em cancellations_rate aperta a janela
+- Pendências de pacote recorrentes para próximos ciclos: (1) série temporal de nível de qualidade por anúncio; (2) breakdown ADS spend/revenue por platform_item_id; (3) lista granular de cancelamentos com order_id↔platform_item_id↔mecanismo; (4) reposição em trânsito ao CD do ML por anúncio Full
+- Ticket do dia R$47,48 está acima de 30d (+3,4%) e 60d (+10,8%), mas 11,8% abaixo do avg_7d — compressão intra-semana por composição de segunda-feira dominada pelo cluster IMB501 de menor valor médio, não deterioração estrutural
+
+### Dia analisado: 2026-05-24
+_ingestido em 2026-05-25T09:24:01-03:00 BRT | confiança L05: media | insights L05: 3 (0 fato, 3 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- Quinto ciclo do nível de qualidade do Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita (MLB3288536143, hoje 0,71) e do Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo (MLB4073003575, hoje 0,75) — ponto definidor da erosão orgânica.
+- ADS share — se 25/05 fechar acima de 65% com nível dos campeões estagnado, aciona alinhamento Yasmin–Himmel sobre cobertura preventiva (segundo ponto consecutivo).
+- Status pós-decisão do Kit 6 Canecas Porcelana 250ml Canelada Colorida (MLB6582645908): se pausado, registrar como variável confundidora para cancellations_rate; se ativo, monitorar cancelamentos automáticos.
+- Estoque e ETA de reposição Full do Kit De 6 Canecas De Porcelana Lisa Reta 200 Ml (MLB6232315532) — confirmar se reposição entrou ou se cobertura caiu abaixo de 2 dias.
+- Kit 6 Canecas Porcelana Tulipa (MLB6167272090) ausente pelo segundo ciclo — confirmar amanhã se está ativo, pausado ou esgotado.
+- Cluster IMB501 atingiu 47,5% do volume do dia (vs 44% nos dois ciclos anteriores) — concentração crescente; observar se sustenta ou recua.
+- Possível migração operacional do IMB501P de Cross-Docking (memória 22/05) para Full (snapshot 24/05) — confirmar se sustenta no próximo ciclo; muda leitura do mix de modalidade de envio.
+- MercadoLíder Platinum: gap R$48.941, progresso 83,47%, ETA ~12 dias ao ritmo atual — fora do gatilho de Slack (gap > R$30k), mas qualquer ruptura confirmada no cluster de canecas com cancelamentos automáticos aperta a janela rapidamente.
+
+### Dia analisado: 2026-05-23
+_ingestido em 2026-05-24T07:10:47-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- Kit 6 Canecas Porcelana Tulipa 250ml (MLB6167272090, Full, não-Catálogo): snapshot 24/05 09:50 UTC com 2 unidades pós-baixa de 9 pedidos, anúncio ativo, ritmo de 6-9 pedidos/dia em dois ciclos consecutivos — checar status, estoque e reposição em trânsito amanhã; se reposição não chegou, registrar como ruptura ativa e impacto em cancellations_rate.
+- Conjunto 5 Potes de Vidro (MLB3288536143): nível de qualidade em 0,71 há três ciclos idênticos, available_quantity=469, cluster IMB501 (Tampa Preta+Vermelha+Cinza no mesmo anúncio) fez 40 pedidos = 44% do dia — quarta leitura define direção do nível.
+- Kit 4 Potes 1050ml Tampa Azul-petróleo (MLB4073003575, Full): nível de qualidade em 0,75 há três ciclos, available_quantity=139, 11 pedidos — segunda métrica que precisa de quarta leitura para definir direção.
+- Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo Full gold_pro): available_quantity=33 pós-baixa de 6 pedidos, cobertura estimada ~5,5 dias ao ritmo do dia — zona de atenção no horizonte de 5 dias por ser Catálogo (Buy Box demora a se recuperar).
+- ADS share do dia em 49,5% (R$2.538,63 / R$5.124,32), ROAS ~9x, ACOS 4,43% — segundo ponto da nova série pós-22/05; ≤ 55% no próximo ciclo confirma orgânico em expansão, ≥ 65% reativa gatilho de escalonamento a Kobe no terceiro ciclo.
+- MercadoLíder Platinum: gap R$51.794,49, progresso 82,5%, ritmo R$4.070/dia, ETA ~12,7 dias — GMV do dia acima do pace; qualquer cancelamento automático no Kit 6 Canecas Tulipa entra direto nessa janela apertada.
+- ratings_negative=0,39 (39%) idêntico ao ciclo 22/05, claims_rate=0,0025 (metade do threshold 0,005), cancellations_rate=0 — vira relevante se claims_rate ultrapassar 0,005 ou se breakdown por anúncio chegar e concentrar negativos nos dois Full em Padrão inferior.
+- Pendências de dado para o próximo pacote (consolidado): (1) breakdown de revenue_ads_yesterday_brl e spend_yesterday_brl por platform_item_id; (2) ritmo 7d por platform_item_id; (3) drivers de nível de qualidade por anúncio; (4) reposição em trânsito ao CD do ML por anúncio.
+
+### Dia analisado: 2026-05-22
+_ingestido em 2026-05-23T21:19:34-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090, Full): consumo confirmado em ~6 pedidos/dia em 2 ciclos consecutivos, estoque 7→2; se próximo pacote mostrar anúncio pausado ou cancelamento automático, vira variável confundidora para reputação, ETA Platinum e leitura do cluster de canecas
+- Nível de qualidade dos dois Full em Padrão inferior — Kit 4 Potes 1050ml Tampa Azul-petróleo (MLB4073003575, 0,75) e Jogo Potes 5 Peças Tampa Vermelha (MLB3288536143, 0,71) — segundo ponto idêntico entre ciclos, mas ML não expõe série interna; só o terceiro ponto define direção e desbloqueia ação com Himmel
+- ADS share 69,9%, ROAS 10,87x, ACOS 4,57%, gasto R$296,96 — segundo ponto consecutivo acima de 65%; terceiro ciclo é o gatilho de escalonamento a Kobe sobre dependência estrutural
+- Breakdown de revenue_ads_yesterday_brl por platform_item_id segue pendente desde 22/05 — sem ele, não dá pra confirmar se ADS prioriza os dois Full em Padrão inferior ou as variações Cross-Docking líderes do dia (registrar como dado necessário do próximo pacote)
+- Cluster IMB501 sustentou 44% do dia (37 pedidos): Tampa Preta Cross-Docking 20, Tampa Vermelha Full 10, Tampa Cinza Cross-Docking 7; tratar como bloco ajuda a explicar a inversão do mix sem fragmentar; estoque robusto nas variações Cross-Docking (8.375 e 9.195 unidades)
+- ratings_negative=0,39 (39%) idêntico ao ciclo anterior em conta verde Gold; claims_rate=0,0025 em 50% do threshold de risco (0,005); sem breakdown por anúncio, hipótese de concentração nos dois Full em Padrão inferior segue em aberto — vira relevante se claims_rate subir acima de 0,005
+- Kit 10 Potes Herméticos 320ml Azul-petróleo 10 un (MLB6739241224, Cross-Docking): 6 unidades pós-baixa com 2 pedidos no dia, cobertura ~3 dias com amostra pequena; checagem preventiva sem urgência, Budamix controla reposição em Cross-Docking
+- MercadoLíder Platinum: progresso 81,34%, gap R$55.226,77, ETA 13,8 dias ao ritmo atual de R$4.012,89/dia; GMV de hoje (R$4.622,03) está acima do ritmo necessário — fora do gatilho de Slack, vira relevante se gap cair abaixo de R$30k com progresso acima de 90%
+
+---
+
+*Histórico semanal abaixo. Não sobrescrever — adicionar nova entrada acima.*
+
+
+### monthly.md
+# Monthly — Mercado Livre
+
+## Estrutura
+
+Tese mensal da conta. Atualizada no primeiro dia útil de cada mês.
+
+## Template
+
+### Mês: [MM/AAAA]
+
+#### Tese mensal
+[Tese consolidada do mês baseada nas leituras semanais]
+
+#### Patamar da conta
+[saudável / em ganho de patamar / em acomodação / vulnerável / em queda real / inconclusiva]
+
+#### Evolução vs mês anterior
+[Comparação com tese do mês anterior — confirmada, revertida, evoluiu]
+
+#### Dependências estruturais
+- [Dependência 1 — ex: concentração em poucos produtos]
+
+#### Riscos persistentes
+- [Risco 1 — presente há X semanas]
+
+#### Decisões tomadas no mês
+- [Decisão 1 — resultado observado]
+
+#### Base para próximo mês
+- [O que monitorar]
+- [Hipóteses que transitam]
+
+---
+
+*Histórico mensal abaixo. Não sobrescrever — adicionar nova entrada acima.*
+
+
+---
+# OUTPUTS DAS CAMADAS ANTERIORES
+## 01-estrategica
+### Qualidade da base
+
+Weekly.md contém 8 entradas diárias acumuladas (22/05–01/06) com hipóteses ativas e série contínua de estoque e saúde por anúncio; monthly.md é template sem conteúdo preenchido para junho. Todos os blocos ml_snapshot estão presentes com coverage 100%. A principal lacuna persistente (11º ciclo sem resolução): breakdown de ADS spend/revenue por platform_item_id e available_quantity por variação dentro de anúncios multi-variação. Base suficiente para tese forte em patamar e exposição estrutural; tese sobre drivers intra-ADS segue parcial.
+
+---
+
+### Leitura temporal
+
+- **Mesmo dia da semana (terças):** R$4.230 (05/05) → R$4.081 (05/12) → R$5.760 (05/19) → R$7.394 (05/26) → R$9.210 (02/06). Cinco pontos consecutivos, cada semana acima da anterior. A média histórica de terças é R$5.366 (`same_weekday_avg.avg_gmv`); hoje é +71,6% acima disso. Não é ruído nem sazonalidade — é aceleração estrutural semanal confirmada.
+
+- **Patamar 30d/60d:** GMV de R$9.210 está +73,6% acima da média 30d (R$5.306) e +107% acima da média 60d (R$4.448). A média de 7 dias já está elevada em R$7.758 e hoje ainda supera essa baseline em +18,7%. A conta não está oscilando dentro de uma banda — está empurrando o teto para cima em todas as janelas simultaneamente.
+
+- **Volume vs ticket:** `orders_vs_30d_pct=+77,0%` vs `gmv_vs_30d_pct=+73,6%`, com `ticket_vs_30d_pct=-2,0%`. O ticket hoje (R$46,76) está ligeiramente abaixo do 30d (R$47,69) mas +11,5% vs 60d (R$41,92). O ganho é inteiramente de volume — o ticket não está corroendo, está sendo comprimido pelo mix do dia (Tampa Preta Cross-Docking em 56 pedidos, de menor valor agregado por unidade, puxando o ticket para baixo em relação à semana recente).
+
+- **Hipóteses anteriores:** (1) Ruptura iminente do Kit 4 Potes 1050ml (MLB4073003575) — **confirmada**: memória de 01/06 apontava available_quantity=13 no snapshot; hoje, após 12 pedidos, `available_quantity=2`. Ruptura é praticamente certa. (2) Ciclo pausada/venda/cancelamento da Tulipa (MLB6167272090) — **não resolvido, reativado**: memória de 01/06 registrava reposição parcial de 2 unidades; hoje anúncio volta a `status=paused`, `available_quantity=0`, com 8 pedidos no dia — oitavo evento do padrão recorrente. (3) Descida do ADS share como sinal de orgânico em expansão — **parcialmente enfraquecida**: após cair de 69,9% para 48,1% em série de 10 ciclos, hoje sobe para 54,9%, quebrando a monotonia descendente.
+
+---
+
+### Leitura estratégica
+
+- **Lente 1 — Patamar:** A conta rompeu o teto de 30d e 60d de forma consistente, não pontual. Cinco terças seguidas com crescimento sequencial, 7d baseline (R$7.758) já 46% acima do 30d — o patamar se realimentou. A tese de acomodação está descartada; a questão agora é qual é o piso do novo patamar. Hipótese: o volume incremental é sustentado pela combinação de ADS eficiente (ROAS 14,45x, ACOS 4,7%) com o cluster IMB501 em Full consolidando presença orgânica, mas a estrutura ainda não tem segundo vetor independente do cluster — o patamar é real mas concentrado.
+
+- **Lente 3 + 4 — Dependência e modalidade de envio:** O cluster IMB501 (Tampa Preta MLB4535865317 + Tampa Cinza/Vermelha MLB3288536143) respondeu por 99 pedidos = 50,3% do dia (`top3_concentration`). A dependência estrutural é crônica — ela aparece em todos os 8 ciclos da weekly.md. O mix de modalidade de envio do top 10 no dia foi 48,1% Full / 51,9% Cross-Docking (`fulfillment_mix_yesterday_top10`), contrastando com a janela de 7 dias (Full 84,0% / Cross-Docking 16,0% — `fulfillment_mix_7d`). Essa divergência não é contradição: Tampa Preta (56 pedidos, Cross-Docking) dominou o dia e deslocou o mix diário, enquanto a base semanal reflete dias anteriores mais Full-pesados. O risco está na assimetria: quando a dependência do dia recai sobre um anúncio Cross-Docking sem controle de estoque no CD do ML, a Budamix retém a alavanca — mas quando recai sobre Full (MLB3288536143, MLB4073003575), a ruptura é silenciosa e sem mecanismo de reposição imediata.
+
+- **Lente 5 — ADS:** R$350,07 em gasto gerou R$5.059,39 em receita atribuída — ROAS 14,45x, ACOS 4,7%, ADS share 54,9% do GMV. A campanha de Himmel opera em nível de eficiência extrema (ROAS >8x, ACOS <8%); o aumento de share hoje vs 01/06 (48,1% → 54,9%) pode ser efeito composicional: os 8 pedidos da Tulipa pausada que virarão cancelamentos podem ter sido atribuídos a ADS e inflado o numerador sem confirmar receita realizada. Sem breakdown por platform_item_id, essa hipótese permanece em aberto. Mesmo assim, a conta está em zona de ADS dominante (>50%) — não fragilidade aguda, mas estruturalmente vulnerável a pausa de campanhas.
+
+- **Lente 6 — MercadoLíder Platinum:** Gap de R$11.621,68 com progresso 96,07% e ETA de 2,5 dias ao ritmo de R$4.739,64/dia (`mercadolider.platinum`). O GMV de hoje (R$9.210) equivale a 79,3% do gap restante em um único dia — a promoção para Platinum está ao alcance de 2–3 dias sem novos retrocessos. A ameaça não é o volume: é a qualidade. `cancellations_rate=0` na API (janela longa), mas a série de cancelamentos diários (`metrics.cancelamentos`) nas últimas semanas acumulou 3→3→2→6→9→2 (hoje: 2). Os 8 pedidos do anúncio Tulipa (MLB6167272090) pausado com estoque zero são cancelamentos prospectivos garantidos e ainda não aparecem na métrica oficial — quando entrarem na janela rolling, pressionam o threshold de ≤ 0,5% que é pré-requisito para manter a medalha.
+
+---
+
+### Tese da conta
+
+A conta Mercado Livre está **em ganho de patamar**. A evidência não é o dia — é a série de cinco terças consecutivas com crescimento sequencial (R$4.081 → R$9.210), o 7d baseline já 46% acima do 30d médio, e a confirmação em mais de duas janelas temporais. O volume está se estruturando num nível novo, não oscilando dentro da banda histórica. A vulnerabilidade que impede classificar como "saudável" é tripla e simultânea: (1) dependência crônica de 50,3% do volume em um único cluster (IMB501), sem segundo vetor estrutural; (2) ruptura praticamente certa do Kit 4 Potes 1050ml em Full (available_quantity=2) que remove um dos suportes do novo patamar; (3) ciclo crônico da Tulipa gerando cancelamentos prospectivos recorrentes que ameaçam a janela de Platinum — a conquista mais próxima da trajetória.
+
+---
+
+### Risco estrutural principal
+
+**Risco:** Ciclo crônico de pausa-venda-cancelamento do Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090). `status=paused`, `available_quantity=0`, 8 pedidos gerados hoje = 8 cancelamentos prospectivos confirmados. É o oitavo evento do padrão em 11 ciclos documentados na weekly.md.
+
+**Por que importa:** Cada ciclo de cancelamento automático alimenta o `cancellations_rate` oficial do ML (janela rolling). A métrica hoje é 0,0 na API, mas a série de `metrics.cancelamentos` diária (3→3→2→6→9→2→8 prospectivos hoje) está em trajetória crescente. O threshold de Platinum exige `cancellations_rate ≤ 0,5%` — com 6.390 transações completas (`transactions_completed`), cada 32 cancelamentos representa 0,5 ponto percentual. O acúmulo dos ciclos da Tulipa, mais os cancelamentos dos anúncios pausados em histórico, pode mover esse indicador da zona verde para a zona de risco antes da promoção ser consolidada. Além disso, `ratings_negative=0,41` já está em 41% das avaliações — cancelamentos recorrentes intensificam essa pressão.
+
+**Histórico:** Presente de forma contínua desde pelo menos 22/05 na weekly.md. Não é novo — é sistêmico. O padrão "reposição parcial → pausar novamente → novos pedidos → cancelamentos" ocorreu em 31/05 (4 pedidos paused) e hoje replica com escala maior (8 pedidos paused), sugerindo que a reposição não resolve o problema de forma durável.
+
+**Sinal de confirmação:** `reputation.cancellations_rate` sair de 0,0 no próximo snapshot confirma que os cancelamentos acumulados já entraram na janela oficial de avaliação do ML. Combinado com o status de MLB6167272090 ainda como paused com available_quantity=0 no snapshot de amanhã, confirma o ciclo ativo — não episódico.
+
+---
+
+### Sinais a observar
+
+1. **`reputation.cancellations_rate` > 0,0 no próximo snapshot (se disponível):** Confirma que os cancelamentos prospectivos da Tulipa (MLB6167272090 — 8 hoje, 4 em 31/05) entraram na janela rolling oficial. Se sair de zero com o ETA de Platinum em 2,5 dias, a promoção pode ser travada por métrica de qualidade, não por faturamento. Sinal crítico nos próximos 3 ciclos.
+
+2. **MLB4073003575 (Kit 4 Potes 1050ml) com `available_quantity=0` ou `status=paused` no snapshot de amanhã:** Após 12 pedidos hoje com only 2 unidades restantes, ruptura em Full é praticamente certa. Confirmar se gera cancelamentos automáticos (second Full crítico simultâneo ao IMB501 — replica o padrão de risco identificado em 30/05 e 31/05). Dois Full em ruptura simultânea = compressão direta do volume do novo patamar.
+
+3. **GMV sustentado acima de R$7.000 nos próximos 3 dias úteis (excluindo fins de semana):** Confirmaria que o novo patamar (R$7k–R$9k) é estrutural e não efeito pontual da terça acelerada. GMV abaixo de R$6.500 por 2 dias seguidos após o pico de hoje reabre a hipótese de oscilação dentro de banda — não de ganho de patamar consolidado.
+
+## 02-tatica
+### Decisão tática
+
+- **Dado que a L01 confirma ganho de patamar real (5 terças consecutivas, 7d baseline já 46% acima do 30d), a decisão tática não é ampliar — é proteger o que está sustentando o patamar.** Os dois vetores de risco operacional imediato (Kit 4 Potes 1050ml em Full com available_quantity=2 e Tulipa pausada gerando cancelamentos prospectivos) precisam ser endereçados antes que qualquer ação de escala seja sequer discutida. Patamar em expansão é frágil quando os suportes operacionais quebram silenciosamente.
+
+- **Dado que o risco estrutural principal da L01 é o ciclo crônico da Tulipa (oitavo evento em 11 ciclos documentados), e que os 8 pedidos gerados hoje com status=paused e available_quantity=0 são cancelamentos prospectivos confirmados, a decisão é investigar reposição em 24h.** O gatilho não é o dia — é que o cancellations_rate oficial está em 0,0 na API e a janela de Platinum (gap R$11.621, ETA 2,5 dias ao ritmo de R$4.739/dia) está no momento mais vulnerável da série. Cada cancelamento automático que entrar na janela rolling pode travar a promoção por qualidade, não por faturamento.
+
+- **Dado que o anúncio Catálogo gold_pro (Kit 6 Canecas Lisas 200ml, available_quantity=28, ~11 pedidos/dia) opera com cobertura de ~2,5 dias, e que ruptura em Catálogo implica perda de Buy Box com recuperação lenta, a proteção desse anúncio é prioritária antes que entre em zona crítica.** A L01 não marcou esse vetor como risco estrutural principal, mas é o único anúncio Catálogo com volume relevante (11 pedidos, top 4 do dia) e tem histórico recente de flerte com ruptura (memória de 30/05 e 01/06).
+
+- **Dado que a L01 confirma ADS eficiente (ROAS 14,45x, ACOS 4,7%, share 54,9%) com campanha em aceleração de patamar, a decisão correta é não tocar em Mercado Ads.** O share subiu de 48,1% (01/06) para 54,9% hoje, mas segue dentro da banda histórica documentada (49,5%–69,9% em 10 ciclos). Não há gatilho de ineficiência ativo; intervir agora introduz variável num sistema em leitura.
+
+---
+
+### O que fazer hoje
+
+1. **Yasmin:** verificar imediatamente se há reposição em trânsito para o campeão Kit 4 Potes 1050ml em Full (available_quantity=2 após 12 pedidos hoje — ruptura praticamente certa no próximo ciclo) e providenciar reposição urgente no CD do ML — motivo: é o segundo Full em cobertura crítica simultânea documentado pela L01; ruptura confirma a hipótese de dois Full falhando ao mesmo tempo, o que comprime diretamente o patamar sem mecanismo de resposta rápida, dado que Full depende de estoque físico no CD do ML, não de expedição Budamix — sinal de resultado: reposição com ETA ≤ 48h neutraliza o risco; ausência de reposição confirmada exige Yasmin recalibrar projeção de volume dos próximos 2–3 dias e comunicar ao Trader.
+
+2. **Yasmin:** verificar se há estoque disponível para reativação do anúncio de Canecas Tulipa 250ml (status=paused, available_quantity=0, 8 pedidos gerados hoje = 8 cancelamentos prospectivos confirmados no oitavo ciclo do padrão) — motivo: o risco não é o anúncio individual, é o impacto no cancellations_rate no momento em que a conta está a 2,5 dias do Platinum; com 6.390 transações completas, cada ~32 cancelamentos move 0,5 p.p. no indicador, e o acúmulo da série (3→3→2→6→9→2→8 prospectivos hoje) está se aproximando de um volume relevante — sinal de resultado: se reposição viável em ≤ 24h → providenciar e interromper o ciclo; se não viável → registrar os 8 cancelamentos como variável confundidora e monitorar cancellations_rate no próximo snapshot; qualquer valor > 0,0 na API eleva a urgência operacional imediatamente.
+
+3. **Yasmin:** verificar ETA de reposição do anúncio Catálogo gold_pro Kit 6 Canecas Lisas 200ml em Full (available_quantity=28, ritmo médio de ~11 pedidos/dia = ~2,5 dias de cobertura residual) — motivo: ruptura em anúncio Catálogo remove o Buy Box e a recuperação de posição é estruturalmente mais lenta que em anúncio Clássico; com o patamar da conta em expansão, perder o único vetor Catálogo ativo no top 5 enfraquece o segundo eixo de volume que a L01 identificou como ausente — sinal de resultado: ETA de reposição ≤ 3 dias = risco coberto; ETA > 5 dias ou indefinido = Yasmin escalona para o Trader com foco em prioridade de abastecimento do CD.
+
+---
+
+### O que NÃO fazer ainda
+
+1. **Não acionar Himmel sobre ADS ML.** ROAS 14,45x e ACOS 4,7% estão no pico de eficiência da série de 10 ciclos documentada na weekly.md. O share de 54,9% está dentro da banda histórica e o gatilho de alinhamento da L02 (ACOS > 10% com share > 60% por dois ciclos consecutivos) não foi atingido. Qualquer ajuste agora — corte de verba, mudança de segmentação, redistribuição de lances — introduz variável num sistema em aceleração de patamar confirmada e impede separar efeito da campanha de comportamento orgânico. O risco de piorar é concreto; o benefício de mexer é especulativo.
+
+2. **Não interpretar o GMV de hoje (R$9.210) como consolidação definitiva de patamar para fins de decisão estrutural.** A L01 é clara: são necessários GMV acima de R$7.000 por pelo menos 3 dias úteis consecutivos para consolidar a tese. Hoje é o quinto ponto de uma série crescente de terças, mas apenas um ponto. Decisões estruturais — redirecionar verba, ampliar catálogo, diversificar segundo vetor — esperam a série confirmar sem a pressão de ruptura nos Full ativos. Agir sobre hipótese de patamar consolidado antes da confirmação é precipitar uma decisão que o histórico ainda não sustenta.
+
+3. **Não pausar nem redirecionar o Jogo Potes 5 Peças Claro em Full (MLB3288536143, health=0,71) com base no health baixo isolado.** É o décimo primeiro ciclo idêntico documentado — o health não está em queda ativa identificável pelo pacote, está estável num patamar inferior. A regra da L02 exige saber a direção (estável/caindo/subindo) antes de qualquer ação; sem série temporal granular por anúncio (lacuna persistente desde 22/05), mexer em anúncio com available_quantity=137 e 43 pedidos no dia é remover suporte do patamar por hipótese não confirmada.
+
+---
+
+### Escalonamento
+
+**Classificação: não escalar**
+
+Todas as ações do dia são operacionais e têm Yasmin como executora direta: verificação de reposição nos dois Full críticos e no Catálogo. Himmel não é acionado porque o ADS está em eficiência máxima e não há gatilho de ineficiência ou cobertura defensiva justificada. Kobe não é acionado porque a tese de patamar, embora confirmada em múltiplas janelas, ainda não completou os 3 dias consecutivos que consolidariam uma decisão estrutural sobre diversificação ou redirecionamento de verba. O gatilho de mudança de classificação é duplo: se `reputation.cancellations_rate` sair de 0,0 no próximo snapshot E o Kit 4 Potes 1050ml confirmar ruptura em Full simultaneamente, Yasmin abre discussão com Kobe sobre risco de Platinum e decisão de priorização de reposição — esse cenário extrapola o nível tático diário e envolve alocação de recurso operacional com impacto direto na janela de promoção de medalha.
+
+## 03-operacional
+### Leitura operacional do dia
+
+- O resultado do dia foi inteiramente sustentado por volume, não por ticket. Com 197 pedidos válidos (+76,7% vs `same_weekday_avg.avg_orders=111,5` e +77,0% vs `avg_30d.avg_orders=111,3`) e GMV de R$9.210 (+71,6% e +73,6% nas mesmas janelas), o ticket de R$46,76 ficou comprimido: -2,0% vs 30d (`avg_ticket=47,69`) e -4,9% vs 7d (`avg_ticket=49,15`). O efeito é composicional — o Conjunto 5 Potes de Vidro Redondos Tampa Preta (56 pedidos = 28,4% do dia, produto de menor valor médio por unidade no cluster) dominou o dia e puxou o ticket para baixo em relação à semana recente. Confirma operacionalmente a leitura da L01: o ganho é de volume e não há compressão estrutural de preço.
+
+- A dependência do dia recaiu sobre um único produto Cross-Docking, distorcendo o mix de modalidade de envio do top 10. O Conjunto 5 Potes Tampa Preta (MLB4535865317, Cross-Docking, 56 pedidos) liderou com folga e sozinho inverteu o `fulfillment_mix_yesterday_top10` para 48,1% Full / 51,9% Cross-Docking — contra `fulfillment_mix_7d.full_pct=84,0%` e `fulfillment_mix_30d.full_pct=80,9%`. O cluster IMB501 completo (Tampa Preta + Cinza + Vermelha) respondeu por 99 pedidos = `top3_concentration=50,3%`, nível de concentração estrutural crônico documentado em todos os 8 ciclos da weekly. A divergência do mix é produto-específica e não sistêmica: um único anúncio Cross-Docking no topo do ranking deslocou o padrão do dia. Adiciona evidência à hipótese estrutural da L01 de que os campeões Full (MLB3288536143, MLB4073003575) estão em situação de risco mais profundo enquanto o resultado do dia flui pelo Cross-Docking.
+
+- Dois Full críticos entraram em ponto de ruptura simultânea, confirmando os riscos 1 e 2 da L01. O Kit 4 Potes de Vidro 1050ml Retangular (MLB4073003575, Full, `health=0,75`) fechou o dia com `available_quantity=2` pós-baixa de 12 pedidos: cobertura prospectiva inferior a 4 horas ao ritmo atual (~12 pedidos/dia extraído do snapshot), tornando ruptura imediata praticamente certa. Simultaneamente, o Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090, Full, `status=paused`, `available_quantity=0`) gerou 8 pedidos no dia com anúncio pausado e sem estoque — 8 cancelamentos prospectivos confirmados, oitavo ciclo do padrão crônico documentado na weekly desde 22/05. O único anúncio Catálogo com volume relevante, Kit 6 Canecas Lisas 200ml (MLB6232315532, gold_pro Full, `is_catalog=true`), fechou com `available_quantity=28` pós-baixa de 11 pedidos: cobertura estimada ~2,5 dias ao ritmo atual, vetor de perda de Buy Box no horizonte de 2–3 dias. Confirma e amplia os vetores de risco apontados pela L02 como ações 1, 2 e 3 do dia.
+
+- O ADS share recuperou de 48,1% (01/06) para 54,9% hoje (`ads_summary.revenue_ads_yesterday_brl=R$5.059,39` / `totals.gmv=R$9.210,85`), quebrando a série monotonicamente descendente documentada desde 22/05 (69,9%→48,1%). ROAS segue em pico de eficiência: `14,45x` e ACOS `4,7%`. O sinal operacional relevante é que os 8 pedidos da Tulipa pausada podem estar incluídos no numerador de `revenue_ads_yesterday_brl` — se confirmado, a recuperação do share seria artefato métrico parcial, não aceleração real de campanha. Sem breakdown por `platform_item_id`, a leitura é inconclusiva nesse detalhe, mas não altera a classificação de eficiência da campanha.
+
+---
+
+### Sinais operacionais relevantes
+
+- **Sinal:** Kit 4 Potes de Vidro 1050ml Retangular (MLB4073003575, Full, `health=0,75`) com `available_quantity=2` pós-baixa de 12 pedidos — **interpretação operacional:** cobertura prospectiva < 4 horas ao ritmo atual; ruptura em Full praticamente certa até amanhã. Quando pausar, remove um dos suportes do patamar de volume em Full e gera cancelamentos automáticos que pressionam `cancellations_rate` na janela oficial — impacto direto no ETA de Platinum (gap R$11.621, ETA 2,5 dias).
+
+- **Sinal:** Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090, Full) com `status=paused`, `available_quantity=0`, e 8 pedidos gerados no dia = 8 cancelamentos prospectivos confirmados — **interpretação operacional:** oitavo ciclo do padrão crônico. Os cancelamentos ainda não aparecem em `reputation.cancellations_rate=0` (janela longa), mas a série acumulada (3→3→2→6→9→2→8 prospectivos) está se aproximando do volume com impacto perceptível. Com 6.390 transações completas, ~32 cancelamentos movem 0,5 p.p. no indicador — threshold Platinum é ≤ 0,5% de cancelamentos.
+
+- **Sinal:** Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo gold_pro Full, `is_catalog=true`) com `available_quantity=28` pós-baixa de 11 pedidos e cobertura ~2,5 dias — **interpretação operacional:** único anúncio Catálogo ativo no top 5 do dia. Ruptura em Catálogo remove Buy Box e a recuperação de posição é estruturalmente mais lenta que em anúncio Clássico. `health=null` (volume ainda insuficiente para o ML calcular) não significa saúde adequada — significa apenas que o ML não avalia; o risco de ruptura é real e prospectivo.
+
+- **Sinal:** Mix de modalidade de envio do top 10 do dia em 48,1% Full / 51,9% Cross-Docking, contra `fulfillment_mix_7d.full_pct=84,0%` e `fulfillment_mix_30d.full_pct=80,9%` — **interpretação operacional:** divergência de ~36 p.p. em relação à banda 7d, causada integralmente pelo domínio do Conjunto 5 Potes Tampa Preta (MLB4535865317, Cross-Docking, 56 pedidos). Divergência produto-específica, pontual — mas sinaliza que o resultado do dia não está apoiado nos Full que historicamente sustentam o mix, e que esses Full estão simultaneamente em situação de estoque crítico.
+
+- **Sinal:** Kit 4 Potes de Vidro 640ml Azul-petróleo (MLB5402326666, Full, `health=0,66`) com o menor health do snapshot, abaixo do threshold de baixa saúde de 0,85, com `available_quantity=101` — **interpretação operacional:** health=0,66 é o piso do snapshot atual, abaixo dos já preocupantes 0,71 do MLB3288536143 e 0,75 do MLB4073003575. Anúncio Clássico com 6 pedidos no dia; estoque não é risco imediato, mas health degradado pode indicar claims, atrasos ou problemas de listing não mapeados. Não estava em evidência nos ciclos anteriores da weekly — pode ser new entry nos sinais de saúde degradada.
+
+---
+
+### Anomalias ou ausência de anomalia
+
+**Anomalia moderada.**
+
+O dia executou em volume excepcional (+77% vs 30d), com cancelamentos realizados baixos (2) e reputação verde estável. Mas dois anúncios Full simultâneos entraram em ponto de ruptura confirmada — Kit 4 Potes 1050ml com cobertura < 4 horas e Tulipa em seu oitavo ciclo de pausa com 8 cancelamentos prospectivos confirmados — enquanto o único anúncio Catálogo ativo no top 5 opera com 2,5 dias de cobertura residual. São três vetores operacionais com degradação simultânea, embora nenhum deles tenha bloqueado a execução do dia analisado. A anomalia é moderada porque os desvios são prospectivos (não bloquearam 02/06) e o resultado superficial do dia é positivo; sobe para crítica se o snapshot de amanhã confirmar MLB4073003575 pausado com volume ativo e `reputation.cancellations_rate` saindo de zero — condição que a L01 já identificou como gatilho de escalonamento.
+
+---
+
+### O que precisa ser investigado pela Granular
+
+- **Pergunta:** O Kit 4 Potes de Vidro 1050ml Retangular (MLB4073003575) está pausado ou ativo no snapshot de amanhã, e há reposição em trânsito para o CD do ML com ETA confirmado? — **motivada por:** `available_quantity=2` pós-baixa de 12 pedidos do dia; ruptura em Full é praticamente certa e determina se o volume do patamar atual se sustenta ou retrai nos próximos 2 dias.
+
+- **Pergunta:** Os 8 pedidos gerados pela Tulipa (MLB6167272090) com `status=paused` e `available_quantity=0` se materializaram como cancelamentos automáticos, ou há alguma unidade disponível em variação não exposta no snapshot? — **motivada por:** sinal operacional do oitavo ciclo crônico e impacto direto no `cancellations_rate` da janela oficial em momento crítico para o ETA de Platinum.
+
+- **Pergunta:** Quais são os drivers do `health=0,66` do Kit 4 Potes 640ml (MLB5402326666) — claims, atrasos de handling ou problema de listing? — **motivada por:** é o menor health do snapshot atual, piso abaixo do threshold 0,85, e não estava em evidência nos ciclos anteriores da weekly; antes de classificar como sinal recorrente ou novo, precisar entender a causa.
+
+- **Pergunta:** Quais anúncios geraram os 2 cancelamentos realizados do dia? — **motivada por:** sem atribuição por `order_id↔platform_item_id`, não é possível distinguir se os 2 cancelamentos são de anúncio pausado com volume residual (padrão crônico) ou de causa nova; informação necessária para calibrar a série prospectiva da Tulipa e do Kit 1050ml.
+
+- **Pergunta:** O `revenue_ads_yesterday_brl=R$5.059,39` inclui os pedidos da Tulipa pausada (MLB6167272090)? Qual é o breakdown por `platform_item_id` das top contribuições de receita ADS do dia? — **motivada por:** hipótese de inflação do numerador de ADS share levantada pela L01; sem breakdown, não é possível confirmar se o share de 54,9% reflete aceleração real de campanha ou artefato métrico dos 8 pedidos prospectivamente cancelados.
+
+---
+
+### Destaque para a Condensadora
+
+O fato operacional mais importante do dia não está no GMV excepcional de R$9.210 — está na convergência silenciosa de dois Full em ruptura simultânea que não aparece nos números de superfície. O Kit 4 Potes 1050ml (MLB4073003575) está a horas de pausar com `available_quantity=2`, e a Tulipa (MLB6167272090) replicou pelo oitavo ciclo o padrão de pedidos com anúncio pausado, desta vez na maior escala da série (8 cancelamentos prospectivos). Esses dois vetores, combinados com a cobertura de ~2,5 dias no único anúncio Catálogo (MLB6232315532), criam um risco que o resultado do dia ativamente mascara: a conta entregou seu melhor terça histórica sobre uma estrutura de suporte que começa a ceder nas próximas 12–24 horas. A Condensadora deve carregar esse contraste — não como alarme sobre o dia, mas como contexto de que o patamar atual precisa de ação de reposição imediata para se sustentar, e que a janela de Platinum (gap R$11.621, ETA 2,5 dias) está tecnicamente ao alcance mas diretamente ameaçada por cancelamentos prospectivos que ainda não entraram na métrica oficial.
+
+## 04-granular
+{
+  "camada": "04-granular",
+  "data": "2026-06-02",
+  "plataforma": "ml",
+  "recipient": "Yasmin",
+  "respostas_operacional": [
+    {
+      "pergunta": "O Kit 4 Potes de Vidro 1050ml Retangular (MLB4073003575) está pausado ou ativo no snapshot de amanhã, e há reposição em trânsito para o CD do ML com ETA confirmado?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "produto_visivel": "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo",
+        "platform_item_id": "MLB4073003575",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "available_quantity_snapshot": 2,
+        "snapshot_fetched_at_utc": "2026-06-03T09:50:36.298778+00:00",
+        "logistic_type": "fulfillment",
+        "status_atual": "active",
+        "listing_type": "gold_special",
+        "is_catalog": false,
+        "health": 0.75,
+        "pedidos_dia": 12,
+        "quantidade_dia": 13,
+        "cobertura_estimada_prospectiva": "< 4 horas ao ritmo de ~12 pedidos/dia",
+        "dado_necessario_ausente": "snapshot de 03/06 com status atual, available_quantity, e ETA de reposição ao CD do ML"
+      },
+      "leitura": "No snapshot único de 02/06 09:50 UTC o anúncio está active com 2 unidades pós-baixa após 12 pedidos do dia. Ruptura é praticamente certa no próximo ciclo, mas o pacote contém apenas um ponto temporal — não há snapshot futuro nem dado de estoque em trânsito ao CD do ML. A pergunta exige dado prospectivo que não está no pacote.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "alta"
+    },
+    {
+      "pergunta": "Os 8 pedidos gerados pela Tulipa (MLB6167272090) com status=paused e available_quantity=0 se materializaram como cancelamentos automáticos, ou há alguma unidade disponível em variação não exposta no snapshot?",
+      "status": "parcialmente respondida",
+      "evidencia": {
+        "produto_visivel": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+        "platform_item_id": "MLB6167272090",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "status_atual": "paused",
+        "available_quantity_snapshot": 0,
+        "logistic_type": "fulfillment",
+        "listing_type": "gold_special",
+        "is_catalog": false,
+        "catalog_product_id": "MLB39111350",
+        "health": null,
+        "pedidos_dia": 8,
+        "quantidade_dia": 8,
+        "cancelamentos_realizados_no_dia_total": 2,
+        "reputation_cancellations_rate": 0,
+        "dado_necessario_ausente": "breakdown order_id↔platform_item_id↔motivo dos cancelamentos; available_quantity por variação dentro do anúncio multi-variação"
+      },
+      "leitura": "O anúncio está paused com available_quantity=0 (snapshot agregado do anúncio). Os 2 cancelamentos realizados no dia são compatíveis com origem na Tulipa mas não atribuíveis sem breakdown granular. A weekly registra padrão recorrente: em 31/05 4 pedidos paused também não viraram cancellations_rate>0 no snapshot subsequente, sugerindo materialização lenta ou parcial. Não é possível distinguir entre (a) pedidos com unidade residual em variação não exposta, (b) cancelamentos pendentes ainda não processados, (c) cancelamentos já realizados mas diluídos na janela longa da reputação.",
+      "conclusao_granular": "complica — evidência primária confirma anúncio paused/zerado, mas a relação 8 pedidos → 8 cancelamentos automáticos é hipótese não verificável neste pacote",
+      "confianca": "média"
+    },
+    {
+      "pergunta": "Quais são os drivers do health=0,66 do Kit 4 Potes 640ml (MLB5402326666) — claims, atrasos de handling ou problema de listing?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "produto_visivel": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petróleo",
+        "platform_item_id": "MLB5402326666",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "health": 0.66,
+        "available_quantity_snapshot": 101,
+        "logistic_type": "fulfillment",
+        "listing_type": "gold_special",
+        "is_catalog": false,
+        "status_atual": "active",
+        "pedidos_dia": 6,
+        "sold_quantity_acumulado": 206,
+        "dado_necessario_ausente": "drivers de health por anúncio (claims, late_handling, returns), série temporal de health, breakdown reputation por platform_item_id"
+      },
+      "leitura": "O pacote entrega health como valor pontual, sem drivers nem série temporal. Reputation agregada (claims_rate=0,0019, delayed_handling_rate=0,0011) é da conta inteira, não atribuível ao anúncio. Não é possível determinar a causa do 0,66.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "alta"
+    },
+    {
+      "pergunta": "Quais anúncios geraram os 2 cancelamentos realizados do dia?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "cancelamentos_dia": 2,
+        "candidatos_estruturais": [
+          {
+            "produto_visivel": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+            "platform_item_id": "MLB6167272090",
+            "motivo_candidatura": "status=paused, available_quantity=0, 8 pedidos no dia"
+          }
+        ],
+        "dado_necessario_ausente": "lista granular order_id↔platform_item_id↔motivo de cancelamento — pendência estrutural registrada desde 22/05 na weekly"
+      },
+      "leitura": "Sem atribuição por order_id, qualquer associação é hipótese. A Tulipa pausada é candidato estrutural mas o volume (2 cancelamentos) é menor que os 8 pedidos paused do dia, indicando que se a fonte é Tulipa, a materialização foi parcial; se não é Tulipa, são 2 cancelamentos de causa não identificada.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "alta"
+    },
+    {
+      "pergunta": "O revenue_ads_yesterday_brl=R$5.059,39 inclui os pedidos da Tulipa pausada (MLB6167272090)? Qual é o breakdown por platform_item_id das top contribuições de receita ADS do dia?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "ads_spend_yesterday_brl": 350.07,
+        "ads_revenue_yesterday_brl": 5059.39,
+        "ads_avg_acos_pct": 4.7,
+        "ads_roas_implicito": 14.45,
+        "ads_share_gmv_pct": 54.93,
+        "campaigns_active_count": 12,
+        "dado_necessario_ausente": "breakdown ADS spend/revenue por platform_item_id — pendência estrutural registrada desde 22/05 (11º ciclo sem resolução)"
+      },
+      "leitura": "ads_summary entrega apenas totais agregados da conta. Sem breakdown por platform_item_id, é impossível confirmar se os 8 pedidos da Tulipa pausada estão no numerador ou se a recuperação de share (48,1%→54,9%) reflete aceleração real de campanha. A hipótese permanece em aberto.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "alta"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Confirmação da divergência produto-específica do mix de modalidade de envio do top 10 (48,1% Full / 51,9% Cross-Docking) vs janelas 7d (84,0%/16,0%) e 30d (80,9%/19,1%)",
+      "origem": "divergência",
+      "evidencia": {
+        "fulfillment_mix_yesterday_top10": {
+          "full_pct": 48.1,
+          "cross_docking_pct": 51.9,
+          "total_orders_resolved": 135,
+          "computed_from": "top_10_items_weighted_by_orders"
+        },
+        "fulfillment_mix_7d": {
+          "full_pct": 84.0,
+          "cross_docking_pct": 16.0,
+          "orders_total_in_window": 1191,
+          "coverage_pct": 100.0
+        },
+        "fulfillment_mix_30d": {
+          "full_pct": 80.9,
+          "cross_docking_pct": 19.1,
+          "orders_total_in_window": 3536
+        },
+        "driver_da_divergencia": {
+          "produto_visivel": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
+          "platform_item_id": "MLB4535865317",
+          "fonte": "top_items_details / top_products (raw_title)",
+          "logistic_type": "cross_docking",
+          "pedidos_dia": 56,
+          "participacao_top10": "~41% dos 135 pedidos resolvidos do top 10",
+          "confirmed_variation_attributes": [
+            "Tampa Preta"
+          ]
+        },
+        "anomalia_self_service": {
+          "flex_pct": 0.0,
+          "esperado": "0% — Flex desligado por decisão operacional",
+          "status": "consistente com regra operacional"
+        }
+      },
+      "leitura": "A divergência de ~36 p.p. no top 10 do dia vs janela 7d é integralmente explicada pelo domínio do MLB4535865317 (Tampa Preta, Cross-Docking, 56 pedidos = ~41% do top 10 resolvido). As outras variações do cluster IMB501 (Tampa Cinza e Vermelha) compartilham MLB3288536143 que é Full, mostrando que o cluster IMB501 não é homogêneo em modalidade — Tampa Preta migrou para Cross-Docking (memória 22/05 já antecipava possível migração operacional). A inversão do mix diário NÃO indica mudança estrutural; é efeito composicional de um único anúncio Cross-Docking dominante. Não há flex_pct>0 — operação consistente com regra Flex desligado.",
+      "conclusao_granular": "complica — a divergência é real mas produto-específica e pontual; não invalida o mix estrutural 80,9% Full / 19,1% Cross-Docking",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Verificação de integridade do par de variações IMB501C e IMB501V apontando para o mesmo platform_item_id MLB3288536143",
+      "origem": "risco de identificação",
+      "evidencia": {
+        "imb501c": {
+          "sku": "IMB501C",
+          "platform_item_id": "MLB3288536143",
+          "title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "confirmed_variation_attributes": [
+            "Tampa Cinza"
+          ],
+          "orders": 23,
+          "quantity": 23,
+          "mapping_status": "mapped",
+          "mapping_confidence": "high"
+        },
+        "imb501v": {
+          "sku": "IMB501V",
+          "platform_item_id": "MLB3288536143",
+          "title": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+          "confirmed_variation_attributes": [
+            "Tampa Vermelha"
+          ],
+          "orders": 20,
+          "quantity": 22,
+          "mapping_status": "mapped",
+          "mapping_confidence": "high"
+        },
+        "title_ml_publico": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+        "regra_aplicada": "title ML enxuto (publica como 'Claro') + confirmed_variation_attributes via codificação SKU determinística (sufixo C/V)",
+        "available_quantity_agregado_anuncio": 137,
+        "snapshot_unico": "available_quantity expõe o anúncio como um todo, não por variação"
+      },
+      "leitura": "Os SKUs IMB501C e IMB501V dividem o mesmo MLB3288536143 com title público genérico 'Claro'. Os atributos 'Tampa Cinza' e 'Tampa Vermelha' vêm de codificação SKU determinística (fonte autoritativa equivalente ao title ML) — não é divergência, é título ML enxuto. Caso típico documentado na regra. O cluster IMB501 completo é 56 (Preta, MLB4535865317 Cross-Docking) + 23 (Cinza, MLB3288536143 Full) + 20 (Vermelha, MLB3288536143 Full) = 99 pedidos = 50,3% do dia. O available_quantity=137 do MLB3288536143 é AGREGADO das duas variações (Cinza+Vermelha) — não permite distinguir cobertura por variação (pendência estrutural recorrente).",
+      "conclusao_granular": "confirma — identidade dos três SKUs do cluster está consistente; risco de identificação baixo para o cluster IMB501",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Risco de identificação do MLB6582682928 (K6CAN250P) com mapping_confidence=medium e slack_short_name=null",
+      "origem": "risco de identificação",
+      "evidencia": {
+        "produto_visivel": "Kit 6 Canecas Porcelana 250ml Canelada Colorida Café Chá Preta Canelada",
+        "platform_item_id": "MLB6582682928",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "sku": "K6CAN250P",
+        "mapping_status": "mapped_generic_sku",
+        "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+        "mapping_confidence": "medium",
+        "slack_short_name": null,
+        "title_consistente_entre_fontes": true,
+        "orders": 8,
+        "logistic_type": "cross_docking",
+        "is_catalog": false,
+        "available_quantity": 25,
+        "health": null
+      },
+      "leitura": "Apesar de mapping_confidence=medium e slack_short_name=null, o title em top_items_details é idêntico ao raw_title em top_products — fontes primárias concordam. O risco aqui é de comunicação no Slack (sem nome curto canônico, a L06 não tem string segura para encurtar), não de identificação. Não é trigger de bloqueio porque title e raw_title são consistentes.",
+      "conclusao_granular": "complica — não bloqueia citação em análise interna mas sinaliza para Condensadora/Slack Writer que não há nome curto canônico disponível",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Risco de identificação do MLB5402326666 (KIT4YW640) com mapping_confidence=medium e slack_short_name=null",
+      "origem": "risco de identificação",
+      "evidencia": {
+        "produto_visivel": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petróleo",
+        "platform_item_id": "MLB5402326666",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "sku": "KIT4YW640",
+        "mapping_status": "mapped_generic_sku",
+        "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+        "mapping_confidence": "medium",
+        "slack_short_name": null,
+        "display_name_truncado": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petr...",
+        "title_top_items_details": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petróleo",
+        "raw_title_top_products": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petróleo",
+        "orders": 6,
+        "health": 0.66,
+        "available_quantity": 101
+      },
+      "leitura": "Title e raw_title concordam perfeitamente; display_name é versão truncada do title (truncamento técnico do builder, não divergência semântica). Identidade do produto é segura. Risco é apenas ausência de slack_short_name canônico — implicação para Slack Writer, não para análise interna.",
+      "conclusao_granular": "confirma — produto identificável com segurança via title ML; risco baixo de identificação",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Cobertura prospectiva do anúncio Catálogo gold_pro MLB6232315532 (Kit 6 Canecas Lisas 200ml)",
+      "origem": "L02 tática",
+      "evidencia": {
+        "produto_visivel": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+        "platform_item_id": "MLB6232315532",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "is_catalog": true,
+        "catalog_product_id": "MLB56152808",
+        "listing_type": "gold_pro",
+        "logistic_type": "fulfillment",
+        "status_atual": "active",
+        "health": null,
+        "available_quantity_snapshot": 28,
+        "pedidos_dia": 11,
+        "quantidade_dia": 12,
+        "cobertura_estimada_prospectiva": "~2,5 dias ao ritmo de ~11 pedidos/dia",
+        "historico_weekly": "26/05 entrou na zona crítica com 31 unidades pós-baixa de 15 pedidos; 30/05 reposição confirmada (31→61); 01/06 cobertura ~1,6 dias com available_quantity=35",
+        "dado_necessario_ausente": "ETA de reposição ao CD do ML"
+      },
+      "leitura": "Cobertura prospectiva ~2,5 dias está em zona de atenção. É o único Catálogo no top 5 — ruptura remove Buy Box ML e a recuperação é estruturalmente mais lenta que em anúncio Clássico. health=null significa volume insuficiente para o ML calcular, NÃO saúde adequada. Histórico mostra padrão de reposição reativa (entra em zona crítica, repõe, volta a entrar). Sem ETA de reposição no pacote, não é possível confirmar se a próxima reposição já está em trânsito.",
+      "conclusao_granular": "confirma — cobertura prospectiva estreita em vetor Catálogo é risco real e prospectivo; corrobora ação 3 da L02",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Confirmação do estoque robusto do MLB4535865317 (Conjunto 5 Potes Tampa Preta, Cross-Docking, líder do dia)",
+      "origem": "L01 estratégica",
+      "evidencia": {
+        "produto_visivel": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
+        "platform_item_id": "MLB4535865317",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "logistic_type": "cross_docking",
+        "is_catalog": false,
+        "listing_type": "gold_special",
+        "status_atual": "active",
+        "health": null,
+        "available_quantity_snapshot": 8327,
+        "pedidos_dia": 56,
+        "quantidade_dia": 60,
+        "cobertura_estimada_prospectiva": "~149 dias ao ritmo de 56 pedidos/dia"
+      },
+      "leitura": "O líder absoluto do dia (56 pedidos = 28,4% do GMV) opera em Cross-Docking com estoque robusto na expedição Budamix. Cross-Docking implica controle Budamix sobre reposição — não há risco estrutural de ruptura silenciosa como nos Full. Reforça que o vetor de risco do dia está concentrado nos Full críticos (MLB4073003575, MLB6167272090), não no anúncio que liderou o volume.",
+      "conclusao_granular": "confirma — Cross-Docking dominante não é risco operacional imediato; risco está exclusivamente nos Full",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Verificação da consistência do MLB3288536143 (cluster IMB501 Cinza+Vermelha) em Full crítico simultâneo ao Kit 4 Potes 1050ml",
+      "origem": "L01 estratégica",
+      "evidencia": {
+        "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+        "platform_item_id": "MLB3288536143",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "logistic_type": "fulfillment",
+        "is_catalog": false,
+        "catalog_product_id_referenciado": "MLB44224272",
+        "listing_type": "gold_special",
+        "status_atual": "active",
+        "health": 0.71,
+        "available_quantity_snapshot": 137,
+        "pedidos_dia_imb501c": 23,
+        "pedidos_dia_imb501v": 20,
+        "pedidos_dia_agregado": 43,
+        "quantidade_dia_agregado": 45,
+        "cobertura_estimada_prospectiva_agregada": "~3 dias ao ritmo agregado de 43 pedidos/dia",
+        "historico_weekly_health": "0,71 idêntico há 11 ciclos consecutivos desde 22/05",
+        "limitacao": "available_quantity é agregado do anúncio multi-variação — cobertura por variação não é distinguível"
+      },
+      "leitura": "Health=0,71 em 11º ciclo idêntico — não é queda ativa observável, é patamar estável inferior. Cobertura agregada ~3 dias é menos crítica que os 2 dias do Kit 4 Potes 1050ml, mas dado o histórico de pico do cluster IMB501 em concentração diária (44%-56,5% nos ciclos da weekly), o ritmo pode acelerar a qualquer momento. A pendência estrutural de available_quantity por variação (Cinza vs Vermelha) impede leitura granular — se uma variação esgotar primeiro, fica invisível até o anúncio inteiro mostrar zero.",
+      "conclusao_granular": "complica — risco real mas menos imediato que MLB4073003575; o gargalo é a granularidade do dado (não é possível ver por variação)",
+      "confianca": "média"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "baixo",
+    "fontes": [],
+    "bloqueios_para_slack": [],
+    "explicacao": "Todos os produtos do top 10 têm title em top_items_details consistente com raw_title em top_products. As 3 variações do cluster IMB501 (Tampa Preta MLB4535865317, Tampa Cinza/Vermelha MLB3288536143) têm confirmed_variation_attributes via codificação SKU determinística (sufixo P/C/V), o que é fonte autoritativa equivalente ao title ML — caso típico de título ML enxuto, não divergência. Dois produtos (MLB6582682928 K6CAN250P e MLB5402326666 KIT4YW640) têm mapping_confidence=medium e slack_short_name=null, mas isso é limitação da camada de comunicação Slack, não risco de identificação — title e raw_title concordam em ambos. Nenhum produto tem display_name divergente do title, nenhum mapping_status=ambiguous, nenhum mapping_confidence=low. Nenhum bloqueio para Slack necessário."
+  },
+  "divergencias": [
+    {
+      "tipo": "mix_modalidade_envio",
+      "fonte_a": "fulfillment_mix_yesterday_top10: 48,1% Full / 51,9% Cross-Docking (135 pedidos top 10)",
+      "fonte_b": "fulfillment_mix_7d: 84,0% Full / 16,0% Cross-Docking (1.191 pedidos janela) e fulfillment_mix_30d: 80,9% Full / 19,1% Cross-Docking (3.536 pedidos janela)",
+      "resolucao": "fulfillment_mix_7d e fulfillment_mix_30d prevalecem como leitura estrutural; fulfillment_mix_yesterday_top10 é leitura pontual produto-específica",
+      "regra_precedencia": "janelas longas com coverage_pct=100% sobre logistic_type real prevalecem sobre snapshot diário ponderado no top 10; mix do dia é efeito composicional, não mudança estrutural",
+      "impacto": "A divergência de ~36 p.p. é integralmente explicada pelo domínio do MLB4535865317 (Cross-Docking) com 56 pedidos. Não há sinal de mudança estrutural na modalidade de envio da conta. Mix estrutural Full-pesado segue válido para leitura de exposição a risco de ruptura silenciosa em Full."
+    },
+    {
+      "tipo": "cancelamentos",
+      "fonte_a": "metrics.cancelamentos=2 (cancelamentos realizados no dia 02/06)",
+      "fonte_b": "reputation.cancellations_rate=0 (janela longa ML, taxa rolling)",
+      "resolucao": "métricas diferentes, não substituíveis — convivem como visões complementares",
+      "regra_precedencia": "metrics.cancelamentos mede evento do dia; reputation.cancellations_rate mede acúmulo na janela rolling do ML",
+      "impacto": "Os 2 cancelamentos do dia + 8 cancelamentos prospectivos da Tulipa paused ainda não impactaram reputation.cancellations_rate. O sinal a observar é exatamente o momento em que cancellations_rate sai de 0 — confirma que a série acumulada entrou na janela oficial, com impacto direto no ETA Platinum."
+    }
+  ],
+  "evidencias_conflitantes": [
+    {
+      "hipotese": "ADS share recuperou de 48,1% (01/06) para 54,9% hoje refletindo aceleração real de campanha",
+      "confirma": "ROAS implícito 14,45x e ACOS 4,7% no piso da série de 10 ciclos — campanha em eficiência máxima; quebra da monotonia descendente da série 22/05→01/06",
+      "enfraquece": "Os 8 pedidos da Tulipa pausada (MLB6167272090) podem estar incluídos no numerador de revenue_ads_yesterday_brl=R$5.059,39 — se confirmados como cancelamentos automáticos, parte da receita ADS é artefato métrico, não receita realizada; sem breakdown por platform_item_id, impossível separar",
+      "dado_adicional_que_resolveria": "breakdown ADS spend/revenue por platform_item_id (pendência estrutural registrada há 11 ciclos consecutivos desde 22/05)",
+      "status": "hipótese em aberto"
+    }
+  ],
+  "detalhes_que_a_condensadora_nao_pode_perder": [
+    {
+      "detalhe": "Kit 4 Potes 1050ml (MLB4073003575, Full, health=0,75) fechou o dia com available_quantity=2 pós-baixa de 12 pedidos — cobertura prospectiva < 4 horas; ruptura praticamente certa no próximo ciclo. É o vetor de risco operacional mais agudo do dia.",
+      "por_que_importa": "Remove um dos suportes Full do novo patamar e gera cancelamentos automáticos que pressionam cancellations_rate exatamente no momento de ETA 2,5 dias para Platinum.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Tulipa (MLB6167272090, Full) replicou pelo oitavo ciclo o padrão paused/zero/pedidos, desta vez na maior escala da série: 8 pedidos com status=paused e available_quantity=0 = 8 cancelamentos prospectivos confirmados (a série de prospectivos acumulou 3→3→2→6→9→2→8).",
+      "por_que_importa": "Com 6.390 transações completas, ~32 cancelamentos movem 0,5 p.p. — threshold Platinum. O acúmulo da Tulipa está se aproximando de volume com impacto perceptível no indicador oficial.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo gold_pro Full, único Catálogo no top 5) com available_quantity=28 pós-baixa de 11 pedidos — cobertura prospectiva ~2,5 dias. Ruptura em Catálogo remove Buy Box ML com recuperação estruturalmente lenta.",
+      "por_que_importa": "Terceiro vetor Full em zona estreita simultânea aos outros dois — concentração de risco operacional não capturada pelos números de superfície do GMV.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "A divergência do mix de modalidade de envio do top 10 do dia (48,1% Full / 51,9% Cross-Docking vs 80,9%/19,1% em 30d) é efeito composicional integral do MLB4535865317 (Tampa Preta, Cross-Docking, 56 pedidos = 28,4% do GMV). Não indica mudança estrutural — indica que o resultado do dia fluiu pelo Cross-Docking enquanto os Full estruturais estão em estoque crítico.",
+      "por_que_importa": "Evita leitura errada de que a conta está migrando para Cross-Docking; reforça que o ganho de patamar do dia mascarou que os Full que historicamente sustentam o mix começaram a ceder.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Kit 4 Potes 640ml (MLB5402326666, Full, health=0,66) tem o menor health do snapshot atual, abaixo do threshold 0,85 e abaixo dos já preocupantes 0,71/0,75 dos campeões. Não estava em evidência nos ciclos anteriores da weekly.",
+      "por_que_importa": "Possível novo vetor de saúde degradada — driver desconhecido (claims, atrasos, listing). Sem série temporal de health ou drivers, não é possível classificar como novo ou recorrente; cabe observação no próximo ciclo.",
+      "confianca": "média"
+    },
+    {
+      "detalhe": "ADS share recuperou de 48,1% para 54,9% (rompe monotonia descendente da série de 10 ciclos), com ROAS 14,45x e ACOS 4,7% no piso de eficiência. Hipótese de inflação do numerador pelos 8 pedidos da Tulipa pausada permanece em aberto — sem breakdown por platform_item_id (pendência há 11 ciclos), não é possível confirmar nem refutar.",
+      "por_que_importa": "Evita leitura definitiva sobre aceleração de campanha vs artefato métrico; preserva a ressalva para a tese.",
+      "confianca": "média"
+    },
+    {
+      "detalhe": "Cluster IMB501 completo (Tampa Preta MLB4535865317 + Tampa Cinza/Vermelha MLB3288536143) respondeu por 99 pedidos = 50,3% do dia. O cluster NÃO é homogêneo em modalidade: Tampa Preta opera Cross-Docking (estoque robusto, 8.327 unidades, sem risco imediato), Tampa Cinza+Vermelha opera Full (available_quantity agregado 137, health=0,71 no 11º ciclo idêntico).",
+      "por_que_importa": "A dependência crônica em 50,3% do volume tem duas naturezas operacionais distintas — comunicar como bloco homogêneo perde a diferença material entre o vetor Cross-Docking controlado pela Budamix e o vetor Full em zona de health degradada.",
+      "confianca": "alta"
+    }
+  ],
+  "memoria_interna": [
+    "MLB4535865317 (Conjunto 5 Potes Tampa Preta) — Cross-Docking, 56 pedidos, available_quantity=8.327, líder absoluto do dia, sem risco operacional imediato (Budamix controla reposição)",
+    "MLB3288536143 (Cluster IMB501C+IMB501V agregado) — Full, 43 pedidos agregados (23 Cinza + 20 Vermelha), available_quantity=137 agregado do anúncio multi-variação, health=0,71 no 11º ciclo idêntico desde 22/05, listing_type=gold_special, catalog_product_id=MLB44224272 referenciado mas is_catalog=false",
+    "MLB4073003575 (Kit 4 Potes 1050ml) — Full, 12 pedidos, available_quantity=2, health=0,75, ruptura prospectiva < 4h",
+    "MLB6232315532 (Kit 6 Canecas Lisas 200ml) — Catálogo gold_pro Full, 11 pedidos, available_quantity=28, health=null, catalog_product_id=MLB56152808, cobertura ~2,5 dias",
+    "MLB6167272090 (Tulipa 250ml) — Full paused, available_quantity=0, 8 pedidos prospectivamente cancelados, catalog_product_id=MLB39111350, 8º ciclo do padrão",
+    "MLB6582682928 (K6CAN250P) — mapping_confidence=medium, slack_short_name=null, 8 pedidos, Cross-Docking, available_quantity=25, health=null — não bloqueia análise interna mas Slack Writer não tem nome curto canônico",
+    "MLB5402326666 (KIT4YW640) — mapping_confidence=medium, slack_short_name=null, 6 pedidos, Full, available_quantity=101, health=0,66 (menor do snapshot, abaixo do threshold 0,85) — possível novo vetor de saúde degradada",
+    "MLB3343832496 (914C, Canequinhas 100ml Madeira Amarelo) — Full, 8 pedidos, available_quantity=333, health=0,85 (no threshold)",
+    "MLB5322494954 (KIT2YW1520) — Cross-Docking, 6 pedidos, available_quantity=14, health=0,75",
+    "Divergência mix de modalidade de envio: yesterday_top10 (48,1%/51,9%) vs 7d (84,0%/16,0%) vs 30d (80,9%/19,1%) — resolvida como efeito composicional do MLB4535865317; janelas longas prevalecem como leitura estrutural",
+    "flex_pct=0 em todas as janelas — consistente com regra operacional Flex desligado",
+    "Pendências estruturais recorrentes desde 22/05 (12º ciclo sem resolução para algumas): (1) breakdown ADS spend/revenue por platform_item_id; (2) lista granular cancelamentos order_id↔platform_item_id↔motivo; (3) série temporal de health por anúncio; (4) ETA de reposição ao CD do ML; (5) available_quantity por variação em anúncios multi-variação; (6) drivers de health por anúncio (claims, late_handling, returns)",
+    "ADS share recalculado: 5.059,39 / 9.210,85 = 54,93% (a L01 cita 54,9% — arredondamento consistente)",
+    "ROAS implícito: 5.059,39 / 350,07 = 14,45x"
+  ],
+  "llm_used": true,
+  "model": "claude-opus-4-7",
+  "fallback": false
+}
+
+## 05-condensadora
+{
+  "camada": "05-condensadora",
+  "data": "2026-06-02",
+  "plataforma": "ml",
+  "recipient": "Yasmin",
+  "analise_final_condensada": [
+    {
+      "insight": "A conta entregou o melhor terça da série (R$ 9.210, quinta semana seguida de crescimento sequencial), mas o resultado mascarou três Full em situação crítica simultânea: Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo fechou com 2 unidades após 12 pedidos (ruptura praticamente certa nas próximas horas), Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara repetiu pelo oitavo ciclo o padrão pausada com estoque zero (8 pedidos viraram cancelamentos prospectivos) e Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida — único Catálogo no topo — opera com ~2,5 dias de cobertura. O patamar está em ganho real, mas a estrutura que o sustenta começa a ceder e exige reposição imediata.",
+      "padrao": "F — Métrica vs qualidade",
+      "base": "combinação",
+      "classificacao": "risco latente"
+    },
+    {
+      "insight": "Apesar de cancellations_rate oficial ainda estar em zero, a janela do MercadoLíder Platinum está apertada: gap de R$ 11.621 e ETA de 2,5 dias ao ritmo médio (hoje o Faturamento ficou 113% acima do pace necessário). A ameaça à promoção não é mais o volume — é a qualidade. Os 8 cancelamentos prospectivos da Tulipa entram em série crescente (3→3→2→6→9→2→8), e com 6.390 transações completas cada ~32 cancelamentos movem 0,5 p.p., exatamente o threshold da medalha. O próximo snapshot define se a métrica oficial sai de zero antes da promoção fechar.",
+      "padrao": "B — Inversão positiva",
+      "base": "combinação",
+      "classificacao": "risco latente"
+    },
+    {
+      "insight": "A inversão do mix de modalidade de envio do top 10 (48,1% Full / 51,9% Cross-Docking, contra 80,9% Full em 30d) não é mudança estrutural — é um único anúncio Cross-Docking, Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto, dominando o dia com 56 pedidos (28,4% do Faturamento) e deslocando o número. Os Full estruturais não cresceram em participação, eles fluíram menos porque estão exatamente onde o risco operacional está concentrado. Ler como migração levaria à decisão errada; o que mudou foi o produto líder do dia, não a operação.",
+      "padrao": "C — Inversão negativa",
+      "base": "Granular",
+      "classificacao": "fato"
+    }
+  ],
+  "prioridades_condensadas": [
+    {
+      "prioridade": "Verificar imediatamente se há reposição em trânsito para o Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo no CD do ML e acelerar abastecimento.",
+      "por_que": "Anúncio fechou com 2 unidades após 12 pedidos — ruptura em Full é praticamente certa nas próximas horas; é um dos suportes do novo patamar e gera cancelamentos automáticos que pressionam a janela de Platinum.",
+      "sinal_de_confirmacao_refutacao": "Snapshot de amanhã: se status seguir active com available_quantity > 10 = reposição entrou; se status virar paused ou available_quantity = 0 = ruptura confirmada.",
+      "escalar_se": "Sem reposição com ETA ≤ 48h confirmada — Yasmin abre conversa com Trader sobre recalibrar projeção e priorizar abastecimento ao CD do ML."
+    },
+    {
+      "prioridade": "Verificar se há estoque disponível para reativação do anúncio Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara; se houver, reativar nas próximas 24h.",
+      "por_que": "Oitavo ciclo do padrão pausada com estoque zero, desta vez em maior escala (8 cancelamentos prospectivos); com o ETA Platinum em 2,5 dias, cada cancelamento que entrar na janela rolling aperta o threshold de qualidade da medalha.",
+      "sinal_de_confirmacao_refutacao": "Próximo snapshot da reputation: cancellations_rate saindo de zero confirma que a série acumulada entrou na janela oficial; reativação com estoque > 0 e status active confirma interrupção do ciclo.",
+      "escalar_se": "Reposição inviável em ≤ 24h e cancellations_rate > 0 no próximo snapshot — Yasmin escalona para Kobe sobre risco direto à promoção de Platinum."
+    },
+    {
+      "prioridade": "Confirmar ETA de reposição do Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida (Catálogo) ao CD do ML.",
+      "por_que": "Cobertura prospectiva ~2,5 dias no único Catálogo do top 5; ruptura em Catálogo derruba Buy Box e a recuperação de posição é estruturalmente lenta — perder esse vetor enfraquece o segundo eixo de volume.",
+      "sinal_de_confirmacao_refutacao": "ETA de reposição ≤ 3 dias = risco coberto; ETA > 5 dias ou indefinido = janela de ruptura aberta antes do reabastecimento.",
+      "escalar_se": "ETA > 5 dias ou indefinido — Yasmin escalona para Trader com foco em prioridade de abastecimento do CD."
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [],
+  "memoria_para_amanha": [
+    "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo (MLB4073003575, Full, nível regular 0,75): available_quantity=2 pós-baixa de 12 pedidos — confirmar amanhã se reposição entrou, se status virou paused ou se ruptura se materializou; define se o novo patamar de R$ 9k se sustenta nos próximos 2 dias.",
+    "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara (MLB6167272090, Full, paused, available_quantity=0): oitavo ciclo do padrão, 8 pedidos prospectivamente cancelados — monitorar cancellations_rate da reputação nos próximos 1-3 snapshots; sair de zero confirma entrada da série acumulada na janela oficial e aperta diretamente o ETA Platinum.",
+    "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida (MLB6232315532, Catálogo gold_pro Full, sem nível de qualidade calculado pelo ML): available_quantity=28 pós-baixa de 11 pedidos, cobertura ~2,5 dias — único Catálogo no top 5; ruptura derruba Buy Box.",
+    "MercadoLíder Platinum: gap R$ 11.621,68, progresso 96,07%, ETA 2,5 dias ao ritmo médio R$ 4.739/dia — Faturamento de hoje (R$ 9.210) 79% do gap em um único dia; promoção ao alcance de 2-3 dias mas diretamente vulnerável a movimento adverso no cancellations_rate.",
+    "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petróleo (MLB5402326666, Full, nível preocupante 0,66): menor nível do snapshot, abaixo do threshold 0,85 — primeira aparição em zona crítica; observar próximo ciclo para classificar como recorrente ou pontual e tentar identificar driver (claims, atrasos, listing).",
+    "ADS share recuperou de 48,1% (01/06) para 54,9% hoje (R$ 5.059 / R$ 9.210), quebrando série monotonicamente descendente desde 22/05; ROAS 14,45x e ACOS 4,7% no piso de eficiência — hipótese aberta: os 8 pedidos da Tulipa pausada podem estar inflando o numerador; sem breakdown por platform_item_id (12º ciclo de pendência), não é possível separar aceleração real de artefato métrico.",
+    "Cluster IMB501 respondeu por 99 pedidos = 50,3% do dia, mas NÃO é homogêneo em modalidade: Tampa Preta (MLB4535865317) opera Cross-Docking com estoque robusto (8.327 un, sem risco); Tampa Cinza+Vermelha compartilham MLB3288536143 em Full (available_quantity agregado=137, nível regular 0,71 no 11º ciclo idêntico) — comunicar como bloco único perde a diferença material entre os vetores.",
+    "Pendências estruturais recorrentes desde 22/05 (12º ciclo): (1) breakdown ADS spend/revenue por platform_item_id; (2) lista granular cancelamentos order_id↔platform_item_id↔motivo; (3) série temporal de nível de qualidade por anúncio; (4) ETA de reposição ao CD do ML; (5) available_quantity por variação em anúncios multi-variação; (6) drivers de nível de qualidade por anúncio."
+  ],
+  "alertas_de_confianca": {
+    "nivel": "media",
+    "explicacao": "Base estrutural sólida com coverage 100% nas janelas 7d/30d, reconciliação OK e identidade dos top 10 segura (risco_identificacao baixo na L04, nenhum bloqueio para Slack). Confiança não é alta porque seis pendências estruturais recorrem há 12 ciclos sem resolução — sem breakdown ADS por platform_item_id, série temporal de nível de qualidade, lista granular de cancelamentos e ETA de reposição ao CD do ML, três hipóteses centrais permanecem em aberto: aceleração real da campanha vs artefato métrico, materialização efetiva dos 8 cancelamentos prospectivos da Tulipa no cancellations_rate oficial, e direção interna do nível de qualidade dos campeões Full. As ações do dia foram desenhadas sobre os fatos que o pacote sustenta com segurança; as ressalvas estão preservadas na memória para amanhã."
+  },
+  "llm_used": true,
+  "model": "claude-opus-4-7",
+  "fallback": false
+}
+
+## 06-slack-preview
+### Mensagem Slack
+
+```
+DAILY SALES REPORT — MERCADO LIVRE — 02/06/2026 (Ontem)
+
+📊 VISÃO MERCADO LIVRE
+- Faturamento: R$ 9.210,85
+- Pedidos: 197 pedidos
+- Ticket médio: R$ 46,76
+- Cancelamentos: 2
+
+🏆 TOP PRODUTOS MERCADO LIVRE
+- Potes Vidro 5 Peças — Tampa Preta — 56 pedidos
+- Potes Vidro 5 Peças — Tampa Cinza — 23 pedidos
+- Potes Vidro 5 Peças — Tampa Vermelha — 20 pedidos
+- Kit 4 Potes 1050ml — 12 pedidos
+- Kit 6 Canecas Lisas 200ml — 11 pedidos
+
+🔍 ANÁLISE DA CONTA
+- A conta entregou o melhor resultado de terça da série — R$ 9.210,85, quinta semana seguida de crescimento. Mas o número mascara três anúncios em Full com cobertura crítica ao mesmo tempo: Kit 4 Potes 1050ml fechou com 2 unidades após 12 pedidos (ruptura praticamente certa nas próximas horas), Kit 6 Canecas Tulipa 250ml repetiu pelo oitavo ciclo o padrão de pausar com estoque zero — 8 pedidos viraram cancelamentos prospectivos — e Kit 6 Canecas Lisas 200ml, único Catálogo no top 5, tem ~2,5 dias de cobertura restante. O nível de vendas está crescendo de verdade, mas a estrutura que o sustenta começa a ceder e exige reposição imediata.
+- Embora a taxa de cancelamentos oficial ainda esteja em zero, a janela de promoção para MercadoLíder Platinum está no momento mais crítico: faltam R$ 11.621,68, progresso em 96,1%, prazo estimado de 2,5 dias ao ritmo médio — e hoje o Faturamento ficou 113% acima desse ritmo. O volume não é o problema. O risco é a qualidade: os cancelamentos prospectivos do Kit 6 Canecas Tulipa 250ml acumulam em série crescente (3→3→2→6→9→2→8 hoje), e com 6.390 transações completas cada ~32 cancelamentos movem 0,5 ponto percentual — exatamente o limite da medalha. A próxima leitura de reputação define se essa série já entrou na janela oficial antes de a promoção fechar.
+- A proporção de modalidade de envio no top 10 ficou 48,1% Full / 51,9% Cross-Docking hoje, contra 80,9% Full nos últimos 30 dias. Isso não é mudança estrutural — é efeito de um único produto: Potes Vidro 5 Peças — Tampa Preta liderou o dia com 56 pedidos (28,4% do Faturamento) em Cross-Docking. Os anúncios Full não perderam espaço de forma estrutural; fluíram menos porque estão exatamente onde o risco operacional está concentrado. O que mudou foi o produto líder do dia, não a operação.
+
+🎯 PRIORIDADES DO DIA
+- Yasmin: verificar imediatamente se há reposição em trânsito para o Kit 4 Potes 1050ml ao CD do ML e acelerar o abastecimento. Fechou com 2 unidades após 12 pedidos — ruptura em Full é praticamente certa nas próximas horas; remove um suporte do novo nível de vendas e gera cancelamentos automáticos que pressionam a janela de Platinum. Confirmar/refutar por: próxima leitura — status ativo com mais de 10 unidades = reposição entrou; pausado ou zerado = ruptura confirmada. Escalar se: sem prazo estimado de reposição em até 48h — Yasmin abre conversa com o Trader para recalibrar projeção de volume e priorizar o abastecimento ao CD.
+- Yasmin: verificar se há estoque disponível para reativar o Kit 6 Canecas Tulipa 250ml; se houver, reativar em até 24h. Oitavo ciclo do mesmo padrão — pausada com estoque zero — desta vez na maior escala da série (8 cancelamentos prospectivos). Com o prazo estimado de Platinum em 2,5 dias, cada cancelamento que entrar na janela oficial aperta o limite de qualidade da medalha. Confirmar/refutar por: próxima leitura de reputação — taxa de cancelamentos saindo de zero = série entrou na janela oficial; reativação com estoque acima de zero e status ativo = ciclo interrompido. Escalar se: reposição inviável em 24h e taxa de cancelamentos acima de zero — Yasmin escalona para o Kobe sobre risco direto à promoção de Platinum.
+- Yasmin: confirmar prazo estimado de reposição do Kit 6 Canecas Lisas 200ml (Catálogo) ao CD do ML. Cobertura em ~2,5 dias no único Catálogo do top 5 — ruptura derruba o Buy Box e a recuperação de posição é estruturalmente lenta. Confirmar/refutar por: prazo estimado de até 3 dias = risco coberto; acima de 5 dias ou indefinido = janela de ruptura aberta antes do reabastecimento. Escalar se: prazo acima de 5 dias ou indefinido — Yasmin escalona para o Trader com foco em prioridade de abastecimento ao CD.
+
+Dia analisado: 02/06/2026 — 00:00–23:59 BRT
+```
+
+---
+
+### Respeito de bloqueios
+
+Sem bloqueios recebidos. A L05 entregou `o_que_nao_pode_ir_para_slack: []` (lista vazia). Todos os produtos citados nos insights e prioridades mantidos nominalmente com seus `slack_short_name` canônicos.
+
+---
+
+### Decisões de formatação
+
+**Metadados internos**
+- Campos `padrao`, `base` e `classificacao` removidos dos três insights; não aparecem na mensagem final.
+
+**Preservação de nuance por classificação**
+- Insights 1 e 2 (`risco latente`): linguagem prospectiva preservada — "ruptura praticamente certa", "cancelamentos prospectivos", "define se a série já entrou". Nenhuma hipótese convertida em fato.
+- Insight 3 (`fato`): escrito de forma direta e assertiva conforme classificação.
+
+**Termos técnicos traduzidos**
+- `ETA` → "prazo estimado" (todas as ocorrências em Análise e Prioridades)
+- `patamar` → "nível de vendas" / "nível" (todas as ocorrências)
+- `cancellations_rate` → "taxa de cancelamentos"
+- `threshold` → "limite da medalha"
+- `snapshot` → "próxima leitura" / "leitura de reputação" (conforme contexto)
+- `gap` → "faltam R$ [valor]"
+- `pace` → "ritmo médio" / "ritmo necessário"
+- `health` — não aparecia explicitamente nos insights da L05; sem ocorrência a traduzir no Slack
+
+**Correção monetária: R$ 11.621,68**
+- L05 arredondou para "R$ 11.621"; valor completo do ml_snapshot é R$ 11.621,679... Aplicada regra de 2 casas decimais obrigatórias em todos os valores monetários → R$ 11.621,68.
+
+**Modalidade de envio omitida da seção 📊 VISÃO**
+- Dado disponível é `fulfillment_mix_yesterday_top10`, que cobre apenas top 10 (135 de 197 pedidos = ~68,5% do dia). Sem autorização da Condensadora para exibir com ressalva explícita de cobertura, omitido da VISÃO conforme regra. Modalidade de envio tratada exclusivamente na 🔍 ANÁLISE via insight 3 da L05.
+
+**Faturamento por produto não incluído no 🏆 TOP PRODUTOS**
+- Pacote não traz receita validada por produto/variação. Formato padrão `[nome] — [pedidos] pedidos` aplicado em todos os cinco itens.
+
+**Traduções de nome de produto — Top Produtos (slack_short_name, mapeamento canônico)**
+- IMB501P — usado slack_short_name "Potes Vidro 5 Peças — Tampa Preta" (mapeamento canônico)
+- IMB501C — usado slack_short_name "Potes Vidro 5 Peças — Tampa Cinza" (mapeamento canônico)
+- IMB501V — usado slack_short_name "Potes Vidro 5 Peças — Tampa Vermelha" (mapeamento canônico)
+- KIT4YW1050 — usado slack_short_name "Kit 4 Potes 1050ml" (mapeamento canônico)
+- CLR002 — usado slack_short_name "Kit 6 Canecas Lisas 200ml" (mapeamento canônico)
+
+**Traduções de nome de produto — Análise e Prioridades (título longo L05 → slack_short_name L06)**
+- L05: "Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo" → L06: "Kit 4 Potes 1050ml" (slack_short_name KIT4YW1050; mapeamento canônico)
+- L05: "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara" → L06: "Kit 6 Canecas Tulipa 250ml" (slack_short_name TL6250; mapeamento canônico)
+- L05: "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida" → L06: "Kit 6 Canecas Lisas 200ml" (slack_short_name CLR002; mapeamento canônico)
+- L05: "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto" → L06: "Potes Vidro 5 Peças — Tampa Preta" (slack_short_name IMB501P; mapeamento canônico)
+
+**Consolidação de variações no Top Produtos**
+- Cluster IMB501 exibido como três variações separadas (Tampa Preta MLB4535865317 Cross-Docking / Tampa Cinza MLB3288536143 Full / Tampa Vermelha MLB3288536143 Full), conforme regra de variações reais com volumes e modalidades de envio distintos. Nenhuma agregação em família única aplicada.
+
+**Atribuição de responsável nas Prioridades**
+- Yasmin inserida como executora em cada prioridade conforme regra da L06 (a L05 não atribui responsável). Trader e Kobe mantidos como alvos de escalonamento exatamente como a L05 especificou.
+
+**Confiança média**
+- Nível "media" da L05 não exige ressalva explícita de limitação de dados na mensagem final. As ressalvas pertinentes já estão incorporadas na classificação "risco latente" dos insights 1 e 2 (linguagem prospectiva e condicional preservada).
+
+---
+# INSTRUCAO DE OUTPUT
+Responda EXCLUSIVAMENTE com JSON valido. Nenhum texto fora do JSON.
+Nao use blocos de codigo markdown (```). Apenas o JSON puro.

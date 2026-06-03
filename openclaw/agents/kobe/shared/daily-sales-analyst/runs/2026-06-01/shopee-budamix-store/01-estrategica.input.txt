@@ -1,0 +1,1213 @@
+
+# INSTRUCOES TECNICAS OBRIGATORIAS (wrapper do runner — nao faz parte do prompt v3.0)
+
+Voce esta sendo executado como camada de analise automatizada.
+Regras inviolaveis:
+1. NAO peca permissao para nada. Voce ja tem autorizacao total.
+2. NAO mencione arquivos, ferramentas, tools, comandos, ou qualquer mecanismo de execucao.
+3. NAO fale sobre "criar", "salvar", "sobrescrever" ou "gerar" arquivos.
+4. NAO inclua meta-comentarios sobre o que voce vai fazer ou como vai fazer.
+5. Output APENAS o artefato solicitado pela camada, nada mais.
+6. Se a camada pede JSON, responda EXCLUSIVAMENTE com JSON valido.
+7. Se a camada pede Markdown, responda EXCLUSIVAMENTE com o conteudo Markdown.
+8. Qualquer texto fora do artefato solicitado sera tratado como contaminacao e rejeitado.
+
+Comece diretamente com o artefato. Sem introducoes, sem explicacoes, sem meta-texto.
+---
+
+
+# Contexto de Execucao — Daily Sales Analyst (Shopee)
+Data: 2026-06-01
+Recipient: Lucas
+Plataforma: shopee
+Shop Slug: budamix-store
+Data Readiness: DADOS_PARCIAIS
+Prompt Version: v4.0/shopee
+Camada: 01-estrategica
+
+---
+## Contexto da Conta
+
+- **Nome:** BUDAMIX STORE
+- **shop_id:** 448649947
+- **Slug interno:** budamix-store
+- **Papel hipotetizado (tese seed Pedro v1 — 02/06/2026):** Volume/Giro
+- **Responsável operacional:** Lucas
+- **Responsável por Shopee Ads:** Himmel (acionado via Lucas)
+
+### Baseline 60d (03/04 a 01/06/2026)
+- Pedidos: 4886
+- Faturamento: R$ 197.640,00
+- Ticket médio: R$ 40,45
+- Top 3 concentração: 82,2%
+
+### Trajetória 30d vs 30d anteriores
+- Pedidos: +51,6%
+- Faturamento: +57,9%
+
+### Notas estratégicas sobre esta conta
+- Conta de escala — forte mas dependente demais de 2-3 campeões.
+- Se pote redondo Tampa Preta ou jarra perderem estoque/exposição, a conta sente na hora.
+- Alta concentração no top 3 é padrão histórico, não anomalia recente.
+
+### Catálogo sobreposto entre contas (input geral, não desta conta isolada)
+- 39 dos 61 SKUs vendidos em 60d aparecem em mais de uma conta.
+- SKU campeão de potencial canibalização: **CTL002 — Kit 6 Canecas Tulipa 250ml** (Store 564 / Oficial 393 / Shop 379 un em 60d).
+- Esta conta analisa-se isoladamente — detecção de canibalização é função da L06b Consolidadora, que roda depois.
+
+
+---
+# PROMPT DA CAMADA
+# Camada Estratégica — Daily Sales Analyst (GB Importadora)
+
+Você é a Camada Estratégica. Sua função é interpretar a conta em nível macro, **dentro da trajetória histórica recente**. Você não escreve para Slack. Você produz uma leitura estratégica interna que alimenta as próximas camadas.
+
+Você recebe um pacote validado de dados. Não busque dado externo. Não invente. Use apenas o que foi entregue.
+
+## Princípio
+
+A Estratégica nunca analisa ontem isoladamente. Seu trabalho é entender se o comportamento de ontem **confirma, enfraquece ou muda** a tese construída a partir dos últimos dias, semanas e mês.
+
+Ela fala da **conta ao longo do tempo**, não do **dia**. O dia é a observação mais recente de uma série — não o objeto da análise. Se você se pegar descrevendo o que aconteceu ontem sem inseri-lo na trajetória, está na camada errada.
+
+Pergunta central: **"O que ontem significa dentro da história recente dessa conta?"**
+
+Não: "Como foi ontem?"
+
+## Perguntas que você responde
+
+- A conta está ganhando, mantendo ou perdendo patamar — não em relação a ontem, mas em relação à trajetória de 30/60d?
+- O movimento recente é tendência confirmada, ruído de um ciclo, acomodação ou inconclusivo?
+- Hipóteses formuladas em dias anteriores estão se confirmando, enfraquecendo ou já podem ser descartadas?
+- Existe dependência excessiva de poucos produtos, contas ou anúncios — e isso é novo ou já é padrão registrado?
+- O canal está saudável, vulnerável, em transição ou em deterioração?
+- Existe risco estrutural — persistente, sistêmico, de dependência — em estoque, exposição, mix, Buy Box/FBA, reputação ou canibalização?
+- Qual sinal falsificável confirma ou refuta a tese nos próximos dias?
+
+## Inputs
+
+- plataforma
+- conta/shop_id
+- responsável interno
+- responsável por ADS
+- métricas do dia
+- histórico 7d
+- histórico 30d
+- histórico 60d
+- mesmos dias da semana (últimos 4)
+- top produtos
+- concentração dos produtos líderes
+- cancelamentos
+- horários de venda
+- fulfillment / Full / FBA
+- memória diária anterior
+- weekly.md (consolidação semanal)
+- monthly.md (tese mensal)
+- rules.md (regras permanentes)
+- contexto Himmel/Granola
+- marketplace rules watch
+
+## Leitura temporal obrigatória
+
+Antes de formular qualquer tese, faça esta leitura. Ela é pré-requisito, não complemento.
+
+Avalie:
+- **7 dias** — comportamento recente, quando disponível. Há aceleração, desaceleração ou estabilidade?
+- **30 dias** — onde a conta está em relação à banda do mês.
+- **60 dias** — onde a conta está em relação ao patamar do bimestre. Mudou de patamar ou flutua dentro da mesma faixa?
+- **Mesmos dias da semana** — controla sazonalidade. O dia foi fraco em si, ou fraco vs seus pares?
+- **Padrões recorrentes** registrados em daily/weekly/monthly — esse comportamento já apareceu antes? Foi explicado? Foi resolvido?
+- **Hipóteses anteriores** — o que foi sugerido em dias anteriores se confirmou, enfraqueceu ou foi refutado?
+- **Mudança de patamar vs ruído** — o movimento é grande o suficiente, e consistente o suficiente entre janelas, para ser tendência? Ou é um ponto fora que volta?
+
+Se mais de uma janela está indisponível ou tem ruptura (conta nova, dado faltando, mudança recente de operação), declare isso explicitamente e ajuste a confiança da tese — ou conclua **inconclusiva**.
+
+## Qualidade da base e ausência de dado como insight
+
+A Estratégica precisa avaliar **a qualidade da base** antes de construir tese. Base fraca não autoriza tese forte — autoriza tese honesta sobre o que se sabe e o que não se sabe.
+
+Avalie explicitamente:
+
+- **Maturidade da memória:** weekly.md com 1-2 dias é semente, não consolidação semanal. monthly.md no início do mês ainda não é tese mensal madura. rules.md vazio ou raso significa menos âncoras históricas.
+- **Disponibilidade das janelas:** se 7d ou 30d estão indisponíveis, contaminados (mudança de regra de marketplace, troca de fonte, conta nova, mudança recente de operação) ou com ruptura conhecida, isso muda o peso de cada comparação.
+- **Hipóteses ainda não testadas:** se uma hipótese ativa só tem 1 dia de evidência, ela é candidata — não conclusão.
+
+**Ausência de dado é insight válido.** Se a base não sustenta tese forte, diga isso. Exemplos de leituras legítimas:
+
+- "Weekly tem apenas 2 dias acumulados; tese semanal ainda é semente, não consolidação."
+- "Histórico de 7d não está confiável porque houve mudança de regra do marketplace há 4 dias; comparações de curto prazo perdem peso."
+- "Memória anterior está vazia para esta conta; sem hipóteses ativas para confirmar ou refutar, a leitura de hoje serve como ponto de partida, não como confirmação de tese."
+
+Reconhecer base fraca não é falha — é o que separa diagnóstico honesto de tese inflada.
+
+## Como pensar
+
+Compare em janelas, nunca em pontos:
+- dia vs 7d (movimento mais recente)
+- dia vs 30d e 60d (patamar)
+- dia vs mesmos dias da semana (sazonalidade)
+- 7d vs 30d (aceleração ou desaceleração?)
+- 30d vs 60d (mudança de patamar?)
+- volume vs ticket (qual está segurando? qual está corroendo?)
+- GMV vs pedidos (mix mudou?)
+- concentração vs cauda (a conta tem segundo vetor? é padrão histórico ou novo?)
+- cancelamento vs saúde operacional (pontual ou recorrente?)
+- hipótese anterior vs evidência de hoje (confirma, enfraquece, refuta?)
+
+Separe internamente, e marque na saída quando relevante:
+- **fato:** o que os dados mostram
+- **hipótese:** o que provavelmente explica
+- **risco:** o que pode estruturalmente machucar a conta
+- **sinal:** o que confirmaria ou refutaria
+
+Hipótese nunca é apresentada como fato. Se não dá pra distinguir tendência de ruído com os dados disponíveis, a tese correta é **inconclusiva** — saída válida, não falha.
+
+## Padrão de raciocínio esperado
+
+**Raso (rejeitar):** "Pedidos ficaram abaixo da média de 30 dias."
+
+**Bom:** "A queda de ontem não parece estrutural porque a conta ainda está acima da linha de 60 dias e o ticket segurou; o risco real é se esse enfraquecimento contra os mesmos dias da semana se repetir por mais 1 ou 2 ciclos."
+
+**Raso (rejeitar):** "Top 3 concentrou 80%."
+
+**Bom:** "A conta continua sustentada por poucos produtos — padrão já registrado nas leituras anteriores — o que transforma qualquer oscilação dos campeões em risco estrutural, mesmo quando o faturamento do dia parece aceitável."
+
+**Raso (rejeitar):** "Buy Box caiu para 75%."
+
+**Bom (se Buy Box disponível no pacote):** "Buy Box em 75% isolado seria oscilação, mas é o terceiro dia consecutivo abaixo de 85% — o padrão começa a parecer erosão, não ruído, e a hipótese de problema de competitividade levantada na semana passada ganha força."
+
+**Bom (quando dado está ausente):** "Sem 7d confiável após a mudança de regra do marketplace na semana passada, qualquer leitura de aceleração ou desaceleração de curto prazo fica suspensa; o patamar de 30d ainda sustenta, mas a tese hoje é de **inconclusiva no curto prazo, estável no patamar**."
+
+## Regras por plataforma
+
+### Shopee — 3 contas, nunca trate como bloco
+- O problema/ganho é geral ou está concentrado em uma loja? Isso é novo ou padrão recorrente?
+- Há risco de canibalização entre as contas? Está aumentando ou estável?
+- Quanto a conta depende dos campeões? Existe segundo vetor? Essa dependência é crônica ou recente?
+- Cupons, afiliados e ADS Himmel estão sustentando ou mascarando?
+- O mix entre contas está coerente com a tese, ou divergindo ao longo dos dias?
+
+### Mercado Livre
+- Acomodação normal dentro da banda histórica, ou perda real de exposição/ranking?
+- Mix saudável ou dependente de 1-2 anúncios — e por quanto tempo já está assim?
+- Reputação, Full e competitividade estão estáveis ou em erosão silenciosa?
+- O canal continua estruturalmente saudável, ou há sinais acumulados de fragilidade?
+
+### Amazon
+- Buy Box, FBA e disponibilidade dos ASINs líderes estão estáveis ao longo dos dias (quando estes dados estão disponíveis no pacote)?
+- Concentração em poucos ASINs é padrão da conta ou aumentou?
+- Cancelamento ou listing indisponível está mascarando o resultado real?
+- **Nunca conclua "escalar ADS" antes de validar Buy Box, FBA e estoque** — e antes de ter consistência de mais de um dia. Escalar tráfego sobre operação frágil amplifica problema.
+
+## O que NÃO é risco estrutural
+
+Risco estrutural é **persistente, sistêmico ou de dependência** — não evento, não dia.
+
+Não chame de risco estrutural:
+- queda de um dia
+- cancelamento pontual sem padrão recorrente
+- oscilação dentro da banda dos últimos 30d
+- variação que se explica por dia da semana
+- movimento que ainda não tem confirmação em mais de uma janela temporal
+
+Chame de risco estrutural:
+- dependência alta de 1-2 produtos/contas/anúncios sem segundo vetor, sustentada ao longo de dias/semanas
+- erosão de exposição/ranking/Buy Box visível em mais de um ponto temporal
+- mix se estreitando consistentemente ao longo do tempo
+- canal sustentado por mecanismo frágil (cupom, ADS sem retorno orgânico, único ASIN em FBA)
+- operação que amplifica em vez de absorver choque (estoque apertado em campeão, FBA instável recorrente)
+
+## Saída obrigatória
+
+Markdown, exatamente estas seções:
+
+### Qualidade da base
+1-2 linhas avaliando a maturidade da memória e a disponibilidade das janelas temporais. Esta seção pode ser curta quando a base é robusta ("memória madura, todas as janelas disponíveis") e mais explícita quando há ressalvas ("weekly com apenas 2 dias; 7d com ruptura por mudança de regra de marketplace; tese semanal ainda é semente").
+
+### Leitura temporal
+2 a 4 bullets situando a conta nas janelas relevantes (7d, 30d, 60d, mesmos dias da semana). Aqui você responde: onde a conta está em relação à própria trajetória? Aceleração, desaceleração, estabilidade, mudança de patamar ou ruído? Hipóteses anteriores se confirmaram ou enfraqueceram? Se uma janela está indisponível ou contaminada, registre.
+
+### Leitura estratégica
+2 a 4 bullets interpretativos. Cada bullet **interpreta** o que a leitura temporal significa. Se um bullet pode ser substituído por um número do relatório, ele não pertence a esta camada. Foque em patamar, trajetória, dependência, vulnerabilidade. O dia só aparece como sintoma do movimento maior.
+
+### Tese da conta
+Um parágrafo curto. Classifique em uma destas posições, e **justifique com referência temporal** (não com o dia isolado):
+- **saudável** — patamar estável ou crescente, baixa dependência, mix diversificado
+- **em ganho de patamar** — sinal consistente de subida estrutural em mais de uma janela
+- **em acomodação** — variação dentro da banda histórica, sem deterioração real
+- **vulnerável** — saudável no número, frágil na estrutura
+- **em queda real** — deterioração observável em mais de uma janela temporal
+- **inconclusiva** — dados insuficientes, contraditórios, ou sem histórico suficiente para tese honesta
+
+"Inconclusiva" é saída legítima. Não force tese para parecer útil. Se a qualidade da base é fraca, "inconclusiva" geralmente é a tese honesta — não invente confiança que os dados não sustentam.
+
+### Risco estrutural principal
+Escolha **um** risco. Estruture:
+- **Risco:** o que é (ver lista do que conta como estrutural)
+- **Por que importa:** o que pode causar se não endereçado
+- **Histórico:** esse risco é novo ou já apareceu em leituras anteriores?
+- **Sinal de confirmação:** o que precisa aparecer nos próximos dias para virar problema real
+
+Se a conta não tem risco estrutural identificável, diga isso — não invente para preencher.
+
+### Sinais a observar
+Até 3 sinais. Cada um deve ser **falsificável**: número, estado ou condição que nos próximos dias ou aconteceu ou não aconteceu. Cada sinal precisa estar ligado à tese ou ao risco principal — e, quando possível, a uma **janela temporal** ("por 2 dias seguidos", "ao longo da semana"). Quando o sinal depender de dado que pode não estar sempre disponível (Buy Box, posição de anúncio, exposição), inclua "se disponível no pacote" para não induzir leitura sobre dado ausente.
+
+Bons sinais:
+- "GMV de [conta X] abaixo de R$ Y por 2 dias seguidos confirma erosão"
+- "Buy Box do ASIN líder abaixo de 80% em 3 dos próximos 5 dias confirma o risco (se Buy Box disponível no pacote)"
+- "Concentração dos top 3 acima de 70% pelo segundo ciclo semanal confirma a tese de dependência"
+
+Sinais ruins (rejeite):
+- "acompanhar desempenho"
+- "monitorar Buy Box"
+- "ficar de olho na conta"
+
+## Proibições
+
+- Não analise o dia isoladamente. Toda observação do dia precisa estar inserida em janela temporal.
+- Não despeje métricas. Não copie tabelas.
+- Não diga "acompanhar", "monitorar", "ficar atento" sem condição falsificável e janela temporal.
+- Não invente causa. Hipótese é marcada como hipótese.
+- Não confunda hipótese com fato.
+- Não escreva para Slack. Você é input interno.
+- Não use SKU cru quando houver nome comercial.
+- Não recomende ação operacional detalhada (campanha, lance, cupom) — isso é Tática.
+- Não force tese quando os dados ou o histórico não sustentam — "inconclusiva" é válido.
+- Não chame evento isolado de risco estrutural.
+- Não ignore hipóteses anteriores: se a memória traz uma tese ativa, você precisa confirmar, enfraquecer ou refutá-la.
+- Não construa tese forte sobre base fraca. Se weekly/monthly ainda são sementes, ou se uma janela temporal está contaminada/indisponível, registre na "Qualidade da base" e ajuste a confiança da tese.
+- Não assuma que dados como Buy Box, posição de anúncio ou exposição estão sempre no pacote. Quando citar, condicione a "se disponível".
+
+
+---
+# DADOS — Layer 0 Data Package
+
+## Recipient Data
+```json
+{
+  "recipient": "Lucas",
+  "platform": "shopee",
+  "accounts": [
+    "shopee-budamix-store",
+    "shopee-budamix-oficial-2",
+    "shopee-budamix-shop-3"
+  ],
+  "totals": {
+    "orders": 96,
+    "gmv": 4379.34,
+    "cancelamentos": 16,
+    "ticket_medio": 45.62
+  },
+  "canonical_platform_total": {
+    "platform": "shopee",
+    "order_count": 96,
+    "total_revenue": 4379.34,
+    "avg_order_value": 45.62
+  }
+}
+```
+
+## Accounts Data
+```json
+{
+  "shopee-budamix-store": {
+    "account_slug": "shopee-budamix-store",
+    "account_name": "Shopee — Budamix Store",
+    "platform": "shopee",
+    "responsavel": "Lucas",
+    "ads_owner": "Himmel",
+    "filter": {
+      "shop_id": "448649947"
+    },
+    "metrics": {
+      "pedidos_validos": 68,
+      "cancelamentos": 7,
+      "gmv": 3092.25,
+      "ticket_medio": 45.47,
+      "itens_vendidos": 69,
+      "top_products": [
+        {
+          "sku": "CK4742",
+          "raw_sku": "CK4742_B",
+          "raw_title": "Jarra Medidora De Vidro 500ml com Alça Para Receitas Resistente",
+          "family": "CK",
+          "parent_family": "CK",
+          "variation": "CK4742",
+          "variation_sku": "CK4742",
+          "mapped_variation_sku": "CK4742",
+          "display_name": "Jarra Medidora de Vidro 500ml",
+          "short_product_name": "Jarra Medidora de Vidro 500ml",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "CK4742"
+          },
+          "raw_skus": [
+            "CK4742_B"
+          ],
+          "platform_item_id": "23993264258",
+          "title": "Jarra Medidora De Vidro 500ml com Alça Para Receitas Resistente",
+          "display_short": "Jarra Medidora de Vidro 500ml com Alça Para Receitas Resistente",
+          "slack_short_name": "Jarra Medidora 500ml",
+          "confirmed_variation_attributes": [],
+          "orders": 19,
+          "quantity": 19,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "CTL002",
+          "raw_sku": "CTL002",
+          "raw_title": "Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha",
+          "family": "CTL",
+          "parent_family": "CTL",
+          "variation": "CTL002",
+          "variation_sku": "CTL002",
+          "mapped_variation_sku": "CTL002",
+          "display_name": "Kit 6 Canecas Tulipa 250ml",
+          "short_product_name": "Kit 6 Canecas Tulipa 250ml",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "CTL002"
+          },
+          "raw_skus": [
+            "CTL002"
+          ],
+          "platform_item_id": "45554989236",
+          "title": "Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha",
+          "display_short": "Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha",
+          "slack_short_name": null,
+          "confirmed_variation_attributes": [],
+          "orders": 15,
+          "quantity": 16,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "IMB501P",
+          "raw_sku": "IMB501P_T",
+          "raw_title": "Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições",
+          "family": "IMB501",
+          "parent_family": "IMB501",
+          "variation": "IMB501P",
+          "variation_sku": "IMB501P",
+          "mapped_variation_sku": "IMB501P",
+          "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+          "short_product_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "sku_alias_high_confidence",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "IMB501P"
+          },
+          "raw_skus": [
+            "IMB501P_T"
+          ],
+          "platform_item_id": "22393168887",
+          "title": "Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições",
+          "display_short": "Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições",
+          "slack_short_name": "Potes Vidro 5 Peças — Tampa Preta",
+          "confirmed_variation_attributes": [
+            "Tampa Preta"
+          ],
+          "orders": 15,
+          "quantity": 15,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT2YW520SQ",
+          "raw_sku": "KIT2YW520SQ",
+          "raw_title": "Kit 2 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas Vedação",
+          "family": "KIT2YW520SQ",
+          "parent_family": "KIT2YW520SQ",
+          "variation": "KIT2YW520SQ",
+          "variation_sku": "KIT2YW520SQ",
+          "mapped_variation_sku": "KIT2YW520SQ",
+          "display_name": "Pote de Vidro Hermético 520ml Tampa 4 Travas",
+          "short_product_name": "Pote de Vidro Hermético 520ml Tampa 4 Travas",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT2YW520SQ"
+          },
+          "raw_skus": [
+            "KIT2YW520SQ"
+          ],
+          "platform_item_id": "21598077573",
+          "title": "Kit 2 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas Vedação",
+          "display_short": "Kit 2 Potes Vidro 520ml Quadrado Hermético Fitness",
+          "slack_short_name": "Pote Vidro 520ml — Quadrado",
+          "confirmed_variation_attributes": [],
+          "orders": 5,
+          "quantity": 5,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT2YW800SQ",
+          "raw_sku": "KIT2YW800SQ_T",
+          "raw_title": "Kit 2 Potes de Vidro 800ml Quadrado Hermético Marmita 4 Travas Microondas",
+          "family": "KIT2YW800SQ",
+          "parent_family": "KIT2YW800SQ",
+          "variation": "KIT2YW800SQ",
+          "variation_sku": "KIT2YW800SQ",
+          "mapped_variation_sku": "KIT2YW800SQ",
+          "display_name": "Kit 2 Potes de Vidro 800ml Quadrado",
+          "short_product_name": "Kit 2 Potes de Vidro 800ml Quadrado",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT2YW800SQ"
+          },
+          "raw_skus": [
+            "KIT2YW800SQ_T"
+          ],
+          "platform_item_id": "22593169868",
+          "title": "Kit 2 Potes de Vidro 800ml Quadrado Hermético Marmita 4 Travas Microondas",
+          "display_short": "Kit 2 Potes de Vidro 800ml Quadrado Hermético Microondas",
+          "slack_short_name": "Kit 2 Potes 800ml — Quadrado",
+          "confirmed_variation_attributes": [],
+          "orders": 4,
+          "quantity": 4,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KITYW800",
+          "raw_sku": "KITYW800",
+          "raw_title": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml Budamix Tampa 4 Travas Marmita Freezer",
+          "family": "KITYW800",
+          "parent_family": "KITYW800",
+          "variation": "KITYW800",
+          "variation_sku": "KITYW800",
+          "mapped_variation_sku": "KITYW800",
+          "display_name": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml",
+          "short_product_name": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml",
+          "confidence": "medium",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KITYW800"
+          },
+          "raw_skus": [
+            "KITYW800"
+          ],
+          "platform_item_id": "56610855725",
+          "title": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml Budamix Tampa 4 Travas Marmita Freezer",
+          "display_short": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml Tampa Freezer",
+          "slack_short_name": null,
+          "confirmed_variation_attributes": [],
+          "orders": 2,
+          "quantity": 2,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT4YW520SQ",
+          "raw_sku": "KIT4YW520SQ",
+          "raw_title": "Kit 4 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas Vedação",
+          "family": "KIT4YW520SQ",
+          "parent_family": "KIT4YW520SQ",
+          "variation": "KIT4YW520SQ",
+          "variation_sku": "KIT4YW520SQ",
+          "mapped_variation_sku": "KIT4YW520SQ",
+          "display_name": "Kit 4 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas V...",
+          "short_product_name": "Kit 4 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas V...",
+          "confidence": "medium",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT4YW520SQ"
+          },
+          "raw_skus": [
+            "KIT4YW520SQ"
+          ],
+          "platform_item_id": "21899650905",
+          "title": "Kit 4 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas Vedação",
+          "display_short": "Kit 4 Potes Vidro 520ml Quadrado Hermético Fitness",
+          "slack_short_name": null,
+          "confirmed_variation_attributes": [],
+          "orders": 2,
+          "quantity": 2,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT6S097",
+          "raw_sku": "KIT6S097",
+          "raw_title": "Kit com 6 Potes de Vidro Quadrados Herméticos, Vedação e 4 Travas na Tampa",
+          "family": "KIT6S",
+          "parent_family": "KIT6S",
+          "variation": "KIT6S097",
+          "variation_sku": "KIT6S097",
+          "mapped_variation_sku": "KIT6S097",
+          "display_name": "Kit 6 Potes de Vidro Hermético",
+          "short_product_name": "Kit 6 Potes de Vidro Hermético",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT6S097"
+          },
+          "raw_skus": [
+            "KIT6S097"
+          ],
+          "platform_item_id": "23094203124",
+          "title": "Kit com 6 Potes de Vidro Quadrados Herméticos, Vedação e 4 Travas na Tampa",
+          "display_short": "Kit com 6 Potes de Vidro Quadrados Herméticos, e na Tampa",
+          "slack_short_name": null,
+          "confirmed_variation_attributes": [],
+          "orders": 1,
+          "quantity": 1,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "DPM002",
+          "raw_sku": "DPM002",
+          "raw_title": "Kit 4 Descanso De Panela Modular MDF 6mm Quebra Cabeca Corte Laser Budamix",
+          "family": "DPM002",
+          "parent_family": "DPM002",
+          "variation": "DPM002",
+          "variation_sku": "DPM002",
+          "mapped_variation_sku": "DPM002",
+          "display_name": "Kit 4 Descanso De Panela Modular MDF 6mm Quebra Cabeca Corte Laser",
+          "short_product_name": "Kit 4 Descanso De Panela Modular MDF 6mm Quebra Cabeca Corte Laser",
+          "confidence": "medium",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "DPM002"
+          },
+          "raw_skus": [
+            "DPM002"
+          ],
+          "platform_item_id": "46158771950",
+          "title": "Kit 4 Descanso De Panela Modular MDF 6mm Quebra Cabeca Corte Laser Budamix",
+          "display_short": "Kit 4 Descanso de Panela Modular MDF 6mm Quebra Cabeca Corte Laser",
+          "slack_short_name": null,
+          "confirmed_variation_attributes": [],
+          "orders": 1,
+          "quantity": 1,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT2YW320",
+          "raw_sku": "KIT2YW320",
+          "raw_title": "Kit 2 Potes de Vidro 320ml Quadrado Hermético Marmita Vedação 4 Travas",
+          "family": "KIT2YW",
+          "parent_family": "KIT2YW",
+          "variation": "KIT2YW320",
+          "variation_sku": "KIT2YW320",
+          "mapped_variation_sku": "KIT2YW320",
+          "display_name": "Kit 2 Potes de Vidro 320ml Retangular",
+          "short_product_name": "Kit 2 Potes de Vidro 320ml Retangular",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT2YW320"
+          },
+          "raw_skus": [
+            "KIT2YW320"
+          ],
+          "platform_item_id": "23198699647",
+          "title": "Kit 2 Potes de Vidro 320ml Quadrado Hermético Marmita Vedação 4 Travas",
+          "display_short": "Kit 2 Potes de Vidro 320ml Quadrado Hermético",
+          "slack_short_name": "Kit 2 Potes 320ml",
+          "confirmed_variation_attributes": [],
+          "orders": 1,
+          "quantity": 1,
+          "aggregation_level": "variation"
+        }
+      ],
+      "top3_concentration": 72.1,
+      "top5_concentration": 85.3,
+      "hour_distribution": {
+        "0": 1,
+        "1": 2,
+        "4": 1,
+        "6": 2,
+        "8": 2,
+        "9": 2,
+        "10": 4,
+        "11": 5,
+        "12": 4,
+        "13": 5,
+        "14": 7,
+        "15": 4,
+        "16": 5,
+        "17": 4,
+        "18": 2,
+        "19": 8,
+        "20": 3,
+        "21": 5,
+        "22": 2
+      },
+      "fulfillment": {
+        "shopee_full": 0,
+        "amazon_fba": 0,
+        "amazon_fbm": 0,
+        "other": 0,
+        "total": 68
+      }
+    },
+    "historical": {
+      "avg_7d": {
+        "avg_orders": 47.6,
+        "avg_gmv": 2024.81,
+        "avg_ticket": 42.56,
+        "avg_items": 49.4,
+        "days_with_data": 7
+      },
+      "avg_30d": {
+        "avg_orders": 58.9,
+        "avg_gmv": 2356.1,
+        "avg_ticket": 40.02,
+        "avg_items": 62.0,
+        "days_with_data": 30
+      },
+      "avg_60d": {
+        "avg_orders": 79.7,
+        "avg_gmv": 3147.98,
+        "avg_ticket": 39.51,
+        "avg_items": 85.2,
+        "days_with_data": 60
+      },
+      "same_weekday_last_4": [
+        {
+          "date": "2026-05-25",
+          "orders": 70,
+          "gmv": 2718.76,
+          "items": 71
+        },
+        {
+          "date": "2026-05-18",
+          "orders": 52,
+          "gmv": 2177.22,
+          "items": 54
+        },
+        {
+          "date": "2026-05-11",
+          "orders": 72,
+          "gmv": 2597.48,
+          "items": 77
+        },
+        {
+          "date": "2026-05-04",
+          "orders": 96,
+          "gmv": 3715.41,
+          "items": 103
+        }
+      ],
+      "same_weekday_avg": {
+        "avg_orders": 72.5,
+        "avg_gmv": 2802.22,
+        "avg_ticket": 38.65
+      },
+      "changes": {
+        "orders_vs_7d_pct": 42.9,
+        "gmv_vs_7d_pct": 52.7,
+        "orders_vs_30d_pct": 15.4,
+        "gmv_vs_30d_pct": 31.2,
+        "ticket_vs_30d_pct": 13.6,
+        "orders_vs_60d_pct": -14.7,
+        "gmv_vs_60d_pct": -1.8,
+        "ticket_vs_60d_pct": 15.1,
+        "orders_vs_same_weekday_pct": -6.2,
+        "gmv_vs_same_weekday_pct": 10.4
+      }
+    },
+    "reconciliation": {
+      "scope": "account_subset",
+      "platform": "shopee",
+      "canonical_orders": 96,
+      "canonical_revenue": 4379.34,
+      "orders_count": 68,
+      "orders_revenue": 3092.25,
+      "order_delta": null,
+      "revenue_delta": null,
+      "ok": true,
+      "note": "Conta Shopee e subconjunto do total da plataforma."
+    },
+    "memory": {
+      "loaded_keys": [
+        "OPERATING-RULES.md",
+        "account-himmel-context.md",
+        "global-himmel-context.md",
+        "marketplace-rules-watch.md",
+        "monthly.md",
+        "rules.md",
+        "weekly.md"
+      ],
+      "last_daily_file": "2026-05-20.md",
+      "has_weekly": true,
+      "has_monthly": true,
+      "has_rules": true
+    },
+    "quality_flags": [
+      {
+        "level": "warning",
+        "code": "high_top3_concentration",
+        "message": "Alta concentracao nos top 3 produtos (>=70%)."
+      }
+    ],
+    "shopee_snapshot": {
+      "shop_id": 448649947,
+      "shop_name": "budamix-store",
+      "snapshot_date": "2026-06-01",
+      "fetched_at_utc": "2026-06-03T10:07:58Z",
+      "shop_performance": {
+        "penalty_points": null,
+        "late_shipment_rate_pct": null,
+        "non_fulfillment_rate_pct": null,
+        "response_rate_pct": null,
+        "preparation_time_days": null,
+        "shop_rating": null,
+        "cancellation_rate_seller_pct": null,
+        "status": "unavailable",
+        "error": "shop_performance: http_404 — HTTP Error 404: Not Found"
+      },
+      "programs": {
+        "is_preferred_seller": false,
+        "preferred_seller_eligibility_status": null,
+        "is_star_seller": false,
+        "is_star_plus": false,
+        "mall_status": "not_mall",
+        "next_preferred_seller_review_date": null,
+        "shop_name": "Budamix Store",
+        "status": "ok",
+        "error": null
+      },
+      "top_items_details": {
+        "items": [],
+        "status": "ok",
+        "error": null
+      },
+      "account_overview": {
+        "totals": {
+          "active": 60,
+          "paused": 0,
+          "unlisted": 253,
+          "banned": 1
+        },
+        "active_analysis": {
+          "fulfillment_mix": {
+            "full_pct": 6.7,
+            "sls_pct": 70.0,
+            "dropoff_pct": 23.3,
+            "coverage_pct": 100.0
+          },
+          "mall_pct": 0.0,
+          "fsp_pct": 0.0,
+          "coupon_active_pct": null,
+          "coins_active_avg_pct": null,
+          "out_of_stock_count": 41,
+          "out_of_stock_ids": [
+            47155874632,
+            41081027366,
+            46960951115,
+            44860819943,
+            48954772270,
+            23898684855,
+            56855863366,
+            56105862642,
+            23194198304,
+            23198699647,
+            22998694839,
+            23094203124,
+            20198092691,
+            47756040581,
+            52855809304,
+            45010813535,
+            55605857806,
+            48107034518,
+            48805885824,
+            23036701291,
+            23594198474,
+            22398347517,
+            48905505660,
+            23294203062,
+            23394202874,
+            22393168887,
+            45505886964,
+            56610855725,
+            22698699648,
+            40531001446,
+            23594198022,
+            42428608330,
+            19399666704,
+            43528713771,
+            45554989236,
+            48606099954,
+            43768085502,
+            23993264258,
+            51855036636,
+            43128713704,
+            23998684734
+          ]
+        },
+        "status": "ok",
+        "error": null
+      },
+      "fulfillment_mix_30d": {
+        "full_pct": null,
+        "sls_pct": null,
+        "dropoff_pct": null,
+        "coverage_pct": 0,
+        "status": "unavailable",
+        "error": "logistic_type=null em 100% dos 1000 pedidos (sync-shopee-orders pendente de backfill)"
+      },
+      "fulfillment_mix_7d": {
+        "full_pct": null,
+        "sls_pct": null,
+        "dropoff_pct": null,
+        "coverage_pct": 0,
+        "status": "unavailable",
+        "error": "logistic_type=null em 100% dos 360 pedidos (sync-shopee-orders pendente de backfill)"
+      },
+      "fulfillment_mix_yesterday_top10": {
+        "full_pct": null,
+        "sls_pct": null,
+        "dropoff_pct": null,
+        "coverage_pct": 0,
+        "status": "unavailable"
+      },
+      "ads_summary": {
+        "campaigns_total_count": null,
+        "campaigns_active_count": null,
+        "spend_yesterday_brl": null,
+        "revenue_ads_yesterday_brl": null,
+        "avg_acos_pct": null,
+        "status": "unavailable",
+        "error": "ads_daily: http_403 — HTTP Error 403: Forbidden"
+      },
+      "affiliate_summary": {
+        "revenue_affiliate_yesterday_brl": null,
+        "commission_paid_yesterday_brl": null,
+        "active_affiliates_count": null,
+        "status": "unavailable",
+        "error": "Programa de Afiliados Shopee não exposto via Open API (somente Seller Center). Esperado pela L01."
+      },
+      "coins_summary": {
+        "coins_pct_active_avg": null,
+        "revenue_with_coins_yesterday_brl": null,
+        "status": "unavailable",
+        "error": "Cashback em Moedas Shopee não exposto via Open API (somente Seller Center). Esperado pela L01."
+      },
+      "status": "ok"
+    }
+  }
+}
+```
+
+## Data Readiness
+```json
+{
+  "status": "DADOS_PARCIAIS",
+  "data_quality": "partial",
+  "checks": [
+    {
+      "check": "timezone_brt",
+      "status": "ok",
+      "detail": "BRT window: 2026-06-01T03:00:00+00:00 to 2026-06-02T03:00:00+00:00"
+    },
+    {
+      "check": "canonical_source_available",
+      "status": "ok",
+      "detail": "Found: ['amazon', 'ml', 'shopee']; Missing: []"
+    },
+    {
+      "check": "shopee_separated_by_shop_id",
+      "status": "ok",
+      "detail": "shop_ids found: ['442066454', '448649947', '860803675']; all 3 present: True"
+    },
+    {
+      "check": "volume_band_shopee-budamix-store",
+      "status": "ok",
+      "detail": "Orders 68 vs avg30 58.9 = +15.4%"
+    },
+    {
+      "check": "volume_band_shopee-budamix-oficial-2",
+      "status": "ok",
+      "detail": "Orders 17 vs avg30 24.5 = -30.6%"
+    },
+    {
+      "check": "volume_band_shopee-budamix-shop-3",
+      "status": "partial",
+      "detail": "Orders 11 vs avg30 18.6 = -40.9% (outside 30d band, within 60d band)"
+    },
+    {
+      "check": "volume_band_mercado-livre",
+      "status": "partial",
+      "detail": "Orders 204 vs avg30 108.2 = +88.5% (positive spike; partial confidence, not blocking)"
+    },
+    {
+      "check": "volume_band_amazon",
+      "status": "partial",
+      "detail": "Orders 48 vs avg30 33.5 = +43.3% (positive spike; partial confidence, not blocking)"
+    },
+    {
+      "check": "reconciliation_shopee-budamix-store",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_shopee-budamix-oficial-2",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_shopee-budamix-shop-3",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_mercado-livre",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_amazon",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "product_identity_contract",
+      "status": "ok",
+      "detail": "Top products mapped to sellable variation + short name"
+    },
+    {
+      "check": "amazon_product_identity",
+      "status": "ok",
+      "detail": "Top 5 products identity check: all identified"
+    },
+    {
+      "check": "sync_freshness",
+      "status": "not_measured",
+      "detail": "Sync freshness metric not available from current database schema. Registered as not_measured per plan guidelines."
+    }
+  ]
+}
+```
+
+---
+# CONTEXTO: responsaveis
+# Responsáveis — Daily Sales Analyst
+
+## Operação por canal
+
+| Canal | Responsável operacional | Responsável ADS | Acionamento ADS |
+|-------|------------------------|-----------------|-----------------|
+| Shopee (3 contas) | Lucas | Himmel | Via Lucas |
+| Mercado Livre | Yasmin | Himmel | Via Yasmin |
+| Amazon | Leonardo | Pedro | Via Leonardo |
+
+## Governança
+
+| Papel | Agente | Responsabilidade |
+|-------|--------|-----------------|
+| Decisor humano final | Pedro | Decisão final, ADS Amazon |
+| Governança/QA final | Kobe | Validação de rollout, bloqueios, mudanças estratégicas, checkpoints |
+| Dono/Orquestrador | Trader | Aciona DSA, recebe retorno, envia Slack, valida memória |
+| Executor | DSA | Executa pipeline analítico, devolve artefatos ao Trader |
+| Gestão ADS Shopee/ML | Himmel | Verba, segmentação, criativos, lances, exposição, afiliados/cupons Shopee |
+
+## Regras de acionamento
+
+- Himmel nunca é acionado diretamente pelo DSA — sempre via Lucas (Shopee) ou Yasmin (ML).
+- Pedro nunca é acionado diretamente pelo DSA — sempre via Leonardo, após validação de pré-requisitos.
+- Kobe é acionado para decisões estruturais, conflitos e checkpoints.
+- DSA nunca fala com Pedro diretamente. Toda comunicação passa por Trader ou Kobe.
+
+
+---
+# CONTEXTO: marketplace-rules
+# Marketplace Rules — Daily Sales Analyst
+
+## Princípio
+
+Regras críticas de marketplace que o DSA deve considerar na análise. Estas são regras observadas e documentadas — não taxas específicas inventadas.
+
+## Shopee
+
+### Regras gerais
+- Shopee opera com múltiplas contas para a GB Importadora (3 contas ativas).
+- Cada conta tem mix, exposição e campanha próprios.
+- Cupons, afiliados e ADS são coordenados via Himmel.
+- Full Shopee (quando disponível) afeta visibilidade e entrega.
+- Canibalização entre contas é risco real e deve ser monitorada.
+
+### Pontos de atenção
+- Mudanças de regra do marketplace podem contaminar séries históricas.
+- Exposição pode variar por conta sem causa interna.
+- Horários de pico variam por conta e por categoria.
+
+## Mercado Livre
+
+### Regras gerais
+- Reputação afeta exposição e ranking.
+- Mercado Livre Full afeta visibilidade e competitividade.
+- Posição de anúncio e ranking são indicadores de saúde do canal.
+- Competitividade de preço relativo importa.
+
+### Pontos de atenção
+- Oscilação normal de ranking não é alerta sem base histórica.
+- Perda de reputação pode ter efeito cascata em exposição.
+- ADS ML coordenados via Himmel (acionado por Yasmin).
+
+## Amazon
+
+### Regras gerais
+- Buy Box é pré-requisito para tráfego pago eficiente.
+- FBA afeta elegibilidade, visibilidade e Buy Box.
+- Produto Amazon deve ser identificado por título real + ASIN do pedido.
+- Alias manual de SKU nunca é fonte primária.
+
+### Pontos de atenção
+- Nunca escalar ADS sem validar Buy Box, FBA e estoque.
+- Crescimento sobre operação frágil amplifica problema.
+- Cancelamentos e listings indisponíveis podem mascarar resultado real.
+- ADS Amazon geridos por Pedro (acionado por Leonardo após pré-requisitos).
+
+## Nota importante
+
+Este arquivo contém regras observadas e princípios operacionais. Taxas específicas de comissão, frete ou penalidade por marketplace **não são documentadas aqui** por não haver fonte validada. Quando necessário, consultar fontes oficiais dos marketplaces.
+
+
+---
+# MEMORIA DAS CONTAS
+## shopee-budamix-store
+### rules.md
+# Rules — Shopee Budamix Store
+
+## Regras permanentes
+
+Regras específicas desta conta. Só mudam por decisão explícita, mudança de marketplace, QA recorrente ou aprovação Trader/Kobe.
+
+## Plataforma: Shopee
+
+### Identificação
+- shop_id: 448649947
+- Responsável operacional: Lucas
+- Responsável ADS: Himmel (via Lucas)
+
+### Regras operacionais
+- Nunca generalizar sinal desta conta para "Shopee" sem evidência nas outras contas.
+- Sempre identificar qual conta sustenta a observação.
+- Produto Shopee sempre com conta identificada.
+- Separar comportamento por conta em horários, cancelamentos, mix e fulfillment.
+
+### Regras de marketplace Shopee
+- Regras genéricas de marketplace Shopee aplicam a esta conta salvo exceção documentada.
+- Cupons, afiliados e ADS coordenados via Himmel.
+
+### Exceções
+- Nenhuma exceção documentada.
+
+---
+
+*Alterações abaixo. Registrar data, motivo e aprovação.*
+
+
+### weekly.md
+# Weekly — Shopee Budamix Store
+
+## Estrutura
+
+Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 entradas diárias acumuladas.
+
+## Template
+
+### Semana: [DD/MM a DD/MM/AAAA]
+
+#### Tese semanal
+[Tese consolidada da semana baseada nas leituras diárias]
+
+#### Padrões observados
+- [Padrão 1]
+- [Padrão 2]
+
+#### Hipóteses ativas
+- [Hipótese 1 — status: confirmada/enfraquecida/em aberto]
+
+#### Riscos acumulados
+- [Risco 1 — persistência: X dias]
+
+#### Sinais para próxima semana
+- [Sinal 1 — condição falsificável]
+
+#### Ressalvas da semana
+- [Ressalva 1 — frequência: X ocorrências]
+
+---
+
+*Histórico semanal abaixo. Não sobrescrever — adicionar nova entrada acima.*
+
+
+### monthly.md
+# Monthly — Shopee Budamix Store
+
+## Estrutura
+
+Tese mensal da conta. Atualizada no primeiro dia útil de cada mês.
+
+## Template
+
+### Mês: [MM/AAAA]
+
+#### Tese mensal
+[Tese consolidada do mês baseada nas leituras semanais]
+
+#### Patamar da conta
+[saudável / em ganho de patamar / em acomodação / vulnerável / em queda real / inconclusiva]
+
+#### Evolução vs mês anterior
+[Comparação com tese do mês anterior — confirmada, revertida, evoluiu]
+
+#### Dependências estruturais
+- [Dependência 1 — ex: concentração em poucos produtos]
+
+#### Riscos persistentes
+- [Risco 1 — presente há X semanas]
+
+#### Decisões tomadas no mês
+- [Decisão 1 — resultado observado]
+
+#### Base para próximo mês
+- [O que monitorar]
+- [Hipóteses que transitam]
+
+---
+
+*Histórico mensal abaixo. Não sobrescrever — adicionar nova entrada acima.*
+

@@ -1,0 +1,96 @@
+{
+  "respostas_granulares_perguntas_operacional": [
+    {
+      "pergunta": "Os 7 cancelamentos da Budamix Store estão concentrados em algum dos três campeões ou distribuídos entre múltiplos produtos?",
+      "status": "não respondida por falta de dado",
+      "evidencia": "O pacote de dados entrega o número agregado de cancelamentos (7) na seção metrics da conta shopee-budamix-store, mas não traz quebra por SKU/produto/platform_item_id dos cancelamentos. Não há campo cancelamentos_by_product, nem lista de pedidos cancelados com identificação de item. Os campos itens dos pedidos cancelados, horário do cancelamento e motivo não estão presentes.",
+      "leitura": "Sem granularidade por produto nos cancelamentos, não é possível determinar se houve concentração nos campeões (Jarra Medidora 500ml, Kit 6 Canecas Tulipa, Conjunto 5 Potes Tampa Preta) ou distribuição na cauda. A taxa agregada de ~10,3% de cancelamento sobre pedidos válidos é informação de canal, não de produto.",
+      "conclusao_granular": "inconclusivo por falta de dado",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Quais dos 41 listings OOS têm histórico de venda recente (últimos 7 dias) na conta?",
+      "status": "parcialmente respondida",
+      "evidencia": "Cruzamento entre out_of_stock_ids (41 platform_item_id) do shopee_snapshot e platform_item_id dos top_products do dia 06/01 confirma OOS em pelo menos 5 dos 10 top do dia: Jarra Medidora 500ml (23993264258, 19 pedidos), Kit 6 Canecas Tulipa CTL002 (45554989236, 15 pedidos), Conjunto 5 Potes Tampa Preta IMB501P (22393168887, 15 pedidos), Kit 2 4 6 10 Potes 800ml KITYW800 (56610855725, 2 pedidos) e Kit 2 Potes 320ml KIT2YW320 (23198699647, 1 pedido). Também aparece na lista OOS o Kit 6 Potes Hermético KIT6S097 (23094203124, 1 pedido). Pedidos cobertos por esses 6 produtos OOS no dia = 53 dos 68 (~78%). Pacote do dia não contém janela 7d granular por SKU — só agregado avg_7d (47,6 pedidos/dia, 49,4 itens/dia).",
+      "leitura": "A ruptura não se restringe aos 3 campeões — pelo menos 6 SKUs que venderam no dia 06/01 estão marcados como OOS no snapshot do mesmo dia, incluindo o top 1, top 2, top 3 e três itens de cauda. A vulnerabilidade do catálogo ativo é mais ampla do que apenas os líderes. O dado granular por dia para os 7 dias anteriores não foi entregue, então não é possível mapear os outros 35 listings OOS contra venda recente — só os que apareceram especificamente no top de 06/01.",
+      "conclusao_granular": "confirma (ampliando: ruptura atinge top 1, top 2, top 3 e parte da cauda; cobertura de ~78% do volume do dia em SKUs OOS no snapshot)",
+      "confianca": "média"
+    },
+    {
+      "pergunta": "O Kit 6 Canecas Tulipa (CTL002), segundo produto da Store com 15 pedidos no dia, é o mesmo SKU de maior potencial de canibalização com as outras contas Shopee?",
+      "status": "respondida",
+      "evidencia": "Pedido real Shopee — Budamix Store: SKU CTL002, platform_item_id 45554989236, título do pedido 'Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha', display_name 'Kit 6 Canecas Tulipa 250ml', mapping_status mapped, mapping_reason reviewed_sku_display_map, confidence high. 15 pedidos / 16 unidades no dia 06/01. O contexto da conta declara explicitamente: 'SKU campeão de potencial canibalização: CTL002 — Kit 6 Canecas Tulipa 250ml (Store 564 / Oficial 393 / Shop 379 un em 60d)'. O SKU base no pedido real coincide exatamente (CTL002) com o flagado pela tese seed Pedro v1.",
+      "leitura": "Confirmado por pedido real que o segundo produto líder da Store no dia 06/01 é o mesmo SKU sinalizado como de maior risco de canibalização entre as três contas Shopee. A análise por conta isolada não resolve canibalização — apenas registra o sinal para a L06b Consolidadora. O dia mostra CTL002 ativo na Store; status nas outras 2 contas não está no pacote desta granular.",
+      "conclusao_granular": "confirma",
+      "confianca": "alta"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Validar a magnitude real da concentração e do risco OOS sobre o GMV/pedidos do dia, cruzando top_products com out_of_stock_ids.",
+      "origem": "anomalia (Operacional flagrou risco; granular precisa quantificar)",
+      "evidencia": "Pedidos por produto (fonte: top_products, conta Budamix Store / shop_id 448649947): CK4742 Jarra Medidora 500ml — 19 pedidos (OOS sim, platform_item_id 23993264258); CTL002 Kit 6 Canecas Tulipa — 15 pedidos (OOS sim, 45554989236); IMB501P Conjunto 5 Potes Tampa Preta — 15 pedidos (OOS sim, 22393168887); KIT2YW520SQ Pote Vidro 520ml Quadrado — 5 pedidos (não consta em out_of_stock_ids 21598077573); KIT2YW800SQ Kit 2 Potes 800ml Quadrado — 4 pedidos (não consta 22593169868); KITYW800 — 2 pedidos (OOS sim, 56610855725); KIT4YW520SQ — 2 pedidos (não consta 21899650905); KIT6S097 — 1 pedido (OOS sim, 23094203124); DPM002 — 1 pedido (não consta 46158771950); KIT2YW320 — 1 pedido (OOS sim, 23198699647). Top 3 concentração reportada 72,1% (49/68 pedidos). Top 6 SKUs OOS somam 53 pedidos = 77,9% do volume do dia.",
+      "leitura": "A ruptura sinalizada no snapshot atinge não apenas os 3 campeões (49 pedidos / 72,1% do volume), mas também 3 itens adicionais de cauda — totalizando 6 SKUs OOS que cobrem ~78% dos pedidos do dia. Os 15 pedidos restantes (~22%) vieram de 4 SKUs que NÃO estão na lista OOS (KIT2YW520SQ, KIT2YW800SQ, KIT4YW520SQ, DPM002) — esses são os únicos canais de continuidade observáveis no top do dia.",
+      "conclusao_granular": "confirma e amplia (risco operacional não é só dos 3 campeões — é da maior parte do top vendido)",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Caracterizar o padrão horário do dia para verificar se o pico de 19h tem peso suficiente para sustentar leitura, e se há buracos em horários historicamente fortes.",
+      "origem": "Operacional (afirmou não haver buraco visível; granular valida)",
+      "evidencia": "hour_distribution da conta no dia: pico 19h=8 pedidos; faixas fortes 13-17h somam 25 pedidos (13:5, 14:7, 15:4, 16:5, 17:4); manhã 10-12h somam 13; tarde-noite 20-22h somam 10; madrugada/manhã cedo 0-9h somam 12. Total 68. Nenhum buraco prolongado em horas comerciais. Pico de 8 pedidos numa única hora é numericamente baixo — base pequena para inferir comportamento.",
+      "leitura": "A distribuição é razoavelmente dispersa, com leve adensamento à tarde (14h) e pico noturno (19h). Não há janela vazia entre 10h e 22h. Confirma a leitura operacional de que o problema do dia não está em janela de visibilidade — está concentrado em estoque/mix.",
+      "conclusao_granular": "confirma (sem padrão horário anômalo)",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "Validar identificação do top 1 (CK4742) entre raw_sku e nome comercial — checar risco de erro de identificação no produto líder.",
+      "origem": "risco de identificação",
+      "evidencia": "Pedido real: raw_sku CK4742_B, sku normalizado CK4742, raw_title 'Jarra Medidora De Vidro 500ml com Alça Para Receitas Resistente', platform_item_id 23993264258, mapping_status mapped, mapping_reason reviewed_sku_display_map, confidence high, display_name 'Jarra Medidora de Vidro 500ml'. Todos os 3 sinais (raw_sku, title, platform_item_id) presentes. Sufixo _B no raw_sku sugere variação não declarada em confirmed_variation_attributes (lista vazia).",
+      "leitura": "Identificação do top 1 é robusta no nível do produto comercial (Jarra Medidora 500ml). O sufixo _B indica possível variação (cor/modelo) não capturada nos atributos confirmados — irrelevante para a leitura de concentração, mas marcação a guardar caso decisão dependa da variação específica.",
+      "conclusao_granular": "confirma (identificação confiável no nível de produto; variação específica indeterminada mas sem impacto para a leitura do dia)",
+      "confianca": "alta"
+    }
+  ],
+  "risco_identificacao_ou_leitura_errada": {
+    "nivel": "baixo",
+    "fontes_de_risco": [
+      "Sufixo _B / _T em alguns raw_skus (CK4742_B, IMB501P_T, KIT2YW800SQ_T) com confirmed_variation_attributes parcialmente vazio — variação específica não totalmente determinada, mas SKU base e produto comercial estão claros",
+      "Confidence 'medium' / mapping_reason 'raw_sku_normalized_with_short_title_fallback' em KITYW800, KIT4YW520SQ e DPM002 — produtos de cauda (1-2 pedidos cada), peso baixo na leitura",
+      "Dados de fulfillment_mix por pedido indisponíveis (logistic_type=null em 100% dos pedidos por backfill pendente) — não permite afirmar mix Full vs SLS vs Dropoff nesta conta"
+    ],
+    "explicacao": "Todos os top 3 do dia têm raw_sku, title e platform_item_id presentes, mapping_status 'mapped' e confidence 'high'. Cada produto Shopee citado nesta granular foi atribuído ao shop_id 448649947 (Budamix Store), com pedido real como fonte primária. Não há alias manual sendo usado como fonte primária, não há título ausente nos líderes, e a contagem agregado-vs-top está coerente (top 3 = 49 pedidos = 72,1% de 68). O risco residual fica restrito a indeterminações de variação que não afetam a leitura de concentração e dependência. Não há BLOQUEIO PARA SLACK."
+  },
+  "divergencia_entre_fontes": null,
+  "evidencia_conflitante": null,
+  "detalhe_que_condensadora_nao_pode_perder": [
+    {
+      "detalhe": "Pelo menos 6 SKUs vendidos no top do dia aparecem como OOS no snapshot de 06/01 — não só os 3 campeões: Jarra Medidora 500ml, Kit 6 Canecas Tulipa, Conjunto 5 Potes Tampa Preta, Kit 2 4 6 10 Potes 800ml, Kit 6 Potes Hermético e Kit 2 Potes 320ml. Eles somam ~78% dos pedidos do dia. A ruptura é mais ampla do que 'os 3 líderes' — se a mensagem disser apenas 'campeões OOS', subdimensiona o risco.",
+      "por_que_importa": "A Tática orientou Lucas a confirmar OOS dos 3 campeões; granular mostra que a verificação precisa estender pelo menos a esses 6 SKUs para que a recomposição cubra a base real do dia",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Apenas 4 SKUs do top 10 do dia NÃO aparecem no out_of_stock_ids: KIT2YW520SQ (5 pedidos), KIT2YW800SQ (4), KIT4YW520SQ (2) e DPM002 (1). São os únicos vetores de continuidade visíveis na conta — todos da família 'potes vidro quadrado' exceto DPM002 (descanso de panela MDF). Isso aprofunda a leitura de dependência: a 'cauda viva' é estreita e concentrada numa única família.",
+      "por_que_importa": "Se o GMV cair nos próximos dias, esses 4 SKUs serão a base remanescente. A Condensadora não pode falar em 'cauda saudável' nem em 'segundo vetor disponível' — não há",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "CTL002 (Kit 6 Canecas Tulipa) confirmado por pedido real como top 2 da Store no dia (15 pedidos) E é exatamente o SKU sinalizado pelo contexto como de maior potencial de canibalização entre as 3 contas Shopee (Store 564 / Oficial 393 / Shop 379 un em 60d). Hoje está OOS na Store conforme snapshot.",
+      "por_que_importa": "Combinação não-trivial: SKU de risco de canibalização + OOS na conta de maior peso histórico (Store) = pode redirecionar demanda para as outras 2 contas; é input direto para a L06b Consolidadora e não pode ser perdido entre camadas",
+      "confianca": "alta"
+    }
+  ],
+  "memoria_interna": [
+    "platform_item_id dos top 3 com OOS confirmado: 23993264258 (Jarra Medidora 500ml / CK4742), 45554989236 (Kit 6 Canecas Tulipa / CTL002), 22393168887 (Conjunto 5 Potes Tampa Preta / IMB501P)",
+    "platform_item_id dos demais top 10 com OOS: 56610855725 (KITYW800), 23094203124 (KIT6S097), 23198699647 (KIT2YW320)",
+    "platform_item_id dos top sem OOS (continuidade): 21598077573 (KIT2YW520SQ), 22593169868 (KIT2YW800SQ), 21899650905 (KIT4YW520SQ), 46158771950 (DPM002)",
+    "Sufixos _B / _T em raw_sku de CK4742, IMB501P e KIT2YW800SQ — variação não totalmente declarada, monitorar caso decisão dependa de variação específica",
+    "Cancelamentos: 7 agregados, sem quebra por SKU/horário/motivo — backfill ou query adicional necessária para futuras granulares responderem esse tipo de pergunta",
+    "fulfillment_mix com coverage_pct=0 (logistic_type null em 100% dos pedidos) — diagnóstico de Full vs SLS vs Dropoff por pedido indisponível até backfill do sync-shopee-orders",
+    "ads_summary unavailable (HTTP 403), shop_performance unavailable (HTTP 404) — não foi possível investigar contribuição de ADS ou métricas de penalidade no resultado do dia",
+    "Top 6 OOS cobrem 53/68 pedidos = 77,9% do volume; top 3 cobrem 49/68 = 72,1% (concentração reportada)",
+    "shop_id 448649947 confirmado em todas as evidências; nenhuma contaminação entre contas Shopee detectada nos top desta análise"
+  ],
+  "llm_used": true,
+  "model": "claude-opus-4-7",
+  "fallback": false
+}

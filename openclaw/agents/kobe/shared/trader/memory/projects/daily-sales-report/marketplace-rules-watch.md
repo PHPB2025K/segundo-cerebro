@@ -2,7 +2,7 @@
 
 Registro operacional de mudanças/revisões de regras, políticas e taxas que podem impactar vendas, margem, exposição, frete, campanhas ou interpretação do Daily Sales Report v2.
 
-_Atualizado automaticamente em 2026-06-02 06:23 BRT por `daily-sales-v2-marketplace-rules-watch.py`._
+_Atualizado automaticamente em 2026-06-03 06:23 BRT por `daily-sales-v2-marketplace-rules-watch.py`._
 
 ## Como usar no Daily Sales Report v2
 - Usar como contexto causal/hipótese, não como explicação automática.
@@ -23,7 +23,7 @@ _Atualizado automaticamente em 2026-06-02 06:23 BRT por `daily-sales-v2-marketpl
   - Diferença Clássico vs Premium deve ser considerada quando exposição/parcelamento mudar performance.
 
 ## Shopee
-- **Status:** 🟡 revisão próxima (2026-06-02)
+- **Status:** ⚠️ revisão vencida desde 2026-06-02
 - **Última atualização da skill:** 2026-05-26
 - **Próxima revisão prevista:** 2026-06-02
 - **Cron/revisão profunda:** Shopee Fees Monitor — quarta 10h SP

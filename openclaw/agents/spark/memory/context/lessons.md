@@ -52,12 +52,6 @@ _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
 **Cross-ref:** `accounts.md` → Sunset de API Meta
 **Expira:** 2026-06-17
 
-### 2026-05-03 — Amazon Ads sem entrega exige diagnóstico estrutural [TÁTICA]
-**Contexto:** Redinha Frutas ficou 0/0/0 em abril/15d/7d; Kit Jardinagem estava inactive com entrega residual antiga.
-**Lição:** Sem impressões/cliques não existe otimização de ACoS. Validar product ads, estoque/FBA, listing, categoria e Buy Box antes de mexer em bid.
-**Ação concreta:** Classificar como experimento de tração/diagnóstico com confidence explícita e D+7 definido.
-**Expira:** 2026-06-02
-
 ### 2026-05-11 — Amazon Ads: 0 impressão após experimento indica elegibilidade antes de bid [TÁTICA]
 **Contexto:** Experimentos de Kits Microfibra e Abraçadeiras Nylon ficaram com 0 impressões, 0 cliques e 0 vendas após janela de validação.
 **Lição:** Quando campanha/experimento fica com 0 impressões, 0 cliques e 0 vendas após D+6/D+7, investigar listing ativo, Buy Box, elegibilidade, categoria e relevância antes de aumentar bid.
@@ -91,6 +85,10 @@ _Lições TÁTICAS removidas após expiração. Mantidas aqui apenas para refer�
 ### [TÁTICA] Amazon Ads API mensal funciona para Sponsored Products (2026-05-01)
 **Lição:** Para fechamento mensal Amazon Ads, preferir report API quando disponível; esperar estado sair de PENDING antes de concluir.
 **Expirou:** 2026-05-31
+
+### [TÁTICA] Amazon Ads sem entrega exige diagnóstico estrutural (2026-05-03)
+**Lição:** Sem impressões/cliques não existe otimização de ACoS; validar estrutura/listing antes de mexer em bid.
+**Expirou:** 2026-06-02
 
 ## Auditoria — Consolidação Profunda 2026-05-15
 

@@ -232,3 +232,18 @@ Resolvido o problema de venda no site sumir após sync (oversell potencial).
 **Log:** `/var/log/budamix-decrement-planilha.log`.
 
 Detalhes em [[memory/sessions/2026-05-22]] e [[memory/context/decisoes/2026-05#2026-05-22 — Loop de estoque fechado entre site e planilha]].
+
+## Atualização 2026-06-03 — Página /links com Blog Budamix
+
+Adicionado botão **Blog Budamix** em `src/pages/Links.tsx`, abaixo dos marketplaces (ML/Shopee/Amazon), apontando para `https://budamix.com.br/blog` com tracking `link_tree_click` destination=blog. Subtítulo: "Dicas sobre rotina doméstica, cozinha e muito mais". Ícone `BookOpen` lucide. Fill `#EAE2CE` (mais escuro que o cream do fundo pra destacar do resto).
+
+**Outras mudanças na mesma página:**
+- H1 "Encontre a Budamix" reduzido 10% (`clamp(40,11vw,52)` → `clamp(36,9.9vw,47)`).
+- Mobile fit: `min-h-[100dvh]` + `justify-center` + `py-4 sm:py-12` + `gap-5 sm:gap-8` no wrapper. Economiza ~100px verticais sem comprimir conteúdo. Iterações de compressão 10% e 5% rejeitadas.
+- Pedro ajustou manualmente PAGE_BG para `#FCFAF4` (cream mais claro) e refinou tamanhos dos secundários (`px-4 py-2.5`, ícones `h-9 w-9`, texto `text-[15px]`).
+
+**Débito técnico identificado:** `trackEvent('link_tree_click', ...)` em 3 anchors gera 3 erros TS (`EventName` em `src/lib/analytics.ts` é `'view_item' | 'add_to_cart' | 'begin_checkout' | 'purchase'`). Vite/esbuild ignora — não bloqueia build. Fix limpo seria adicionar `'link_tree_click'` à union.
+
+**Commits main:** `6d2dd1a`, `11ece09`, `7b00cff`, `877b7f3` (+ commits revertidos `cee0022`, `017067f`, `043666d`).
+
+Detalhes em [[memory/sessions/2026-06-03]] e [[memory/context/decisoes/2026-06]].

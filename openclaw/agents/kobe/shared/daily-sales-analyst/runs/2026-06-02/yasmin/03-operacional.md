@@ -1,0 +1,52 @@
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
+### Leitura operacional do dia
+
+- O resultado do dia foi inteiramente sustentado por volume, não por ticket. Com 197 pedidos válidos (+76,7% vs `same_weekday_avg.avg_orders=111,5` e +77,0% vs `avg_30d.avg_orders=111,3`) e GMV de R$9.210 (+71,6% e +73,6% nas mesmas janelas), o ticket de R$46,76 ficou comprimido: -2,0% vs 30d (`avg_ticket=47,69`) e -4,9% vs 7d (`avg_ticket=49,15`). O efeito é composicional — o Conjunto 5 Potes de Vidro Redondos Tampa Preta (56 pedidos = 28,4% do dia, produto de menor valor médio por unidade no cluster) dominou o dia e puxou o ticket para baixo em relação à semana recente. Confirma operacionalmente a leitura da L01: o ganho é de volume e não há compressão estrutural de preço.
+
+- A dependência do dia recaiu sobre um único produto Cross-Docking, distorcendo o mix de modalidade de envio do top 10. O Conjunto 5 Potes Tampa Preta (MLB4535865317, Cross-Docking, 56 pedidos) liderou com folga e sozinho inverteu o `fulfillment_mix_yesterday_top10` para 48,1% Full / 51,9% Cross-Docking — contra `fulfillment_mix_7d.full_pct=84,0%` e `fulfillment_mix_30d.full_pct=80,9%`. O cluster IMB501 completo (Tampa Preta + Cinza + Vermelha) respondeu por 99 pedidos = `top3_concentration=50,3%`, nível de concentração estrutural crônico documentado em todos os 8 ciclos da weekly. A divergência do mix é produto-específica e não sistêmica: um único anúncio Cross-Docking no topo do ranking deslocou o padrão do dia. Adiciona evidência à hipótese estrutural da L01 de que os campeões Full (MLB3288536143, MLB4073003575) estão em situação de risco mais profundo enquanto o resultado do dia flui pelo Cross-Docking.
+
+- Dois Full críticos entraram em ponto de ruptura simultânea, confirmando os riscos 1 e 2 da L01. O Kit 4 Potes de Vidro 1050ml Retangular (MLB4073003575, Full, `health=0,75`) fechou o dia com `available_quantity=2` pós-baixa de 12 pedidos: cobertura prospectiva inferior a 4 horas ao ritmo atual (~12 pedidos/dia extraído do snapshot), tornando ruptura imediata praticamente certa. Simultaneamente, o Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090, Full, `status=paused`, `available_quantity=0`) gerou 8 pedidos no dia com anúncio pausado e sem estoque — 8 cancelamentos prospectivos confirmados, oitavo ciclo do padrão crônico documentado na weekly desde 22/05. O único anúncio Catálogo com volume relevante, Kit 6 Canecas Lisas 200ml (MLB6232315532, gold_pro Full, `is_catalog=true`), fechou com `available_quantity=28` pós-baixa de 11 pedidos: cobertura estimada ~2,5 dias ao ritmo atual, vetor de perda de Buy Box no horizonte de 2–3 dias. Confirma e amplia os vetores de risco apontados pela L02 como ações 1, 2 e 3 do dia.
+
+- O ADS share recuperou de 48,1% (01/06) para 54,9% hoje (`ads_summary.revenue_ads_yesterday_brl=R$5.059,39` / `totals.gmv=R$9.210,85`), quebrando a série monotonicamente descendente documentada desde 22/05 (69,9%→48,1%). ROAS segue em pico de eficiência: `14,45x` e ACOS `4,7%`. O sinal operacional relevante é que os 8 pedidos da Tulipa pausada podem estar incluídos no numerador de `revenue_ads_yesterday_brl` — se confirmado, a recuperação do share seria artefato métrico parcial, não aceleração real de campanha. Sem breakdown por `platform_item_id`, a leitura é inconclusiva nesse detalhe, mas não altera a classificação de eficiência da campanha.
+
+---
+
+### Sinais operacionais relevantes
+
+- **Sinal:** Kit 4 Potes de Vidro 1050ml Retangular (MLB4073003575, Full, `health=0,75`) com `available_quantity=2` pós-baixa de 12 pedidos — **interpretação operacional:** cobertura prospectiva < 4 horas ao ritmo atual; ruptura em Full praticamente certa até amanhã. Quando pausar, remove um dos suportes do patamar de volume em Full e gera cancelamentos automáticos que pressionam `cancellations_rate` na janela oficial — impacto direto no ETA de Platinum (gap R$11.621, ETA 2,5 dias).
+
+- **Sinal:** Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090, Full) com `status=paused`, `available_quantity=0`, e 8 pedidos gerados no dia = 8 cancelamentos prospectivos confirmados — **interpretação operacional:** oitavo ciclo do padrão crônico. Os cancelamentos ainda não aparecem em `reputation.cancellations_rate=0` (janela longa), mas a série acumulada (3→3→2→6→9→2→8 prospectivos) está se aproximando do volume com impacto perceptível. Com 6.390 transações completas, ~32 cancelamentos movem 0,5 p.p. no indicador — threshold Platinum é ≤ 0,5% de cancelamentos.
+
+- **Sinal:** Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo gold_pro Full, `is_catalog=true`) com `available_quantity=28` pós-baixa de 11 pedidos e cobertura ~2,5 dias — **interpretação operacional:** único anúncio Catálogo ativo no top 5 do dia. Ruptura em Catálogo remove Buy Box e a recuperação de posição é estruturalmente mais lenta que em anúncio Clássico. `health=null` (volume ainda insuficiente para o ML calcular) não significa saúde adequada — significa apenas que o ML não avalia; o risco de ruptura é real e prospectivo.
+
+- **Sinal:** Mix de modalidade de envio do top 10 do dia em 48,1% Full / 51,9% Cross-Docking, contra `fulfillment_mix_7d.full_pct=84,0%` e `fulfillment_mix_30d.full_pct=80,9%` — **interpretação operacional:** divergência de ~36 p.p. em relação à banda 7d, causada integralmente pelo domínio do Conjunto 5 Potes Tampa Preta (MLB4535865317, Cross-Docking, 56 pedidos). Divergência produto-específica, pontual — mas sinaliza que o resultado do dia não está apoiado nos Full que historicamente sustentam o mix, e que esses Full estão simultaneamente em situação de estoque crítico.
+
+- **Sinal:** Kit 4 Potes de Vidro 640ml Azul-petróleo (MLB5402326666, Full, `health=0,66`) com o menor health do snapshot, abaixo do threshold de baixa saúde de 0,85, com `available_quantity=101` — **interpretação operacional:** health=0,66 é o piso do snapshot atual, abaixo dos já preocupantes 0,71 do MLB3288536143 e 0,75 do MLB4073003575. Anúncio Clássico com 6 pedidos no dia; estoque não é risco imediato, mas health degradado pode indicar claims, atrasos ou problemas de listing não mapeados. Não estava em evidência nos ciclos anteriores da weekly — pode ser new entry nos sinais de saúde degradada.
+
+---
+
+### Anomalias ou ausência de anomalia
+
+**Anomalia moderada.**
+
+O dia executou em volume excepcional (+77% vs 30d), com cancelamentos realizados baixos (2) e reputação verde estável. Mas dois anúncios Full simultâneos entraram em ponto de ruptura confirmada — Kit 4 Potes 1050ml com cobertura < 4 horas e Tulipa em seu oitavo ciclo de pausa com 8 cancelamentos prospectivos confirmados — enquanto o único anúncio Catálogo ativo no top 5 opera com 2,5 dias de cobertura residual. São três vetores operacionais com degradação simultânea, embora nenhum deles tenha bloqueado a execução do dia analisado. A anomalia é moderada porque os desvios são prospectivos (não bloquearam 02/06) e o resultado superficial do dia é positivo; sobe para crítica se o snapshot de amanhã confirmar MLB4073003575 pausado com volume ativo e `reputation.cancellations_rate` saindo de zero — condição que a L01 já identificou como gatilho de escalonamento.
+
+---
+
+### O que precisa ser investigado pela Granular
+
+- **Pergunta:** O Kit 4 Potes de Vidro 1050ml Retangular (MLB4073003575) está pausado ou ativo no snapshot de amanhã, e há reposição em trânsito para o CD do ML com ETA confirmado? — **motivada por:** `available_quantity=2` pós-baixa de 12 pedidos do dia; ruptura em Full é praticamente certa e determina se o volume do patamar atual se sustenta ou retrai nos próximos 2 dias.
+
+- **Pergunta:** Os 8 pedidos gerados pela Tulipa (MLB6167272090) com `status=paused` e `available_quantity=0` se materializaram como cancelamentos automáticos, ou há alguma unidade disponível em variação não exposta no snapshot? — **motivada por:** sinal operacional do oitavo ciclo crônico e impacto direto no `cancellations_rate` da janela oficial em momento crítico para o ETA de Platinum.
+
+- **Pergunta:** Quais são os drivers do `health=0,66` do Kit 4 Potes 640ml (MLB5402326666) — claims, atrasos de handling ou problema de listing? — **motivada por:** é o menor health do snapshot atual, piso abaixo do threshold 0,85, e não estava em evidência nos ciclos anteriores da weekly; antes de classificar como sinal recorrente ou novo, precisar entender a causa.
+
+- **Pergunta:** Quais anúncios geraram os 2 cancelamentos realizados do dia? — **motivada por:** sem atribuição por `order_id↔platform_item_id`, não é possível distinguir se os 2 cancelamentos são de anúncio pausado com volume residual (padrão crônico) ou de causa nova; informação necessária para calibrar a série prospectiva da Tulipa e do Kit 1050ml.
+
+- **Pergunta:** O `revenue_ads_yesterday_brl=R$5.059,39` inclui os pedidos da Tulipa pausada (MLB6167272090)? Qual é o breakdown por `platform_item_id` das top contribuições de receita ADS do dia? — **motivada por:** hipótese de inflação do numerador de ADS share levantada pela L01; sem breakdown, não é possível confirmar se o share de 54,9% reflete aceleração real de campanha ou artefato métrico dos 8 pedidos prospectivamente cancelados.
+
+---
+
+### Destaque para a Condensadora
+
+O fato operacional mais importante do dia não está no GMV excepcional de R$9.210 — está na convergência silenciosa de dois Full em ruptura simultânea que não aparece nos números de superfície. O Kit 4 Potes 1050ml (MLB4073003575) está a horas de pausar com `available_quantity=2`, e a Tulipa (MLB6167272090) replicou pelo oitavo ciclo o padrão de pedidos com anúncio pausado, desta vez na maior escala da série (8 cancelamentos prospectivos). Esses dois vetores, combinados com a cobertura de ~2,5 dias no único anúncio Catálogo (MLB6232315532), criam um risco que o resultado do dia ativamente mascara: a conta entregou seu melhor terça histórica sobre uma estrutura de suporte que começa a ceder nas próximas 12–24 horas. A Condensadora deve carregar esse contraste — não como alarme sobre o dia, mas como contexto de que o patamar atual precisa de ação de reposição imediata para se sustentar, e que a janela de Platinum (gap R$11.621, ETA 2,5 dias) está tecnicamente ao alcance mas diretamente ameaçada por cancelamentos prospectivos que ainda não entraram na métrica oficial.

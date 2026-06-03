@@ -1,18 +1,84 @@
 {
-  "layer": "07-qa",
-  "recipient": "lucas",
-  "date": "2026-06-01",
-  "verdict": "APPROVED_WITH_REMARKS",
-  "checks_passed": 1,
-  "checks_total": 1,
-  "blockers": [],
-  "remarks": [
-    "Artefatos gerados por fallback deterministico (sem LLM).",
-    "Dados extraidos diretamente do data package v1.0.",
-    "Data Readiness: DADOS_PARCIAIS."
-  ],
-  "send_allowed": false,
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "Nenhum Crítico ou Maior detectado. Foram encontrados 4 Menores isolados: ausência de faturamento de Conta 2 e Conta 3 na VISÃO (dado não disponível no pacote, omissão documentada no log); TOP PRODUTOS SHOPEE com cobertura restrita à Store sem nota explícita na mensagem (mitigado pelos labels '(Store)' em todos os 10 itens e pela documentação no log); remoção da palavra 'ativos' no insight 2 da Análise (sem alteração de sentido ou tese); percentuais 'cerca de 78%' e '68%' sem casa decimal conforme padrão numérico aprovado. Os 4 Menores são isolados e independentes — não configuram degradação sistêmica de formatação, clareza ou consistência. Regra aplicada: 0 Maiores + 1–5 Menores → APROVADO COM RESSALVA.",
+  "send_allowed": true,
   "send_real_allowed": false,
-  "fallback": true,
-  "llm_used": false
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "RESSALVA",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "RESSALVA"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 4,
+    "regra_agregacao_aplicada": "0 Maiores + 1–5 Menores → APROVADO COM RESSALVA. 4 Menores isolados distribuídos em 3 gates (Gate 4, Gate 5, Gate 6, Gate 11), sem padrão de degradação sistêmica."
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "Gate 4 — Visão da Plataforma",
+      "texto_atual": "- Budamix Oficial (Conta 2): 17 pedidos\n- Budamix Shop (Conta 3): 11 pedidos",
+      "texto_esperado": "- Budamix Oficial (Conta 2): 17 pedidos — R$ [valor]\n- Budamix Shop (Conta 3): 11 pedidos — R$ [valor]",
+      "estado_atual": "VISÃO exibe apenas contagem de pedidos para Conta 2 e Conta 3, sem faturamento.",
+      "estado_esperado": "VISÃO idealmente exibiria faturamento das 3 contas para quadro completo do canal.",
+      "regra_violada": "Gate 4 Shopee orienta que VISÃO deve mostrar faturamento/pedidos/ticket quando disponíveis. A omissão foi documentada no log como 'não disponível no pacote do dia', configurando limitação de dado com justificativa registrada — não erro de formatação nem violação de bloqueio. Impacto operacional baixo: Lucas pode inferir que os ~R$ 1.287 restantes se distribuem entre Conta 2 e Conta 3.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "🏆 TOP PRODUTOS SHOPEE [10 itens, todos com label (Store), sem nota de cobertura parcial na mensagem]",
+      "texto_esperado": "Seção 'TOP PRODUTOS SHOPEE' ou log poderia indicar explicitamente que a cobertura é restrita à Budamix Store por ausência de dados de produto das Contas 2 e 3.",
+      "estado_atual": "Todos os 10 produtos do ranking são da Budamix Store. O header 'TOP PRODUTOS SHOPEE' implica cobertura de todo o canal, mas o pacote não entregou product_data para Conta 2 e Conta 3. Cada item carrega label '(Store)' — mitigação significativa do risco de leitura errada.",
+      "estado_esperado": "Quando product_data de contas secundárias não está disponível, a mensagem ou o log deveria sinalizar que o ranking cobre apenas a Store (70,8% dos pedidos do canal), não todas as 3 contas Shopee.",
+      "regra_violada": "Gate 5 Shopee: produtos equivalentes consolidados nas 3 contas quando aplicável. A ausência de dados das outras contas impede consolidação — não é erro de escolha da Slack Writer. O label '(Store)' em todos os itens é informação suficiente para um leitor atento, mas um Lucas apressado pode assumir que está vendo o ranking consolidado Shopee. O log de decisões documenta a omissão, mas a mensagem não avisa o destinatário.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "Sobram apenas 4 SKUs com venda hoje, todos da mesma família de potes quadrados",
+      "texto_esperado": "Sobram apenas 4 SKUs ativos com venda hoje, todos da mesma família de potes quadrados",
+      "estado_atual": "Palavra 'ativos' removida do insight 2 em relação à fonte Condensadora.",
+      "estado_esperado": "Fidelidade completa preserva todos os qualificadores da Condensadora — 'ativos' distingue SKUs com venda efetiva de SKUs listados mas sem giro.",
+      "regra_violada": "Gate 6: nenhum termo analítico-chave removido. 'Ativos' é qualificador descritivo leve — sua remoção não inverte a tese, não troca conectivo de contraste e não altera a conclusão operacional. A leitura permanece correta: os 4 SKUs sem OOS que venderam no dia são a cauda viva observável.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "cobrindo cerca de 78% dos pedidos [...] padrão de 68% dos listings ativos",
+      "texto_esperado": "cobrindo cerca de 78,0% dos pedidos [...] padrão de 68,3% dos listings ativos (ou '~78%' / '~68%' como forma de sinalizar aproximação)",
+      "estado_atual": "Dois percentuais apresentados sem casa decimal, em desacordo com o padrão numérico aprovado 'percentuais com vírgula e 1 casa'.",
+      "estado_esperado": "Padrão numérico aprovado exige 1 casa decimal nos percentuais quando expressos numericamente. 'Cerca de' antes do 78% sinaliza aproximação e reduz o risco de confusão de precisão, mas não substitui a formatação padrão.",
+      "regra_violada": "Gate 11: percentuais com vírgula e 1 casa quando aparecerem. Valores derivados do pacote são 77,9% (arredondado para ~78%) e 68,3% (apresentado como 68%). A inconsistência de formato é real mas sem impacto operacional — os valores aproximados estão corretos e o qualificador 'cerca de' na primeira ocorrência mitiga risco de interpretação equivocada de precisão.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "Faturamento de Budamix Oficial (Conta 2) e Budamix Shop (Conta 3) ausente do pacote do dia — apenas contagem de pedidos disponível para essas contas. Registrar para L00/Trader que GMV desagregado por conta secundária Shopee não foi entregue neste ciclo. Total inferível: ~R$ 1.287,09 distribuídos entre Conta 2 (17 pedidos) e Conta 3 (11 pedidos), mas split não verificável.",
+    "TOP PRODUTOS SHOPEE cobre apenas Budamix Store (68 dos 96 pedidos = 70,8% do canal) por ausência de product_data para Conta 2 e Conta 3 no pacote. Quando 06b-shopee-consolidator estiver disponível nos próximos ciclos, o TOP deve refletir as 3 contas consolidadas com agrupamento por variação vendável.",
+    "Data Readiness DADOS_PARCIAIS confirmado: fulfillment_mix (logistic_type null em 100% dos pedidos por backfill pendente), ads_summary (HTTP 403) e shop_performance (HTTP 404) indisponíveis para Budamix Store. Análise e prioridades preservaram essas lacunas corretamente sem fabricar diagnóstico de tráfego ou logística.",
+    "Base de memória em estado de semente para esta conta: lacuna de 12 dias no daily (último registro 2026-05-20), weekly e monthly com template vazio. Confiança da tese atual é baixa a moderada por ausência de série recente — avaliar upgrade para confiança média após 2-3 ciclos seguidos com snapshot de estoque disponível.",
+    "CTL002 (Kit 6 Canecas Tulipa) OOS na Store e top 2 do dia com 15 pedidos — bloqueio de canibalização respeitado nesta mensagem. Input ativo para 06b-shopee-consolidator no próximo ciclo: SKU em OOS na conta de maior volume histórico pode redirecionar demanda para Oficial/Shop."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "Estrutura dos 3 insights da Análise usa o insight 1 como abertura referenciando '3 produtos' e amplia para '6 SKUs' no insight 2. Internamente coerente e fiel à Condensadora, mas um leitor que pare no insight 1 pode subestimar a extensão da ruptura antes de ler o insight 2. Avaliar em ciclos futuros se os dois insights deveriam ser fundidos em um único bullet com abertura já no número maior, reduzindo risco de leitura parcial.",
+    "Análise corretamente não menciona canibalização de CTL002 entre as contas (bloqueio da Condensadora respeitado). Lucas verá CTL002 no TOP PRODUTOS como produto de alto volume sem saber que está OOS na Store e é o SKU de maior risco entre canais. A informação existe mas não pode ir nesta mensagem — quando 06b-consolidadora rodar, esse contexto precisa ser o lead analítico do relatório consolidado para Lucas.",
+    "Confiança dos alertas de estoque é 'média' per Condensadora: memória semente, sem histórico de OOS comparável, snapshot capturado em 06/03 para data 06/01 (2 dias de defasagem). A mensagem preserva a linguagem de risco prospectivo ('se os campeões não voltarem') sem transformar hipótese em fato — postura correta dada a confiança declarada."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
 }

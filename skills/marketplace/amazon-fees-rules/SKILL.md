@@ -21,8 +21,8 @@ triggers:
 metadata:
   openclaw:
     emoji: 📦
-    last_updated: "2026-05-27"
-    next_review: "2026-06-03"
+    last_updated: "2026-06-03"
+    next_review: "2026-06-10"
     cron: "Amazon Fees Monitor — quarta 10h SP"
     sources:
       - url: "https://venda.amazon.com.br/precos"
@@ -49,7 +49,7 @@ metadata:
 
 # Regras de Comissões, Taxas e Custos — Amazon Brasil 2026 (CNPJ)
 
-> ⚠️ **Última atualização:** 27/05/2026
+> ⚠️ **Última atualização:** 03/06/2026
 > **Comissões:** sem alteração desde 20/01/2025 (quando 17 categorias tiveram redução de até 3 p.p.)
 > **FBA:** promoção agressiva vigente (fev–jul/2026) — tarifa zero para produtos ≥R$100
 > **DBA:** promoção oficial ativa de 50% off na tarifa logística para produtos ≥R$79, exclusiva CNPJ com coleta em SP
@@ -318,8 +318,7 @@ Serviço de coleta Amazon no armazém do vendedor. Varia por peso e estado de or
 | FBA — cliente Prime | **Amazon absorve** | R$ 0 (embutido na tarifa FBA) |
 | FBA — cliente não-Prime (≥R$ 129) | Amazon (frete grátis) | R$ 0 |
 | FBA — cliente não-Prime (<R$ 129) | Cliente paga frete | R$ 0 |
-| DBA — cliente (≥R$ 19 mesmo estado) | Frete grátis | Tarifa DBA |
-| DBA — cliente (≥R$ 79 interestadual) | Frete grátis | Tarifa DBA |
+| DBA — cliente (≥R$ 19) | Frete grátis para todos os clientes, conforme página oficial DBA vigente | Tarifa DBA |
 | FBM — cliente | Cliente paga (vendedor define) | Frete próprio |
 
 > **Diferença crucial vs ML/Shopee:** No FBA, o vendedor **NÃO paga frete separado**. O custo do frete ao consumidor (incluindo Prime grátis) está incluído na tarifa de logística FBA. Isso simplifica enormemente a precificação.
@@ -567,6 +566,7 @@ Se precificar a R$ 100:
 
 | Data | Alteração |
 |---|---|
+| 03/06/2026 | v1.3 — Revisão semanal oficial. Comissões, parcelamento, FBA/FBA+, DBA, Buy Box e Ads sem mudança material. Correção interna: tabela “Frete — quem paga o quê” alinhada à página oficial DBA vigente, removendo distinção antiga de mesmo estado/interestedual e consolidando frete grátis DBA para itens a partir de R$19. |
 | 27/05/2026 | v1.2 — Revisão semanal oficial. Comissões, parcelamento, FBA+, Buy Box e Ads sem mudança material. DBA atualizado com promoção oficial de 50% off na tarifa logística para produtos ≥R$79, exclusiva CNPJ com coleta em SP; frete grátis DBA corrigido para produtos a partir de R$19 conforme página oficial vigente. Elegibilidade FBA atualizada para incluir BA e GO. |
 | 13/05/2026 | v1.1 — Revisão semanal oficial. Comissões, parcelamento, DBA, Buy Box e Ads sem mudança material. FBA atualizado: benchmark oficial de crescimento médio ajustado de 5× para 4×; seção de produtos <R$79 corrigida para refletir a tabela oficial atual em três faixas de preço e remover a tabela antiga única de “<R$79”. Promoção FBA+ confirmada ativa até 31/07/2026 com validação mensal de 3,5% em Ads. |
 | 10/04/2026 | v1.0 — Criação da skill do zero. Tabela completa de comissões (35+ categorias). 4 modelos logísticos (FBA/DBA/FBA Onsite/FBM). Tarifas FBA completas (peso × preço). Promoção FBA+ vigente. Armazenagem e remoção. Amazon Ads (3 formatos + benchmarks). Buy Box (critérios e importância). Saúde da conta (AHR + métricas). Recebimento (ciclo 14 dias). Programas especiais (Vine, Programe e Poupe, Lightning Deals). Fórmula de precificação com exemplos. Comparativo Amazon vs ML vs Shopee. Mudanças 2026. |

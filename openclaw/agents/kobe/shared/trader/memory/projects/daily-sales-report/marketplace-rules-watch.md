@@ -2,7 +2,7 @@
 
 Registro operacional de mudanças/revisões de regras, políticas e taxas que podem impactar vendas, margem, exposição, frete, campanhas ou interpretação do Daily Sales Report v2.
 
-_Atualizado automaticamente em 2026-06-03 06:23 BRT por `daily-sales-v2-marketplace-rules-watch.py`._
+_Atualizado automaticamente em 2026-06-03 10:18 BRT por `daily-sales-v2-marketplace-rules-watch.py`._
 
 ## Como usar no Daily Sales Report v2
 - Usar como contexto causal/hipótese, não como explicação automática.
@@ -35,12 +35,12 @@ _Atualizado automaticamente em 2026-06-03 06:23 BRT por `daily-sales-v2-marketpl
   - Subsídio PIX/cupons pode alterar ticket e conversão sem necessariamente indicar mudança orgânica de demanda.
 
 ## Amazon
-- **Status:** 🟡 revisão próxima (2026-06-03)
-- **Última atualização da skill:** 2026-05-27
-- **Próxima revisão prevista:** 2026-06-03
+- **Status:** ✅ revisão vigente até 2026-06-10
+- **Última atualização da skill:** 2026-06-03
+- **Próxima revisão prevista:** 2026-06-10
 - **Cron/revisão profunda:** Amazon Fees Monitor — quarta 10h SP
 - **Skill fonte:** `skills/marketplace/amazon-fees-rules/SKILL.md`
-- **Resumo vigente:** ⚠️ **Última atualização:** 27/05/2026
+- **Resumo vigente:** ⚠️ **Última atualização:** 03/06/2026
 - **Impacto operacional para reports:**
   - Regras Amazon impactam FBA, Buy Box, comissão, parcelamento e leitura de cancelamentos/indisponibilidade.
   - FBA/Buy Box devem ser checados antes de escalar ADS quando houver cancelamento ou ruptura.

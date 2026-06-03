@@ -1,11 +1,17 @@
 # Pendências — Trader
 
-_Atualizado: 2026-06-01_
+_Atualizado: 2026-06-02_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
 
+- [ ] Daily Sales v2 01/06/2026 BRT: Daily Sales público foi enviado, mas não foram detectados artefatos finais de Slack Writer/QA para Lucas, Yasmin e Leonardo; investigar lacuna antes de qualquer send-candidate.
+- [ ] Mercado Livre: validar se a sequência de 189 pedidos em 31/05 e 206 pedidos em 01/06 sustenta escala real ou é pico de curto prazo; cruzar ADS, estoque/Full, ranking, cancelamentos e concentração em Potes Vidro 5 Peças.
+- [ ] Mercado Livre / MDF: acompanhar execução da diretriz de Pedro para aumentar investimento em MDF mesmo com ACoS alto; separar ACoS/TACoS e resultado incremental de MDF do restante do mix entre 03/06 e 10/06.
+- [ ] Shopee: monitorar D+1/D+3/D+7 da estratégia aprovada de separação/alternância entre contas para evitar competição interna; em 01/06 Store ficou forte e Conta 3 fraca, validar se é redistribuição planejada ou perda real de exposição.
+- [ ] Cancelamentos marketplace: acompanhar recorrência de ML 9 e Shopee 8 em 01/06; quebrar por produto/canal/shop_id se o patamar persistir no próximo ciclo.
+- [ ] Rules Watch: ML segue com revisão vencida desde 01/06; confirmar revisão Shopee prevista para 02/06 e Amazon prevista para 03/06 antes de usar mudança de taxa/regra como causa forte.
 - [ ] Daily Sales v2 31/05/2026 BRT: pacote de dados gerado com status DADOS_PARCIAIS por pico positivo de Mercado Livre (+77,6% vs média 30d), mas sem artefatos finais detectados de Slack Writer/QA para Lucas, Yasmin e Leonardo; investigar lacuna antes de qualquer send-candidate.
 - [ ] Mercado Livre: validar se pico de 189 pedidos em 31/05 sustenta ou foi ponto isolado de domingo; cruzar ADS, estoque/Full, ranking, cancelamentos e concentração em Potes Vidro 5 Peças antes de tratar como novo patamar.
 - [ ] Rules Watch Mercado Livre: ML Fees Monitor de 01/06/2026 BRT terminou em timeout; revisar regras/taxas ML antes de usar mudança de taxa/frete/reputação como causa forte em junho.

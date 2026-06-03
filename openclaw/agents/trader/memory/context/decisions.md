@@ -83,3 +83,13 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 - Qualquer valor monetário inserido ou atualizado nas abas de pricing/estoque deve usar padrão brasileiro `R$ 00,00`, com vírgula decimal.
 - Nunca usar ponto como separador decimal em inputs manuais ou automações de escrita no Google Sheets.
 - Validação pós-escrita deve checar tanto o valor numérico real quanto a exibição/formatação brasileira.
+
+### Shopee — alternância entre contas para evitar competição interna (2026-06-02)
+- Pedro aprovou seguir com estratégia de separar/alternar ações entre as 3 contas Shopee quando fizer sentido, evitando que as contas compitam entre si em lances pelo mesmo produto.
+- Nos reports, variações entre Store, Conta 2 e Conta 3 devem ser lidas também como possível efeito planejado de redistribuição de exposição, não automaticamente como queda isolada.
+- Validar sempre por shop_id, produto, ADS, afiliados, vendas orgânicas vs pagas, ROAS/TACOS e canibalização antes de recomendar ajuste.
+
+### Mercado Livre — MDF pode receber investimento mesmo com ACoS alto (2026-06-02)
+- Pedro alinhou que vale aumentar investimento em produtos MDF no Mercado Livre mesmo que o ACoS fique alto no curto prazo.
+- Interpretação operacional: MDF é aposta de tração/ranking e produção própria; separar desempenho/ACoS/TACoS de MDF do restante do mix antes de diagnosticar desperdício de ADS.
+- Validar execução e resultado com vendas incrementais, ranking/exposição, margem, estoque/capacidade produtiva e evolução de ACoS/TACoS entre 03/06 e 10/06.

@@ -1,0 +1,38 @@
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
+### Decisão tática
+
+- **Dado que a tese estratégica da L01 é "piso orgânico revelado em R$6.401" sustentada por `ads_summary.spend_yesterday_brl=0,0` com `campaigns_active_count=12`,** a decisão tática não é tratar esse zero como confirmação de orgânico estrutural — é verificar com Himmel se o gasto nulo é dado real (pausa intencional, corte de verba) ou anomalia operacional (latência de billing, bug de tracking). A tese da L01 muda de significado dependendo da resposta: se zero for real, orgânico confirmado; se for artefato, o GMV de hoje não é comparável à série histórica com ADS ativo e nenhuma decisão de verba ou amplificação pode ser tomada com base nele.
+
+- **Dado que a L01 identifica MLB6232315532 (único Catálogo ativo no top 10) como sinal diretamente ligado ao risco principal e ao ETA Platinum,** a decisão tática é ação imediata de verificação de reposição. Com `available_quantity=22` e ritmo de ~9 pedidos/dia, cobertura é ~2,4 dias. Ruptura em Catálogo derruba Buy Box com recuperação estruturalmente mais lenta do que em Clássico — e comprime GMV no exato momento em que ETA Platinum (gap R$7.854, ETA 1,6 dias) está na faixa de decisão.
+
+- **Dado que o risco estrutural principal da L01 é MLB3288536143 (Full, `health=0,71` há 11+ ciclos, sem dado de direção interna),** a decisão tática é observação dirigida com condição falsificável, não ação forte. Reposição confirmada (qty=174 hoje contra ~13 em 01/06) atenuou o risco físico de ruptura; o risco de exposição orgânica (health caindo abaixo do limiar Básico ML) permanece em aberto — mas agir sem saber a direção é precipitado. O sétimo ciclo abaixo de 0,71 seria o gatilho.
+
+- **Dado que a L01 identifica `cancellations_rate=0` oficial com série crescente de cancelamentos diários (3→3→2→6→9→4) e `ratings_negative` subindo de 0,39 para 0,41 em três ciclos consecutivos,** a decisão tática no horizonte de Platinum a 1,6 dias é não criar novos vetores de cancelamento — qualquer ruptura nova (especialmente em Catálogo) gera cancelamentos automáticos que entram na janela rolling e podem comprometer elegibilidade técnica no momento exato da promoção.
+
+---
+
+### O que fazer hoje
+
+**1. Yasmin:** confirmar com Himmel o que aconteceu com o spend ADS de 03/06 (`spend_yesterday_brl=0,0` com 12 campanhas ativas) — motivo: a leitura estratégica de "piso orgânico em R$6.401" muda completamente se o zero for anomalia de dado (latência, billing lag) ou interrupção acidental; sem confirmação, não é possível saber se o GMV de hoje é orgânico real ou dia de ADS fora do ar por razão técnica — sinal de resultado: se Himmel confirmar campanhas ativas e zero é latência de atribuição, registrar como dado não comparável e aguardar pacote do dia seguinte para leitura limpa; se confirmar interrupção (técnica ou financeira), registrar data como variável confundidora e escalar para Kobe apenas se o problema for estrutural (corte de conta, restrição de verba permanente).
+
+**2. Yasmin:** verificar se há reposição em trânsito ao CD do ML para o Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo gold_pro, Full, `available_quantity=22` pós-baixa de 9 pedidos) — motivo: cobertura de ~2,4 dias ao ritmo atual; é o único anúncio em Catálogo no top 10 e perda de Buy Box em Catálogo tem recuperação estruturalmente mais lenta do que em Clássico; ruptura neste anúncio também reduz GMV no janela exata de ETA Platinum, potencialmente atrasando promoção — sinal de resultado: reposição confirmada com ETA chegando ao CD em até 2 dias neutraliza o risco imediato; sem confirmação de reposição em trânsito, Yasmin solicita urgência operacional ao responsável de estoque antes que `available_quantity` caia abaixo de 5 unidades.
+
+**3. Yasmin:** registrar o valor de `health` do MLB3288536143 (Conjunto 5 Potes Vidro, Full) no snapshot de hoje e comparar com o ciclo anterior (0,71 em 02/06 e série de 11 ciclos idênticos) — motivo: primeira leitura com dado de direção comparável depois de reposição confirmada (qty=174 hoje); se health mantiver 0,71 ou subir, padrão estável, continuar observando sem ação; se health cair abaixo de 0,71 pela primeira vez na série, isso indica erosão ativa de exposição orgânica no principal anúncio da conta (39,4% do GMV do dia) e Yasmin alinha com Himmel sobre cobertura preventiva de ADS antes que o anúncio entre na faixa Básico ML (abaixo de ~0,68) — sinal de resultado: saída de 0,71 para baixo em qualquer ciclo desta semana = acionar alinhamento Yasmin-Himmel; manutenção ≥ 0,71 por mais 2 ciclos = hipótese de estabilização, aguardar mais dados.
+
+---
+
+### O que NÃO fazer ainda
+
+- **Não tomar nenhuma decisão de verba, campanha ou mix de ADS baseada na leitura de "orgânico em R$6.401"** enquanto a anomalia de `spend=0` com 12 campanhas ativas não tiver explicação confirmada por Himmel. Seria precipitado porque a tese de "orgânico estrutural" e a tese de "dia com ADS fora do ar por razão técnica" geram recomendações opostas — ampliar ADS num orgânico forte é diferente de reativar ADS que parou por bug. Agir antes de saber qual é o caso introduz variável nova num sistema com anomalia aberta.
+
+- **Não pausar, redirecionar nem tentar "recuperar" os anúncios com health abaixo de 0,85** (incluindo MLB3288536143 em 0,71 e MLB5322494954 em 0,75) antes de observar a direção do health nos próximos 1-2 ciclos. Seria precipitado porque o health de MLB3288536143 está estável há 11+ ciclos — intervenção sem diagnóstico de causa (claims, atrasos, atributos de listing) pode piorar o sinal antes de melhorar, e o pacote atual não oferece os drivers necessários para direcionar a ação. A regra tática exige saber se o health está caindo, estável ou se recuperando antes de qualquer movimento.
+
+- **Não interpretar a queda de GMV vs 7d (-20,1%, R$8.010 → R$6.401) como sinal de deterioração de patamar** e tomar ação corretiva sobre preço ou exposição. Seria precipitado porque a base de 7d inclui os picos de R$9.210 (02/06) e R$9.953 (01/06) — ambos com ADS ativo e em dias de alto volume orgânico; hoje operou sem ADS (confirmação pendente) e ainda assim ficou +5,9% vs avg_30d e +51,1% vs a média das quartas-feiras homólogas. A comparação vs 7d é barulho de base alta, não reversão.
+
+---
+
+### Escalonamento
+
+**alinhar com Himmel** (via Yasmin, hoje)
+
+O `ads_summary.spend_yesterday_brl=0,0` com `campaigns_active_count=12` é uma anomalia operacional que precisa de resposta de Himmel antes que qualquer outra decisão de ADS seja tomada ou que a tese estratégica da L01 seja tratada como definitiva. Yasmin alinha com Himmel hoje com uma pergunta direta: as campanhas ML rodaram normalmente no dia 03/06 ou houve interrupção? A resposta determina se a leitura de "piso orgânico" se sustenta ou precisa ser marcada como dado contaminado. Se Himmel confirmar que o zero é artefato técnico, o escalonamento reverte para **observar** (aguardar pacote limpo de 04/06 para confirmar orgânico). Se Himmel confirmar interrupção técnica pontual já resolvida, também **observar** — sem alterar campanhas. Se Himmel identificar problema estrutural de conta ADS (corte de acesso, restrição financeira), Yasmin **escala para Kobe**, pois a decisão sobre verba ou conta ADS extrapola o nível operacional dela. A promoção Platinum a ~1,6 dias de distância adiciona urgência à confirmação: redução de GMV por ADS fora do ar alonga o ETA no momento mais crítico da janela.

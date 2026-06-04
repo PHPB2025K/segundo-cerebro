@@ -1,0 +1,83 @@
+{
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "Mensagem bloqueada por 2 Maiores em gates distintos (Gate 8 e Gate 10). Gate 10 Maior: a prioridade 3 apresenta a pontuação numérica de saúde do anúncio entre parênteses — 'em nível regular há 12 ciclos seguidos (0,71)' — violando a regra explícita que proíbe valor numérico de health ao lado do nome da faixa. Gate 8 Maior: o bloco 'Decisões de formatação' da L06 afirma expressamente que '0,71 é preservado... sem expor o número entre parênteses', mas a mensagem final contém '(0,71)' exatamente naquela posição — decisão registrada contradiz diretamente a mensagem final, erro silencioso que compromete rastreabilidade. Dois Maiores em gates diferentes disparam a regra de agregação: BLOQUEADO.",
+  "send_allowed": false,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "FALHA",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "FALHA",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "RESSALVA"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 2,
+    "maiores_gates_distintos": 2,
+    "menores": 2,
+    "regra_agregacao_aplicada": "2 Maiores em gates distintos (Gate 8 e Gate 10) → BLOQUEADO"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Maior",
+      "gate": "Gate 10 — Tom e utilidade",
+      "texto_atual": "em nível regular há 12 ciclos seguidos (0,71)",
+      "texto_esperado": "em nível regular há 12 ciclos seguidos",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Pontuação numérica entre parênteses ao lado do nome do nível de qualidade é proibida no Slack. O campo health é detalhe interno — o Slack usa apenas o nome da faixa ('regular', 'preocupante', 'bom', 'excelente'). A regra é explícita: 'em regular (0,71)' → Bloquear como Maior. O trecho encontrado na prioridade 3 é caso exato do exemplo proibido.",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Maior",
+      "gate": "Gate 8 — Bloqueios, confiança e logs da Slack Writer",
+      "texto_atual": "Log Decisões de formatação: 'O valor 0,71 é preservado apenas onde serve como referência direta de comparação na prioridade 3 (\"mantido em regular ou subindo\") sem expor o número entre parênteses'",
+      "texto_esperado": "Log deve refletir com precisão o que a mensagem contém; se '(0,71)' aparece no Slack, o log deve registrar essa decisão ou a mensagem deve ser corrigida para removê-lo — os dois artefatos precisam ser consistentes entre si",
+      "estado_atual": "O log afirma explicitamente que o valor numérico NÃO foi exposto entre parênteses, mas a mensagem final contém '(0,71)' na prioridade 3. Decisão registrada contradiz a mensagem final — erro de documentação que torna o log não confiável como evidência de controle.",
+      "estado_esperado": "Consistência entre log e mensagem final: solução recomendada é remover '(0,71)' da mensagem e manter o log; alternativa é reescrever o log registrando a decisão de incluir o valor e justificando (mas a inclusão em si ainda violaria Gate 10).",
+      "regra_violada": "Gate 8: 'Bloquear se: decisão registrada contradiz a mensagem final.' A L06 declarou uma coisa e fez outra — o gate mais crítico para evitar erro silencioso foi comprometido exatamente nesse ponto.",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 10 — Tom e utilidade",
+      "texto_atual": "Análise bullet 3: 'A Tampa Vermelha do cluster de Potes 5 Peças opera num anúncio Cross-Docking separado' e 'o mix do dia variou por concentração no cluster'; Prioridade 3: 'no próximo snapshot'",
+      "texto_esperado": "Substituir ao menos uma ocorrência de 'cluster' por 'grupo' ou equivalente natural; substituir 'snapshot' por 'próxima leitura' ou 'próximo ciclo' — mantendo total de termos listados ≤ 2 ocorrências",
+      "estado_atual": "3 ocorrências de termos da lista proibida: 'cluster' (×2, termos listados) + 'snapshot' (×1, termo listado) = 3 ≥ limiar de 3.",
+      "estado_esperado": "≤ 2 ocorrências totais dos termos: ETA, breakdown, runway, elegibilidade, share, threshold, ratio, snapshot, variável confundidora, dependência estrutural, patamar, cluster, prospectivo/retrospectivo.",
+      "regra_violada": "Frequência ≥ 3 de termos técnicos listados sem tradução natural indica jargão não-traduzido → Menor. 'cluster' e 'snapshot' estão explicitamente na lista de termos que devem ser traduzidos para linguagem operacional natural.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 10 — Tom e utilidade",
+      "texto_atual": "ruptura aqui bate direto na janela de Platinum — derruba faturamento e perde Buy Box",
+      "texto_esperado": "ruptura aqui bate direto na janela de MercadoLíder Platinum — derruba faturamento e perde Buy Box",
+      "estado_atual": null,
+      "estado_esperado": null,
+      "regra_violada": "Vocabulário MercadoLíder oficial exige grafia exata 'MercadoLíder Platinum'. Usar apenas 'Platinum' sem o prefixo é forma incompleta do nome oficial — análogo ao caso proibido de 'gold' sem 'MercadoLíder' antes. O nome completo foi usado corretamente na Análise bullet 2 mas foi encurtado na prioridade 2.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [
+    "CRÍTICA — Prioridade 3: remover '(0,71)' do trecho 'em nível regular há 12 ciclos seguidos (0,71)'. Forma correta: 'em nível regular há 12 ciclos seguidos'. O ponto de corte operacional pode ser mencionado em linguagem natural se necessário ('abaixo de regular' em vez de 'abaixo de 0,71') mas o número entre parênteses ao lado do nome da faixa é proibido.",
+    "CRÍTICA — Log 'Decisões de formatação': após remover '(0,71)' da mensagem, atualizar a entrada correspondente no log para que reflita corretamente o artefato final entregue. Log e mensagem devem ser consistentes antes de reenviar para QA.",
+    "(Menor — corrigir na reescrita) Prioridade 2: trocar 'janela de Platinum' por 'janela de MercadoLíder Platinum'.",
+    "(Menor — corrigir na reescrita) Análise bullet 3 e Prioridade 3: reduzir ocorrências de termos listados para ≤ 2 totais — substituir uma ocorrência de 'cluster de Potes 5 Peças' por 'grupo de Potes 5 Peças' e 'no próximo snapshot' por 'na próxima leitura'."
+  ],
+  "ressalvas_memoria_interna": [],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "Gate 12 — ADS: ads_summary declara campaigns_active_count=12 com spend_yesterday_brl=0,0 e revenue_ads_yesterday_brl=0,0. Condição de Gate 12 ('campaigns_active_count > 0 E spend=0 com todos os campos zerados') está presente. A L05 tratou corretamente como hipótese em aberto (classificacao: 'hipótese') e a L06 preservou linguagem condicional adequada ('antes de chamar isso de piso orgânico, Yasmin precisa confirmar com Himmel...') — condição para tratamento como APROVADO COM RESSALVA neste gate específico está satisfeita. Ação para o fetcher no próximo ciclo: incluir métricas de funil (impressões e cliques por campanha) no pacote ML para permitir distinguir interrupção real de artefato de billing/atribuição sem depender de confirmação manual de Himmel a cada ciclo. Pendência estrutural recorrente — 13º ciclo sem resolução.",
+    "Gate 12 — Fulfillment coverage: fulfillment_mix_yesterday_top10 cobre 62 de 142 pedidos (43,7%), bem abaixo do limiar de 70%. A L06 não apresentou esse dado como métrica total — escreveu explicitamente 'no top 10 do dia' na Análise e omitiu da VISÃO com log documentado. Anomalia de cobertura não contaminou a mensagem. Para o fetcher: investigar se é possível calcular fulfillment_mix sobre 100% dos pedidos do dia via logistic_type de todos os pedidos (como já feito nas janelas 7d/30d pelo Supabase) e substituir o cálculo top_10_weighted nos próximos ciclos — isso eliminaria a ressalva de cobertura e permitiria apresentar o dado na VISÃO sem restrições."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

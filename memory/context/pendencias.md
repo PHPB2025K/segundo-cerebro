@@ -204,6 +204,18 @@ _Atualizado: 2026-05-28 ~17h BRT — Fase 2 mapeamento de SKUs do estoque deploy
 - [ ] **Conferir se Mercado Pago absorve juros do parcelamento** — col PARCELAMENTO da aba SITE assume 1,5% (mesma fórmula AMAZON). Se MP absorve, ajustar pra 0.
 - [ ] **Investigar quem desativou variantes "espelho" dos 6 Tulipa novos** entre 14:50–14:57 do dia 21/05. Reativadas via SQL — entender o caminho de edição pra não voltar a acontecer.
 
+## 🟡 Daily Sales Report Shopee — STANDBY (04/06)
+
+> **Fase 1 validada (smoke 03/06 APROVADO, 13 gates, 0 críticos) — em standby por decisão do Pedro pra lapidação futura.** Não tocar sem solicitação explícita. Painel em https://mission.budamix.com.br/reports/daily-sales-shopee. Ficha: [[projects/daily-sales-shopee]].
+
+- [ ] **Aplicar regra de densidade de 4 elementos em L02/L03/L04** — hoje só L01 + L05 + L06 ganharam a regra (commit `79517168`). L02 (tática), L03 (operacional) e L04 (granular) ainda podem produzir insights rasos em gaps estruturais.
+- [ ] **Smoke das Contas 2 e 3** — Conta 1 (Budamix Store) rodou OK. Falta Budamix Oficial (shopee-budamix-oficial-2) e Budamix Shop (shopee-budamix-shop-3) com inputs reais.
+- [ ] **3 gaps de fetcher Shopee** — (a) `shop_performance` HTTP 404 na Open API (endpoint legado descontinuado, precisa Seller Center scraping ou alternativa); (b) `ads_summary` HTTP 403 (Pedro precisa autorizar escopo de ads no OAuth); (c) `fulfillment_mix` retorna 100% `logistic_type=null` (backfill cron de orders precisa popular esse campo).
+- [ ] **L06b Consolidadora cross-account não implementada** — quando as 3 contas rodarem em paralelo, falta prompt L06b que recebe os 3 L05 (1 por conta) e produz comparativo cross-account (papel por loja, tese seed agregada).
+- [ ] **Cron 07:00 BRT não ativado** — runner pronto em `/root/segundo-cerebro/scripts/daily-sales-runner-shopee.py` mas crontab da VPS não tem entrada. ML continua em 06:00 BRT (não conflita). Ativar só depois da regra de densidade aplicada e smokes 2/3 OK.
+- [ ] **Mission Control L06b placeholder** — página `/reports/daily-sales-shopee` está com card cross-account vazio aguardando L06b real.
+- [ ] **Evoluir L08/L09 (semanal/mensal) com densidade equivalente** — hoje L08 (167 linhas) e L09 (157 linhas) seguem o padrão v3.0; podem se beneficiar da regra de 4 elementos quando agregação semanal aumentar superfície de gaps.
+
 ## 🚨 Jurídico / Contratos
 
 - [ ] **Guarani Sistemas — enviar o email formal de contestação/distrato** com pedido de suspensão de protesto, memória de cálculo aberta e proposta **sem reconhecimento de dívida**.

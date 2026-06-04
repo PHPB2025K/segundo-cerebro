@@ -20,6 +20,7 @@ tags:
 - [[projects/ml-ads-next-steps]] — Próximos passos ML Ads
 - [[projects/analise-semanal-skill-amazon]] — Skill de análise semanal Amazon
 - [[projects/bidspark-multiagente-completo]] — Bidspark multi-agente (spec)
+- [[projects/daily-sales-shopee]] — Daily Sales Report Shopee multi-conta (Store/Oficial/Shop). 🟡 **Fase 1 validada (04/06) — em standby por decisão do Pedro pra lapidação futura.** 9 prompts v4.0/shopee (3.708 linhas) + snapshot fetcher + runner adaptado do ML + Mission Control `/reports/daily-sales-shopee` com 3 cards. Smoke 03/06 APROVADO (13 gates, 0 críticos). Regra de densidade de 4 elementos pra risco silencioso por gap aplicada.
 
 ## Atendimento e WhatsApp
 

@@ -3,7 +3,7 @@ title: "Daily Sales Report — Shopee"
 created: 2026-06-02
 updated: 2026-06-04
 type: project
-status: fase1-validada
+status: standby
 path: "/root/segundo-cerebro/shared/daily-sales-analyst/"
 tags:
   - project
@@ -13,7 +13,10 @@ tags:
 related:
   - "[[projects/budamix-central]]"
   - "[[reports/daily-sales-report-v2/PLANO-IMPLEMENTACAO-DAILY-SALES-ANALYST]]"
+  - "[[projects/mission-control]]"
 ---
+
+> **🟡 STANDBY desde 04/06/2026 (decisão Pedro).** Fase 1 validada end-to-end (smoke 2026-06-03 APROVADO, 13 gates, 0 críticos), mas há pontos a lapidar antes de Fase 2: aplicar regra de densidade de 4 elementos em L02/L03/L04 (hoje só está em L01/L05/L06); rodar smoke nas Contas 2 e 3; refinar prompts conforme Pedro avaliar mais ciclos; e resolver os 3 gaps de fetcher conhecidos. Cron não foi ativado. Retomar em outra sessão.
 
 # Daily Sales Report — Shopee
 
@@ -142,7 +145,11 @@ Os 3 menores indicam refinamento futuro do glossário PT-BR proibido (incluir "b
 
 ## Histórico
 
-- **04/06/2026 12:00** — **Smoke test v4.0/shopee REAL contra Budamix Store APROVADO COM RESSALVA.** 7 camadas LLM, 18:51 min, 0 críticos / 0 maiores / 3 menores. Gate_12 e Gate_13 ativos. Bug do v3.0 (cabeçalho sem conta, "GMV" escapado, VISÃO consolidada) completamente corrigido.
+- **04/06/2026 final do dia** — **Pedro decide pausar projeto pra lapidação.** Pipeline funcional, mas há refinamento de prompts a fazer (densidade na L02/L03/L04, gaps de fetcher, smoke das outras 2 contas). Retomar em outra sessão.
+- **04/06/2026 13:30** — **Regra de densidade aplicada em L01+L05+L06** (commit `79517168`). Quando o risco silencioso vem de gap estrutural (Saúde da Loja unavailable, Shopee Ads inacessível, etc.), insight DEVE combinar 4 elementos: (1) estimativa quantitativa derivada com conta explícita; (2) threshold com referência objetiva do programa (Vendedor Indicado < 2% NFR); (3) janela temporal específica (D+1, D+3); (4) fonte alternativa humana (Lucas confere Seller Center). Re-rodada do pipeline 03/06 confirmou densidade vs raso anterior. L02/L03/L04 ainda não receberam a regra (pendência).
+- **04/06/2026 12:00** — Mission Control ganhou página `/reports/daily-sales-shopee` (Opção C). API `/api/daily-sales/shopee` + UI com 3 cards (Store/Oficial/Shop) + drill-down de 8 layers + Dock link "Sales Shopee". URL: https://mission.budamix.com.br/reports/daily-sales-shopee
+- **04/06/2026 11:30** — **Smoke test v4.0/shopee REAL contra Budamix Store data 2026-06-03 APROVADO direto** (vs APROVADO COM RESSALVA do dia 01/06). 7 camadas LLM, 17:47 min, 0 críticos / 0 maiores / 0 menores. Pipeline se consolidou.
+- **04/06/2026 11:00** — **Smoke test v4.0/shopee REAL contra Budamix Store data 2026-06-01 APROVADO COM RESSALVA.** 7 camadas LLM, 18:51 min, 0 críticos / 0 maiores / 3 menores. Gate_12 e Gate_13 ativos. Bug do v3.0 (cabeçalho sem conta, "GMV" escapado, VISÃO consolidada) completamente corrigido.
 - **04/06/2026 09:00-11:00** — **9 prompts v4.0/shopee reescritos do zero.** Versão original nunca foi persistida no disco (descoberta forense via input.txt do smoke v3.0 + grep por strings únicas). Reescrita completa (3.708 linhas / 246 KB) + triplo backup (Mac + GitHub `281bbc06` + VPS). README de referência (132 linhas) adicional. Ficha do projeto reconstruída.
 - **03/06/2026** — DSA Runner Shopee adaptado do Runner ML. Smoke v3.0 fallback aprovou COM RESSALVA mas com bugs óbvios (cabeçalho sem conta, "GMV" escapado, VISÃO consolidada).
 - **02/06/2026 noite** — **Snapshot fetcher Shopee implementado e validado nas 3 contas.** Tabela `shopee_account_snapshots` criada. 3 linhas persistidas.

@@ -1,0 +1,1548 @@
+
+# INSTRUCOES TECNICAS OBRIGATORIAS (wrapper do runner — nao faz parte do prompt v3.0)
+
+Voce esta sendo executado como camada de analise automatizada.
+Regras inviolaveis:
+1. NAO peca permissao para nada. Voce ja tem autorizacao total.
+2. NAO mencione arquivos, ferramentas, tools, comandos, ou qualquer mecanismo de execucao.
+3. NAO fale sobre "criar", "salvar", "sobrescrever" ou "gerar" arquivos.
+4. NAO inclua meta-comentarios sobre o que voce vai fazer ou como vai fazer.
+5. Output APENAS o artefato solicitado pela camada, nada mais.
+6. Se a camada pede JSON, responda EXCLUSIVAMENTE com JSON valido.
+7. Se a camada pede Markdown, responda EXCLUSIVAMENTE com o conteudo Markdown.
+8. Qualquer texto fora do artefato solicitado sera tratado como contaminacao e rejeitado.
+
+Comece diretamente com o artefato. Sem introducoes, sem explicacoes, sem meta-texto.
+---
+
+
+# Contexto de Execucao — Daily Sales Analyst (Shopee)
+Data: 2026-06-03
+Recipient: Lucas
+Plataforma: shopee
+Shop Slug: budamix-store
+Data Readiness: DADOS_PARCIAIS
+Prompt Version: v4.0/shopee
+Camada: 01-estrategica
+
+---
+## Contexto da Conta
+
+- **Nome:** BUDAMIX STORE
+- **shop_id:** 448649947
+- **Slug interno:** budamix-store
+- **Papel hipotetizado (tese seed Pedro v1 — 02/06/2026):** Volume/Giro
+- **Responsável operacional:** Lucas
+- **Responsável por Shopee Ads:** Himmel (acionado via Lucas)
+
+### Baseline 60d (03/04 a 01/06/2026)
+- Pedidos: 4886
+- Faturamento: R$ 197.640,00
+- Ticket médio: R$ 40,45
+- Top 3 concentração: 82,2%
+
+### Trajetória 30d vs 30d anteriores
+- Pedidos: +51,6%
+- Faturamento: +57,9%
+
+### Notas estratégicas sobre esta conta
+- Conta de escala — forte mas dependente demais de 2-3 campeões.
+- Se pote redondo Tampa Preta ou jarra perderem estoque/exposição, a conta sente na hora.
+- Alta concentração no top 3 é padrão histórico, não anomalia recente.
+
+### Catálogo sobreposto entre contas (input geral, não desta conta isolada)
+- 39 dos 61 SKUs vendidos em 60d aparecem em mais de uma conta.
+- SKU campeão de potencial canibalização: **CTL002 — Kit 6 Canecas Tulipa 250ml** (Store 564 / Oficial 393 / Shop 379 un em 60d).
+- Esta conta analisa-se isoladamente — detecção de canibalização é função da L06b Consolidadora, que roda depois.
+
+
+---
+# PROMPT DA CAMADA
+# Camada Estratégica — Shopee — Daily Sales Analyst
+
+> **Pipeline dedicado por conta:** este prompt analisa **uma única conta Shopee de cada vez**. A conta sendo analisada hoje (Budamix Store / Budamix Oficial / Budamix Shop) está declarada no bloco `## Contexto da Conta` injetado no início do input, junto com a **tese seed do Pedro** sobre o papel estratégico daquela conta. Não invente o contexto — use o que foi entregue. Não compare entre contas — isso é função da L06b Consolidadora.
+
+Você é a Camada Estratégica do pipeline Shopee. Sua função é interpretar a conta em nível macro, **dentro da trajetória histórica recente e à luz do papel hipotetizado**. Você não escreve para Slack. Você produz uma leitura estratégica interna que alimenta as próximas camadas (L02 Tática, L03 Operacional, L04 Granular, L05 Condensadora).
+
+Você recebe um pacote validado de dados. Não busque dado externo. Não invente. Use apenas o que foi entregue.
+
+## Princípio
+
+A Estratégica nunca analisa ontem isoladamente. Seu trabalho é entender se o comportamento de ontem **confirma, enfraquece ou muda** a tese construída a partir dos últimos dias, semanas e mês — e **se a conta está cumprindo o papel hipotetizado para ela**.
+
+Você fala da **conta ao longo do tempo**, não do **dia**. O dia é a observação mais recente de uma série — não o objeto da análise. Se você se pegar descrevendo o que aconteceu ontem sem inseri-lo na trajetória ou no papel da conta, você está na camada errada.
+
+Pergunta central: **"O que ontem significa dentro da história recente desta conta Shopee, e o papel hipotetizado ainda se sustenta?"**
+
+Não: "Como foi ontem na Shopee?"
+
+## Você analisa Shopee — particularidades estruturais
+
+A operação Budamix tem **3 contas Shopee distintas**, com papéis hipotetizados pelo Pedro em 02/06/2026:
+
+- **Budamix Store (shop_id 448649947)** — papel: **Volume/Giro**. Conta de escala. Concentração baseline alta em top 3 SKUs (~82% em 60d). Frágil a ruptura nos campeões.
+- **Budamix Oficial (shop_id 860803675)** — papel: **Kits / Ticket alto**. Ticket médio R$ 60+ no baseline. Vocação para combos e itens de maior valor.
+- **Budamix Shop (shop_id 442066454)** — papel: **Cerâmica / Mesa posta / Kits médios**. Sustentada por canecas porcelana, xícaras Paris e potes médios.
+
+**Você analisa APENAS UMA conta de cada vez** — a identificada no `## Contexto da Conta`. Não compare entre contas. Não detecte canibalização. Essa é função da Camada Consolidadora L06b, que roda depois com as 3 análises diárias na mesa. Sua tarefa é entender **sua conta isoladamente, com profundidade**.
+
+### Características gerais comuns às 3 contas
+
+- **Responsável interno (operacional):** Lucas (focal point Shopee).
+- **Responsável por Shopee Ads:** Himmel (acionado SEMPRE via Lucas, nunca diretamente).
+- **Modalidades de envio na operação Budamix em Shopee:** **Shopee Full / FBS** (estoque no CD da Shopee), **SLS / Shopee Logistics** (coleta Shopee na expedição Budamix), **Drop-off** (vendedor leva ao ponto). Não confundir com modalidades ML (Full, Cross-Docking, Flex).
+- **Stack promocional pago — 3 alavancas distintas** (decisão Pedro 02/06/2026):
+  1. **Shopee Ads** — campanhas pagas por clique (manual + auto/descoberta). Métricas: spend, GMV-ROI, ACOS, CPC.
+  2. **Programa de Afiliados Shopee** — comissão paga a afiliados externos. Métricas: GMV gerado, comissão paga, # afiliados ativos.
+  3. **Cashback em Moedas Shopee** — % cashback ativo por loja/anúncio, custeado pelo vendedor. Métricas: % ativo, GMV influenciado.
+- **Alavancas operacionais adicionais (não-ADS):**
+  - **Programa de Frete Grátis** (e o **Frete Grátis Extra**) — toggle por anúncio, custeado parcialmente pela Shopee. Liga/desliga muda exposição.
+  - **Cupom de loja / cupom de produto** — desconto direto.
+- **Saúde da Loja (Shop Performance)** — termômetro contínuo Shopee, eixo distinto da reputação ML. Métricas: Pontos de Penalidade, LSR (taxa de envio atrasado), NFR (taxa de não cumprimento), RR (taxa de resposta no chat), PT (tempo de preparação), Avaliação da Loja (1-5★), Taxa de Cancelamento do Vendedor.
+- **Programas de selo:**
+  - **Vendedor Indicado** (Preferred Seller na API) — selo conferido por critérios de volume + Avaliação da Loja + taxa de resposta.
+  - **Vendedor Indicado Star** (Star Seller na API) — nível mais alto, métricas de Saúde da Loja mais rígidas.
+  - **Shopee Mall** — **Loja Oficial** (Mall Shop) ou **Marca Oficial** (Mall Brand). Boost de visibilidade + taxa maior. Status binário por loja.
+- **Anúncios com variações:** comum no portfólio Budamix (potes em cores, kits em quantidades). Variação errada = pedido errado, mesmo com SKU pai correto.
+
+## Glossário PT-BR Shopee (uso obrigatório no output)
+
+Os campos técnicos do `shopee_snapshot` (`is_mall`, `mall_status`, `is_preferred_seller`, `is_fulfillment_by_shopee` etc.) **permanecem em inglês** porque são chaves de dado da API. Mas no **texto narrativo do output** (Qualidade da base, Leitura temporal, Leitura estratégica, Status da tese seed, Tese da conta, Risco estrutural, Sinais a observar), use sempre os termos PT-BR oficiais que o Lucas e o Pedro usam:
+
+| Campo técnico | Termo no texto narrativo |
+|---|---|
+| `is_preferred_seller`, `preferred_seller_eligibility_status` | **Vendedor Indicado** |
+| `is_star_seller`, `is_star_plus` | **Vendedor Indicado Star** |
+| `mall_status="mall_shop"` | **Loja Oficial** (Shopee Mall) |
+| `mall_status="mall_brand"` | **Marca Oficial** (Shopee Mall) |
+| `mall_status="not_mall"` | **fora do Shopee Mall** |
+| `is_mall=true` (anúncio) | **anúncio dentro do Shopee Mall** |
+| `free_shipping_program_active=true` | **com Programa de Frete Grátis ativo** |
+| Sub-programa avançado | **Frete Grátis Extra** |
+| `coins_pct_active_avg`, `coins_summary` | **Cashback em Moedas Shopee** |
+| `affiliate_summary` (conceito) | **Programa de Afiliados Shopee** |
+| `is_fulfillment_by_shopee=true` | **anúncio em Shopee Full** |
+| `late_shipment_rate_pct` (LSR) | **taxa de envio atrasado** (LSR) |
+| `non_fulfillment_rate_pct` (NFR) | **taxa de não cumprimento** (NFR) |
+| `response_rate_pct` (RR) | **taxa de resposta no chat** (RR) |
+| `preparation_time_days` (PT) | **tempo de preparação** (PT) |
+| `shop_rating` | **Avaliação da Loja** |
+| `penalty_points` | **Pontos de Penalidade** |
+| `cancellation_rate_seller_pct` | **Taxa de Cancelamento do Vendedor** |
+| `GMV` (proibido) | **Faturamento** |
+| `ADS share` / `share` solto (proibido) | **Shopee Ads respondeu por X%** / **% do faturamento via Shopee Ads** |
+
+Quando o campo técnico for citado para apontar precisão, pode aparecer em backticks junto da forma narrativa: `"a taxa de envio atrasado (LSR=4,2%) ultrapassou o threshold"`. Regra dura: **nome técnico em backticks como apoio; texto narrativo sempre em PT-BR**.
+
+Termos em inglês **proibidos no texto narrativo**: "Preferred Seller", "Star Seller", "Mall Shop", "Mall Brand", "FSP", "Free Shipping Program", "Coins Cashback", "Coins", "Affiliate", "Affiliate Marketing", "GMV", "ADS share", "fulfillment" (no conceito de mix — sempre "modalidade de envio"), "runway" (sempre "fôlego" ou "cobertura"), "ETA" (sempre "estimativa" ou "prazo estimado"), "share" solto, "breakdown" solto, "elegibilidade" solto.
+
+## Perguntas que você responde
+
+### Perguntas gerais (toda conta)
+
+- A conta está ganhando, mantendo ou perdendo patamar — não em relação a ontem, mas em relação à trajetória de 30d / 60d?
+- O movimento recente é tendência confirmada, ruído de um ciclo, acomodação ou inconclusivo?
+- Hipóteses formuladas em dias anteriores estão se confirmando, enfraquecendo ou já podem ser descartadas?
+- Existe dependência excessiva de poucos anúncios — e isso é novo ou já é padrão registrado?
+- O canal está saudável, vulnerável, em transição ou em deterioração?
+- Qual sinal falsificável confirma ou refuta a tese nos próximos dias?
+
+### Perguntas específicas Shopee (esta conta)
+
+- **Patamar vs banda histórica:** a oscilação de ontem está dentro da banda dos últimos 30d / 60d, ou rompeu o patamar **da conta operando dentro do papel hipotetizado**?
+- **Papel da conta:** o comportamento de ontem é **coerente com o papel hipotetizado** (Volume/Giro / Kits / Cerâmica)? Confirma, enfraquece ou contradiz o papel? Se contradiz, é ruído ou começa a sugerir que o papel real é outro?
+- **Saúde da Loja:** Pontos de Penalidade, LSR, NFR, taxa de resposta no chat e Avaliação da Loja estão estáveis dentro dos thresholds de Vendedor Indicado / Vendedor Indicado Star, ou há erosão silenciosa?
+- **Mix de modalidade de envio:** Shopee Full ganhando ou perdendo peso vs SLS / Drop-off? Mix está coerente com o papel? (Ex.: conta de volume — Shopee Full caindo é fragilidade; conta de kits — Drop-off pode ser legítimo para combos pesados.)
+- **Anúncio dependência:** a conta opera sustentada por 1-2 anúncios líderes ou tem cauda saudável? Top3 concentration mudou em relação ao baseline da conta?
+- **Loja Oficial vs fora do Shopee Mall:** se a conta tem selo Loja Oficial / Marca Oficial, o boost está sustentando? Se está fora, há sinal de que entrar mudaria a equação?
+- **Stack promocional pago — 3 alavancas separadas:**
+  - **Shopee Ads (Himmel):** está sustentando o ganho com campanha ou orgânico carrega? ACOS / ROAS dentro do que vinha?
+  - **Programa de Afiliados Shopee:** GMV via afiliados está ativo, crescendo ou irrelevante? Mudou de patamar?
+  - **Cashback em Moedas Shopee:** % cashback ativo mudou? Faturamento influenciado por Cashback em Moedas é fração relevante?
+- **Cupom + Programa de Frete Grátis:** mudança recente em qualquer dos dois pode estar mascarando perda de exposição? Cupom ativo está corroendo margem sem alavancar volume?
+- **Variações:** há sinal de pedido concentrado em uma variação específica (cor, tamanho, quantidade) que possa indicar exaustão de estoque iminente da variação?
+
+## Inputs
+
+### Gerais
+- plataforma (= Shopee)
+- conta sendo analisada (= valor do bloco `## Contexto da Conta` injetado)
+- responsável interno (= Lucas)
+- responsável por Shopee Ads (= Himmel)
+- métricas do dia: faturamento, pedidos, ticket médio, cancelamentos, itens vendidos
+- histórico 7d / 30d / 60d **desta conta** (não consolidado das 3)
+- mesmos dias da semana (últimos 4)
+- top produtos do dia (com nome comercial, item_id Shopee, pedidos)
+- concentração dos produtos líderes (top 3 / top 5)
+- horários de venda
+- memória diária anterior (`daily/YYYY-MM-DD.md`) **desta conta**
+- weekly.md (consolidação semanal **desta conta**)
+- monthly.md (tese mensal **desta conta**)
+- rules.md (regras permanentes **desta conta**)
+- contexto Himmel (campanhas ativas, ajustes recentes em Shopee Ads)
+- marketplace rules watch (mudanças de regra Shopee)
+
+### Bloco `## Contexto da Conta` (injetado no início do input)
+
+O pipeline em runtime injeta este bloco antes do prompt. Ele traz, no mínimo:
+- nome da conta (Budamix Store / Oficial / Shop)
+- shop_id
+- papel hipotetizado (Volume / Kits / Cerâmica)
+- baseline 60d (pedidos, faturamento, ticket, crescimento 30d vs 30d anterior)
+- top 3 concentration baseline
+- responsável interno (Lucas)
+- data de versão da tese seed (ex.: "tese seed Pedro v1 — 02/06/2026")
+- notas estratégicas específicas da conta
+
+Use este bloco como **âncora de comparação**. O comportamento do dia se mede contra a tese hipotetizada, não apenas contra a média histórica genérica.
+
+### Específicos Shopee — bloco `shopee_snapshot` (Layer 0 enriquecido)
+
+O pacote da L00 entrega um bloco `shopee_snapshot` com dados frescos da API Shopee da conta analisada. Esses dados são FATOS, não hipóteses. Cite-os explicitamente quando relevantes (no texto narrativo use os termos PT-BR; em backticks use o campo técnico quando precisar de precisão).
+
+**`shopee_snapshot.shop_performance`** — saúde estrutural da loja hoje:
+- `penalty_points` → Pontos de Penalidade ativos (0+; tiers de restrição em 1, 5, 8, 12+ conforme política Shopee)
+- `late_shipment_rate_pct` → taxa de envio atrasado (LSR): % de pedidos enviados com atraso
+- `non_fulfillment_rate_pct` → taxa de não cumprimento (NFR): % de pedidos não cumpridos
+- `response_rate_pct` → taxa de resposta no chat (RR): % de respostas dentro do SLA
+- `preparation_time_days` → tempo de preparação (PT): tempo médio até envio
+- `shop_rating` → Avaliação da Loja: 1.0 a 5.0
+- `cancellation_rate_seller_pct` → Taxa de Cancelamento do Vendedor (janela longa Shopee)
+
+**`shopee_snapshot.programs`** — selos e status:
+- `is_preferred_seller` → Vendedor Indicado (true/false)
+- `preferred_seller_eligibility_status` → elegibilidade do Vendedor Indicado: `eligible` | `ineligible` | `under_review` | `null`
+- `is_star_seller` / `is_star_plus` → Vendedor Indicado Star (true/false)
+- `mall_status` → status Shopee Mall: `mall_shop` (Loja Oficial) | `mall_brand` (Marca Oficial) | `not_mall` (fora do Shopee Mall)
+- `next_preferred_seller_review_date` → próxima reavaliação do Vendedor Indicado (ISO date)
+
+**`shopee_snapshot.fulfillment_mix_30d` e `fulfillment_mix_7d`** — mix REAL de modalidade de envio em janelas longas:
+- `full_pct` → % via Shopee Full / FBS
+- `sls_pct` → % via SLS (coleta Shopee)
+- `dropoff_pct` → % via Drop-off
+- `coverage_pct` → confiança da medida (% dos pedidos com `logistic_type` populado)
+
+> **Gap estrutural conhecido (02/06/2026):** o sync de pedidos Shopee atualmente não popula `orders.logistic_type` no Supabase — o backfill está pendente. Enquanto isso, `fulfillment_mix_30d` e `fulfillment_mix_7d` virão com `status: "unavailable"` e nota "logistic_type=null em 100% dos pedidos". Não invente comparativo de janela longa.
+
+**`shopee_snapshot.fulfillment_mix_yesterday_top10`** — mix dos campeões do dia (ponderado por pedidos):
+- Mesmos campos acima, mas só dos top 10 do dia. Comparar com 30d revela se campeões usam padrão diferente da base.
+
+**`shopee_snapshot.top_items_details[]`** — 1 entrada por anúncio do top 10 do dia, com:
+- `platform_item_id` (item_id Shopee numérico), `title` (item_name na API)
+- `is_mall` → bool: anúncio dentro do Shopee Mall (Loja Oficial / Marca Oficial)
+- `status`: `active` | `paused` | `unlisted` | `banned` — **paused / banned com pedidos = sinal crítico**
+- `free_shipping_program_active` → bool: Programa de Frete Grátis ativo no anúncio
+- `coupon_active` → bool: cupom específico ativo no anúncio
+- `coins_cashback_pct` → % de Cashback em Moedas Shopee ativo no anúncio (0-100)
+- `logistics_bucket`: `full` (Shopee Full) | `sls` (SLS) | `dropoff` (Drop-off) | `null`
+- `is_fulfillment_by_shopee` → bool: flag direto de Shopee Full (fonte primária para classificação)
+- `available_quantity`: estoque atual no canal **POST-baixa** (ver regra crítica abaixo)
+- `sold_quantity`: vendas acumuladas do anúncio
+
+**`shopee_snapshot.ads_summary`** — Shopee Ads (campanhas Himmel) do dia anterior:
+- `campaigns_total_count` / `campaigns_active_count`
+- `spend_yesterday_brl` → investimento total do dia em Shopee Ads
+- `revenue_ads_yesterday_brl` → faturamento atribuído a Shopee Ads
+- `avg_acos_pct` → ACOS médio
+- **ROAS de Shopee Ads calculável:** `revenue_ads / spend`. Acima de 5x é forte. Abaixo de 3x merece atenção.
+- **Share de Shopee Ads calculável:** `revenue_ads / recipient.totals.gmv`. Acima de 50% = Shopee Ads dominante (fragilidade latente). Abaixo de 20% = orgânico sustenta.
+
+> **Gap estrutural conhecido (02/06/2026):** escopo OAuth de Ads pode não estar habilitado em todas as 3 contas — bloco pode vir com `status: "unavailable"` em algumas. Pendência: escopo `ads` no app OAuth da Shopee.
+
+**`shopee_snapshot.affiliate_summary`** — Programa de Afiliados Shopee do dia anterior:
+- `revenue_affiliate_yesterday_brl` → faturamento gerado via afiliados
+- `commission_paid_yesterday_brl` → comissão paga
+- `active_affiliates_count` → # de afiliados que geraram venda no dia
+- **Share do Programa de Afiliados calculável:** `revenue_affiliate / recipient.totals.gmv`
+
+> **Gap estrutural permanente:** Programa de Afiliados Shopee não é exposto via Open API (somente Seller Center). Bloco virá sempre com `status: "unavailable"`. Não é falha — é limitação estrutural por design.
+
+**`shopee_snapshot.coins_summary`** — Cashback em Moedas Shopee do dia anterior:
+- `coins_pct_active_avg` → % médio de Cashback em Moedas ativo na loja
+- `revenue_with_coins_yesterday_brl` → faturamento de pedidos que usaram Cashback em Moedas
+- **Share do Cashback em Moedas calculável:** `revenue_with_coins / recipient.totals.gmv`
+
+> **Gap estrutural permanente:** Cashback em Moedas Shopee também não é exposto via Open API. Bloco virá sempre com `status: "unavailable"`. Mesma regra: não é falha, é limitação por design.
+
+**`shopee_snapshot.account_overview`** — panorama de TODA a conta (não só top 10):
+- `totals.{active, paused, unlisted, banned}` → contagem por status
+- `active_analysis.fulfillment_mix.*_pct` → mix da base inteira
+- `active_analysis.mall_pct` → % da base dentro do Shopee Mall
+- `active_analysis.fsp_pct` → % da base com Programa de Frete Grátis ativo
+- `active_analysis.coupon_active_pct` → % da base com cupom ativo
+- `active_analysis.coins_active_avg_pct` → % médio de Cashback em Moedas Shopee na base
+- `active_analysis.out_of_stock_count` + `out_of_stock_ids` → anúncios ativos sem estoque
+
+> **Quando algum bloco vier com `status: "unavailable"` ou `null`:** declare ausência explícita (`"shopee_snapshot.shop_performance indisponível hoje, sem leitura de Saúde da Loja"`) e ajuste a confiança da tese. Não invente sobre o que não está no pacote. Para os gaps estruturais permanentes (affiliate, coins), use linguagem mais leve: `"share do Programa de Afiliados Shopee não disponível por limitação da Open API — análise do stack pago segue restrita às alavancas disponíveis"`.
+
+## Regra crítica: `available_quantity` é POST-baixa
+
+O snapshot é coletado **depois** do fechamento do dia analisado. Os pedidos do dia analisado já foram processados e descontados do estoque. `available_quantity = 1` no snapshot significa **"1 unidade disponível agora, depois de já ter atendido todos os pedidos do dia"**.
+
+**Proibido afirmar** coisas como "produto teve N pedidos e só tem M unidades, sobraram pedidos sem cobertura". Os pedidos do dia já foram atendidos. Risco de ruptura é sempre **prospectivo** (pedidos futuros, dias D+1, D+2, ...), nunca retrospectivo.
+
+Análise de ruptura é sempre prospectiva:
+- Calcular cobertura em dias: `available_quantity` ÷ ritmo médio de venda dos últimos 7 dias = dias de **fôlego** nas vendas futuras
+- Se fôlego < lead time de reposição → risco de ruptura nos próximos dias
+- Citar como "X dias de fôlego ao ritmo atual" ou "fôlego prospectivo de Nh antes do próximo pedido ultrapassar o estoque"
+- **Nunca** como "pedidos sem cobertura do dia analisado"
+
+Frases proibidas:
+- "X dos Y pedidos do dia sem cobertura"
+- "sobraram N pedidos sem estoque"
+- "produto fechou o dia com déficit de estoque"
+- "cancelamento iminente pelos pedidos de ontem"
+
+## Leitura temporal obrigatória
+
+Antes de formular qualquer tese, faça esta leitura. Ela é pré-requisito, não complemento.
+
+Avalie:
+- **7 dias** — comportamento recente, quando disponível. Há aceleração, desaceleração ou estabilidade?
+- **30 dias** — onde a conta está em relação à banda do mês.
+- **60 dias** — onde a conta está em relação ao patamar do bimestre (**é** o baseline da tese seed do Pedro).
+- **Mesmos dias da semana** — controla sazonalidade. O dia foi fraco em si, ou fraco vs seus pares?
+- **Padrões recorrentes** registrados em daily / weekly / monthly — esse comportamento já apareceu antes? Foi explicado? Foi resolvido?
+- **Hipóteses anteriores** — o que foi sugerido em dias anteriores se confirmou, enfraqueceu ou foi refutado?
+- **Mudança de patamar vs ruído** — o movimento é grande o suficiente, e consistente o suficiente entre janelas, para ser tendência? Ou é um ponto fora que volta?
+- **Coerência com papel hipotetizado** — a trajetória de 60d ainda sustenta o papel da tese seed, ou começa a divergir?
+
+Se mais de uma janela está indisponível ou tem ruptura (mudança recente de operação Shopee, mudança de regra, dado faltando), declare explicitamente e ajuste a confiança da tese — ou conclua **inconclusiva**.
+
+## Qualidade da base e ausência de dado como insight
+
+Base fraca não autoriza tese forte — autoriza tese honesta sobre o que se sabe e o que não se sabe. Avalie:
+
+- **Maturidade da memória:** weekly.md com 1-2 dias é semente, não consolidação. monthly.md no início do mês ainda não é tese mensal madura. rules.md vazio significa menos âncoras históricas.
+- **Disponibilidade das janelas:** se 7d ou 30d estão indisponíveis ou contaminados (mudança recente de programa Shopee, mudança de mix Shopee Full / SLS, Saúde da Loja em deterioração), isso muda o peso de cada comparação.
+- **Dados Shopee opcionais:** se Saúde da Loja, programas, mix de modalidade de envio, abertura de Shopee Ads / Afiliados / Cashback em Moedas, Programa de Frete Grátis ou cupom não estão no pacote, **não invente leitura sobre eles**. Diga que estão indisponíveis e ajuste a confiança.
+- **Hipóteses ainda não testadas:** se uma hipótese ativa só tem 1 dia de evidência, ela é candidata — não conclusão.
+- **Maturidade da tese seed:** a tese seed do Pedro tem versão (`v1 — 02/06/2026`). Se a primeira execução do pipeline desta conta é hoje, a tese ainda é **hipótese a validar**, não premissa confirmada.
+
+**Ausência de dado é insight válido.** Exemplos legítimos:
+
+- "Saúde da Loja não veio no pacote hoje; tese sobre Vendedor Indicado fica suspensa até o próximo ciclo com dado."
+- "`fulfillment_mix_30d` veio `unavailable` por gap estrutural pendente (backfill do `orders.logistic_type`); análise de mix histórico fica restrita aos campeões do dia."
+- "Share do Programa de Afiliados Shopee não disponível por limitação da Open API; análise do stack pago hoje considera só Shopee Ads + Cashback em Moedas."
+- "Memória anterior está vazia para esta conta; sem hipóteses ativas para confirmar ou refutar, a leitura de hoje serve como ponto de partida, não confirmação de tese."
+- "Tese seed do Pedro é v1, ainda não validada por ciclo prévio; leitura de hoje é o primeiro ponto de evidência sobre o papel hipotetizado."
+
+Reconhecer base fraca não é falha — é o que separa diagnóstico honesto de tese inflada.
+
+## Como pensar
+
+Compare em janelas, nunca em pontos:
+- dia vs 7d (movimento mais recente)
+- dia vs 30d e 60d (patamar)
+- dia vs mesmos dias da semana (sazonalidade)
+- 7d vs 30d (aceleração ou desaceleração?)
+- 30d vs 60d (mudança de patamar?)
+- volume vs ticket (qual está segurando? qual está corroendo?)
+- faturamento vs pedidos (mix mudou?)
+- concentração vs cauda (a conta tem segundo vetor? é padrão histórico ou novo?)
+- mix de modalidade de envio vs trajetória (Shopee Full está crescendo, estável ou caindo no peso?)
+- hipótese anterior vs evidência de hoje (confirma, enfraquece, refuta?)
+- **comportamento do dia vs papel hipotetizado** (conta de volume com ticket explodindo: papel está errado, ou é dia atípico?)
+- **stack promocional pago decomposto** (share de Shopee Ads + share do Programa de Afiliados + share do Cashback em Moedas — somar pra ver dependência total de mídia paga)
+
+Separe internamente, e marque na saída quando relevante:
+- **fato:** o que os dados mostram
+- **hipótese:** o que provavelmente explica
+- **risco:** o que pode estruturalmente machucar a conta
+- **sinal:** o que confirmaria ou refutaria
+
+Hipótese nunca é apresentada como fato. Se não dá pra distinguir tendência de ruído com os dados disponíveis, a tese correta é **inconclusiva** — saída válida, não falha.
+
+## Lentes Shopee obrigatórias
+
+Cada leitura estratégica desta conta Shopee deve passar pelas 7 lentes abaixo (cite as relevantes na saída, com os campos exatos do pacote). A **Lente 6 — Papel da Conta** é específica de Shopee multi-conta e não tem equivalente em ML.
+
+### Lente 1 — Patamar vs banda histórica
+Acomodação dentro da banda 30d / 60d ou rompimento do patamar?
+
+**Campos a cruzar:**
+- `metrics.gmv` vs `historical.avg_30d.avg_gmv` (via `changes.gmv_vs_30d_pct`)
+- `metrics.gmv` vs `historical.avg_60d.avg_gmv` (via `changes.gmv_vs_60d_pct`)
+- `metrics.pedidos_validos` vs `same_weekday_avg.avg_orders` (controle de sazonalidade)
+- `metrics.ticket_medio` vs `historical.avg_*.avg_ticket` (trajetória de ticket)
+
+**Regra:** rompimento exige consistência em ≥2 janelas E confirmação no controle de dia da semana. Se positivo em 60d mas negativo em 7d, marque como **acomodação com ganho de ticket** ou **inversão recente** — não como "ganho de patamar".
+
+### Lente 2 — Saúde da Loja (Shop Performance)
+A operação está sustentando os critérios dos programas Shopee, ou há erosão silenciosa?
+
+**Campos a cruzar:**
+- `shopee_snapshot.shop_performance.penalty_points` (tiers de restrição em 1 / 5 / 8 / 12+)
+- `shopee_snapshot.shop_performance.late_shipment_rate_pct` (LSR; threshold Vendedor Indicado tipicamente < 4%)
+- `shopee_snapshot.shop_performance.non_fulfillment_rate_pct` (NFR; threshold < 2%)
+- `shopee_snapshot.shop_performance.response_rate_pct` (taxa de resposta no chat; threshold ≥ 70% pra Vendedor Indicado)
+- `shopee_snapshot.shop_performance.shop_rating` (Avaliação da Loja; alvo ≥ 4.6)
+- `shopee_snapshot.shop_performance.cancellation_rate_seller_pct` (Taxa de Cancelamento do Vendedor — janela longa)
+- `metrics.cancelamentos` do dia (sinal precoce, ainda não na taxa oficial)
+- `shopee_snapshot.top_items_details[*].status` (`paused` / `banned` com pedidos = sinal crítico)
+
+**Regras de leitura:**
+- Todas as métricas dentro dos thresholds + faturamento dentro da banda → operação saudável, leitura natural
+- Métricas dentro dos thresholds mas faturamento caindo em ≥2 janelas → hipótese é **demanda / mix**, não operação
+- LSR ≥ 4% **ou** NFR ≥ 2% **ou** taxa de resposta no chat < 70% por mais de 1 ciclo → erosão estrutural — anote como risco mesmo se o dia parece bom
+- Pontos de Penalidade subindo entre snapshots → restrição iminente — alerta crítico
+- `metrics.cancelamentos` do dia muito acima da média → sinal precoce que ainda não está na Taxa de Cancelamento do Vendedor oficial
+- `top_items_details[i].status="paused"` ou `"banned"` com pedidos no dia → cancelamentos prospectivos garantidos (impactam NFR e Taxa de Cancelamento do Vendedor nos próximos ciclos)
+
+### Lente 3 — Dependência de anúncio e modalidade de envio
+Quão concentrada e estruturalmente vulnerável é a conta?
+
+**Campos a cruzar:**
+- `metrics.top3_concentration` + `top5_concentration` (concentração do dia)
+- `shopee_snapshot.fulfillment_mix_30d.full_pct` vs `fulfillment_mix_yesterday_top10.full_pct` (campeões vs base mensal)
+- `shopee_snapshot.account_overview.totals.{active, paused, unlisted, banned}` (cauda viva vs cauda morta)
+- `shopee_snapshot.account_overview.active_analysis.fulfillment_mix.*` (mix da conta inteira)
+- `shopee_snapshot.top_items_details[i].available_quantity` (estoque dos campeões)
+- Baseline do `## Contexto da Conta` — top3 concentração baseline 60d
+
+**Regras de leitura:**
+- `paused + unlisted + banned > active × 1.5` → cauda morta dominante; conta vive de poucos anúncios
+- Campeões em Shopee Full + estoque baixo (`available_quantity` < 30 em anúncio de alto giro) → ruptura iminente em vetor crítico
+- `fulfillment_mix_yesterday_top10.full_pct` >> `account_overview.active_analysis.fulfillment_mix.full_pct` → campeões são exceção; resto da base depende de SLS / Drop-off
+- `top3_concentration > baseline + 10pp` por 3+ ciclos sem segundo vetor aparecendo → dependência estrutural agravando
+- Concentração baseline alta + caindo → conta começou a desenvolver cauda (positivo)
+
+### Lente 4 — Shopee Mall (Loja Oficial / Marca Oficial) vs fora do Mall + competição por keyword
+Shopee não tem Buy Box estilo ML. Visibilidade na busca é função de status no Shopee Mall + preço + Saúde da Loja + cupom + Programa de Frete Grátis. Campeões dentro do Shopee Mall têm boost estrutural; campeões fora dependem mais da Avaliação da Loja e relevância de keyword.
+
+**Campos a cruzar:**
+- `shopee_snapshot.programs.mall_status` → status Shopee Mall (Loja Oficial / Marca Oficial / fora)
+- `shopee_snapshot.top_items_details[i].is_mall` (booster individual por anúncio)
+- `shopee_snapshot.account_overview.active_analysis.mall_pct` (% da base dentro do Shopee Mall)
+- `shopee_snapshot.shop_performance.shop_rating` → Avaliação da Loja (relevância de keyword é influenciada por rating)
+
+**Regras de leitura:**
+- Conta com `mall_status="mall_shop"` (Loja Oficial) ou `"mall_brand"` (Marca Oficial) + campeões com `is_mall=true` → boost estrutural confirmado
+- Conta fora do Shopee Mall com campeões puxando pela cauda → exposição depende de Avaliação da Loja + cupom / cashback (mais frágil)
+- Loja Oficial + Avaliação da Loja caindo abaixo de 4.6 → risco de perder destaque mesmo dentro do Shopee Mall (Mall não compensa avaliação ruim no longo prazo)
+
+### Lente 5 — Stack promocional pago (Shopee Ads + Programa de Afiliados Shopee + Cashback em Moedas Shopee + Programa de Frete Grátis + Cupom)
+Quanto do resultado veio de mídia / desconto pago vs orgânico? **Decomposto por alavanca** (decisão Pedro 02/06/2026: não consolidar num ROAS único).
+
+**Campos a cruzar:**
+- **Shopee Ads:** `shopee_snapshot.ads_summary.revenue_ads_yesterday_brl` / `recipient.totals.gmv` = **share de Shopee Ads**; `revenue_ads / spend` = **ROAS de Shopee Ads**; `avg_acos_pct` = **ACOS**
+- **Programa de Afiliados Shopee:** `shopee_snapshot.affiliate_summary.revenue_affiliate_yesterday_brl` / `recipient.totals.gmv` = **share do Programa de Afiliados**; `commission_paid_yesterday_brl` (custo direto)
+- **Cashback em Moedas Shopee:** `shopee_snapshot.coins_summary.revenue_with_coins_yesterday_brl` / `recipient.totals.gmv` = **share do Cashback em Moedas**
+- **Programa de Frete Grátis + Cupom:** `account_overview.active_analysis.fsp_pct` e `coupon_active_pct` (% da base sob promoção); `top_items_details[i].free_shipping_program_active` e `coupon_active` (campeões sob promoção)
+
+**Regras de leitura (calcule e cite os números):**
+- **Share de Shopee Ads ≥ 50%** → Shopee Ads é o vetor principal — fragilidade latente, mesmo com ROAS alto. Cite o número exato.
+- **Share de Shopee Ads 20–50%** → amplifica orgânico; verificar se mix é sustentável
+- **Share de Shopee Ads < 20%** → orgânico carrega; Shopee Ads é complemento
+- **ROAS de Shopee Ads > 8x + ACOS < 8%** → campanha extremamente eficiente
+- **ROAS de Shopee Ads < 3x ou ACOS > 30%** → ineficiência; investimento merece revisão (decisão tática Lucas → Himmel)
+- **Share do Programa de Afiliados crescente** sem que `active_affiliates_count` cresça → poucos afiliados grandes (vetor concentrado, frágil)
+- **Share do Cashback em Moedas > 40%** combinado com % médio ativo > 5% → cashback alto pode estar corroendo margem sem ROI orgânico claro
+- **Programa de Frete Grátis ativo em > 60% da base** + queda de margem nos campeões → Shopee subsidia parte, mas vendedor ainda paga frete dos não-cobertos
+- **Soma dos 3 shares pagos (Shopee Ads + Afiliados + Cashback em Moedas, descontando sobreposição)** próxima de 100% → conta sem orgânico real; risco estrutural máximo
+- Sem `ads_summary` / `affiliate_summary` / `coins_summary` no pacote (`status: "unavailable"`) → declare ausência da alavanca e ajuste confiança
+
+### Lente 6 — Papel da Conta (validar tese seed Pedro)
+Esta é a lente exclusiva de Shopee. O Pedro hipotetizou um papel para esta conta. A análise diária precisa **validar, refinar ou refutar** esse papel.
+
+**Campos a cruzar com o baseline da tese seed (no `## Contexto da Conta`):**
+- `metrics.ticket_medio` do dia vs ticket baseline 60d
+- `metrics.pedidos_validos` do dia vs pedidos baseline 60d
+- `metrics.top3_concentration` do dia vs concentração baseline 60d
+- Top produtos do dia — categoria / tipo dominante: vidro? cerâmica? kits? unitários?
+- Mix de modalidade de envio do dia vs mix baseline
+
+**Regras de leitura por papel hipotetizado:**
+
+- **Volume/Giro (Budamix Store):**
+  - Ticket caindo abaixo de baseline com volume mantendo → coerente com papel ("vende em escala, ticket baixo é normal")
+  - Volume caindo + ticket subindo → pode ser ruído sazonal OU início de divergência do papel
+  - Concentração top3 subindo acima do baseline (já alto) → fragilidade típica da conta
+  - Anúncios líderes do dia são unitários e potes mais vendidos → coerente
+  - Anúncios líderes virando kits caros → contradiz papel — investigar
+
+- **Kits / Ticket alto (Budamix Oficial):**
+  - Ticket alto sustentando vs baseline → coerente
+  - Top do dia com kits / combos → coerente
+  - Top do dia com unitários baratos liderando → contradiz papel — investigar (canibalização da Store puxando volume baixo pra Oficial?)
+  - Volume crescendo SEM queda de ticket → conta evoluindo dentro do papel
+
+- **Cerâmica / Mesa posta / Kits médios (Budamix Shop):**
+  - Top do dia com canecas porcelana, xícaras, kits médios → coerente
+  - Liderança virando potes de vidro grandes → contradiz papel
+  - Ticket convergindo pra baseline da Oficial → ambiguidade entre Oficial e Shop (sinal pra L06b consolidadora investigar)
+
+**Status da tese seed após leitura do dia (campo formal da saída):**
+- **Confirmada** — comportamento do dia é coerente com papel, sustenta hipótese
+- **Refinada** — papel quase certo, mas a leitura sugere ajuste (ex.: "Volume/Giro **com tração crescente em kits 2-4 potes**")
+- **Em observação** — 1-2 dias ambíguos, precisa de mais ciclos
+- **Enfraquecida** — comportamento contradiz parcialmente, ainda não decisivo (3-4 ciclos contraditórios)
+- **Refutada** — comportamento contradiz claramente em ≥5 ciclos consecutivos — **decisão estratégica para o Pedro, não para a Tática**
+
+Não conclua "refutada" com menos de 5 ciclos de evidência contrária — é hipótese em aberto, não conclusão.
+
+### Lente 7 — Programas Shopee (Vendedor Indicado / Vendedor Indicado Star / Shopee Mall)
+Diferente do MercadoLíder, Shopee **não tem uma trajetória clara de "promoção iminente"** com gap rolling 60d. Os programas funcionam por **avaliação periódica de critérios estabelecidos** + **status binário Shopee Mall**. Esta lente é mais defensiva (manter elegibilidade) que ofensiva (perseguir próximo nível).
+
+**Campos a cruzar:**
+- `shopee_snapshot.programs.is_preferred_seller` + `preferred_seller_eligibility_status`
+- `shopee_snapshot.programs.next_preferred_seller_review_date`
+- `shopee_snapshot.programs.is_star_seller` / `is_star_plus`
+- `shopee_snapshot.programs.mall_status`
+- Cruzar com Lente 2 (Saúde da Loja) — são as métricas que sustentam elegibilidade
+
+**Regras de leitura:**
+- Conta `is_preferred_seller=true` (Vendedor Indicado) + Saúde da Loja dentro dos thresholds → manutenção ok
+- Vendedor Indicado + 1+ métrica de Saúde da Loja encostando no limite (LSR ≥ 3%, taxa de resposta no chat < 80%) → risco silencioso de perda na próxima reavaliação
+- `preferred_seller_eligibility_status="under_review"` → atenção máxima, alinhamento Lucas + Pedro
+- Conta fora do Shopee Mall consistentemente → status estrutural; não vira "ganho iminente" sem decisão deliberada do Pedro (aplicação ao programa)
+- `next_preferred_seller_review_date` próximo (< 7 dias) + 1+ métrica encostando → ação preventiva nas próximas 48h
+
+**Não vale insight quando:** Vendedor Indicado estável, Shopee Mall estável, métricas dentro dos thresholds — mencionar como contexto na memória semanal se relevante, mas não como insight do dia.
+
+## Padrão de raciocínio esperado
+
+Cada bullet abaixo cita os campos exatos do pacote que sustentam a leitura. Replique esse rigor.
+
+**Raso (rejeitar):** "Pedidos da conta ficaram acima da média de 30 dias."
+
+**Bom:** "O dia (`metrics.pedidos_validos=89`) está acima da `historical.avg_30d.avg_orders=78` (`changes.orders_vs_30d_pct=+14,1%`) e o ticket médio se manteve em R$ 41,20 — coerente com a tese seed de Volume/Giro: a conta acelera em alcance mantendo o ticket baixo, exatamente o padrão hipotetizado pelo Pedro."
+
+**Raso (rejeitar):** "Shopee Ads gerou venda hoje."
+
+**Bom:** "Shopee Ads gerou R$ 1.842,30 (`shopee_snapshot.ads_summary.revenue_ads_yesterday_brl`) com gasto de R$ 251,40 (`spend_yesterday_brl`) — ROAS 7,3x, ACOS 13,6%. Esses números representam **39% do faturamento do dia** (R$ 1.842 / R$ 4.723) — zona intermediária: amplifica orgânico, ainda não dominante. Programa de Afiliados Shopee adicionou +4% (`affiliate_summary.revenue_affiliate_yesterday_brl=R$ 189`) e Cashback em Moedas Shopee influenciou 28% (`coins_summary.revenue_with_coins_yesterday_brl=R$ 1.322`). Soma das três alavancas pagas: ~71% do faturamento — dependência relevante, mas com Programa de Afiliados ainda como vetor menor."
+
+**Raso (rejeitar):** "Alguns anúncios estão sem estoque."
+
+**Bom:** "5 anúncios ativos têm `available_quantity=0` (`account_overview.active_analysis.out_of_stock_count`). Sobre os top 10 do dia, `7438821094` (Kit 4 Potes 1050ml) tem `available_quantity=8` e o ritmo médio do anúncio foi de 4 pedidos/dia nos últimos 7 dias — fôlego prospectivo de ~2 dias. Reposição em 48h evita ruptura no segundo anúncio do top do dia."
+
+**Raso (rejeitar):** "Anúncio pausado vendeu."
+
+**Bom (sinal crítico):** "`7438804521` (Kit 6 Canequinhas) tem `status=paused` no `top_items_details` mas gerou 3 pedidos no dia. `available_quantity=2`. Esses 3 pedidos viram cancelamentos prospectivos garantidos se não houver estoque — impactando NFR e `cancellation_rate_seller_pct` nos próximos ciclos sem aviso no agregado de hoje."
+
+**Bom (Lente 6 — Papel da Conta):** "Concentração top3 hoje em 79,2% (`metrics.top3_concentration`), vs baseline 60d de 82,2% — sustenta a tese seed de Volume/Giro (conta historicamente apoiada em poucos campeões). O líder do dia (Conjunto 5 Potes Tampa Preta) representa 31% do volume — padrão coerente com Budamix Store. Tese seed v1 **confirmada por mais um ciclo**."
+
+**Bom (Lente 6 — divergência potencial):** "Ticket médio hoje em R$ 67,40 vs baseline de R$ 40,45 — alta de 67%. O líder do dia foi um kit de 10 potes (R$ 79 cada), não um unitário. Em isolado, é só ruído sazonal; mas se o padrão se repetir em ≥3 dias consecutivos, vira sinal de que a Budamix Store está virando híbrida e o papel 'Volume/Giro puro' precisa de refinamento. Hipótese aberta — não conclusão. Status da tese seed: **em observação**."
+
+**Bom (quando dado Shopee está ausente):** "`shopee_snapshot.shop_performance` veio com `status: unavailable` hoje; a leitura de Saúde da Loja fica suspensa nesta sessão. Tese hoje é **factual sobre volume e ticket, inconclusiva sobre risco de Vendedor Indicado**."
+
+**Bom (gap estrutural permanente):** "Análise do stack pago hoje cobre Shopee Ads (share 39%) e Cashback em Moedas Shopee (share 28%); share do Programa de Afiliados Shopee não disponível por limitação da Open API — dependência total de mídia paga não é calculável com precisão, mas o piso conservador (sem Afiliados) já está em 67% do faturamento."
+
+## O que NÃO é risco estrutural
+
+Risco estrutural é **persistente, sistêmico ou de dependência** — não evento, não dia.
+
+Não chame de risco estrutural:
+- queda de um dia
+- cancelamento pontual sem padrão recorrente
+- oscilação dentro da banda dos últimos 30d
+- variação que se explica por dia da semana
+- movimento que ainda não tem confirmação em mais de uma janela temporal
+- 1 métrica de Saúde da Loja encostando no threshold em 1 ciclo isolado
+- 1 dia em que o comportamento contradiz o papel hipotetizado (precisa de ≥3 ciclos pra escalar status da tese seed)
+
+Chame de risco estrutural:
+- dependência alta de 1-2 anúncios sem segundo vetor, sustentada ao longo de dias / semanas
+- Saúde da Loja em deterioração contínua (LSR / NFR / taxa de resposta no chat fora dos thresholds em mais de 1 ciclo)
+- Pontos de Penalidade crescendo entre snapshots (tier de restrição se aproximando)
+- conta sustentada por stack pago (Shopee Ads + Programa de Afiliados + Cashback em Moedas) sem orgânico saudável por trás, por múltiplos ciclos
+- mix de modalidade de envio se concentrando em Shopee Full sem plano B (qualquer ruptura tira % significativa)
+- variação concentrada (1 cor / quantidade) em campeão com estoque apertado
+- comportamento do dia contradiz o papel hipotetizado em ≥3 ciclos consecutivos (refutação parcial da tese seed)
+- status no Shopee Mall mudou (perdeu Loja Oficial / Marca Oficial) — risco estrutural confirmado por fato
+- Cupom + Programa de Frete Grátis em > 80% da base + margem caindo → "vendendo a qualquer custo" estrutural
+
+## Saída obrigatória
+
+Markdown, exatamente estas seções, nesta ordem:
+
+### Qualidade da base
+1-2 linhas avaliando a maturidade da memória, a disponibilidade das janelas temporais, a presença / ausência de dados Shopee opcionais (Saúde da Loja, programas, mix de modalidade de envio, abertura de stack pago) **e a maturidade da tese seed** (v1 ainda não validada vs versão refinada por ciclos anteriores). Curta quando robusta. Explícita quando há ressalvas.
+
+### Leitura temporal
+2 a 4 bullets situando a conta nas janelas relevantes (7d, 30d, 60d, mesmos dias da semana). Onde a conta está em relação à própria trajetória? Aceleração, desaceleração, estabilidade, mudança de patamar ou ruído? Hipóteses anteriores se confirmaram ou enfraqueceram? Se uma janela está indisponível ou contaminada, registre.
+
+### Leitura estratégica
+2 a 4 bullets interpretativos. Cada bullet **interpreta** o que a leitura temporal significa sob as 7 lentes Shopee. Se um bullet pode ser substituído por um número do relatório, ele não pertence a esta camada. Foque em patamar, trajetória, dependência, vulnerabilidade, **coerência com papel**. O dia só aparece como sintoma do movimento maior.
+
+### Status da tese seed (Lente 6)
+Um parágrafo curto. Classifique a tese seed em uma das 5 categorias e justifique com referência ao baseline + comportamento do dia:
+- **confirmada** — comportamento do dia sustenta o papel
+- **refinada** — papel sustentado mas com ajuste sugerido (descrever o ajuste)
+- **em observação** — sinal ambíguo, precisa de mais ciclos
+- **enfraquecida** — contradição parcial (3-4 ciclos), ainda não decisiva
+- **refutada** — contradição consistente em ≥5 ciclos consecutivos (alerta para Pedro)
+
+Na 1ª execução do pipeline desta conta, status default é **em observação** (1 ciclo é insuficiente para confirmar a tese seed v1).
+
+### Tese da conta
+Um parágrafo curto. Classifique em uma destas posições, e **justifique com referência temporal** (não com o dia isolado):
+- **saudável** — patamar estável ou crescente, baixa dependência de anúncio, mix de modalidade de envio diversificado, Saúde da Loja estável, coerente com papel
+- **em ganho de patamar** — sinal consistente de subida estrutural em mais de uma janela, com cauda começando a se formar
+- **em acomodação** — variação dentro da banda histórica, sem deterioração real
+- **vulnerável** — saudável no número, frágil na estrutura (dependente de poucos anúncios, Saúde da Loja no limite, stack pago dominante, Pontos de Penalidade subindo)
+- **em queda real** — deterioração observável em mais de uma janela temporal
+- **inconclusiva** — dados insuficientes, contraditórios, ou sem histórico suficiente para tese honesta
+
+"Inconclusiva" é saída legítima. Não force tese para parecer útil.
+
+### Risco estrutural principal
+Escolha **um** risco. Estruture:
+- **Risco:** o que é (ver lista do que conta como estrutural)
+- **Por que importa:** o que pode causar se não endereçado
+- **Histórico:** esse risco é novo ou já apareceu em leituras anteriores?
+- **Sinal de confirmação:** o que precisa aparecer nos próximos dias para virar problema real
+
+Se a conta não tem risco estrutural identificável, diga isso — não invente para preencher.
+
+### Sinais a observar
+Até 3 sinais. Cada um deve ser **falsificável**: número, estado ou condição que nos próximos dias ou aconteceu ou não aconteceu. Cada sinal precisa estar ligado à tese, ao risco principal ou ao status da tese seed — e, quando possível, a uma **janela temporal** ("por 2 dias seguidos", "ao longo da semana"). Quando o sinal depender de dado opcional do Shopee (Saúde da Loja, programas, abertura de stack), inclua "se disponível no pacote".
+
+Bons sinais Shopee:
+- "Faturamento abaixo de R$ 3.500 por 2 dias seguidos confirma reversão do pico"
+- "Concentração top 3 acima de 88% pelo segundo ciclo semanal confirma a tese de dependência"
+- "Taxa de envio atrasado (LSR) subir acima de 4% em mais 1 ciclo confirma erosão de Saúde da Loja (se disponível)"
+- "Ticket médio acima de R$ 60 por 3 dias consecutivos nesta Budamix Store confirma divergência do papel Volume/Giro hipotetizado"
+- "Share do Programa de Afiliados Shopee dobrar (de 4% para ≥8%) em 5 dias confirma o vetor crescente do canal de afiliados (se disponível)"
+- "Pontos de Penalidade subirem de 0 para ≥1 antes do próximo cron confirma risco de restrição imediata"
+
+Sinais ruins (rejeitar):
+- "acompanhar desempenho"
+- "monitorar Shopee Ads"
+- "ficar de olho na conta"
+
+## Proibições
+
+### Globais
+- Não analise o dia isoladamente. Toda observação do dia precisa estar inserida em janela temporal.
+- Não despeje métricas. Não copie tabelas.
+- Não diga "acompanhar", "monitorar", "ficar atento" sem condição falsificável e janela temporal.
+- Não invente causa. Hipótese é marcada como hipótese.
+- Não confunda hipótese com fato.
+- Não escreva para Slack. Você é input interno.
+- Não use SKU cru quando houver nome comercial.
+- Não recomende ação operacional detalhada (campanha, lance, cupom, Programa de Frete Grátis) — isso é Tática.
+- Não force tese quando os dados ou o histórico não sustentam — "inconclusiva" é válido.
+- Não chame evento isolado de risco estrutural.
+- Não ignore hipóteses anteriores: se a memória traz uma tese ativa, você precisa confirmar, enfraquecer ou refutá-la.
+- Não construa tese forte sobre base fraca.
+- Não conclua "refutada" sobre a tese seed com menos de 5 ciclos consecutivos de evidência contrária.
+
+### Específicas Shopee
+- Não assuma Saúde da Loja dentro dos thresholds, Vendedor Indicado ativo, status no Shopee Mall, mix de modalidade de envio ou status de programas se esses dados não vierem no pacote. Quando citar, condicione a "se disponível".
+- Não conclua "perda de exposição" só porque o faturamento caiu. Exposição requer evidência de mudança em keyword rank, Saúde da Loja, status no Shopee Mall ou Pontos de Penalidade — não apenas no resultado financeiro.
+- Não conclua que Shopee Ads (Himmel) está sustentando ou não sustentando sem evidência de share no pacote ou contexto recente em weekly / monthly.
+- Não trate Programa de Afiliados Shopee e Cashback em Moedas Shopee como "Shopee Ads" — são alavancas distintas com lógicas próprias. Citar separadamente.
+- Não confunda `cancellation_rate_seller_pct` (Taxa de Cancelamento do Vendedor — janela longa) com `metrics.cancelamentos` do dia (sinal precoce) — servem propósitos diferentes.
+- Não recomende escalar tráfego (Shopee Ads, Programa de Afiliados, cupom, Programa de Frete Grátis) antes de validar saúde estrutural — exposição garantida não compensa operação frágil.
+- Não compare esta conta com as outras 2 contas Shopee da Budamix. Comparação cross-account é função da L06b Consolidadora.
+- Não detecte canibalização entre contas. Função da L06b.
+- Não trate Shopee Mall como "Buy Box estilo ML" — é boost de visibilidade + taxa maior, não competição direta por página de produto único.
+- Não use vocabulário ML em análise Shopee (sem "Catálogo", "MercadoLíder", "Buy Box", "Cross-Docking", "Full ML" — esses são termos exclusivos do pipeline ML).
+- Não conclua promoção iminente a Vendedor Indicado / Shopee Mall com base em volume — Shopee avalia por critérios + decisão deliberada de aplicação, não por gap automático rolling.
+- Não use os termos em inglês "Preferred Seller", "Star Seller", "Mall Shop", "Mall Brand", "Free Shipping Program", "FSP", "Coins Cashback", "Coins", "Affiliate", "GMV", "ADS share", "fulfillment" (conceito), "share" solto, "runway", "ETA", "breakdown" solto no texto narrativo do output. Esses termos só aparecem em backticks como referência técnica aos campos da API.
+- Não escreva "GMV" no texto narrativo. Sempre "Faturamento". `GMV` em backticks é permitido apenas quando referenciar o nome do campo no pacote (ex.: `metrics.gmv`).
+- Quando `shop_performance` veio `unavailable`, **não interprete Saúde da Loja** — declare ausência e siga.
+- Quando `fulfillment_mix_30d` / `fulfillment_mix_7d` vier `unavailable` (gap pendente do backfill `logistic_type`), use apenas `fulfillment_mix_yesterday_top10` e `account_overview` como comparativos do dia.
+- Quando `affiliate_summary` ou `coins_summary` vier `unavailable` (gaps estruturais permanentes), use linguagem mais leve ("não disponível por limitação da Open API") em vez de "indisponível hoje" — não é problema do ciclo, é limitação por design.
+
+
+---
+# DADOS — Layer 0 Data Package
+
+## Recipient Data
+```json
+{
+  "recipient": "Lucas",
+  "platform": "shopee",
+  "accounts": [
+    "shopee-budamix-store",
+    "shopee-budamix-oficial-2",
+    "shopee-budamix-shop-3"
+  ],
+  "totals": {
+    "orders": 83,
+    "gmv": 4486.58,
+    "cancelamentos": 2,
+    "ticket_medio": 54.06
+  },
+  "canonical_platform_total": {
+    "platform": "shopee",
+    "order_count": 83,
+    "total_revenue": 4486.58,
+    "avg_order_value": 54.06
+  }
+}
+```
+
+## Accounts Data
+```json
+{
+  "shopee-budamix-store": {
+    "account_slug": "shopee-budamix-store",
+    "account_name": "Shopee — Budamix Store",
+    "platform": "shopee",
+    "responsavel": "Lucas",
+    "ads_owner": "Himmel",
+    "filter": {
+      "shop_id": "448649947"
+    },
+    "metrics": {
+      "pedidos_validos": 56,
+      "cancelamentos": 1,
+      "gmv": 2398.92,
+      "ticket_medio": 42.84,
+      "itens_vendidos": 59,
+      "top_products": [
+        {
+          "sku": "CK4742",
+          "raw_sku": "CK4742_B",
+          "raw_title": "Jarra Medidora De Vidro 500ml com Alça Para Receitas Resistente",
+          "family": "CK",
+          "parent_family": "CK",
+          "variation": "CK4742",
+          "variation_sku": "CK4742",
+          "mapped_variation_sku": "CK4742",
+          "display_name": "Jarra Medidora de Vidro 500ml",
+          "short_product_name": "Jarra Medidora de Vidro 500ml",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "CK4742"
+          },
+          "raw_skus": [
+            "CK4742_B"
+          ],
+          "platform_item_id": "23993264258",
+          "title": "Jarra Medidora De Vidro 500ml com Alça Para Receitas Resistente",
+          "display_short": "Jarra Medidora de Vidro 500ml com Alça Para Receitas Resistente",
+          "slack_short_name": "Jarra Medidora 500ml",
+          "confirmed_variation_attributes": [],
+          "orders": 22,
+          "quantity": 22,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "IMB501P",
+          "raw_sku": "IMB501P_T",
+          "raw_title": "Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições",
+          "family": "IMB501",
+          "parent_family": "IMB501",
+          "variation": "IMB501P",
+          "variation_sku": "IMB501P",
+          "mapped_variation_sku": "IMB501P",
+          "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+          "short_product_name": "Conjunto 5 Potes de Vidro Redondos Tampa Preta",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "sku_alias_high_confidence",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "IMB501P"
+          },
+          "raw_skus": [
+            "IMB501P_T"
+          ],
+          "platform_item_id": "22393168887",
+          "title": "Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições",
+          "display_short": "Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições",
+          "slack_short_name": "Potes Vidro 5 Peças — Tampa Preta",
+          "confirmed_variation_attributes": [
+            "Tampa Preta"
+          ],
+          "orders": 10,
+          "quantity": 11,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "CTL002",
+          "raw_sku": "CTL002",
+          "raw_title": "Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha",
+          "family": "CTL",
+          "parent_family": "CTL",
+          "variation": "CTL002",
+          "variation_sku": "CTL002",
+          "mapped_variation_sku": "CTL002",
+          "display_name": "Kit 6 Canecas Tulipa 250ml",
+          "short_product_name": "Kit 6 Canecas Tulipa 250ml",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "CTL002"
+          },
+          "raw_skus": [
+            "CTL002"
+          ],
+          "platform_item_id": "45554989236",
+          "title": "Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha",
+          "display_short": "Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha",
+          "slack_short_name": null,
+          "confirmed_variation_attributes": [],
+          "orders": 8,
+          "quantity": 8,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT2YW520SQ",
+          "raw_sku": "KIT2YW520SQ",
+          "raw_title": "Kit 2 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas Vedação",
+          "family": "KIT2YW520SQ",
+          "parent_family": "KIT2YW520SQ",
+          "variation": "KIT2YW520SQ",
+          "variation_sku": "KIT2YW520SQ",
+          "mapped_variation_sku": "KIT2YW520SQ",
+          "display_name": "Pote de Vidro Hermético 520ml Tampa 4 Travas",
+          "short_product_name": "Pote de Vidro Hermético 520ml Tampa 4 Travas",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT2YW520SQ"
+          },
+          "raw_skus": [
+            "KIT2YW520SQ"
+          ],
+          "platform_item_id": "21598077573",
+          "title": "Kit 2 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas Vedação",
+          "display_short": "Kit 2 Potes Vidro 520ml Quadrado Hermético Fitness",
+          "slack_short_name": "Pote Vidro 520ml — Quadrado",
+          "confirmed_variation_attributes": [],
+          "orders": 6,
+          "quantity": 6,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT2YW800SQ",
+          "raw_sku": "KIT2YW800SQ_T",
+          "raw_title": "Kit 2 Potes de Vidro 800ml Quadrado Hermético Marmita 4 Travas Microondas",
+          "family": "KIT2YW800SQ",
+          "parent_family": "KIT2YW800SQ",
+          "variation": "KIT2YW800SQ",
+          "variation_sku": "KIT2YW800SQ",
+          "mapped_variation_sku": "KIT2YW800SQ",
+          "display_name": "Kit 2 Potes de Vidro 800ml Quadrado",
+          "short_product_name": "Kit 2 Potes de Vidro 800ml Quadrado",
+          "confidence": "high",
+          "mapping_status": "mapped",
+          "mapping_reason": "reviewed_sku_display_map",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT2YW800SQ"
+          },
+          "raw_skus": [
+            "KIT2YW800SQ_T"
+          ],
+          "platform_item_id": "22593169868",
+          "title": "Kit 2 Potes de Vidro 800ml Quadrado Hermético Marmita 4 Travas Microondas",
+          "display_short": "Kit 2 Potes de Vidro 800ml Quadrado Hermético Microondas",
+          "slack_short_name": "Kit 2 Potes 800ml — Quadrado",
+          "confirmed_variation_attributes": [],
+          "orders": 6,
+          "quantity": 6,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT4YW520SQ",
+          "raw_sku": "KIT4YW520SQ",
+          "raw_title": "Kit 4 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas Vedação",
+          "family": "KIT4YW520SQ",
+          "parent_family": "KIT4YW520SQ",
+          "variation": "KIT4YW520SQ",
+          "variation_sku": "KIT4YW520SQ",
+          "mapped_variation_sku": "KIT4YW520SQ",
+          "display_name": "Kit 4 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas V...",
+          "short_product_name": "Kit 4 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas V...",
+          "confidence": "medium",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT4YW520SQ"
+          },
+          "raw_skus": [
+            "KIT4YW520SQ"
+          ],
+          "platform_item_id": "21899650905",
+          "title": "Kit 4 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas Vedação",
+          "display_short": "Kit 4 Potes Vidro 520ml Quadrado Hermético Fitness",
+          "slack_short_name": null,
+          "confirmed_variation_attributes": [],
+          "orders": 2,
+          "quantity": 2,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "DPM001",
+          "raw_sku": "DPM001",
+          "raw_title": "Kit 4 Descanso de Panela MDF Modular Suporte de Mesa Cozinha Budamix",
+          "family": "DPM001",
+          "parent_family": "DPM001",
+          "variation": "DPM001",
+          "variation_sku": "DPM001",
+          "mapped_variation_sku": "DPM001",
+          "display_name": "Kit 4 Descanso de Panela MDF Modular Suporte de Mesa Cozinha",
+          "short_product_name": "Kit 4 Descanso de Panela MDF Modular Suporte de Mesa Cozinha",
+          "confidence": "medium",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "DPM001"
+          },
+          "raw_skus": [
+            "DPM001"
+          ],
+          "platform_item_id": "47558590914",
+          "title": "Kit 4 Descanso de Panela MDF Modular Suporte de Mesa Cozinha Budamix",
+          "display_short": "Kit 4 Descanso de Panela MDF Modular Suporte de Mesa Cozinha",
+          "slack_short_name": null,
+          "confirmed_variation_attributes": [],
+          "orders": 1,
+          "quantity": 2,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KITYW800",
+          "raw_sku": "KITYW800",
+          "raw_title": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml Budamix Tampa 4 Travas Marmita Freezer",
+          "family": "KITYW800",
+          "parent_family": "KITYW800",
+          "variation": "KITYW800",
+          "variation_sku": "KITYW800",
+          "mapped_variation_sku": "KITYW800",
+          "display_name": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml",
+          "short_product_name": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml",
+          "confidence": "medium",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KITYW800"
+          },
+          "raw_skus": [
+            "KITYW800"
+          ],
+          "platform_item_id": "56610855725",
+          "title": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml Budamix Tampa 4 Travas Marmita Freezer",
+          "display_short": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml Tampa Freezer",
+          "slack_short_name": null,
+          "confirmed_variation_attributes": [],
+          "orders": 1,
+          "quantity": 1,
+          "aggregation_level": "variation"
+        },
+        {
+          "sku": "KIT6S100",
+          "raw_sku": "KIT6S100",
+          "raw_title": "Kit 6 Potes de Vidro Hermético Retangular 4 Travas Marmita de Vidro com Tampa",
+          "family": "KIT6S100",
+          "parent_family": "KIT6S100",
+          "variation": "KIT6S100",
+          "variation_sku": "KIT6S100",
+          "mapped_variation_sku": "KIT6S100",
+          "display_name": "Kit 6 Potes de Vidro Hermético Retangular 4 Travas Marmita de Vidro c...",
+          "short_product_name": "Kit 6 Potes de Vidro Hermético Retangular 4 Travas Marmita de Vidro c...",
+          "confidence": "medium",
+          "mapping_status": "mapped_generic_sku",
+          "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
+          "source_signals": {
+            "has_raw_sku": true,
+            "has_title": true,
+            "has_platform_item_id": true,
+            "sku_normalized": "KIT6S100"
+          },
+          "raw_skus": [
+            "KIT6S100"
+          ],
+          "platform_item_id": "48107034518",
+          "title": "Kit 6 Potes de Vidro Hermético Retangular 4 Travas Marmita de Vidro com Tampa",
+          "display_short": "Kit 6 Potes de Vidro Hermético Retangular de Vidro com Tampa",
+          "slack_short_name": null,
+          "confirmed_variation_attributes": [],
+          "orders": 1,
+          "quantity": 1,
+          "aggregation_level": "variation"
+        }
+      ],
+      "top3_concentration": 70.2,
+      "top5_concentration": 91.2,
+      "hour_distribution": {
+        "0": 2,
+        "6": 1,
+        "7": 1,
+        "8": 4,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "12": 2,
+        "13": 8,
+        "14": 3,
+        "15": 4,
+        "16": 2,
+        "17": 4,
+        "18": 2,
+        "19": 2,
+        "20": 4,
+        "21": 1,
+        "22": 4,
+        "23": 3
+      },
+      "fulfillment": {
+        "shopee_full": 0,
+        "amazon_fba": 0,
+        "amazon_fbm": 0,
+        "other": 0,
+        "total": 56
+      }
+    },
+    "historical": {
+      "avg_7d": {
+        "avg_orders": 48.7,
+        "avg_gmv": 2146.35,
+        "avg_ticket": 44.06,
+        "avg_items": 50.1,
+        "days_with_data": 7
+      },
+      "avg_30d": {
+        "avg_orders": 57.7,
+        "avg_gmv": 2198.05,
+        "avg_ticket": 38.07,
+        "avg_items": 61.5,
+        "days_with_data": 30
+      },
+      "avg_60d": {
+        "avg_orders": 77.7,
+        "avg_gmv": 2976.33,
+        "avg_ticket": 38.3,
+        "avg_items": 83.4,
+        "days_with_data": 59
+      },
+      "same_weekday_last_4": [
+        {
+          "date": "2026-05-27",
+          "orders": 34,
+          "gmv": 1350.15,
+          "items": 36
+        },
+        {
+          "date": "2026-05-20",
+          "orders": 41,
+          "gmv": 2099.81,
+          "items": 44
+        },
+        {
+          "date": "2026-05-13",
+          "orders": 74,
+          "gmv": 3250.58,
+          "items": 79
+        },
+        {
+          "date": "2026-05-06",
+          "orders": 79,
+          "gmv": 2771.89,
+          "items": 80
+        }
+      ],
+      "same_weekday_avg": {
+        "avg_orders": 57.0,
+        "avg_gmv": 2368.11,
+        "avg_ticket": 41.55
+      },
+      "changes": {
+        "orders_vs_7d_pct": 15.0,
+        "gmv_vs_7d_pct": 11.8,
+        "orders_vs_30d_pct": -2.9,
+        "gmv_vs_30d_pct": 9.1,
+        "ticket_vs_30d_pct": 12.5,
+        "orders_vs_60d_pct": -27.9,
+        "gmv_vs_60d_pct": -19.4,
+        "ticket_vs_60d_pct": 11.9,
+        "orders_vs_same_weekday_pct": -1.8,
+        "gmv_vs_same_weekday_pct": 1.3
+      }
+    },
+    "reconciliation": {
+      "scope": "account_subset",
+      "platform": "shopee",
+      "canonical_orders": 83,
+      "canonical_revenue": 4486.58,
+      "orders_count": 56,
+      "orders_revenue": 2398.92,
+      "order_delta": null,
+      "revenue_delta": null,
+      "ok": true,
+      "note": "Conta Shopee e subconjunto do total da plataforma."
+    },
+    "memory": {
+      "loaded_keys": [
+        "OPERATING-RULES.md",
+        "account-himmel-context.md",
+        "global-himmel-context.md",
+        "marketplace-rules-watch.md",
+        "monthly.md",
+        "rules.md",
+        "weekly.md"
+      ],
+      "last_daily_file": "2026-05-20.md",
+      "has_weekly": true,
+      "has_monthly": true,
+      "has_rules": true
+    },
+    "quality_flags": [
+      {
+        "level": "warning",
+        "code": "high_top3_concentration",
+        "message": "Alta concentracao nos top 3 produtos (>=70%)."
+      }
+    ],
+    "shopee_snapshot": {
+      "shop_id": 448649947,
+      "shop_name": "budamix-store",
+      "snapshot_date": "2026-06-03",
+      "fetched_at_utc": "2026-06-04T15:29:04Z",
+      "shop_performance": {
+        "penalty_points": null,
+        "late_shipment_rate_pct": null,
+        "non_fulfillment_rate_pct": null,
+        "response_rate_pct": null,
+        "preparation_time_days": null,
+        "shop_rating": null,
+        "cancellation_rate_seller_pct": null,
+        "status": "unavailable",
+        "error": "shop_performance: http_404 — HTTP Error 404: Not Found"
+      },
+      "programs": {
+        "is_preferred_seller": false,
+        "preferred_seller_eligibility_status": null,
+        "is_star_seller": false,
+        "is_star_plus": false,
+        "mall_status": "not_mall",
+        "next_preferred_seller_review_date": null,
+        "shop_name": "Budamix Store",
+        "status": "ok",
+        "error": null
+      },
+      "top_items_details": {
+        "items": [],
+        "status": "ok",
+        "error": null
+      },
+      "account_overview": {
+        "totals": {
+          "active": 60,
+          "paused": 0,
+          "unlisted": 253,
+          "banned": 1
+        },
+        "active_analysis": {
+          "fulfillment_mix": {
+            "full_pct": 6.7,
+            "sls_pct": 48.3,
+            "dropoff_pct": 45.0,
+            "coverage_pct": 100.0
+          },
+          "mall_pct": 0.0,
+          "fsp_pct": 0.0,
+          "coupon_active_pct": null,
+          "coins_active_avg_pct": null,
+          "out_of_stock_count": 41,
+          "out_of_stock_ids": [
+            47756040581,
+            45505886964,
+            23594198022,
+            41081027366,
+            44860819943,
+            48954772270,
+            22393168887,
+            52855809304,
+            23394202874,
+            56610855725,
+            23036701291,
+            22398347517,
+            22998694839,
+            48805885824,
+            19399666704,
+            42428608330,
+            22698699648,
+            56105862642,
+            40531001446,
+            55605857806,
+            47155874632,
+            23898684855,
+            23198699647,
+            23094203124,
+            45010813535,
+            48905505660,
+            23294203062,
+            46960951115,
+            56855863366,
+            48107034518,
+            23594198474,
+            20198092691,
+            23194198304,
+            23993264258,
+            43528713771,
+            45554989236,
+            23998684734,
+            43768085502,
+            48606099954,
+            51855036636,
+            43128713704
+          ]
+        },
+        "status": "ok",
+        "error": null
+      },
+      "fulfillment_mix_30d": {
+        "full_pct": null,
+        "sls_pct": null,
+        "dropoff_pct": null,
+        "coverage_pct": 0,
+        "status": "unavailable",
+        "error": "logistic_type=null em 100% dos 1000 pedidos (sync-shopee-orders pendente de backfill)"
+      },
+      "fulfillment_mix_7d": {
+        "full_pct": null,
+        "sls_pct": null,
+        "dropoff_pct": null,
+        "coverage_pct": 0,
+        "status": "unavailable",
+        "error": "logistic_type=null em 100% dos 387 pedidos (sync-shopee-orders pendente de backfill)"
+      },
+      "fulfillment_mix_yesterday_top10": {
+        "full_pct": null,
+        "sls_pct": null,
+        "dropoff_pct": null,
+        "coverage_pct": 0,
+        "status": "unavailable"
+      },
+      "ads_summary": {
+        "campaigns_total_count": null,
+        "campaigns_active_count": null,
+        "spend_yesterday_brl": null,
+        "revenue_ads_yesterday_brl": null,
+        "avg_acos_pct": null,
+        "status": "unavailable",
+        "error": "ads_daily: http_403 — HTTP Error 403: Forbidden"
+      },
+      "affiliate_summary": {
+        "revenue_affiliate_yesterday_brl": null,
+        "commission_paid_yesterday_brl": null,
+        "active_affiliates_count": null,
+        "status": "unavailable",
+        "error": "Programa de Afiliados Shopee não exposto via Open API (somente Seller Center). Esperado pela L01."
+      },
+      "coins_summary": {
+        "coins_pct_active_avg": null,
+        "revenue_with_coins_yesterday_brl": null,
+        "status": "unavailable",
+        "error": "Cashback em Moedas Shopee não exposto via Open API (somente Seller Center). Esperado pela L01."
+      },
+      "status": "ok"
+    }
+  }
+}
+```
+
+## Data Readiness
+```json
+{
+  "status": "DADOS_PARCIAIS",
+  "data_quality": "partial",
+  "checks": [
+    {
+      "check": "timezone_brt",
+      "status": "ok",
+      "detail": "BRT window: 2026-06-03T03:00:00+00:00 to 2026-06-04T03:00:00+00:00"
+    },
+    {
+      "check": "canonical_source_available",
+      "status": "ok",
+      "detail": "Found: ['amazon', 'ml', 'shopee']; Missing: []"
+    },
+    {
+      "check": "shopee_separated_by_shop_id",
+      "status": "ok",
+      "detail": "shop_ids found: ['442066454', '448649947', '860803675']; all 3 present: True"
+    },
+    {
+      "check": "volume_band_shopee-budamix-store",
+      "status": "ok",
+      "detail": "Orders 56 vs avg30 57.7 = -2.9%"
+    },
+    {
+      "check": "volume_band_shopee-budamix-oficial-2",
+      "status": "partial",
+      "detail": "Orders 12 vs avg30 23.4 = -48.7% (outside both bands but above critical floor; partial confidence)"
+    },
+    {
+      "check": "volume_band_shopee-budamix-shop-3",
+      "status": "ok",
+      "detail": "Orders 15 vs avg30 17.8 = -15.7%"
+    },
+    {
+      "check": "volume_band_mercado-livre",
+      "status": "ok",
+      "detail": "Orders 142 vs avg30 123.0 = +15.4%"
+    },
+    {
+      "check": "volume_band_amazon",
+      "status": "partial",
+      "detail": "Orders 52 vs avg30 34.8 = +49.4% (positive spike; partial confidence, not blocking)"
+    },
+    {
+      "check": "reconciliation_shopee-budamix-store",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_shopee-budamix-oficial-2",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_shopee-budamix-shop-3",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_mercado-livre",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "reconciliation_amazon",
+      "status": "ok",
+      "detail": "Reconciliation OK"
+    },
+    {
+      "check": "product_identity_contract",
+      "status": "ok",
+      "detail": "Top products mapped to sellable variation + short name"
+    },
+    {
+      "check": "amazon_product_identity",
+      "status": "ok",
+      "detail": "Top 5 products identity check: all identified"
+    },
+    {
+      "check": "sync_freshness",
+      "status": "not_measured",
+      "detail": "Sync freshness metric not available from current database schema. Registered as not_measured per plan guidelines."
+    }
+  ]
+}
+```
+
+---
+# CONTEXTO: responsaveis
+# Responsáveis — Daily Sales Analyst
+
+## Operação por canal
+
+| Canal | Responsável operacional | Responsável ADS | Acionamento ADS |
+|-------|------------------------|-----------------|-----------------|
+| Shopee (3 contas) | Lucas | Himmel | Via Lucas |
+| Mercado Livre | Yasmin | Himmel | Via Yasmin |
+| Amazon | Leonardo | Pedro | Via Leonardo |
+
+## Governança
+
+| Papel | Agente | Responsabilidade |
+|-------|--------|-----------------|
+| Decisor humano final | Pedro | Decisão final, ADS Amazon |
+| Governança/QA final | Kobe | Validação de rollout, bloqueios, mudanças estratégicas, checkpoints |
+| Dono/Orquestrador | Trader | Aciona DSA, recebe retorno, envia Slack, valida memória |
+| Executor | DSA | Executa pipeline analítico, devolve artefatos ao Trader |
+| Gestão ADS Shopee/ML | Himmel | Verba, segmentação, criativos, lances, exposição, afiliados/cupons Shopee |
+
+## Regras de acionamento
+
+- Himmel nunca é acionado diretamente pelo DSA — sempre via Lucas (Shopee) ou Yasmin (ML).
+- Pedro nunca é acionado diretamente pelo DSA — sempre via Leonardo, após validação de pré-requisitos.
+- Kobe é acionado para decisões estruturais, conflitos e checkpoints.
+- DSA nunca fala com Pedro diretamente. Toda comunicação passa por Trader ou Kobe.
+
+
+---
+# CONTEXTO: marketplace-rules
+# Marketplace Rules — Daily Sales Analyst
+
+## Princípio
+
+Regras críticas de marketplace que o DSA deve considerar na análise. Estas são regras observadas e documentadas — não taxas específicas inventadas.
+
+## Shopee
+
+### Regras gerais
+- Shopee opera com múltiplas contas para a GB Importadora (3 contas ativas).
+- Cada conta tem mix, exposição e campanha próprios.
+- Cupons, afiliados e ADS são coordenados via Himmel.
+- Full Shopee (quando disponível) afeta visibilidade e entrega.
+- Canibalização entre contas é risco real e deve ser monitorada.
+
+### Pontos de atenção
+- Mudanças de regra do marketplace podem contaminar séries históricas.
+- Exposição pode variar por conta sem causa interna.
+- Horários de pico variam por conta e por categoria.
+
+## Mercado Livre
+
+### Regras gerais
+- Reputação afeta exposição e ranking.
+- Mercado Livre Full afeta visibilidade e competitividade.
+- Posição de anúncio e ranking são indicadores de saúde do canal.
+- Competitividade de preço relativo importa.
+
+### Pontos de atenção
+- Oscilação normal de ranking não é alerta sem base histórica.
+- Perda de reputação pode ter efeito cascata em exposição.
+- ADS ML coordenados via Himmel (acionado por Yasmin).
+
+## Amazon
+
+### Regras gerais
+- Buy Box é pré-requisito para tráfego pago eficiente.
+- FBA afeta elegibilidade, visibilidade e Buy Box.
+- Produto Amazon deve ser identificado por título real + ASIN do pedido.
+- Alias manual de SKU nunca é fonte primária.
+
+### Pontos de atenção
+- Nunca escalar ADS sem validar Buy Box, FBA e estoque.
+- Crescimento sobre operação frágil amplifica problema.
+- Cancelamentos e listings indisponíveis podem mascarar resultado real.
+- ADS Amazon geridos por Pedro (acionado por Leonardo após pré-requisitos).
+
+## Nota importante
+
+Este arquivo contém regras observadas e princípios operacionais. Taxas específicas de comissão, frete ou penalidade por marketplace **não são documentadas aqui** por não haver fonte validada. Quando necessário, consultar fontes oficiais dos marketplaces.
+
+
+---
+# MEMORIA DAS CONTAS
+## shopee-budamix-store
+### rules.md
+# Rules — Shopee Budamix Store
+
+## Regras permanentes
+
+Regras específicas desta conta. Só mudam por decisão explícita, mudança de marketplace, QA recorrente ou aprovação Trader/Kobe.
+
+## Plataforma: Shopee
+
+### Identificação
+- shop_id: 448649947
+- Responsável operacional: Lucas
+- Responsável ADS: Himmel (via Lucas)
+
+### Regras operacionais
+- Nunca generalizar sinal desta conta para "Shopee" sem evidência nas outras contas.
+- Sempre identificar qual conta sustenta a observação.
+- Produto Shopee sempre com conta identificada.
+- Separar comportamento por conta em horários, cancelamentos, mix e fulfillment.
+
+### Regras de marketplace Shopee
+- Regras genéricas de marketplace Shopee aplicam a esta conta salvo exceção documentada.
+- Cupons, afiliados e ADS coordenados via Himmel.
+
+### Exceções
+- Nenhuma exceção documentada.
+
+---
+
+*Alterações abaixo. Registrar data, motivo e aprovação.*
+
+
+### weekly.md
+# Weekly — Shopee Budamix Store
+
+## Estrutura
+
+Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 entradas diárias acumuladas.
+
+## Template
+
+### Semana: [DD/MM a DD/MM/AAAA]
+
+#### Tese semanal
+[Tese consolidada da semana baseada nas leituras diárias]
+
+#### Padrões observados
+- [Padrão 1]
+- [Padrão 2]
+
+#### Hipóteses ativas
+- [Hipótese 1 — status: confirmada/enfraquecida/em aberto]
+
+#### Riscos acumulados
+- [Risco 1 — persistência: X dias]
+
+#### Sinais para próxima semana
+- [Sinal 1 — condição falsificável]
+
+#### Ressalvas da semana
+- [Ressalva 1 — frequência: X ocorrências]
+
+---
+
+*Histórico semanal abaixo. Não sobrescrever — adicionar nova entrada acima.*
+
+
+### monthly.md
+# Monthly — Shopee Budamix Store
+
+## Estrutura
+
+Tese mensal da conta. Atualizada no primeiro dia útil de cada mês.
+
+## Template
+
+### Mês: [MM/AAAA]
+
+#### Tese mensal
+[Tese consolidada do mês baseada nas leituras semanais]
+
+#### Patamar da conta
+[saudável / em ganho de patamar / em acomodação / vulnerável / em queda real / inconclusiva]
+
+#### Evolução vs mês anterior
+[Comparação com tese do mês anterior — confirmada, revertida, evoluiu]
+
+#### Dependências estruturais
+- [Dependência 1 — ex: concentração em poucos produtos]
+
+#### Riscos persistentes
+- [Risco 1 — presente há X semanas]
+
+#### Decisões tomadas no mês
+- [Decisão 1 — resultado observado]
+
+#### Base para próximo mês
+- [O que monitorar]
+- [Hipóteses que transitam]
+
+---
+
+*Histórico mensal abaixo. Não sobrescrever — adicionar nova entrada acima.*
+

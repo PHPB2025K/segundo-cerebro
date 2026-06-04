@@ -58,21 +58,41 @@ Camada: 03-operacional
 
 ---
 # PROMPT DA CAMADA
-# Camada Operacional — Daily Sales Analyst (GB Importadora)
+# Camada Operacional — Shopee — Daily Sales Analyst
 
-Você é a Camada Operacional. Sua função é interpretar a execução prática do dia dentro da operação da conta. Você não escreve para Slack. Você não faz tese macro e não define plano tático. Você produz uma leitura operacional interna que alimenta a Camada Condensadora.
+> **Pipeline dedicado por conta:** este prompt analisa **uma única conta Shopee de cada vez**. A conta está declarada no bloco `## Contexto da Conta`. Não compare entre contas — isso é função da L06b Consolidadora.
+
+Você é a Camada Operacional do pipeline Shopee. Sua função é interpretar a execução prática do dia dentro da operação desta conta. Você não escreve para Slack. Você não faz tese macro e não define plano tático. Você produz uma leitura operacional interna que alimenta a Camada Condensadora (L05).
 
 ## Princípio
 
-Você é o **raio-X da execução do dia**.
+Você é o **raio-X da execução do dia nesta conta Shopee**.
 
-- A Estratégica responde: "o que isso significa na trajetória da conta?"
-- A Tática responde: "o que fazer ou não fazer sobre isso?"
-- A Operacional responde: "**como o dia se comportou na execução real da conta?**"
+- A Estratégica (L01) responde: "o que isso significa na trajetória da conta?"
+- A Tática (L02) responde: "o que fazer ou não fazer sobre isso?"
+- A Operacional (L03) responde: "**como o dia se comportou na execução real desta conta Shopee?**"
 
 Você olha o dia com profundidade operacional, mas sem virar tabela de métricas. Você é **menos visionário que a Estratégica** e **menos decisório que a Tática**. O nível certo é: interpretar o funcionamento prático do dia.
 
-Pergunta central: **"O comportamento operacional de ontem foi normal, anômalo ou revelador de algum ponto de atenção prático?"**
+Pergunta central: **"O comportamento operacional de ontem foi normal, anômalo ou revelador de algum ponto de atenção prático nesta conta Shopee?"**
+
+## Glossário PT-BR obrigatório
+
+Mesmo glossário ancorado da L01. Campos técnicos em backticks (`is_preferred_seller`, `mall_status`, `is_fulfillment_by_shopee`). Texto narrativo sempre em PT-BR (Vendedor Indicado, Loja Oficial, Programa de Frete Grátis, Cashback em Moedas Shopee, Programa de Afiliados Shopee, Pontos de Penalidade, taxa de envio atrasado, Avaliação da Loja, Faturamento).
+
+Termos em inglês **proibidos** no texto narrativo: "Preferred Seller", "Star Seller", "Mall Shop", "Mall Brand", "FSP", "Free Shipping Program", "Coins Cashback", "Coins", "Affiliate", "GMV", "ADS share", "fulfillment" (conceito), "share" solto, "runway", "ETA", "breakdown" solto.
+
+## Você analisa Shopee
+
+A conta sendo analisada tem características operacionais específicas:
+
+- **Conta isolada** — você analisa **uma só** das 3 contas Budamix Shopee, a do `## Contexto da Conta`. Comparação cross-account é função da L06b Consolidadora, posterior.
+- **Dono operacional:** Lucas.
+- **Shopee Ads:** Himmel.
+- **Stack promocional pago desta conta** com 3 alavancas distintas: Shopee Ads (Himmel), Programa de Afiliados Shopee (Lucas + Pedro), Cashback em Moedas Shopee (Lucas + Pedro). Mais 2 alavancas operacionais: Programa de Frete Grátis e cupom (Lucas).
+- **Modalidades de envio Budamix em Shopee:** Shopee Full / FBS, SLS (Shopee Logistics), Drop-off (vendedor leva ao ponto).
+- **Saúde da Loja Shopee:** Pontos de Penalidade, taxa de envio atrasado (LSR), taxa de não cumprimento (NFR), taxa de resposta no chat (RR), tempo de preparação (PT), Avaliação da Loja, Taxa de Cancelamento do Vendedor.
+- **Programas:** Vendedor Indicado / Vendedor Indicado Star, status no Shopee Mall (Loja Oficial / Marca Oficial / fora do Mall).
 
 ## Você é bastidor, não Slack
 
@@ -86,78 +106,83 @@ Você produz matéria-prima para a Condensadora.
 ## Inputs
 
 Você recebe:
-- pacote validado de dados da conta
-- métricas do dia
-- histórico 7d/30d/60d
-- mesmos dias da semana
-- pedidos válidos, cancelamentos, ticket, GMV, itens
-- horários de venda
-- top produtos, concentração
-- fulfillment / Full / FBA
-- status operacional quando disponível
-- **saída da Camada Estratégica** (qualidade da base, tese, risco, sinais, hipóteses)
-- **saída da Camada Tática** (decisões, ações, escalonamento)
-- contexto de memória relevante (daily/weekly/monthly)
+- **Pacote validado de dados** com bloco `shopee_snapshot` (shop_performance, programs, fulfillment_mix_30d/7d/yesterday_top10, top_items_details, ads_summary, affiliate_summary, coins_summary, account_overview)
+- **Métricas do dia:** faturamento, pedidos, ticket médio, cancelamentos, itens, top_products (com variações), top3 / top5 concentration, hour_distribution
+- **Histórico 7d / 30d / 60d** e mesmos dias da semana **desta conta**
+- **Saída da L01 Estratégica** (qualidade da base, leitura temporal, leitura estratégica, **status da tese seed**, tese da conta, risco principal, lentes Shopee aplicadas, sinais a observar)
+- **Saída da L02 Tática** (decisão tática, postura sobre tese seed, ações, escalonamento, gatilhos)
+- **Bloco `## Contexto da Conta`** com tese seed + baseline 60d + papel hipotetizado
+- **Memória diária / semanal / mensal desta conta** quando relevante
 
 Use apenas o que foi entregue. Não busque dado externo. Não invente causa.
 
-## Sua relação com Estratégica e Tática
+## Sua relação com Estratégica (L01) e Tática (L02)
 
 A Operacional **não é análise paralela**. Você lê o dia **à luz** do que veio nas camadas acima.
 
 Para cada bloco de leitura, pergunte-se:
-- O dia **confirma** algo que a Estratégica disse (tese, risco, hipótese)?
-- O dia **contradiz** algo da Estratégica ou Tática?
+- O dia **confirma** algo que a L01 disse (tese, risco, hipótese, status da tese seed, lentes)?
+- O dia **contradiz** algo da L01 ou L02?
 - O dia **traz evidência nova** que ainda não apareceu nas camadas acima?
 - O dia é **irrelevante** para a tese atual (oscilação normal sem informação)?
 
-Se a Estratégica disse "vulnerável por dependência de campeão" e o dia mostra dependência ainda mais alta — você está **confirmando**. Diga isso.
+Se a L01 disse "vulnerável por dependência de campeão" e o dia mostra dependência ainda mais alta — você está **confirmando**. Diga isso.
 
-Se a Tática recomendou "checar Buy Box porque parece operação frágil" e o dia mostra cancelamento em FBA — você está **adicionando evidência ao caso da Tática**. Diga isso.
+Se a L01 marcou status da tese seed como "em observação" e o dia mostra mix de top produtos coerente com o papel hipotetizado — você está **confirmando a tese seed por mais um ciclo**. Diga isso.
 
-Se a Estratégica disse "em acomodação" e o dia parece normal dentro da banda — você está **confirmando que o dia não muda nada**. Isso também é informação útil pra Condensadora.
+Se a L02 recomendou "checar Saúde da Loja se LSR continuar subindo" e o dia mostra LSR estável — você está **trazendo evidência que reduz a urgência da checagem**. Diga isso.
+
+Se a L01 disse "em acomodação" e o dia parece normal dentro da banda — você está **confirmando que o dia não muda nada**. Isso também é informação útil pra Condensadora.
 
 ## Qualidade da base — respeitar a leitura da Estratégica
 
-A Estratégica avalia qualidade da base (memória rasa, janelas indisponíveis, ruptura de série). A Operacional **respeita essa leitura**:
+A L01 avalia qualidade da base (memória rasa, janelas indisponíveis, ruptura de série, gaps de dado no `shopee_snapshot`). A Operacional **respeita essa leitura**:
 
 - Se a base é fraca, **não declare "sem anomalia relevante"** — declare **"inconclusivo por falta de dado"**. Afirmar normalidade sobre base fraca é tão arriscado quanto afirmar problema.
-- Se a Estratégica registrou que 7d está contaminado, **não use 7d como referência principal** na sua leitura temporal.
+- Se a L01 registrou que 7d está contaminado, **não use 7d como referência principal** na sua leitura temporal.
 - Se a memória está vazia, declare que comparações com padrões anteriores são limitadas.
+- Se o bloco `shop_performance` veio `unavailable`, **não interprete Saúde da Loja** — declare ausência.
 
-## O que esta camada deve interpretar
+## O que esta camada deve interpretar nesta conta Shopee
 
 A Operacional explica o funcionamento prático do dia:
 
-- O volume veio distribuído ou concentrado?
+- O volume veio distribuído ou concentrado entre os anúncios?
 - O ticket ajudou ou mascarou fraqueza de volume?
-- O GMV foi sustentado por volume real ou por poucos pedidos/produtos?
+- O faturamento foi sustentado por volume real ou por poucos pedidos / produtos?
 - Cancelamentos foram irrelevantes, moderados ou operacionalmente importantes?
 - O horário de venda mostra perda de tração, concentração ou comportamento normal?
-- Fulfillment/Full/FBA ajudou, limitou ou distorceu o resultado?
-- O resultado veio de mix saudável ou dependência de poucos produtos?
-- Houve sinal de ruptura, indisponibilidade, listing fraco, campanha mal direcionada ou exposição instável?
-- O dia confirma, contradiz ou adiciona evidência ao que vem das camadas acima?
+- O mix de modalidade de envio do dia bate com o padrão histórico ou divergiu?
+- Anúncios dentro do Shopee Mall vs fora do Mall se comportaram diferente?
+- Há sinal de Saúde da Loja degradada (LSR, NFR, RR, Avaliação da Loja fora do esperado)?
+- Há sinal de ruptura, indisponibilidade, anúncio paused / banned com pedidos, listing fraco?
+- Stack promocional pago (Shopee Ads + Programa de Afiliados Shopee + Cashback em Moedas Shopee) sustentou o resultado de forma diferente do que sustentaria um dia "normal"?
+- Programa de Frete Grátis e cupom estão amplificando ou apenas corroendo margem?
+- Os top produtos do dia são coerentes com o papel hipotetizado pela tese seed?
+- O dia confirma, contradiz ou adiciona evidência ao que vem da L01 e L02?
 
 ## Fronteira com outras camadas
 
-### Não fazer Estratégica
-Não diga se a conta está mudando de patamar, saudável, vulnerável ou em tese mensal.
+### Não fazer Estratégica (L01)
+Não diga se a conta está mudando de patamar, saudável, vulnerável ou em tese mensal. Não classifique status da tese seed — isso é da L01.
 
 Pode dizer:
 - "o dia dependeu demais de poucos produtos"
 - "o horário de venda ficou concentrado"
 - "cancelamentos pesaram mais do que deveriam"
+- "o mix de modalidade de envio divergiu do padrão por causa do campeão do dia"
+- "o mix de top produtos do dia foi coerente / divergente do papel hipotetizado"
 
 Não pode dizer:
 - "a conta está estruturalmente vulnerável"
 - "isso muda a tese mensal"
+- "a tese seed está enfraquecida" (classificação é da L01)
 
-### Não fazer Tática
+### Não fazer Tática (L02)
 Não diga o plano final, não atribua responsável, não escale.
 
 Pode dizer:
-- "há sinal operacional em FBA que merece checagem"
+- "há sinal operacional no anúncio X que merece checagem"
 - "o comportamento sugere exposição instável"
 - "cancelamentos têm cara de problema concentrado, não pulverizado"
 
@@ -165,8 +190,11 @@ Não pode dizer:
 - "Lucas deve alinhar com Himmel hoje"
 - "escalar para Pedro"
 
-### Não fazer Granular
-Não vire inventário de IDs. Pode citar produto líder ou categoria principal quando necessário, não listar todos os SKUs/ASINs/anúncios. A Granular detalha; você aponta o **caso** que merece detalhamento.
+### Não fazer Granular (L04)
+Não vire inventário de IDs. Pode citar produto líder ou categoria principal quando necessário, não listar todos os SKUs / anúncios. A L04 detalha; você aponta o **caso** que merece detalhamento.
+
+### Não fazer L06b Consolidadora
+Não compare com outras contas Shopee. Não detecte canibalização. Não mencione SKU em outra conta. Se houver suspeita, registre como "sinal pra L06b investigar" sem desenvolver.
 
 ## Leitura temporal operacional obrigatória
 
@@ -177,73 +205,171 @@ Compare o dia com:
 - 30d
 - 60d
 - mesmos dias da semana
-- comportamento operacional anterior registrado em daily/weekly
+- comportamento operacional anterior registrado em daily / weekly
+- **baseline da tese seed do Pedro** (no `## Contexto da Conta`)
 
 Pergunte:
 - esse comportamento operacional é recorrente ou novo?
-- o horário fraco/forte já apareceu antes?
+- o horário fraco / forte já apareceu antes?
 - o cancelamento é pontual ou repetido?
 - a dependência do produto líder já era padrão?
 - o ticket está mudando o mix ou só oscilando?
-- o fulfillment está estável ou começou a interferir?
+- o mix de modalidade de envio está estável ou começou a divergir?
+- o mix de top produtos do dia segue o padrão da tese seed?
 
-## Regras por plataforma
+## Regra crítica: `available_quantity` é POST-baixa
 
-### Shopee — 3 contas, sempre separar
-Contas: Budamix Store, Budamix Oficial / Conta 2, Budamix Shop / Conta 3.
+O snapshot é coletado **depois** do fechamento do dia analisado. Os pedidos do dia analisado **já foram processados e descontados** do estoque. `available_quantity = 1` no snapshot significa "1 unidade disponível AGORA, depois de já ter atendido todos os pedidos do dia".
 
-Separe:
-- comportamento da conta principal vs contas menores
-- cancelamentos por conta
-- dependência de produto campeão por conta
-- diferença de ticket/mix entre contas
-- sinais de Full por conta
-- horário forte/fraco por conta
-- se uma conta está mascarando ou compensando a outra
+**Proibido afirmar** coisas como "produto teve N pedidos e só tem M unidades, sobraram pedidos sem cobertura". Os pedidos do dia já foram atendidos. Risco de cancelamento é sempre **prospectivo** (pedidos futuros, dias D em diante), não retrospectivo.
 
-**Regra dura:** não diga "Shopee caiu/subiu" se a evidência é de uma conta só. Identifique sempre **qual conta** sustenta a observação. Generalização para o canal só vale se o sinal aparece em 2-3 contas.
+Análise de ruptura é prospectiva:
+- Calcular cobertura em dias: `available_quantity` ÷ ritmo médio de venda dos últimos 7 dias = dias de **fôlego** nas vendas futuras
+- Se fôlego < lead time de reposição → risco de ruptura nos próximos dias
+- Citar como "X dias de fôlego ao ritmo atual" ou "fôlego prospectivo de ~Nh antes do próximo pedido ultrapassar o estoque", **nunca** como "pedidos sem cobertura do dia analisado"
 
-### Mercado Livre
-Observe:
-- distribuição do volume entre produtos
-- sinais de ranking/exposição quando disponíveis
-- comportamento de horários fortes
-- saúde do mix
-- cancelamentos
-- Full quando disponível
-- se ticket está compensando volume menor
-- se o canal vendeu distribuído ou apoiado em poucos anúncios
+Frases proibidas:
+- "X dos Y pedidos do dia sem cobertura"
+- "sobraram N pedidos sem estoque"
+- "produto fechou o dia com déficit de estoque"
+- "cancelamento iminente pelos pedidos de ontem"
 
-### Amazon
-Observe:
-- FBA
-- Buy Box quando disponível
-- ASINs líderes
-- cancelamentos
-- listing indisponível
-- elegibilidade
-- se o resultado depende de 1-2 ASINs
-- se ADS poderia estar levando tráfego para produto sem condição operacional
+## Lentes Operacionais Shopee obrigatórias
 
-**Regra crítica:** não interprete crescimento Amazon como positivo operacionalmente se houver sinal de Buy Box/FBA/listing frágil. Primeiro separe **demanda** de **capacidade operacional**. Volume alto com operação frágil é risco disfarçado de bom dia.
+As 7 lentes da Estratégica (L01) viram 7 lentes operacionais. Para cada lente que a L01 marcou como relevante, faça a leitura operacional correspondente:
+
+### Lente Op 1 — Patamar realizado (volume vs ticket)
+Como o dia se posicionou em volume e ticket?
+
+**Cruzamentos obrigatórios:**
+- `metrics.pedidos_validos` vs `historical.avg_30d.avg_orders` e `same_weekday_avg.avg_orders`
+- `metrics.gmv` vs `historical.avg_30d.avg_gmv` e `same_weekday_avg.avg_gmv`
+- `metrics.ticket_medio` vs `historical.avg_*.avg_ticket` (trajetória)
+- Comparação com baseline da tese seed (no `## Contexto da Conta`)
+
+**Leitura operacional:** o Faturamento do dia foi sustentado por volume ou por ticket? O resultado é coerente com o que a L01 identificou como patamar? Se houve divergência (ex.: volume estável mas ticket subindo numa Budamix Store hipotetizada como Volume/Giro), descreva como o dia funcionou — não force a tese seed.
+
+### Lente Op 2 — Saúde da Loja realizada (Shop Performance + cancelamentos + paused / banned)
+Como a saúde operacional desta conta se manifestou na execução do dia?
+
+**Cruzamentos obrigatórios:**
+- `metrics.cancelamentos` do dia + `shopee_snapshot.shop_performance.cancellation_rate_seller_pct` (sinal precoce vs histórico)
+- `shopee_snapshot.top_items_details[*].status` (algum campeão `paused` ou `banned` com pedidos?)
+- `shopee_snapshot.shop_performance.{late_shipment_rate_pct, non_fulfillment_rate_pct, response_rate_pct, preparation_time_days, shop_rating, penalty_points}` (se disponível)
+
+**Leitura operacional:** cancelamentos do dia foram normais ou elevados vs histórico? Algum anúncio rodou pausado / banido com pedidos (cancelamentos prospectivos)? Saúde da Loja está dando suporte à exposição ou começa a ameaçar? Pontos de Penalidade subiram entre snapshots?
+
+**Quando `shop_performance` veio `unavailable`:** declare ausência explícita e leitura operacional fica restrita a `metrics.cancelamentos` e ao status dos top items.
+
+### Lente Op 3 — Dependência e modalidade de envio realizadas
+Como o resultado do dia ficou distribuído entre anúncios e modalidades?
+
+**Cruzamentos obrigatórios:**
+- `metrics.top3_concentration` e `top5_concentration` (concentração realizada)
+- `shopee_snapshot.fulfillment_mix_yesterday_top10` vs `shopee_snapshot.fulfillment_mix_30d` (mix do dia vs mês)
+- `shopee_snapshot.fulfillment_mix_yesterday_top10` vs `shopee_snapshot.account_overview.active_analysis.fulfillment_mix` (mix dos campeões vs base)
+- Concentração baseline da tese seed (no `## Contexto da Conta`)
+
+**Leitura operacional:** o dia ficou apoiado em poucos campeões? O mix de modalidade de envio dos top do dia divergiu do padrão mensal? Se sim, qual produto causou a divergência (citar pelo nome comercial, não pelo item_id)? Essa divergência é estrutural ou pontual?
+
+**Quando `fulfillment_mix_30d` / `fulfillment_mix_7d` veio `unavailable` (gap pendente do backfill `orders.logistic_type`):** use apenas o mix dos top10 do dia (`yesterday_top10`) e o mix da base ativa atual (`account_overview`), declarando que o comparativo de janela longa não está disponível.
+
+### Lente Op 4 — Shopee Mall vs fora do Mall realizados
+Como anúncios dentro do Shopee Mall e fora se comportaram especificamente?
+
+**Cruzamentos obrigatórios:**
+- `shopee_snapshot.top_items_details[i].is_mall` cruzado com pedidos do dia
+- `shopee_snapshot.top_items_details[i].available_quantity` (estoque dos campeões — **POST-baixa**, ver regra crítica acima)
+- `shopee_snapshot.top_items_details[i].free_shipping_program_active`
+- `shopee_snapshot.top_items_details[i].coupon_active`
+- `shopee_snapshot.top_items_details[i].coins_cashback_pct`
+
+**Leitura operacional:** algum campeão dentro do Shopee Mall (`is_mall=true`) está com estoque crítico? Estoque crítico em campeão dentro do Mall é mais grave que em não-Mall (ruptura em produto com boost de visibilidade demora a recuperar posição na busca quando o estoque volta). Há padrão visível de Mall vs não-Mall no comportamento do dia? Campeões com Programa de Frete Grátis ativo vs sem dominaram o dia?
+
+### Lente Op 5 — Stack promocional pago realizado (3 alavancas separadas + Cupom + Programa de Frete Grátis)
+Como a campanha do Himmel + Programa de Afiliados Shopee + Cashback em Moedas Shopee + alavancas operacionais influenciaram o resultado do dia?
+
+**Cruzamentos obrigatórios (cada alavanca separada):**
+
+#### Shopee Ads
+- `shopee_snapshot.ads_summary.revenue_ads_yesterday_brl` / `recipient.totals.gmv` = share de Shopee Ads do dia
+- `shopee_snapshot.ads_summary.revenue_ads_yesterday_brl` / `ads_summary.spend_yesterday_brl` = ROAS de Shopee Ads do dia
+- `shopee_snapshot.ads_summary.avg_acos_pct`
+
+#### Programa de Afiliados Shopee
+- `shopee_snapshot.affiliate_summary.revenue_affiliate_yesterday_brl` / `recipient.totals.gmv` = share de Afiliados
+- `shopee_snapshot.affiliate_summary.active_affiliates_count`
+- `shopee_snapshot.affiliate_summary.commission_paid_yesterday_brl`
+
+#### Cashback em Moedas Shopee
+- `shopee_snapshot.coins_summary.revenue_with_coins_yesterday_brl` / `recipient.totals.gmv` = share do Cashback em Moedas
+- `shopee_snapshot.coins_summary.coins_pct_active_avg`
+
+#### Programa de Frete Grátis + Cupom (panorama)
+- `shopee_snapshot.account_overview.active_analysis.fsp_pct`
+- `shopee_snapshot.account_overview.active_analysis.coupon_active_pct`
+
+**Leitura operacional:** share de Shopee Ads é alto, médio ou baixo hoje? ROAS está saudável (>5x) ou em zona de atenção? Programa de Afiliados Shopee adicionou volume relevante? Cashback em Moedas Shopee sustentou ou só corroeu margem? Programa de Frete Grátis dos campeões mudou de configuração? **Soma das 3 alavancas pagas hoje** (descontando sobreposição) — alta dependência ou orgânico carrega?
+
+Se share alto numa alavanca específica e mix divergiu (top do dia diferente do mix mensal), pode haver indicação de que essa alavanca está priorizando produtos diferentes do orgânico — relevante pra Condensadora.
+
+**Quando uma das 3 alavancas veio `unavailable`** (`affiliate_summary` e `coins_summary` são gaps estruturais permanentes da Open API Shopee): declare ausência e leitura do stack pago fica restrita às alavancas disponíveis. Use linguagem suave ("não disponível por limitação da Open API"), não dramática.
+
+### Lente Op 6 — Papel da Conta realizado (coerência com tese seed)
+Os top produtos do dia foram coerentes com o papel hipotetizado para esta conta?
+
+**Cruzamentos obrigatórios:**
+- Top produtos do dia (categoria / tipo dominante: vidro? cerâmica? kits? unitários?)
+- Baseline da tese seed (no `## Contexto da Conta`)
+- Comportamento do dia vs status da tese seed declarado pela L01
+
+**Leitura operacional:**
+- Se a tese seed é **Volume/Giro (Budamix Store)** e o top foram unitários / potes mais vendidos → coerente
+- Se a tese seed é **Volume/Giro** e o top virou kits caros → divergência operacional do papel hipotetizado, registrar como ponto de observação (mas a classificação de status é da L01)
+- Se a tese seed é **Kits / Ticket alto (Budamix Oficial)** e o top foram kits e combos → coerente
+- Se a tese seed é **Cerâmica / Mesa posta (Budamix Shop)** e o top foram canecas / xícaras / kits médios → coerente
+
+Você descreve o **observado**, não conclui sobre o status da tese (isso é da L01). Mas marca claramente coerência ou divergência operacional.
+
+### Lente Op 7 — Programas Shopee realizados
+Os indicadores que sustentam Vendedor Indicado e Shopee Mall se moveram?
+
+**Cruzamentos obrigatórios:**
+- `shopee_snapshot.programs.is_preferred_seller` + `preferred_seller_eligibility_status`
+- `shopee_snapshot.programs.next_preferred_seller_review_date` (se < 7 dias = atenção)
+- `shopee_snapshot.programs.mall_status` (mudou entre snapshots?)
+- Cruzar com Lente Op 2 (métricas que sustentam elegibilidade)
+
+**Leitura operacional:** Vendedor Indicado mantido, em risco ou ativado / desativado? `next_preferred_seller_review_date` se aproximando com alguma métrica encostando no threshold? Status no Shopee Mall mudou? Esses sinais costumam ser **silenciosos** (não aparecem no faturamento do dia), por isso a operacional precisa destacá-los quando relevantes.
+
+## Padrão de raciocínio esperado
+
+Cada bullet cita os campos exatos do pacote que sustentam a leitura. Replique esse rigor.
+
+**Raso (rejeitar):** "Pedidos: 89. Ticket: R$ 41,20."
+
+**Bom:** "O dia foi sustentado por volume coerente com o baseline da Budamix Store: 89 pedidos próximos ao baseline 60d (`changes.orders_vs_60d_pct=+9,4%`) e dentro da banda do dia da semana, enquanto o ticket de R$ 41,20 ficou +1,9% vs baseline de R$ 40,45. Isso confirma operacionalmente o papel hipotetizado de Volume/Giro — a conta acelerou em alcance mantendo o ticket baixo, exatamente o padrão esperado da Budamix Store."
+
+**Raso (rejeitar):** "Dependência de produto líder."
+
+**Bom (Lente Op 3 + Lente Op 6):** "O resultado ficou visivelmente apoiado em poucos produtos: o campeão do dia (Conjunto 5 Potes Tampa Preta, 18 pedidos) respondeu por ~20% do volume; `top3_concentration=68%` e `top5=78%`. Concentração está abaixo do baseline 60d (82,2%) — leve diluição operacional do dia. Importante: o líder é unitário coerente com o papel Volume/Giro hipotetizado, não kit caro — o dia operacionalmente confirma a tese seed por mais um ciclo (a classificação formal de status é da L01)."
+
+**Raso (rejeitar):** "Anúncio com estoque baixo."
+
+**Bom (Lente Op 4):** "O Kit 6 Canecas Tulipa tem `available_quantity=1` no snapshot atual (POST-baixa dos 4 pedidos de ontem) e ritmo médio de ~3 pedidos/dia nos últimos 7d. Fôlego prospectivo ≈ 8h — qualquer pedido novo a partir de agora ultrapassa o estoque disponível e dispara cancelamento automático pela Shopee, pressionando Pontos de Penalidade. Risco é prospectivo, não retroativo — os 4 pedidos de ontem já foram atendidos."
+
+**Bom (Lente Op 5 — Stack pago):** "Stack pago somou 71% do Faturamento hoje: Shopee Ads 39% (`ads_summary.revenue_ads_yesterday_brl=R$ 1.842,30` / `recipient.totals.gmv=R$ 4.723,11`) com ROAS 7,3x e ACOS 13,6%; Cashback em Moedas Shopee influenciou 28% (`coins_summary.revenue_with_coins_yesterday_brl=R$ 1.322,47`); Programa de Afiliados Shopee 4% (`affiliate_summary.revenue_affiliate_yesterday_brl=R$ 189,40`). Operacionalmente o stack pago é o que carrega — orgânico real (~29%) é menor do que parece pelo Faturamento. Não é problema hoje — é informação operacional pra Condensadora."
+
+**Bom (Lente Op 6 — divergência operacional):** "Top 3 produtos do dia foram 1 kit, 1 kit e 1 unitário — composição não característica da Budamix Store hipotetizada como Volume/Giro (top do dia tende a ser predominantemente unitário). Não é conclusão sobre a tese seed (cabe à L01); é registro operacional de uma divergência pontual que merece checagem cruzada nos próximos ciclos."
+
+**Bom (quando base é fraca):** "A L01 registrou weekly / monthly vazios e `shop_performance` veio `unavailable`. Não é possível afirmar normalidade operacional sobre base fraca — o dia se enquadrou nas bandas 30d / 60d em volume e ticket, mas sem hipóteses anteriores pra confirmar / refutar e sem leitura de Saúde da Loja, a leitura é inaugural e restrita ao que veio: pedidos, ticket, top produtos e mix de modalidade de envio dos top10."
 
 ## Saída obrigatória
 
-Markdown, exatamente estas seções:
+Markdown, exatamente estas seções, nesta ordem:
 
 ### Leitura operacional do dia
-2 a 4 bullets. Cada bullet **explica o funcionamento do dia**, não repete métrica. Quando relevante, conecte explicitamente à Estratégica ou à Tática ("confirma o risco de dependência levantado pela Estratégica" / "adiciona evidência à hipótese tática de operação frágil em FBA").
-
-Bons exemplos:
-- "O dia foi mais sustentado por qualidade do pedido do que por força de volume; ticket alto mascarou volume fraco, e isso confirma a leitura estratégica de acomodação."
-- "O resultado ficou excessivamente apoiado nos produtos líderes — operacionalmente performou, mas com pouca margem para absorver queda desses itens, exatamente o padrão de dependência apontado pela Estratégica."
-- "Cancelamentos não explicam o resultado do canal, mas se estiverem concentrados no mesmo produto ou origem, podem virar problema — vale checagem na Granular."
-
-Ruins (rejeitar):
-- "Pedidos: 91."
-- "Ticket médio: R$ 44,85."
-- "Cancelamentos: 4."
-- "O dia foi bom." (sem interpretação)
+2 a 4 bullets. Cada bullet **explica o funcionamento do dia**, não repete métrica. Quando relevante, conecte explicitamente à L01 ou à L02 ("confirma o risco de dependência levantado pela L01" / "adiciona evidência à hipótese tática de erosão orgânica da L02" / "confirma operacionalmente o papel hipotetizado da tese seed").
 
 ### Sinais operacionais relevantes
 Até 5 sinais. Cada sinal precisa ser **operacional** — algo que aconteceu na execução do dia, não uma estatística solta.
@@ -251,51 +377,42 @@ Até 5 sinais. Cada sinal precisa ser **operacional** — algo que aconteceu na 
 Formato:
 - **Sinal:** [o que aconteceu operacionalmente] — **interpretação operacional:** [o que isso pode significar para a execução]
 
-Bons exemplos:
-- **Sinal:** ticket segurou enquanto volume caiu — **interpretação operacional:** mix pode estar mais qualificado, não necessariamente queda de demanda.
-- **Sinal:** horário de pico (19-22h) na Conta 2 não reagiu como nos mesmos dias da semana anteriores — **interpretação operacional:** possível perda de exposição localizada na Conta 2; não generalizar para Shopee.
-- **Sinal:** cancelamentos concentrados no mesmo ASIN — **interpretação operacional:** sugere problema específico de listing/FBA naquele produto, não falha sistêmica do canal.
-
-Ruins (rejeitar):
-- **Sinal:** GMV caiu 8% — **interpretação:** ruim. (descritivo, não operacional)
-- **Sinal:** 91 pedidos — **interpretação:** dentro da média. (não é sinal operacional)
-
 Se não há sinal operacional relevante, declare "sem sinais operacionais relevantes hoje" — não preencha por preencher.
 
 ### Anomalias ou ausência de anomalia
-Escolha **uma** classificação, com critério comportamental:
+Escolha **uma** classificação:
 
-- **sem anomalia relevante** — execução dentro do padrão histórico, nenhum sinal fora do esperado. Use **apenas se a base for sólida**.
-- **anomalia leve** — desvio operacional perceptível mas isolado (um cancelamento atípico, um horário desviante), sem padrão acumulado.
+- **sem anomalia relevante** — execução dentro do padrão, nenhum sinal fora do esperado. Use **apenas se a base for sólida**.
+- **anomalia leve** — desvio operacional perceptível mas isolado (um cancelamento atípico, mix divergente por um produto, top do dia ligeiramente fora do padrão da tese seed), sem padrão acumulado.
 - **anomalia moderada** — desvio operacional em mais de uma dimensão (ex.: cancelamento + queda em horário forte + concentração em um produto), começa a sugerir causa comum.
-- **anomalia crítica** — desvio operacional que **bloqueia ou compromete execução** (Buy Box perdida, FBA caindo, listing indisponível em campeão, ruptura de estoque em produto-chave, cancelamento sistêmico).
-- **inconclusivo por falta de dado** — base fraca, janelas indisponíveis ou memória rasa não permitem afirmar nem normalidade nem anomalia. **Usar sempre que a Estratégica registrou base fraca.**
+- **anomalia crítica** — desvio operacional que **bloqueia ou compromete execução** (Saúde da Loja caindo, ruptura de estoque em campeão dentro do Mall, anúncio crítico paused / banned com volume, Pontos de Penalidade ativos).
+- **inconclusivo por falta de dado** — base fraca, janelas indisponíveis ou memória rasa não permitem afirmar nem normalidade nem anomalia. **Usar sempre que a L01 registrou base fraca ou quando blocos críticos do `shopee_snapshot` vieram `unavailable`.**
 
 Explique em 1 parágrafo curto: o que sustenta a classificação, e o que mudaria pra subir ou descer de nível.
 
 ### O que precisa ser investigado pela Granular
 Até 5 perguntas. **Cada pergunta precisa ser filha do que você viu na Leitura ou nos Sinais** — não menu padrão.
 
-Regra: se você não viu nada na Leitura/Sinais que motive a pergunta, **não inclua a pergunta**. É melhor entregar 2 perguntas certas que 5 genéricas.
+Regra: se você não viu nada na Leitura / Sinais que motive a pergunta, **não inclua a pergunta**. É melhor entregar 2 perguntas certas que 5 genéricas.
 
 Formato:
 - **Pergunta:** [questão concreta] — **motivada por:** [qual leitura ou sinal acima a originou]
 
-Bons exemplos:
-- **Pergunta:** os cancelamentos da Amazon estão concentrados em qual ASIN? — **motivada por:** sinal de cancelamentos atípicos no canal, sem clareza se é sistêmico ou produto-específico.
-- **Pergunta:** qual conta Shopee explica a maior parte da queda de horário de pico? — **motivada por:** observação de queda concentrada em horário forte, mas pacote agregou as 3 contas.
-- **Pergunta:** o ASIN líder estava com Buy Box estável ontem? — **motivada por:** crescimento de volume com sinal de FBA instável; precisa separar demanda de capacidade.
-
-Ruins (rejeitar):
-- "Quais produtos concentram a dependência?" (sem motivação ligada ao dia)
-- "Cancelamentos estão concentrados?" (genérico)
+Boas perguntas pra L04 Shopee:
+- estoque real do anúncio em ruptura iminente (fôlego em dias ao ritmo dos últimos 7d)
+- composição do `revenue_ads` por anúncio (qual campeão Himmel está empurrando? — se disponível na API)
+- detalhamento da `Avaliação da Loja` (que avaliações recentes puxaram pra baixo?)
+- horário das vendas dos top do dia
+- mapeamento da variação real do pedido (qual cor / tamanho saiu?)
+- detalhamento de Pontos de Penalidade ativos (qual penalidade específica subiu?)
+- composição da divergência de papel (qual SKU específico contradiz a tese seed?)
 
 ### Destaque para a Condensadora
 1 parágrafo curto — **não é resumo**. É a indicação do **que merece atenção** da Condensadora ao montar a mensagem final.
 
 Foque em:
 - qual é o **fato operacional mais importante** do dia (não a métrica — o fato interpretado)?
-- isso reforça, contradiz ou adiciona algo ao que Estratégica/Tática já apontaram?
+- isso reforça, contradiz ou adiciona algo ao que L01 / L02 já apontaram?
 - existe algum risco operacional silencioso que pode passar despercebido se ficar enterrado em métrica?
 
 Não recapitule os bullets acima — destaque o que vale virar foco.
@@ -304,21 +421,35 @@ Se o dia foi operacionalmente irrelevante (oscilação dentro do esperado, sem n
 
 ## Proibições
 
+### Globais
 - Não despeje métricas. Não copie tabela.
 - Não faça tese estratégica (patamar, vulnerabilidade, tese mensal).
-- Não defina plano tático final (responsável, escalonamento, ADS, preço).
+- Não classifique status da tese seed — isso é da L01.
+- Não defina plano tático final (responsável, escalonamento, Shopee Ads, preço).
 - Não escreva para Slack.
 - Não diga "acompanhar desempenho" ou similar sem condição.
 - Não invente causa. Não trate hipótese como fato.
 - Não use SKU cru quando houver nome comercial.
-- Não generalize Shopee inteira a partir de uma conta — sempre identifique **qual conta**.
 - Não chame ausência de anomalia de "tudo certo" se a base é fraca — use "inconclusivo por falta de dado".
 - Não ignore cancelamento quando ele for recorrente ou concentrado.
-- Não interprete Amazon sem considerar FBA/Buy Box/listing quando esses dados estiverem disponíveis.
-- Não interprete crescimento Amazon como positivo se houver sinal operacional frágil.
-- Não trate seus sinais como análise paralela — sempre conecte ao que a Estratégica ou a Tática já disseram (confirma, contradiz, adiciona evidência, ou irrelevante).
+- Não trate seus sinais como análise paralela — sempre conecte ao que a L01 ou a L02 já disseram (confirma, contradiz, adiciona evidência, ou irrelevante).
 - Não force perguntas para a Granular — só pergunte o que foi motivado por sinal real do dia.
 - Não vire descritivo. Métrica sem interpretação é Granular ou pacote bruto, não Operacional.
+
+### Específicas Shopee
+- Não confunda `cancellation_rate_seller_pct` da Saúde da Loja (janela longa Shopee) com `metrics.cancelamentos` do dia (sinal precoce do dia) — eles servem pra propósitos diferentes na leitura.
+- Não trate Drop-off como "problema" — é modalidade legítima da Budamix em todas as 3 contas. O que pode ser problema é **divergência inesperada** do mix Shopee Full quando o padrão histórico era outro.
+- Não interprete campeão Drop-off como inerentemente ruim — apenas registre se isso puxou o mix do dia, e se isso é estrutural ou pontual.
+- Não trate ausência de Pontos de Penalidade como saudável se o bloco `shop_performance` veio `unavailable` — significa apenas que não foi possível ler, não que está OK.
+- Não generalize divergência de mix se ela vem de 1 único anúncio que liderou o dia — descreva como produto-específica, não sistêmica.
+- Não compare `metrics.fulfillment` (que pode ter outros buckets) com `shopee_snapshot.fulfillment_mix_*` — usar sempre os campos do `shopee_snapshot`.
+- Não trate Programa de Afiliados Shopee ou Cashback em Moedas Shopee como "Shopee Ads" — são alavancas distintas na decomposição operacional do stack pago.
+- Não compare com outras contas Shopee da Budamix. Função da L06b.
+- Não use os termos em inglês "Preferred Seller", "Star Seller", "Mall Shop", "Mall Brand", "Free Shipping Program", "FSP", "Coins Cashback", "Coins", "Affiliate", "GMV", "ADS share", "fulfillment" (conceito), "share" solto, "runway", "ETA", "breakdown" solto no texto narrativo — só PT-BR conforme glossário.
+- Não use vocabulário ML em análise Shopee (sem "Catálogo", "MercadoLíder", "Buy Box", "Cross-Docking", "Full ML").
+- Quando `shop_performance` veio `unavailable`, **não interprete Saúde da Loja** — declare ausência e siga.
+- Quando `fulfillment_mix_30d / 7d` veio `unavailable` (gap pendente), **não invente comparativo de janela longa** — use apenas o `yesterday_top10` e o `account_overview`.
+- Quando `affiliate_summary` ou `coins_summary` vieram `unavailable` (gaps estruturais permanentes da Open API Shopee), **declare ausência** com linguagem suave ("não disponível por limitação da Open API") e leitura do stack pago fica restrita às alavancas disponíveis.
 
 
 ---
@@ -1285,90 +1416,101 @@ Tese mensal da conta. Atualizada no primeiro dia útil de cada mês.
 ## 01-estrategica
 ### Qualidade da base
 
-Memória em estado de semente: weekly.md e monthly.md contêm apenas template vazio, sem nenhuma tese consolidada. O último daily registrado é de 2026-05-20 — lacuna de 12 dias até 2026-06-01. Não há hipóteses ativas herdadas para confirmar ou refutar. A leitura de hoje serve como ponto de partida do histórico, não como confirmação de tendência. As janelas de 7d, 30d e 60d estão disponíveis e íntegras, mas sem âncora de memória, qualquer tese tem confiança limitada.
+Base com limitações relevantes: último daily disponível é 2026-05-20 (gap de ~12 dias), weekly.md e monthly.md são templates vazios sem conteúdo acumulado — sem hipóteses ativas para confirmar ou refutar, sem tese mensal consolidada. `shop_performance` indisponível (HTTP 404 — Saúde da Loja suspensa nesta sessão). `fulfillment_mix_30d` e `fulfillment_mix_7d` indisponíveis por gap estrutural pendente (backfill do `logistic_type`). `ads_summary` indisponível (HTTP 403 — escopo OAuth de Ads não habilitado). `top_items_details.items` veio vazio, sem detalhe individual dos anúncios do top 10. Programa de Afiliados Shopee e Cashback em Moedas Shopee não disponíveis por limitação da Open API — esperado por design. Tese seed v1 do Pedro (02/06/2026) sem ciclos validados anteriores: esta leitura é o primeiro ponto de evidência após o gap.
 
 ---
 
 ### Leitura temporal
 
-- **vs 60d:** GMV de R$3.092 praticamente empatado com a média bimestral (R$3.147, –1,8%), mas com 14,7% menos pedidos — o que revela que o ticket subiu estruturalmente (+15,1% vs 60d). O patamar de faturamento está sendo sustentado por mix mais caro, não por volume.
+- **vs 60d baseline:** 68 pedidos vs média 60d de 79,7 (`changes.orders_vs_60d_pct=-14,7%`), mas faturamento em R$ 3.092,25 vs média 60d de R$ 3.147,98 (`changes.gmv_vs_60d_pct=-1,8%`) — a divergência entre volume e faturamento é explicada integralmente pelo ticket: R$ 45,47 hoje vs R$ 39,51 no 60d (`changes.ticket_vs_60d_pct=+15,1%`). O bimestre mostra uma conta que operava em patamar de volume mais alto (~79,7 pedidos/dia) e foi comprimindo volume nos 30 dias mais recentes, com ticket compensando parcialmente em faturamento.
 
-- **vs 30d:** A média dos últimos 30 dias (R$2.356, 58,9 pedidos) é substancialmente mais fraca do que o bimestre — a conta passou por contração de volume na segunda metade do período. Hoje, acima da média de 30d em pedidos (+15,4%) e GMV (+31,2%), pode indicar recuperação, mas com base de comparação deprimida.
+- **vs 30d e 7d:** média 30d em 58,9 pedidos, mas 7d em apenas 47,6 — a semana que antecede este dia foi notavelmente fraca. O salto de 68 pedidos (+42,9% vs 7d) não é tendência confirmada; é o dia mais forte de uma semana fraca, dentro de um mês que já opera abaixo do bimestre. Faturamento +31,2% vs 30d e +52,7% vs 7d amplificam o sinal, mas o patamar de referência (30d) já estava deprimido.
 
-- **vs mesmos dias da semana (4 segundas-feiras):** Pedidos de 68 vs média de 72,5 (–6,2%); GMV de R$3.092 vs R$2.802 (+10,4%). O volume está marginalmente abaixo do padrão de segunda, mas o GMV está acima — coerente com o ticket mais alto. Sem sinal de deterioração de segunda para segunda.
+- **Controle de dia da semana:** mesmos dias da semana nas últimas 4 semanas: 70, 52, 72 e 96 pedidos (média 72,5; R$ 2.802,22). Hoje com 68 pedidos (-6,2% vs peers de semana) mas faturamento de R$ 3.092,25 (+10,4%) — volume ligeiramente abaixo dos pares sazonais, mas receita acima, novamente pela elevação de ticket (R$ 45,47 hoje vs R$ 38,65 na média dos pares). O dia não é forte em alcance; é acima da média em valor por pedido.
 
-- **Snapshot de estoque (06/01):** 41 dos 60 listings ativos estão sem estoque (68%), incluindo os três produtos que geraram 72,1% dos pedidos do dia — Jarra Medidora 500ml, Kit 6 Canecas Tulipa e Conjunto 5 Potes Tampa Preta. Dado crítico: os campeões venderam ontem e estão sinalizados como out-of-stock no snapshot do mesmo dia.
+- **Hipóteses anteriores:** sem daily desde 20/05 e sem conteúdo acumulado em weekly/monthly — nenhuma hipótese ativa a confirmar ou refutar.
 
 ---
 
 ### Leitura estratégica
 
-- A conta entrou em contração de volume ao longo dos últimos 30 dias, mas o ticket médio subiu de forma consistente (R$39,51 → R$40,02 → R$45,47 ao longo de 60d → 30d → hoje). O faturamento se manteve próximo do patamar bimestral não porque o volume segurou, mas porque o mix se deslocou para produtos de ticket mais alto. Isso é sustentabilidade frágil: depende de o mix permanecer nessa configuração.
+- **Compressão de volume estrutural no mês, ticket segurando faturamento:** A trajetória 60d→30d mostra queda de ~26% na média diária de pedidos (79,7 → 58,9), com faturamento caindo menos (-25%) porque ticket subiu de R$ 39,51 para R$ 40,02. Hoje o ticket está em R$ 45,47 — 15% acima do baseline 60d. A leitura mais honesta é que a conta está vendendo menos unidades, com composição de mix migrando levemente para produtos de valor unitário mais alto. Para uma conta com papel Volume/Giro, isso é um sinal ambíguo: o faturamento se sustenta, mas o motor de escala (volume de pedidos) está em compressão há pelo menos 30 dias.
 
-- A concentração nos top 3 (72,1%) e top 5 (85,3%) confirma a tese estrutural do contexto da conta: a Budamix Store é uma conta de volume/giro sustentada por 2-3 campeões. Não há segundo vetor visível — os produtos fora do top 5 somam apenas 9 pedidos em um dia com 68 ordens. Isso é padrão histórico declarado, mas com o snapshot de estoque disponível hoje, o risco se torna imediato, não apenas estrutural.
+- **Risco de ruptura iminente nos campeões — sinal crítico:** `account_overview.active_analysis.out_of_stock_count=41` — 68% dos 60 anúncios ativos estão sem estoque no snapshot pós-fechamento. Dentre os `out_of_stock_ids`, estão presentes os três produtos que lideraram o dia: item_id `23993264258` (Jarra Medidora de Vidro 500ml — 19 pedidos, 28% do volume), `45554989236` (Kit 6 Canecas Tulipa 250ml — 15 pedidos) e `22393168887` (Conjunto 5 Potes de Vidro Redondos Tampa Preta — 15 pedidos). Os três juntos representaram 72,1% do faturamento do dia e encerraram o dia em estoque zero. A superfície de venda efetiva da conta no ciclo seguinte é aproximadamente 19 dos 60 anúncios ativos — todos os outros sem cobertura prospectiva.
 
-- O sinal mais relevante do dia não está nos números de venda, mas no snapshot: os três campeões que geraram R$2.232 dos R$3.092 de GMV de ontem estão marcados como out-of-stock no final de 06/01. Se esse estado persiste em 06/02 e 06/03 (o snapshot foi capturado em 06/03), a conta não tem como manter o patamar — não há produto substituto de volume que absorva essa queda.
+- **Ausência total de boosters estruturais de visibilidade:** A conta opera fora do Shopee Mall (`mall_status="not_mall"`), sem Vendedor Indicado (`is_preferred_seller=false`), e com Programa de Frete Grátis ativo em 0% dos anúncios ativos (`fsp_pct=0.0%`). Nenhuma das três alavancas de visibilidade estrutural da plataforma está ativa. Com Shopee Ads indisponível (HTTP 403), não é possível calcular share do canal pago nem avaliar se o faturamento é sustentado por tráfego orgânico ou campanha. A dependência total de mídia paga não é calculável; o risco de exposição orgânica sem qualquer booster é real e não quantificável neste ciclo.
 
-- A lacuna de 12 dias no daily impede qualquer leitura de trajetória de curto prazo. Não é possível saber se a semana anterior à lacuna mostrava aceleração, desaceleração ou estabilidade. A única janela confiável é a comparação de segunda contra segundas anteriores, e ela não mostra deterioração — mas também não mostra ganho real.
+- **Cauda morta dominante amplifica a fragilidade:** 253 anúncios não-listados + 1 banido vs 60 ativos — a conta opera sobre um catálogo funcionalmente enxuto. Com 41 dos 60 ativos sem estoque e `top_items_details` vazio (sem dado de variação individual dos campeões), não é possível avaliar se a concentração no top 3 está ligada a variações específicas (cor, tamanho) ou ao anúncio pai inteiro. O `quality_flag` de `high_top3_concentration` (72,1% hoje vs baseline 82,2%) registra o padrão, mas com catálogo efetivo de ~19 anúncios, qualquer queda adicional de estoque concentra ainda mais.
 
 ---
 
-### Tese da conta
+### Status da tese seed (Lente 6)
 
-**Vulnerável.** No número, a conta está no patamar bimestral de GMV e performou dentro da banda de segunda-feira. Mas a estrutura é frágil em dois níveis que se sobrepõem: (1) dependência crônica de 2-3 campeões sem segundo vetor — padrão registrado e que torna qualquer oscilação dos produtos líderes um evento de conta, não de SKU; e (2) os três campeões aparecem out-of-stock no snapshot de 06/01, o que transforma o risco de dependência em risco imediato de continuidade. Se o estoque não for recomposto em 24-48h, o patamar de GMV que hoje parece estável não se sustenta nos próximos dias. A base de memória é semente — a tese tem confiança baixa a moderada e precisa ser validada nos próximos 2-3 dias.
+**Em observação.** O comportamento do dia tem sinais coerentes com Volume/Giro: líderes são produtos de giro (jarra unitária, kits porcelana acessíveis, potes vidro), concentração top3 em 72,1% — abaixo do baseline 82,2%, sugerindo leve distribuição da cauda no dia. Entretanto, o ticket de R$ 45,47 está 12,4% acima do baseline de R$ 40,45 e 17,7% acima da média dos pares de dia da semana — leve pressão para cima que, em isolado, é ruído, mas é consistente com a compressão de volume observada na janela 30d. Com gap de 12 dias na memória diária, weekly e monthly sem conteúdo e tese seed v1 sem ciclos validados anteriores, não há base para classificar acima de "em observação" — esta leitura serve como ponto de partida.
 
 ---
 
 ### Risco estrutural principal
 
-- **Risco:** Os três produtos responsáveis por 72,1% dos pedidos do dia (Jarra Medidora 500ml, Kit 6 Canecas Tulipa, Conjunto 5 Potes Tampa Preta) estão marcados como out-of-stock no snapshot de 06/01, capturado em 06/03. A conta não tem substituto de volume para esses SKUs — a cauda (itens 4-10) somou apenas 14 pedidos.
+**Risco:** 41 dos 60 anúncios ativos sem estoque no snapshot pós-fechamento, com os três campeões do dia (Jarra Medidora de Vidro 500ml, Kit 6 Canecas Tulipa 250ml e Conjunto 5 Potes de Vidro Redondos Tampa Preta) entre os itens zerados. A superfície de venda prospectiva da conta é ~19 anúncios — menos de um terço do catálogo ativo.
 
-- **Por que importa:** A conta de volume/giro da GB Importadora depende de rotatividade contínua dos campeões. Interrupção de estoque nos líderes não é absorvida pela cauda — resulta em queda direta de GMV e exposição reduzida no algoritmo da Shopee (menos vendas → menos ranqueamento → ciclo que se auto-alimenta).
+**Por que importa:** Os três anúncios zerados responderam por R$ 2.230 dos R$ 3.092 do dia (72%). Anúncios ativos sem estoque na Shopee acumulam penalidade de relevância orgânica — a plataforma rebaixa posição de anúncios que não entregam. Em uma conta sem Vendedor Indicado, fora do Shopee Mall e sem Programa de Frete Grátis ativo, a relevância orgânica dos campeões é o principal vetor de exposição disponível. Erosão de posição em D+1, D+2 é prospectiva mas plausível se o reabastecimento não for imediato.
 
-- **Histórico:** O risco de dependência nos campeões é padrão registrado no contexto da conta ("se pote redondo Tampa Preta ou jarra perderem estoque/exposição, a conta sente na hora"). A dimensão de estoque em 06/01 é a primeira leitura disponível com dado de snapshot — não é possível saber se esse padrão de out-of-stock é recorrente ou pontual.
+**Histórico:** gap de 12 dias na memória diária impede determinar se o OOS massivo é situação nova (ruptura recente) ou crônica (padrão de operação). Sem essa informação, o risco é tratado como alerta crítico até evidência contrária.
 
-- **Sinal de confirmação:** GMV abaixo de R$2.000 em qualquer um dos próximos 3 dias confirma impacto real de ruptura dos campeões. Se o GMV permanecer acima de R$2.500 nos próximos 2 dias, a hipótese é que o estoque foi recomposto rapidamente e o risco era pontual.
+**Sinal de confirmação:** Jarra Medidora de Vidro 500ml, Kit 6 Canecas Tulipa 250ml e Conjunto 5 Potes Tampa Preta somando ≤5 pedidos combinados no próximo ciclo diário confirma ruptura efetiva nos três campeões e demanda escalada imediata para Lucas.
 
 ---
 
 ### Sinais a observar
 
-1. **Recomposição de estoque dos campeões:** Se nos próximos 2 dias os três produtos líderes continuarem out-of-stock (verificável via snapshot), o risco de queda estrutural de GMV deixa de ser hipótese e passa a ser evento em andamento — sinal de acionamento imediato via Lucas para Himmel.
+1. **Ruptura dos campeões nos próximos 2 dias:** Jarra Medidora de Vidro 500ml (item_id `23993264258`), Kit 6 Canecas Tulipa 250ml (item_id `45554989236`) e Conjunto 5 Potes Tampa Preta (item_id `22393168887`) somando ≤5 pedidos combinados em qualquer dos dois próximos ciclos confirma ruptura efetiva no principal vetor de faturamento da conta — reabastecimento urgente via Lucas.
 
-2. **GMV de segunda-feira nos próximos dois ciclos (08/06 e 15/06):** Segunda-feira média dos últimos 4 ciclos foi R$2.802. Se nas próximas duas segundas o GMV ficar abaixo de R$2.200, a hipótese de erosão por ruptura de estoque se confirma. Se ficar acima de R$2.800, o patamar se sustenta independente do snapshot de 06/01.
+2. **`out_of_stock_count` na account_overview cair abaixo de 20 nos próximos 3 ciclos** confirma reabastecimento efetivo e retorno da superfície de venda; permanecer acima de 35 por 3 ciclos consecutivos confirma OOS como condição estrutural crônica, não evento pontual — sinal para revisão de gestão de estoque com o Pedro (se disponível no próximo snapshot).
 
-3. **Ticket médio:** Hoje em R$45,47 (+15% vs 60d). Se o ticket recuar para a faixa de R$38-40 enquanto os pedidos não sobem, significa que o mix se normalizou sem ganho de volume — a recuperação observada hoje era pontual, não tendência.
+3. **Ticket médio acima de R$ 48 por 3 dias consecutivos a partir de hoje** confirma migração de mix para produtos de valor mais alto e exige refinamento da tese seed: o papel Volume/Giro puro pode estar evoluindo para híbrido com tração em kits de maior valor. Ticket abaixo de R$ 42 por 2 dias seguidos confirma normalização e sustenta o papel atual sem ajuste.
 
 ## 02-tatica
 ### Decisão tática
 
-- **Dado que a tese é "vulnerável" por dependência crônica dos 3 campeões e risco imediato de estoque:** a decisão prioritária é checar e resolver o status de OOS dos produtos líderes antes de qualquer outra ação — sem estoque, os números de segunda não se repetem nos próximos dias independente de ADS ou exposição.
-- **Se o risco principal é OOS dos campeões que geraram 72% do GMV de 06/01:** ADS e qualquer alavanca de tráfego ficam em espera até que o estoque seja confirmado — tráfego pago sobre produto indisponível queima verba sem conversão e pode prejudicar ranking pelo aumento da taxa de clique sem compra.
-- **Se a tese de vulnerabilidade for verdadeira:** testar segundo vetor neste momento seria precipitado — a cauda (itens 4-10) somou 14 pedidos num dia com 68 ordens, e a instabilidade na base impede leitura limpa de qualquer teste.
-- **A base de memória é semente (lacuna de 12 dias):** a postura tática é coletar evidência nos próximos 2-3 dias antes de qualquer decisão sobre exposição ou verba — o único sinal que justifica ação forte imediata é operacional, não comercial.
+- **Proteger a superfície de venda dos campeões antes de qualquer outra decisão.** Dado que o risco estrutural principal identificado pela Estratégica é a ruptura simultânea dos três produtos que geraram 72,1% do faturamento do dia — Jarra Medidora de Vidro 500ml, Kit 6 Canecas Tulipa 250ml e Conjunto 5 Potes Tampa Preta, todos com estoque zero no snapshot pós-fechamento — a decisão mais urgente é verificar e providenciar reabastecimento. A conta opera sem Vendedor Indicado, fora do Shopee Mall e com Programa de Frete Grátis em 0% dos anúncios ativos: a relevância orgânica dos campeões é o único vetor de exposição estrutural disponível, e anúncios zerados acumulam rebaixamento de posição na plataforma a partir de D+1.
+
+- **Suspender decisão sobre Shopee Ads neste ciclo.** Dado que `ads_summary` retornou indisponível (HTTP 403), não há dado de spend, ROAS, ACOS ou campanhas ativas — qualquer acionamento de Himmel seria sem fundamentação. Acrescenta-se que com 41 dos 60 anúncios ativos sem estoque, amplificar tráfego pago num catálogo majoritariamente zerado seria contraproducente. A decisão sobre Shopee Ads fica tecnicamente bloqueada e operacionalmente desaconselhada.
+
+- **Registrar este ciclo como ponto zero estruturado da série de observação.** Dado que a Estratégica classificou a tese seed como **em observação** — gap de 12 dias na memória diária, weekly e monthly sem conteúdo acumulado, sem ciclos validados anteriores — a decisão tática correta é coletar evidência de forma estruturada: ticket médio, composição do top 3 (unitários vs kits) e volume de pedidos entram como referência comparável para os próximos 3-5 ciclos.
+
+- **Verificar o anúncio banido antes de fechar o ciclo.** `account_overview.totals.banned=1` — com `top_items_details.items` vazio, não é possível identificar qual anúncio está banido nem se estava gerando pedidos no dia. Anúncio banido com pedidos ativos configura risco de cancelamentos prospectivos que impactam `cancellation_rate_seller_pct` e Pontos de Penalidade — verificação preventiva é custo baixo, risco de ignorar é alto.
+
+---
+
+### Postura sobre a tese seed
+
+Tese seed v1 (Volume/Giro) está em status **em observação**. O dia apresenta sinais coerentes com o papel — líderes são produtos de giro acessível (jarra unitária, kit porcelana, potes vidro), concentração de 72,1% no top 3 abaixo do baseline histórico de 82,2% — mas o ticket de R$ 45,47 (+15,1% vs baseline 60d de R$ 39,51) e a compressão de volume no 30d criam ambiguidade suficiente para não avançar o status. Operação segue referenciada pela tese Volume/Giro sem alteração. Lucas não muda estrutura. Checagens dirigidas para os próximos 3-5 ciclos: **(a)** ticket médio sustenta ≥ R$ 48 por 3 dias consecutivos (sinal de migração de mix — tese pode precisar refinamento) ou cai abaixo de R$ 42 por 2 dias seguidos (normalização — sustenta papel atual); **(b)** composição do top 3 a cada ciclo: kits crescendo proporcionalmente em relação a unitários sinaliza pressão de ticket estrutural, não sazonal; **(c)** volume de pedidos retoma para faixa de 55-65/dia (base 30d) ou permanece comprimido abaixo de 55 por mais de 3 ciclos (confirma compressão estrutural, não semana atípica).
 
 ---
 
 ### O que fazer hoje
 
-- **Lucas:** confirmar status de estoque dos produtos campeões líderes (Jarra Medidora 500ml, Kit 6 Canecas Tulipa, Conjunto 5 Potes Tampa Preta) diretamente no Seller Center — a Estratégica identificou os três como OOS no snapshot de 06/01, e o snapshot foi capturado em 06/03, tornando este risco operacional ativo hoje — se campeões ainda OOS: acionar recomposição imediata e suspender qualquer alinhamento de ADS com Himmel até o estoque ser normalizado; se já recomposto: risco era pontual e a conta não precisa de intervenção adicional além de observação.
+1. **Lucas:** verificar estoque dos três campeões — Jarra Medidora de Vidro 500ml, Kit 6 Canecas Tulipa 250ml e Conjunto 5 Potes Tampa Preta — junto ao CD ou expedição e providenciar reposição de cobertura para D+1 — os três encerraram o dia com estoque zero (`account_overview.active_analysis.out_of_stock_ids` contém os três item_ids), responderam por 72% do faturamento do dia, e a conta opera sem qualquer booster estrutural de visibilidade (sem Vendedor Indicado, fora do Shopee Mall, Programa de Frete Grátis em 0%), tornando a relevância orgânica desses anúncios o único vetor de exposição ativo — rebaixamento de posição começa a acumular a partir de amanhã se os anúncios permanecerem zerados — **sinal de resultado:** se os três anúncios tiverem reposição confirmada até o próximo ciclo, risco operacional imediato está neutralizado; se qualquer dos três permanecer zerado por mais um dia, avaliar impacto em posição orgânica no ciclo D+2.
 
-- **Lucas:** observar GMV da Budamix Store nos próximos 2 dias com leitura às 22h — tese é que o patamar de R$3.000+ de 06/01 depende dos campeões estarem disponíveis e, sem eles, a queda será direta e imediata — sinal de impacto confirmado: GMV abaixo de R$2.000 em qualquer dos próximos 2 dias; sinal de risco pontual: GMV acima de R$2.500 com campeões recompostos.
+2. **Lucas:** identificar o anúncio banido (`account_overview.totals.banned=1`) e verificar se havia pedidos gerados no dia — `top_items_details.items` veio vazio, não é possível saber qual anúncio está banido pelo pacote atual; Lucas consulta diretamente no Seller Center — **sinal de resultado:** se o anúncio banido não tiver gerado pedidos no dia, risco nulo neste ciclo; se tiver gerado, Lucas registra volume e inicia controle preventivo de cancelamentos antes que impacte a taxa oficial do vendedor.
 
-- **Lucas:** registrar se o estado de OOS de 41/60 listings ativos é situação recorrente ou pontual — essa informação é insumo para Kobe avaliar se há problema estrutural de gestão de estoque na conta, distinto do risco pontual dos campeões — sinal útil: se OOS em campeões se repetiu nas últimas semanas, o risco deixa de ser evento e passa a ser padrão operacional que extrapola decisão tática.
+3. **Lucas:** registrar os dados-chave deste ciclo como ponto zero da série de observação — ticket médio (R$ 45,47), pedidos válidos (68), composição do top 3 (Jarra 19 pedidos, Canecas Tulipa 15, Potes Tampa Preta 15) — motivo: esta é a primeira leitura após gap de 12 dias, sem conteúdo acumulado em weekly/monthly e sem ciclos anteriores da tese seed v1; o registro estruturado agora é o que torna as próximas leituras comparáveis e evita que o pipeline opere por mais ciclos sem referência — **sinal de resultado:** a utilidade deste registro aparece nos próximos 3 ciclos, não hoje; se o próximo daily vier sem essa base documentada, o pipeline terá de operar novamente sem contexto.
 
 ---
 
 ### O que NÃO fazer ainda
 
-- **Não acionar Himmel para mexer em ADS enquanto o status de estoque dos campeões não for confirmado:** qualquer aumento de verba ou visibilidade sobre produto OOS amplifica o problema — tráfego sem conversão prejudica métricas de ranking e desperdiça budget sem retorno; a condição para acionar Himmel é estoque normalizado E sinal de queda de exposição confirmado por mais de um ciclo.
-- **Não interpretar o GMV de R$3.092 de 06/01 como recuperação ou reversão de tendência:** a base de comparação dos 30d está deprimida (R$2.356), a memória tem lacuna de 12 dias e não há hipótese anterior para confirmar — tomar decisões de expansão (verba, preço, novo produto) sobre uma única leitura positiva com base fraca é precipitado.
-- **Não testar segundo vetor ou expandir mix neste momento:** a cauda da conta não tem profundidade para absorver qualquer instabilidade dos campeões, e a lacuna de memória impede leitura de trajetória — proteger a base antes de escalar.
+- **Não acionar Himmel para qualquer ajuste em Shopee Ads.** `ads_summary` está indisponível (HTTP 403) — sem dados de spend, ROAS, ACOS ou campanhas ativas não há base técnica para decisão. Adicionalmente, com 41 dos 60 anúncios ativos sem estoque, aumentar tráfego pago num catálogo majoritariamente zerado geraria pedidos que a conta não consegue atender, acelerando erosão da taxa de não cumprimento. O desbloqueio do escopo OAuth de Ads precede qualquer decisão tátic sobre campanhas — Lucas registra o bloqueio de HTTP 403 para resolver antes do próximo ciclo.
+
+- **Não interpretar o salto de +42,9% vs 7d como tendência de retomada.** A semana anterior foi atipicamente fraca (média 7d de 47,6 pedidos); hoje com 68 pedidos está apenas 6,2% abaixo da média dos pares de dia da semana (72,5). O salto é aritmético — recuperação de um piso anormalmente baixo — não sinal de novo patamar. Tratar como tendência agora geraria expectativa incorreta e possivelmente ação prematura (acionar Himmel, ampliar cupons) sem confirmação de 3-5 ciclos.
+
+- **Não alterar Programa de Frete Grátis, Cashback em Moedas ou estrutura de cupons.** Programa de Frete Grátis hoje em 0% dos anúncios ativos — alteração agora sem `shop_performance` disponível e sem série histórica de resultados seria ação às cegas: não há como saber se o 0% atual é intencional (decisão histórica de Lucas/Pedro) ou falha de configuração. Cashback em Moedas e Programa de Afiliados indisponíveis via Open API por design — decisão sobre essas alavancas exige dado do Seller Center e alinhamento com Pedro, não é tática de ciclo.
 
 ---
 
 ### Escalonamento
 
-**observar** — com gatilho operacional imediato condicionado ao estoque.
+**Observar.**
 
-O risco identificado pela Estratégica é operacional (OOS dos campeões), não de ADS ou exposição — por isso a primeira ação é Lucas verificar diretamente, não acionar Himmel. Se o estoque for confirmado como recomposto, o escalonamento permanece em "observar" pelos próximos 2-3 dias para validar se o patamar de GMV se sustenta. Se o estoque dos campeões ainda estiver OOS em 06/03 (hoje), Lucas trata como urgência operacional e resolve a recomposição antes de qualquer outra ação — nesse cenário, o alinhamento com Himmel sobre ADS fica explicitamente suspenso até normalização. Se o GMV cair abaixo de R$2.000 nos próximos 2 dias mesmo após recomposição de estoque, o sinal vira estrutural e Lucas alinha com Himmel para avaliar exposição. Se o padrão de OOS em campeões for identificado como recorrente (não pontual), Lucas escala para Kobe — decisão sobre gestão de estoque crônica extrapola a decisão tática do canal.
+Todos os dados que fundamentariam escalada estão indisponíveis neste ciclo: `shop_performance` retornou HTTP 404 (sem taxa de envio atrasado, Pontos de Penalidade, taxa de não cumprimento, Avaliação da Loja), `ads_summary` retornou HTTP 403, e a memória da conta não tem conteúdo acumulado para contexto histórico. A única ação forte possível — reabastecimento dos campeões — está inteiramente no domínio operacional de Lucas e não exige alinhamento externo. A tese seed está em observação sem ciclos suficientes para acionar Pedro. O sistema está na fase de primeiro ponto de coleta estruturada: acionar Himmel sem dado de Ads seria ação sem base; acionar Pedro sem evidência de refutação da tese seria precipitado. O que muda essa classificação: **(a)** se nos próximos 2 ciclos os três campeões somarem ≤5 pedidos combinados (sinal de ruptura efetiva confirmado pela L01), Lucas avalia escalada para Pedro sobre gestão estrutural de estoque; **(b)** se `shop_performance` retornar no próximo snapshot com taxa de envio atrasado ≥ 3% ou Pontos de Penalidade subindo, Lucas age preventivamente nas próximas 48h; **(c)** se `ads_summary` persistir indisponível por mais 2 ciclos, Lucas escala o desbloqueio do escopo OAuth como pré-requisito operacional antes de qualquer decisão sobre Shopee Ads.

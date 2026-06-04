@@ -7,236 +7,254 @@
   "recipient": "Lucas",
   "respostas_operacional": [
     {
-      "pergunta": "Qual é o available_quantity atual (e fôlego em dias ao ritmo dos últimos 7d) da Jarra Medidora de Vidro 500ml, do Conjunto 5 Potes Tampa Preta e do Kit 6 Canecas Tulipa 250ml — confirmando se o estoque prospectivo é zero absoluto ou se há unidades residuais nos anúncios?",
-      "status": "não respondida por falta de dado",
-      "evidencia": {
-        "top_items_details_status": "ok mas items=[] (lista vazia)",
-        "out_of_stock_ids_confirma_presenca": [
-          {
-            "produto_visivel": "Jarra Medidora De Vidro 500ml com Alça Para Receitas Resistente",
-            "platform_item_id": "23993264258",
-            "sku_interno": "CK4742",
-            "fonte": "top_products (raw_title) + account_overview.out_of_stock_ids",
-            "pedidos_dia": 22
-          },
-          {
-            "produto_visivel": "Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições",
-            "platform_item_id": "22393168887",
-            "sku_interno": "IMB501P",
-            "fonte": "top_products (raw_title) + account_overview.out_of_stock_ids",
-            "confirmed_variation_attributes": [
-              "Tampa Preta"
-            ],
-            "pedidos_dia": 10
-          },
-          {
-            "produto_visivel": "Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha",
-            "platform_item_id": "45554989236",
-            "sku_interno": "CTL002",
-            "fonte": "top_products (raw_title) + account_overview.out_of_stock_ids",
-            "pedidos_dia": 8
-          }
-        ],
-        "available_quantity_unitario_disponivel": false,
-        "ritmo_7d_por_item_disponivel": false
-      },
-      "leitura": "O bloco `top_items_details` retornou com status ok porém com a lista `items` vazia, então o `available_quantity` unitário de cada um dos três campeões não foi entregue pelo pacote. O único sinal granular disponível é binário: os três `platform_item_id` constam em `account_overview.active_analysis.out_of_stock_ids`, o que confirma estoque zero ou residual no momento da coleta (pós-baixa dos pedidos do dia). Não é possível distinguir se há 0, 1 ou 5 unidades residuais por anúncio, nem calcular fôlego em dias por falta de série de venda por item.",
-      "conclusao_granular": "inconclusivo por falta de dado — presença em `out_of_stock_ids` confirma fôlego prospectivo nulo ou residual nos três campeões, mas o valor exato de `available_quantity` e o fôlego em dias permanecem indeterminados; pendência é a lista `top_items_details.items` vazia (gap de coleta a investigar com a equipe de pipeline)",
-      "confianca": "média"
-    },
-    {
-      "pergunta": "Qual é o anúncio com banned=1 e há pedidos abertos associados a ele no momento?",
+      "pergunta": "Qual anúncio está banido — nome comercial, item_id, categoria e volume histórico aproximado?",
       "status": "não respondida por falta de dado",
       "evidencia": {
         "account_overview_totals_banned": 1,
-        "top_items_details_items": "vazio — impede identificação por título / platform_item_id",
-        "out_of_stock_ids_count": 41,
-        "pedidos_abertos_por_anuncio_disponivel": false,
-        "status_por_anuncio_disponivel": false
+        "top_items_details_items": "vazio",
+        "lista_banned_ids_no_pacote": false,
+        "ids_disponiveis_no_pacote": "apenas out_of_stock_ids (41 itens) — não há campo banned_ids exposto",
+        "fonte": "shopee_snapshot.account_overview / shopee_snapshot.top_items_details"
       },
-      "leitura": "O pacote informa que existe 1 anúncio banido na conta mas não expõe qual `platform_item_id` tem status `banned`, nem se há pedidos abertos associados. A única forma de identificar é o Seller Center, fora do escopo do pacote. Cruzar `out_of_stock_ids` com o anúncio banido também não resolve — banido e zerado são status independentes.",
-      "conclusao_granular": "inconclusivo por falta de dado — identificação do anúncio banido e checagem de pedidos abertos exige consulta direta de Lucas ao Seller Center; o pipeline não tem como responder",
+      "leitura": "O bloco `account_overview.totals.banned=1` confirma a existência de 1 anúncio banido na conta, mas o pacote não expõe a lista de `banned_ids` (apenas `out_of_stock_ids`) e `top_items_details.items` veio vazio. Não há como recuperar `platform_item_id`, `item_name`, categoria ou histórico de volume desse anúncio com o dado disponível. Cruzar com os top_products do dia também não ajuda: nenhum dos top 9 produtos do dia aparece como banido — todos venderam, logo nenhum estava banido no momento do pedido.",
+      "conclusao_granular": "inconclusivo por falta de dado — identificação do anúncio banido depende de consulta manual ao Seller Center; não há evidência granular no pacote",
       "confianca": "alta"
     },
     {
-      "pergunta": "Dos ~19 anúncios com estoque disponível (60 ativos − 41 zerados), quais têm ritmo de venda relevante nos últimos 7 dias e qual o volume diário estimado que conseguem gerar somados?",
+      "pergunta": "Qual o fôlego prospectivo em dias dos produtos com estoque remanescente — Pote de Vidro Hermético 520ml (item_id 21598077573), Kit 2 Potes 800ml Quadrado (22593169868), Kit 4 Potes 520ml (21899650905) — ao ritmo dos últimos 7 dias de cada anúncio?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "top_items_details_items": "vazio (sem available_quantity nem sold_quantity por anúncio)",
+        "ritmo_7d_por_anuncio_disponivel": false,
+        "ritmo_dia_03_06_disponivel": {
+          "Pote_Vidro_Hermetico_520ml_21598077573": "6 pedidos / 6 unidades em 03/06",
+          "Kit_2_Potes_800ml_Quadrado_22593169868": "6 pedidos / 6 unidades em 03/06",
+          "Kit_4_Potes_520ml_21899650905": "2 pedidos / 2 unidades em 03/06"
+        },
+        "verificacao_out_of_stock_ids": {
+          "21598077573_em_out_of_stock_ids": false,
+          "22593169868_em_out_of_stock_ids": false,
+          "21899650905_em_out_of_stock_ids": false
+        },
+        "fonte": "shopee_snapshot.top_items_details (vazio) / top_products"
+      },
+      "leitura": "Os 3 anúncios não constam em `out_of_stock_ids` do snapshot pós-baixa de 03/06 — confirmadamente têm estoque remanescente. Mas `top_items_details.items` veio vazio, impedindo ler `available_quantity` e `sold_quantity`. Sem o numerador (estoque atual) e sem o denominador robusto (ritmo médio de 7d por anúncio individual — só temos 1 ponto, o ritmo de 03/06), não é possível calcular fôlego prospectivo em dias. Cálculo prospectivo exige consulta manual ao Seller Center.",
+      "conclusao_granular": "inconclusivo por falta de dado — fôlego em dias só é calculável com `available_quantity` por anúncio, ausente do pacote",
+      "confianca": "alta"
+    },
+    {
+      "pergunta": "O Kit 6 Canecas Tulipa 250ml (item_id 45554989236) confirma available_quantity=0 no Seller Center, ou houve reposição após o fechamento do snapshot de 03/06?",
       "status": "parcialmente respondida",
       "evidencia": {
-        "anuncios_ativos_total": 60,
-        "anuncios_zerados": 41,
-        "anuncios_com_estoque_estimados": 19,
-        "top_items_details_items": "vazio — sem dado de sold_quantity / available_quantity por anúncio com estoque",
-        "anuncios_no_top_do_dia_com_estoque_remanescente_estimado": [
+        "produto_visivel": "Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha",
+        "platform_item_id": "45554989236",
+        "fonte": "top_products.raw_title + top_products.platform_item_id",
+        "presenca_em_out_of_stock_ids": true,
+        "pedidos_dia_03_06": 8,
+        "available_quantity_snapshot": "indisponível — top_items_details.items vazio",
+        "timestamp_snapshot": "2026-06-04T15:29:04Z (UTC), pós-baixa do dia 03/06",
+        "reposicao_pos_snapshot": "não verificável no pacote"
+      },
+      "leitura": "Confirmado granularmente que o `platform_item_id=45554989236` consta na `out_of_stock_ids` do snapshot pós-baixa fetcheado em 04/06 15:29 UTC. Ou seja: ao fim do dia 03/06 e até o momento da coleta, estava com estoque zero. Reposição posterior a 04/06 15:29 UTC não é detectável no pacote — exige consulta ao Seller Center por Lucas em D+1.",
+      "conclusao_granular": "confirma stock-out no fechamento do dia 03/06; reposição overnight é hipótese aberta — não confirmável pelo pacote",
+      "confianca": "alta"
+    },
+    {
+      "pergunta": "Em qual janela horária os campeões de vidro (Jarra Medidora de Vidro 500ml e Conjunto 5 Potes Tampa Preta) pararam de receber pedidos — os dois esgotaram durante o dia ou apenas ao final?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "hour_distribution_disponivel_por_produto": false,
+        "hour_distribution_disponivel_agregada": true,
+        "hour_distribution_agregada": {
+          "13h": 8,
+          "20h": 4,
+          "22h": 4,
+          "23h": 3,
+          "noturno_20h_23h_total": 12
+        },
+        "timestamp_de_esgotamento_por_item": "ausente do pacote",
+        "fonte": "metrics.hour_distribution (agregada)"
+      },
+      "leitura": "O pacote expõe distribuição horária agregada da conta inteira (56 pedidos), mas não distribuição horária por `platform_item_id`. Não é possível saber se a Jarra Medidora (22 pedidos) ou o Conjunto 5 Potes Tampa Preta (10 pedidos) já estavam zerados antes do pico de 13h ou se esgotaram no noturno. Saber se o noturno (12 pedidos 20h–23h) foi sustentado por cauda ou ainda contou com campeões exige hora-a-hora por item, indisponível.",
+      "conclusao_granular": "inconclusivo por falta de dado — distribuição horária por anúncio não está no pacote",
+      "confianca": "alta"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Confirmação granular do stock-out simultâneo dos 3 campeões via cruzamento out_of_stock_ids × top_products[].platform_item_id",
+      "origem": "L01 estratégica",
+      "evidencia": {
+        "campeao_1": {
+          "produto_visivel": "Jarra Medidora De Vidro 500ml com Alça Para Receitas Resistente",
+          "platform_item_id": "23993264258",
+          "fonte": "top_products.raw_title + top_items_details (cruzamento out_of_stock_ids)",
+          "pedidos_dia": 22,
+          "share_dia": "39,3%",
+          "presenca_out_of_stock_ids": true
+        },
+        "campeao_2": {
+          "produto_visivel": "Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições",
+          "platform_item_id": "22393168887",
+          "confirmed_variation_attributes": [
+            "Tampa Preta"
+          ],
+          "fonte": "top_products.raw_title + confirmed_variation_attributes + cruzamento out_of_stock_ids",
+          "pedidos_dia": 10,
+          "share_dia": "17,9%",
+          "presenca_out_of_stock_ids": true
+        },
+        "campeao_3": {
+          "produto_visivel": "Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha",
+          "platform_item_id": "45554989236",
+          "fonte": "top_products.raw_title + cruzamento out_of_stock_ids",
+          "pedidos_dia": 8,
+          "share_dia": "14,3%",
+          "presenca_out_of_stock_ids": true
+        },
+        "share_concentrado_3_campeoes": "71,4% (40 de 56 pedidos)",
+        "timestamp_snapshot_pos_baixa": "2026-06-04T15:29:04Z (UTC)"
+      },
+      "leitura": "Cruzamento confirma granularmente: os 3 anúncios que concentraram 71,4% dos pedidos do dia 03/06 estão todos em `out_of_stock_ids` no snapshot pós-baixa. Identidade dos 3 anúncios confirmada por `raw_title` (pedido real) + `platform_item_id` — sem risco de identificação. Snapshot é POST-baixa: pedidos do dia 03/06 já foram atendidos com o estoque que existia ao longo do dia. Risco é prospectivo (D+1 em diante) — pedidos novos sobre esses 3 anúncios sem reposição viram cancelamentos automáticos.",
+      "conclusao_granular": "confirma o risco estrutural declarado pela L01 — 3 campeões com 71,4% do volume zerados ao fim de 03/06",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Cauda com estoque remanescente: quem fica disponível para receber demanda D+1",
+      "origem": "L03 operacional",
+      "evidencia": {
+        "anuncios_top9_fora_de_out_of_stock_ids": [
           {
             "produto_visivel": "Kit 2 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas Vedação",
             "platform_item_id": "21598077573",
-            "sku_interno": "KIT2YW520SQ",
             "pedidos_dia": 6,
-            "presenca_out_of_stock_ids": false
+            "share_dia": "10,7%"
           },
           {
             "produto_visivel": "Kit 2 Potes de Vidro 800ml Quadrado Hermético Marmita 4 Travas Microondas",
             "platform_item_id": "22593169868",
-            "sku_interno": "KIT2YW800SQ",
             "pedidos_dia": 6,
-            "presenca_out_of_stock_ids": false
+            "share_dia": "10,7%"
           },
           {
             "produto_visivel": "Kit 4 Potes Vidro 520ml Quadrado Hermético Marmita Fitness 4 Travas Vedação",
             "platform_item_id": "21899650905",
-            "sku_interno": "KIT4YW520SQ",
             "pedidos_dia": 2,
-            "presenca_out_of_stock_ids": false
+            "share_dia": "3,6%"
           },
           {
             "produto_visivel": "Kit 4 Descanso de Panela MDF Modular Suporte de Mesa Cozinha Budamix",
             "platform_item_id": "47558590914",
-            "sku_interno": "DPM001",
             "pedidos_dia": 1,
-            "presenca_out_of_stock_ids": false
+            "share_dia": "1,8%"
           }
         ],
-        "anuncios_no_top_do_dia_que_zeraram_e_NAO_sao_os_tres_campeoes": [
+        "anuncios_top9_em_out_of_stock_ids_alem_dos_3_campeoes": [
           {
             "produto_visivel": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml Budamix Tampa 4 Travas Marmita Freezer",
             "platform_item_id": "56610855725",
-            "sku_interno": "KITYW800",
             "pedidos_dia": 1,
             "presenca_out_of_stock_ids": true
           },
           {
             "produto_visivel": "Kit 6 Potes de Vidro Hermético Retangular 4 Travas Marmita de Vidro com Tampa",
             "platform_item_id": "48107034518",
-            "sku_interno": "KIT6S100",
             "pedidos_dia": 1,
             "presenca_out_of_stock_ids": true
           }
         ],
-        "volume_dia_pelo_remanescente_com_estoque_top": "15 pedidos (4 anúncios) = ~27% do dia (56)",
-        "volume_dia_pelos_tres_campeoes_zerados": "40 pedidos (3 anúncios) = ~71% do dia",
-        "volume_dia_pelos_demais_zerados_no_top": "2 pedidos (KITYW800 + KIT6S100)"
+        "share_dia_cauda_com_estoque": "26,8% (15 de 56 pedidos somando os 4 anúncios com estoque remanescente)",
+        "fonte": "cruzamento top_products[].platform_item_id × account_overview.active_analysis.out_of_stock_ids"
       },
-      "leitura": "É possível mapear parcialmente o cenário cruzando `top_products` (9 anúncios com pedidos no dia) com `out_of_stock_ids`. Dos 9 anúncios que venderam no dia, 5 figuram em `out_of_stock_ids` (os 3 campeões + KITYW800 + KIT6S100) e 4 não figuram (Kits 520ml quadrado, Kit 800ml quadrado, Kit 4 520ml, Descanso de Panela MDF) — somam 15 pedidos no dia (~27% do volume). Para os ~15 anúncios restantes com estoque mas sem pedidos no dia, o `sold_quantity` recente não está disponível (top_items_details vazio). Volume diário estimado do remanescente com estoque conhecido (15 pedidos/dia) é muito inferior aos ~40 pedidos/dia que os 3 campeões geravam — gap de cobertura prospectiva de ~25 pedidos/dia se a reposição não acontecer.",
-      "conclusao_granular": "complica — confirma que o catálogo remanescente com estoque observado nos top vendedores do dia gera apenas ~15 pedidos/dia (4 anúncios), contra ~40 pedidos/dia perdidos com a ruptura nos 3 campeões; gap operacional dimensionado em ~25 pedidos/dia, mas estimativa tem ressalva pela ausência de série de venda dos ~15 anúncios com estoque que não figuram no top do dia",
-      "confianca": "média"
-    }
-  ],
-  "investigacoes_proprias": [
+      "leitura": "Apenas 4 dos top 9 anúncios do dia ficaram fora da `out_of_stock_ids`, somando 15 pedidos (26,8% do dia). Outros 2 anúncios da cauda (Kit 2-4-6-10 Potes 800ml e Kit 6 Potes Retangular), cada um com 1 pedido no dia, também estão zerados. A capacidade prospectiva de geração de pedidos sem reposição dos campeões depende essencialmente de 4 anúncios da família Kit Potes Vidro Quadrado (520ml e 800ml) + 1 anúncio MDF. Ritmo histórico individual desses anúncios não está disponível no pacote — só o ritmo de 03/06.",
+      "conclusao_granular": "confirma — cauda ativa concentrada em 4 anúncios de potes herméticos vidro quadrado representando 26,8% do volume do dia; insuficiente para compensar perda dos campeões na escala atual",
+      "confianca": "alta"
+    },
     {
-      "investigacao": "Validação granular do papel Volume/Giro hipotetizado — composição do mix top do dia por categoria e tipo (Lente Gr 6)",
-      "origem": "L01 estratégica (Lente 6 — primeiro ciclo formal de observação da tese seed)",
+      "investigacao": "Coerência com tese seed Volume/Giro — leitura de mix do dia",
+      "origem": "divergência operacional do papel",
       "evidencia": {
         "top_3_dia": [
           {
-            "produto_visivel": "Jarra Medidora De Vidro 500ml com Alça Para Receitas Resistente",
+            "produto": "Jarra Medidora 500ml (vidro, unitário)",
             "platform_item_id": "23993264258",
-            "categoria": "vidro",
-            "tipo": "unitário",
             "pedidos": 22,
-            "share_dia_pct": 39.3
+            "tipo": "unitário"
           },
           {
-            "produto_visivel": "Conjunto de 5 Potes de Vidro Redondos – Ideal para Alimentos e Refeições",
+            "produto": "Conjunto 5 Potes Vidro Tampa Preta (vidro, conjunto)",
             "platform_item_id": "22393168887",
-            "categoria": "vidro",
-            "tipo": "conjunto pequeno",
             "pedidos": 10,
-            "share_dia_pct": 17.9,
-            "confirmed_variation_attributes": [
-              "Tampa Preta"
-            ]
+            "tipo": "kit"
           },
           {
-            "produto_visivel": "Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha",
+            "produto": "Kit 6 Canecas Tulipa Porcelana (cerâmica, kit)",
             "platform_item_id": "45554989236",
-            "categoria": "porcelana",
-            "tipo": "kit",
             "pedidos": 8,
-            "share_dia_pct": 14.3
+            "tipo": "kit"
           }
         ],
-        "ticket_dia_brl": 42.84,
-        "ticket_baseline_60d_brl": 38.3,
-        "ticket_baseline_papel_volume_giro_esperado": "R$ 40-45",
-        "razao_unitario_kit_top9_dia": "1 unitário (22 pedidos) + 1 conjunto (10) + 7 kits (24) — peso de pedidos: unitário 39%, kits/conjuntos 61%"
+        "razao_unitario_kit_top3": "1:2 (22 unitário vs 18 kit)",
+        "share_categoria_vidro_top3": "57,1% (32 de 56 pedidos)",
+        "share_categoria_ceramica_top3": "14,3% (8 de 56 pedidos)",
+        "lider_absoluto_unitario_vidro": "Jarra Medidora — 39,3% do dia sozinha",
+        "contaminacao_por_stock_out": "Kit Canecas Tulipa em 3º com Jarra e Potes Tampa Preta zerando ao longo do dia — possível demanda desviada"
       },
-      "leitura": "Mix do dia é coerente com Volume/Giro nos primeiros 2 posições (vidro funcional, unitário e conjunto pequeno, baixo ticket por unidade). Posição 3 é kit de porcelana — kit de baixo valor unitário (~R$ 70 estimado), ainda compatível com giro. Ticket R$ 42,84 está dentro da faixa esperada da tese seed (R$ 40-45). Categoria dominante é vidro (potes/jarras) — coerente com posicionamento utilitário/giro. Não há ainda padrão de divergência operacional.",
-      "conclusao_granular": "confirma — mix e ticket do dia são coerentes com Volume/Giro em 1 ciclo; volume sistematicamente abaixo do baseline 60d não é refutação do papel (a L01 já registrou como hipótese alternativa: pode ser ruptura de estoque comprimindo, não mudança estrutural de papel); aguardar ≥2 ciclos adicionais para a Lente 6 da L01 reclassificar",
+      "leitura": "Líder absoluto é unitário de vidro/giro (Jarra Medidora, 39,3% do dia sozinha) — coerente com Volume/Giro. Vidro concentra 57,1% do volume nos top 3. Kit Canecas Tulipa (cerâmica/porcelana) em 3º com 14,3% pode ser artefato de demanda desviada pelos stock-outs dos campeões de vidro, não sinal estrutural de mudança de mix. 1 ciclo é insuficiente para refutar ou confirmar — contaminação por ruptura impede leitura limpa.",
+      "conclusao_granular": "inconclusivo — comportamento do dia é parcialmente coerente com Volume/Giro mas contaminado por stock-out dos campeões de vidro; refutação ou confirmação exige 3-5 ciclos com estoque normalizado",
       "confianca": "baixa"
-    },
-    {
-      "investigacao": "Risco de identificação no top do dia — `display_name` 'Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml' do KITYW800 é título genérico de família mas SKU `KITYW800` é variação específica do anúncio multivariação",
-      "origem": "risco de identificação",
-      "evidencia": {
-        "platform_item_id": "56610855725",
-        "raw_sku": "KITYW800",
-        "raw_title": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml Budamix Tampa 4 Travas Marmita Freezer",
-        "display_name": "Kit 2 4 6 10 Potes Herméticos Vidro Quadrado 800ml",
-        "mapping_status": "mapped_generic_sku",
-        "mapping_reason": "raw_sku_normalized_with_short_title_fallback",
-        "confidence_data_builder": "medium",
-        "confirmed_variation_attributes": []
-      },
-      "leitura": "Anúncio é multivariação (2, 4, 6 ou 10 potes 800ml). O `raw_sku` recebido pelo pipeline (`KITYW800`) não tem sufixo de variação, então não é possível afirmar qual kit (2, 4, 6 ou 10 unidades) foi vendido. `confirmed_variation_attributes` está vazio. Pedido único (1 pedido / 1 unidade) no dia — impacto narrativo baixo, mas o produto não pode ser nomeado com precisão da variação. Mesma situação aplica-se ao KIT6S100 (1 pedido) e DPM001 (1 pedido) com `mapping_status=mapped_generic_sku` e `confidence=medium`.",
-      "conclusao_granular": "complica — três SKUs com `mapping_status=mapped_generic_sku` no top do dia (KITYW800, KIT6S100, DPM001), todos com 1-2 pedidos cada; identificação por família é segura, mas variação específica de KITYW800 (qual kit do anúncio multivariação) é indeterminada; impacto na narrativa é baixo porque os três somam 4 pedidos do dia",
-      "confianca": "média"
     }
   ],
   "risco_identificacao": {
     "nivel": "baixo",
-    "fontes": [
-      "mapping_generic_sku_em_3_skus_de_cauda"
-    ],
+    "fontes": [],
     "bloqueios_para_slack": [],
-    "explicacao": "Os 3 campeões do dia (Jarra Medidora 500ml, Conjunto 5 Potes Tampa Preta, Kit 6 Canecas Tulipa 250ml) — que respondem por 70,2% do volume e são o foco da mensagem final — têm `mapping_status=mapped` com `confidence=high`, `raw_title` claro e `platform_item_id` confirmado. O Conjunto 5 Potes tem `confirmed_variation_attributes=['Tampa Preta']` que distingue a variação de forma autoritativa. Três SKUs de cauda (KITYW800, KIT6S100, DPM001) com 1-2 pedidos cada são `mapped_generic_sku` / `confidence=medium`, mas o impacto narrativo é mínimo e a família está corretamente identificada — não justifica bloqueio. Nenhum bloqueio para Slack."
+    "explicacao": "Todos os top 9 produtos têm `title` (item_name Shopee) presente, `raw_title` do pedido real presente, `platform_item_id` confirmado e `mapping_status` em `mapped` ou `mapped_generic_sku` com `confidence` `high` ou `medium`. Os 3 campeões têm `confidence=high` com `mapping_status=mapped`. O Conjunto 5 Potes Tampa Preta tem `confirmed_variation_attributes=['Tampa Preta']` que confirma o atributo de variação por SKU — sem divergência com `item_name`. Não há `mapping_status=ambiguous` nem `mapping_confidence=low`. Nenhum bloqueio para Slack."
   },
   "divergencias": [
     {
       "tipo": "mix_modalidade_envio",
       "fonte_a": "account_overview.active_analysis.fulfillment_mix (Shopee Full 6,7% / SLS 48,3% / Drop-off 45,0%)",
-      "fonte_b": "metrics.fulfillment (shopee_full=0, other=0, total=56)",
-      "resolucao": "account_overview.active_analysis.fulfillment_mix prevalece como panorama do catálogo ativo; metrics.fulfillment do dia é gap conhecido (logistic_type=null no backfill Supabase) e não deve ser usado",
-      "regra_precedencia": "Mix de modalidade de envio: fulfillment_mix_yesterday_top10 e account_overview vencem; histórico Supabase com logistic_type=null não é fonte primária",
-      "impacto": "Não há dado de mix de modalidade de envio dos pedidos específicos do dia (yesterday_top10 também unavailable). Estimativa qualitativa: a maior parte da demanda do dia provavelmente foi SLS + Drop-off (94% do catálogo ativo), com Shopee Full marginal (6,7% do catálogo, presumivelmente concentrado em poucos anúncios)."
+      "fonte_b": "fulfillment_mix_30d / fulfillment_mix_7d / fulfillment_mix_yesterday_top10 (todos com `status=unavailable`)",
+      "resolucao": "account_overview.active_analysis.fulfillment_mix prevalece como única fonte primária disponível",
+      "regra_precedencia": "regra Shopee — `fulfillment_mix_*` (snapshot) prevalece quando disponível; gap conhecido em 30d/7d (`logistic_type=null` em 100% dos pedidos por backfill pendente) impede uso histórico",
+      "impacto": "Só é possível ler mix de modalidade de envio sobre a base de anúncios ativos (panorama estrutural), não sobre os pedidos do dia ou janelas históricas. Conclusões sobre comportamento por modalidade de envio nos pedidos de 03/06 não são suportadas pelo pacote."
     }
   ],
   "detalhes_que_a_condensadora_nao_pode_perder": [
     {
-      "detalhe": "Os 3 campeões do dia (Jarra Medidora de Vidro 500ml — 22 pedidos; Conjunto 5 Potes de Vidro Redondos Tampa Preta — 10 pedidos; Kit 6 Canecas Tulipa 250ml — 8 pedidos) estão TODOS em `out_of_stock_ids`. Citar pelos títulos reais do anúncio (não pelo alias interno). Conjunto 5 Potes deve incluir 'Tampa Preta' como atributo confirmado.",
-      "por_que_importa": "São o foco operacional do ciclo (ação 1 da L02). Identificação correta é não-negociável — produto errado na mensagem final invalida a ação solicitada a Lucas.",
+      "detalhe": "Os 3 campeões que concentraram 71,4% do volume de 03/06 — Jarra Medidora 500ml (23993264258), Conjunto 5 Potes Tampa Preta (22393168887) e Kit 6 Canecas Tulipa (45554989236) — estão todos confirmadamente em `out_of_stock_ids` no snapshot pós-baixa fetcheado em 04/06 15:29 UTC. Identidade confirmada por `raw_title` + `platform_item_id` em todos os 3.",
+      "por_que_importa": "É o fato granular que sustenta toda a leitura de risco prospectivo da L01 e da L03. A Condensadora deve usar esses 3 nomes (com identidade confirmada granularmente) na mensagem final ao Lucas para verificação no Seller Center.",
       "confianca": "alta"
     },
     {
-      "detalhe": "O catálogo remanescente com estoque que apareceu no top do dia gera apenas ~15 pedidos/dia (4 anúncios: Kit 2 Potes 520ml quadrado, Kit 2 Potes 800ml quadrado, Kit 4 Potes 520ml quadrado, Kit 4 Descansos MDF) — gap de cobertura prospectiva estimado em ~25 pedidos/dia versus os ~40 pedidos/dia que os 3 campeões geravam.",
-      "por_que_importa": "Dimensiona operacionalmente o tamanho do problema em D+1 e justifica a urgência da reposição. Sem esse dado, a ruptura é abstrata; com ele, vira número.",
-      "confianca": "média"
+      "detalhe": "A cauda com estoque remanescente do dia se resume a 4 anúncios — Pote 520ml (21598077573), Kit 2 Potes 800ml (22593169868), Kit 4 Potes 520ml (21899650905) e Kit 4 Descanso MDF (47558590914) — somando 26,8% do volume de 03/06 (15 de 56 pedidos). Não há outro top-9 com estoque.",
+      "por_que_importa": "Define o teto operacional de geração de pedidos em D+1 sem reposição dos campeões: ~15 pedidos/dia ao ritmo de 03/06, contra ~49 da média 7d. A Condensadora pode usar esse contraste para qualificar o risco prospectivo de forma concreta.",
+      "confianca": "alta"
     },
     {
-      "detalhe": "Mix do dia coerente com Volume/Giro (vidro funcional + porcelana baixo ticket, ticket R$ 42,84 na faixa esperada R$ 40-45). 1 ciclo isolado de observação — não confirma nem refuta a tese seed, mas estabelece o ponto zero da série.",
-      "por_que_importa": "Suporta a postura 'em observação' da L02 e a Lente 6 da L01. Evita que a mensagem dê tom de divergência de papel quando o mix do dia confirma o papel.",
+      "detalhe": "Fôlego prospectivo individual da cauda (em dias) é incalculável no pacote — `top_items_details.items` veio vazio, sem `available_quantity` por anúncio. Verificação granular do fôlego depende de consulta manual de Lucas ao Seller Center.",
+      "por_que_importa": "A Condensadora não deve afirmar quantos dias a conta aguenta — só que a cauda existe e tem teto baixo. Estimativas de fôlego são leitura prospectiva sem dado primário no pacote.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Identidade do anúncio banido (`account_overview.totals.banned=1`) não é recuperável no pacote — `banned_ids` não exposto e `top_items_details.items` vazio. Exige verificação manual no Seller Center.",
+      "por_que_importa": "A Condensadora não pode citar produto banido específico. Pode citar o fato de que existe 1 banido sem identificação, deixando como pendência de verificação para Lucas.",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Coerência do mix do dia com tese seed Volume/Giro é inconclusiva neste ciclo: Jarra Medidora unitária de vidro lidera com 39,3% (coerente), mas Kit 6 Canecas Tulipa porcelana em 3º com 14,3% pode ser artefato de demanda desviada por stock-out dos campeões de vidro, não sinal estrutural. 1 ciclo contaminado por ruptura.",
+      "por_que_importa": "A Condensadora não deve usar o Kit Canecas em 3º como evidência nem para confirmar nem para enfraquecer Volume/Giro. Tratar como sinal a monitorar nos próximos 3-5 ciclos com estoque normalizado, conforme L02.",
       "confianca": "baixa"
-    },
-    {
-      "detalhe": "Saúde da Loja totalmente indisponível (`shop_performance.status='unavailable'`, HTTP 404). Erosão prospectiva de `cancellation_rate_seller_pct` e Pontos de Penalidade nos próximos ciclos será invisível até `shop_performance` voltar.",
-      "por_que_importa": "É o risco silencioso que a L01/L03 destacaram. A mensagem final deve carregar isso como pendência estrutural, não como hipótese resolvida.",
-      "confianca": "alta"
-    },
-    {
-      "detalhe": "Anúncio banido (1) permanece não identificado pelo pacote — exige checagem manual de Lucas no Seller Center. Pedidos abertos associados (se houver) também só visíveis no Seller Center.",
-      "por_que_importa": "Confirma a ação 2 da L02 como necessária e não substituível por dado do pipeline.",
-      "confianca": "alta"
     }
   ],
   "memoria_interna": [
-    "platform_item_ids dos 3 campeões em ruptura: 23993264258 (CK4742 — Jarra Medidora 500ml), 22393168887 (IMB501P — Conjunto 5 Potes Tampa Preta), 45554989236 (CTL002 — Kit 6 Canecas Tulipa 250ml)",
-    "platform_item_ids do top do dia com estoque remanescente: 21598077573 (KIT2YW520SQ), 22593169868 (KIT2YW800SQ), 21899650905 (KIT4YW520SQ), 47558590914 (DPM001) — somam 15 pedidos do dia (~27%)",
-    "platform_item_ids do top do dia que também zeraram (além dos 3 campeões): 56610855725 (KITYW800), 48107034518 (KIT6S100) — somam 2 pedidos do dia",
-    "out_of_stock_count=41 de 60 ativos no snapshot pós-fechamento (68,3% do catálogo ativo zerado)",
-    "Divergência de fonte resolvida: metrics.fulfillment do dia (todos 0) é gap conhecido (logistic_type=null no backfill); panorama do catálogo via account_overview indica Shopee Full 6,7% / SLS 48,3% / Drop-off 45,0% — usar apenas como panorama, não como mix dos pedidos do dia",
-    "3 SKUs no top com mapping_status=mapped_generic_sku (KITYW800, KIT6S100, DPM001), todos com 1-2 pedidos — impacto narrativo nulo",
-    "CTL002 (Kit 6 Canecas Tulipa 250ml) é o SKU sinalizado pelo contexto como campeão de potencial canibalização entre as 3 contas Budamix Shopee — detecção é função da L06b Consolidadora; nesta camada apenas registro",
-    "Programa de Afiliados Shopee, Cashback em Moedas Shopee, ads_summary e fulfillment_mix histórico (7d/30d) — todos unavailable. Gaps estruturais conhecidos e/ou pendência de backfill — não respondem perguntas neste ciclo",
-    "Lista `top_items_details.items` veio vazia (status=ok mas items=[]) — gap de coleta a sinalizar à equipe de pipeline: bloco aparentemente ok mas sem payload"
+    "Top 9 do dia × out_of_stock_ids: 23993264258 (campeão 1, IN), 22393168887 (campeão 2, IN), 45554989236 (campeão 3, IN), 21598077573 (FORA), 22593169868 (FORA), 21899650905 (FORA), 47558590914 (FORA), 56610855725 (IN), 48107034518 (IN). 5 dos top 9 zerados pós-baixa.",
+    "Conjunto 5 Potes Tampa Preta (22393168887): `confirmed_variation_attributes=['Tampa Preta']` por SKU (IMB501P) confirma o atributo mesmo que o `item_name` Shopee não mencione cor — não é divergência, é título genérico + atributo confirmado por SKU. Comunicar como 'Tampa Preta' é seguro.",
+    "Gap estrutural confirmado neste ciclo (não tentar reinvestigar): shop_performance (HTTP 404), ads_summary (HTTP 403), affiliate_summary (estrutural Open API), coins_summary (estrutural Open API), fulfillment_mix_30d/7d/yesterday_top10 (backfill logistic_type pendente), top_items_details.items (retornou vazio — bloqueia fôlego por item, distribuição horária por item, status individual).",
+    "Snapshot pós-baixa: 2026-06-04T15:29:04Z UTC. Qualquer reposição posterior a esse timestamp não é visível ao pacote — Lucas precisa confirmar manualmente em D+1.",
+    "fulfillment_mix base ativa: Shopee Full 6,7% / SLS 48,3% / Drop-off 45,0% — panorama estrutural, não comportamento dos pedidos do dia.",
+    "out_of_stock_count=41 de 60 ativos = 68,3% da base ativa zerada (panorama, não causa direta do volume de 03/06)."
   ],
   "llm_used": true,
   "model": "claude-opus-4-7",

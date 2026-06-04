@@ -1,0 +1,49 @@
+{
+  "resultado_qa": "APROVADO",
+  "motivo": "Todos os 13 gates foram aprovados sem críticos, maiores ou menores. O artefato é fiel à L05 em contagem (3 insights / 3 prioridades), preserva classificações corretas (fato → afirmação direta; risco latente → linguagem de indício documentada nas Decisões de formatação), respeita todos os bloqueios da L04/L05 com log completo e cruzamento confirmado, utiliza nomenclatura PT-BR correta e não contém nenhum termo inglês proibido fora de backticks. Cabeçalho, seções e rodapé seguem exatamente a estrutura aprovada com nome de conta coerente com shop_slug. Dados da VISÃO e Top Produtos referem exclusivamente à conta budamix-store sem consolidação cross-account. Status da tese seed coerente entre L01 ('em observação') e L05 ('em observação') sem divergência. Regra de agregação aplicada: 0 problemas → APROVADO.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "shop_slug": "budamix-store",
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade_vocabulario_ptbr": "OK",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_shopee_snapshot": "OK",
+    "gate_13_status_tese_seed": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 0,
+    "regra_agregacao_aplicada": "0 problemas → APROVADO"
+  },
+  "problemas_encontrados": [],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "Gate 6: L05 Insight 1 usa 'figuram em ruptura prospectiva'; Slack usa 'estão em ruptura prospectiva' — mudança de verbo não altera sentido analítico ('estar em' vs 'figurar em' referem ao mesmo estado). Não constitui Minor porque o conectivo central, tese, números e enquadramento de contraste foram preservados integralmente.",
+    "Gate 6: L05 Insight 3 usa 'vai erodir' (certeza futura); Slack usa 'pode erodir' (condicional). Mudança correta e explicitamente documentada nas Decisões de formatação para preservar nuance de classificacao='risco latente'. Não constitui Minor — é aplicação obrigatória da regra de classificação.",
+    "Gate 13: L05.status_tese_seed_dia.mudou_em_relacao_ao_ciclo_anterior=false (primeiro ciclo formal, sem ciclo anterior). Trigger de Minor do Gate 13 não se aplica (Minor só ativado quando mudou=true e Slack silencia). Status OK.",
+    "Gate 12a: ads_summary.campaigns_active_count=null (não >0) e ads_summary.status='unavailable' — condição de Maior do Gate 12a não disparada (requer campaigns_active_count>0 E spend=0). Slack cita 'Shopee Ads inacessível' sem dados como fato. OK.",
+    "Gate 5: CTL002 (Kit 6 Canecas Tulipa 250ml) — slack_short_name=null; fallback para display_short utilizado e documentado nas Decisões de formatação como 'subótimo'. A regra exige o mapeamento canônico 'quando disponível' — slack_short_name é null, portanto fallback é o procedimento correto. Não constitui violação de regra."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "CTL002 sem slack_short_name: nome 'Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha' é extenso (7 palavras) versus 2-3 palavras dos demais itens do Top 5. O L06 registrou isso nas Decisões de formatação como 'subótimo' e recomendou preenchimento do slack_short_name na próxima revisão do mapeamento canônico. Não viola regra (fallback correto), mas impacta leiturabilidade em Top Produtos, Análise e Prioridades. Ação recomendada: registrar slug CTL002 para mapeamento na próxima revisão.",
+    "top_items_details.items retornou com status=ok mas payload vazio (items=[]). Gap de coleta detectado e sinalizado pela L04 (memória interna) e pela L05 (memoria_para_amanha). Impediu cálculo de available_quantity unitário e fôlego em dias por campeão — análise tratou corretamente como 'inconclusivo por falta de dado'. Recomendado: investigar o endpoint com a equipe de pipeline antes do próximo ciclo; sem esse dado, a urgência da reposição nos três campeões é dimensionada apenas via presença em out_of_stock_ids (binário), não por fôlego absoluto.",
+    "shop_performance (HTTP 404) e ads_summary (HTTP 403) permanecem inacessíveis por segundo ciclo relevante. Ambos tratados corretamente como indisponíveis na mensagem. Quando shop_performance voltar, comparar cancellation_rate_seller_pct e non_fulfillment_rate_pct contra o ciclo de 03/06/2026 para detectar erosão acumulada dos pedidos gerados sem cobertura nos campeões. Quando ads_summary voltar (resolução de escopo OAuth), alinhar com Himmel via Lucas para reconstruir histórico de gasto e ROAS dos últimos ciclos cegos.",
+    "out_of_stock_count=41/60 anúncios ativos no snapshot pós-fechamento. Dos 9 anúncios que venderam no dia, 5 figuram em out_of_stock_ids (incluindo os 3 campeões). Os ~15 anúncios com estoque que não apareceram no top do dia têm sold_quantity desconhecido (top_items_details vazio) — capacidade real de cobertura do catálogo remanescente está estimada, não mensurada. Se top_items_details voltar com payload no próximo ciclo, priorizar cálculo de fôlego desses ~15 anúncios para dimensionar o gap prospectivo com maior precisão.",
+    "Anúncio banido (banned=1) permanece não identificado pelo pacote. Depende exclusivamente de checagem manual de Lucas no Seller Center (Prioridade 2 da mensagem). Resultado dessa checagem deve ser registrado na memória da conta para alimentar o próximo ciclo — se a causa for ban pontual de listing, registrar e monitorar; se for suspensão estrutural ou política de conta, escalar para Pedro conforme instrução da Prioridade 2.",
+    "Backfill de logistic_type no sync-shopee-orders permanece pendente — fulfillment_mix_yesterday_top10, fulfillment_mix_7d e fulfillment_mix_30d todos com status=unavailable. Panorama do catálogo via account_overview.active_analysis.fulfillment_mix (Shopee Full 6,7% / SLS 48,3% / Drop-off 45,0%) permanece como única referência de mix de modalidade de envio, sem aplicação aos pedidos específicos do dia. Reportar prazo de resolução do backfill à equipe de pipeline."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

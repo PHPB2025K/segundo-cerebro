@@ -1,5 +1,5 @@
 # Preview para Kobe — 2026-06-03
-**Gerado em:** 2026-06-04T15:47:52.098955+00:00
+**Gerado em:** 2026-06-04T16:48:24.159022+00:00
 **Modo:** PREVIEW_TO_KOBE
 **send_real_allowed:** false
 **Global Status:** APPROVED_WITH_REMARKS
@@ -24,11 +24,9 @@
   - 05-condensadora: LLM
   - 06-slack-preview: LLM
   - 07-qa: LLM
-- **Aviso:** Gate 6: L05 Insight 1 usa 'figuram em ruptura prospectiva'; Slack usa 'estão em ruptura prospectiva' — mudança de verbo não altera sentido analítico ('estar em' vs 'figurar em' referem ao mesmo estado). Não constitui Minor porque o conectivo central, tese, números e enquadramento de contraste foram preservados integralmente.
-- **Aviso:** Gate 6: L05 Insight 3 usa 'vai erodir' (certeza futura); Slack usa 'pode erodir' (condicional). Mudança correta e explicitamente documentada nas Decisões de formatação para preservar nuance de classificacao='risco latente'. Não constitui Minor — é aplicação obrigatória da regra de classificação.
-- **Aviso:** Gate 13: L05.status_tese_seed_dia.mudou_em_relacao_ao_ciclo_anterior=false (primeiro ciclo formal, sem ciclo anterior). Trigger de Minor do Gate 13 não se aplica (Minor só ativado quando mudou=true e Slack silencia). Status OK.
-- **Aviso:** Gate 12a: ads_summary.campaigns_active_count=null (não >0) e ads_summary.status='unavailable' — condição de Maior do Gate 12a não disparada (requer campaigns_active_count>0 E spend=0). Slack cita 'Shopee Ads inacessível' sem dados como fato. OK.
-- **Aviso:** Gate 5: CTL002 (Kit 6 Canecas Tulipa 250ml) — slack_short_name=null; fallback para display_short utilizado e documentado nas Decisões de formatação como 'subótimo'. A regra exige o mapeamento canônico 'quando disponível' — slack_short_name é null, portanto fallback é o procedimento correto. Não constitui violação de regra.
+- **Aviso:** Abreviações inglesas 'NFR' e 'threshold' foram introduzidas pela L05 e reproduzidas fielmente pela L06 — ajuste deve ser propagado ao template da L05 para evitar reincidência sistêmica nos próximos ciclos desta e das demais contas Shopee.
+- **Aviso:** L06 inseriu condição 'escalar_se' de prioridades dentro do bullet de análise — template de L06 deve explicitar regra de não cross-section entre analise_final_condensada e prioridades_condensadas.
+- **Aviso:** Referência ao papel hipotetizado ('Volume/Giro') foi omitida do insight 3 na conversão L05→L06 — template de L06 deve preservar menções ao papel da tese seed quando presentes nos insights da L05, especialmente em primeiro ciclo de pipeline com memória vazia.
 
 **Artefatos:**
   - `layer0_data_package`: `/root/segundo-cerebro/shared/daily-sales-analyst/runs/2026-06-03/shopee-budamix-store/00-data-package.json`

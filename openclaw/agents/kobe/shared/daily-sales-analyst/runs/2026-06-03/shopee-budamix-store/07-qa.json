@@ -1,6 +1,6 @@
 {
-  "resultado_qa": "APROVADO",
-  "motivo": "Todos os 13 gates foram aprovados sem críticos, maiores ou menores. O artefato é fiel à L05 em contagem (3 insights / 3 prioridades), preserva classificações corretas (fato → afirmação direta; risco latente → linguagem de indício documentada nas Decisões de formatação), respeita todos os bloqueios da L04/L05 com log completo e cruzamento confirmado, utiliza nomenclatura PT-BR correta e não contém nenhum termo inglês proibido fora de backticks. Cabeçalho, seções e rodapé seguem exatamente a estrutura aprovada com nome de conta coerente com shop_slug. Dados da VISÃO e Top Produtos referem exclusivamente à conta budamix-store sem consolidação cross-account. Status da tese seed coerente entre L01 ('em observação') e L05 ('em observação') sem divergência. Regra de agregação aplicada: 0 problemas → APROVADO.",
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "Zero críticos e zero maiores. Quatro menores identificados: dois em Gate 6 (condição 'escalar_se' de prioridades_condensadas[0] cruzou para o bullet de análise do insight 2, criando contaminação cross-seção; referência explícita ao papel hipotetizado 'Volume/Giro' da tese seed foi omitida do insight 3 vs. L05 que a incluía como termo analítico-chave) e dois em Gate 10 (abreviação inglesa 'NFR' no lugar de 'taxa de não cumprimento', herdada da L05; 'threshold' no lugar de 'limite', igualmente herdado da L05). Todos os menores estão abaixo do limiar de degradação sistêmica (6+). Regra aplicada: 0 Maiores + 4 Menores → APROVADO COM RESSALVA.",
   "send_allowed": true,
   "send_real_allowed": false,
   "shop_slug": "budamix-store",
@@ -10,11 +10,11 @@
     "gate_3_estrutura_slack": "OK",
     "gate_4_visao_plataforma": "OK",
     "gate_5_top_produtos": "OK",
-    "gate_6_analise_conta": "OK",
+    "gate_6_analise_conta": "RESSALVA",
     "gate_7_prioridades": "OK",
     "gate_8_bloqueios_confianca_logs": "OK",
     "gate_9_consistencia_camadas": "OK",
-    "gate_10_tom_utilidade_vocabulario_ptbr": "OK",
+    "gate_10_tom_utilidade_vocabulario_ptbr": "RESSALVA",
     "gate_11_padrao_numerico_formatacao": "OK",
     "gate_12_consistencia_shopee_snapshot": "OK",
     "gate_13_status_tese_seed": "OK"
@@ -23,25 +23,65 @@
     "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 0,
-    "regra_agregacao_aplicada": "0 problemas → APROVADO"
+    "menores": 4,
+    "regra_agregacao_aplicada": "0 Maiores + 4 Menores (1–5) → APROVADO COM RESSALVA"
   },
-  "problemas_encontrados": [],
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "Em D+3 sem Saúde da Loja disponível e sem reposição confirmada, escalar para Pedro.",
+      "texto_esperado": "Frase ausente do bullet de análise — condição de escalonamento deve aparecer exclusivamente em 🎯 PRIORIDADES DO DIA.",
+      "estado_atual": "Condição 'escalar_se' de prioridades_condensadas[0] da L05 foi inserida ao final do bullet de análise do insight 2 (risco latente), criando contaminação cross-seção. O mesmo conteúdo já figura corretamente na primeira prioridade do dia.",
+      "estado_esperado": "O bullet de análise deve conter apenas o conteúdo de analise_final_condensada[1] da L05, sem importar itens de prioridades_condensadas.",
+      "regra_violada": "Gate 6: bullet de análise não deve acrescentar conteúdo externo ao bloco analise_final_condensada da L05; cruzamento de seções é violação estrutural leve.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "A conta parece estar operando sem nenhuma alavanca de exposição verificável: Programa de Frete Grátis em 0% de toda a base ativa, 68,3% dos anúncios ativos zerados (41 de 60), fora do Shopee Mall e sem Vendedor Indicado.",
+      "texto_esperado": "[...] configura uma conta hipotetizada como Volume/Giro operando hoje sem nenhuma alavanca de exposição verificável [...]",
+      "estado_atual": "A referência explícita ao papel hipotetizado da tese seed ('conta hipotetizada como Volume/Giro') presente em analise_final_condensada[2] da L05 foi suprimida na conversão para o Slack, removendo o contexto analítico que justifica por que ausência de Programa de Frete Grátis é alavanca crítica para este papel específico.",
+      "estado_esperado": "O insight 3 da L05 inclui 'configura uma conta hipotetizada como Volume/Giro operando hoje' — referência ao papel deve ser preservada como termo analítico-chave.",
+      "regra_violada": "Gate 6: nenhum termo analítico-chave removido — substantivos e verbos que carregam a tese central do insight devem continuar presentes no Slack.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 10 — Tom, utilidade e vocabulário PT-BR",
+      "texto_atual": "conferir manualmente NFR, Pontos de Penalidade e Taxa de Cancelamento do Vendedor",
+      "texto_esperado": "conferir manualmente taxa de não cumprimento, Pontos de Penalidade e Taxa de Cancelamento do Vendedor",
+      "estado_atual": "Abreviação 'NFR' (acrônimo inglês de Non-Fulfillment Rate) aparece na seção ANÁLISE e em PRIORIDADES em substituição ao termo PT-BR 'taxa de não cumprimento'. A abreviação foi herdada fidelidamente da L05 que também a utilizou, mas a L07 deve enforçar o glossário PT-BR no output final independentemente.",
+      "estado_esperado": "Usar 'taxa de não cumprimento' conforme glossário de vocabulário Shopee PT-BR.",
+      "regra_violada": "Gate 10: A L07 é a camada que enforça o glossário PT-BR no output final; termos em inglês proibidos fora de backticks, mesmo que herdados de camadas anteriores.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 10 — Tom, utilidade e vocabulário PT-BR",
+      "texto_atual": "o risco prospectivo é jogar a Taxa de Cancelamento do Vendedor muito acima do threshold de Vendedor Indicado (< 2%)",
+      "texto_esperado": "o risco prospectivo é jogar a Taxa de Cancelamento do Vendedor muito acima do limite de Vendedor Indicado (< 2%)",
+      "estado_atual": "'threshold' (inglês) aparece no bullet de análise do insight 2, herdado de analise_final_condensada[1] da L05.",
+      "estado_esperado": "Substituir por 'limite' ou 'limiar'.",
+      "regra_violada": "Gate 10: vocabulário em inglês proibido fora de backticks; L07 enforça glossário PT-BR no output final independentemente da origem do termo.",
+      "bloqueia_envio": false
+    }
+  ],
   "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Gate 6: L05 Insight 1 usa 'figuram em ruptura prospectiva'; Slack usa 'estão em ruptura prospectiva' — mudança de verbo não altera sentido analítico ('estar em' vs 'figurar em' referem ao mesmo estado). Não constitui Minor porque o conectivo central, tese, números e enquadramento de contraste foram preservados integralmente.",
-    "Gate 6: L05 Insight 3 usa 'vai erodir' (certeza futura); Slack usa 'pode erodir' (condicional). Mudança correta e explicitamente documentada nas Decisões de formatação para preservar nuance de classificacao='risco latente'. Não constitui Minor — é aplicação obrigatória da regra de classificação.",
-    "Gate 13: L05.status_tese_seed_dia.mudou_em_relacao_ao_ciclo_anterior=false (primeiro ciclo formal, sem ciclo anterior). Trigger de Minor do Gate 13 não se aplica (Minor só ativado quando mudou=true e Slack silencia). Status OK.",
-    "Gate 12a: ads_summary.campaigns_active_count=null (não >0) e ads_summary.status='unavailable' — condição de Maior do Gate 12a não disparada (requer campaigns_active_count>0 E spend=0). Slack cita 'Shopee Ads inacessível' sem dados como fato. OK.",
-    "Gate 5: CTL002 (Kit 6 Canecas Tulipa 250ml) — slack_short_name=null; fallback para display_short utilizado e documentado nas Decisões de formatação como 'subótimo'. A regra exige o mapeamento canônico 'quando disponível' — slack_short_name é null, portanto fallback é o procedimento correto. Não constitui violação de regra."
+    "Abreviações inglesas 'NFR' e 'threshold' foram introduzidas pela L05 e reproduzidas fielmente pela L06 — ajuste deve ser propagado ao template da L05 para evitar reincidência sistêmica nos próximos ciclos desta e das demais contas Shopee.",
+    "L06 inseriu condição 'escalar_se' de prioridades dentro do bullet de análise — template de L06 deve explicitar regra de não cross-section entre analise_final_condensada e prioridades_condensadas.",
+    "Referência ao papel hipotetizado ('Volume/Giro') foi omitida do insight 3 na conversão L05→L06 — template de L06 deve preservar menções ao papel da tese seed quando presentes nos insights da L05, especialmente em primeiro ciclo de pipeline com memória vazia."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "CTL002 sem slack_short_name: nome 'Jogo com 6 Canecas Tulipa 250ml Porcelana Colorida para Mesa e Cozinha' é extenso (7 palavras) versus 2-3 palavras dos demais itens do Top 5. O L06 registrou isso nas Decisões de formatação como 'subótimo' e recomendou preenchimento do slack_short_name na próxima revisão do mapeamento canônico. Não viola regra (fallback correto), mas impacta leiturabilidade em Top Produtos, Análise e Prioridades. Ação recomendada: registrar slug CTL002 para mapeamento na próxima revisão.",
-    "top_items_details.items retornou com status=ok mas payload vazio (items=[]). Gap de coleta detectado e sinalizado pela L04 (memória interna) e pela L05 (memoria_para_amanha). Impediu cálculo de available_quantity unitário e fôlego em dias por campeão — análise tratou corretamente como 'inconclusivo por falta de dado'. Recomendado: investigar o endpoint com a equipe de pipeline antes do próximo ciclo; sem esse dado, a urgência da reposição nos três campeões é dimensionada apenas via presença em out_of_stock_ids (binário), não por fôlego absoluto.",
-    "shop_performance (HTTP 404) e ads_summary (HTTP 403) permanecem inacessíveis por segundo ciclo relevante. Ambos tratados corretamente como indisponíveis na mensagem. Quando shop_performance voltar, comparar cancellation_rate_seller_pct e non_fulfillment_rate_pct contra o ciclo de 03/06/2026 para detectar erosão acumulada dos pedidos gerados sem cobertura nos campeões. Quando ads_summary voltar (resolução de escopo OAuth), alinhar com Himmel via Lucas para reconstruir histórico de gasto e ROAS dos últimos ciclos cegos.",
-    "out_of_stock_count=41/60 anúncios ativos no snapshot pós-fechamento. Dos 9 anúncios que venderam no dia, 5 figuram em out_of_stock_ids (incluindo os 3 campeões). Os ~15 anúncios com estoque que não apareceram no top do dia têm sold_quantity desconhecido (top_items_details vazio) — capacidade real de cobertura do catálogo remanescente está estimada, não mensurada. Se top_items_details voltar com payload no próximo ciclo, priorizar cálculo de fôlego desses ~15 anúncios para dimensionar o gap prospectivo com maior precisão.",
-    "Anúncio banido (banned=1) permanece não identificado pelo pacote. Depende exclusivamente de checagem manual de Lucas no Seller Center (Prioridade 2 da mensagem). Resultado dessa checagem deve ser registrado na memória da conta para alimentar o próximo ciclo — se a causa for ban pontual de listing, registrar e monitorar; se for suspensão estrutural ou política de conta, escalar para Pedro conforme instrução da Prioridade 2.",
-    "Backfill de logistic_type no sync-shopee-orders permanece pendente — fulfillment_mix_yesterday_top10, fulfillment_mix_7d e fulfillment_mix_30d todos com status=unavailable. Panorama do catálogo via account_overview.active_analysis.fulfillment_mix (Shopee Full 6,7% / SLS 48,3% / Drop-off 45,0%) permanece como única referência de mix de modalidade de envio, sem aplicação aos pedidos específicos do dia. Reportar prazo de resolução do backfill à equipe de pipeline."
+    "shop_performance.status='unavailable' (HTTP 404) persiste — em D+3 sem Saúde da Loja disponível, escalonamento para Pedro é obrigatório conforme prioridade 1 da L05; pipeline deve rastrear contador de ciclos consecutivos sem shop_performance para acionar gatilho automaticamente.",
+    "ads_summary.status='unavailable' (HTTP 403) — sem dados de spend/ROAS há 1 ciclo; verificar antes do próximo ciclo se 403 é temporária (permissão revogada) ou estrutural; se não normalizar em 2 ciclos consecutivos, registrar como gap estrutural permanente análogo a affiliate_summary e coins_summary.",
+    "top_items_details.items veio vazio — impossibilitou cálculo de fôlego prospectivo por anúncio e distribuição horária por produto; investigar se o endpoint retornou vazio por ausência de dados ou por erro de coleta no cron.",
+    "1 anúncio banido (account_overview.totals.banned=1) sem identificação possível neste ciclo — banned_ids não exposto no pacote; pendência de verificação manual por Lucas no Seller Center antes do próximo ciclo.",
+    "fulfillment_mix_30d/7d/yesterday_top10 com 100% logistic_type=null — backfill de sync-shopee-orders pendente; rastrear progresso para habilitar leitura de mix de modalidade de envio histórica.",
+    "CTL002 (Jogo com 6 Canecas Tulipa 250ml, platform_item_id 45554989236) em top 3 desta conta com 8 pedidos e estoque zero pós-baixa — L06b Consolidadora deve cruzar comportamento do CTL002 nas outras 2 contas Shopee em 03/06 conforme registrado em observacoes_para_consolidadora da L05.",
+    "Programa de Frete Grátis em 0% de toda a base ativa nesta conta — L06b Consolidadora deve verificar se outras 2 contas Shopee operam com Programa de Frete Grátis ativo e, se confirmado, sinalizar contraste de configuração a Pedro como potencial explicação parcial da deceleration 60d→30d de Budamix Store."
   ],
   "llm_used": true,
   "model": "claude-sonnet-4-6",

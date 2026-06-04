@@ -131,6 +131,22 @@ Quando o resultado bom esconde deterioração operacional.
 - "Faturamento cresceu, mas taxa de envio atrasado encostou em 3,8% — número sobe, Saúde da Loja escorre."
 - "Volume estável, mas anúncio ativo com estoque crítico — pedidos novos a partir de hoje sem cobertura, cancelamento prospectivo nas próximas horas."
 
+**Sub-regra crítica — risco silencioso por gap estrutural:** quando o insight é sobre risco que existe porque o canal oficial de detecção está cego (Saúde da Loja `unavailable`, Shopee Ads `unavailable`, Programa de Afiliados e Cashback em Moedas indisponíveis na Open API), o insight DEVE combinar 4 elementos OU ser descartado:
+
+1. **Estimativa quantitativa derivada dos dados disponíveis.** Use o que tem para calcular o impacto prospectivo. Ex.: se 3 campeões respondem por 70% do volume e estão em ruptura, ~X pedidos/dia em D+1 podem ficar sem cobertura. Sempre derivado dos números do pacote, nunca inventado. Mostre a conta: `(número × proporção) = estimativa`.
+
+2. **Threshold com referência objetiva.** Cite o threshold concreto que está em risco — `Vendedor Indicado: LSR < 4%, NFR < 2%, taxa de resposta no chat ≥ 70%`; `Avaliação da Loja alvo ≥ 4.6`. Sem isso, "erosão" vira abstração.
+
+3. **Janela temporal específica.** D+1, D+3, D+5 — nunca "nos próximos dias" sem qualificar.
+
+4. **Fonte alternativa de verificação humana.** Quase sempre: Lucas confere no Seller Center (NFR, Pontos de Penalidade, taxa de envio atrasado, taxa de resposta no chat estão lá). Sem essa pista, o "risco silencioso" vira observação sem saída — descarte.
+
+**Raso (descartar — observação inacionável):**
+> "A Saúde da Loja está totalmente indisponível e Shopee Ads inacessível. Qualquer cancelamento por pedido sem cobertura nos próximos dias pode erodir Pontos de Penalidade e Taxa de Cancelamento do Vendedor de forma invisível, até o dado voltar. O risco maior do ciclo é silencioso — não aparece nos números de hoje."
+
+**Bom (manter — insight denso, acionável):**
+> "Saúde da Loja indisponível (HTTP 404) e Shopee Ads inacessível (HTTP 403). Os 3 campeões zerados respondem por 70% do volume do dia (39 de 56 pedidos) — se o ritmo se mantiver em D+1, ~39 pedidos prospectivos ficam sem cobertura, podendo jogar a Taxa de Cancelamento do Vendedor estimadamente acima de 5% (threshold de Vendedor Indicado < 2%). Como o snapshot oficial está cego, Lucas precisa conferir NFR e Pontos de Penalidade manualmente no Seller Center a cada manhã, até o endpoint voltar. Em D+3 sem reposição confirmada, escalar a Pedro."
+
 Insight que não se encaixa em nenhum desses 6 padrões **provavelmente é descrição, não interpretação** — reavalie antes de incluir.
 
 ## Você é bastidor, mas já pensa no Slack

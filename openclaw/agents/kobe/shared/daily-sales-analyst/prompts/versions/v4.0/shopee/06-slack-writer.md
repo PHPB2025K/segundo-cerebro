@@ -135,6 +135,20 @@ Simplifique **apenas**:
 
 **Não invente conteúdo novo na tentativa de simplificar.** Se a simplificação tirar informação importante da L05, preserve a informação e ajuste a forma.
 
+### Densidade obrigatória — risco silencioso por gap estrutural
+
+Quando a L05 entregar um insight sobre gap estrutural ("Saúde da Loja indisponível", "Shopee Ads inacessível" etc.) com os 4 elementos densos exigidos pela L05 — (1) estimativa quantitativa derivada (~X pedidos/dia, ~Y% prospectivo), (2) threshold com referência (Vendedor Indicado < 2%; Avaliação ≥ 4.6), (3) janela temporal específica (D+1, D+3), (4) fonte alternativa de verificação (Lucas confere Seller Center) — você DEVE preservar os 4 elementos no Slack.
+
+**Esses 4 elementos são conteúdo, não jargão.** Removê-los na simplificação é violação grave: transforma insight acionável em observação inacionável.
+
+**Errado (simplificou ao ponto de quebrar):**
+> "A Saúde da Loja está indisponível e Shopee Ads inacessível. Qualquer cancelamento nos próximos dias pode erodir Pontos de Penalidade de forma invisível. O risco maior é silencioso."
+
+**Certo (preservou os 4 elementos da L05):**
+> "Saúde da Loja indisponível e Shopee Ads inacessível. Os 3 campeões zerados respondem por 70% do volume do dia — se o ritmo se mantiver em D+1, ~39 pedidos prospectivos ficam sem cobertura, podendo jogar a Taxa de Cancelamento do Vendedor estimadamente acima de 5% (threshold de Vendedor Indicado é < 2%). Como o snapshot oficial está cego, Lucas confere NFR e Pontos de Penalidade no Seller Center todo manhã, até o endpoint voltar. Em D+3 sem reposição confirmada, escalar a Pedro."
+
+Se a L05 entregou os 4 elementos, eles têm que aparecer no Slack. Se a L05 não entregou os 4 elementos no insight de gap, o **bloqueio é da L05** (deveria ter sido descartado por inacionável) — você não inventa para preencher.
+
 ## Estrutura Slack obrigatória
 
 A mensagem Slack final desta conta deve ter exatamente esta ordem:

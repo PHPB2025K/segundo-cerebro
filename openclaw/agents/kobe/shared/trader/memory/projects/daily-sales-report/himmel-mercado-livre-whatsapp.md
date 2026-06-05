@@ -640,3 +640,27 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Separar o impacto de MDF no ACoS/TACoS consolidado da conta para não contaminar a leitura de eficiência dos kits e produtos importados.
 
 **Status:** aberto — decisão de investimento registrada; validar execução pela Himmel e resultado na primeira quinzena de junho.
+
+### 2026-06-05 08:52 BRT — Yasmin identifica anúncio MLB5405589402 como “invisível”
+
+**Participantes:** Yasmin Oscarlino.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Diagnóstico inicial de baixa visibilidade/exposição de anúncio.
+
+**Produtos/anúncios citados:**
+- **MLB5405589402** — Yasmin informou que, ao analisar o anúncio, percebeu que ele está bem “invisível”.
+
+**Contexto registrado:**
+- A mensagem indica uma suspeita operacional de baixa exposição/visibilidade no ML para o anúncio **MLB5405589402**.
+- Ainda não há decisão da Himmel, ajuste de campanha, orçamento, bid, ROAS/ACoS ou ação orgânica registrada na conversa.
+
+**Impacto esperado:**
+- Tratar **MLB5405589402** como ponto de atenção em Mercado Livre: possível problema de exposição orgânica, campanha insuficiente, ranqueamento, preço, conversão, estoque, título/fotos ou concorrência.
+- Não atribuir queda de vendas desse anúncio apenas a demanda fraca antes de validar visibilidade e presença em campanhas.
+
+**Como validar nos dados:**
+- Verificar para **MLB5405589402**: visitas/impressões, vendas, conversão, posição/ranking, preço vs concorrência, estoque, status do anúncio, presença em ADS, gasto, ROAS, ACoS/TACoS e alterações recentes.
+- Acompanhar se Himmel/Yasmin registram ação posterior para recuperar visibilidade.
+- Janela sugerida: validar entre **2026-06-05 e 2026-06-10** nos reports de Mercado Livre/ADS.
+
+**Status:** aberto — diagnóstico inicial de invisibilidade; aguardando ação/validação operacional.

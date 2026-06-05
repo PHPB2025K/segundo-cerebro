@@ -337,6 +337,41 @@ Toda sexta-feira no fim do dia:
 - Yasmin e Leonardo tiveram resumos formais úteis no Slack; Lucas ficou novamente sem ata padronizada. Recomendo reforçar que, mesmo quando a reunião muda de dia, ela precisa terminar com uma mensagem curta no Slack no padrão `#ata-reuniao Nome AAAA-MM-DD`. Isso reduz ambiguidade e evita misturar operação diária com acompanhamento de gestão.
 
 
+### 2026-W23 — Coleta semanal Slack (05/06)
+
+**Fonte consultada:** Slack read-only, últimos 7 dias, buscas por `#ata-reuniao`, atas/reuniões/feedbacks de Yasmin, Lucas e Leonardo, além das DMs recentes dos três. Não foi persistida transcrição integral.
+
+#### Yasmin
+- **Ata formal localizada:** não houve nova ata padronizada `#ata-reuniao` na semana. Houve acompanhamento forte por Slack, sobretudo Mercado Livre, Full, canecas, Platinum e análise diária.
+- **Pontos tratados:** cadastro/análise do Kit 10 Potes Plástico 800 ml no ML; pesquisa manual de concorrentes; conclusão de que o produto fica inviável com custo atual porque o concorrente vende muito abaixo e a margem estimada ficaria baixa; leitura do Daily Sales Report como insumo de gestão; risco de ruptura Full em canecas e potes; acompanhamento de MercadoLíder Platinum; alterações orgânicas no Kit 4 Potes 640 ml Azul-petróleo e envio para Himmel; nova rotina de data de criação/coleta na planilha ENVIOS FULL.
+- **Acordos/prazos:** não publicar os potes plásticos por enquanto; Pedro negociará custo menor; Yasmin deve calcular preço unitário necessário para margem mínima competitiva; ler e entender as análises diárias; avisar o que já tem envio pronto, o que não tem e onde haverá falta de estoque; manter colunas separadas de data de criação e coleta em ENVIOS FULL.
+- **Evolução vs histórico:** Yasmin demonstrou leitura melhor de margem/concorrência e não forçou cadastro ruim. Também respondeu bem à análise profunda do ML, identificando que parte do problema de Full das canecas era interno e retornando status objetivo por SKU/anúncio.
+- **Alertas:** não houve ata formal da reunião da semana; a pressão de Platinum/Full exige rotina de resposta rápida e objetiva, porque ruptura em Catálogo/Full pode prejudicar o ganho de patamar. Potes plásticos só fazem sentido se o custo cair ou se o cálculo de embalagem/frete mudar materialmente.
+- **Pontos positivos:** boa maturidade ao barrar produto com margem fraca; entendimento crescente de Daily Sales como ferramenta de ação; resposta operacional clara sobre Tulipa, Caneca Lisa e Kit 4 Potes 640 ml.
+- **Pendências para Pedro cobrar:** cálculo final do custo unitário alvo dos potes plásticos; status dos envios Full críticos de canecas; resultado das alterações orgânicas do Kit 4 Potes 640 ml; confirmação de que ENVIOS FULL tem data de criação e coleta preenchidas; manter pedido explícito de ata semanal no Slack.
+
+#### Lucas
+- **Ata formal localizada:** não. A reunião semanal foi parcialmente substituída por alinhamentos no Slack, com Pedro pedindo reporte diário do que Lucas está fazendo.
+- **Pontos tratados:** pente fino dos jogos da memória nas três Shopees; correção de imagens e informações técnicas; envio para Himmel criar campanhas; dúvida sobre briefings que misturavam lógica de Mercado Livre com Shopee; CMV de maio e regra de considerar apenas o que entrou de fato no estoque; rotina de baixas/devoluções/avarias; Shopee Full de canecas; Live na Shopee 3; otimização de conteúdo a partir de anúncios campeões; data de criação/coleta nos envios Full.
+- **Acordos/prazos:** Lucas deve passar diariamente o que está fazendo; pode incluir Shopee 3 em Live; deve aguardar decisão antes de gerar envio Full de canecas; precisa informar apenas quanto falta de estoque por SKU/cor; conteúdos podem seguir com otimizações baseadas nos anúncios que já validaram; ENVIOS FULL deve ter data de criação e data de coleta sempre atualizadas.
+- **Evolução vs histórico:** Lucas segue com boa iniciativa e trouxe ideias relevantes: Live Shopee 3, cópia de conteúdo campeão, teste de palavras-chave e foco em taxa de clique. Também mostrou cuidado ao perguntar sobre estoque fantasma antes de gerar Full.
+- **Alertas:** houve confusão conceitual em dois pontos críticos: CMV/entrada real de estoque e leitura do estoque disponível para Full. Também misturou avarias e devoluções em um mesmo reporte, exigindo correção operacional. O risco principal continua sendo dispersão e falta de precisão em processos de estoque.
+- **Pontos positivos:** responsivo, executou pente fino, corrige imagens/informações, pensa em CTR e ticket médio, e pergunta antes de mexer em Full quando percebe risco.
+- **Pendências para Pedro cobrar:** reporte diário consistente; lista final de faltas de canecas para Full; separação correta entre avaria e devolução; preenchimento das datas de criação/coleta; resultado da Live Shopee 3; evolução dos jogos da memória após correções/campanhas; uma análise granular por anúncio/SKU, não só operação ampla.
+
+#### Leonardo
+- **Ata formal localizada:** não houve nova ata padronizada. Houve reunião marcada para 05/06 às 10:30 e acompanhamentos operacionais de Amazon.
+- **Pontos tratados:** criação de experts no ChatGPT; Pedro delimitou que OpenClaw não deve ser usado na operação por enquanto e que o foco é consolidar Amazon primeiro; meta mínima explícita de R$ 3 mil/dia; renovação de campanhas e uso de descontos; aplicação do funil combinado; coleta de avaliações de canecas Tulipa, Reta, Paris e Canelada; análise de campanhas com apoio do expert; data de criação/coleta em ENVIOS FULL.
+- **Acordos/prazos:** manter uso do Chat como apoio; não usar OpenClaw operacionalmente por enquanto; perseguir mínimo de R$ 3 mil/dia; aguardar resultado das campanhas automáticas antes de seguir funil; montar arquivo de avaliações por modelo, priorizando avaliações com foto e média próxima de 4,7–4,9; aceitar avaliações sem foto para Canelada se não houver material suficiente.
+- **Evolução vs histórico:** Leonardo avançou no uso estruturado de IA e no funil de campanhas, mas a diretriz de Pedro foi clara: ferramenta é suporte; o objetivo é Amazon consolidada, com faturamento mínimo recorrente.
+- **Alertas:** risco de dispersar energia em automações antes da Amazon bater patamar. A meta de R$ 3 mil/dia deve virar régua semanal objetiva; sem isso, novas ferramentas não entram.
+- **Pontos positivos:** criou experts, renovou campanhas, está usando descontos e acompanhando o funil; mostrou atenção à qualidade das avaliações por modelo.
+- **Pendências para Pedro cobrar:** evolução real rumo a R$ 3 mil/dia; resultado das campanhas automáticas; arquivo de avaliações das canecas; plano claro de próximos passos do funil; ata/síntese da reunião de 05/06 no Slack.
+
+#### Ponto sistêmico
+- A semana teve muito acompanhamento real, mas novamente pouca padronização formal de atas. O maior ponto de gestão não é falta de assunto, é falta de fechamento padronizado pós-reunião. Recomendo manter cobrança simples: toda reunião com Yasmin, Lucas ou Leonardo termina com uma mensagem curta no Slack no padrão `#ata-reuniao Nome AAAA-MM-DD`, com combinados e pendências da semana. Para Lucas, acrescentar um ritual diário curto ajuda, mas não substitui ata semanal.
+
+
 ## Conectado a
 
 - [[memory/context/people]] — **ref**: 3 focal points descritos no people

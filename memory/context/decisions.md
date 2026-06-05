@@ -94,3 +94,23 @@ tags:
 
 - `KIT6S100` foi definido operacionalmente como kit de 6 unidades composto por 2× `YW640RC`, 2× `YW1050RC` e 2× `YW1520RC`.
 - Essa composição deve orientar resolução de SKU, baixa marketplace, reprocessamento de divergências e auditoria de saldo; componentes sem saldo continuam divergência real, não erro de mapeamento.
+
+## 2026-06-05 — ENVIOS FULL deve falar em detecção por cursor, não em criação no dia
+
+- Pedro corrigiu explicitamente a linguagem do cron de ENVIOS FULL: sem data operacional confiável na planilha, Kobe não deve afirmar que houve “envio novo do dia”.
+- Regra vigente: reportar apenas que houve envios “detectados/adicionados após o último cursor” ou “registrados no processamento”.
+- Contexto: a planilha ENVIOS FULL não tem campo confiável de data de criação e o timestamp salvo no Supabase reflete processamento, não criação operacional do envio.
+- Próxima condição para mudar essa linguagem: a operação/analistas passarem a preencher um campo de data de criação na planilha.
+
+## 2026-06-05 — WhatsApp Estoque exige controle obrigatório de data operacional e trava forte de duplicidade
+
+- Pedro apontou como requisito crítico que entradas e saídas vindas do grupo WhatsApp Estoque tenham controle explícito de datas de processamento e blindagem máxima contra duplicidade.
+- Regra aprovada: antes de aplicar qualquer movimento, o processador deve registrar `business_date` em BRT, trilha de processamento e fingerprint do conteúdo, além de bloquear automaticamente movimentações equivalentes no mesmo dia operacional.
+- Reenvio/cópia da mesma entrada não deve mexer no saldo; deve gerar alerta de possível duplicidade para auditoria.
+- Contexto: message ID único protege a mesma mensagem, mas não basta quando a mesma movimentação reaparece como nova mensagem WhatsApp.
+
+## 2026-06-05 — Grupo Estoque por imagem/lista só entra no automático com cabeçalho explícito
+
+- Pedro validou o comportamento seguro no teste da imagem de canecas: mensagens de imagem/lista no grupo Estoque só podem ser processadas automaticamente quando trouxerem cabeçalho operacional explícito como `ENTRADA`, `BAIXA` ou `AVARIA`.
+- Sem cabeçalho, o automático deve ignorar; processamento manual só é permitido com autorização explícita do Pedro e mantendo trilha auditável da mensagem original.
+- Contexto: o OCR conseguiu ler as linhas e quantidades, mas faltava o tipo operacional, então a inferência automática permaneceu bloqueada por segurança.

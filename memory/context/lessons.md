@@ -126,3 +126,15 @@ No fechamento de estoque de 03/06, duplicata/conflito isolado poderia derrubar o
 ## 2026-06-04 — [TÁTICA] Segredo exposto em chat operacional deve virar rotação coordenada sem repetir o valor
 
 O App Secret Meta apareceu em contexto operacional durante a integração da Página Budamix. A memória deve registrar o risco e a ação necessária, mas nunca repetir o segredo. Quando credencial compartilhada vaza em transcript, a correção é rotação coordenada em todos os ambientes dependentes, com validação pós-rotação antes de ampliar automação.
+
+## 2026-06-05 — [TÁTICA] ENVIOS FULL sem data de criação confiável não pode virar “envio novo do dia”
+
+Na revisão do cron de ENVIOS FULL, Pedro corrigiu que um envio detectado após o cursor não é necessariamente um envio criado no dia, porque a planilha não guarda data operacional confiável de criação e o Supabase só carimba o processamento. Até existir campo de data preenchido pela operação, a linguagem correta é “detectado/adicionado após o último cursor” ou “registrado no processamento”, nunca “novo do dia”.
+
+## 2026-06-05 — [TÁTICA] Idempotência de estoque via WhatsApp precisa bloquear também cópia ou reenvio da mesma entrada
+
+No fluxo do grupo Estoque, lockfile, message ID e `external_event_id` único não bastavam para impedir duplicidade quando a mesma movimentação reaparecesse como nova mensagem. A proteção correta precisa combinar `business_date` em BRT, fingerprint do conteúdo operacional e busca de movimento equivalente no mesmo dia antes de aplicar saldo; em caso de colisão, bloquear automático e alertar divergência.
+
+## 2026-06-05 — [TÁTICA] Imagem de estoque sem cabeçalho operacional não deve disparar inferência automática
+
+No teste com imagem de canecas, o OCR leu corretamente os itens e quantidades, mas o automático ignorou porque faltava cabeçalho explícito como `ENTRADA`, `BAIXA` ou `AVARIA`. Essa trava é a regra certa: lista/imagem sem tipo operacional declarado não deve mexer em estoque por inferência; só pode ser processada manualmente com autorização explícita do Pedro.

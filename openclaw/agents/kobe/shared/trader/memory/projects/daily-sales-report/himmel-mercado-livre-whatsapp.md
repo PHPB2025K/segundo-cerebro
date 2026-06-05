@@ -664,3 +664,23 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Janela sugerida: validar entre **2026-06-05 e 2026-06-10** nos reports de Mercado Livre/ADS.
 
 **Status:** aberto — diagnóstico inicial de invisibilidade; aguardando ação/validação operacional.
+
+### 2026-06-05 10:38–10:39 BRT — Himmel retomou análise/otimização da conta ML
+
+**Participantes:** Cláudio Manrique Junior/Himmel; Yasmin Oscarlino.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Retomada de análise e otimizações da conta.
+
+**Contexto registrado:**
+- Cláudio avisou Yasmin que estava em reunião e, em seguida, informou que iria analisar a conta enquanto executava as otimizações.
+- Não houve SKU, campanha, verba, meta de ROAS/ACoS ou prazo específico citado na conversa.
+
+**Impacto esperado:**
+- Tratar como marcador operacional de que a Himmel estava mexendo/analisando a conta em **2026-06-05 pela manhã**.
+- Se houver alteração relevante em vendas, gasto, ACOS/TACOS, exposição ou conversão do Mercado Livre a partir de 05/06, checar logs/dados de campanhas antes de atribuir causa a demanda, preço ou estoque.
+
+**Como validar nos dados:**
+- Comparar métricas de ADS/ML entre **2026-06-05 e 2026-06-08** contra 7 dias anteriores.
+- Procurar mensagens posteriores com o detalhe das otimizações realizadas, especialmente campanhas, anúncios afetados, ROAS alvo, verba e produtos priorizados.
+
+**Status:** aberto — aguardando detalhe das otimizações para transformar em hipótese causal mais específica.

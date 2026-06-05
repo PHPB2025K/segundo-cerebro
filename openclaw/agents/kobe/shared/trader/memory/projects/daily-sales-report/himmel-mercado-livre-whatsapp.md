@@ -684,3 +684,34 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Procurar mensagens posteriores com o detalhe das otimizações realizadas, especialmente campanhas, anúncios afetados, ROAS alvo, verba e produtos priorizados.
 
 **Status:** aberto — aguardando detalhe das otimizações para transformar em hipótese causal mais específica.
+
+### 2026-06-05 14:59–17:52 BRT — Ações para recuperar MLB5402326666, controlar MLB5405589402 e escalar MDF
+
+**Participantes:** Yasmin Oscarlino; Cláudio Manrique Junior/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Baixa performance/visibilidade de anúncios específicos e aumento de investimento em MDF.
+
+**Produtos/anúncios citados:**
+- **MLB5402326666** — Yasmin sinalizou performance muito ruim e informou que já fez alterações no orgânico.
+- **MLB5405589402** — Himmel criou uma campanha isolada para controlar o desempenho.
+- **MDF** — Himmel aumentou ainda mais o investimento da campanha para ganhar impressões.
+
+**Contexto registrado:**
+- Yasmin pediu à Himmel validação do **MLB5402326666**, destacando performance muito ruim e ajustes orgânicos já feitos pela equipe interna.
+- Cláudio/Himmel confirmou a demanda e depois informou que realizou uma ação para melhorar a visibilidade do **MLB5402326666**.
+- Para o **MLB5405589402**, que já havia sido apontado como invisível pela manhã, a Himmel criou uma **campanha isolada** para controlar melhor o desempenho.
+- A Himmel também elevou novamente o investimento na campanha de **MDF** para buscar mais impressões e informou que acompanhará os resultados.
+
+**Impacto esperado:**
+- A partir de **05/06 à tarde**, mudanças em visibilidade, impressões, gasto, ACoS/TACoS e vendas desses anúncios devem ser lidas considerando intervenção direta da Himmel.
+- **MLB5402326666** entra como prioridade de recuperação combinando frente orgânica já ajustada pela Yasmin + ação de visibilidade pela Himmel.
+- **MLB5405589402** deve ser analisado separadamente da conta por ter campanha isolada, evitando misturar o resultado dele com campanhas amplas.
+- MDF segue dentro da diretriz aprovada por Pedro: aceitar investimento/ACoS mais alto no curto prazo para ganhar exposição e tração.
+
+**Como validar nos dados:**
+- Janela principal: **2026-06-06 a 2026-06-12**.
+- Validar **MLB5402326666**: impressões, visitas, CTR, conversão, vendas, posição/ranking, preço/concorrência, status do anúncio, gasto, ACoS e evolução após ajustes orgânicos + ação Himmel.
+- Validar **MLB5405589402**: desempenho da campanha isolada, gasto controlado, impressões, vendas incrementais, ACoS/ROAS e se o isolamento melhorou diagnóstico/controle.
+- Validar MDF: aumento real de impressões e vendas, impacto no ACoS/TACoS consolidado, margem e capacidade de produção/estoque.
+
+**Status:** aberto — ações executadas pela Himmel; acompanhar nos próximos Daily Sales Reports de Mercado Livre.

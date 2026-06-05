@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-06-02 23:45 BRT (consolidação diária em camadas)._
+_Último update: 2026-06-04 23:45 BRT (consolidação diária em camadas)._
 
 ---
 
@@ -136,9 +136,10 @@ skills/
 | **Vault** | Finanças, tesouraria, caixa | agents/vault | ✅ Operacional |
 | **Scout** | Reposição, demanda, estoque, compras semanais | agents/compras | ✅ Fundação criada + Radar |
 
-## Status do Sistema (02/06/2026 23:45 BRT — consolidação diária em camadas)
+## Status do Sistema (04/06/2026 23:45 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
+- **Atualização executiva 04/06:** Estoque GB corrigiu fechamento de 03/06, backfillou CMV seller e reduziu divergências a rupturas/saldos reais; Daily Sales Shopee Fase 1 foi implementado/validado, mas fica em standby por decisão do Pedro; Página Facebook Budamix foi atualizada via Graph API, com rotação de segredo Meta pendente; Trader apontou lacuna dos ciclos Daily Sales 02/06–04/06; Fisco viu Matriz reconectar parcialmente, mas Filial segue 403; RH apontou possível lacuna técnica de pontos em 04/06.
 - **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; todo conteúdo relacionado a alertas deve ir para lá (watchdogs, guards, audits, monitores, failure alerts, resumos e avisos de risco/problema). Thread 8 permanece Urgente e não deve receber alertas técnicos de rotina.
 - **Planejamento de reposição das canecas / Compras:** prioridade máxima do próximo bloco operacional. Pedro pediu em 25/05 retomar a criação do Diretor de Compras; fundação do agente **Scout** criada com subagente **Radar**. Pedro aprovou estrutura enxuta Scout → Radar por enquanto e regra do cron semanal: recalcular o pipeline inteiro do zero com dados até D-1, comparar contra o plano aprovado e só atualizar se houver mudança relevante. O piloto de canecas segue como primeiro playbook antes de ampliar para outras famílias; todo assunto de compras vai no tópico Compras.
 - **Daily Sales Report Slack / DSA:** envio real para funcionários segue bloqueado até liberação explícita. O DSA ML amadureceu em 23/05 com sistema MercadoLíder, memory ingest diário, consolidações semanal/mensal e decisão de modelo por camada. Desde 24/05, há recorrência de ciclo ML-only ou lacuna de artefatos finais. Em 01/06, Trader consolidou o Daily Sales de 31/05 com R$ 16.538,51 em 351 pedidos, com ML puxando forte. Em 02/06, Daily Sales de 01/06 fechou R$ 23.190,76 em 361 pedidos, mas Atacado - GB Matriz adicionou R$ 6.483,34 em 3 pedidos; marketplaces puros somaram R$ 16.707,42/358 pedidos, com ML ainda forte em R$ 9.953,44. Leitura correta: separar Atacado de marketplaces e validar sustentação de ML/ADS/estoque/cancelamentos. O bloqueio principal continua: sem evidência de Slack Writer/QA final para Lucas, Yasmin e Leonardo; envio real segue bloqueado.
@@ -267,6 +268,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-06-04:** Página Facebook Budamix atualizada via Graph API com capa, foto de perfil e bio; App Secret/segredo Meta exposto em chat operacional virou pendência de rotação coordenada. Estoque GB corrigiu fechamento de 03/06 com logs Full/FBA, backfill de CMV seller, BOM definitivo de `KIT6S100`, parser WhatsApp mais robusto e aliases de canecas Guinho; divergências residuais ficaram concentradas em saldo real insuficiente. Daily Sales Shopee Fase 1 foi implementado/validado com 9 camadas v4.0, runner, snapshot fetcher, orquestração, tabela de snapshots e página dedicada no Mission Control, mas fica em standby sem cron 07:00 BRT. Trader apontou lacuna dos ciclos Daily Sales 02/06–04/06; Fisco registrou Matriz reconectando parcialmente e Filial ainda 403; RH apontou ausência total de pontos em 04/06 como possível lacuna técnica.
 - **2026-06-02:** Estoque GB ativou camada CMV+receita com 130 snapshots oficiais desde 01/06, 0 pendências de custo e margem bruta inicial 55,31%; replay dos divergentes corrigíveis zerou falhas sistêmicas, deixando resíduos como ruptura real. Daily Sales 01/06 fechou R$ 23.190,76/361 pedidos, mas Atacado - GB Matriz distorceu o consolidado; marketplaces puros somaram R$ 16.707,42/358 pedidos com ML forte. Pedro aprovou alternância Shopee entre contas e tolerância estratégica a ACoS alto em MDF no ML. Fisco alertou 403 também na Matriz do Bling; RH manteve backlog de 21 comunicações e trouxe novos pontos de compliance em Sandra/Franciele/Guilherme/Lucas/Mateus.
 - **2026-06-01:** Fechamento financeiro mensal de maio entregue: receita comercial válida R$ 366.007,59 (-9,8% vs abril), resultado operacional R$ 94.676,87 e margem 25,9%, mas DRE parcial por Amazon Ads maio N/D e CMV incompleto. Estoque GB avançou com hardening do Daily Marketplace Baixa, limpeza do Central físico para alinhar à aba ESTOQUE, relação de canecas enviada para Simone e resolvedor de descrição livre/baixa total inequívoca para avarias (`CAR200R`). Trader reportou Daily Sales 31/05 positivo em R$ 16.538,51/351 pedidos, com ML em pico forte, mas o pipeline Slack/QA final segue sem evidência completa. Fisco manteve Bling Filial 403 pelo 18º dia; RH subiu para 21 comunicações abertas e 14 dependentes de orientação.
 - **2026-05-31:** Estoque GB fechou correção grande de SKUs divergentes fora Full: preferência por `model_sku` Shopee, 6 aliases seguros, 70 BOMs, kits coloridos validados como 1 unidade de cada cor e baixa retroativa autorizada aplicada em 69 registros/73 unidades, restando só pendência por falta de `YW1520RC`. Pedro corrigiu GB26003: não é pedido/embarque real sem contrato assinado, sinal pago e autorização explícita. Budamix E-commerce corrigiu catálogo/SKUs em 3 etapas, zerou variantes ativas sem SKU, unificou redondos IMB501 em produto canônico e publicou redirects. Trader reportou Daily Sales 30/05 com R$ 12.246,88 em 242 pedidos, DADOS_PARCIAIS por Shopee Store fraca e lacuna de QA/previews finais para os três responsáveis.
@@ -315,7 +317,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) finalizar Estoque GB com `YW1520RC`, validação Central 94/94, baixa/monitoramento da avaria `CAR200R`, monitoramento CMV+receita e decisão D+1 vs quase tempo real, (2) manter GB26003 bloqueado como não pedido/embarque real sem contrato assinado, sinal pago e autorização explícita, (3) fechar Amazon Ads maio e CMV faltante para transformar a DRE maio em versão completa, (4) reexecutar/validar ciclo Daily Sales v2 completo com QA/previews para Lucas, Yasmin e Leonardo antes de qualquer envio real, separando marketplaces puros de Atacado, (5) validar sustentação do pico de ML, tolerância MDF/ACoS e alternância Shopee por conta/anúncio/SKU, (6) validar/desbloquear Bling Matriz + Filial antes de qualquer operação fiscal, (7) fechar reposição de canecas após Pedro enviar pedidos em trânsito/já feitos, (8) orientar RH nos casos Sandra/Franciele/Guilherme/Lucas/Mateus/Leonardo sem liberar proativo genérico, (9) validar token Meta Ads pós-18/05, (10) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT._
+_Próximas ações: (1) finalizar Estoque GB com rupturas reais (`YW1520RC`, `YW1050RC`, `CAC250P`, `CAC250AZ`), validação Central 94/94, avaria `CAR200R`, monitoramento CMV+receita e decisão D+1 vs quase tempo real, (2) manter GB26003 bloqueado como não pedido/embarque real sem contrato assinado, sinal pago e autorização explícita, (3) validar/recuperar artefatos Daily Sales 02/06–04/06 e reexecutar ciclo completo com QA/previews antes de qualquer envio real, (4) manter Daily Sales Shopee em standby até densidade nas camadas restantes, smokes das Contas 2/3 e gaps do fetcher resolvidos, (5) rotacionar segredo Meta e finalizar ajustes da Página Facebook Budamix, (6) fechar Amazon Ads maio e CMV faltante para transformar a DRE maio em versão completa, (7) validar/desbloquear Bling Matriz + Filial antes de qualquer operação fiscal, (8) checar possível lacuna técnica do Ponto Certo em 04/06 e orientar RH sem liberar proativo genérico, (9) fechar reposição de canecas após Pedro enviar pedidos em trânsito/já feitos, (10) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT._
 
 ---
 ## Contexto
@@ -348,6 +350,12 @@ _Próximas ações: (1) finalizar Estoque GB com `YW1520RC`, validação Central
 
 
 
+
+## Qualidade da Memória (Consolidação em Camadas — 04/06 23:45 BRT)
+- Digests lidos: Trader, Spark, Builder, Fisco e RH. Digests ausentes: nenhum.
+- Escopo respeitado: Kobe/main + digests dos agentes diretos definidos no cron; sem varrer memória interna de agentes, subagentes, workers ou analysts temporários.
+- Marcos globais incorporados: Página Facebook Budamix atualizada via Graph API; Estoque GB corrigiu fechamento de 03/06 com CMV seller, logs Full/FBA e BOM/aliases; Daily Sales Shopee Fase 1 implementado/validado com 9 camadas, runner, fetcher, orquestração e página própria no Mission Control, mas em standby.
+- Riscos críticos vindos dos digests: lacuna de registros Daily Sales 02/06–04/06; segredo Meta precisa rotação; Shopee Daily Sales não deve ativar cron antes de smokes/lapidação; Bling Filial segue 403 apesar de Matriz reconectar parcialmente; Ponto Certo pode ter lacuna técnica em 04/06.
 
 ## Qualidade da Memória (Consolidação em Camadas — 02/06 23:45 BRT)
 - Digests lidos: Trader, Spark, Builder, Fisco e RH. Digests ausentes: nenhum.

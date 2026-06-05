@@ -114,3 +114,15 @@ No Daily Sales de 01/06, o consolidado ficou muito forte, mas Atacado - GB Matri
 ## 2026-06-02 — [TÁTICA] Bling 403 na Matriz muda o risco de integração fiscal
 
 Até 01/06 o Bling 403 parecia concentrado na Filial e estava adiado por decisão operacional do Pedro. Em 02/06, o Fisco registrou HTTP 403 também na Matriz em execuções úteis. Quando a Matriz falha, o risco deixa de ser integração filial secundária e passa a bloquear operação fiscal principal; antes de emitir NF-e, criar draft ou depender do Bling, validar conectividade Matriz + Filial em teste controlado.
+
+## 2026-06-04 — [TÁTICA] Escrita crítica precisa de verificação por leitura ou smoke
+
+Na construção dos prompts v4.0 do Daily Sales Shopee, uma escrita retornou sucesso mas os arquivos não persistiram como esperado; a perda só foi detectada por verificação posterior. Para arquivos críticos de prompt, configuração, automação ou memória operacional, sucesso da ferramenta não basta: validar por leitura, diff, grep direcionado, smoke ou build antes de declarar entregue.
+
+## 2026-06-04 — [TÁTICA] Pipeline de estoque deve degradar por item, não perder lote inteiro por conflito isolado
+
+No fechamento de estoque de 03/06, duplicata/conflito isolado poderia derrubar o lote inteiro. A correção certa foi fallback granular: aplicar os itens válidos, registrar os conflitos específicos e manter trilha auditável. Para rotinas de baixa/log de estoque, erro localizado não deve impedir processamento do restante quando a decisão por item é segura.
+
+## 2026-06-04 — [TÁTICA] Segredo exposto em chat operacional deve virar rotação coordenada sem repetir o valor
+
+O App Secret Meta apareceu em contexto operacional durante a integração da Página Budamix. A memória deve registrar o risco e a ação necessária, mas nunca repetir o segredo. Quando credencial compartilhada vaza em transcript, a correção é rotação coordenada em todos os ambientes dependentes, com validação pós-rotação antes de ampliar automação.

@@ -75,3 +75,22 @@ tags:
 - Pedro alinhou que produtos MDF no Mercado Livre podem receber mais investimento mesmo com ACoS alto quando a intenção for ganhar tração, exposição e ranking.
 - A leitura de ADS/marketplace deve separar MDF do restante da conta para não classificar o ACoS alto como erro automático.
 - Se MDF pressionar TACoS/resultado geral, a decisão pendente passa a ser limite de tolerância ou janela mínima de teste, não corte imediato.
+
+## 2026-06-04 — Daily Sales Shopee fica em standby até lapidação e smokes finais
+
+- Pedro decidiu pausar o Daily Sales Shopee após a Fase 1 validada: o pipeline está implementado, mas ainda precisa lapidar pontos antes de virar rotina.
+- Não ativar cron 07:00 BRT, nem tratar o report Shopee como produção, até aplicar densidade nas camadas restantes, rodar smokes das Contas 2 e 3 e resolver gaps relevantes do fetcher.
+- Slack do Daily Sales Shopee deve ser consolidado para Pedro em uma mensagem final após a camada de escrita, não uma mensagem por camada.
+- A visão Shopee no Mission Control deve ficar em página dedicada, separada do Mercado Livre, para evitar mistura de regras e reduzir risco de regressão.
+
+## 2026-06-04 — Facebook Page Budamix: URL canônica por enquanto e rotação obrigatória de segredo Meta
+
+- A Página Facebook Budamix foi atualizada com capa, foto de perfil e bio usando Graph API.
+- Vanity URL `/budamix` ficou postergada porque a API bloqueou e a interface nova do Meta não expôs o campo; até lá, usar a URL canônica da página.
+- Como segredo/token Meta apareceu em chat operacional, a regra é rotacionar o App Secret no Meta Developers antes de ampliar automações ou migrar a operação para runtime permanente.
+- Ao rotacionar, atualizar todos os ambientes dependentes do app compartilhado com OpenClaw/VPS para não quebrar integrações.
+
+## 2026-06-04 — Estoque: KIT6S100 tem BOM definitivo
+
+- `KIT6S100` foi definido operacionalmente como kit de 6 unidades composto por 2× `YW640RC`, 2× `YW1050RC` e 2× `YW1520RC`.
+- Essa composição deve orientar resolução de SKU, baixa marketplace, reprocessamento de divergências e auditoria de saldo; componentes sem saldo continuam divergência real, não erro de mapeamento.

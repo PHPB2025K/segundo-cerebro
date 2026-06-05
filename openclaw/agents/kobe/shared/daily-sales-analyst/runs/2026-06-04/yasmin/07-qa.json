@@ -1,54 +1,63 @@
 {
-  "resultado_qa": "BLOQUEADO",
-  "motivo": "L06 não entregou output válido — o pipeline retornou exclusivamente a marcação de fallback '[FALLBACK - Slack Writer violou contrato: Log declara remoção de estimativa, mas output ainda contém referência estimada.]'. Não há mensagem Slack para avaliar em nenhum dos 12 gates. A QA Gate não pode aprovar o que não existe. O bloqueio é duplo: ausência de objeto de validação e violação de contrato interno declarada pela própria L06 (log e output inconsistentes). Regra de agregação aplicada: 1+ Crítico → BLOQUEADO.",
-  "send_allowed": false,
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem passou em 10 dos 12 gates sem falha. Encontrados 2 Menores em gates distintos: (1) Gate 5 — Top Produtos utiliza ':' como separador entre nome e contagem em vez do formato especificado '[nome simplificado] — [pedidos] pedidos'; a adaptação é compreensível para nomes que contêm '—', mas foi aplicada uniformemente mesmo onde não necessária e não foi registrada nas Decisões de formatação; (2) Gate 10 — o termo 'threshold' aparece 3 vezes na mensagem (2× na seção Análise, 1× em Prioridades), atingindo o limite ≥3 da regra de jargão técnico sem tradução natural. Nenhuma tese foi alterada, nenhum bloqueio foi violado, classificações foram preservadas com fidelidade, hipóteses permaneceram condicionais e fatos foram apresentados como fatos. Regra de agregação: 0 Críticos + 0 Maiores + 2 Menores isolados → APROVADO COM RESSALVA.",
+  "send_allowed": true,
   "send_real_allowed": false,
   "gates_avaliados": {
-    "gate_1_data_periodo_fonte": "FALHA",
-    "gate_2_destinatario_plataforma_responsavel": "FALHA",
-    "gate_3_estrutura_slack": "FALHA",
-    "gate_4_visao_plataforma": "FALHA",
-    "gate_5_top_produtos": "FALHA",
-    "gate_6_analise_conta": "FALHA",
-    "gate_7_prioridades": "FALHA",
-    "gate_8_bloqueios_confianca_logs": "FALHA",
-    "gate_9_consistencia_camadas": "FALHA",
-    "gate_10_tom_utilidade": "FALHA",
-    "gate_11_padrao_numerico_formatacao": "FALHA",
-    "gate_12_consistencia_ml_snapshot": "RESSALVA"
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "RESSALVA",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "OK"
   },
   "contagem_severidade": {
-    "criticos": 1,
+    "criticos": 0,
     "maiores": 0,
     "maiores_gates_distintos": 0,
-    "menores": 0,
-    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 2 Menores em 2 gates distintos, isolados, sem padrão de degradação sistêmica → APROVADO COM RESSALVA"
   },
   "problemas_encontrados": [
     {
-      "severidade": "Crítico",
-      "gate": "Gate 3 + Gate 8 — Estrutura Slack e Bloqueios/Confiança/Logs",
-      "texto_atual": "[FALLBACK - Slack Writer violou contrato: Log declara remoção de estimativa, mas output ainda contém referência estimada.]",
-      "texto_esperado": "Mensagem Slack válida contendo as 6 seções obrigatórias na ordem aprovada + bloco 'Respeito de bloqueios' + bloco 'Decisões de formatação', internamente coerentes entre si e com a L05.",
-      "estado_atual": "L06 não produziu output Slack. O único conteúdo recebido é a marcação de fallback que documenta a violação de contrato interno da própria camada: o log declarou remoção de estimativa enquanto o output final ainda continha a referência estimada — inconsistência interna do Slack Writer detectada antes mesmo da avaliação dos gates. Nenhum dos 12 gates pode ser avaliado por ausência de objeto.",
-      "estado_esperado": "L06 entrega (a) mensagem Slack completa com estrutura aprovada e (b) logs de 'Respeito de bloqueios' e 'Decisões de formatação' coerentes com a mensagem entregue — toda decisão declarada no log deve refletir exatamente o que está na mensagem final, sem divergência.",
-      "regra_violada": "Gate 3 exige estrutura Slack com exatamente 6 seções na ordem aprovada. Gate 8 exige que o log da L06 seja coerente com a mensagem final — decisão declarada no log que contradiz a mensagem é BLOQUEIO Crítico. Ausência total de output válido invalida todos os gates simultaneamente.",
-      "bloqueia_envio": true
+      "severidade": "Menor",
+      "gate": "5 — Top Produtos",
+      "texto_atual": "- Potes Vidro 5 Peças — Tampa Cinza: 41 pedidos\n- Potes Vidro 5 Peças — Tampa Vermelha: 28 pedidos\n- Potes Vidro 5 Peças — Tampa Preta: 20 pedidos\n- Kit 6 Canecas Tulipa 250ml: 18 pedidos\n- Kit 6 Canecas Lisas 200ml: 16 pedidos",
+      "texto_esperado": "- Potes Vidro 5 Peças — Tampa Cinza — 41 pedidos\n- Potes Vidro 5 Peças — Tampa Vermelha — 28 pedidos\n- Potes Vidro 5 Peças — Tampa Preta — 20 pedidos\n- Kit 6 Canecas Tulipa 250ml — 18 pedidos\n- Kit 6 Canecas Lisas 200ml — 16 pedidos",
+      "regra_violada": "Gate 5: formato aprovado é '[nome simplificado] — [pedidos] pedidos'. L06 usou ':' como separador em todos os 5 itens. Para nomes que já contêm '—' (ex.: 'Potes Vidro 5 Peças — Tampa Cinza'), a adaptação é justificável para evitar dois traços consecutivos. Contudo, o mesmo separador ':' foi aplicado a nomes sem traço ('Kit 6 Canecas Tulipa 250ml: 18 pedidos', 'Kit 6 Canecas Lisas 200ml: 16 pedidos') onde o formato especificado poderia ser seguido sem ambiguidade. A decisão de padronizar o separador para ':' não foi registrada nas Decisões de formatação.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "10 — Tom e utilidade",
+      "texto_atual": "Ocorrência 1 (Análise bullet 2): 'A virada para MercadoLíder Platinum está a R$ 3.810,00 do threshold'\nOcorrência 2 (Análise bullet 2): 'entra no indicador de cancelamentos oficial bem no momento do threshold e pode ameaçar'\nOcorrência 3 (Prioridades P2): 'A cobertura é sub-dia bem no timing do threshold Platinum'",
+      "texto_esperado": "Substituir 'threshold' por 'limite para o Platinum', 'meta de Faturamento para a promoção' ou equivalente natural em PT-BR nas 3 ocorrências. Ex.: 'A virada para MercadoLíder Platinum está a R$ 3.810,00 do limite' / 'bem no momento do limite da medalha' / 'bem no timing do limite para o Platinum'.",
+      "regra_violada": "Gate 10: termos da lista de jargão técnico ('threshold' incluso) podem aparecer 1-2 vezes quando precisos, mas frequência ≥3 indica jargão técnico não-traduzido. 'threshold' aparece exatamente 3 vezes na mensagem, atingindo o limite da regra. Yasmin não usa 'threshold' no dia a dia operacional; o termo natural é 'limite' ou 'meta para a promoção'.",
+      "bloqueia_envio": false
     }
   ],
-  "correcoes_obrigatorias_antes_envio": [
-    "Reexecutar L06 (Slack Writer) produzindo output válido com as três seções obrigatórias: mensagem Slack, bloco 'Respeito de bloqueios' e bloco 'Decisões de formatação'. O log não pode declarar ação (ex.: remoção de estimativa) que contradiga o conteúdo da mensagem final.",
-    "Na reexecução, atentar para o fulfillment_mix_yesterday_top10 com cobertura de 58,3% (105/180 pedidos): se qualquer bullet da VISÃO ou da Análise apresentar o mix de modalidade de envio como métrica total do dia, a L06 deve omiti-lo ou acompanhá-lo de ressalva explícita de cobertura parcial — ausência de autorização explícita da L05 para apresentação como total impede exibição sem ressalva.",
-    "Após reexecução da L06, submeter o novo output completo ao QA Gate (L07) para validação integral dos 12 gates."
-  ],
+  "correcoes_obrigatorias_antes_envio": [],
   "ressalvas_memoria_interna": [
-    "Bloqueio é pontual na L06 — todas as camadas anteriores (L01 a L05) entregaram outputs completos e convergentes. A tese estratégica, análise tática, operacional, granular e condensada estão disponíveis e prontas para alimentar nova execução da L06 sem necessidade de reprocessamento das camadas superiores.",
-    "A L05 entregou 'o_que_nao_pode_ir_para_slack' como lista vazia — não há bloqueios de produto ou listing declarados. A L04 'bloqueios_para_slack' também está vazia. Isso simplifica a reexecução da L06: ausência de itens bloqueados nominalmente, mas a L06 ainda deve respeitar as regras de cobertura parcial do fulfillment_mix_yesterday_top10 e os alertas de confiança média da L05."
+    "alertas_de_confianca.nivel='media' da L05 preservado corretamente: insights de 'risco latente' usam linguagem condicional ('pode ameaçar', 'se aproximando') e o insight de 'fato' é assertivo. Nenhuma hipótese virou certeza, nenhum risco latente virou alerta consumado.",
+    "Todos os 5 Top Produtos usaram slack_short_name canônico: IMB501C → 'Potes Vidro 5 Peças — Tampa Cinza', IMB501V → 'Potes Vidro 5 Peças — Tampa Vermelha', IMB501P → 'Potes Vidro 5 Peças — Tampa Preta', TL6250 → 'Kit 6 Canecas Tulipa 250ml', CLR002 → 'Kit 6 Canecas Lisas 200ml'. Todos com confidence='high' e mapping_status='mapped'. Nenhum nome longo ou SKU cru visível.",
+    "confirmed_variation_attributes aplicado corretamente para o cluster IMB501: Tampa Cinza, Tampa Vermelha, Tampa Preta preservadas como variações distintas no Top Produtos, impedindo consolidação indevida da família inteira.",
+    "Escalonamentos para Kobe em P1 e P2 vêm explicitamente de L05.prioridades_condensadas[0].escalar_se e [1].escalar_se. P3 não contém escalonamento pois L05 marcou 'não aplicável hoje'. L06 omitiu corretamente.",
+    "fulfillment_mix_yesterday_top10 (105/179 = 58,7% de cobertura) omitido da VISÃO corretamente, com decisão registrada no log. fulfillment_mix_7d e 30d (ambos com coverage_pct=100%) disponíveis como referência canônica de tendência, não usados no Slack por não serem dado objetivo do dia.",
+    "available_quantity tratado prospectivamente em toda a mensagem: 'cerca de 7h de cobertura', 'cerca de 16h', '3 ciclos de cobertura caindo'. Nenhuma afirmação retrospectiva tratando o snapshot como pré-baixa. Regra available_quantity POST-baixa respeitada.",
+    "Contagem de insights L05 vs Slack: 3 insights L05 → 3 bullets Análise. Contagem de prioridades L05 vs Slack: 3 prioridades → 3 bullets Prioridades. Paridade exata preservada sem justificativa necessária."
   ],
   "ressalvas_auditoria_nao_bloqueante": [
-    "Gate 12 — fulfillment_mix_yesterday_top10 cobre 105 de 180 pedidos do dia (58,3%), abaixo do threshold de 70% definido no gate. A L05 não apresentou esse mix como métrica total da VISÃO e não o incluiu em 'o_que_nao_pode_ir_para_slack', mas também não emitiu autorização explícita com ressalva de cobertura para exibição. Na reexecução da L06, qualquer referência ao mix do top10 na seção VISÃO ou em bullets analíticos deve vir acompanhada de ressalva de cobertura parcial (~58%) ou deve ser omitida. Sinalizar para revisão das regras de autorização da L05 no próximo ciclo: L05 deveria declarar explicitamente a omissão ou a condição de exibição quando coverage_pct < 70%.",
-    "Gate 12 — divergência entre metrics.cancelamentos=3 (janela do dia 04/06) e reputation.cancellations_rate=0 (janela longa ML) está documentada na L04 como divergência semântica esperada entre métricas de janelas temporais distintas. Não há contaminação do ml_snapshot — comportamento correto confirmado. Nenhuma ação necessária.",
-    "Gate 12 — ratings_negative=0,41 com cancellations_rate=0 e color=5_green: não há incoerência interna no snapshot — ratings_negative não entra diretamente no termômetro de cor ML. A L05 sinalizou corretamente como sinal latente (hipótese). Nenhuma inconsistência de input detectada neste eixo."
+    "KIT4YW640 (Kit 4 Potes De Vidro 640ml, MLB5402326666) tem slack_short_name=null. L06 usou fallback 'Kit 4 Potes 640ml Tampa Azul-petróleo' (display_short com atributo de cor do title ML para distinguir do Kit 10 Potes). Comportamento correto conforme hierarquia de fallback, mas entry pendente em config/slack-short-names-ml.json. Também K6CAN250P e K6CAN250VD com slack_short_name=null — não chegaram ao Top 5 do Slack neste ciclo, mas devem ser mapeados preventivamente.",
+    "fulfillment_mix_yesterday_top10 cobre apenas 105/179 pedidos (58,7%), abaixo do limite de 70% de cobertura para apresentação sem ressalva. A limitação estrutural persiste há múltiplos ciclos. Avaliar ampliação da base de cálculo no fetcher para cobrir todos os pedidos do dia (não apenas top 10 por anúncio) ou migrar para fulfillment_mix_7d/30d como proxy canônico para o Slack.",
+    "Divergência de horário entre snapshot ml_snapshot (14:25 UTC = 11:25 BRT do dia 05/06) e weekly.md ingerida às 09:40 BRT: os available_quantity do snapshot tardio podem refletir reposições parciais da manhã do dia 05/06, subestimando o risco de fechamento do dia 04/06 (ex.: Tulipa com 5 un no snapshot vs 9 na weekly, Catálogo Canecas com 11 vs 6 na weekly). Avaliar padronização da coleta do ml_snapshot para 02:00–04:00 BRT do dia seguinte ao analisado para melhor representar o estado de fechamento.",
+    "MLB3288536143 tem catalog_product_id=MLB44224272 mas is_catalog=false — anúncio Clássico associado a produto de catálogo, competindo em ranking de categoria e não em Buy Box de Catálogo. Esta distinção está corretamente documentada na L04 memória_interna mas não foi explicitada no Slack. Para ciclos futuros, considerar nota educativa a Yasmin sobre a diferença de mecanismo de exposição entre MLB3288536143 (Clássico vinculado a catálogo) e MLB6232315532 (is_catalog=true, Buy Box real de Catálogo).",
+    "ratings_negative=0,41 é um valor elevado (41% das avaliações negativas) que não impede a reputação verde Gold (pois a métrica de cor é baseada em reclamações/cancelamentos/atrasos, não em ratings diretos), mas pode indicar insatisfação latente de clientes. Este sinal está corretamente na memória_para_amanha da L05 mas não chegou ao Slack — avaliação correta dado que não estava nos insights da L05. Monitorar tendência nos próximos ciclos."
   ],
   "llm_used": true,
   "model": "claude-sonnet-4-6",

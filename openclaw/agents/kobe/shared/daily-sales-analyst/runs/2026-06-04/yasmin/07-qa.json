@@ -1,0 +1,56 @@
+{
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "L06 não entregou output válido — o pipeline retornou exclusivamente a marcação de fallback '[FALLBACK - Slack Writer violou contrato: Log declara remoção de estimativa, mas output ainda contém referência estimada.]'. Não há mensagem Slack para avaliar em nenhum dos 12 gates. A QA Gate não pode aprovar o que não existe. O bloqueio é duplo: ausência de objeto de validação e violação de contrato interno declarada pela própria L06 (log e output inconsistentes). Regra de agregação aplicada: 1+ Crítico → BLOQUEADO.",
+  "send_allowed": false,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "FALHA",
+    "gate_2_destinatario_plataforma_responsavel": "FALHA",
+    "gate_3_estrutura_slack": "FALHA",
+    "gate_4_visao_plataforma": "FALHA",
+    "gate_5_top_produtos": "FALHA",
+    "gate_6_analise_conta": "FALHA",
+    "gate_7_prioridades": "FALHA",
+    "gate_8_bloqueios_confianca_logs": "FALHA",
+    "gate_9_consistencia_camadas": "FALHA",
+    "gate_10_tom_utilidade": "FALHA",
+    "gate_11_padrao_numerico_formatacao": "FALHA",
+    "gate_12_consistencia_ml_snapshot": "RESSALVA"
+  },
+  "contagem_severidade": {
+    "criticos": 1,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 0,
+    "regra_agregacao_aplicada": "1+ Crítico → BLOQUEADO"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Crítico",
+      "gate": "Gate 3 + Gate 8 — Estrutura Slack e Bloqueios/Confiança/Logs",
+      "texto_atual": "[FALLBACK - Slack Writer violou contrato: Log declara remoção de estimativa, mas output ainda contém referência estimada.]",
+      "texto_esperado": "Mensagem Slack válida contendo as 6 seções obrigatórias na ordem aprovada + bloco 'Respeito de bloqueios' + bloco 'Decisões de formatação', internamente coerentes entre si e com a L05.",
+      "estado_atual": "L06 não produziu output Slack. O único conteúdo recebido é a marcação de fallback que documenta a violação de contrato interno da própria camada: o log declarou remoção de estimativa enquanto o output final ainda continha a referência estimada — inconsistência interna do Slack Writer detectada antes mesmo da avaliação dos gates. Nenhum dos 12 gates pode ser avaliado por ausência de objeto.",
+      "estado_esperado": "L06 entrega (a) mensagem Slack completa com estrutura aprovada e (b) logs de 'Respeito de bloqueios' e 'Decisões de formatação' coerentes com a mensagem entregue — toda decisão declarada no log deve refletir exatamente o que está na mensagem final, sem divergência.",
+      "regra_violada": "Gate 3 exige estrutura Slack com exatamente 6 seções na ordem aprovada. Gate 8 exige que o log da L06 seja coerente com a mensagem final — decisão declarada no log que contradiz a mensagem é BLOQUEIO Crítico. Ausência total de output válido invalida todos os gates simultaneamente.",
+      "bloqueia_envio": true
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [
+    "Reexecutar L06 (Slack Writer) produzindo output válido com as três seções obrigatórias: mensagem Slack, bloco 'Respeito de bloqueios' e bloco 'Decisões de formatação'. O log não pode declarar ação (ex.: remoção de estimativa) que contradiga o conteúdo da mensagem final.",
+    "Na reexecução, atentar para o fulfillment_mix_yesterday_top10 com cobertura de 58,3% (105/180 pedidos): se qualquer bullet da VISÃO ou da Análise apresentar o mix de modalidade de envio como métrica total do dia, a L06 deve omiti-lo ou acompanhá-lo de ressalva explícita de cobertura parcial — ausência de autorização explícita da L05 para apresentação como total impede exibição sem ressalva.",
+    "Após reexecução da L06, submeter o novo output completo ao QA Gate (L07) para validação integral dos 12 gates."
+  ],
+  "ressalvas_memoria_interna": [
+    "Bloqueio é pontual na L06 — todas as camadas anteriores (L01 a L05) entregaram outputs completos e convergentes. A tese estratégica, análise tática, operacional, granular e condensada estão disponíveis e prontas para alimentar nova execução da L06 sem necessidade de reprocessamento das camadas superiores.",
+    "A L05 entregou 'o_que_nao_pode_ir_para_slack' como lista vazia — não há bloqueios de produto ou listing declarados. A L04 'bloqueios_para_slack' também está vazia. Isso simplifica a reexecução da L06: ausência de itens bloqueados nominalmente, mas a L06 ainda deve respeitar as regras de cobertura parcial do fulfillment_mix_yesterday_top10 e os alertas de confiança média da L05."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "Gate 12 — fulfillment_mix_yesterday_top10 cobre 105 de 180 pedidos do dia (58,3%), abaixo do threshold de 70% definido no gate. A L05 não apresentou esse mix como métrica total da VISÃO e não o incluiu em 'o_que_nao_pode_ir_para_slack', mas também não emitiu autorização explícita com ressalva de cobertura para exibição. Na reexecução da L06, qualquer referência ao mix do top10 na seção VISÃO ou em bullets analíticos deve vir acompanhada de ressalva de cobertura parcial (~58%) ou deve ser omitida. Sinalizar para revisão das regras de autorização da L05 no próximo ciclo: L05 deveria declarar explicitamente a omissão ou a condição de exibição quando coverage_pct < 70%.",
+    "Gate 12 — divergência entre metrics.cancelamentos=3 (janela do dia 04/06) e reputation.cancellations_rate=0 (janela longa ML) está documentada na L04 como divergência semântica esperada entre métricas de janelas temporais distintas. Não há contaminação do ml_snapshot — comportamento correto confirmado. Nenhuma ação necessária.",
+    "Gate 12 — ratings_negative=0,41 com cancellations_rate=0 e color=5_green: não há incoerência interna no snapshot — ratings_negative não entra diretamente no termômetro de cor ML. A L05 sinalizou corretamente como sinal latente (hipótese). Nenhuma inconsistência de input detectada neste eixo."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

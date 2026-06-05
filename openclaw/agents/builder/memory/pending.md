@@ -10,7 +10,7 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-05-30_
+_Atualizado: 2026-06-04_
 
 ## 🔴 Prioridade Alta
 
@@ -18,6 +18,8 @@ _Atualizado: 2026-05-30_
 - [ ] Retomar deploy em produção: VPS sem credencial GitHub, `git fetch` falhou 403. Recomendação: Deploy Key SSH read-only; depois reset/build/restart/smoke com backup e hash `.env`.
 - [ ] Fechar PR1+PR2+PR3a em produção e validar visualmente: radio cards, default Venda/Compra, Devolução em entrada, autocomplete `914`/`KIT4YW800SQ_T`.
 - [ ] Depois do deploy/cadastro: desenhar PR4 kits/BOM, pois 75% dos erros reais recentes são “Estoque insuficiente”.
+- [ ] Preencher alocação de receita por componente no fechamento de estoque; CMV seller de 03/06 foi corrigido, mas receita da camada de componentes ainda está nula.
+- [ ] Tratar fila residual de divergências por saldo real insuficiente após correção de 03/06: `YW1520RC`, `YW1050RC`, `CAC250P`, `CAC250AZ`.
 
 ### Social Studio Reborn
 - [ ] Fase C C2: construir `/admin/social/conta` com status de conta, OAuth e callback handler.
@@ -39,11 +41,16 @@ _Atualizado: 2026-05-30_
 
 ### Mission Control
 - [ ] Ativar Daily Sales Pipeline Panel em produção com restart controlado e smoke test da página/APIs.
+- [ ] Validar em produção a página dedicada Daily Sales Shopee antes de ativar cron: overview das 3 contas, drill-down de camadas e API própria.
 - [ ] Implementar 11 módulos restantes: Tasks, Agents detail, Logs, Terminal, Git, Workflows, Search, Analytics, Settings, Calendar e About/Actions.
 - [ ] Implementar n8n usage tracking em `/costs` com saveDataSuccessExecution, coletor 15min e pricing real.
 
 ### Infra OpenClaw / Agentes
 - [ ] Fisco/OpenClaw — diagnosticar bloqueio de `sessions_spawn` com `agentId=fisco` retornando `allowed: none`.
+
+### Budamix Facebook Page / Meta Graph
+- [ ] Rotacionar App Secret do Meta exposto em chat/contexto operacional e atualizar os runtimes que dependem do app compartilhado.
+- [ ] Ajustar website público da Página Budamix para HTTPS, preencher descrição longa e tentar configurar vanity URL `/budamix` manualmente via Meta Business Suite.
 
 ## 🟡 Prioridade Média
 
@@ -52,6 +59,9 @@ _Atualizado: 2026-05-30_
 
 ### SimulImport
 - [ ] Testes extensivos, melhorias de UX e production ready.
+
+### Daily Sales Shopee
+- [ ] Manter Fase 1 em standby até lapidação: aplicar regra de densidade nas camadas tática/operacional/forense, rodar smokes nas contas 2 e 3, resolver gaps de fetcher e só então avaliar cron 07:00 BRT.
 
 ## 🟢 Backlog
 

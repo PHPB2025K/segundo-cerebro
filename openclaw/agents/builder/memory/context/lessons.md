@@ -59,3 +59,18 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 ### [TÁTICA] Supabase fire-and-forget precisa EdgeRuntime.waitUntil (2026-05-13)
 **Lição:** Edge Function que dispara `fetch()` assíncrono para processamento pode ter a chamada cancelada ao retornar resposta se não usar `EdgeRuntime.waitUntil()` ou fila persistente. Foi causa provável da Ana parar após poll automático sem logs úteis.
 **Expira:** 2026-06-12
+
+### [TÁTICA] Meta Graph Page token pode exigir caminho direto validado (2026-06-04)
+**Lição:** Em setup de Facebook Page, a listagem padrão de páginas pode retornar vazia mesmo quando o token de página é derivável por chamada direta. Documentar o fluxo exato validado evita repetir investigação e tentativa-e-erro.
+**Expira:** 2026-07-04
+
+### [ESTRATÉGICA] Secrets expostos em chat/contexto operacional também exigem rotação (2026-06-04)
+**Lição:** Mesmo sem commit, segredo colado em chat ou contexto lido por agente deixa de ser confiável. Registrar como risco e rotacionar antes de ampliar automação.
+
+### [TÁTICA] Escrita crítica precisa verificação por leitura/smoke (2026-06-04)
+**Lição:** Quando ferramenta/agente reporta sucesso de escrita, artefatos críticos ainda precisam verificação independente por leitura, diff ou smoke. Isso evita perda silenciosa de prompts, configs e arquivos longos.
+**Expira:** 2026-07-04
+
+### [TÁTICA] Correção de lote em estoque deve degradar granularmente (2026-06-04)
+**Lição:** Conflito ou duplicata isolada não pode fazer o pipeline perder o lote inteiro. Processos de fechamento devem degradar por item, preservar trilha auditável e continuar aplicando o restante seguro.
+**Expira:** 2026-07-04

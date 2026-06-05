@@ -80,3 +80,15 @@ _Registro de decisões permanentes. NUNCA contradizer._
 - A lista deve ser preservada pelo workflow de deploy; qualquer function adicionada a ela passa a depender de segredo interno e precisa validação E2E de branch normal e branch de escalação.
 - Essa decisão é mitigação temporária do incidente JWT da Ana/Canggu. A meta técnica continua sendo pós-mortem da causa raiz e retorno a `verify_jwt=true` quando seguro.
 - Teste aceitável precisa provar conversa real completa, incluindo notificação visual ao Pedro quando houver escalação.
+
+## 2026-06-04 — Budamix Facebook Page / Meta Graph
+
+- Página Budamix passou a ser gerenciável via Meta Graph com token operacional e documentação de referência.
+- App Meta correto para page management foi identificado; a credencial precisa ser tratada como compartilhada com runtime OpenClaw e qualquer rotação deve atualizar ambos os lados.
+- Vanity URL `/budamix` ficou postergada para ajuste manual no Meta Business Suite, pois a API/UI atual bloquearam o fluxo automático.
+
+## 2026-06-04 — Daily Sales Shopee v4.0
+
+- Daily Sales Shopee permanece em standby por decisão do Pedro: Fase 1 validada, mas sem cron 07:00 BRT até lapidação e smokes das contas 2 e 3.
+- Mission Control deve manter Shopee em página dedicada, isolada da página de Mercado Livre, para evitar regressão e colisão de namespace.
+- Slack do Daily Sales Shopee deve ser consolidado para Pedro, não uma mensagem por camada.

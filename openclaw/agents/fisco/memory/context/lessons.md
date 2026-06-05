@@ -1,6 +1,18 @@
 # Lições — Fisco
 
-_Atualizado: 2026-06-02_
+_Atualizado: 2026-06-04_
+
+## 2026-06-04
+- A Matriz voltou a conectar nas execuções úteis observadas após falhar no dia anterior, mas isso deve ser tratado como recuperação parcial: antes de operação/draft real, exigir teste controlado e estabilidade contínua.
+- Persistência do HTTP 403 da Filial por vinte e um dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/acesso da empresa e teste controlado.
+- Falha recorrente do alerta WhatsApp com HTTP 403 continua sendo risco de visibilidade independente do bloqueio da Filial.
+- Timeouts/abortos de refresh ou consolidação criam lacunas operacionais; quando uma consolidação diária falhar, o ciclo seguinte deve regularizar memória e digest para não perder rastreabilidade.
+
+## 2026-06-03
+- Quando Matriz e Filial retornam HTTP 403 “empresa inativa” no mesmo dia, tratar como bloqueio amplo do Bling para operações/drafts, não apenas problema isolado da Filial.
+- Persistência do HTTP 403 da Filial por vinte dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/acesso da empresa e teste controlado.
+- Falha recorrente do alerta WhatsApp com HTTP 403 continua sendo risco de visibilidade independente e precisa aparecer no digest mesmo sem NF-e/draft no dia.
+- Rodadas sem resultado fiscal útil por timeout/aborto não confirmam recuperação nem piora; registrar explicitamente como lacuna de monitoramento.
 
 ## 2026-06-02
 - A falha HTTP 403 “empresa inativa” deixou de estar isolada na Filial: Matriz também falhou em duas execuções úteis do dia, apesar de ter conectado de manhã. Tratar como agravamento operacional até teste controlado confirmar recuperação.
@@ -82,7 +94,7 @@ _Atualizado: 2026-06-02_
 
 ## 2026-05-20
 - Persistência do HTTP 403 da Filial por seis dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/token e teste controlado.
-- Matriz segue estável nas execuções completas do refresh, então o risco principal permanece concentrado na Filial, no canal de alerta e na confiabilidade da automação.
+- Matriz segue estável nas execuções completas do refresh, então o risco principal está concentrado na Filial, no canal de alerta e na confiabilidade da automação.
 - Abortos/timeouts do cron podem impedir resposta consolidada e, em uma rodada, impedir até a captura de resultado fiscal útil; a consolidação diária precisa considerar sessões incompletas como risco operacional.
 - Respostas de cron fiscal devem sempre incluir horário em BRT quando exibirem horário; padronizar isso evita mistura de UTC/BRT em auditoria operacional.
 

@@ -138,3 +138,11 @@ No fluxo do grupo Estoque, lockfile, message ID e `external_event_id` único nã
 ## 2026-06-05 — [TÁTICA] Imagem de estoque sem cabeçalho operacional não deve disparar inferência automática
 
 No teste com imagem de canecas, o OCR leu corretamente os itens e quantidades, mas o automático ignorou porque faltava cabeçalho explícito como `ENTRADA`, `BAIXA` ou `AVARIA`. Essa trava é a regra certa: lista/imagem sem tipo operacional declarado não deve mexer em estoque por inferência; só pode ser processada manualmente com autorização explícita do Pedro.
+
+## 2026-06-05 — [TÁTICA] OCR linear não basta quando a imagem de estoque é uma folha/orçamento com colunas e códigos do fornecedor
+
+No teste da folha da Porcelanas Lu, a primeira aplicação manual foi segura só no nível OCR+cor+quantidade, mas não no nível de leitura completa da tabela. Isso levou a um mapeamento inicial errado para `CAR200*` antes de Pedro corrigir que os códigos/descrições da folha `CANECA COPO 220ML` se referiam à família Tulipa (`TL250*`). Regra operacional: quando a origem for folha/orçamento com colunas, códigos internos do fornecedor e possíveis equivalências comerciais, validar a estrutura completa da imagem e o código do fornecedor antes de mapear SKU físico; se houver dúvida, confirmar antes de aplicar saldo.
+
+## 2026-06-05 — [TÁTICA] Após correção de estoque, validar a fonte que recebe o movimento antes do espelho secundário
+
+Na correção CAR200 → TL250, o motor de estoque confirmou a aplicação correta, mas um espelho Supabase ainda mostrava saldo antigo por atraso de sincronização. Em ajustes de saldo, a verificação final precisa priorizar a fonte escrita pelo motor/livro de movimentos; dashboards/espelhos secundários podem atrasar e não devem derrubar uma correção já aplicada na fonte canônica.

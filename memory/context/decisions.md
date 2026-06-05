@@ -114,3 +114,17 @@ tags:
 - Pedro validou o comportamento seguro no teste da imagem de canecas: mensagens de imagem/lista no grupo Estoque só podem ser processadas automaticamente quando trouxerem cabeçalho operacional explícito como `ENTRADA`, `BAIXA` ou `AVARIA`.
 - Sem cabeçalho, o automático deve ignorar; processamento manual só é permitido com autorização explícita do Pedro e mantendo trilha auditável da mensagem original.
 - Contexto: o OCR conseguiu ler as linhas e quantidades, mas faltava o tipo operacional, então a inferência automática permaneceu bloqueada por segurança.
+
+## 2026-06-05 — Folha/orçamento da Porcelanas Lu com “CANECA COPO 220ML” deve mapear para Tulipa, não para Reta
+
+- Pedro corrigiu explicitamente que `CANECA COPO` com os códigos da folha de orçamento da Porcelanas Lu se refere às canecas **Tulipa**, não à família **Reta 200ml**.
+- Regra operacional derivada: descrições/códigos desse fornecedor precisam mapear para `TL250*` por cor; se aparecerem em imagem ou mensagem futura, não devem mais cair em `CAR200*`.
+- Contexto: uma entrada manual de teste foi inicialmente aplicada em `CAR200AM/AZ/B/VD/R`, depois estornada e relançada corretamente em `TL250A/Z/B/V/R`, com atualização dos aliases para refletir a equivalência correta.
+
+## 2026-06-05 — Fluxo oficial do grupo WhatsApp Estoque: Estoque movimenta saldo; Devoluções só evidencia processo
+
+- Pedro redefiniu que Lucas não classifica devolução para estoque: ele só processa a devolução na plataforma, posta a foto da etiqueta no grupo **Devoluções** e encaminha o item para conferência física.
+- A única fonte válida de movimentação automática/manual de estoque passa a ser o grupo WhatsApp **Estoque - GB Importadora**, após conferência física da Fran/expedição.
+- Formatos oficiais aceitos no grupo Estoque: `ENTRADA`, `DEVOLUÇÃO`, `BAIXA`, `AVARIA DE DEVOLUÇÃO` e `AVARIA DE CONFERÊNCIA`, sempre com **um único produto e uma única quantidade por mensagem**.
+- `ENTRADA` e `DEVOLUÇÃO` somam no estoque vendável; `BAIXA` subtrai com trava de saldo negativo; `AVARIA DE DEVOLUÇÃO` e `AVARIA DE CONFERÊNCIA` devem ser reconhecidas/alertadas, mas não somam no vendável automaticamente.
+- Mensagem sem cabeçalho válido, com cabeçalho genérico `AVARIA`, ou misturando mais de um item/tipo na mesma mensagem, não deve movimentar estoque automaticamente.

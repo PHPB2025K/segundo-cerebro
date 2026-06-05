@@ -33,6 +33,19 @@ Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 en
 
 _Blocos diários abaixo. Job `daily-memory-ingest-ml.py` adiciona um bloco por dia. Rotação automática mantém os últimos 14 dias._
 
+### Dia analisado: 2026-06-04
+_ingestido em 2026-06-05T09:40:42-03:00 BRT | confiança L05: media | insights L05: 3 (2 fato, 1 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- MercadoLíder Platinum — gap R$ 3.744,66, progresso 98,73%, ETA estimado 0,8 dias ao ritmo R$ 4.870,92/dia, Faturamento de hoje R$ 8.712 (1,79x o pace); confirmar no próximo snapshot se medalha_atual virou platinum ou se ponta saindo da janela rolling 60d compensou a entrada do dia 04/06
+- Kit 6 Canecas Porcelana Lisa Reta 200ml (MLB6232315532, Catálogo gold_pro Full): 6 unidades pós-baixa de 16 pedidos, trajetória descendente em 3 ciclos (28→6 entre 02/06 e 04/06) sem evidência de restock — único Catálogo gold_pro do topo; ruptura derruba Buy Box
+- Kit 6 Canecas Tulipa 250ml (MLB6167272090, Full): restock parcial confirmado (0→9 unidades desde paused em 02/06), mas 18 pedidos no dia mantêm runway sub-dia; 7º ciclo do padrão de ruptura recorrente
+- Cluster IMB501 em 49,4% do dia (13º ciclo de concentração): IMB501C 41 + IMB501V 28 em Full no MLB3288536143 (nível regular 0,71 idêntico há 13 ciclos, available_quantity=89 pós-baixa de 69 pedidos, restock confirmado retroativamente de 13→89) + IMB501P 20 em Cross-Docking no MLB4535865317 (estoque robusto 8.310 un); a divergência -13pp Full vs 30d é integralmente IMB501P puxando
+- Kit 4 Potes 640ml Tampa Azul-petróleo (MLB5402326666, Full): nível preocupante 0,66 no 2º ciclo (menor nível do snapshot, abaixo do threshold 0,85); 4 pedidos no dia coerente com perda de exposição orgânica — próximo ciclo classifica como recorrente ou pontual
+- ADS: fatia de 55,25% do faturamento (R$ 4.813,97 / R$ 8.712,49), ROAS 14,37x, ACOS 10,68% — segundo ponto consecutivo na faixa 50-55% após piso de 48,1% em 01/06; série já não é monotonicamente descendente
+- ratings_negative 0,41 estagnou (não avançou vs 01/06 mas não reverteu da alta vs 22-23/05); claims_rate 0,0017 (34% do threshold 0,005); cancellations_rate oficial em zero apesar dos 3 cancelamentos do dia (1,67% sobre 180 pedidos) — divergência semântica esperada entre janela curta e janela longa ML
+- Pendências estruturais do pacote ML (13º ciclo consecutivo desde 22/05): breakdown ADS spend/revenue por platform_item_id; série temporal de nível de qualidade por anúncio + drivers; lista granular de cancelamentos order_id↔platform_item_id↔motivo; ETA de reposição em trânsito ao CD do ML; available_quantity por variação em anúncios multi-variação
+
 ### Dia analisado: 2026-06-02
 _ingestido em 2026-06-03T07:16:19-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
 

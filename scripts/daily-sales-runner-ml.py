@@ -579,8 +579,19 @@ def validate_slack_writer_output(text, package, recipient_name):
         if in_top and line.startswith("-"):
             if re.search(r"\bR\$\s*\d", line) or re.search(r"(?i)\best\.?\b|estimad", line):
                 errors.append(f"Top Produtos contém faturamento/estimativa não autorizada: {line}")
-    if re.search(r"(?i)foi removid[oa]", text) and re.search(r"(?i)\best\.?\b|estimad", text):
-        errors.append("Log declara remoção de estimativa, mas output ainda contém referência estimada.")
+    # Guard narrowly: the broad check below used to fail whenever the Slack Writer
+    # declared that it removed an estimated product revenue and the final message
+    # still contained any legitimate "estimado/estimativa" elsewhere (for example
+    # stock coverage or MercadoLíder ETA). Top Produtos is already checked above;
+    # do not block unrelated estimates that are allowed by the analytical layers.
+    removal_claim = re.search(r"(?i)foi removid[oa].{0,80}(?:R\$|faturamento|receita|estimativa)", text)
+    if removal_claim:
+        for raw in text.splitlines():
+            line = raw.strip()
+            if line.startswith("-") and re.search(r"(?i)top produto|produto", line):
+                if re.search(r"\bR\$\s*\d", line) or re.search(r"(?i)\best\.?\b|estimad", line):
+                    errors.append("Log declara remoção de estimativa, mas Top Produtos ainda contém referência estimada.")
+                    break
     return errors
 
 

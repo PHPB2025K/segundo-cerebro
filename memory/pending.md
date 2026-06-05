@@ -12,7 +12,7 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-06-04 23:45 BRT — consolidação diária em camadas_
+_Atualizado: 2026-06-05 02:00 BRT — organização noturna silenciosa_
 
 ## 🔥 PRIORIDADE — Operação imediata
 
@@ -179,13 +179,14 @@ _Atualizado: 2026-06-04 23:45 BRT — consolidação diária em camadas_
 
 
 ## Nota para briefing matinal — itens estagnados >7 dias
-_Gerado pela organização noturna de 03/06 02:00 BRT._
+_Gerado pela organização noturna de 05/06 02:00 BRT._
 
-- Revalidar no briefing apenas itens que continuam bloqueados por decisão/input do Pedro ou por lacuna operacional real: Estoque GB (`YW1520RC`, validação Central 94/94, avaria `CAR200R` e D+1 vs quase tempo real), Import Hub/GB25010-GB25011 custos, GB26003 bloqueado sem contrato/sinal/autorização, reposição de canecas/Scout aguardando pedidos em trânsito, Pedidos Atacado/PDF oficial Bling e teste controlado, Meta Business Segunda Venda, carrosséis fixos Instagram/Canva, grupo OS/OSA com Davi, Daily Sales v2 sem QA final completo, Shopee Ramp Up/alternância por conta, RH aguardando orientação, DRE abril U15, Guarani distrato assinado antes de pagamento, Social Studio Meta App/secrets, Canggu JWT/health check e infra/autenticações degradadas.
+- Revalidar no briefing apenas itens que continuam bloqueados por decisão/input do Pedro ou por lacuna operacional real: Estoque GB (`YW1520RC`, `YW1050RC`, `CAC250P`, `CAC250AZ`, validação Central 94/94, avaria `CAR200R` e D+1 vs quase tempo real), Import Hub/GB25010-GB25011 custos, GB26003 bloqueado sem contrato/sinal/autorização, reposição de canecas/Scout aguardando pedidos em trânsito, Pedidos Atacado/PDF oficial Bling e teste controlado, Meta Business Segunda Venda, Facebook Page Budamix com rotação de segredo Meta/HTTPS/descrição longa/vanity, carrosséis fixos Instagram/Canva, grupo OS/OSA com Davi, Daily Sales v2 sem QA final completo, Daily Sales Shopee em standby, Shopee Ramp Up/alternância por conta, RH aguardando orientação e possível lacuna técnica do Ponto Certo em 04/06, DRE abril U15, Guarani distrato assinado antes de pagamento, Social Studio Meta App/secrets, Canggu JWT/health check e infra/autenticações degradadas.
 - Ações pedidas para segunda-feira (25/05) continuam na fila salvo confirmação posterior: cobrar Leonardo pelas avaliações dos kits de potes 4 travas e retomar status da automação de pedidos de atacado via WhatsApp.
-- Crons recorrentes mais recentes checados em 03/06 02:00 BRT: Watchdog — GitHub Sync Segundo Cérebro (01:42 BRT), Claude Contingency Guard (01:57 BRT) e job-monitor (01:58 BRT) estavam em status OK. Também seguem OK na virada: Fechamento Pipeline (00:05 BRT), Watchdog — Consolidação em Camadas (00:20 BRT), Inbox Cleanup - Gmail Pedro (00:30 BRT), Consolidação Diária (23:45 BRT) e Daily GitHub Backup (00:00 BRT).
-- Falhas/degradações vistas no painel de crons e já relevantes para investigação: core-audit segue com último status `error` (rodada de 02/06 03:00 BRT), Bling Token Refresh segue em `error` com timeout recente por volta de 23:34 BRT e risco já escalado para Matriz + Filial, Himmel ML WhatsApp Context Ingestion aparece em `error` na última rodada de 19:09 BRT, ML Fees Monitor segue `error` da última segunda, e Consolidação Profunda consta `error` na última execução quinzenal. Não notificar Pedro fora do briefing; manter como pauta técnica.
-- Sessões antigas >30 dias: apenas `memory/sessions/2026-04-15-shopee-audit.md` está acima do corte e foi mantido por ser artefato analítico específico, não nota diária consolidada. `2026-05-04.md` completa 30 dias hoje e ainda foi mantida.
+- Crons recorrentes mais recentes checados em 05/06 02:00 BRT: job-monitor (01:59 BRT), Claude Contingency Guard (01:54 BRT) e Watchdog — GitHub Sync Segundo Cérebro (01:42 BRT) estavam em status OK.
+- Estado do cron Organização Noturna antes desta rodada ainda mostrava timeout da execução anterior em 04/06 02:33 BRT; esta execução deve ser conferida no próximo ciclo para confirmar recuperação. Não notificar Pedro fora do briefing.
+- Falhas/degradações já relevantes para investigação continuam na pauta técnica: Bling Token Refresh/403 Matriz+Filial, lacuna Daily Sales 02/06–04/06, possíveis falhas de sincronização Ponto Certo 04/06, Himmel/ML ingest e monitores antigos com último status error quando reaparecerem no painel.
+- Sessões antigas >30 dias: `2026-05-04.md` e `2026-05-05.md` foram removidas por já estarem consolidadas; `memory/sessions/2026-04-15-shopee-audit.md` foi mantido por ser artefato analítico específico, não nota diária comum.
 - Não reabrir pendências antigas de abril/2026 que Pedro já mandou limpar; manter histórico fora da fila ativa.
 
 ## Backlog Estagnado
@@ -202,4 +203,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última consolidação diária: 2026-06-04 23:45 BRT. Última organização noturna: 2026-06-03 02:00 BRT._
+_Última consolidação diária: 2026-06-04 23:45 BRT. Última organização noturna: 2026-06-05 02:00 BRT._

@@ -1,6 +1,6 @@
 # Contexto Himmel/Granola — Shopee — Budamix Oficial / Conta 2
 
-_Gerado em: 2026-06-05 23:37:22 UTC._
+_Gerado em: 2026-06-06 23:37:26 UTC._
 
 ## Como usar
 - Usar como contexto causal/hipótese nas análises diárias, nunca como fato isolado.

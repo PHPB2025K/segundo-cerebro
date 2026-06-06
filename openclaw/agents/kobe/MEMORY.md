@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-06-04 23:45 BRT (consolidação diária em camadas)._
+_Último update: 2026-06-05 23:45 BRT (consolidação diária em camadas)._
 
 ---
 
@@ -136,10 +136,10 @@ skills/
 | **Vault** | Finanças, tesouraria, caixa | agents/vault | ✅ Operacional |
 | **Scout** | Reposição, demanda, estoque, compras semanais | agents/compras | ✅ Fundação criada + Radar |
 
-## Status do Sistema (04/06/2026 23:45 BRT — consolidação diária em camadas)
+## Status do Sistema (05/06/2026 23:45 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
-- **Atualização executiva 04/06:** Estoque GB corrigiu fechamento de 03/06, backfillou CMV seller e reduziu divergências a rupturas/saldos reais; Daily Sales Shopee Fase 1 foi implementado/validado, mas fica em standby por decisão do Pedro; Página Facebook Budamix foi atualizada via Graph API, com rotação de segredo Meta pendente; Trader apontou lacuna dos ciclos Daily Sales 02/06–04/06; Fisco viu Matriz reconectar parcialmente, mas Filial segue 403; RH apontou possível lacuna técnica de pontos em 04/06.
+- **Atualização executiva 05/06:** Estoque GB recebeu hardening operacional importante: ENVIOS FULL agora deve ser comunicado como detecção por cursor, WhatsApp Estoque ganhou `business_date`, fingerprint e bloqueio de duplicidade por dia, imagens/listas exigem cabeçalho explícito, Porcelanas Lu `CANECA COPO 220ML` foi corrigida para Tulipa (`TL250*`), e o fluxo oficial separa Devoluções como evidência/processo e Estoque como fonte de movimentação após conferência. Bobina Strech/Stretch foi mapeada para `STR01B` e baixa Atacado pedido 976 foi aplicada. Trader ampliou lacuna Daily Sales v2 para 02/06–05/06; Fisco confirmou Matriz OK nas execuções úteis observadas, mas Filial segue 403 há 22 dias; RH manteve 21 comunicações abertas/14 dependentes, com novos pontos de compliance em 05/06.
 - **Telegram Alertas:** tópico Alertas confirmado no thread **10204**; todo conteúdo relacionado a alertas deve ir para lá (watchdogs, guards, audits, monitores, failure alerts, resumos e avisos de risco/problema). Thread 8 permanece Urgente e não deve receber alertas técnicos de rotina.
 - **Planejamento de reposição das canecas / Compras:** prioridade máxima do próximo bloco operacional. Pedro pediu em 25/05 retomar a criação do Diretor de Compras; fundação do agente **Scout** criada com subagente **Radar**. Pedro aprovou estrutura enxuta Scout → Radar por enquanto e regra do cron semanal: recalcular o pipeline inteiro do zero com dados até D-1, comparar contra o plano aprovado e só atualizar se houver mudança relevante. O piloto de canecas segue como primeiro playbook antes de ampliar para outras famílias; todo assunto de compras vai no tópico Compras.
 - **Daily Sales Report Slack / DSA:** envio real para funcionários segue bloqueado até liberação explícita. O DSA ML amadureceu em 23/05 com sistema MercadoLíder, memory ingest diário, consolidações semanal/mensal e decisão de modelo por camada. Desde 24/05, há recorrência de ciclo ML-only ou lacuna de artefatos finais. Em 01/06, Trader consolidou o Daily Sales de 31/05 com R$ 16.538,51 em 351 pedidos, com ML puxando forte. Em 02/06, Daily Sales de 01/06 fechou R$ 23.190,76 em 361 pedidos, mas Atacado - GB Matriz adicionou R$ 6.483,34 em 3 pedidos; marketplaces puros somaram R$ 16.707,42/358 pedidos, com ML ainda forte em R$ 9.953,44. Leitura correta: separar Atacado de marketplaces e validar sustentação de ML/ADS/estoque/cancelamentos. O bloqueio principal continua: sem evidência de Slack Writer/QA final para Lucas, Yasmin e Leonardo; envio real segue bloqueado.
@@ -268,6 +268,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-06-05:** Estoque GB foi endurecido em cinco frentes: ENVIOS FULL passou a reportar detecção por cursor, WhatsApp Estoque ganhou controle de data operacional/fingerprint/anti-duplicidade, imagens/listas exigem cabeçalho explícito, Porcelanas Lu `CANECA COPO 220ML` foi corrigida para Tulipa, e o fluxo oficial separou Devoluções sem movimento de Estoque como única fonte após conferência. Bobina Strech/Stretch foi mapeada para `STR01B` e baixa Atacado pedido 976 aplicada. Gestão de Funcionários teve coleta semanal Slack sem ata formal nova. Trader ampliou lacuna Daily Sales para 02/06–05/06; Fisco manteve Filial 403; RH trouxe novos pontos de compliance em 05/06.
 - **2026-06-04:** Página Facebook Budamix atualizada via Graph API com capa, foto de perfil e bio; App Secret/segredo Meta exposto em chat operacional virou pendência de rotação coordenada. Estoque GB corrigiu fechamento de 03/06 com logs Full/FBA, backfill de CMV seller, BOM definitivo de `KIT6S100`, parser WhatsApp mais robusto e aliases de canecas Guinho; divergências residuais ficaram concentradas em saldo real insuficiente. Daily Sales Shopee Fase 1 foi implementado/validado com 9 camadas v4.0, runner, snapshot fetcher, orquestração, tabela de snapshots e página dedicada no Mission Control, mas fica em standby sem cron 07:00 BRT. Trader apontou lacuna dos ciclos Daily Sales 02/06–04/06; Fisco registrou Matriz reconectando parcialmente e Filial ainda 403; RH apontou ausência total de pontos em 04/06 como possível lacuna técnica.
 - **2026-06-02:** Estoque GB ativou camada CMV+receita com 130 snapshots oficiais desde 01/06, 0 pendências de custo e margem bruta inicial 55,31%; replay dos divergentes corrigíveis zerou falhas sistêmicas, deixando resíduos como ruptura real. Daily Sales 01/06 fechou R$ 23.190,76/361 pedidos, mas Atacado - GB Matriz distorceu o consolidado; marketplaces puros somaram R$ 16.707,42/358 pedidos com ML forte. Pedro aprovou alternância Shopee entre contas e tolerância estratégica a ACoS alto em MDF no ML. Fisco alertou 403 também na Matriz do Bling; RH manteve backlog de 21 comunicações e trouxe novos pontos de compliance em Sandra/Franciele/Guilherme/Lucas/Mateus.
 - **2026-06-01:** Fechamento financeiro mensal de maio entregue: receita comercial válida R$ 366.007,59 (-9,8% vs abril), resultado operacional R$ 94.676,87 e margem 25,9%, mas DRE parcial por Amazon Ads maio N/D e CMV incompleto. Estoque GB avançou com hardening do Daily Marketplace Baixa, limpeza do Central físico para alinhar à aba ESTOQUE, relação de canecas enviada para Simone e resolvedor de descrição livre/baixa total inequívoca para avarias (`CAR200R`). Trader reportou Daily Sales 31/05 positivo em R$ 16.538,51/351 pedidos, com ML em pico forte, mas o pipeline Slack/QA final segue sem evidência completa. Fisco manteve Bling Filial 403 pelo 18º dia; RH subiu para 21 comunicações abertas e 14 dependentes de orientação.
@@ -317,7 +318,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) finalizar Estoque GB com rupturas reais (`YW1520RC`, `YW1050RC`, `CAC250P`, `CAC250AZ`), validação Central 94/94, avaria `CAR200R`, monitoramento CMV+receita e decisão D+1 vs quase tempo real, (2) manter GB26003 bloqueado como não pedido/embarque real sem contrato assinado, sinal pago e autorização explícita, (3) validar/recuperar artefatos Daily Sales 02/06–04/06 e reexecutar ciclo completo com QA/previews antes de qualquer envio real, (4) manter Daily Sales Shopee em standby até densidade nas camadas restantes, smokes das Contas 2/3 e gaps do fetcher resolvidos, (5) rotacionar segredo Meta e finalizar ajustes da Página Facebook Budamix, (6) fechar Amazon Ads maio e CMV faltante para transformar a DRE maio em versão completa, (7) validar/desbloquear Bling Matriz + Filial antes de qualquer operação fiscal, (8) checar possível lacuna técnica do Ponto Certo em 04/06 e orientar RH sem liberar proativo genérico, (9) fechar reposição de canecas após Pedro enviar pedidos em trânsito/já feitos, (10) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT._
+_Próximas ações: (1) manter Estoque GB com linguagem ENVIOS FULL por cursor, anti-duplicidade WhatsApp, cabeçalho explícito e fluxo Estoque/Devoluções, além de resolver rupturas reais (`YW1520RC`, `YW1050RC`, `CAC250P`, `CAC250AZ`), validar Central 94/94, monitorar CMV+receita e decidir D+1 vs quase tempo real, (2) manter GB26003 bloqueado como não pedido/embarque real sem contrato assinado, sinal pago e autorização explícita, (3) validar/recuperar artefatos Daily Sales 02/06–05/06 e reexecutar ciclo completo com QA/previews antes de qualquer envio real, (4) manter Daily Sales Shopee em standby até densidade nas camadas restantes, smokes das Contas 2/3 e gaps do fetcher resolvidos, (5) rotacionar segredo Meta e finalizar ajustes da Página Facebook Budamix, (6) fechar Amazon Ads maio e CMV faltante para transformar a DRE maio em versão completa, (7) validar estabilidade Bling Matriz + desbloquear Filial antes de qualquer operação fiscal, (8) orientar RH sobre Sandra/Leonardo/Lucas/Mateus/Yasmin sem liberar proativo genérico, (9) fechar reposição de canecas após Pedro enviar pedidos em trânsito/já feitos, (10) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT._
 
 ---
 ## Contexto
@@ -348,6 +349,14 @@ _Próximas ações: (1) finalizar Estoque GB com rupturas reais (`YW1520RC`, `YW
 - [[openclaw/agents/kobe/shared/rh/SOUL|RH Workspace]]
 - [[openclaw/agents/kobe/shared/simulimport/reforma-tributaria-importacao|Reforma Tributária (SimulImport)]]
 
+
+
+
+## Qualidade da Memória (Consolidação em Camadas — 05/06 23:45 BRT)
+- Digests lidos: Trader, Spark, Builder, Fisco e RH. Digests ausentes: nenhum.
+- Escopo respeitado: Kobe/main + digests dos agentes diretos definidos no cron; sem varrer memória interna de agentes, subagentes, workers ou analysts temporários.
+- Marcos globais incorporados: hardening do Estoque GB/WhatsApp/ENVIOS FULL; correção Porcelanas Lu → Tulipa; fluxo oficial Estoque vs Devoluções; alias Bobina Strech/Stretch → `STR01B` e baixa Atacado pedido 976; coleta semanal Slack de Gestão de Funcionários.
+- Riscos críticos vindos dos digests: Daily Sales v2 sem artefatos validados de 02/06–05/06; Bling Filial segue HTTP 403 apesar de Matriz OK nas execuções úteis; RH mantém 21 comunicações abertas, 14 dependentes de orientação, com Sandra sem marcações recorrente e novos pontos em Leonardo/Lucas/Mateus/Yasmin.
 
 
 

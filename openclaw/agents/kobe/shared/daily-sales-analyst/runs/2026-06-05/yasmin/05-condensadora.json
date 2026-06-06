@@ -1,0 +1,64 @@
+{
+  "camada": "05-condensadora",
+  "data": "2026-06-05",
+  "plataforma": "ml",
+  "recipient": "Yasmin",
+  "analise_final_condensada": [
+    {
+      "insight": "A conta cruzou o threshold financeiro do MercadoLíder Platinum (Faturamento 60d em R$ 296.060 contra R$ 296.000 exigidos, progresso 100%), mas a medalha segue Gold no snapshot — lag esperado do ML. O risco agora não é mais chegar lá, é chegar limpo: a Tulipa em catálogo pausada gerou 11 pedidos hoje em anúncio com estoque zero, todos cancelamentos prospectivos que ainda não entraram nos 5 cancelamentos do dia nem na cancellations_rate oficial (zero). Se essa série acumulada entrar na janela longa do ML antes do reconhecimento formal, mexe com a métrica de qualidade exatamente na hora da virada.",
+      "padrao": "F — Métrica vs qualidade",
+      "base": "combinação",
+      "classificacao": "risco latente"
+    },
+    {
+      "insight": "O maior gerador de pedidos da conta hoje (Jogo Potes Vidro 5 Peças Tampa Cinza em Full, 42 pedidos = 25,6% do dia) fechou com 58 unidades pós-baixa — cobertura prospectiva de ~1,3 dias ao ritmo de hoje, em nível regular (0,71) há cerca de 16 ciclos. Em Full, reposição ao CD do ML leva dias; ruptura aqui não se reverte em horas e tira o vetor que mais sustenta volume da conta justamente na janela em que o ML decide a promoção. ETA de reposição precisa ser confirmado nas próximas 24h.",
+      "padrao": "E — Localização",
+      "base": "combinação",
+      "classificacao": "risco latente"
+    },
+    {
+      "insight": "Modalidade de envio no top 10 do dia ficou 62,9% Full contra 81,1% nos últimos 30 dias — parece queda do canal Full, mas não é. As duas variações Cross-Docking do cluster IMB501 (Tampa Vermelha e Tampa Preta) ocuparam as posições 2 e 3 com 37 pedidos combinados, puxando o número do dia. A base ativa segue normalmente assimétrica entre Full e Cross-Docking; o que mudou foi a composição do dia, não o canal.",
+      "padrao": "C — Inversão negativa",
+      "base": "Operacional",
+      "classificacao": "fato"
+    }
+  ],
+  "prioridades_condensadas": [
+    {
+      "prioridade": "Yasmin verifica ETA de reposição do Jogo Potes Vidro 5 Peças Tampa Cinza (Full, líder do dia) com a cadeia de suprimentos",
+      "por_que": "Cobertura prospectiva de ~1,3 dias sobre o anúncio que carrega 25,6% do volume, em Full (onde reativação demora dias), na semana em que a conta aguarda reconhecimento formal do Platinum — ruptura aqui interrompe o maior vetor de pedidos no pior momento possível",
+      "sinal_de_confirmacao_refutacao": "ETA confirmado dentro de 24h com quantidade suficiente = risco neutralizado no ciclo; ETA acima de 48h ou sem resposta = escalar para Kobe sobre priorização de restock Full",
+      "escalar_se": "ETA acima de 48h, sem resposta, ou available_quantity cair abaixo de 20 no próximo snapshot"
+    },
+    {
+      "prioridade": "Yasmin monitora cancellations_rate da reputação no próximo snapshot ML",
+      "por_que": "Os 11 pedidos da Tulipa pausada são cancelamentos prospectivos garantidos no 8º+ ciclo do padrão; com threshold Platinum cruzado e medalha ainda Gold, qualquer saída de zero na cancellations_rate oficial é o sinal mais sensível para a transição da medalha",
+      "sinal_de_confirmacao_refutacao": "cancellations_rate=0 no próximo snapshot = série ainda fora da janela oficial, observar por mais 1-2 ciclos; cancellations_rate > 0 = aciona Kobe sobre impacto na elegibilidade Platinum formal antes de qualquer outra ação",
+      "escalar_se": "cancellations_rate sair de zero em qualquer snapshot das próximas 72h"
+    },
+    {
+      "prioridade": "Yasmin confere available_quantity do Kit 6 Canecas Lisas 200ml (único catálogo gold_pro Full do top 10) no próximo snapshot",
+      "por_que": "Restock confirmado entre 04/06 e 05/06 (11 → 30 unidades), cobertura atual ~2,1 dias — saiu da zona crítica imediata mas margem segue estreita; ruptura em catálogo derruba Buy Box e recuperação é lenta",
+      "sinal_de_confirmacao_refutacao": "available_quantity ≥ 20 pós-baixa = zona segura por 1-2 ciclos; available_quantity < 15 = providência de restock imediata via cadeia de suprimentos",
+      "escalar_se": "available_quantity cair abaixo de 15 unidades"
+    }
+  ],
+  "o_que_nao_pode_ir_para_slack": [],
+  "memoria_para_amanha": [
+    "MercadoLíder: gap_revenue_brl=0, progress_pct=100%, sales_60d_revenue_brl R$ 296.060 vs threshold R$ 296.000, sales_60d_count_paid 6.683 vs threshold 1.725 — 1º ciclo com critério financeiro cruzado e power_seller_status ainda gold; confirmar no próximo snapshot se medalha atualizou ou se Faturamento alto saindo da janela rolling 60d compensou a entrada do dia",
+    "Jogo Potes Vidro 5 Peças Tampa Cinza (MLB3288536143, IMB501C, Full): 42 pedidos = 25,6% do dia, available_quantity=58 pós-baixa, ~16º ciclo em nível regular (0,71) idêntico — checar amanhã se reposição entrou, se cobertura caiu abaixo de 30 ou se status virou paused",
+    "Kit 6 Canecas Porcelana Tulipa 250ml (MLB6167272090, Full, paused, available_quantity=0): 11 pedidos no dia, 8º+ ciclo do padrão de ruptura prospectiva — monitorar cancellations_rate nos próximos 1-3 snapshots; sair de zero confirma entrada da série acumulada na janela oficial ML",
+    "Kit 4 Potes 640ml Tampa Azul-petróleo (MLB5402326666, Clássico Full): nível preocupante (0,66) no 2º ciclo abaixo do threshold 0,85, estoque confortável (~17 dias de cobertura) — risco é exposição orgânica em ranking de categoria; 3º ciclo decide recorrente vs pontual",
+    "Cluster IMB501 em 48,2% do dia (3º produto a 3º produto): IMB501C 42 pedidos Full no MLB3288536143 + IMB501V 20 pedidos Cross-Docking no MLB4535659243 + IMB501P 17 pedidos Cross-Docking no MLB4535865317; divergência -18,2pp Full vs 30d é integralmente produto-específica, não estrutural",
+    "ADS: fatia de 55,1% do Faturamento (R$ 4.268,26 / R$ 7.742,32), ROAS 14,03x, ACOS 7,27%, gasto R$ 304,23 — 5º+ ciclo na faixa 48-57%; gatilho de revisão com Himmel (ACOS > 30% ou fatia > 60% por 2 ciclos) segue distante",
+    "Reputação: color=5_green, claims_rate=0,0018 (36% do threshold 0,005), cancellations_rate=0, delayed_handling_rate=0,0009, ratings_negative estagnado em 0,41 — vetor latente se cancellations_rate sair de zero antes do reconhecimento formal Platinum",
+    "Pendências estruturais do pacote ML (15º ciclo consecutivo desde 22/05): breakdown ADS spend/revenue por platform_item_id; série temporal de nível de qualidade por anúncio + drivers; lista granular de cancelamentos order_id↔platform_item_id↔motivo; ETA de reposição em trânsito ao CD do ML; available_quantity por variação em anúncios multi-variação"
+  ],
+  "alertas_de_confianca": {
+    "nivel": "media",
+    "explicacao": "Pacote ml_snapshot completo e reconciliação OK para todas as plataformas, identificação produto-a-produto íntegra (mapping 'mapped' com confidence 'high' no top 5 e SKU codificado IMB501C confirmando Tampa Cinza onde o título ML é genérico). Confiança não é alta porque as quatro perguntas da L03 ficaram inconclusivas por falta de dado (status individual dos 11 pedidos da Tulipa, atribuição dos 5 cancelamentos por anúncio, split de available_quantity por variação no MLB3288536143 multi-variação, estoque físico Budamix para Cross-Docking) — pendências estruturais recorrentes desde 22/05. A leitura dos riscos é prospectiva e bem-fundamentada, mas a calibração fina (timing exato dos cancelamentos entrarem na janela, ETA de reposição Full) depende de informação fora do pacote."
+  },
+  "llm_used": true,
+  "model": "claude-opus-4-7",
+  "fallback": false
+}

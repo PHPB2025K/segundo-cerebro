@@ -1,0 +1,88 @@
+{
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "Dois Maiores em gates distintos acionam bloqueio automático pela regra de agregação. Gate 6: L06 expôs metadados internos de classificação — os rótulos '(risco latente)' e '(fato)' aparecem ao final de cada bullet da seção Análise, violando a regra explícita 'não citar classificacao (são metadados internos)'. Gate 10: 'qualidade do anúncio em regular (nível 0,71)' inclui pontuação numérica ao lado do nome do nível, padrão explicitamente proibido e classificado como Maior pelo Gate 10. Com 1 Maior no Gate 6 e 1 Maior no Gate 10 — gates diferentes — a tabela dura exige BLOQUEADO.",
+  "send_allowed": false,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "FALHA",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "FALHA",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 2,
+    "maiores_gates_distintos": 2,
+    "menores": 2,
+    "regra_agregacao_aplicada": "2 Maiores em gates diferentes (Gate 6 e Gate 10) → BLOQUEADO"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Maior",
+      "gate": "Gate 6 — Análise da Conta",
+      "texto_atual": "...pode mexer com a métrica de qualidade exatamente na hora da virada. (risco latente) | ...O prazo de reposição precisa ser confirmado nas próximas 24h. (risco latente) | ...o que mudou foi a composição do dia, não o canal. (fato)",
+      "texto_esperado": "Ausência completa dos rótulos '(risco latente)' e '(fato)' ao final dos bullets. A nuance já está preservada no corpo textual: linguagem condicional ('pode mexer', 'se essa série entrar') para risco latente, linguagem afirmativa ('parece queda do canal Full, mas não é') para fato.",
+      "estado_atual": "Os valores do campo 'classificacao' da L05 foram inseridos literalmente ao final de cada bullet de Análise. L06 justificou no log como 'conforme permitido para preservar nuance', mas o prompt é explícito: não citar 'classificacao' (metadado interno). Nenhuma regra do pipeline autoriza essa exibição.",
+      "estado_esperado": "Nenhum rótulo de campo interno visível na mensagem Slack. A classificação da L05 orienta a linguagem escolhida — não aparece como texto literal.",
+      "regra_violada": "Gate 6 — Validar: 'não citar padrao, base ou classificacao (são metadados internos)'",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Maior",
+      "gate": "Gate 10 — Tom e utilidade",
+      "texto_atual": "com qualidade do anúncio em regular (nível 0,71) há cerca de 16 dias seguidos",
+      "texto_esperado": "com qualidade do anúncio em regular há cerca de 16 dias seguidos",
+      "estado_atual": "O valor numérico 0,71 aparece entre parênteses ao lado do nome do nível 'regular'. O Gate 10 lista exatamente esse padrão como exemplo proibido: 'qualidade do anúncio em regular (0,71)'.",
+      "estado_esperado": "Apenas o nome da faixa natural ('regular') sem pontuação numérica. O dado 0,71 é detalhe interno da API ML — não agrega orientação operacional a Yasmin além do nome do nível.",
+      "regra_violada": "Gate 10 — Bloquear como Maior: 'pontuação numérica entre parênteses ao lado do nome do nível (ex.: em regular (0,71)) — O valor numérico é detalhe interno — Slack deve usar só o nome da faixa'",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "As duas variações Cross-Docking do grupo IMB501 (Tampa Vermelha e Tampa Preta) ocuparam as posições 2 e 3 com 37 pedidos combinados",
+      "texto_esperado": "As duas variações Cross-Docking do grupo IMB501 (Potes Vidro 5 Peças — Tampa Vermelha e Potes Vidro 5 Peças — Tampa Preta) ocuparam as posições 2 e 3 com 37 pedidos combinados",
+      "estado_atual": "Na seção Análise, os produtos IMB501V e IMB501P são referenciados como 'Tampa Vermelha' e 'Tampa Preta', sem o prefixo 'Potes Vidro 5 Peças —' utilizado no Top Produtos para os mesmos produtos.",
+      "estado_esperado": "Mesmo slack_short_name canônico em todas as seções da mensagem para o mesmo produto.",
+      "regra_violada": "Gate 5 — Registrar como Menor (consistência cross-section): mesmo produto aparece com nome diferente em seções distintas — não bloqueia, mas é ruído de identificação",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 10 — Tom e utilidade",
+      "texto_atual": "'snapshot' aparece 5+ vezes (no próximo snapshot ML / taxa em zero no próximo snapshot / sair de zero em qualquer snapshot nas próximas 72h / no próximo snapshot / estoque cair abaixo de 20 unidades no próximo snapshot); 'prospectivo/prospectiva' aparece 3 vezes (cancelamentos prospectivos que ainda não aparecem / cobertura prospectiva de cerca de 1,3 dias / são cancelamentos prospectivos garantidos)",
+      "texto_esperado": "Cada termo da lista de jargão técnico com no máximo 2 ocorrências, ou substituído por equivalente natural: 'próxima atualização' ou 'próxima leitura' em vez de 'snapshot'; 'cancelamentos que serão automáticos' ou 'que ainda serão processados como cancelamento' em vez de 'cancelamentos prospectivos'",
+      "estado_atual": "'snapshot' totaliza 5 ocorrências e 'prospectivo/prospectiva' totaliza 3 ocorrências — ambos listados na tabela de jargão técnico do Gate 10. Frequência combinada indica uso sistemático de termos não traduzidos.",
+      "estado_esperado": "Frequência de cada termo listado abaixo de 3, ou uso consistente de tradução natural como orientado pelo L06 em outras substituições (ETA → prazo, threshold → limite).",
+      "regra_violada": "Gate 10 — Bloquear como Menor: 'mensagem Slack contiver 3+ ocorrências dos seguintes termos técnicos sem tradução natural: snapshot, prospectivo/retrospectivo'",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [
+    "Remover os rótulos '(risco latente)' e '(fato)' do final de cada bullet da seção 🔍 ANÁLISE DA CONTA. A linguagem condicional já presente no corpo de cada bullet preserva a nuance sem citar metadado interno: 'pode mexer', 'se essa série acumulada entrar', 'parece queda do canal Full, mas não é'.",
+    "Substituir 'qualidade do anúncio em regular (nível 0,71)' por 'qualidade do anúncio em regular' — remover o valor numérico 0,71. O nome do nível 'regular' é suficiente para orientar Yasmin operacionalmente."
+  ],
+  "ressalvas_memoria_interna": [
+    "Após correção dos 2 Maiores, a mensagem está apta para envio: fidelidade à L05 preservada em todos os 3 insights (tese central, conectivos, verbo modal e classificação corretamente sinalizados por linguagem — não por rótulo), 3 prioridades completas com sinal_de_confirmacao_refutacao e escalar_se, estrutura Slack correta nas 6 seções, slack_short_name canônico aplicado no Top Produtos e nas menções de Prioridades.",
+    "Após eliminação dos Maiores, considerar também alinhar as menções de Análise ('Tampa Vermelha', 'Tampa Preta') para o slack_short_name completo ('Potes Vidro 5 Peças — Tampa Vermelha', 'Potes Vidro 5 Peças — Tampa Preta') — não é bloqueante, mas elimina o Menor de consistência cross-section.",
+    "Substituir ocorrências de 'snapshot' por 'próxima atualização' ou 'próxima leitura' nas prioridades elimina o Menor de jargão técnico e alinha com o critério de simplicidade de vocabulário aplicado pela L06 nas demais traduções (ETA → prazo, threshold → limite, fulfillment_mix → proporção de pedidos em Full)."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "MercadoLíder: gap_revenue_brl=0 e progress_pct=100% com power_seller_status ainda 'gold' — 1º ciclo nessa configuração. Lag esperado no sistema ML, tratado corretamente como hipótese na L05 e preservado com linguagem adequada na L06. Se power_seller_status permanecer 'gold' por mais 2 ciclos com critérios financeiros 100% atendidos, acionar verificação direta no painel ML via Yasmin conforme sinalizado pela L02.",
+    "ratings_negative em 0,41 estagnado há múltiplos ciclos. Não afetou o threshold de reputação nem contaminou a análise de hoje. É vetor latente que merece monitoramento estrutural — especialmente se cancellations_rate sair de zero antes do reconhecimento formal do Platinum, combinando dois vetores de qualidade negativos simultaneamente.",
+    "Pendências estruturais recorrentes do pacote ML (15º+ ciclo desde 22/05): breakdown ADS spend/revenue por platform_item_id, série temporal de nível de qualidade por anúncio, lista granular de cancelamentos order_id↔platform_item_id↔motivo, ETA de reposição em trânsito ao CD do ML, available_quantity por variation_id em anúncios multi-variação. Estas limitações constrangem a calibração fina da análise e forçaram 4 das 4 perguntas operacionais da L03 para 'inconclusivo por falta de dado', mas não contaminaram o Slack com conclusões falsas — a L05 preservou linguagem prospectiva e a L06 a manteve.",
+    "Kit 6 Canecas Tulipa 250ml (MLB6167272090) com status=paused e available_quantity=0 aparece legitimamente no Top 5 com 11 pedidos do dia analisado. A L04/L05 não bloqueou o produto. A análise e prioridades cobrem corretamente o contexto dos cancelamentos prospectivos sem nomear o produto como bloqueado. Nenhuma inconsistência de dado detectada.",
+    "fulfillment_mix_yesterday_top10 cobre 132 de 164 pedidos (80,5%), acima do threshold de 70% que exigiria bloqueio no Gate 12. L06 corretamente omitiu o mix da seção VISÃO e o tratou apenas na Análise como fato de composição do dia — decisão preservada e registrada no log."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

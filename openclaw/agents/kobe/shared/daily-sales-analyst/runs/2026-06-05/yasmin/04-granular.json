@@ -1,0 +1,299 @@
+{
+  "camada": "04-granular",
+  "data": "2026-06-05",
+  "plataforma": "ml",
+  "recipient": "Yasmin",
+  "respostas_operacional": [
+    {
+      "pergunta": "Qual o status de processamento atual dos 11 pedidos da Tulipa (MLB6167272090) — foram cancelados automaticamente pelo ML, estão em fila ou há algum em andamento?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "produto_visivel": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+        "platform_item_id": "MLB6167272090",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "status_anuncio": "paused",
+        "available_quantity_snapshot": 0,
+        "logistic_type": "fulfillment",
+        "pedidos_dia": 11,
+        "quantity_dia": 11,
+        "metrics_cancelamentos_dia": 5,
+        "reputation_cancellations_rate": 0,
+        "dado_necessario_ausente": "status individual order_id × platform_item_id × estado de processamento (pago / a_caminho / cancelado / fila), timestamp de pausa do anúncio vs timestamp dos pedidos"
+      },
+      "leitura": "O pacote confirma: 11 pedidos no dia foram gerados em um anúncio com status=paused e available_quantity=0 no snapshot 2026-06-06T09:50 UTC. Mas o pacote não traz o estado de processamento de cada um dos 11 order_ids — não dá pra dizer se algum já foi cancelado automaticamente, se há em fila, ou se foram aceitos antes da pausa entrar em vigor. cancellations_rate oficial em zero indica que, até o momento do snapshot, nenhum cancelamento desses 11 pedidos havia entrado na janela longa ML, mas a janela tem latência própria e é cumulativa de 60d.",
+      "conclusao_granular": "inconclusivo por falta de dado — o risco prospectivo é real e coerente com o 8º+ ciclo do padrão, mas o pacote não permite afirmar quantos dos 11 pedidos já viraram cancelamento efetivo nem o timing exato",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "Dos 5 cancelamentos registrados em metrics.cancelamentos do dia, qual a atribuição por platform_item_id — vieram da Tulipa, do MLB3288536143 ou de outro anúncio?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "metrics_cancelamentos_dia": 5,
+        "campos_disponiveis_no_pacote": [
+          "metrics.cancelamentos (agregado do dia)",
+          "reputation.cancellations_rate (janela longa ML, valor 0)"
+        ],
+        "campo_ausente": "breakdown order_id × platform_item_id × motivo de cancelamento",
+        "candidatos_naturais_identificados": [
+          {
+            "platform_item_id": "MLB6167272090",
+            "produto_visivel": "Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara",
+            "razão": "paused + available_quantity=0 + 11 pedidos no dia"
+          }
+        ],
+        "memoria_serie_recente": "26/05: 3 / 30/05: 2 / 31/05: 6 / 01/06: 9 / 02/06: 4 / 04/06: 4 (sem atribuição em nenhum ciclo)"
+      },
+      "leitura": "Pendência estrutural recorrente desde 22/05 (15º ciclo). metrics.cancelamentos é agregado puro do dia, sem decomposição por anúncio ou motivo. reputation.cancellations_rate é métrica diferente (janela longa ML), não substituível. Sem o breakdown, a atribuição é apenas inferência: Tulipa é candidato natural mas não confirmado por pedido real categorizado.",
+      "conclusao_granular": "inconclusivo por falta de dado — pendência estrutural não resolvida no pacote v2",
+      "confianca": "baixa"
+    },
+    {
+      "pergunta": "available_quantity do MLB3288536143 (Conjunto 5 Potes Vidro Tampa Cinza) está desagregado por variação de cor/tampa — qual variação específica está mais próxima da ruptura dentro dos 58 agregados?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "platform_item_id": "MLB3288536143",
+        "title_ml": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+        "fonte": "top_items_details / top_products",
+        "available_quantity_agregado_snapshot": 58,
+        "logistic_type": "fulfillment",
+        "health": 0.71,
+        "variacoes_ativas_no_anuncio_via_SKU_codificado": [
+          {
+            "sku": "IMB501C",
+            "confirmed_variation_attributes": [
+              "Tampa Cinza"
+            ],
+            "orders_dia": 42,
+            "quantity_dia": 46
+          },
+          {
+            "sku": "IMB501V",
+            "confirmed_variation_attributes": [
+              "Tampa Vermelha"
+            ],
+            "orders_dia": 20,
+            "quantity_dia": 20,
+            "platform_item_id_top_products": "MLB4535659243"
+          },
+          {
+            "sku": "IMB501P",
+            "confirmed_variation_attributes": [
+              "Tampa Preta"
+            ],
+            "orders_dia": 17,
+            "quantity_dia": 19,
+            "platform_item_id_top_products": "MLB4535865317"
+          }
+        ],
+        "campo_ausente": "available_quantity por variation_id dentro de cada MLB multi-variação"
+      },
+      "leitura": "Atenção: revisando os identificadores, IMB501V (Tampa Vermelha) e IMB501P (Tampa Preta) aparecem em top_products com platform_item_ids próprios (MLB4535659243 e MLB4535865317, ambos Cross-Docking, available_quantity 8.247 e 8.297 — sem risco). Apenas IMB501C (Tampa Cinza) é o que vendeu via MLB3288536143 Full. Logo, os 46 unidades vendidas no MLB3288536143 são da variação Tampa Cinza (IMB501C) — confirmado por confirmed_variation_attributes. Os 58 available_quantity são do anúncio agregado: o pacote não desagrega por variation_id interna, mas a probabilidade do estoque restante ser majoritariamente Tampa Cinza é alta dado que a Cinza é a variação que mais vende nesse MLB. Pergunta permanece sem resposta determinística por ausência de campo.",
+      "conclusao_granular": "parcialmente respondida com indício — vendas no MLB3288536143 do dia são Tampa Cinza (IMB501C, confirmado por SKU codificado), mas o split de available_quantity=58 entre variações dentro do anúncio não está no pacote",
+      "confianca": "média"
+    },
+    {
+      "pergunta": "Qual o estoque físico atual na expedição Budamix para MLB6582682928 (Kit 6 Canecas 250ml Canelada Preta, Cross-Docking) — os 8 available_quantity do snapshot refletem o estoque real disponível para coleta ML ou há mais em prateleira ainda não sincronizado?",
+      "status": "não respondida por falta de dado",
+      "evidencia": {
+        "produto_visivel": "Kit 6 Canecas Porcelana 250ml Canelada Colorida Café Chá Preta Canelada",
+        "platform_item_id": "MLB6582682928",
+        "fonte": "top_items_details / top_products",
+        "available_quantity_snapshot": 8,
+        "logistic_type": "cross_docking",
+        "pedidos_dia": 7,
+        "quantity_dia": 7,
+        "health": null,
+        "mapping_status": "mapped_generic_sku",
+        "mapping_confidence": "medium",
+        "campo_ausente": "snapshot de estoque físico Budamix (sistema interno de expedição), não acessível via pacote ML"
+      },
+      "leitura": "Pacote só carrega available_quantity reportado ao ML (estoque sincronizado disponível para coleta). Estoque físico Budamix interno não está no escopo do ml_snapshot. Em Cross-Docking, reposição é direta sem lead time de CD do ML, mas confirmar disponibilidade real exige consulta ao sistema de expedição Budamix — fora do pacote.",
+      "conclusao_granular": "inconclusivo por falta de dado — verificação exige consulta a sistema interno Budamix",
+      "confianca": "baixa"
+    }
+  ],
+  "investigacoes_proprias": [
+    {
+      "investigacao": "Verificação de risco prospectivo de cobertura no líder Full MLB3288536143 ao ritmo do dia",
+      "origem": "L01 estratégica + L02 tática",
+      "evidencia": {
+        "produto_visivel": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+        "platform_item_id": "MLB3288536143",
+        "fonte": "top_items_details / top_products (raw_title)",
+        "confirmed_variation_attributes_da_venda_do_dia": [
+          "Tampa Cinza"
+        ],
+        "sku_codificado_venda_do_dia": "IMB501C",
+        "logistic_type": "fulfillment",
+        "available_quantity_snapshot_post_baixa": 58,
+        "pedidos_dia_no_MLB": 42,
+        "quantity_dia_no_MLB": 46,
+        "ritmo_implicito_dia": "46 un/dia",
+        "cobertura_prospectiva_ritmo_dia": "~1,26 dias",
+        "ritmo_medio_7d_estimado_via_memoria": "variável — picos recentes 69 pedidos (04/06) e 121 pedidos (31/05) no cluster IMB501 agregado; nesse MLB isolado, fica na faixa 40-50/dia",
+        "cobertura_prospectiva_ritmo_medio": "~1,2 a 1,4 dias",
+        "health_pontual": 0.71,
+        "health_serie_temporal_no_pacote": "ausente (apenas valor pontual)"
+      },
+      "leitura": "Cobertura prospectiva inferior a 1,5 dia ao ritmo de hoje e ao ritmo médio recente. Anúncio Full em situação de runway curto pela 4ª aparição consecutiva na série weekly. O snapshot é POST-baixa dos pedidos do dia analisado — os 42 pedidos de hoje JÁ foram atendidos; risco é exclusivamente prospectivo (D+1 em diante). Sem ETA de reposição no pacote, não dá pra calibrar se reposição chega antes da ruptura.",
+      "conclusao_granular": "confirma a ação tática 1 da L02 (verificar ETA de reposição com urgência)",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Cobertura prospectiva do Catálogo gold_pro Full (Kit 6 Canecas Lisas 200ml) confirma recuperação parcial",
+      "origem": "L01 estratégica + L02 tática",
+      "evidencia": {
+        "produto_visivel": "Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida",
+        "platform_item_id": "MLB6232315532",
+        "fonte": "top_items_details / top_products",
+        "is_catalog": true,
+        "catalog_product_id": "MLB56152808",
+        "listing_type": "gold_pro",
+        "logistic_type": "fulfillment",
+        "available_quantity_snapshot_post_baixa": 30,
+        "pedidos_dia": 13,
+        "quantity_dia": 14,
+        "cobertura_prospectiva_ritmo_dia": "~2,1 dias",
+        "memoria_04_06": "available_quantity=11 pós-baixa (piso da série)",
+        "delta_estoque_04_06_para_05_06": "+19 (snapshot 11 → 30) sugere restock confirmado entre 04/06 e 05/06",
+        "health": null,
+        "interpretacao_health_null": "ML não calcula health pra esse anúncio (volume insuficiente), NÃO significa saudável"
+      },
+      "leitura": "Restock confirmado entre 04/06 e 05/06: subiu de 11 para 30 unidades pós-baixa. Cobertura ~2,1 dias ao ritmo do dia. Único Catálogo gold_pro do top 10 — ruptura aqui derruba Buy Box em página de catálogo, recuperação lenta. Risco se reduziu vs ciclo anterior, mas margem segue estreita.",
+      "conclusao_granular": "confirma checagem 3 da L02 — zona razoavelmente segura para 1-2 ciclos; monitorar próximo snapshot",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Verificação de operação ativa de Flex (anomalia operacional)",
+      "origem": "anomalia",
+      "evidencia": {
+        "flex_pct_yesterday_top10": 0.0,
+        "flex_pct_7d": 0.0,
+        "flex_pct_30d": 0.0,
+        "flex_pct_active_base": 0.0,
+        "pedidos_logistic_type_self_service": 0
+      },
+      "leitura": "Flex (self_service) zerado em todas as janelas — coerente com a decisão operacional Budamix de manter Flex desligado. Nenhuma anomalia operacional de modalidade.",
+      "conclusao_granular": "descartada — sem anomalia",
+      "confianca": "alta"
+    },
+    {
+      "investigacao": "Saúde do segundo Clássico Full em zona crítica (MLB5402326666) — Kit 4 Potes 640ml",
+      "origem": "L01 estratégica",
+      "evidencia": {
+        "produto_visivel": "Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petróleo",
+        "platform_item_id": "MLB5402326666",
+        "fonte": "top_items_details / top_products",
+        "listing_type": "gold_special",
+        "is_catalog": false,
+        "logistic_type": "fulfillment",
+        "health_atual": 0.66,
+        "health_threshold_low": 0.85,
+        "health_ciclo_anterior_memoria": 0.66,
+        "available_quantity_snapshot": 87,
+        "pedidos_dia": 5,
+        "quantity_dia": 5,
+        "cobertura_prospectiva_ritmo_dia": "~17 dias",
+        "serie_temporal_health_disponivel": false
+      },
+      "leitura": "Health em 0,66 pelo 2º ciclo consecutivo abaixo do threshold (0,85). Estoque não é o risco aqui (cobertura confortável); o risco é exposição orgânica em ranking de categoria sendo erodida progressivamente. Sem série temporal de health, direção (caindo / estável) não é observável — apenas a estabilidade em 0,66 está confirmada.",
+      "conclusao_granular": "confirma a sinalização da L01 sobre saúde degradada no 2º Clássico Full do top 10; direção interna do health permanece não observável",
+      "confianca": "média"
+    },
+    {
+      "investigacao": "Confirmação de integridade de identificação produto-a-produto do cluster IMB501",
+      "origem": "risco de identificação",
+      "evidencia": {
+        "cluster": "IMB501 (Jogo 5 Potes Vidro Herméticos)",
+        "variacoes": [
+          {
+            "sku": "IMB501C",
+            "platform_item_id": "MLB3288536143",
+            "title_ml": "Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita",
+            "display_name": "Conjunto 5 Potes de Vidro Redondos Tampa Cinza",
+            "confirmed_variation_attributes": [
+              "Tampa Cinza"
+            ],
+            "logistic_type": "fulfillment",
+            "observacao_identidade": "Título ML é genérico ('Claro' refere-se à variação clara/transparente do vidro, não à cor da tampa). SKU codificado confirma 'Tampa Cinza' como variação autoritativa. Não é divergência — é título enxuto + atributo confirmado por SKU."
+          },
+          {
+            "sku": "IMB501V",
+            "platform_item_id": "MLB4535659243",
+            "title_ml": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Vermelho",
+            "confirmed_variation_attributes": [
+              "Tampa Vermelha"
+            ],
+            "logistic_type": "cross_docking",
+            "observacao_identidade": "Título ML e SKU concordam. Identificação alta confiança."
+          },
+          {
+            "sku": "IMB501P",
+            "platform_item_id": "MLB4535865317",
+            "title_ml": "Potes De Vidro Hermético Redondo Com Tampa Kit 5 Peças Preto",
+            "confirmed_variation_attributes": [
+              "Tampa Preta"
+            ],
+            "logistic_type": "cross_docking",
+            "observacao_identidade": "Título ML e SKU concordam. Identificação alta confiança."
+          }
+        ],
+        "mapping_status_todas": "mapped",
+        "mapping_confidence_todas": "high"
+      },
+      "leitura": "Cluster identificado com integridade. Caso IMB501C tem título ML enxuto ('Claro') que não menciona Tampa Cinza, mas confirmed_variation_attributes é fonte autoritativa paralela — Tampa Cinza é a variação correta e pode ser comunicada com confiança. Os outros dois (Vermelha, Preta) têm título ML explicitamente com a cor. Concentração do cluster no dia: 42+20+17 = 79 pedidos = 48,2% do dia, conforme top3_concentration.",
+      "conclusao_granular": "confirma — sem risco de identificação no cluster IMB501",
+      "confianca": "alta"
+    }
+  ],
+  "risco_identificacao": {
+    "nivel": "baixo",
+    "fontes": [],
+    "bloqueios_para_slack": [],
+    "explicacao": "Top produtos do dia têm título ML real coerente com raw_title e, onde aplicável, confirmed_variation_attributes via SKU codificado resolve qualquer ambiguidade de variação (caso IMB501C, título genérico 'Claro' + atributo Tampa Cinza confirmado por SKU). Mapping_status de todos os top 5 é 'mapped' com confidence 'high'. Os dois 'mapped_generic_sku' / confidence 'medium' (K6CAN250P MLB6582682928 e KIT4YW640 MLB5402326666) têm título ML explicitamente descritivo da variação e raw_title coincidente, sem divergência. Nenhum bloqueio para Slack necessário."
+  },
+  "detalhes_que_a_condensadora_nao_pode_perder": [
+    {
+      "detalhe": "Tulipa (MLB6167272090) registrou 11 pedidos no dia com status=paused e available_quantity=0 — esses 11 NÃO estão entre os 5 cancelamentos contabilizados em metrics.cancelamentos do dia; são cancelamentos prospectivos que entram na fila de processamento ML e podem pressionar cancellations_rate da reputação (hoje em 0) nos próximos snapshots — janela coincide com threshold Platinum cruzado e medalha ainda gold",
+      "por_que_importa": "É o vetor de risco mais sensível: junto com a janela de promoção Platinum pendente, é o que pode mover cancellations_rate oficial de zero para positivo antes do reconhecimento formal da medalha",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Líder Full do dia, MLB3288536143 (Jogo Potes Vidro 5 Peças Claro / Tampa Cinza confirmada por SKU IMB501C), terminou com available_quantity=58 pós-baixa de 46 unidades vendidas — cobertura prospectiva ~1,26 dias ao ritmo de hoje, ~16º ciclo consecutivo com health=0,71. Risco é prospectivo (D+1 em diante), não retroativo: os 42 pedidos do dia já foram atendidos",
+      "por_que_importa": "Confirma operacionalmente a urgência da ação tática 1 da L02 (verificar ETA de reposição); ruptura aqui interrompe 25,6% do volume da conta na pior janela possível",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Catálogo gold_pro Full MLB6232315532 (Kit 6 Canecas Lisas 200ml) recuperou estoque entre 04/06 (available_quantity=11 pós-baixa) e 05/06 (30 pós-baixa), restock confirmado; cobertura atual ~2,1 dias — margem estreita mas saiu da zona crítica imediata",
+      "por_que_importa": "Atenua um dos três vetores de fragilidade identificados pela L01; reduz a coincidência simultânea de riscos sinalizada pela L03",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "Divergência fulfillment_mix_yesterday_top10 Full 62,9% vs fulfillment_mix_30d Full 81,1% (-18,2pp) é produto-específica e NÃO estrutural — causada pelas variações Cross-Docking do cluster IMB501 (IMB501V Tampa Vermelha e IMB501P Tampa Preta) ocupando posições 2 e 3 do dia; quando o IMB501 Cross-Docking acelera, o mix do dia inverte visualmente sem mudança na base do canal",
+      "por_que_importa": "Evita leitura falsa de mudança estrutural do canal; confirma a tese da L01 sobre assimetria entre campeões Full e base Cross-Docking",
+      "confianca": "alta"
+    },
+    {
+      "detalhe": "MLB5402326666 (Kit 4 Potes 640ml Tampa Azul-petróleo, Clássico Full) com health=0,66 pelo 2º ciclo consecutivo abaixo do threshold 0,85 — estoque confortável (cobertura ~17 dias), risco é exposição orgânica em ranking de categoria, não ruptura; direção do health não é observável no pacote",
+      "por_que_importa": "Segundo Clássico Full do top 10 com health degradada confirmada — fragilidade silenciosa que erode exposição sem visibilidade de reversal",
+      "confianca": "média"
+    },
+    {
+      "detalhe": "ADS share efetivo do dia: 4.268,26 / 7.742,32 = 55,1% do GMV, ROAS 14,03x, ACOS 7,27%, gasto R$ 304,23 — zona de eficiência dominante pelo 5º+ ciclo; sem breakdown ADS por platform_item_id no pacote (limitação estrutural recorrente desde 22/05)",
+      "por_que_importa": "Valida operacionalmente a decisão da L02 de não acionar Himmel hoje; a fragilidade da conta não é resolvível via ADS",
+      "confianca": "alta"
+    }
+  ],
+  "memoria_interna": [
+    "MLB6167272090 (Tulipa) confirmado em top_items_details com status=paused, available_quantity=0, logistic_type=fulfillment, health=null, listing_type=gold_special — 8º+ ciclo do padrão de ruptura prospectiva documentado desde 22/05",
+    "MLB3288536143 (líder Full) — title ML 'Claro' refere-se à variação do vidro transparente, não à cor da tampa; confirmed_variation_attributes IMB501C='Tampa Cinza' é a fonte autoritativa de variação; comunicação externa pode usar 'Tampa Cinza' com confiança",
+    "Pendências estruturais ML mantidas (15º ciclo desde 22/05): (1) breakdown ADS spend/revenue por platform_item_id; (2) lista granular cancelamentos order_id↔platform_item_id↔motivo; (3) série temporal de health por anúncio + drivers; (4) ETA de reposição em trânsito ao CD do ML; (5) available_quantity por variation_id em anúncios multi-variação; (6) estado de processamento individual de cada order_id (pago / a_caminho / cancelado)",
+    "Mercado Líder: gap_revenue_brl=0, progress_pct=100% pelo critério financeiro; power_seller_status=gold (medalha formal ainda não atualizada); lag esperado no sistema ML — 1º ciclo nessa configuração",
+    "Reputação: color=5_green, claims_rate=0,0018 (36% do threshold 0,005), cancellations_rate=0, delayed_handling_rate=0,0009, ratings_positive=0,56, ratings_neutral=0,03, ratings_negative=0,41 — ratings_negative estagnado em 0,41 (estabilizou desde 01/06 vindo de 0,39 em 23/05)",
+    "Base ativa account_overview: 78 ativos, 130 pausados, 3 fechados; low_health_count=8; no_health_data_count=59 (volume insuficiente para ML calcular); out_of_stock_count=0 (mas Tulipa MLB6167272090 está paused com qty=0, não classificado como out_of_stock formalmente)",
+    "MLB6582682928 (Kit 6 Canecas 250ml Canelada Preta, Cross-Docking) com available_quantity=8 pós-baixa de 7 pedidos — cobertura prospectiva curta mas em modalidade Cross-Docking; reposição direta sem lead time de CD ML"
+  ],
+  "llm_used": true,
+  "model": "claude-opus-4-7",
+  "fallback": false
+}

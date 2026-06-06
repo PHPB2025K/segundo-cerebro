@@ -1,6 +1,13 @@
 # Lições — RH
 
-_Atualizado: 2026-06-02_
+_Atualizado: 2026-06-05_
+
+## 2026-06-05
+- Sandra sem marcações novamente em dia útil reforça o risco trabalhista sensível já recorrente e precisa de orientação do Pedro antes de contato adicional.
+- Lucas acumulou marcações incompletas relevantes em 05/06 e segue no grupo de atenção por recorrência de intervalos/saídas pendentes.
+- Leonardo e Mateus continuam exigindo leitura contextual antes de classificar pendências, por jornada especial/faculdade e Tiro de Guerra.
+- Backlog de 21 comunicações abertas, com 14 bloqueadas por aprovação/orientação do Pedro, segue como principal risco operacional do RH.
+- Ausência de conversas/respostas entre 03/06 e 05/06 indica que o backlog não está avançando sozinho; novos ciclos semanais podem aumentar ruído se não houver decisão humana.
 
 ## 2026-06-02
 - Sandra sem marcações novamente em dia útil reforça risco trabalhista sensível e necessidade de orientação do Pedro antes de contato adicional.

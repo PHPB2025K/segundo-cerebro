@@ -1,6 +1,13 @@
 # Decisões — RH
 
-_Atualizado: 2026-06-02_
+_Atualizado: 2026-06-05_
+
+## 2026-06-05
+- Nenhuma decisão nova de política RH registrada.
+- Mantido bloqueio: consolidação diária de memória não autoriza envio proativo a funcionários.
+- Pontos de compliance de 05/06 devem ser tratados como validação interna até confirmação por fluxo autorizado ou orientação do Pedro.
+- 04/06 permanece classificado como feriado de Corpus Christi sem cobrança automática, salvo escala específica ou evidência de trabalho.
+- Backlog de comunicações RH abertas permaneceu em 21, com 14 exigindo aprovação/orientação do Pedro.
 
 ## 2026-06-02
 - Nenhuma decisão nova de política RH registrada.

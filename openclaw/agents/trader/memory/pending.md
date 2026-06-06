@@ -1,12 +1,12 @@
 # Pendências — Trader
 
-_Atualizado: 2026-06-04_
+_Atualizado: 2026-06-05_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
 
-- [ ] Daily Sales v2 02/06–04/06/2026 BRT: consolidação de 04/06 às 22:45 BRT não detectou novas sessões/artefatos finais do Trader após 02/06; confirmar se a rotina rodou em outro contexto, ficou sem artefatos ou não executou antes de qualquer leitura comparativa de junho.
+- [ ] Daily Sales v2 02/06–05/06/2026 BRT: consolidação de 05/06 às 22:45 BRT não detectou novas sessões/artefatos finais do Trader após 04/06, e a última consolidação com dados comerciais absorvidos segue sendo 01/06 registrada em 02/06; confirmar se a rotina rodou em outro contexto, ficou sem artefatos ou não executou antes de qualquer leitura comparativa de junho.
 - [ ] Daily Sales v2 01/06/2026 BRT: Daily Sales público foi enviado, mas não foram detectados artefatos finais de Slack Writer/QA para Lucas, Yasmin e Leonardo; investigar lacuna antes de qualquer send-candidate.
 - [ ] Mercado Livre: validar se a sequência de 189 pedidos em 31/05 e 206 pedidos em 01/06 sustenta escala real ou é pico de curto prazo; cruzar ADS, estoque/Full, ranking, cancelamentos e concentração em Potes Vidro 5 Peças.
 - [ ] Mercado Livre / MDF: acompanhar execução da diretriz de Pedro para aumentar investimento em MDF mesmo com ACoS alto; separar ACoS/TACoS e resultado incremental de MDF do restante do mix entre 03/06 e 10/06.

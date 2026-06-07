@@ -129,6 +129,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 02/06/2026 | Estoque GB ativou camada CMV+receita com 130 snapshots oficiais e 0 pendências de custo; replay de divergentes corrigíveis zerou falhas sistêmicas. Daily Sales 01/06 trouxe R$23.190,76/361 pedidos com Atacado distorcendo o consolidado; Pedro aprovou alternância Shopee e investimento estratégico em MDF no ML mesmo com ACoS alto. Bling 403 passou a aparecer também na Matriz. |
 | 04/06/2026 | Página Facebook Budamix atualizada via Graph API; Estoque GB corrigiu fechamento 03/06 com CMV/logs/BOM/aliases; Daily Sales Shopee Fase 1 implementado e validado com página própria no Mission Control, mas colocado em standby por decisão do Pedro. |
 | 05/06/2026 | Estoque GB endurecido com linguagem ENVIOS FULL por cursor, controle de data operacional/fingerprint/anti-duplicidade no WhatsApp Estoque, cabeçalho explícito para imagens/listas e fluxo oficial Estoque vs Devoluções; Bobina Strech/Stretch mapeada para `STR01B`; Gestão de Funcionários teve coleta semanal Slack. |
+| 06/06/2026 | Meta Ads Budamix iniciou primeira estrutura paga pausada com HERO IMB501, Pixel+CAPI+catálogo validados, 3 campanhas/ad sets e vídeo 1; Estoque GB passou por auditoria total do processamento 05/06 com correção TL250/OCR e CMV por data operacional; Daily Sales 05/06 enviado com R$17.236,47/332 pedidos. |
 
 ---
 

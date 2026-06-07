@@ -146,3 +146,7 @@ No teste da folha da Porcelanas Lu, a primeira aplicação manual foi segura só
 ## 2026-06-05 — [TÁTICA] Após correção de estoque, validar a fonte que recebe o movimento antes do espelho secundário
 
 Na correção CAR200 → TL250, o motor de estoque confirmou a aplicação correta, mas um espelho Supabase ainda mostrava saldo antigo por atraso de sincronização. Em ajustes de saldo, a verificação final precisa priorizar a fonte escrita pelo motor/livro de movimentos; dashboards/espelhos secundários podem atrasar e não devem derrubar uma correção já aplicada na fonte canônica.
+
+## 2026-06-06 — [TÁTICA] Não introduzir conceitos futuros fora do escopo da ação atual
+
+Na criação da primeira estrutura de Meta Ads Budamix, explicar DPA/etapas futuras antes de fechar a ação imediata confundiu e sobrecarregou Pedro. Para decisões operacionais, manter o foco no próximo passo concreto; conceitos avançados só entram quando mudam a decisão atual ou quando Pedro pedir profundidade.

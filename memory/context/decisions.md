@@ -128,3 +128,13 @@ tags:
 - Formatos oficiais aceitos no grupo Estoque: `ENTRADA`, `DEVOLUÇÃO`, `BAIXA`, `AVARIA DE DEVOLUÇÃO` e `AVARIA DE CONFERÊNCIA`, sempre com **um único produto e uma única quantidade por mensagem**.
 - `ENTRADA` e `DEVOLUÇÃO` somam no estoque vendável; `BAIXA` subtrai com trava de saldo negativo; `AVARIA DE DEVOLUÇÃO` e `AVARIA DE CONFERÊNCIA` devem ser reconhecidas/alertadas, mas não somam no vendável automaticamente.
 - Mensagem sem cabeçalho válido, com cabeçalho genérico `AVARIA`, ou misturando mais de um item/tipo na mesma mensagem, não deve movimentar estoque automaticamente.
+
+## 2026-06-06 — Meta Ads Budamix começa focado em IMB501
+
+- Pedro/Kobe definiram a primeira estrutura de Meta Ads da Budamix com orçamento inicial de **R$57/dia** (~R$1.710/mês), em campanhas pausadas até revisão final.
+- O HERO dos primeiros 1–2 meses é **IMB501 — Conjunto 5 Potes Redondos de Vidro**, escolhido por ranking de 90 dias e concentração extrema de receita/margem dentro da linha de vidro.
+- Regra estratégica: não pulverizar verba entre redondos, retangulares e quadrados no início; escalar em ondas, começando pelo IMB501 e replicando depois para outras linhas.
+- Estrutura inicial: ASC como principal, teste de criativos e retargeting WCA-based. DPA fica postergado para fase posterior, quando pixel/catálogo tiverem mais maturidade.
+- Otimização inicial deve mirar **AddToCart**, não Purchase, para acelerar aprendizado com orçamento limitado.
+- Não comprar ferramentas pagas de pesquisa de interesses nesta fase.
+- Criativos de vídeo devem respeitar a identidade visual Budamix: **Antonio Bold** como fonte oficial e paleta oficial, sem cores inventadas fora do branding.

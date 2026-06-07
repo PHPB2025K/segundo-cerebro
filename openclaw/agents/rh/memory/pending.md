@@ -1,8 +1,8 @@
 # Pendências — RH
 
-_Atualizado: 2026-06-05_
+_Atualizado: 2026-06-06_
 
-> 05/06 não teve conversas RH novas, comunicações criadas, episódios, respostas recebidas ou comunicações resolvidas. Backlog segue em 21 comunicações abertas, 14 exigindo aprovação/orientação do Pedro. Compliance de 05/06 marcou Sandra sem marcações, Leonardo sem saída final, Lucas sem retorno de almoço e sem saída final, Mateus sem marcações de almoço e Yasmin com intervalo ligeiramente abaixo de 1h. 04/06 foi Corpus Christi e não deve gerar cobrança automática. Consolidação não autoriza WhatsApp proativo.
+> 06/06 foi sábado quieto: 0 registros de ponto de funcionários ativos e nenhuma conversa, comunicação, episódio, resposta ou atualização RH nova. Sem escala específica ou evidência de trabalho, não tratar sábado sem registros como falta completa automática. Backlog segue em 21 comunicações abertas, 14 exigindo aprovação/orientação do Pedro. Consolidação não autoriza WhatsApp proativo.
 
 ## 🔴 Prioridade Alta
 - [ ] Pedro orientar os 5 novos casos semanais criados em 01/06 para a semana 25/05–30/05 antes de qualquer WhatsApp: Guilherme (saída final ausente em 29/05), Leonardo (25/05 com entrada à tarde e almoço ausente, validar jornada/faculdade), Lucas (saída final ausente em 29/05), Mateus (7 pendências com contexto de Tiro de Guerra) e Sandra (sem marcações em 25/05–29/05).
@@ -13,6 +13,7 @@ _Atualizado: 2026-06-05_
 - [ ] Pedro aprovar/orientar próximos passos para Lucas: pendência semanal de 11/05, recorrência em semanas consecutivas, intervalos <1h em 19/05, 20/05, 22/05, 25/05, 26/05, 27/05, 28/05, 29/05, 02/06 e 03/06, 21/05 sem almoço registrado, 29/05 com saída final ausente, e 05/06 sem retorno de almoço e sem saída final; ajuste antigo de 05/05 segue pendente de validação no Ponto Certo.
 
 ## 🟡 Prioridade Média
+- [ ] Compliance 06/06: sábado com 0 registros de funcionários ativos; sem escala específica ou evidência de trabalho, não cobrar automaticamente.
 - [ ] Compliance 05/06: validar Sandra sem marcações; Leonardo sem saída final; Lucas sem retorno de almoço e sem saída final; Mateus sem marcações de almoço; Yasmin com intervalo ligeiramente abaixo de 1h; nenhuma jornada >10h identificada nos registros completos.
 - [ ] Compliance 03/06: validar Sandra sem marcações; Mateus com entrada 09:28 BRT + saída final ausente sob possível contexto de Tiro de Guerra; Leonardo e Lucas com intervalos abaixo de 1h; nenhuma jornada >10h identificada nos registros completos. 04/06 foi Corpus Christi e não deve gerar cobrança automática.
 - [ ] Compliance 02/06: validar Sandra sem marcações; Franciele com intervalo de almoço de 1min; Guilherme com intervalo de 52min; Lucas com intervalo de 56min; Mateus com entrada 09:15 BRT + intervalo de 52min sob possível contexto de Tiro de Guerra; nenhuma jornada >10h identificada nos registros completos.

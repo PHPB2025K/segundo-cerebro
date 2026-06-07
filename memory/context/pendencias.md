@@ -12,7 +12,17 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-05-28 ~17h BRT — Fase 2 mapeamento de SKUs do estoque deployada (resolver_sku + 25 aliases + 16 kits + motor TS plugado + smoke 5/5 OK); Clink descontinuado; planilha ENVIOS FULL oficial identificada com 5 abas; aguardando lista de envios criados hoje dos analistas para aplicar baixa filtrada amanhã._
+_Atualizado: 2026-06-06 ~21h BRT — Meta Ads Budamix estrutura criada PAUSED (3 campanhas, R$57/dia, HERO IMB501); aguardando vídeos 2 e 3 do Pedro pra upload + ativação._
+
+## 🟡 Meta Ads Budamix — ativação pendente (06/06)
+
+- [ ] **Pedro produz vídeos 2 e 3** (UGC Testemunho ~18s + Antes/Depois 12-15s). Tentativa inicial com IA (Veo 3 / Higgsfield); fallback é gravar com celular vertical. Entrega prevista até 07/06.
+- [ ] **Upload dos 3 vídeos no Meta Asset Library** via API Meta Ads (conta `1140258596603533`). Vídeo 1 já pronto em `~/Downloads/budamix-imb501-meta-ads-FINAL.mp4`.
+- [ ] **Criar Ads dentro dos 3 ad sets pausados** (Campanha 1 = 1 ad; Campanha 2 = 3:2:2 com 3 vídeos × 2 títulos × 2 textos; Campanha 3 = 1 ad com vídeo do IMB501).
+- [ ] **Criar 2 Custom Audiences (WCA)** pra Campanha 3: ViewContent 14d + Purchase 30d. Começam vazias, populam conforme tráfego da Campanha 1.
+- [ ] **Pedro revisa cada peça** (criativo, copy, segmentação, orçamento, URL UTM) antes de mudar status de PAUSED pra ACTIVE.
+- [ ] **(Futuro 2-3 sem)** Lista de compradores de marketplace (Amazon BR + ML + Shopee) pra criar Custom Audience DFCA + Lookalike 1-3% — Pedro vai conseguir via empresa parceira na semana de 09/06.
+- [ ] **(Futuro mês 3+)** Migrar Campanha 3 de WCA pra DPA (Dynamic Product Ads com catálogo dinâmico) quando pixel tiver maturidade (~30-50 vendas/mês).
 
 ## 🟡 Estoque GB — Fase 2 mapeamento de SKUs (próximos passos 29/05)
 

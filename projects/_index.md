@@ -21,6 +21,7 @@ tags:
 - [[projects/analise-semanal-skill-amazon]] — Skill de análise semanal Amazon
 - [[projects/bidspark-multiagente-completo]] — Bidspark multi-agente (spec)
 - [[projects/daily-sales-shopee]] — Daily Sales Report Shopee multi-conta (Store/Oficial/Shop). 🟡 **Fase 1 validada (04/06) — em standby por decisão do Pedro pra lapidação futura.** 9 prompts v4.0/shopee (3.708 linhas) + snapshot fetcher + runner adaptado do ML + Mission Control `/reports/daily-sales-shopee` com 3 cards. Smoke 03/06 APROVADO (13 gates, 0 críticos). Regra de densidade de 4 elementos pra risco silencioso por gap aplicada.
+- [[projects/budamix-meta-ads]] — Budamix Meta Ads (paid social FB/IG). 🟡 **Estrutura criada PAUSED em 06/06/2026.** 3 campanhas (ASC R$37/dia + Teste R$11/dia + Retarget R$9/dia = R$57/dia total). HERO único: IMB501 (5 Potes Redondos Vidro). Pixel + CAPI 100% operacional. Aguardando vídeos 2 e 3 do Pedro pra ativação.
 
 ## Atendimento e WhatsApp
 

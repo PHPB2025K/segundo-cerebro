@@ -1,0 +1,38 @@
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
+### Decisão tática
+
+- **Risco operacional imediato, não de campanha:** Dado que a tese da L01 é "Vulnerável" com risco principal de `cancellations_rate` sair de zero durante janela de reconhecimento Platinum, a ação prioritária não é ADS, não é health, não é mix — é contenção de dano nas 79 ordens prospectivas em anúncios pausados + available_quantity=0 (MLB3288536143: 67 pedidos, MLB6582682928: 6, MLB5322494954: 6). Yasmin precisa confirmar se ML já gerou cancelamentos automáticos e qual o mecanismo (vendedor vs comprador), porque a classificação do cancelamento determina se `cancellations_rate` da reputação é impactado ou não.
+
+- **ETA de reposição do líder Full define o horizonte da crise:** Dado que a L01 projeta retração de patamar de ~R$ 7–9k/dia para ~R$ 3–4k/dia enquanto MLB3288536143 permanecer pausado — e os Cross-Docking ativos da família IMB501 (IMB501P e IMB501C, ambos com estoque >8.000 unidades e status ativo) não compensam exposição Full orgânica —, o tempo de resolução é a variável que determina se o risco Platinum é pontual ou estrutural. Sem ETA, não há como projetar quando o vetor principal volta, e a decisão sobre Kobe fica suspensa.
+
+- **ADS share nominal é dado contaminado — não é base para ação:** Dado que a L01 identificou que o share de 60,5% (R$ 4.002 / R$ 6.611 do GMV) e o ROAS de 10,2x provavelmente incluem atribuição de pedidos de MLB3288536143 que reverterão como cancelamentos (breakdown por platform_item_id indisponível no 16º ciclo de pendência), a eficiência declarada não é real. Acionar Himmel agora seria basear decisão de campanha em métrica que pode inverter com os cancelamentos. Postura correta: não mexer até snapshot limpo pós-cancelamento.
+
+- **Health degradado na cauda ativa é risco secundário, mas monitorável agora:** Dado que a L01 identificou saúde degradada nos anúncios Full que precisam compensar o líder pausado — MLB5402326666 em health=0,66 (terceiro ciclo consecutivo, confirmando recorrente) e MLB4931700052 em health=0,75 —, e esses anúncios receberão volume migrado do Full pausado, a decisão é observar com condição falsificável: se health cair mais um ciclo nesses dois enquanto o líder permanece fora, aciona alinhamento com Himmel sobre cobertura preventiva.
+
+---
+
+### O que fazer hoje
+
+1. **Yasmin:** confirmar se o ML processou cancelamentos automáticos nas 79 ordens em anúncios pausados + available_quantity=0 (MLB3288536143: 67 pedidos, MLB6582682928: 6, MLB5322494954: 6) — motivo: dado que a tese da L01 identifica `cancellations_rate` sair de zero como o gatilho que ameaça elegibilidade Platinum, os 79 pedidos representam ~1,19% de `transactions_completed=6.622`, acima do threshold de 0,5% se classificados como cancelamentos pelo vendedor; o ML pode já ter iniciado o processo automaticamente antes do próximo snapshot — sinal de resultado: `cancellations_rate` permanecendo em zero no próximo snapshot com ordens sinalizadas como "canceladas pelo comprador" indica risco neutralizado; qualquer valor > 0 no campo `reputation.cancellations_rate` confirma risco ativo e aciona escalonamento para Kobe.
+
+2. **Yasmin:** confirmar ETA de reposição ao CD do ML para o anúncio líder Full (MLB3288536143, Conjunto 5 Potes Vidro, `status=paused`, `available_quantity=0`) — motivo: dado que a L01 projeta retração de patamar enquanto o vetor principal permanecer fora e os substitutos Cross-Docking têm menor exposição orgânica, o ETA é a única variável que define se a crise dura 2–3 dias (risco Platinum pontual) ou >7 dias (risco estrutural que extrapola tática diária); sem essa informação, Yasmin não tem base para decidir se mantém observação ou escala para Kobe — sinal de resultado: ETA ≤ 3 dias fecha a janela de risco Platinum sem ação adicional; ETA > 7 dias ou ausência de reposição confirmada abre discussão estrutural com Kobe sobre impacto no patamar de conta.
+
+3. **Yasmin:** checar a direção do health do Kit 4 Potes 640ml Azul-petróleo (MLB5402326666, `health=0,66`, `logistic_type=fulfillment`, `status=active`) comparando com os dois ciclos anteriores registrados na memória (04/06 e 05/06, ambos já abaixo de 0,85) — motivo: terceiro ciclo consecutivo em zone preocupante com volume migrado do Full pausado aumentando pressão sobre esse anúncio; se health continua caindo, hipótese de erosão de ranking orgânico em categoria (MLB244658) se confirma exatamente quando o anúncio precisa compensar o líder ausente — sinal de resultado: health estabilizando em 0,66 ou subindo = observar sem ação; health abaixo de 0,63 no próximo ciclo = Yasmin alinha com Himmel sobre cobertura preventiva nesse anúncio específico.
+
+---
+
+### O que NÃO fazer ainda
+
+- **Não acionar Himmel para ajustar campanhas ADS:** As 13 campanhas ativas com ROAS 10,2x e ACOS 7,15% são métricas nominais calculadas sobre GMV que inclui 67+ pedidos que provavelmente reverterão. Qualquer decisão de verba, segmentação ou pausa tomada agora está baseada em dado que pode inverter nos próximos snapshots. Mexer numa campanha eficiente com dado contaminado é o cenário exato de "introduzir variável e piorar" — esperar snapshot limpo pós-cancelamento.
+
+- **Não pausar nem redirecionar os anúncios Full ativos com health degradado (MLB5402326666 e MLB4931700052):** Com o líder Full (MLB3288536143) pausado, esses dois são os únicos vetores Full restantes ativos no top do mix. Pausar ou redirecionar volume agora amplifica a retração de GMV que a tese da L01 já projeta — de ~R$ 7–9k/dia para ~R$ 3–4k/dia. Health em 0,66 é preocupante mas ainda está gerando 6 pedidos no dia com estoque confortável; intervenção antes de confirmar direção de queda adicional sacrifica volume sem evidência de que melhora saúde.
+
+- **Não tratar `power_seller_status` como Platinum antes da atualização formal:** Com gap=0 e progress=100% pelo segundo ciclo consecutivo sem conversão, há hipótese de bloqueio silencioso por métrica não visível no pacote (ratings_negative=0,41 pode estar sendo ponderado internamente pelo ML). Tomar decisões de campanha ou mix assumindo que a promoção já ocorreu — quando ela pode estar bloqueada ou atrasada — leva a leituras invertidas do estado da conta.
+
+---
+
+### Escalonamento
+
+**observar** — com gatilho explícito para escalar para Kobe em até 24h.
+
+A conta está em risco operacional real, mas o dano ainda não se materializou formalmente: `cancellations_rate=0` no snapshot atual, `power_seller_status` ainda `gold` (que é a posição de espera, não confirmação de bloqueio). Yasmin resolve o diagnóstico imediato — confirmar cancelamentos automáticos e ETA de reposição — sem precisar de Himmel (ADS não é o problema) nem de Kobe (ainda não é decisão estrutural). O escalonamento para Kobe é acionado por Yasmin em dois cenários mutuamente exclusivos: (1) `cancellations_rate` sair de zero no próximo snapshot — saindo de zero, a decisão deixa de ser operacional e passa a ser de gestão de elegibilidade MercadoLíder, que extrapola tática diária; (2) `power_seller_status` seguir `gold` por mais 2 ciclos com `progress_pct=100%` e `gap_revenue_brl=0` — dois ciclos adicionais sem conversão com critérios cruzados indicam bloqueio silencioso que precisa de investigação estrutural fora do pacote atual. Se `power_seller_status` virar `platinum` antes de os cancelamentos serem absorvidos pela janela oficial, o risco agudo fecha e a conta retorna ao modo observação normal.

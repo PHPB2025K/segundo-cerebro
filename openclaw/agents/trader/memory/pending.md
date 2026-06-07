@@ -1,12 +1,15 @@
 # Pendências — Trader
 
-_Atualizado: 2026-06-05_
+_Atualizado: 2026-06-06_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
 
-- [ ] Daily Sales v2 02/06–05/06/2026 BRT: consolidação de 05/06 às 22:45 BRT não detectou novas sessões/artefatos finais do Trader após 04/06, e a última consolidação com dados comerciais absorvidos segue sendo 01/06 registrada em 02/06; confirmar se a rotina rodou em outro contexto, ficou sem artefatos ou não executou antes de qualquer leitura comparativa de junho.
+- [ ] Daily Sales v2 02/06–04/06/2026 BRT: confirmar/absorver artefatos finais dos ciclos de junho que ainda não foram consolidados na memória diária; 05/06 já teve report público e pacote canônico gerados em 06/06, mas os ciclos individuais Slack Writer/QA para Lucas, Yasmin e Leonardo seguem sem evidência final.
+- [ ] Daily Sales v2 05/06/2026 BRT: pacote canônico ficou **DADOS_PARCIAIS** por pico positivo da Shopee Conta 2 (39 pedidos vs média 30d de 22,7, +71,8%); validar se foi redistribuição planejada entre contas, efeito ADS/cupom/afiliados ou ponto isolado antes de tratar como novo patamar.
+- [ ] Amazon 05/06/2026 BRT: monitorar recorrência de 6 cancelamentos; se persistir, quebrar por ASIN e checar FBA/Buy Box/indisponibilidade antes de escalar ADS.
+- [ ] Rules Watch ML/Shopee: revisões seguem vencidas (ML desde 01/06, Shopee desde 02/06); atualizar antes de usar mudança de taxa/frete/regra como causa forte em junho.
 - [ ] Daily Sales v2 01/06/2026 BRT: Daily Sales público foi enviado, mas não foram detectados artefatos finais de Slack Writer/QA para Lucas, Yasmin e Leonardo; investigar lacuna antes de qualquer send-candidate.
 - [ ] Mercado Livre: validar se a sequência de 189 pedidos em 31/05 e 206 pedidos em 01/06 sustenta escala real ou é pico de curto prazo; cruzar ADS, estoque/Full, ranking, cancelamentos e concentração em Potes Vidro 5 Peças.
 - [ ] Mercado Livre / MDF: acompanhar execução da diretriz de Pedro para aumentar investimento em MDF mesmo com ACoS alto; separar ACoS/TACoS e resultado incremental de MDF do restante do mix entre 03/06 e 10/06.

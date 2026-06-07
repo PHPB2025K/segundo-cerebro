@@ -1,0 +1,65 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem passou em todos os gates críticos sem violação de regra objetiva. Foram detectados 2 Menores em gates distintos (Gate 5 e Gate 10): (1) K6CAN250P exibido no Top Produtos com display_short idêntico ao title longo por ausência de slack_short_name — fallback aplicado corretamente pela L06, mas resultado é nome ruidoso sem simplificação; (2) a condição 'Escalar se' da Prioridade 1 usa o campo técnico de API 'power_seller_status' e 'Gold' sem o prefixo obrigatório 'MercadoLíder'. Zero Críticos, zero Maiores. Regra de agregação aplicada: 0 Maiores + 2 Menores → APROVADO COM RESSALVA.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "RESSALVA",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Maiores + 2 Menores (gates distintos: Gate 5 e Gate 10) → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "Gate 5 — Top Produtos",
+      "texto_atual": "Kit 6 Canecas Porcelana 250ml Canelada Colorida Café Chá Preta Canelada — 6 pedidos",
+      "texto_esperado": "Nome curto mapeado manualmente via slack_short_name — pendente cadastro em config/slack-short-names-ml.json para SKU K6CAN250P (MLB6582682928)",
+      "estado_atual": "SKU K6CAN250P aparece no Top Produtos com display_short idêntico ao title completo. A L06 aplicou corretamente a hierarquia de fallback (slack_short_name=null → display_short), mas o display_short não foi simplificado pelo simplify_ml_title para mapping_status=mapped_generic_sku, resultando em nome longo descritivo. Nenhum dos termos de ruído SEO explicitamente listados (Refratário, Vedação, Mantimentos Marmita, Coloridas Xícara, Mini Café Casa, 4 Travas, Budamix) está presente no título — não é Maior. Sinal para mapeamento manual.",
+      "estado_esperado": "Produto com slack_short_name=null deve ter entrada adicionada em config/slack-short-names-ml.json no próximo ciclo de manutenção. A L06 procedeu corretamente com o fallback disponível.",
+      "regra_violada": "Gate 5: 'Registrar como Menor (não bloqueia): Produto novo aparece no Top com slack_short_name=null (sem mapeamento manual) — sinal pra adicionar entrada em config/slack-short-names-ml.json na próxima manutenção. A L06 corretamente usou o fallback automático.'",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 10 — Tom e utilidade",
+      "texto_atual": "Escalar se: taxa sair de zero no próximo snapshot ou power_seller_status seguir em Gold por mais 2 ciclos com gap zerado e progresso em 100%.",
+      "texto_esperado": "Escalar se: taxa sair de zero no próximo snapshot ou a medalha seguir em MercadoLíder Gold por mais 2 ciclos com gap zerado e progresso em 100%.",
+      "estado_atual": "A condição 'Escalar se' da Prioridade 1 preserva o campo técnico de API 'power_seller_status' (jargão interno) e usa 'Gold' sem o prefixo 'MercadoLíder'. O campo escalar_se da L05 original usa exatamente 'power_seller_status seguir gold' (minúsculo) — a L06 capitalizou 'Gold' (melhora parcial) mas não traduziu o nome do campo para linguagem operacional. O padrão de capitalização evita o bloqueio como Maior (que se aplica a 'gold' em minúsculas sem 'MercadoLíder'), mas o campo de API exposto e a ausência do prefixo são inconsistências de vocabulário.",
+      "estado_esperado": "Substituir 'power_seller_status seguir em Gold' por 'a medalha seguir em MercadoLíder Gold' — vocabulário ML correto, sem campo de API exposto, com prefixo obrigatório antes do nível da medalha.",
+      "regra_violada": "Gate 10: vocabulário ML correto exige 'MercadoLíder Gold' ao citar a medalha; campo de API 'power_seller_status' é jargão interno não traduzido que não deve aparecer na mensagem destinada a Yasmin.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "Adicionar entrada para K6CAN250P (MLB6582682928) em config/slack-short-names-ml.json antes do próximo ciclo em que o produto aparecer no top 5 — sugestão de nome curto: 'Kit 6 Canecas Porcelana 250ml Canelada'.",
+    "Em próximos ciclos com condição escalar_se referenciando power_seller_status/medalha, a L06 deve traduzir 'power_seller_status seguir gold/Gold' para 'a medalha seguir em MercadoLíder Gold' — evita exposição de campo de API e respeita vocabulário ML exigido pelo Gate 10.",
+    "simplify_ml_title não está sendo aplicada a produtos com mapping_status=mapped_generic_sku no data builder — investigar se a função de simplificação cobre esse caso ou se é limitação conhecida que exige correção no pipeline."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "Pendência estrutural recorrente do pacote ML (16º+ ciclo consecutivo desde 22/05): ausência de breakdown ADS spend/revenue por platform_item_id impossibilitou confirmação de contaminação das métricas de ADS pelos 67 pedidos prospectivos do MLB3288536143 (Full paused). O bloqueio correto foi aplicado pela L06 (ADS omitido integralmente da mensagem conforme L05), mas a raiz de dado ausente persiste no fetcher.",
+    "fulfillment_mix_yesterday_top10 cobre 125 dos 162 pedidos do dia (~77% de cobertura) por ser calculado apenas sobre o top10 de itens. A L06 omitiu corretamente o mix da seção VISÃO e o tratou na ANÁLISE com contexto de ruptura e recálculo. Sem bloqueio hoje, mas a cobertura parcial deve ser monitorada — se cair abaixo de 70% em ciclos futuros, requer sinalização explícita da L05 antes de qualquer exibição.",
+    "Dois ciclos consecutivos com MercadoLíder gap=0, progress=100%, eta=0 sem conversão de power_seller_status de 'gold' para 'platinum'. A hipótese de ratings_negative=0,41 como bloqueador silencioso é analiticamente forte (confirmada como hipótese pela L04 e L05) mas não verificável pelo pacote atual — investigar com Yasmin se ML possui critério explícito de ratings na elegibilidade Platinum ou se há lag de processamento esperado entre critério cruzado e atualização do campo.",
+    "Evento de ruptura simultânea de 3 anúncios paused+zero com 79 pedidos prospectivos (48,8% do volume do dia) não tem precedente na série registrada desde 22/05 (máximo anterior: 4–18 pedidos em ciclo único). O pacote não fornece confirmação de mecanismo de cancelamento (vendedor vs comprador) por ausência de breakdown order_id↔platform_item_id↔motivo — pendência estrutural do fetcher que impede diagnóstico do impacto real no cancellations_rate da reputação.",
+    "ml_snapshot internamente consistente: ads_summary.status=ok com spend não-zerado (R$ 392,34) e 13 campanhas ativas — sem inconsistência Gate 12a. Coexistência de metrics.cancelamentos=5 (janela curta do dia) com reputation.cancellations_rate=0 (janela longa ML) é divergência semântica esperada e foi corretamente documentada pela L04 sem contaminação da L06."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

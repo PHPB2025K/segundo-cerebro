@@ -12,17 +12,20 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-06-06 ~21h BRT — Meta Ads Budamix estrutura criada PAUSED (3 campanhas, R$57/dia, HERO IMB501); aguardando vídeos 2 e 3 do Pedro pra upload + ativação._
+_Atualizado: 2026-06-08 ~11h BRT — Meta Ads Budamix Campanha 1 ATIVADA em produção com R$20/dia (vídeo v2 safezone + copy v4 multiuso, público mulheres BR). Campanhas 2 e 3 PAUSED aguardando vídeos 2 e 3._
 
-## 🟡 Meta Ads Budamix — ativação pendente (06/06)
+## 🟢 Meta Ads Budamix — Campanha 1 ATIVA, Camps 2+3 pendentes
 
-- [ ] **Pedro produz vídeos 2 e 3** (UGC Testemunho ~18s + Antes/Depois 12-15s). Tentativa inicial com IA (Veo 3 / Higgsfield); fallback é gravar com celular vertical. Entrega prevista até 07/06.
-- [ ] **Upload dos 3 vídeos no Meta Asset Library** via API Meta Ads (conta `1140258596603533`). Vídeo 1 já pronto em `~/Downloads/budamix-imb501-meta-ads-FINAL.mp4`.
-- [ ] **Criar Ads dentro dos 3 ad sets pausados** (Campanha 1 = 1 ad; Campanha 2 = 3:2:2 com 3 vídeos × 2 títulos × 2 textos; Campanha 3 = 1 ad com vídeo do IMB501).
-- [ ] **Criar 2 Custom Audiences (WCA)** pra Campanha 3: ViewContent 14d + Purchase 30d. Começam vazias, populam conforme tráfego da Campanha 1.
-- [ ] **Pedro revisa cada peça** (criativo, copy, segmentação, orçamento, URL UTM) antes de mudar status de PAUSED pra ACTIVE.
+- ✅ ~~**Pedro coloca app KOBE.OPENCLAW em modo Live**~~ → **RESOLVIDO 08/06** — pré-requisito pra criar creative via Marketing API (estava em Development e bloqueava). URL privacidade `https://budamix.com.br/` + categoria "Negócio e Páginas" + portfólio Budamix conectado.
+- ✅ ~~**Upload vídeo 1 + criar ad Campanha 1 + ativar**~~ → **RESOLVIDO 08/06** — Claude fez end-to-end via API: vídeo v2 (`1765886834776880`, overlays safezone 1:1), creative v4 (`4446773825645879`, copy multiuso sem borossilicato), ad `120248522531400402` ATIVO. Budget reduzido R$37 → R$20/dia conforme pedido do Pedro.
+- ✅ ~~**Pedro revisa criativo + público**~~ → **APROVADO 08/06** — vídeo aprovado (após 1 iteração de safezone) + copy ajustada 2x (sem borossilicato + foco multiuso) + targeting mulheres aplicado.
+- [ ] **Pedro produz vídeos 2 e 3** (UGC Testemunho ~18s + Antes/Depois 12-15s). Tentativa inicial com IA (Veo 3 / Higgsfield); fallback é gravar com celular vertical. Pedro disse "vou finalizar e te envio aqui". Sem deadline rígido.
+- [ ] **Quando vídeos 2 e 3 chegarem:** Claude faz upload via API + cria 3 ads na Camp 2 (3:2:2 ou simplificado) + 1 ad na Camp 3 + ativa as duas. Token Graph Explorer expira ~1h — Pedro precisa gerar novo no momento.
+- [ ] **Criar 2 Custom Audiences (WCA)** pra Campanha 3: ViewContent 14d + Purchase 30d. Tool MCP estava bloqueada em 06/06 e 08/06 ("This tool is new and is being gradually rolled out across ad accounts"); tentar de novo com token user no próximo ciclo. Se ainda bloquear, Pedro cria manual no Audience Manager.
+- [ ] **NÃO TOCAR na Campanha 1 nos próximos 7-14 dias** (até 22/06). Mudança >20% em budget/público/criativo reseta fase de aprendizado. Próxima janela pra ajustar budget é depois que sair da fase.
 - [ ] **(Futuro 2-3 sem)** Lista de compradores de marketplace (Amazon BR + ML + Shopee) pra criar Custom Audience DFCA + Lookalike 1-3% — Pedro vai conseguir via empresa parceira na semana de 09/06.
 - [ ] **(Futuro mês 3+)** Migrar Campanha 3 de WCA pra DPA (Dynamic Product Ads com catálogo dinâmico) quando pixel tiver maturidade (~30-50 vendas/mês).
+- [ ] **(Futuro/opcional)** Trocar token User do Graph Explorer (expira 1h) por System User Token permanente — caminho B que ficou em aberto. Vale fazer antes da próxima sessão de mexer em ads pra evitar refresh manual.
 
 ## 🟡 Estoque GB — Fase 2 mapeamento de SKUs (próximos passos 29/05)
 

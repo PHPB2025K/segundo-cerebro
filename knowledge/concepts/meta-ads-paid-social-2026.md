@@ -38,6 +38,14 @@ Para Vendas, Leads e App Promotion, **CBO + Advantage+ Placements + Advantage+ A
 
 (Números autorreportados pela Meta — direcionais, não promessa)
 
+### Advantage+ Audience força age_max ≥ 65 (descoberto 08/06/2026)
+
+Quando `targeting_automation.advantage_audience = 1` (ligado), Meta **rejeita** qualquer tentativa de setar `age_max < 65` via API. Erro 1870189: "With ad sets that use Advantage+ audience, the maximum age audience control can't be set to lower than 65".
+
+**Implicação prática:** idade/gênero passados no targeting funcionam como **SIGNAL** pro ML, não como hard limit. Restringir 25-55 mulheres? Só se desligar Advantage+ Audience — mas em 2026 isso quebra a performance (perde +22% ROAS reportado).
+
+**Conclusão:** convive com idade 18-65 + Advantage+ ON. Meta vai naturalmente convergir pra faixa que converte mais (dado o produto/copy). Gênero pode ser restrito normalmente (genders=[1] ou [2]).
+
 ### Andromeda + GEM (criativo virou targeting)
 Novo motor de entrega usa o CRIATIVO pra encontrar público. **70-80% da performance vem do criativo**, não orçamento ou targeting. Recompensa **diversidade de criativos** (ângulos radicalmente diferentes), não volume de variações da mesma ideia.
 

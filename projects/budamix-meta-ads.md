@@ -1,7 +1,7 @@
 ---
 title: "Budamix Meta Ads — Paid Social"
 created: 2026-06-06
-modified: 2026-06-06
+modified: 2026-06-08
 type: project
 status: active
 path: "Meta Ads Manager — conta Budamix (1140258596603533)"
@@ -17,7 +17,7 @@ tags:
 
 > Primeira investida de tráfego pago no Meta (Facebook/Instagram) pro e-commerce budamix.com.br.
 > Estrutura de 3 campanhas focada no HERO IMB501 (Conjunto 5 Potes Redondos de Vidro).
-> Status: estrutura criada PAUSED em 06/06/2026, aguardando 2 vídeos adicionais antes de ativar.
+> **Status 08/06/2026:** Campanha 1 (Cold ASC) ATIVA com R$20/dia — vídeo v2 safezone + copy v4 multiuso, público mulheres BR. Campanhas 2 e 3 ainda PAUSED aguardando vídeos 2 e 3 do Pedro.
 
 ## Coordenadas Meta
 
@@ -54,13 +54,27 @@ CAMPANHA 3 — Retargeting WCA (ABO) — 15% verba (R$9/dia)
   → Migrar pra DPA (Dynamic Product Ads) no mês 3+ quando catálogo tiver maturidade
 ```
 
-## IDs das entidades criadas (todas PAUSED em 06/06/2026)
+## IDs das entidades criadas
 
-| Campanha | Campaign ID | Ad Set ID | Budget |
+| Campanha | Campaign ID | Ad Set ID | Budget atual | Status (08/06) |
+|---|---|---|---|---|
+| 1 — `2026-06-06_Cold_ASC_IMB501_25-55` | `120248423500010402` | `120248423502930402` (Cold_BR_25-55_IMB501_ATC) | CBO **R$20/dia** | **ACTIVE** |
+| 2 — `2026-06-06_Cold_TEST_IMB501_25-55` | `120248423500320402` | `120248423503880402` (Cold_Test_3x2x2_IMB501_ATC) | ABO R$11/dia | PAUSED |
+| 3 — `2026-06-06_Warm_DPA_IMB501_Retargeting` | `120248423500930402` | `120248423510550402` (Warm_Retargeting_VC14_NoPurchase30_PURCHASE) | ABO R$9/dia | PAUSED |
+
+### Ads ativos (Campanha 1)
+
+| Ad ID | Creative ID atual | Vídeo ID | Status |
 |---|---|---|---|
-| 1 — `2026-06-06_Cold_ASC_IMB501_25-55` | `120248423500010402` | `120248423502930402` (Cold_BR_25-55_IMB501_ATC) | CBO R$37/dia |
-| 2 — `2026-06-06_Cold_TEST_IMB501_25-55` | `120248423500320402` | `120248423503880402` (Cold_Test_3x2x2_IMB501_ATC) | ABO R$11/dia |
-| 3 — `2026-06-06_Warm_DPA_IMB501_Retargeting` | `120248423500930402` | `120248423510550402` (Warm_Retargeting_VC14_NoPurchase30_PURCHASE) | ABO R$9/dia |
+| `120248522531400402` | `4446773825645879` (v4 copy multiuso) | `1765886834776880` (v2 safezone overlays) | ACTIVE |
+
+Histórico de creatives no Ad (todos arquivados, não deletados):
+- v1 `1521588869499661` — copy original com "borossilicato" + video v1 (overlays fora da safezone)
+- v2 `868261775779008` — copy original com "borossilicato" + video v2 (safezone)
+- v3 `1446563367484264` — copy sem borossilicato (linha "tampa que veda") + video v2
+- v4 `4446773825645879` — copy sem borossilicato (linha "Multiuso") + video v2 → **ATIVO**
+
+Thumbnail hash (reusada em todas as versões — frame 0.5s do vídeo): `815ac9c52a74b340aff9f398faf33e51`
 
 ## HERO Product — IMB501
 
@@ -85,23 +99,52 @@ Para retargeting (Campanha 3): trocar `utm_campaign=2026-06-06_Warm_DPA_IMB501` 
 
 | Vídeo | Status | Localização |
 |---|---|---|
-| 1 — Demonstração produto (15s) | ✅ Pronto | `~/Downloads/budamix-imb501-meta-ads-FINAL.mp4` |
+| 1 v2 safezone — Demonstração produto (15s) | ✅ ATIVO no anúncio | `~/Downloads/Videos IA Potes Hermeticos Budamix/budamix-imb501-meta-ads-FINAL-v2-safezone.mp4` |
 | 2 — UGC Testemunho (~18s) | ⏳ Pedro produzindo (tentando IA primeiro, fallback gravar com celular) | — |
 | 3 — Antes/Depois (12-15s) | ⏳ Pedro produzindo | — |
 
-**Vídeo 1 final specs:** 1080×1920, 15s, 7.8MB, Antonio Bold + paleta oficial Budamix (Deep Teal/Teal/Burnt Terracotta/Lima Sutil/Ivory Mist), trilha sintética 110 BPM, overlays nos tempos 0-3 (hook "DESPENSA BAGUNÇADA?"), 3-9 (sticker "CONJUNTO 5 POTES DE VIDRO"), 9-12 (preço "R$24,90 / ECONOMIZE 37%"), 12-15 (CTA "FRETE GRÁTIS / BUDAMIX.COM.BR").
+**Vídeo 1 v2 specs:** 1080×1920, 15s, 7.9MB, Antonio Bold + paleta oficial Budamix (Deep Teal/Teal/Burnt Terracotta/Lima Sutil/Ivory Mist), trilha sintética 110 BPM. Overlays nos tempos:
+- 0-3s: hook "DESPENSA BAGUNÇADA?" (centro)
+- 3-9s: sticker "CONJUNTO 5 POTES DE VIDRO" — **subiu de y=1590 → y=1100 (safezone 1:1)**
+- 9-12s: preço "R$24,90 / ECONOMIZE 37%" (centro)
+- 12-15s: CTA "FRETE GRÁTIS + EM PEDIDOS ACIMA DE R$199 + BUDAMIX.COM.BR" — **subiu de y=1370 → y=900 (safezone 1:1)**
+
+Pipeline de build em `/tmp/imb501_edit/` (build_overlays.py + segments/ + output/final_v2.mp4). Não é versionado — efêmero por sessão. Source video em `/tmp/imb501_edit/source.mp4`.
+
+## Copy atualizada (creative v4 ativo)
+
+```
+Despensa bagunçada nunca mais. ✨
+
+Conjunto com 5 potes de vidro em tamanhos diferentes — perfeito pra grãos, café, açúcar, farinha e tudo que você quiser organizar.
+
+✅ Multiuso no dia a dia — guardar, servir, organizar tudo
+⭐ 5,0 / 18 avaliações de clientes Budamix
+🚚 Frete grátis acima de R$199
+
+Garanta o seu agora 👇
+```
+
+- **Headline:** "Conjunto 5 Potes de Vidro"
+- **Descrição:** "R$24,90 — Frete grátis acima de R$199"
+- **CTA:** SHOP_NOW
+- **UTMs:** `utm_source=meta&utm_medium=paid_social&utm_campaign=2026-06-06_Cold_ASC_IMB501&utm_content=video-v2-15s-safezone&utm_term=hero-fria`
+
+⚠️ Importante: NÃO usar "borossilicato" (o vidro não é) nem claim de "freezer/micro-ondas" (depende de borossilicato pra ser claim seguro).
 
 ## Orçamento e expectativa de resultados
 
+Pedro reduziu Campanha 1 de R$37 → R$20/dia logo após ativação em 08/06/2026 (antes da fase de aprendizado começar — sem reset). Total planejado abaixo do original mas com mesma estrutura.
+
 | Item | Valor |
 |---|---|
-| **Budget mensal** | R$1.710 (R$57/dia) |
-| **Distribuição** | 65% ASC / 20% Teste / 15% Retarget |
-| **Otimização inicial** | AddToCart (Campanhas 1 e 2) + Purchase (Campanha 3) |
-| **Mês 1** | 8-12 vendas, ROAS 1.0-1.3 (exploração) |
-| **Mês 2** | 12-20 vendas, ROAS 1.5-2.0 (transição Purchase) |
-| **Mês 3+** | 20-35 vendas/mês, ROAS 2.0-3.0+ (escala) |
-| **Investimento 3 meses** | ~R$5.130 |
+| **Budget Campanha 1 (ativa)** | R$20/dia = R$600/mês |
+| **Budget Campanhas 2+3 (planejado quando ativar)** | R$11 + R$9 = R$20/dia = R$600/mês |
+| **Total quando 3 ativas** | R$40/dia = R$1.200/mês |
+| **Otimização** | Campanhas 1+2 = AddToCart, Campanha 3 = Purchase |
+| **Mês 1** | Sai do aprendizado em ~10-12 dias com R$20/dia + ATC (~R$2 CPA → 50 ATCs/sem) |
+| **Mês 2** | Transição pra Purchase quando volume sustentar |
+| **Mês 3+** | Escala vertical +20% a cada 3-4 dias quando ROAS ≥ break-even |
 
 ## Pré-requisitos técnicos JÁ resolvidos
 
@@ -115,25 +158,26 @@ Para retargeting (Campanha 3): trocar `utm_campaign=2026-06-06_Warm_DPA_IMB501` 
 
 ## Próximos passos
 
-1. **Pedro entrega vídeos 2 e 3** (até 07/06/2026)
-2. **Upload dos 3 vídeos no Meta Asset Library** (via API)
-3. **Criar Ads dentro dos 3 ad sets** (1 ad por ad set inicialmente; Campanha 2 vira 3:2:2 quando tiver 3 vídeos)
-4. **Criar 2 Custom Audiences** pra Campanha 3 (ViewContent 14d + Purchase 30d) — vazias, populam conforme tráfego entra
-5. **Pedro revisa cada peça** e ativa as 3 campanhas
+1. **Pedro entrega vídeos 2 e 3** (UGC + Antes/Depois). Quando chegarem: Claude faz upload via API + cria 3 ads na Camp 2 (3:2:2) e 1 ad na Camp 3, ativa tudo.
+2. **Criar 2 Custom Audiences (WCA)** pra Campanha 3 (ViewContent 14d + Purchase 30d). Tool MCP estava bloqueada na sessão de 06/06; tentar de novo via API com token novo quando Pedro mandar vídeos. Se ainda bloquear, Pedro cria manual.
+3. **NÃO TOCAR na Campanha 1 nos próximos 7-14 dias** — qualquer mudança >20% em budget/público/criativo reseta fase de aprendizado.
 
 ## Decisões estruturais tomadas
 
 - Estratégia D atualizada pra versão 2026 (3 campanhas em vez de 2)
-- Orçamento: R$57/dia (calibrado pra otimizar AddToCart e sair do aprendizado em ~3 semanas com ticket R$24,90)
 - HERO único: IMB501 (não pulverizar entre redondos/retangulares/quadrados)
 - Retargeting começa WCA-based + vídeo, NÃO DPA (migrar mês 3+)
 - Sem ferramentas pagas de pesquisa de interesses (AdTargeting etc) — interesses do nicho cobertos via Advantage+ Audience signals
+- **08/06:** Campanha 1 ativada com R$20/dia (reduzido de R$37) — Pedro pediu cautela inicial. Margem pra escalar conforme performance.
+- **08/06:** Público restrito a mulheres (genders=[2]) na Campanha 1. Idade ficou 18-65 por LIMITAÇÃO TÉCNICA — Advantage+ Audience exige age_max ≥ 65; restringir 25-55 requereria desligar Advantage+ Audience (não vale o trade-off em 2026).
 
-## Audiências de outras contas que servem como "audience signal"
+## Audiências de outras contas — descartadas como audience signal
 
-Reaproveitar 2 lookalikes inativos da conta GB Distribuição (`323534883953033`) como audience signal:
-- `120220400359220456` — Semelhante (BR, 1%) Visitantes Site (~1M pessoas) — INACTIVE, reativável
-- `120219003397950456` — Semelhante (BR, 3%) Engajados Página GB Distribuição (~3M pessoas) — INACTIVE, reativável
+Os 2 lookalikes da conta GB Distribuição (`323534883953033`) que tínhamos como plano B estão **INACTIVE** (operation_status_code 433, desde 2024) — não reativáveis:
+- `120220400359220456` — Semelhante (BR, 1%) Visitantes Site
+- `120219003397950456` — Semelhante (BR, 3%) Engajados Página
+
+Pra pixel novo (sem volume), só Advantage+ Audience até maturar (~30-50 vendas Purchase/mês).
 
 ## Plano futuro de expansão (mês 3+)
 

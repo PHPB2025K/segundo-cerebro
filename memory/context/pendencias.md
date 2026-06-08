@@ -12,20 +12,24 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-06-08 ~11h BRT — Meta Ads Budamix Campanha 1 ATIVADA em produção com R$20/dia (vídeo v2 safezone + copy v4 multiuso, público mulheres BR). Campanhas 2 e 3 PAUSED aguardando vídeos 2 e 3._
+_Atualizado: 2026-06-08 ~19h BRT — Spark Meta Ads handoff completo (token permanente + schema meta.* + daily pulse 10:20 BRT). Camp 1 ATIVA com R$20/dia + mulheres BR sem Norte. Camps 2+3 PAUSED aguardando vídeos do Pedro._
 
-## 🟢 Meta Ads Budamix — Campanha 1 ATIVA, Camps 2+3 pendentes
+## 🟢 Meta Ads Budamix — Camp 1 ATIVA + Spark integrado, Camps 2+3 pendentes
 
 - ✅ ~~**Pedro coloca app KOBE.OPENCLAW em modo Live**~~ → **RESOLVIDO 08/06** — pré-requisito pra criar creative via Marketing API (estava em Development e bloqueava). URL privacidade `https://budamix.com.br/` + categoria "Negócio e Páginas" + portfólio Budamix conectado.
 - ✅ ~~**Upload vídeo 1 + criar ad Campanha 1 + ativar**~~ → **RESOLVIDO 08/06** — Claude fez end-to-end via API: vídeo v2 (`1765886834776880`, overlays safezone 1:1), creative v4 (`4446773825645879`, copy multiuso sem borossilicato), ad `120248522531400402` ATIVO. Budget reduzido R$37 → R$20/dia conforme pedido do Pedro.
 - ✅ ~~**Pedro revisa criativo + público**~~ → **APROVADO 08/06** — vídeo aprovado (após 1 iteração de safezone) + copy ajustada 2x (sem borossilicato + foco multiuso) + targeting mulheres aplicado.
+- ✅ ~~**Excluir Norte do targeting Camp 1**~~ → **RESOLVIDO 08/06** — Opção C aplicada (AC/AP/AM/PA/RO/RR/TO excluídos via `excluded_geo_locations.regions` — frete proibitivo).
+- ✅ ~~**Token Meta permanente (System User)**~~ → **RESOLVIDO 08/06** — Token NEVER expira gerado via Fat_User_CRM + KOBE.OPENCLAW + 42 scopes. Salvo em 1P vault OpenClaw, item `hxvgwjrdluw4yblo4lbktatoyy` (campo notesPlain). Receita pra Kobe ler via SA da VPS documentada em `memory/meta_system_token_vps_access.md` (Claude Code memory local).
+- ✅ ~~**Handoff Spark Meta Ads**~~ → **RESOLVIDO 08/06** — Spark agora monitora Camp 1 com cron daily pulse 10:20 BRT (`20 13 * * *` UTC) postando no Telegram thread 9 (Marketing). Skills refatoradas pra Strategy 2026 + regras invioláveis Budamix. Scripts ganharam guardrail (refusam executar sem `META_AD_ACCOUNT` explícito). Schema `meta.*` dedicado no Spark Supabase (`wzhmrpskiscassbixurr`) com 3 tabelas: `actions_log`, `recommendations`, `daily_pulses`.
 - [ ] **Pedro produz vídeos 2 e 3** (UGC Testemunho ~18s + Antes/Depois 12-15s). Tentativa inicial com IA (Veo 3 / Higgsfield); fallback é gravar com celular vertical. Pedro disse "vou finalizar e te envio aqui". Sem deadline rígido.
 - [ ] **Quando vídeos 2 e 3 chegarem:** Claude faz upload via API + cria 3 ads na Camp 2 (3:2:2 ou simplificado) + 1 ad na Camp 3 + ativa as duas. Token Graph Explorer expira ~1h — Pedro precisa gerar novo no momento.
 - [ ] **Criar 2 Custom Audiences (WCA)** pra Campanha 3: ViewContent 14d + Purchase 30d. Tool MCP estava bloqueada em 06/06 e 08/06 ("This tool is new and is being gradually rolled out across ad accounts"); tentar de novo com token user no próximo ciclo. Se ainda bloquear, Pedro cria manual no Audience Manager.
 - [ ] **NÃO TOCAR na Campanha 1 nos próximos 7-14 dias** (até 22/06). Mudança >20% em budget/público/criativo reseta fase de aprendizado. Próxima janela pra ajustar budget é depois que sair da fase.
 - [ ] **(Futuro 2-3 sem)** Lista de compradores de marketplace (Amazon BR + ML + Shopee) pra criar Custom Audience DFCA + Lookalike 1-3% — Pedro vai conseguir via empresa parceira na semana de 09/06.
 - [ ] **(Futuro mês 3+)** Migrar Campanha 3 de WCA pra DPA (Dynamic Product Ads com catálogo dinâmico) quando pixel tiver maturidade (~30-50 vendas/mês).
-- [ ] **(Futuro/opcional)** Trocar token User do Graph Explorer (expira 1h) por System User Token permanente — caminho B que ficou em aberto. Vale fazer antes da próxima sessão de mexer em ads pra evitar refresh manual.
+- [ ] **(Futuro/opcional)** Permissão **Write Items** pro SA "Claude Code VPS" no vault OpenClaw — hoje só Read. Sem isso, Spark/Claude não podem criar/atualizar secrets autonomamente (precisa Pedro fazer manual ou via app). Tempo: 2min em `1password.com → Integrations → Service Accounts`.
+- [ ] **(Futuro pós-22/06)** Avaliar promover Spark pra ajustes pequenos auto-execução (pause, escala ≤+20%) depois de 1-2 ciclos sem erro. Estruturais sempre via aprovação Pedro.
 
 ## 🟡 Estoque GB — Fase 2 mapeamento de SKUs (próximos passos 29/05)
 

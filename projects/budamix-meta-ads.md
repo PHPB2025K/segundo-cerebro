@@ -156,6 +156,17 @@ Pedro reduziu Campanha 1 de R$37 → R$20/dia logo após ativação em 08/06/202
 - ✅ Pixel conectado à Conta de Anúncios + Catálogo
 - ✅ Feed XML com 23 produtos válidos, `<g:id>` = variant_id (alinhado com pixel `content_ids`)
 
+## Spark integrado (08/06/2026 noite)
+
+Spark agora monitora Camp 1 com infraestrutura completa:
+
+- **Token Meta permanente** (System User, NEVER expira) em 1P vault OpenClaw, item `hxvgwjrdluw4yblo4lbktatoyy`, campo `notesPlain`. 42 scopes incluindo `ads_management`, `instagram_basic`, `instagram_manage_insights`, `catalog_management`.
+- **Schema Supabase dedicado:** `meta.*` no projeto SPARK ADS (`wzhmrpskiscassbixurr`). 3 tabelas: `actions_log`, `recommendations`, `daily_pulses`. Exposto via PostgREST. Regra: schemas separados por plataforma (Amazon ficará em `amazon.*`, ML em `ml.*`).
+- **Daily pulse 10:20 BRT:** cron `20 13 * * *` UTC. Script `/var/www/mission-control/scripts/spark-meta-daily-pulse.py`. Coleta insights last 24h + 7d Camp 1, calcula KPIs, detecta anomalias básicas, insere em `meta.daily_pulses`, posta no Telegram thread 9 (Marketing) do grupo Tobias Hub. Alertas críticos vão pro thread 8 (Urgente).
+- **Guardrail nos scripts Meta Ads:** `meta-ads-report.py`, `meta-ads-create.py`, `meta-ads-rules.py` refusam executar sem `META_AD_ACCOUNT` explícito (whitelist apenas Budamix). Mitigação contra operação na conta legacy GB Distribuição.
+- **Skills refatoradas:** SKILL.md global + Spark agora Budamix-first com Strategy 2026 + regras invioláveis (sem borossilicato, sem claim freezer/micro-ondas, paleta oficial, safezone 1:1, freeze Camp 1 até 22/06).
+- **Spark continua L1 Observer.** Janela pra promover ajustes pequenos auto-execução: pós-22/06 (saída fase aprendizado), após 1-2 ciclos sem erro. Estruturais sempre via aprovação Pedro no tópico Marketing.
+
 ## Próximos passos
 
 1. **Pedro entrega vídeos 2 e 3** (UGC + Antes/Depois). Quando chegarem: Claude faz upload via API + cria 3 ads na Camp 2 (3:2:2) e 1 ad na Camp 3, ativa tudo.

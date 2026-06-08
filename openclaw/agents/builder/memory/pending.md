@@ -10,16 +10,18 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-06-04_
+_Atualizado: 2026-06-07_
 
 ## 🔴 Prioridade Alta
 
 ### Estoque Budamix
 - [ ] Retomar deploy em produção: VPS sem credencial GitHub, `git fetch` falhou 403. Recomendação: Deploy Key SSH read-only; depois reset/build/restart/smoke com backup e hash `.env`.
 - [ ] Fechar PR1+PR2+PR3a em produção e validar visualmente: radio cards, default Venda/Compra, Devolução em entrada, autocomplete `914`/`KIT4YW800SQ_T`.
-- [ ] Depois do deploy/cadastro: desenhar PR4 kits/BOM, pois 75% dos erros reais recentes são “Estoque insuficiente”.
+- [ ] Após autorização, aplicar aliases seguros do mapeamento retroativo de 07/06 e reprocessar só esses movimentos: `CK4742_B2` → `CK4742_B`, `914C_B2` → `914C_B`, `KITIMB501P_T` → `IMB501P_T`.
+- [ ] Validar antes de qualquer automapeamento: `XCP004` → possível `COLORS170_B`; `KFJ003` sem canônico seguro.
+- [ ] Depois do deploy/cadastro: desenhar PR4 kits/BOM, pois a maioria dos erros reais recentes é “Estoque insuficiente”.
 - [ ] Preencher alocação de receita por componente no fechamento de estoque; CMV seller de 03/06 foi corrigido, mas receita da camada de componentes ainda está nula.
-- [ ] Tratar fila residual de divergências por saldo real insuficiente após correção de 03/06: `YW1520RC`, `YW1050RC`, `CAC250P`, `CAC250AZ`.
+- [ ] Tratar fila residual de divergências por saldo real insuficiente/entrada física não registrada: `YW1520RC`, `YW1050RC`, `CAC250P`, `CAC250AZ`, `TL250P`, `CAR200B`, `CAR200R`; não baixar negativo sem prova operacional.
 
 ### Social Studio Reborn
 - [ ] Fase C C2: construir `/admin/social/conta` com status de conta, OAuth e callback handler.

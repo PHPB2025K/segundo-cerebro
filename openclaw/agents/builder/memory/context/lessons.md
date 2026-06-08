@@ -74,3 +74,7 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 ### [TÁTICA] Correção de lote em estoque deve degradar granularmente (2026-06-04)
 **Lição:** Conflito ou duplicata isolada não pode fazer o pipeline perder o lote inteiro. Processos de fechamento devem degradar por item, preservar trilha auditável e continuar aplicando o restante seguro.
 **Expira:** 2026-07-04
+
+### [TÁTICA] Divergência de estoque precisa classificação por causa raiz antes de reprocessar (2026-06-07)
+**Lição:** Divergente de marketplace/WhatsApp não é automaticamente erro de SKU. Separar alias seguro, SKU fantasma, SKU mutável e saldo físico insuficiente antes de agir; aplicar só aliases evidentes e nunca baixar negativo para “limpar fila” sem prova operacional.
+**Expira:** 2026-07-07

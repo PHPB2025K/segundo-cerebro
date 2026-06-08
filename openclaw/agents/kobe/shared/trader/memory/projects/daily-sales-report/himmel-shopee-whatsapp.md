@@ -159,3 +159,23 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 - **Responsáveis/próximo passo:** Himmel deve conduzir a estratégia aprovada; Trader deve tratar variações entre contas como possível efeito de separação/alternância, não apenas queda isolada.
 - **Status:** aberto — estratégia aprovada em 2026-06-02, validar D+1/D+3/D+7.
 
+### 2026-06-08 11:35–12:04 BRT — Estoque parado no Full, RTS e promoção agressiva para Kit 5 Potes Redondos
+
+- **Participantes:** Raphaella (Himmel).
+- **Plataforma/conta:** Shopee — conta **Budamix.Store** citada explicitamente; pontos de Full/RTS e promoção devem ser tratados como contexto prioritário dessa conta, mas validar nas 3 contas se houver anúncios equivalentes.
+- **Tema:** estoque parado no Full, custo mensal de armazenagem, pendência fiscal em produto suspenso e perda de competitividade em item de alto volume.
+- **Produtos/SKUs citados:**
+  - **LIVCNCOL24** — Kit Bobbie Goods livro de colorir ROSA 24 peças: 29 unidades paradas no Full.
+  - **LIVAZCNCOL24** — Kit Bobbie Goods livro de colorir AZUL 24 peças: 36 unidades paradas no Full.
+  - **LIVCNCOL80** — Kit Bobbie Goods livro de colorir ROSA 80 peças: 17 unidades paradas no Full.
+  - **LIVCNCOL48** — Kit Bobbie Goods livro de colorir ROSA 48 peças: 11 unidades paradas no Full.
+  - **LIVAZCNCOL48** — Kit Bobbie Goods livro de colorir AZUL 48 peças: 23 unidades paradas no Full.
+  - **CJT1TP** — Kit Jogo 3 Potes de Vidro Condimento Redondo com Tampa Bambu/Colher/Suporte: 16 unidades paradas no Full; serviço Shopee suspenso por erro nas informações de imposto.
+  - **CK4742_B** — Jarra Medidora de Vidro 500ml: 120 unidades paradas no Full.
+  - **ID 22393168887** — Conjunto de 5 Potes de Vidro Redondos: Budamix.Store com 734 unidades vendidas/mês vs concorrentes Favorito na Web, Big Achados Shop e Casa & Vídeo com ~1.000 unidades/mês cada.
+- **Decisão/contexto:** Himmel recomenda avaliar **RTS (Retirada de Estoque)** para itens de baixo giro/excluídos no Full ou acelerar giro com ajustes de preço, campanhas promocionais, ofertas relâmpago, cupons, combos e reforço em publicidade, priorizando itens com maior volume parado. Também pede avaliação de promoção mais agressiva para o Conjunto de 5 Potes Redondos, porque a Budamix.Store está perdendo espaço para concorrentes no volume mensal.
+- **Impacto esperado:** reduzir custo de armazenagem Full e liberar estoque parado; recuperar giro/competitividade do Kit 5 Potes Redondos; destravar CJT1TP depende de correção fiscal antes de escalar campanha.
+- **Como validar nos dados:** nos próximos Daily Sales Reports v2, checar por shop_id/anúncio: estoque Full, custo/risco de armazenagem, status de serviço do CJT1TP, vendas e conversão do ID 22393168887, preço final/cupom/ofertas, ranking frente aos concorrentes citados, investimento ADS e efeito D+1/D+3/D+7 após qualquer promoção/RTS/correção fiscal.
+- **Responsáveis/próximo passo:** GB/Pedro/equipe deve decidir entre RTS vs aceleração promocional para cada SKU parado e corrigir pendência fiscal do CJT1TP; Himmel deve orientar campanhas/cupons/ofertas para giro e competitividade.
+- **Status:** aberto — recomendação recebida; requer decisão operacional sobre RTS/promoção/correção fiscal e validação nos dados.
+

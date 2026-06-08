@@ -1,6 +1,12 @@
 # Decisões — RH
 
-_Atualizado: 2026-06-06_
+_Atualizado: 2026-06-07_
+
+## 2026-06-07
+- Nenhuma decisão nova de política RH registrada.
+- Mantido bloqueio: consolidação diária de memória não autoriza envio proativo a funcionários.
+- Domingo com 0 registros de funcionários ativos permanece tratado como dia não útil sem cobrança automática, salvo escala específica ou evidência de trabalho.
+- Backlog de comunicações RH abertas permaneceu em 21, com 14 exigindo aprovação/orientação do Pedro.
 
 ## 2026-06-06
 - Nenhuma decisão nova de política RH registrada.

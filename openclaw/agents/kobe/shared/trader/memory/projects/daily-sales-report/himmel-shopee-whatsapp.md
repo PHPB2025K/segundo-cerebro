@@ -179,3 +179,18 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 - **Responsáveis/próximo passo:** GB/Pedro/equipe deve decidir entre RTS vs aceleração promocional para cada SKU parado e corrigir pendência fiscal do CJT1TP; Himmel deve orientar campanhas/cupons/ofertas para giro e competitividade.
 - **Status:** aberto — recomendação recebida; requer decisão operacional sobre RTS/promoção/correção fiscal e validação nos dados.
 
+### 2026-06-08 13:01–13:42 BRT — Estratégia de capa por variação nas canecas para recuperar CTR/conversão
+
+- **Participantes:** Pedro Broglio e Raphaella (Himmel).
+- **Plataforma/conta:** Shopee — ações separadas por conta: **budamix.shop**, **budamix.store** e **budamix_store**.
+- **Tema:** recuperação de vendas das canecas via otimização de imagem principal/variação ativa dos anúncios.
+- **Produtos/SKUs citados:** canecas; variações **Colorida**, **Rosa**, **Branca**, **Azul** e **Amarela**.
+- **Decisão/contexto:** Raphaella sugeriu analisar a curva de saída das variações em cada conta e alterar a foto de capa dos anúncios para a variação com melhor desempenho ou maior potencial, já que a imagem principal representa a variação ativa e pode melhorar atratividade, CTR e conversão. Pedro informou que estava verificando e daria posição até o fim do dia; Raphaella disse que também estava analisando as demais contas.
+- **Exemplos por conta:**
+  - **budamix.shop:** Colorida foi a variação com maior volume no mês anterior; faz sentido manter/configurar capa para Colorida.
+  - **budamix.store:** Colorida liderou, mas Rosa ficou próxima em segundo; avaliar teste de capa com Rosa.
+  - **budamix_store:** Colorida liderou; Branca foi a segunda mais vendida; Azul e Amarela tiveram baixo desempenho, com Amarela sem vendas no período. Raphaella levantou possibilidade de testar capa com Branca, Azul ou Amarela.
+- **Impacto esperado:** otimização simples para tentar recuperar volume de canecas, aumentando clique/conversão por conta sem depender apenas de ADS ou preço.
+- **Como validar nos dados:** nos próximos Daily Sales Reports v2, acompanhar por shop_id/anúncio/variação: CTR, conversão, pedidos, faturamento, mix de cores, investimento ADS, TACOS/ROAS e efeito D+1/D+3/D+7 após eventual troca de capa. Tratar melhora/queda como hipótese até confirmar que a mudança foi aplicada.
+- **Responsáveis/próximo passo:** Pedro/GB deve confirmar posição e decidir/aplicar as trocas de capa; Himmel deve concluir análise das demais contas e acompanhar resultado.
+- **Status:** aberto — estratégia sugerida; aguardando posição do Pedro e/ou confirmação de implementação.

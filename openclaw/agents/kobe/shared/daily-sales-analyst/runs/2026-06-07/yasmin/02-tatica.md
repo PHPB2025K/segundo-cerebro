@@ -1,0 +1,38 @@
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
+### Decisão tática
+
+- **Dado que a tese L01 identifica ciclo crônico de restock insuficiente do anúncio líder Full (Conjunto 5 Potes de Vidro Redondos Tampa Vermelha, `available_quantity=2` após 10 pedidos em 07/06, 3º episódio documentado em janela curta), a decisão mais urgente é proteger a operação antes da nova pausa, não diagnosticar a queda de volume:** Yasmin verifica status do anúncio no próximo snapshot e aciona providência de reposição ao CD do ML antes que o ciclo ruptura→cancelamentos prospectivos se repita. Não há ação de ADS que resolva ausência de estoque.
+
+- **Dado que a tese L01 identifica MercadoLíder Platinum tecnicamente conquistado pelo 3º ciclo consecutivo (`gap_revenue_brl=0`, `progress_pct=100%`) com `power_seller_status` ainda "gold", e aponta `ratings_negative=0,41` como hipótese principal de bloqueio silencioso, a decisão é investigar a barreira antes que a janela rolling 60d comece a descartar os dias de alto GMV de abril:** Yasmin aciona suporte ML para entender o critério pendente. Cada dia de ritmo abaixo de R$4.978 (`ritmo_diario_brl`) corrói a margem de segurança acima do threshold.
+
+- **Dado que a L01 identifica o ADS share elevado (64,2%) como artefato de supply comprometido — não como ineficiência de campanha — com ROAS 8,78x e ACOS 9,01% dentro da faixa eficiente, a decisão é não acionar Himmel:** O mecanismo é estrutural: Full líder depletado comprime GMV e infla o ratio de ADS sobre um denominador menor. A variável a endereçar é supply, não campanha.
+
+- **Dado que a L01 identifica cluster de health degradada nos campeões Full como risco de erosão orgânica acumulada — especialmente o Kit 4 Potes de Vidro 640ml no 4º ciclo consecutivo em `health=0,66` — a decisão é verificar direção antes de qualquer movimento com Himmel sobre cobertura:** Health estável ≠ risco imediato; health em queda sustentada é o único gatilho que justifica alinhamento sobre ADS preventivo neste nível.
+
+---
+
+### O que fazer hoje
+
+**1. Yasmin:** verificar status e `available_quantity` do anúncio líder Full (Conjunto 5 Potes de Vidro Redondos Tampa Vermelha) no próximo snapshot e, se `status=paused` ou `available_quantity=0` se confirmar, acionar providência de reposição ao CD do ML com urgência — motivo: `available_quantity=2` ao final de 07/06 após 10 pedidos configura pausa iminente; cada episódio de pausa com pedidos ativos expõe `cancellations_rate` a contaminação (06/06: 67 pedidos prospectivamente canceláveis com zero estoque) e corrói diretamente a margem de segurança para o MercadoLíder Platinum, onde `sales_60d_revenue_brl=R$298.699` está apenas R$2.699 acima do threshold em janela rolling — sinal de resultado: `available_quantity > 10` no próximo snapshot com `status=active` indica restock funcional; `status=paused` ou `available_quantity=0` confirma o ciclo crônico e eleva prioridade de reposição a crítico.
+
+**2. Yasmin:** contatar suporte ML para investigar o critério pendente para reconhecimento do MercadoLíder Platinum — motivo: 3º ciclo consecutivo com `gap_revenue_brl=0`, `progress_pct=100%` e `power_seller_status` ainda "gold"; a conta é operacionalmente verde (`cancellations_rate=0`, `claims_rate=0,0018`, `color=5_green`), mas `ratings_negative=0,41` contra `ratings_positive=0,56` é o candidato mais provável ao bloqueio silencioso da promoção automatizada; sem confirmação do suporte ML, a hipótese permanece aberta e a conta pode perder margem de segurança antes de entender a causa — sinal de resultado: suporte ML indica critério específico pendente (ratings, tempo mínimo no nível, outro bloqueio administrativo) e Yasmin registra o gatilho real para acompanhar; `power_seller_status=platinum` no próximo snapshot refuta a hipótese e encerra a ação.
+
+**3. Yasmin:** checar direção do `health` do anúncio Kit 4 Potes de Vidro 640ml (4º ciclo consecutivo em `health=0,66`, abaixo do threshold de 0,85 — o ciclo mais longo de degradação entre os campeões Full ativos no snapshot) — motivo: três ciclos de saúde degradada sem recuperação visível sugerem penalização ML ativa sobre o ranking de categoria; se `health` seguir caindo abaixo de 0,63 no próximo ciclo, o risco de perda de posição orgânica se confirma como recorrente e não pontual — sinal de resultado: `health` estável ou em recuperação no próximo snapshot = observar mais 1 ciclo sem ação; `health` abaixo de 0,63 = Yasmin alinha com Himmel sobre cobertura ADS preventiva para este anúncio.
+
+---
+
+### O que NÃO fazer ainda
+
+- **Não acionar Himmel para ajustar verba, segmentação ou mix de campanha:** ADS share de 64,2% com ROAS 8,78x e ACOS 9,01% está dentro da faixa eficiente e o share elevado é artefato de supply comprometido — o mesmo gasto (~R$300) representa fração maior de um GMV comprimido, não escalada de campanha. Qualquer ajuste de campanha em dia de ruptura de supply introduz variável confundidora que impede separar efeito de ADS de efeito de restock nos próximos ciclos. O gatilho para alinhamento com Himmel são dois ciclos consecutivos de ACOS > 30% ou de health de campeão Full caindo abaixo de 0,63 — nenhum dos dois se materializou.
+
+- **Não interpretar a queda de -49% vs 7d e -30,5% vs 30d como deterioração de patamar que exige resposta estrutural:** A L01 documenta que as referências primárias para este domingo são o avg 60d (R$4.991) e o controle de mesmo dia da semana (R$5.200) — o dia (R$4.115) está -17,5% vs 60d e -20,8% vs controle, dentro da banda histórica dos domingos de 17-24/05 (R$5.180 e R$4.996). A comparação vs 7d e 30d reflete o pico excepcional de 01-05/06, quando o líder Full operava em plena capacidade. Agir sobre esse delta como se fosse queda estrutural seria precipitado e levaria a decisões erradas de ADS ou preço.
+
+- **Não recomendar ou executar migração de anúncios de Cross-Docking para Full como resposta tática:** A dependência estrutural do patamar de conta na modalidade de envio Full é diagnóstico da L01 como risco crônico de supply chain — decisão sobre mix de modalidade de envio envolve logística, custo de armazenagem no CD do ML e estratégia de reposição, e extrapola o canal tático da Yasmin. É pauta para Trader/Kobe após confirmação do ciclo como estrutural, não ação de hoje.
+
+---
+
+### Escalonamento
+
+**observar** — com gatilhos definidos para alinhar com Himmel ou escalar para Kobe.
+
+Hoje nenhuma das condições que justificam acionamento de Himmel ou Kobe está ativa: ADS está eficiente (ROAS 8,78x, ACOS 9,01%), health degradada ainda não cruzou o limiar de 0,63 em nenhum campeão, e o problema de patamar é de supply (restock ao CD do ML), não de campanha ou decisão estratégica. Yasmin resolve o operacional hoje de forma autônoma. O gatilho para **alinhar com Himmel** é: `health` do Kit 4 Potes 640ml cair abaixo de 0,63 no próximo snapshot, ou qualquer campeão Full adicional com `health` em queda no 3º ciclo consecutivo abaixo de 0,75 — cobertura preventiva de ADS faz sentido quando orgânico está em erosão ativa. O gatilho para **escalar para Kobe** é: 4º ciclo consecutivo de MLB3288536143 pausado ou com `available_quantity < 5` confirmando que o ciclo de restock é estruturalmente incapaz de cobrir a demanda — nesse ponto, a conta vive em regime bifásico permanente por decisão de supply chain, e a decisão de reposição, dimensionamento de lote e possível migração de vetor de volume é estratégica e extrapola a operação tática diária da Yasmin.

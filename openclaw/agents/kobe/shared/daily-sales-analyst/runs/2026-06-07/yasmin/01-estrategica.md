@@ -1,0 +1,53 @@
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
+### Qualidade da base
+
+Memória diária robusta: 11 entradas consecutivas desde 22/05, weekly.md populado com dados até 06/06, rules.md ativo, ml_snapshot completo (reputation, mercadolider, fulfillment_mix, top_items_details, ads_summary, account_overview — todos `status: "ok"`). Janelas 7d, 30d, 60d e controle de mesmo dia da semana disponíveis. Ressalva de leitura: a janela 7d (`avg_gmv=R$8.077`, `avg_orders=176,3`) está inflada pelo pico de 01-05/06 (R$9.953 → R$7.742) e não serve como âncora de patamar neste ciclo — as referências primárias são 60d e controle de dia da semana.
+
+---
+
+### Leitura temporal
+
+- **vs 60d e mesmo dia da semana — oscilação dentro da banda, não ruptura de patamar:** O dia (`metrics.gmv=R$4.115`, `pedidos_validos=84`) está −17,5% vs `historical.avg_60d.avg_gmv=R$4.991` e −20,8% vs `same_weekday_avg.avg_gmv=R$5.200`. A série dos últimos quatro domingos — 10/05 R$2.355 → 17/05 R$5.180 → 24/05 R$4.996 → 31/05 R$8.267 → hoje R$4.115 — não é monotônica: o pico de 31/05 foi excepcional (MLB3288536143 operando com plena capacidade), e hoje reverte para o intervalo típico dos domingos de 17-24/05. A conta não saiu da banda 60d; o que saiu foi o inflador.
+
+- **vs 7d e 30d — artefato do pico de Full, não tendência de deterioração:** O delta vs 7d (−49% pedidos, −49% GMV em `changes`) é produto direto da comparação com o pico extraordinário de 01-05/06, quando MLB3288536143 operou acima de 100 pedidos/dia. A memória de 06/06 documenta o anúncio pausado com `available_quantity=0` e 67 cancelamentos prospectivos. Hoje o anúncio reaparece ativo (`status=active`, `available_quantity=2` residual pós 10 pedidos) — restock parcial de ~12 unidades, já praticamente esgotado. A comparação vs 30d (−30,5% GMV) reflete a mesma distorção: o mês foi elevado pelo mesmo pico, não por um novo patamar sustentável.
+
+- **Ticket em elevação relativa — composição de mix, não ganho estrutural:** `metrics.ticket_medio=R$49,00` está +2,1% vs `historical.avg_30d.avg_ticket=R$47,98` e +10,5% vs `avg_60d.avg_ticket=R$44,33` (`changes.ticket_vs_60d_pct`). Em dias com o Full líder depletado, os kits de maior valor médio (Kit 4 Potes 800ml, 1050ml, Pote 520ml) ganham peso relativo no mix e elevam o ticket artificialmente. Não é crescimento estrutural de ticket médio da conta; é efeito de composição pela ausência do volume de menor valor unitário do cluster IMB501.
+
+- **Hipóteses anteriores:** (1) MLB3288536143 (Potes 5 Peças Tampa Vermelha, Full) pausado com zero estoque em 06/06 — confirmado para hoje: restock mínimo (~12 unidades), `available_quantity=2` após 10 vendas, nova pausa iminente. O ciclo ruptura→restock insuficiente→ruptura está no terceiro episódio documentado em janela curta. (2) MercadoLíder Platinum — `gap_revenue_brl=0` e `progress_pct=100%` desde 05/06: hoje é o 3º ciclo consecutivo com threshold financeiro cruzado (`sales_60d_revenue_brl=R$298.699` vs R$296.000) e `power_seller_status` ainda "gold". Hipótese de bloqueio por `ratings_negative=0,41` persiste sem refutação.
+
+---
+
+### Leitura estratégica
+
+- **Lente 1 + Lente 3 — Patamar bifurcado por supply Full único:** O patamar real da conta não é um número, é uma função do estoque de MLB3288536143 no CD do ML. Estado pleno (>50 unidades disponíveis): conta atinge R$7-10k/dia, cluster IMB501 responde por 44-56% do volume absoluto, `fulfillment_mix_7d.full_pct` se mantém em 77-80%. Estado depletado (<10-20 unidades ou pausado): conta recua para R$4-5k/dia, `fulfillment_mix_yesterday_top10.full_pct=67,2%` cai −10,1pp vs 7d e −12,9pp vs 30d, a cauda Cross-Docking ganha peso relativo mas não repõe o volume em termos absolutos. A `account_overview.active_analysis.fulfillment_mix` confirma a assimetria estrutural: base ativa em 42,1% Full / 57,9% Cross-Docking, mas os campeões operam com 67-80% Full — quando o topo Full quebra, não há substituto de modalidade de envio Cross-Docking com volume equivalente. Hoje é o segundo ciclo consecutivo no estado depletado.
+
+- **Lente 6 — MercadoLíder Platinum tecnicamente conquistado, formalmente não reconhecido (3º ciclo):** `ml_snapshot.mercadolider.platinum.gap_revenue_brl=0`, `progress_pct=100%`, `sales_60d_revenue_brl=R$298.699` (R$2.699 acima do threshold R$296.000), `sales_60d_count_paid=6.725` (vs 1.725 exigidos). Terceiro ciclo consecutivo com ambos os critérios cruzados e `power_seller_status` ainda "gold". O ritmo diário de R$4.978 é o pace necessário para manter o saldo acima do threshold conforme a janela rolling descarta dias de abril; hoje R$4.115 fica −17,4% abaixo do ritmo, o que tecnicamente corrói margem. O vetor mais provável para o não-reconhecimento: `reputation.ratings_negative=0,41` (com `ratings_positive=0,56`) — taxa de avaliações negativas anormalmente alta para uma conta com `color=5_green`, `claims_rate=0,0018` (36% do threshold 0,005) e `cancellations_rate=0`. A conta tem saúde operacional (termômetro verde), mas a percepção de qualidade via ratings está em nível que pode travar a promoção automatizada do ML.
+
+- **Lente 5 — ADS dominante por compressão de orgânico, não por expansão de campanha:** ADS share do dia = R$2.642 / R$4.115 = **64,2%** (`ml_snapshot.ads_summary.revenue_ads_yesterday_brl` / `metrics.gmv`). ROAS = R$2.642 / R$300,78 = **8,78x**, ACOS = 9,01% — eficiente, mas na zona ADS dominante (>50%). O mecanismo é estrutural e não reflete decisão de Himmel: com o Full líder depletado, o orgânico cai e o mesmo patamar de gasto (~R$300) representa fração maior do GMV comprimido. O ratio verdadeiro de dependência de ADS é melhor avaliado nos dias de Full pleno, onde o share historicamente cai para 48-56% com GMV mais alto. Nos ciclos de ruptura, o ADS share inflado é sintoma de fragilidade de supply, não de ineficiência de campanha.
+
+- **Lente 4 — Cluster de health degradada nos campeões como risco de exposição orgânica acumulado:** Dos top 10 do dia com `health` calculada: MLB3288536143 (`health=0,71` — nível regular, 17º+ ciclo idêntico), MLB4073003575 (`health=0,75` — nível regular, 12º+ ciclo), MLB4931700052 (`health=0,75` — nível regular), MLB5402326666 (`health=0,66` — nível preocupante, 4º+ ciclo abaixo de 0,85). Nenhum anúncio campeão está em nível excelente ou bom superior. Todos os campeões são Clássico (`listing_type=gold_special`, `is_catalog=false` na maioria), competindo por ranking de categoria — health degradada significa ML reduzindo posição orgânica progressivamente. Nos dias de Full pleno, o volume absoluto mascara a perda de ranking; nos dias depletados como hoje, a fraqueza é amplificada na curva de demanda disponível.
+
+---
+
+### Tese da conta
+
+A conta está **vulnerável** — não por deterioração de demanda, mas por dependência estrutural crônica de um único vetor de supply Full (MLB3288536143, Conjunto 5 Potes de Vidro Redondos Tampa Vermelha no CD do ML) cujo ciclo de restock é sistematicamente insuficiente para cobrir a demanda do anúncio. O padrão ruptura → restock parcial → ruptura aparece em pelo menos três episódios documentados na janela de 7 dias, com restock máximo observado de ~12 unidades contra uma demanda de 10-100+ pedidos/dia dependendo do contexto. O segundo vetor de fragilidade — MercadoLíder Platinum tecnicamente conquistado por 3 ciclos consecutivos mas não formalizado, possivelmente bloqueado por `ratings_negative=0,41` — é latente e se tornará crítico se a janela rolling 60d começar a perder os dias de alto GMV de abril sem reposição proporcional no ritmo diário.
+
+---
+
+### Risco estrutural principal
+
+- **Risco:** Ciclo crônico de ruptura de estoque Full do anúncio líder MLB3288536143 (Conjunto 5 Potes de Vidro Redondos Tampa Vermelha) no CD do ML, com restock recorrentemente insuficiente para cobrir a demanda — `available_quantity=2` residual pós 10 pedidos em 07/06, após pausa com zero em 06/06.
+- **Por que importa:** A conta opera em dois regimes de GMV separados por ~2x (R$4-5k vs R$7-10k) determinados exclusivamente pela disponibilidade deste único anúncio Full. Não existe segundo vetor de volume equivalente: o próximo maior anúncio do dia (MLB4535865317, Tampa Preta, Cross-Docking) entrega 10 pedidos com `available_quantity=8.275` — mas opera em modalidade de envio diferente e não tem o histórico de vendas (`sold_quantity=428`) nem o ranking do líder (`sold_quantity=6.845`). Cada episódio de pausa expõe também `cancellations_rate` a contaminação (06/06: 67 pedidos prospectivamente canceláveis) e corrói margem de segurança para a promoção ao MercadoLíder Platinum.
+- **Histórico:** Padrão documentado de forma contínua desde 01/06 na memória diária. Ciclos: 01/06 `available_quantity=13` pós 118 pedidos → 02/06 restock parcial → 04/06 `available_quantity=88` pós 41 pedidos → 05/06 `available_quantity=58` → 06/06 zero/paused (67 cancelamentos prospectivos) → 07/06 restock ~12 unidades já esgotadas. Risco crônico, não novo.
+- **Sinal de confirmação:** `available_quantity` de MLB3288536143 voltar a zero e `status` reverter para "paused" no próximo snapshot confirma que o restock foi pontual e insuficiente, e que o ciclo bifásico é estrutural. Se ETA de reposição ao CD do ML superar 3 dias sem lote confirmado, o patamar R$4-5k vira teto operacional até a próxima reposição.
+
+---
+
+### Sinais a observar
+
+1. **MLB3288536143 — nova pausa iminente (próximo snapshot):** `available_quantity=2` ao final de 07/06. Se o próximo pacote mostrar `status=paused` ou `available_quantity=0`, confirma que o restock de ~12 unidades foi incapaz de sustentar sequer 2 dias de demanda — ciclo de ruptura estruturalmente crônico e não endereçado. Sinal disponível no próximo snapshot sem dado opcional.
+
+2. **MercadoLíder Platinum — 4º ciclo consecutivo sem promoção (próximo snapshot):** Se `power_seller_status` permanecer "gold" com `gap_revenue_brl=0` e `progress_pct=100%` por 4 ciclos consecutivos, a hipótese de bloqueio silencioso por `ratings_negative=0,41` passa de candidata a explicação principal, demandando ação direta de Yasmin com suporte ML. Sinal falsificável: `power_seller_status=platinum` no próximo snapshot refuta; persistência em "gold" pelo 4º ciclo confirma.
+
+3. **ADS share acima de 60% por 2 ciclos consecutivos com Full líder depletado:** Se no próximo ciclo o Full líder seguir em ruptura/pausa e o ADS share se mantiver acima de 60%, confirma o padrão estrutural de ADS como vetor de sustentação durante rupturas de supply — gatilho para alinhamento Yasmin–Himmel sobre cobertura de campanha nos períodos de depletamento (avaliação de estratégia de campanha, não expansão de verba sobre operação frágil).

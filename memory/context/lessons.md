@@ -12,6 +12,10 @@ tags:
 # Lições — Kobe
 
 
+## 2026-06-07 — [TÁTICA] Divergência de estoque precisa causa raiz antes de reprocessamento
+
+Na análise retroativa das divergências recentes de marketplace/WhatsApp, a resolução de SKU/BOM já estava majoritariamente corrigida; o gargalo real passou a ser saldo físico/entrada operacional não registrada. Para Estoque GB, não “limpar fila” baixando negativo nem reprocessar lote sem classificar causa raiz por item. Primeiro separar alias/BOM seguro, saldo insuficiente real, entrada pendente, SKU inválido e caso ambíguo; só aplicar movimento quando houver prova operacional suficiente, preservando saldo e CMV.
+
 ## 2026-05-30 — [TÁTICA] Cron sem evento novo também precisa deixar trilha de auditoria
 
 No cron ENVIOS FULL, a execução de 30/05 com zero envios novos mandou resumo e apareceu em log, mas inicialmente não criou linha em `envios_full_cron_runs`. Para rotinas operacionais auditáveis, “não houve evento” também é resultado de execução e precisa virar registro estruturado com contadores zerados; senão fica impossível diferenciar rotina saudável de lacuna de monitoramento.

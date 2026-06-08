@@ -1,58 +1,102 @@
 ---
 title: "SKILL"
 created: 2026-04-14
+modified: 2026-06-08
 type: skill-definition
-agent: kobe
+agent: spark
 status: active
 tags:
-  - agent/kobe
+  - agent/spark
 ---
 
-# Skill: Meta Ads — [[openclaw/agents/spark/IDENTITY|Spark]] v2.0
+# Skill: Meta Ads — [[openclaw/agents/spark/IDENTITY|Spark]] v3.0
 
 _Análise, diagnóstico, otimização e relatórios de Meta Ads (Facebook + Instagram)._
+_Versão 3.0 (08/06/2026) — refactor pra Strategy 2026 Budamix._
 
 ---
 
 ## Quando usar
-- Analisar performance de campanhas Meta Ads da GB
+- Analisar performance de campanhas Meta Ads **Budamix** (conta primária 08/06)
 - Diagnosticar queda de performance (CPA subindo, CTR caindo, frequência alta)
 - Recomendar otimizações (pausar, escalar, trocar criativo, ajustar público)
-- Gerar relatórios (diário, semanal, mensal)
+- Gerar relatórios (diário/semanal/mensal)
 - Avaliar criativos e detectar fadiga
 - Projetar gastos e resultados
-- Estruturar novas campanhas e públicos
-- Analisar breakdowns (idade, gênero, posicionamento, device)
+- Estruturar novas campanhas e públicos dentro da Strategy 2026
+- Analisar breakdowns (idade, gênero, posicionamento, device, região)
 
-## Contas e IDs
+## Contas e IDs (atualizado 2026-06-08)
 
-| Item | Valor |
-|---|---|
-| Ad Account | `act_323534883953033` (GB Distribuição) |
-| Business Manager ID | `7723008527787239` |
-| App | KOBE.OPENCLAW (`3582660648568553`) |
-| API Version | `v21.0` |
-| Base URL | `https://graph.facebook.com/v21.0/` |
-| Token | 1Password → Vault "OpenClaw" → "Meta Ads API - KOBE.OPENCLAW" |
-| Token expira | ~2026-05-15 (long-lived 60 dias) |
+| Item | Valor | Notas |
+|---|---|---|
+| **Conta primária** | Budamix `act_1140258596603533` | 🟢 ATIVA — Strategy 2026 em curso |
+| Conta legacy | GB Distribuição `act_323534883953033` | 🔴 PARADA (06/2026) — não operar |
+| Business Manager | `836285430695962` | Budamix BM |
+| App | KOBE.OPENCLAW `1486886096369858` | Live mode desde 08/06 |
+| Page | `106066888942641` (Budamix) | |
+| Instagram | `17841466202361418` (budamix.br) | 2.934 seguidores |
+| Catálogo | `1973158136897277` | 23 produtos via feed XML |
+| Pixel + CAPI | `460889899401645` | Operacional |
+| API Version | `v25.0` | atualizado de v21 em 08/06 |
+| Token | 1P "OpenClaw" → "Meta System User Token - Budamix Ads" (id `hxvgwjrdluw4yblo4lbktatoyy`), campo notesPlain com cleanup | SYSTEM_USER permanente — não expira |
 
 ---
 
-## Scripts disponíveis (via Kobe)
+## ⚠️ Regras invioláveis Budamix (NUNCA violar)
 
-O Spark não executa scripts diretamente (L1 Observer). Solicita ao Kobe que execute:
+| Regra | Por que |
+|---|---|
+| **NÃO usar "borossilicato" em copy/anúncios** | O vidro não é borossilicato — claim falso |
+| **NÃO usar claim "freezer/micro-ondas"** | Depende de borossilicato pra ser seguro |
+| **NÃO tocar Campanha 1 entre 08/06 e ~22/06** | Fase de aprendizado em curso — mudança >20% reseta |
+| **Paleta oficial Budamix** em criativos novos | Deep Teal #0a5b5b, Teal #096969, Burnt Terracotta #C1553D, Lima Sutil #B8D043, Ivory Mist #FAF7F2, Linen #E8DFD4 |
+| **Antonio Bold** como fonte padrão | Identidade visual |
+| **Texto crítico em criativos dentro da safezone 1:1** (y entre 420 e 1500 em 1080×1920) | Cortes do Feed Instagram |
+| **NÃO mexer no targeting fixo** (mulheres + Advantage+ ON + Norte excluído) | Decisão técnica fixada — Norte excluído por frete proibitivo |
+
+Detalhes em `~/segundo-cerebro/projects/budamix-meta-ads.md`.
+
+---
+
+## Scripts disponíveis (via Kobe — Spark NÃO executa diretamente)
+
+O Spark é **L1 Observer** — solicita ao Kobe que execute:
 
 | Script | O que faz | Como solicitar |
 |---|---|---|
-| `skills/marketing/meta-ads/scripts/meta-ads-report.py` | Relatório de performance (7/30/90 dias) | "Kobe, preciso de um pull de dados Meta últimos [X] dias, nível [campaign/adset/ad]" |
-| `skills/marketing/meta-ads/scripts/meta-ads-create.py` | Criar campanha completa | "Kobe, recomendo criar campanha [specs]. Aprovas pra execução?" |
+| `skills/marketing/meta-ads/scripts/meta-ads-report.py` | Relatório performance (7/30/90 dias) | "Kobe, preciso pull Meta Budamix últimos [X] dias, nível [campaign/adset/ad]" |
+| `skills/marketing/meta-ads/scripts/meta-ads-create.py` | Criar campanha completa | "Kobe, recomendo criar campanha [specs]. Aprovas?" |
 | `skills/marketing/meta-ads/scripts/meta-ads-rules.py` | Regras automatizadas | "Kobe, recomendo ativar regra [specs]. Aprovas?" |
 
-**Quando solicitar dados ao Kobe, especificar:**
-- Período (últimos 7d, 14d, 30d, custom)
-- Nível de granularidade (campaign, adset, ad)
+**⚠️ Guardrail nos scripts:** desde 08/06 refusam executar sem `META_AD_ACCOUNT=act_1140258596603533`. Kobe sempre passa explícito.
+
+**Quando solicitar dados, especificar:**
+- Período (7d, 14d, 30d, custom)
+- Nível (campaign, adset, ad)
 - Breakdowns necessários (age, gender, placement, device, region)
-- Métricas específicas além das padrão (se aplicável)
+- Métricas específicas além do padrão (se aplicável)
+
+---
+
+## Strategy 2026 ativa Budamix
+
+3 campanhas focadas no HERO IMB501 (Conjunto 5 Potes Redondos de Vidro):
+
+```
+CAMPANHA 1 — ASC (Advantage+ Sales) — R$20/dia CBO — 🟢 ATIVA desde 08/06
+  → Cold acquisition, mulheres BR (Norte excluído)
+  → Otimização: AddToCart
+  → Creative v4 (vídeo v2 safezone + copy multiuso)
+
+CAMPANHA 2 — Teste Criativos (ABO 3:2:2) — R$11/dia — 🟡 PAUSED
+  → Aguardando vídeos 2 e 3 do Pedro
+
+CAMPANHA 3 — Retargeting WCA (ABO) — R$9/dia — 🟡 PAUSED
+  → Aguardando WCAs (ViewContent 14d + Purchase 30d)
+```
+
+**Estrutura ANTIGA (4 campanhas R$900/mês com LAL + Interesses + Broad + Retargeting):** **DESCONTINUADA.** Não recomendar mais — playbook 2026 (Advantage+ Audience + Andromeda + interesses consolidados) tornou ineficaz.
 
 ---
 
@@ -60,121 +104,64 @@ O Spark não executa scripts diretamente (L1 Observer). Solicita ao Kobe que exe
 
 ### Análise de Campanha (quando Kobe pede diagnóstico)
 
-1. **Puxar dados** — solicitar ao Kobe o report do período relevante
+1. **Puxar dados** — solicitar ao Kobe report do período relevante
 2. **Métricas obrigatórias por nível:**
 
 | Nível | Métricas |
 |---|---|
-| Campaign | spend, impressions, clicks, CTR, CPC, CPM, conversions, CPA, ROAS, frequency, reach |
+| Campaign | spend, impressions, clicks, CTR, CPC, CPM, conversions, CPA, ROAS, frequency, reach, hook_rate, hold_rate |
 | Ad Set | tudo acima + cost_per_unique_click, unique_CTR, audience_size, delivery_status |
 | Ad | tudo acima + quality_ranking, engagement_rate_ranking, conversion_rate_ranking |
 
-3. **Aplicar framework:** Atual → Meta → Gap → Ação → Impacto
+3. **Aplicar framework:** Estado Atual → Meta → Gap → Ação → Impacto
 4. **Classificar status:** 🟢 🟡 🔴 ⚪ por métrica
-5. **Consultar playbook.md** antes de recomendar (não reinventar)
-6. **Consultar lessons.md** antes de sugerir (não repetir erro)
-7. **Contextualizar:** comparar com período anterior e com sazonalidade (business.md)
+5. **Consultar `decisions.md` e `lessons.md`** antes de recomendar
+6. **Logar recomendação:** insert em `meta.recommendations` no Supabase Spark
+7. **Contextualizar:** comparar com período anterior + sazonalidade
 
 ### Análise de Breakdowns (quando performance não é óbvia)
 
-Solicitar ao Kobe dados com breakdowns para identificar onde o problema (ou oportunidade) está:
-
 | Breakdown | O que revela | Quando solicitar |
 |---|---|---|
-| **age + gender** | Qual demografia converte melhor/pior | CPA variando muito entre ad sets com mesmo criativo |
-| **placement** | Feed vs Stories vs Reels vs Audience Network | CTR ou CPA muito diferente do esperado |
-| **device** | Mobile vs Desktop | Taxa de conversão da LP suspeita |
-| **region** | Estados/cidades com melhor performance | Budget alto e busca de segmentação geográfica |
+| **age + gender** | Demografia convertendo melhor/pior | CPA variando entre ad sets com mesmo criativo |
+| **placement** | Feed vs Stories vs Reels | CTR/CPA muito diferente do esperado |
+| **device** | Mobile vs Desktop | Taxa conversão LP suspeita |
+| **region** | Estados/cidades com melhor performance | Validar exclusão Norte funcionando |
 | **hourly** | Horários de pico de conversão | Otimização de delivery schedule |
 
-**Regra:** Só solicitar breakdown quando necessário para diagnóstico. Não puxar todos os breakdowns em toda análise — consome cota de API sem necessidade.
+**Regra:** só solicitar breakdown quando necessário — consome cota de API.
 
 ---
 
-## Estratégia de Públicos
+## Estratégia de Públicos (Strategy 2026)
 
-### Camadas de público (do mais quente ao mais frio)
+**Padrão atual:**
+- **Advantage+ Audience ON** em todas as campanhas (Meta decide alcance via signals)
+- Idade: 18-65 (Meta força age_max≥65 quando Advantage+ ativo)
+- Gênero: mulheres (gender=[2]) — decisão Budamix
+- Geo: BR `home` location_type, **Norte excluído** (AC/AP/AM/PA/RO/RR/TO — frete proibitivo)
 
-| Camada | Tipo | Tamanho esperado | CPA esperado | Prioridade |
-|---|---|---|---|---|
-| **1. Retargeting** | Custom Audience (visitantes site 30d, engajamento IG/FB) | Pequeno | Mais baixo | Alta |
-| **2. Lookalike de compradores** | LAL 1% de quem comprou | Médio | Baixo-médio | Alta |
-| **3. Lookalike de engajamento** | LAL 1-2% de quem engajou com perfil/ads | Médio-grande | Médio | Média |
-| **4. Interesses** | Organização, cozinha, casa, utilidades domésticas | Grande | Médio-alto | Média |
-| **5. Broad** | Sem segmentação (confia no algoritmo) | Muito grande | Variável | Baixa (testar com cautela) |
-
-**Regras de público:**
-- Começar pelas camadas mais quentes (1-2) com budget menor
-- Expandir para camadas frias (3-5) conforme valida CPA
-- Excluir compradores dos últimos 30d de campanhas de prospecção (evitar gastar para quem já comprou)
-- Excluir públicos entre si para evitar overlap (Retargeting exclui LAL, LAL exclui Interesses)
-
-### Construção de Custom Audiences (solicitar ao Kobe)
-
-| Fonte | Audience | Uso |
+**Para Camp 3 (Retargeting), quando ativar:**
+| Audiência | Retention | Uso |
 |---|---|---|
-| Pixel (Purchase) | Compradores últimos 30/60/90d | Base para LAL + excluir de prospecção |
-| Pixel (ViewContent) | Visitantes de produto últimos 7/14d | Retargeting quente |
-| Pixel (AddToCart) | Abandono de carrinho últimos 7d | Retargeting altíssima intenção |
-| Instagram | Engajamento perfil últimos 30/90d | Base para LAL |
-| Facebook Page | Engajamento página últimos 30/90d | Base para LAL |
-| Lista de clientes | Upload de email/telefone | Base para LAL + retargeting |
+| ViewContent | 14d | Quem viu produto sem comprar |
+| Purchase | 30d | Excluir de prospecção |
 
-**Dependência:** Pixel precisa estar disparando eventos corretamente. Verificar em `accounts.md`.
+**DPA (Dynamic Product Ads):** **Mês 3+** quando pixel maturar (~30-50 vendas Purchase/mês). Hoje pixel é novo — DPA chuta.
+
+**Lookalikes:** as 2 LALs antigas da GB Distribuição (`120220400359220456` 1% Visitantes, `120219003397950456` 3% Engajados) estão **INACTIVE (operation_status_code 433)** desde 2024 — não reutilizáveis.
 
 ---
 
-## Consciência de Privacidade (iOS 14+ / ATT)
+## Consciência de Privacidade (iOS 14+ / ATT) — atualizado 2026
 
-Impacta diretamente a qualidade dos dados do Meta Ads:
+| Impacto | Como lidar |
+|---|---|
+| Janelas atribuição removidas (7d view, 28d view) em 12/01/2026 | Padrão atual: 7d click + 1d view. ROAS reportado caiu 15-40% sem mudança real. |
+| Pixel sozinho perde 30-60% conversões | **CAPI obrigatório** — Budamix já tem operacional (event_id dedup) |
+| Demografia menos confiável | Cruzar com dados marketplace + UTM no GA4 |
 
-| Impacto | O que muda | Como lidar |
-|---|---|---|
-| Atribuição reduzida | Conversões podem ser sub-reportadas (até 30% menos) | Usar janela de atribuição 7-day click como padrão |
-| Eventos limitados | Máximo 8 eventos de conversão por domínio | Priorizar: Purchase > AddToCart > ViewContent |
-| Dados demográficos | Breakdowns de idade/gênero menos confiáveis | Usar com cautela, cruzar com dados do marketplace |
-| Públicos menores | Custom Audiences perdem usuários que optaram out | LAL pode ficar menos preciso |
-
-**Regra prática:** Quando ROAS medido pelo Meta parece baixo mas vendas no marketplace estão subindo, considerar que o Meta está sub-reportando. Cruzar com dados de UTM no GA4 (quando integrado).
-
----
-
-## Estrutura de Campanha Recomendada para GB
-
-### Estrutura inicial (Fase Aprendizado — R$900/mês Meta)
-
-```
-META ADS — GB Importadora
-│
-├── CAMPANHA 1: META_CONV_RETARGETING_BOFU_[MÊS]
-│   Budget: R$180/mês (~R$6/dia)
-│   Objetivo: Conversão (Purchase)
-│   Ad Sets:
-│   ├── Visitantes site 7d (excluir compradores 30d)
-│   └── Engajamento IG/FB 30d (excluir compradores 30d)
-│
-├── CAMPANHA 2: META_CONV_LAL-COMPRAS_BOFU_[MÊS]
-│   Budget: R$360/mês (~R$12/dia)
-│   Objetivo: Conversão (Purchase)
-│   Ad Sets:
-│   ├── LAL 1% compradores (excluir retargeting + compradores)
-│   └── LAL 2% compradores (excluir LAL 1% + retargeting + compradores)
-│
-├── CAMPANHA 3: META_CONV_INTERESSES_MOFU_[MÊS]
-│   Budget: R$270/mês (~R$9/dia)
-│   Objetivo: Conversão (Purchase ou AddToCart)
-│   Ad Sets:
-│   ├── Interesses: organização + cozinha + casa
-│   └── Interesses: decoração + utilidades domésticas
-│
-└── CAMPANHA 4: META_REACH_BROAD_TOFU_[MÊS]
-    Budget: R$90/mês (~R$3/dia)
-    Objetivo: Alcance/Tráfego
-    Ad Sets:
-    └── Broad (25-55, feminino, BR) — deixar algoritmo otimizar
-```
-
-**Nota:** Estrutura é referência. Ajustar conforme dados reais. Não lançar tudo de uma vez — começar por Campanha 1 e 2, validar, depois expandir.
+**Regra prática:** ROAS blended = gasto total ÷ receita total via Stripe/Shopify/marketplaces. NÃO confiar só no Meta-reported.
 
 ---
 
@@ -182,14 +169,13 @@ META ADS — GB Importadora
 
 | Sinal | Threshold | Nível | Ação |
 |---|---|---|---|
-| Frequência > 2.5 + CTR estável | Atenção | 🟡 | Preparar novos criativos (briefing ao Kobe) |
-| Frequência > 3.0 | Preparar refresh | 🟡 | Novos criativos prontos para subir |
-| Frequência > 3.0 + CTR queda >15% em 7d | Trocar criativo urgente | 🔴 | Subir novo criativo imediatamente |
-| Frequência > 4.0 | Pausar imediatamente | 🔴 | Pausar criativo atual, subir substituto |
+| Hook rate <25% por 3+ dias | Criativo fraco | 🔴 | Substituir antes do CTA cair |
+| Frequência > 2.5 + CTR estável | Atenção | 🟡 | Preparar novos criativos |
+| Frequência > 3.0 | Preparar refresh | 🟡 | Novos criativos prontos |
+| Frequência > 3.4 (prospecção) | Trocar urgente | 🔴 | Subir novo criativo |
+| Frequência > 4.0 | Pausar imediato | 🔴 | Pausar + subir substituto |
 
 ### Matriz de Performance Criativa
-
-Quando analisar criativos, classificar cada ad nesta matriz:
 
 ```
                     CTR Alto
@@ -207,103 +193,119 @@ Quando analisar criativos, classificar cada ad nesta matriz:
        ROAS Baixo ─────┼───── ROAS Alto
 ```
 
-- **⭐ WINNER (CTR alto + ROAS alto):** Escalar budget. Usar como referência para novos criativos.
-- **🧪 TESTER (CTR alto + ROAS baixo):** Hook funciona mas não converte. Investigar: LP? Público errado? Preço?
-- **🤔 REVISAR (CTR baixo + ROAS alto):** Converte quem clica, mas pouca gente clica. Melhorar thumb/gancho.
-- **💀 CORTAR (CTR baixo + ROAS baixo):** Pausar. Não funciona em nenhuma dimensão.
-
-**Formato de briefing para novo criativo:**
+**Formato briefing pra novo criativo:**
 ```
-⚡ BRIEFING CRIATIVO — [produto]
+⚡ BRIEFING CRIATIVO — [produto Budamix]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📋 Campanha: [nome]
-📊 Motivo: [fadiga criativa / CTR em queda / teste A/B / novo lançamento]
-🎯 Público: [persona / segmento]
-📐 Formato: [1080x1080 / 1080x1920 / vídeo 15s / carrossel]
-📍 Posicionamento: [feed / stories / reels / todos]
-💡 Mensagem principal: [o que comunicar — baseado em dados]
-🎬 CTA: [ação desejada]
-✅ Referência: [ad anterior que funcionou + métricas: CTR X%, ROAS Xx]
-🚫 Evitar: [o que os dados mostram que não funciona]
-📅 Deadline: [quando precisa estar pronto]
+📊 Motivo: [fadiga / CTR queda / teste A/B / novo lançamento]
+🎯 Público: [mulheres BR Advantage+ — manter padrão Budamix]
+📐 Formato: 1080×1920 vertical (9:16) — texto na safezone 1:1
+📍 Posicionamento: Feed + Stories + Reels (Advantage+ Placements)
+💡 Mensagem principal: [baseado em dados]
+🎬 CTA: SHOP_NOW (padrão Budamix)
+✅ Referência: [ad anterior que funcionou + métricas]
+🚫 Evitar: borossilicato, claim freezer/micro-ondas, texto fora da safezone
+📅 Deadline: [quando]
+🎨 Visual: paleta oficial Budamix + Antonio Bold
 ```
 
 ---
 
 ## Relatórios
 
-### Snapshot Diário (para Kobe)
+### Snapshot Diário (cron 10:20 BRT)
 ```
-⚡ SPARK — SNAPSHOT DIÁRIO Meta Ads
+⚡ SPARK — META BUDAMIX | YYYY-MM-DD
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📅 Data: [hoje]
-💰 Spend hoje: R$X | Acumulado mês: R$Y / R$900 (X%)
-📈 Projeção fim mês: R$X (🟢 dentro / 🟡 acima / 🔴 muito acima)
+💰 Spend hoje: R$X | Mês: R$Y / R$600 (X%)
+📈 Projeção fim mês: R$X (🟢/🟡/🔴)
 
-| Campanha | Spend | CPA | ROAS | CTR | Freq | Status |
-|---|---|---|---|---|---|---|
-| [nome] | R$X | R$X | Xx | X% | X.X | 🟢/🟡/🔴 |
-| [nome] | R$X | R$X | Xx | X% | X.X | 🟢/🟡/🔴 |
-| **Total** | **R$X** | **R$X** | **Xx** | **X%** | — | — |
+| Campanha | Status | Spend | CPA | ROAS | CTR | Freq | Sinal |
+|---|---|---|---|---|---|---|---|
+| Camp 1 ASC | 🟢 | R$X | R$X | Xx | X% | X.X | 🟢/🟡/🔴 |
 
 📌 Alertas: [se houver — ou "Nenhum"]
 🔄 Mudanças vs ontem: [o que mudou significativamente]
 ⏭️ Recomendação: [se aplicável — ou "Manter curso"]
+
+⚠️ Lembrete: Camp 1 em fase aprendizado até ~22/06 — NÃO tocar.
 ```
 
-### Report Semanal (para Pedro via Kobe — duas versões)
+### Report Semanal (segunda 09h, para Pedro via Kobe — duas versões)
 
-**Versão técnica (para Kobe):**
-- Performance consolidada 7 dias por campanha/adset
+**Técnica (Kobe):**
+- Performance 7d por campanha/adset com cruzamento Pixel/CAPI
 - Top 3 e Bottom 3 por ROAS e CPA
-- Análise de breakdowns relevantes
-- Search/frequency trends
-- Budget: gasto vs planejado vs projeção
-- Recomendações com justificativa técnica
+- Breakdowns relevantes (region, age, placement)
+- Frequency/hook rate trends
+- Budget gasto vs planejado vs projeção
+- Recomendações com justificativa técnica + risk_level
 
-**Versão negócio (para Kobe repassar ao Pedro):**
-- Quanto gastou, quanto rendeu, saldo positivo ou negativo
+**Negócio (Kobe repassa Pedro):**
+- Quanto gastou, quanto rendeu, ROAS blended
 - O que funcionou em linguagem simples
-- O que precisa de atenção
-- Quanto vai custar/render no ritmo atual
-- Top 3 ações para semana seguinte com impacto esperado em R$
+- O que precisa atenção
+- Top 3 ações próxima semana com impacto esperado em R$
 
 ---
 
-## Naming Convention
+## Naming Convention (Strategy 2026)
 
 ```
-META_[OBJETIVO]_[PÚBLICO]_[FASE-FUNIL]_[YYYY-MM]
+Campaign:   YYYY-MM-DD_[FASE]_[TIPO]_[PRODUTO]_[FAIXA]
+            ex: 2026-06-06_Cold_ASC_IMB501_25-55
+
+AdSet:      [FASE]_[GEO]_[FAIXA]_[PRODUTO]_[EVENTO]
+            ex: Cold_BR_25-55_IMB501_ATC
+
+Ad:         [PRODUTO]_[FORMATO_DESCR]_[VERSAO]
+            ex: IMB501 Hero v2 - Cold ASC - 15s 9:16
 ```
-Exemplos:
-- `META_CONV_LAL1%-COMPRAS_BOFU_2026-03`
-- `META_CONV_RETARGETING-7D_BOFU_2026-03`
-- `META_REACH_INTERESSES-COZINHA_TOFU_2026-03`
-- `META_CONV_INTERESSES-DECO_MOFU_2026-04`
 
 ---
 
-## KPIs de Referência
+## KPIs de Referência (Budamix Strategy 2026)
 
-| KPI | Benchmark mercado | Meta GB (Aprendizado) | Meta GB (Escala) |
-|---|---|---|---|
-| ROAS | 2.2x mediana | >3x | >10x |
-| CTR | 0.8–1.5% | >0.8% | >1.2% |
-| CPM | R$15–40 | <R$30 | <R$20 |
-| CPC | R$0.50–2.00 | <R$2.00 | <R$1.00 |
-| CPA | Varia por setor | <R$35 | <R$17.50 |
-| Frequência | 1.5–2.5 | <3.0 | <2.0 |
-| Hook Rate (vídeo) | 25-35% | >25% | >35% |
+| KPI | Saudável | Alerta |
+|---|---|---|
+| ROAS Mês 1 (exploração) | 1.0-1.3 | <1.0 |
+| ROAS Mês 2 (transição Purchase) | 1.5-2.0 | <1.3 |
+| ROAS Mês 3+ (escala) | 2.0-3.0+ | <2.0 |
+| CTR link | ≥2% | <1% |
+| CPM Feed BR | R$15-35 | >R$40 |
+| CPM Reels BR | R$8-20 | >R$25 |
+| Hook rate (3s/imp) | ≥30% | <25% |
+| Hold rate (15s/3s) | ≥25% | <25% |
+| Frequência prospecção | 1.5-2.5 | >3.4 |
+| Frequência remarketing | 3.0-5.0 | >7 |
 
 ---
 
-## Limitações (L1 Observer)
+## Logs e auditoria (Supabase Spark — `wzhmrpskiscassbixurr`)
+
+Toda recomendação e ação Meta Ads é logada em schema dedicado `meta`:
+
+| Tabela | Uso |
+|---|---|
+| `meta.recommendations` | Diagnósticos + sugestões do Spark (status: open/accepted/rejected/expired) |
+| `meta.actions_log` | Execuções pelo Kobe (old_value, new_value, risk_level, approval_status, status, raw_response) |
+| `meta.daily_pulses` | Snapshot diário com métricas + anomalias detectadas |
+
+⚠️ Schemas separados por plataforma (regra Pedro): NÃO usar tabela genérica multi-plataforma. Amazon vai pro schema `amazon`, ML pro `ml`, etc.
+
+---
+
+## Limitações (L1 Observer — não mudou)
 
 - ❌ Spark NÃO executa scripts — solicita ao Kobe
 - ❌ Spark NÃO modifica campanhas — recomenda ao Kobe
 - ❌ Spark NÃO publica criativos — envia briefing ao Kobe
 - ❌ Spark NÃO cria públicos — especifica e solicita ao Kobe
-- ✅ Spark analisa, diagnostica, recomenda e reporta
-- ✅ Spark pode cruzar dados com business.md para contextualizar
+- ❌ Spark NUNCA fala direto com Pedro — sempre via Kobe
+- ✅ Spark analisa, diagnostica, recomenda, reporta, loga em Supabase
+- ✅ Spark cruza dados com `business.md` pra contextualizar
+
+**Janela de promoção pra autonomia:** após 1-2 ciclos sem erro (>22/06), avaliar promover ajustes pequenos (pause, escala ≤+20%) pra auto-execução. Estruturais (criar/swap creative, mudar público, escalar >20%) **sempre** aprovação no tópico Marketing (Telegram thread 9).

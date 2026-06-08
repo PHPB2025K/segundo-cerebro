@@ -62,9 +62,9 @@ if AD_ACCOUNT not in VALID_ACCOUNTS:
     sys.exit(2)
 
 print(f"[guardrail] Conta selecionada: {AD_ACCOUNT} ({VALID_ACCOUNTS[AD_ACCOUNT]})")
-API_VERSION = "v21.0"
+API_VERSION = "v25.0"
 BASE_URL = f"https://graph.facebook.com/{API_VERSION}"
-TOKEN_OP_PATH = "op://OpenClaw/Meta Ads API - KOBE.OPENCLAW/access_token"
+TOKEN_OP_PATH = "op://OpenClaw/Meta System User Token - Budamix Ads/notesPlain"  # System User, NEVER expira
 
 DATE_PRESETS = {
     7: "last_7d",

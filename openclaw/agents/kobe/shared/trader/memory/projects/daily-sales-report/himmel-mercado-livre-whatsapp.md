@@ -715,3 +715,32 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Validar MDF: aumento real de impressões e vendas, impacto no ACoS/TACoS consolidado, margem e capacidade de produção/estoque.
 
 **Status:** aberto — ações executadas pela Himmel; acompanhar nos próximos Daily Sales Reports de Mercado Livre.
+
+### 2026-06-08 10:37–10:57 BRT — Curva A sem Full: venda pelo depósito e reforço de investimento nos demais anúncios
+
+**Participantes:** Yasmin Oscarlino; Cláudio Manrique Junior/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Produtos curva A temporariamente sem Full, venda pelo depósito físico e plano de recuperação/visibilidade para outros produtos.
+
+**Produtos/anúncios citados:**
+- **MLB3288536143** — citado como anúncio/produto curva A sem estoque ativo no Full, apesar de já estar no centro de distribuição do Mercado Livre.
+
+**Contexto registrado:**
+- Yasmin informou que o **MLB3288536143** estava sem Full, embora já estivesse no centro de distribuição do ML, e colocou o anúncio para vender saindo do depósito físico da GB.
+- Expectativa operacional da Yasmin: entrada/regularização de estoque no Full entre **08/06 e 09/06**.
+- Yasmin questionou se seria possível “forçar” vendas saindo do depósito enquanto o Full não entra e também pediu caminho para recuperar vendas dos demais produtos.
+- Cláudio/Himmel confirmou que a saída do Full tende a reduzir conversão quando o produto passa a vender pelo estoque físico.
+- Himmel informou que, para os outros produtos, está **forçando investimento para ganhar visibilidade**, mas alertou que anúncios fora da curva A demandam tempo para ganhar espaço de mercado.
+
+**Impacto esperado:**
+- Queda temporária de vendas/conversão do **MLB3288536143** deve ser tratada como possível efeito logístico/Full, não necessariamente perda de demanda ou erro de ADS.
+- Vendas via depósito podem ajudar a manter alguma tração, mas tendem a converter pior que Full; isso deve aparecer em pedidos, conversão e prazo/frete.
+- O aumento de investimento nos demais produtos pode pressionar ACoS/TACoS no curto prazo; avaliar como estratégia de ganho de visibilidade, não apenas como piora de eficiência.
+
+**Como validar nos dados:**
+- Verificar em **08/06–10/06** se o estoque Full do **MLB3288536143** voltou e se a conversão/vendas recuperaram após a regularização.
+- Separar métricas do período sem Full vs com Full: visitas, conversão, vendas, prazo/frete, buy box/exposição e reclamações/cancelamentos.
+- Nos demais produtos, monitorar se o investimento adicional gera aumento real de impressões, visitas e vendas incrementais até **14/06**, sem deteriorar margem de forma descontrolada.
+
+**Status:** aberto — validar regularização do Full entre 08/06 e 09/06 e efeito do investimento adicional nos demais anúncios.
+

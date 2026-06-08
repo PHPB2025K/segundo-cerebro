@@ -1,11 +1,16 @@
 # Pendências — Trader
 
-_Atualizado: 2026-06-06_
+_Atualizado: 2026-06-07_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
 
+- [ ] Daily Sales v2 06/06/2026 BRT: pacote canônico ficou **DADOS_PARCIAIS** por picos positivos em todas as contas Shopee e Amazon; validar se foi efeito planejado de redistribuição/ADS/cupom/afiliados ou pico de sábado antes de tratar como novo patamar.
+- [ ] Mercado Livre 06/06/2026 BRT: preview Yasmin aprovado com ressalvas identificou risco crítico de ruptura — 67 pedidos em Potes Vidro 5 Peças Tampa Vermelha Full pausado/sem estoque e 79 pedidos prospectivamente canceláveis; confirmar classificação de cancelamento, prazo de reposição e impacto em MercadoLíder Platinum.
+- [ ] Daily Sales v2 06/06/2026 BRT: ciclo individual detectado apenas para Yasmin/Mercado Livre, com QA **APPROVED_WITH_REMARKS** e envio real bloqueado; confirmar se Lucas/Shopee e Leonardo/Amazon foram intencionalmente omitidos ou seguem como lacuna operacional.
+- [ ] Daily Sales v2 06/06/2026 BRT / Mercado Livre: corrigir short name do produto K6CAN250P, traduzir status de medalha para linguagem operacional em próximos previews e investigar simplificação de títulos ML para produtos com mapping genérico.
+- [ ] Amazon 06/06/2026 BRT: monitorar recorrência de 6 cancelamentos pelo segundo ciclo seguido; se persistir, quebrar por ASIN e checar FBA/Buy Box/indisponibilidade antes de escalar ADS.
 - [ ] Daily Sales v2 02/06–04/06/2026 BRT: confirmar/absorver artefatos finais dos ciclos de junho que ainda não foram consolidados na memória diária; 05/06 já teve report público e pacote canônico gerados em 06/06, mas os ciclos individuais Slack Writer/QA para Lucas, Yasmin e Leonardo seguem sem evidência final.
 - [ ] Daily Sales v2 05/06/2026 BRT: pacote canônico ficou **DADOS_PARCIAIS** por pico positivo da Shopee Conta 2 (39 pedidos vs média 30d de 22,7, +71,8%); validar se foi redistribuição planejada entre contas, efeito ADS/cupom/afiliados ou ponto isolado antes de tratar como novo patamar.
 - [ ] Amazon 05/06/2026 BRT: monitorar recorrência de 6 cancelamentos; se persistir, quebrar por ASIN e checar FBA/Buy Box/indisponibilidade antes de escalar ADS.

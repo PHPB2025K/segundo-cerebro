@@ -209,3 +209,22 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 - **Como validar nos dados:** nos próximos Daily Sales Reports v2, checar por shop_id/anúncio: mudança de preço final para R$ 26,90 no produto correto, início/efeito de promoção dos itens Full, status/RTS dos Bobbie Goods, normalização do **CJT1TP**, alterações de imagem principal por conta, CTR, conversão, pedidos, faturamento, estoque Full, investimento ADS e TACOS/ROAS. Validar D+1/D+3/D+7 a partir de 2026-06-09.
 - **Status:** aberto — ações em execução; validar aplicação real e efeito nos dados.
 
+### 2026-06-09 10:32–10:33 BRT — Himmel otimiza campanhas Shopee e isola anúncios com potencial de escala
+
+- **Participantes:** Leticia (Himmel).
+- **Plataforma/conta:** Shopee — ações separadas por conta: **Budamix.store**, **Budamix_store** e **Budamix.shop**.
+- **Tema:** otimizações de campanhas e campanhas isoladas para trazer exposição a itens com potencial de escala.
+- **Produtos/anúncios/campanhas citados:**
+  - **Budamix.store:** anúncios **23094203124**, **23036701291**, **23594198474** em campanhas isoladas/orçamento próprio; campanha **HML | RAMP UP | POTES**; **Kit 4 Descanso de Panela MDF Modular Suporte**.
+  - **Budamix_store:** **HML | RAMP UP | POTES HERMÉTICOS**; **HML | CC | VSL - CAMPANHA DE POTES 2**; anúncio **22097667091** saindo da campanha **HML | CC | VSL - CAMPANHA DE POTES 1** por boa performance; **HML | CC | VSL - CAMPANHA DE POTES 1**; anúncio **23094203035** em campanha isolada.
+  - **Budamix.shop:** **HML | RAM UP | POTES HERM | CC**; **HML | CC | VSL - CAMPANHA DE POTES 1**; anúncio **23298676159** isolado por boa performance; anúncios **23698553207** e **22494052928** isolados.
+- **Decisão/contexto:** Himmel informou campanhas otimizadas com sucesso. A lógica geral foi aumentar exposição dos itens com potencial, reduzir/ajustar metas de ROAS em campanhas existentes e isolar anúncios que performaram bem para dar orçamento próprio.
+- **Ajustes principais de ROAS/orçamento:**
+  - **Budamix.store:** 23094203124 com ROAS 20 e orçamento 10; 23036701291 com ROAS 21 e orçamento 10; 23594198474 com ROAS 19 e orçamento 10; **HML | RAMP UP | POTES** de ROAS 10,3 para 13; Kit 4 Descanso de Panela MDF Modular de ROAS 24,5 para 22,1.
+  - **Budamix_store:** **HML | RAMP UP | POTES HERMÉTICOS** de ROAS 12,9 para 15; **HML | CC | VSL - CAMPANHA DE POTES 2** de ROAS 16 para 14; **22097667091** isolado com ROAS 14 e orçamento 15; **HML | CC | VSL - CAMPANHA DE POTES 1** de ROAS 20 para 18; **23094203035** isolado com ROAS 13 e orçamento 10.
+  - **Budamix.shop:** **HML | RAM UP | POTES HERM | CC** de ROAS 12,3 para 14; **HML | CC | VSL - CAMPANHA DE POTES 1** de ROAS 12,1 para 13; **23298676159** isolado com ROAS 12 e orçamento 10; **23698553207** de ROAS 15 para 13; **22494052928** isolado com ROAS 13 e orçamento 10.
+- **Impacto esperado:** mais verba controlada e exposição para anúncios de boa performance/potencial de escala, com leitura mais limpa por item isolado; possível aumento de pedidos e faturamento Shopee a partir de 2026-06-09/10, especialmente em potes e MDF priorizados.
+- **Como validar nos dados:** nos próximos Daily Sales Reports v2, checar por shop_id/anúncio/campanha: investimento ADS, ROAS/TACOS, pedidos, faturamento, vendas pagas vs orgânicas, conversão, CTR e ranking; comparar D+1/D+3/D+7 a partir de 2026-06-09. Separar efeito de campanhas isoladas dos ajustes de capa/variação, promoções Full e limitações de estoque.
+- **Responsáveis/próximo passo:** Himmel aguarda retorno da GB/Pedro/Lucas para avaliar possibilidade de forçar ADS nesses itens; Trader deve tratar 2026-06-09 como nova janela de validação das campanhas Shopee.
+- **Status:** aberto — otimizações reportadas como concluídas; aguardando decisão sobre reforço adicional em ADS e validação com dados.
+

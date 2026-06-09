@@ -1,0 +1,38 @@
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
+### Decisão tática
+
+- **Dado que a tese da L01 é "em ganho de patamar" com Platinum recém conquistado**, a decisão central é proteger o que sustenta o patamar — não alterar campanha, não mexer em anúncios com health estabilizado — e isolar os dois vetores de risco operacional que podem comprometer a janela rolling de 60d antes de completar 5 dias de confirmação no novo nível.
+
+- **Dado o risco estrutural principal da L01** (health crônico degradado em campeões Full: MLB3288536143 em 0,71 há 17+ ciclos, MLB4073003575 em 0,75 há 11+ ciclos, MLB5402326666 em 0,66 há 4+ ciclos), a postura tática não é acionar Himmel — health estabilizado em patamar ruim sem queda registrada indica que a compensação atual (ADS + boost Platinum) está funcionando. A ação é verificar se a **direção mudou** neste snapshot; se MLB5402326666 caiu abaixo de 0,63, o quadro passa de risco latente para erosão acelerando e aciona alinhamento com Himmel.
+
+- **Dado o sinal #1 da L01** (cobertura crítica de MLB4073003575 com 33 unidades e MLB6073033006 com 19 unidades, ambos em Full), a cobertura de estoque é a prioridade máxima do dia: ruptura em qualquer um gera cancelamentos prospectivos que entram diretamente na janela rolling do Platinum — a memória de 02/06 e 07/06 documenta esse padrão de repetição no MLB4073003575.
+
+- **Dado o sinal #3 da L01** (ADS share abaixo de 50% pelo segundo ciclo consecutivo em dia de alto GMV), a decisão é registrar o ponto e observar — não escalar verba com Himmel: ACOS está em 11,67% (primeiro ciclo acima de 10% na série), e sem breakdown de revenue_ads por `platform_item_id` (pendência de 18 ciclos) não é possível saber se o ACOS está concentrado em campanhas específicas ou distribuído uniformemente.
+
+---
+
+### O que fazer hoje
+
+1. **Yasmin:** verificar `available_quantity` e ETA de restock em trânsito dos dois anúncios Full em cobertura crítica — Kit 4 Potes 1050ml (MLB4073003575, 33 unidades, ~2,2 dias ao ritmo de ontem) e Kit 6 Canequinhas Acrílico (MLB6073033006, 19 unidades, ~1,7 dias ao ritmo de ontem) — motivo: ambos em modalidade de envio Full; ruptura gera cancelamentos automáticos que entram na janela rolling do Platinum recém conquistado (`cancellations_rate` oficial atualmente em zero; qualquer entrada antes do threshold visível no painel oficial já conta na apuração); a memória de 02/06 e 07/06 registra dois episódios anteriores com MLB4073003575 chegando a 2–3 unidades, o padrão está se repetindo — sinal de resultado: ETA de restock confirmado para o CD do ML em ≤ 48h → risco neutralizado para ambos; `available_quantity < 10` em qualquer um sem ETA confirmado → tratar como urgente e providenciar reposição ou cancelamento controlado antes de o ML cancelar automaticamente; `status=paused` em qualquer um com pedidos pendentes → ação imediata.
+
+2. **Yasmin:** verificar a **direção** do health do Kit 4 Potes 640ml (MLB5402326666, `health=0,66`, nível preocupante, 4º+ ciclo abaixo do threshold 0,85) comparando com o snapshot anterior — motivo: a L01 identificou degradação crônica de health como o risco estrutural principal da conta; o gatilho de alinhamento com Himmel sobre cobertura preventiva é `health < 0,63`, a apenas 0,03 da leitura atual; se o valor caiu neste ciclo, a ação passa de observação para alinhamento — sinal de resultado: health estável em 0,66 ou recuperando → manter observação sem ação; health registrado abaixo de 0,63 → Yasmin alinha com Himmel sobre cobertura ADS preventiva para o anúncio antes do próximo ciclo.
+
+3. **Yasmin:** registrar ADS share de hoje (47,1%, R$ 4.169 / R$ 8.850) e ACOS (11,67%) como terceiro ponto confirmado da série descendente de share (69,9% em 22/05 → 47,1% hoje) — motivo: a L01 levantou como sinal #3 a confirmação de ADS share abaixo de 50% em ciclo de alto GMV; este é o sétimo ponto da série e o segundo abaixo de 50%; se o próximo dia útil confirmar share < 50% com ACOS voltando a ≤ 10%, a hipótese de expansão orgânica estrutural vira fato consolidado e abre a discussão com Kobe sobre calibragem de verba — sinal de resultado: share < 50% pelo 2º+ ciclo com ACOS ≤ 10% → hipótese confirmada, Yasmin abre pauta com Kobe; ACOS subindo acima de 15% com share se recuperando acima de 55% → orgânico não sustenta sozinho, ADS compensando, revisar com Himmel.
+
+---
+
+### O que NÃO fazer ainda
+
+1. **Não acionar Himmel para ajuste de ADS ML.** ROAS 9,7x e ACOS 11,67% — campanha opera em faixa eficiente (ROAS > 5x, ACOS muito abaixo de 30%); o share descendente de 69,9% para 47,1% enquanto o GMV subiu 80% é o sinal correto de orgânico expandindo, não de campanha perdendo eficiência; além disso, sem breakdown de revenue_ads por `platform_item_id` (pendência estrutural de 18 ciclos), qualquer ajuste de campanha seria cego — não dá para saber quais anúncios estão sendo beneficiados pelo ADS nem onde o ACOS de 11,67% está concentrado. Mexer agora introduz variável num sistema que está entregando crescimento sem alteração de verba.
+
+2. **Não pausar nem redirecionar os anúncios com health abaixo de 0,85** (MLB3288536143 em 0,71, MLB4073003575 em 0,75, MLB5402326666 em 0,66). Health estabilizado em patamar ruim por 17+, 11+ e 4+ ciclos respectivamente sem queda registrada indica que a conta cresceu de patamar com esses níveis — a compensação atual está funcionando. Pausar anúncio com health baixo mas estável retira volume imediatamente sem garantia de recuperação de ranking; esses três vetores respondem por 26,9% dos pedidos do dia. Ação precipitada aqui desfaz o que o crescimento orgânico construiu.
+
+3. **Não tratar a conquista do Platinum como gatilho de escalonamento para Kobe.** A promoção foi confirmada neste ciclo (`power_seller_status=platinum`, `gap_revenue_brl=0`, `progress_pct=100%`) — é a confirmação de uma hipótese rastreada por 45 dias na memória, não um evento novo que demanda decisão estrutural. O eixo mudou de "conquistar" para "manter", e o ritmo necessário (R$ 5.019/dia) está confortavelmente abaixo do GMV de hoje (R$ 8.850). Kobe entra na equação somente se ADS share retornar acima de 55% por 3 ciclos com GMV sustentado (reversão da tese orgânica) ou se health de campeão cair de forma acelerada — nenhum dos gatilhos foi atingido.
+
+---
+
+### Escalonamento
+
+**Classificação: observar**
+
+A tese da L01 é confirmada em três janelas independentes e coroada pela promoção a Platinum. Nenhum dos gatilhos de acionamento está ativo hoje: ACOS em 11,67% (abaixo de 30%), ADS share em 47,1% (abaixo de 55%), health dos campeões estabilizado sem queda registrada neste ciclo, reputação verde com todos os indicadores folgados. A postura correta é registrar os pontos da série (cobertura de estoque, direção de health, ADS share) sem alterar a operação. O escalonamento muda para **alinhar com Himmel** se: (a) MLB5402326666 registrar health abaixo de 0,63 no próximo snapshot, indicando aceleração da erosão além do que o Platinum e ADS atual compensam; ou (b) ACOS ultrapassar 20% por dois ciclos consecutivos com ADS share se recuperando acima de 60%, sinalizando que o orgânico parou de expandir e a campanha voltou a sustentar o GMV de forma crescente. O escalonamento muda para **escalar para Kobe** se cobertura crítica nos dois Full (MLB4073003575 e MLB6073033006) resultar em cancelamentos confirmados no `cancellations_rate` oficial ou se ADS share se reinstalar acima de 55% por 3 ciclos com GMV sustentado — ambos os cenários demandam decisão estrutural sobre mix de modalidade de envio e dependência de mídia que extrapola a tática diária da Yasmin.

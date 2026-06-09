@@ -194,3 +194,18 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 - **Como validar nos dados:** nos próximos Daily Sales Reports v2, acompanhar por shop_id/anúncio/variação: CTR, conversão, pedidos, faturamento, mix de cores, investimento ADS, TACOS/ROAS e efeito D+1/D+3/D+7 após eventual troca de capa. Tratar melhora/queda como hipótese até confirmar que a mudança foi aplicada.
 - **Responsáveis/próximo passo:** Pedro/GB deve confirmar posição e decidir/aplicar as trocas de capa; Himmel deve concluir análise das demais contas e acompanhar resultado.
 - **Status:** aberto — estratégia sugerida; aguardando posição do Pedro e/ou confirmação de implementação.
+
+### 2026-06-09 09:53–10:12 BRT — Promoção para estoque Full, Bobbie Goods descontinuados e capas por melhor variação
+
+- **Participantes:** Pedro Broglio, Raphaella (Himmel) e Lucas / PhaseTec.
+- **Plataforma/conta:** Shopee — **Budamix.Store** citada explicitamente para estoque Full; estratégia de capa por variação deve ser tratada por conta nas 3 contas Shopee.
+- **Tema:** execução das recomendações de 2026-06-08: liquidação de estoque parado no Full, ajuste de preço/ADS e otimização de imagem principal por variação.
+- **Produtos/SKUs citados:** **CK4742_B** com 120 unidades no Full; kits **Bobbie Goods**; **CJT1TP**; produto não nomeado no trecho ingerido com preço final definido em **R$ 26,90**.
+- **Decisão/contexto:** Pedro informou que vai criar promoção com desconto direto e agressivo nos itens parados do Full da Budamix.Store, priorizando CK4742_B e kits Bobbie Goods. Raphaella alertou que os kits Bobbie Goods foram descontinuados da loja por denúncia, então Pedro indicou que tentará pelo menos fazer a remoção/RTS desses itens. Pedro também informou que a pendência fiscal do **CJT1TP** foi regularizada e que ele já pode entrar normalmente junto com os demais.
+- **Preço/ADS:** Pedro definiu redução do preço final de um produto para **R$ 26,90**; como a margem já está apertada, a competitividade deve ser compensada por reforço de ADS/visibilidade, não por corte adicional de preço. Não amarrar automaticamente esse preço ao ID 22393168887 sem validação, pois o SKU/produto não veio nomeado no trecho novo.
+- **Capas/variações:** Pedro informou que a equipe já está ajustando imagens de capa, colocando na frente a variação de melhor desempenho de cada conta. Isso confirma início de implementação da estratégia discutida em 2026-06-08 para canecas/variações.
+- **Reunião:** Raphaella confirmou reunião Shopee às 10h BRT; Lucas confirmou participação.
+- **Impacto esperado:** giro acelerado de estoque parado no Full, redução de custo/risco de armazenagem, eventual recuperação de CTR/conversão por capa de melhor variação e aumento de vendas via ADS para item com preço limitado por margem. Bobbie Goods pode deixar de ser frente promocional e virar prioridade de remoção por denúncia/descontinuação.
+- **Como validar nos dados:** nos próximos Daily Sales Reports v2, checar por shop_id/anúncio: mudança de preço final para R$ 26,90 no produto correto, início/efeito de promoção dos itens Full, status/RTS dos Bobbie Goods, normalização do **CJT1TP**, alterações de imagem principal por conta, CTR, conversão, pedidos, faturamento, estoque Full, investimento ADS e TACOS/ROAS. Validar D+1/D+3/D+7 a partir de 2026-06-09.
+- **Status:** aberto — ações em execução; validar aplicação real e efeito nos dados.
+

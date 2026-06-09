@@ -124,3 +124,17 @@ _Append-only. Nunca deletar entradas._
 - Ressalva separada: inconsistência histórica YW1520 na Matriz permanece pendente, sem bloquear abril.
 - Processo mensal novo: antes de usar saldo Matriz como excedente, consultar e abater NFs B2B/atacado emitidas pela Matriz no período.
 
+
+## 2026-06-09 — Rascunhos NF-e Maio/2026 — Matriz → CNPJs Simples
+
+| NF# | Destinatário | CNPJ | Base produtos | Status | ID Bling |
+|-----|-------------|------|---------------|--------|----------|
+| 000700 | GB Comércio | 07.194.128/0001-82 | R$ 63.744,32 | ⏳ Rascunho pendente; SEFAZ não acionada | 26038348130 |
+| 000701 | Trades Up | 45.200.547/0001-79 | R$ 10.988,19 | ⏳ Rascunho pendente; SEFAZ não acionada | 26038349482 |
+| 000702 | Broglio | 63.922.116/0001-06 | R$ 5.868,65 | ⏳ Rascunho pendente; SEFAZ não acionada | 26038350718 |
+
+**Total base produtos:** R$ 80.601,16.  
+**Conta Bling:** Matriz.  
+**Natureza:** Venda de mercadoria — ID 15106994870.  
+**Origem da base:** rateio fiscal maio potes 4 travas + IMB501 por CNPJ Simples.  
+**Regra de segurança:** não enviar para autorização/SEFAZ sem liberação explícita do Pedro.

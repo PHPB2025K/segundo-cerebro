@@ -1,6 +1,6 @@
 # Contexto Himmel/Granola — Shopee — Budamix Store
 
-_Gerado em: 2026-06-08 23:38:16 UTC._
+_Gerado em: 2026-06-09 23:38:24 UTC._
 
 ## Como usar
 - Usar como contexto causal/hipótese nas análises diárias, nunca como fato isolado.
@@ -10,6 +10,57 @@ _Gerado em: 2026-06-08 23:38:16 UTC._
 - Regra Pedro 2026-05-12: reunião Shopee consolidada vale para as 3 contas Shopee; separar particularidades por conta quando o resumo/transcrição permitir.
 
 ## Contextos relevantes recentes
+
+### 2026-06-09 — Granola — BUDAMIX | Shopee | Letícia Gonçalves
+#### Pontos cabíveis para esta conta
+- Risco estrutural confirmado pela reunião: as 3 lojas Shopee competem entre si com produtos/fotos semelhantes. Análises devem olhar performance consolidada Shopee e, depois, separar se uma conta cresceu às custas da outra.
+- Produtos MDF foram sugeridos como alternativa com estoque controlável; se aparecerem em venda/ADS, tratar como teste estratégico para reduzir dependência de importados com reposição lenta.
+- Afiliados foram apontados como canal saudável e subutilizado, com ROI de 26%; bons candidatos são SKUs parados, desde que o report valide conversão e estoque.
+- Pendência operacional: Lucas deve compartilhar produtos prioritários para maio; enquanto isso não estiver fechado, recomendações de ADS Shopee ficam parcialmente dependentes dessa definição.
+
+#### Resumo-fonte Granola
+## [2026-06-09] Granola — BUDAMIX | Shopee | Letícia Gonçalves
+
+**Granola note ID:** `not_Nnk6XWyPbOqUgl`  
+**Link:** https://notes.granola.ai/d/b40f4146-4be0-4e34-8ac3-a7d46c5b8939  
+**Horário:** 2026-06-09T10:00:00-03:00 → 2026-06-09T11:00:00-03:00  
+**Participantes:** Setor Marketplace GB <marketplace@gbimportadora.com>, Santosl <santosl@himmelcorp.com.br>, Dantasr <dantasr@himmelcorp.com.br>  
+**Classificação:** ADS/Marketplace  
+**Plataformas/contas:** Shopee  
+**Agentes impactados:** Trader, Spark  
+
+### Resumo Granola
+### Visibilidade e Taxa de Cliques (Budamix Ponto Shop)
+
+- Foco da reunião: aumentar taxa de cliques na Budamix Ponto Shop
+  - Loja tem tíquete médio alto, mas volume de cliques baixo
+  - Potencial de alcançar performance da Ponto Store (principal loja de canecas)
+- Shopee travando dados de performance, dificultando análise completa
+
+### Otimização de Anúncios e Imagens de Capa
+
+- Sugestão: mudar comunicação dos produtos entre as três lojas
+  - Manter preço e imagens iguais, variar apenas título e descrição
+  - Objetivo: evitar canibalização entre as próprias lojas
+- Imagens de capa precisam de atualização para converter melhor
+  - Shopee favorece imagens com números e composições visuais fortes
+  - Ferramenta ChatGPT da Himmelcorp disponível para auxiliar na criação (Rafa/Letícia vão compartilhar o link)
+- Canecas Tulipa: estratégia de diferenciação por loja
+  - Budamix Underline Store: testar capa com variação amarela (zerada em vendas)
+  - Validar por 15 dias antes de replicar nas demais contas
+  - Colorida é a mais vendida; rosa é segunda; amarela sem saída
+- Kit Copa (tulipa verde-amarela): criar vídeo explicativo do produto
+
+### Alavancas Orgânicas: Afiliados e Ofertas
+
+- Afiliados recomendados como principal alavanca para produtos com margem apertada
+  - Maior parte das vendas vem de grupos de WhatsApp e redes sociais, não de lives
+  - ROI dos potes herméticos via afiliados: 23x (R$22 de comissão gerou R$1.500+ em faturamento)
+  - Sugestão: testar 15% de comissão por 15 dias nos potes com variações de volume
+  - Após o período, desativar campanha e retomar porcentagem padrão
+- Oferta relâmpago recomendada para produtos sem histórico d
+
+_[trecho truncado para manter contexto enxuto]_
 
 ### 2026-06-02 — Granola — Métricas, campanhas e estoque — maio com Jasmin
 #### Pontos cabíveis para esta conta

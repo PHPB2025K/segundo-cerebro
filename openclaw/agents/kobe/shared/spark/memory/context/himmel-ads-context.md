@@ -301,3 +301,123 @@ Chat with meeting transcript: [https://notes.granola.ai/t/d462e95c-be5c-46eb-9e7
 - Usar como contexto causal/hipótese, não como fato isolado.
 - Cruzar com vendas reais, TACOS/ROAS/ACOS, exposição, estoque e campanhas nos próximos Daily Sales Reports.
 - Status inicial: **aberto**.
+
+
+---
+
+## [2026-06-09] Granola — BUDAMIX | Shopee | Letícia Gonçalves
+
+**Granola note ID:** `not_Nnk6XWyPbOqUgl`  
+**Link:** https://notes.granola.ai/d/b40f4146-4be0-4e34-8ac3-a7d46c5b8939  
+**Horário:** 2026-06-09T10:00:00-03:00 → 2026-06-09T11:00:00-03:00  
+**Participantes:** Setor Marketplace GB <marketplace@gbimportadora.com>, Santosl <santosl@himmelcorp.com.br>, Dantasr <dantasr@himmelcorp.com.br>  
+**Classificação:** ADS/Marketplace  
+**Plataformas/contas:** Shopee  
+**Agentes impactados:** Trader, Spark  
+**Transcrição:** disponível via Granola API (1049 trechos), não copiada integralmente para memória.
+
+### Resumo Granola
+### Visibilidade e Taxa de Cliques (Budamix Ponto Shop)
+
+- Foco da reunião: aumentar taxa de cliques na Budamix Ponto Shop
+  - Loja tem tíquete médio alto, mas volume de cliques baixo
+  - Potencial de alcançar performance da Ponto Store (principal loja de canecas)
+- Shopee travando dados de performance, dificultando análise completa
+
+### Otimização de Anúncios e Imagens de Capa
+
+- Sugestão: mudar comunicação dos produtos entre as três lojas
+  - Manter preço e imagens iguais, variar apenas título e descrição
+  - Objetivo: evitar canibalização entre as próprias lojas
+- Imagens de capa precisam de atualização para converter melhor
+  - Shopee favorece imagens com números e composições visuais fortes
+  - Ferramenta ChatGPT da Himmelcorp disponível para auxiliar na criação (Rafa/Letícia vão compartilhar o link)
+- Canecas Tulipa: estratégia de diferenciação por loja
+  - Budamix Underline Store: testar capa com variação amarela (zerada em vendas)
+  - Validar por 15 dias antes de replicar nas demais contas
+  - Colorida é a mais vendida; rosa é segunda; amarela sem saída
+- Kit Copa (tulipa verde-amarela): criar vídeo explicativo do produto
+
+### Alavancas Orgânicas: Afiliados e Ofertas
+
+- Afiliados recomendados como principal alavanca para produtos com margem apertada
+  - Maior parte das vendas vem de grupos de WhatsApp e redes sociais, não de lives
+  - ROI dos potes herméticos via afiliados: 23x (R$22 de comissão gerou R$1.500+ em faturamento)
+  - Sugestão: testar 15% de comissão por 15 dias nos potes com variações de volume
+  - Após o período, desativar campanha e retomar porcentagem padrão
+- Oferta relâmpago recomendada para produtos sem histórico de vendas
+  - Reservar 10 unidades do Kit Copa a preço reduzido para gerar primeiras avaliações
+  - Após rampagem, voltar ao preço cheio sem precisar mexer no preço base
+- Cupom de porcentagem (ex: 10%) preferível a valor fixo
+  - Limitar desconto máximo a R$1 para proteger margem
+  - Percentual alto chama atenção; teto baixo controla o custo
+
+### Devoluções e Diagnóstico de Produtos
+
+- \~90% das reclamações são de itens quebrados na entrega (vidro, canecas)
+  - Embalagem interna está correta; problema atribuído à expedição da Shopee
+- Produtos com taxa de devolução acima de 20% perdem visibilidade no ads automaticamente
+- Ação recomendada: planilha de acompanhamento de devoluções por canal (Shopee, Magalu, B2W)
+  - Serve como embasamento para contestar penalizações junto à Shopee
+
+### Anúncios Removidos: Kit Bob Goods
+
+- Dois anúncios excluídos por violação de direito autoral (meses 3 e 5)
+  - Shopee identificou uso do termo “Bob Goods” como marca registrada
+  - Sem contestação no prazo, recuperação direta não é mais possível
+- Caminhos possíveis:
+  - Novo anúncio sem o termo “Bob Goods” no título (ex: “caderno de colorir com canetinhas”)
+  - Imagens do produto podem aparecer normalmente; apenas o título precisa ser neutro
+  - Se houver nota fiscal de revenda, tentar contestação formal na plataforma
+- Rafa/Letícia vão abrir chamado interno na Shopee para tentar reativar os anúncios originais
+  - Há unidades paradas em estoque; reativação evitaria retrabalho de cadastro
+
+### Produtos MDF e Kits Infantis
+
+- Sugestão: criar kit MDF + canetinhas para apelo emocional (estímulo infantil)
+  - GB já vende cadernos e canetas separadamente; montar kit seria viável
+  - Verificar internamente se o MDF aceita pintura com guache
+- Análise solicitada: qual das três lojas vende mais MDF para concentrar esforços
+- Banner educacional para página da loja sugerido após validar qual loja tem mais saída
+
+### Canecas Tulipa: Precificação e Estoque
+
+- Aumento de preço das canecas previsto (custo de fornecimento subindo)
+- Concorrente vizinho vende mais barato por relacionamento próximo com fornecedor
+  - Sugestão: Pedro negociar condições de compra diretamente com o fornecedor
+- Venda unitária analisada: preço mínimo viável seria R$25/unidade (pouco competitivo)
+  - GB mantém kit de 6 por ora; reavaliar se custo de fornecimento cair
+- Produto com maior estoque disponível para ação imediata: conjunto 5 potes
+
+### Próximos Passos
+
+- Otimizar imagens de capa dos anúncios até sexta-feira, usando ferramenta da Himmelcorp (Setor/Lucas)
+- Testar capa com variação amarela na Budamix Underline Store e reportar no grupo de WhatsApp (Setor/Lucas)
+- Enviar IDs dos produtos prioritários (conjunto 5 potes e outros) no grupo (Setor/Lucas)
+- Verificar internamente se MDF aceita pintura com guache e responder no grupo (Setor/Lucas)
+- Reservar 10 unidades do Kit Copa para oferta relâmpago com preço reduzido (Setor/Lucas)
+- Compartilhar planilha de acompanhamento de devoluções e link da ferramenta Himmelcorp (Rafa/Letícia)
+- Abrir chamado na Shopee para tentar reativar anúncios do Kit Bob Goods (Rafa/Letícia)
+- Analisar comparativo de vendas de MDF entre as três lojas e enviar no grupo (Rafa/Letícia)
+- Agendar reunião com Pedro para discutir negociação com fornecedor de canecas (Rafa/Letícia)
+- Enviar resumo da reunião e materiais de referência no grupo de WhatsApp (Rafa/Letícia)
+
+---
+
+Chat with meeting transcript: [https://notes.granola.ai/t/c9965a0c-b98e-4315-a581-d7113c485c23](https://notes.granola.ai/t/c9965a0c-b98e-4315-a581-d7113c485c23)
+
+### Ações / pendências extraídas
+- Shopee travando dados de performance, dificultando análise completa
+- Ferramenta ChatGPT da Himmelcorp disponível para auxiliar na criação (Rafa/Letícia vão compartilhar o link)
+- Análise solicitada: qual das três lojas vende mais MDF para concentrar esforços
+- Concorrente vizinho vende mais barato por relacionamento próximo com fornecedor
+- Próximos Passos
+- Enviar IDs dos produtos prioritários (conjunto 5 potes e outros) no grupo (Setor/Lucas)
+- Compartilhar planilha de acompanhamento de devoluções e link da ferramenta Himmelcorp (Rafa/Letícia)
+- Analisar comparativo de vendas de MDF entre as três lojas e enviar no grupo (Rafa/Letícia)
+- Enviar resumo da reunião e materiais de referência no grupo de WhatsApp (Rafa/Letícia)
+
+### Como usar nos reports
+- Usar como contexto causal/hipótese, não como fato isolado.
+- Cruzar com vendas reais, TACOS/ROAS/ACOS, exposição, estoque e campanhas nos próximos Daily Sales Reports.
+- Status inicial: **aberto**.

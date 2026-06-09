@@ -149,3 +149,11 @@ _Append-only. Nunca deletar entradas._
 
 **Total autorizado Maio/2026:** R$ 85.840,22.  
 **DANFEs:** baixadas em PDF em `outputs/nfs-matriz-maio-2026-cnpjs-simples/`.
+
+### Tentativa de cancelamento — 2026-06-09
+
+Pedro solicitou cancelamento das NFs 000700/000701/000702 porque a emissão correta precisa reconciliar saldo fiscal por SKU entre Matriz e Filial antes de definir o emissor.
+
+Resultado técnico: API Bling v3 não expõe rota oficial de cancelamento de NF-e. Tentativas em `/nfe/{id}/cancelar` e `/nfe/{id}/cancelamento` retornaram 404. OpenAPI oficial confirma cancelamento apenas para NFS-e. As NFs permanecem autorizadas até cancelamento manual pelo painel Bling Matriz.
+
+**Guardrail:** não usar `DELETE /nfe` como substituto de cancelamento fiscal de NF-e autorizada.

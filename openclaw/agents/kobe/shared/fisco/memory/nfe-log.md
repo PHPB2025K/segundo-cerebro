@@ -138,3 +138,14 @@ _Append-only. Nunca deletar entradas._
 **Natureza:** Venda de mercadoria — ID 15106994870.  
 **Origem da base:** rateio fiscal maio potes 4 travas + IMB501 por CNPJ Simples.  
 **Regra de segurança:** não enviar para autorização/SEFAZ sem liberação explícita do Pedro.
+
+### Autorização SEFAZ — 2026-06-09
+
+| NF# | Destinatário | Valor NF | Status | Chave | Protocolo |
+|-----|-------------|----------|--------|-------|-----------|
+| 000700 | GB Comércio | R$ 67.887,69 | ✅ Autorizada SEFAZ (cStat 100) | 42260658151616000143550010000007001383481300 | 242260263341815 |
+| 000701 | Trades Up | R$ 11.702,42 | ✅ Autorizada SEFAZ (cStat 100) | 42260658151616000143550010000007011383494825 | 242260263344570 |
+| 000702 | Broglio | R$ 6.250,11 | ✅ Autorizada SEFAZ (cStat 100) | 42260658151616000143550010000007021383507185 | 242260263347268 |
+
+**Total autorizado Maio/2026:** R$ 85.840,22.  
+**DANFEs:** baixadas em PDF em `outputs/nfs-matriz-maio-2026-cnpjs-simples/`.

@@ -1,11 +1,17 @@
 # Pendências — Trader
 
-_Atualizado: 2026-06-07_
+_Atualizado: 2026-06-08_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
 
+- [ ] Daily Sales v2 07/06/2026 BRT: pacote canônico ficou **DADOS_PARCIAIS** por picos positivos na Shopee Conta 2 (41 pedidos vs média 30d de 23,3, +76,0%) e Shopee Conta 3 (28 vs 17,4, +60,9%); validar redistribuição/ADS/cupom/afiliados antes de tratar como novo patamar.
+- [ ] Mercado Livre 07/06/2026 BRT: confirmar estoque/status do Potes Vidro 5 Peças — Tampa Vermelha Full; preview Yasmin indicou reposição mínima (~12 unidades, 10 vendidas no domingo, ~2 restantes) e risco de nova ruptura em dia útil.
+- [ ] Mercado Livre / MercadoLíder Platinum: investigar com suporte ML por que a conta segue Gold apesar de gap zerado/progresso 100% no terceiro ciclo; hipótese atual é bloqueio por ratings negativos, com margem acima do threshold estreita.
+- [ ] Daily Sales v2 07/06/2026 BRT / Mercado Livre: corrigir ressalvas do preview Yasmin — vocabulário duplicado de “nível” em qualidade de anúncio, preservar recorrência estrutural do lote subdimensionado, alinhar números do Platinum entre camadas e adicionar short name KIT4YW640.
+- [ ] Daily Sales v2 07/06/2026 BRT: ciclo individual detectado apenas para Yasmin/Mercado Livre, com QA **APPROVED_WITH_REMARKS** e entrega temporária somente para Pedro; confirmar se Lucas/Shopee e Leonardo/Amazon foram intencionalmente omitidos ou seguem como lacuna operacional.
+- [ ] Amazon 07/06/2026 BRT: cancelamentos caíram para 0 após dois ciclos com 6 cancelamentos; manter monitoramento por mais um ciclo antes de encerrar alerta.
 - [ ] Daily Sales v2 06/06/2026 BRT: pacote canônico ficou **DADOS_PARCIAIS** por picos positivos em todas as contas Shopee e Amazon; validar se foi efeito planejado de redistribuição/ADS/cupom/afiliados ou pico de sábado antes de tratar como novo patamar.
 - [ ] Mercado Livre 06/06/2026 BRT: preview Yasmin aprovado com ressalvas identificou risco crítico de ruptura — 67 pedidos em Potes Vidro 5 Peças Tampa Vermelha Full pausado/sem estoque e 79 pedidos prospectivamente canceláveis; confirmar classificação de cancelamento, prazo de reposição e impacto em MercadoLíder Platinum.
 - [ ] Daily Sales v2 06/06/2026 BRT: ciclo individual detectado apenas para Yasmin/Mercado Livre, com QA **APPROVED_WITH_REMARKS** e envio real bloqueado; confirmar se Lucas/Shopee e Leonardo/Amazon foram intencionalmente omitidos ou seguem como lacuna operacional.

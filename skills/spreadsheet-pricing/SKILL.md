@@ -10,7 +10,7 @@ triggers:
 metadata:
   openclaw:
     emoji: "\U0001F4CA"
-    last_updated: "2026-05-27"
+    last_updated: "2026-06-09"
     spreadsheet_id: "1u74aCdH8VrQ2eK01YUQ8fUMwwb6ZPZXvrTTHoexWtnI"
     spreadsheet_name: "PLANILHA DE ESTOQUE"
 ---
@@ -133,6 +133,15 @@ Se o produto NAO tem EAN: os VLOOKUPs de MELI e SHOPEE vao retornar erro. Nesse 
 ---
 
 ## 6. REGRAS DE FORMATO
+
+### Formatação visual e organização — REGRA ABSOLUTA PEDRO 2026-06-09
+- **SEMPRE que alterar a PLANILHA DE ESTOQUE, em qualquer aba, preservar EXATAMENTE a mesma formatação visual, cores, bordas, fontes, alinhamentos, tamanhos, congelamentos, validações, padrões de fórmula e organização da tabela atual.**
+- Esta regra é especialmente crítica ao **adicionar linhas ou colunas** na aba ESTOQUE ou em qualquer aba da planilha.
+- Antes de criar linha nova, identificar uma linha modelo equivalente na mesma seção/família e aplicar o mesmo padrão visual/estrutural à nova linha.
+- Antes de criar coluna nova, identificar uma coluna modelo equivalente e preservar padrão visual, validações, fórmulas e organização.
+- **NUNCA** criar linha/coluna “seca” só com valores se isso quebrar a estética ou o padrão da tabela.
+- Se a ferramenta usada para escrita não conseguir copiar formatação/validação com segurança, usar Google Sheets API `batchUpdate`/copyPaste ou pedir uma linha/coluna modelo pronta antes de escrever.
+- Depois de qualquer inserção estrutural, validar visual/estruturalmente: fórmulas protegidas intactas, cores iguais, bordas iguais, formatação de moeda/número preservada e tabela mantendo o mesmo padrão.
 
 ### Numeros — REGRA ABSOLUTA PEDRO 2026-05-27
 - **SEMPRE que inserir ou atualizar QUALQUER valor na PLANILHA DE ESTOQUE, em qualquer aba, usar formato brasileiro: `R$ 00,00`.**

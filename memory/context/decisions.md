@@ -11,6 +11,14 @@ tags:
 
 # Decisões — Kobe
 
+## 2026-06-09 — Planilha de Estoque: alterações devem preservar exatamente formatação, cores e organização
+
+- Pedro definiu como regra obrigatória que qualquer alteração na **PLANILHA DE ESTOQUE** do Drive, em especial na aba **ESTOQUE**, deve manter e utilizar **exatamente a mesma formatação, cores e padrão de organização** já existente na tabela.
+- A regra vale para qualquer aba da planilha de estoque e é especialmente crítica ao adicionar linhas ou colunas.
+- Ao criar linha nova, Kobe/agentes devem copiar o padrão visual/estrutural de uma linha modelo equivalente antes de escrever valores: cores, bordas, fonte, alinhamento, validações, fórmulas e formatos de número/moeda.
+- Ao criar coluna nova, devem copiar o padrão de uma coluna equivalente e preservar organização/fórmulas/validações.
+- Não criar linha/coluna “seca” apenas com dados se isso quebrar visual ou organização da planilha; se a ferramenta de escrita não copiar formatação com segurança, usar API apropriada ou pedir/usar linha modelo antes de preencher.
+
 ## 2026-05-28 — Estoque GB como motor de movimentações auditáveis
 
 - Pedro aprovou a linha operacional para manter a Planilha de Estoque atualizada por meio de um **motor/livro de movimentações de estoque** antes de alterar saldo na aba ESTOQUE.

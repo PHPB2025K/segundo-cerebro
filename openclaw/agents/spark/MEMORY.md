@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Spark
 
-_Último update: 2026-05-18_
+_Último update: 2026-06-08_
 _Versão: 2.0_
 
 ---
@@ -187,25 +187,24 @@ Formato da nota de sessão:
 
 | Item | Valor |
 |---|---|
-| **App** | KOBE.OPENCLAW (`3582660648568553`) |
-| **API Version** | v21.0 |
-| **Base URL** | `https://graph.facebook.com/v21.0/` |
-| **Business Manager** | `7723008527787239` |
-| **Token** | System User Token (long-lived, ~60 dias) |
-| **Expira** | ~2026-05-18 |
-| **Credenciais** | 1Password → "Meta Ads API - KOBE.OPENCLAW" (vault OpenClaw) |
+| **App ativo** | KOBE.OPENCLAW (`1486886096369858`) — Live mode |
+| **API Version** | v25.0 |
+| **Conta primária** | Budamix (`act_1140258596603533`) |
+| **Business Manager** | Budamix (`836285430695962`) |
+| **Token** | System User permanente (NEVER expira) |
+| **Credenciais** | 1Password → "Meta System User Token - Budamix Ads" (vault OpenClaw) |
 | **Status** | ✅ Ativa |
 
 ### Contas de anúncio Meta
 
 | Conta | ID | Status | Campanhas |
 |---|---|---|---|
-| GB Distribuição | `act_323534883953033` | Ativa | 16 (todas pausadas) |
-| Budamix | `act_1140258596603533` | Ativa | A verificar |
-| Broglio Brinquedos | `act_599689043839914` | Ativa | A verificar |
-| Trades Up | `act_851375860374263` | Ativa | A verificar |
+| Budamix | `act_1140258596603533` | 🟢 Primária ativa | Camp 1 ASC ativa; Camps 2/3 pausadas |
+| GB Distribuição | `act_323534883953033` | 🔴 Legacy/parada — não operar | 16 históricas, todas pausadas |
+| Broglio Brinquedos | `act_599689043839914` | ⚪ Sem campanhas ativas | Mapear quando reativar |
+| Trades Up | `act_851375860374263` | ⚪ Sem campanhas ativas | Mapear quando reativar |
 
-**Gasto histórico:** GB Distribuição — R$27.432,69 total
+**Gasto histórico:** GB Distribuição — R$27.432,69 total.
 
 ### 6.2 Google Ads API
 
@@ -221,9 +220,8 @@ Formato da nota de sessão:
 ### 6.3 Protocolos de integração
 
 **Meta Ads token:**
-- Expira a cada ~60 dias
-- Refresh: gerar novo token long-lived via Graph API
-- Cron de renovação agendado para ~2026-05-18
+- Token atual é System User permanente (NEVER expira)
+- Validar funcionamento por chamada real antes de qualquer operação sensível
 - Se token falhar → alertar Kobe imediatamente (campanhas ficam sem monitoramento)
 
 **Google Ads (futuro):**

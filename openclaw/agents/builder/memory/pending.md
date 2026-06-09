@@ -10,7 +10,7 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-06-07_
+_Atualizado: 2026-06-08_
 
 ## 🔴 Prioridade Alta
 
@@ -20,6 +20,10 @@ _Atualizado: 2026-06-07_
 - [ ] Após autorização, aplicar aliases seguros do mapeamento retroativo de 07/06 e reprocessar só esses movimentos: `CK4742_B2` → `CK4742_B`, `914C_B2` → `914C_B`, `KITIMB501P_T` → `IMB501P_T`.
 - [ ] Validar antes de qualquer automapeamento: `XCP004` → possível `COLORS170_B`; `KFJ003` sem canônico seguro.
 - [ ] Depois do deploy/cadastro: desenhar PR4 kits/BOM, pois a maioria dos erros reais recentes é “Estoque insuficiente”.
+- [ ] Auditoria Full: validar build/restart/smoke em produção da nova aba padrão de Estoque > Full antes de considerar entregue em produção.
+- [ ] Auditoria Full: confirmar que o sync externo da planilha ENVIOS FULL está ativo e populando envios recentes; sem isso, recomendações podem sair subestimadas.
+- [ ] Auditoria Full: monitorar filtro de vendas Full por logistic type no ML para evitar média inflada com vendas não-Full quando o campo vier vazio.
+- [ ] Auditoria Full: revisar SKUs marcados sem match no inventário Full antes de qualquer correção automática de planilha/cadastro.
 - [ ] Preencher alocação de receita por componente no fechamento de estoque; CMV seller de 03/06 foi corrigido, mas receita da camada de componentes ainda está nula.
 - [ ] Tratar fila residual de divergências por saldo real insuficiente/entrada física não registrada: `YW1520RC`, `YW1050RC`, `CAC250P`, `CAC250AZ`, `TL250P`, `CAR200B`, `CAR200R`; não baixar negativo sem prova operacional.
 

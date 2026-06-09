@@ -78,3 +78,7 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 ### [TÁTICA] Divergência de estoque precisa classificação por causa raiz antes de reprocessar (2026-06-07)
 **Lição:** Divergente de marketplace/WhatsApp não é automaticamente erro de SKU. Separar alias seguro, SKU fantasma, SKU mutável e saldo físico insuficiente antes de agir; aplicar só aliases evidentes e nunca baixar negativo para “limpar fila” sem prova operacional.
 **Expira:** 2026-07-07
+
+### [TÁTICA] Recomendação de reposição depende de frescor do sync externo (2026-06-08)
+**Lição:** Auditorias de Estoque Full que usam planilha externa sincronizada precisam explicitar qualidade/frescor dos envios antes de orientar compra ou reposição. Se o sync da planilha ENVIOS FULL falhar, a recomendação pode parecer precisa mas ignorar pipeline recente.
+**Expira:** 2026-07-08

@@ -138,3 +138,29 @@ tags:
 - Otimização inicial deve mirar **AddToCart**, não Purchase, para acelerar aprendizado com orçamento limitado.
 - Não comprar ferramentas pagas de pesquisa de interesses nesta fase.
 - Criativos de vídeo devem respeitar a identidade visual Budamix: **Antonio Bold** como fonte oficial e paleta oficial, sem cores inventadas fora do branding.
+
+## 2026-06-08 — Meta Ads Budamix Campanha 1 ativa com budget reduzido e freeze
+
+- Pedro/Kobe ativaram a Campanha 1 de Meta Ads Budamix em produção, focada no IMB501, usando apenas o vídeo 1 enquanto os vídeos 2 e 3 ainda não ficam prontos.
+- Budget da Campanha 1 foi reduzido de R$37/dia para **R$20/dia** antes de sair da janela inicial, para manter teste controlado (~R$600/mês).
+- Campanha 1 deve ficar em freeze operacional até aproximadamente **22/06/2026**: não alterar budget, público ou criativo salvo exceção aprovada por Pedro/Kobe ou anomalia crítica.
+- Público aprovado para a fase inicial: mulheres no Brasil com Advantage+ Audience ativo; a API Meta rejeitou limitar `age_max` abaixo de 65 nesse formato, então a otimização fica a cargo do algoritmo dentro da configuração aceita.
+- Campanhas 2 e 3 continuam pausadas aguardando os vídeos 2 e 3 do Pedro antes de ativação.
+
+## 2026-06-08 — Copy Budamix não deve usar claims sem base técnica comprovada
+
+- Pedro corrigiu que o vidro do IMB501 não deve ser comunicado como **borossilicato**.
+- Regra vigente para anúncios/copy Budamix: não usar “borossilicato”, nem claims de “freezer” ou “micro-ondas”, enquanto não houver base técnica/documental segura para o produto específico.
+- Para o IMB501, a linha aprovada de copy deve focar em praticidade, vedação, organização e multiuso cotidiano, sem promessas técnicas indevidas.
+
+## 2026-06-08 — Spark/Meta Ads usa schema separado por plataforma
+
+- Pedro decidiu que a base operacional do Spark deve usar schemas separados por plataforma, começando por `meta.*`, em vez de uma tabela genérica única com coluna `platform`.
+- Razão operacional: clareza e espelhamento direto do modo como a operação pensa cada canal; Meta, Amazon e ML devem ter estruturas próprias quando isso reduzir ambiguidade.
+- Regra derivada: para ações/logs/recomendações de ads, preferir separação por plataforma quando a diferença operacional for relevante, mesmo que uma tabela genérica pareça tecnicamente mais simples.
+
+## 2026-06-08 — Budamix é conta primária Meta Ads; GB Distribuição fica legacy/parada
+
+- A operação Meta Ads ativa passa a ser **Budamix**.
+- GB Distribuição deve permanecer marcada como legacy/parada e não deve ser operada por scripts, skills ou Spark salvo autorização explícita.
+- Scripts de Meta Ads precisam exigir conta explícita/whitelist para evitar ação acidental na conta errada.

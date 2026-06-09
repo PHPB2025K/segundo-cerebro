@@ -154,3 +154,15 @@ Na correção CAR200 → TL250, o motor de estoque confirmou a aplicação corre
 ## 2026-06-06 — [TÁTICA] Não introduzir conceitos futuros fora do escopo da ação atual
 
 Na criação da primeira estrutura de Meta Ads Budamix, explicar DPA/etapas futuras antes de fechar a ação imediata confundiu e sobrecarregou Pedro. Para decisões operacionais, manter o foco no próximo passo concreto; conceitos avançados só entram quando mudam a decisão atual ou quando Pedro pedir profundidade.
+
+## 2026-06-08 — [TÁTICA] Alteração de estoque por descrição genérica exige confirmação de SKU/volume antes de lote
+
+Na zeragem dos potes quadrados, a instrução inicial “zerar os potes quadrados” foi interpretada ampla demais e atingiu mais SKUs do que o alvo real; Pedro depois corrigiu que era apenas o pote quadrado 800ml. Para mudanças de saldo por descrição genérica, especialmente zeragem/baixa em lote, confirmar volume/ml/SKU alvo quando houver mais de uma interpretação operacional possível. Se uma alteração indevida acontecer, restaurar imediatamente pela fonte anterior e validar no sistema espelho.
+
+## 2026-06-08 — [TÁTICA] Recomendação de reposição depende do frescor da fonte sincronizada
+
+Na nova Auditoria Full, a recomendação operacional usa vendas, estoque Full e envios recentes vindos da planilha ENVIOS FULL. Se o sync dessa planilha estiver parado/desatualizado, a sugestão pode ignorar envios criados/coletados e superestimar urgência. Toda tela/relatório de reposição que dependa de fonte sincronizada precisa expor data de atualização, qualidade do match e registros antigos ignorados antes de orientar compra/envio.
+
+## 2026-06-08 — [TÁTICA] Targeting Meta Ads precisa ser validado contra constraint real da API
+
+Na ativação da Campanha 1 Budamix, a estratégia inicial previa idade 25–55, mas a Advantage+ Audience rejeitou `age_max` abaixo de 65. Para Meta Ads, regras de segmentação mudam e podem ser consolidadas pela plataforma; antes de registrar targeting como definitivo, validar na API/interface viva. Quando a constraint da plataforma impedir a segmentação ideal, registrar a limitação e preservar o objetivo estratégico por outras alavancas criativas/orçamentárias.

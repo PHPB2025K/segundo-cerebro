@@ -130,6 +130,7 @@ Kobe é o único que fala com o Pedro. Os agentes executam e reportam pro Kobe.
 | 04/06/2026 | Página Facebook Budamix atualizada via Graph API; Estoque GB corrigiu fechamento 03/06 com CMV/logs/BOM/aliases; Daily Sales Shopee Fase 1 implementado e validado com página própria no Mission Control, mas colocado em standby por decisão do Pedro. |
 | 05/06/2026 | Estoque GB endurecido com linguagem ENVIOS FULL por cursor, controle de data operacional/fingerprint/anti-duplicidade no WhatsApp Estoque, cabeçalho explícito para imagens/listas e fluxo oficial Estoque vs Devoluções; Bobina Strech/Stretch mapeada para `STR01B`; Gestão de Funcionários teve coleta semanal Slack. |
 | 06/06/2026 | Meta Ads Budamix iniciou primeira estrutura paga pausada com HERO IMB501, Pixel+CAPI+catálogo validados, 3 campanhas/ad sets e vídeo 1; Estoque GB passou por auditoria total do processamento 05/06 com correção TL250/OCR e CMV por data operacional; Daily Sales 05/06 enviado com R$17.236,47/332 pedidos. |
+| 08/06/2026 | Meta Ads Budamix entrou em produção com Campanha 1 IMB501 ativa a R$20/dia; Spark recebeu handoff completo de Meta Ads com token permanente, schema `meta.*`, guardrail anti-conta errada e daily pulse 10:20 BRT; Estoque/Full ML ganhou relatório 60d com envios agendados e Auditoria Full técnica; levantamento fiscal de maio para potes/IMB501 fechou rateio estimado de R$85.840,24. |
 
 ---
 

@@ -12,29 +12,36 @@ tags:
 # Mapeamento de Colunas — ABA ESTOQUE
 
 > Headers: row 8 | Dados: row 9+
-> INPUT: A, C, E, F, G, H, I
-> FORMULA (NUNCA TOCAR): D, J, K
-> ESTA ABA E A FONTE DE VERDADE — preencher SEMPRE PRIMEIRO
+> INPUT: A, B, C, D, E, F, G
+> FORMULA (NUNCA TOCAR): H
+> ESTA ABA É A FONTE DE VERDADE — preencher SEMPRE PRIMEIRO
 
-| Col | Campo | Tipo | Formula |
-|-----|-------|------|---------|
+## Estrutura correta atual — 2026-06-09
+
+A aba ESTOQUE da planilha oficial está em **8 colunas (A:H)**, nesta ordem exata:
+
+| Col | Campo | Tipo | Observação |
+|-----|-------|------|------------|
 | A | ESTOQUE | INPUT | Quantidade em estoque |
-| B | — | — | Vazio |
-| C | SKU | INPUT | Codigo interno Budamix |
-| D | STATUS | FORMULA | `=IF(A=0,"SEM ESTOQUE",IF(A>=100,"OK",IF(A>=15,"REPOR ESTOQUE","ESTOQUE MINIMO")))` |
-| E | PRODUTO | INPUT | Titulo resumido |
-| F | PRECO DE CUSTO | INPUT | Valor numerico |
-| G | EAN | INPUT | Codigo de barras (texto). Chave para VLOOKUP de MELI e SHOPEE |
-| H | NCM | INPUT | Codigo fiscal (ex: 4411.12.10) |
-| I | MARCA | INPUT | Nome da marca (ex: BUDAMIX) |
-| J | VALOR ESTOQUE | FORMULA | `=A*F` (estoque x custo) |
-| K | (calc auxiliar) | FORMULA | `=IF(L="","",L*F)` |
+| B | SKU BASE | INPUT | Código interno Budamix / fornecedor |
+| C | DESCRIÇÃO | INPUT | Título resumido do produto |
+| D | CUSTO | INPUT | Custo unitário |
+| E | EAN | INPUT | Código de barras como texto |
+| F | NCM | INPUT | Código fiscal |
+| G | MARCA | INPUT | Marca/fornecedor |
+| H | CUSTO ESTOQUE TOTAL | FORMULA | Estoque × custo |
 
-## Importancia da aba ESTOQUE
+## Regra operacional crítica
 
-Esta aba alimenta via VLOOKUP:
-- MELI cols Y (NCM), Z (PESO), AA (MARCA) — lookup por EAN (col G)
-- SHOPEE cols X (NCM), Y (PESO), Z (MARCA) — lookup por EAN (col G)
-- AMAZON cols T (NCM), U (PESO), V (MARCA) — lookup por SKU (col C)
+- Nunca usar o mapeamento antigo com B vazio, C=SKU, D=STATUS, E=PRODUTO, F=CUSTO, G=EAN, H=NCM, I=MARCA, J/K fórmulas.
+- Esse mapeamento antigo desloca todas as colunas e causa cadastro errado.
+- Ao adicionar linhas novas, preencher somente A:G e preservar a fórmula/formatação de H copiando linha modelo equivalente.
+- Não escrever nada em I:K; essas colunas não fazem parte da estrutura atual da aba ESTOQUE.
 
-**Se o produto nao estiver na aba ESTOQUE, os VLOOKUPs das abas de marketplace vao retornar #N/A.**
+## Importância da aba ESTOQUE
+
+Esta aba alimenta as abas de marketplace por lookup:
+- MELI/SHOPEE usam principalmente EAN para puxar dados fiscais/marca.
+- AMAZON usa principalmente SKU BASE para puxar dados fiscais/marca.
+
+Se o produto não estiver correto na aba ESTOQUE, as abas de marketplace ficam com lookup quebrado ou dados fiscais/marca errados.

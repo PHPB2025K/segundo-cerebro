@@ -83,8 +83,8 @@ Usar `gog sheets update` celula por celula para cada campo INPUT.
 ### Fase 6 — Validar
 Ler a row completa de volta e confirmar:
 - Campos INPUT tem os valores corretos
-- Campos FORMULA calcularam (nao estao vazios ou com erro)
-- STATUS (col C) mostra valor correto baseado no estoque
+- A fórmula de CUSTO ESTOQUE TOTAL na col H calculou corretamente
+- Não houve conteúdo residual em I:K na aba ESTOQUE
 
 ---
 

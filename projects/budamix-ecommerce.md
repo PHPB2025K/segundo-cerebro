@@ -247,3 +247,55 @@ Adicionado botão **Blog Budamix** em `src/pages/Links.tsx`, abaixo dos marketpl
 **Commits main:** `6d2dd1a`, `11ece09`, `7b00cff`, `877b7f3` (+ commits revertidos `cee0022`, `017067f`, `043666d`).
 
 Detalhes em [[memory/sessions/2026-06-03]] e [[memory/context/decisoes/2026-06]].
+
+## Atualização 04-09/06 — Blog, navegação, links bio, RLS e cupom
+
+### Blog Budamix — pipeline tema livre completo + upload manual de imagens
+
+Sequência de 4 correções pra que o admin pudesse digitar tema livre (em vez de só pautas do radar Perplexity) e ainda ter qualidade editorial profissional, com upload manual de imagens em vez de Gemini (que ficou sem créditos prepay no projeto SOCIAL STUDIO).
+
+Resumo das mudanças:
+- **WF2 (Article Generator)** tolera `idea_id=null` + validator lenient pra image-prompt content + bloco `SELF-ENRICHMENT` no system prompt obriga Claude a autoderivar ângulo/keyword/pillar/antiviés antes de escrever (eleva tema livre ao mesmo nível de pauta do radar) + bloco `CATEGORY OUTPUT — ALWAYS SPECIFIC` proíbe valores genéricos + 3 linhas de **viés pró-vidro** quando tema toca em armazenamento/cozinha
+- **WF4 (Orchestrator)** short-circuit: "Extrair post do WF2" reroteia direto pra "Marcar artigo em edição" com `status=em_edicao`. 8 nós da pipeline de imagem (incluindo `Chamar WF3 — Gerar imagens`) ficam órfãos preservados pra reativação futura
+- **Frontend `BlogAdmin.tsx`**: card "Tema personalizado" na aba Pautas + função `generateArticleFromCustomTopic` cria `blog_ideas` antes de chamar orchestrator + `ImageSlotCard` ganhou botão "Subir imagem" (Supabase Storage `blog-images/manual/<post>/<slot>-<rand>.<ext>`) e Dialog do prompt completo (Textarea + Copiar prompt) + "Regenerar Imagem" virou "Gerar com IA"
+- **DB**: `pg_cron` `reconcile_blog_generation` a cada 2 min recupera posts em `falhou` quando artefatos completam tardiamente (race condition Gemini); RLS fix em `blog_post_images` (filtrava `'published'` inglês em vez de `'publicado'` português, sumiam support/pinterest no frontend público); storage policies pro bucket `blog-images` (admin upload via `is_admin()`)
+
+N8N workflows versionados em `n8n-workflows/`:
+- `wf2-article-generator-before-custom-topic-fix.json`
+- `wf2-article-generator-after-custom-topic-fix.json`
+- `wf2-article-generator-with-glass-bias.json`
+- `wf2-article-generator-auto-category.json`
+- `wf2-article-generator-tema-livre-pro.json`
+- `wf4-orchestrator-before-skip-image-gen.json`
+- `wf4-orchestrator-skip-image-gen.json`
+
+Doc completa em [[knowledge/concepts/blog-budamix-pipeline]].
+
+### Navegação — aba Coleções removida
+
+- `Header.tsx`, `MobileMenu.tsx`, `Footer.tsx` (col Coleções desktop → grid 4→3), `FooterMobile.tsx` (acordeão Coleções) limpos
+- Rotas `/colecoes`, `/colecoes/:slug`, `/admin/colecoes` deletadas do `App.tsx` (Collections, CollectionDetail, AdminCollections orfanados — não vão pro bundle por não estarem importados)
+- Breadcrumb do `ProductDetail.tsx`: `Home > Coleção do produto` → `Home > Loja`
+- Sidebar admin (`AdminLayout.tsx`) perdeu item "Coleções" + import `FolderOpen`
+- Dashboard admin perdeu botão "Gerenciar Coleções" do quick actions
+- Mantive intencionalmente: StatCard "Coleções Ativas" no Dashboard (read-only, não linka), tabela `collections` no Supabase + relação com produtos (organização interna)
+- Motivação: catálogo 100% vidro desde 25/05, segmentação por material (Vidro/MDF/Porcelana) deixou de fazer sentido
+
+### Página `/links` da bio Instagram
+
+- Cor de fundo `#F2EDE0` → `#FCFAF4` (mais clara)
+- Hierarquia visual: card "Loja Oficial" mantém tamanho original (CTA principal); cards secundários (ML, Shopee, Amazon, Blog) reduzidos (`py-4` → `py-2.5`, ícone `h-12` → `h-9`, fonte `text-base` → `text-[15px]`)
+- Subtítulo Blog Budamix: `text-[11px]` → `text-[12.5px]`
+- Facebook URL: `facebook.com/budamix.br` → `facebook.com/106066888942641` em `footer-data.tsx` (propaga pra footer do e-commerce E pra página /links)
+
+### Cupom BUDA15 — 15% sem mínimo
+
+- Adicionado direto na tabela `coupons` (Supabase)
+- `type=PERCENT`, `value=15`, `min_purchase_cents=0`, `max_redemptions=NULL` (ilimitado), `expires_at=NULL` (sem expiração), `active=true`
+- Coexiste com `BUDAMIX10` (10%) já existente
+
+### Status atual
+
+- 11 produtos ativos (100% vidro), 23 SKUs filhos
+- Blog: pipeline tema livre completo, validado em produção
+- Frente checkout/pagamento/admin estável, sem ações pendentes na sessão

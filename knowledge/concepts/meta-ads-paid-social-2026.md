@@ -38,6 +38,19 @@ Para Vendas, Leads e App Promotion, **CBO + Advantage+ Placements + Advantage+ A
 
 (Números autorreportados pela Meta — direcionais, não promessa)
 
+### Audience Network em ASC = lixo pra produto físico (descoberto 09/06/2026)
+
+Quando ASC roda com Advantage+ Placements default, **Meta inclui Audience Network** (Rewarded Video + Classic). Esse placement é fonte de:
+- **CTR inflado (37-54%)** porque usuário clica acidentalmente em jogos ou ganha reward por interagir
+- **ATCs falsos** que não convertem em compra real
+- **Distorção do algoritmo** — Advantage+ Audience vê CTR alto no AN e dobra aposta nessa direção, ignorando público real
+
+Na Camp 1 Budamix (rodando 30h), **73% do budget (R$29 de R$40)** foi pro Audience Network. Placements reais (FB Feed, IG Feed, Reels, Stories) receberam R$10 e geraram **zero ATCs**. 65+ feminino consumiu 43% do budget porque AN entregava CTR alto nesse público.
+
+**Ação:** desde o setup inicial de qualquer ad set ASC pra produto físico, definir `publisher_platforms: ["facebook", "instagram"]` no targeting. **Não deixar Advantage+ Placements default**. Pra produtos digitais ou apps, AN pode fazer sentido — pra utensílio doméstico, decoração, moda, beleza física, NÃO.
+
+Custo de não fazer isso desde o começo: ~R$15-20/dia em cliques falsos por dia que rodar. Pior: aprendizado fica treinado em sinais ruidosos e precisa ser resetado depois (perde 7-14 dias de fase de aprendizado).
+
 ### Advantage+ Audience força age_max ≥ 65 (descoberto 08/06/2026)
 
 Quando `targeting_automation.advantage_audience = 1` (ligado), Meta **rejeita** qualquer tentativa de setar `age_max < 65` via API. Erro 1870189: "With ad sets that use Advantage+ audience, the maximum age audience control can't be set to lower than 65".

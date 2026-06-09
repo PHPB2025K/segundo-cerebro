@@ -181,6 +181,7 @@ Spark agora monitora Camp 1 com infraestrutura completa:
 - Sem ferramentas pagas de pesquisa de interesses (AdTargeting etc) — interesses do nicho cobertos via Advantage+ Audience signals
 - **08/06:** Campanha 1 ativada com R$20/dia (reduzido de R$37) — Pedro pediu cautela inicial. Margem pra escalar conforme performance.
 - **08/06:** Público restrito a mulheres (genders=[2]) na Campanha 1. Idade ficou 18-65 por LIMITAÇÃO TÉCNICA — Advantage+ Audience exige age_max ≥ 65; restringir 25-55 requereria desligar Advantage+ Audience (não vale o trade-off em 2026).
+- **09/06:** **Audience Network EXCLUÍDO** da Campanha 1 — `publisher_platforms: ["facebook", "instagram"]`. Primeira análise revelou que 73% do budget (R$29 de R$40 em 30h) foi pro AN (Rewarded Video + Classic) com CTR inflado 37-54% e ATCs falsos. 65+ feminino consumiu 43% do budget porque AN entregava CTR alto. Quebrou o freeze deliberadamente pra parar de queimar dinheiro em cliques falsos. **Nova janela freeze: até ~23/06**. Pra Camps 2 e 3 já criar sem AN desde o setup.
 
 ## Audiências de outras contas — descartadas como audience signal
 

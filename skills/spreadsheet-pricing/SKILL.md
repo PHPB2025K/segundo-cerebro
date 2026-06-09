@@ -49,7 +49,7 @@ SSID="1u74aCdH8VrQ2eK01YUQ8fUMwwb6ZPZXvrTTHoexWtnI"
 | MELI | 6 | 7 | A-AA |
 | SHOPEE | 6 | 7 | A-Z |
 | AMAZON | 6 | 7 | A-V |
-| ESTOQUE | 8 | 9 | A-K |
+| ESTOQUE | 8 | 9 | A-H |
 
 ---
 
@@ -106,7 +106,7 @@ Ver arquivos em `maps/`:
 **INPUT por aba:**
 | Aba | Colunas INPUT |
 |-----|---------------|
-| ESTOQUE | A, C, E, F, G, H, I |
+| ESTOQUE | A, B, C, D, E, F, G |
 | MELI | A, B, D, E, F, G, H, M, N, P, X |
 | SHOPEE | A, D, E, F, G, I, L, O, P, Q, W |
 | AMAZON | D, E, F, G, I, K, L, M, S |
@@ -114,7 +114,7 @@ Ver arquivos em `maps/`:
 **FORMULA por aba (NUNCA TOCAR):**
 | Aba | Colunas FORMULA |
 |-----|-----------------|
-| ESTOQUE | D, J, K |
+| ESTOQUE | H |
 | MELI | C, I, J, K, L, O, Q, R, S, T, U, V, W, Y, Z, AA |
 | SHOPEE | B, C, H, J, K, M, N, R, X, Y, Z |
 | AMAZON | C, H, J, N, O, Q, R, T, U, V |
@@ -123,8 +123,8 @@ Ver arquivos em `maps/`:
 
 ## 5. CASCATA DE VLOOKUP
 
-As abas MELI e SHOPEE puxam NCM, PESO e MARCA via VLOOKUP pelo **EAN** na aba ESTOQUE.
-A aba AMAZON puxa NCM, PESO e MARCA via VLOOKUP pelo **SKU** na aba ESTOQUE.
+As abas MELI e SHOPEE puxam NCM e MARCA via VLOOKUP pelo **EAN** na aba ESTOQUE.
+A aba AMAZON puxa NCM e MARCA via VLOOKUP pelo **SKU BASE** na aba ESTOQUE.
 
 **Consequencia:** Ao cadastrar produto novo, preencher ESTOQUE primeiro. Se o EAN estiver preenchido no ESTOQUE, os VLOOKUPs das abas de marketplace vao funcionar automaticamente.
 
@@ -211,9 +211,9 @@ Para inserir um novo SKU, o Pedro precisa fornecer:
 | Preco Amazon (R$) | SIM se vende na Amazon | AMAZON col G |
 | Tipo anuncio ML | SIM | MELI col H |
 | Estoque | SIM | ESTOQUE col A, marketplaces col A |
-| EAN | OPCIONAL | ESTOQUE col G, marketplaces (VLOOKUP) |
-| NCM | SIM | ESTOQUE col H |
-| Marca | SIM | ESTOQUE col I |
+| EAN | OPCIONAL | ESTOQUE col E, marketplaces (VLOOKUP) |
+| NCM | SIM | ESTOQUE col F |
+| Marca | SIM | ESTOQUE col G |
 | Peso | RECOMENDADO | ESTOQUE (VLOOKUP) |
 | Caixa (R$) | RECOMENDADO | MELI col M, SHOPEE col O, AMAZON col K |
 | Embalagem (R$) | RECOMENDADO | MELI col P, SHOPEE col P, AMAZON col L |

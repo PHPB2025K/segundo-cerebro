@@ -60,11 +60,17 @@ Dados obrigatorios:
 - SKU, nome resumido, custo unitario
 - Preco por marketplace (ML, Shopee, Amazon — podem ser diferentes)
 - Tipo anuncio ML ("Classico" ou "Premium")
-- Estoque, EAN, NCM, marca, peso
+- Estoque, EAN, NCM, marca
 - Caixa (R$), embalagem (R$), Full (R$ — opcional)
 
 ### Fase 2 — SEMPRE inserir na aba ESTOQUE primeiro
-A aba ESTOQUE e a fonte de verdade. As abas de marketplace puxam NCM, PESO e MARCA via VLOOKUP a partir do ESTOQUE (por EAN ou SKU). Se ESTOQUE nao tiver o produto, as formulas dos marketplaces vao retornar erro.
+A aba ESTOQUE e a fonte de verdade. As abas de marketplace puxam dados fiscais e marca via VLOOKUP a partir do ESTOQUE (por EAN ou SKU BASE). Se ESTOQUE nao tiver o produto, as formulas dos marketplaces vao retornar erro.
+
+### Fase 2.1 — Trava obrigatoria antes de escrever na ESTOQUE
+Antes de QUALQUER escrita na aba ESTOQUE, ler os headers reais da linha 8 e validar que a estrutura e exatamente:
+A=ESTOQUE, B=SKU BASE, C=DESCRIÇÃO, D=CUSTO, E=EAN, F=NCM, G=MARCA, H=CUSTO ESTOQUE TOTAL.
+
+Se os headers nao baterem, PARAR. Nao inferir coluna, nao usar mapeamento antigo e nao escrever por tentativa.
 
 ### Fase 3 — Localizar ultima linha com dados
 ```bash
@@ -123,8 +129,8 @@ Ver arquivos em `maps/`:
 
 ## 5. CASCATA DE VLOOKUP
 
-As abas MELI e SHOPEE puxam NCM e MARCA via VLOOKUP pelo **EAN** na aba ESTOQUE.
-A aba AMAZON puxa NCM e MARCA via VLOOKUP pelo **SKU BASE** na aba ESTOQUE.
+As abas MELI e SHOPEE puxam dados fiscais/marca via VLOOKUP pelo **EAN** na aba ESTOQUE.
+A aba AMAZON puxa dados fiscais/marca via VLOOKUP pelo **SKU BASE** na aba ESTOQUE.
 
 **Consequencia:** Ao cadastrar produto novo, preencher ESTOQUE primeiro. Se o EAN estiver preenchido no ESTOQUE, os VLOOKUPs das abas de marketplace vao funcionar automaticamente.
 
@@ -214,7 +220,7 @@ Para inserir um novo SKU, o Pedro precisa fornecer:
 | EAN | OPCIONAL | ESTOQUE col E, marketplaces (VLOOKUP) |
 | NCM | SIM | ESTOQUE col F |
 | Marca | SIM | ESTOQUE col G |
-| Peso | RECOMENDADO | ESTOQUE (VLOOKUP) |
+| Peso | SE APLICÁVEL | Não existe na estrutura atual A:H da aba ESTOQUE; validar na aba de marketplace antes de preencher |
 | Caixa (R$) | RECOMENDADO | MELI col M, SHOPEE col O, AMAZON col K |
 | Embalagem (R$) | RECOMENDADO | MELI col P, SHOPEE col P, AMAZON col L |
 | Full (R$) | OPCIONAL | MELI col N |
@@ -248,6 +254,7 @@ Para inserir um novo SKU, o Pedro precisa fornecer:
 | 2026-04-08 | Documentacao de formulas reais por coluna em cada aba |
 | 2026-04-08 | Regras de cascata VLOOKUP (ESTOQUE -> marketplaces) |
 | 2026-05-27 | Regra absoluta: qualquer valor inserido na planilha deve usar formato brasileiro `R$ 00,00`, virgula decimal, nunca ponto |
+| 2026-06-09 | Correção definitiva da aba ESTOQUE: estrutura atual A:H, inputs A:G, fórmula apenas H; obrigatorio validar headers antes de escrever |
 
 ---
 

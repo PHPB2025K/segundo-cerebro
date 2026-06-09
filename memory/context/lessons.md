@@ -166,3 +166,7 @@ Na nova Auditoria Full, a recomendação operacional usa vendas, estoque Full e 
 ## 2026-06-08 — [TÁTICA] Targeting Meta Ads precisa ser validado contra constraint real da API
 
 Na ativação da Campanha 1 Budamix, a estratégia inicial previa idade 25–55, mas a Advantage+ Audience rejeitou `age_max` abaixo de 65. Para Meta Ads, regras de segmentação mudam e podem ser consolidadas pela plataforma; antes de registrar targeting como definitivo, validar na API/interface viva. Quando a constraint da plataforma impedir a segmentação ideal, registrar a limitação e preservar o objetivo estratégico por outras alavancas criativas/orçamentárias.
+
+## 2026-06-09 — [ESTRATÉGICA] Planilha ESTOQUE exige validação de headers antes de escrever
+
+O erro de mapeamento das novas linhas de canecas/Guinho mostrou que confiar em documentação antiga da skill pode deslocar colunas na aba ESTOQUE. A regra definitiva é validar os headers reais da linha 8 antes de qualquer escrita e só operar se a estrutura bater com A=ESTOQUE, B=SKU BASE, C=DESCRIÇÃO, D=CUSTO, E=EAN, F=NCM, G=MARCA, H=CUSTO ESTOQUE TOTAL. Se não bater, parar e revisar; nunca compensar “de cabeça” nem escrever por tentativa.

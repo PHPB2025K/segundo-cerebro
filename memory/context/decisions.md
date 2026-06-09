@@ -172,3 +172,10 @@ tags:
 - A operação Meta Ads ativa passa a ser **Budamix**.
 - GB Distribuição deve permanecer marcada como legacy/parada e não deve ser operada por scripts, skills ou Spark salvo autorização explícita.
 - Scripts de Meta Ads precisam exigir conta explícita/whitelist para evitar ação acidental na conta errada.
+
+## 2026-06-09 — Aba ESTOQUE tem mapeamento canônico A:H e deve validar headers antes de qualquer escrita
+
+- Pedro corrigiu explicitamente o mapeamento correto da aba **ESTOQUE** da Planilha de Estoque: **A=ESTOQUE, B=SKU BASE, C=DESCRIÇÃO, D=CUSTO, E=EAN, F=NCM, G=MARCA, H=CUSTO ESTOQUE TOTAL**.
+- Esta estrutura atual tem 8 colunas úteis, de A até H. As colunas I:K não fazem parte do cadastro atual da aba ESTOQUE e não devem receber valores nesse fluxo.
+- Regra obrigatória: antes de qualquer escrita na aba ESTOQUE, Kobe/agentes devem conferir os headers reais da linha 8 e abortar se não forem exatamente os esperados. Não inferir coluna, não usar mapeamento antigo e não escrever por tentativa.
+- Mapeamento antigo proibido: B vazio, C=SKU, D=STATUS, E=PRODUTO, F=CUSTO, G=EAN, H=NCM, I=MARCA, J/K fórmulas. Esse layout está defasado e causa deslocamento de cadastro.

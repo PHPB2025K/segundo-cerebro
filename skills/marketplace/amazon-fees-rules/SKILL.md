@@ -21,8 +21,8 @@ triggers:
 metadata:
   openclaw:
     emoji: 📦
-    last_updated: "2026-06-03"
-    next_review: "2026-06-10"
+    last_updated: "2026-06-10"
+    next_review: "2026-06-17"
     cron: "Amazon Fees Monitor — quarta 10h SP"
     sources:
       - url: "https://venda.amazon.com.br/precos"
@@ -52,7 +52,7 @@ metadata:
 > ⚠️ **Última atualização:** 03/06/2026
 > **Comissões:** sem alteração desde 20/01/2025 (quando 17 categorias tiveram redução de até 3 p.p.)
 > **FBA:** promoção agressiva vigente (fev–jul/2026) — tarifa zero para produtos ≥R$100
-> **DBA:** promoção oficial ativa de 50% off na tarifa logística para produtos ≥R$79, exclusiva CNPJ com coleta em SP
+> **DBA:** promoção oficial ativa desde 01/06/2026: 50% off na tarifa logística para produtos ≥R$79 via DBA/FBA Onsite em SP; automática em junho/2026 e, de julho em diante, exige 3,5% da receita em Amazon Ads; vigência até setembro/2026
 > **Parcelamento:** desde 16/03/2026, taxa de 1,5% expandida para faixa R$40–100
 > **Nenhuma mudança adicional de comissões entre janeiro e maio de 2026.**
 > **Cron de verificação:** Quarta-feira 10h SP (Amazon Fees Monitor)
@@ -188,7 +188,7 @@ Comissão reduzida a **5%** nos primeiros 100 itens padrão (ou 50 extragrandes)
 - Frete grátis ao consumidor: produtos a partir de **R$ 19** (conforme página oficial DBA vigente)
 - Comissão incide **apenas sobre preço do produto** (não inclui frete) — vantagem vs FBM
 - Tarifas DBA (exemplos SP): R$ 4,50 (<R$ 30), R$ 6,50 (R$ 30–49,99), R$ 6,75 (R$ 50–78,99)
-- Promoção oficial vigente: **50% off na tarifa logística DBA para produtos ≥R$ 79**, exclusiva para contas CNPJ com coleta no estado de São Paulo. Tratar como benefício promocional e validar termos antes de precificar.
+- Promoção oficial vigente desde **01/06/2026**: **50% off na tarifa logística para produtos ≥R$ 79** vendidos via DBA ou FBA Onsite no estado de São Paulo. Em junho/2026 o desconto é automático para vendedores elegíveis; de julho/2026 em diante, exige investimento mínimo de **3,5% da receita total do vendedor em Amazon Ads** no período de apuração. Validações oficiais: 20/jun para julho, 20/jul para agosto e 20/ago para setembro. Vigência até **30/09/2026**, com possibilidade de extensão a critério da Amazon. Tratar como benefício promocional e validar termos antes de precificar.
 
 ### 4.3 FBA Onsite — Por convite
 - Estoque fica no armazém do vendedor, Amazon gerencia logística
@@ -535,7 +535,7 @@ Se precificar a R$ 100:
 | Fev/2026 | Campanha FBA Grátis: tarifa R$ 0 (≥R$ 100) / R$ 5 (<R$ 100), válida até jul/2026 |
 | Fev/2026 | Campanha SP: comissão ZERO por até 5 meses (limite R$ 60.000) para CNPJ com coleta em SP |
 | Mar/2026 | Parcelamento sem juros: taxa 1,5% expandida para faixa R$ 40–100 |
-| Mai/2026 | DBA: página oficial destaca 50% off na tarifa logística para produtos ≥R$ 79, exclusivo CNPJ com coleta em SP |
+| Jun/2026 | DBA/FBA Onsite SP: termos oficiais do desconto de 50% na tarifa logística para produtos ≥R$ 79 publicados. Desconto automático em junho; manutenção julho–setembro exige 3,5% da receita em Amazon Ads, com validações mensais no dia 20. |
 | Mai/2026 | FBA: elegibilidade oficial inclui BA e GO além dos estados já documentados |
 | Abr/2026 | Amazon EUA: sobretaxa 3,5% combustível no FBA — NÃO afeta Amazon Brasil doméstico |
 
@@ -566,6 +566,7 @@ Se precificar a R$ 100:
 
 | Data | Alteração |
 |---|---|
+| 10/06/2026 | v1.4 — Revisão semanal oficial. Comissões, parcelamento, FBA/FBA+, Buy Box e Ads sem mudança material. DBA atualizado com termos oficiais da campanha iniciada em 01/06/2026: 50% off automático em junho para produtos ≥R$79 via DBA/FBA Onsite em SP; manutenção de julho a setembro condicionada a 3,5% da receita em Amazon Ads e validações mensais no dia 20. |
 | 03/06/2026 | v1.3 — Revisão semanal oficial. Comissões, parcelamento, FBA/FBA+, DBA, Buy Box e Ads sem mudança material. Correção interna: tabela “Frete — quem paga o quê” alinhada à página oficial DBA vigente, removendo distinção antiga de mesmo estado/interestedual e consolidando frete grátis DBA para itens a partir de R$19. |
 | 27/05/2026 | v1.2 — Revisão semanal oficial. Comissões, parcelamento, FBA+, Buy Box e Ads sem mudança material. DBA atualizado com promoção oficial de 50% off na tarifa logística para produtos ≥R$79, exclusiva CNPJ com coleta em SP; frete grátis DBA corrigido para produtos a partir de R$19 conforme página oficial vigente. Elegibilidade FBA atualizada para incluir BA e GO. |
 | 13/05/2026 | v1.1 — Revisão semanal oficial. Comissões, parcelamento, DBA, Buy Box e Ads sem mudança material. FBA atualizado: benchmark oficial de crescimento médio ajustado de 5× para 4×; seção de produtos <R$79 corrigida para refletir a tabela oficial atual em três faixas de preço e remover a tabela antiga única de “<R$79”. Promoção FBA+ confirmada ativa até 31/07/2026 com validação mensal de 3,5% em Ads. |

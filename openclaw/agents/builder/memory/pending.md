@@ -10,7 +10,7 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-06-08_
+_Atualizado: 2026-06-09_
 
 ## 🔴 Prioridade Alta
 
@@ -21,17 +21,25 @@ _Atualizado: 2026-06-08_
 - [ ] Validar antes de qualquer automapeamento: `XCP004` → possível `COLORS170_B`; `KFJ003` sem canônico seguro.
 - [ ] Depois do deploy/cadastro: desenhar PR4 kits/BOM, pois a maioria dos erros reais recentes é “Estoque insuficiente”.
 - [ ] Auditoria Full: validar build/restart/smoke em produção da nova aba padrão de Estoque > Full antes de considerar entregue em produção.
-- [ ] Auditoria Full: confirmar que o sync externo da planilha ENVIOS FULL está ativo e populando envios recentes; sem isso, recomendações podem sair subestimadas.
+- [ ] Auditoria Full: ENVIOS FULL está pausado por decisão operacional de 09/06; antes de confiar nas recomendações, reativar/validar o sync ou sinalizar explicitamente que envios recentes podem estar incompletos.
 - [ ] Auditoria Full: monitorar filtro de vendas Full por logistic type no ML para evitar média inflada com vendas não-Full quando o campo vier vazio.
 - [ ] Auditoria Full: revisar SKUs marcados sem match no inventário Full antes de qualquer correção automática de planilha/cadastro.
 - [ ] Preencher alocação de receita por componente no fechamento de estoque; CMV seller de 03/06 foi corrigido, mas receita da camada de componentes ainda está nula.
 - [ ] Tratar fila residual de divergências por saldo real insuficiente/entrada física não registrada: `YW1520RC`, `YW1050RC`, `CAC250P`, `CAC250AZ`, `TL250P`, `CAR200B`, `CAR200R`; não baixar negativo sem prova operacional.
+- [ ] Automações WhatsApp Estoque/ENVIOS FULL pausadas: quando Pedro liberar, reativar com smoke controlado do poller/processor, cron de ENVIOS FULL e healthcheck; se a intenção virar congelamento total, mapear também rotinas marketplace/sync físico/CMV antes de prometer pausa completa.
 
 ### Social Studio Reborn
 - [ ] Fase C C2: construir `/admin/social/conta` com status de conta, OAuth e callback handler.
 - [ ] Fase C C3-C8: publicação real via Meta Graph após Pedro configurar App Meta e secrets.
 - [ ] Fase D: métricas Instagram + dashboard + export CSV.
 - [ ] Preservar branches antigas até 05/06/2026 antes de avaliar delete.
+
+### Budamix E-commerce / Blog
+- [ ] Validar manualmente `budamix.com.br/loja` em desktop após ajustes de query string por formato; bug histórico de tela branca não foi atacado diretamente.
+- [ ] Blog Budamix: enquanto geração automática de imagens seguir desligada, manter fluxo de upload manual no admin e revisar artigos em `em_edicao` antes de publicar.
+- [ ] Blog Budamix: se Pedro quiser voltar geração automática de imagens, reativar WF3/integração Gemini somente após saldo/projeto resolvido e smoke do pipeline.
+- [ ] Frete Budamix: tabela segue hardcoded e sem integração transportadora real; eventual Melhor Envio/Correios fica em backlog técnico.
+- [ ] Ajustar texto acessível/subtítulo do segundo banner do hero se Pedro quiser alinhar com o criativo atual.
 
 ### Canggu
 - [ ] Corrigir fire-and-forget do `webhook-whatsapp` com `EdgeRuntime.waitUntil()` ou fila persistente para evitar cancelamento silencioso do `process-message`.

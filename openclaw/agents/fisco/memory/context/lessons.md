@@ -1,6 +1,12 @@
 # Lições — Fisco
 
-_Atualizado: 2026-06-08_
+_Atualizado: 2026-06-09_
+
+## 2026-06-09
+- A Matriz conectou nas quatro execuções úteis observadas do refresh no dia, mas segue como recuperação operacional recente: antes de operação/draft real, exigir teste controlado e estabilidade contínua.
+- Persistência do HTTP 403 da Filial por vinte e seis dias confirma bloqueio operacional formal; qualquer fluxo Filial → Simples deve continuar parado até correção do status/vínculo/acesso da empresa e teste controlado.
+- Falha recorrente do alerta WhatsApp com HTTP 403 continua sendo risco de visibilidade independente do bloqueio da Filial.
+- Rodadas com resultado fiscal capturado mas resposta final abortada podem ser consolidadas como validação útil; rodadas sem retorno fiscal capturado devem ser registradas como lacuna sem inferir recuperação ou piora.
 
 ## 2026-06-08
 - A Matriz conectou nas quatro execuções úteis observadas do refresh no dia, mas segue como recuperação operacional recente: antes de operação/draft real, exigir teste controlado e estabilidade contínua.

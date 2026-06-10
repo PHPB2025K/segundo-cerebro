@@ -92,3 +92,15 @@ _Registro de decisões permanentes. NUNCA contradizer._
 - Daily Sales Shopee permanece em standby por decisão do Pedro: Fase 1 validada, mas sem cron 07:00 BRT até lapidação e smokes das contas 2 e 3.
 - Mission Control deve manter Shopee em página dedicada, isolada da página de Mercado Livre, para evitar regressão e colisão de namespace.
 - Slack do Daily Sales Shopee deve ser consolidado para Pedro, não uma mensagem por camada.
+
+## 2026-06-09 — Estoque / Planilha e automações
+
+- Aba ESTOQUE da planilha oficial usa estrutura A:H: ESTOQUE, SKU BASE, DESCRIÇÃO, CUSTO, EAN, NCM, MARCA, CUSTO ESTOQUE TOTAL. Qualquer escrita futura deve validar esses headers reais antes de alterar dados e não deve usar o mapeamento antigo.
+- Alterações na Planilha de Estoque devem preservar formatação, cores, validações e padrão visual/estrutural copiando linha modelo equivalente; se a ferramenta não permitir copiar formatação com segurança, abortar ou trocar de API.
+- Automações WhatsApp Estoque e ENVIOS FULL foram pausadas por decisão operacional. Auditorias/recomendações que dependem desses dados precisam declarar essa limitação até reativação validada.
+
+## 2026-06-09 — Budamix E-commerce / Blog
+
+- Blog Budamix em tema livre opera sem geração automática de imagens enquanto não houver decisão de voltar créditos/integração de imagem; artigos ficam para revisão/upload manual no admin.
+- Filtro de formato da loja usa query string e a coluna existente de formato dos produtos, sem criar coleção ou schema novo.
+- Banners do hero podem funcionar como CTAs visuais para recortes da loja, com proteção contra falso clique pós-swipe.

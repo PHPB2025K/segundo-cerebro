@@ -82,3 +82,14 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 ### [TÁTICA] Recomendação de reposição depende de frescor do sync externo (2026-06-08)
 **Lição:** Auditorias de Estoque Full que usam planilha externa sincronizada precisam explicitar qualidade/frescor dos envios antes de orientar compra ou reposição. Se o sync da planilha ENVIOS FULL falhar, a recomendação pode parecer precisa mas ignorar pipeline recente.
 **Expira:** 2026-07-08
+
+### [ESTRATÉGICA] Escrita em planilha operacional começa por validação de headers (2026-06-09)
+**Lição:** Mapeamento de aba pode ficar defasado após mudanças visuais/estruturais. Antes de criar linhas, fórmulas ou blocos em planilhas operacionais, ler e validar os headers reais; se divergirem do mapa da skill, abortar e atualizar o mapa antes de escrever.
+
+### [TÁTICA] Pipeline N8N longo precisa reconciliação e short-circuit seguro (2026-06-09)
+**Lição:** Orquestradores com múltiplas etapas e APIs variáveis não devem depender de uma única execução síncrona perfeita. Para blog/geração de conteúdo, manter reconciliação periódica de estados intermediários e fallback explícito para edição manual evita falha silenciosa quando uma etapa externa quebra.
+**Expira:** 2026-07-09
+
+### [TÁTICA] Pausar uma fonte de estoque não congela o estoque inteiro (2026-06-09)
+**Lição:** Pipelines de estoque têm múltiplas fontes. Ao pausar WhatsApp/ENVIOS FULL, registrar exatamente o escopo pausado e deixar claro quais rotinas continuam ativas para evitar falsa sensação de congelamento operacional.
+**Expira:** 2026-07-09

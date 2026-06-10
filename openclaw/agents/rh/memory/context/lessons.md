@@ -1,6 +1,13 @@
 # Lições — RH
 
-_Atualizado: 2026-06-07_
+_Atualizado: 2026-06-09_
+
+
+## 2026-06-09
+- Sandra sem marcações novamente em dia útil reforça risco trabalhista sensível e necessidade de orientação do Pedro antes de contato adicional.
+- Intervalos abaixo de 1h continuam recorrentes em Guilherme, Leonardo e Lucas; o padrão precisa de orientação operacional antes de cobrança ou correção.
+- Leonardo e Mateus seguem sem resposta após 19 dias úteis no lote antigo; follow-ups automáticos sem decisão humana tendem a manter o backlog, não resolvê-lo.
+- Backlog de 27 comunicações abertas, com 20 bloqueadas por aprovação/orientação do Pedro, segue como principal risco operacional do RH.
 
 ## 2026-06-07
 - Nenhuma lição nova relevante além das já registradas.

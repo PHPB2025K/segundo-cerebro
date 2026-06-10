@@ -11,6 +11,22 @@ tags:
 
 # Decisões — Kobe
 
+## 2026-06-10 — Controle de Estoque diário deve ser simplificado e sem termos técnicos
+
+- Pedro definiu como regra inviolável que a mensagem diária de **🏭 Controle de Estoque** deve ser enviada sempre em formato simplificado, como o resumo aprovado em 10/06/2026.
+- A mensagem deve evitar termos técnicos e jargões internos. Não usar expressões como Seller, Full/FBA/FBS, crossdocking, ledger, divergência técnica, alias, BOM, idempotência, Supabase, log, pipeline, cron ou nomes de scripts.
+- Linguagem visível obrigatória: “já estava no marketplace”, “precisava baixar do nosso estoque”, “baixou certinho”, “ficou pendente”, “sem erro no processamento”, “ajuste manual”.
+- O foco deve ser explicar para a operação o que aconteceu, não como o sistema fez. Preferir números e frases curtas.
+- Formato base aprovado:
+  - “Hoje foram conferidas as vendas de ontem dos marketplaces.”
+  - “O sistema separou o que já estava no estoque do marketplace do que precisava sair do nosso estoque.”
+  - “X unidades não mexeram no nosso estoque, porque já estavam no marketplace.”
+  - “Y unidades precisavam baixar do nosso estoque.”
+  - “Dessas, Z unidades baixaram certinho.”
+  - “N unidades ficaram pendentes, principalmente por falta de saldo ou cadastro do produto.”
+  - “Não teve erro no processamento.”
+  - “Ou seja: a baixa rodou normal, sem duplicar estoque, e só ficaram pendentes os itens que precisam de ajuste manual.”
+
 ## 2026-06-09 — Planilha de Estoque: alterações devem preservar exatamente formatação, cores e organização
 
 - Pedro definiu como regra obrigatória que qualquer alteração na **PLANILHA DE ESTOQUE** do Drive, em especial na aba **ESTOQUE**, deve manter e utilizar **exatamente a mesma formatação, cores e padrão de organização** já existente na tabela.

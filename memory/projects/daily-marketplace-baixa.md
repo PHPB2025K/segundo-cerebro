@@ -87,35 +87,31 @@ Maioria parece ser:
 | Tabela | `public.marketplace_sales_log` |
 | Função | `public.classify_fulfillment(text, text, jsonb)` |
 
-## Telegram digest diário (tópico Estoque) — formato Pedro aprovou 29/05
+## Telegram digest diário (tópico Estoque) — regra inviolável de formato simplificado aprovada em 10/06
 
-Separa explicitamente "VENDA FULL" (não baixou galpão) de "VENDA DIÁRIA" (baixou ou tentou baixar do galpão), com totais em unidades + pedidos por plataforma.
+Pedro redefiniu o formato visível da mensagem diária **🏭 Controle de Estoque** em 10/06/2026: deve ser sempre simplificada, sem termos técnicos e sem jargões internos. O objetivo é explicar o que aconteceu para a operação, não como o sistema processou.
 
-```
-📊 Vendas marketplaces — DD/MM/YYYY
+Não usar na mensagem visível: Seller, Full/FBA/FBS, crossdocking, ledger, alias, BOM, idempotência, Supabase, pipeline, cron, script, log, divergência técnica ou similares.
 
-📦 VENDA FULL (não baixou galpão):
-  • Amazon: N unidades (M pedidos)
-  • Mercado Livre: N unidades (M pedidos)
-  • Shopee: N unidades (M pedidos)
-  Total: N unidades
+Formato base obrigatório:
 
-🛒 VENDA DIÁRIA (baixou ou tentou baixar do galpão):
-  • Amazon: N unidades (M pedidos)
-  • Mercado Livre: N unidades (M pedidos)
-  • Shopee: N unidades (M pedidos)
-  Total: N unidades
+```text
+🏭 *Controle de Estoque*
 
-✅ N unidades baixaram certinho
-⚠️ N unidades ficaram pendentes (SKU não cadastrado)
+Hoje foram conferidas as vendas de ontem dos marketplaces.
 
-🚨 SKUs sem cadastro (N distintos):
-  • SKU1 (Mercado Livre)
-  ...
-Cadastrar em sku_aliases (alias) ou kit_bom (kit)
+O sistema separou o que já estava no estoque do marketplace do que precisava sair do nosso estoque.
+
+- *X unidades* não mexeram no nosso estoque, porque já estavam no marketplace.
+- *Y unidades* precisavam baixar do nosso estoque.
+- Dessas, *Z unidades baixaram certinho*.
+- *N unidades ficaram pendentes*, principalmente por falta de saldo ou cadastro do produto.
+- Não teve erro no processamento.
+
+Ou seja: a baixa de hoje rodou normal, sem duplicar estoque, e só ficaram pendentes os itens que precisam de ajuste manual.
 ```
 
-Nomenclatura segue regra Pedro: nunca usar "Seller/Full/FBA/FBS" na comunicação visível — só os termos "venda diária" e "venda Full" em português.
+Se houver erro real no processamento, trocar a frase “Não teve erro no processamento” por uma frase simples dizendo que houve erro e que precisa de revisão manual. Se não houver pendências, escrever “Nenhuma unidade ficou pendente.”
 
 ## Idempotência (3 camadas)
 

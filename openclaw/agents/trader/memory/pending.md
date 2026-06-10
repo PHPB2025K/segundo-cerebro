@@ -1,17 +1,24 @@
 # Pendências — Trader
 
-_Atualizado: 2026-06-08_
+_Atualizado: 2026-06-09_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
 
-- [ ] Daily Sales v2 07/06/2026 BRT: pacote canônico ficou **DADOS_PARCIAIS** por picos positivos na Shopee Conta 2 (41 pedidos vs média 30d de 23,3, +76,0%) e Shopee Conta 3 (28 vs 17,4, +60,9%); validar redistribuição/ADS/cupom/afiliados antes de tratar como novo patamar.
-- [ ] Mercado Livre 07/06/2026 BRT: confirmar estoque/status do Potes Vidro 5 Peças — Tampa Vermelha Full; preview Yasmin indicou reposição mínima (~12 unidades, 10 vendidas no domingo, ~2 restantes) e risco de nova ruptura em dia útil.
-- [ ] Mercado Livre / MercadoLíder Platinum: investigar com suporte ML por que a conta segue Gold apesar de gap zerado/progresso 100% no terceiro ciclo; hipótese atual é bloqueio por ratings negativos, com margem acima do threshold estreita.
+
+- [ ] Daily Sales v2 08/06/2026 BRT: pacote canônico ficou **DADOS_PARCIAIS** por pico positivo no Mercado Livre (201 pedidos vs média 30d de 123,5, +62,8%); validar D+1 se é novo patamar orgânico ou efeito pontual de restock/segunda-feira/ADS antes de tratar como escala estrutural.
+- [ ] Mercado Livre 08/06/2026 BRT / Platinum: status MercadoLíder Platinum foi confirmado, mas proteger a janela recém-conquistada monitorando cancelamentos e cobertura Full dos gargalos críticos — Kit 6 Canequinhas 100ml com Suporte de Madeira Acrílico (19 unidades, ~1,1 dia) e Kit 4 Potes 1050ml (33 unidades, ~2 dias).
+- [ ] Mercado Livre 08/06/2026 BRT / ADS: acompanhar ADS share de 47,1% com ROAS 9,7x e ACOS 11,67%; se próximo dia útil confirmar share <50% com ACOS <=10%, abrir pauta com Kobe/Himmel sobre calibragem de verba por expansão orgânica.
+- [ ] Mercado Livre 08/06/2026 BRT / qualidade de anúncio: acompanhar Kit 4 Potes 640ml em nível preocupante (0,66); se cair abaixo de 0,63, alinhar cobertura ADS preventiva com Himmel.
+- [ ] Daily Sales v2 08/06/2026 BRT / Mercado Livre: ciclo Yasmin ficou **BLOCKED** porque QA caiu em fallback determinístico; reexecutar/corrigir QA LLM antes de qualquer avanço para send-candidate.
+- [ ] Daily Sales v2 08/06/2026 BRT: ciclo individual detectado apenas para Yasmin/Mercado Livre; confirmar se Lucas/Shopee e Leonardo/Amazon seguem omitidos intencionalmente ou como lacuna operacional.
+- [ ] Amazon 08/06/2026 BRT: cancelamentos voltaram a 5 após zerar em 07/06; se persistir, quebrar por ASIN e checar FBA/Buy Box/indisponibilidade antes de escalar ADS.
+- [ ] Shopee / Himmel 09/06/2026 BRT: acompanhar execução das ações propostas — imagens de capa até sexta, teste de capa amarela nas Canecas Tulipa por 15 dias, IDs prioritários, planilha de devoluções por canal, chamado/novo anúncio do Kit Bob Goods, oferta relâmpago do Kit Copa e análise de MDF por loja.
+- [ ] Shopee / Pedro 09/06/2026 BRT: se custo das Canecas Tulipa continuar inviabilizando preço competitivo, Pedro pode precisar negociar condições diretamente com fornecedor; acompanhar antes de recomendar mudança de preço/listing.
+- [ ] Daily Sales v2 07/06/2026 BRT / Shopee: picos positivos da Conta 2 e Conta 3 não persistiram em 08/06; manter observação D+3/D+7 e não tratar como novo patamar sem nova evidência de redistribuição/ADS/cupom/afiliados.
 - [ ] Daily Sales v2 07/06/2026 BRT / Mercado Livre: corrigir ressalvas do preview Yasmin — vocabulário duplicado de “nível” em qualidade de anúncio, preservar recorrência estrutural do lote subdimensionado, alinhar números do Platinum entre camadas e adicionar short name KIT4YW640.
 - [ ] Daily Sales v2 07/06/2026 BRT: ciclo individual detectado apenas para Yasmin/Mercado Livre, com QA **APPROVED_WITH_REMARKS** e entrega temporária somente para Pedro; confirmar se Lucas/Shopee e Leonardo/Amazon foram intencionalmente omitidos ou seguem como lacuna operacional.
-- [ ] Amazon 07/06/2026 BRT: cancelamentos caíram para 0 após dois ciclos com 6 cancelamentos; manter monitoramento por mais um ciclo antes de encerrar alerta.
 - [ ] Daily Sales v2 06/06/2026 BRT: pacote canônico ficou **DADOS_PARCIAIS** por picos positivos em todas as contas Shopee e Amazon; validar se foi efeito planejado de redistribuição/ADS/cupom/afiliados ou pico de sábado antes de tratar como novo patamar.
 - [ ] Mercado Livre 06/06/2026 BRT: preview Yasmin aprovado com ressalvas identificou risco crítico de ruptura — 67 pedidos em Potes Vidro 5 Peças Tampa Vermelha Full pausado/sem estoque e 79 pedidos prospectivamente canceláveis; confirmar classificação de cancelamento, prazo de reposição e impacto em MercadoLíder Platinum.
 - [ ] Daily Sales v2 06/06/2026 BRT: ciclo individual detectado apenas para Yasmin/Mercado Livre, com QA **APPROVED_WITH_REMARKS** e envio real bloqueado; confirmar se Lucas/Shopee e Leonardo/Amazon foram intencionalmente omitidos ou seguem como lacuna operacional.

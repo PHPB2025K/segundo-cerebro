@@ -744,3 +744,40 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 
 **Status:** aberto — validar regularização do Full entre 08/06 e 09/06 e efeito do investimento adicional nos demais anúncios.
 
+### 2026-06-10 15:25 BRT — Otimizações semanais de ADS ML e realocação de anúncios
+
+**Participantes:** Cláudio Manrique Junior/Himmel; Yasmin Oscarlino.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Ajustes de ROAS/investimento em campanhas ML, aceleração agressiva de MDF e realocação de anúncios entre Balance, Teste ABC e CB1.
+
+**Campanhas e anúncios citados:**
+- **[HML] 10 - 1050ML | PFT | ACOS:** ROAS **12x → 13x**; investimento **R$ 30 → R$ 40**.
+- **[HML] ACELERAÇÃO | ACOS:** ROAS **12,5x → 12x**.
+- **[HML] CA1 | RMP | GWTH | ACOS:** ROAS **10x → 11,1x**.
+- **[HML] CA3 | PFT | ACOS:** ROAS **11,1x → 12x**.
+- **[HML] CB1 | RMP | ACOS:** ROAS **16x → 15x**; investimento **R$ 40 → R$ 50**.
+- **[HML] MDF | GWTH | VSL | ACOS:** ROAS **2x → 1x**; Himmel classificou como movimento extremamente agressivo para buscar o máximo possível de impressões e informou que vai acompanhar resultado por ainda consumir pouco.
+- **[HML] MLB3288536143 | VSL | AC:** ROAS **12,5x → 11,1x**.
+- **[HML] MLB4073003575 | PFT | AC:** ROAS **11,1x → 12,5x**; investimento **R$ 50 → R$ 60**.
+- **[HML] MLB4216639853 | ACOS:** ROAS **4x → 6x**; investimento **R$ 20 → R$ 30**.
+- **[HML] MLB5405589402 | ACOS:** ROAS **6x → 4x**.
+- Realocações: **Balance → Teste ABC:** MLB5406503442, 3860292271542547, MLB4573223951; **Balance → CB1:** MLB38833543, MLB55749976; **Teste ABC → CB1:** MLB66715805, MLB5406503442; **Aceleração → Balance:** MLB4410218897.
+
+**Contexto registrado:**
+- Himmel executou rodada de otimizações semanais em Mercado Livre, combinando campanhas mais restritivas em alguns grupos com abertura de escala em outros.
+- O principal ponto estratégico é o **MDF**: ROAS alvo foi reduzido para **1x**, explicitamente para gerar impressões e acelerar aprendizado/visibilidade, mesmo com risco de eficiência baixa no curto prazo.
+- CB1 recebeu mais verba e ROAS um pouco mais flexível, indicando tentativa de capturar volume adicional.
+- Alguns anúncios foram redistribuídos entre Balance, Teste ABC e CB1, então mudanças de venda/exposição desses IDs podem refletir troca de estratégia de campanha e não apenas comportamento orgânico.
+
+**Impacto esperado:**
+- A partir de **10/06**, Daily Sales Report de Mercado Livre deve tratar variações de investimento, ACoS/TACoS e vendas como parcialmente influenciadas por esta rodada de ajustes.
+- MDF pode piorar eficiência de ADS no curto prazo, mas a hipótese da Himmel é ganho de impressões/visibilidade; avaliar separadamente de campanhas maduras.
+- CB1 e anúncios realocados para CB1 devem ser monitorados por ganho incremental de vendas versus aumento de gasto.
+
+**Como validar nos dados:**
+- Validar entre **11/06 e 17/06**: impressões, cliques, vendas, gasto, ROAS/ACoS/TACoS e margem das campanhas ajustadas.
+- Para **MDF**, acompanhar se o ROAS 1x realmente destrava impressões e primeiras vendas; se só aumentar gasto sem tração, escalar como ponto de revisão.
+- Para **MLB3288536143**, cruzar com o contexto recente de retorno ao Full/depósito físico antes de atribuir queda ou recuperação apenas ao ADS.
+- Para anúncios realocados, comparar antes/depois por ID e por campanha de destino, especialmente MLB5406503442, MLB4573223951, MLB38833543, MLB55749976, MLB66715805 e MLB4410218897.
+
+**Status:** aberto — validar performance entre **2026-06-11 e 2026-06-17** nos dados de Mercado Livre/ADS.

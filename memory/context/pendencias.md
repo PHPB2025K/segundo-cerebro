@@ -12,7 +12,12 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-06-10 BRT — Refatoração pipeline estoque: 6 fixes em produção (logs, healthcheck WhatsApp, ruptura crítica no digest, escalator unresolved, denylist Clink). CMV Full Backfill religado, recuperou ~R$ 29k receita + R$ 10k CMV (04-08/06). Ver [[automacoes/scripts/estoque-pipeline-fixes-jun26]]._
+_Atualizado: 2026-06-10 16:30 BRT — LP institucional GB Importadora: Fase 0 (mockup) concluída e aprovada, identidade "Casa de Comércio" definida. Ver [[projects/gb-importadora-lp]]. Antes: refatoração pipeline estoque (6 fixes + CMV Full religado, ~R$ 29k receita + R$ 10k CMV recuperados). Ver [[automacoes/scripts/estoque-pipeline-fixes-jun26]]._
+
+## 🟡 GB Importadora — LP institucional (Fase 0 ✅ 10/06, Fase 1 prevista 11/06)
+
+- [ ] **Fase 1 — setup (11/06)**: registrar `importadoragb.com.br` no Registro.br, criar projeto Vite+React+TS+Tailwind, repo privado `PHPB2025K/gb-importadora-lp`. Detalhe em [[projects/gb-importadora-lp]].
+- [ ] **Conteúdo (Pedro)**: logo oficial em SVG/PNG alta resolução, endereços completos Pedreira-SP e Itajaí-SC, telefone/WhatsApp comercial, CNPJ/razão social pro footer, definir e-mail de contato (contato@importadoragb.com.br vs marketplace@gbimportadora.com).
 
 ## 🟢 Estoque GB — Pipeline refatorado 10/06 (6 fixes + CMV Full religado)
 

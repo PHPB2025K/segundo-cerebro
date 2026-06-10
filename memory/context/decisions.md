@@ -240,3 +240,8 @@ tags:
 - O pipeline de tema livre segue com self-enrichment textual e entra em edição com slots de imagem pendentes para upload manual pelo admin.
 - Geração automática de imagens pode ser reativada no futuro, mas não é fonte obrigatória do fluxo atual.
 - Regra operacional: enquanto estiver nesse modo, falha/ausência de Gemini não deve bloquear artigo; o controle visual manual tem prioridade.
+
+## 2026-06-10 — Budamix Central renomeado para GB HUB
+
+Pedro decidiu renomear o sistema interno antes chamado **Budamix Central** para **GB HUB**. O nome oficial visível do app passa a ser GB HUB; referências históricas podem permanecer como Budamix Central quando estiverem documentando eventos passados. Path/domínio/processo técnico podem continuar `budamix-central` por compatibilidade até uma migração técnica explícita.
+

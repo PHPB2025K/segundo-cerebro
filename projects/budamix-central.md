@@ -1,5 +1,5 @@
 ---
-title: "Budamix Central"
+title: "GB HUB"
 created: 2026-04-15
 type: project
 status: active
@@ -11,7 +11,7 @@ tags:
   - canggu
 ---
 
-# Budamix Central
+# GB HUB
 
 **URL:** https://central.budamix.com.br
 **Branch:** main
@@ -23,9 +23,16 @@ tags:
 **Supabase:** `sqbkoprcmnznmzbwdrmf`
 **Package manager:** pnpm
 
+## Nome oficial
+
+- **Nome atual:** GB HUB
+- **Nome anterior:** Budamix Central
+- **Renomeado em:** 10/06/2026 por decisão do Pedro.
+- **Observação técnica:** path, domínio e processo PM2 ainda mantêm `budamix-central` por compatibilidade operacional.
+
 ## O que é
 
-Dashboard interno da Budamix. Centraliza vendas em tempo real (Live Sales), gestão de produtos, chat WhatsApp com clientes (Ana/Giovana), e busca vetorial semântica via pgvector. Acesso role-based (admin/viewer).
+Hub operacional interno da GB. Centraliza vendas em tempo real (Live Sales), gestão de produtos, chat WhatsApp com clientes (Ana/Giovana), e busca vetorial semântica via pgvector. Acesso role-based (admin/viewer).
 
 ## Estrutura do App (Next.js 16 App Router)
 

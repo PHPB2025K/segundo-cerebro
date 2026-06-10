@@ -17,11 +17,12 @@ tags:
 - A mensagem deve evitar termos técnicos e jargões internos. Não usar expressões como Seller, Full/FBA/FBS, crossdocking, ledger, divergência técnica, alias, BOM, idempotência, Supabase, log, pipeline, cron ou nomes de scripts.
 - Linguagem visível obrigatória: “já estava no marketplace”, “precisava baixar do nosso estoque”, “baixou certinho”, “ficou pendente”, “sem erro no processamento”, “ajuste manual”.
 - O foco deve ser explicar para a operação o que aconteceu, não como o sistema fez. Preferir números e frases curtas.
-- Atualização Pedro 10/06: o resumo do **WhatsApp Estoque** deve ser enviado junto com a mensagem diária **🏭 Controle de Estoque**, como uma seção própria da mesma mensagem.
-- A mensagem diária deve ter duas seções separadas e visualmente organizadas:
-  1. **Vendas dos marketplaces** — resumo das vendas de ontem que mexeram ou não mexeram no nosso estoque.
-  2. **Mensagens do WhatsApp Estoque** — resumo das mensagens de ontem do grupo Estoque e o que deveria ser somado, baixado, ajustado ou mantido fora do estoque vendável.
-- As duas seções devem ser escritas de forma simplificada, sem termos técnicos, com boa organização visual e sem misturar os assuntos.
+- Atualização Pedro 10/06: a mensagem diária **🏭 Controle de Estoque** deve ter três seções separadas na mesma mensagem.
+- A mensagem diária deve ter três seções separadas e visualmente organizadas:
+  1. **Vendas dos Marketplaces** — resumo das vendas de ontem que mexeram ou não mexeram no nosso estoque.
+  2. **Mensagens do Grupo do WhatsApp** — resumo das mensagens de ontem do grupo Estoque e o que deveria ser somado, baixado, ajustado ou mantido fora do estoque vendável.
+  3. **Envios Full** — resumo dos envios para os estoques dos marketplaces, explicando de forma simples o que saiu do nosso estoque para ficar armazenado no marketplace.
+- As três seções devem ser escritas de forma simplificada, sem termos técnicos, com boa organização visual e sem misturar os assuntos.
 - Formato base aprovado para a seção de marketplaces:
   - “Hoje foram conferidas as vendas de ontem dos marketplaces.”
   - “O sistema separou o que já estava no estoque do marketplace do que precisava sair do nosso estoque.”
@@ -37,6 +38,11 @@ tags:
   - “Avarias ou itens que devem ficar fora do estoque vendável: ...”
   - “Ajustes que precisam de aprovação/manual: ...”
   - “Nada foi aplicado automaticamente por esse resumo.”
+- Formato base para a seção Envios Full:
+  - “Foram conferidos os envios para os estoques dos marketplaces.”
+  - “Itens que saíram do nosso estoque para ficar no marketplace: ...”
+  - “Itens que ficaram pendentes ou precisam de revisão: ...”
+  - “Quando não houver envio novo/registrado, dizer isso de forma simples.”
 
 ## 2026-06-09 — Planilha de Estoque: alterações devem preservar exatamente formatação, cores e organização
 

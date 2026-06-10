@@ -49,7 +49,7 @@ metadata:
 
 # Regras de Comissões, Taxas e Custos — Amazon Brasil 2026 (CNPJ)
 
-> ⚠️ **Última atualização:** 03/06/2026
+> ⚠️ **Última atualização:** 10/06/2026
 > **Comissões:** sem alteração desde 20/01/2025 (quando 17 categorias tiveram redução de até 3 p.p.)
 > **FBA:** promoção agressiva vigente (fev–jul/2026) — tarifa zero para produtos ≥R$100
 > **DBA:** promoção oficial ativa desde 01/06/2026: 50% off na tarifa logística para produtos ≥R$79 via DBA/FBA Onsite em SP; automática em junho/2026 e, de julho em diante, exige 3,5% da receita em Amazon Ads; vigência até setembro/2026

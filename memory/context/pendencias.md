@@ -12,7 +12,21 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-06-08 ~19h BRT — Spark Meta Ads handoff completo (token permanente + schema meta.* + daily pulse 10:20 BRT). Camp 1 ATIVA com R$20/dia + mulheres BR sem Norte. Camps 2+3 PAUSED aguardando vídeos do Pedro._
+_Atualizado: 2026-06-10 BRT — Refatoração pipeline estoque: 6 fixes em produção (logs, healthcheck WhatsApp, ruptura crítica no digest, escalator unresolved, denylist Clink). CMV Full Backfill religado, recuperou ~R$ 29k receita + R$ 10k CMV (04-08/06). Ver [[automacoes/scripts/estoque-pipeline-fixes-jun26]]._
+
+## 🟢 Estoque GB — Pipeline refatorado 10/06 (6 fixes + CMV Full religado)
+
+- ✅ ~~**Logs duplicados nos crons de estoque**~~ → RESOLVIDO 10/06 — removido `print()` da função `log()` em `envios-full-daily-cron.py` e `daily-marketplace-baixa.py`.
+- ✅ ~~**WhatsApp Estoque Processor sem alerta de health**~~ → RESOLVIDO 10/06 — `whatsapp-estoque-healthcheck.py` agendado 15/45 min, alerta Telegram thread Estoque.
+- ✅ ~~**CMV revenue backfill range estreito (1 dia)**~~ → RESOLVIDO 10/06 — default expandido pra D-7 → D. Snapshots criados tardiamente passam a ser cobertos.
+- ✅ ~~**Sem alerta proativo de SKU em ruptura no digest**~~ → RESOLVIDO 10/06 — nova seção `🔴 RUPTURA CRÍTICA` no `daily-marketplace-baixa.py`. SKUs pai com saldo ≤5 e tentativas bloqueadas aparecem no Telegram.
+- ✅ ~~**SKUs unresolved recorrentes sem escalação**~~ → RESOLVIDO 10/06 — `sku-unresolved-escalator.py` agendado 10:30, detecta SKUs em ≥2 dias dos últimos 7d e sugere mapeamento via difflib.
+- ✅ ~~**Clink/Microfibra ainda em template ENVIOS FULL**~~ → RESOLVIDO 10/06 — `SKU_DISCONTINUED_PREFIXES = ("CK","PANO","MICROFIBRA")` ignora silenciosamente no parser do cron.
+- ✅ ~~**CMV Full Backfill desativado (DRE inflado)**~~ → RESOLVIDO 10/06 — bug de dedupe corrigido (itens duplicados internos do pedido geravam external_event_id repetido + PostgREST não respeita ignore-duplicates em partial UNIQUE INDEX). Backfill recuperou 4 dias (~R$ 29k receita + R$ 10k CMV). Cron agendado 10:10.
+- [ ] **Repor saldo OU desativar kits dos SKUs em ruptura zero:** CAR200R (0), CAR200B (0), YW1520RC (0), YW1050RC (0), CAC250P (1), CAC250AZ (5). Kits afetados: K6CAN250P, K6CAN250AZ, KIT2YW1520, KIT6S100, KIT6CAR200, KIT6CAR200B.
+- [ ] **Mapear `KITIMB501P_T` no `sku_aliases`** → IMB501P_T (escalator já sugeriu). Ou adicionar BOM se for kit.
+- [ ] **Adicionar `914C_B2` no denylist** ou ignorar via SKU_DISCONTINUED_EXACT (Clink antigo que não começa com prefix CK).
+
 
 ## 🟢 Meta Ads Budamix — Camp 1 ATIVA + Spark integrado, Camps 2+3 pendentes
 

@@ -179,3 +179,24 @@ tags:
 - Esta estrutura atual tem 8 colunas úteis, de A até H. As colunas I:K não fazem parte do cadastro atual da aba ESTOQUE e não devem receber valores nesse fluxo.
 - Regra obrigatória: antes de qualquer escrita na aba ESTOQUE, Kobe/agentes devem conferir os headers reais da linha 8 e abortar se não forem exatamente os esperados. Não inferir coluna, não usar mapeamento antigo e não escrever por tentativa.
 - Mapeamento antigo proibido: B vazio, C=SKU, D=STATUS, E=PRODUTO, F=CUSTO, G=EAN, H=NCM, I=MARCA, J/K fórmulas. Esse layout está defasado e causa deslocamento de cadastro.
+
+## 2026-06-09 — Automações WhatsApp Estoque e ENVIOS FULL pausadas
+
+- Pedro pediu pausar todos os crons/automações que atualizam estoque automaticamente a partir do WhatsApp e da planilha ENVIOS FULL.
+- O escopo da pausa é específico: WhatsApp Estoque, operação/poller relacionado e ENVIOS FULL. Rotinas de outras fontes de estoque, como baixa marketplace seller, sync físico planilha ESTOQUE, decrementos marketplace e CMV, não foram pausadas automaticamente.
+- Enquanto ENVIOS FULL estiver pausado, qualquer relatório/recomendação de reposição que dependa dessa fonte deve sinalizar limitação de frescor e não assumir que envios recentes estão refletidos.
+- Reativação deve ocorrer apenas com liberação explícita e smoke controlado.
+
+## 2026-06-09 — Meta Ads Budamix: Audience Network excluído da Campanha 1
+
+- Após análise da Campanha 1, Pedro escolheu mexer imediatamente e excluir Audience Network, mesmo quebrando o freeze inicial, porque os sinais estavam contaminados por placements de baixa intenção.
+- A Campanha 1 deve rodar apenas em Facebook e Instagram; Audience Network fica fora da entrega para esse teste de produto físico.
+- A decisão reinicia na prática a leitura de aprendizado: nova janela de freeze até aproximadamente **23/06/2026**, salvo anomalia crítica ou nova decisão explícita.
+- Para futuras campanhas de produto físico premium da Budamix, considerar criar desde o início com `publisher_platforms` limitado a Facebook/Instagram e validar breakdown por placement nas primeiras 48–72h.
+
+## 2026-06-09 — Blog Budamix: upload manual de imagens no pipeline tema livre
+
+- Pedro decidiu não adicionar créditos prepay no projeto que estava usando Gemini para imagens do Blog Budamix.
+- O pipeline de tema livre segue com self-enrichment textual e entra em edição com slots de imagem pendentes para upload manual pelo admin.
+- Geração automática de imagens pode ser reativada no futuro, mas não é fonte obrigatória do fluxo atual.
+- Regra operacional: enquanto estiver nesse modo, falha/ausência de Gemini não deve bloquear artigo; o controle visual manual tem prioridade.

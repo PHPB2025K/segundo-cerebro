@@ -170,3 +170,11 @@ Na ativação da Campanha 1 Budamix, a estratégia inicial previa idade 25–55,
 ## 2026-06-09 — [ESTRATÉGICA] Planilha ESTOQUE exige validação de headers antes de escrever
 
 O erro de mapeamento das novas linhas de canecas/Guinho mostrou que confiar em documentação antiga da skill pode deslocar colunas na aba ESTOQUE. A regra definitiva é validar os headers reais da linha 8 antes de qualquer escrita e só operar se a estrutura bater com A=ESTOQUE, B=SKU BASE, C=DESCRIÇÃO, D=CUSTO, E=EAN, F=NCM, G=MARCA, H=CUSTO ESTOQUE TOTAL. Se não bater, parar e revisar; nunca compensar “de cabeça” nem escrever por tentativa.
+
+## 2026-06-09 — [ESTRATÉGICA] Audience Network pode contaminar aprendizado de Meta Ads para produto físico
+
+Na Campanha 1 da Budamix, o topline parecia ótimo, mas o breakdown mostrou que a maior parte do orçamento foi para Audience Network/Rewarded Video, com CTR e AddToCart provavelmente inflados por clique acidental em jogos. Para produto físico premium, não confiar em CTR/ATC agregados sem abrir por placement. Em ASC/Advantage+ Placements, validar Facebook/Instagram vs Audience Network nas primeiras 24–72h e considerar excluir AN desde o início quando a intenção de compra for mais importante que volume barato de evento.
+
+## 2026-06-09 — [TÁTICA] Pausar fonte operacional exige marcar frescor em relatórios dependentes
+
+Ao pausar WhatsApp Estoque e ENVIOS FULL, relatórios como Auditoria Full e recomendações de reposição continuam tecnicamente capazes de rodar, mas podem ignorar envios recentes ou movimentações operacionais. Quando uma fonte de entrada fica pausada, qualquer tela ou relatório que dependa dela precisa expor a limitação de frescor e evitar linguagem de recomendação definitiva até novo sync/smoke.

@@ -54,6 +54,13 @@ Manter histórico simples e auditável dos resumos diários do grupo WhatsApp **
 
 Resumos enviados ao Pedro devem ser simplificados, sem termos técnicos. Foco em: o que chegou, o que voltou, o que teve avaria, o que deve atualizar na planilha e o que não deve mexer.
 
+Regra Pedro 10/06: o resumo do WhatsApp Estoque deve ser enviado junto com a mensagem diária **🏭 Controle de Estoque**, como uma seção específica da mesma mensagem. A mensagem diária deve manter duas seções separadas:
+
+1. **Vendas dos marketplaces** — o que já estava no marketplace, o que precisava baixar do nosso estoque, o que baixou certinho e o que ficou pendente.
+2. **Mensagens do WhatsApp Estoque** — o que as mensagens de ontem indicam para somar, baixar/ajustar ou manter fora do estoque vendável.
+
+As duas seções devem ser bem organizadas visualmente, escritas em linguagem simples e sem termos técnicos.
+
 ## Regra de segurança
 
 Resumo não aplica estoque. Aplicação só acontece quando Pedro autorizar ou quando uma rotina automática já estiver explicitamente liberada.

@@ -98,6 +98,8 @@ Formato base obrigatório:
 ```text
 🏭 *Controle de Estoque*
 
+*1) Vendas dos marketplaces*
+
 Hoje foram conferidas as vendas de ontem dos marketplaces.
 
 O sistema separou o que já estava no estoque do marketplace do que precisava sair do nosso estoque.
@@ -109,7 +111,19 @@ O sistema separou o que já estava no estoque do marketplace do que precisava sa
 - Não teve erro no processamento.
 
 Ou seja: a baixa de hoje rodou normal, sem duplicar estoque, e só ficaram pendentes os itens que precisam de ajuste manual.
+
+*2) Mensagens do WhatsApp Estoque*
+
+Foram lidas as mensagens de ontem do grupo Estoque.
+
+- *Entradas/devoluções que devem somar no estoque:* ...
+- *Avarias ou itens que devem ficar fora do estoque vendável:* ...
+- *Ajustes que precisam de aprovação/manual:* ...
+
+Nada foi aplicado automaticamente por esse resumo.
 ```
+
+Regra Pedro 10/06: o resumo do WhatsApp Estoque deve sair junto com a mensagem diária **🏭 Controle de Estoque**, mas como seção separada. As duas seções devem ser simples, bem organizadas visualmente e sem termos técnicos.
 
 Se houver erro real no processamento, trocar a frase “Não teve erro no processamento” por uma frase simples dizendo que houve erro e que precisa de revisão manual. Se não houver pendências, escrever “Nenhuma unidade ficou pendente.”
 

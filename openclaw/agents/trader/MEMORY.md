@@ -415,3 +415,30 @@ A cada 10 sessões, o Trader deve revisar:
 - [[openclaw/agents/trader/memory/context/marketplace-algorithms|Algoritmos de Marketplace]]
 - [[openclaw/agents/trader/memory/context/platforms|Plataformas]]
 - [[openclaw/agents/trader/memory/pending|Pendências]]
+
+---
+
+## Regra Shopee API — leitura de preços e promoções (validada 10/06/2026)
+
+### 1. Parâmetro correto: `discount_status`, NÃO `promotion_status`
+Em `/api/v2/discount/get_discount_list`, o filtro de estado da promoção é literalmente `discount_status`. Usar `promotion_status` retorna erro `common.error_param: discount status error` e zera o resultado — você acaba assumindo "sem promo" pra anúncios que TÊM promo.
+
+Valores válidos: `upcoming`, `ongoing`, `expired`, `all`.
+
+### 2. Listings espelho — múltiplos item_id com mesmo SKU
+A loja budamix-store (Conta 1) tem múltiplos anúncios distintos carregando os MESMOS model_sku (ex: IMB501C_T aparece em item 55507059309 SEM promo E em item 22393168887 COM promo). Isso é padrão Budamix (anúncios espelho — ver memória global).
+
+**Implicação:** quando o usuário pedir relatório por SKU, não basta pegar o primeiro `item_id` que casa — listar TODOS os item_id ativos por SKU e marcar qual está em promoção e qual não está.
+
+### 3. Tradução do estado da promo (validado pelo Pedro)
+- `PROMOÇÃO` em /discount/get_discount_list → **promoção oficial Shopee Discount**
+- `price_info.current_price < original_price` SEM aparecer em /discount → **cupom de desconto da loja** (não inventar "preço baixado direto" nem "benefício automático")
+- preços iguais → **preço cheio / sem promo**
+
+### 4. Workflow correto pra relatório de anúncios ativos com preço
+1. `/product/get_item_list` com `item_status=NORMAL` → universo de ativos
+2. `/discount/get_discount_list` com `discount_status=ongoing` → universo de promos
+3. Para cada promo: `/discount/get_discount` → item_ids e model_ids cobertos
+4. `/product/get_item_base_info` + `/product/get_model_list` (with `price_info`) por item
+5. Cruzar: pra cada SKU, listar todos os item_ids ativos. Pra cada listing, comparar preço base vs final.
+6. Saída: agrupada por SKU, uma linha por listing espelho.

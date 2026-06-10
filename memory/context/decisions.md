@@ -11,6 +11,13 @@ tags:
 
 # Decisões — Kobe
 
+## 2026-06-10 — Envios Full: canecas sempre representam kits de 6 unidades
+
+- Pedro confirmou que, nos **Envios Full**, anúncios de canecas sempre devem ser tratados como kits de 6 unidades.
+- Quando a planilha de Envios Full trouxer um SKU unitário de caneca e a quantidade do anúncio, Kobe/sistema deve converter para unidades físicas multiplicando por 6 antes de baixar do estoque.
+- Regra prática aplicada em 10/06: `TL250B` com quantidade 30 no envio Amazon AM334B representava 30 kits, portanto 180 unidades; como só 30 tinham sido baixadas, foi aplicada correção adicional de 150 unidades.
+- A regra vale para famílias unitárias de canecas como Tulipa (`TL250*`), Reta (`CAR200*`) e Canelada (`CAC250*`). Não multiplicar quando o SKU já for um kit explícito.
+
 ## 2026-06-10 — Controle de Estoque diário deve ser simplificado e sem termos técnicos
 
 - Pedro definiu como regra inviolável que a mensagem diária de **🏭 Controle de Estoque** deve ser enviada sempre em formato simplificado, como o resumo aprovado em 10/06/2026.

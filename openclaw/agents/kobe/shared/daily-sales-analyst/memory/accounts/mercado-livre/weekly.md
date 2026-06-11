@@ -33,6 +33,19 @@ Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 en
 
 _Blocos diários abaixo. Job `daily-memory-ingest-ml.py` adiciona um bloco por dia. Rotação automática mantém os últimos 14 dias._
 
+### Dia analisado: 2026-06-10
+_ingestido em 2026-06-11T07:14:14-03:00 BRT | confiança L05: alta | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- MLB6232315532 (Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida, Catálogo Premium gold_pro, Full, sem nível de qualidade calculado pelo ML): fechou 10/06 com available_quantity=5 após 7 pedidos, runway ≤0,7 dia, padrão de depleção desde 26/05 (35→28→11→restock→5) — confirmar amanhã status (active/paused), available_quantity e se ETA de reposição entrou
+- MLB4741367603 (Kit 6 Canecas Tulipa Coloridas De Porcelana Para Café E Chá 250ml Colorida, Catálogo Clássico, Full, sem nível calculado): available_quantity=14 após 5 pedidos, runway ~2,8 dias — confirmar status e cobertura
+- MLB3918271667 (2 Potes Vidro Marmita Tampa Hermética 4 Travas Vedação 800ml Verde, Catálogo Clássico, Full, sem nível calculado): available_quantity=12 após 4 pedidos, runway ~3,0 dias — confirmar status e cobertura; configuração inédita de três Catálogos Full em janela crítica de 72h é o ponto zero da série
+- MLB4073003575 (Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo, Full, nível regular 0,75): manteve 28 un após 12 pedidos (restock parcial inferido ~12 un), runway ~2,3 dias — confirmar se restock continuou ou se cobertura caiu abaixo de 15
+- MLB5402326666 (Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petróleo, Clássico Full, nível preocupante 0,66): 6º ciclo idêntico, estoque 43 un / ~6 dias — risco é exposição orgânica em ranking; gatilho de alinhamento com Himmel é cair abaixo de 0,63
+- Fatia do ADS no faturamento foi de 59,7% (R$ 4.813,22 / R$ 8.063,87) com ROAS 11,67x e ACOS 12,12%, gasto R$ 412,15 (+57% vs 09/06) — 1º ponto acima de 55% em dia de denominador forte suspende a série descendente 22/05–09/06 (69,9%→44,3%); próximos 2 ciclos definem se foi desvio pontual ou reversão da hipótese de autonomia orgânica
+- 8 cancelamentos no dia (4,3% sobre 185) é o nível mais alto da série recente; cancellations_rate oficial permanece em zero (janela longa); nenhum top10 em status=paused no snapshot reduz chance de atribuição direta a ruptura, mas combinação com três Catálogos Full em runway crítico é a cadeia de risco mais delicada da Platinum
+- Pendências estruturais persistentes do pacote ML (20º+ ciclo desde 22/05): breakdown ADS spend/revenue por platform_item_id; lista granular cancelamentos order_id↔platform_item_id↔motivo; ETA de reposição em trânsito ao CD do ML; série temporal interna de nível de qualidade por anúncio; continuidade entre MLB6073033006 (memória 08-09/06) e MLB6438497744 (top10 10/06) na família Canequinhas 100ml Madeira
+
 ### Dia analisado: 2026-06-09
 _ingestido em 2026-06-10T07:24:51-03:00 BRT | confiança L05: media | insights L05: 3 (2 fato, 1 hipótese/risco latente) | prioridades L05: 3_
 
@@ -201,19 +214,6 @@ _ingestido em 2026-05-25T09:24:01-03:00 BRT | confiança L05: media | insights L
 - Cluster IMB501 atingiu 47,5% do volume do dia (vs 44% nos dois ciclos anteriores) — concentração crescente; observar se sustenta ou recua.
 - Possível migração operacional do IMB501P de Cross-Docking (memória 22/05) para Full (snapshot 24/05) — confirmar se sustenta no próximo ciclo; muda leitura do mix de modalidade de envio.
 - MercadoLíder Platinum: gap R$48.941, progresso 83,47%, ETA ~12 dias ao ritmo atual — fora do gatilho de Slack (gap > R$30k), mas qualquer ruptura confirmada no cluster de canecas com cancelamentos automáticos aperta a janela rapidamente.
-
-### Dia analisado: 2026-05-23
-_ingestido em 2026-05-24T07:10:47-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
-
-**Memória para o próximo ciclo (da L05):**
-- Kit 6 Canecas Porcelana Tulipa 250ml (MLB6167272090, Full, não-Catálogo): snapshot 24/05 09:50 UTC com 2 unidades pós-baixa de 9 pedidos, anúncio ativo, ritmo de 6-9 pedidos/dia em dois ciclos consecutivos — checar status, estoque e reposição em trânsito amanhã; se reposição não chegou, registrar como ruptura ativa e impacto em cancellations_rate.
-- Conjunto 5 Potes de Vidro (MLB3288536143): nível de qualidade em 0,71 há três ciclos idênticos, available_quantity=469, cluster IMB501 (Tampa Preta+Vermelha+Cinza no mesmo anúncio) fez 40 pedidos = 44% do dia — quarta leitura define direção do nível.
-- Kit 4 Potes 1050ml Tampa Azul-petróleo (MLB4073003575, Full): nível de qualidade em 0,75 há três ciclos, available_quantity=139, 11 pedidos — segunda métrica que precisa de quarta leitura para definir direção.
-- Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo Full gold_pro): available_quantity=33 pós-baixa de 6 pedidos, cobertura estimada ~5,5 dias ao ritmo do dia — zona de atenção no horizonte de 5 dias por ser Catálogo (Buy Box demora a se recuperar).
-- ADS share do dia em 49,5% (R$2.538,63 / R$5.124,32), ROAS ~9x, ACOS 4,43% — segundo ponto da nova série pós-22/05; ≤ 55% no próximo ciclo confirma orgânico em expansão, ≥ 65% reativa gatilho de escalonamento a Kobe no terceiro ciclo.
-- MercadoLíder Platinum: gap R$51.794,49, progresso 82,5%, ritmo R$4.070/dia, ETA ~12,7 dias — GMV do dia acima do pace; qualquer cancelamento automático no Kit 6 Canecas Tulipa entra direto nessa janela apertada.
-- ratings_negative=0,39 (39%) idêntico ao ciclo 22/05, claims_rate=0,0025 (metade do threshold 0,005), cancellations_rate=0 — vira relevante se claims_rate ultrapassar 0,005 ou se breakdown por anúncio chegar e concentrar negativos nos dois Full em Padrão inferior.
-- Pendências de dado para o próximo pacote (consolidado): (1) breakdown de revenue_ads_yesterday_brl e spend_yesterday_brl por platform_item_id; (2) ritmo 7d por platform_item_id; (3) drivers de nível de qualidade por anúncio; (4) reposição em trânsito ao CD do ML por anúncio.
 
 ---
 

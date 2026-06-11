@@ -1,0 +1,61 @@
+{
+  "resultado_qa": "BLOQUEADO",
+  "motivo": "Um problema Crítico detectado no Gate 12 (consistência interna do ml_snapshot — Gate 12c): fulfillment_mix_yesterday_top10 cobre apenas 93 de 185 pedidos do dia (50,3%), bem abaixo do threshold de 70%, mas o Slack apresenta a cifra de 61% Full como 'A composição da modalidade de envio do dia' sem ressalva de cobertura. A L05 não autorizou explicitamente a exibição com caveat — classificou o dado como 'fato' sem registrar a limitação de amostragem. A L04 havia sinalizado explicitamente que fulfillment_mix_yesterday_top10 e fulfillment_mix_30d 'não são comparáveis diretamente', mas a L05 comparou os dois na mesma frase sem qualificação, e a L06 foi fiel a essa decisão. A tese analítica é válida; o problema é a quantificação apresentada como total do dia. Regra de agregação aplicada: 1 Crítico → BLOQUEADO.",
+  "send_allowed": false,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "RESSALVA",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "OK",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "FALHA"
+  },
+  "contagem_severidade": {
+    "criticos": 1,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 1,
+    "regra_agregacao_aplicada": "1 Crítico → BLOQUEADO"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Crítico",
+      "gate": "12 — Consistência interna do ml_snapshot (Gate 12c — cobertura do fulfillment_mix)",
+      "texto_atual": "A composição da modalidade de envio do dia ficou em 61% Full — contra 80% dos últimos 30 dias.",
+      "texto_esperado": "O dado não pode ser apresentado como 'composição do dia' sem caveat. Opções válidas: (a) 'nos dez produtos mais vendidos, 61% dos pedidos foram em Full — representando cerca de metade do volume do dia'; (b) omitir o percentual do dia e manter apenas a explicação qualitativa produto-específica (Tampa Cinza, Canequinhas e Kit 10 Potes operam em Cross-Docking, o que explica por que a modalidade de envio parece diferente do padrão histórico); (c) obter autorização explícita da L05 com ressalva de cobertura no próximo ciclo.",
+      "regra_violada": "Gate 12c: 'Se fulfillment_mix_yesterday_top10 cobre <70% dos pedidos do dia e o Slack apresenta o mix como métrica total → BLOQUEAR Crítico. Se a L05 autorizou explicitamente a apresentação com ressalva de cobertura → OK.' Cobertura real: 93 de 185 pedidos = 50,3%. A L05 não autorizou com ressalva explícita de cobertura — classificou o insight como 'fato' sem caveat de amostragem. A L06 foi fiel à L05, mas a violação da regra Gate 12c é objetiva e bloqueia.",
+      "bloqueia_envio": true
+    },
+    {
+      "severidade": "Menor",
+      "gate": "6 — Análise da Conta (fidelidade à L05)",
+      "texto_atual": "os Potes Vidro 5 Peças — Tampa Cinza operam em Cross-Docking, assim como o Kit 6 Canequinhas 100ml — Madeira e o Kit 10 Potes 520ml. Os três juntos explicam toda a diferença — a proporção histórica de Full segue intacta.",
+      "texto_esperado": "L05 qualificava a Tampa Cinza com 'com estoque robusto' ('é o segundo lugar do dia (...) operar em Cross-Docking com estoque robusto'). A omissão não altera a tese central, mas remove o diferencial analítico que distinguia a Tampa Cinza (sem risco de cobertura, available_quantity=9.154) do mecanismo de qualquer alerta de ruptura. A tese 'não é reversão do canal' está intacta.",
+      "regra_violada": "Gate 6: 'Nenhum termo analítico-chave removido'. 'Estoque robusto' é qualificador que completa o enquadramento do padrão C — Inversão negativa da L05: a divergência ocorre porque o produto que está em Cross-Docking tem estoque robusto, portanto não é risco, é composição. Sem o qualificador, o bullet é verdadeiro mas incompleto. Severidade Menor porque a tese central está preservada e não há risco de induzir Yasmin a erro operacional.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [
+    "Corrigir o insight 3 da seção ANÁLISE DA CONTA para não apresentar fulfillment_mix_yesterday_top10 como 'composição da modalidade de envio do dia'. A opção mais simples e segura é substituir o percentual quantitativo por uma formulação qualitativa que preserve a tese: 'A modalidade de envio do dia pareceu diferente do histórico porque o segundo produto mais vendido — os Potes Vidro 5 Peças — Tampa Cinza — opera em Cross-Docking com estoque robusto (9.154 un), assim como o Kit 6 Canequinhas 100ml — Madeira e o Kit 10 Potes 520ml. Os três juntos explicam o desvio visual — a base estrutural de Full nos últimos 30 dias segue intacta.' Alternativa: manter o percentual com caveat explícito de cobertura ('nos dez produtos mais vendidos, que representam cerca de metade do volume do dia, 61% foram em Full'). A tese analítica é válida e não precisa ser alterada — apenas a forma de apresentar o dado percentual do dia."
+  ],
+  "ressalvas_memoria_interna": [
+    "O problema Crítico do Gate 12c não invalida o diagnóstico analítico: a tese de que a divergência do mix é produto-específica (Tampa Cinza Cross-Docking em 2º lugar, somada a Canequinhas e Kit 10 Potes) está plenamente sustentada pelo L04 com confiança alta. A correção é de apresentação — não de diagnóstico. Após ajuste do insight 3, todos os demais gates estão OK e a mensagem seria aprovável com ressalva do Menor no Gate 6.",
+    "A L06 operou corretamente ao ser fiel à L05. O erro de origem é da L05, que comparou fulfillment_mix_yesterday_top10 (50,3% cobertura) com fulfillment_mix_30d (100% cobertura) na mesma frase sem ressalva — apesar de a L04 ter explicitamente sinalizado que as duas fontes 'não são comparáveis diretamente'. O gate correto para capturar esse problema seria ter bloqueado na L05; o Gate 12 da QA funciona como rede de segurança para exatamente esse tipo de propagação."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "A cobertura do fulfillment_mix_yesterday_top10 = 50,3% (93/185) está muito abaixo do '~70-80%' mencionado como expectativa nos prompts do Gate 4. Os prompts do sistema descrevem esse campo como cobrindo '~70-80% dos pedidos', mas na prática o dia 10/06 mostrou cobertura de 50,3%. Recomenda-se verificar no próximo ciclo se a cobertura historicamente variou (dependente da concentração do top10 naquele dia) ou se há degradação recorrente no cálculo. Se a cobertura sistematicamente ficar abaixo de 60-65% em dias de volume mais distribuído, o campo pode precisar de recalibração no fetcher.",
+    "Recomenda-se adicionar regra explícita na L05 para exigir caveat de cobertura sempre que fulfillment_mix_yesterday_top10.total_orders_resolved / pedidos_validos < 70% e o campo for usado em comparação com janelas de cobertura maior (7d/30d). A regra atual recai sobre o Gate 12 da QA como última linha de defesa, o que é eficiente mas não evita o retrabalho de correção no pipeline.",
+    "MLB6438497744 (Kit 6 Canequinhas 100ml — Madeira, família 914C) aparece no top10 de 10/06, mas a memória de 08–09/06 cita MLB6073033006 como anúncio da mesma família. A L04 registrou essa divergência. A identidade do produto no dia 10/06 é firme (title ML e raw_title convergem, mapping_confidence=high). Recomenda-se rastrear se houve troca operacional de anúncio principal ou se os dois MLBs coexistem como anúncios paralelos da família 914C — informação relevante para continuidade de série histórica dessa família.",
+    "fulfillment_mix_7d (cobertura 100%, Full 77,1%) e fulfillment_mix_30d (cobertura 100%, Full 79,7%) são as fontes canônicas de referência estrutural para modalidade de envio da conta. Para o próximo ciclo, o insight de divergência de mix pode ser reformulado usando essas fontes como referência explícita, com fulfillment_mix_yesterday_top10 apenas como dado explicativo qualificado pela cobertura parcial."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

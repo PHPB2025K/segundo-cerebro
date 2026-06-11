@@ -271,3 +271,9 @@ Pedro decidiu renomear o sistema interno antes chamado **Budamix Central** para 
 - A mensagem técnica antiga de Estoque enviada em 11/06/2026 foi formalmente rejeitada por Pedro como ultrapassada e fora do plano atualizado.
 - Fica proibido enviar automaticamente mensagens de Estoque com blocos técnicos antigos, incluindo modelos próprios de Envios Full. Envios Full deve aparecer somente como a terceira seção do **🏭 Controle de Estoque** consolidado.
 - Regra fail-closed: se algum processo não conseguir respeitar o formato consolidado de três seções, deve não enviar mensagem e deixar evidência em log/alerta técnico para correção.
+
+## 2026-06-11 — Estoque: falta de saldo autorizada pode sair da fila de erro sem alterar saldo
+
+- Pedro autorizou que itens com erro apenas por falta de saldo possam ser removidos da fila de erro quando a decisão operacional for manter a planilha zerada.
+- Essa remoção não deve lançar entrada, não deve ajustar saldo e não deve criar baixa manual; apenas classifica o caso como saldo zerado aceito.
+- Falta de cadastro continua sendo erro/conferência manual até mapeamento correto do produto.

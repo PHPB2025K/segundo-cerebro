@@ -277,3 +277,11 @@ Pedro decidiu renomear o sistema interno antes chamado **Budamix Central** para 
 - Pedro autorizou que itens com erro apenas por falta de saldo possam ser removidos da fila de erro quando a decisão operacional for manter a planilha zerada.
 - Essa remoção não deve lançar entrada, não deve ajustar saldo e não deve criar baixa manual; apenas classifica o caso como saldo zerado aceito.
 - Falta de cadastro continua sendo erro/conferência manual até mapeamento correto do produto.
+
+## 2026-06-11 — Estoque: mapeamentos corrigidos após investigação de erros 10/06
+
+- `914C_B2` deve resolver para `914C_B`.
+- `SPC0133` deve resolver para `SPC013`.
+- `QCB-003` representa kit de 20 quebra-cabeças e deve baixar 2 unidades de `QCB002`.
+- Para pedidos Shopee de canecas `K6CAN250*`, quando houver `item_sku` específico como `K6CAN250R` e `model_sku` genérico `K6CAN250`, usar o SKU específico para não perder a cor/modelo.
+- `KIT12FIT500M` deve resolver como kit de 12 unidades de `FIT300M`; se `FIT300M` estiver zerado, aplicar a regra de saldo zerado aceito, sem erro manual.

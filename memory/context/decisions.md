@@ -265,3 +265,9 @@ Pedro decidiu renomear o sistema interno antes chamado **Budamix Central** para 
 - Pedro determinou que, a partir de 11/06/2026, a mensagem automática de **🏭 Controle de Estoque** deve ser enviada **somente** no formato simplificado obrigatório de três seções: **Vendas dos Marketplaces**, **Mensagens do Grupo do WhatsApp** e **Envios Full**.
 - Regra operacional: se a rotina automática não conseguir gerar a mensagem nesse formato, ela deve falhar e não enviar, em vez de mandar template antigo, técnico ou parcial.
 - Fica proibido reintroduzir seções antigas como venda diária, venda Full, vendas atacado, entradas no galpão, baixas/avarias, devoluções, alertas técnicos, ruptura crítica como bloco separado, fila de divergências ou SKUs sem cadastro como seções próprias.
+
+## 2026-06-11 — Template técnico antigo de Estoque está proibido
+
+- A mensagem técnica antiga de Estoque enviada em 11/06/2026 foi formalmente rejeitada por Pedro como ultrapassada e fora do plano atualizado.
+- Fica proibido enviar automaticamente mensagens de Estoque com blocos técnicos antigos, incluindo modelos próprios de Envios Full. Envios Full deve aparecer somente como a terceira seção do **🏭 Controle de Estoque** consolidado.
+- Regra fail-closed: se algum processo não conseguir respeitar o formato consolidado de três seções, deve não enviar mensagem e deixar evidência em log/alerta técnico para correção.

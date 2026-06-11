@@ -1,0 +1,38 @@
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
+### Decisão tática
+
+- **Lente 4 — o único gold_pro Catálogo da conta está a menos de 1 dia de ruptura e é a prioridade inegociável do dia:** A L01 identifica `MLB6232315532` (Kit 6 Canecas Lisas 200ml, `listing_type=gold_pro`, `is_catalog=true`, Full, `available_quantity=5`, 7 pedidos no dia, runway ≤0,7 dia) como risco estrutural principal — ruptura em Catálogo gold_pro elimina Buy Box com recuperação estruturalmente mais lenta do que qualquer anúncio Clássico, e o padrão de depleção recorrente deste anúncio está documentado desde 26/05 (35→28→11→restock insuficiente→5). A decisão correta é verificar ETA de reposição antes de qualquer outra ação, não depois que o status vire `paused`.
+
+- **Lente 3 — dois Catálogos Clássicos adicionais entrarão na mesma zona crítica em 48–72h, configuração nova na série:** A L01 aponta `MLB4741367603` (Tulipa, `is_catalog=true`, `available_quantity=14`, ~2,8 dias) e `MLB3918271667` (Kit 2 Potes 800ml, `is_catalog=true`, `available_quantity=12`, ~3 dias) como segundo e terceiro vetores simultâneos em risco. O histórico documentado desde 26/05 é que restocks chegam insuficientes para o ritmo atual do novo patamar — checar ETA para os dois hoje é o que separa cobertura preventiva de gestão de ruptura reativa.
+
+- **Lente 2 — `cancellations_rate=0` é o ativo mais frágil da conta e depende diretamente de cobertura de estoque, não de ADS:** A L01 sinaliza que 3–5 cancelamentos automáticos confirmados por platform_item_id são suficientes para sair de zero na janela oficial ML. Nenhuma ação de campanha protege esse indicador — somente reposição nos três Catálogos Full protege a Platinum. A postura tática é operacional, não de mídia.
+
+- **Lente 5 — ADS share revertido para 59,7% em dia de denominador forte, mas ROAS de 11,67x e ACOS de 12,12% não ativam intervenção hoje:** A série descendente 22/05–09/06 foi suspensa em um ponto. A instabilidade do ACOS (6,31% em 09/06, 12,12% em 10/06) é mais relevante do que o nível em si. Não é hipótese confirmada e não é gatilho de acionamento de Himmel — é ponto a registrar como base para os próximos 2 ciclos falsificarem a tese de autonomia orgânica.
+
+---
+
+### O que fazer hoje
+
+1. **Yasmin:** verificar se há reposição em trânsito ou confirmada no CD do ML para o Kit 6 Canecas Lisas 200ml (`MLB6232315532`, `listing_type=gold_pro`, `is_catalog=true`, Full, `available_quantity=5` com 7 pedidos no dia) — motivo: runway ≤0,7 dia e padrão de depleção recorrente documentado desde 26/05 tornam a ruptura provável antes do próximo snapshot; é o único anúncio gold_pro da conta, e ruptura em Catálogo Premium elimina Buy Box com recuperação mais lenta do que qualquer Clássico, expondo diretamente o `cancellations_rate=0` que sustenta a Platinum — sinal de resultado: ETA de reposição confirmado dentro de 24h neutraliza o risco imediato e a ação está encerrada; ausência de ETA ou ETA acima do runway exige comunicação urgente com quem providencia o restock (expedição/logística), e Yasmin registra status atual como variável confundidora para leitura dos cancelamentos dos próximos 3 ciclos.
+
+2. **Yasmin:** verificar ETA de reposição em Full para os dois Catálogos Clássicos com runway de 48–72h — o anúncio da Tulipa 250ml (`MLB4741367603`, `is_catalog=true`, Full, `available_quantity=14`, ~2,8 dias ao ritmo do dia) e o Kit 2 Potes 800ml (`MLB3918271667`, `is_catalog=true`, Full, `available_quantity=12`, ~3 dias ao ritmo do dia) — motivo: padrão histórico documentado é que restocks para o CD do ML chegam insuficientes para o ritmo do novo patamar; os dois pausando no mesmo intervalo de 72h configura degradação simultânea de posição em Catálogo sem precedente na série — sinal de resultado: ETA confirmado dentro do runway para ambos = risco monitorado, mantém observação; ausência de ETA ou ETA acima do runway para qualquer um = prioridade operacional de reposição, e Yasmin registra impacto estimado em `cancellations_rate` se ruptura ocorrer.
+
+3. **Yasmin:** registrar ADS share de 59,7% (R$412,15 gasto, R$4.813,22 revenue, ACOS 12,12%) como ponto de inflexão da série descendente 22/05–09/06 e base para os próximos 2 ciclos — motivo: este é o primeiro ponto acima de 55% em dia de denominador forte (GMV R$8.063, não comprimido por supply depletado como em 07/06), o que suspende — sem refutar — 9 ciclos de série orgânica crescente; os próximos 2 ciclos definem se o revertimento é pontual ou estrutural — sinal de resultado: share voltando abaixo de 50% em 2 ciclos confirma que 10/06 foi desvio e a hipótese orgânica retoma suporte; share acima de 55% com ACOS acima de 10% por mais 2 ciclos ativa alinhamento com Himmel sobre composição e segmentação da campanha.
+
+---
+
+### O que NÃO fazer ainda
+
+1. **Não acionar Himmel para ajustar campanhas ADS hoje:** ROAS de 11,67x e ACOS de 12,12% estão fora do gatilho operacional (ACOS > 30% ou share > 60% por 2 ciclos consecutivos). A reversão de share em um único ponto sobre dia forte não justifica intervenção — mexer na campanha agora introduz variável de confundimento que impede separar efeito de composição de mix (cluster IMB501 dominante, três Catálogos com estoque crítico reduzindo contribuição proporcional da cauda) de qualquer efeito real de campanha. O risco de piorar uma campanha que ainda opera em ROAS acima de 10x é maior do que o risco de aguardar mais 2 ciclos.
+
+2. **Não reclassificar a conta como ADS-dependente com base no dia de hoje:** A série descendente de 9 pontos (22/05–09/06) foi suspensa em um ponto, não refutada. Reclassificação exige 2–3 ciclos acima de 55% com denominador forte. Concluir hoje que a hipótese de autonomia orgânica foi encerrada seria tratar hipótese como fato — proibição explícita da camada.
+
+3. **Não avançar nenhuma discussão estrutural com Kobe sobre concentração de catálogo ou dependência de mídia enquanto o risco operacional de estoque não estiver mapeado:** A questão de diversificação de catálogo e dependência de ADS é real e acumulada (14+ ciclos de concentração IMB501, razão paused/active de 1,62x), mas é decisão de prazo médio. Levar para Kobe agora, antes de saber se os três Catálogos Full têm ou não reposição garantida, mistura urgência operacional com decisão estrutural — Kobe recebe tema de decisão estratégica, não gestão de ruptura de estoque.
+
+---
+
+### Escalonamento
+
+**Observar** — com gatilho explícito para reclassificação em até 3 ciclos.
+
+A ação prioritária do dia é operacional (cobertura de estoque nos três Catálogos Full) e está inteiramente na alçada da Yasmin, sem necessidade de Himmel ou Kobe. Se o ETA de reposição do `MLB6232315532` chegar confirmado em ≤24h, o risco estrutural principal da L01 está neutralizado para o ciclo atual e a conta retorna a observação padrão. Se o ETA não vier ou o anúncio pausar antes da reposição, Yasmin monitora `cancellations_rate` nos próximos 3 snapshots sem ação adicional — registrando os cancelamentos como variável confundidora rastreável. Dois gatilhos ativam reclassificação: (a) `cancellations_rate > 0` em 2 ciclos consecutivos nos próximos 3 dias confirmaria que as rupturas automáticas já entraram na janela oficial ML, ameaçando a Platinum de forma estrutural — Yasmin escala para Kobe com contexto de cadeia de suprimentos (ritmo de vendas ultrapassando cadenciamento de restock para Full de forma recorrente, não episódica); (b) ADS share acima de 55% com ACOS acima de 10% por mais 2 ciclos consecutivos ativaria alinhamento de Yasmin com Himmel sobre composição de campanha — mas esse gatilho é subordinado ao ponto (a) e não deve ser tratado enquanto o risco de estoque estiver em aberto.

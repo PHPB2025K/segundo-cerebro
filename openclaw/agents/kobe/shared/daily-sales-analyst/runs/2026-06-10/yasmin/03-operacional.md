@@ -1,0 +1,52 @@
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
+### Leitura operacional do dia
+
+- **Volume foi o motor do crescimento — ticket foi diluído por composição, não por compressão de preço.** O dia entregou 185 pedidos (+71,7% vs `same_weekday_avg.avg_orders=107,75` e +39,9% vs `avg_30d.avg_orders=132,2`) com GMV de R$8.063,87 (+49,2% vs mesmos dias, +25,4% vs 30d). O ticket de R$43,59 recuou -10,4% vs 30d (`changes.ticket_vs_30d_pct`), mas a queda não é de preço: o cluster IMB501 (Tampa Preta 67 + Tampa Vermelha 22 + Tampa Cinza 23 = 112 pedidos = `top3_concentration=60,5%`) carregou o dia com um produto de menor valor unitário. O canal acelerou em alcance — pedidos cresceram mais que GMV — confirmando operacionalmente a leitura de patamar via volume da L01.
+
+- **Concentração crônica no nível máximo da série, com divergência de modalidade de envio produto-específica causada pela variante Cross-Docking do IMB501.** `top5_concentration=71,4%` com os 5 primeiros sendo todos variantes IMB501 ou produtos da família de potes. O `fulfillment_mix_yesterday_top10.full_pct=61,3%` divergiu -18,4pp vs `fulfillment_mix_30d.full_pct=79,7%` e -15,8pp vs 7d. A causa é inteiramente produto-específica: o 2º produto do dia, Tampa Cinza (IMB501C, 23 pedidos), opera em `MLB4535865311` com `logistic_type=cross_docking` — somado a Canequinhas 100ml Madeira (8 pedidos, `MLB6438497744`, cross-docking) e Kit 10 Potes 520ml (5 pedidos, `MLB4676131007`, cross-docking), o desvio está explicado. Não é reversão estrutural do mix — mas confirma operacionalmente o risco de dependência identificado pela L01: quando a variante Cross-Docking do IMB501 lidera, o mix diverge de forma material do padrão histórico.
+
+- **Os três Catálogos Full em ruptura iminente simultânea, com o único gold_pro a ≤0,7 dia de pausa.** `MLB6232315532` (Kit 6 Canecas Lisas 200ml, `listing_type=gold_pro`, `is_catalog=true`, Full) fechou o dia com `available_quantity=5` após 7 pedidos — runway prospectivo de ~0,7 dia ao ritmo atual, com padrão de depleção documentado desde 26/05 (35→28→11→restock insuficiente→5). Adicionalmente, `MLB4741367603` (Canecas Tulipa 250ml, `is_catalog=true`, Full, `available_quantity=14`, 5 pedidos, ~2,8 dias) e `MLB3918271667` (Kit 2 Potes 800ml, `is_catalog=true`, Full, `available_quantity=12`, 4 pedidos, ~3 dias). O dia de 10/06 não neutralizou o risco estrutural principal da L01 — agravou-o: o gold_pro chegou ao piso crítico com ruptura provável antes do próximo snapshot.
+
+- **ADS share reverteu de 44,3% para 59,7% em dia de denominador forte — série orgânica descendente suspensa, não refutada.** `revenue_ads_yesterday_brl=R$4.813,22` / `gmv=R$8.063,87` = 59,7%, com gasto absoluto de R$412,15 subindo ~79% vs a estimativa de ~R$230 em 09/06 (baseado nos dados de ontem). O desvio é operacionalmente relevante porque o GMV hoje foi forte por crescimento real de pedidos — não por denominador comprimido por supply depletado como em 07/06. Himmel escalou ativamente a campanha. ROAS 11,67x e ACOS 12,12% estão fora de qualquer gatilho operacional, mas adicionam evidência à hipótese da L01 de que a série de 9 pontos descendentes 22/05–09/06 foi suspensa — os próximos 2 ciclos são o teste falsificável.
+
+---
+
+### Sinais operacionais relevantes
+
+- **Sinal:** `MLB6232315532` (Kit 6 Canecas Lisas 200ml, gold_pro, `is_catalog=true`, Full) com `available_quantity=5` após 7 pedidos — runway prospectivo ≤0,7 dia — **interpretação operacional:** o anúncio provavelmente já pausou ou pausará nas próximas horas; como único gold_pro da conta e anúncio Catálogo Premium, a pausa elimina o vetor de Buy Box Premium com timeline de recuperação estruturalmente mais longa do que qualquer Clássico; o padrão histórico documentado desde 26/05 (cada restock chegou insuficiente para o novo ritmo) torna este sinal recorrente, não episódico.
+
+- **Sinal:** Três Catálogos Full com runway crítico simultâneo — `MLB6232315532` (≤0,7 dia), `MLB4741367603` (~2,8 dias), `MLB3918271667` (~3 dias) — dentro de uma janela de 72h — **interpretação operacional:** configuração sem precedente na série documentada desde maio; cada ruptura em Full gera cancelamento automático, e com `cancellations_rate=0` como ativo crítico da Platinum, mesmo 3–5 cancelamentos confirmados por `platform_item_id` nesses anúncios podem sair de zero na janela oficial ML; o sinal confirma o risco estrutural principal da L01 e adiciona evidência à urgência operacional identificada pela L02.
+
+- **Sinal:** ADS share saltou +15,4pp (de 44,3% para 59,7%) com gasto subindo ~R$182 em dia de GMV de R$8.063 — ACOS 12,12%, segundo ponto acima de 10% em três dias (08/06 ~12%, 09/06 6,31%, 10/06 12,12%) — **interpretação operacional:** a instabilidade lateral do ACOS (não o nível) é o dado relevante; a campanha escalou ativamente sobre um dia em que o mix de modalidade de envio já estava distorcido pelo Cross-Docking; sem breakdown de `revenue_ads` por `platform_item_id`, não é possível saber se o ADS está puxando volume para as variantes Full ou para a Tampa Cinza Cross-Docking que liderou o dia.
+
+- **Sinal:** `MLB4073003575` (Kit 4 Potes 1050ml, Full, health=0,75) com `available_quantity=28` após 12 pedidos no dia — memória de 09/06 registrava 28 un com runway de ~1,4 dia e ritmo de 15–20 ped/dia — **interpretação operacional:** o snapshot de 10/06 mostra valor idêntico ao de 09/06 pós-baixa (28 un), o que sugere restock parcial entre os dois ciclos; mas cobertura de 28/12 = ~2,3 dias ao ritmo de hoje é estreita, e o padrão histórico documentado desde 02/06 é de restocks cronicamente insuficientes para o ritmo de crescimento.
+
+- **Sinal:** `MLB5402326666` (Kit 4 Potes 640ml, Full, Clássico) com `health=0,66` no 6º ciclo idêntico — `available_quantity=43`, 7 pedidos, runway ~6 dias — **interpretação operacional:** o risco não é cobertura de estoque mas degradação de exposição orgânica em ranking de categoria; 6 ciclos consecutivos sem melhora confirmam padrão persistente, não pontual; o gatilho de alinhamento com Himmel documentado pela L02 (cair abaixo de 0,63) ainda não foi atingido, mas a falta de reversão após 6 ciclos identifica o sinal como estruturalmente relevante para observação contínua.
+
+---
+
+### Anomalias ou ausência de anomalia
+
+**Anomalia moderada.**
+
+O dia apresenta desvio operacional em mais de uma dimensão simultânea: (1) o único gold_pro da conta em ruptura iminente confirmada, com dois Catálogos Clássicos entrando na mesma zona em até 72h — configuração nova na série; (2) divergência de -18,4pp de modalidade de envio Full vs 30d, embora produto-específica e com causa clara; (3) reversão de ADS share em 15,4pp sobre dia de GMV forte, suspendendo série de 9 pontos orgânicos. Individualmente nenhum dos três configura anomalia crítica: o mix de modalidade de envio tem explicação direta, o ADS está eficiente, a ruptura dos Catálogos é padrão recorrente conhecido. A classificação moderada decorre da coincidência temporal e da conexão direta entre o vetor de ruptura dos Catálogos Full e o `cancellations_rate=0` que sustenta a Platinum.
+
+Para subir para **crítica**: `MLB6232315532` com `status=paused` ou `cancellations_rate > 0` no próximo snapshot. Para descer para **leve**: ETA de reposição confirmado em ≤24h para o gold_pro antes da pausa.
+
+---
+
+### O que precisa ser investigado pela Granular
+
+- **Pergunta:** `MLB6232315532` (Kit 6 Canecas Lisas 200ml, gold_pro, Catálogo) tem `status=active` ou `paused` agora? `available_quantity` chegou a zero? — **motivada por:** `available_quantity=5` após 7 pedidos com runway ≤0,7 dia; a Granular precisa confirmar se a pausa já ocorreu, em que momento, e qual o `available_quantity` atual — isso define se o risco é prospectivo ou já está materializado.
+
+- **Pergunta:** Algum dos 8 cancelamentos do dia é rastreável por `platform_item_id` aos Catálogos Full em ruptura iminente (`MLB6232315532`, `MLB4741367603`, `MLB3918271667`)? — **motivada por:** os 8 cancelamentos são o nível mais alto da série recente e coincidem com três Catálogos em runway crítico; se parte dos cancelamentos de hoje já vem de rupturas automáticas nesses anúncios, o `cancellations_rate` pode sair de zero mais rápido do que a janela oficial longa sugere.
+
+- **Pergunta:** `MLB4073003575` (Kit 4 Potes 1050ml) teve restock confirmado entre 09/06 e 10/06? O `available_quantity=28` reflete entrada de lote ou estabilização de ritmo? Qual o ETA da próxima reposição ao CD do ML? — **motivada por:** memória de 09/06 projetava runway crítico de ~1,4 dia, mas snapshot de hoje mostra 28 un (valor idêntico pós-baixa); confirmar a origem da cobertura atual é o que separa risco monitorado de risco apenas deslocado.
+
+- **Pergunta:** Qual a composição do `revenue_ads_yesterday_brl=R$4.813,22` por `platform_item_id`? O ADS está concentrado no IMB501 Full ou está puxando volume para a Tampa Cinza Cross-Docking (que liderou o dia em 2º lugar)? — **motivada por:** ADS share saltou 15,4pp em dia em que o mix de modalidade de envio divergiu -18,4pp Full vs 30d; se a campanha está priorizando variantes Cross-Docking, há implicação operacional direta de modalidade de envio que a Condensadora precisa conhecer.
+
+---
+
+### Destaque para a Condensadora
+
+O fato operacional mais importante do dia não está no GMV de R$8.063 (+49% vs mesmos dias) nem na reversão do ADS share: está em que o único anúncio gold_pro da conta (`MLB6232315532`, Catálogo Premium, Full) encerrou o dia com 5 unidades e runway de 0,7 dia, num padrão de depleção documentado desde 26/05 em que cada restock chegou insuficiente para o ritmo. A L01 identificou isso como risco estrutural principal e a L02 fez disso a prioridade operacional do dia — o que a leitura operacional acrescenta é que o risco não foi neutralizado durante o dia: o anúncio chegou ao piso crítico com pausa provável antes ou durante o próximo snapshot. O risco silencioso que pode passar despercebido em leitura focada em GMV forte: três Catálogos Full pausando num intervalo de 72h não é visível em nenhuma métrica de crescimento de hoje, mas é o único vetor que ameaça diretamente o `cancellations_rate=0` — o ativo que sustenta a Platinum independentemente de volume, cor de reputação ou eficiência de campanha.

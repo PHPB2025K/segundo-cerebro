@@ -52,12 +52,6 @@ _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
 **Cross-ref:** `accounts.md` → Sunset de API Meta
 **Expira:** 2026-06-17
 
-### 2026-05-11 — Amazon Ads: 0 impressão após experimento indica elegibilidade antes de bid [TÁTICA]
-**Contexto:** Experimentos de Kits Microfibra e Abraçadeiras Nylon ficaram com 0 impressões, 0 cliques e 0 vendas após janela de validação.
-**Lição:** Quando campanha/experimento fica com 0 impressões, 0 cliques e 0 vendas após D+6/D+7, investigar listing ativo, Buy Box, elegibilidade, categoria e relevância antes de aumentar bid.
-**Ação concreta:** Tratar como problema estrutural/elegibilidade antes de recomendação de lance.
-**Expira:** 2026-06-10
-
 ### 2026-05-13 — Amazon Ads deve seguir protocolo de 5 camadas [ESTRATÉGICA]
 **Contexto:** Pedro exigiu análise máxima antes de novas recomendações Amazon Ads.
 **Lição:** Spark deve analisar Amazon Ads em 5 camadas: funil/estratégia, campanha, ASIN-listing/Buy Box, keyword-search term/histórico de bids e síntese macro. Não recomendar ação apenas por ACoS isolado.
@@ -89,6 +83,10 @@ _Lições TÁTICAS removidas após expiração. Mantidas aqui apenas para refer�
 ### [TÁTICA] Amazon Ads sem entrega exige diagnóstico estrutural (2026-05-03)
 **Lição:** Sem impressões/cliques não existe otimização de ACoS; validar estrutura/listing antes de mexer em bid.
 **Expirou:** 2026-06-02
+
+### [TÁTICA] Amazon Ads: 0 impressão após experimento indica elegibilidade antes de bid (2026-05-11)
+**Lição:** Quando campanha/experimento fica com 0 impressões, 0 cliques e 0 vendas após D+6/D+7, investigar listing ativo, Buy Box, elegibilidade, categoria e relevância antes de aumentar bid.
+**Expirou:** 2026-06-10
 
 ## Auditoria — Consolidação Profunda 2026-05-15
 

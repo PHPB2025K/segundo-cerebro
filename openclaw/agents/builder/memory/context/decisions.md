@@ -104,3 +104,9 @@ _Registro de decisões permanentes. NUNCA contradizer._
 - Blog Budamix em tema livre opera sem geração automática de imagens enquanto não houver decisão de voltar créditos/integração de imagem; artigos ficam para revisão/upload manual no admin.
 - Filtro de formato da loja usa query string e a coluna existente de formato dos produtos, sem criar coleção ou schema novo.
 - Banners do hero podem funcionar como CTAs visuais para recortes da loja, com proteção contra falso clique pós-swipe.
+
+## 2026-06-10 — Estoque / Envios Full e WhatsApp Estoque
+
+- Envios Full deve tratar anúncios de canecas com SKU unitário como kits de 6 unidades físicas quando a descrição indicar caneca; regra aplicada para prefixos `TL250`, `CAR200` e `CAC250`, sem multiplicar SKUs que já são kits.
+- WhatsApp Estoque entra como fonte interpretativa/memória: registra eventos, gera pendências e histórico, mas não aplica movimento automaticamente sem fluxo validado.
+- Mensagem diária de Controle de Estoque deve manter linguagem simples e blocos separados para marketplaces, WhatsApp Estoque e Envios Full.

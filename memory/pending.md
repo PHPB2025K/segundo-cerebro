@@ -213,4 +213,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última consolidação diária: 2026-06-10 23:45 BRT. Última organização noturna: 2026-06-10 08:45 BRT._
+_Última consolidação diária: 2026-06-10 23:45 BRT. Última organização noturna: 2026-06-11 02:00 BRT._

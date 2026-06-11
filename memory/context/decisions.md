@@ -285,3 +285,10 @@ Pedro decidiu renomear o sistema interno antes chamado **Budamix Central** para 
 - `QCB-003` representa kit de 20 quebra-cabeças e deve baixar 2 unidades de `QCB002`.
 - Para pedidos Shopee de canecas `K6CAN250*`, quando houver `item_sku` específico como `K6CAN250R` e `model_sku` genérico `K6CAN250`, usar o SKU específico para não perder a cor/modelo.
 - `KIT12FIT500M` deve resolver como kit de 12 unidades de `FIT300M`; se `FIT300M` estiver zerado, aplicar a regra de saldo zerado aceito, sem erro manual.
+
+## 2026-06-11 — Estoque: investigar erro de SKU pela aba do marketplace na planilha Drive
+
+- Para qualquer erro futuro de mapeamento de pedido marketplace, Kobe/agentes devem consultar primeiro a aba do marketplace correspondente na **PLANILHA DE ESTOQUE** do Google Drive antes de classificar como erro real.
+- Regra por origem: pedido Mercado Livre → aba **MELI**; pedido Shopee → aba **SHOPEE**; pedido Amazon → aba **AMAZON**.
+- Essas abas são a fonte operacional para descobrir qual produto unitário/SKU pai corresponde ao SKU/anúncio vendido. Só depois dessa consulta é permitido criar alias/BOM, aplicar baixa corretiva, manter saldo zerado ou tratar como cadastro realmente ausente.
+- Não confiar apenas no SKU vindo da API do marketplace nem apenas na aba ESTOQUE para investigar equivalência de anúncio; a aba do marketplace contém o vínculo necessário entre anúncio, variação e SKU pai.

@@ -259,3 +259,9 @@ Pedro decidiu renomear o sistema interno antes chamado **Budamix Central** para 
 - Domínio alvo definido: **importadoragb.com.br**.
 - A página deve apresentar a GB como empresa/importadora, com mapa/localização e marcas apenas mencionadas, sem transformar a LP em e-commerce.
 
+
+## 2026-06-11 — Controle de Estoque: formato de 3 seções é obrigatório e fail-closed
+
+- Pedro determinou que, a partir de 11/06/2026, a mensagem automática de **🏭 Controle de Estoque** deve ser enviada **somente** no formato simplificado obrigatório de três seções: **Vendas dos Marketplaces**, **Mensagens do Grupo do WhatsApp** e **Envios Full**.
+- Regra operacional: se a rotina automática não conseguir gerar a mensagem nesse formato, ela deve falhar e não enviar, em vez de mandar template antigo, técnico ou parcial.
+- Fica proibido reintroduzir seções antigas como venda diária, venda Full, vendas atacado, entradas no galpão, baixas/avarias, devoluções, alertas técnicos, ruptura crítica como bloco separado, fila de divergências ou SKUs sem cadastro como seções próprias.

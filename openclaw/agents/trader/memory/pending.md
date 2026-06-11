@@ -1,19 +1,23 @@
 # Pendências — Trader
 
-_Atualizado: 2026-06-09_
+_Atualizado: 2026-06-10_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
 
 
-- [ ] Daily Sales v2 08/06/2026 BRT: pacote canônico ficou **DADOS_PARCIAIS** por pico positivo no Mercado Livre (201 pedidos vs média 30d de 123,5, +62,8%); validar D+1 se é novo patamar orgânico ou efeito pontual de restock/segunda-feira/ADS antes de tratar como escala estrutural.
+- [ ] Daily Sales 09/06/2026 BRT: separar leitura de Atacado e marketplaces em qualquer comunicação executiva; total geral subiu para R$ 35.624,44 por 2 pedidos de Atacado, enquanto marketplaces caíram para R$ 13.504,44 vs R$ 15.545,48 em 08/06.
+- [ ] Shopee 09/06/2026 BRT: investigar queda de R$ 5.179,36 para R$ 3.822,48 e de 99 para 88 pedidos vs 08/06, cruzando Store/Conta 2/Conta 3, ADS, afiliados, cupons, execução Himmel e canibalização planejada.
+- [ ] Mercado Livre 09/06/2026 BRT: acompanhar se 168 pedidos sustentam patamar superior ou apenas recuo pós-pico; cruzar ADS share, ACOS/ROAS, estoque Full e cancelamentos.
+- [ ] Cancelamentos marketplace 09/06/2026 BRT: 13 cancelamentos totais (ML 6, Shopee 4, Amazon 3); monitorar recorrência antes de escalar por canal/ASIN/shop_id.
+- [ ] Daily Sales v2 08/06/2026 BRT / Mercado Livre: D+1 em 09/06 reduziu de 201 para 168 pedidos, mas ainda ficou +30,9% vs média 30d; continuar validação D+3/D+7 cruzando ADS, estoque Full, cancelamentos e concentração em Potes Vidro 5 Peças antes de tratar como novo patamar estrutural.
 - [ ] Mercado Livre 08/06/2026 BRT / Platinum: status MercadoLíder Platinum foi confirmado, mas proteger a janela recém-conquistada monitorando cancelamentos e cobertura Full dos gargalos críticos — Kit 6 Canequinhas 100ml com Suporte de Madeira Acrílico (19 unidades, ~1,1 dia) e Kit 4 Potes 1050ml (33 unidades, ~2 dias).
 - [ ] Mercado Livre 08/06/2026 BRT / ADS: acompanhar ADS share de 47,1% com ROAS 9,7x e ACOS 11,67%; se próximo dia útil confirmar share <50% com ACOS <=10%, abrir pauta com Kobe/Himmel sobre calibragem de verba por expansão orgânica.
 - [ ] Mercado Livre 08/06/2026 BRT / qualidade de anúncio: acompanhar Kit 4 Potes 640ml em nível preocupante (0,66); se cair abaixo de 0,63, alinhar cobertura ADS preventiva com Himmel.
 - [ ] Daily Sales v2 08/06/2026 BRT / Mercado Livre: ciclo Yasmin ficou **BLOCKED** porque QA caiu em fallback determinístico; reexecutar/corrigir QA LLM antes de qualquer avanço para send-candidate.
 - [ ] Daily Sales v2 08/06/2026 BRT: ciclo individual detectado apenas para Yasmin/Mercado Livre; confirmar se Lucas/Shopee e Leonardo/Amazon seguem omitidos intencionalmente ou como lacuna operacional.
-- [ ] Amazon 08/06/2026 BRT: cancelamentos voltaram a 5 após zerar em 07/06; se persistir, quebrar por ASIN e checar FBA/Buy Box/indisponibilidade antes de escalar ADS.
+- [ ] Amazon 08/06/2026 BRT: cancelamentos recuaram de 5 para 3 em 09/06; manter monitoramento, mas quebrar por ASIN/FBA/Buy Box apenas se voltar a 5+ ou houver concentração.
 - [ ] Shopee / Himmel 09/06/2026 BRT: acompanhar execução das ações propostas — imagens de capa até sexta, teste de capa amarela nas Canecas Tulipa por 15 dias, IDs prioritários, planilha de devoluções por canal, chamado/novo anúncio do Kit Bob Goods, oferta relâmpago do Kit Copa e análise de MDF por loja.
 - [ ] Shopee / Pedro 09/06/2026 BRT: se custo das Canecas Tulipa continuar inviabilizando preço competitivo, Pedro pode precisar negociar condições diretamente com fornecedor; acompanhar antes de recomendar mudança de preço/listing.
 - [ ] Daily Sales v2 07/06/2026 BRT / Shopee: picos positivos da Conta 2 e Conta 3 não persistiram em 08/06; manter observação D+3/D+7 e não tratar como novo patamar sem nova evidência de redistribuição/ADS/cupom/afiliados.

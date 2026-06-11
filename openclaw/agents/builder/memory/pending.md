@@ -10,7 +10,7 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-06-09_
+_Atualizado: 2026-06-10_
 
 ## 🔴 Prioridade Alta
 
@@ -27,6 +27,7 @@ _Atualizado: 2026-06-09_
 - [ ] Preencher alocação de receita por componente no fechamento de estoque; CMV seller de 03/06 foi corrigido, mas receita da camada de componentes ainda está nula.
 - [ ] Tratar fila residual de divergências por saldo real insuficiente/entrada física não registrada: `YW1520RC`, `YW1050RC`, `CAC250P`, `CAC250AZ`, `TL250P`, `CAR200B`, `CAR200R`; não baixar negativo sem prova operacional.
 - [ ] Automações WhatsApp Estoque/ENVIOS FULL pausadas: quando Pedro liberar, reativar com smoke controlado do poller/processor, cron de ENVIOS FULL e healthcheck; se a intenção virar congelamento total, mapear também rotinas marketplace/sync físico/CMV antes de prometer pausa completa.
+- [ ] Envios Full: quando reativar, validar multiplicador de canecas unitárias (`TL250`, `CAR200`, `CAC250`) como kits de 6 e caso negativo de SKU já kitado; avaliar auditoria retroativa se Pedro suspeitar subbaixa histórica.
 
 ### Social Studio Reborn
 - [ ] Fase C C2: construir `/admin/social/conta` com status de conta, OAuth e callback handler.

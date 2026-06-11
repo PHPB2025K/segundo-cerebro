@@ -93,3 +93,11 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 ### [TÁTICA] Pausar uma fonte de estoque não congela o estoque inteiro (2026-06-09)
 **Lição:** Pipelines de estoque têm múltiplas fontes. Ao pausar WhatsApp/ENVIOS FULL, registrar exatamente o escopo pausado e deixar claro quais rotinas continuam ativas para evitar falsa sensação de congelamento operacional.
 **Expira:** 2026-07-09
+
+### [TÁTICA] Envios Full podem vir em kits mesmo com SKU unitário (2026-06-10)
+**Lição:** Quantidade enviada para Full nem sempre é unidade física. Para canecas, anúncios com SKU unitário podem representar kits de 6; a automação precisa converter por fonte/descrição e testar também o caso negativo de SKU já kitado para evitar baixa duplicada ou subbaixa.
+**Expira:** 2026-07-10
+
+### [TÁTICA] Resumo de estoque precisa separar fontes antes de agir (2026-06-10)
+**Lição:** Misturar marketplace, WhatsApp e Envios Full no mesmo raciocínio operacional aumenta risco de duplicidade e diagnóstico errado. Primeiro separar por fonte, depois registrar pendências e só então aplicar movimentos autorizados.
+**Expira:** 2026-07-10

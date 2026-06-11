@@ -245,3 +245,17 @@ tags:
 
 Pedro decidiu renomear o sistema interno antes chamado **Budamix Central** para **GB HUB**. O nome oficial visível do app passa a ser GB HUB; referências históricas podem permanecer como Budamix Central quando estiverem documentando eventos passados. Path/domínio/processo técnico podem continuar `budamix-central` por compatibilidade até uma migração técnica explícita.
 
+## 2026-06-10 — Gmail pessoal do Pedro: assinatura sem cargo
+
+- Pedro pediu remover “Sócio Diretor” da assinatura usada nos e-mails enviados pelo Gmail pessoal.
+- A assinatura padrão deve mostrar apenas **Pedro Broglio** acima dos contatos.
+- Ao criar/atualizar rascunhos no Gmail pessoal, validar que a assinatura não voltou a conter cargo antigo.
+
+
+## 2026-06-10 — LP institucional GB Importadora: institucional, Casa de Comércio e domínio próprio
+
+- Pedro aprovou a direção da landing page institucional da GB Importadora como **100% institucional**, sem venda online.
+- Identidade visual escolhida: **Casa de Comércio**; a paleta “Tinta & Papel” foi testada e revertida na mesma sessão.
+- Domínio alvo definido: **importadoragb.com.br**.
+- A página deve apresentar a GB como empresa/importadora, com mapa/localização e marcas apenas mencionadas, sem transformar a LP em e-commerce.
+

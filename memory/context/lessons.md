@@ -178,3 +178,23 @@ Na Campanha 1 da Budamix, o topline parecia ótimo, mas o breakdown mostrou que 
 ## 2026-06-09 — [TÁTICA] Pausar fonte operacional exige marcar frescor em relatórios dependentes
 
 Ao pausar WhatsApp Estoque e ENVIOS FULL, relatórios como Auditoria Full e recomendações de reposição continuam tecnicamente capazes de rodar, mas podem ignorar envios recentes ou movimentações operacionais. Quando uma fonte de entrada fica pausada, qualquer tela ou relatório que dependa dela precisa expor a limitação de frescor e evitar linguagem de recomendação definitiva até novo sync/smoke.
+
+## 2026-06-10 — [TÁTICA] Bling pode bloquear PDF sem cabeçalhos de navegador
+
+No download dos DANFEs das NFs internas de maio, os links do Bling retornaram bloqueio quando chamados como requisição simples, mas funcionaram com cabeçalhos equivalentes a navegador. Antes de concluir que o documento está inacessível, testar a rota com contexto de browser/cabeçalhos adequados e validar o arquivo final como PDF/XML real.
+
+
+## 2026-06-10 — [TÁTICA] Envios Full de canecas precisam converter anúncio em unidades físicas
+
+No caso AM334B/TL250B, a planilha trazia 30, mas isso representava 30 kits de 6 canecas, ou 180 unidades físicas. Para Envios Full de canecas, tratar quantidade de anúncio como kit quando a descrição indicar caneca e o SKU for unitário; caso contrário o estoque fica superestimado por subbaixa. Validar também o caso negativo: SKU já kitado não deve ser multiplicado de novo.
+
+
+## 2026-06-10 — [TÁTICA] Mensagem operacional de estoque deve traduzir resultado, não arquitetura
+
+Pedro aprovou o Controle de Estoque diário em linguagem simples e rejeitou jargão técnico visível. Para mensagens destinadas à operação, separar o que aconteceu do como foi implementado: falar em vendas conferidas, unidades que baixaram, pendências e ajustes manuais; não expor termos como Full/FBA, ledger, alias, BOM, Supabase, cron ou pipeline.
+
+
+## 2026-06-10 — [TÁTICA] Backfill de CMV precisa deduplicar duplicatas internas do próprio pedido
+
+No CMV Full, pedidos com itens duplicados internos geraram o mesmo identificador de evento e bateram em unicidade. Rotinas de backfill não devem deduplicar só contra o histórico já salvo; também precisam deduplicar dentro do lote atual antes de gravar, mantendo idempotência mesmo quando a API devolve linhas repetidas.
+

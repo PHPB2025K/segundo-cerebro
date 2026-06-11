@@ -12,9 +12,15 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-06-09 23:45 BRT — consolidação diária em camadas_
+_Atualizado: 2026-06-10 23:45 BRT — consolidação diária em camadas_
 
 ## 🔥 PRIORIDADE — Operação imediata
+
+- [ ] **LP institucional GB Importadora — Fase 1 em 11/06**: mockup institucional aprovado em 10/06 com identidade **Casa de Comércio** e domínio alvo **importadoragb.com.br**. Próximos passos: registrar domínio, criar projeto Vite+React+TS+Tailwind, criar repo `PHPB2025K/gb-importadora-lp` e iniciar implementação. Bloqueios/input do Pedro: logo SVG/PNG em alta resolução, endereços completos das unidades, telefone/WhatsApp comercial, CNPJ/razão social e e-mail de contato definitivo.
+
+- [ ] **Envios Full / Estoque — decidir auditoria retroativa de canecas**: Pedro confirmou em 10/06 que anúncios de canecas nos Envios Full representam kits de 6 unidades quando o SKU é unitário. Caso `TL250B` foi corrigido de 30 para 180 unidades físicas, com baixa adicional de 150. Quando Envios Full for reativado, fazer smoke do multiplicador de canecas e do caso negativo de SKU já kitado. Se Pedro suspeitar subbaixa anterior, auditar retroativamente envios históricos de canecas.
+
+- [ ] **Controle de Estoque diário — manter formato simplificado de 3 seções**: mensagem diária deve sair com seções separadas de Vendas dos Marketplaces, Mensagens do Grupo do WhatsApp e Envios Full, sem jargões técnicos. WhatsApp Estoque agora tem ciclo de memória com últimos 7 dias, consolidação semanal/mensal e IDs únicos; resumos não aplicam estoque sem autorização explícita ou rotina liberada.
 
 - [ ] **Meta Ads Budamix — acompanhar Campanha 1 pós-exclusão do Audience Network e finalizar próximas ativações**: Em 08/06, Campanha 1 ASC do IMB501 foi ativada em produção com budget **R$20/dia**, público mulheres Brasil + Advantage+ Audience, copy aprovada focada em praticidade/multiuso e sem claims de “borossilicato”, “freezer” ou “micro-ondas”. Em 09/06, análise das primeiras ~30h mostrou topline enganoso: 73% do budget foi para Audience Network/Rewarded Video, com CTR/ATC provavelmente inflados por clique acidental e placements reais Facebook/Instagram sem ATC. Pedro escolheu mexer agora; Audience Network foi excluído e a Camp 1 ficou limitada a Facebook/Instagram. Nova regra operacional: não mexer em budget, público ou criativo até ~23/06 salvo anomalia crítica/aprovação explícita. Spark recebeu handoff operacional: Budamix é conta primária, GB Distribuição legacy/parada, System User Token permanente foi criado, guardrail anti-conta-errada aplicado nos scripts, schema `meta.*` criado no Supabase do Spark e daily pulse Meta Ads agendado para 10:20 BRT no tópico Marketing. Próximos passos: acompanhar o daily pulse de 10/06 e checar breakdown por placement em 48–72h; Pedro produzir vídeos 2 e 3 (UGC + Antes/Depois); quando chegarem, subir assets, criar Ads/Camps 2 e 3 já sem Audience Network, criar WCAs ViewContent 14d e Purchase 30d, revisar UTMs/identidade visual e só então ativar as campanhas restantes. Lista de compradores marketplace prometida para a semana de 09/06 vira Custom Audience/Lookalike depois.
 
@@ -182,7 +188,7 @@ _Atualizado: 2026-06-09 23:45 BRT — consolidação diária em camadas_
 
 
 ## Nota para briefing matinal — itens estagnados >7 dias
-_Gerado pela organização noturna de 10/06 02:00 BRT._
+_Atualizado pela consolidação diária de 10/06 23:45 BRT._
 
 - Revalidar no briefing apenas itens que continuam bloqueados por decisão/input do Pedro ou por lacuna operacional real: Meta Ads Budamix (daily pulse 10:20 BRT pós-exclusão do Audience Network, vídeos 2/3, ads, audiências e freeze até ~23/06), Estoque GB (`YW1520RC`, `YW1050RC`, `CAC250P`, `CAC250AZ`, `CK4742_B2`, linha “10 cores variadas”, validação Central 94/94 e D+1 vs quase tempo real), Import Hub/GB25010-GB25011 custos, GB26003 bloqueado sem contrato/sinal/autorização, reposição de canecas/Scout aguardando pedidos em trânsito, Pedidos Atacado/PDF oficial Bling e teste controlado, Meta Business Segunda Venda, Facebook Page Budamix com rotação de segredo Meta/HTTPS/descrição longa/vanity, carrosséis fixos Instagram/Canva, grupo OS/OSA com Davi, Daily Sales v2 sem QA final completo, Daily Sales Shopee em standby, Shopee Ramp Up/alternância por conta, RH aguardando orientação e validação de compliance, DRE abril U15, Guarani distrato assinado antes de pagamento, Social Studio Meta App/secrets, Canggu JWT/health check e infra/autenticações degradadas.
 - Ações pedidas para segunda-feira (25/05) continuam na fila salvo confirmação posterior: cobrar Leonardo pelas avaliações dos kits de potes 4 travas e retomar status da automação de pedidos de atacado via WhatsApp.
@@ -207,4 +213,4 @@ _Itens >14 dias sem movimentação material. Revisar/priorizar ou arquivar._
 
 
 ---
-_Última consolidação diária: 2026-06-09 23:45 BRT. Última organização noturna: 2026-06-10 08:45 BRT._
+_Última consolidação diária: 2026-06-10 23:45 BRT. Última organização noturna: 2026-06-10 08:45 BRT._

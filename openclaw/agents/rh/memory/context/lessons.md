@@ -1,7 +1,15 @@
 # Lições — RH
 
-_Atualizado: 2026-06-09_
+_Atualizado: 2026-06-10_
 
+
+## 2026-06-10
+- Sandra sem marcações novamente em dia útil reforça risco trabalhista sensível e necessidade de orientação do Pedro antes de contato adicional.
+- Geziele sem marcações em 10/06 é novo alerta do recorte recente e precisa ser validado separadamente antes de leitura como falta.
+- Intervalos abaixo de 1h continuam recorrentes em Guilherme, Leonardo e Lucas; o padrão precisa de orientação operacional antes de cobrança ou correção.
+- Mateus segue exigindo leitura contextual por Tiro de Guerra antes de classificar saída ausente ou jornada incompleta.
+- Leonardo e Mateus seguem sem resposta após cerca de 20 dias úteis no lote antigo; follow-ups automáticos sem decisão humana tendem a manter o backlog, não resolvê-lo.
+- Backlog de 27 comunicações abertas, com 20 bloqueadas por aprovação/orientação do Pedro, segue como principal risco operacional do RH.
 
 ## 2026-06-09
 - Sandra sem marcações novamente em dia útil reforça risco trabalhista sensível e necessidade de orientação do Pedro antes de contato adicional.

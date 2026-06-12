@@ -198,3 +198,6 @@ Pedro aprovou o Controle de Estoque diário em linguagem simples e rejeitou jarg
 
 No CMV Full, pedidos com itens duplicados internos geraram o mesmo identificador de evento e bateram em unicidade. Rotinas de backfill não devem deduplicar só contra o histórico já salvo; também precisam deduplicar dentro do lote atual antes de gravar, mantendo idempotência mesmo quando a API devolve linhas repetidas.
 
+## 2026-06-11 — [TÁTICA] Recorte parcial não pode ser apresentado como composição total
+
+No Daily Sales v2, um preview foi bloqueado porque uma métrica parcial de fulfillment/top recorte foi apresentada como se representasse o total do dia. Para relatórios operacionais, qualquer top 10, amostra ou cobertura parcial precisa de caveat explícito — especialmente se cobrir menos de 70% dos pedidos — antes de virar diagnóstico ou mensagem para funcionário.

@@ -1,12 +1,21 @@
 # Pendências — Trader
 
-_Atualizado: 2026-06-10_
+_Atualizado: 2026-06-11_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
 
 
+- [ ] Daily Sales 10/06/2026 BRT: validar no próximo ciclo a diferença fina entre report público e pacote canônico posterior no Mercado Livre (report enviado: 186 pedidos / R$ 8.091,26; pacote posterior: 185 pedidos / R$ 8.063,87) antes de usar variações pequenas como narrativa executiva.
+- [ ] Mercado Livre 08–10/06/2026 BRT: sequência 201 → 168 → 185 pedidos mantém hipótese de patamar superior aberta; seguir validação D+3/D+7 cruzando ADS, estoque Full, cancelamentos e concentração em Potes Vidro 5 Peças.
+- [ ] Daily Sales v2 10/06/2026 BRT / Yasmin: preview Mercado Livre ficou BLOCKED; corrigir insight de fulfillment/mix para não tratar recorte top 10 com 50,3% de cobertura como composição total do dia e reexecutar QA antes de qualquer send-candidate.
+- [ ] Daily Sales v2 10/06/2026 BRT: ciclo individual detectado apenas para Yasmin/Mercado Livre; confirmar se Lucas/Shopee e Leonardo/Amazon seguem omitidos intencionalmente ou como lacuna operacional.
+- [ ] Shopee 09–10/06/2026 BRT: queda de 09/06 foi seguida por recuperação forte em 10/06; manter investigação por Store/Conta 2/Conta 3, ADS, afiliados, cupons, execução Himmel e canibalização planejada, mas tratar 09/06 como possível oscilação/redistribuição até D+3/D+7.
+- [ ] Shopee Conta 3 10/06/2026 BRT: pico positivo de 25 pedidos (+46,2% vs média 30d) exige validação com ADS, afiliados, cupons e canibalização planejada antes de chamar de novo patamar.
+- [ ] Cancelamentos marketplace 10/06/2026 BRT: pacote canônico registrou 22 cancelamentos (ML 8, Shopee 10, Amazon 4); monitorar recorrência e quebrar por produto/shop_id/ASIN se persistir.
+- [ ] Amazon 08–10/06/2026 BRT: cancelamentos ficaram em 4 em 10/06; ainda abaixo do gatilho de 5+, mas perto da zona de atenção.
+- [ ] Mapeamento de pedidos marketplace: antes de manter SKU como erro de cadastro, investigar a aba MELI/SHOPEE/AMAZON correspondente na planilha; só então criar alias/BOM, aplicar baixa corretiva, manter saldo zerado autorizado ou classificar erro real.
 - [ ] Daily Sales 09/06/2026 BRT: separar leitura de Atacado e marketplaces em qualquer comunicação executiva; total geral subiu para R$ 35.624,44 por 2 pedidos de Atacado, enquanto marketplaces caíram para R$ 13.504,44 vs R$ 15.545,48 em 08/06.
 - [ ] Shopee 09/06/2026 BRT: investigar queda de R$ 5.179,36 para R$ 3.822,48 e de 99 para 88 pedidos vs 08/06, cruzando Store/Conta 2/Conta 3, ADS, afiliados, cupons, execução Himmel e canibalização planejada.
 - [ ] Mercado Livre 09/06/2026 BRT: acompanhar se 168 pedidos sustentam patamar superior ou apenas recuo pós-pico; cruzar ADS share, ACOS/ROAS, estoque Full e cancelamentos.

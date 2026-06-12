@@ -93,3 +93,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 - Pedro alinhou que vale aumentar investimento em produtos MDF no Mercado Livre mesmo que o ACoS fique alto no curto prazo.
 - Interpretação operacional: MDF é aposta de tração/ranking e produção própria; separar desempenho/ACoS/TACoS de MDF do restante do mix antes de diagnosticar desperdício de ADS.
 - Validar execução e resultado com vendas incrementais, ranking/exposição, margem, estoque/capacidade produtiva e evolução de ACoS/TACoS entre 03/06 e 10/06.
+
+### Pedidos marketplace — investigar aba do marketplace antes de classificar SKU como erro (2026-06-11)
+- Antes de concluir que SKU de pedido marketplace está sem cadastro/erro, consultar a aba correspondente da planilha de estoque: Mercado Livre → MELI; Shopee → SHOPEE; Amazon → AMAZON.
+- A aba do marketplace é a fonte primária para descobrir anúncio/variação, SKU pai/unitário ou composição correta; a aba ESTOQUE sozinha não basta para investigar equivalência.
+- Só depois dessa investigação classificar como erro real, criar alias/BOM, aplicar baixa corretiva ou manter saldo zerado autorizado por Pedro.

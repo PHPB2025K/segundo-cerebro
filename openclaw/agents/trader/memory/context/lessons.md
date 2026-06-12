@@ -93,6 +93,11 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 di
 **Lição:** Após inserção/atualização em massa de anúncios, validar fórmulas críticas também nas linhas existentes próximas, não apenas nas linhas novas ou na coluna alterada.
 **Expira:** 2026-06-26
 
+### [TÁTICA] Daily Sales v2: métrica parcial de top 10 precisa de caveat explícito (2026-06-11)
+**Contexto:** Preview Yasmin/Mercado Livre de 10/06/2026 BRT foi bloqueado porque o texto apresentou um recorte de fulfillment dos top 10 produtos, cobrindo 93 de 185 pedidos (50,3%), como se fosse a composição total do dia e comparou com histórico de cobertura integral.
+**Lição:** Sempre que recorte top 10/partial coverage for usado como leitura de mix do dia, explicitar a cobertura da amostra ou transformar em insight qualitativo. Se cobertura <70%, não apresentar como composição total do dia sem caveat. A correção deve nascer na camada condensadora, não só no QA.
+**Expira:** 2026-07-11
+
 ---
 
 ## Lições Expiradas / Arquivo

@@ -10,9 +10,10 @@ tags:
 
 # MEMORY.md - Long-Term Memory
 
-_Último update: 2026-06-08_
+_Último update: 2026-06-11_
 
 ## Estado operacional recente
+- 2026-06-11: Refresh OAuth do Bling manteve bloqueio crítico pelo vigésimo oitavo dia da Filial com HTTP 403 “empresa inativa”. Matriz conectou nas quatro execuções úteis observadas; ainda exige teste controlado antes de qualquer operação/draft. Alerta WhatsApp seguiu falhando com HTTP 403. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-06-08: Refresh OAuth do Bling manteve bloqueio crítico pelo vigésimo quinto dia da Filial com HTTP 403 “empresa inativa”. Matriz conectou nas quatro execuções úteis observadas; ainda exige teste controlado antes de qualquer operação/draft. Alerta WhatsApp seguiu falhando com HTTP 403. Houve bloqueios por política/allowlist em duas rodadas; uma teve rerun útil, e a rodada das 21:17 BRT abortou por timeout sem resultado fiscal útil capturado. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-06-07: Refresh OAuth do Bling manteve bloqueio crítico pelo vigésimo quarto dia da Filial com HTTP 403 “empresa inativa”. Matriz conectou nas cinco execuções úteis observadas; ainda exige teste controlado antes de qualquer operação/draft. Alerta WhatsApp seguiu falhando com HTTP 403. Uma rodada teve bloqueio inicial por política/allowlist, mas rerun útil na mesma janela capturou o resultado fiscal. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.
 - 2026-06-06: Refresh OAuth do Bling manteve bloqueio crítico pelo vigésimo terceiro dia da Filial com HTTP 403 “empresa inativa”. Matriz conectou nas quatro execuções úteis observadas; ainda exige teste controlado antes de qualquer operação/draft. Alerta WhatsApp seguiu falhando com HTTP 403. Uma rodada teve bloqueio inicial por política/allowlist, mas rerun útil na mesma janela capturou o resultado fiscal. Sem NF-e emitida, sem drafts, sem distribuição, sem conciliação e sem novo monitor Simples.

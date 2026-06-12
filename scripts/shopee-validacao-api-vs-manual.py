@@ -11,8 +11,12 @@ campo a campo (150/150). Diferenças conhecidas e esperadas (NÃO são erro):
     API (~3-4%). Contagem de pedidos pagos bate exato.
   - "Total global" do export de pedidos: zerado em Cancelados e
     Devolvidos/Reembolsados; API mantém valor original do pedido.
-  - Shopee Ads: app da integração SEM permissão na API de Ads (403) —
-    gasto de Ads só via export manual do Seller Center.
+  - Shopee Ads: app da integração SEM permissão na API de Ads (403) — a
+    permissão é por TIPO de app (ERP System exclui Ads). Decisão Pedro
+    12/06/2026: NÃO tentar Go Live de app "Ads Service" (revisão ISV da
+    Shopee historicamente nega). Gasto de Ads é SEMPRE via export manual
+    do Seller Center (Anúncios Shopee → Dados Gerais → Exportar CSV) e
+    entra na comparação via --ads-csv.
 
 SOMENTE LEITURA na API (usa o access_token corrente, sem refresh — o serviço
 shopee_oauth mantém os tokens frescos).
@@ -31,6 +35,7 @@ USO MENSAL (2 passos):
      --pedidos "PEDIDOS - SHOPEE 1 - 30 DIAS.xlsx" \
      --renda "RENDA - SHOPEE 1 - 30 DIAS.xlsx" \
      --api /tmp/shopee-api-mes.json \
+     [--ads-csv "ADS - SHOPEE 1 - 30 DIAS.csv"]  # gasto Ads (só manual)
      [--escrow-sample 15]   # refaz amostra campo a campo (chama a API)
 
    Exports esperados: "Meus Pedidos" (aba orders) e "Minha Renda" (abas
@@ -274,6 +279,35 @@ def read_renda_xlsx(path):
     return rows
 
 
+def read_ads_csv(path):
+    """Lê o CSV 'Dados Gerais de Anúncios' do Seller Center.
+
+    A tabela começa na linha que abre com '#'. Algumas linhas vêm
+    inteiramente re-cotadas pelo export (linha toda entre aspas com aspas
+    internas duplicadas) — re-parseia essas. Retorna (linhas, total_despesas).
+    """
+    import csv as _csv
+    import io as _io
+    with open(path, encoding="utf-8-sig") as fh:
+        rows = list(_csv.reader(fh))
+    hdr_i = next(i for i, r in enumerate(rows) if r and r[0].strip() == "#")
+    hdr = rows[hdr_i]
+    di, ni = hdr.index("Despesas"), hdr.index("Nome do Anúncio")
+    out, total = [], 0.0
+    for r in rows[hdr_i + 1:]:
+        if not r or not r[0].strip():
+            continue
+        if len(r) == 1:  # linha re-cotada pelo export
+            r = next(_csv.reader(_io.StringIO(r[0])))
+        if len(r) <= di:
+            continue
+        v = r[di].strip()
+        if v and v != "-":
+            out.append((r[ni], float(v)))
+            total += float(v)
+    return out, total
+
+
 ESCROW_MAP = [
     ("Valor liberado",        "lancado",          "escrow_amount"),
     ("Preço do produto",      "preco_produto",    "cost_of_goods_sold"),
@@ -353,6 +387,17 @@ def cmd_compare(args):
     for sn, m, a in real[:15]:
         print(f"   ❌ {sn}: manual {m:.2f} × API {a:.2f}")
 
+    if args.ads_csv:
+        print()
+        print("=" * 66)
+        print("ADS — FONTE: EXPORT MANUAL DO SELLER CENTER (API sem permissão)")
+        print("=" * 66)
+        ads_rows, ads_total = read_ads_csv(args.ads_csv)
+        for nome, gasto in sorted(ads_rows, key=lambda x: -x[1]):
+            print(f"  R$ {gasto:>10,.2f}  {nome[:60]}")
+        print(f"  {'-' * 12}")
+        print(f"  R$ {ads_total:>10,.2f}  TOTAL ({len(ads_rows)} anúncios)")
+
     if args.escrow_sample:
         print()
         print("=" * 66)
@@ -400,6 +445,7 @@ def main():
     pc.add_argument("--pedidos", required=True, help="xlsx Meus Pedidos (aba orders)")
     pc.add_argument("--renda", required=True, help="xlsx Minha Renda (aba Renda)")
     pc.add_argument("--api", required=True, help="JSON gerado pelo fetch")
+    pc.add_argument("--ads-csv", help="CSV 'Dados Gerais de Anúncios' do Seller Center (gasto Ads)")
     pc.add_argument("--escrow-sample", type=int, default=0,
                     help="N pedidos p/ amostra campo a campo via get_escrow_detail")
     pc.set_defaults(func=cmd_compare)

@@ -228,3 +228,15 @@ Manter memória dedicada das interações com a Himmel sobre **Shopee**, cobrind
 - **Responsáveis/próximo passo:** Himmel aguarda retorno da GB/Pedro/Lucas para avaliar possibilidade de forçar ADS nesses itens; Trader deve tratar 2026-06-09 como nova janela de validação das campanhas Shopee.
 - **Status:** aberto — otimizações reportadas como concluídas; aguardando decisão sobre reforço adicional em ADS e validação com dados.
 
+### 2026-06-12 14:59 BRT — Letícia cobra retorno pendente sobre alinhamento Shopee
+
+- **Participantes:** Leticia (Himmel); pessoas marcadas no grupo.
+- **Plataforma/conta:** Shopee consolidado; sem conta específica nomeada, aplicar como contexto das 3 contas Budamix apenas se o retorno se referir às ações em aberto.
+- **Tema:** cobrança de retorno pendente.
+- **Produtos/SKUs citados:** nenhum novo produto/SKU citado.
+- **Decisão/contexto:** Leticia perguntou se havia retorno “sobre isso”, mas a mensagem ingerida não trouxe o assunto anterior no próprio trecho. Tratar como cobrança de pendência aberta da Himmel, provavelmente ligada aos alinhamentos recentes de campanhas/ADS/ações Shopee, até haver confirmação do tema.
+- **Impacto esperado:** nenhum impacto operacional confirmado ainda; pode indicar que existe decisão/validação pendente da GB antes da Himmel avançar.
+- **Como validar nos dados:** não usar como causa de performance sem contexto adicional. Nos próximos reports, apenas sinalizar se houver resposta posterior ligando a cobrança a campanhas, produtos, orçamento, promoções, capas/variações ou contas específicas.
+- **Responsáveis/próximo passo:** aguardar resposta no grupo ou buscar a mensagem anterior caso seja necessário destravar a pendência.
+- **Status:** aberto — cobrança registrada, sem conteúdo operacional suficiente para alterar diagnóstico.
+

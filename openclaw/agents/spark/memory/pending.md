@@ -1,6 +1,6 @@
 # Pendências — Spark
 
-_Atualizado: 2026-06-10_
+_Atualizado: 2026-06-11_
 
 ## 🔴 Prioridade Alta
 
@@ -25,7 +25,7 @@ _Atualizado: 2026-06-10_
 
 ### Meta Ads — Budamix (Strategy 2026)
 - [ ] **Quando Pedro entregar vídeos 2 e 3:** Kobe coordena upload + criação ads Camp 2 (3:2:2) e Camp 3 (retargeting) + criação 2 WCAs (ViewContent 14d + Purchase 30d) + ativação.
-- [ ] **Daily pulse 10:20 BRT no tópico Marketing:** confirmar/validar execuções pós-implementação; nas consolidações de 09/06 e 10/06 às 22:55 BRT não havia evidência registrada na memória do Spark. Spark gera, Kobe posta.
+- [ ] **Daily pulse 10:20 BRT no tópico Marketing:** confirmar/validar execuções pós-implementação; nas consolidações de 09/06, 10/06 e 11/06 às 22:55 BRT não havia evidência registrada na memória do Spark. Spark gera, Kobe posta.
 - [ ] **NÃO TOCAR Camp 1 até ~22/06:** fase de aprendizado em curso. Qualquer mudança >20% reseta. Após sair do aprendizado, avaliar promoção do Spark pra auto-execução em ajustes pequenos.
 - [ ] **Schema Supabase `meta.*`** criado em 08/06 — popular `meta.daily_pulses` via cron diário; primeiro `meta.actions_log` registrará ações pós-aprendizado.
 

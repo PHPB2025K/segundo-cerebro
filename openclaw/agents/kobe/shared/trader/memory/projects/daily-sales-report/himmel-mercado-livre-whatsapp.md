@@ -781,3 +781,31 @@ Manter memória dedicada das interações com a Himmel sobre **Mercado Livre**, 
 - Para anúncios realocados, comparar antes/depois por ID e por campanha de destino, especialmente MLB5406503442, MLB4573223951, MLB38833543, MLB55749976, MLB66715805 e MLB4410218897.
 
 **Status:** aberto — validar performance entre **2026-06-11 e 2026-06-17** nos dados de Mercado Livre/ADS.
+
+### 2026-06-12 12:27 BRT — Projeção de junho: R$ 238,6k, crescimento +43,65% e alerta de estoque
+
+**Participantes:** Cláudio Manrique Junior/Himmel.  
+**Plataforma/conta:** Mercado Livre — Budamix.  
+**Tema:** Projeção de faturamento de junho, ritmo diário acelerado, melhora de TACoS e prevenção de ruptura.
+
+**Contexto registrado:**
+- Himmel informou projeção de fechamento de **junho em R$ 238.603,64**, com base nos primeiros **11 dias do mês**.
+- Referência de comparação: maio fechou em **R$ 166.096,00**.
+- Ritmo atual informado: média de **R$ 7,9 mil/dia**.
+- Crescimento projetado: **+43,65%** sobre maio.
+- Eficiência de ADS melhorou: **TACoS de 5,85% para 4,62%**.
+- Alerta operacional explícito: verificar de perto o estoque dos principais produtos para evitar rupturas e impedir que anúncios pausem no meio do fluxo de venda.
+
+**Impacto esperado:**
+- Daily Sales Report de Mercado Livre deve tratar junho como mês de escala forte validada pela Himmel, com crescimento projetado acima da meta inicial e TACoS melhorando apesar do aumento de volume.
+- O principal risco operacional vira **estoque dos produtos líderes**: qualquer queda súbita deve primeiro ser cruzada com cobertura/Full/ruptura antes de atribuir a demanda ou ADS.
+- A projeção reforça a estratégia de junho já registrada: puxar volume em produtos com estoque e manter leitura separada de itens em ruptura/Full instável.
+
+**Como validar nos dados:**
+- Acompanhar faturamento diário ML contra ritmo de **~R$ 7,9k/dia** e projeção de **R$ 238,6k** até o fechamento de junho.
+- Validar se o **TACoS 4,62%** se sustenta conforme o mês avança e se há ganho real de vendas incrementais, não apenas variação de mix.
+- Monitorar diariamente estoque/cobertura dos principais produtos e status Full para prevenir pausa de anúncios ou queda de conversão por ruptura.
+- Separar performance de produtos em escala saudável vs produtos limitados por estoque, especialmente potes/kits já citados nas interações anteriores de junho.
+
+**Status:** aberto — projeção e alerta de estoque devem orientar os próximos Daily Sales Reports de Mercado Livre até o fechamento de junho.
+

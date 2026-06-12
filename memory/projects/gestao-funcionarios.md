@@ -372,6 +372,41 @@ Toda sexta-feira no fim do dia:
 - A semana teve muito acompanhamento real, mas novamente pouca padronização formal de atas. O maior ponto de gestão não é falta de assunto, é falta de fechamento padronizado pós-reunião. Recomendo manter cobrança simples: toda reunião com Yasmin, Lucas ou Leonardo termina com uma mensagem curta no Slack no padrão `#ata-reuniao Nome AAAA-MM-DD`, com combinados e pendências da semana. Para Lucas, acrescentar um ritual diário curto ajuda, mas não substitui ata semanal.
 
 
+### 2026-W24 — Coleta semanal Slack (12/06)
+
+**Fonte consultada:** Slack read-only, últimos 7 dias, buscas por `#ata-reuniao`, atas/reuniões/feedbacks de Yasmin, Lucas e Leonardo, além das DMs recentes dos três. Não foi persistida transcrição integral.
+
+#### Yasmin
+- **Ata formal localizada:** não. Houve confirmação de reunião em 10/06 às 14:30 e acompanhamento operacional relevante no Slack, mas sem mensagem padronizada `#ata-reuniao`.
+- **Pontos tratados:** Mercado Livre Platinum, risco de ruptura em Full, canecas e potes 1050/800 com estoque acabando, criação de Full maior para manter profundidade, pente fino na planilha ENVIOS FULL, custo real das canecas, ajuste de preço sem matar venda, anúncios MDF no Premium, vídeos para kits de potes herméticos e preparação de nova cobrança à Himmel.
+- **Acordos/prazos:** criar Full maior para produtos críticos; analisar com calma o Conjunto 5 Potes e enviar média constante para evitar zerar sem acumular; revisar ENVIOS FULL para permitir leitura de enviado/agendado/coletado/processado; acompanhar de perto MDFs até começarem a vender; testar/validar vídeo dos kits de potes; levar novamente à Himmel o tema dos MDFs.
+- **Evolução vs histórico:** Yasmin segue mais conectada à leitura de estoque, Full e Platinum, e mostrou prudência ao sugerir esperar mais uma semana antes de enviar MDF para Full porque apenas um item tinha saída real.
+- **Alertas:** sem ata formal da reunião; pressão de Full/Platinum continua alta. Potes 1050/800 e canecas exigem rotina objetiva de cobertura, porque ruptura pode afetar vendas e reputação.
+- **Pontos positivos:** respondeu rápido sobre status de Full, identificou estoque zerado/risco em potes, ajustou capas de MDF e demonstrou postura mais crítica antes de acelerar envio ao Full.
+- **Pendências para Pedro cobrar:** status do Full maior criado; visão consolidada de ENVIOS FULL; média/cobertura do Conjunto 5 Potes; resultado dos ajustes de capas dos MDFs; resposta da Himmel na reunião de terça; confirmar se vídeo dos potes foi aceito/aplicado.
+
+#### Lucas
+- **Ata formal localizada:** parcial. Não apareceu `#ata-reuniao`, mas Lucas enviou uma síntese estruturada da reunião/agenda com Himmel em 10/06, além de vários alinhamentos operacionais.
+- **Pontos tratados:** Budamix Ponto Shop com ticket alto e poucos cliques; diferenciação de título/descrição entre as três Shopees para reduzir canibalização; atualização de capas, vídeos e avaliações das canecas Tulipa; teste de variação amarela por 15 dias; Kit Copa com vídeo e oferta relâmpago; afiliados como alavanca orgânica; preço das canecas e bug visual de preço na Shopee; ajuste do Conjunto 5 Potes; anúncios novos indevidamente desativados; vídeos nos potes 4 travas; zona morta de preço R$80–92,99; cancelamentos por não envio; rotina de estoque.
+- **Acordos/prazos:** não subir preço das canecas por enquanto; garantir alterações nas três contas; manter campanha só em um anúncio quando houver duplicidade; aplicar fotos/vídeos novos de Tulipa começando pela conta de maior tráfego; responder avaliações 5 estrelas; varrer produtos na zona morta considerando cupom; identificar causa dos cancelamentos por não envio; pausar produto sem estoque com justificativa; refazer capas das canecas de forma diferente do padrão anterior.
+- **Evolução vs histórico:** Lucas trouxe uma síntese mais organizada da reunião externa e executou vários pontos rapidamente: vídeo dos potes 4 travas, imagens novas da Tulipa, mapeamento de zona morta e identificação de causa de cancelamentos.
+- **Alertas:** erro grave de interpretação sobre anúncios desativados — Pedro corrigiu que não havia autorizado desativar aqueles anúncios. Esse ponto precisa virar regra explícita: desativação de anúncio só com autorização clara e específica. Shopee travando dados também limita análise; ele deve registrar quando a plataforma impede leitura completa.
+- **Pontos positivos:** responsivo, percebeu bug de preço, levou pauta para Shopee/Himmel, trouxe dados de afiliados com ROI forte e executou checklist de melhorias da Tulipa.
+- **Pendências para Pedro cobrar:** confirmação das capas novas nas três Shopees; status das respostas de avaliações; resultado do teste da Tulipa amarela; relatório dos afiliados das Tulipas; evidência de que nenhum anúncio foi desativado sem autorização; causa final e prevenção dos cancelamentos por não envio; checagem contínua de produtos na zona morta.
+
+#### Leonardo
+- **Ata formal localizada:** não. Houve apenas acompanhamento operacional curto e pergunta sobre horário da reunião.
+- **Pontos tratados:** vendas via Ads do jogo da memória, aumento de preço da jarra, atualização de termos de campanha, reposição Full do suporte preto e envio de vídeo para anúncios de potes herméticos na Amazon.
+- **Acordos/prazos:** não deixar faltar suporte preto na Amazon; acompanhar termos da campanha do jogo da memória; submeter vídeo dos potes herméticos e aguardar aprovação da Amazon, estimada em cerca de dois dias úteis.
+- **Evolução vs histórico:** Leonardo segue executando tarefas de Amazon/Ads/FBA, mas a semana não deixou registro de análise executiva ou ata de reunião no Slack.
+- **Alertas:** falta de ata/síntese semanal prejudica acompanhamento da meta de Amazon. O próximo acompanhamento precisa trazer visão de campanha, vendas, ACoS, estoque e recomendação própria, não só execução.
+- **Pontos positivos:** reagiu rápido ao risco de estoque do suporte preto, reportou venda via Ads e adicionou ASINs ao fluxo de vídeo.
+- **Pendências para Pedro cobrar:** confirmação da aprovação do vídeo dos potes; status do Full do suporte preto; termos e resultado da campanha do jogo da memória; síntese da reunião da semana; evolução objetiva rumo à meta mínima diária da Amazon.
+
+#### Ponto sistêmico
+- A semana teve acompanhamento operacional forte, especialmente para Yasmin e Lucas, mas a padronização de atas continua falhando. Recomendo reforçar uma regra simples: qualquer reunião com Yasmin, Lucas ou Leonardo deve terminar no Slack com `#ata-reuniao Nome AAAA-MM-DD` e 5 linhas — tema, combinados, prazos, pendências e próximo checkpoint.
+
+
 ## Conectado a
 
 - [[memory/context/people]] — **ref**: 3 focal points descritos no people

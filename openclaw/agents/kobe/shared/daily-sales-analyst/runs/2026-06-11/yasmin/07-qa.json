@@ -1,0 +1,75 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem pode ser enviada. Um Maior registrado em Gate 12: ml_snapshot apresenta campaigns_active_count=13 com spend_yesterday_brl=0,0 — inconsistência de input que deve ser marcada como Maior pela regra literal do gate. L05 e L06 trataram corretamente, identificando o zero como lag de API e suspendendo toda análise de ADS share sem afirmar zero-spend como fato operacional. O desvio técnico é que L05 classificou o insight como 'fato' (o fato sendo o lag confirmado por 13+ ciclos de memória) em vez de 'hipótese em aberto', como o gate exigiria para aceitar APROVADO COM RESSALVA sem ressalva adicional. Tratamento funcionalmente seguro — o BLOQUEAR CRÍTICO só se aplica quando o Slack afirma zero ADS como fato operacional, o que não ocorre. Dois Menores: (1) Gate 10 — 'ETA' aparece 3 vezes na mensagem, atingindo o threshold mínimo de bloqueio de Minor; (2) Gate 6 — omissão do adjetivo 'recorrente' na descrição do nono ciclo da Tulipa 250ml. Regra de agregação: 1 Maior em 1 gate + 2 Menores = APROVADO COM RESSALVA. Nenhum Crítico identificado. send_real_allowed permanece false: envio direto à Yasmin requer aprovação prévia de Pedro.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "RESSALVA",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "RESSALVA",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "RESSALVA"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 1,
+    "maiores_gates_distintos": 1,
+    "menores": 2,
+    "regra_agregacao_aplicada": "1 Maior (Gate 12) + 2 Menores (Gates 6 e 10) → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Maior",
+      "gate": "Gate 12 — Consistência interna do ml_snapshot",
+      "texto_atual": "Insight 3 da L05 com classificacao='fato' sobre o lag de ADS; L06 repoduz com linguagem direta: 'é lag da API do Mercado Ads, não realidade'",
+      "texto_esperado": "Gate 12 exige que L05 marque a inconsistência explicitamente como 'hipótese em aberto' e que L06 preserve linguagem condicional para aceitar APROVADO COM RESSALVA sem escalar para BLOQUEADO",
+      "estado_atual": "ml_snapshot.ads_summary: campaigns_active_count=13 com spend_yesterday_brl=0,0 / revenue_ads_yesterday_brl=0,0 / avg_acos_pct=0,0 — inconsistência de input confirmada. L05 tratou como 'fato' (o fato sendo o lag fundamentado em 13+ ciclos de memória com gasto entre R$262 e R$422), não como 'hipótese em aberto'. L06 preservou a linguagem categórica da L05. O Slack não afirma zero ADS como fato operacional, não gerou decisão de campanha e suspendeu corretamente a série de participação do ADS no faturamento — tratamento funcionalmente seguro e sem risco de induzir Yasmin a erro.",
+      "estado_esperado": "L05 deveria usar classificacao='hipótese' para a inconsistência de input e L06 deveria preservar linguagem condicional ('parece ser lag', 'dados indicam lag') para cumprir literalmente Gate 12. A condição de BLOQUEAR CRÍTICO (Slack afirmando zero ADS como fato operacional) não se materializa aqui.",
+      "regra_violada": "Gate 12a: 'Se campaigns_active_count > 0 e spend_yesterday_brl == 0 → marcar como Maior. Aceitar APROVADO COM RESSALVA só se L05 marcou explicitamente como hipótese em aberto e L06 preservou linguagem condicional.'",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 10 — Tom e utilidade",
+      "texto_atual": "verificar ETA de reposição no CD do ML [...] ETA confirmado no CD em menos de 24h neutraliza o risco [...] ETA ultrapassar 72h",
+      "texto_esperado": "prazo estimado de reposição no CD do ML [...] prazo confirmado no CD em menos de 24h neutraliza o risco [...] prazo ultrapassar 72h — ou equivalente em português sem a sigla 'ETA'",
+      "estado_atual": "'ETA' aparece 3 vezes na mensagem Slack, atingindo o threshold de bloqueio de Minor (≥3 ocorrências sem tradução natural). A origem é a L05 que também usou 'ETA' nos campos sinal_de_confirmacao_refutacao e escalar_se da prioridade 1 — L06 reproduziu fielmente sem traduzir a sigla.",
+      "estado_esperado": "Máximo 2 ocorrências de 'ETA' ou substituição integral por termos naturais em português ('prazo estimado', 'previsão de chegada', 'estimativa de reposição').",
+      "regra_violada": "Gate 10: 'Bloquear como Menor se a mensagem Slack contiver 3+ ocorrências dos seguintes termos técnicos sem tradução natural: ETA [...]'",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 6 — Análise da Conta (fidelidade à L05)",
+      "texto_atual": "o Kit 6 Canecas Tulipa 250ml no nono ciclo de cobertura crítica sem resolução",
+      "texto_esperado": "o Kit 6 Canecas Tulipa 250ml no nono ciclo de cobertura crítica recorrente sem resolução",
+      "estado_atual": "L05 insight 2 descreve 'nono ciclo de cobertura crítica recorrente sem solução'. L06 omitiu o adjetivo 'recorrente'. O numeral 'nono' implica recorrência, portanto a tese central não foi alterada e não há risco de induzir Yasmin a erro — mas o termo analítico-chave que reforça o padrão estrutural foi removido.",
+      "estado_esperado": "Preservar 'recorrente' conforme L05: 'nono ciclo de cobertura crítica recorrente sem resolução'.",
+      "regra_violada": "Gate 6: 'Nenhum termo analítico-chave removido — substantivos e verbos que carregam a tese continuam presentes.'",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "KIT4YW640 (Kit 4 Potes De Vidro 640ml, MLB5402326666) — slack_short_name=null no pacote. Ficou em 6º lugar por pedidos, fora do Top 5 do Slack; sem impacto na mensagem. Adicionar entrada canônica em config/slack-short-names-ml.json na próxima manutenção de produto.",
+    "KIT3S099 (Kit 3 Potes de Vidro Hermético, MLB4076957145) — slack_short_name=null no pacote. Ficou em 10º lugar, fora do Top 5. Adicionar entrada canônica em config/slack-short-names-ml.json na próxima manutenção.",
+    "Gate 12 — ADS lag: L05 classificou o insight como 'fato' (fundamentado em 13+ ciclos de memória) em vez de 'hipótese em aberto'. Tecnicamente desvia do fluxo literal que Gate 12 exige, mas o tratamento é funcionalmente equivalente ou superior. Avaliar com equipe de pipeline se L04/L05 deveria usar classificacao='hipotese' para inconsistências de input mesmo quando a inconsistência está bem fundamentada em série histórica — decidiria a regra de Gate 12 para esses casos."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "fulfillment_mix_yesterday_top10 cobre apenas 67 de 185 pedidos do dia (36,2% — bem abaixo dos 70% que justificariam exibição com ressalva). L06 corretamente omitiu da seção VISÃO e registrou a decisão nas Decisões de formatação. O fetcher deveria ser revisado para expandir cobertura do mix de modalidade de envio diário além do top10 ou fornecer fulfillment_mix_7d como proxy autorizado para a VISÃO quando top10 cobrir menos de 70%.",
+    "ADS lag é padrão recorrente: ml_snapshot.ads_summary com spend=0 e campaigns_active=13 já foi registrado como pendência estrutural em 21+ ciclos consecutivos desde 22/05. O fetcher de Mercado Ads deveria implementar retry ou timestamp de consolidação para evitar lag de API na janela do cron — dado inutilizável em ciclos repetidos suspende a leitura estratégica mais relevante da conta (série de participação do ADS no faturamento).",
+    "Kit 6 Canecas Lisas 200ml (MLB6232315532, Catálogo gold_pro): health=null e available_quantity=4 após mais um ciclo de depleção sem restock. Se status virar paused antes do QA do próximo ciclo, verificar se nomenclatura do produto aparece em contexto de bloqueio — a regra de 'produto bloqueado não pode aparecer nominalmente' exige atenção especial para o único Catálogo do topo.",
+    "Kit 6 Canecas Tulipa 250ml (MLB6167272090): health=null após 9+ ciclos de ruptura recorrente. Investigar se o volume histórico baixo (sold_quantity=200 vs 7170 do campeão) é o driver do null ou se há fator técnico no cálculo ML — anúncio em zona crítica crônica sem dado de qualidade é zona cega operacional.",
+    "top_items_details contém 8 listings enquanto top_products tem 10 variações — diferença esperada por janelas temporais de API distintas, mas confirma que KIT4YW320 e KIT3S099 (9º e 10º em top_products) não têm dados de saúde e estoque disponíveis via top_items_details neste ciclo."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

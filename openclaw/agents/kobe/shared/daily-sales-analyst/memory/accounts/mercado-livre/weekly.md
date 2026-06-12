@@ -33,6 +33,19 @@ Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 en
 
 _Blocos diários abaixo. Job `daily-memory-ingest-ml.py` adiciona um bloco por dia. Rotação automática mantém os últimos 14 dias._
 
+### Dia analisado: 2026-06-11
+_ingestido em 2026-06-12T07:15:19-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida (MLB6232315532, Catálogo Premium gold_pro Full, sem nível de qualidade calculado pelo ML): fechou 11/06 com available_quantity=4 após 5 pedidos, 4º ciclo monotonicamente descendente (35→28→11→5→4) sem restock confirmado — confirmar amanhã status (active/paused), available_quantity e se ETA de reposição no CD do ML entrou
+- Kit 6 Canecas Porcelana Tulipa Lisa 250ml Coloridas Xícara (MLB6167272090, Full, sem nível calculado): available_quantity=5 após 12 pedidos/16 itens, runway abaixo de 0,5 dia, 9º+ ciclo de cobertura crítica desde 31/05 — confirmar status, available_quantity e se restock entrou
+- Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo (MLB4073003575, gold_pro Full, em nível regular 0,75): available_quantity=19 após 7 pedidos (-9 líquidas em 24h sem restock), 3º ciclo consecutivo de cobertura curta — confirmar se restock entrou ou se runway cruzou abaixo de 12 unidades
+- Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita (MLB3288536143, gold_special Full, em nível regular 0,71 no 18º+ ciclo idêntico): carregou 63,2% do dia em 117 pedidos (IMB501P 66 Tampa Preta + IMB501V 27 Tampa Vermelha + IMB501C 24 Tampa Cinza), estoque confortável 1.523 un (~12 dias); risco é estrutural (concentração), não operacional no líder
+- Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petróleo (MLB5402326666, gold_special Full, Clássico, em nível preocupante 0,66): 6º+ ciclo idêntico, available_quantity=37 (~5 dias) — risco é exposição orgânica em ranking de categoria; gatilho de alinhamento com Himmel segue sendo cair abaixo de 0,63 em dois ciclos
+- ADS Mercado Ads do dia 11/06 inutilizável (spend_yesterday_brl=0,0 com campaigns_active_count=13) — provável lag de API; tese de ADS share descendente (série 69,9%→44,3% desde 22/05) fica suspensa até próximo ciclo com dado válido; verificar amanhã se valor retornou
+- Mix de modalidade de envio do top10 em 100% Full vs 78,9% em 30d e 75% em 7d — divergência produto-específica (apenas listagem Full do IMB501 carregou o cluster, ausência das Cross-Docking do cluster no topo sem causa atribuível pelo pacote); base ativa segue 41,5% Full / 58,5% Cross-Docking — registrar como ponto a observar se padrão se repete
+- Pendências estruturais persistentes do pacote ML (21º+ ciclo desde 22/05): breakdown ADS spend/revenue por platform_item_id; lista granular cancelamentos order_id↔platform_item_id↔motivo; ETA de reposição em trânsito ao CD do ML por anúncio; série temporal interna de nível de qualidade por anúncio; ranking de categoria/Buy Box por listagem
+
 ### Dia analisado: 2026-06-10
 _ingestido em 2026-06-11T07:14:14-03:00 BRT | confiança L05: alta | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
 
@@ -201,19 +214,6 @@ _ingestido em 2026-05-26T07:13:01-03:00 BRT | confiança L05: media | insights L
 - MercadoLíder Platinum: gap R$46.615, progresso 84,25%, ETA ~11 dias ao ritmo atual de R$4.156/dia — Faturamento do dia (R$5.127) acima do pace; fora do gatilho de Slack (gap >R$30k), mas qualquer movimento adverso em cancellations_rate aperta a janela
 - Pendências de pacote recorrentes para próximos ciclos: (1) série temporal de nível de qualidade por anúncio; (2) breakdown ADS spend/revenue por platform_item_id; (3) lista granular de cancelamentos com order_id↔platform_item_id↔mecanismo; (4) reposição em trânsito ao CD do ML por anúncio Full
 - Ticket do dia R$47,48 está acima de 30d (+3,4%) e 60d (+10,8%), mas 11,8% abaixo do avg_7d — compressão intra-semana por composição de segunda-feira dominada pelo cluster IMB501 de menor valor médio, não deterioração estrutural
-
-### Dia analisado: 2026-05-24
-_ingestido em 2026-05-25T09:24:01-03:00 BRT | confiança L05: media | insights L05: 3 (0 fato, 3 hipótese/risco latente) | prioridades L05: 3_
-
-**Memória para o próximo ciclo (da L05):**
-- Quinto ciclo do nível de qualidade do Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita (MLB3288536143, hoje 0,71) e do Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo (MLB4073003575, hoje 0,75) — ponto definidor da erosão orgânica.
-- ADS share — se 25/05 fechar acima de 65% com nível dos campeões estagnado, aciona alinhamento Yasmin–Himmel sobre cobertura preventiva (segundo ponto consecutivo).
-- Status pós-decisão do Kit 6 Canecas Porcelana 250ml Canelada Colorida (MLB6582645908): se pausado, registrar como variável confundidora para cancellations_rate; se ativo, monitorar cancelamentos automáticos.
-- Estoque e ETA de reposição Full do Kit De 6 Canecas De Porcelana Lisa Reta 200 Ml (MLB6232315532) — confirmar se reposição entrou ou se cobertura caiu abaixo de 2 dias.
-- Kit 6 Canecas Porcelana Tulipa (MLB6167272090) ausente pelo segundo ciclo — confirmar amanhã se está ativo, pausado ou esgotado.
-- Cluster IMB501 atingiu 47,5% do volume do dia (vs 44% nos dois ciclos anteriores) — concentração crescente; observar se sustenta ou recua.
-- Possível migração operacional do IMB501P de Cross-Docking (memória 22/05) para Full (snapshot 24/05) — confirmar se sustenta no próximo ciclo; muda leitura do mix de modalidade de envio.
-- MercadoLíder Platinum: gap R$48.941, progresso 83,47%, ETA ~12 dias ao ritmo atual — fora do gatilho de Slack (gap > R$30k), mas qualquer ruptura confirmada no cluster de canecas com cancelamentos automáticos aperta a janela rapidamente.
 
 ---
 

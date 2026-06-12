@@ -1,7 +1,15 @@
 # Lições — RH
 
-_Atualizado: 2026-06-10_
+_Atualizado: 2026-06-11_
 
+
+## 2026-06-11
+- Sandra sem marcações novamente em dia útil ampliou a sequência recorrente de junho; continua sendo o principal risco trabalhista individual e depende de orientação do Pedro antes de contato adicional.
+- Lucas voltou a ter intervalo abaixo de 1h; o padrão permanece recorrente e precisa de orientação operacional antes de cobrança/correção.
+- Leonardo sem saída final deve ser interpretado com contexto de jornada/faculdade antes de classificar como pendência trabalhista.
+- Yasmin com intervalo registrado no mesmo minuto da saída deve ser tratado primeiro como marcação atípica/erro de registro, não como ausência automática de almoço.
+- Leonardo e Mateus seguem sem resposta após cerca de 21 dias úteis no lote antigo; follow-ups automáticos sem decisão humana tendem a manter o backlog, não resolvê-lo.
+- Backlog de 27 comunicações abertas, com 20 bloqueadas por aprovação/orientação do Pedro, segue como principal risco operacional do RH.
 
 ## 2026-06-10
 - Sandra sem marcações novamente em dia útil reforça risco trabalhista sensível e necessidade de orientação do Pedro antes de contato adicional.

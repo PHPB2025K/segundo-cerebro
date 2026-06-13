@@ -98,3 +98,8 @@ _Atualizado na Consolidação Profunda 2026-05-01._
 - Antes de concluir que SKU de pedido marketplace está sem cadastro/erro, consultar a aba correspondente da planilha de estoque: Mercado Livre → MELI; Shopee → SHOPEE; Amazon → AMAZON.
 - A aba do marketplace é a fonte primária para descobrir anúncio/variação, SKU pai/unitário ou composição correta; a aba ESTOQUE sozinha não basta para investigar equivalência.
 - Só depois dessa investigação classificar como erro real, criar alias/BOM, aplicar baixa corretiva ou manter saldo zerado autorizado por Pedro.
+
+### Aliases operacionais aprovados — fila marketplace 11/06 processada em 12/06 (2026-06-12)
+- `CK4742_B2` → `CK4742_B` — Jarra Medidora Vidro 500ml.
+- `KFJ004` → `KJP003` — Kit Ferramentas Jardinagem Marrom.
+- Esses aliases foram autorizados por Pedro após validação de pedido/planilha e não devem ser extrapolados para SKUs parecidos sem nova validação.

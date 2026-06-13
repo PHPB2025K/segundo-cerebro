@@ -1,12 +1,20 @@
 # Pendências — Trader
 
-_Atualizado: 2026-06-11_
+_Atualizado: 2026-06-12_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
 
 
+- [ ] Mercado Livre 08–11/06/2026 BRT: sequência 201 → 168 → 185 → 185 pedidos mantém hipótese de patamar superior em volume, mas 11/06 teve GMV/ticket menor (R$ 7.304,72 / R$ 39,48); validar D+7 cruzando ADS, estoque Full, cancelamentos, mix de Potes Vidro 5 Peças e margem/ticket.
+- [ ] Daily Sales v2 11/06/2026 BRT / Yasmin: preview Mercado Livre ficou APPROVED_WITH_REMARKS sem blockers; corrigir/decidir ressalvas de short names fora do Top 5 e regra Gate 12 ADS lag antes de qualquer avanço, mantendo envio real bloqueado até aprovação Kobe/Pedro.
+- [ ] Daily Sales v2 / Gate 12 ADS lag: decidir se inconsistência de input fundamentada por 13+ ciclos de memória deve ser classificada como fato fundamentado ou hipótese em aberto na L04/L05.
+- [ ] Daily Sales v2 11/06/2026 BRT: ciclo individual detectado apenas para Yasmin/Mercado Livre; confirmar se Lucas/Shopee e Leonardo/Amazon seguem omitidos intencionalmente ou como lacuna operacional.
+- [ ] Shopee Conta 3 10–11/06/2026 BRT: pico positivo de 25 pedidos em 10/06 caiu para 13 em 11/06; não tratar como novo patamar sem nova evidência de redistribuição, ADS, afiliados ou cupom.
+- [ ] Cancelamentos marketplace 10–11/06/2026 BRT: total caiu de 22 para 13; manter monitoramento por recorrência, mas pressão imediata arrefeceu.
+- [ ] Amazon 08–11/06/2026 BRT: cancelamentos ficaram em 3 em 11/06; abaixo do gatilho de 5+, sem quebra obrigatória por ASIN enquanto não houver recorrência.
+- [ ] Mapping marketplace 12/06/2026 BRT: após aliases CK4742_B2→CK4742_B e KFJ004→KJP003, monitorar as 6 divergências restantes por falta de saldo (KIT6S100, KIT6YW1050, JMANI, 101, KIT6S100, KIT6S097) e não criar alias/BOM sem nova validação.
 - [ ] Daily Sales 10/06/2026 BRT: validar no próximo ciclo a diferença fina entre report público e pacote canônico posterior no Mercado Livre (report enviado: 186 pedidos / R$ 8.091,26; pacote posterior: 185 pedidos / R$ 8.063,87) antes de usar variações pequenas como narrativa executiva.
 - [ ] Mercado Livre 08–10/06/2026 BRT: sequência 201 → 168 → 185 pedidos mantém hipótese de patamar superior aberta; seguir validação D+3/D+7 cruzando ADS, estoque Full, cancelamentos e concentração em Potes Vidro 5 Peças.
 - [ ] Daily Sales v2 10/06/2026 BRT / Yasmin: preview Mercado Livre ficou BLOCKED; corrigir insight de fulfillment/mix para não tratar recorte top 10 com 50,3% de cobertura como composição total do dia e reexecutar QA antes de qualquer send-candidate.

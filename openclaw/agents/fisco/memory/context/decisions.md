@@ -1,7 +1,7 @@
 # Decisões — Fisco
 
-_Atualizado: 2026-06-11_
+_Atualizado: 2026-06-12_
 
 ## Vigentes
-- Nenhuma decisão fiscal nova registrada em 2026-06-11.
+- Nenhuma decisão fiscal nova registrada em 2026-06-12.
 - Permanece vigente o modelo fiscal 90/10 validado pela FOUR/Suellen conforme identidade do Fisco; qualquer alteração exige validação contábil e escalação via Kobe.

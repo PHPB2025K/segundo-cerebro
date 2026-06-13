@@ -1,0 +1,63 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "Mensagem fiel à L05, estrutura correta, todos os bloqueios respeitados, dados conferem com o pacote validado, destinatário/plataforma corretos, teses preservadas com classificações adequadas. Dois problemas Menores identificados em gates distintos: (1) Gate 11 — ACOS 9,96% usa 2 casas decimais em vez do padrão obrigatório de 1 casa decimal; (2) Gate 10 — referências a 'Full' e 'Cross-Docking' na Análise e em Prioridade 2 não usam o qualificador 'modalidade de envio' exigido pelo vocabulário ML aprovado. Ambos documentados pelo próprio L06 log (ACOS) ou observáveis por inspeção direta, não induzem Yasmin a erro operacional. Regra de agregação aplicada: 0 Críticos + 0 Maiores + 2 Menores → APROVADO COM RESSALVA.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "OK",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "RESSALVA",
+    "gate_11_padrao_numerico_formatacao": "RESSALVA",
+    "gate_12_consistencia_ml_snapshot": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 2 Menores (isolados, sem degradação sistêmica) → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "Gate 11 — Padrão numérico e formatação objetiva",
+      "texto_atual": "ROAS 11,4x e ACOS 9,96% estão no envelope eficiente.",
+      "texto_esperado": "ROAS 11,4x e ACOS 10,0% estão no envelope eficiente.",
+      "estado_atual": "ACOS 9,96% apresenta 2 casas decimais. A regra de formatação impõe percentuais com 1 casa decimal. O L06 documentou a decisão de preservar o valor literal da L05 ('9,96%'), mas a regra de padrão numérico é independente da fidelidade ao valor da L05.",
+      "estado_esperado": "Percentual com 1 casa decimal: 10,0% (arredondamento de 9,96%). Alternativamente, se a precisão for necessária para não alterar percepção do número, registrar como exceção documentada na regra — a distinção entre 9,96% e 10,0% tem impacto analítico marginal mas não é neutro.",
+      "regra_violada": "Gate 11: percentuais com vírgula e 1 casa quando aparecerem (padrão 8,5%). A justificativa de fidelidade à L05 não tem precedência formal sobre a regra de formatação objetiva do gate.",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "Gate 10 — Tom e utilidade",
+      "texto_atual": "O Full respondeu por 87,9% dos pedidos do topo (vs. 78,9% nos últimos 30 dias) — não é a operação migrando pra Full. São os Potes Vidro 5 Peças (Tampa Preta + Cinza + Vermelha) carregando 51% do dia em Full, com Cross-Docking quase fora do topo. A base ativa segue 41,5% Full / 58,5% Cross-Docking — sem mudança estrutural.",
+      "texto_esperado": "Ao menos a primeira ocorrência em cada seção deveria usar o qualificador 'modalidade de envio': e.g., 'A modalidade de envio Full respondeu por 87,9%...' ou 'modalidade Full'. Prioridade 2 também referencia 'em Full' sem o qualificador.",
+      "estado_atual": "Múltiplas referências a 'Full' e 'Cross-Docking' na Análise (bullet 3) e em Prioridade 2 sem uso do qualificador 'modalidade de envio'. O vocábulo 'fulfillment' está corretamente ausente da mensagem. A atenuante é que a própria L05 não usou a forma qualificada nos insights, tornando este um desvio de L06 em relação à regra formal, não de fidelidade à L05.",
+      "estado_esperado": "Regra: termo 'modalidade de envio' usado em todas as referências ao conceito Full/Cross-Docking/Flex. Em contexto onde o conceito é central para o insight (bullet 3 é inteiramente sobre mix de modalidade de envio), a primeira referência ao menos deve trazer o qualificador explícito para que Yasmin não confunda 'Full' com o conceito de volume total.",
+      "regra_violada": "Gate 10: vocabulário ML correto — termo 'modalidade de envio' deve ser usado em todas as referências ao conceito Full/Cross-Docking/Flex.",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "L06 usou valores exatos do pacote (R$ 321.406,28 e R$ 25.406,28) em vez dos valores arredondados da L05 ('R$ 321.406' e 'R$ 25 mil'). Tese preservada, sem risco de erro. Decisão documentada no log de formatação. Para próximos ciclos: alinhar com L05 a política de arredondamento — se L05 usou verbal ('R$ 25 mil'), L06 deve preservar o arredondamento; se L05 usou exato, L06 mantém exato. A inconsistência de critério entre os dois valores (R$ 321.406,28 exato vs L05 'R$ 321.406' sem centavos) é registrada aqui como sinal para revisão da diretriz de centavos na próxima manutenção.",
+    "ACOS com 2 casas decimais: a regra de formatação (1 casa) conflita com a regra de fidelidade ao valor explícito da L05. Para próximos ciclos, a instrução da L06 deve deixar claro que a regra de formatação prevalece e que L06 deve arredondar para 1 casa mesmo quando a L05 forneceu o número com mais casas — salvo quando o arredondamento cruzar limiar analítico relevante (e.g., 9,96% → 10,0% cruza o número redondo de 10%, o que pode ser relevante dependendo do contexto de campanha)."
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "fulfillment_mix_yesterday_top10 cobre 58 de 150 pedidos do dia (38,7%), bem abaixo do limite de 70% do Gate 12c. A L05 autorizou o uso com framing explícito de 'topo' e a L06 preservou corretamente com 'não é a operação migrando pra Full' e a referência à base ativa (41,5%/58,5% de account_overview). Não configura bloqueio. Porém, cobertura de 38,7% é baixa o suficiente para registrar: investigar no próximo ciclo se é possível ampliar cobertura do fulfillment_mix intraday além do top10 (e.g., sampling ampliado) ou se o fulfillment_mix_7d/30d com cobertura 100% deveria ser a referência principal para o Slack em substituição ao yesterday_top10.",
+    "MLB6657404498 (Kit 4 Potes 520ml Quadrado, KIT4YW520SQ): slack_short_name=null, mapping_confidence=medium. Produto apareceu no top10 com 7 pedidos sobre sold_quantity histórico de 6 — listing efetivamente sem histórico pré-12/06. A L06 corretamente omitiu o produto do Top 5 (posição 6) e o bloqueou da Análise por instrução da L05. Ação de manutenção: adicionar entrada para KIT4YW520SQ em config/slack-short-names-ml.json no próximo ciclo. Sugestão de nome curto: 'Kit 4 Potes 520ml Quadrado'. Adicionalmente, investigar se listing é criação recente ou reativação e se o volume de ontem foi ADS-induzido — resposta define se entra na série de monitoramento ou é evento pontual.",
+    "ratings_negative=0,41 contra ratings_positive=0,56 é vetor de pressão silenciosa na reputação, documentado em múltiplos ciclos sem deterioração da cor (5_green mantida). Não gerou insight ou prioridade na L05 hoje — correto, pois não há sinal de movimento agudo no dia. Porém, se cancellations_rate sair de zero nos próximos ciclos (risco da Tulipa pausada), a combinação cancellations_rate > 0 com ratings_negative alto pode comprimir a manutenção do Platinum mais rapidamente do que cada métrica analisada de forma isolada. Sugerir à Condensadora ativar cruzamento entre cancellations_rate e ratings_negative no modelo de risco Platinum para os próximos 5 ciclos.",
+    "Ponto 11/06 do ADS (spend=0 com 13 campanhas ativas) segue suspenso por lag de API. O próximo ciclo com ads_summary válido é o terceiro candidato a consolidar a hipótese de autonomia orgânica como fato (09/06: 44,3%; 12/06: 42,0%; próximo ciclo ≤ 45% com GMV ≥ R$ 6.000 fecha o argumento). A Condensadora deve preparar enquadramento para quando o fato se consolidar: implicações para discussão com Kobe sobre mix de campanha a médio prazo. Se próximo ciclo retornar share acima de 55%, a série deve ser reavaliada como não-monotônica."
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

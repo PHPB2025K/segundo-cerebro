@@ -33,6 +33,19 @@ Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 en
 
 _Blocos diários abaixo. Job `daily-memory-ingest-ml.py` adiciona um bloco por dia. Rotação automática mantém os últimos 14 dias._
 
+### Dia analisado: 2026-06-12
+_ingestido em 2026-06-13T07:16:11-03:00 BRT | confiança L05: alta | insights L05: 3 (2 fato, 1 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- MercadoLíder Platinum confirmado em 12/06 (sales_60d R$ 321.406, R$ 25.406 acima do threshold, power_seller_status=platinum) — vocabulário muda: não é mais ETA Platinum, é manutenção sob pressão de cancellations_rate; ritmo necessário pra manter ~R$ 4.933/dia, dia de hoje 30% acima
+- Kit 6 Canecas Tulipa 250ml (MLB6167272090, Full, sem nível de qualidade calculado pelo ML): 10º+ ciclo seguido paused com available_quantity=0; mais 5 pedidos no dia; acumulado mínimo da série 38 pedidos prospectivamente cancelados — confirmar amanhã status, available_quantity e se restock entrou; ratings_negative=0,41 segue como vetor latente paralelo
+- Kit 4 Potes 1050ml Azul-petróleo (MLB4073003575, Full, gold_pro, em nível regular 0,75): available_quantity caiu de 19 pra 13 em 24h, 3º ciclo seguido de cobertura crítica (~1,9 dias) — confirmar amanhã se restock entrou (estoque > 20) ou se cruzou abaixo de 6
+- Cluster IMB501 (MLB3288536143, em nível regular 0,71 no 18º+ ciclo idêntico, Full, gold_special, is_catalog=false): carregou 51,3% do top3 (Tampa Preta 39 + Cinza 20 + Vermelha 18); estoque 1.563 un descarta ruptura; risco é erosão lenta de ranking de categoria, não evento agudo; gatilho de alinhamento Himmel segue sendo cruzar abaixo de 0,68
+- Fatia do ADS no faturamento foi de 42,0% (R$ 2.688,95 / R$ 6.397,92) com ROAS 11,41x e ACOS 9,96% — 2º ponto válido consecutivo ≤ 45% após 09/06 (44,3%); um terceiro ciclo abaixo de 45% com GMV ≥ R$ 6 mil consolida hipótese de autonomia orgânica como fato; ponto 11/06 segue suspenso por lag de API
+- Mix de modalidade de envio do top10 12/06 em Full 87,9% / Cross-Docking 12,1% é artefato de composição produto-específica (cluster IMB501 Full carregou o topo, Cross-Docking quase ausente); base ativa account_overview permanece 41,5% Full / 58,5% Cross-Docking — registrar como ponto-zero pra detectar inversão amanhã
+- Kit 4 Potes 520ml Quadrado (MLB6657404498, Cross-Docking, sem nível calculado): apareceu no top10 com 7 pedidos sobre sold_quantity histórico de 6 — listing efetivamente sem histórico pré-12/06; pendência identificar se é criação/reativação e se foi ADS-induzido; pode estar distorcendo a leitura do ADS share do dia
+- Pendências estruturais persistentes do pacote ML (22º+ ciclo desde 22/05): breakdown ADS spend/revenue por platform_item_id; lista granular cancelamentos order_id↔platform_item_id↔motivo↔mecanismo; ETA reposição em trânsito ao CD do ML por anúncio; série temporal interna de nível de qualidade por anúncio; data_created/last_updated por listing
+
 ### Dia analisado: 2026-06-11
 _ingestido em 2026-06-12T07:15:19-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
 
@@ -201,19 +214,6 @@ _ingestido em 2026-05-27T07:18:48-03:00 BRT | confiança L05: media | insights L
 - ADS carregou 60,7% do faturamento com ROAS 13,9x e ACOS 10,96% — terceiro ponto consecutivo de ACOS acima do baseline ~4,4% (22-23/05), mas ROAS muito acima do limiar de ineficiência; se próximo ciclo mantiver ACOS acima de 10% com fatia de ADS acima de 60%, vira gatilho de alinhamento Yasmin–Himmel sobre cobertura e mix de campanhas.
 - MercadoLíder Gold com gap para Platinum em R$ 42.460,66, progresso 85,66%, ritmo R$ 4.225,66/dia, ETA ~10 dias — faturamento do dia (R$ 7.394) opera 75% acima do pace; fora do gatilho de Slack (gap > R$ 30k) mas qualquer cancellations_rate > 0 ou ruptura na Tulipa/Catálogo aperta a janela.
 - Pendências estruturais recorrentes do pacote ML (desde 22/05): (1) breakdown ADS por platform_item_id; (2) lista granular de cancelamentos com order_id↔platform_item_id; (3) série temporal de nível de qualidade por anúncio; (4) ETA de reposição em trânsito ao CD do ML.
-
-### Dia analisado: 2026-05-25
-_ingestido em 2026-05-26T07:13:01-03:00 BRT | confiança L05: media | insights L05: 3 (0 fato, 3 hipótese/risco latente) | prioridades L05: 3_
-
-**Memória para o próximo ciclo (da L05):**
-- Cluster do Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita (MLB3288536143, Full não-Catálogo) atingiu 56,5% do volume do dia — novo pico da série 44%→47,5%→56,5%; nível regular (0,71) no sexto ciclo idêntico, direção segue não observável; sétimo ponto é o decisivo para liberar ou não alinhamento Yasmin–Himmel sobre cobertura preventiva (gatilho L02: <0,68)
-- Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida (MLB6232315532, Catálogo gold_pro Full): cobertura ~1,7 dias com ritmo do dia em 11 pedidos (acima dos ~6/dia histórico) — confirmar amanhã se reposição entrou ou se entrou em ruptura com perda de Buy Box
-- Kit 10 Potes Herméticos 1050ml Refratário 4 Travas Budamix Azul-petróleo 10 Unidades (MLB4676726433): pausado com estoque zero gerou 3 pedidos exatamente iguais aos 3 cancelamentos do dia — monitorar cancellations_rate nos próximos 3-5 ciclos; se subir acima de 0, confirma origem comum
-- ADS respondeu por 56,7% do faturamento do dia com ACOS saltando de ~4,4% (22-23/05) para 14,15% e ROAS 7,67x — segundo ponto da nova série; próximo ciclo define ruído vs tendência de ineficiência
-- Modalidade de envio: top10 do dia 79,5% Full / 20,5% Cross-Docking, coerente com 30d (74,7%/25,3%); base ativa segue assimétrica (36,7% Full / 63,3% Cross-Docking) — campeões vivem em Full, amplificando exposição a rupturas no topo
-- MercadoLíder Platinum: gap R$46.615, progresso 84,25%, ETA ~11 dias ao ritmo atual de R$4.156/dia — Faturamento do dia (R$5.127) acima do pace; fora do gatilho de Slack (gap >R$30k), mas qualquer movimento adverso em cancellations_rate aperta a janela
-- Pendências de pacote recorrentes para próximos ciclos: (1) série temporal de nível de qualidade por anúncio; (2) breakdown ADS spend/revenue por platform_item_id; (3) lista granular de cancelamentos com order_id↔platform_item_id↔mecanismo; (4) reposição em trânsito ao CD do ML por anúncio Full
-- Ticket do dia R$47,48 está acima de 30d (+3,4%) e 60d (+10,8%), mas 11,8% abaixo do avg_7d — compressão intra-semana por composição de segunda-feira dominada pelo cluster IMB501 de menor valor médio, não deterioração estrutural
 
 ---
 

@@ -1,6 +1,13 @@
 # Decisões — RH
 
-_Atualizado: 2026-06-11_
+_Atualizado: 2026-06-12_
+
+## 2026-06-12
+- Nenhuma decisão nova de política RH registrada.
+- Mantido bloqueio: consolidação diária de memória não autoriza envio proativo a funcionários.
+- Pontos de compliance de 12/06 devem ser tratados como validação interna até confirmação por fluxo autorizado ou orientação do Pedro.
+- Backlog de comunicações RH abertas permaneceu em 27, com 20 exigindo aprovação/orientação do Pedro.
+- Rotação diária do QR Code do Ponto Certo foi considerada OK em 12/06.
 
 
 ## 2026-06-11

@@ -1,6 +1,13 @@
 # Lições — RH
 
-_Atualizado: 2026-06-11_
+_Atualizado: 2026-06-12_
+
+## 2026-06-12
+- Lucas voltou a combinar intervalo abaixo de 1h com saída final ausente; padrão recorrente precisa de orientação operacional antes de cobrança/correção.
+- Guilherme sem saída final reforça a necessidade de leitura histórica antes de tratar pendências como falha individual isolada.
+- Leonardo com apenas entrada registrada deve ser interpretado com contexto de jornada/faculdade antes de classificar como pendência trabalhista definitiva.
+- Backlog de 27 comunicações abertas, com 20 bloqueadas por aprovação/orientação do Pedro, segue como principal risco operacional do RH.
+- Rotação do QR Code operou normalmente; manter monitoramento silencioso.
 
 
 ## 2026-06-11

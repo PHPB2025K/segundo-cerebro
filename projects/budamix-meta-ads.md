@@ -1,7 +1,7 @@
 ---
 title: "Budamix Meta Ads — Paid Social"
 created: 2026-06-06
-modified: 2026-06-08
+modified: 2026-06-13
 type: project
 status: active
 path: "Meta Ads Manager — conta Budamix (1140258596603533)"
@@ -199,8 +199,28 @@ Quando IMB501 atingir ROAS ≥ 2 consistente:
 3. Migrar Campanha 3 de WCA pra DPA (Dynamic Product Ads com catálogo completo)
 4. Considerar customer list de compradores marketplace (Pedro vai conseguir lista via empresa parceira semana que vem)
 
+## Campanha de Seguidores — TOFU Reels (criada 13/06/2026)
+
+Nova frente de **topo de funil**: promover os reels orgânicos do @budamix.br pra ganhar **seguidores + engajamento** (decisão do Pedro: seguidores primeiro; vendas seguem via Camp 1 ASC + halo/retargeting). Roda na MESMA conta da Camp 1 de vendas. **Tudo PAUSED** aguardando Pedro ligar. Construída via Graph API com o token Budamix (1P item `hxvgwjrdluw4yblo4lbktatoyy`), nomenclatura nova (ver [[business/marketing/nomenclatura-ads]]).
+
+- **Campanha** (`120248910294770402`): `BDMX | TRAF | TOPO | seguidores-reels | 2026-06`
+  - Objetivo OUTCOME_TRAFFIC → otimização **VISIT_INSTAGRAM_PROFILE** (visitas ao perfil = seguidores). CBO **R$40/dia**.
+- **Conjunto** (`120248910295500402`): `FRIO | amplo-18-65 | SP-MG-RJ-PR-RS-SC | IG | VISITA-PERFIL`
+  - Geo: SP(460) MG(449) RJ(454) PR(452) RS(456) SC(459) · idade 18-65 · `publisher_platforms:["instagram"]` (AN excluído por padrão).
+- **Instagram:** @budamix.br (`17841466202361418`) — **2.934 seguidores em 13/06** (baseline pra medir crescimento).
+- **Anúncios (3 reels):**
+  - `120248910298190402` — `REEL | pote-vidro | chega-inteiro` — post IG promovido direto (mantém prova social) — IG media `18111478753782026`
+  - `120248912033870402` — `REEL | enviado-af9a` — vídeo enviado — FB video `2541114302997076` (arquivo `copy_AF9A1841`)
+  - `120248912034610402` — `REEL | enviado-7efc` — vídeo enviado — FB video `2129319420977614` (arquivo `copy_7EFCC766`)
+
+**Notas técnicas:**
+- 2 reels ("o antes" e "40 min na cozinha") foram **barrados como post existente** (erro 1815279 — música licenciada). Resolvido subindo o arquivo `.MOV` direto como vídeo via `/advideos`. Custo: perdem curtidas/comentários do post original; **risco de reprovação na revisão Meta por música ao ativar**. Confirmar no preview qual arquivo (af9a/7efc) é qual reel e renomear o slug.
+- Receita correta pra promover reel orgânico: criativo **minimal** `{name, source_instagram_media_id}` — incluir `object_story_spec` dispara exigência de `link`. O `meta-ads-create.py` do Spark **não cobre** esse caso (só image/link) → candidato a upgrade.
+- "Vendas via Insta" medidas por **cupom INSTA** (marketplaces + site) + UTM na bio. Pixel ainda com **0 Purchase em 28d** → não otimizar pra venda ainda.
+
 ## Notas relacionadas
 
+- [[business/marketing/nomenclatura-ads]] — padrão de nomes de campanhas/conjuntos/anúncios
 - [[knowledge/concepts/facebook-page-api-budamix]] — integração FB Page API (token + scopes)
 - [[memory/context/decisoes/2026-06]] — decisões de junho
 - [[business/marketing/marca]] — paleta oficial Budamix

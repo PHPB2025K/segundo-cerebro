@@ -59,18 +59,15 @@ _Tags: [ESTRATÉGICA] = permanente | [TÁTICA] = expira em 30 dias_
 **Cross-ref:** decisions.md; `projects/analise-semanal-skill-amazon.md` v4.3
 **Expira:** Nunca
 
-### 2026-05-13 — Amazon Ads log interno deve ser validado antes de próxima rodada manual [TÁTICA]
-**Contexto:** Execução Tulipa teve 7/7 success na Amazon Ads API, mas falhou em `amazon_ads_actions_log` por FK/constraints.
-**Lição:** Se a API externa muda bid mas o log interno não registra, a auditoria D+7 fica capenga.
-**Ação concreta:** Antes da próxima rodada manual, validar schema/fluxo de log para round, entity_id e action_type.
-**Cross-ref:** pending.md
-**Expira:** 2026-06-12
-
 ---
 
 ## Lições Expiradas (arquivo)
 
 _Lições TÁTICAS removidas após expiração. Mantidas aqui apenas para referência histórica._
+
+### [TÁTICA] Amazon Ads log interno deve ser validado antes de próxima rodada manual (2026-05-13)
+**Lição:** Se a API externa muda bid mas o log interno não registra, a auditoria D+7 fica capenga; antes da próxima rodada manual, validar schema/fluxo de log para round, entity_id e action_type.
+**Expirou:** 2026-06-12
 
 ### [TÁTICA] Shopee Wallet não substitui relatório de Ads (2026-05-01)
 **Lição:** Wallet é conciliação financeira, não performance/consumo oficial de campanhas; para DRE, usar número oficial da plataforma ou export e tratar Wallet apenas como alerta de diferença.

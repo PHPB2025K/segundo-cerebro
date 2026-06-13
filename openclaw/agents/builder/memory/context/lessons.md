@@ -33,15 +33,13 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 ### [ESTRATÉGICA] Guard final antes de API externa é obrigatório em rotas legadas (2026-05-11)
 **Lição:** Prompt e banco não bastam quando há Edge Function legada enviando resposta externa. Toda rota que chama ML/WhatsApp/marketplace precisa de validação determinística imediatamente antes do POST.
 
-### [TÁTICA] Evolution/RH: normalizar `@lid` evita cegueira de inbound (2026-05-11)
-**Lição:** Webhook/poller/debounce de WhatsApp precisam aceitar `@lid`, `@c.us` e `@s.whatsapp.net`, resolver por pushName/aliases e logar desconhecidos em vez de descartar.
-**Expira:** 2026-06-10
-
-### [TÁTICA] Amazon Orders: filtrar FBA removal no ingest (2026-05-11)
-**Lição:** Pedidos de remoção FBA entram no feed como orders, mas não são vendas. Filtrar no sync por `SalesChannel=Non-Amazon`, `FulfillmentChannel=AFN`, datas dummy 1995/S01 e preservar auditoria ao cancelar legados.
-**Expira:** 2026-06-10
-
 ## Auditoria — Consolidação Profunda 2026-05-15
+
+### Táticas expiradas removidas — 2026-06-12
+- Evolution/RH: normalizar `@lid` evita cegueira de inbound — expirada em 2026-06-10.
+- Amazon Orders: filtrar FBA removal no ingest — expirada em 2026-06-10.
+- HTML de PWA/admin deve ser network-first — expirada em 2026-06-12.
+- Supabase fire-and-forget precisa EdgeRuntime.waitUntil — expirada em 2026-06-12.
 
 ### Táticas expiradas removidas
 - ### 2026-03-17 — Bidspark está em sandbox, não em produção [TÁTICA] — expirada em 2026-04-17.
@@ -50,15 +48,6 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 ### [ESTRATÉGICA] APIs operacionais web não devem depender de CLI em runtime (2026-05-14)
 **Lição:** Mission Control que lista crons, sessões ou skills deve ler arquivos/caches internos com parser próprio e cache curto. `execSync(openclaw ... --json)` dentro do PM2 travou/rejeitou argumentos e derrubou páginas.
 
-
-### [TÁTICA] HTML de PWA/admin deve ser network-first (2026-05-13)
-**Lição:** Service worker cache-first pode esconder deploy novo e gerar falsa regressão visual. Em admin interno, usar network-first para HTML/navegação e cache-first só para assets versionados.
-**Expira:** 2026-06-12
-
-
-### [TÁTICA] Supabase fire-and-forget precisa EdgeRuntime.waitUntil (2026-05-13)
-**Lição:** Edge Function que dispara `fetch()` assíncrono para processamento pode ter a chamada cancelada ao retornar resposta se não usar `EdgeRuntime.waitUntil()` ou fila persistente. Foi causa provável da Ana parar após poll automático sem logs úteis.
-**Expira:** 2026-06-12
 
 ### [TÁTICA] Meta Graph Page token pode exigir caminho direto validado (2026-06-04)
 **Lição:** Em setup de Facebook Page, a listagem padrão de páginas pode retornar vazia mesmo quando o token de página é derivável por chamada direta. Documentar o fluxo exato validado evita repetir investigação e tentativa-e-erro.

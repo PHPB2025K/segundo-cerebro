@@ -201,3 +201,7 @@ No CMV Full, pedidos com itens duplicados internos geraram o mesmo identificador
 ## 2026-06-11 — [TÁTICA] Recorte parcial não pode ser apresentado como composição total
 
 No Daily Sales v2, um preview foi bloqueado porque uma métrica parcial de fulfillment/top recorte foi apresentada como se representasse o total do dia. Para relatórios operacionais, qualquer top 10, amostra ou cobertura parcial precisa de caveat explícito — especialmente se cobrir menos de 70% dos pedidos — antes de virar diagnóstico ou mensagem para funcionário.
+
+## 2026-06-12 — [TÁTICA] Alias de estoque aprovado não pode virar regra por similaridade
+
+Na correção da fila marketplace de 11/06, `CK4742_B2` e `KFJ004` só foram aplicados depois de validação na planilha/pedido e teste seco de saldo. Mesmo quando o padrão parece óbvio, alias de SKU muda estoque físico e CMV; não extrapolar para SKUs parecidos, cores próximas ou famílias relacionadas sem nova validação na aba correta do marketplace e prova operacional suficiente.

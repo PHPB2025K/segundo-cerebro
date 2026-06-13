@@ -292,3 +292,10 @@ Pedro decidiu renomear o sistema interno antes chamado **Budamix Central** para 
 - Regra por origem: pedido Mercado Livre → aba **MELI**; pedido Shopee → aba **SHOPEE**; pedido Amazon → aba **AMAZON**.
 - Essas abas são a fonte operacional para descobrir qual produto unitário/SKU pai corresponde ao SKU/anúncio vendido. Só depois dessa consulta é permitido criar alias/BOM, aplicar baixa corretiva, manter saldo zerado ou tratar como cadastro realmente ausente.
 - Não confiar apenas no SKU vindo da API do marketplace nem apenas na aba ESTOQUE para investigar equivalência de anúncio; a aba do marketplace contém o vínculo necessário entre anúncio, variação e SKU pai.
+
+## 2026-06-12 — Estoque: aliases CK4742_B2 e KFJ004 aprovados apenas para os casos validados
+
+- Pedro autorizou aplicar os aliases operacionais `CK4742_B2` → `CK4742_B` e `KFJ004` → `KJP003` após validação contra planilha/pedido e teste seco de saldo.
+- `CK4742_B2` corresponde à Jarra Medidora Vidro 500ml canônica `CK4742_B`.
+- `KFJ004` corresponde ao Kit Ferramentas Jardinagem Marrom canônico `KJP003`; não confundir com `KJP004`, que na planilha é Cinza.
+- Regra operacional: estes aliases são restritos aos SKUs validados. Não extrapolar para SKUs parecidos, cores próximas ou famílias semelhantes sem nova consulta à aba do marketplace/planilha e nova validação.

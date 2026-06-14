@@ -201,7 +201,7 @@ Quando IMB501 atingir ROAS ≥ 2 consistente:
 
 ## Campanha de Seguidores — TOFU Reels (criada 13/06/2026)
 
-Nova frente de **topo de funil**: promover os reels orgânicos do @budamix.br pra ganhar **seguidores + engajamento** (decisão do Pedro: seguidores primeiro; vendas seguem via Camp 1 ASC + halo/retargeting). Roda na MESMA conta da Camp 1 de vendas. **Tudo PAUSED** aguardando Pedro ligar. Construída via Graph API com o token Budamix (1P item `hxvgwjrdluw4yblo4lbktatoyy`), nomenclatura nova (ver [[business/marketing/nomenclatura-ads]]).
+Nova frente de **topo de funil**: promover os reels orgânicos do @budamix.br pra ganhar **seguidores + engajamento** (decisão do Pedro: seguidores primeiro; vendas seguem via Camp 1 ASC + halo/retargeting). Roda na MESMA conta da Camp 1 de vendas. **ATIVADA 14/06** (campanha+conjunto ACTIVE; 3 anúncios em revisão IN_PROCESS). Construída via Graph API com o token Budamix (1P item `hxvgwjrdluw4yblo4lbktatoyy`), nomenclatura nova (ver [[business/marketing/nomenclatura-ads]]).
 
 - **Campanha** (`120248910294770402`): `BDMX | TRAF | TOPO | seguidores-reels | 2026-06`
   - Objetivo OUTCOME_TRAFFIC → otimização **VISIT_INSTAGRAM_PROFILE** (visitas ao perfil = seguidores). CBO **R$40/dia**.

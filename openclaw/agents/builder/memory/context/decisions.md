@@ -110,3 +110,16 @@ _Registro de decisões permanentes. NUNCA contradizer._
 - Envios Full deve tratar anúncios de canecas com SKU unitário como kits de 6 unidades físicas quando a descrição indicar caneca; regra aplicada para prefixos `TL250`, `CAR200` e `CAC250`, sem multiplicar SKUs que já são kits.
 - WhatsApp Estoque entra como fonte interpretativa/memória: registra eventos, gera pendências e histórico, mas não aplica movimento automaticamente sem fluxo validado.
 - Mensagem diária de Controle de Estoque deve manter linguagem simples e blocos separados para marketplaces, WhatsApp Estoque e Envios Full.
+
+## 2026-06-13 — Estoque / Envios Full silencioso com baixa física real
+
+- Envios Full não deve enviar mensagem própria no tópico Estoque; deve alimentar apenas a seção Envios Full do Controle de Estoque diário.
+- Envios Full representa saída física do galpão para estoque de marketplace, portanto deve baixar a planilha ESTOQUE física quando o item for resolvido com segurança.
+- A regra de não baixar físico para Full/FBA vale para vendas marketplace já armazenadas no marketplace, não para o envio inicial do galpão para Full/FBA.
+- O cron diário de Envios Full pode rodar em modo silencioso com baixa real, desde que mantenha idempotência, cursor e pendências explícitas.
+
+## 2026-06-13 — Envios Full pode usar descrição como fallback conservador
+
+- Quando o SKU da planilha ENVIOS FULL não resolver para item físico baixável, o sistema pode usar a descrição/nome do item como fallback contra o catálogo físico.
+- Prioridade continua sendo SKU físico direto; descrição só entra quando alias/resolvedor apontar para SKU inexistente, ambíguo ou não baixável.
+- Match por descrição deve ser conservador: exato ou alta confiança. Se houver ambiguidade, gerar pendência em vez de aplicar baixa.

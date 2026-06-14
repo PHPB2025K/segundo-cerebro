@@ -10,7 +10,7 @@ tags:
 
 # Pendências — Builder
 
-_Atualizado: 2026-06-10_
+_Atualizado: 2026-06-13_
 
 ## 🔴 Prioridade Alta
 
@@ -21,13 +21,13 @@ _Atualizado: 2026-06-10_
 - [ ] Validar antes de qualquer automapeamento: `XCP004` → possível `COLORS170_B`; `KFJ003` sem canônico seguro.
 - [ ] Depois do deploy/cadastro: desenhar PR4 kits/BOM, pois a maioria dos erros reais recentes é “Estoque insuficiente”.
 - [ ] Auditoria Full: validar build/restart/smoke em produção da nova aba padrão de Estoque > Full antes de considerar entregue em produção.
-- [ ] Auditoria Full: ENVIOS FULL está pausado por decisão operacional de 09/06; antes de confiar nas recomendações, reativar/validar o sync ou sinalizar explicitamente que envios recentes podem estar incompletos.
+- [ ] Auditoria Full: ENVIOS FULL foi reativado em 13/06 em modo silencioso com baixa física real e sem mensagem própria; monitorar próximos ciclos para confirmar idempotência, cursor, seção correta no Controle de Estoque e ausência de divergências novas.
 - [ ] Auditoria Full: monitorar filtro de vendas Full por logistic type no ML para evitar média inflada com vendas não-Full quando o campo vier vazio.
 - [ ] Auditoria Full: revisar SKUs marcados sem match no inventário Full antes de qualquer correção automática de planilha/cadastro.
 - [ ] Preencher alocação de receita por componente no fechamento de estoque; CMV seller de 03/06 foi corrigido, mas receita da camada de componentes ainda está nula.
 - [ ] Tratar fila residual de divergências por saldo real insuficiente/entrada física não registrada: `YW1520RC`, `YW1050RC`, `CAC250P`, `CAC250AZ`, `TL250P`, `CAR200B`, `CAR200R`; não baixar negativo sem prova operacional.
-- [ ] Automações WhatsApp Estoque/ENVIOS FULL pausadas: quando Pedro liberar, reativar com smoke controlado do poller/processor, cron de ENVIOS FULL e healthcheck; se a intenção virar congelamento total, mapear também rotinas marketplace/sync físico/CMV antes de prometer pausa completa.
-- [ ] Envios Full: quando reativar, validar multiplicador de canecas unitárias (`TL250`, `CAR200`, `CAC250`) como kits de 6 e caso negativo de SKU já kitado; avaliar auditoria retroativa se Pedro suspeitar subbaixa histórica.
+- [ ] WhatsApp Estoque permanece restrito/sem aplicação automática ampla: quando Pedro liberar, reativar com smoke controlado do poller/processor e healthcheck. Envios Full já voltou em modo silencioso com baixa real; se a intenção futura virar congelamento total, mapear também rotinas marketplace/sync físico/CMV antes de prometer pausa completa.
+- [ ] Envios Full: manter smoke do multiplicador de canecas unitárias (`TL250`, `CAR200`, `CAC250`) como kits de 6, caso negativo de SKU já kitado e fallback por descrição quando SKU/alias não encontrar item físico baixável; avaliar auditoria retroativa se Pedro suspeitar subbaixa histórica.
 
 ### Social Studio Reborn
 - [ ] Fase C C2: construir `/admin/social/conta` com status de conta, OAuth e callback handler.

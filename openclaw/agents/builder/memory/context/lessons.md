@@ -90,3 +90,11 @@ _Erros e aprendizados. [ESTRATÉGICA] = permanente, [TÁTICA] = expira 30 dias._
 ### [TÁTICA] Resumo de estoque precisa separar fontes antes de agir (2026-06-10)
 **Lição:** Misturar marketplace, WhatsApp e Envios Full no mesmo raciocínio operacional aumenta risco de duplicidade e diagnóstico errado. Primeiro separar por fonte, depois registrar pendências e só então aplicar movimentos autorizados.
 **Expira:** 2026-07-10
+
+### [TÁTICA] Envios Full e vendas Full/FBA têm efeitos físicos diferentes (2026-06-13)
+**Lição:** Enviar produto do galpão para Full/FBA baixa o estoque físico local; vender um item que já estava em Full/FBA não baixa novamente o físico local. Misturar essas duas origens cria subbaixa ou duplicidade. Nomear a origem operacional antes de aplicar movimento.
+**Expira:** 2026-07-13
+
+### [TÁTICA] Fallback por descrição precisa ser conservador e auditável (2026-06-13)
+**Lição:** Quando SKU/alias aponta para item inexistente, a descrição da planilha pode resolver o item correto, como no caso de Caneca Paris 170ml Branca. Mas descrição só deve baixar estoque quando houver match exato/alta confiança; caso contrário, virar pendência explícita.
+**Expira:** 2026-07-13

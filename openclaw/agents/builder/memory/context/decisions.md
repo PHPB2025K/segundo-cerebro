@@ -97,7 +97,7 @@ _Registro de decisões permanentes. NUNCA contradizer._
 
 - Aba ESTOQUE da planilha oficial usa estrutura A:H: ESTOQUE, SKU BASE, DESCRIÇÃO, CUSTO, EAN, NCM, MARCA, CUSTO ESTOQUE TOTAL. Qualquer escrita futura deve validar esses headers reais antes de alterar dados e não deve usar o mapeamento antigo.
 - Alterações na Planilha de Estoque devem preservar formatação, cores, validações e padrão visual/estrutural copiando linha modelo equivalente; se a ferramenta não permitir copiar formatação com segurança, abortar ou trocar de API.
-- Automações WhatsApp Estoque e ENVIOS FULL foram pausadas por decisão operacional. Auditorias/recomendações que dependem desses dados precisam declarar essa limitação até reativação validada.
+- Em 09/06, automações WhatsApp Estoque e ENVIOS FULL foram pausadas por decisão operacional. Atualização 13/06: ENVIOS FULL foi reativado em modo silencioso com baixa física real; WhatsApp Estoque permanece restrito/sem aplicação automática ampla salvo fluxo validado.
 
 ## 2026-06-09 — Budamix E-commerce / Blog
 

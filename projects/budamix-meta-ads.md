@@ -214,8 +214,9 @@ Nova frente de **topo de funil**: promover os reels orgânicos do @budamix.br pr
   - `120248912034610402` — `REEL | enviado-7efc` — vídeo enviado — FB video `2129319420977614` (arquivo `copy_7EFCC766`)
 
 **Notas técnicas:**
-- 2 reels ("o antes" e "40 min na cozinha") foram **barrados como post existente** (erro 1815279 — música licenciada). Resolvido subindo o arquivo `.MOV` direto como vídeo via `/advideos`. Custo: perdem curtidas/comentários do post original; **risco de reprovação na revisão Meta por música ao ativar**. Confirmar no preview qual arquivo (af9a/7efc) é qual reel e renomear o slug.
+- 2 reels ("o antes" e "40 min na cozinha") foram **barrados como post existente** (erro 1815279 — música licenciada). Resolvido subindo o arquivo `.MOV` direto via `/advideos`. Custo: perdem curtidas/comentários do post original; **risco de reprovação na revisão Meta por música ao ativar**. Confirmar no preview qual arquivo (af9a/7efc) é qual reel e renomear o slug.
 - Receita correta pra promover reel orgânico: criativo **minimal** `{name, source_instagram_media_id}` — incluir `object_story_spec` dispara exigência de `link`. O `meta-ads-create.py` do Spark **não cobre** esse caso (só image/link) → candidato a upgrade.
+- 14/06 14:18 BRT: Pedro pediu adicionar interesses também no anúncio com legenda herdada do post original; como interesses são configurados no conjunto, o ad set `120248910295500402` recebeu sinais de interesse: Cozinha, Cozinhar/Culinária, Receitas, Decoração e Casa e Jardim. Geo/SP-MG-RJ-PR-RS-SC, idade 18-65, Instagram-only e Advantage+ Audience foram preservados. Após a mudança, o conjunto entrou em `IN_PROCESS` para revisão automática do Meta.
 - "Vendas via Insta" medidas por **cupom INSTA** (marketplaces + site) + UTM na bio. Pixel ainda com **0 Purchase em 28d** → não otimizar pra venda ainda.
 
 ## Acompanhamento / Dashboard (criado 14/06/2026)

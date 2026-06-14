@@ -39,28 +39,12 @@ VALID_ACCOUNTS = {
 # Legacy (NAO USAR):
 #   act_323534883953033 - GB Distribuicao (parada em 06/2026)
 
-AD_ACCOUNT = os.environ.get("META_AD_ACCOUNT")
-if not AD_ACCOUNT:
-    print("=" * 70)
-    print("ERRO CRITICO: variavel META_AD_ACCOUNT nao definida.")
-    print()
-    print("Este script foi atualizado em 2026-06-08 para exigir confirmacao")
-    print("explicita da conta para evitar operacao na conta errada.")
-    print()
-    print("Defina a conta antes de executar:")
-    for acc, desc in VALID_ACCOUNTS.items():
-        print(f"  export META_AD_ACCOUNT={acc}  # {desc}")
-    print()
-    print("Contas legacy DESATIVADAS (nao usar):")
-    print("  act_323534883953033 - GB Distribuicao (parada em 06/2026)")
-    print("=" * 70)
-    sys.exit(2)
-
+# Conta: usa META_AD_ACCOUNT se definida; senão cai no fallback Budamix (conta ativa).
+AD_ACCOUNT = os.environ.get("META_AD_ACCOUNT") or "act_1140258596603533"
 if AD_ACCOUNT not in VALID_ACCOUNTS:
-    print(f"ERRO: conta {AD_ACCOUNT} nao esta na whitelist.")
-    print(f"Contas validas: {list(VALID_ACCOUNTS.keys())}")
+    print(f"ERRO: conta {AD_ACCOUNT} nao esta na whitelist {list(VALID_ACCOUNTS.keys())}.")
+    print("  (legacy act_323534883953033 = GB Distribuicao, parada 06/2026 — nao usar)")
     sys.exit(2)
-
 print(f"[guardrail] Conta selecionada: {AD_ACCOUNT} ({VALID_ACCOUNTS[AD_ACCOUNT]})")
 API_VERSION = "v25.0"
 BASE_URL = f"https://graph.facebook.com/{API_VERSION}"

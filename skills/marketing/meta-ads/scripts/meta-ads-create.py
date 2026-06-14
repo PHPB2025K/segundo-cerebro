@@ -5,11 +5,11 @@ GB Importadora / KOBE.OPENCLAW
 
 Cria estrutura completa: Campaign → Ad Set → Ad Creative → Ad
 
-Uso:
-  python3 meta-ads-create.py --name "BUDAMIX_SALES_POTES_Mar2026" --budget 15000
-  python3 meta-ads-create.py --name "BUDAMIX_AWARENESS_BRAND_Mar2026" --objective OUTCOME_AWARENESS --budget 5000
-  python3 meta-ads-create.py --campaign-only --name "TEST_CBO" --budget 50000
-  python3 meta-ads-create.py --dry-run --name "TEST" --budget 10000
+Uso (nomes no padrão — ver business/marketing/nomenclatura-ads.md):
+  python3 meta-ads-create.py --name "BDMX | VENDA | TOPO | asc-imb501 | 2026-06" --budget 15000
+  python3 meta-ads-create.py --name "BDMX | RECON | TOPO | institucional | 2026-06" --objective OUTCOME_AWARENESS --budget 5000
+  python3 meta-ads-create.py --campaign-only --name "BDMX | VENDA | TOPO | teste-cbo | 2026-06" --budget 50000
+  python3 meta-ads-create.py --dry-run --name "BDMX | VENDA | FUNDO | retargeting | 2026-06" --budget 10000
 """
 
 import argparse
@@ -34,37 +34,37 @@ VALID_ACCOUNTS = {
 # Legacy (NAO USAR):
 #   act_323534883953033 - GB Distribuicao (parada em 06/2026)
 
-AD_ACCOUNT = os.environ.get("META_AD_ACCOUNT")
-if not AD_ACCOUNT:
-    print("=" * 70)
-    print("ERRO CRITICO: variavel META_AD_ACCOUNT nao definida.")
-    print()
-    print("Este script foi atualizado em 2026-06-08 para exigir confirmacao")
-    print("explicita da conta para evitar operacao na conta errada.")
-    print()
-    print("Defina a conta antes de executar:")
-    for acc, desc in VALID_ACCOUNTS.items():
-        print(f"  export META_AD_ACCOUNT={acc}  # {desc}")
-    print()
-    print("Contas legacy DESATIVADAS (nao usar):")
-    print("  act_323534883953033 - GB Distribuicao (parada em 06/2026)")
-    print("=" * 70)
-    sys.exit(2)
-
+# Conta: usa META_AD_ACCOUNT se definida; senão cai no fallback Budamix (conta ativa).
+AD_ACCOUNT = os.environ.get("META_AD_ACCOUNT") or "act_1140258596603533"
 if AD_ACCOUNT not in VALID_ACCOUNTS:
-    print(f"ERRO: conta {AD_ACCOUNT} nao esta na whitelist.")
-    print(f"Contas validas: {list(VALID_ACCOUNTS.keys())}")
+    print(f"ERRO: conta {AD_ACCOUNT} nao esta na whitelist {list(VALID_ACCOUNTS.keys())}.")
+    print("  (legacy act_323534883953033 = GB Distribuicao, parada 06/2026 — nao usar)")
     sys.exit(2)
-
 print(f"[guardrail] Conta selecionada: {AD_ACCOUNT} ({VALID_ACCOUNTS[AD_ACCOUNT]})")
 API_VERSION = "v25.0"
 BASE_URL = f"https://graph.facebook.com/{API_VERSION}"
 TOKEN_OP_PATH = "op://OpenClaw/Meta System User Token - Budamix Ads/notesPlain"  # System User, NEVER expira
 
-# IDs da GB Importadora — preencher quando disponível
-DEFAULT_PAGE_ID = ""          # ID da Page do Facebook da GB/Budamix
-DEFAULT_PIXEL_ID = ""         # ID do Pixel Meta da GB
-DEFAULT_INSTAGRAM_ID = ""     # ID da conta Instagram
+# IDs da Budamix
+DEFAULT_PAGE_ID = "106066888942641"        # Página Budamix
+DEFAULT_PIXEL_ID = "460889899401645"       # Budamix - Pixel da Meta
+DEFAULT_INSTAGRAM_ID = "17841466202361418" # @budamix.br
+
+# ─── Nomenclatura padrão (ver business/marketing/nomenclatura-ads.md) ────────
+#   CAMPANHA: MARCA | OBJETIVO | FUNIL | tema-produto | AAAA-MM
+#   CONJUNTO: PUBLICO | segmentacao | GEO | POSICIONAMENTO | OTIMIZACAO
+#   ANUNCIO:  FORMATO | criativo-slug | angulo | vNN-AAAA-MM-DD
+NAMING_FIELDS = {"campanha": 5, "conjunto": 5, "anuncio": 4}
+
+
+def warn_if_nonstandard(level, name):
+    """Aviso NÃO bloqueante se o nome foge do padrão ' | ' (nomenclatura-ads.md)."""
+    n = NAMING_FIELDS.get(level)
+    if " | " not in name or (n and len(name.split(" | ")) != n):
+        print(f"⚠️  Nome de {level} fora do padrão: '{name}'")
+        print(f"    Esperado {n} campos separados por ' | ' — ver business/marketing/nomenclatura-ads.md")
+        return False
+    return True
 
 # ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -281,7 +281,7 @@ Exemplos:
 
     # Campos principais
     parser.add_argument("--name", required=True,
-                        help="Nome da campanha (usar naming convention)")
+                        help="Nome da campanha no padrão: 'MARCA | OBJETIVO | FUNIL | tema | AAAA-MM' (ver nomenclatura-ads.md)")
     parser.add_argument("--budget", type=int, default=10000,
                         help="Budget diário em centavos. Ex: 15000 = R$150/dia (padrão: 10000 = R$100)")
     parser.add_argument("--objective", default="OUTCOME_SALES",
@@ -333,6 +333,11 @@ Exemplos:
                         help="Simular criação sem chamar a API")
 
     args = parser.parse_args()
+
+    # Nomenclatura padrão (nudge não bloqueante — ver nomenclatura-ads.md)
+    warn_if_nonstandard("campanha", args.name)
+    if args.adset_name:
+        warn_if_nonstandard("conjunto", args.adset_name)
 
     # Aviso de status
     if args.status == "ACTIVE" and not args.dry_run:

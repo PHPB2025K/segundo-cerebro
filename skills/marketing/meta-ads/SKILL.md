@@ -11,7 +11,7 @@ description: >
 
 # Meta Ads — Skill de Operação Profissional
 
-> Usado por [[openclaw/agents/spark/IDENTITY|Spark]] | Atualizado 2026-06-08
+> Usado por [[openclaw/agents/spark/IDENTITY|Spark]] | Atualizado 2026-06-08 · nomenclatura padrão + fallback de conta 2026-06-14
 
 Skill de gestão e automação de Meta Ads via Marketing API **v25.0**.
 Contexto principal: **Budamix** (utensílios domésticos vidro/cerâmica/porcelana).
@@ -27,7 +27,7 @@ Contexto principal: **Budamix** (utensílios domésticos vidro/cerâmica/porcela
 | Broglio Brinquedos | `act_599689043839914` | ⚪ Sem campanhas | Mapear quando reativar |
 | Trades Up | `act_851375860374263` | ⚪ Sem campanhas | Mapear quando reativar |
 
-⚠️ **Guardrail nos scripts:** desde 08/06/2026 os 3 scripts (`meta-ads-report.py`, `meta-ads-create.py`, `meta-ads-rules.py`) refusam execução sem `META_AD_ACCOUNT` explícito. Whitelist atual permite apenas Budamix.
+⚠️ **Guardrail nos scripts:** os 3 scripts (`meta-ads-report.py`, `meta-ads-create.py`, `meta-ads-rules.py`) usam `META_AD_ACCOUNT` se definida; sem ela, caem no **fallback Budamix** (`act_1140258596603533`). A whitelist bloqueia qualquer conta fora da lista (ex: GB Distribuição legacy). _(Comportamento atualizado 14/06: era refusar sem a env; agora tem fallback seguro pra não quebrar automação.)_
 
 ---
 
@@ -132,7 +132,7 @@ Detalhes completos: `~/segundo-cerebro/knowledge/concepts/meta-ads-paid-social-2
 | `scripts/meta-ads-create.py` | Criar campanha completa (campaign + adset + ad) | `META_AD_ACCOUNT=act_1140258596603533 python3 scripts/meta-ads-create.py --name "..." --budget 2000` |
 | `scripts/meta-ads-rules.py` | Criar/listar/pausar regras automatizadas | `META_AD_ACCOUNT=act_1140258596603533 python3 scripts/meta-ads-rules.py --list` |
 
-**Sem `META_AD_ACCOUNT`:** scripts refusam executar e mostram contas válidas. Vital pra não operar conta errada.
+**Sem `META_AD_ACCOUNT`:** scripts caem no fallback Budamix (`act_1140258596603533`). A whitelist ainda bloqueia contas inválidas (ex: GB legacy), evitando operar na conta errada. Setar a env explicitamente continua sendo boa prática.
 
 ---
 
@@ -178,18 +178,34 @@ curl -s "https://graph.facebook.com/v25.0/$AC/insights?fields=campaign_name,spen
 
 ---
 
-## Naming Convention (Strategy 2026 Budamix)
+## Naming Convention (PADRÃO ÚNICO — desde 13/06/2026)
+
+> Fonte da verdade: `business/marketing/nomenclatura-ads.md`. **Obrigatório** em toda criação.
+> Separador ` | `; CÓDIGO em MAIÚSCULA; texto livre em minúscula-com-hífen; data auto-ordenável.
 
 ```
-Campaign:   YYYY-MM-DD_[FASE]_[TIPO]_[PRODUTO]_[FAIXA]
-            ex: 2026-06-06_Cold_ASC_IMB501_25-55
-
-AdSet:      [FASE]_[GEO]_[FAIXA]_[PRODUTO]_[EVENTO]
-            ex: Cold_BR_25-55_IMB501_ATC
-
-Ad:         [PRODUTO]_[FORMATO]_[VERSAO]_[OBJETIVO]
-            ex: IMB501 Hero v2 - Cold ASC - 15s 9:16
+CAMPANHA:  MARCA | OBJETIVO | FUNIL | tema-produto | AAAA-MM
+CONJUNTO:  PUBLICO | segmentacao | GEO | POSICIONAMENTO | OTIMIZACAO
+ANUNCIO:   FORMATO | criativo-slug | angulo | vNN-AAAA-MM-DD
 ```
+
+Códigos:
+- **OBJETIVO:** RECON · TRAF · ENG · LEAD · VENDA · APP
+- **FUNIL:** TOPO (frio) · MEIO (morno) · FUNDO (retargeting)
+- **PUBLICO:** FRIO · INT-tema · LAL-1 · RMKT-VC14
+- **POSICIONAMENTO:** IG · FB · IGFB · ADV · REELS
+- **OTIMIZACAO:** VISITA-PERFIL · THRUPLAY · ATC · COMPRA · LPV
+- **FORMATO:** REEL · VIDEO · IMG · CARROSSEL · STORIES
+
+Exemplos reais (em produção):
+```
+BDMX | VENDA | TOPO | asc-imb501 | 2026-06
+FRIO | mulheres-18-65 | BR | IGFB | ATC
+VIDEO | imb501-hero | despensa-baguncada | v1-2026-06-06
+REEL | pote-vidro | chega-inteiro | v1-2026-06-13
+```
+
+⚠️ Padrão antigo (`AAAA-MM-DD_Fase_Tipo_Produto_Faixa`) **descontinuado**. O `meta-ads-create.py` avisa quando o nome foge do padrão. Renomear campanha ativa é cosmético (não reseta learning); manter UTMs antigos pra continuidade.
 
 ---
 

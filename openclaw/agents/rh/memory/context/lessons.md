@@ -1,6 +1,12 @@
 # Lições — RH
 
-_Atualizado: 2026-06-12_
+_Atualizado: 2026-06-13_
+
+## 2026-06-13
+- Nenhum risco novo em 13/06; sábado sem registros deve continuar diferenciado de falta completa quando não há escala específica ou evidência de trabalho.
+- Backlog de 27 comunicações abertas, com 20 bloqueadas por aprovação/orientação do Pedro, segue como principal risco operacional do RH.
+- Casos recorrentes de Sandra, Mateus, Guilherme, Leonardo e Lucas seguem exigindo decisão/orientação antes de novos contatos.
+- Rotação do QR Code operou normalmente; manter monitoramento silencioso.
 
 ## 2026-06-12
 - Lucas voltou a combinar intervalo abaixo de 1h com saída final ausente; padrão recorrente precisa de orientação operacional antes de cobrança/correção.

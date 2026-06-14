@@ -1,6 +1,13 @@
 # Decisões — RH
 
-_Atualizado: 2026-06-12_
+_Atualizado: 2026-06-13_
+
+## 2026-06-13
+- Nenhuma decisão nova de política RH registrada.
+- Mantido bloqueio: consolidação diária de memória não autoriza envio proativo a funcionários.
+- Sábado sem registros permanece tratado como dia não útil sem cobrança automática, salvo escala específica ou evidência de trabalho.
+- Backlog de comunicações RH abertas permaneceu em 27, com 20 exigindo aprovação/orientação do Pedro.
+- Rotação diária do QR Code do Ponto Certo foi considerada OK em 13/06.
 
 ## 2026-06-12
 - Nenhuma decisão nova de política RH registrada.

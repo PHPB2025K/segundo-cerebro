@@ -1,13 +1,13 @@
 # Pendências — RH
 
-_Atualizado: 2026-06-12_
+_Atualizado: 2026-06-13_
 
-> 12/06 teve compliance com novos pontos a validar e QR Code do Ponto Certo rotacionado com sucesso. Não houve inbound, outbound manual, episódio novo, comunicação nova, resposta recebida ou caso resolvido. Backlog segue em 27 comunicações abertas, 20 exigindo aprovação/orientação do Pedro. Consolidação não autoriza WhatsApp proativo.
+> 13/06 foi sábado quieto: 0 registros de ponto de funcionários ativos, QR Code do Ponto Certo rotacionado com sucesso e nenhuma conversa/comunicação RH nova. Backlog segue em 27 comunicações abertas, 20 exigindo aprovação/orientação do Pedro. Consolidação não autoriza WhatsApp proativo.
 
 ## 🔴 Prioridade Alta
 - [ ] **Backlog RH aguardando orientação do Pedro** — 27 comunicações permanecem abertas; 20 exigem aprovação/orientação antes de qualquer ação. Distribuição: Sandra 6; Mateus 6; Guilherme 5; Leonardo 4; Lucas 3; Franciele 2; Yasmin 1.
 - [ ] **Sandra — caso sensível recorrente** — sem marcações em 01/06, 02/06, 03/06, 05/06, 08/06, 09/06, 10/06 e 11/06. Validar com Pedro antes de qualquer contato/cobrança.
-- [ ] **Leonardo e Mateus — lote 04/05–09/05** — seguem abertos após mais de 21 dias úteis sem resposta; precisam de decisão humana para evitar escalamentos repetitivos.
+- [ ] **Leonardo e Mateus — lote 04/05–09/05** — seguem abertos após mais de 22 dias úteis sem resposta; precisam de decisão humana para evitar escalamentos repetitivos.
 - [ ] **Casos semanais 01/06–06/06** — Franciele, Guilherme, Leonardo, Lucas, Mateus e Sandra tiveram comunicações criadas em 08/06 às 10:10 BRT e todas ficaram aguardando aprovação/orientação do Pedro.
 - [ ] **Recorrência por funcionário** — Guilherme, Lucas, Leonardo e Mateus seguem exigindo leitura de histórico/contexto antes de cobrança; em especial intervalos abaixo de 1h, jornadas especiais e pendências antigas.
 

@@ -2,7 +2,7 @@
 
 Registro operacional de mudanças/revisões de regras, políticas e taxas que podem impactar vendas, margem, exposição, frete, campanhas ou interpretação do Daily Sales Report v2.
 
-_Atualizado automaticamente em 2026-06-13 06:23 BRT por `daily-sales-v2-marketplace-rules-watch.py`._
+_Atualizado automaticamente em 2026-06-14 06:23 BRT por `daily-sales-v2-marketplace-rules-watch.py`._
 
 ## Como usar no Daily Sales Report v2
 - Usar como contexto causal/hipótese, não como explicação automática.
@@ -35,7 +35,7 @@ _Atualizado automaticamente em 2026-06-13 06:23 BRT por `daily-sales-v2-marketpl
   - Subsídio PIX/cupons pode alterar ticket e conversão sem necessariamente indicar mudança orgânica de demanda.
 
 ## Amazon
-- **Status:** ✅ revisão vigente até 2026-06-17
+- **Status:** 🟡 revisão próxima (2026-06-17)
 - **Última atualização da skill:** 2026-06-10
 - **Próxima revisão prevista:** 2026-06-17
 - **Cron/revisão profunda:** Amazon Fees Monitor — quarta 10h SP

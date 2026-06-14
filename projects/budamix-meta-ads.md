@@ -218,6 +218,14 @@ Nova frente de **topo de funil**: promover os reels orgânicos do @budamix.br pr
 - Receita correta pra promover reel orgânico: criativo **minimal** `{name, source_instagram_media_id}` — incluir `object_story_spec` dispara exigência de `link`. O `meta-ads-create.py` do Spark **não cobre** esse caso (só image/link) → candidato a upgrade.
 - "Vendas via Insta" medidas por **cupom INSTA** (marketplaces + site) + UTM na bio. Pixel ainda com **0 Purchase em 28d** → não otimizar pra venda ainda.
 
+## Acompanhamento / Dashboard (criado 14/06/2026)
+
+Stack de monitoramento de Meta Ads, em 3 camadas:
+
+1. **Daily pulse generalizado** — `mission-control/scripts/spark-meta-daily-pulse.py` agora cobre **todas as campanhas** (antes só Camp 1 hardcoded): totais da conta (today+7d) + breakdown por campanha + anomalias por campanha. Grava em `meta.daily_pulses` (Supabase Spark ADS) e posta no Telegram thread Marketing. Flags novas: `--dry` (não grava/não envia) e `--no-telegram`. Cron 10:20 BRT mantido. Backup `.bak-20260614`.
+2. **RLS habilitado** nas 3 tabelas `meta.*` (`daily_pulses`, `recommendations`, `actions_log`) — antes expostas via anon. Pulse migrado pra **service_role** (`SPARK_ADS_SERVICE_ROLE_KEY` no env do mission-control, do 1P "Supabase - Spark Ads"); service_role ignora RLS, anon trancado. Upsert idempotente via `on_conflict=account_id,pulse_date`.
+3. **Módulo "Meta Ads" no GB HUB** (`budamix-central`, Next.js) — rota `(dashboard)/meta-ads` + API `api/meta-ads`. Consulta a **Meta Marketing API ao vivo** (token Budamix no `.env` do app): seletor de período (hoje/7/14/30/90d/máx), multi-seleção de campanhas, KPI cards (spend, impressões, alcance, CTR, CPM, CPC, freq, ATC, compras, ROAS), gráfico de tendência diária (recharts) e tabela por campanha. Item "Ads" da sidebar habilitado → "Meta Ads". Build validado.
+
 ## Notas relacionadas
 
 - [[business/marketing/nomenclatura-ads]] — padrão de nomes de campanhas/conjuntos/anúncios

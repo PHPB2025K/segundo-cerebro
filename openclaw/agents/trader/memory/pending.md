@@ -1,12 +1,15 @@
 # Pendências — Trader
 
-_Atualizado: 2026-06-12_
+_Atualizado: 2026-06-13_
 
 ## 🔴 Prioridade Alta
 
 ### Daily Sales Report
 
 
+- [ ] Daily Sales 12/06/2026 BRT: confirmar se o pacote/report diário foi gerado fora da memória consultada ou se houve falha/lacuna do pipeline; não usar variações do dia em narrativa executiva até localizar fonte canônica.
+- [ ] Granola/Himmel 13/06/2026 BRT: sincronização de novas notas falhou por API 403/assinatura inativa; corrigir acesso para garantir captura de contexto novo de Shopee/ML. Até lá, usar contexto existente com cautela por possível defasagem.
+- [ ] Rules Watch ML/Shopee 13/06/2026 BRT: revisões seguem vencidas (ML desde 01/06, Shopee desde 02/06); atualizar antes de usar mudança de taxa/frete/regra como causa forte em junho.
 - [ ] Mercado Livre 08–11/06/2026 BRT: sequência 201 → 168 → 185 → 185 pedidos mantém hipótese de patamar superior em volume, mas 11/06 teve GMV/ticket menor (R$ 7.304,72 / R$ 39,48); validar D+7 cruzando ADS, estoque Full, cancelamentos, mix de Potes Vidro 5 Peças e margem/ticket.
 - [ ] Daily Sales v2 11/06/2026 BRT / Yasmin: preview Mercado Livre ficou APPROVED_WITH_REMARKS sem blockers; corrigir/decidir ressalvas de short names fora do Top 5 e regra Gate 12 ADS lag antes de qualquer avanço, mantendo envio real bloqueado até aprovação Kobe/Pedro.
 - [ ] Daily Sales v2 / Gate 12 ADS lag: decidir se inconsistência de input fundamentada por 13+ ciclos de memória deve ser classificada como fato fundamentado ou hipótese em aberto na L04/L05.
@@ -48,7 +51,6 @@ _Atualizado: 2026-06-12_
 - [ ] Daily Sales v2 02/06–04/06/2026 BRT: confirmar/absorver artefatos finais dos ciclos de junho que ainda não foram consolidados na memória diária; 05/06 já teve report público e pacote canônico gerados em 06/06, mas os ciclos individuais Slack Writer/QA para Lucas, Yasmin e Leonardo seguem sem evidência final.
 - [ ] Daily Sales v2 05/06/2026 BRT: pacote canônico ficou **DADOS_PARCIAIS** por pico positivo da Shopee Conta 2 (39 pedidos vs média 30d de 22,7, +71,8%); validar se foi redistribuição planejada entre contas, efeito ADS/cupom/afiliados ou ponto isolado antes de tratar como novo patamar.
 - [ ] Amazon 05/06/2026 BRT: monitorar recorrência de 6 cancelamentos; se persistir, quebrar por ASIN e checar FBA/Buy Box/indisponibilidade antes de escalar ADS.
-- [ ] Rules Watch ML/Shopee: revisões seguem vencidas (ML desde 01/06, Shopee desde 02/06); atualizar antes de usar mudança de taxa/frete/regra como causa forte em junho.
 - [ ] Daily Sales v2 01/06/2026 BRT: Daily Sales público foi enviado, mas não foram detectados artefatos finais de Slack Writer/QA para Lucas, Yasmin e Leonardo; investigar lacuna antes de qualquer send-candidate.
 - [ ] Mercado Livre: validar se a sequência de 189 pedidos em 31/05 e 206 pedidos em 01/06 sustenta escala real ou é pico de curto prazo; cruzar ADS, estoque/Full, ranking, cancelamentos e concentração em Potes Vidro 5 Peças.
 - [ ] Mercado Livre / MDF: acompanhar execução da diretriz de Pedro para aumentar investimento em MDF mesmo com ACoS alto; separar ACoS/TACoS e resultado incremental de MDF do restante do mix entre 03/06 e 10/06.

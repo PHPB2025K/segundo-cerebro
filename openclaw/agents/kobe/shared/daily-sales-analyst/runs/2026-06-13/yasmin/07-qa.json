@@ -1,0 +1,65 @@
+{
+  "resultado_qa": "APROVADO COM RESSALVA",
+  "motivo": "A mensagem passa em todos os gates críticos: estrutura correta na ordem aprovada, data/período BRT corretos, destinatário Yasmin e plataforma Mercado Livre confirmados, dados da VISÃO batem com o pacote validado, fidelidade à L05 preservada com 3 insights e 3 prioridades, classificações respeitadas (risco latente com linguagem condicional, fatos com afirmação direta), bloqueios respeitados (nenhum declarado em L04 e L05), ml_snapshot internamente consistente sem contaminação propagada. Foram identificados 2 Menores em gates distintos: (1) KIT4YW640 aparece no Top Produtos sem slack_short_name mapeado, fallback automático corretamente aplicado — sinal de manutenção; (2) 'Platinum' usado sem prefixo 'MercadoLíder' em dois pontos da mensagem, divergindo da grafia exata obrigatória. Pela tabela de agregação: 0 Críticos + 0 Maiores + 2 Menores não sistêmicos = APROVADO COM RESSALVA.",
+  "send_allowed": true,
+  "send_real_allowed": false,
+  "gates_avaliados": {
+    "gate_1_data_periodo_fonte": "OK",
+    "gate_2_destinatario_plataforma_responsavel": "OK",
+    "gate_3_estrutura_slack": "OK",
+    "gate_4_visao_plataforma": "OK",
+    "gate_5_top_produtos": "RESSALVA",
+    "gate_6_analise_conta": "OK",
+    "gate_7_prioridades": "OK",
+    "gate_8_bloqueios_confianca_logs": "OK",
+    "gate_9_consistencia_camadas": "OK",
+    "gate_10_tom_utilidade": "RESSALVA",
+    "gate_11_padrao_numerico_formatacao": "OK",
+    "gate_12_consistencia_ml_snapshot": "OK"
+  },
+  "contagem_severidade": {
+    "criticos": 0,
+    "maiores": 0,
+    "maiores_gates_distintos": 0,
+    "menores": 2,
+    "regra_agregacao_aplicada": "0 Críticos + 0 Maiores + 2 Menores em gates distintos (Gate 5 e Gate 10), não sistêmicos — não comprometem clareza nem consistência geral da mensagem → APROVADO COM RESSALVA"
+  },
+  "problemas_encontrados": [
+    {
+      "severidade": "Menor",
+      "gate": "5 — Top Produtos",
+      "texto_atual": "Kit 4 Potes de Vidro 640ml Tampa Hermético Azul-petróleo — 8 pedidos",
+      "texto_esperado": "Nome via slack_short_name manual (ausente); fallback display_short 'Kit 4 Potes de Vidro 640ml Tampa Hermético Azul-petróleo' foi corretamente aplicado",
+      "estado_atual": "KIT4YW640 (MLB5402326666) aparece como 4º item do Top Produtos com slack_short_name=null; L06 usou o display_short como fallback automático — comportamento previsto e correto pela hierarquia de nomes",
+      "estado_esperado": "Entrada manual para KIT4YW640 adicionada em config/slack-short-names-ml.json para eliminar dependência de fallback em ciclos futuros",
+      "regra_violada": "Gate 5: produto no Top Produtos com slack_short_name=null deve ser registrado como Menor — sinal para inclusão no mapeamento canônico na próxima manutenção",
+      "bloqueia_envio": false
+    },
+    {
+      "severidade": "Menor",
+      "gate": "10 — Tom e utilidade",
+      "texto_atual": "comprometer o Platinum sem o Faturamento cair / critério qualitativo do Platinum que não depende de queda no Faturamento",
+      "texto_esperado": "comprometer o MercadoLíder Platinum sem o Faturamento cair / critério qualitativo do MercadoLíder Platinum que não depende de queda no Faturamento",
+      "estado_atual": "'Platinum' usado como referência curta sem o prefixo 'MercadoLíder' em dois pontos da mensagem: análise bullet 1 e prioridade 1. O padrão foi herdado da L05, que também usou a forma curta nos mesmos contextos.",
+      "estado_esperado": "Grafia completa 'MercadoLíder Platinum' em todas as menções, conforme vocabulário oficial obrigatório",
+      "regra_violada": "Gate 10: vocabulário MercadoLíder oficial — os três níveis devem aparecer com grafia exata: MercadoLíder, MercadoLíder Gold, MercadoLíder Platinum",
+      "bloqueia_envio": false
+    }
+  ],
+  "correcoes_obrigatorias_antes_envio": [],
+  "ressalvas_memoria_interna": [
+    "KIT4YW640 (MLB5402326666, 8 pedidos em 13/06): adicionar entrada em config/slack-short-names-ml.json na próxima manutenção para eliminar fallback automático no Top Produtos",
+    "Grafia curta 'Platinum' é padrão recorrente desde L05 — padronizar nas camadas L05 e L06 para sempre usar 'MercadoLíder Platinum' nos próximos ciclos",
+    "Todos os demais slack_short_names dos top 5 do dia foram aplicados corretamente: IMB501P 'Potes Vidro 5 Peças — Tampa Preta', IMB501C 'Potes Vidro 5 Peças — Tampa Cinza', IMB501V 'Potes Vidro 5 Peças — Tampa Vermelha', KIT10YW520 'Kit 10 Potes 520ml' — mapeamentos canônicos preservados sem alteração",
+    "Nomes de produto consistentes entre Top Produtos, Análise e Prioridades: IMB501 referenciado como bloco de variações com nomes curtos, KIT3S099 via display_short, KIT4YW1050 via slack_short_name — cross-section coerente"
+  ],
+  "ressalvas_auditoria_nao_bloqueante": [
+    "top_items_details tem 9 entradas enquanto top_products tem 10: IMB501P (Tampa Preta) e IMB501C (Tampa Cinza) compartilham platform_item_id MLB3288536143, aparecem como 2 linhas em top_products mas como 1 em top_items_details. Efeito esperado da arquitetura multi-variação no mesmo anúncio ML; L04 mapeou corretamente via confirmed_variation_attributes — não distorce análise",
+    "'cancellations_rate' aparece como termo técnico não traduzido em dois pontos da mensagem (análise bullet 1 e prioridade 1). Yasmin conhece o painel ML e o termo, mas para consistência com o padrão de simplificação operacional considerar traduzir para 'taxa de cancelamentos da reputação' nos próximos ciclos",
+    "ROAS 14,34x mantido com 2 casas decimais: não é percentual, regra de 1 casa não se aplica. Correto. Registrar para clareza de critério em ciclos futuros",
+    "L06 corrigiu 'R$ 5.421' da L05 para 'R$ 5.421,27' em dois pontos (faturamento do dia e contexto de prioridade 3) — comportamento correto de fidelidade ao pacote com precisão de centavos; confirma que L06 aplicou regra numérica sobre L05 sem distorcer tese"
+  ],
+  "llm_used": true,
+  "model": "claude-sonnet-4-6",
+  "fallback": false
+}

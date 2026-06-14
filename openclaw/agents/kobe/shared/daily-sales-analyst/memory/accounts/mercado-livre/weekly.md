@@ -33,6 +33,19 @@ Consolidação semanal da conta. Atualizada toda segunda de manhã ou após 7 en
 
 _Blocos diários abaixo. Job `daily-memory-ingest-ml.py` adiciona um bloco por dia. Rotação automática mantém os últimos 14 dias._
 
+### Dia analisado: 2026-06-13
+_ingestido em 2026-06-14T07:21:34-03:00 BRT | confiança L05: alta | insights L05: 3 (2 fato, 1 hipótese/risco latente) | prioridades L05: 3_
+
+**Memória para o próximo ciclo (da L05):**
+- Kit 3 Potes Vidro Hermético Vedação Tampa 4 Travas Marmita Azul-petróleo (MLB4076957145, Full, nível bom 0,85): fechou 13/06 com available_quantity=4 POST-baixa de 5 pedidos e snapshot 14/06 09:50 UTC ainda active — confirmar amanhã se restock entrou (≥15), se virou paused ou se cancellations_rate saiu de zero
+- Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo (MLB4073003575, Full gold_pro, nível regular 0,75): available_quantity 13→11 entre 12/06 e 13/06, quarto ciclo consecutivo sem restock efetivo desde 09/06 — confirmar amanhã se reposição entrou (≥20) ou se cruzou abaixo de 6
+- Cluster IMB501 carregou 51,3% nominalmente, mas a vulnerabilidade orgânica (MLB3288536143 Full, nível regular 0,71 no 18º+ ciclo) está concentrada em Preta+Cinza = 42,7% do dia; Tampa Vermelha (MLB4535659243 Cross-Docking, sem nível calculado pelo ML, estoque 8.193) tem mecânica distinta e não compartilha o risco — gatilho com Himmel segue sendo cruzar abaixo de 0,68 em dois ciclos
+- MercadoLíder Platinum confirmado com buffer R$ 27.667 acima do threshold (sales_60d R$ 323.667, ritmo R$ 5.394/dia vs mínimo ~R$ 4.933/dia) — risco que pode mover a medalha é qualitativo (cancellations_rate sair de zero), não financeiro; ratings_negative em 0,41 segue como vetor latente paralelo
+- Fatia do ADS no faturamento foi de 62,3% (R$ 3.375,77 / R$ 5.421,27) com ROAS 14,34x e ACOS 4,41% — quarto ponto da correlação 'Faturamento comprimido em sábado = share alto por denominador'; série de autonomia orgânica (09/06 44,3%, 12/06 42,0%) segue suspensa até próximo ciclo com Faturamento ≥ R$ 6.000
+- Mix de modalidade de envio do top10 13/06 em Full 71,4% / Cross-Docking 28,6% divergiu -7,8pp vs 30d (Full 79,2%) integralmente por composição produto-específica (Tampa Vermelha + Kit 10 Potes 520ml no topo); base ativa segue 41,5% Full / 58,5% Cross-Docking; Flex 0% por decisão operacional — registrar como ponto de observação se padrão se repetir
+- Kit 4 Potes De Vidro 640ml Tampa Hermético 4 Travas Vedação Azul-petróleo (MLB5402326666, Full Clássico, nível preocupante 0,66): 7º+ ciclo idêntico, estoque 30 un (~3,75 dias de runway) — risco é exposição orgânica em ranking de categoria, gatilho de alinhamento com Himmel segue sendo cair abaixo de 0,63 em dois ciclos
+- Pendências estruturais persistentes do pacote ML (22º+ ciclo desde 22/05): breakdown ADS spend/revenue por platform_item_id; série temporal interna de nível de qualidade por anúncio + drivers; lista granular cancelamentos order_id↔platform_item_id↔motivo; ETA de reposição em trânsito ao CD do ML por anúncio; available_quantity por variação em anúncios multi-variação
+
 ### Dia analisado: 2026-06-12
 _ingestido em 2026-06-13T07:16:11-03:00 BRT | confiança L05: alta | insights L05: 3 (2 fato, 1 hipótese/risco latente) | prioridades L05: 3_
 
@@ -201,19 +214,6 @@ _ingestido em 2026-05-31T07:13:05-03:00 BRT | confiança L05: media | insights L
 - 2 cancelamentos no terceiro ciclo não-zero disponível (25/05: 3, 26/05: 3, 30/05: 2), nenhum top anúncio paused, breakdown order_id↔platform_item_id ausente — hipótese de causa comum permanece em aberto; relevante se cancellations_rate da reputação sair de zero.
 - MercadoLíder Platinum: gap R$23.327,75, progresso 92,12%, ETA 5,1 dias ao ritmo R$4.544,54/dia — Faturamento do dia (R$5.678,64) acima do pace; qualquer cancelamento automático nos dois Full em cobertura crítica comprime diretamente a janela.
 - Pendências estruturais recorrentes do pacote ML (desde 22/05): (1) breakdown ADS spend/revenue por platform_item_id; (2) lista granular de cancelamentos com order_id↔platform_item_id↔motivo; (3) série temporal de nível de qualidade por anúncio; (4) estoque em trânsito ao CD do ML / ETA de reposição Full.
-
-### Dia analisado: 2026-05-26
-_ingestido em 2026-05-27T07:18:48-03:00 BRT | confiança L05: media | insights L05: 3 (1 fato, 2 hipótese/risco latente) | prioridades L05: 3_
-
-**Memória para o próximo ciclo (da L05):**
-- Sétimo ciclo idêntico de nível de qualidade do Jogo Potes De Vidro 5 Peças Claro Mantimentos Marmita (MLB3288536143, 0,71) e do Kit 4 Potes De Vidro Hermético 1050ml Tampa 4 Travas Vedação Azul-petróleo (MLB4073003575, 0,75) — oitavo ciclo segue sendo o ponto de observação; gatilho L02 é cair abaixo de 0,68 em qualquer um dos dois.
-- Kit 6 Canecas Porcelana Tulipa Lisa 250ml (MLB6167272090, Full ativo): 2 unidades pós-baixa de 4 pedidos do dia, sétimo ciclo de monitoramento sem reposição confirmada — verificar amanhã se anúncio segue ativo, se entrou em ruptura ou se cancelamento automático foi registrado.
-- Kit De 6 Canecas De Porcelana Lisa Reta Para Chá E Café Colorida 200 Ml Caneca Colorida (MLB6232315532, Catálogo gold_pro Full): primeiro ciclo na zona crítica com 31 unidades pós-baixa de 15 pedidos (cobertura prospectiva ~2,1 dias) — confirmar amanhã se reposição entrou ou se cobertura caiu abaixo de 10 unidades.
-- 3 cancelamentos pelo segundo dia consecutivo, mesmo volume exato — sem breakdown order_id↔platform_item_id, origem não atribuível; monitorar se cancellations_rate da reputação sai de zero nos próximos 3-5 ciclos (sinal de fonte comum ativa).
-- Cluster IMB501 (MLB3288536143, Full) em 44,8% do dia (Tampa Preta 40 + Tampa Cinza 12 + Tampa Vermelha 12 = 64 pedidos) — concentração retornou ao patamar histórico após o pico de 56,5% em 25/05 (efeito de denominador da segunda-feira de baixo volume).
-- ADS carregou 60,7% do faturamento com ROAS 13,9x e ACOS 10,96% — terceiro ponto consecutivo de ACOS acima do baseline ~4,4% (22-23/05), mas ROAS muito acima do limiar de ineficiência; se próximo ciclo mantiver ACOS acima de 10% com fatia de ADS acima de 60%, vira gatilho de alinhamento Yasmin–Himmel sobre cobertura e mix de campanhas.
-- MercadoLíder Gold com gap para Platinum em R$ 42.460,66, progresso 85,66%, ritmo R$ 4.225,66/dia, ETA ~10 dias — faturamento do dia (R$ 7.394) opera 75% acima do pace; fora do gatilho de Slack (gap > R$ 30k) mas qualquer cancellations_rate > 0 ou ruptura na Tulipa/Catálogo aperta a janela.
-- Pendências estruturais recorrentes do pacote ML (desde 22/05): (1) breakdown ADS por platform_item_id; (2) lista granular de cancelamentos com order_id↔platform_item_id; (3) série temporal de nível de qualidade por anúncio; (4) ETA de reposição em trânsito ao CD do ML.
 
 ---
 

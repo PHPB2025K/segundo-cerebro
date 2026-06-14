@@ -17,6 +17,7 @@ tags:
 
 | Prazo | Entrega | Status | Nota |
 |-------|---------|--------|------|
+| **~18/06/2026** | **Meta Ads — avaliar campanha de seguidores pós-aprendizado** | ⏳ Monitor | Qual reel converte melhor em seguidor; decidir escalar orçamento (hoje R$40/dia). Baseline 2.934 seguidores em 14/06. Ver [[projects/budamix-meta-ads]] |
 | **29/05/2026** | **Estoque GB — receber dos analistas lista de envios FULL criados em 28/05** | 🟡 Aguardando | Leonardo (FBA AMAZON), Lucas (FULL SHOPEE 1/2/3), Yasmin (FULL ML). Após receber: corrigir lib/envios-full.ts, limpar amazon_full do banco, aplicar baixa filtrada. |
 | 07/05/2026 | Social Studio Reborn — Fase A merge PR #3 | ✅ Concluído | commit 32c22bd em main |
 | 07/05/2026 | Social Studio Reborn — Fase B merge PR #4 | ✅ Concluído | commit dfb9dda em main, smoke E2E validado |

@@ -12,7 +12,15 @@ tags:
 
 > Marco operacional definido por Pedro em 04/05/2026: remover completamente das pendências/inconformidades tudo referente a abril/2026. Pedro vai regularizar abril; a fila passa a contar a partir de 04/05, primeiro dia útil pós-refatoração. Registros históricos permanecem apenas em sessões/decisões, não como pendência ativa.
 
-_Atualizado: 2026-06-10 16:30 BRT — LP institucional GB Importadora: Fase 0 (mockup) concluída e aprovada, identidade "Casa de Comércio" definida. Ver [[projects/gb-importadora-lp]]. Antes: refatoração pipeline estoque (6 fixes + CMV Full religado, ~R$ 29k receita + R$ 10k CMV recuperados). Ver [[automacoes/scripts/estoque-pipeline-fixes-jun26]]._
+_Atualizado: 2026-06-14 — Meta Ads: campanha de seguidores (reels @budamix.br) NO AR (R$40/dia, IG, 6 estados); nomenclatura de ads padronizada; Spark repontado pra conta Budamix. Ver [[projects/budamix-meta-ads]] + [[business/marketing/nomenclatura-ads]]._
+
+## 🟢 Meta Ads — Campanha de Seguidores @budamix.br (no ar 14/06)
+
+- [ ] **Avaliar pós-aprendizado (~18/06)**: ver qual dos 3 reels converte melhor em seguidor e decidir se escala orçamento (hoje R$40/dia). Baseline: 2.934 seguidores em 14/06.
+- [ ] **Renomear slugs `a-confirmar`** dos 2 reels enviados (`enviado-af9a` / `enviado-7efc`) depois que Pedro conferir no preview qual é "o antes" vs "40 min na cozinha".
+- [ ] **Monitorar custo da Camp 1 (vendas)** na 1ª semana — overlap de público pode encarecer; se subir muito, separar públicos.
+- ✅ ~~Conta Budamix UNSETTLED~~ → RESOLVIDO 14/06 (Pedro quitou saldo, conta reativada).
+- ✅ ~~2 reels barrados por música~~ → RESOLVIDO 14/06 (subidos como vídeo via /advideos; aprovados na revisão).
 
 ## 🟡 GB Importadora — LP institucional (Fase 0 ✅ 10/06, Fase 1 prevista 11/06)
 

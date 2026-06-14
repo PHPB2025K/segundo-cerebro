@@ -205,3 +205,11 @@ No Daily Sales v2, um preview foi bloqueado porque uma métrica parcial de fulfi
 ## 2026-06-12 — [TÁTICA] Alias de estoque aprovado não pode virar regra por similaridade
 
 Na correção da fila marketplace de 11/06, `CK4742_B2` e `KFJ004` só foram aplicados depois de validação na planilha/pedido e teste seco de saldo. Mesmo quando o padrão parece óbvio, alias de SKU muda estoque físico e CMV; não extrapolar para SKUs parecidos, cores próximas ou famílias relacionadas sem nova validação na aba correta do marketplace e prova operacional suficiente.
+
+## 2026-06-13 — [TÁTICA] Envio para Full/FBA e venda Full/FBA mexem no estoque em momentos diferentes
+
+Na correção do cron ENVIOS FULL, a primeira interpretação segura demais impediu baixa física dos envios, confundindo envio para estoque do marketplace com venda já feita pelo marketplace. A regra correta é temporal: quando a mercadoria sai do galpão para Full/FBA, baixa o estoque físico; quando uma venda Full/FBA acontece depois, não baixa de novo. Separar esses dois eventos evita tanto subbaixa quanto baixa duplicada.
+
+## 2026-06-13 — [TÁTICA] Fallback por descrição só entra depois que SKU/alias falha com segurança
+
+No caso da Caneca Paris 170ml Branca em ENVIOS FULL, o SKU/alias levava para kit inexistente no físico, mas a descrição permitia match conservador correto contra o catálogo. Para rotinas de estoque, descrição é fallback útil, não fonte primária: priorizar SKU físico direto, depois alias validado, e só então descrição normalizada com alta confiança; se houver ambiguidade, manter pendente em vez de aplicar baixa.

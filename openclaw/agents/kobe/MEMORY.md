@@ -10,7 +10,7 @@ tags:
 
 # MEMORY.md — Índice Central de Memória
 
-_Último update: 2026-06-12 23:45 BRT (consolidação diária em camadas)._
+_Último update: 2026-06-13 23:45 BRT (consolidação diária em camadas)._
 
 ---
 
@@ -136,25 +136,30 @@ skills/
 | **Vault** | Finanças, tesouraria, caixa | agents/vault | ✅ Operacional |
 | **Scout** | Reposição, demanda, estoque, compras semanais | agents/compras | ✅ Fundação criada + Radar |
 
-## Status do Sistema (12/06/2026 23:45 BRT — consolidação diária em camadas)
+## Status do Sistema (13/06/2026 23:45 BRT — consolidação diária em camadas)
 
 ### 🚨 Crítico
-- **Atualização executiva 12/06:** Estoque aplicou aliases seguros `CK4742_B2→CK4742_B` e `KFJ004→KJP003` após autorização, teste seco e reprocessamento idempotente, reduzindo a fila marketplace de 11/06 de 8 para 6 casos, agora só por falta de saldo. Daily Sales 11/06 ficou DADOS_OK: marketplaces R$ 13.125,17, 313 pedidos, ticket R$ 41,93 e 13 cancelamentos; Mercado Livre manteve 185 pedidos pelo segundo dia, mas GMV/ticket caíram, então o alerta é validar mix/ticket/ADS/Full/margem antes de tratar como ganho estrutural. Preview Yasmin/ML avançou para aprovado com ressalvas, mas Lucas/Shopee e Leonardo/Amazon seguem sem preview final detectado. Spark e Builder ficaram quietos; Spark segue sem evidência registrada do daily pulse Meta Ads de 09/06–12/06. Fisco manteve Matriz OK nas validações úteis, Filial Bling 403 pelo 29º dia e alerta WhatsApp falhando. RH manteve 27 comunicações abertas/20 dependentes e trouxe novos pontos de Guilherme, Lucas e Leonardo.
-- **Daily Sales / Marketplaces:** envio real a funcionários segue bloqueado; resolver ressalvas do preview Yasmin/ML e confirmar Lucas/Shopee e Leonardo/Amazon antes de qualquer avanço. Validar a sequência ML 201 → 168 → 185 → 185 por ADS, Full, cancelamentos, mix, margem e ticket.
-- **Estoque / Controle diário:** formato de 3 seções continua obrigatório e fail-closed. Aliases de 12/06 são restritos aos casos validados; não extrapolar para SKUs parecidos sem nova consulta à aba do marketplace/planilha.
+- **Atualização executiva 13/06:** Envios Full voltou a rodar silenciosamente com baixa física real no estoque do galpão e sem mensagem própria no Telegram; fallback por descrição corrigiu Caneca Paris 170ml Branca e o reprocessamento/backfill desde 10/06 consolidou 94 unidades baixadas, 5 movimentos aplicados e 0 divergências restantes. Trader não encontrou pacote Daily Sales referente a 12/06; não usar narrativa executiva desse dia sem localizar/confirmar o pacote. Granola/Himmel rodou contexto para ML/Shopee, mas novas notas não foram sincronizadas por API 403/assinatura inativa. Spark seguiu sem evidência registrada do daily pulse Meta Ads. Fisco teve Matriz OK nas cinco execuções úteis, Filial Bling 403 pelo 30º dia e alerta WhatsApp falhando. RH ficou quieto no sábado, com QR Code validado e backlog mantido em 27 comunicações abertas/20 dependentes.
+- **Daily Sales / Marketplaces:** envio real a funcionários segue bloqueado; confirmar geração/localização do Daily Sales 12/06 e atualizar Rules Watch de ML/Shopee antes de usar variações/regras externas como causa forte.
+- **Estoque / Controle diário:** formato de 3 seções continua obrigatório e fail-closed. Envios Full deve aparecer somente dentro do Controle de Estoque, mas agora com baixa física real quando houver envio para estoque do marketplace; venda Full/FBA continua sem baixa física duplicada.
 - **Bling/Fisco/RH:** Filial Bling continua bloqueada por HTTP 403/empresa inativa; Matriz exige teste controlado antes de operação fiscal. RH precisa orientação do Pedro antes de qualquer contato proativo, especialmente backlog recorrente de Sandra, Mateus, Lucas, Leonardo e Guilherme.
 
 ### ⚠️ Importante
-- **Meta Ads Budamix:** Camp 1 permanece em aprendizado/freeze pós-exclusão do Audience Network, mas o daily pulse Meta Ads ainda não tem evidência registrada na memória do Spark até 12/06; reconciliar antes de confiar no histórico operacional.
+- **Meta Ads Budamix:** Camp 1 permanece em aprendizado/freeze pós-exclusão do Audience Network, mas o daily pulse Meta Ads ainda não tem evidência registrada até 13/06; reconciliar antes de confiar no histórico operacional.
+- **Granola/Himmel:** contextos existentes continuam úteis, mas a ingestão de reuniões novas está bloqueada por assinatura/API 403; corrigir assinatura/acesso antes de depender de contexto recente.
 - **LP GB Importadora:** Fase 1 segue dependente de domínio, repo, assets de marca e dados comerciais. A LP deve ser institucional, sem venda online.
-- **CMV/Estoque:** backfill Full recuperou cerca de R$29k de receita e R$10k de CMV que estavam zerados; manter monitoramento diário, dedupe idempotente e fila de falta de saldo sem baixa cega.
 
 ### ✅ Operacional
 - **Consolidação em camadas:** digests dos cinco agentes diretos chegaram e foram lidos; nenhum digest ausente.
-- **Estoque:** fila marketplace de 11/06 reduzida após aliases autorizados e reprocessamento seguro; divergências restantes são falta de saldo, não mapeamento novo confirmado.
-- **Gestão de Funcionários:** rotina semanal Slack rodou e registrou acompanhamento operacional forte, mas sem atas padronizadas `#ata-reuniao` para Yasmin, Lucas e Leonardo.
+- **Estoque:** Envios Full reativado com baixa física real, modo silencioso e fallback por descrição; 0 divergências restantes no backfill de 13/06.
+- **RH:** sábado sem ocorrência nova; ausência de ponto sem escala específica não deve virar falta automática.
 - **Vault / segundo-cérebro:** regra operacional mantida: este cron não faz commit; fechamento técnico das 00:05 BRT cuida de commit/index/sanity check.
 
+## Qualidade da Memória (Consolidação Diária em Camadas 13/06 — 23:45 BRT)
+- Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos definidos para o ciclo; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
+- Digests lidos: Trader, Spark, Builder, Fisco e RH. Nenhum digest ausente neste fechamento.
+- Marcos globais incorporados: Envios Full voltou a operar silenciosamente com baixa física real; fallback por descrição resolveu Caneca Paris 170ml Branca; backfill desde 10/06 consolidou 94 unidades baixadas, 5 movimentos aplicados e 0 divergências. Granola/Himmel ficou bloqueado para notas novas por assinatura/API 403.
+- Riscos críticos vindos dos digests: Daily Sales 12/06 não localizado; Rules Watch de ML/Shopee vencido; daily pulse Meta Ads sem evidência registrada até 13/06; Filial Bling 403 pelo 30º dia e alerta WhatsApp falhando; RH com 27 comunicações abertas/20 dependentes, sem ocorrência nova no sábado.
 
 ## Qualidade da Memória (Consolidação Diária em Camadas 12/06 — 23:45 BRT)
 - Kobe consolidou apenas o próprio dia/main e os digests dos agentes diretos definidos para o ciclo; não varreu memória interna de Trader, Spark, Builder, Fisco ou RH.
@@ -296,6 +301,7 @@ skills/
 - **feedbacks:** registrada rejeição parcial de design do Estoque Fase 1 funcional porém abaixo do padrão visual.
 
 ## Timeline Recente
+- **2026-06-13:** Envios Full foi reativado silenciosamente com baixa física real no estoque do galpão e sem mensagem própria, aparecendo apenas no Controle de Estoque; fallback por descrição resolveu Caneca Paris 170ml Branca e o backfill desde 10/06 consolidou 94 unidades baixadas/5 movimentos/0 divergências. Trader não localizou Daily Sales 12/06; Granola/Himmel ficou bloqueado para notas novas por assinatura/API 403; Spark seguiu sem evidência do daily pulse Meta Ads; Fisco Matriz OK/Filial 403 há 30 dias; RH ficou quieto no sábado com backlog 27/20.
 - **2026-06-12:** Estoque aplicou aliases autorizados `CK4742_B2→CK4742_B` e `KFJ004→KJP003`, reduzindo a fila marketplace de 11/06 para 6 casos de falta de saldo; Daily Sales 11/06 ficou DADOS_OK com R$13.125,17/313 pedidos, ML mantendo 185 pedidos pelo segundo dia e preview Yasmin/ML aprovado com ressalvas, ainda sem Lucas/Shopee e Leonardo/Amazon finais; Spark seguiu sem evidência do daily pulse Meta Ads; Fisco Matriz OK/Filial 403 há 29 dias; RH manteve 27 comunicações abertas/20 dependentes com novos pontos em Guilherme/Lucas/Leonardo.
 - **2026-06-11:** Controle de Estoque diário corrigido para formato obrigatório de 3 seções com trava fail-closed; template técnico antigo e resumo próprio de Envios Full no Telegram proibidos; divergências marketplace de 10/06 zeradas com saldo zerado autorizado e correções `914C_B2`, `SPC0133`, `QCB-003`, `K6CAN250*` e `KIT12FIT500M`; regra de consultar abas MELI/SHOPEE/AMAZON antes de classificar SKU marketplace como erro real. Daily Sales 10/06 ficou DADOS_PARCIAIS por picos positivos e preview Yasmin/ML bloqueado; Spark sem evidência do daily pulse Meta Ads; Fisco Matriz OK/Filial 403 há 28 dias; RH manteve 27 comunicações abertas/20 dependentes.
 - **2026-06-10:** Estoque ganhou formato oficial de Controle diário em 3 seções sem jargão, ciclo de memória para WhatsApp Estoque e regra Envios Full canecas=kits de 6, com correção `TL250B`; CMV Full recuperou cerca de R$29k receita/R$10k CMV. NFs internas maio tiveram DANFEs/XMLs baixados e enviados à FOUR com autorização; assinatura Gmail Pedro perdeu “Sócio Diretor”. GB26003 foi tratado com Open Trade como referência não confirmada; Budamix Central virou GB HUB; LP institucional GB Importadora teve mockup aprovado com identidade Casa de Comércio e domínio `importadoragb.com.br`.
@@ -352,7 +358,7 @@ skills/
 
 ---
 
-_Próximas ações: (1) manter Controle de Estoque fail-closed em 3 seções e tratar qualquer template antigo como regressão, (2) não extrapolar aliases de estoque além dos casos validados e tratar a fila restante de 11/06 como falta de saldo, (3) aguardar resposta da Open Trade sobre GB26003 sem tratar como pedido/embarque real, (4) retomar Fase 1 da LP GB Importadora quando houver domínio/assets/dados comerciais, (5) reativar ENVIOS FULL apenas com liberação explícita + smoke do multiplicador de canecas e considerar auditoria retroativa, (6) reconciliar evidência do daily pulse Meta Ads antes de confiar no monitor, mantendo Camp 1 congelada salvo anomalia crítica, (7) resolver ressalvas do preview Yasmin/ML, confirmar Lucas/Shopee e Leonardo/Amazon e validar ML por mix/ticket/ADS/Full/margem antes de qualquer envio real, (8) validar estabilidade Bling Matriz + desbloquear Filial/alerta WhatsApp antes de nova operação fiscal, (9) orientar RH sobre Sandra/Guilherme/Leonardo/Lucas/Mateus/Yasmin antes de qualquer contato proativo, (10) fechar reposição de canecas após Pedro enviar pedidos em trânsito/já feitos, (11) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT._
+_Próximas ações: (1) manter Controle de Estoque fail-closed em 3 seções e tratar qualquer template antigo como regressão, (2) monitorar Envios Full reativado para garantir baixa física real silenciosa, seção correta no Controle de Estoque e sem divergências, (3) confirmar geração/localização do Daily Sales 12/06 antes de usar narrativa executiva, (4) corrigir assinatura/acesso Granola/Himmel para voltar a capturar notas novas, (5) não extrapolar aliases de estoque além dos casos validados e tratar a fila restante de 11/06 como falta de saldo, (6) aguardar resposta da Open Trade sobre GB26003 sem tratar como pedido/embarque real, (7) retomar Fase 1 da LP GB Importadora quando houver domínio/assets/dados comerciais, (8) reconciliar evidência do daily pulse Meta Ads antes de confiar no monitor, mantendo Camp 1 congelada salvo anomalia crítica, (9) resolver/confirmar ciclos finais do Daily Sales v2 antes de qualquer envio real, (10) validar estabilidade Bling Matriz + desbloquear Filial/alerta WhatsApp antes de nova operação fiscal, (11) orientar RH sobre Sandra/Guilherme/Leonardo/Lucas/Mateus/Yasmin antes de qualquer contato proativo, (12) fechar reposição de canecas após Pedro enviar pedidos em trânsito/já feitos, (13) implementar WhatsApp Health Check/validador Canggu versionado e pós-mortem do JWT._
 
 
 ---

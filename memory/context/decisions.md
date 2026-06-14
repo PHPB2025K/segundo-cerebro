@@ -299,3 +299,21 @@ Pedro decidiu renomear o sistema interno antes chamado **Budamix Central** para 
 - `CK4742_B2` corresponde à Jarra Medidora Vidro 500ml canônica `CK4742_B`.
 - `KFJ004` corresponde ao Kit Ferramentas Jardinagem Marrom canônico `KJP003`; não confundir com `KJP004`, que na planilha é Cinza.
 - Regra operacional: estes aliases são restritos aos SKUs validados. Não extrapolar para SKUs parecidos, cores próximas ou famílias semelhantes sem nova consulta à aba do marketplace/planilha e nova validação.
+
+## 2026-06-13 — Envios Full deve rodar silencioso e aparecer só dentro do Controle de Estoque
+
+- Pedro definiu que o cron automático de **ENVIOS FULL** não deve enviar mensagem própria no tópico Estoque.
+- A rotina pode rodar automaticamente para preparar/processar dados, mas a comunicação visível deve aparecer apenas como a terceira seção do **🏭 Controle de Estoque** diário.
+- Se a seção de Envios Full não puder ser incorporada corretamente no formato aprovado de três seções, o fluxo deve falhar fechado em vez de mandar resumo separado ou template antigo.
+
+## 2026-06-13 — Envios Full baixa estoque físico; venda Full/FBA não baixa novamente
+
+- Pedro corrigiu a interpretação operacional: envios para estoques Full/FBA devem baixar o estoque físico do galpão, porque a planilha de ESTOQUE representa o saldo físico local.
+- A exceção de não baixar físico vale para vendas/pedidos marketplace Full/FBA, pois esses itens já saíram do galpão quando foram enviados ao estoque do marketplace.
+- Regra prática: envio para Full/FBA = saída física do galpão; venda Full/FBA = não mexe de novo no físico.
+
+## 2026-06-13 — Envios Full pode usar descrição como fallback conservador de SKU
+
+- Quando o SKU/alias da planilha ENVIOS FULL não resolver para item físico baixável na planilha de ESTOQUE, o sistema pode usar a descrição/nome do item como fallback conservador.
+- O fallback deve manter prioridade do SKU físico direto e só aplicar por descrição quando houver correspondência de alta confiança com o catálogo físico.
+- Caso validado: `XCP001` com descrição “Caneca Paris 170ml Branca” deve resolver para a xícara/caneca Paris branca física, não para alias antigo de kit inexistente.

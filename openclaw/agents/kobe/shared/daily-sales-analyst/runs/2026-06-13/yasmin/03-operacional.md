@@ -1,0 +1,50 @@
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
+### Leitura operacional do dia
+
+- **Volume comprimido, patamar bimestral sustentado por ticket:** 117 pedidos representam -17,1% vs avg_30d (141,1 pedidos) e -17,2% vs mesmos sábados (`same_weekday_avg.avg_orders=141,25`), mas o GMV de R$ 5.421 está apenas -11,0% abaixo da média dos sábados e +4,0% acima do avg_60d (`changes.gmv_vs_60d_pct`). O ticket de R$ 46,34 (+5,8% vs 60d, `changes.ticket_vs_60d_pct`) sustentou o GMV acima do piso bimestral mesmo com volume comprimido. Isso confirma operacionalmente a leitura da L01: o dia é acomodação dentro do patamar expandido, não queda estrutural. A compressão de pedidos é real, mas o efeito no faturamento é amortecido pelo ticket acima da série longa.
+
+- **Concentração do IMB501 idêntica ao ciclo anterior e sem diluição:** O cluster carregou 51,3% do dia — Tampa Preta (37 pedidos, Full, MLB3288536143) + Tampa Cinza (13 pedidos, Full, MLB3288536143) + Tampa Vermelha (10 pedidos, Cross-Docking, MLB4535659243) = 60/117 pedidos. Idêntico ao `top3_concentration` de 12/06 registrado na memória (também 51,3%). Com `top5_concentration=63,2%`, a cauda contribui apenas +11,9pp além dos três primeiros, confirmando operacionalmente o risco de dependência levantado pela L01: a base de substituição em escala equivalente não existe, e o dia de menor volume não diluiu a concentração.
+
+- **Dois Full em cobertura crítica persistem sem restock:** Kit 3 Potes (MLB4076957145, Full, `health=0,85`): `available_quantity=4` POST-baixa de 5 pedidos hoje — runway < 1 dia ao ritmo do sábado, provavelmente ainda mais curto em dia útil. Kit 4 Potes 1050ml (MLB4073003575, Full, gold_pro, `health=0,75`): `available_quantity=11` POST-baixa de 5 pedidos — runway ~2,2 dias. A memória registra ausência de restock efetivo nesse par desde pelo menos 09/06 (quatro ciclos consecutivos para o 1050ml). O dia não trouxe resolução operacional — o pacote confirma que a cadeia de risco identificada pela L01 e acionada pela L02 permanece ativa e sem intervenção documentada.
+
+- **ADS sustentou o resultado em estrutura de denominador comprimido — padrão confirmado:** ADS share de 62,3% (R$ 3.375,77 / R$ 5.421,27), ROAS 14,34x, ACOS 4,41%. O dia adiciona evidência à leitura tática da L02: o share alto (vs 42,0% no 12/06, dia de GMV R$ 6.398) é artefato de denominador, não escalada de campanha. O spend absoluto (R$ 235,43) é comparável aos ciclos recentes. A correlação entre GMV comprimido em sábado com orgânico enfraquecido pelo health degradado do líder e ADS share elevado se repete de forma consistente — o padrão agora tem mais um ponto de confirmação.
+
+---
+
+### Sinais operacionais relevantes
+
+- **Sinal:** Kit 3 Potes (MLB4076957145, Full, `health=0,85`) fechou o dia com `available_quantity=4` POST-baixa de 5 pedidos, sem evidência de restock. — **Interpretação operacional:** Qualquer pedido a partir da abertura de domingo pode ultrapassar o estoque disponível e ativar pausa automática pelo ML. Ruptura em Full com anúncio exatamente no limiar de `health=0,85` agrava: a pausa interrompe histórico de engajamento no threshold, podendo deprimir o score se o anúncio retornar depois de período pausado. Cancelamentos automáticos subsequentes pressionarão `cancellations_rate=0` — o único vetor qualitativo que ainda ameaça o Platinum (buffer R$ 27.667 confortável em volume, mas `cancellations_rate` é critério separado).
+
+- **Sinal:** Kit 4 Potes 1050ml (MLB4073003575, Full, gold_pro, `health=0,75`): `available_quantity=11` POST-baixa, quarto ciclo consecutivo documentado sem restock efetivo (09/06, 11/06, 12/06, 13/06). — **Interpretação operacional:** Ao ritmo de dias úteis (tipicamente acima do sábado), o runway é inferior a 2,2 dias — sem restock, o anúncio gold_pro com health degradada cruza para abaixo de 5 unidades antes de terça-feira. A ruptura em gold_pro com `health=0,75` é mais custosa que em gold_special: a recuperação de posição orgânica pós-pausa é mais lenta em listing de tier superior com histórico de engajamento em nível regular.
+
+- **Sinal:** Mix de modalidade de envio do top10 em Full 71,4% vs Full 79,2% no 30d (`fulfillment_mix_30d.full_pct`) — divergência de -7,8pp explicada por dois itens Cross-Docking no topo: Tampa Vermelha/IMB501V (MLB4535659243, 10 pedidos) e Kit 10 Potes 520ml (MLB4676131007, 6 pedidos) = 16 pedidos Cross-Docking dos 56 resolvidos (28,6%). — **Interpretação operacional:** Divergência produto-específica, não sistêmica. Contudo, é a maior divergência da série recente disponível (09/06 foi -4,5pp, 12/06 ficou próximo ao padrão com Full dominante). A base ativa de 41,5% Full (`account_overview.active_analysis.fulfillment_mix.full_pct`) permanece distante do top10 (71,4%), confirmando que os campeões do dia operam desproporcionalmente em Full — estreiteza estrutural que a L01 já mapeou.
+
+- **Sinal:** Kit 4 Potes 640ml (MLB5402326666, Full, Clássico, `health=0,66`) — sétimo+ ciclo consecutivo em nível preocupante, `available_quantity=30` POST-baixa de 8 pedidos (~3,75 dias de runway ao ritmo do sábado). — **Interpretação operacional:** Cobertura não é o risco — é a exposição orgânica em anúncio Clássico Full com health degradada por múltiplos ciclos. Sem reversão observável na série, o listing pode estar perdendo ranking de categoria de forma silenciosa. O gatilho de alinhamento com Himmel (abaixo de 0,63 em dois ciclos) segue distante, mas o sétimo ciclo idêntico sem melhora é o dado operacional do dia.
+
+- **Sinal:** Cancelamentos do dia: 4 pedidos (3,4% sobre 117 válidos), `cancellations_rate` da reputação ainda em zero. — **Interpretação operacional:** Nível baixo-moderado dentro do padrão recente (3–6/dia documentados na memória). O sinal é contextual: com dois Full em cobertura crítica prestes a pausar automaticamente, qualquer cancelamento automático prospectivo a partir de amanhã somará sobre esse histórico. A distância de zero para o `cancellations_rate` oficial é desconhecida — a janela longa do ML pode estar absorvendo mais ciclos do que o visível no pacote.
+
+---
+
+### Anomalias ou ausência de anomalia
+
+**Anomalia moderada.**
+
+O dia se enquadra na banda bimestral em GMV e está dentro do range histórico dos sábados em pedidos — não há anomalia no resultado. A anomalia moderada está na estrutura operacional: (1) dois Full em cobertura crítica simultânea sem restock por quatro ciclos consecutivos, com o mais urgente em runway < 1 dia; (2) concentração do IMB501 idêntica ao ciclo anterior (51,3%) sem diluição mesmo em dia de volume comprimido — a estreiteza da base de substituição não melhorou; (3) divergência de mix de modalidade de envio -7,8pp vs 30d, maior da série recente disponível, ainda que produto-específica. Os três desvios apontam para a mesma vulnerabilidade estrutural já mapeada pela L01. O que eleva para anomalia crítica: `status=paused` com `available_quantity=0` no Kit 3 Potes (MLB4076957145) no próximo snapshot — cancelamentos automáticos ativados com `cancellations_rate` saindo de zero. O que rebaixa para leve: restock do Kit 3 Potes confirmado com `available_quantity ≥ 15` no ciclo de amanhã, neutralizando o risco iminente.
+
+---
+
+### O que precisa ser investigado pela Granular
+
+- **Pergunta:** Kit 3 Potes (MLB4076957145, Full): qual é o `available_quantity` e `status` atual no snapshot de agora? Já entrou em pausa automática ou ainda está ativo com ≤ 4 unidades? — **Motivada por:** sinal operacional #1 — runway < 1 dia ao ritmo do sábado, sem restock documentado.
+
+- **Pergunta:** Kit 4 Potes 1050ml (MLB4073003575, Full, gold_pro): há restock em trânsito ao CD do ML com ETA confirmado? O `available_quantity` caiu abaixo de 6 unidades entre o snapshot de ontem e agora? — **Motivada por:** sinal operacional #2 — quarto ciclo consecutivo sem restock efetivo, runway ~2,2 dias com aceleração provável em dia útil.
+
+- **Pergunta:** Kit 4 Potes 640ml (MLB5402326666, Full, Clássico, `health=0,66`): a série de health está estabilizando, ainda caindo ou apresentou qualquer sinal de recuperação nas últimas 48h? É possível identificar o driver (claims, atrasos, qualidade do listing)? — **Motivada por:** sinal operacional #4 — sétimo+ ciclo consecutivo abaixo do threshold sem evidência de reversão.
+
+- **Pergunta:** Da receita ADS de R$ 3.375,77 ontem (13/06), qual anúncio foi o principal receptor de spend? O IMB501 (MLB3288536143, `health=0,71`) liderou a receita ADS ou outro produto capturou a maior fatia? — **Motivada por:** Lente Op 5 — ADS share de 62,3% em dia de denominador comprimido; sem breakdown por `platform_item_id` (22º+ ciclo de pendência), não é possível saber se a campanha está puxando volume para o anúncio com health degradada ou distribuindo para a cauda.
+
+---
+
+### Destaque para a Condensadora
+
+O fato operacional mais importante do dia não está no resultado (acomodação dentro da banda bimestral, confirmada e esperada) — está no que não se resolveu: o Kit 3 Potes (MLB4076957145, Full, `available_quantity=4`) encerrou o sábado em runway abaixo de 24h sem restock entrando. A L02 já definiu a ação para Yasmin, mas o snapshot de hoje confirma que a resolução não ocorreu no ciclo de 13/06. A Condensadora deve sinalizar isso com prioridade imediata — não como risco prospectivo, mas como situação que, se não tratada antes da abertura de segunda-feira, ativa cancelamentos automáticos e move o `cancellations_rate` de zero pela primeira vez documentado na série. O Platinum (buffer R$ 27.667) está confortável em volume, mas `cancellations_rate` é critério qualitativo separado — e esse é o único vetor que pode comprometer a medalha sem que o GMV decline. O restante do dia (concentração do IMB501, mix de modalidade, ADS share) é consistente com os padrões mapeados e não traz fato novo que a Condensadora precise carregar além do que já está na tese da L01.

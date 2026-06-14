@@ -1,0 +1,38 @@
+<!-- llm_used=true model=claude-sonnet-4-6 fallback=false -->
+### Decisão tática
+
+- **Risco operacional imediato — dois Full em cobertura crítica simultânea:** A tese da L01 identifica essa como a cadeia de maior risco imediato. Kit 3 Potes (Full, `available_quantity=4`, 5 pedidos ontem) está em runway abaixo de 1 dia — ruptura automática em Full gera cancelamentos prospectivos que começam a pressionar `cancellations_rate=0`, hoje sem margem de absorção no contexto Platinum (buffer R$ 27.667, ritmo mínimo ~R$ 4.933/dia). Kit 4 Potes 1050ml (Full, `available_quantity=11`, 3º+ ciclo sem restock efetivo documentado na memória desde 09/06) está em runway ~2,2 dias. Decisão: agir antes do evento, não depois.
+
+- **ADS share elevado em dia de denominador comprimido — não acionar Himmel:** A tese da L01 aponta correlação entre ADS share alto (62,3% ontem) e dias de GMV comprimido (sábado, orgânico enfraquecido pelo health degradado do líder), não escalada de campanha. Lente Tática 5 é conclusiva: ROAS 14,34x e ACOS 4,41% configuram campanha eficiente — qualquer ajuste introduz variável num sistema ainda sem série suficiente para separar efeito de comportamento. Decisão: registrar o ponto como "denominador comprimido" e aguardar 3 dias úteis com GMV ≥ R$ 6.000 para leitura comparável.
+
+- **Erosão do IMB501 (`health=0,71`, 18º+ ciclo) — coletar evidência, não agir:** A L01 classifica esse como o risco mais persistente e silencioso da conta (`is_catalog=false`, perda gradual de ranking de categoria). O gatilho de alinhamento com Himmel já está documentado na memória (abaixo de 0,68 em dois ciclos consecutivos) e não foi atingido. `available_quantity=1.570` descarta ruptura. Decisão: verificar direção do health hoje (estável, caindo ou recuperando) sem nenhum movimento — agir antes do gatilho seria precipitado e pode destruir histórico de engajamento acumulado do listing.
+
+- **Patamar em acomodação — tratar como tal:** A L01 classifica explicitamente o sábado de R$ 5.421 / 117 pedidos como acomodação dentro da banda bimestral (+4,0% vs 60d), não como reversão. Decisão: não escalar o volume comprimido como alerta. A série dos últimos 4 sábados tem volatilidade intrínseca alta (R$ 5.124–R$ 7.065); ontem está entre o piso e a mediana.
+
+---
+
+### O que fazer hoje
+
+- **Yasmin:** verificar `available_quantity` e `status` do Kit 3 Potes (Full, MLB4076957145, 4 unidades no snapshot de hoje, 5 pedidos ontem, runway < 1 dia) e acionar providência imediata — reposição ao CD do ML ou pausa controlada antes que o ML execute ruptura automática — motivo: pausa automática em Full com pedidos no dia gera cancelamentos prospectivos diretos; `cancellations_rate=0` ainda não absorveu os ciclos de ruptura recentes documentados na memória (MLB6167272090 somou 38+ pedidos prospectivos acumulados sem que a métrica oficial se movesse, mas a margem não é infinita no contexto de manutenção Platinum) — sinal de resultado: `available_quantity ≥ 15` no próximo snapshot confirma restock e risco neutralizado; `status=paused` com novos pedidos registrados exige quantificar os cancelamentos prospectivos e acompanhar `cancellations_rate` no ciclo seguinte.
+
+- **Yasmin:** confirmar status de restock do Kit 4 Potes 1050ml (Full, gold_pro, MLB4073003575, `available_quantity=11`, `health=0,75`, 3º+ ciclo consecutivo sem reposição efetiva documentada na memória desde 09/06) e checar ETA de entrada no CD do ML — motivo: ao ritmo de 5 pedidos/dia, runway é ~2,2 dias; sem restock, o anúncio cruzará abaixo de 5 unidades antes de quarta-feira, entrando no mesmo limiar de ação imediata do Kit 3 Potes; o `health=0,75` já deprime ranking orgânico, tornando a ruptura mais danosa porque a recuperação de posição depois é mais lenta — sinal de resultado: `available_quantity ≥ 20` no próximo snapshot confirma restock suficiente; `available_quantity ≤ 5` em qualquer ciclo dos próximos 2 dias eleva para urgência equivalente ao Kit 3 Potes e aciona ação imediata análoga.
+
+- **Yasmin:** registrar ADS share de ontem (62,3%, spend R$ 235,43, revenue ADS R$ 3.376, ROAS 14,34x, ACOS 4,41%) como ponto de série com marcação explícita de contexto "sábado, GMV R$ 5.421, denominador comprimido" — motivo: a L01 identifica que ADS share sobe quando o orgânico comprime; esse ponto não é comparável com dias de GMV ≥ R$ 6.000 para validar ou refutar a hipótese de autonomia orgânica formulada a partir dos pontos de 09/06 (44,3%) e 12/06 (42,0%); a série útil para decidir sobre Himmel só se forma em dias de volume equivalente — sinal de resultado: dois dos três próximos dias úteis com GMV ≥ R$ 6.000 e ADS share < 45% consolida hipótese de autonomia orgânica como fato; dois pontos acima de 55% refutam a hipótese e recoloca dependência estrutural em campanha como framework principal para discussão com Himmel.
+
+---
+
+### O que NÃO fazer ainda
+
+- **Não acionar Himmel sobre ADS ML:** ROAS 14,34x e ACOS 4,41% estão no piso de eficiência da série histórica. Lente Tática 5 é conclusiva para esse cenário (ADS share ≥ 50% + ROAS > 5x + ACOS < 10% = não tocar). O share de 62,3% é atribuível ao denominador comprimido do sábado, padrão documentado desde 10/06 — não é escalada de campanha. Mexer no sistema eficiente pelo motivo errado (share aparentemente alto em dia de GMV baixo) é o principal risco aqui: quebrar uma campanha que está funcionando sem causa real.
+
+- **Não tratar a compressão de GMV de ontem como sinal de queda de patamar e escalar para Kobe:** R$ 5.421 / 117 pedidos está dentro da banda bimestral e acima do piso histórico de sábado. A L01 é explícita: acomodação dentro do patamar expandido de junho, não reversão. Escalonamento estrutural para Kobe requer sinal confirmado em ≥2 janelas temporais; hoje há um único ponto de compressão num dia historicamente volátil. Acionar Kobe agora seria precipitado e consumiria banda de decisão estratégica sem base.
+
+- **Não alterar health, listing ou posição do IMB501 (MLB3288536143, `health=0,71`, 18º+ ciclo):** O gatilho documentado na memória para alinhamento com Himmel (cruzar abaixo de 0,68 em dois ciclos consecutivos) não foi atingido. `available_quantity=1.570` descarta qualquer risco de ruptura. Intervir no listing antes do gatilho pode destruir o histórico de engajamento acumulado — o ML usa vendas, cliques e satisfação histórica no cálculo de ranking; pausar, alterar ou redirecionar esse anúncio agora seria introduzir variável num risco que ainda é gradual, não agudo.
+
+---
+
+### Escalonamento
+
+**observar** — com ação operacional imediata pontual (Kit 3 Potes)
+
+A postura dominante para os próximos 5–7 dias é observação com uma exceção pontual operacional: Kit 3 Potes (Full, `available_quantity=4`) requer ação de Yasmin hoje sem necessidade de acionar Himmel ou Kobe. Fora desse caso, nenhuma condição atual justifica escalonamento — campanha eficiente, reputação verde, Platinum com buffer confortável (R$ 27.667). Os gatilhos que mudam a classificação: (a) `cancellations_rate` sair de zero no próximo snapshot → Yasmin investiga quais anúncios geraram cancelamentos automáticos antes de qualquer outro movimento; (b) `health` do IMB501 (MLB3288536143) cruzar abaixo de 0,68 em dois ciclos consecutivos → Yasmin alinha com Himmel sobre cobertura preventiva em categoria; (c) ADS share acima de 55% em dois dos três próximos dias úteis com GMV ≥ R$ 6.000 → Yasmin abre discussão com Kobe sobre dependência estrutural da conta em mídia paga, decisão que extrapola tática diária; (d) buffer Platinum cair abaixo de R$ 15.000 em qualquer leitura semanal → alerta de sustentação de medalha, aciona revisão operacional com Kobe.
